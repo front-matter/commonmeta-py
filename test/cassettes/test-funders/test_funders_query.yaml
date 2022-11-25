@@ -1,0 +1,194 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?query=NSF&rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/61UTW/bMAz9K4Iuu/hz3bDVtw6rgQBFCzTYafFBtWlXqCx5khw0KPzfR0lukgH9
+        CrwcFJrke3ykKT9RY5kdDS2oeqAR7cEY1kFsdwOgrx1lAzoW3Nij4Ba04UpiPE+yJDtEaPFEuYXe
+        xAOiBu/5HNE/I+idi2EtbWOOnI+0yCJqgOn6Prage6fgel3SKaJWWSZiDWYUFt3f8yiQ0uI30jeu
+        bOZ++VdXWqia2aDml8S8hqyxIzAYkqx3TfzkW+70EtWSyx50x2VHSq2k5dgI4ZLcQlBCmGzISkq1
+        DZQRZcLGjsYVd/o+mZMpLsvbFf4hmMzmqQyh7pI2fPHTMcVLoNUR6OJfUBXRUXMc+b21Q7FJN2nz
+        mDSKJ0p3mzTPkvwsOzt31uH9aRgEq/2Aq/1TE9/tgsOqB5B++s3cP2JUiwfM0tBsn8WhzaUnDQLd
+        G5SN9x51Jk1rFhFAi116nsPDYjn/tb+l+GIBQTVFR/c0/5J9yz90T6+Y7oCUrOaCYzFDbtqW1/Dy
+        LXw9+dqXYYKsaw6yxiSFXzHvfBP3o7zYpFflDZrhdJfmtfRTNv15Ah/edOGKuqnvy/qdmHXO6/JO
+        0jwENE0Yg0vdD+J9gruWbVLRKpfoz7BUb4GqqZqmv/f2xJtRBgAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '495'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:21:57 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?query=NSF&rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/61UTW/bMAz9K4Iuu/hz3bDVtw6rgQBFCzTYafFBtWlXqCx5khw0KPzfR0lukgH9
+        CrwcFJrke3ykKT9RY5kdDS2oeqAR7cEY1kFsdwOgrx1lAzoW3Nij4Ba04UpiPE+yJDtEaPFEuYXe
+        xAOiBu/5HNE/I+idi2EtbWOOnI+0yCJqgOn6Prage6fgel3SKaJWWSZiDWYUFt3f8yiQ0uI30jeu
+        bOZ++VdXWqia2aDml8S8hqyxIzAYkqx3TfzkW+70EtWSyx50x2VHSq2k5dgI4ZLcQlBCmGzISkq1
+        DZQRZcLGjsYVd/o+mZMpLsvbFf4hmMzmqQyh7pI2fPHTMcVLoNUR6OJfUBXRUXMc+b21Q7FJN2nz
+        mDSKJ0p3mzTPkvwsOzt31uH9aRgEq/2Aq/1TE9/tgsOqB5B++s3cP2JUiwfM0tBsn8WhzaUnDQLd
+        G5SN9x51Jk1rFhFAi116nsPDYjn/tb+l+GIBQTVFR/c0/5J9yz90T6+Y7oCUrOaCYzFDbtqW1/Dy
+        LXw9+dqXYYKsaw6yxiSFXzHvfBP3o7zYpFflDZrhdJfmtfRTNv15Ah/edOGKuqnvy/qdmHXO6/JO
+        0jwENE0Yg0vdD+J9gruWbVLRKpfoz7BUb4GqqZqmv/f2xJtRBgAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '495'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:33:40 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?query=NSF&rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/61UTW/bMAz9K4Iuu/hz3bDVtw6rgQBFCzTYafFBtWlXqCx5khw0KPzfR0lukgH9
+        CrwcFJrke3ykKT9RY5kdDS2oeqAR7cEY1kFsdwOgrx1lAzoW3Nij4Ba04UpiPE+yJDtEaPFEuYXe
+        xAOiBu/5HNE/I+idi2EtbWOOnI+0yCJqgOn6Prage6fgel3SKaJWWSZiDWYUFt3f8yiQ0uI30jeu
+        bOZ++VdXWqia2aDml8S8hqyxIzAYkqx3TfzkW+70EtWSyx50x2VHSq2k5dgI4ZLcQlBCmGzISkq1
+        DZQRZcLGjsYVd/o+mZMpLsvbFf4hmMzmqQyh7pI2fPHTMcVLoNUR6OJfUBXRUXMc+b21Q7FJN2nz
+        mDSKJ0p3mzTPkvwsOzt31uH9aRgEq/2Aq/1TE9/tgsOqB5B++s3cP2JUiwfM0tBsn8WhzaUnDQLd
+        G5SN9x51Jk1rFhFAi116nsPDYjn/tb+l+GIBQTVFR/c0/5J9yz90T6+Y7oCUrOaCYzFDbtqW1/Dy
+        LXw9+dqXYYKsaw6yxiSFXzHvfBP3o7zYpFflDZrhdJfmtfRTNv15Ah/edOGKuqnvy/qdmHXO6/JO
+        0jwENE0Yg0vdD+J9gruWbVLRKpfoz7BUb4GqqZqmv/f2xJtRBgAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '495'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:48:11 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+version: 1

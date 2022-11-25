@@ -1,0 +1,188 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/5VRwXKCMBD9FSZngiA9tNzaznj0QjlVDhFWYQwJTUJHxuHfuyGK2s5U5ZAs773d
+        fbs5EG2Y6TRJiNwRnzSgNdsCNX0LiG06UYKivNbmgvwGpWspkI+CMAjPDEkOpDbQaNpiVjsic598
+        daB6y2EvZWiNNfckCX2igamiogZUgw5Ex/ngEyMN41SB7rhBNJ7Pn559V5Ykn9igtI1D90XYnMuC
+        GecnE6grvRRnAo2UYI0dYznyjHtpUYMowFtIHMwl+YRxQ63QlidZkAbe//osffWW6QIjd2bp6b6Z
+        OOblPulUjbYqY9pkNVvNyn1QyjqQaruaRWEQxWH8YqPzjApazorRYj79lXTdO8DIHYjRvzg6wBzt
+        PGC0uXTRucXcljGr05vp7PTpvrPAMTMf/F+vFt/1am8SarH9/UAO9d5lgMxHBd4ENC0TPYITcBk7
+        8tHVx4+sfn3yOwWFtWAquMZOPq9lfwT5kA/DDwcHTcCgAwAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '378'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:21:57 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/5VRwXKCMBD9FSZngiA9tNzaznj0QjlVDhFWYQwJTUJHxuHfuyGK2s5U5ZAs773d
+        fbs5EG2Y6TRJiNwRnzSgNdsCNX0LiG06UYKivNbmgvwGpWspkI+CMAjPDEkOpDbQaNpiVjsic598
+        daB6y2EvZWiNNfckCX2igamiogZUgw5Ex/ngEyMN41SB7rhBNJ7Pn559V5Ykn9igtI1D90XYnMuC
+        GecnE6grvRRnAo2UYI0dYznyjHtpUYMowFtIHMwl+YRxQ63QlidZkAbe//osffWW6QIjd2bp6b6Z
+        OOblPulUjbYqY9pkNVvNyn1QyjqQaruaRWEQxWH8YqPzjApazorRYj79lXTdO8DIHYjRvzg6wBzt
+        PGC0uXTRucXcljGr05vp7PTpvrPAMTMf/F+vFt/1am8SarH9/UAO9d5lgMxHBd4ENC0TPYITcBk7
+        8tHVx4+sfn3yOwWFtWAquMZOPq9lfwT5kA/DDwcHTcCgAwAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '378'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:33:38 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 habanero/1.2.2
+      X-USER-AGENT:
+      - python-requests/2.28.1 habanero/1.2.2
+    method: GET
+    uri: https://api.crossref.org/funders?rows=2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/5VRwXKCMBD9FSZngiA9tNzaznj0QjlVDhFWYQwJTUJHxuHfuyGK2s5U5ZAs773d
+        fbs5EG2Y6TRJiNwRnzSgNdsCNX0LiG06UYKivNbmgvwGpWspkI+CMAjPDEkOpDbQaNpiVjsic598
+        daB6y2EvZWiNNfckCX2igamiogZUgw5Ex/ngEyMN41SB7rhBNJ7Pn559V5Ykn9igtI1D90XYnMuC
+        GecnE6grvRRnAo2UYI0dYznyjHtpUYMowFtIHMwl+YRxQ63QlidZkAbe//osffWW6QIjd2bp6b6Z
+        OOblPulUjbYqY9pkNVvNyn1QyjqQaruaRWEQxWH8YqPzjApazorRYj79lXTdO8DIHYjRvzg6wBzt
+        PGC0uXTRucXcljGr05vp7PTpvrPAMTMf/F+vFt/1am8SarH9/UAO9d5lgMxHBd4ENC0TPYITcBk7
+        8tHVx4+sfn3yOwWFtWAquMZOPq9lfwT5kA/DDwcHTcCgAwAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '378'
+      content-type:
+      - application/json
+      date:
+      - Fri, 25 Nov 2022 11:48:11 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+version: 1
