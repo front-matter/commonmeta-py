@@ -3,7 +3,7 @@ talbot
 
 |pypi| |docs| |ghactions| |coverage| |black|
 
-Talbot is a library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard).
+Talbot is a library to convert scholarly metadata, modelled after the `briard ruby gem <https://github.com/front-matter/briard>`_.
 
 `talbot` includes three modules you can import as needed (or
 import all):

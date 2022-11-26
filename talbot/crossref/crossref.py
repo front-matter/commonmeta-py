@@ -1,6 +1,6 @@
 import sys
 from typing import Union, List
-import requests
+# import requests
 from ..request import request
 from ..request_class import Request
 from ..talbot_utils import sub_str, check_kwargs

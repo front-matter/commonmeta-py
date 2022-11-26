@@ -6,10 +6,10 @@ install:
 	python3 -m pip install .
 
 test:
-	python3 -m pytest --record-mode=once --cov-report term --cov=talbot test/
+	python3 -m pytest --record-mode=once --cov-report term --cov=talbot tests/
 
 test_no_vcr:
-	python3 -m pytest --disable-recording --cov-report term --cov=talbot test/
+	python3 -m pytest --disable-recording --cov-report term --cov=talbot tests/
 
 docs:
 	cd docs;\

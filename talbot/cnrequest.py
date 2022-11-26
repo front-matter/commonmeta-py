@@ -1,5 +1,5 @@
 import requests
-import json
+# import json
 import warnings
 
 from .talbot_utils import switch_classes, make_ua

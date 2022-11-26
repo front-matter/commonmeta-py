@@ -1,0 +1,31 @@
+[tool.poetry]
+name="talbot"
+version="0.1.0"
+description="Library for conversions of scholarly metadata"
+authors=["Martin Fenner <martin@front-matter.io>"]
+readme = "README.rst"
+packages = [{include = "talbot"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+docutils = "^0.19"
+sphinxcontrib-issuetracker = "^0.11"
+sphinx-autodoc-typehints = "^1.19"
+tqdm = "^4.64"
+requests = "^2.28"
+pytest = "^7.2"
+pytest-cov = "^4.0"
+pytest-recording = "^0.12"
+codecov = "^2.1"
+vcrpy = "^4.2"
+PyYAML = "^6.0"
+simplejson = "^3.18"
+citeproc-py-styles = ">0.1"
+citeproc-py = "^0.6"
+jsonschema = "^4.17"
+datacite = "^1.1"
+lxml = "^4.9"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

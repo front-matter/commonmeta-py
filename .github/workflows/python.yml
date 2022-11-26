@@ -27,5 +27,5 @@ jobs:
     - name: Test coverage
       if: matrix.python-version == '3.9.12'
       run: |
-        python3 -m "pytest" --cov-report=xml --cov=talbot test/
+        python3 -m "pytest" --cov-report=xml --cov=talbot tests/
         codecov
