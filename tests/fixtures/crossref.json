@@ -1,0 +1,572 @@
+{
+  "indexed": {
+    "date-parts": [[2022, 9, 8]],
+    "date-time": "2022-09-08T23:27:28Z",
+    "timestamp": 1662679648109
+  },
+  "reference-count": 27,
+  "publisher": "eLife Sciences Publications, Ltd",
+  "license": [
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "vor",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "am",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "tdm",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "vor",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "am",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    },
+    {
+      "start": {
+        "date-parts": [[2014, 2, 11]],
+        "date-time": "2014-02-11T00:00:00Z",
+        "timestamp": 1392076800000
+      },
+      "content-version": "tdm",
+      "delay-in-days": 0,
+      "URL": "http://creativecommons.org/licenses/by/3.0/"
+    }
+  ],
+  "funder": [
+    {
+      "name": "SystemsX"
+    },
+    {
+      "name": "EMBO longterm post-doctoral fellowships"
+    },
+    {
+      "name": "Marie Heim-Voegtlin"
+    },
+    {
+      "DOI": "10.13039/501100006390",
+      "name": "University of Lausanne",
+      "doi-asserted-by": "crossref"
+    },
+    {
+      "name": "SystemsX"
+    },
+    {
+      "DOI": "10.13039/501100003043",
+      "name": "EMBO",
+      "doi-asserted-by": "publisher"
+    },
+    {
+      "DOI": "10.13039/501100001711",
+      "name": "Swiss National Science Foundation",
+      "doi-asserted-by": "publisher"
+    },
+    {
+      "DOI": "10.13039/501100006390",
+      "name": "University of Lausanne",
+      "doi-asserted-by": "crossref"
+    }
+  ],
+  "content-domain": {
+    "domain": ["www.elifesciences.org"],
+    "crossmark-restriction": false
+  },
+  "short-container-title": [],
+  "abstract": "<jats:p>Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale. For instance, secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly specialized tissues that comprises several thousand cells starting from a few dozen. This dynamic process is difficult to follow because of its scale and because it can only be investigated invasively, precluding comprehensive understanding of the cell proliferation, differentiation, and patterning events involved. To overcome such limitation, we established an automated quantitative histology approach. We acquired hypocotyl cross-sections from tiled high-resolution images and extracted their information content using custom high-throughput image processing and segmentation. Coupled with automated cell type recognition through machine learning, we could establish a cellular resolution atlas that reveals vascular morphodynamics during secondary growth, for example equidistant phloem pole formation.</jats:p>",
+  "DOI": "10.7554/elife.01567",
+  "type": "journal-article",
+  "created": {
+    "date-parts": [[2014, 2, 11]],
+    "date-time": "2014-02-11T16:29:04Z",
+    "timestamp": 1392136144000
+  },
+  "source": "Crossref",
+  "is-referenced-by-count": 26,
+  "title": [
+    "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+  ],
+  "prefix": "10.7554",
+  "volume": "3",
+  "author": [
+    {
+      "given": "Martial",
+      "family": "Sankar",
+      "sequence": "first",
+      "affiliation": [
+        {
+          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+        }
+      ]
+    },
+    {
+      "given": "Kaisa",
+      "family": "Nieminen",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+        }
+      ]
+    },
+    {
+      "given": "Laura",
+      "family": "Ragni",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+        }
+      ]
+    },
+    {
+      "given": "Ioannis",
+      "family": "Xenarios",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Vital-IT, Swiss Institute of Bioinformatics, Lausanne, Switzerland"
+        }
+      ]
+    },
+    {
+      "given": "Christian S",
+      "family": "Hardtke",
+      "sequence": "additional",
+      "affiliation": [
+        {
+          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+        }
+      ]
+    }
+  ],
+  "member": "4374",
+  "published-online": {
+    "date-parts": [[2014, 2, 11]]
+  },
+  "reference": [
+    {
+      "key": "bib1",
+      "doi-asserted-by": "publisher",
+      "first-page": "181",
+      "DOI": "10.1038/nature02100",
+      "article-title": "APL regulates vascular tissue identity in Arabidopsis",
+      "volume": "426",
+      "author": "Bonke",
+      "year": "2003",
+      "journal-title": "Nature"
+    },
+    {
+      "key": "bib2",
+      "doi-asserted-by": "publisher",
+      "first-page": "413",
+      "DOI": "10.1534/genetics.109.104976",
+      "article-title": "In the beginning was the worm",
+      "volume": "182",
+      "author": "Brenner",
+      "year": "2009",
+      "journal-title": "Genetics"
+    },
+    {
+      "key": "bib3",
+      "doi-asserted-by": "publisher",
+      "first-page": "594",
+      "DOI": "10.1034/j.1399-3054.2002.1140413.x",
+      "article-title": "Secondary xylem development in Arabidopsis: a model for wood formation",
+      "volume": "114",
+      "author": "Chaffey",
+      "year": "2002",
+      "journal-title": "Physiologia Plantarum"
+    },
+    {
+      "key": "bib4",
+      "doi-asserted-by": "publisher",
+      "first-page": "2119",
+      "DOI": "10.1162/089976601750399335",
+      "article-title": "Training nu-support vector classifiers: theory and algorithms",
+      "volume": "13",
+      "author": "Chang",
+      "year": "2001",
+      "journal-title": "Neural computation"
+    },
+    {
+      "key": "bib5",
+      "doi-asserted-by": "crossref",
+      "first-page": "273",
+      "DOI": "10.1007/BF00994018",
+      "article-title": "Support-vector Networks",
+      "volume": "20",
+      "author": "Cortes",
+      "year": "1995",
+      "journal-title": "Machine Learning"
+    },
+    {
+      "key": "bib6",
+      "doi-asserted-by": "crossref",
+      "first-page": "71",
+      "DOI": "10.1242/dev.119.1.71",
+      "article-title": "Cellular organisation of the Arabidopsis thaliana root",
+      "volume": "119",
+      "author": "Dolan",
+      "year": "1993",
+      "journal-title": "Development"
+    },
+    {
+      "key": "bib7",
+      "doi-asserted-by": "publisher",
+      "first-page": "1097",
+      "DOI": "10.1016/j.semcdb.2009.09.009",
+      "article-title": "Stem cell function during plant vascular development",
+      "volume": "20",
+      "author": "Elo",
+      "year": "2009",
+      "journal-title": "Seminars in Cell & Developmental Biology"
+    },
+    {
+      "key": "bib8",
+      "doi-asserted-by": "publisher",
+      "first-page": "2224",
+      "DOI": "10.1242/dev.091314",
+      "article-title": "WOX4 and WOX14 act downstream of the PXY receptor kinase to regulate plant vascular proliferation independently of any role in vascular organisation",
+      "volume": "140",
+      "author": "Etchells",
+      "year": "2013",
+      "journal-title": "Development"
+    },
+    {
+      "key": "bib9",
+      "doi-asserted-by": "publisher",
+      "first-page": "e1002997",
+      "DOI": "10.1371/journal.pgen.1002997",
+      "article-title": "Plant vascular cell division is maintained by an interaction between PXY and ethylene signalling",
+      "volume": "8",
+      "author": "Etchells",
+      "year": "2012",
+      "journal-title": "PLOS Genetics"
+    },
+    {
+      "key": "bib10",
+      "doi-asserted-by": "publisher",
+      "first-page": "370",
+      "DOI": "10.1038/msb.2010.25",
+      "article-title": "Clustering phenotype populations by genome-wide RNAi and multiparametric imaging",
+      "volume": "6",
+      "author": "Fuchs",
+      "year": "2010",
+      "journal-title": "Molecular Systems Biology"
+    },
+    {
+      "key": "bib11",
+      "doi-asserted-by": "publisher",
+      "first-page": "60",
+      "DOI": "10.1016/j.biosystems.2012.07.004",
+      "article-title": "BaSAR-A tool in R for frequency detection",
+      "volume": "110",
+      "author": "Granqvist",
+      "year": "2012",
+      "journal-title": "Bio Systems"
+    },
+    {
+      "key": "bib12",
+      "doi-asserted-by": "publisher",
+      "first-page": "55",
+      "DOI": "10.1016/j.pbi.2005.11.013",
+      "article-title": "Developmental mechanisms regulating secondary growth in woody plants",
+      "volume": "9",
+      "author": "Groover",
+      "year": "2006",
+      "journal-title": "Current Opinion in Plant Biology"
+    },
+    {
+      "key": "bib13",
+      "doi-asserted-by": "publisher",
+      "first-page": "2618",
+      "DOI": "10.1105/tpc.110.076083",
+      "article-title": "TDIF peptide signaling regulates vascular stem cell proliferation via the WOX4 homeobox gene in Arabidopsis",
+      "volume": "22",
+      "author": "Hirakawa",
+      "year": "2010",
+      "journal-title": "Plant Cell"
+    },
+    {
+      "key": "bib14",
+      "doi-asserted-by": "publisher",
+      "first-page": "15208",
+      "DOI": "10.1073/pnas.0808444105",
+      "article-title": "Non-cell-autonomous control of vascular stem cell fate by a CLE peptide/receptor system",
+      "volume": "105",
+      "author": "Hirakawa",
+      "year": "2008",
+      "journal-title": "Proceedings of the National Academy of Sciences of the United States of America"
+    },
+    {
+      "key": "bib15",
+      "doi-asserted-by": "publisher",
+      "first-page": "263",
+      "DOI": "10.1016/0092-8674(89)90900-8",
+      "article-title": "Arabidopsis, a useful weed",
+      "volume": "56",
+      "author": "Meyerowitz",
+      "year": "1989",
+      "journal-title": "Cell"
+    },
+    {
+      "key": "bib16",
+      "doi-asserted-by": "publisher",
+      "first-page": "1482",
+      "DOI": "10.1126/science.1066609",
+      "article-title": "Plants compared to animals: the broadest comparative study of development",
+      "volume": "295",
+      "author": "Meyerowitz",
+      "year": "2002",
+      "journal-title": "Science"
+    },
+    {
+      "key": "bib17",
+      "doi-asserted-by": "publisher",
+      "first-page": "653",
+      "DOI": "10.1104/pp.104.040212",
+      "article-title": "A weed for wood? Arabidopsis as a genetic model for xylem development",
+      "volume": "135",
+      "author": "Nieminen",
+      "year": "2004",
+      "journal-title": "Plant Physiol"
+    },
+    {
+      "key": "bib18",
+      "doi-asserted-by": "publisher",
+      "first-page": "1565",
+      "DOI": "10.1038/nbt1206-1565",
+      "article-title": "What is a support vector machine?",
+      "volume": "24",
+      "author": "Noble",
+      "year": "2006",
+      "journal-title": "Nature Biotechnology"
+    },
+    {
+      "key": "bib19",
+      "doi-asserted-by": "publisher",
+      "first-page": "1516",
+      "DOI": "10.1073/pnas.77.3.1516",
+      "article-title": "Classification of cultured mammalian cells by shape analysis and pattern recognition",
+      "volume": "77",
+      "author": "Olson",
+      "year": "1980",
+      "journal-title": "Proceedings of the National Academy of Sciences of the United States of America"
+    },
+    {
+      "key": "bib20",
+      "doi-asserted-by": "publisher",
+      "first-page": "979",
+      "DOI": "10.1093/bioinformatics/btq046",
+      "article-title": "EBImage–an R package for image processing with applications to cellular phenotypes",
+      "volume": "26",
+      "author": "Pau",
+      "year": "2010",
+      "journal-title": "Bioinformatics"
+    },
+    {
+      "key": "bib21",
+      "doi-asserted-by": "publisher",
+      "first-page": "1322",
+      "DOI": "10.1105/tpc.111.084020",
+      "article-title": "Mobile gibberellin directly stimulates Arabidopsis hypocotyl xylem expansion",
+      "volume": "23",
+      "author": "Ragni",
+      "year": "2011",
+      "journal-title": "Plant Cell"
+    },
+    {
+      "key": "bib22",
+      "doi-asserted-by": "publisher",
+      "article-title": "Data from: Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth",
+      "author": "Sankar",
+      "year": "2014",
+      "journal-title": "Dryad Digital Repository",
+      "DOI": "10.5061/dryad.b835k"
+    },
+    {
+      "key": "bib23",
+      "doi-asserted-by": "publisher",
+      "first-page": "458",
+      "DOI": "10.1016/j.cub.2008.02.070",
+      "article-title": "Flowering as a condition for xylem expansion in Arabidopsis hypocotyl and root",
+      "volume": "18",
+      "author": "Sibout",
+      "year": "2008",
+      "journal-title": "Current Biology"
+    },
+    {
+      "key": "bib24",
+      "doi-asserted-by": "publisher",
+      "first-page": "577",
+      "DOI": "10.1111/j.1469-8137.2010.03236.x",
+      "article-title": "Evolution of development of vascular cambia and secondary growth",
+      "volume": "186",
+      "author": "Spicer",
+      "year": "2010",
+      "journal-title": "The New Phytologist"
+    },
+    {
+      "key": "bib25",
+      "doi-asserted-by": "publisher",
+      "first-page": "659",
+      "DOI": "10.1007/s00138-011-0345-9",
+      "article-title": "Cell morphology classification and clutter mitigation in phase-contrast microscopy images using machine learning",
+      "volume": "23",
+      "author": "Theriault",
+      "year": "2012",
+      "journal-title": "Machine Vision and Applications"
+    },
+    {
+      "key": "bib26",
+      "doi-asserted-by": "publisher",
+      "first-page": "439",
+      "DOI": "10.1016/j.cell.2012.02.048",
+      "article-title": "Mechanical stress acts via katanin to amplify differences in growth rate between adjacent cells in Arabidopsis",
+      "volume": "149",
+      "author": "Uyttewaal",
+      "year": "2012",
+      "journal-title": "Cell"
+    },
+    {
+      "key": "bib27",
+      "doi-asserted-by": "publisher",
+      "first-page": "860",
+      "DOI": "10.1038/ncb2764",
+      "article-title": "A screen for morphological complexity identifies regulators of switch-like transitions between discrete cell shapes",
+      "volume": "15",
+      "author": "Yin",
+      "year": "2013",
+      "journal-title": "Nature Cell Biology"
+    }
+  ],
+  "container-title": ["eLife"],
+  "original-title": [],
+  "language": "en",
+  "link": [
+    {
+      "URL": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
+      "content-type": "application/pdf",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+    },
+    {
+      "URL": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.xml",
+      "content-type": "application/xml",
+      "content-version": "vor",
+      "intended-application": "text-mining"
+    }
+  ],
+  "deposited": {
+    "date-parts": [[2022, 3, 26]],
+    "date-time": "2022-03-26T09:21:50Z",
+    "timestamp": 1648286510000
+  },
+  "score": 1,
+  "resource": {
+    "primary": {
+      "URL": "https://elifesciences.org/articles/01567"
+    }
+  },
+  "subtitle": [],
+  "short-title": [],
+  "issued": {
+    "date-parts": [[2014, 2, 11]]
+  },
+  "references-count": 27,
+  "alternative-id": ["10.7554/eLife.01567"],
+  "URL": "http://dx.doi.org/10.7554/elife.01567",
+  "archive": ["CLOCKSS"],
+  "relation": {
+    "is-supplemented-by": [
+      {
+        "id-type": "doi",
+        "id": "10.5061/dryad.b835k",
+        "asserted-by": "subject"
+      }
+    ]
+  },
+  "ISSN": ["2050-084X"],
+  "issn-type": [
+    {
+      "value": "2050-084X",
+      "type": "electronic"
+    }
+  ],
+  "subject": [
+    "General Immunology and Microbiology",
+    "General Biochemistry, Genetics and Molecular Biology",
+    "General Medicine",
+    "General Neuroscience"
+  ],
+  "published": {
+    "date-parts": [[2014, 2, 11]]
+  },
+  "assertion": [
+    {
+      "value": "2013-09-20",
+      "order": 0,
+      "name": "received",
+      "label": "Received",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    },
+    {
+      "value": "2013-12-24",
+      "order": 1,
+      "name": "accepted",
+      "label": "Accepted",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    },
+    {
+      "value": "2014-02-11",
+      "order": 2,
+      "name": "published",
+      "label": "Published",
+      "group": {
+        "name": "publication_history",
+        "label": "Publication History"
+      }
+    }
+  ]
+}
