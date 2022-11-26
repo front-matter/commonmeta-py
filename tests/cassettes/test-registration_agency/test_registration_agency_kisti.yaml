@@ -9,9 +9,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 talbot/0.1.0
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
       X-USER-AGENT:
-      - python-requests/2.28.1 talbot/0.1.0
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
     method: GET
     uri: https://api.crossref.org/works/10.5012/bkcs.2013.34.10.2889/agency
   response:
@@ -30,17 +30,22 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 12:37:45 GMT
+      - Sat, 26 Nov 2022 16:15:34 GMT
       permissions-policy:
       - interest-cohort=()
       server:
       - Jetty(9.4.40.v20210413)
+      set-cookie:
+      - AWSALB=VjohBasv+y8fMD8nE7lkM6ZZJudYQqaw4y9kDx/lLJziwReSB++giLwILqdDO5YW864/DS9vStQgkJy8qy47SRNilSzro5FOuRYwwZ/YyXmjnNs/yKAl+5ubd/WG;
+        Expires=Sat, 03 Dec 2022 16:15:33 GMT; Path=/
+      - AWSALBCORS=VjohBasv+y8fMD8nE7lkM6ZZJudYQqaw4y9kDx/lLJziwReSB++giLwILqdDO5YW864/DS9vStQgkJy8qy47SRNilSzro5FOuRYwwZ/YyXmjnNs/yKAl+5ubd/WG;
+        Expires=Sat, 03 Dec 2022 16:15:33 GMT; Path=/; SameSite=None
       transfer-encoding:
       - chunked
       vary:
       - Accept
       x-api-pool:
-      - public
+      - polite
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
@@ -83,16 +88,74 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 14:18:17 GMT
+      - Sat, 26 Nov 2022 16:21:50 GMT
       permissions-policy:
       - interest-cohort=()
       server:
       - Jetty(9.4.40.v20210413)
       set-cookie:
-      - AWSALB=Rb+ELjSoLslHmgvuiNboM36tqPxNah2JFCDswJv5g7AyH0jJjw+zZyOo7UygZEeXFhsTecXQ6m/KpeNnKQWZVDCGpJc8txxsmGO5jHvVFcSSEovBQcBab52k8Q+y;
-        Expires=Fri, 02 Dec 2022 14:18:17 GMT; Path=/
-      - AWSALBCORS=Rb+ELjSoLslHmgvuiNboM36tqPxNah2JFCDswJv5g7AyH0jJjw+zZyOo7UygZEeXFhsTecXQ6m/KpeNnKQWZVDCGpJc8txxsmGO5jHvVFcSSEovBQcBab52k8Q+y;
-        Expires=Fri, 02 Dec 2022 14:18:17 GMT; Path=/; SameSite=None
+      - AWSALB=sknUaPleKPwSEYNN84T/jOGy2kdr1tq9Xb2a18E/ysAOgqfG6bvCv3Gyib2Mck8Q2+zlklbeEviArFq6VTEZzRphbUvOJsofk9Zvukk6KxpjKx9+9fxXkE39tvdq;
+        Expires=Sat, 03 Dec 2022 16:21:49 GMT; Path=/
+      - AWSALBCORS=sknUaPleKPwSEYNN84T/jOGy2kdr1tq9Xb2a18E/ysAOgqfG6bvCv3Gyib2Mck8Q2+zlklbeEviArFq6VTEZzRphbUvOJsofk9Zvukk6KxpjKx9+9fxXkE39tvdq;
+        Expires=Sat, 03 Dec 2022 16:21:49 GMT; Path=/; SameSite=None
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept
+      x-api-pool:
+      - polite
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
+      X-USER-AGENT:
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/works/10.5012/bkcs.2013.34.10.2889/agency
+  response:
+    body:
+      string: '{"status":"ok","message-type":"work-agency","message-version":"1.0.0","message":{"DOI":"10.5012\/bkcs.2013.34.10.2889","agency":{"id":"kisti","label":"KISTI"}}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-type:
+      - application/json;charset=utf-8
+      date:
+      - Sat, 26 Nov 2022 16:34:53 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      set-cookie:
+      - AWSALB=aH4160AAt8HFQEr+JTGh9lBx4t7sZF1WQnhr+cpWLw/UwKtvnVk8gilKGINEEG89e/y1b5P1GNynCLAmSjtfFPadIFvJSWRlfaC+ZCMFXZqsG8IQSSITlAwidZct;
+        Expires=Sat, 03 Dec 2022 16:34:53 GMT; Path=/
+      - AWSALBCORS=aH4160AAt8HFQEr+JTGh9lBx4t7sZF1WQnhr+cpWLw/UwKtvnVk8gilKGINEEG89e/y1b5P1GNynCLAmSjtfFPadIFvJSWRlfaC+ZCMFXZqsG8IQSSITlAwidZct;
+        Expires=Sat, 03 Dec 2022 16:34:53 GMT; Path=/; SameSite=None
       transfer-encoding:
       - chunked
       vary:

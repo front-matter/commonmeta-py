@@ -1,8 +1,8 @@
 import pytest
 import vcr
-from habanero import Crossref, WorksContainer
+from talbot import Crossref, WorksContainer
 
-cr = Crossref()
+cr = Crossref(mailto = "info@front-matter.io")
 
 
 @pytest.mark.vcr

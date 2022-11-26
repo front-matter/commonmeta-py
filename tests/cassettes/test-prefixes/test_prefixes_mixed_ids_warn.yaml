@@ -31,7 +31,7 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:24:23 GMT
+      - Sat, 26 Nov 2022 16:15:12 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -84,7 +84,7 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:24:23 GMT
+      - Sat, 26 Nov 2022 16:15:13 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -138,7 +138,7 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:36:44 GMT
+      - Sat, 26 Nov 2022 16:21:41 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -191,7 +191,7 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:36:45 GMT
+      - Sat, 26 Nov 2022 16:21:41 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -223,9 +223,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
     method: GET
     uri: https://api.crossref.org/prefixes/10.1371
   response:
@@ -245,17 +245,22 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:50:14 GMT
+      - Sat, 26 Nov 2022 16:33:09 GMT
       permissions-policy:
       - interest-cohort=()
       server:
       - Jetty(9.4.40.v20210413)
+      set-cookie:
+      - AWSALB=Cp8DkluJ13AiVNYzSWm73G/mhB6M+uR6uk3BQsv2xi8bVuz221+3rUXF1GxvTBWjNS1D0+OT/emyuOJeueMR6NJKALBOtBe7R7RuNZg3SQaEnKlJ9rj2J9aRdFHC;
+        Expires=Sat, 03 Dec 2022 16:33:09 GMT; Path=/
+      - AWSALBCORS=Cp8DkluJ13AiVNYzSWm73G/mhB6M+uR6uk3BQsv2xi8bVuz221+3rUXF1GxvTBWjNS1D0+OT/emyuOJeueMR6NJKALBOtBe7R7RuNZg3SQaEnKlJ9rj2J9aRdFHC;
+        Expires=Sat, 03 Dec 2022 16:33:09 GMT; Path=/; SameSite=None
       transfer-encoding:
       - chunked
       vary:
       - Accept
       x-api-pool:
-      - public
+      - polite
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
@@ -277,9 +282,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
     method: GET
     uri: https://api.crossref.org/prefixes/10.9999
   response:
@@ -298,338 +303,22 @@ interactions:
       content-type:
       - application/json;charset=utf-8
       date:
-      - Fri, 25 Nov 2022 11:50:14 GMT
+      - Sat, 26 Nov 2022 16:33:13 GMT
       permissions-policy:
       - interest-cohort=()
       server:
       - Jetty(9.4.40.v20210413)
+      set-cookie:
+      - AWSALB=plhbJ0Lf6nnMQax6Y6mM9U4CMr2oHLD8pwyMblTz0qfQjzMxRlNme7buSixWLzOEKuagv5yP1IFttSngGSbWgGqp6fTNKb2L6USBA/43rA5uDDZsA98DNS5AcJtM;
+        Expires=Sat, 03 Dec 2022 16:33:09 GMT; Path=/
+      - AWSALBCORS=plhbJ0Lf6nnMQax6Y6mM9U4CMr2oHLD8pwyMblTz0qfQjzMxRlNme7buSixWLzOEKuagv5yP1IFttSngGSbWgGqp6fTNKb2L6USBA/43rA5uDDZsA98DNS5AcJtM;
+        Expires=Sat, 03 Dec 2022 16:33:09 GMT; Path=/; SameSite=None
       transfer-encoding:
       - chunked
       vary:
       - Accept
       x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 404
-      message: Not Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.1371
-  response:
-    body:
-      string: '{"status":"ok","message-type":"prefix","message-version":"1.0.0","message":{"member":"http:\/\/id.crossref.org\/member\/340","name":"Public
-        Library of Science (PLoS)","prefix":"http:\/\/id.crossref.org\/prefix\/10.1371"}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 12:19:15 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.9999
-  response:
-    body:
-      string: Resource not found.
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 12:19:15 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 404
-      message: Not Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.1371
-  response:
-    body:
-      string: '{"status":"ok","message-type":"prefix","message-version":"1.0.0","message":{"member":"http:\/\/id.crossref.org\/member\/340","name":"Public
-        Library of Science (PLoS)","prefix":"http:\/\/id.crossref.org\/prefix\/10.1371"}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 12:25:14 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.9999
-  response:
-    body:
-      string: Resource not found.
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 12:25:15 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 404
-      message: Not Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.1371
-  response:
-    body:
-      string: '{"status":"ok","message-type":"prefix","message-version":"1.0.0","message":{"member":"http:\/\/id.crossref.org\/member\/340","name":"Public
-        Library of Science (PLoS)","prefix":"http:\/\/id.crossref.org\/prefix\/10.1371"}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 14:17:56 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/prefixes/10.9999
-  response:
-    body:
-      string: Resource not found.
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/json;charset=utf-8
-      date:
-      - Fri, 25 Nov 2022 14:17:57 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
+      - polite
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:

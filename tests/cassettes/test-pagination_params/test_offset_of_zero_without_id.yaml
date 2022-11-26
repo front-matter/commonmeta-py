@@ -431,4 +431,153 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 talbot/0.1.0
+      X-USER-AGENT:
+      - python-requests/2.28.1 talbot/0.1.0
+    method: GET
+    uri: https://api.crossref.org/members?offset=0&rows=1
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/+1XsXLbMAz9FR9nMUdSsix569Kl7dTr1PNAS1TKWhZVkmrqy/nfC4pKbFOS7aHt
+        ZeiSwMADCIIPMPyMjOW2M2iN1A5FaC+M4Y8C20MrQLcX+63QuJbGnhl/Cm2kasBOH8gDOVnQ+hlJ
+        K/YGt+DV9hoaoR+d0Adng7O0xbIpxS+0JhEyguviG7ZC7yGDpqvrY4SssrzGWpiutqBlMclZ5MOi
+        9ddnVHNjsc8aF99EscNW7t1BaZonNEuW+YqsItRquef6gBvujOhd0/DaLFS1eM/3sj4sPolSFrIR
+        kH2husYd9YyKTmvRWFwqCZ/TLIvQlhe7StZi0DEWs5ccB03OCKS91YLvSvXU9IGcCW8PWBrTiRIf
+        4KKQ/FdGGIsSSjcRiDSLaMp6kSwjuky81onEi3lEk5UXVyCmHpu8ioyA6CPQGETvRiBu7N0YBXHp
+        AYCN/REkBXFwg2CxT4fAaSz3WgCw4WCIwGIPgBzYkBmLKM28No7idLM5uoqLSv4S7pUQJQ+QA0Eb
+        V13gy0AOXkEpJbfAHng8X2xgwoPjgoRn4Vrag39V2TyeENQhSmEKLdspZ600lmWorTpgmoZ3GJ5w
+        UNeyEI0RI/0L/DLIRcqBB5BUdboQ0CDNbmRVunA5BdquLbkVuFWQhhRzF5kOdbti537MvUCerlYJ
+        zeNlkrl8KwEBivHdL2ob2PgT1yVuOjcKbl5nrtZBUS9CBratsZoX9la157yCgp6ufG54pWs/Uu6Y
+        ET953TnMC7GPwGxZ9uPNqp1oetbzPgCgVQV/qj5IPx2HMJuXWTPMV2iIunb/vsPFwBXDeJSFuzBL
+        3ZhptSoEODeP5syUZcfTWJr2hiEFmNcLT0ASQq7EP57a9maqd0/k804KX+2C5wF3Ri952a/z3eAs
+        cRwzkqZZmscw4WBuXXLvsu2mOT1Jv4m+ORFroqpvuUp01JJ/viy3KPuW6zM1Sv9+ua5171uu1r9g
+        0/8mm2YNFKaq+aNfQUWrjITvmomvxgq+pkR0goT7RWBHa6u7c/zMUhSGnV8OQuT1XSY8fXp7CGPO
+        7QsjXLg8hoCBXzfKMOs+2ivHiU6sZXNZziOmFqcQM7H7jsLMrHshbnodv3K3ex/qziPnYaPFe+5F
+        7mfubO5Xf7YEdBkvw300aNpaFT2LYMH8KPiTUmW0+PA5Wnxp4HdvufgMA024vdItqv2mOb+qbo6b
+        4/E3nO7xCdcPAAA=
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '923'
+      content-type:
+      - application/json
+      date:
+      - Sat, 26 Nov 2022 16:21:36 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
+      X-USER-AGENT:
+      - python-requests/2.28.1 talbot/0.1.0 (mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/members?offset=0&rows=1
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/+1XsXLjOAz9FQ9rMSNStiK7u2abu6t2rtpxQUtQlmeZ9JFUEk/G/36gqMQ2Jdku
+        dndSbJPAwAMIgg8w/EasE661ZEX0liRkB9aKJ6DusAfU7WC3AUMbad2Z8RmMlVqhnT2kD+nJQlZv
+        RDrYWbpHr32nYQn5rwVz8DY8yzgqVQWvZJUmxIIw5XfqwOwwA9U2zTEhTjvRUAO2bRxqeZYueRLC
+        ktW3N9II62jImpbfodxSJ3f+oDxfzlmxyLJFhg57I3fCHKgS3kj+UEo0dqbr2Rexk81h9jdUspQK
+        MPtSt8of9UbK1hhQjlZa4ue8KBKyEeW2lg30Os598JBjr1nyFNPeGBDbSr+oLpA30c2BSmtbqOgB
+        L4rJf+Mp58mcsXWCIisSlvNOTBcJW8yD1otpEJcJmz8G8RHFPGDnHyJPUQwRWIZicEsxbhbcOENx
+        EQCIzcIRaY5i74bBspBOiqfxZdAigPcHYwSeBQDmwPvMeMJYEbRZkuXr9dFXHGr5Cv6VCEsfMIeU
+        rH11kS89OUSNpZTCIXvw8UKxkQkPngsSn0UY6Q7hVaV6OiGYR1RgSyP3Y85GGyqrWFu3yDSD79A/
+        Ya9uZAnKwkD/Dr8McpFy5IEk1a0pARtEbQdWbUqfU6Rt95VwQPca05AwdZHxULcrdu7H/Qss88fH
+        OVtmi3nh860BA5TDu1/UNrKJF2Eqqlo/Cm5eZ6rWUVEvQka2jXVGlO5Wtae8ooKernxu+KBrN1Lu
+        mBHPomk95p3YR2S2rLrx5vQWVMd60QVAtK7xT90F6aZjH2b9Pmv6+YoN0TT+3794MXSlOB5l6S/M
+        8zDDdAnorJ7smakojqexNO6NQwoxHxcegczT9Er846ltb6Z690Q+76T41S54HnFn8JKX/TrdDd6S
+        ZRlP87zIlxlOOMYj7l223TinR+k30jcnYo1U9TNXiQ1a8seX5RZlP3N9xkbpzy/Xte79zNX6FWz6
+        3WTjrMHC1I14Ciso7LWV+F0z8tVY49cUJCdIvF9EdrJypj3HTyxFcdjp5SBGXt9l4tPHt4c45tS+
+        MMDFy2MM6Pl1owyT7oO9cpjoyFo2leU0YmxxijEju+8gzMS6F+PG1/Erd7v3oe48cho2WLynXuR+
+        5k7mfvVnS0SX4TLcRcOmbXTZsQgXzL9AvGhdJbM/vyazfxT+7q1mX3Gggd8r/aLabZrTq+r6uD4e
+        /wckW3L41w8AAA==
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '922'
+      content-type:
+      - application/json
+      date:
+      - Sat, 26 Nov 2022 16:32:16 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      set-cookie:
+      - AWSALB=6XuZX0Z7qDAXkjb58RjW4a+anGHtm8y7pnud7Bj+F0hiV7dPeaeZp9gD28NFNvJsIPA/57Qm9x654WVRJLEqhPagwKhMvByX6vOXoSIPoVd4WONGiO493I9Ep4qm;
+        Expires=Sat, 03 Dec 2022 16:32:16 GMT; Path=/
+      - AWSALBCORS=6XuZX0Z7qDAXkjb58RjW4a+anGHtm8y7pnud7Bj+F0hiV7dPeaeZp9gD28NFNvJsIPA/57Qm9x654WVRJLEqhPagwKhMvByX6vOXoSIPoVd4WONGiO493I9Ep4qm;
+        Expires=Sat, 03 Dec 2022 16:32:16 GMT; Path=/; SameSite=None
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - polite
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
 version: 1

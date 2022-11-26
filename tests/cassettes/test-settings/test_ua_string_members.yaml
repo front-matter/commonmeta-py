@@ -9,30 +9,30 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
     method: GET
     uri: https://api.crossref.org/members?query=ecology&rows=2
   response:
     body:
       string: !!binary |
-        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
+        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
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -46,11 +46,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '888'
+      - '889'
       content-type:
       - application/json
       date:
-      - Fri, 25 Nov 2022 11:24:37 GMT
+      - Sat, 26 Nov 2022 16:15:37 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -80,30 +80,30 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
     method: GET
     uri: https://api.crossref.org/members?query=ecology&rows=2
   response:
     body:
       string: !!binary |
-        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
+        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
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -117,11 +117,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '888'
+      - '889'
       content-type:
       - application/json
       date:
-      - Fri, 25 Nov 2022 11:37:01 GMT
+      - Sat, 26 Nov 2022 16:21:53 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -151,30 +151,30 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
+      - python-requests/2.28.1 talbot/0.1.0 foo bar
     method: GET
     uri: https://api.crossref.org/members?query=ecology&rows=2
   response:
     body:
       string: !!binary |
-        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
+        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
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -188,224 +188,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '888'
+      - '889'
       content-type:
       - application/json
       date:
-      - Fri, 25 Nov 2022 11:50:36 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-    method: GET
-    uri: https://api.crossref.org/members?query=ecology&rows=2
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAA/+1Wz2/aMBT+V5DPMYJQaMe126GatB26aYeKg0ke1COxM9tpixD/+54TAokTEypN
-        0zRxKvV7fvne5/fj2xFtmMk1mRO5IQFJQWu2Bmq2GeBZCukSFE24NjXjCyjNpUD7eDgajk4WMt8R
-        biDVNMNbWXESBuRXDmprbfgtZSgXMbyR+SggGpiKnqkBlVoEEMlErrdkHxAjDUuoAp0nBk3hh6AM
-        TOZPO5IwbWiJm0bPEG2o4Sl+ajybfZhMbma3YXh3G5BM8ZSpLRXMGslDmkLMmYHBY8RBRDD4dPhe
-        QCKZC/udHYlypUAYGkuuC4xLFm1WPIHDyazCdvgXsS4VsE0sX0URwJ7T5ZZyrXOI6RZTRNBP4Wgc
-        BpNFYH9MgrD8MQ3Gi8XeIoUVfwObHRmPhreTSUgWFhUyfaCVrRAEokfeMekSJOIbWhZ5yhOmuNmW
-        bHCxdjxi0JHiWddlJRXlsXu6yvGNFOZxSP5wnPAIhIbWeeXeDNKA7NzAl5W5igBLS2xaVqkii8k5
-        zbMYX49mEmFw8CXSHaqfsRbAFShbJa2IDTIdG3tlKqYit13Ti99HrsNiI6RjW2qjWGT66PXdchg8
-        pVw3HOuz6L0LmumFJbn1qSp5j6XMYzK/mYxC2z0bEEWl8yoG3tFlFPxVDYFF1ZWHWYQtkCT2z0/M
-        TGAD4ijhkc246MFj/h6HY0a7/f7UWb2xLx429WJ3eW6UovPaLe6bLeUv2K7yaLZCd9l1VkhHaZdv
-        30ftlR+nslYJW5d7ADKpOZZvR7utWKIhOLm4Q8qxk7lRed3fM1ndsP6B43qeH4iut2ckuW6+IdTy
-        c1dQ63tltfXw4L3e2k5toB2z3ofyDC0d09j16dig59n1+3Uv9TO5XfpQF37S79Za374Xubx0vdjP
-        ih8v+00PbNtERkUZ4dr6JpUURgaDr1+CwT0TLGa4luzeK7aWf/Ohkusbh3fTcBraLeho089CviYQ
-        r4/BBg8CVbEoMLHkXQp13FSo43co1Fm3Hh3fTic3V0F6FaT/sCDt76CaLC0LutKltjHrunRThaqp
-        UfRshPOqU4WzRplD29WUU/38Mi1a3bh4pvy/EquLyCstV+X5F5Vny3KVnlfp+ael5w+mnzGKkSIY
-        fLwPBt8FNxAPHnHGYQ3WRGjftlvsF/v9b5Dwt/ncFQAA
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '888'
-      content-type:
-      - application/json
-      date:
-      - Fri, 25 Nov 2022 12:19:49 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-    method: GET
-    uri: https://api.crossref.org/members?query=ecology&rows=2
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAA/+1Wz2/aMBT+V5DPMYJQaMe126GatB26aYeKg0ke1COxM9tpixD/+54TAokTEypN
-        0zRxKvV7fvne5/fj2xFtmMk1mRO5IQFJQWu2Bmq2GeBZCukSFE24NjXjCyjNpUD7eDgajk4WMt8R
-        biDVNMNbWXESBuRXDmprbfgtZSgXMbyR+SggGpiKnqkBlVoEEMlErrdkHxAjDUuoAp0nBk3hh6AM
-        TOZPO5IwbWiJm0bPEG2o4Sl+ajybfZhMbma3YXh3G5BM8ZSpLRXMGslDmkLMmYHBY8RBRDD4dPhe
-        QCKZC/udHYlypUAYGkuuC4xLFm1WPIHDyazCdvgXsS4VsE0sX0URwJ7T5ZZyrXOI6RZTRNBP4Wgc
-        BpNFYH9MgrD8MQ3Gi8XeIoUVfwObHRmPhreTSUgWFhUyfaCVrRAEokfeMekSJOIbWhZ5yhOmuNmW
-        bHCxdjxi0JHiWddlJRXlsXu6yvGNFOZxSP5wnPAIhIbWeeXeDNKA7NzAl5W5igBLS2xaVqkii8k5
-        zbMYX49mEmFw8CXSHaqfsRbAFShbJa2IDTIdG3tlKqYit13Ti99HrsNiI6RjW2qjWGT66PXdchg8
-        pVw3HOuz6L0LmumFJbn1qSp5j6XMYzK/mYxC2z0bEEWl8yoG3tFlFPxVDYFF1ZWHWYQtkCT2z0/M
-        TGAD4ijhkc246MFj/h6HY0a7/f7UWb2xLx429WJ3eW6UovPaLe6bLeUv2K7yaLZCd9l1VkhHaZdv
-        30ftlR+nslYJW5d7ADKpOZZvR7utWKIhOLm4Q8qxk7lRed3fM1ndsP6B43qeH4iut2ckuW6+IdTy
-        c1dQ63tltfXw4L3e2k5toB2z3ofyDC0d09j16dig59n1+3Uv9TO5XfpQF37S79Za374Xubx0vdjP
-        ih8v+00PbNtERkUZ4dr6JpUURgaDr1+CwT0TLGa4luzeK7aWf/Ohkusbh3fTcBraLeho089CviYQ
-        r4/BBg8CVbEoMLHkXQp13FSo43co1Fm3Hh3fTic3V0F6FaT/sCDt76CaLC0LutKltjHrunRThaqp
-        UfRshPOqU4WzRplD29WUU/38Mi1a3bh4pvy/EquLyCstV+X5F5Vny3KVnlfp+ael5w+mnzGKkSIY
-        fLwPBt8FNxAPHnHGYQ3WRGjftlvsF/v9b5Dwt/ncFQAA
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '888'
-      content-type:
-      - application/json
-      date:
-      - Fri, 25 Nov 2022 12:25:42 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2 foo bar
-    method: GET
-    uri: https://api.crossref.org/members?query=ecology&rows=2
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAA/+1Wz2/aMBT+V5DPMYJQaMe126GatB26aYeKg0ke1COxM9tpixD/+54TAokTEypN
-        0zRxKvV7fvne5/fj2xFtmMk1mRO5IQFJQWu2Bmq2GeBZCukSFE24NjXjCyjNpUD7eDgajk4WMt8R
-        biDVNMNbWXESBuRXDmprbfgtZSgXMbyR+SggGpiKnqkBlVoEEMlErrdkHxAjDUuoAp0nBk3hh6AM
-        TOZPO5IwbWiJm0bPEG2o4Sl+ajybfZhMbma3YXh3G5BM8ZSpLRXMGslDmkLMmYHBY8RBRDD4dPhe
-        QCKZC/udHYlypUAYGkuuC4xLFm1WPIHDyazCdvgXsS4VsE0sX0URwJ7T5ZZyrXOI6RZTRNBP4Wgc
-        BpNFYH9MgrD8MQ3Gi8XeIoUVfwObHRmPhreTSUgWFhUyfaCVrRAEokfeMekSJOIbWhZ5yhOmuNmW
-        bHCxdjxi0JHiWddlJRXlsXu6yvGNFOZxSP5wnPAIhIbWeeXeDNKA7NzAl5W5igBLS2xaVqkii8k5
-        zbMYX49mEmFw8CXSHaqfsRbAFShbJa2IDTIdG3tlKqYit13Ti99HrsNiI6RjW2qjWGT66PXdchg8
-        pVw3HOuz6L0LmumFJbn1qSp5j6XMYzK/mYxC2z0bEEWl8yoG3tFlFPxVDYFF1ZWHWYQtkCT2z0/M
-        TGAD4ijhkc246MFj/h6HY0a7/f7UWb2xLx429WJ3eW6UovPaLe6bLeUv2K7yaLZCd9l1VkhHaZdv
-        30ftlR+nslYJW5d7ADKpOZZvR7utWKIhOLm4Q8qxk7lRed3fM1ndsP6B43qeH4iut2ckuW6+IdTy
-        c1dQ63tltfXw4L3e2k5toB2z3ofyDC0d09j16dig59n1+3Uv9TO5XfpQF37S79Za374Xubx0vdjP
-        ih8v+00PbNtERkUZ4dr6JpUURgaDr1+CwT0TLGa4luzeK7aWf/Ohkusbh3fTcBraLeho089CviYQ
-        r4/BBg8CVbEoMLHkXQp13FSo43co1Fm3Hh3fTic3V0F6FaT/sCDt76CaLC0LutKltjHrunRThaqp
-        UfRshPOqU4WzRplD29WUU/38Mi1a3bh4pvy/EquLyCstV+X5F5Vny3KVnlfp+ael5w+mnzGKkSIY
-        fLwPBt8FNxAPHnHGYQ3WRGjftlvsF/v9b5Dwt/ncFQAA
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '888'
-      content-type:
-      - application/json
-      date:
-      - Fri, 25 Nov 2022 14:18:22 GMT
+      - Sat, 26 Nov 2022 16:34:57 GMT
       permissions-policy:
       - interest-cohort=()
       server:

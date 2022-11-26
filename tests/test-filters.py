@@ -1,9 +1,9 @@
 import os
 import pytest
-from habanero import Crossref
-from habanero import RequestError
+from talbot import Crossref
+from talbot import RequestError
 
-cr = Crossref()
+cr = Crossref(mailto = "info@front-matter.io")
 
 
 def test_filter_names():

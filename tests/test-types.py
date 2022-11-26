@@ -4,7 +4,7 @@ import vcr
 from talbot import Crossref
 from requests.exceptions import HTTPError
 
-cr = Crossref()
+cr = Crossref(mailto = "info@front-matter.io")
 
 a = {
     "items": [

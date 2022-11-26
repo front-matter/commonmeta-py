@@ -1,10 +1,10 @@
 import pytest
 import os
 import vcr
-from habanero import exceptions, Crossref
+from talbot import exceptions, Crossref
 from requests import exceptions as ex
 
-cr = Crossref()
+cr = Crossref(mailto = "info@front-matter.io")
 
 
 @pytest.mark.vcr

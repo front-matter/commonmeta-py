@@ -9,9 +9,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: http://doi.org/10.1126/science.169.3946.635
   response:
@@ -19,21 +19,21 @@ interactions:
       string: ''
     headers:
       CF-RAY:
-      - 76fa0050bc260095-AMS
+      - 7703e95a7cdab81c-AMS
       Cache-Control:
       - max-age=3600
       Connection:
       - keep-alive
       Date:
-      - Fri, 25 Nov 2022 11:21:31 GMT
+      - Sat, 26 Nov 2022 16:13:28 GMT
       Expires:
-      - Fri, 25 Nov 2022 12:21:31 GMT
+      - Sat, 26 Nov 2022 17:13:28 GMT
       Location:
       - https://doi.org/10.1126/science.169.3946.635
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lm68ZFPo%2BqcZRaco4P8DMM3H0QgJZ3PaW86jlDKwhHDbGh55GHgD8j8VXPbJ4xmRsPNZisbuuoQTxfhMe2pbU3jzSWECTCS%2BKf2ibv0XJxiu1w8fjy%2FeVMKAlb1bOcwSTxTCNdU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=MKHbzozPEXPZng0hnWrIpXs2vo2HXUXn6qVBzmjt1zqCan9SNZyV%2FkB1PM6hbFbS58T3cNw8s5lmQS4FX2%2F9vc0IBrhdJMUltCngPIwgYliXXYQdNpEhgc%2FU1YpLPDT6%2F3uDtPk%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -55,9 +55,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://doi.org/10.1126/science.169.3946.635
   response:
@@ -69,7 +69,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 76fa00518b3fb822-AMS
+      - 7703e95b5e3cb986-AMS
       Connection:
       - keep-alive
       Content-Length:
@@ -77,11 +77,11 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Fri, 25 Nov 2022 11:21:31 GMT
+      - Sat, 26 Nov 2022 16:13:28 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OqVQOoFS%2FTwFZyyI%2BzzUOmkChYC5j0weYqekaCgLdOSfFeg3XqJhQtNNW9OetUXTzqww8Met5VyRVjr%2B%2BdhkwHM2YkwPA0addEiyHDqtR9CYFEIo4cLiNOU51Ja9JatcEnKN%2F7U%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Ci219PQu5PSl2F%2F81FQUohE7Aub17v4rnUc2oDu2p%2Fb9W5IAE3U7jkN7am9mUUUtgEn6r1S6LB8dE8wK%2BzZN%2BLBYL3pwcpIpDfZE2eku6Yty%2BAjElU%2F045Zq%2BTvJ7Ngma7QcJJk%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -89,7 +89,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       expires:
-      - Fri, 25 Nov 2022 11:34:26 GMT
+      - Sat, 26 Nov 2022 17:07:37 GMT
       location:
       - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
       permissions-policy:
@@ -109,9 +109,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
   response:
@@ -135,7 +135,7 @@ interactions:
       content-type:
       - application/x-bibtex
       date:
-      - Fri, 25 Nov 2022 11:21:31 GMT
+      - Sat, 26 Nov 2022 16:13:28 GMT
       link:
       - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
         version="vor"; rel="item"
@@ -170,9 +170,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: http://doi.org/10.1126/science.169.3946.635
   response:
@@ -180,21 +180,21 @@ interactions:
       string: ''
     headers:
       CF-RAY:
-      - 76fa1138ec1ad0c1-AMS
+      - 7703f341aa330bd7-AMS
       Cache-Control:
       - max-age=3600
       Connection:
       - keep-alive
       Date:
-      - Fri, 25 Nov 2022 11:33:03 GMT
+      - Sat, 26 Nov 2022 16:20:13 GMT
       Expires:
-      - Fri, 25 Nov 2022 12:33:03 GMT
+      - Sat, 26 Nov 2022 17:20:13 GMT
       Location:
       - https://doi.org/10.1126/science.169.3946.635
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=sHON3MpL0TJeVPxyThIWQXxAK4Pjle1x9IFW8UbbURLgIeh1zMaoAN85rPk3JbgI93clidI4lRfjHDepMwx60yMV6L3VPI%2BZSLkq1xzvjBgOxCYU7hrSD54h8I1hhHpDfXyYb5w%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=91MxoXAURPGQMglwsmxgN1S1kNWX4v2qms4tGSbIwxxcNpg0pZ4tPk0Jp95yePXC3OpqnPlzdT32Mwk2isdhgMGQKSRbIMvZ%2FIJwjXO%2F0MRocoEkR8L3H4%2BxzAQ0tAzv%2FO4QWJs%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -216,9 +216,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://doi.org/10.1126/science.169.3946.635
   response:
@@ -230,7 +230,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 76fa1139acb61ede-AMS
+      - 7703f3429edb1c78-AMS
       Connection:
       - keep-alive
       Content-Length:
@@ -238,11 +238,11 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Fri, 25 Nov 2022 11:33:03 GMT
+      - Sat, 26 Nov 2022 16:20:13 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=8l3oVbT9MEPB4TGDPQcA%2F5Tvo7NcwlYdQTDa%2FesZIzHK36cbTEc4YiAGZ0e%2FkgfRLKomQ%2BjjckOLfb9XCPYH2LsZt3JzNpzNGEjmGtD8Vg%2FmhQo2y9Qd6wKzj5clJchUtrHP%2BdU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=H7xWwG%2FCUTOiCvoLEsIzxsTFeJheXFo3CdpDjGc4xHa6x0U9DTfJSVMjshGyNSZ%2BxlTIriJdhGF5vOplEDR0EAP%2B0vsjp5X4W3LqiIdaeAdTpR4EH5O0OCpbR8%2Bma0Q5XmbIheg%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -250,7 +250,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       expires:
-      - Fri, 25 Nov 2022 11:34:26 GMT
+      - Sat, 26 Nov 2022 17:07:37 GMT
       location:
       - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
       permissions-policy:
@@ -270,9 +270,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
   response:
@@ -296,7 +296,7 @@ interactions:
       content-type:
       - application/x-bibtex
       date:
-      - Fri, 25 Nov 2022 11:33:04 GMT
+      - Sat, 26 Nov 2022 16:20:14 GMT
       link:
       - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
         version="vor"; rel="item"
@@ -331,9 +331,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: http://doi.org/10.1126/science.169.3946.635
   response:
@@ -341,21 +341,21 @@ interactions:
       string: ''
     headers:
       CF-RAY:
-      - 76fa2680deffb8be-AMS
+      - 7703fba70b990b47-AMS
       Cache-Control:
       - max-age=3600
       Connection:
       - keep-alive
       Date:
-      - Fri, 25 Nov 2022 11:47:35 GMT
+      - Sat, 26 Nov 2022 16:25:57 GMT
       Expires:
-      - Fri, 25 Nov 2022 12:47:35 GMT
+      - Sat, 26 Nov 2022 17:25:57 GMT
       Location:
       - https://doi.org/10.1126/science.169.3946.635
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9CQ%2Bvw064tTbqh9uPdn%2BY2E2k%2BszKVe%2FJdC1bZFTU4J5JGuePn61moYUQeOoq5lreXi%2FF70VZ%2BWhdjyBcSZNAbhhICt%2BWLWZh3EaVmiXs8HHPO5tT%2FKaRfQiREFnZ56lFXANJ2E%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3Gb8vAl4sVJ%2F93M8Ax1Gk4UiRatS90TO%2FyJTJ6hw4EvB2VuvXnu%2F8A%2FQMQFS09qnlDF5fVvmSgnyBpgPoWDRkeh%2BfXdoD%2FrFsypQi9RGAaVWXgR%2FGLnddkuHQES88C6WXe7ghjA%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -377,9 +377,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://doi.org/10.1126/science.169.3946.635
   response:
@@ -391,7 +391,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 76fa26819a010a55-AMS
+      - 7703fba7e80cb8a6-AMS
       Connection:
       - keep-alive
       Content-Length:
@@ -399,11 +399,11 @@ interactions:
       Content-Type:
       - text/html;charset=utf-8
       Date:
-      - Fri, 25 Nov 2022 11:47:35 GMT
+      - Sat, 26 Nov 2022 16:25:57 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=RtRXvGhmG0gRmF2gcBW%2BCe1w6o4NGYEaXGZnubbKUYE%2BQlka%2FFfyyYf8N%2B293MvuU%2B6ogKAsCkphvoncvIFOrWwUo2fMh8%2B6gtzeVJ29CGGuh4CP1kaGOemMG6gUgSVrhQM0PAs%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Q9EVqWXkgYrSEQQzydXfsiijR7r0pc%2BBA7d6d7TlckMeXBr%2FRBcKnTHxdzYdXQn%2FQvWBVNGFyUQDdxwQto9%2Fvagv%2BSamPBkiyzbEqRAqOt8v49YwlzdPZK5zEQHaIvy%2BDrhmEwM%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -411,7 +411,7 @@ interactions:
       alt-svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
       expires:
-      - Fri, 25 Nov 2022 11:51:27 GMT
+      - Sat, 26 Nov 2022 16:50:30 GMT
       location:
       - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
       permissions-policy:
@@ -431,9 +431,9 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
       X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
+      - python-requests/2.28.1 talbot/0.1.0
     method: GET
     uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
   response:
@@ -457,490 +457,7 @@ interactions:
       content-type:
       - application/x-bibtex
       date:
-      - Fri, 25 Nov 2022 11:47:35 GMT
-      link:
-      - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
-        version="vor"; rel="item"
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: http://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: ''
-    headers:
-      CF-RAY:
-      - 76fa503d6f8d0a5d-AMS
-      Cache-Control:
-      - max-age=3600
-      Connection:
-      - keep-alive
-      Date:
-      - Fri, 25 Nov 2022 12:16:04 GMT
-      Expires:
-      - Fri, 25 Nov 2022 13:16:04 GMT
-      Location:
-      - https://doi.org/10.1126/science.169.3946.635
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jCC%2BlLhSs6GTQsEugYAh6rEC50cbdz4pTzP87wqPuDFn1zJtUL8Svt%2FZLUq1T5qfNKDCiDsR3BLjFsX%2FtzunZCBCmIV1vzousP2OywkJe%2BLo0aRc8JW8WShWsfwdRnYAroMEVyc%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: '<html><head><title>Handle Redirect</title></head>
-
-        <body><a href="https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform">https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 76fa503e1f350a49-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '233'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Fri, 25 Nov 2022 12:16:04 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=A7%2BvKZzO2%2B3DQpZDc%2BuiThe4t6RanxamecAanFKj8R4JlORLZ4cp7RqYnHRj6HKjEhsThrCesRdl7KLNN6heid7g1EI97FIWNkmE0%2FHGtNiWNBMf8Xk2vTfeqXwgMuljKoItC94%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-      expires:
-      - Fri, 25 Nov 2022 12:26:29 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    status:
-      code: 302
-      message: Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-  response:
-    body:
-      string: "@article{Frank_1970,\n\tdoi = {10.1126/science.169.3946.635},\n\turl
-        = {https://doi.org/10.1126%2Fscience.169.3946.635},\n\tyear = 1970,\n\tmonth
-        = {aug},\n\tpublisher = {American Association for the Advancement of Science
-        ({AAAS})},\n\tvolume = {169},\n\tnumber = {3946},\n\tpages = {635--641},\n\tauthor
-        = {Henry S. Frank},\n\ttitle = {The Structure of Ordinary Water},\n\tjournal
-        = {Science}\n}"
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/x-bibtex
-      date:
-      - Fri, 25 Nov 2022 12:16:05 GMT
-      link:
-      - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
-        version="vor"; rel="item"
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: http://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: ''
-    headers:
-      CF-RAY:
-      - 76fa5a443bafb914-AMS
-      Cache-Control:
-      - max-age=3600
-      Connection:
-      - keep-alive
-      Date:
-      - Fri, 25 Nov 2022 12:22:55 GMT
-      Expires:
-      - Fri, 25 Nov 2022 13:22:55 GMT
-      Location:
-      - https://doi.org/10.1126/science.169.3946.635
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NkS9IHl%2FBOtI0YKt1wjWFZqc%2BFdwucF5JEqUlNI2N%2FgXJQM9OLtppJ22lqHAWCio%2FIUvInzcjn0Z4wB3tTjIjKj1nJJgcmwl3hKoutApMPQdAyKfEdnCahlokH6BEC43YCIq6W0%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: '<html><head><title>Handle Redirect</title></head>
-
-        <body><a href="https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform">https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 76fa5a44ff290dfb-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '233'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Fri, 25 Nov 2022 12:22:55 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4FO12dMWKePpuCT1QptBIdkQd4%2Fu63dlQybWva%2F9ipY47DaxE%2BfpTwYZ%2BjotyTtYc4%2FZsU9muqS2KISLszwXJn2ankWU%2FITCHpYjeCC43k1RZdgkgTFtXZY%2FBFVRiJhsdIlcpPc%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-      expires:
-      - Fri, 25 Nov 2022 13:14:36 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    status:
-      code: 302
-      message: Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-  response:
-    body:
-      string: "@article{Frank_1970,\n\tdoi = {10.1126/science.169.3946.635},\n\turl
-        = {https://doi.org/10.1126%2Fscience.169.3946.635},\n\tyear = 1970,\n\tmonth
-        = {aug},\n\tpublisher = {American Association for the Advancement of Science
-        ({AAAS})},\n\tvolume = {169},\n\tnumber = {3946},\n\tpages = {635--641},\n\tauthor
-        = {Henry S. Frank},\n\ttitle = {The Structure of Ordinary Water},\n\tjournal
-        = {Science}\n}"
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/x-bibtex
-      date:
-      - Fri, 25 Nov 2022 12:22:56 GMT
-      link:
-      - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
-        version="vor"; rel="item"
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: http://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: ''
-    headers:
-      CF-RAY:
-      - 76fafd8fcc99b942-AMS
-      Cache-Control:
-      - max-age=3600
-      Connection:
-      - keep-alive
-      Date:
-      - Fri, 25 Nov 2022 14:14:23 GMT
-      Expires:
-      - Fri, 25 Nov 2022 15:14:23 GMT
-      Location:
-      - https://doi.org/10.1126/science.169.3946.635
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lwRM5kb9EFppG2ZZ4qdsXJyU3TKzVURHUdp3ybVsIsVLe9avgX1cHpthRv60boorjhRRVWYExYIGJHSWr0%2BYBl5Uz15HV70Ce3PdHYt7nrbKgpqOAtCfezBPpSNPopWgiu2ZSeQ%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://doi.org/10.1126/science.169.3946.635
-  response:
-    body:
-      string: '<html><head><title>Handle Redirect</title></head>
-
-        <body><a href="https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform">https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 76fafd91de9eb8f1-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '233'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Fri, 25 Nov 2022 14:14:24 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=6Akl5FcWJN7DDxpFSR3d6UoSlPWOMUHQleRMx1L2v4%2Fc56%2BY2JZ0dgjBx416cZYP5Gjit%2F4kBljGM6JlsYSxWIUB5kk1dji3DuATV7qlJgRPplA361NtmQ1euS332Xc7bPEBGDY%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
-      expires:
-      - Fri, 25 Nov 2022 14:34:26 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    status:
-      code: 302
-      message: Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - application/x-bibtex
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.28.1 habanero/1.2.2
-      X-USER-AGENT:
-      - python-requests/2.28.1 habanero/1.2.2
-    method: GET
-    uri: https://api.crossref.org/v1/works/10.1126%2Fscience.169.3946.635/transform
-  response:
-    body:
-      string: "@article{Frank_1970,\n\tdoi = {10.1126/science.169.3946.635},\n\turl
-        = {https://doi.org/10.1126%2Fscience.169.3946.635},\n\tyear = 1970,\n\tmonth
-        = {aug},\n\tpublisher = {American Association for the Advancement of Science
-        ({AAAS})},\n\tvolume = {169},\n\tnumber = {3946},\n\tpages = {635--641},\n\tauthor
-        = {Henry S. Frank},\n\ttitle = {The Structure of Ordinary Water},\n\tjournal
-        = {Science}\n}"
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-type:
-      - application/x-bibtex
-      date:
-      - Fri, 25 Nov 2022 14:14:24 GMT
+      - Sat, 26 Nov 2022 16:25:58 GMT
       link:
       - <http://dx.doi.org/10.1126/science.169.3946.635>; rel="canonical", <https://syndication.highwire.org/content/doi/10.1126/science.169.3946.635>;
         version="vor"; rel="item"

@@ -3,7 +3,7 @@ import vcr
 import yaml
 from talbot import Crossref
 
-cr = Crossref()
+cr = Crossref(mailto = "info@front-matter.io")
 
 # see https://github.com/front-matter/talbot/issues/
 
