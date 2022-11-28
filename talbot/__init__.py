@@ -44,6 +44,7 @@ __author__ = "Martin Fenner"
 __license__ = "MIT"
 
 from .crossref import Crossref, WorksContainer
+from .metadata import Metadata
 from .cn import content_negotiation, csl_styles
 from .counts import citation_count
 from .exceptions import *
