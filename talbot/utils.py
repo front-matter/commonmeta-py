@@ -1,4 +1,9 @@
-import os, json
+import os
+import json
+import html
+import re
+from .doi_utils import normalize_doi
+from urllib.parse import urlparse
 
 NORMALIZED_LICENSES = {
     'https://creativecommons.org/licenses/by/1.0': 'https://creativecommons.org/licenses/by/1.0/legalcode',
@@ -205,6 +210,60 @@ def get_date_from_parts(year = 0, month = 0, day = 0):
     arr = [e for i,e in enumerate(arr) if not (e == '00' or e == '0000')]
     return None if len(arr) == 0 else '-'.join(arr)
 
+def wrap(item):
+  """Turn None, dict, or list into list"""
+  if item is None:
+    return []
+  elif type(item) == list:
+    return item
+  else:
+    return [item]
+
+def unwrap(list):
+    """Turn list into dict or None, depending on list size"""
+    if len(list) == 0:
+        return None
+    elif len(list) == 1:
+        return list[0]
+    else:
+        return list
+
+def compact(dict_or_list):
+    """Remove None from dict or list"""
+    if type(dict_or_list) in [None, str]:
+        return dict_or_list
+    elif type(dict_or_list) is dict:
+        return {k: v for k, v in dict_or_list.items() if v is not None}
+    elif type(dict_or_list) is list:
+        return list(map(lambda x: compact(x), dict_or_list))
+
+def parse_attributes(element, **kwargs):
+    """extract attributes from a string, dict or list"""
+    content = kwargs.get('content', '__content__')
+
+    if type(element) == str and kwargs.get('content', None) is None:
+        return html.unescape(element)
+    elif type(element) == dict:
+        return element.get(html.unescape(content), None)
+    elif type(element) == list:
+        a = list(map(lambda x: x.get(html.unescape(content), None) if type(x) == dict else x, element))
+        a = a[0] if kwargs.get('first') else unwrap(a)
+        return a
+
+def normalize_id(id, **kwargs):
+    """Check for valid DOI or HTTP(S) URL"""
+    if id is None:
+        return None
+
+    # check for valid DOI
+    doi = normalize_doi(id, **kwargs)
+    if doi is not None:
+        return doi
+
+    # check for valid HTTP uri
+    uri = urlparse(id)
+    return id if uri.netloc and uri.scheme in ['http', 'https'] else None
+
 def normalize_url(url):
     if url is None:
         return None
@@ -219,6 +278,22 @@ def normalize_cc_url(url):
         return None
     url = normalize_url(url)
     return NORMALIZED_LICENSES.get(url, url)
+
+def normalize_orcid(orcid):
+    orcid = validate_orcid(orcid)
+    if orcid is None:
+        return None
+
+    # turn ORCID ID into URL
+    return 'https://orcid.org/' + orcid
+
+def validate_orcid(orcid):
+    m = re.search(r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z", orcid)
+    if m is None:
+        return None
+    else:
+        orcid = re.sub(' ', '-', m.group(1))
+        return orcid
 
 def dict_to_spdx(dict):
     file_path = os.path.join(os.path.dirname(__file__), 'resources/spdx/licenses.json')
@@ -252,3 +327,19 @@ def dict_to_spdx(dict):
     #     }.compact
     #   end
     # end
+
+# def from_citeproc(element):
+#       Array.wrap(element).map do |a|
+#         if a['literal'].present?
+#           a['@type'] = 'Organization'
+#           a['name'] = a['literal']
+#         elsif a['name'].present?
+#           a['@type'] = 'Organization'
+#         else
+#           a['@type'] = 'Person'
+#           a['name'] = [a['given'], a['family']].compact.join(' ')
+#         end
+#         a['givenName'] = a['given']
+#         a['familyName'] = a['family']
+#         a.except('given', 'family', 'literal').compact
+#       end.unwrap
