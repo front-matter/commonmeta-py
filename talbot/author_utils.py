@@ -18,89 +18,82 @@ def get_one_author(author):
         parse_attributes(author.get('given', None)))
     family_name = (parse_attributes(author.get('familyName', None)) or
         parse_attributes(author.get('family', None)))
+
     name = cleanup_author(name)
     if family_name and given_name:
-        name = f"{family_name}, {given_name}"
+        name = f"{given_name} {family_name}"
     contributor_type = parse_attributes(author.get('contributorType', None))
+    name_type = (parse_attributes(author.get('creatorName', None), content='nameType', first=True) or 
+        parse_attributes(author.get('contributorName', None), content='nameType', first=True))
 
-    # name_type = (parse_attributes(author.get('creatorName', None), content: 'nameType, first: true) or 
-    #    parse_attributes(author.get('contributorName', None), content: 'nameType')                                                                             first: true)
-    # name_identifiers = Array.wrap(author.get('nameIdentifier', None)).map do |ni|
-      #   if ni['nameIdentifierScheme'] == 'ORCID'
-      #     {
-      #       'nameIdentifier' => normalize_orcid(ni['__content__']),
-      #       'schemeUri' => 'https://orcid.org',
-      #       'nameIdentifierScheme' => 'ORCID'
-      #     }.compact
-      #   elsif ni['schemeURI'].present?
-      #     {
-      #       'nameIdentifier' => ni['schemeURI'].to_s + ni['__content__'].to_s,
-      #       'schemeUri' => ni['schemeURI'].to_s,
-      #       'nameIdentifierScheme' => ni['nameIdentifierScheme']
-      #     }.compact
-      #   else
-      #     {
-      #       'nameIdentifier' => ni['__content__'],
-      #       'schemeUri' => None,
-      #       'nameIdentifierScheme' => ni['nameIdentifierScheme']
-      #     }.compact
-      #   end
-      # end.presence
+    name_identifiers = []
+    for name_identifier in wrap(author.get('nameIdentifiers', [])):
+        if name_identifier.get('nameIdentifier', None) is None:
+            continue
+        if name_identifier.get('nameIdentifierScheme', None) == 'ORCID':
+            ni = compact({
+                'nameIdentifier': normalize_orcid(name_identifier.get('nameIdentifier', None)),
+                'schemeUri': 'https://orcid.org',
+                'nameIdentifierScheme': 'ORCID'
+            })
+            name_identifiers.append(ni)
+        elif name_identifier.get('schemeURI', None) is not None:
+            ni = compact({
+                'nameIdentifier': name_identifier.get('schemeURI') + name_identifier.get('nameIdentifier', None),
+                'schemeUri': name_identifier.get('schemeURI'),
+                'nameIdentifierScheme': name_identifier.get('nameIdentifierScheme', None)
+            })
+            name_identifiers.append(ni)
+        else:
+            ni = compact({
+                'nameIdentifier': name_identifier.get('nameIdentifier', None),
+                'nameIdentifierScheme': name_identifier.get('nameIdentifierScheme', None)
+            })
+            name_identifiers.append(ni)
+    if len(name_identifiers) == 0:
+        name_identifiers = None
 
-      # Crossref metadata
-    if name_identifiers is None and author.get('ORCID', None):
-          name_identifiers = [{
-              'nameIdentifier': normalize_orcid(author.get('ORCID', None)),
-              'schemeUri': 'https://orcid.org',
-              'nameIdentifierScheme': 'ORCID' }]
+    # Crossref metadata
+    if name_identifiers is [] and author.get('ORCID', None):
+        name_identifiers = [{
+            'nameIdentifier': normalize_orcid(author.get('ORCID', None)),
+            'schemeUri': 'https://orcid.org',
+            'nameIdentifierScheme': 'ORCID' }]
 
-
-    # if name_type is None and Array.wrap(name_identifiers).find { |ni| ni['nameIdentifierScheme'] == 'ORCID' }:
-    #     name_type = 'Personal'
-    # elif name_type is None and Array.wrap(name_identifiers).find { |ni| %w(ISNI ROR).include? ni['nameIdentifierScheme'] }:
-    #     name_type = 'Organizational'
-    # elif name_type is None and is_personal_name?(given_name: given_name, name: name) && name.to_s.exclude?(';'):
-    #     name_type = 'Personal'
-
-    # author = { 
-    #     'nameType': name_type,
-    #     'name': name,
-    #     'givenName': given_name,
-    #     'familyName': family_name,
-    #     'nameIdentifiers': name_identifiers,
-    #     'affiliation': get_affiliations(author.get('affiliation', None)),
-    #     'contributorType': contributor_type }
+    if family_name or given_name:
+        name_type = 'Personal'
+    elif name_type is None and any(ni for ni in wrap(name_identifiers) if ni.get('nameIdentifierScheme', None) == "ORCID"):
+        name_type = 'Personal'
+    elif name_type is None and any(ni for ni in wrap(name_identifiers) if ni.get('nameIdentifierScheme', None) in ("ISNI", "GRID", "ROR")):
+        name_type = 'Organizational'
+    author = compact({ 
+        'nameType': name_type,
+        'name': name,
+        'givenName': given_name,
+        'familyName': family_name,
+        'nameIdentifiers': name_identifiers,
+        'affiliation': get_affiliations(author.get('affiliation', None)),
+        'contributorType': contributor_type })
 
     if family_name:
         return author
 
-    # if name_type == 'Personal':
-    #     names = HumanName(name)
-    #     parsed_name = names.first
-        
-    #     if parsed_name:
-    #         given_name = parsed_name.first
-    #         family_name = parsed_name.last
-    #         name = [family_name, given_name].join(', ')
-    #     else
-    #         given_name = None
-    #         family_name = None
-
-    #     return { 
-    #         'nameType': 'Personal',
-    #         'name': name,
-    #         'givenName': given_name,
-    #         'familyName': family_name,
-    #         'nameIdentifiers': name_identifiers,
-    #         'affiliation': get_affiliations(author.get('affiliation', None)),
-    #         'contributorType': contributor_type }
-    # else
-    #     return { 
-    #         'nameType': name_type,
-    #         'name': name,
-    #         'nameIdentifiers': name_identifiers,
-    #         'affiliation': get_affiliations(author.get('affiliation', None)),
-    #         'contributorType': contributor_type }
+    if name_type == 'Personal':
+        return compact({ 
+            'nameType': 'Personal',
+            'name': name,
+            'givenName': given_name,
+            'familyName': family_name,
+            'nameIdentifiers': name_identifiers,
+            'affiliation': get_affiliations(author.get('affiliation', None)),
+            'contributorType': contributor_type })
+    else:
+        return compact({ 
+            'nameType': name_type,
+            'name': name,
+            'nameIdentifiers': name_identifiers,
+            'affiliation': get_affiliations(author.get('affiliation', None)),
+            'contributorType': contributor_type })
   
 def cleanup_author(author):
     if author is None:

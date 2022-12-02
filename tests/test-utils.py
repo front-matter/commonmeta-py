@@ -1,6 +1,6 @@
 import pytest
 from talbot import utils
-from talbot.utils import parse_attributes, get_date_from_date_parts, get_date_from_parts, dict_to_spdx, normalize_orcid, validate_orcid, wrap, unwrap, compact
+from talbot.utils import parse_attributes, get_date_from_date_parts, get_date_from_parts, dict_to_spdx, normalize_orcid, validate_orcid, wrap, unwrap, compact, from_citeproc, presence
 
 def test_parse_attributes():
     "parse_attributes"
@@ -55,6 +55,15 @@ def test_unwrap():
     # list
     assert [{'name': 'test'}, {'name': 'test2'}] == unwrap([{'name': 'test'}, {'name': 'test2'}])
 
+def test_presence():
+    "presence"
+    assert None == presence("")
+    assert None == presence([])
+    assert None == presence({})
+    assert 'test' == presence('test')
+    assert [1] == presence([1])
+    assert {'test': 1} == presence({'test': 1})
+
 def test_compact():
     "compact"
     assert { 'name': 'test' } == compact({ 'name': 'test', 'other': None })
@@ -102,4 +111,8 @@ def test_normalize_orcid():
     assert 'https://orcid.org/0000-0002-2590-225X' == normalize_orcid('https://orcid.org/0000-0002-2590-225X')
     # orcid id
     assert 'https://orcid.org/0000-0002-2590-225X' == normalize_orcid('0000-0002-2590-225X')
-      
+
+def test_from_citeproc():
+    "from_citeproc"
+    assert [{'@type': 'Person', 'affiliation': [{'name': 'Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland'}],
+        'familyName': 'Sankar', 'givenName': 'Martial', 'name': 'Martial Sankar'}] == from_citeproc([{"given": "Martial", "family": "Sankar", "sequence": "first", "affiliation": [{"name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]}])

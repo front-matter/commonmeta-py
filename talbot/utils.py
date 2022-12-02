@@ -228,6 +228,10 @@ def unwrap(list):
     else:
         return list
 
+def presence(item):
+    """Turn empty list, dict or str into None"""
+    return None if len(item) == 0 else item
+
 def compact(dict_or_list):
     """Remove None from dict or list"""
     if type(dict_or_list) in [None, str]:
@@ -235,7 +239,8 @@ def compact(dict_or_list):
     elif type(dict_or_list) is dict:
         return {k: v for k, v in dict_or_list.items() if v is not None}
     elif type(dict_or_list) is list:
-        return list(map(lambda x: compact(x), dict_or_list))
+        l = (list(map(lambda x: compact(x), dict_or_list)))
+        return None if len(l) == 0 else l
 
 def parse_attributes(element, **kwargs):
     """extract attributes from a string, dict or list"""
@@ -328,18 +333,20 @@ def dict_to_spdx(dict):
     #   end
     # end
 
-# def from_citeproc(element):
-#       Array.wrap(element).map do |a|
-#         if a['literal'].present?
-#           a['@type'] = 'Organization'
-#           a['name'] = a['literal']
-#         elsif a['name'].present?
-#           a['@type'] = 'Organization'
-#         else
-#           a['@type'] = 'Person'
-#           a['name'] = [a['given'], a['family']].compact.join(' ')
-#         end
-#         a['givenName'] = a['given']
-#         a['familyName'] = a['family']
-#         a.except('given', 'family', 'literal').compact
-#       end.unwrap
+def from_citeproc(element):
+    """Convert a citeproc element to a CSL element"""
+    e, formatted_element = {}, []
+    for elem in wrap(element):
+        if elem.get('literal', None) is not None:
+            e['@type'] = 'Organization'
+            e['name'] = e['literal']
+        elif elem.get('name', None) is not None:
+            e['@type'] = 'Organization'
+        else:
+            e['@type'] = 'Person'
+            e['name'] = ' '.join(compact([elem.get('given', None), elem.get('family', None)]))
+        e['givenName'] = elem.get('given', None)
+        e['familyName'] = elem.get('family', None)
+        e['affiliation'] = elem.get('affiliation', None)
+        formatted_element.append(e)
+    return formatted_element
