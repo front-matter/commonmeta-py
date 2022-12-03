@@ -18,7 +18,7 @@ def test_parse_attributes():
     # end
 
     # None
-    assert None == parse_attributes(None)
+    assert None is parse_attributes(None)
     # kwargs['first]
     #assert '10.5061/DRYAD.8515' == parse_attributes([ { '__content__': '10.5061/DRYAD.8515' }, '__content__': '10.5061/DRYAD.8516' } ], first=True)
 
@@ -27,15 +27,16 @@ def test_get_date_from_date_parts():
     assert "2012-01-01" == get_date_from_date_parts({"date-parts": [[2012, 1, 1]]})
     assert '2012-01' == get_date_from_date_parts({"date-parts": [[2012, 1]]})
     assert '2012' == get_date_from_date_parts({"date-parts": [[2012]]})
-    assert None == get_date_from_date_parts({"date-parts": []})
-    assert None == get_date_from_date_parts({})
+    assert None is get_date_from_date_parts({"date-parts": []})
+    assert None is get_date_from_date_parts({})
+    assert None is get_date_from_date_parts(None)
 
 def test_get_date_from_parts():
     "get_date_from_parts"
     assert '2012-01-01' == get_date_from_parts(2012, 1, 1)
     assert '2012-01' == get_date_from_parts(2012, 1)
     assert '2012' == get_date_from_parts(2012)
-    assert None == get_date_from_parts()
+    assert None is get_date_from_parts()
 
 def test_wrap():
     "wrap"
@@ -49,7 +50,7 @@ def test_wrap():
 def test_unwrap():
     "unwrap"
     # None
-    assert None == unwrap([])
+    assert None is unwrap([])
     # dict
     assert {'name': 'test'} == unwrap([{'name': 'test'}])
     # list
@@ -57,9 +58,9 @@ def test_unwrap():
 
 def test_presence():
     "presence"
-    assert None == presence("")
-    assert None == presence([])
-    assert None == presence({})
+    assert None is presence("")
+    assert None is presence([])
+    assert None is presence({})
     assert 'test' == presence('test')
     assert [1] == presence([1])
     assert {'test': 1} == presence({'test': 1})
@@ -71,7 +72,7 @@ def test_compact():
 def test_dict_to_spdx_id():
     "dict_to_spdx id"
     assert { 'rights': 'Creative Commons Attribution 4.0 International',
-             'rightsURI': 'https://creativecommons.org/licenses/by/4.0/legalcode', 
+             'rightsURI': 'https://creativecommons.org/licenses/by/4.0/legalcode',
              'rightsIdentifier': 'cc-by-4.0', 'rightsIdentifierScheme': 'SPDX',
              'schemeUri': 'https://spdx.org/licenses/' } == dict_to_spdx({ 'rightsIdentifier': 'cc-by-4.0' })
 
@@ -102,7 +103,7 @@ def test_validate_orcid():
     # orcid sandbox https
     assert '0000-0002-2590-225X' == validate_orcid('https://sandbox.orcid.org/0000-0002-2590-225X')
     # orcid wrong id format
-    assert None == validate_orcid('0000-0002-1394-309')
+    assert None is validate_orcid('0000-0002-1394-309')
 
 def test_normalize_orcid():
     "normalize_orcid"

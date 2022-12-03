@@ -195,6 +195,8 @@ CR_TO_DC_TRANSLATIONS = {
 }
 
 def get_date_from_date_parts(date_as_parts):
+    if date_as_parts is None:
+        return None
     date_parts = date_as_parts.get('date-parts', [])
     if len(date_parts) == 0:
         return None

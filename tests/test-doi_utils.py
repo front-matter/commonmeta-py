@@ -4,7 +4,7 @@ from talbot.doi_utils import doi_as_url, validate_doi, validate_prefix, get_doi_
 def test_doi_as_url():
     "doi_as_url"
     assert "https://doi.org/10.1371/journal.pone.0042793" == doi_as_url("10.1371/JOURNAL.PONE.0042793")
-    assert None == doi_as_url(None)
+    assert None is doi_as_url(None)
 
 def test_validate_doi():
     "validate_doi"
@@ -26,9 +26,9 @@ def test_get_doi_ra():
     assert "JaLC" == get_doi_ra("https://doi.org/10.11367/grsj1979.12.283")
     assert "OP" == get_doi_ra("https://doi.org/10.2903/j.efsa.2018.5239")
     # not a valid prefix
-    assert None == get_doi_ra("https://doi.org/10.a/dryad.8515x")
+    assert None is get_doi_ra("https://doi.org/10.a/dryad.8515x")
     # not found
-    assert None == get_doi_ra("https://doi.org/10.99999/dryad.8515x")
+    assert None is get_doi_ra("https://doi.org/10.99999/dryad.8515x")
 
 def test_doi_resolver():
     "doi_resolver"
