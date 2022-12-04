@@ -744,3 +744,204 @@ def test_dataset_usda():
     assert subject.descriptions is None
     assert subject.version_info is None
     assert subject.agency == 'Crossref'
+
+def test_book_chapter():
+    'book chapter'
+    subject = Metadata("10.1007/978-3-662-46370-3_13")
+    assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
+    assert subject.types == { 'bibtex': 'inbook', 'citeproc': 'chapter',
+                              'resourceType': 'BookChapter', 'resourceTypeGeneral':'BookChapter',
+                              'ris': 'CHAP', 'schemaOrg': 'Chapter' }
+    assert subject.url == "http://link.springer.com/10.1007/978-3-662-46370-3_13"
+    assert subject.titles[0] == "Clinical Symptoms and Physical Examinations"
+    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Tom Clement Ludvigsen',
+        'givenName': 'Tom Clement', 'familyName': 'Ludvigsen'}
+    assert subject.contributors is None
+    assert subject.rights_list is None
+    assert subject.dates == [
+        { 'date': '2015', 'dateType': 'Issued' },
+        { 'date': '2015-04-13', 'dateType': 'Updated' }
+    ]
+    assert subject.publication_year == '2015'
+    assert subject.date_registered == '2015-04-13'
+    assert subject.publisher == 'Springer Berlin Heidelberg'
+    assert subject.issn is None
+    assert len(subject.related_identifiers) == 0
+    assert subject.funding_references is None
+    assert subject.container == {'title': 'Shoulder Stiffness', 'type': 'Book',
+        'firstPage': '155', 'lastPage': '158'}
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.descriptions is None
+    assert subject.version_info is None
+    assert subject.agency == 'Crossref'
+
+
+def test_another_book_chapter():
+    'another book chapter'
+    subject = Metadata("10.1007/978-3-319-75889-3_1")
+    assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
+    assert subject.types == { 'bibtex': 'inbook', 'citeproc': 'chapter',
+                              'resourceType': 'BookChapter', 'resourceTypeGeneral':'BookChapter',
+                              'ris': 'CHAP', 'schemaOrg': 'Chapter' }
+    assert subject.url == "http://link.springer.com/10.1007/978-3-319-75889-3_1"
+    assert subject.titles[0] == "Climate Change and Increasing Risk of Extreme Heat"
+    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Hunter M. Jones',
+        'givenName': 'Hunter M.', 'familyName': 'Jones'}
+    assert subject.contributors is None
+    assert subject.rights_list == [{'rightsURI': 'https://www.springer.com/tdm'}]
+    assert subject.dates == [
+        { 'date': '2018', 'dateType': 'Issued' },
+        { 'date': '2019-10-16', 'dateType': 'Updated' }
+    ]
+    assert subject.publication_year == '2018'
+    assert subject.date_registered == '2018-04-17'
+    assert subject.publisher == 'Springer International Publishing'
+    assert subject.issn == '2523-3629'
+    assert len(subject.related_identifiers) == 30
+    assert subject.funding_references is None
+    assert subject.container == {'type': 'Book', 'title': 'SpringerBriefs in Medical Earth Sciences',
+        'identifier': '2523-3629', 'identifierType': 'ISSN', 'firstPage': '1', 'lastPage': '13'}
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.descriptions is None
+    assert subject.version_info is None
+    assert subject.agency == 'Crossref'
+
+
+def test_yet_another_book_chapter():
+    'yet another book chapter'
+    subject = Metadata("https://doi.org/10.4018/978-1-4666-1891-6.ch004")
+    assert subject.id == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
+    assert subject.types == { 'bibtex': 'inbook', 'citeproc': 'chapter',
+                              'resourceType': 'BookChapter', 'resourceTypeGeneral':'BookChapter',
+                              'ris': 'CHAP', 'schemaOrg': 'Chapter' }
+    assert subject.url == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
+    assert subject.titles[0] == "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
+    assert subject.creators[0] == {'affiliation': [{'name': 'Université de Lyon, France'}],
+        'nameType': 'Personal', 'name': 'Charles-Edmond Bichot',
+        'givenName': 'Charles-Edmond', 'familyName': 'Bichot'}
+    assert subject.contributors is None
+    assert subject.rights_list is None
+    assert subject.dates == [
+        { 'date': '2012-08-08', 'dateType': 'Issued' },
+        { 'date': '2019-07-02', 'dateType': 'Updated' }
+    ]
+    assert subject.publication_year == '2012'
+    assert subject.date_registered == '2012-08-08'
+    assert subject.publisher == 'IGI Global'
+    assert subject.issn is None
+    assert len(subject.related_identifiers) == 27
+    assert subject.funding_references is None
+    assert subject.container == {'type': 'Book', 'title': 'Graph-Based Methods in Computer Vision',
+        'firstPage': '72', 'lastPage': '94'}
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.descriptions == [{'description': '<jats:p>Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.</jats:p>', 'descriptionType': 'Abstract'}]
+    assert subject.version_info is None
+    assert subject.agency == 'Crossref'
+
+
+def test_missing_creator():
+    'missing creator'
+    subject = Metadata("10.3390/publications6020015")
+    assert subject.id == "https://doi.org/10.3390/publications6020015"
+    assert subject.types == { 'bibtex': 'article', 'citeproc': 'article-journal',
+                              'resourceType': 'JournalArticle', 'resourceTypeGeneral':'JournalArticle',
+                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle' }
+    assert subject.url == "https://www.mdpi.com/2304-6775/6/2/15"
+    assert subject.titles[0] == "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
+    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Salvatore Mele',
+        'givenName': 'Salvatore', 'familyName': 'Mele'}
+    assert subject.contributors is None
+    assert subject.rights_list == [{'rights': 'Creative Commons Attribution 4.0 International', 'rightsIdentifier': 'cc-by-4.0', 'rightsIdentifierScheme': 'SPDX',
+        'rightsURI': 'https://creativecommons.org/licenses/by/4.0/legalcode', 'schemeUri': 'https://spdx.org/licenses/'}]
+    assert subject.dates == [
+        { 'date': '2018-04-09', 'dateType': 'Issued' },
+        { 'date': '2021-07-22', 'dateType': 'Updated' }
+    ]
+    assert subject.publication_year == '2018'
+    assert subject.date_registered == '2018-04-10'
+    assert subject.publisher == 'MDPI AG'
+    assert subject.issn == '2304-6775'
+    assert len(subject.related_identifiers) == 6
+    assert subject.related_identifiers[0] == { 
+        'relatedIdentifier': '2304-6775',
+        'relatedIdentifierType': 'ISSN',
+        'relationType': 'IsPartOf',
+        'resourceTypeGeneral': 'Collection' }
+    assert subject.related_identifiers[-1] == {
+        'relatedIdentifier': '10.4119/unibi/ub.2014.18',
+        'relatedIdentifierType': 'DOI',
+        'relationType': 'References' }
+    assert subject.funding_references is None
+    assert subject.container == {'type': 'Journal', 'title': 'Publications',
+        'firstPage': '15', 'issue': '2', 'volume': '6', 'identifier': '2304-6775',
+        'identifierType': 'ISSN'}
+    assert subject.subjects == [
+        {'subject': 'Computer Science Applications'},
+        {'subject': 'Media Technology'},
+        {'subject': 'Communication'},
+        {'subject': 'Business and International Management'},
+        {'subject': 'Library and Information Sciences'}
+    ]
+    assert subject.language == 'en'
+    assert subject.descriptions == [
+        {'description': '<jats:p>Gigantic particle accelerators, incredibly complex '
+        'detectors, an antimatter factory and the discovery of the '
+        'Higgs boson—this is part of what makes CERN famous. Only a '
+        'few know that CERN also hosts the world largest Open Access '
+        'initiative: SCOAP3. The Sponsoring Consortium for Open '
+        'Access Publishing in Particle Physics started operation in '
+        '2014 and has since supported the publication of 20,000 Open '
+        'Access articles in the field of particle physics, at no '
+        'direct cost, nor burden, for individual authors worldwide. '
+        'SCOAP3 is made possible by a 3000-institute strong '
+        'partnership, where libraries re-direct funds previously used '
+        'for subscriptions to ‘flip’ articles to ‘Gold Open Access’. '
+        'With its recent expansion, the initiative now covers about '
+        '90% of the journal literature of the field. This article '
+        'describes the economic principles of SCOAP3, the '
+        'collaborative approach of the partnership, and finally '
+        'summarizes financial results after four years of successful '
+        'operation.</jats:p>',
+        'descriptionType': 'Abstract'
+        }
+    ]
+    assert subject.version_info is None
+    assert subject.agency == 'Crossref'
+
+
+def test_book():
+    'book' 
+    subject = Metadata("https://doi.org/10.1017/9781108348843")
+    assert subject.id == "https://doi.org/10.1017/9781108348843"
+    assert subject.types == { 'bibtex': 'book', 'citeproc': 'book',
+                              'resourceType': 'Monograph', 'resourceTypeGeneral':'Book',
+                              'ris': 'BOOK', 'schemaOrg': 'Book' }
+    assert subject.url == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
+    assert subject.titles[0] == "The Politics of the Past in Early China"
+    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Vincent S. Leung',
+        'givenName': 'Vincent S.', 'familyName': 'Leung'}
+    assert subject.contributors is None
+    assert subject.rights_list == [{'rightsURI': 'https://www.cambridge.org/core/terms'}]
+    assert subject.dates == [
+        { 'date': '2019-07-01', 'dateType': 'Issued' },
+        { 'date': '2022-09-22', 'dateType': 'Updated' }
+    ]
+    assert subject.publication_year == '2019'
+    assert subject.date_registered == '2019-07-01'
+    assert subject.publisher == 'Cambridge University Press'
+    assert subject.issn is None
+    assert len(subject.related_identifiers) == 90
+    assert subject.related_identifiers[0] == {
+        'relatedIdentifier': '10.1093/acprof:oso/9780199367344.001.0001',
+        'relatedIdentifierType': 'DOI',
+        'relationType': 'References' }
+    assert subject.funding_references is None
+    assert subject.container is None
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.descriptions is None
+    assert subject.version_info is None
+    assert subject.agency == 'Crossref'
