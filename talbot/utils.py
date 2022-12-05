@@ -194,41 +194,60 @@ CR_TO_DC_TRANSLATIONS = {
     'PeerReview': 'PeerReview'
 }
 
+SO_TO_DC_RELATION_TYPES = {
+    'citation': 'References',
+    'isBasedOn': 'IsSupplementedBy',
+    'sameAs': 'IsIdenticalTo',
+    'isPartOf': 'IsPartOf',
+    'hasPart': 'HasPart',
+    'isPredecessor': 'IsPreviousVersionOf',
+    'isSuccessor': 'IsNewVersionOf'
+}
+
+SO_TO_DC_REVERSE_RELATION_TYPES = {
+    'citation': 'IsReferencedBy',
+    'isBasedOn': 'IsSupplementTo',
+    'sameAs': 'IsIdenticalTo',
+    'isPartOf': 'HasPart',
+    'hasPart': 'IsPartOf',
+    'isPredecessor': 'IsNewVersionOf',
+    'isSuccessor': 'IsPreviousVersionOf'
+}
+
 def get_date_from_date_parts(date_as_parts):
+    """Get date from date parts"""
     if date_as_parts is None:
         return None
     date_parts = date_as_parts.get('date-parts', [])
     if len(date_parts) == 0:
         return None
-    else:
-        date_parts = date_parts[0]
-        year = date_parts[0] if len(date_parts) > 0 else 0
-        month = date_parts[1] if len(date_parts) > 1 else 0
-        day = date_parts[2] if len(date_parts) > 2 else 0
-        return get_date_from_parts(year, month, day)
+    date_parts = date_parts[0]
+    year = date_parts[0] if len(date_parts) > 0 else 0
+    month = date_parts[1] if len(date_parts) > 1 else 0
+    day = date_parts[2] if len(date_parts) > 2 else 0
+    return get_date_from_parts(year, month, day)
 
 def get_date_from_parts(year = 0, month = 0, day = 0):
+    """Get date from parts"""
     arr = [str(year).rjust(4, '0'), str(month).rjust(2, '0'), str(day).rjust(2, '0')]
     arr = [e for i,e in enumerate(arr) if not (e == '00' or e == '0000')]
     return None if len(arr) == 0 else '-'.join(arr)
 
 def wrap(item):
-  """Turn None, dict, or list into list"""
-  if item is None:
-    return []
-  elif type(item) == list:
-    return item
-  else:
+    """Turn None, dict, or list into list"""
+    if item is None:
+        return []
+    if isinstance(item, list):
+        return item
     return [item]
 
 def unwrap(list):
     """Turn list into dict or None, depending on list size"""
     if len(list) == 0:
         return None
-    elif len(list) == 1:
+    if len(list) == 1:
         return list[0]
-    else:
-        return list
+    return list
 
 def presence(item):
     """Turn empty list, dict or str into None"""
@@ -238,24 +257,25 @@ def compact(dict_or_list):
     """Remove None from dict or list"""
     if type(dict_or_list) in [None, str]:
         return dict_or_list
-    elif type(dict_or_list) is dict:
+    if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
-    elif type(dict_or_list) is list:
-        l = (list(map(lambda x: compact(x), dict_or_list)))
-        return None if len(l) == 0 else l
+    if isinstance(dict_or_list, list):
+        arr = (list(map(lambda x: compact(x), dict_or_list)))
+        return None if len(arr) == 0 else arr
 
 def parse_attributes(element, **kwargs):
     """extract attributes from a string, dict or list"""
     content = kwargs.get('content', '__content__')
 
-    if type(element) == str and kwargs.get('content', None) is None:
+    if isinstance(element, str) and kwargs.get('content', None) is None:
         return html.unescape(element)
-    elif type(element) == dict:
+    if isinstance(element, dict):
         return element.get(html.unescape(content), None)
-    elif type(element) == list:
-        a = list(map(lambda x: x.get(html.unescape(content), None) if type(x) == dict else x, element))
-        a = a[0] if kwargs.get('first') else unwrap(a)
-        return a
+    if isinstance(element, list):
+        arr = list(map(lambda x: x.get(html.unescape(content), None) 
+            if isinstance(x, dict) else x, element))
+        arr = arr[0] if kwargs.get('first') else unwrap(arr)
+        return arr
 
 def normalize_id(id, **kwargs):
     """Check for valid DOI or HTTP(S) URL"""
@@ -297,8 +317,6 @@ def normalize_orcid(orcid):
     orcid = validate_orcid(orcid)
     if orcid is None:
         return None
-
-    # turn ORCID ID into URL
     return 'https://orcid.org/' + orcid
 
 def validate_orcid(orcid):
@@ -306,9 +324,8 @@ def validate_orcid(orcid):
     m = re.search(r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z", orcid)
     if m is None:
         return None
-    else:
-        orcid = re.sub(' ', '-', m.group(1))
-        return orcid
+    orcid = re.sub(' ', '-', m.group(1))
+    return orcid
 
 def dict_to_spdx(dict):
     """Convert a dict to SPDX"""
@@ -321,15 +338,14 @@ def dict_to_spdx(dict):
     #   license = spdx.find do |l|
     #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsURI']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
     #   end
-    new_dict = {
+    return compact({
         'rights': license['name'],
         'rightsURI': license['seeAlso'][0],
         'rightsIdentifier': license['licenseId'].lower(),
         'rightsIdentifierScheme': 'SPDX',
         'schemeUri': 'https://spdx.org/licenses/',
         'lang': dict.get('lang', None)
-    }
-    return { k: v for k, v in new_dict.items() if v is not None }
+    })
 
 
     #   else
@@ -346,18 +362,18 @@ def dict_to_spdx(dict):
 
 def from_citeproc(element):
     """Convert a citeproc element to CSL"""
-    e, formatted_element = {}, []
+    el, formatted_element = {}, []
     for elem in wrap(element):
         if elem.get('literal', None) is not None:
-            e['@type'] = 'Organization'
-            e['name'] = e['literal']
+            el['@type'] = 'Organization'
+            el['name'] = el['literal']
         elif elem.get('name', None) is not None:
-            e['@type'] = 'Organization'
+            el['@type'] = 'Organization'
         else:
-            e['@type'] = 'Person'
-            e['name'] = ' '.join(compact([elem.get('given', None), elem.get('family', None)]))
-        e['givenName'] = elem.get('given', None)
-        e['familyName'] = elem.get('family', None)
-        e['affiliation'] = elem.get('affiliation', None)
-        formatted_element.append(e)
+            el['@type'] = 'Person'
+            el['name'] = ' '.join(compact([elem.get('given', None), elem.get('family', None)]))
+        el['givenName'] = elem.get('given', None)
+        el['familyName'] = elem.get('family', None)
+        el['affiliation'] = elem.get('affiliation', None)
+        formatted_element.append(el)
     return formatted_element
