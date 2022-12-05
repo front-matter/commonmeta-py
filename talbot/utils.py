@@ -271,7 +271,12 @@ def normalize_id(id, **kwargs):
     uri = urlparse(id)
     return id if uri.netloc and uri.scheme in ['http', 'https'] else None
 
+def crossref_api_url(doi):
+    """Return the Crossref API URL for a given DOI"""
+    return 'https://api.crossref.org/works/' + doi
+
 def normalize_url(url):
+    """Normalize URL"""
     if url is None:
         return None
     if url.endswith('/'):
@@ -281,12 +286,14 @@ def normalize_url(url):
     return url
 
 def normalize_cc_url(url):
+    """Normalize Creative Commons URL"""
     if url is None:
         return None
     url = normalize_url(url)
     return NORMALIZED_LICENSES.get(url, url)
 
 def normalize_orcid(orcid):
+    """Normalize ORCID"""
     orcid = validate_orcid(orcid)
     if orcid is None:
         return None
@@ -295,6 +302,7 @@ def normalize_orcid(orcid):
     return 'https://orcid.org/' + orcid
 
 def validate_orcid(orcid):
+    """Validate ORCID"""
     m = re.search(r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z", orcid)
     if m is None:
         return None
@@ -303,6 +311,7 @@ def validate_orcid(orcid):
         return orcid
 
 def dict_to_spdx(dict):
+    """Convert a dict to SPDX"""
     file_path = os.path.join(os.path.dirname(__file__), 'resources/spdx/licenses.json')
     with open(file_path) as json_file:
         spdx = json.load(json_file).get('licenses')
@@ -336,7 +345,7 @@ def dict_to_spdx(dict):
     # end
 
 def from_citeproc(element):
-    """Convert a citeproc element to a CSL element"""
+    """Convert a citeproc element to CSL"""
     e, formatted_element = {}, []
     for elem in wrap(element):
         if elem.get('literal', None) is not None:

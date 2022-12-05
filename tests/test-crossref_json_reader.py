@@ -1,4 +1,4 @@
-import pytest
+import pytest 
 # import os
 # import vcr
  #import requests
@@ -41,7 +41,9 @@ def test_doi_with_data_citation():
         'relatedIdentifier': '10.1038/ncb2764',
         'relatedIdentifierType': 'DOI',
         'relationType': 'References' }
-    assert subject.funding_references is None
+    # assert subject.funding_references == [{'name': 'SystemsX'}, {'name': 'EMBO longterm post-doctoral fellowships'},
+    #     {'name': 'Marie Heim-Voegtlin'}, {'DOI': '10.13039/501100006390', 'doi-asserted-by': 'crossref', 'name': 'University of Lausanne'},
+    #     {'name': 'SystemsX'}, {'DOI': '10.13039/501100003043', 'doi-asserted-by': 'publisher', 'name': 'EMBO'}]
     assert subject.container == { 
         'identifier': '2050-084X',
         'identifierType': 'ISSN',

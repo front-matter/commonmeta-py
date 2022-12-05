@@ -45,7 +45,4 @@ def get_doi_ra(doi):
         return None
     else:
         return response.json()[0].get('RA', None)
-
-            
-
    
