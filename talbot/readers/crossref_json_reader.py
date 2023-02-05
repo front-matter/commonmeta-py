@@ -54,7 +54,11 @@ def read_crossref_json(string=None, **kwargs):
     contributors = presence(get_authors(from_citeproc(editors)))
 
     url = py_.get(meta, 'resource.primary.URL', None)
-    titles = (meta.get('title', None) or meta.get('original-title', None))
+    title = meta.get('title', None) or meta.get('original-title', None)
+    if title is not None:
+        titles = [{'title': title[0] }]
+    else:
+        titles = []
     publisher = meta.get('publisher', None)
 
     issued_date = get_date_from_date_parts(meta.get('issued', None))
@@ -181,7 +185,7 @@ def read_crossref_json(string=None, **kwargs):
         'types': types,
         'creators': creators,
         'contributors': contributors,
-        'titles': titles,
+        'titles': presence(titles),
         'dates': dates,
         'publication_year': publication_year,
         'date_registered': date_registered,

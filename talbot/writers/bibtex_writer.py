@@ -13,7 +13,7 @@ def write_bibtex(metadata):
     db.entries = [
         compact({'ID': metadata.id,
                  'ENTRYTYPE': 'article',
-                 'abstract': metadata.descriptions[0].get('description', None),
+                 'abstract': metadata.descriptions[0].get('description', None) if metadata.descriptions else None,
                  'author': authors_as_string(metadata.creators),
                  'copyright': str(metadata.rights_list[0].get('rightsURI', None)),
                  'doi': doi_from_url(metadata.id),

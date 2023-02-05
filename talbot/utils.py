@@ -770,7 +770,7 @@ def pages_as_string(container, page_range_separator='-'):
     if container.get('firstPage', None) is None:
         return None
     if container.get('lastPage', None) is None:
-        return container.get('firstPage', None) + page_range_separator
+        return container.get('firstPage', None)
 
     return page_range_separator.join(compact([container.get('firstPage'), container.get('lastPage', None)]))
 

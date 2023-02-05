@@ -78,3 +78,30 @@ A central place to exchange in writing ideas about open research and all that it
     year = {2021}
 }
 """
+
+def test_article_with_pages():
+    "article with pages"
+    input = "https://doi.org/10.1371/journal.ppat.1008184"
+    subject = Metadata(input)
+    assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
+    assert subject.types.get('bibtex') == 'article'
+
+    bibtex = subject.bibtex()
+    print(bibtex)
+    assert bibtex == \
+"""@article{https://doi.org/10.1371/journal.ppat.1008184,
+    author = {Twittenhoff, Christian and Heroven, Ann Kathrin and Mühlen, Sabrina and Dersch, Petra and Narberhaus, Franz},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+    doi = {10.1371/journal.ppat.1008184},
+    issn = {1553-7374},
+    issue = {1},
+    journal = {PLOS Pathogens},
+    language = {en},
+    month = {jan},
+    pages = {e1008184},
+    title = {An RNA thermometer dictates production of a secreted bacterial toxin},
+    url = {https://dx.plos.org/10.1371/journal.ppat.1008184},
+    urldate = {2020-01-17},
+    year = {2020}
+}
+"""
