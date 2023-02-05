@@ -1,5 +1,5 @@
 import requests
-import json
+from pydash import py_
 
 from ..utils import (
     crossref_api_url,
@@ -34,7 +34,6 @@ def read_crossref_json(string=None, **kwargs):
     meta = string
 
     id = doi_as_url(meta.get('DOI', None))
-    print(meta.get('type', {}))
     resource_type = meta.get('type', {}).title().replace("-", "")
     types = {
         'resourceTypeGeneral': CR_TO_DC_TRANSLATIONS[resource_type] or 'Text',
@@ -54,7 +53,7 @@ def read_crossref_json(string=None, **kwargs):
         editors.append(editor)
     contributors = presence(get_authors(from_citeproc(editors)))
 
-    url = meta.get('resource', {}).get('primary', {}).get('URL', None)
+    url = py_.get(meta, 'resource.primary.URL', None)
     titles = (meta.get('title', None) or meta.get('original-title', None))
     publisher = meta.get('publisher', None)
 
@@ -66,11 +65,12 @@ def read_crossref_json(string=None, **kwargs):
     published_date = issued_date or created_date 
     updated_date = deposited_date or indexed_date
     dates = [{ 'date': published_date, 'dateType': 'Issued' }]
-    dates.append({ 'date': updated_date, 'dateType': 'Updated' }) if updated_date else None
+    if updated_date is not None:
+        dates.append({ 'date': updated_date, 'dateType': 'Updated' })
     publication_year = published_date[0:4] if published_date else None
     date_registered = (get_date_from_date_parts(meta.get('registered', {})) 
         or get_date_from_date_parts(meta.get('created', None)))
-       
+      
     license = meta.get('license', None)
     if license is not None:
         license = normalize_cc_url(license[0].get('URL', None))
@@ -95,11 +95,11 @@ def read_crossref_json(string=None, **kwargs):
         doi = reference.get('DOI', None)
         if doi is None:
             continue # skip references without a DOI
-        r = {'relationType': 'References',
+        ref = {'relationType': 'References',
             'relatedIdentifierType': 'DOI',
             'relatedIdentifier': doi.lower() }
-        related_identifiers.append(r)
-    
+        related_identifiers.append(ref)
+ 
     if resource_type == 'JournalArticle':
         container_type = 'Journal'
     elif resource_type == 'JournalIssue':
@@ -110,7 +110,7 @@ def read_crossref_json(string=None, **kwargs):
         container_type = 'BookSeries'
     else:
         container_type = 'Periodical'
- 
+
     if meta.get('page', None):
         pages = meta.get('page', None).split('-')
         first_page = pages[0]

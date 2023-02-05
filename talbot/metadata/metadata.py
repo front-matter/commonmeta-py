@@ -1,12 +1,24 @@
 
 from ..readers.crossref_json_reader import get_crossref_json, read_crossref_json
+from ..readers.schema_org_reader import get_schema_org, read_schema_org
+from ..writers.bibtex_writer import write_bibtex
+from ..utils import normalize_id, find_from_format
 
 class Metadata:
     """Metadata"""
-    def __init__(self, input):
-        string = get_crossref_json(id=input)
-        meta = read_crossref_json(string=string)
+    def __init__(self, input, **kwargs):
+        id = normalize_id(input)
 
+        if id is None:
+            raise ValueError("No ID found")
+        else:
+            via = kwargs.get('via', None) # or find_from_format(id=id)
+            if via == 'schema_org':
+                string = get_schema_org(id=input)
+                meta = read_schema_org(string=string)
+            else:
+                string = get_crossref_json(id=input)
+                meta = read_crossref_json(string=string)
         self.id = meta.get('id')
         self.url = meta.get('url')
         self.types = meta.get('types')
@@ -26,4 +38,9 @@ class Metadata:
         self.subjects = meta.get('subjects')
         self.language = meta.get('language')
         self.version_info = meta.get('version_info')
+        self.geo_locations = meta.get('geo_locations')
         self.agency = meta.get('agency')
+
+    def bibtex(self):
+        """Bibtex"""
+        return write_bibtex(self)

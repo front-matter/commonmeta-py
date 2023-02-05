@@ -149,7 +149,7 @@ def get_affiliations(affiliations):
                 if affiliation.get('schemeURI', None) is not None:
                     schemeURI = affiliation['schemeURI'] if affiliation['schemeURI'].endswith('/') else "{affiliation['schemeURI']}/"
                 affiliation_identifier = normalize_id(schemeURI + affiliation_identifier) if (not affiliation_identifier.startswith('https://') and schemeURI is not None) else normalize_id(affiliation_identifier)
-            name = affiliation['name'] or affiliation['__content__']
+            name = affiliation.get('name', None) or affiliation.get('__content__', None)
             affiliation_identifier_scheme = affiliation.get('affiliationIdentifierScheme', None)
             scheme_uri = affiliation.get('SchemeURI', None)
 

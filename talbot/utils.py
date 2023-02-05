@@ -1,9 +1,13 @@
 import os
-import json
 import html
+import json
 import re
-from .doi_utils import normalize_doi
 from urllib.parse import urlparse
+import dateparser
+from pydash import py_
+
+from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
+
 
 NORMALIZED_LICENSES = {
     'https://creativecommons.org/licenses/by/1.0': 'https://creativecommons.org/licenses/by/1.0/legalcode',
@@ -194,6 +198,98 @@ CR_TO_DC_TRANSLATIONS = {
     'PeerReview': 'PeerReview'
 }
 
+SO_TO_BIB_TRANSLATIONS = {
+    'Article': 'article',
+    'AudioObject': 'misc',
+    'Thesis': 'phdthesis',
+    'Blog': 'misc',
+    'BlogPosting': 'article',
+    'Collection': 'misc',
+    'CreativeWork': 'misc',
+    'DataCatalog': 'misc',
+    'Dataset': 'misc',
+    'Event': 'misc',
+    'ImageObject': 'misc',
+    'Movie': 'misc',
+    'PublicationIssue': 'misc',
+    'ScholarlyArticle': 'article',
+    'Service': 'misc',
+    'SoftwareSourceCode': 'misc',
+    'VideoObject': 'misc',
+    'WebPage': 'misc',
+    'WebSite': 'misc'
+}
+
+SO_TO_CP_TRANSLATIONS = {
+    'Article': 'article-newspaper',
+    'AudioObject': 'song',
+    'Blog': 'report',
+    'BlogPosting': 'post-weblog',
+    'Collection': None,
+    'CreativeWork': None,
+    'DataCatalog': 'dataset',
+    'Dataset': 'dataset',
+    'Event': None,
+    'ImageObject': 'graphic',
+    'Movie': 'motion_picture',
+    'PublicationIssue': None,
+    'Report': 'report',
+    'ScholarlyArticle': 'article-journal',
+    'Service': None,
+    'Thesis': 'thesis',
+    'VideoObject': 'broadcast',
+    'WebPage': 'webpage',
+    'WebSite': 'webpage'
+}
+
+SO_TO_DC_TRANSLATIONS = {
+    'Article': 'Preprint',
+    'AudioObject': 'Sound',
+    'Blog': 'Text',
+    'BlogPosting': 'Preprint',
+    'Book': 'Book',
+    'Chapter': 'BookChapter',
+    'Collection': 'Collection',
+    'CreativeWork': 'Text',
+    'DataCatalog': 'Dataset',
+    'Dataset': 'Dataset',
+    'Event': 'Event',
+    'ImageObject': 'Image',
+    'Movie': 'Audiovisual',
+    'PublicationIssue': 'Text',
+    'Report': 'Report',
+    'ScholarlyArticle': 'Text',
+    'Thesis': 'Text',
+    'Service': 'Service',
+    'Review': 'PeerReview',
+    'SoftwareSourceCode': 'Software',
+    'VideoObject': 'Audiovisual',
+    'WebPage': 'Text',
+    'WebSite': 'Text'
+}
+
+SO_TO_RIS_TRANSLATIONS = {
+    'Article': 'GEN',
+    'AudioObject': None,
+    'Blog': None,
+    'BlogPosting': 'BLOG',
+    'Collection': None,
+    'CreativeWork': 'GEN',
+    'DataCatalog': 'CTLG',
+    'Dataset': 'DATA',
+    'Event': None,
+    'ImageObject': 'FIGURE',
+    'Movie': 'MPCT',
+    'Report': 'RPRT',
+    'PublicationIssue': None,
+    'ScholarlyArticle': 'JOUR',
+    'Service': None,
+    'SoftwareSourceCode': 'COMP',
+    'VideoObject': 'VIDEO',
+    'WebPage': 'ELEC',
+    'WebSite': None
+}
+
 SO_TO_DC_RELATION_TYPES = {
     'citation': 'References',
     'isBasedOn': 'IsSupplementedBy',
@@ -214,6 +310,53 @@ SO_TO_DC_REVERSE_RELATION_TYPES = {
     'isSuccessor': 'IsPreviousVersionOf'
 }
 
+UNKNOWN_INFORMATION = {
+    ':unac':  'temporarily inaccessible',
+    ':unal':  'unallowed, suppressed intentionally',
+    ':unap':  'not applicable, makes no sense',
+    ':unas':  'value unassigned (e.g., Untitled)',
+    ':unav':  'value unavailable, possibly unknown',
+    ':unkn':  'known to be unknown (e.g., Anonymous, Inconnue)',
+    ':none':  'never had a value, never will',
+    ':null':  'explicitly and meaningfully empty',
+    ':tba':  'to be assigned or announced later',
+    ':etal':  'too numerous to list (et alia)'
+}
+
+MONTH_NAMES = {
+    '01': 'jan',
+    '02': 'feb',
+    '03': 'mar',
+    '04': 'apr',
+    '05': 'may',
+    '06': 'jun',
+    '07': 'jul',
+    '08': 'aug',
+    '09': 'sep',
+    '10': 'oct',
+    '11': 'nov',
+    '12': 'dec'
+}
+
+
+def get_iso8601_date(date):
+    """Get ISO 8601 date"""
+    if date is None:
+        return None
+    if isinstance(date, str):
+        return dateparser.parse(date).isoformat()
+
+    return None
+
+def get_date(dates, date_type='Issued', date_only=False):
+    """Get date"""
+    dd = py_.find(wrap(dates), lambda x: x['dateType'] == date_type) or {}
+    if dd is None:
+        return None
+    if date_only:
+        return dd.get('date', '')[0:10]
+    return dd.get('date', None)
+
 def get_date_from_date_parts(date_as_parts):
     """Get date from date parts"""
     if date_as_parts is None:
@@ -227,11 +370,25 @@ def get_date_from_date_parts(date_as_parts):
     day = date_parts[2] if len(date_parts) > 2 else 0
     return get_date_from_parts(year, month, day)
 
-def get_date_from_parts(year = 0, month = 0, day = 0):
+
+def get_date_from_parts(year=0, month=0, day=0):
     """Get date from parts"""
-    arr = [str(year).rjust(4, '0'), str(month).rjust(2, '0'), str(day).rjust(2, '0')]
-    arr = [e for i,e in enumerate(arr) if not (e == '00' or e == '0000')]
+    arr = [str(year).rjust(4, '0'), str(
+        month).rjust(2, '0'), str(day).rjust(2, '0')]
+    arr = [e for i, e in enumerate(arr) if not (e == '00' or e == '0000')]
     return None if len(arr) == 0 else '-'.join(arr)
+
+
+def get_month_from_date(date):
+    """Get month from date"""
+    if date is None:
+        return None
+    if isinstance(date, dict):
+        date = get_date_from_parts(date)
+    if isinstance(date, str):
+        date = date.split('-')
+    return MONTH_NAMES.get(date[1], None) if len(date) > 1 else None
+
 
 def wrap(item):
     """Turn None, dict, or list into list"""
@@ -241,6 +398,7 @@ def wrap(item):
         return item
     return [item]
 
+
 def unwrap(list):
     """Turn list into dict or None, depending on list size"""
     if len(list) == 0:
@@ -249,9 +407,11 @@ def unwrap(list):
         return list[0]
     return list
 
+
 def presence(item):
     """Turn empty list, dict or str into None"""
     return None if len(item) == 0 else item
+
 
 def compact(dict_or_list):
     """Remove None from dict or list"""
@@ -263,6 +423,7 @@ def compact(dict_or_list):
         arr = (list(map(lambda x: compact(x), dict_or_list)))
         return None if len(arr) == 0 else arr
 
+
 def parse_attributes(element, **kwargs):
     """extract attributes from a string, dict or list"""
     content = kwargs.get('content', '__content__')
@@ -272,10 +433,11 @@ def parse_attributes(element, **kwargs):
     if isinstance(element, dict):
         return element.get(html.unescape(content), None)
     if isinstance(element, list):
-        arr = list(map(lambda x: x.get(html.unescape(content), None) 
-            if isinstance(x, dict) else x, element))
+        arr = list(map(lambda x: x.get(html.unescape(content), None)
+                       if isinstance(x, dict) else x, element))
         arr = arr[0] if kwargs.get('first') else unwrap(arr)
         return arr
+
 
 def normalize_id(id, **kwargs):
     """Check for valid DOI or HTTP(S) URL"""
@@ -289,11 +451,43 @@ def normalize_id(id, **kwargs):
 
     # check for valid HTTP uri
     uri = urlparse(id)
-    return id if uri.netloc and uri.scheme in ['http', 'https'] else None
+    if not uri.netloc or uri.scheme not in ['http', 'https']:
+        return None
+    # make id lowercase
+    id = id.lower()
+    # remove trailing slash
+    if id.endswith('/'):
+        id = id.strip('/')
+    # ensure https
+    if id.startswith('http://'):
+        id = id.replace('http://', 'https://')
+    # decode utf-8
+    # id = id.encode("utf-8")
+    return id
+
+
+def normalize_ids(ids=None, relation_type=None):
+    """Normalize identifiers"""
+    formatted_ids = []
+    for idx in wrap(ids):
+        if idx.get('@id', None) is not None:
+            id = normalize_id(idx['@id'])
+            related_identifier_type = 'DOI' if doi_from_url(
+                id) is not None else 'URL'
+            id = doi_from_url(id) or id
+            type = idx.get('@type') if isinstance(idx.get('@type',
+                                                          None), str) else wrap(idx.get('@type', None))[0]
+            formatted_ids.append(compact({'relatedIdentifier': id,
+                                          'relationType': relation_type,
+                                          'relatedIdentifierType': related_identifier_type,
+                                          'resourceTypeGeneral': SO_TO_DC_TRANSLATIONS.get(type, None)}))
+    return formatted_ids
+
 
 def crossref_api_url(doi):
     """Return the Crossref API URL for a given DOI"""
     return 'https://api.crossref.org/works/' + doi
+
 
 def normalize_url(url):
     """Normalize URL"""
@@ -303,7 +497,8 @@ def normalize_url(url):
         url = url.strip('/')
     if url.startswith('http://'):
         url = url.replace('http://', 'https://')
-    return url
+    return url.lower()
+
 
 def normalize_cc_url(url):
     """Normalize Creative Commons URL"""
@@ -312,6 +507,7 @@ def normalize_cc_url(url):
     url = normalize_url(url)
     return NORMALIZED_LICENSES.get(url, url)
 
+
 def normalize_orcid(orcid):
     """Normalize ORCID"""
     orcid = validate_orcid(orcid)
@@ -319,20 +515,26 @@ def normalize_orcid(orcid):
         return None
     return 'https://orcid.org/' + orcid
 
+
 def validate_orcid(orcid):
     """Validate ORCID"""
-    m = re.search(r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z", orcid)
-    if m is None:
+    match = re.search(
+        r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z", orcid)
+    if match is None:
         return None
-    orcid = re.sub(' ', '-', m.group(1))
+    orcid = re.sub(' ', '-', match.group(1))
     return orcid
+
 
 def dict_to_spdx(dict):
     """Convert a dict to SPDX"""
-    file_path = os.path.join(os.path.dirname(__file__), 'resources/spdx/licenses.json')
+    dict.update({'rightsURI': normalize_cc_url(dict.get('rightsURI', None))})
+    file_path = os.path.join(os.path.dirname(
+        __file__), 'resources/spdx/licenses.json')
     with open(file_path) as json_file:
         spdx = json.load(json_file).get('licenses')
-    license = next((l for l in spdx if l['licenseId'].lower() == dict.get('rightsIdentifier', None) or l['seeAlso'][0]== dict.get('rightsURI', None)), None)
+    license = next((l for l in spdx if l['licenseId'].lower() == dict.get(
+        'rightsIdentifier', None) or l['seeAlso'][0] == dict.get('rightsURI', None)), None)
     if license is None:
         return dict
     #   license = spdx.find do |l|
@@ -347,12 +549,11 @@ def dict_to_spdx(dict):
         'lang': dict.get('lang', None)
     })
 
-
     #   else
     #     {
     #       'rights': hsh['__content__'] || hsh['rights'],
     #       'rightsUri': hsh['rightsURI'] || hsh['rightsUri'],
-    #       'rightsIdentifier': hsh['rightsIdentifier'].present? ? hsh['rightsIdentifier'].downcase : nil,
+    #       'rightsIdentifier': hsh['rightsIdentifier'].present? ? hsh['rightsIdentifier'].downcase : None,
     #       'rightsIdentifierScheme': hsh['rightsIdentifierScheme'],
     #       'schemeUri': hsh['schemeUri'],
     #       'lang': hsh['lang']
@@ -360,10 +561,12 @@ def dict_to_spdx(dict):
     #   end
     # end
 
+
 def from_citeproc(element):
     """Convert a citeproc element to CSL"""
-    el, formatted_element = {}, []
+    formatted_element = []
     for elem in wrap(element):
+        el = {}
         if elem.get('literal', None) is not None:
             el['@type'] = 'Organization'
             el['name'] = el['literal']
@@ -371,9 +574,287 @@ def from_citeproc(element):
             el['@type'] = 'Organization'
         else:
             el['@type'] = 'Person'
-            el['name'] = ' '.join(compact([elem.get('given', None), elem.get('family', None)]))
+            el['name'] = ' '.join(
+                compact([elem.get('given', None), elem.get('family', None)]))
         el['givenName'] = elem.get('given', None)
         el['familyName'] = elem.get('family', None)
         el['affiliation'] = elem.get('affiliation', None)
         formatted_element.append(el)
     return formatted_element
+
+
+def find_from_format(id=None, string=None, ext=None, filename=None):
+    """Find reader from format"""
+    if id is not None:
+        return find_from_format_by_id(id)
+    if string is not None and ext is not None:
+        return find_from_format_by_ext(string, ext=ext)
+    if string is not None:
+        return find_from_format_by_string(string)
+    if filename is not None:
+        return find_from_format_by_filename(filename)
+    return 'datacite'
+
+
+def find_from_format_by_id(id):
+    """Find reader from format by id"""
+    doi = validate_doi(id)
+    if doi and (ra := get_doi_ra(doi)) is not None:
+        return ra.lower()
+    if re.match(r"\A(?:(http|https):/(/)?orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[0-9X]+)\Z", id) is not None:
+        return 'orcid'
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/package.json\Z", id) is not None:
+        return 'npm'
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", id) is not None:
+        return 'codemeta'
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", id) is not None:
+        return 'cff'
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", id) is not None:
+        return 'cff'
+    return 'schema_org'
+
+
+def find_from_format_by_ext(string, ext=None):
+    """Find reader from format by ext"""
+
+
+def find_from_format_by_string(string):
+    """Find reader from format by string"""
+    try:
+        if json.loads(string).get('@context', None) == 'http://schema.org':
+            return 'schema_org'
+        if json.loads(string).get('schema-version', '').beginswith('http://datacite.org/schema/kernel'):
+            return 'datacite_json'
+        if json.loads(string).get('source', None) == 'Crossref':
+            return 'crossref_json'
+        if py_.get(json.loads(string), 'issued.date-parts', None) is not None:
+            return 'citeproc'
+        if string.startswith('TY  - '):
+            return 'ris'
+        return 'datacite'
+    except NameError:
+        return 'datacite'
+    # if Maremma.from_xml(string).to_h.dig('crossref_result', 'query_result', 'body', 'query',
+    #                                        'doi_record', 'crossref').present?
+    #     'crossref'
+    #   elsif Nokogiri::XML(string, None, 'UTF-8', &:noblanks).collect_namespaces.find do |_k, v|
+    #           v.start_with?('http://datacite.org/schema/kernel')
+    # #         end
+    #     'datacite'
+    #   elsif URI(Maremma.from_json(string).to_h.fetch('@context', '')).host == 'schema.org'
+    #     'schema_org'
+    #   elsif Maremma.from_json(string).to_h.dig('@context') == ('https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld')
+    #     'codemeta'
+    #   elsif Maremma.from_json(string).to_h.dig('schema-version').to_s.start_with?('http://datacite.org/schema/kernel')
+    #     'datacite_json'
+    #   elsif Maremma.from_json(string).to_h.dig('source') == ('Crossref')
+    #     'crossref_json'
+    #   elsif Maremma.from_json(string).to_h.dig('types').present? && Maremma.from_json(string).to_h.dig('publication_year').present?
+    #     'crosscite'
+    #   elsif Maremma.from_json(string).to_h.dig('issued', 'date-parts').present?
+    #     'citeproc'
+
+    #   elsif YAML.load(string).to_h.fetch('cff-version', None).present?
+    #     'cff'
+
+
+def find_from_format_by_filename(filename):
+    """Find reader from format by filename"""
+    if filename == 'package.json':
+        return 'npm'
+    if filename == 'CITATION.cff':
+        return 'cff'
+    return None
+
+
+def camel_case(text):
+    """Convert text to camel case"""
+    s = text.replace("-", " ").replace("_", " ")
+    s = s.split()
+    if len(text) == 0:
+        return text
+    return s[0] + ''.join(i.capitalize() for i in s[1:])
+
+
+def from_schema_org(element):
+    """Convert schema.org to DataCite"""
+    if element is None:
+        return None
+    element['type'] = element.get('@type', None)
+    element['id'] = element.get('@id', None)
+    return compact(py_.omit(element, ['@type', '@id']))
+
+
+def from_schema_org_creators(element):
+    """Convert schema.org creators to DataCite"""
+    formatted_element = []
+    for elem in wrap(element):
+        if isinstance(elem.get('affiliation', None), str):
+            elem['affiliation'] = {'name': elem['affiliation']}
+            affiliation_identifier_scheme = None
+            scheme_uri = None
+        elif py_.get(elem, 'affiliation.@id', '').startswith('https://ror.org'):
+            affiliation_identifier_scheme = 'ROR'
+            scheme_uri = 'https://ror.org/'
+        elif elem.get('affiliation.@id', '').startswith('https://isni.org'):
+            affiliation_identifier_scheme = 'ISNI'
+            scheme_uri = 'https://isni.org/isni/'
+        else:
+            affiliation_identifier_scheme = None
+            scheme_uri = None
+
+        # alternatively find the nameIdentifier in the identifer attribute
+        # if elem.get('identifier', None) is not None and elem.get('@id', None) is not None:
+        #    elem['@id'] = elem['identifier']
+        # alternatively find the nameIdentifier in the sameAs attribute
+        # elem['@id'] = py_.find(wrap(elem.get('sameAs', None)), lambda x: x == 'orcid.org')
+
+        if elem.get('@id', None) is not None:
+            # elem['@id'] = normalize_orcid(elem.get('@id'))
+            identifier_scheme = 'ORCID'
+            scheme_uri = 'https://orcid.org/'
+        elem['nameIdentifier'] = [
+            {'__content__': elem.get('@id', None),
+             'nameIdentifierScheme': 'ORCID',
+             'schemeUri': 'https://orcid.org'}]
+
+        if isinstance(elem.get('@type', None), list):
+            elem['@type'] = py_.find(elem['@type'],
+                                     lambda x: x in ['Person', 'Organization'])
+        elem['creatorName'] = compact({'nameType': elem['@type'].title() + 'al' if elem.get('@type', None) is not None else None,
+                                       '__content__': elem['name']})
+        elem['affiliation'] = compact({'__content__': py_.get(elem, 'affiliation.name', None),
+                                       'affiliationIdentifier': py_.get(elem, 'affiliation.@id', None),
+                                       'affiliationIdentifierScheme': affiliation_identifier_scheme,
+                                       'schemeUri': scheme_uri})
+        formatted_element.append(py_.omit(elem, '@id', '@type', 'name'))
+    return formatted_element
+
+
+def from_schema_org_contributors(element):
+    """Parse contributors from schema.org"""
+    formatted_element = []
+    for elem in wrap(element):
+        if isinstance(elem.get('affiliation', None), str):
+            elem['affiliation'] = {'name': elem['affiliation']}
+            affiliation_identifier_scheme = None
+            scheme_uri = None
+        elif py_.get(elem, 'affiliation.@id', '').startswith('https://ror.org'):
+            affiliation_identifier_scheme = 'ROR'
+            scheme_uri = 'https://ror.org/'
+        elif py_.get(elem, 'affiliation.@id', '').startswith('https://isni.org'):
+            affiliation_identifier_scheme = 'ISNI'
+            scheme_uri = 'https://isni.org/isni/'
+        else:
+            affiliation_identifier_scheme = None
+            scheme_uri = None
+
+        if normalize_orcid(elem.get('@id', None)) is not None:
+            elem['nameIdentifier'] = [{'__content__': elem['@id'],
+                                       'nameIdentifierScheme': 'ORCID',
+                                       'schemeUri': 'https://orcid.org'}]
+        elem['contributorName'] = compact({'nameType': elem['@type'].titleize + 'al' if elem.get('@type', None) is not None else None,
+                                           '__content__': elem['name']})
+        elem['affiliation'] = compact({'__content__': py_.get(elem, 'affiliation.name', None),
+                                       'affiliationIdentifier': py_.get(elem, 'affiliation.@id', None),
+                                       'affiliationIdentifierScheme': affiliation_identifier_scheme,
+                                       'schemeUri': scheme_uri})
+        formatted_element.append(py_.omit(elem, '@id', '@type', 'name'))
+    return formatted_element
+
+
+def pages_as_string(container, page_range_separator='-'):
+    """Parse pages for BibTeX"""
+    if container is None:
+        return None
+    if container.get('firstPage', None) is None:
+        return None
+    if container.get('lastPage', None) is None:
+        return container.get('firstPage', None) + page_range_separator
+
+    return page_range_separator.join(compact([container.get('firstPage'), container.get('lastPage', None)]))
+
+
+def subjects_as_string(subjects):
+    """convert subject list to string, e.g. for bibtex"""
+    if subjects is None:
+        return None
+
+    keywords = []
+    for subject in wrap(subjects):
+        keywords.append(subject.get('subject', None))
+    return ', '.join(keywords)
+
+
+# def reverse():
+#       return { 'citation': wrap(related_identifiers).select do |ri|
+#                         ri['relationType'] == 'IsReferencedBy'
+#                       end.map do |r|
+#                         { '@id': normalize_doi(r['relatedIdentifier']),
+#                           '@type': r['resourceTypeGeneral'] validate_orcid 'ScholarlyArticle',
+#                           'identifier' => r['relatedIdentifierType'] == 'DOI' ? nil : to_identifier(r) }.compact
+#                       end.unwrap,
+#         'isBasedOn': wrap(related_identifiers).select do |ri|
+#                          ri['relationType'] == 'IsSupplementTo'
+#                        end.map do |r|
+#                          { '@id': normalize_doi(r['relatedIdentifier']),
+#                            '@type': r['resourceTypeGeneral'] or 'ScholarlyArticle',
+#                            'identifier': r['relatedIdentifierType'] == 'DOI' ? nil : to_identifier(r) }.compact
+#                        end.unwrap }.compact
+
+def name_to_fos(name):
+    """Convert name to Fields of Science (OECD) subject"""
+    #   # first find subject in Fields of Science (OECD)
+    #   fos = JSON.load(File.read(File.expand_path('../../resources/oecd/fos-mappings.json',
+    #                                              __dir__))).fetch('fosFields')
+
+    #   subject = fos.find { |l| l['fosLabel'] == name || 'FOS: ' + l['fosLabel'] == name }
+
+    #   if subject
+    #     return [{
+    #       'subject' => sanitize(name).downcase
+    #     },
+    #             {
+    #               'subject' => 'FOS: ' + subject['fosLabel'],
+    #               'subjectScheme' => 'Fields of Science and Technology (FOS)',
+    #               'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf'
+    #             }]
+    #   end
+
+    #   # if not found, look in Fields of Research (Australian and New Zealand Standard Research Classification)
+    #   # and map to Fields of Science. Add an extra entry for the latter
+    #   fores = JSON.load(File.read(File.expand_path('../../resources/oecd/for-mappings.json',
+    #                                                __dir__)))
+    #   for_fields = fores.fetch('forFields')
+    #   for_disciplines = fores.fetch('forDisciplines')
+
+    #   subject = for_fields.find { |l| l['forLabel'] == name } ||
+    #             for_disciplines.find { |l| l['forLabel'] == name }
+
+    #   if subject
+    #     [{
+    #       'subject' => sanitize(name).downcase
+    #     },
+    #      {
+    #        'subject' => 'FOS: ' + subject['fosLabel'],
+    #        'subjectScheme' => 'Fields of Science and Technology (FOS)',
+    #        'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf'
+    #      }]
+    #   else
+    return [{'subject': name.lower()}]
+
+
+def strip_milliseconds(iso8601_time):
+    """strip milliseconds if there is a time, as it interferes with edtc parsing"""
+    if iso8601_time is None:
+        return None
+    elif ' ' in iso8601_time:
+        return iso8601_time.split(' ')[0]
+    elif 'T00:00:00' in iso8601_time:
+        return iso8601_time.split('T')[0]
+    elif '+00:00' in iso8601_time:
+        return iso8601_time.split('+')[0] + 'Z'
+    elif '.' in iso8601_time:
+        return iso8601_time.split('.')[0] + 'Z'
+
+    return iso8601_time

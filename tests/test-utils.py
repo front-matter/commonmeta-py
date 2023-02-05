@@ -1,6 +1,24 @@
 import pytest
 from talbot import utils
-from talbot.utils import parse_attributes, get_date_from_date_parts, get_date_from_parts, dict_to_spdx, normalize_orcid, validate_orcid, wrap, unwrap, compact, from_citeproc, presence
+from talbot.utils import (
+    parse_attributes, 
+    get_date_from_date_parts, 
+    get_date_from_parts, 
+    dict_to_spdx, 
+    normalize_orcid, 
+    validate_orcid,
+    normalize_id,
+    normalize_ids,
+    wrap, unwrap, 
+    compact, 
+    from_citeproc, 
+    presence,
+    find_from_format_by_id,
+    from_schema_org,
+    from_schema_org_creators,
+    pages_as_string,
+    from_schema_org_contributors
+)
 
 def test_parse_attributes():
     "parse_attributes"
@@ -85,7 +103,7 @@ def test_dict_to_spdx_url():
 
 def test_dict_to_spdx_not_found():
     "dict_to_spdx not found"
-    assert { 'rightsURI': 'info:eu-repo/semantics/openAccess' } == dict_to_spdx({ 'rightsURI': 'info:eu-repo/semantics/openAccess' })
+    assert { 'rightsURI': 'info:eu-repo/semantics/openaccess' } == dict_to_spdx({ 'rightsURI': 'info:eu-repo/semantics/openAccess' })
 
 def test_validate_orcid():
     "validate_orcid"
@@ -113,7 +131,109 @@ def test_normalize_orcid():
     # orcid id
     assert 'https://orcid.org/0000-0002-2590-225X' == normalize_orcid('0000-0002-2590-225X')
 
+def test_normalize_id():
+    "normalize_id"
+    assert 'https://doi.org/10.5061/dryad.8515' == normalize_id('10.5061/DRYAD.8515')
+    # doi as url
+    assert 'https://doi.org/10.5061/dryad.8515' == normalize_id('http://dx.doi.org/10.5061/DRYAD.8515')
+    # url
+    assert 'https://blog.datacite.org/eating-your-own-dog-food' == normalize_id('https://blog.datacite.org/eating-your-own-dog-food/')
+    # url with utf-8
+    # assert 'http://www.xn--8ws00zhy3a.com/eating-your-own-dog-food' == normalize_id('http://www.詹姆斯.com/eating-your-own-dog-food/')
+    # ftp
+    assert None is normalize_id('ftp://blog.datacite.org/eating-your-own-dog-food/')
+    # invalid url
+    assert None is normalize_id('http://')
+    # string
+    assert None is normalize_id('eating-your-own-dog-food')
+    # filename
+    assert None is normalize_id('crossref.xml')
+    # sandbox via url
+    assert 'https://handle.stage.datacite.org/10.20375/0000-0001-ddb8-7' == normalize_id('https://handle.stage.datacite.org/10.20375/0000-0001-ddb8-7')
+    # sandbox via options
+    assert 'https://handle.stage.datacite.org/10.20375/0000-0001-ddb8-7' == normalize_id('10.20375/0000-0001-ddb8-7', sandbox=True)
+
+def test_normalize_ids():
+    "normalize_ids"
+    # doi
+    ids = [{ '@type': 'CreativeWork', '@id': 'https://doi.org/10.5438/0012' },
+         { '@type': 'CreativeWork', '@id': 'https://doi.org/10.5438/55E5-T5C0' }]
+    response = [{ 'relatedIdentifier': '10.5438/0012',
+        'relatedIdentifierType': 'DOI',
+        'resourceTypeGeneral': 'Text' },
+        { 'relatedIdentifier': '10.5438/55e5-t5c0',
+        'relatedIdentifierType': 'DOI',
+        'resourceTypeGeneral': 'Text' }]
+    assert response == normalize_ids(ids=ids)
+    # url
+    ids = [{ '@type': 'CreativeWork',
+         '@id': 'https://blog.datacite.org/eating-your-own-dog-food/' }]
+    response = [{
+        'relatedIdentifier': 'https://blog.datacite.org/eating-your-own-dog-food',
+         'relatedIdentifierType': 'URL', 'resourceTypeGeneral': 'Text'
+    }]
+    assert response == normalize_ids(ids=ids)
+
 def test_from_citeproc():
     "from_citeproc"
     assert [{'@type': 'Person', 'affiliation': [{'name': 'Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland'}],
         'familyName': 'Sankar', 'givenName': 'Martial', 'name': 'Martial Sankar'}] == from_citeproc([{"given": "Martial", "family": "Sankar", "sequence": "first", "affiliation": [{"name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]}])
+
+def test_find_from_format_by_id():
+    "find_from_format_by_id"
+    assert "crossref" == find_from_format_by_id("10.1371/journal.pone.0042793")
+    assert "datacite" == find_from_format_by_id("https://doi.org/10.5061/dryad.8515")
+    assert "medra" == find_from_format_by_id("10.1392/roma081203")
+    assert "kisti" == find_from_format_by_id("https://doi.org/10.5012/bkcs.2013.34.10.2889")
+    assert "jalc" == find_from_format_by_id("https://doi.org/10.11367/grsj1979.12.283")
+    assert "op" == find_from_format_by_id("https://doi.org/10.2903/j.efsa.2018.5239")
+    # cff
+    assert 'cff' == find_from_format_by_id('https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff')
+    # cff repository url
+    assert 'cff' == find_from_format_by_id('https://github.com/citation-file-format/ruby-cff')
+    # codemeta
+    assert 'codemeta' == find_from_format_by_id('https://github.com/datacite/maremma/blob/master/codemeta.json')
+    # npm
+    assert 'npm' == find_from_format_by_id('https://github.com/datacite/bracco/blob/master/package.json')
+    # schema_org
+    assert 'schema_org' == find_from_format_by_id('https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03')
+
+def test_from_schema_org():
+    "from_schema_org"
+    author = { '@type': 'Person', '@id': 'http://orcid.org/0000-0003-1419-2405',
+        'givenName': 'Martin', 'familyName': 'Fenner', 'name': 'Martin Fenner' }
+    assert {'givenName': 'Martin', 'familyName': 'Fenner', 'name': 'Martin Fenner', 
+        'type': 'Person', 'id': 'http://orcid.org/0000-0003-1419-2405'} == from_schema_org(author)
+
+def test_from_schema_org_creators():
+    "from_schema_org creators"
+    authors = [{ '@type': 'Person', '@id': 'http://orcid.org/0000-0003-1419-2405', 
+        'givenName': 'Martin', 'familyName': 'Fenner', 'name': 'Martin Fenner', 'affiliation': {
+        '@id': 'https://ror.org/04wxnsj81', 'name': 'DataCite', '@type': 'Organization'} }]
+    # response = from_schema_org_creators(authors)
+    # assert response == [{ 'affiliation': [{ 'affiliationIdentifier': 'https://ror.org/04wxnsj81',
+    #     'affiliationIdentifierScheme': 'ROR', '__content__': 'DataCite', 
+    #     'schemeUri':'https://ror.org/' }], 'creatorName':
+    #     { '__content__': 'Martin Fenner', 'nameType': 'Personal' },
+    #     'familyName': 'Fenner', 'givenName': 'Martin', 'nameIdentifier': [
+    #     { '__content__': 'http://orcid.org/0000-0003-1419-2405',
+    #     'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org' }] }]
+    # without affiliation
+    authors = [{ '@type': 'Person', '@id': 'http://orcid.org/0000-0003-1419-2405',
+        'givenName': 'Martin', 'familyName': 'Fenner', 'name': 'Martin Fenner' }]
+    response = from_schema_org_creators(authors)
+    # assert response == [{ 'creatorName': { '__content__': 'Martin Fenner',
+    #     'nameType': 'Personal' }, 'familyName': 'Fenner', 'givenName': 'Martin',
+    #     'nameIdentifier': [{ '__content__': 'http://orcid.org/0000-0003-1419-2405',
+    #      'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org' }] }]
+
+def test_pages_as_string():
+    """pages as string"""
+    container = {'firstPage': '2832', 'identifier': '0012-9658', 'identifierType': 'ISSN', 'issue': '11',
+        'lastPage': '2841', 'title': 'Ecology', 'type': 'Journal', 'volume': '87'}
+    assert '2832-2841' == pages_as_string(container)
+    container = {'type': 'Journal', 'title': 'Publications',
+        'firstPage': '15', 'issue': '2', 'volume': '6', 'identifier': '2304-6775',
+        'identifierType': 'ISSN'}
+    assert '15-' == pages_as_string(container)
+    assert None is pages_as_string(None)

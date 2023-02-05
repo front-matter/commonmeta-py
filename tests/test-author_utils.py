@@ -68,22 +68,24 @@ def test_cleanup_author():
 def test_authors_as_string():
     "authors_as_string"
     authors = [
-        {'type': 'Person',
+        {'nameType': 'Person',
          'id': 'http://orcid.org/0000-0003-0077-4738',
-         'name': 'Matt Jones'},
-        {'type': 'Person',
+         'givenName': 'Matt',
+         'familyName': 'Jones'},
+        {'nameType': 'Person',
          'id': 'http://orcid.org/0000-0002-2192-403X',
-         'name': 'Peter Slaughter'},
-        {'type': 'Organization',
+         'givenName': 'Peter',
+         'familyName': 'Slaughter'},
+        {'nameType': 'Organization',
          'name': 'University of California, Santa Barbara'}
     ]
-    assert "Matt Jones and Peter Slaughter" == authors_as_string(authors[0:2])
+    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(authors[0:2])
     # single author
-    assert "Matt Jones" == authors_as_string(authors[0])
+    assert "Jones, Matt" == authors_as_string(authors[0])
     # no authors
-    assert None == authors_as_string(None)
+    assert None is authors_as_string(None)
     # with organization
-    assert "Matt Jones and Peter Slaughter and {University of California, Santa Barbara}" == authors_as_string(authors)
+    assert "Jones, Matt and Slaughter, Peter and {University of California, Santa Barbara}" == authors_as_string(authors)
 
 def test_get_authors():
     "get_authors"
