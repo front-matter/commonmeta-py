@@ -85,7 +85,7 @@ def test_authors_as_string():
     # no authors
     assert None is authors_as_string(None)
     # with organization
-    assert "Jones, Matt and Slaughter, Peter and {University of California, Santa Barbara}" == authors_as_string(authors)
+    assert "Jones, Matt and Slaughter, Peter and University of California, Santa Barbara" == authors_as_string(authors)
 
 def test_get_authors():
     "get_authors"

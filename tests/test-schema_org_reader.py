@@ -85,7 +85,7 @@ def test_zenodo():
     assert subject.container == {'type': 'DataRepository'}
     assert subject.funding_references is None
     assert subject.descriptions[0].get('description').startswith(
-        '<p>This dataset includes pupil size response')
+        'This dataset includes pupil size response')
     assert subject.subjects == [
         {'subject': 'pupil size response'},
         {'subject': 'skin conductance response'},
@@ -257,7 +257,7 @@ def test_blog_with_dois():
         'title': 'Einbürgerung und Ausbürgerung: Warum die Staatsangehörigkeitsrechtsreform nicht ohne Ausbürgerungsrechtsreform funktioniert'}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        'name': 'Maria Martha Gerdes', 'nameType': 'Personal'}
+        'name': 'Maria Martha Gerdes', 'givenName': 'Maria Martha', 'familyName': 'Gerdes', 'nameType': 'Personal'}
     assert subject.contributors is None
     assert subject.rights_list is None
     assert subject.dates == [
@@ -328,7 +328,7 @@ def test_with_upstream_blog_post():
         'title': 'Welcome to Upstream: the new space for scholarly community discussion on all things open'}
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
-        'name': 'John Chodacki', 'nameType': 'Personal'}
+        'name': 'John Chodacki', 'familyName': 'Chodacki', 'givenName': 'John', 'nameType': 'Personal'}
     assert subject.contributors is None
     assert subject.rights_list == [{'rights': 'Creative Commons Attribution 4.0 International',
                                    'rightsIdentifier': 'cc-by-4.0',

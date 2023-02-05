@@ -123,11 +123,8 @@ def authors_as_string(authors):
         if author.get('familyName', None):
             a = f"{author['familyName']}, {author['givenName']}"
             formatted_authors.append(a)
-        elif author.get('type', None) == 'Person':
+        elif author.get('type', None) != 'Person':
             a = author['name']
-            formatted_authors.append(a)
-        elif author.get('name', None):
-            a = f"{{{author['name']}}}"
             formatted_authors.append(a)   
     return ' and '.join(formatted_authors)
 

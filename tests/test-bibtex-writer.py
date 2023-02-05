@@ -57,13 +57,13 @@ def test_blog_post():
     subject = Metadata(input, via='schema_org')
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types.get('bibtex') == 'article'
-    print(subject.descriptions)
+    print(subject.creators)
     bibtex = subject.bibtex()
     print(bibtex)
     assert bibtex == \
 """@article{https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf,
     abstract = {Today we are announcing Upstream. And if you’re reading this, you’re already a part of it! Upstream is a community blogging platform designed for Open enthusiasts to discuss… you guessed it: all things Open. It’s a space for the whole community to voice opinions, discuss open approaches to scholarly communication, and showcase research. A central place to exchange in writing ideas about open research and all that it encompasses Supported by FORCE11, this is a global and inclusive blog, bringi},
-    author = {Chodacki, John} and {Hendricks, Ginny} and {Ferguson, Christine} and {Fenner, Martin}
+    author = {Chodacki, John and Hendricks, Ginny and Ferguson, Christine and Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.54900/rckn8ey-1fm76va-qsrnf},
     journal = {Upstream},

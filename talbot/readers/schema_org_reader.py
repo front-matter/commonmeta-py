@@ -120,10 +120,14 @@ def get_schema_org(id=None, **kwargs):
     auth = soup.select("meta[name='citation_author']")
     authors = []
     for au in auth:
-        if len(str(au['content']).split(' ')) > 1:
-            author = {'@type': 'Person', 'name': str(au['content']), 'givenName': str(au['content']).split(' ')[0], 'familyName': str(au['content']).split(' ')[1]}
-        else:
+        length = len(str(au['content']).split(' '))
+        if length == 0:
+            continue
+        if length == 1:
             author = {'@type': 'Organization', 'name': str(au['content'])}
+        else:
+            given_name = " ".join(str(au['content']).split(' ')[0:length-1])
+            author = {'@type': 'Person', 'name': str(au['content']), 'givenName': given_name, 'familyName': str(au['content']).split(' ')[-1]}
         authors.append(author)
 
     if string.get('author', None) is None and string.get('creator', None) is not None:
