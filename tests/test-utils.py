@@ -13,6 +13,7 @@ from talbot.utils import (
     compact, 
     from_citeproc, 
     presence,
+    sanitize,
     find_from_format_by_id,
     from_schema_org,
     from_schema_org_creators,
@@ -235,5 +236,15 @@ def test_pages_as_string():
     container = {'type': 'Journal', 'title': 'Publications',
         'firstPage': '15', 'issue': '2', 'volume': '6', 'identifier': '2304-6775',
         'identifierType': 'ISSN'}
-    assert '15-' == pages_as_string(container)
+    assert '15' == pages_as_string(container)
     assert None is pages_as_string(None)
+
+def test_sanitize():
+    """Sanitize HTML"""
+    text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
+    content = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term cool URIs'
+    assert content == sanitize(text)
+
+    text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
+    content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
+    assert content == sanitize(text, tags={'a'})

@@ -13,7 +13,7 @@ from ..utils import (
     from_schema_org,
     from_schema_org_creators,
     from_schema_org_contributors,
-    presence,
+    presence, sanitize,
     normalize_id,
     normalize_ids,
     normalize_url,
@@ -119,8 +119,12 @@ def get_schema_org(id=None, **kwargs):
     # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
     auth = soup.select("meta[name='citation_author']")
     authors = []
-    for author in auth:
-        authors.append({'@type': 'Person', 'name': author['content']})
+    for au in auth:
+        if len(str(au['content']).split(' ')) > 1:
+            author = {'@type': 'Person', 'name': str(au['content']), 'givenName': str(au['content']).split(' ')[0], 'familyName': str(au['content']).split(' ')[1]}
+        else:
+            author = {'@type': 'Organization', 'name': str(au['content'])}
+        authors.append(author)
 
     if string.get('author', None) is None and string.get('creator', None) is not None:
         string['author'] = string['creator']
@@ -249,8 +253,8 @@ def read_schema_org(string=None, **kwargs):
     #   { 'funderName' => fr['name'] }.compact
 
     if meta.get('description', None) is not None:
-        descriptions = [{'description': meta.get(
-            'description'), 'descriptionType': 'Abstract'}]
+        descriptions = [{'description': sanitize(meta.get(
+            'description')), 'descriptionType': 'Abstract'}]
     else:
         descriptions = None
 

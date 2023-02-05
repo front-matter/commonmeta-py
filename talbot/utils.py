@@ -2,9 +2,11 @@ import os
 import html
 import json
 import re
+import bleach
 from urllib.parse import urlparse
 import dateparser
 from pydash import py_
+
 
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
 
@@ -858,3 +860,26 @@ def strip_milliseconds(iso8601_time):
         return iso8601_time.split('.')[0] + 'Z'
 
     return iso8601_time
+
+def sanitize(text, **kwargs):
+    """Sanitize text"""
+    tags = kwargs.get('tags', None) or frozenset({'b', 'br', 'code', 'em', 'i', 'sub', 'sup', 'strong'})
+    content = kwargs.get('content', None) or '__content__'
+    first = kwargs.get('first', True)
+    strip = kwargs.get('strip', True)
+
+    if isinstance(text, str):
+        string = bleach.clean(text, tags=tags, strip=strip)
+        # remove excessive internal whitespace
+        return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
+        # return re.sub(r'\\s\\s+', ' ', string)
+    elif isinstance(text, dict):
+        return sanitize(text.get(content, None))
+    elif isinstance(text, list):
+        if len(text) == 0:
+            return None
+            
+        lst = []
+        for e in text:
+            lst.append(sanitize(e.get(content, None)) if isinstance(e, dict) else sanitize(e)) # uniq
+        return lst[0] if first else unwrap(lst)

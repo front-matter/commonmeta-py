@@ -15,7 +15,7 @@ def test_doi_with_data_citation():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.titles[0] == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    assert subject.titles[0] == {"title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"}
     assert len(subject.creators) == 5
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Martial Sankar', 'givenName': 'Martial', 'familyName': 'Sankar', 'affiliation': [
         {'name': 'Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland'}]}
@@ -53,7 +53,7 @@ def test_doi_with_data_citation():
         'type': 'Journal',
         'volume': '3'}
     assert subject.descriptions == [{'description':
-                                     ('<jats:p>Among various advantages, their small size makes '
+                                     ('Among various advantages, their small size makes '
                                       'model organisms preferred subjects of investigation. Yet, '
                                       'even in model systems detailed analysis of numerous '
                                       'developmental processes at cellular level is severely '
@@ -73,7 +73,7 @@ def test_doi_with_data_citation():
                                       'through machine learning, we could establish a cellular '
                                       'resolution atlas that reveals vascular morphodynamics during '
                                       'secondary growth, for example equidistant phloem pole '
-                                      'formation.</jats:p>'),
+                                      'formation.'),
                                      'descriptionType': 'Abstract'}]
     assert subject.subjects == [
         {'subject': 'General Immunology and Microbiology'},
@@ -94,7 +94,7 @@ def test_journal_article():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
-    assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
+    assert subject.titles[0] == {"title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"}
     assert len(subject.creators) == 5
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Markus Ralser', 'givenName': 'Markus', 'familyName': 'Ralser'}
     assert subject.contributors == [{'familyName': 'Janbon', 'givenName': 'Guilhem',
@@ -146,7 +146,7 @@ def test_journal_article_with_funding():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://www.frontiersin.org/article/10.3389/fpls.2019.00816/full"
-    assert subject.titles[0] == "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"
+    assert subject.titles[0] == {"title": "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"}
     assert len(subject.creators) == 4
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Ana Margarida Fortes', 'givenName': 'Ana Margarida', 'familyName': 'Fortes'}
     assert subject.contributors is None
@@ -252,7 +252,7 @@ def test_journal_article_with_rdf_for_container():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
-    assert subject.titles[0] == "Global distribution of Fabaeformiscandona subacuta: an\xa0exotic\xa0invasive Ostracoda on the Iberian Peninsula?"
+    assert subject.titles[0] == {"title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"}
     assert len(subject.creators) == 8
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Andreu Escrivà', 'givenName': 'Andreu', 'familyName': 'Escrivà'}
     assert subject.contributors is None
@@ -301,7 +301,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.types == {'bibtex': 'inbook', 'citeproc': 'chapter',
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter', 'ris': 'CHAP', 'schemaOrg': 'Chapter'}
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
-    assert subject.titles[0] == "Human Body Orientation Estimation in Multiview Scenarios"
+    assert subject.titles[0] == {"title": "Human Body Orientation Estimation in Multiview Scenarios"}
     assert len(subject.creators) == 3
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'Lili Chen', 'givenName': 'Lili', 'familyName': 'Chen'}
@@ -348,7 +348,7 @@ def test_posted_content():
                              'resourceType': 'PostedContent', 'resourceTypeGeneral': 'Preprint',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
-    assert subject.titles[0] == "A Data Citation Roadmap for Scholarly Data Repositories"
+    assert subject.titles[0] == {"title": "A Data Citation Roadmap for Scholarly Data Repositories"}
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'Martin Fenner', 'givenName': 'Martin', 'familyName': 'Fenner'}
@@ -372,7 +372,7 @@ def test_posted_content():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions == [
-        {'description': '<jats:title>Abstract</jats:title><jats:p>This article presents a practical roadmap for scholarly data repositories to implement data citation in accordance with the Joint Declaration of Data Citation Principles, a synopsis and harmonization of the recommendations of major science policy bodies. The roadmap was developed by the Repositories Expert Group, as part of the Data Citation Implementation Pilot (DCIP) project, an initiative of FORCE11.org and the NIH BioCADDIE (<jats:ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="https://biocaddie.org">https://biocaddie.org</jats:ext-link>) program. The roadmap makes 11 specific recommendations, grouped into three phases of implementation: a) required steps needed to support the Joint Declaration of Data Citation Principles, b) recommended steps that facilitate article/data publication workflows, and c) optional steps that further improve data citation support provided by data repositories.</jats:p>', 'descriptionType': 'Abstract'}]
+        {'description': 'AbstractThis article presents a practical roadmap for scholarly data repositories to implement data citation in accordance with the Joint Declaration of Data Citation Principles, a synopsis and harmonization of the recommendations of major science policy bodies. The roadmap was developed by the Repositories Expert Group, as part of the Data Citation Implementation Pilot (DCIP) project, an initiative of FORCE11.org and the NIH BioCADDIE (https://biocaddie.org) program. The roadmap makes 11 specific recommendations, grouped into three phases of implementation: a) required steps needed to support the Joint Declaration of Data Citation Principles, b) recommended steps that facilitate article/data publication workflows, and c) optional steps that further improve data citation support provided by data repositories.', 'descriptionType': 'Abstract'}]
     assert subject.version_info is None
     assert subject.agency == 'Crossref'
 
@@ -385,7 +385,7 @@ def test_peer_review():
                              'resourceType': 'PeerReview', 'resourceTypeGeneral': 'PeerReview',
                              'ris': 'GEN', 'schemaOrg': 'Review'}
     assert subject.url == "https://elifesciences.org/articles/55167#sa2"
-    assert subject.titles[0] == "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
+    assert subject.titles[0] == {"title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"}
     assert len(subject.creators) == 8
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Jeremy Magland', 'givenName': 'Jeremy', 'familyName': 'Magland', 'affiliation': [
         {'name': 'Center for Computational Mathematics, Flatiron Institute, New York, United States'}]}
@@ -421,7 +421,7 @@ def test_dissertation():
                              'resourceType': 'Dissertation', 'resourceTypeGeneral': 'Dissertation',
                              'ris': 'THES', 'schemaOrg': 'Thesis'}
     assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
-    assert subject.titles[0] == "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
+    assert subject.titles[0] == {"title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {'familyName': 'Collingwood',
                                    'givenName': 'Patricia Maree',
@@ -454,7 +454,7 @@ def test_doi_with_sici():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
-    assert subject.titles[0] == "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"
+    assert subject.titles[0] == {"title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'A. Fenton', 'givenName': 'A.', 'familyName': 'Fenton'}
@@ -497,7 +497,7 @@ def test_doi_with_orcid():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
-    assert subject.titles[0] == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
+    assert subject.titles[0] == {"title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"}
     assert len(subject.creators) == 7
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Wendy Thanassi', 'givenName': 'Wendy', 'familyName': 'Thanassi', 'affiliation': [{'name': 'Department of Medicine, Veterans Affairs Palo Alto Health Care System, 3801 Miranda Avenue MC-, Palo Alto, CA 94304-1207, USA'}, {'name': 'Occupational Health Strategic Health Care Group, Office of Public Health, Veterans Health Administration, Washington, DC 20006, USA'}, {
         'name': 'Division of Emergency Medicine, Stanford University School of Medicine, Stanford, CA 94304, USA'}, {'name': 'War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA'}]}
@@ -539,7 +539,7 @@ def test_doi_with_orcid():
         {'subject': 'General Medicine'}
     ]
     assert subject.language == 'en'
-    assert subject.descriptions == [{'description': '<jats:p><jats:italic>Objective</jats:italic>. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.<jats:italic>Method</jats:italic>. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.<jats:italic>Results</jats:italic>. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa\u2009=\u20090.48, chi-square\u2009=\u2009131.0,<mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M1"><mml:mrow><mml:mi>P</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>0.001</mml:mn></mml:mrow></mml:math>) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72\u2009IU/mL (Kappa\u2009=\u20090.16, chi-square\u2009=\u20098.2,<mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" id="M2"><mml:mrow><mml:mi>P</mml:mi><mml:mo>&lt;</mml:mo><mml:mn>0.01</mml:mn></mml:mrow></mml:math>). The model was validated by the regression analysis of 287\u2009HCWs.<jats:italic>Conclusion</jats:italic>. Reversion likelihood increases as the TBag-nil approaches the manufacturer\'s cut-point of 0.35\u2009IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11\u2009IU/mL. Clinicians should retest low-risk individuals with initial QFT results\u2009&lt;\u20091.11\u2009IU/mL.</jats:p>', 'descriptionType': 'Abstract'}]
+    assert subject.descriptions == [{'description': 'Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0,P&lt;0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2,P&lt;0.01). The model was validated by the regression analysis of 287 HCWs.Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer\'s cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL.', 'descriptionType': 'Abstract'}]
     assert subject.version_info is None
     assert subject.agency == 'Crossref'
 
@@ -552,7 +552,7 @@ def test_date_in_future():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://linkinghub.elsevier.com/retrieve/pii/S0014299915002332"
-    assert subject.titles[0] == "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
+    assert subject.titles[0] == {"title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"}
     assert len(subject.creators) == 10
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'Sarah E. Beck', 'givenName': 'Sarah E.', 'familyName': 'Beck'}
@@ -612,7 +612,7 @@ def test_vor_with_url():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://www.nature.com/articles/hdy201326"
-    assert subject.titles[0] == "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"
+    assert subject.titles[0] == {"title": "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'J B Gross', 'givenName': 'J B', 'familyName': 'Gross'}
@@ -665,7 +665,7 @@ def test_dataset():
                              'resourceType': 'Component', 'resourceTypeGeneral': 'Text', 'ris': 'GEN',
                              'schemaOrg': 'CreativeWork'}
     assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
-    assert subject.titles[0] == "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
+    assert subject.titles[0] == {"title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"}
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'G. Fermi', 'givenName': 'G.', 'familyName': 'Fermi'}
     assert subject.contributors is None
@@ -696,7 +696,7 @@ def test_component():
                              'resourceType': 'Component', 'resourceTypeGeneral': 'Text', 'ris': 'GEN',
                              'schemaOrg': 'CreativeWork'}
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
-    assert subject.titles == []
+    assert subject.titles is None
     assert subject.creators[0] == {
         'nameType': 'Organizational', 'name': ':(unav)'}
     assert subject.contributors is None
@@ -727,7 +727,7 @@ def test_dataset_usda():
                              'resourceType': 'Dataset', 'resourceTypeGeneral': 'Dataset',
                              'ris': 'DATA', 'schemaOrg': 'Dataset'}
     assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
-    assert subject.titles[0] == "Fledging times of grassland birds"
+    assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Christine A. Ribic',
                                    'givenName': 'Christine A.', 'familyName': 'Ribic', 'affiliation': [{'name': 'U.S. Geological Survey'}]}
     assert subject.contributors is None
@@ -763,7 +763,7 @@ def test_book_chapter():
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
     assert subject.url == "http://link.springer.com/10.1007/978-3-662-46370-3_13"
-    assert subject.titles[0] == "Clinical Symptoms and Physical Examinations"
+    assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'Ronald L. Diercks', 'givenName': 'Ronald L.', 'familyName': 'Diercks'}
     assert subject.contributors is None
@@ -795,7 +795,7 @@ def test_another_book_chapter():
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
     assert subject.url == "http://link.springer.com/10.1007/978-3-319-75889-3_1"
-    assert subject.titles[0] == "Climate Change and Increasing Risk of Extreme Heat"
+    assert subject.titles[0] == {"title": "Climate Change and Increasing Risk of Extreme Heat"}
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Hunter M. Jones',
                                    'givenName': 'Hunter M.', 'familyName': 'Jones'}
     assert subject.contributors is None
@@ -828,7 +828,7 @@ def test_yet_another_book_chapter():
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
     assert subject.url == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
-    assert subject.titles[0] == "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
+    assert subject.titles[0] == {"title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"}
     assert subject.creators[0] == {'affiliation': [{'name': 'Université de Lyon, France'}],
                                    'nameType': 'Personal', 'name': 'Charles-Edmond Bichot',
                                    'givenName': 'Charles-Edmond', 'familyName': 'Bichot'}
@@ -849,7 +849,7 @@ def test_yet_another_book_chapter():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions == [
-        {'description': '<jats:p>Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.</jats:p>', 'descriptionType': 'Abstract'}]
+        {'description': 'Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.', 'descriptionType': 'Abstract'}]
     assert subject.version_info is None
     assert subject.agency == 'Crossref'
 
@@ -862,7 +862,7 @@ def test_missing_creator():
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "https://www.mdpi.com/2304-6775/6/2/15"
-    assert subject.titles[0] == "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
+    assert subject.titles[0] == {"title": "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"}
     assert subject.creators[0] == {
         'nameType': 'Personal', 'name': 'Alexander Kohls', 'givenName': 'Alexander', 'familyName': 'Kohls'}
     assert subject.contributors is None
@@ -899,7 +899,7 @@ def test_missing_creator():
     ]
     assert subject.language == 'en'
     assert subject.descriptions == [
-        {'description': '<jats:p>Gigantic particle accelerators, incredibly complex '
+        {'description': 'Gigantic particle accelerators, incredibly complex '
          'detectors, an antimatter factory and the discovery of the '
          'Higgs boson—this is part of what makes CERN famous. Only a '
          'few know that CERN also hosts the world largest Open Access '
@@ -916,7 +916,7 @@ def test_missing_creator():
          'describes the economic principles of SCOAP3, the '
          'collaborative approach of the partnership, and finally '
          'summarizes financial results after four years of successful '
-         'operation.</jats:p>',
+         'operation.',
          'descriptionType': 'Abstract'
          }
     ]
@@ -932,7 +932,7 @@ def test_book():
                              'resourceType': 'Monograph', 'resourceTypeGeneral': 'Book',
                              'ris': 'BOOK', 'schemaOrg': 'Book'}
     assert subject.url == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
-    assert subject.titles[0] == "The Politics of the Past in Early China"
+    assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Vincent S. Leung',
                                    'givenName': 'Vincent S.', 'familyName': 'Leung'}
     assert subject.contributors is None
