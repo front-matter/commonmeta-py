@@ -57,7 +57,6 @@ def test_blog_post():
     subject = Metadata(input, via='schema_org')
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types.get('bibtex') == 'article'
-    print(subject.creators)
     bibtex = subject.bibtex()
     print(bibtex)
     assert bibtex == \
@@ -100,5 +99,30 @@ def test_article_with_pages():
     url = {https://dx.plos.org/10.1371/journal.ppat.1008184},
     urldate = {2020-01-17},
     year = {2020}
+}
+"""
+
+def test_article_dlib_magazine():
+    "article dlib magazine"
+    input = "https://doi.org/10.1045/january2017-burton"
+    subject = Metadata(input)
+    assert subject.id == "https://doi.org/10.1045/january2017-burton"
+    assert subject.types.get('bibtex') == 'article'
+
+    bibtex = subject.bibtex()
+    print(bibtex)
+    assert bibtex == \
+"""@article{https://doi.org/10.1045/january2017-burton,
+    author = {Burton, Adrian and Aryani, Amir and Koers, Hylke and Manghi, Paolo and La Bruzzo, Sandro and Stocker, Markus and Diepenbroek, Michael and Schindler, Uwe and Fenner, Martin},
+    doi = {10.1045/january2017-burton},
+    issn = {1082-9873},
+    issue = {1/2},
+    journal = {D-Lib Magazine},
+    language = {en},
+    month = {jan},
+    title = {The Scholix Framework for Interoperability in Data-Literature Information Exchange},
+    url = {http://www.dlib.org/dlib/january17/burton/01burton.html},
+    urldate = {2017-01},
+    year = {2017}
 }
 """

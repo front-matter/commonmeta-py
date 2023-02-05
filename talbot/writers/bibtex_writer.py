@@ -8,14 +8,13 @@ from ..doi_utils import doi_from_url
 def write_bibtex(metadata):
     """Write bibtex"""
     container = metadata.container or {}
-    print(container)
     db = BibDatabase()
     db.entries = [
         compact({'ID': metadata.id,
                  'ENTRYTYPE': 'article',
                  'abstract': metadata.descriptions[0].get('description', None) if metadata.descriptions else None,
                  'author': authors_as_string(metadata.creators),
-                 'copyright': str(metadata.rights_list[0].get('rightsURI', None)),
+                 'copyright': str(metadata.rights_list[0].get('rightsURI', None)) if metadata.rights_list else None,
                  'doi': doi_from_url(metadata.id),
                  'issn': metadata.issn,
                  'issue': container.get('issue', None),

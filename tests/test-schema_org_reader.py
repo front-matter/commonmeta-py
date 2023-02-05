@@ -189,7 +189,6 @@ def test_dataverse():
     #     'resourceTypeGeneral': 'Collection' }
     assert subject.container == {'type': 'DataRepository', 'title': 'Harvard Dataverse',
                                  'identifier': 'https://dataverse.harvard.edu', 'identifierType': 'URL'}
-    print(subject.descriptions)
     # assert subject.descriptions[0].get('description').startswith(
     #     'Summary of association tests for Nature Genetics publication')
     assert subject.subjects == [
