@@ -359,6 +359,23 @@ def get_date(dates, date_type='Issued', date_only=False):
         return dd.get('date', '')[0:10]
     return dd.get('date', None)
 
+def get_date_parts(iso8601_time):
+    """Get date parts"""
+    if iso8601_time is None:
+        return { 'date-parts': [[]] }
+
+    # add 0s to the end of the date if it is incomplete
+    if len(iso8601_time) < 10:
+        iso8601_time = iso8601_time.ljust(10, '0')
+
+    year = int(iso8601_time[0:4])
+    month = int(iso8601_time[5:7])
+    day = int(iso8601_time[8:10])
+ 
+    date_parts = py_.reject([year, month, day], lambda x: x == 0)
+    return { 'date-parts': [date_parts] }
+
+
 def get_date_from_date_parts(date_as_parts):
     """Get date from date parts"""
     if date_as_parts is None:
@@ -491,13 +508,13 @@ def crossref_api_url(doi):
     return 'https://api.crossref.org/works/' + doi
 
 
-def normalize_url(url):
+def normalize_url(url, secure=False):
     """Normalize URL"""
     if url is None:
         return None
     if url.endswith('/'):
         url = url.strip('/')
-    if url.startswith('http://'):
+    if secure is True and url.startswith('http://'):
         url = url.replace('http://', 'https://')
     return url.lower()
 
@@ -506,7 +523,7 @@ def normalize_cc_url(url):
     """Normalize Creative Commons URL"""
     if url is None:
         return None
-    url = normalize_url(url)
+    url = normalize_url(url, secure=True)
     return NORMALIZED_LICENSES.get(url, url)
 
 
@@ -574,6 +591,7 @@ def from_citeproc(element):
             el['name'] = el['literal']
         elif elem.get('name', None) is not None:
             el['@type'] = 'Organization'
+            el['name'] = elem.get('name')
         else:
             el['@type'] = 'Person'
             el['name'] = ' '.join(
@@ -581,9 +599,19 @@ def from_citeproc(element):
         el['givenName'] = elem.get('given', None)
         el['familyName'] = elem.get('family', None)
         el['affiliation'] = elem.get('affiliation', None)
-        formatted_element.append(el)
+        formatted_element.append(compact(el))
     return formatted_element
 
+def to_citeproc(element):
+    """Convert a CSL element to citeproc"""
+    formatted_element = []
+    for elem in wrap(element):
+        el = {}
+        el['family'] = elem.get('familyName', None)
+        el['given'] = elem.get('givenName', None)
+        el['literal'] = elem.get('name', None) if elem.get('familyName', None) is None else None
+        formatted_element.append(compact(el))
+    return formatted_element
 
 def find_from_format(id=None, string=None, ext=None, filename=None):
     """Find reader from format"""
@@ -878,7 +906,7 @@ def sanitize(text, **kwargs):
     elif isinstance(text, list):
         if len(text) == 0:
             return None
-            
+
         lst = []
         for e in text:
             lst.append(sanitize(e.get(content, None)) if isinstance(e, dict) else sanitize(e)) # uniq

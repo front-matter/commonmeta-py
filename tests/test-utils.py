@@ -3,7 +3,8 @@ from talbot import utils
 from talbot.utils import (
     parse_attributes, 
     get_date_from_date_parts, 
-    get_date_from_parts, 
+    get_date_from_parts,
+    get_date_parts,
     dict_to_spdx, 
     normalize_orcid, 
     validate_orcid,
@@ -56,6 +57,13 @@ def test_get_date_from_parts():
     assert '2012-01' == get_date_from_parts(2012, 1)
     assert '2012' == get_date_from_parts(2012)
     assert None is get_date_from_parts()
+
+def test_get_date_parts():
+    "get_date_parts"
+    assert {'date-parts': [[2012, 1, 1]]} == get_date_parts("2012-01-01")
+    assert {'date-parts': [[2012, 1]]} == get_date_parts("2012-01")
+    assert {'date-parts': [[2012]]} == get_date_parts("2012")
+    assert { 'date-parts': [[]] } == get_date_parts(None)
 
 def test_wrap():
     "wrap"

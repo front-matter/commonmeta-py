@@ -6,7 +6,7 @@ from ..utils import (
     get_date_from_date_parts,
     dict_to_spdx, normalize_cc_url,
     wrap, compact, from_citeproc,
-    presence, sanitize,
+    presence, sanitize, normalize_url,
     CR_TO_BIB_TRANSLATIONS,
     CR_TO_SO_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,
@@ -53,7 +53,7 @@ def read_crossref_json(string=None, **kwargs):
         editors.append(editor)
     contributors = presence(get_authors(from_citeproc(editors)))
 
-    url = py_.get(meta, 'resource.primary.URL', None)
+    url = normalize_url(py_.get(meta, 'resource.primary.URL', None))
     title = meta.get('title', None) or meta.get('original-title', None)
     if presence(title) is not None:
         titles = [{'title': sanitize(title)}]

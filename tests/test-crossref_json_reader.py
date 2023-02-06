@@ -199,7 +199,7 @@ def test_journal_article_original_language():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
-    assert subject.url == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
+    assert subject.url == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
     # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
@@ -251,7 +251,7 @@ def test_journal_article_with_rdf_for_container():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
-    assert subject.url == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
+    assert subject.url == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240x-00002096"
     assert subject.titles[0] == {"title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"}
     assert len(subject.creators) == 8
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Andreu Escrivà', 'givenName': 'Andreu', 'familyName': 'Escrivà'}
@@ -420,7 +420,7 @@ def test_dissertation():
     assert subject.types == {'bibtex': 'phdthesis', 'citeproc': 'thesis',
                              'resourceType': 'Dissertation', 'resourceTypeGeneral': 'Dissertation',
                              'ris': 'THES', 'schemaOrg': 'Thesis'}
-    assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
+    assert subject.url == "http://espace.library.uq.edu.au/view/uq:23a1e74"
     assert subject.titles[0] == {"title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {'familyName': 'Collingwood',
@@ -453,7 +453,7 @@ def test_doi_with_sici():
     assert subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
-    assert subject.url == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
+    assert subject.url == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     assert subject.titles[0] == {"title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
@@ -496,7 +496,7 @@ def test_doi_with_orcid():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
-    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
+    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
     assert subject.titles[0] == {"title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"}
     assert len(subject.creators) == 7
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Wendy Thanassi', 'givenName': 'Wendy', 'familyName': 'Thanassi', 'affiliation': [{'name': 'Department of Medicine, Veterans Affairs Palo Alto Health Care System, 3801 Miranda Avenue MC-, Palo Alto, CA 94304-1207, USA'}, {'name': 'Occupational Health Strategic Health Care Group, Office of Public Health, Veterans Health Administration, Washington, DC 20006, USA'}, {
@@ -551,7 +551,7 @@ def test_date_in_future():
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
-    assert subject.url == "https://linkinghub.elsevier.com/retrieve/pii/S0014299915002332"
+    assert subject.url == "https://linkinghub.elsevier.com/retrieve/pii/s0014299915002332"
     assert subject.titles[0] == {"title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"}
     assert len(subject.creators) == 10
     assert subject.creators[0] == {
@@ -726,7 +726,7 @@ def test_dataset_usda():
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'dataset',
                              'resourceType': 'Dataset', 'resourceTypeGeneral': 'Dataset',
                              'ris': 'DATA', 'schemaOrg': 'Dataset'}
-    assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
+    assert subject.url == "https://www.fs.usda.gov/rds/archive/catalog/rds-2018-0001"
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Christine A. Ribic',
                                    'givenName': 'Christine A.', 'familyName': 'Ribic', 'affiliation': [{'name': 'U.S. Geological Survey'}]}

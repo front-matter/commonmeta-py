@@ -2,6 +2,7 @@
 from ..readers.crossref_json_reader import get_crossref_json, read_crossref_json
 from ..readers.schema_org_reader import get_schema_org, read_schema_org
 from ..writers.bibtex_writer import write_bibtex
+from ..writers.citeproc_writer import write_citeproc
 from ..utils import normalize_id, find_from_format
 
 class Metadata:
@@ -44,3 +45,7 @@ class Metadata:
     def bibtex(self):
         """Bibtex"""
         return write_bibtex(self)
+
+    def citeproc(self):
+        """Citeproc"""
+        return write_citeproc(self)
