@@ -2,6 +2,7 @@
 from ..readers.crossref_json_reader import get_crossref_json, read_crossref_json
 from ..readers.schema_org_reader import get_schema_org, read_schema_org
 from ..writers.bibtex_writer import write_bibtex
+from ..writers.citation_writer import write_citation
 from ..writers.citeproc_writer import write_citeproc
 from ..utils import normalize_id, find_from_format
 
@@ -42,6 +43,10 @@ class Metadata:
         self.geo_locations = meta.get('geo_locations')
         self.agency = meta.get('agency')
 
+        # configure citation style language options
+        self.style = kwargs.get('style', 'apa')
+        self.locale = kwargs.get('locale', 'en-US')
+
     def bibtex(self):
         """Bibtex"""
         return write_bibtex(self)
@@ -49,3 +54,7 @@ class Metadata:
     def citeproc(self):
         """Citeproc"""
         return write_citeproc(self)
+
+    def citation(self):
+        """Citation"""
+        return write_citation(self)

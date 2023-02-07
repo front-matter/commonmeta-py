@@ -44,4 +44,4 @@ def write_citeproc(metadata):
       'copyright': metadata.rights_list[0].get('rights', None) if metadata.rights_list else None,
       'version': metadata.version_info
     })
-    return json.dumps(dictionary, indent = 4) 
+    return json.dumps(dictionary, indent = 4)
