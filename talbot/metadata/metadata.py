@@ -4,6 +4,7 @@ from ..readers.schema_org_reader import get_schema_org, read_schema_org
 from ..writers.bibtex_writer import write_bibtex
 from ..writers.citation_writer import write_citation
 from ..writers.citeproc_writer import write_citeproc
+from ..writers.ris_writer import write_ris
 from ..utils import normalize_id, find_from_format
 
 class Metadata:
@@ -58,3 +59,7 @@ class Metadata:
     def citation(self):
         """Citation"""
         return write_citation(self)
+
+    def ris(self):
+        """RIS"""
+        return write_ris(self)

@@ -613,6 +613,18 @@ def to_citeproc(element):
         formatted_element.append(compact(el))
     return formatted_element
 
+def to_ris(element):
+    """Convert a CSL element to RIS"""
+    formatted_element = []
+    for elem in wrap(element):
+        if elem['familyName'] is not None:
+            el = ', '.join([elem['familyName'], elem['givenName']])
+        else:
+            el = elem['name']
+        formatted_element.append(el)
+    return formatted_element
+
+
 def find_from_format(id=None, string=None, ext=None, filename=None):
     """Find reader from format"""
     if id is not None:
