@@ -47,7 +47,36 @@ def test_journal_article():
 #                                       '@type' => 'Organization',
 #                                       '@id' => 'https://doi.org/10.13039/501100006390' }])
 
+def test_article_with_pages():
+    "article with pages"
+    input = "https://doi.org/10.1371/journal.ppat.1008184"
+    subject = Metadata(input)
+    assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
+    assert subject.types.get('schemaOrg') == 'ScholarlyArticle'
 
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get('@id') == 'https://doi.org/10.1371/journal.ppat.1008184'
+    assert schema_org.get('@type') == 'ScholarlyArticle'
+    assert schema_org.get(
+        'name') == 'An RNA thermometer dictates production of a secreted bacterial toxin'
+    assert len(schema_org.get('author')) == 5
+    assert schema_org.get('author')[0] == {
+        '@type': 'Perso', 'name': 'Christian Twittenhoff'}
+    assert schema_org.get('description') is None
+    assert schema_org.get('publisher') == {
+        '@type': 'Organization', 'name': 'Public Library of Science (PLoS)'}
+    assert schema_org.get('datePublished') == '2020-01-17'
+    assert schema_org.get('url') == 'https://dx.plos.org/10.1371/journal.ppat.1008184'
+    assert schema_org.get('isPartOf') == {
+        '@type': 'Periodical', 'issn': '1553-7374'}
+    assert schema_org.get('periodical') == {'identifier': '1553-7374', 'identifierType': 'ISSN', 'volume': '16', 'issue': '1', 'firstPage': 'e1008184', '@type': 'Journal', 'name': 'PLOS Pathogens'}
+    assert schema_org.get('pageStart') == 'e1008184'
+    assert schema_org.get('pageEnd') is None
+    assert schema_org.get('inLanguage') == 'en'
+    assert schema_org.get(
+        'license') == 'https://creativecommons.org/licenses/by/4.0/legalcode'
+
+    
 #     it 'maremma schema.org JSON' do
 #       input = 'https://github.com/datacite/maremma'
 #       subject = described_class.new(input: input, from: 'codemeta')
