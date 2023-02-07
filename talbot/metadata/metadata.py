@@ -5,6 +5,7 @@ from ..writers.bibtex_writer import write_bibtex
 from ..writers.citation_writer import write_citation
 from ..writers.citeproc_writer import write_citeproc
 from ..writers.ris_writer import write_ris
+from ..writers.schema_org_writer import write_schema_org
 from ..utils import normalize_id, find_from_format
 
 class Metadata:
@@ -63,3 +64,7 @@ class Metadata:
     def ris(self):
         """RIS"""
         return write_ris(self)
+
+    def schema_org(self):
+        """Schema.org"""
+        return write_schema_org(self)

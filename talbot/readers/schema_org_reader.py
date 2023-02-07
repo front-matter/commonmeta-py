@@ -306,6 +306,7 @@ def read_schema_org(string=None, **kwargs):
         'dates': dates,
         'publication_year': publication_year,
         'publisher': publisher,
+        'agency': parse_attributes(meta.get('provider', None), content='name', first=True),
         'rights_list': rights_list,
         'issn': issn,
         'container': container,

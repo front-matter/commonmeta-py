@@ -200,6 +200,40 @@ CR_TO_DC_TRANSLATIONS = {
     'PeerReview': 'PeerReview'
 }
 
+DC_TO_SO_TRANSLATIONS = {
+    'Audiovisual': 'MediaObject',
+    'Book': 'Book',
+    'BookChapter': 'Chapter',
+    'Collection': 'Collection',
+    'ComputationalNotebook': 'SoftwareSourceCode',
+    'ConferencePaper': 'Article',
+    'ConferenceProceeding': 'Periodical',
+    'DataPaper': 'Article',
+    'Dataset': 'Dataset',
+    'Dissertation': 'Thesis',
+    'Event': 'Event',
+    'Image': 'ImageObject',
+    'InteractiveResource': None,
+    'Journal': 'Periodical',
+    'JournalArticle': 'ScholarlyArticle',
+    'Model': None,
+    'OutputManagementPlan': None,
+    'PeerReview': 'Review',
+    'PhysicalObject': None,
+    'Preprint': None,
+    'Report': 'Report',
+    'Service': 'Service',
+    'Software': 'SoftwareSourceCode',
+    'Sound': 'AudioObject',
+    'Standard': None,
+    'Text': 'ScholarlyArticle',
+    'Workflow': None,
+    'Other': 'CreativeWork',
+    # not part of DataCite schema, but used internally
+    'Periodical': 'Periodical',
+    'DataCatalog': 'DataCatalog'
+}
+
 SO_TO_BIB_TRANSLATIONS = {
     'Article': 'article',
     'AudioObject': 'misc',
@@ -350,6 +384,7 @@ def get_iso8601_date(date):
 
     return None
 
+
 def get_date(dates, date_type='Issued', date_only=False):
     """Get date"""
     dd = py_.find(wrap(dates), lambda x: x['dateType'] == date_type) or {}
@@ -359,10 +394,11 @@ def get_date(dates, date_type='Issued', date_only=False):
         return dd.get('date', '')[0:10]
     return dd.get('date', None)
 
+
 def get_date_parts(iso8601_time):
     """Get date parts"""
     if iso8601_time is None:
-        return { 'date-parts': [[]] }
+        return {'date-parts': [[]]}
 
     # add 0s to the end of the date if it is incomplete
     if len(iso8601_time) < 10:
@@ -371,9 +407,9 @@ def get_date_parts(iso8601_time):
     year = int(iso8601_time[0:4])
     month = int(iso8601_time[5:7])
     day = int(iso8601_time[8:10])
- 
+
     date_parts = py_.reject([year, month, day], lambda x: x == 0)
-    return { 'date-parts': [date_parts] }
+    return {'date-parts': [date_parts]}
 
 
 def get_date_from_date_parts(date_as_parts):
@@ -602,6 +638,7 @@ def from_citeproc(element):
         formatted_element.append(compact(el))
     return formatted_element
 
+
 def to_citeproc(element):
     """Convert a CSL element to citeproc"""
     formatted_element = []
@@ -609,9 +646,11 @@ def to_citeproc(element):
         el = {}
         el['family'] = elem.get('familyName', None)
         el['given'] = elem.get('givenName', None)
-        el['literal'] = elem.get('name', None) if elem.get('familyName', None) is None else None
+        el['literal'] = elem.get('name', None) if elem.get(
+            'familyName', None) is None else None
         formatted_element.append(compact(el))
     return formatted_element
+
 
 def to_ris(element):
     """Convert a CSL element to RIS"""
@@ -624,6 +663,116 @@ def to_ris(element):
         formatted_element.append(el)
     return formatted_element
 
+
+def to_schema_org(element):
+    """Convert a CSL element to Schema.org"""
+    mapping = {'type': '@type', 'id': '@id', 'title': 'name'}
+    for key, value in mapping.items():
+        if element.get(key, None) is not None:
+            element[value] = element.pop(key)
+    return element
+
+
+def to_schema_org_creators(element):
+    """Convert CSL creators to Schema.org creators"""
+    formatted_element = []
+    for elem in wrap(element):
+        el = {}
+        # el['affiliation'] = wrap(element['affiliation']).map do |a|
+        #   if a.is_a?(String)
+        #     name = a
+        #     affiliation_identifier = nil
+        #   else
+        #     name = a['name']
+        #     affiliation_identifier = a['affiliationIdentifier']
+        #   end
+
+        #   { '@type' => 'Organization', '@id' => affiliation_identifier, 'name' => name }.compact
+        # end.unwrap
+        el['@type'] = elem['nameType'][0:-
+            3] if elem.get('nameType', None) else None
+        # el['@id']= vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
+        el['name'] = ' '.join([elem['givenName'], elem['familyName']]
+                              ) if elem['familyName'] else elem.get('name', None)
+        # c.except('nameIdentifiers', 'nameType').compact
+        formatted_element.append(compact(el))
+    return unwrap(formatted_element)
+
+
+def to_schema_org_contributors(element):
+    """Convert CSL contributors to Schema.org contributors"""
+    formatted_element = []
+    for elem in wrap(element):
+        el = {}
+        # c['affiliation'] = Array.wrap(c['affiliation']).map do |a|
+        #   if a.is_a?(String)
+        #     name = a
+        #     affiliation_identifier = nil
+        #   else
+        #     name = a['name']
+        #     affiliation_identifier = a['affiliationIdentifier']
+        #   end
+
+        #   { '@type' => 'Organization', '@id' => affiliation_identifier, 'name' => name }.compact
+        # end.unwrap
+        el['@type'] = elem['nameType'][0:-
+            3] if elem.get('nameType', None) else None
+        # el['@id']=# vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
+        el['name'] = ' '.join([elem['givenName'], elem['familyName']]
+                              ) if elem['familyName'] else elem.get('name', None)
+        # c.except('nameIdentifiers', 'nameType').compact
+        formatted_element.append(compact(el))
+    return unwrap(formatted_element)
+
+
+def to_schema_org_container(element, **kwargs):
+    """Convert CSL container to Schema.org container"""
+    if isinstance(element, dict) or (element is None and kwargs.get('container_title', None)):
+        return None
+
+    return compact({
+        '@id': element.get('identifier', None),
+        '@type': 'DataCatalog' if kwargs.get('type', None) == 'Dataset' else 'Periodical',
+        'name': element['title'] or kwargs.get('container_title', None)
+    })
+
+
+def to_schema_org_identifiers(element, **kwargs):
+    """Convert CSL identifiers to Schema.org identifiers"""
+    formatted_element = []
+    for elem in wrap(element):
+        el = {}
+        el['@type'] = 'PropertyValue'
+        el['propertyID'] = elem.get('identifierType', None)
+        el['value'] = elem.get('identifier', None)
+        formatted_element.append(compact(el))
+    return unwrap(formatted_element)
+
+
+def to_schema_org_relation(related_identifiers=None, relation_type=None):
+    """Convert CSL related identifiers to Schema.org relations"""
+    if related_identifiers is None or relation_type is None:
+        return None
+
+    # consolidate different relation types
+    if relation_type == 'References':
+        relation_type = ['References', 'Cites']
+    else:
+        relation_type = [relation_type]
+
+    related_identifiers = py_.filter(
+        wrap(related_identifiers), lambda ri: ri['relationType'] in relation_type)
+
+    formatted_identifiers = []
+    for r in related_identifiers:
+        if r['relatedIdentifierType'] == 'ISSN' and r['relationType'] == 'IsPartOf':
+            formatted_identifiers.append(
+                compact({'@type': 'Periodical', 'issn': r['relatedIdentifier']}))
+        else:
+            formatted_identifiers.append(compact({
+                '@id': normalize_id(r['relatedIdentifier']),
+                '@type': DC_TO_SO_TRANSLATIONS.get(r['resourceTypeGeneral'], 'CreativeWork')}))
+    return unwrap(formatted_identifiers)
 
 def find_from_format(id=None, string=None, ext=None, filename=None):
     """Find reader from format"""
@@ -640,7 +789,7 @@ def find_from_format(id=None, string=None, ext=None, filename=None):
 
 def find_from_format_by_id(id):
     """Find reader from format by id"""
-    doi = validate_doi(id)
+    doi=validate_doi(id)
     if doi and (ra := get_doi_ra(doi)) is not None:
         return ra.lower()
     if re.match(r"\A(?:(http|https):/(/)?orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[0-9X]+)\Z", id) is not None:
@@ -711,8 +860,8 @@ def find_from_format_by_filename(filename):
 
 def camel_case(text):
     """Convert text to camel case"""
-    s = text.replace("-", " ").replace("_", " ")
-    s = s.split()
+    s=text.replace("-", " ").replace("_", " ")
+    s=s.split()
     if len(text) == 0:
         return text
     return s[0] + ''.join(i.capitalize() for i in s[1:])
@@ -722,28 +871,28 @@ def from_schema_org(element):
     """Convert schema.org to DataCite"""
     if element is None:
         return None
-    element['type'] = element.get('@type', None)
-    element['id'] = element.get('@id', None)
+    element['type']=element.get('@type', None)
+    element['id']=element.get('@id', None)
     return compact(py_.omit(element, ['@type', '@id']))
 
 
 def from_schema_org_creators(element):
     """Convert schema.org creators to DataCite"""
-    formatted_element = []
+    formatted_element=[]
     for elem in wrap(element):
         if isinstance(elem.get('affiliation', None), str):
-            elem['affiliation'] = {'name': elem['affiliation']}
-            affiliation_identifier_scheme = None
-            scheme_uri = None
+            elem['affiliation']={'name': elem['affiliation']}
+            affiliation_identifier_scheme=None
+            scheme_uri=None
         elif py_.get(elem, 'affiliation.@id', '').startswith('https://ror.org'):
-            affiliation_identifier_scheme = 'ROR'
-            scheme_uri = 'https://ror.org/'
+            affiliation_identifier_scheme='ROR'
+            scheme_uri='https://ror.org/'
         elif elem.get('affiliation.@id', '').startswith('https://isni.org'):
-            affiliation_identifier_scheme = 'ISNI'
-            scheme_uri = 'https://isni.org/isni/'
+            affiliation_identifier_scheme='ISNI'
+            scheme_uri='https://isni.org/isni/'
         else:
-            affiliation_identifier_scheme = None
-            scheme_uri = None
+            affiliation_identifier_scheme=None
+            scheme_uri=None
 
         # alternatively find the nameIdentifier in the identifer attribute
         # if elem.get('identifier', None) is not None and elem.get('@id', None) is not None:
@@ -753,19 +902,19 @@ def from_schema_org_creators(element):
 
         if elem.get('@id', None) is not None:
             # elem['@id'] = normalize_orcid(elem.get('@id'))
-            identifier_scheme = 'ORCID'
-            scheme_uri = 'https://orcid.org/'
-        elem['nameIdentifier'] = [
+            identifier_scheme='ORCID'
+            scheme_uri='https://orcid.org/'
+        elem['nameIdentifier']=[
             {'__content__': elem.get('@id', None),
              'nameIdentifierScheme': 'ORCID',
              'schemeUri': 'https://orcid.org'}]
 
         if isinstance(elem.get('@type', None), list):
-            elem['@type'] = py_.find(elem['@type'],
-                                     lambda x: x in ['Person', 'Organization'])
-        elem['creatorName'] = compact({'nameType': elem['@type'].title() + 'al' if elem.get('@type', None) is not None else None,
+            elem['@type']=py_.find(elem['@type'],
+                                   lambda x: x in ['Person', 'Organization'])
+        elem['creatorName']=compact({'nameType': elem['@type'].title() + 'al' if elem.get('@type', None) is not None else None,
                                        '__content__': elem['name']})
-        elem['affiliation'] = compact({'__content__': py_.get(elem, 'affiliation.name', None),
+        elem['affiliation']=compact({'__content__': py_.get(elem, 'affiliation.name', None),
                                        'affiliationIdentifier': py_.get(elem, 'affiliation.@id', None),
                                        'affiliationIdentifierScheme': affiliation_identifier_scheme,
                                        'schemeUri': scheme_uri})
@@ -775,29 +924,29 @@ def from_schema_org_creators(element):
 
 def from_schema_org_contributors(element):
     """Parse contributors from schema.org"""
-    formatted_element = []
+    formatted_element=[]
     for elem in wrap(element):
         if isinstance(elem.get('affiliation', None), str):
-            elem['affiliation'] = {'name': elem['affiliation']}
-            affiliation_identifier_scheme = None
-            scheme_uri = None
+            elem['affiliation']={'name': elem['affiliation']}
+            affiliation_identifier_scheme=None
+            scheme_uri=None
         elif py_.get(elem, 'affiliation.@id', '').startswith('https://ror.org'):
-            affiliation_identifier_scheme = 'ROR'
-            scheme_uri = 'https://ror.org/'
+            affiliation_identifier_scheme='ROR'
+            scheme_uri='https://ror.org/'
         elif py_.get(elem, 'affiliation.@id', '').startswith('https://isni.org'):
-            affiliation_identifier_scheme = 'ISNI'
-            scheme_uri = 'https://isni.org/isni/'
+            affiliation_identifier_scheme='ISNI'
+            scheme_uri='https://isni.org/isni/'
         else:
-            affiliation_identifier_scheme = None
-            scheme_uri = None
+            affiliation_identifier_scheme=None
+            scheme_uri=None
 
         if normalize_orcid(elem.get('@id', None)) is not None:
-            elem['nameIdentifier'] = [{'__content__': elem['@id'],
+            elem['nameIdentifier']=[{'__content__': elem['@id'],
                                        'nameIdentifierScheme': 'ORCID',
                                        'schemeUri': 'https://orcid.org'}]
-        elem['contributorName'] = compact({'nameType': elem['@type'].titleize + 'al' if elem.get('@type', None) is not None else None,
+        elem['contributorName']=compact({'nameType': elem['@type'].titleize + 'al' if elem.get('@type', None) is not None else None,
                                            '__content__': elem['name']})
-        elem['affiliation'] = compact({'__content__': py_.get(elem, 'affiliation.name', None),
+        elem['affiliation']=compact({'__content__': py_.get(elem, 'affiliation.name', None),
                                        'affiliationIdentifier': py_.get(elem, 'affiliation.@id', None),
                                        'affiliationIdentifierScheme': affiliation_identifier_scheme,
                                        'schemeUri': scheme_uri})
@@ -822,7 +971,7 @@ def subjects_as_string(subjects):
     if subjects is None:
         return None
 
-    keywords = []
+    keywords=[]
     for subject in wrap(subjects):
         keywords.append(subject.get('subject', None))
     return ', '.join(keywords)
@@ -903,13 +1052,14 @@ def strip_milliseconds(iso8601_time):
 
 def sanitize(text, **kwargs):
     """Sanitize text"""
-    tags = kwargs.get('tags', None) or frozenset({'b', 'br', 'code', 'em', 'i', 'sub', 'sup', 'strong'})
-    content = kwargs.get('content', None) or '__content__'
-    first = kwargs.get('first', True)
-    strip = kwargs.get('strip', True)
+    tags=kwargs.get('tags', None) or frozenset(
+        {'b', 'br', 'code', 'em', 'i', 'sub', 'sup', 'strong'})
+    content=kwargs.get('content', None) or '__content__'
+    first=kwargs.get('first', True)
+    strip=kwargs.get('strip', True)
 
     if isinstance(text, str):
-        string = bleach.clean(text, tags=tags, strip=strip)
+        string=bleach.clean(text, tags=tags, strip=strip)
         # remove excessive internal whitespace
         return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
         # return re.sub(r'\\s\\s+', ' ', string)
@@ -919,7 +1069,8 @@ def sanitize(text, **kwargs):
         if len(text) == 0:
             return None
 
-        lst = []
+        lst=[]
         for e in text:
-            lst.append(sanitize(e.get(content, None)) if isinstance(e, dict) else sanitize(e)) # uniq
+            lst.append(sanitize(e.get(content, None))
+                       if isinstance(e, dict) else sanitize(e))  # uniq
         return lst[0] if first else unwrap(lst)
