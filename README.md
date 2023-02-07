@@ -1,7 +1,7 @@
 # Talbot
 
 Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Briard is work in progress, the first release is
-**planned** for April 2023.
+planned for April 2023.
 
 ## Installation
 
@@ -38,8 +38,8 @@ Talbot reads and/or writes these metadata formats:
       <td><a href='https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html'>CrossRef Unixref XML</a></td>
       <td>crossref</td>
       <td>application/vnd.crossref.unixref+xml</td>
-      <td>**planned**</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
+      <td>*planned*</td>
    </tr>
     <tr>
       <td><a href='https://api.crossref.org'>CrossRef JSON</a></td>
@@ -52,15 +52,15 @@ Talbot reads and/or writes these metadata formats:
       <td><a href='https://schema.datacite.org/'>DataCite XML</a></td>
       <td>datacite</td>
       <td>application/vnd.datacite.datacite+xml</td>
-      <td>**planned**</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='https://api.datacite.org/'>DataCite JSON</a></td>
       <td>datacite_json</td>
       <td>application/vnd.datacite.datacite+json</td>
-      <td>**planned**</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='http://schema.org/'>Schema.org in JSON-LD</a></td>
@@ -87,7 +87,7 @@ Talbot reads and/or writes these metadata formats:
       <td><a href='https://citationstyles.org/'>Citeproc JSON</a></td>
       <td>citeproc</td>
       <td>application/vnd.citationstyles.csl+json</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
       <td>Yes</td>
     </tr>
     <tr>
@@ -102,41 +102,41 @@ Talbot reads and/or writes these metadata formats:
       <td>codemeta</td>
       <td>application/vnd.codemeta.ld+json</td>
       <td>planed</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='https://citation-file-format.github.io/'>CFF</a></td>
       <td>citation file format (cff)</td>
       <td>application/vnd.cff+yaml</td>
-      <td>**planned**</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='https://jats.nlm.nih.gov/'>JATS</a></td>
       <td>jats</td>
       <td>application/vnd.jats+xml</td>
       <td>No</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='https://en.wikipedia.org/wiki/Comma-separated_values'>CSV</a></td>
       <td>csv</td>
       <td>text/csv</td>
       <td>No</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
     </tr>
     <tr>
       <td><a href='http://en.wikipedia.org/wiki/BibTeX'>BibTeX</a></td>
       <td>bibtex</td>
       <td>application/x-bibtex</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
       <td>Yes</td>
     </tr>
     <tr>
       <td><a href='http://en.wikipedia.org/wiki/RIS_(file_format)'>RIS</a></td>
       <td>ris</td>
       <td>application/x-research-info-systems</td>
-      <td>**planned**</td>
+      <td>*planned*</td>
       <td>Yes</td>
     </tr>
   </tbody>
