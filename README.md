@@ -6,18 +6,17 @@ Talbot is a library to convert scholarly metadata, modelled after the `briard ru
 
 Dev version
 
-.. code-block:: console
-
-    pip install git+https://github.com/front-matter/talbot.git#egg=talbot
-
+```
+pip install git+https://github.com/front-matter/talbot.git#egg=talbot
+```
 
 Or build it yourself locally
 
-.. code-block:: console
-
-    git clone https://github.com/front-matter/talbot.git
-    cd Talbot
-    make install
+```
+git clone https://github.com/front-matter/talbot.git
+cd Talbot
+make install
+```
 
 ## Features
 
