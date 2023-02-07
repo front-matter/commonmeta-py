@@ -12,7 +12,8 @@ from talbot.utils import (
     normalize_ids,
     wrap, unwrap, 
     compact, 
-    from_citeproc, 
+    from_citeproc,
+    crossref_api_url, datacite_api_url,
     presence,
     sanitize,
     find_from_format_by_id,
@@ -256,3 +257,42 @@ def test_sanitize():
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     assert content == sanitize(text, tags={'a'})
+
+
+def test_crossref_api_url():
+    """generate crossref api url"""
+    doi = '10.5555/5412'
+    url = 'https://api.crossref.org/works/10.5555/5412'
+    assert url == crossref_api_url(doi)
+
+
+def test_datacite_api_url():
+    """generate datacite api url"""
+    # doi
+    doi = '10.5061/DRYAD.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # doi with protocol
+    doi = 'doi:10.5061/DRYAD.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # https url
+    doi = 'https://doi.org/10.5061/dryad.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # dx.doi.org url
+    doi = 'http://dx.doi.org/10.5061/dryad.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # test resolver
+    doi = 'https://handle.stage.datacite.org/10.5061/dryad.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # test resolver http
+    doi = 'http://handle.stage.datacite.org/10.5061/dryad.8515'
+    response = datacite_api_url(doi)
+    assert response == 'https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client'
+    # force test resolver
+    doi = 'https://doi.org/10.5061/dryad.8515'
+    response = datacite_api_url(doi, sandbox=True)
+    assert response == 'https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client'

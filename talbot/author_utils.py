@@ -1,4 +1,4 @@
-from .utils import parse_attributes, wrap, unwrap, compact, normalize_orcid, normalize_id
+from .utils import parse_attributes, wrap, unwrap, presence, compact, normalize_orcid, normalize_id
 import re
 
 def get_one_author(author):
@@ -112,7 +112,7 @@ def cleanup_author(author):
 
 def get_authors(authors):
     """parse array of author strings into CSL format"""
-    return list(map(lambda author: get_one_author(author), authors))
+    return presence(list(map(lambda author: get_one_author(author), authors)))
 
 def authors_as_string(authors):
     """convert CSL authors list to string, e.g. for bibtex"""

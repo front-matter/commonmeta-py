@@ -1,9 +1,5 @@
 import pytest
-# import os
-# import vcr
-# import requests
 from talbot import Metadata
-# from requests.exceptions import HTTPError
 
 
 @pytest.mark.vcr
@@ -672,7 +668,7 @@ def test_dataset():
     assert subject.rights_list is None
     assert subject.dates == [
         {'date': '1984-07-17', 'dateType': 'Issued'},
-        {'date': '2021-03-30', 'dateType': 'Updated'}
+        {'date': '2023-02-07', 'dateType': 'Updated'}
     ]
     assert subject.publication_year == '1984'
     assert subject.date_registered == '2006-01-05'

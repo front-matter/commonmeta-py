@@ -59,7 +59,7 @@ Talbot reads and/or writes these metadata formats:
       <td><a href='https://api.datacite.org/'>DataCite JSON</a></td>
       <td>datacite_json</td>
       <td>application/vnd.datacite.datacite+json</td>
-      <td>planned</td>
+      <td>yes</td>
       <td>planned</td>
     </tr>
     <tr>

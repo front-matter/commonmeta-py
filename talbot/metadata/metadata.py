@@ -1,5 +1,6 @@
 
 from ..readers.crossref_json_reader import get_crossref_json, read_crossref_json
+from ..readers.datacite_json_reader import get_datacite_json, read_datacite_json
 from ..readers.schema_org_reader import get_schema_org, read_schema_org
 from ..writers.bibtex_writer import write_bibtex
 from ..writers.citation_writer import write_citation
@@ -20,6 +21,9 @@ class Metadata:
             if via == 'schema_org':
                 string = get_schema_org(id=input)
                 meta = read_schema_org(string=string)
+            elif via == 'datacite_json':
+                string = get_datacite_json(id=input)
+                meta = read_datacite_json(string=string)
             else:
                 string = get_crossref_json(id=input)
                 meta = read_crossref_json(string=string)
