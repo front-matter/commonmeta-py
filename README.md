@@ -23,126 +23,25 @@ make install
 
 Talbot reads and/or writes these metadata formats:
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Format</th>
-      <th>Name</th>
-      <th>Content Type</th>
-      <th>Read</th>
-      <th>Write</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href='https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html'>CrossRef Unixref XML</a></td>
-      <td>crossref</td>
-      <td>application/vnd.crossref.unixref+xml</td>
-      <td>planned</td>
-      <td>planned</td>
-   </tr>
-    <tr>
-      <td><a href='https://api.crossref.org'>CrossRef JSON</a></td>
-      <td>crossref_json</td>
-      <td>application/vnd.crossref+json</td>
-      <td>Yes</td>
-      <td>No</td>
-   </tr>
-    <tr>
-      <td><a href='https://schema.datacite.org/'>DataCite XML</a></td>
-      <td>datacite</td>
-      <td>application/vnd.datacite.datacite+xml</td>
-      <td>planned</td>
-      <td>planned</td>
-    </tr>
-    <tr>
-      <td><a href='https://api.datacite.org/'>DataCite JSON</a></td>
-      <td>datacite_json</td>
-      <td>application/vnd.datacite.datacite+json</td>
-      <td>yes</td>
-      <td>planned</td>
-    </tr>
-    <tr>
-      <td><a href='http://schema.org/'>Schema.org in JSON-LD</a></td>
-      <td>schema_org</td>
-      <td>application/vnd.schemaorg.ld+json</td>
-      <td>Yes</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td><a href='http://www.w3.org/TR/rdf-syntax-grammar/'>RDF XML</a></td>
-      <td>rdf_xml</td>
-      <td>application/rdf+xml</td>
-      <td>No</td>
-      <td>later</td>
-    </tr>
-    <tr>
-      <td><a href='http://www.w3.org/TeamSubmission/turtle/'>RDF Turtle</a></td>
-      <td>turtle</td>
-      <td>text/turtle</td>
-      <td>No</td>
-      <td>later</td>
-    </tr>
-    <tr>
-      <td><a href='https://citationstyles.org/'>Citeproc JSON</a></td>
-      <td>citeproc</td>
-      <td>application/vnd.citationstyles.csl+json</td>
-      <td>planned</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td><a href='https://citationstyles.org/'>Formatted text citation</a></td>
-      <td>citation</td>
-      <td>text/x-bibliography</td>
-      <td>No</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td><a href='https://codemeta.github.io/'>Codemeta</a></td>
-      <td>codemeta</td>
-      <td>application/vnd.codemeta.ld+json</td>
-      <td>planed</td>
-      <td>planned</td>
-    </tr>
-    <tr>
-      <td><a href='https://citation-file-format.github.io/'>CFF</a></td>
-      <td>citation file format (cff)</td>
-      <td>application/vnd.cff+yaml</td>
-      <td>planned</td>
-      <td>planned</td>
-    </tr>
-    <tr>
-      <td><a href='https://jats.nlm.nih.gov/'>JATS</a></td>
-      <td>jats</td>
-      <td>application/vnd.jats+xml</td>
-      <td>No</td>
-      <td>later</td>
-    </tr>
-    <tr>
-      <td><a href='https://en.wikipedia.org/wiki/Comma-separated_values'>CSV</a></td>
-      <td>csv</td>
-      <td>text/csv</td>
-      <td>No</td>
-      <td>later</td>
-    </tr>
-    <tr>
-      <td><a href='http://en.wikipedia.org/wiki/BibTeX'>BibTeX</a></td>
-      <td>bibtex</td>
-      <td>application/x-bibtex</td>
-      <td>planned</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <td><a href='http://en.wikipedia.org/wiki/RIS_(file_format)'>RIS</a></td>
-      <td>ris</td>
-      <td>application/x-research-info-systems</td>
-      <td>planned</td>
-      <td>Yes</td>
-    </tr>
-  </tbody>
-</table>
+| Format | Name | Content Type | Read | Write |
+| ------ | ---- | ------------ | ---- | ----- |
+| [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref | application/vnd.crossref.unixref+xml | planned | planned |
+| [Crossref JSON](https://api.crossref.org) | crossref_json | application/vnd.crossref+json | yes | no |
+| [DataCite XML](https://schema.datacite.org/) | datacite | application/vnd.datacite.datacite+xml | planned | planned |
+| [DataCite JSON](https://api.datacite.org/) | datacite_json | application/vnd.datacite.datacite+json | yes | planned |
+| [Schema.org (in JSON-LD)](http://schema.org/) | schema_org | application/vnd.schemaorg.ld+json | yes | yes |
+| [RDF XML](http://www.w3.org/TR/rdf-syntax-grammar/) | rdf_xml | application/rdf+xml | no | later |
+| [RDF Turtle](http://www.w3.org/TeamSubmission/turtle/) | turtle | text/turtle | no | later |
+| [Citeproc JSON](https://citationstyles.org/) | citeproc | pplication/vnd.citationstyles.csl+json | planned | yes |
+| [Formatted text citation](https://citationstyles.org/) | citation | text/x-bibliography | no | yes |
+| [Codemeta](https://codemeta.github.io/) | codemeta | application/vnd.codemeta.ld+json | planned | planned |
+| [Citation File Format (CFF)](https://citation-file-format.github.io/) | cff | application/vnd.cff+yaml | planned | planned |
+| [JATS](https://jats.nlm.nih.gov/) | jats | application/vnd.jats+xml | later | later |
+| [CSV](ttps://en.wikipedia.org/wiki/Comma-separated_values) | csv | text/csv | no | later |
+| [BibTex](http://en.wikipedia.org/wiki/BibTeX) | bibtex | application/x-bibtex | planned | yes |
+| [RIS](http://en.wikipedia.org/wiki/RIS_(file_format)) | ris | application/x-research-info-systems | planned | yes |
 
-*Planned*: we plan to implement this format for the first public release.
+*Planned*: we plan to implement this format for the first public release.  
 *Later*: we plan to implement this format in a later release.
 
 ## Meta
