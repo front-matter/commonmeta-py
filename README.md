@@ -74,14 +74,14 @@ Talbot reads and/or writes these metadata formats:
       <td>rdf_xml</td>
       <td>application/rdf+xml</td>
       <td>No</td>
-      <td>planned</td>
+      <td>later</td>
     </tr>
     <tr>
       <td><a href='http://www.w3.org/TeamSubmission/turtle/'>RDF Turtle</a></td>
       <td>turtle</td>
       <td>text/turtle</td>
       <td>No</td>
-      <td>planned</td>
+      <td>later</td>
     </tr>
     <tr>
       <td><a href='https://citationstyles.org/'>Citeproc JSON</a></td>
@@ -116,14 +116,14 @@ Talbot reads and/or writes these metadata formats:
       <td>jats</td>
       <td>application/vnd.jats+xml</td>
       <td>No</td>
-      <td>planned</td>
+      <td>later</td>
     </tr>
     <tr>
       <td><a href='https://en.wikipedia.org/wiki/Comma-separated_values'>CSV</a></td>
       <td>csv</td>
       <td>text/csv</td>
       <td>No</td>
-      <td>planned</td>
+      <td>later</td>
     </tr>
     <tr>
       <td><a href='http://en.wikipedia.org/wiki/BibTeX'>BibTeX</a></td>
@@ -141,6 +141,9 @@ Talbot reads and/or writes these metadata formats:
     </tr>
   </tbody>
 </table>
+
+*Planned*: we plan to implement this format for the first public release.
+*Later*: we plan to implement this format in a later release.
 
 ## Meta
 
