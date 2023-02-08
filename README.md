@@ -1,7 +1,7 @@
 # Talbot
 
 Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Briard is work in progress, the first release is
-planned for April 2023.
+planned for March 2023.
 
 ## Installation
 
@@ -19,7 +19,7 @@ cd Talbot
 make install
 ```
 
-## Features
+## Supported Metadata Formats
 
 Talbot reads and/or writes these metadata formats:
 
@@ -74,14 +74,14 @@ Talbot reads and/or writes these metadata formats:
       <td>rdf_xml</td>
       <td>application/rdf+xml</td>
       <td>No</td>
-      <td>No</td>
+      <td>planned</td>
     </tr>
     <tr>
       <td><a href='http://www.w3.org/TeamSubmission/turtle/'>RDF Turtle</a></td>
       <td>turtle</td>
       <td>text/turtle</td>
       <td>No</td>
-      <td>No</td>
+      <td>planned</td>
     </tr>
     <tr>
       <td><a href='https://citationstyles.org/'>Citeproc JSON</a></td>
