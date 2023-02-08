@@ -44,6 +44,10 @@ Talbot reads and/or writes these metadata formats:
 *Planned*: we plan to implement this format for the first public release.  
 *Later*: we plan to implement this format in a later release.
 
+## Documentation
+
+Documentation (work in progress) for using the library is available at [Front Matter Documentation](https://docs.front-matter.io/talbot/).
+
 ## Meta
 
 * Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md>). By participating in this project you agree to abide by its terms.
