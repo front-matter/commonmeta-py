@@ -1,3 +1,4 @@
+"""Test doi_utils module for Talbot"""
 import pytest
 from talbot.doi_utils import (doi_as_url, doi_from_url, validate_doi,
                               normalize_doi, validate_prefix, get_doi_ra, doi_resolver)

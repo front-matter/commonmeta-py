@@ -7,7 +7,7 @@ from talbot import Metadata
 def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
     assert subject.types.get('schemaOrg') == 'ScholarlyArticle'
 
     schema_org = json.loads(subject.schema_org())
@@ -51,7 +51,7 @@ def test_article_with_pages():
     "article with pages"
     input = "https://doi.org/10.1371/journal.ppat.1008184"
     subject = Metadata(input)
-    assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
+    assert subject.pid == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.types.get('schemaOrg') == 'ScholarlyArticle'
 
     schema_org = json.loads(subject.schema_org())

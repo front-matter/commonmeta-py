@@ -1,3 +1,4 @@
+"""Bibtex writer for Talbot"""
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 from ..utils import compact, pages_as_string, get_month_from_date, get_date
@@ -10,12 +11,12 @@ def write_bibtex(metadata):
     container = metadata.container or {}
     db = BibDatabase()
     db.entries = [
-        compact({'ID': metadata.id,
+        compact({'ID': metadata.pid,
                  'ENTRYTYPE': 'article',
                  'abstract': metadata.descriptions[0].get('description', None) if metadata.descriptions else None,
                  'author': authors_as_string(metadata.creators),
                  'copyright': str(metadata.rights_list[0].get('rightsURI', None)) if metadata.rights_list else None,
-                 'doi': doi_from_url(metadata.id),
+                 'doi': doi_from_url(metadata.pid),
                  'issn': metadata.issn,
                  'issue': container.get('issue', None),
                  'journal': container.get('title', None),

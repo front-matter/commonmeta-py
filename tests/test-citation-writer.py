@@ -6,7 +6,7 @@ from talbot import Metadata
 def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
     assert subject.types.get('citeproc') == 'article-journal'
 
     assert subject.style == 'apa'
@@ -18,6 +18,9 @@ def test_journal_article_vancouver_style():
     "journal article vancouver style"
     subject = Metadata("10.7554/elife.01567",
                        style="vancouver", locale="en-US")
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.types.get('citeproc') == 'article-journal'
+
     assert subject.style == 'vancouver'
     assert subject.locale == 'en-US'
     assert subject.citation(
@@ -35,6 +38,9 @@ def test_missing_author():
     "missing author"
     subject = Metadata("10.3390/publications6020015",
                        style="apa", locale="en-US")
+    assert subject.pid == "https://doi.org/10.3390/publications6020015"
+    assert subject.types.get('citeproc') == 'article-journal'
+
     assert subject.style == 'apa'
     assert subject.locale == 'en-US'
     assert subject.citation(

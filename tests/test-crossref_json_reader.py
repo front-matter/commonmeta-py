@@ -6,7 +6,7 @@ from talbot import Metadata
 def test_doi_with_data_citation():
     "DOi with data citation"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
@@ -85,7 +85,7 @@ def test_doi_with_data_citation():
 def test_journal_article():
     "journal article"
     subject = Metadata("10.1371/journal.pone.0000030")
-    assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
+    assert subject.pid == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
@@ -137,7 +137,7 @@ def test_journal_article():
 def test_journal_article_with_funding():
     'journal article with funding'
     subject = Metadata("10.3389/fpls.2019.00816")
-    assert subject.id == "https://doi.org/10.3389/fpls.2019.00816"
+    assert subject.pid == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
@@ -191,7 +191,7 @@ def test_journal_article_with_funding():
 def test_journal_article_original_language():
     "journal article with original language"
     subject = Metadata('https://doi.org/10.7600/jspfsm.56.60')
-    assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
+    assert subject.pid == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
@@ -243,7 +243,7 @@ def test_journal_article_original_language():
 def test_journal_article_with_rdf_for_container():
     "journal article with RDF for container"
     subject = Metadata('https://doi.org/10.1163/1937240X-00002096')
-    assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
+    assert subject.pid == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
@@ -293,7 +293,7 @@ def test_journal_article_with_rdf_for_container():
 def test_book_chapter_with_rdf_for_container():
     "book chapter with RDF for container"
     subject = Metadata('https://doi.org/10.1007/978-3-642-33191-6_49')
-    assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
+    assert subject.pid == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.types == {'bibtex': 'inbook', 'citeproc': 'chapter',
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter', 'ris': 'CHAP', 'schemaOrg': 'Chapter'}
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
@@ -339,7 +339,7 @@ def test_book_chapter_with_rdf_for_container():
 def test_posted_content():
     "posted content"
     subject = Metadata('https://doi.org/10.1101/097196')
-    assert subject.id == "https://doi.org/10.1101/097196"
+    assert subject.pid == "https://doi.org/10.1101/097196"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'PostedContent', 'resourceTypeGeneral': 'Preprint',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
@@ -376,7 +376,7 @@ def test_posted_content():
 def test_peer_review():
     'peer review'
     subject = Metadata('10.7554/elife.55167.sa2')
-    assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
+    assert subject.pid == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'article-journal',
                              'resourceType': 'PeerReview', 'resourceTypeGeneral': 'PeerReview',
                              'ris': 'GEN', 'schemaOrg': 'Review'}
@@ -412,7 +412,7 @@ def test_peer_review():
 def test_dissertation():
     'dissertation'
     subject = Metadata('10.14264/uql.2020.791')
-    assert subject.id == "https://doi.org/10.14264/uql.2020.791"
+    assert subject.pid == "https://doi.org/10.14264/uql.2020.791"
     assert subject.types == {'bibtex': 'phdthesis', 'citeproc': 'thesis',
                              'resourceType': 'Dissertation', 'resourceTypeGeneral': 'Dissertation',
                              'ris': 'THES', 'schemaOrg': 'Thesis'}
@@ -446,7 +446,7 @@ def test_dissertation():
 def test_doi_with_sici():
     'doi with sici'
     subject = Metadata('10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2')
-    assert subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+    assert subject.pid == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
@@ -489,7 +489,7 @@ def test_doi_with_sici():
 def test_doi_with_orcid():
     'doi_with_orcid'
     subject = Metadata("10.1155/2012/291294")
-    assert subject.id == "https://doi.org/10.1155/2012/291294"
+    assert subject.pid == "https://doi.org/10.1155/2012/291294"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
@@ -543,7 +543,7 @@ def test_doi_with_orcid():
 def test_date_in_future():
     'date_in_future'
     subject = Metadata("10.1016/j.ejphar.2015.03.018")
-    assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
+    assert subject.pid == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR',
                              'schemaOrg': 'ScholarlyArticle'}
@@ -604,7 +604,7 @@ def test_date_in_future():
 def test_vor_with_url():
     'vor_with_url'
     subject = Metadata("10.1038/hdy.2013.26")
-    assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
+    assert subject.pid == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle', 'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
     assert subject.url == "http://www.nature.com/articles/hdy201326"
@@ -656,7 +656,7 @@ def test_vor_with_url():
 def test_dataset():
     'dataset'
     subject = Metadata("10.2210/pdb4hhb/pdb")
-    assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
+    assert subject.pid == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'article-journal',
                              'resourceType': 'Component', 'resourceTypeGeneral': 'Text', 'ris': 'GEN',
                              'schemaOrg': 'CreativeWork'}
@@ -687,7 +687,7 @@ def test_dataset():
 def test_component():
     'component'
     subject = Metadata("10.1371/journal.pmed.0030277.g001")
-    assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
+    assert subject.pid == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'article-journal',
                              'resourceType': 'Component', 'resourceTypeGeneral': 'Text', 'ris': 'GEN',
                              'schemaOrg': 'CreativeWork'}
@@ -718,7 +718,7 @@ def test_component():
 def test_dataset_usda():
     'dataset usda'
     subject = Metadata("10.2737/RDS-2018-0001")
-    assert subject.id == "https://doi.org/10.2737/rds-2018-0001"
+    assert subject.pid == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'dataset',
                              'resourceType': 'Dataset', 'resourceTypeGeneral': 'Dataset',
                              'ris': 'DATA', 'schemaOrg': 'Dataset'}
@@ -754,7 +754,7 @@ def test_dataset_usda():
 def test_book_chapter():
     'book chapter'
     subject = Metadata("10.1007/978-3-662-46370-3_13")
-    assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
+    assert subject.pid == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.types == {'bibtex': 'inbook', 'citeproc': 'chapter',
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
@@ -786,7 +786,7 @@ def test_book_chapter():
 def test_another_book_chapter():
     'another book chapter'
     subject = Metadata("10.1007/978-3-319-75889-3_1")
-    assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
+    assert subject.pid == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.types == {'bibtex': 'inbook', 'citeproc': 'chapter',
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
@@ -819,7 +819,7 @@ def test_another_book_chapter():
 def test_yet_another_book_chapter():
     'yet another book chapter'
     subject = Metadata("https://doi.org/10.4018/978-1-4666-1891-6.ch004")
-    assert subject.id == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
+    assert subject.pid == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.types == {'bibtex': 'inbook', 'citeproc': 'chapter',
                              'resourceType': 'BookChapter', 'resourceTypeGeneral': 'BookChapter',
                              'ris': 'CHAP', 'schemaOrg': 'Chapter'}
@@ -853,7 +853,7 @@ def test_yet_another_book_chapter():
 def test_missing_creator():
     'missing creator'
     subject = Metadata("10.3390/publications6020015")
-    assert subject.id == "https://doi.org/10.3390/publications6020015"
+    assert subject.pid == "https://doi.org/10.3390/publications6020015"
     assert subject.types == {'bibtex': 'article', 'citeproc': 'article-journal',
                              'resourceType': 'JournalArticle', 'resourceTypeGeneral': 'JournalArticle',
                              'ris': 'JOUR', 'schemaOrg': 'ScholarlyArticle'}
@@ -923,7 +923,7 @@ def test_missing_creator():
 def test_book():
     'book'
     subject = Metadata("https://doi.org/10.1017/9781108348843")
-    assert subject.id == "https://doi.org/10.1017/9781108348843"
+    assert subject.pid == "https://doi.org/10.1017/9781108348843"
     assert subject.types == {'bibtex': 'book', 'citeproc': 'book',
                              'resourceType': 'Monograph', 'resourceTypeGeneral': 'Book',
                              'ris': 'BOOK', 'schemaOrg': 'Book'}

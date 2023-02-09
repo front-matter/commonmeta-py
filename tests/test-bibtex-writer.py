@@ -6,7 +6,7 @@ from talbot import Metadata
 def test_doi_with_data_citation():
     "DOi with data citation"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
     assert subject.types.get('bibtex') == 'article'
 
     bibtex = subject.bibtex()
@@ -32,7 +32,7 @@ def test_doi_with_data_citation():
 def test_doi_for_blog_post():
     "DOi for blog post"
     subject = Metadata("10.53731/avg2ykg-gdxppcd")
-    assert subject.id == "https://doi.org/10.53731/avg2ykg-gdxppcd"
+    assert subject.pid == "https://doi.org/10.53731/avg2ykg-gdxppcd"
     assert subject.types.get('bibtex') == 'article'
 
     bibtex = subject.bibtex()
@@ -55,7 +55,7 @@ def test_blog_post():
     "blog post"
     input = "https://upstream.force11.org/welcome-to-upstream/"
     subject = Metadata(input, via='schema_org')
-    assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
+    assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types.get('bibtex') == 'article'
     bibtex = subject.bibtex()
     print(bibtex)
@@ -79,7 +79,7 @@ def test_article_with_pages():
     "article with pages"
     input = "https://doi.org/10.1371/journal.ppat.1008184"
     subject = Metadata(input)
-    assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
+    assert subject.pid == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.types.get('bibtex') == 'article'
 
     bibtex = subject.bibtex()
@@ -106,7 +106,7 @@ def test_article_dlib_magazine():
     "article dlib magazine"
     input = "https://doi.org/10.1045/january2017-burton"
     subject = Metadata(input)
-    assert subject.id == "https://doi.org/10.1045/january2017-burton"
+    assert subject.pid == "https://doi.org/10.1045/january2017-burton"
     assert subject.types.get('bibtex') == 'article'
 
     bibtex = subject.bibtex()

@@ -1,3 +1,4 @@
+"""Citeproc writer for Talbot"""
 import json
 from citeproc import (Citation, CitationItem, CitationStylesBibliography,
                       CitationStylesStyle, formatter)
@@ -5,10 +6,9 @@ from citeproc.source.json import CiteProcJSON
 from citeproc_styles import get_style_filepath
 
 from ..utils import (compact, pages_as_string, get_date, get_date_parts, wrap,
-     to_citeproc, normalize_doi, get_date, parse_attributes,
+     to_citeproc, get_date, parse_attributes,
      presence)
-from ..author_utils import authors_as_string
-from ..doi_utils import doi_from_url, normalize_doi
+from ..doi_utils import doi_from_url
 
 
 def write_citeproc(metadata):
@@ -25,8 +25,8 @@ def write_citeproc(metadata):
 
     dictionary = compact({
       'type': type,
-      'id': metadata.id,
-      'DOI': doi_from_url(metadata.id),
+      'id': metadata.pid,
+      'DOI': doi_from_url(metadata.pid),
       'URL': metadata.url,
       'categories': presence(parse_attributes(wrap(metadata.subjects), content='subject', first=False)),
       'language': metadata.language,

@@ -1,3 +1,4 @@
+"""Test DataCite JSON reader"""
 import pytest
 from talbot import Metadata
 
@@ -5,10 +6,10 @@ from talbot import Metadata
 @pytest.mark.vcr
 def test_dataset():
     """dataset"""
-    input = 'https://doi.org/10.5061/DRYAD.8515'
-    subject = Metadata(input, via='datacite_json')
+    idn = 'https://doi.org/10.5061/DRYAD.8515'
+    subject = Metadata(idn, via='datacite_json')
 
-    assert subject.id == "https://doi.org/10.5061/dryad.8515"
+    assert subject.pid == "https://doi.org/10.5061/dryad.8515"
     assert subject.types == {'bibtex': 'misc', 'citeproc': 'dataset',
                              'resourceType': 'dataset', 'resourceTypeGeneral': 'Dataset', 'ris': 'DATA',
                              'schemaOrg': 'Dataset'}
@@ -45,7 +46,7 @@ def test_blog_posting():
     input = 'https://doi.org/10.5438/zhyx-n122'
     subject = Metadata(input, via='datacite_json')
     print(subject.related_identifiers)
-    assert subject.id == "https://doi.org/10.5438/zhyx-n122"
+    assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
     assert subject.types == {'resourceTypeGeneral': 'Text', 'resourceType': 'blog post',
                              'schemaOrg': 'ScholarlyArticle', 'citeproc': 'article-journal', 'bibtex': 'article', 'ris': 'RPRT'}
     assert subject.url == "https://blog.datacite.org/datacite-member-survey-2022"
@@ -79,7 +80,7 @@ def test_date():
     input = 'https://doi.org/10.4230/lipics.tqc.2013.93'
     subject = Metadata(input, via='datacite_json')
 
-    assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
+    assert subject.pid == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.types == {'resourceTypeGeneral': 'Text', 'resourceType': 'ConferencePaper',
                              'schemaOrg': 'ScholarlyArticle', 'citeproc': 'article-journal', 'bibtex': 'article', 'ris': 'RPRT'}
     assert subject.url == "http://drops.dagstuhl.de/opus/volltexte/2013/4317"
@@ -133,8 +134,8 @@ def test_date():
 #       expect(subject.titles).to eq([{ 'lang' => 'en-US', 'title' => 'Full DataCite XML Example' },
 #                                     { 'lang' => 'en-US',
 #                                       'title' => 'Demonstration of DataCite Properties.', 'titleType' => 'Subtitle' }])
-#       expect(subject.id).to eq('https://doi.org/10.5072/example-full')
-#       expect(subject.identifiers).to eq([{ 'identifier' =>
+#       expect(subject.pid).to eq('https://doi.org/10.5072/example-full')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' =>
 #            'https://schema.datacite.org/meta/kernel-4.2/example/datacite-example-full-v4.2.xml',
 #                                            'identifierType' => 'URL' }])
 #       expect(subject.rights_list).to eq([{ 'lang' => 'en-US',
@@ -217,7 +218,7 @@ def test_multiple_identifiers():
     input = 'https://doi.org/10.5281/ZENODO.48440'
     subject = Metadata(input, via='datacite_json')
 
-    assert subject.id == "https://doi.org/10.5281/zenodo.48440"
+    assert subject.pid == "https://doi.org/10.5281/zenodo.48440"
     assert subject.types == {'resourceTypeGeneral': 'Software', 'schemaOrg': 'SoftwareSourceCode', 'citeproc': 'article', 'bibtex': 'misc', 'ris': 'COMP'}
     assert subject.url == "https://zenodo.org/record/48440"
     assert subject.titles[0] == {
@@ -246,7 +247,7 @@ def test_is_identical():
     input = 'https://doi.org/10.6084/M9.FIGSHARE.4234751.V1'
     subject = Metadata(input, via='datacite_json')
 
-    assert subject.id == "https://doi.org/10.6084/m9.figshare.4234751.v1"
+    assert subject.pid == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.types == {'resourceTypeGeneral': 'Dataset', 'resourceType': 'Dataset', 'schemaOrg': 'Dataset', 'citeproc': 'dataset', 'bibtex': 'misc', 'ris': 'DATA'}
     assert subject.url == "https://figshare.com/articles/dataset/rain_v1/4234751/1"
     assert subject.titles[0] == {
@@ -274,7 +275,7 @@ def test_is_identical():
 #       input = '10.6084/m9.figshare.1449060'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.6084/m9.figshare.1449060')
+#       expect(subject.pid).to eq('https://doi.org/10.6084/m9.figshare.1449060')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -338,8 +339,8 @@ def test_is_identical():
 #       input = 'https://doi.org/10.5281/ZENODO.1239'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5281/zenodo.1239')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'https://zenodo.org/record/1239',
+#       expect(subject.pid).to eq('https://doi.org/10.5281/zenodo.1239')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'https://zenodo.org/record/1239',
 #                                            'identifierType' => 'URL' }])
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -392,7 +393,7 @@ def test_is_identical():
 
 #       expect(subject.valid?).to be true
 #       expect(subject.doi).to eq('10.5281/zenodo.1239')
-#       expect(subject.id).to eq('https://doi.org/10.5281/zenodo.1239')
+#       expect(subject.pid).to eq('https://doi.org/10.5281/zenodo.1239')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
 #       expect(subject.creators).to eq([{ 'familyName' => 'Jahn', 'givenName' => 'Najko',
@@ -408,7 +409,7 @@ def test_is_identical():
 #                                                   'funderIdentifier' => 'https://doi.org/10.13039/501100000780',
 #                                                   'funderIdentifierType' => 'Crossref Funder ID',
 #                                                   'funderName' => 'European Commission' }])
-#       expect(subject.identifiers).to eq([{ 'identifier' => '123',
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '123',
 #                                            'identifierType' => 'Repository ID' }])
 #       expect(subject.agency).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
@@ -498,7 +499,7 @@ def test_is_identical():
 #     it 'wrong attributes' do
 #       input = "#{fixture_path}nist.xml"
 #       subject = described_class.new(input: input)
-#       expect(subject.id).to eq('https://doi.org/10.5072/m32163')
+#       expect(subject.pid).to eq('https://doi.org/10.5072/m32163')
 #       expect(subject.titles).to eq([{ 'title' => 'Peter Auto Dataset 501' }])
 #       expect(subject.descriptions).to eq([{
 #                                            'description' => "This is to overturn Einstein's Relativity Theory.", 'descriptionType' => 'Abstract'
@@ -512,7 +513,7 @@ def test_is_identical():
 #       input = "#{fixture_path}schema_4.0.xml"
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.6071/z7wc73')
+#       expect(subject.pid).to eq('https://doi.org/10.6071/z7wc73')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -532,8 +533,8 @@ def test_is_identical():
 #       input = "#{fixture_path}datacite-seriesinformation.xml"
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5438/4k3m-nyvg')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
+#       expect(subject.pid).to eq('https://doi.org/10.5438/4k3m-nyvg')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
 #       expect(subject.creators.length).to eq(1)
 #       expect(subject.creators.first).to eq('familyName' => 'Fenner', 'givenName' => 'Martin',
@@ -565,7 +566,7 @@ def test_is_identical():
 #       doi = '10.5072/geoPointExample'
 #       subject = described_class.new(input: input, doi: doi)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5072/geopointexample')
+#       expect(subject.pid).to eq('https://doi.org/10.5072/geopointexample')
 #       expect(subject.doi).to eq('10.5072/geopointexample')
 #       expect(subject.creators.length).to eq(3)
 #       expect(subject.creators.first).to eq('familyName' => 'Schumann', 'givenName' => 'Kai',
@@ -587,7 +588,7 @@ def test_is_identical():
 #       doi = '10.6071/Z7WC73'
 #       subject = described_class.new(input: input, doi: doi)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.6071/z7wc73')
+#       expect(subject.pid).to eq('https://doi.org/10.6071/z7wc73')
 #       expect(subject.doi).to eq('10.6071/z7wc73')
 #       expect(subject.creators.length).to eq(6)
 #       expect(subject.creators.first).to eq('familyName' => 'Bales', 'givenName' => 'Roger',
@@ -618,7 +619,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.14457/KMITL.RES.2006.17'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.14457/kmitl.res.2006.17')
+#       expect(subject.pid).to eq('https://doi.org/10.14457/kmitl.res.2006.17')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.creators.length).to eq(1)
 #       expect(subject.creators.first).to eq('name' => 'กัญจนา แซ่เตียว')
@@ -628,7 +629,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.7910/DVN/EQTQYO'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.7910/dvn/eqtqyo')
+#       expect(subject.pid).to eq('https://doi.org/10.7910/dvn/eqtqyo')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.creators).to eq([{
 #                                        'name' => 'Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)'
@@ -639,7 +640,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.18429/JACOW-IPAC2016-TUPMY003'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.18429/jacow-ipac2016-tupmy003')
+#       expect(subject.pid).to eq('https://doi.org/10.18429/jacow-ipac2016-tupmy003')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.creators.length).to eq(12)
 #       expect(subject.creators.first).to eq('nameType' => 'Personal',
@@ -650,7 +651,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.2314/COSCV1'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.2314/coscv1')
+#       expect(subject.pid).to eq('https://doi.org/10.2314/coscv1')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.creators.length).to eq(14)
 #       expect(subject.creators.first).to include('nameType' => 'Personal',
@@ -661,7 +662,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.21233/n34n5q'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.21233/n34n5q')
+#       expect(subject.pid).to eq('https://doi.org/10.21233/n34n5q')
 #       expect(subject.subjects).to eq([{ 'schemeUri' => 'http://id.loc.gov/authorities/subjects',
 #                                         'subject' => 'Paleoecology', 'subjectScheme' => 'Library of Congress' }])
 #     end
@@ -670,8 +671,8 @@ def test_is_identical():
 #       input = 'https://doi.org/10.15125/BATH-00114'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.15125/bath-00114')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'http://researchdata.bath.ac.uk/114/',
+#       expect(subject.pid).to eq('https://doi.org/10.15125/bath-00114')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'http://researchdata.bath.ac.uk/114/',
 #                                            'identifierType' => 'URL' }])
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Dataset')
@@ -707,7 +708,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.5438/6423'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5438/6423')
+#       expect(subject.pid).to eq('https://doi.org/10.5438/6423')
 #       expect(subject.types['schemaOrg']).to eq('Collection')
 #       expect(subject.types['resourceType']).to eq('Project')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Collection')
@@ -736,7 +737,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.26102/2310-6018/2019.24.1.006'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
+#       expect(subject.pid).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.types['resourceType']).to eq('Journal Article')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
@@ -771,8 +772,8 @@ def test_is_identical():
 #                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner',
 #                                                                "nameType"=>"Personal"}])
 #       expect(subject.titles).to eq([{ 'title' => 'Eating your own Dog Food' }])
-#       expect(subject.id).to eq('https://doi.org/10.5438/4k3m-nyvg')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
+#       expect(subject.pid).to eq('https://doi.org/10.5438/4k3m-nyvg')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
 #       expect(subject.dates).to eq([{ 'date' => '2016-12-20', 'dateType' => 'Created' },
 #                                    { 'date' => '2016-12-20', 'dateType' => 'Issued' }, { 'date' => '2016-12-20', 'dateType' => 'Updated' }])
@@ -799,7 +800,7 @@ def test_is_identical():
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
-#       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.dates).to eq([
 #                                     { 'date' => '2012-12-13', 'dateInformation' => 'Correction',
@@ -836,8 +837,8 @@ def test_is_identical():
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
-#       expect(subject.id).to eq('https://doi.org/10.5072/testpub')
-#       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
+#       expect(subject.pid).to eq('https://doi.org/10.5072/testpub')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.publication_year).to eq('2010')
 #       expect(subject.related_identifiers.length).to eq(1)
@@ -866,8 +867,8 @@ def test_is_identical():
 #       expect(subject.creators.last).to eq('familyName' => 'Renaud', 'givenName' => 'François',
 #                                           'name' => 'Renaud, François', 'nameType' => 'Personal')
 #       expect(subject.titles).to eq([{ 'title' => 'Data from: A new malaria agent in African hominids.' }])
-#       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
-#       expect(subject.identifiers).to eq([{ 'identifier' =>
+#       expect(subject.pid).to eq('https://doi.org/10.5061/dryad.8515')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' =>
 #         'Ollomo B, Durand P, Prugnolle F, Douzery EJP, Arnathau C, Nkoghe D, Leroy E, Renaud F (2009) A new malaria agent in African hominids. PLoS Pathogens 5(5): e1000446.',
 #                                            'identifierType' => 'citation' }])
 #       expect(subject.publication_year).to eq('2011')
@@ -900,8 +901,8 @@ def test_is_identical():
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
-#       expect(subject.id).to eq('https://doi.org/10.5072/testpub')
-#       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
+#       expect(subject.pid).to eq('https://doi.org/10.5072/testpub')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.publication_year).to eq('2010')
 #       expect(subject.related_identifiers.length).to eq(1)
@@ -932,7 +933,7 @@ def test_is_identical():
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
-#       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.dates).to eq([{ 'date' => '2009-04-29', 'dateType' => 'StartDate' },
 #                                    { 'date' => '2010-01-05', 'dateType' => 'EndDate' }, { 'date' => '2010', 'dateType' => 'Issued' }])
@@ -959,8 +960,8 @@ def test_is_identical():
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
-#       expect(subject.id).to eq('https://doi.org/10.5072/testpub2')
-#       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
+#       expect(subject.pid).to eq('https://doi.org/10.5072/testpub2')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.dates).to eq([
 #                                     { 'date' => '2012-12-13', 'dateInformation' => 'Correction',
@@ -988,7 +989,7 @@ def test_is_identical():
 #       input = "#{fixture_path}ns0.xml"
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.4231/d38g8fk8b')
+#       expect(subject.pid).to eq('https://doi.org/10.4231/d38g8fk8b')
 #       expect(subject.types['schemaOrg']).to eq('SoftwareSourceCode')
 #       expect(subject.types['resourceType']).to eq('Simulation Tool')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Software')
@@ -1008,7 +1009,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.25318/3410014001-fra'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.25318/3410014001-fra')
+#       expect(subject.pid).to eq('https://doi.org/10.25318/3410014001-fra')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType'].nil?).to be(true)
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -1023,7 +1024,7 @@ def test_is_identical():
 #       input = '10.5067/terra+aqua/ceres/cldtyphist_l3.004'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5067/terra+aqua/ceres/cldtyphist_l3.004')
+#       expect(subject.pid).to eq('https://doi.org/10.5067/terra+aqua/ceres/cldtyphist_l3.004')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
 #       expect(subject.creators).to eq([{ 'familyName' => 'Wong', 'givenName' => 'Takmeng',
@@ -1039,8 +1040,8 @@ def test_is_identical():
 #       input = 'https://doi.org/10.4232/1.2745'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.4232/1.2745')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'ZA2745', 'identifierType' => 'ZA-No.' },
+#       expect(subject.pid).to eq('https://doi.org/10.4232/1.2745')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'ZA2745', 'identifierType' => 'ZA-No.' },
 #                                          { 'identifier' => 'Internationale Umfrageprogramme',
 #                                            'identifierType' => 'FDZ' }])
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1087,8 +1088,8 @@ def test_is_identical():
 #       input = 'https://doi.org/10.4229/23RDEUPVSEC2008-5CO.8.3'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.4229/23rdeupvsec2008-5co.8.3')
-#       expect(subject.identifiers).to eq([{ 'identifier' => '3-936338-24-8',
+#       expect(subject.pid).to eq('https://doi.org/10.4229/23rdeupvsec2008-5co.8.3')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => '3-936338-24-8',
 #                                            'identifierType' => 'ISBN' }])
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.types['resourceType']).to eq('Article')
@@ -1114,8 +1115,8 @@ def test_is_identical():
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.doi).to eq('10.23725/8na3-9s47')
-#       expect(subject.id).to eq('https://doi.org/10.23725/8na3-9s47')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'ark:/99999/fk41CrU4eszeLUDe', 'identifierType' => 'minid' },
+#       expect(subject.pid).to eq('https://doi.org/10.23725/8na3-9s47')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'ark:/99999/fk41CrU4eszeLUDe', 'identifierType' => 'minid' },
 #                                          { 'identifier' => 'dg.4503/c3d66dc9-58da-411c-83c4-dd656aa3c4b7',
 #                                            'identifierType' => 'dataguid' },
 #                                          { 'identifier' => '3b33f6b9338fccab0901b7d317577ea3',
@@ -1129,8 +1130,8 @@ def test_is_identical():
 #       input = 'https://doi.org/10.18169/PAPDEOTTX00502'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.18169/papdeottx00502')
-#       expect(subject.identifiers).to eq([{
+#       expect(subject.pid).to eq('https://doi.org/10.18169/papdeottx00502')
+#       expect(subject.pidentifiers).to eq([{
 #                                           'identifier' => 'http://www.priorartregister.com/resolve.php?disclosure=OTTX00502', 'identifierType' => 'URL'
 #                                         }])
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1152,7 +1153,7 @@ def test_is_identical():
 #       expect(subject.valid?).to be true
 #       # expect(subject.errors.length).to eq(2)
 #       # expect(subject.errors.last).to eq("33:0: ERROR: Element '{http://datacite.org/schema/kernel-4}date': '1970-04-01 / (:tba)' is not a valid value of the atomic type '{http://datacite.org/schema/kernel-4}edtf'.")
-#       expect(subject.id).to eq('https://doi.org/10.21944/temis-ozone-msr2')
+#       expect(subject.pid).to eq('https://doi.org/10.21944/temis-ozone-msr2')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Satellite data')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -1191,7 +1192,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.4124/05F6C379-DD68-4CDB-880D-33D3E9576D52/1'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be false
-#       expect(subject.id).to eq('https://doi.org/10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
+#       expect(subject.pid).to eq('https://doi.org/10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
 #       expect(subject.doi).to eq('10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
 #       expect(subject.agency).to eq('DataCite')
 #       expect(subject.state).to eq('not_found')
@@ -1201,7 +1202,7 @@ def test_is_identical():
 #       input = 'https://handle.stage.datacite.org/10.22002/d1.694'
 #       subject = described_class.new(input: input, sandbox: true)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://handle.stage.datacite.org/10.22002/d1.694')
+#       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.22002/d1.694')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
 #       expect(subject.creators).to eq([{ 'affiliation' => [{ 'name' => 'Caltech' }], 'name' => 'Tester' }])
@@ -1218,7 +1219,7 @@ def test_is_identical():
 #       input = '10.21956/wellcomeopenres.25947.r17364'
 #       subject = described_class.new(input: input, doi: input, sandbox: true)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://handle.stage.datacite.org/10.21956/wellcomeopenres.25947.r17364')
+#       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.21956/wellcomeopenres.25947.r17364')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
 #       expect(subject.creators).to eq([{ 'name' => 'Fran2 Levy' }])
@@ -1235,7 +1236,7 @@ def test_is_identical():
 #       input = '10.21956/gatesopenres.530.r190'
 #       subject = described_class.new(input: input, sandbox: true)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://handle.stage.datacite.org/10.21956/gatesopenres.530.r190')
+#       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.21956/gatesopenres.530.r190')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
 #       expect(subject.types['ris']).to eq('RPRT')
@@ -1333,7 +1334,7 @@ def test_is_identical():
 #       input = '10.3204/desy-2014-01645'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.3204/desy-2014-01645')
+#       expect(subject.pid).to eq('https://doi.org/10.3204/desy-2014-01645')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
 #       expect(subject.types['resourceType']).to eq('Dissertation')
 #       expect(subject.types['schemaOrg']).to eq('Thesis')
@@ -1355,7 +1356,7 @@ def test_is_identical():
 #       input = '10.26102/2310-6018/2019.24.1.006'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
+#       expect(subject.pid).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
 #       expect(subject.types['resourceType']).to eq('Journal Article')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -1380,7 +1381,7 @@ def test_is_identical():
 #       input = 'https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f'
 #       subject = described_class.new(input: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f')
+#       expect(subject.pid).to eq('https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
 #       expect(subject.titles).to eq([{ 'title' => 'BPI Challenge 2012' }])
@@ -1394,7 +1395,7 @@ def test_is_identical():
 #     it 'change title' do
 #       subject.titles = [{ 'title' => 'A new malaria agent in African hominids.' }]
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
+#       expect(subject.pid).to eq('https://doi.org/10.5061/dryad.8515')
 #       expect(subject.doi).to eq('10.5061/dryad.8515')
 #       expect(subject.url).to eq('http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1404,7 +1405,7 @@ def test_is_identical():
 #     it 'change state' do
 #       subject.state = 'registered'
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
+#       expect(subject.pid).to eq('https://doi.org/10.5061/dryad.8515')
 #       expect(subject.doi).to eq('10.5061/dryad.8515')
 #       expect(subject.url).to eq('http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1419,8 +1420,8 @@ def test_is_identical():
 #       doi = '10.5061/dryad.8515'
 #       subject = described_class.new(input: input, doi: doi)
 #       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
+#       expect(subject.pid).to eq('https://doi.org/10.5061/dryad.8515')
+#       expect(subject.pidentifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
 #       expect(subject.doi).to eq('10.5061/dryad.8515')
 #       expect(subject.creators).to eq([{
@@ -1441,7 +1442,7 @@ def test_is_identical():
 #                                   content_url: content_url)
 
 #     expect(subject.valid?).to be true
-#     expect(subject.id).to eq('https://doi.org/10.25491/9hx8-ke93')
+#     expect(subject.pid).to eq('https://doi.org/10.25491/9hx8-ke93')
 #     expect(subject.url).to eq('https://ors.datacite.org/doi:/10.25491/9hx8-ke93')
 #     expect(subject.content_url).to eq('https://storage.googleapis.com/gtex_analysis_v7/single_tissue_eqtl_data/GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz')
 #     expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1471,7 +1472,7 @@ def test_is_identical():
 #   it 'geo_location_polygon' do
 #     input = "#{fixture_path}datacite-example-polygon-v4.1.xml"
 #     subject = described_class.new(input: input)
-#     expect(subject.id).to eq('https://doi.org/10.5072/example-polygon')
+#     expect(subject.pid).to eq('https://doi.org/10.5072/example-polygon')
 #     expect(subject.types['schemaOrg']).to eq('Dataset')
 #     expect(subject.types['resourceType']).to eq('Dataset')
 #     expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
@@ -1517,7 +1518,7 @@ def test_is_identical():
 #           'lang' => 'en-US' }
 #       ]
 #     )
-#     expect(subject.identifiers).to eq([{
+#     expect(subject.pidentifiers).to eq([{
 #                                         'identifier' => 'https://schema.datacite.org/meta/kernel-4.4/example/datacite-example-full-v4.4.xml', 'identifierType' => 'URL'
 #                                       }])
 #     expect(subject.dates).to eq(
@@ -1757,7 +1758,7 @@ def test_is_identical():
 #     input = "#{fixture_path}datacite-example-xs-string.xml"
 #     subject = described_class.new(input: input)
 #     expect(subject.valid?).to be true
-#     expect(subject.id).to eq('https://doi.org/10.4225/13/511c71f8612c3')
+#     expect(subject.pid).to eq('https://doi.org/10.4225/13/511c71f8612c3')
 #     expect(subject.sizes.first).to eq('1.7 GB')
 #     expect(subject.formats.first).to eq('application/xml')
 #   end
@@ -1766,7 +1767,7 @@ def test_is_identical():
 #     input = "#{fixture_path}datacite-geolocationpolygons-multiple.xml"
 #     subject = described_class.new(input: input)
 #     expect(subject.valid?).to be true
-#     expect(subject.id).to eq('https://doi.org/10.5072/multiplegeopolygons')
+#     expect(subject.pid).to eq('https://doi.org/10.5072/multiplegeopolygons')
 #     expect(subject.geo_locations).to eq([
 #                                           { 'geoLocationPolygon' => [
 #                                             [{ 'polygonPoint' => { 'pointLatitude' => '71', 'pointLongitude' => '41' } },

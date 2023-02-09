@@ -1,15 +1,17 @@
-from .utils import parse_attributes, wrap, unwrap, presence, compact, normalize_orcid, normalize_id
+"""Author utils module for Talbot."""
 import re
+from .utils import parse_attributes, wrap, presence, compact, normalize_orcid, normalize_id
+
 
 def get_one_author(author):
     """parse one author string into CSL format"""
     # if author is a string
-    if type(author) == str:
+    if isinstance(author, str):
         author = { 'creatorName': author } 
 
     # malformed XML
-    if type(author.get('creatorName', None)) == list:
-        return None 
+    if isinstance(author.get('creatorName', None), list):
+        return None
 
     name = (parse_attributes(author.get('creatorName', None)) or
         parse_attributes(author.get('contributorName', None)) or
@@ -96,6 +98,7 @@ def get_one_author(author):
             'contributorType': contributor_type })
   
 def cleanup_author(author):
+    """clean up author string"""
     if author is None:
         return None
 
@@ -136,7 +139,7 @@ def get_affiliations(affiliations):
     formatted_affiliations = []
     for affiliation in wrap(affiliations):
         affiliation_identifier = None
-        if type(affiliation) is str:
+        if isinstance(affiliation, str):
             name = affiliation
             affiliation_identifier_scheme = None
             scheme_uri = None

@@ -1,3 +1,4 @@
+"""Citation writer for Talbot"""
 import json
 import re
 from citeproc import CitationStylesStyle, CitationStylesBibliography
@@ -27,6 +28,6 @@ def write_citation(metadata):
     style_path = get_style_filepath(metadata.style)
     style = CitationStylesStyle(style_path, locale=metadata.locale)
     bib = CitationStylesBibliography(style, source, formatter.html)
-    citation = Citation([CitationItem(metadata.id)])
+    citation = Citation([CitationItem(metadata.pid)])
     bib.register(citation)
     return _clean_result(str(bib.bibliography()[0]))
