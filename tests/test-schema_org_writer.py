@@ -62,8 +62,8 @@ def test_journal_article():
 
 def test_article_with_pages():
     "article with pages"
-    input = "https://doi.org/10.1371/journal.ppat.1008184"
-    subject = Metadata(input)
+    text = "https://doi.org/10.1371/journal.ppat.1008184"
+    subject = Metadata(text)
     assert subject.pid == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.types.get("schemaOrg") == "ScholarlyArticle"
 
@@ -106,7 +106,7 @@ def test_article_with_pages():
 
 
 #     it 'maremma schema.org JSON' do
-#       input = 'https://github.com/datacite/maremma'
+#       text = 'https://github.com/datacite/maremma'
 #       subject = described_class.new(input: input, from: 'codemeta')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5438/qeg0-3gm3')
@@ -117,7 +117,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Schema.org JSON' do
-#       input = 'https://doi.org/10.5281/ZENODO.48440'
+#       text = 'https://doi.org/10.5281/ZENODO.48440'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5281/zenodo.48440')
@@ -128,7 +128,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Another Schema.org JSON' do
-#       input = 'https://doi.org/10.5061/DRYAD.8515'
+#       text = 'https://doi.org/10.5061/DRYAD.8515'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5061/dryad.8515')
@@ -138,7 +138,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Schema.org JSON IsSupplementTo' do
-#       input = 'https://doi.org/10.5517/CC8H01S'
+#       text = 'https://doi.org/10.5517/CC8H01S'
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5517/cc8h01s')
@@ -149,7 +149,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Schema.org JSON Cyark' do
-#       input = 'https://doi.org/10.26301/jgf3-jm06'
+#       text = 'https://doi.org/10.26301/jgf3-jm06'
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.26301/jgf3-jm06')
@@ -157,7 +157,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'rdataone' do
-#       input = "#{fixture_path}codemeta.json"
+#       text = "#{fixture_path}codemeta.json"
 #       subject = described_class.new(input: input, from: 'codemeta')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5063/f1m61h5x')
@@ -184,7 +184,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Funding' do
-#       input = 'https://doi.org/10.5438/6423'
+#       text = 'https://doi.org/10.5438/6423'
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5438/6423')
@@ -197,7 +197,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'Funding OpenAIRE' do
-#       input = 'https://doi.org/10.5281/ZENODO.1239'
+#       text = 'https://doi.org/10.5281/ZENODO.1239'
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5281/zenodo.1239')
@@ -209,7 +209,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'subject scheme' do
-#       input = 'https://doi.org/10.4232/1.2745'
+#       text = 'https://doi.org/10.4232/1.2745'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.4232/1.2745')
@@ -219,7 +219,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'subject scheme multiple keywords' do
-#       input = 'https://doi.org/10.1594/pangaea.721193'
+#       text = 'https://doi.org/10.1594/pangaea.721193'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.1594/pangaea.721193')
@@ -230,7 +230,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'author is organization' do
-#       input = "#{fixture_path}gtex.xml"
+#       text = "#{fixture_path}gtex.xml"
 #       url = 'https://ors.datacite.org/doi:/10.25491/9hx8-ke93'
 #       content_url = 'https://storage.googleapis.com/gtex_analysis_v7/single_tissue_eqtl_data/GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz'
 #       subject = described_class.new(input: input, url: url, content_url: content_url,
@@ -251,7 +251,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'series information' do
-#       input = '10.4229/23RDEUPVSEC2008-5CO.8.3'
+#       text = '10.4229/23RDEUPVSEC2008-5CO.8.3'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.4229/23rdeupvsec2008-5co.8.3')
@@ -264,7 +264,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'data catalog' do
-#       input = '10.25491/8KMC-G314'
+#       text = '10.25491/8KMC-G314'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.25491/8kmc-g314')
@@ -278,7 +278,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'alternate identifiers' do
-#       input = '10.23725/8na3-9s47'
+#       text = '10.23725/8na3-9s47'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.23725/8na3-9s47')
@@ -303,7 +303,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'affiliation identifier' do
-#       input = "#{fixture_path}datacite-example-affiliation.xml"
+#       text = "#{fixture_path}datacite-example-affiliation.xml"
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5072/example-full')
@@ -326,7 +326,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'geo_location_point' do
-#       input = "#{fixture_path}datacite-example-geolocation-2.xml"
+#       text = "#{fixture_path}datacite-example-geolocation-2.xml"
 #       doi = '10.6071/Z7WC73'
 #       subject = described_class.new(input: input, doi: doi)
 #       json = JSON.parse(subject.schema_org)
@@ -352,7 +352,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'geo_location_box' do
-#       input = '10.1594/PANGAEA.842237'
+#       text = '10.1594/PANGAEA.842237'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.1594/pangaea.842237')
@@ -373,7 +373,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'geo_location_polygon' do
-#       input = "#{fixture_path}datacite-example-polygon-v4.1.xml"
+#       text = "#{fixture_path}datacite-example-polygon-v4.1.xml"
 #       subject = described_class.new(input: input)
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.5072/example-polygon')
@@ -389,7 +389,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'from schema_org gtex' do
-#       input = "#{fixture_path}schema_org_gtex.json"
+#       text = "#{fixture_path}schema_org_gtex.json"
 #       subject = described_class.new(input: input, from: 'schema_org')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.25491/d50j-3083')
@@ -398,7 +398,7 @@ def test_article_with_pages():
 #                                        'value' => '687610993')
 #       expect(json['url']).to eq('https://ors.datacite.org/doi:/10.25491/d50j-3083')
 #       expect(json['additionalType']).to eq('Gene expression matrices')
-#       expect(json['name']).to eq('Fully processed, filtered and normalized gene expression matrices (in BED format) for each tissue, which were used as input into FastQTL for eQTL discovery')
+#       expect(json['name']).to eq('Fully processed, filtered and normalized gene expression matrices (in BED format) for each tissue, which were used as text into FastQTL for eQTL discovery')
 #       expect(json['version']).to eq('v7')
 #       expect(json['author']).to eq('@type' => 'Organization', 'name' => 'The GTEx Consortium')
 #       expect(json['keywords']).to eq('gtex, annotation, phenotype, gene regulation, transcriptomics')
@@ -432,7 +432,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'from schema_org topmed' do
-#       input = "#{fixture_path}schema_org_topmed.json"
+#       text = "#{fixture_path}schema_org_topmed.json"
 #       subject = described_class.new(input: input, from: 'schema_org')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.23725/8na3-9s47')
@@ -467,7 +467,7 @@ def test_article_with_pages():
 #     end
 
 #     it 'interactive resource without dates' do
-#       input = 'https://doi.org/10.34747/g6yb-3412'
+#       text = 'https://doi.org/10.34747/g6yb-3412'
 #       subject = described_class.new(input: input, from: 'datacite')
 #       json = JSON.parse(subject.schema_org)
 #       expect(json['@id']).to eq('https://doi.org/10.34747/g6yb-3412')

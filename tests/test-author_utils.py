@@ -9,6 +9,7 @@ from talbot.author_utils import (
 )
 
 
+@pytest
 def test_one_authpr():
     "one author"
     authors = [
