@@ -1,3 +1,5 @@
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1cebb9b4147144a2a221e512729e2576)](https://www.codacy.com/gh/front-matter/talbot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=front-matter/talbot&amp;utm_campaign=Badge_Grade)
+
 # Talbot
 
 Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Briard is work in progress, the first release is
