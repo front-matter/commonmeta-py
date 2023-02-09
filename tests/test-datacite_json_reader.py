@@ -90,7 +90,8 @@ def test_blog_posting():
         "ris": "RPRT",
     }
     assert subject.url == "https://blog.datacite.org/datacite-member-survey-2022"
-    assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
+    assert subject.titles[0] == {"lang": "en",
+                                 "title": "DataCite Member Survey 2022"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
