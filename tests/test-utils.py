@@ -25,7 +25,6 @@ from talbot.utils import (
 )
 
 
-@pytest
 def test_parse_attributes():
     "parse_attributes"
     # string
