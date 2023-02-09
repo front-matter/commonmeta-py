@@ -90,14 +90,16 @@ def read_crossref_json(string=None, **kwargs):
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        rights_list = [dict_to_spdx({"rightsURI": license_})] if license_ else None
+        rights_list = [dict_to_spdx(
+            {"rightsURI": license_})] if license_ else None
     else:
         rights_list = None
 
     issns = meta.get("issn-type", None)
     if issns is not None:
         issn = (
-            next((item for item in issns if item["type"] == "electronic"), None)
+            next(
+                (item for item in issns if item["type"] == "electronic"), None)
             or next((item for item in issns if item["type"] == "print"), None)
             or {}
         )
@@ -148,7 +150,8 @@ def read_crossref_json(string=None, **kwargs):
         last_page = None
 
     container_titles = meta.get("container-title", [])
-    container_title = container_titles[0] if len(container_titles) > 0 else None
+    container_title = container_titles[0] if len(
+        container_titles) > 0 else None
     if container_title is not None:
         container = compact(
             {
@@ -214,7 +217,8 @@ def read_crossref_json(string=None, **kwargs):
     description = meta.get("abstract", None)
     if description is not None:
         descriptions = [
-            {"description": sanitize(description), "descriptionType": "Abstract"}
+            {"description": sanitize(description),
+             "descriptionType": "Abstract"}
         ]
     else:
         descriptions = None
