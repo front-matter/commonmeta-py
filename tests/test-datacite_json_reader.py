@@ -6,107 +6,267 @@ from talbot import Metadata
 @pytest.mark.vcr
 def test_dataset():
     """dataset"""
-    idn = 'https://doi.org/10.5061/DRYAD.8515'
-    subject = Metadata(idn, via='datacite_json')
+    idn = "https://doi.org/10.5061/DRYAD.8515"
+    subject = Metadata(idn, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.5061/dryad.8515"
-    assert subject.types == {'bibtex': 'misc', 'citeproc': 'dataset',
-                             'resourceType': 'dataset', 'resourceTypeGeneral': 'Dataset', 'ris': 'DATA',
-                             'schemaOrg': 'Dataset'}
+    assert subject.types == {
+        "bibtex": "misc",
+        "citeproc": "dataset",
+        "resourceType": "dataset",
+        "resourceTypeGeneral": "Dataset",
+        "ris": "DATA",
+        "schemaOrg": "Dataset",
+    }
     assert subject.url == "http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
-        "title": "Data from: A new malaria agent in African hominids."}
+        "title": "Data from: A new malaria agent in African hominids."
+    }
     assert len(subject.creators) == 8
-    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Benjamin Ollomo', 'givenName': 'Benjamin',
-                                   'familyName': 'Ollomo', 'affiliation': [{'name': 'Centre International de Recherches Médicales de Franceville'}]}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "name": "Benjamin Ollomo",
+        "givenName": "Benjamin",
+        "familyName": "Ollomo",
+        "affiliation": [
+            {"name": "Centre International de Recherches Médicales de Franceville"}
+        ],
+    }
     assert subject.contributors is None
-    assert subject.rights_list == [{'rights': 'Creative Commons Zero v1.0 Universal', 'rightsUri': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode',
-                                    'schemeUri': 'https://spdx.org/licenses/', 'rightsIdentifier': 'cc0-1.0', 'rightsIdentifierScheme': 'SPDX'}]
-    assert subject.dates == [{'date': '2011-02-01T17:22:41Z',
-                              'dateType': 'Available'}, {'date': '2011', 'dateType': 'Issued'}]
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Zero v1.0 Universal",
+            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc0-1.0",
+            "rightsIdentifierScheme": "SPDX",
+        }
+    ]
+    assert subject.dates == [
+        {"date": "2011-02-01T17:22:41Z", "dateType": "Available"},
+        {"date": "2011", "dateType": "Issued"},
+    ]
     assert subject.publication_year == 2011
     assert subject.date_registered is None
-    assert subject.publisher == 'Dryad'
+    assert subject.publisher == "Dryad"
     assert subject.issn is None
     assert len(subject.related_identifiers) == 1
     assert subject.related_identifiers[0] == {
-        'relationType': 'IsCitedBy', 'relatedIdentifier': '10.1371/journal.ppat.1000446', 'relatedIdentifierType': 'DOI'}
+        "relationType": "IsCitedBy",
+        "relatedIdentifier": "10.1371/journal.ppat.1000446",
+        "relatedIdentifierType": "DOI",
+    }
     assert subject.container == {}
-    assert subject.descriptions[0].get('description').startswith(
-        'Plasmodium falciparum is the major human malaria agent responsible')
-    assert subject.subjects == [{'subject': 'Plasmodium'}, {'subject': 'malaria'}, {
-        'subject': 'mitochondrial genome'}, {'subject': 'Parasites'}]
-    assert subject.language == 'en'
-    assert subject.version_info == '1'
-    assert subject.agency == 'DataCite'
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "Plasmodium falciparum is the major human malaria agent responsible"
+        )
+    )
+    assert subject.subjects == [
+        {"subject": "Plasmodium"},
+        {"subject": "malaria"},
+        {"subject": "mitochondrial genome"},
+        {"subject": "Parasites"},
+    ]
+    assert subject.language == "en"
+    assert subject.version_info == "1"
+    assert subject.agency == "DataCite"
 
 
 def test_blog_posting():
     """blog posting"""
-    input = 'https://doi.org/10.5438/zhyx-n122'
-    subject = Metadata(input, via='datacite_json')
+    input = "https://doi.org/10.5438/zhyx-n122"
+    subject = Metadata(input, via="datacite_json")
     print(subject.related_identifiers)
     assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
-    assert subject.types == {'resourceTypeGeneral': 'Text', 'resourceType': 'blog post',
-                             'schemaOrg': 'ScholarlyArticle', 'citeproc': 'article-journal', 'bibtex': 'article', 'ris': 'RPRT'}
+    assert subject.types == {
+        "resourceTypeGeneral": "Text",
+        "resourceType": "blog post",
+        "schemaOrg": "ScholarlyArticle",
+        "citeproc": "article-journal",
+        "bibtex": "article",
+        "ris": "RPRT",
+    }
     assert subject.url == "https://blog.datacite.org/datacite-member-survey-2022"
-    assert subject.titles[0] == {'lang': 'en',
-                                 'title': 'DataCite Member Survey 2022'}
+    assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
     assert len(subject.creators) == 2
-    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Rorie Edmunds',
-                                   'givenName': 'Rorie', 'familyName': 'Edmunds', 'affiliation': [{'name': 'DataCite'}]}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "name": "Rorie Edmunds",
+        "givenName": "Rorie",
+        "familyName": "Edmunds",
+        "affiliation": [{"name": "DataCite"}],
+    }
     assert subject.contributors is None
-    assert subject.rights_list == [{'rights': 'Creative Commons Attribution 4.0 International', 'rightsUri': 'https://creativecommons.org/licenses/by/4.0/legalcode',
-                                    'schemeUri': 'https://spdx.org/licenses/', 'rightsIdentifier': 'cc-by-4.0', 'rightsIdentifierScheme': 'SPDX'}]
-    assert subject.dates == [{'date': 2023, 'dateType': 'Issued'}]
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Attribution 4.0 International",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc-by-4.0",
+            "rightsIdentifierScheme": "SPDX",
+        }
+    ]
+    assert subject.dates == [{"date": 2023, "dateType": "Issued"}]
     assert subject.publication_year == 2023
     assert subject.date_registered is None
-    assert subject.publisher == 'DataCite'
+    assert subject.publisher == "DataCite"
     assert subject.issn is None
-    assert subject.related_identifiers == [{'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/K1GW-Y723', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/1tek-7522', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/cnsf-ec48', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/q34f-c696', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {
-        'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/vacd-ve62', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/h7x6-qf64', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/vjz9-kx84', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}, {'schemeUri': None, 'schemeType': None, 'relationType': 'Cites', 'relatedIdentifier': '10.5438/ptv6-vf36', 'resourceTypeGeneral': 'Text', 'relatedIdentifierType': 'DOI', 'relatedMetadataScheme': None}]
+    assert subject.related_identifiers == [
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/K1GW-Y723",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/1tek-7522",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/cnsf-ec48",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/q34f-c696",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/vacd-ve62",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/h7x6-qf64",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/vjz9-kx84",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+        {
+            "schemeUri": None,
+            "schemeType": None,
+            "relationType": "Cites",
+            "relatedIdentifier": "10.5438/ptv6-vf36",
+            "resourceTypeGeneral": "Text",
+            "relatedIdentifierType": "DOI",
+            "relatedMetadataScheme": None,
+        },
+    ]
     assert subject.container == {}
-    assert subject.descriptions[0].get('description').startswith(
-        'At the end of 2022, we conducted our annual member survey')
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("At the end of 2022, we conducted our annual member survey")
+    )
     assert subject.subjects is None
-    assert subject.language == 'en'
-    assert subject.version_info == '1.0'
-    assert subject.agency == 'DataCite'
+    assert subject.language == "en"
+    assert subject.version_info == "1.0"
+    assert subject.agency == "DataCite"
 
 
 @pytest.mark.vcr
 def test_date():
     """dataset"""
-    input = 'https://doi.org/10.4230/lipics.tqc.2013.93'
-    subject = Metadata(input, via='datacite_json')
+    input = "https://doi.org/10.4230/lipics.tqc.2013.93"
+    subject = Metadata(input, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.4230/lipics.tqc.2013.93"
-    assert subject.types == {'resourceTypeGeneral': 'Text', 'resourceType': 'ConferencePaper',
-                             'schemaOrg': 'ScholarlyArticle', 'citeproc': 'article-journal', 'bibtex': 'article', 'ris': 'RPRT'}
+    assert subject.types == {
+        "resourceTypeGeneral": "Text",
+        "resourceType": "ConferencePaper",
+        "schemaOrg": "ScholarlyArticle",
+        "citeproc": "article-journal",
+        "bibtex": "article",
+        "ris": "RPRT",
+    }
     assert subject.url == "http://drops.dagstuhl.de/opus/volltexte/2013/4317"
     assert subject.titles[0] == {
-        "title": "The Minimum Size of Qubit Unextendible Product Bases"}
+        "title": "The Minimum Size of Qubit Unextendible Product Bases"
+    }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        'nameType': 'Personal', 'name': 'Nathaniel Johnston', 'givenName': 'Nathaniel', 'familyName': 'Johnston'}
-    assert subject.contributors == [{'contributorType': 'Editor', 'familyName': 'Herbstritt',
-                                     'givenName': 'Marc', 'name': 'Marc Herbstritt', 'nameType': 'Personal'}]
+        "nameType": "Personal",
+        "name": "Nathaniel Johnston",
+        "givenName": "Nathaniel",
+        "familyName": "Johnston",
+    }
+    assert subject.contributors == [
+        {
+            "contributorType": "Editor",
+            "familyName": "Herbstritt",
+            "givenName": "Marc",
+            "name": "Marc Herbstritt",
+            "nameType": "Personal",
+        }
+    ]
     assert subject.rights_list is None
     assert subject.dates == [
-        {'date': '2013-11-05', 'dateType': 'Available'}, {'date': '2013', 'dateType': 'Issued'}]
+        {"date": "2013-11-05", "dateType": "Available"},
+        {"date": "2013", "dateType": "Issued"},
+    ]
     assert subject.publication_year == 2013
     assert subject.date_registered is None
-    assert subject.publisher == 'Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany'
+    assert (
+        subject.publisher
+        == "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"
+    )
     assert subject.issn is None
     assert subject.related_identifiers is None
     assert subject.container == {}
-    assert subject.descriptions[0].get('description').startswith(
-        'We investigate the problem of constructing unextendible product bases')
-    assert subject.subjects == [{'subject': 'Computer Science'}, {
-        'subject': '000 Computer science, knowledge, general works', 'subjectScheme': 'DDC'}]
-    assert subject.language == 'en'
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "We investigate the problem of constructing unextendible product bases"
+        )
+    )
+    assert subject.subjects == [
+        {"subject": "Computer Science"},
+        {
+            "subject": "000 Computer science, knowledge, general works",
+            "subjectScheme": "DDC",
+        },
+    ]
+    assert subject.language == "en"
     assert subject.version_info is None
-    assert subject.agency == 'DataCite'
+    assert subject.agency == "DataCite"
+
 
 #     it 'affiliation identifier' do
 #       input = "#{fixture_path}datacite-example-affiliation.xml"
@@ -213,62 +373,155 @@ def test_date():
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-2.2')
 #     end
 
+
 def test_multiple_identifiers():
     """multiple identifiers"""
-    input = 'https://doi.org/10.5281/ZENODO.48440'
-    subject = Metadata(input, via='datacite_json')
+    input = "https://doi.org/10.5281/ZENODO.48440"
+    subject = Metadata(input, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.5281/zenodo.48440"
-    assert subject.types == {'resourceTypeGeneral': 'Software', 'schemaOrg': 'SoftwareSourceCode', 'citeproc': 'article', 'bibtex': 'misc', 'ris': 'COMP'}
+    assert subject.types == {
+        "resourceTypeGeneral": "Software",
+        "schemaOrg": "SoftwareSourceCode",
+        "citeproc": "article",
+        "bibtex": "misc",
+        "ris": "COMP",
+    }
     assert subject.url == "https://zenodo.org/record/48440"
     assert subject.titles[0] == {
-        "title": "Analysis Tools For Crossover Experiment Of Ui Using Choice Architecture"}
+        "title": "Analysis Tools For Crossover Experiment Of Ui Using Choice Architecture"
+    }
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Kristian Garza', 'givenName': 'Kristian', 'familyName': 'Garza'}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "name": "Kristian Garza",
+        "givenName": "Kristian",
+        "familyName": "Garza",
+    }
     assert subject.contributors is None
-    assert subject.rights_list == [{'rights': 'Creative Commons Attribution-NonCommercial-ShareAlike', 'rightsUri': 'https://creativecommons.org/licenses/by-nc-sa/4.0'}, {'rights': 'Open Access', 'rightsUri': 'info:eu-repo/semantics/openAccess'}]
-    assert subject.dates ==  [{'date': '2016-03-27', 'dateType': 'Issued'}]
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Attribution-NonCommercial-ShareAlike",
+            "rightsUri": "https://creativecommons.org/licenses/by-nc-sa/4.0",
+        },
+        {"rights": "Open Access", "rightsUri": "info:eu-repo/semantics/openAccess"},
+    ]
+    assert subject.dates == [{"date": "2016-03-27", "dateType": "Issued"}]
     assert subject.publication_year == 2016
     assert subject.date_registered is None
-    assert subject.publisher == 'Zenodo'
+    assert subject.publisher == "Zenodo"
     assert subject.issn is None
-    assert subject.related_identifiers == [{'relatedIdentifier': 'https://github.com/kjgarza/frame_experiment_analysis/tree/v1.0', 'relatedIdentifierType': 'URL', 'relationType': 'IsSupplementTo'}]
+    assert subject.related_identifiers == [
+        {
+            "relatedIdentifier": "https://github.com/kjgarza/frame_experiment_analysis/tree/v1.0",
+            "relatedIdentifierType": "URL",
+            "relationType": "IsSupplementTo",
+        }
+    ]
     assert subject.container == {}
-    assert subject.descriptions[0].get('description').startswith(
-        'This tools are used to analyse the data produced')
-    assert subject.subjects == [{'subject': 'choice architecture'}, {'subject': 'crossover experiment'}, {'subject': 'hci'}]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("This tools are used to analyse the data produced")
+    )
+    assert subject.subjects == [
+        {"subject": "choice architecture"},
+        {"subject": "crossover experiment"},
+        {"subject": "hci"},
+    ]
     assert subject.language is None
     assert subject.version_info is None
-    assert subject.agency == 'DataCite'
+    assert subject.agency == "DataCite"
 
 
 def test_is_identical():
     """is_identical"""
-    input = 'https://doi.org/10.6084/M9.FIGSHARE.4234751.V1'
-    subject = Metadata(input, via='datacite_json')
+    input = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
+    subject = Metadata(input, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.4234751.v1"
-    assert subject.types == {'resourceTypeGeneral': 'Dataset', 'resourceType': 'Dataset', 'schemaOrg': 'Dataset', 'citeproc': 'dataset', 'bibtex': 'misc', 'ris': 'DATA'}
+    assert subject.types == {
+        "resourceTypeGeneral": "Dataset",
+        "resourceType": "Dataset",
+        "schemaOrg": "Dataset",
+        "citeproc": "dataset",
+        "bibtex": "misc",
+        "ris": "DATA",
+    }
     assert subject.url == "https://figshare.com/articles/dataset/rain_v1/4234751/1"
-    assert subject.titles[0] == {
-        "title": "RAIN v1"}
+    assert subject.titles[0] == {"title": "RAIN v1"}
     assert len(subject.creators) == 11
-    assert subject.creators[0] == {'nameType': 'Personal', 'name': 'Alexander Junge', 'givenName': 'Alexander', 'familyName': 'Junge', 'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-2410-9671', 'schemeUri': 'https://orcid.org', 'nameIdentifierScheme': 'ORCID'}]}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "name": "Alexander Junge",
+        "givenName": "Alexander",
+        "familyName": "Junge",
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0002-2410-9671",
+                "schemeUri": "https://orcid.org",
+                "nameIdentifierScheme": "ORCID",
+            }
+        ],
+    }
     assert subject.contributors is None
-    assert subject.rights_list == [{'rights': 'Creative Commons Attribution 4.0 International', 'rightsUri': 'https://creativecommons.org/licenses/by/4.0/legalcode', 'schemeUri': 'https://spdx.org/licenses/', 'rightsIdentifier': 'cc-by-4.0', 'rightsIdentifierScheme': 'SPDX'}]
-    assert subject.dates == [{'date': '2016-11-16', 'dateType': 'Created'}, {'date': '2016-11-16', 'dateType': 'Updated'}, {'date': '2016', 'dateType': 'Issued'}]
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Attribution 4.0 International",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc-by-4.0",
+            "rightsIdentifierScheme": "SPDX",
+        }
+    ]
+    assert subject.dates == [
+        {"date": "2016-11-16", "dateType": "Created"},
+        {"date": "2016-11-16", "dateType": "Updated"},
+        {"date": "2016", "dateType": "Issued"},
+    ]
     assert subject.publication_year == 2016
     assert subject.date_registered is None
-    assert subject.publisher == 'figshare'
+    assert subject.publisher == "figshare"
     assert subject.issn is None
-    assert subject.related_identifiers == [{'relationType': 'IsIdenticalTo', 'relatedIdentifier': '10.6084/m9.figshare.4234751', 'relatedIdentifierType': 'DOI'}]
+    assert subject.related_identifiers == [
+        {
+            "relationType": "IsIdenticalTo",
+            "relatedIdentifier": "10.6084/m9.figshare.4234751",
+            "relatedIdentifierType": "DOI",
+        }
+    ]
     assert subject.container == {}
-    assert subject.descriptions[0].get('description').startswith(
-        '<b>RAIN: RNA–protein Association and Interaction Networks</b>')
-    assert subject.subjects == [{'subject': '60102 Bioinformatics', 'subjectScheme': 'FOR'}, {'subject': 'FOS: Computer and information sciences', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {'subject': 'FOS: Computer and information sciences', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {'subject': 'Computational Biology'}, {'subject': '60114 Systems Biology', 'subjectScheme': 'FOR'}, {'subject': 'FOS: Biological sciences', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {'subject': 'FOS: Biological sciences', 'subjectScheme': 'Fields of Science and Technology (FOS)'}]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("<b>RAIN: RNA–protein Association and Interaction Networks</b>")
+    )
+    assert subject.subjects == [
+        {"subject": "60102 Bioinformatics", "subjectScheme": "FOR"},
+        {
+            "subject": "FOS: Computer and information sciences",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Computer and information sciences",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {"subject": "Computational Biology"},
+        {"subject": "60114 Systems Biology", "subjectScheme": "FOR"},
+        {
+            "subject": "FOS: Biological sciences",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Biological sciences",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+    ]
     assert subject.language is None
     assert subject.version_info is None
-    assert subject.agency == 'DataCite'
+    assert subject.agency == "DataCite"
 
 
 #     it 'subject scheme FOR' do
