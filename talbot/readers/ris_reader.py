@@ -1,5 +1,5 @@
 """RIS reader for Talbot"""
-from ..utils import compact, wrap, normalize_url, get_date_from_parts
+from ..utils import compact, normalize_url, get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
 from ..constants import (
     RIS_TO_CP_TRANSLATIONS,
@@ -32,7 +32,7 @@ def read_ris(string=None, **kwargs):
         }
     )
 
-    id = normalize_doi(meta.get("DO", None))  # options[:doi] or
+    pid = normalize_doi(meta.get("DO", None))  # options[:doi] or
 
     # author = wrap(meta.get('AU', None)).map {| a | { 'creatorName' = > a } }
 
@@ -79,7 +79,7 @@ def read_ris(string=None, **kwargs):
     # end
 
     return {
-        "id": id,
+        "id": pid,
         "types": types,
         "doi": doi_from_url(id),
         "url": normalize_url(meta.get("UR", None)),

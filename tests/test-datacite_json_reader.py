@@ -77,8 +77,8 @@ def test_dataset():
 
 def test_blog_posting():
     """blog posting"""
-    input = "https://doi.org/10.5438/zhyx-n122"
-    subject = Metadata(input, via="datacite_json")
+    text = "https://doi.org/10.5438/zhyx-n122"
+    subject = Metadata(text, via="datacite_json")
     print(subject.related_identifiers)
     assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
     assert subject.types == {
@@ -203,8 +203,8 @@ def test_blog_posting():
 @pytest.mark.vcr
 def test_date():
     """dataset"""
-    input = "https://doi.org/10.4230/lipics.tqc.2013.93"
-    subject = Metadata(input, via="datacite_json")
+    text = "https://doi.org/10.4230/lipics.tqc.2013.93"
+    subject = Metadata(text, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.types == {
@@ -269,8 +269,8 @@ def test_date():
 
 
 #     it 'affiliation identifier' do
-#       input = "#{fixture_path}datacite-example-affiliation.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-affiliation.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('SoftwareSourceCode')
 #       expect(subject.types['resourceType']).to eq('XML')
@@ -331,8 +331,8 @@ def test_date():
 #     end
 
 #     it 'xs:string attributes' do
-#       input = "#{fixture_path}pure.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}pure.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Dataset')
@@ -351,8 +351,8 @@ def test_date():
 #     end
 
 #     it 'empty sizes and dates attributes' do
-#       input = "#{fixture_path}datacite-empty-sizes.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-empty-sizes.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType'].nil?).to be(true)
@@ -376,8 +376,8 @@ def test_date():
 
 def test_multiple_identifiers():
     """multiple identifiers"""
-    input = "https://doi.org/10.5281/ZENODO.48440"
-    subject = Metadata(input, via="datacite_json")
+    text = "https://doi.org/10.5281/ZENODO.48440"
+    subject = Metadata(text, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.5281/zenodo.48440"
     assert subject.types == {
@@ -436,8 +436,8 @@ def test_multiple_identifiers():
 
 def test_is_identical():
     """is_identical"""
-    input = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
-    subject = Metadata(input, via="datacite_json")
+    text = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
+    subject = Metadata(text, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.types == {
@@ -525,8 +525,8 @@ def test_is_identical():
 
 
 #     it 'subject scheme FOR' do
-#       input = '10.6084/m9.figshare.1449060'
-#       subject = described_class.new(input: input)
+#       text = '10.6084/m9.figshare.1449060'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.6084/m9.figshare.1449060')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -558,8 +558,8 @@ def test_is_identical():
 #     end
 
 #     it 'more subject scheme FOR' do
-#       input = '10.4225/03/5a6931f57c654'
-#       subject = described_class.new(input: input)
+#       text = '10.4225/03/5a6931f57c654'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.subjects).to eq([{ 'subject' => '90301 Biomaterials', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
 #                                       { 'subject' => 'FOS: Medical engineering',
@@ -567,8 +567,8 @@ def test_is_identical():
 #     end
 
 #     it 'even more subject scheme FOR' do
-#       input = '10.4225/03/5a31ec65634ef'
-#       subject = described_class.new(input: input)
+#       text = '10.4225/03/5a31ec65634ef'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.subjects).to eq([{ 'subject' => '130103 Higher Education', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
 #                                       { 'subject' => 'FOS: Educational sciences', 'subjectScheme' => 'Fields of Science and Technology (FOS)', 'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf' },
@@ -578,8 +578,8 @@ def test_is_identical():
 #     end
 
 #     it 'cc-by 3.0 us' do
-#       input = '10.6084/m9.figshare.1286826.v1'
-#       subject = described_class.new(input: input)
+#       text = '10.6084/m9.figshare.1286826.v1'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Attribution 4.0 International',
 #                                            'rightsIdentifier' => 'cc-by-4.0',
@@ -589,8 +589,8 @@ def test_is_identical():
 #     end
 
 #     it 'funding schema version 3' do
-#       input = 'https://doi.org/10.5281/ZENODO.1239'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.5281/ZENODO.1239'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5281/zenodo.1239')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => 'https://zenodo.org/record/1239',
@@ -620,7 +620,7 @@ def test_is_identical():
 #     end
 
 #     it 'from attributes' do
-#       subject = described_class.new(input: nil,
+#       subject = described_class.new(text: nil,
 #                                     from: 'datacite',
 #                                     doi: '10.5281/zenodo.1239',
 #                                     creators: [{ 'nameType' => 'Personal', 'name' => 'Jahn, Najko', 'givenName' => 'Najko',
@@ -670,8 +670,8 @@ def test_is_identical():
 #     end
 
 #     it 'missing resource_type_general' do
-#       input = "#{fixture_path}vivli.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}vivli.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.types['schemaOrg']).to eq('CreativeWork')
 #       expect(subject.types['resourceTypeGeneral'].nil?).to be(true)
 #       expect(subject.valid?).to be false
@@ -679,8 +679,8 @@ def test_is_identical():
 #     end
 
 #     it 'multiple languages' do
-#       input = "#{fixture_path}datacite-multiple-language.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-multiple-language.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.types['schemaOrg']).to eq('Collection')
 #       expect(subject.language).to eq('de')
 #       expect(subject.publisher).to eq('Universitätsbibliothek Tübingen')
@@ -690,8 +690,8 @@ def test_is_identical():
 #     end
 
 #     it 'funder identifier with different http scheme' do
-#       input = "#{fixture_path}datacite-funderIdentifier.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-funderIdentifier.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.funding_references.first).to eq({
 #                                                        'funderIdentifier' => 'http://www.isni.org/isni/0000000119587073',
 #                                                        'funderIdentifierType' => 'ISNI',
@@ -710,8 +710,8 @@ def test_is_identical():
 #     end
 
 #     it 'geo_location empty' do
-#       input = "#{fixture_path}datacite-geolocation-empty.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-geolocation-empty.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.geo_locations).to eq([{ 'geoLocationPoint' => { 'pointLatitude' => '-11.64583333',
@@ -719,10 +719,10 @@ def test_is_identical():
 #     end
 
 #     it 'geo_location in separate input' do
-#       input = "#{fixture_path}datacite-geolocation-empty.xml"
+#       text = "#{fixture_path}datacite-geolocation-empty.xml"
 #       geo_locations = [{ 'geoLocationPoint' => { 'pointLatitude' => '49.0850736',
 #                                                  'pointLongitude' => '-123.3300992' } }]
-#       subject = described_class.new(input: input, geo_locations: geo_locations)
+#       subject = described_class.new(text: input, geo_locations: geo_locations)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.geo_locations).to eq(geo_locations)
@@ -734,8 +734,8 @@ def test_is_identical():
 #     end
 
 #     it 'xml:lang attribute' do
-#       input = "#{fixture_path}datacite-xml-lang.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-xml-lang.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Collection')
 #       expect(subject.titles).to eq([{ 'lang' => 'en', 'title' => 'DOI Test 2 title content' },
@@ -750,8 +750,8 @@ def test_is_identical():
 #     end
 
 #     it 'wrong attributes' do
-#       input = "#{fixture_path}nist.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}nist.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.pid).to eq('https://doi.org/10.5072/m32163')
 #       expect(subject.titles).to eq([{ 'title' => 'Peter Auto Dataset 501' }])
 #       expect(subject.descriptions).to eq([{
@@ -763,8 +763,8 @@ def test_is_identical():
 #     end
 
 #     it 'schema 4.0' do
-#       input = "#{fixture_path}schema_4.0.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}schema_4.0.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.6071/z7wc73')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -783,8 +783,8 @@ def test_is_identical():
 #     end
 
 #     it 'series_information' do
-#       input = "#{fixture_path}datacite-seriesinformation.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-seriesinformation.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5438/4k3m-nyvg')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
@@ -815,9 +815,9 @@ def test_is_identical():
 #     end
 
 #     it 'geo_location' do
-#       input = "#{fixture_path}datacite-example-geolocation.xml"
+#       text = "#{fixture_path}datacite-example-geolocation.xml"
 #       doi = '10.5072/geoPointExample'
-#       subject = described_class.new(input: input, doi: doi)
+#       subject = described_class.new(text: input, doi: doi)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5072/geopointexample')
 #       expect(subject.doi).to eq('10.5072/geopointexample')
@@ -837,9 +837,9 @@ def test_is_identical():
 #     end
 
 #     it 'geo_location_box' do
-#       input = "#{fixture_path}datacite-example-geolocation-2.xml"
+#       text = "#{fixture_path}datacite-example-geolocation-2.xml"
 #       doi = '10.6071/Z7WC73'
-#       subject = described_class.new(input: input, doi: doi)
+#       subject = described_class.new(text: input, doi: doi)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.6071/z7wc73')
 #       expect(subject.doi).to eq('10.6071/z7wc73')
@@ -869,8 +869,8 @@ def test_is_identical():
 #     end
 
 #     it 'author only full name' do
-#       input = 'https://doi.org/10.14457/KMITL.RES.2006.17'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.14457/KMITL.RES.2006.17'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.14457/kmitl.res.2006.17')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -879,8 +879,8 @@ def test_is_identical():
 #     end
 
 #     it 'multiple author names in one creatorsName' do
-#       input = 'https://doi.org/10.7910/DVN/EQTQYO'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.7910/DVN/EQTQYO'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.7910/dvn/eqtqyo')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -890,8 +890,8 @@ def test_is_identical():
 #     end
 
 #     it 'author with scheme' do
-#       input = 'https://doi.org/10.18429/JACOW-IPAC2016-TUPMY003'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.18429/JACOW-IPAC2016-TUPMY003'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.18429/jacow-ipac2016-tupmy003')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -901,8 +901,8 @@ def test_is_identical():
 #     end
 
 #     it 'author with wrong orcid scheme' do
-#       input = 'https://doi.org/10.2314/COSCV1'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.2314/COSCV1'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.2314/coscv1')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -912,8 +912,8 @@ def test_is_identical():
 #     end
 
 #     it 'keywords with attributes' do
-#       input = 'https://doi.org/10.21233/n34n5q'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.21233/n34n5q'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.21233/n34n5q')
 #       expect(subject.subjects).to eq([{ 'schemeUri' => 'http://id.loc.gov/authorities/subjects',
@@ -921,8 +921,8 @@ def test_is_identical():
 #     end
 
 #     it 'Funding' do
-#       input = 'https://doi.org/10.15125/BATH-00114'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.15125/BATH-00114'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.15125/bath-00114')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => 'http://researchdata.bath.ac.uk/114/',
@@ -958,8 +958,8 @@ def test_is_identical():
 #     end
 
 #     it 'Funding schema version 4' do
-#       input = 'https://doi.org/10.5438/6423'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.5438/6423'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5438/6423')
 #       expect(subject.types['schemaOrg']).to eq('Collection')
@@ -987,8 +987,8 @@ def test_is_identical():
 #     end
 
 #     it 'Funding empty awardTitle' do
-#       input = 'https://doi.org/10.26102/2310-6018/2019.24.1.006'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.26102/2310-6018/2019.24.1.006'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -1012,8 +1012,8 @@ def test_is_identical():
 #     end
 
 #     it 'BlogPosting from string' do
-#       input = "#{fixture_path}datacite.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.types['resourceType']).to eq('BlogPosting')
@@ -1038,8 +1038,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 4.1 from string' do
-#       input = "#{fixture_path}datacite-example-complicated-v4.1.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Book')
 #       expect(subject.types['resourceType']).to eq('Monograph')
@@ -1075,8 +1075,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 4.0 from string' do
-#       input = "#{fixture_path}datacite-example-complicated-v4.0.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-complicated-v4.0.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Book')
 #       expect(subject.types['resourceType']).to eq('Monograph')
@@ -1108,8 +1108,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 3 from string' do
-#       input = "#{fixture_path}datacite_schema_3.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite_schema_3.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('DataPackage')
@@ -1139,8 +1139,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 3.0 from string' do
-#       input = "#{fixture_path}datacite-example-complicated-v3.0.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-complicated-v3.0.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Book')
 #       expect(subject.types['resourceType']).to eq('Monograph')
@@ -1172,8 +1172,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 2.2 from string' do
-#       input = "#{fixture_path}datacite-metadata-sample-complicated-v2.2.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-metadata-sample-complicated-v2.2.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Book')
 #       expect(subject.types['resourceType']).to eq('Monograph')
@@ -1200,8 +1200,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema 4.1 from string with doi in options' do
-#       input = "#{fixture_path}datacite-example-complicated-v4.1.xml"
-#       subject = described_class.new(input: input, doi: '10.5072/testpub2', content_url: 'https://example.org/report.pdf')
+#       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
+#       subject = described_class.new(text: input, doi: '10.5072/testpub2', content_url: 'https://example.org/report.pdf')
 #       expect(subject.valid?).to be true
 #       expect(subject.types['schemaOrg']).to eq('Book')
 #       expect(subject.types['resourceType']).to eq('Monograph')
@@ -1239,8 +1239,8 @@ def test_is_identical():
 #     end
 
 #     it 'namespaced xml from string' do
-#       input = "#{fixture_path}ns0.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}ns0.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.4231/d38g8fk8b')
 #       expect(subject.types['schemaOrg']).to eq('SoftwareSourceCode')
@@ -1259,8 +1259,8 @@ def test_is_identical():
 #     end
 
 #     it 'Schema.org type' do
-#       input = 'https://doi.org/10.25318/3410014001-fra'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.25318/3410014001-fra'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.25318/3410014001-fra')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1274,8 +1274,8 @@ def test_is_identical():
 #     end
 
 #     it 'doi with + sign' do
-#       input = '10.5067/terra+aqua/ceres/cldtyphist_l3.004'
-#       subject = described_class.new(input: input)
+#       text = '10.5067/terra+aqua/ceres/cldtyphist_l3.004'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5067/terra+aqua/ceres/cldtyphist_l3.004')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1290,8 +1290,8 @@ def test_is_identical():
 #     end
 
 #     it 'subject scheme' do
-#       input = 'https://doi.org/10.4232/1.2745'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.4232/1.2745'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.4232/1.2745')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => 'ZA2745', 'identifierType' => 'ZA-No.' },
@@ -1338,8 +1338,8 @@ def test_is_identical():
 #     end
 
 #     it 'series-information' do
-#       input = 'https://doi.org/10.4229/23RDEUPVSEC2008-5CO.8.3'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.4229/23RDEUPVSEC2008-5CO.8.3'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.4229/23rdeupvsec2008-5co.8.3')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => '3-936338-24-8',
@@ -1364,8 +1364,8 @@ def test_is_identical():
 #     end
 
 #     it 'content url' do
-#       input = '10.23725/8na3-9s47'
-#       subject = described_class.new(input: input)
+#       text = '10.23725/8na3-9s47'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.doi).to eq('10.23725/8na3-9s47')
 #       expect(subject.pid).to eq('https://doi.org/10.23725/8na3-9s47')
@@ -1380,8 +1380,8 @@ def test_is_identical():
 #     end
 
 #     it 'empty subject' do
-#       input = 'https://doi.org/10.18169/PAPDEOTTX00502'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.18169/PAPDEOTTX00502'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.18169/papdeottx00502')
 #       expect(subject.pidentifiers).to eq([{
@@ -1400,8 +1400,8 @@ def test_is_identical():
 #     end
 
 #     it 'leading and trailing whitespace' do
-#       input = 'https://doi.org/10.21944/temis-OZONE-MSR2'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.21944/temis-OZONE-MSR2'
+#       subject = described_class.new(text: input)
 
 #       expect(subject.valid?).to be true
 #       # expect(subject.errors.length).to eq(2)
@@ -1442,8 +1442,8 @@ def test_is_identical():
 #     end
 
 #     it 'DOI not found' do
-#       input = 'https://doi.org/10.4124/05F6C379-DD68-4CDB-880D-33D3E9576D52/1'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.4124/05F6C379-DD68-4CDB-880D-33D3E9576D52/1'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be false
 #       expect(subject.pid).to eq('https://doi.org/10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
 #       expect(subject.doi).to eq('10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
@@ -1452,8 +1452,8 @@ def test_is_identical():
 #     end
 
 #     it 'DOI in staging system' do
-#       input = 'https://handle.stage.datacite.org/10.22002/d1.694'
-#       subject = described_class.new(input: input, sandbox: true)
+#       text = 'https://handle.stage.datacite.org/10.22002/d1.694'
+#       subject = described_class.new(text: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.22002/d1.694')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1469,8 +1469,8 @@ def test_is_identical():
 #     end
 
 #     it 'DOI in staging system schema 3' do
-#       input = '10.21956/wellcomeopenres.25947.r17364'
-#       subject = described_class.new(input: input, doi: input, sandbox: true)
+#       text = '10.21956/wellcomeopenres.25947.r17364'
+#       subject = described_class.new(text: input, doi: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.21956/wellcomeopenres.25947.r17364')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -1486,8 +1486,8 @@ def test_is_identical():
 #     end
 
 #     it 'Referee report in staging system' do
-#       input = '10.21956/gatesopenres.530.r190'
-#       subject = described_class.new(input: input, sandbox: true)
+#       text = '10.21956/gatesopenres.530.r190'
+#       subject = described_class.new(text: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://handle.stage.datacite.org/10.21956/gatesopenres.530.r190')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
@@ -1504,8 +1504,8 @@ def test_is_identical():
 #     end
 
 #     it 'multiple rights' do
-#       input = "#{fixture_path}datacite-multiple-rights.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-multiple-rights.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.rights_list).to eq([{ 'rights' => 'info:eu-repo/semantics/openAccess' },
 #                                          { 'rights' => 'Open Access',
@@ -1513,8 +1513,8 @@ def test_is_identical():
 #     end
 
 #     it ':tba' do
-#       input = "#{fixture_path}datacite-example-complicated-tba.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-complicated-tba.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.titles).to eq([{ 'title' => ':unav' }])
 #       expect(subject.formats).to eq([':null'])
@@ -1525,8 +1525,8 @@ def test_is_identical():
 #     end
 
 #     it 'ancient-dates' do
-#       input = "#{fixture_path}datacite-example-ancientdates-v4.3.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-ancientdates-v4.3.xml"
+#       subject = described_class.new(text: input)
 #       # expect(subject.valid?).to be true
 #       expect(subject.dates).to eq([
 #                                     { 'date' => '-0024/-0022', 'dateInformation' => 'from 25 BC to 23 BC',
@@ -1536,39 +1536,39 @@ def test_is_identical():
 
 #     # TODO: properly handle escaped text
 #     it 'escaped text' do
-#       input = "#{fixture_path}datacite-example-escaped-text.xml"
-#       subject = described_class.new(input: input)
+#       text = "#{fixture_path}datacite-example-escaped-text.xml"
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.titles).to eq([{ 'title' => 'Some initial text' }])
 #     end
 
 #     it 'missing creators' do
-#       input = "#{fixture_path}datacite_missing_creator.xml"
-#       subject = described_class.new(input: input, regenerate: true)
+#       text = "#{fixture_path}datacite_missing_creator.xml"
+#       subject = described_class.new(text: input, regenerate: true)
 #       expect(subject.creators.blank?).to be(true)
 #       expect(subject.valid?).to be false
 #       expect(subject.errors).to eq("4:0: ERROR: Element '{http://datacite.org/schema/kernel-4}creators': Missing child element(s). Expected is ( {http://datacite.org/schema/kernel-4}creator ).")
 #     end
 
 #     it 'malformed creators' do
-#       input = "#{fixture_path}datacite_malformed_creator.xml"
-#       subject = described_class.new(input: input, regenerate: false)
+#       text = "#{fixture_path}datacite_malformed_creator.xml"
+#       subject = described_class.new(text: input, regenerate: false)
 #       expect(subject.creators.blank?).to be(true)
 #       expect(subject.valid?).to be false
 #       expect(subject.errors).to eq("16:0: ERROR: Element '{http://datacite.org/schema/kernel-4}creatorName': This element is not expected. Expected is ( {http://datacite.org/schema/kernel-4}affiliation ).")
 #     end
 
 #     it 'empty funding references' do
-#       input = "#{fixture_path}funding_reference.xml"
-#       subject = described_class.new(input: input, regenerate: false)
+#       text = "#{fixture_path}funding_reference.xml"
+#       subject = described_class.new(text: input, regenerate: false)
 #       expect(subject.valid?).to be false
 #       expect(subject.funding_references).to eq([{ 'funderName' => 'Agency for Science, Technology and Research (Singapore)' }])
 #       expect(subject.errors.first).to eq("31:0: ERROR: Element '{http://datacite.org/schema/kernel-4}fundingReference': Missing child element(s). Expected is one of ( {http://datacite.org/schema/kernel-4}funderName, {http://datacite.org/schema/kernel-4}funderIdentifier, {http://datacite.org/schema/kernel-4}awardNumber, {http://datacite.org/schema/kernel-4}awardTitle ).")
 #     end
 
 #     it 'space in sizes' do
-#       input = "#{fixture_path}datacite-space-in-sizes.xml"
-#       subject = described_class.new(input: input, regenerate: false)
+#       text = "#{fixture_path}datacite-space-in-sizes.xml"
+#       subject = described_class.new(text: input, regenerate: false)
 #       expect(subject.valid?).to be true
 #       expect(subject.sizes.empty?).to be(true)
 #       expect(subject.related_identifiers).to eq([{ 'relatedIdentifier' => '10.1016/s0040-1951(03)00197-5',
@@ -1577,15 +1577,15 @@ def test_is_identical():
 #     end
 
 #     it 'formats with xs' do
-#       input = "#{fixture_path}datacite-formats-with-xs.xml"
-#       subject = described_class.new(input: input, regenerate: false)
+#       text = "#{fixture_path}datacite-formats-with-xs.xml"
+#       subject = described_class.new(text: input, regenerate: false)
 #       expect(subject.valid?).to be true
 #       expect(subject.formats).to eq(['PDF'])
 #     end
 
 #     it 'dissertation' do
-#       input = '10.3204/desy-2014-01645'
-#       subject = described_class.new(input: input)
+#       text = '10.3204/desy-2014-01645'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.3204/desy-2014-01645')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
@@ -1606,8 +1606,8 @@ def test_is_identical():
 #     end
 
 #     it 'funding references' do
-#       input = '10.26102/2310-6018/2019.24.1.006'
-#       subject = described_class.new(input: input)
+#       text = '10.26102/2310-6018/2019.24.1.006'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Text')
@@ -1631,8 +1631,8 @@ def test_is_identical():
 #     end
 
 #     it 'DOI in with related id system' do
-#       input = 'https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f'
-#       subject = described_class.new(input: input)
+#       text = 'https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f'
+#       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
@@ -1669,9 +1669,9 @@ def test_is_identical():
 
 #   context 'change datacite metadata on input' do
 #     it 'change doi' do
-#       input = "#{fixture_path}datacite.xml"
+#       text = "#{fixture_path}datacite.xml"
 #       doi = '10.5061/dryad.8515'
-#       subject = described_class.new(input: input, doi: doi)
+#       subject = described_class.new(text: input, doi: doi)
 #       expect(subject.valid?).to be true
 #       expect(subject.pid).to eq('https://doi.org/10.5061/dryad.8515')
 #       expect(subject.pidentifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
@@ -1688,10 +1688,10 @@ def test_is_identical():
 #   end
 
 #   it 'GTEx dataset' do
-#     input = "#{fixture_path}gtex.xml"
+#     text = "#{fixture_path}gtex.xml"
 #     url = 'https://ors.datacite.org/doi:/10.25491/9hx8-ke93'
 #     content_url = 'https://storage.googleapis.com/gtex_analysis_v7/single_tissue_eqtl_data/GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz'
-#     subject = described_class.new(input: input, from: 'datacite', url: url,
+#     subject = described_class.new(text: input, from: 'datacite', url: url,
 #                                   content_url: content_url)
 
 #     expect(subject.valid?).to be true
@@ -1723,8 +1723,8 @@ def test_is_identical():
 #   end
 
 #   it 'geo_location_polygon' do
-#     input = "#{fixture_path}datacite-example-polygon-v4.1.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-example-polygon-v4.1.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.pid).to eq('https://doi.org/10.5072/example-polygon')
 #     expect(subject.types['schemaOrg']).to eq('Dataset')
 #     expect(subject.types['resourceType']).to eq('Dataset')
@@ -1746,8 +1746,8 @@ def test_is_identical():
 #   end
 
 #   it 'Schema 4.4 from string' do
-#     input = "#{fixture_path}datacite-example-full-v4.4.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-example-full-v4.4.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
 #     expect(subject.types['schemaOrg']).to eq('SoftwareSourceCode')
 #     expect(subject.types['resourceType']).to eq('XML')
@@ -1835,8 +1835,8 @@ def test_is_identical():
 #   end
 
 #   it 'Schema 4.4 related items from string' do
-#     input = "#{fixture_path}datacite-example-relateditems.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-example-relateditems.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
 
 #     expect(subject.related_items.last).to eq(
@@ -1880,13 +1880,13 @@ def test_is_identical():
 #   end
 
 #   it 'Schema 4.4 related items from string minus relatedIdentifier' do
-#     input = "#{fixture_path}datacite-example-relateditems.xml"
+#     text = "#{fixture_path}datacite-example-relateditems.xml"
 
 #     # Remove relatedItemIdentifier from raw input
 #     @doc = File.open(input) { |f| Nokogiri::XML(f) }
 #     @doc.xpath('//xmlns:relatedItemIdentifier').each(&:remove)
 
-#     subject = described_class.new(input: @doc.to_s)
+#     subject = described_class.new(text: @doc.to_s)
 #     expect(subject.valid?).to be true
 
 #     expect(subject.related_items.last).to eq(
@@ -1922,8 +1922,8 @@ def test_is_identical():
 #   end
 
 #   it 'Schema 4.4 dissertation from string' do
-#     input = "#{fixture_path}datacite-example-dissertation-v4.4.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-example-dissertation-v4.4.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
 #     expect(subject.types['resourceType'].nil?).to be(true)
 #     expect(subject.types['resourceTypeGeneral']).to eq('Dissertation')
@@ -2008,8 +2008,8 @@ def test_is_identical():
 #   end
 
 #   it 'Parsing xs-string attribute correctly' do
-#     input = "#{fixture_path}datacite-example-xs-string.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-example-xs-string.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
 #     expect(subject.pid).to eq('https://doi.org/10.4225/13/511c71f8612c3')
 #     expect(subject.sizes.first).to eq('1.7 GB')
@@ -2017,8 +2017,8 @@ def test_is_identical():
 #   end
 
 #   it 'Parsing multiple geolocationpolygon elements' do
-#     input = "#{fixture_path}datacite-geolocationpolygons-multiple.xml"
-#     subject = described_class.new(input: input)
+#     text = "#{fixture_path}datacite-geolocationpolygons-multiple.xml"
+#     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
 #     expect(subject.pid).to eq('https://doi.org/10.5072/multiplegeopolygons')
 #     expect(subject.geo_locations).to eq([

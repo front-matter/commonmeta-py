@@ -59,8 +59,8 @@ def test_doi_for_blog_post():
 
 def test_blog_post():
     "blog post"
-    input = "https://upstream.force11.org/welcome-to-upstream/"
-    subject = Metadata(input, via="schema_org")
+    text = "https://upstream.force11.org/welcome-to-upstream/"
+    subject = Metadata(text, via="schema_org")
     assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types.get("bibtex") == "article"
     bibtex = subject.bibtex()
@@ -86,8 +86,8 @@ def test_blog_post():
 
 def test_article_with_pages():
     "article with pages"
-    input = "https://doi.org/10.1371/journal.ppat.1008184"
-    subject = Metadata(input)
+    text = "https://doi.org/10.1371/journal.ppat.1008184"
+    subject = Metadata(text)
     assert subject.pid == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.types.get("bibtex") == "article"
 
@@ -116,8 +116,8 @@ def test_article_with_pages():
 
 def test_article_dlib_magazine():
     "article dlib magazine"
-    input = "https://doi.org/10.1045/january2017-burton"
-    subject = Metadata(input)
+    text = "https://doi.org/10.1045/january2017-burton"
+    subject = Metadata(text)
     assert subject.pid == "https://doi.org/10.1045/january2017-burton"
     assert subject.types.get("bibtex") == "article"
 
