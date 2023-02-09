@@ -115,7 +115,8 @@ def test_doi_with_data_citation():
     assert citeproc.get("volume") == "3"
     assert citeproc.get("page") is None
     assert citeproc.get("language") == "en"
-    assert citeproc.get("copyright") == "Creative Commons Attribution 3.0 Unported"
+    assert citeproc.get(
+        "copyright") == "Creative Commons Attribution 3.0 Unported"
 
 
 #     it 'software' do
@@ -167,7 +168,8 @@ def test_with_pages():
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
     assert citeproc.get("DOI") == "10.1155/2012/291294"
-    assert citeproc.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert citeproc.get(
+        "URL") == "http://www.hindawi.com/journals/pm/2012/291294"
     assert (
         citeproc.get("title")
         == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
@@ -187,7 +189,8 @@ def test_with_pages():
     assert citeproc.get("volume") == "2012"
     assert citeproc.get("page") == "1-7"
     assert citeproc.get("language") == "en"
-    assert citeproc.get("copyright") == "Creative Commons Attribution 3.0 Unported"
+    assert citeproc.get(
+        "copyright") == "Creative Commons Attribution 3.0 Unported"
 
 
 def test_only_first_page():
@@ -199,8 +202,10 @@ def test_only_first_page():
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
     assert citeproc.get("DOI") == "10.1371/journal.pone.0214986"
-    assert citeproc.get("URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
-    assert citeproc.get("title") == "River metrics by the public, for the public"
+    assert citeproc.get(
+        "URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
+    assert citeproc.get(
+        "title") == "River metrics by the public, for the public"
     assert citeproc.get("author") == [
         {"family": "Weber", "given": "Matthew A."},
         {"family": "Ringold", "given": "Paul L."},
@@ -238,7 +243,8 @@ def test_missing_creator():
     assert citeproc.get("volume") == "6"
     assert citeproc.get("page") == "15"
     assert citeproc.get("language") == "en"
-    assert citeproc.get("copyright") == "Creative Commons Attribution 4.0 International"
+    assert citeproc.get(
+        "copyright") == "Creative Commons Attribution 4.0 International"
 
 
 #     it 'container title' do
