@@ -1,5 +1,5 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1cebb9b4147144a2a221e512729e2576)](https://www.codacy.com/gh/front-matter/talbot/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=front-matter/talbot&amp;utm_campaign=Badge_Grade)
-[https://img.shields.io/github/license/front-matter/talbot.svg](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
+![GitHub](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
 
 # Talbot
 
