@@ -3,9 +3,9 @@ name: Codacy Coverage Reporter
 on: ["push"]
 
 jobs:
-  codacy-coverage-reporter:
+  continuous-integration:
     runs-on: ubuntu-latest
-    name: codacy-coverage-reporter
+    name: CI
     steps:
       - uses: actions/checkout@v2
       - name: Setup Python
