@@ -198,16 +198,16 @@ def get_affiliations(affiliations):
             if affiliation.get("affiliationIdentifier", None) is not None:
                 affiliation_identifier = affiliation["affiliationIdentifier"]
                 if affiliation.get("schemeURI", None) is not None:
-                    schemeURI = (
+                    scheme_uri = (
                         affiliation["schemeURI"]
                         if affiliation["schemeURI"].endswith("/")
                         else "{affiliation['schemeURI']}/"
                     )
                 affiliation_identifier = (
-                    normalize_id(schemeURI + affiliation_identifier)
+                    normalize_id(scheme_uri + affiliation_identifier)
                     if (
                         not affiliation_identifier.startswith("https://")
-                        and schemeURI is not None
+                        and scheme_uri is not None
                     )
                     else normalize_id(affiliation_identifier)
                 )
