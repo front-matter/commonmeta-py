@@ -9,7 +9,7 @@ import dateparser
 from pydash import py_
 
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
-from .constants import SO_TO_DC_TRANSLATIONS
+from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -637,11 +637,11 @@ def camel_case(text):
     """Convert text to camel case"""
     if text is None:
         return None
-    s = text.replace("-", " ").replace("_", " ")
-    s = s.split()
+    string = text.replace("-", " ").replace("_", " ")
+    string = string.split()
     if len(text) == 0:
         return text
-    return s[0] + "".join(i.capitalize() for i in s[1:])
+    return string[0] + "".join(i.capitalize() for i in string[1:])
 
 
 def from_schema_org(element):
@@ -679,7 +679,7 @@ def from_schema_org_creators(element):
 
         if elem.get("@id", None) is not None:
             # elem['@id'] = normalize_orcid(elem.get('@id'))
-            identifier_scheme = "ORCID"
+            # identifier_scheme = "ORCID"
             scheme_uri = "https://orcid.org/"
         elem["nameIdentifier"] = [
             {
