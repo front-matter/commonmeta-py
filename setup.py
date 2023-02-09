@@ -3,13 +3,13 @@ import re
 from setuptools import setup
 from setuptools import find_packages
 
-version = ""
+VERSION = ""
 with open("talbot/__init__.py", "r") as fd:
-    version = re.search(
+    VERSION = re.search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
     ).group(1)
 
-if not version:
+if not VERSION:
     raise RuntimeError("Cannot find version information")
 
 with codecs.open("README.md", "r", "utf-8") as f:
@@ -22,7 +22,7 @@ long_description = "\n\n" + readme + "\n\n" + changes
 
 setup(
     name="talbot",
-    version=version,
+    version=VERSION,
     description="Library for conversions of scholarly metadata",
     long_description=long_description,
     author="Martin Fenner",
