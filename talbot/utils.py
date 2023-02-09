@@ -3,9 +3,9 @@ import os
 import html
 import json
 import re
-import bleach
 from urllib.parse import urlparse
 import dateparser
+import bleach
 from pydash import py_
 
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi

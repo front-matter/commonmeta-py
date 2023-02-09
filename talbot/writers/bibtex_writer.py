@@ -11,23 +11,32 @@ def write_bibtex(metadata):
     container = metadata.container or {}
     db = BibDatabase()
     db.entries = [
-        compact({'ID': metadata.pid,
-                 'ENTRYTYPE': 'article',
-                 'abstract': metadata.descriptions[0].get('description', None) if metadata.descriptions else None,
-                 'author': authors_as_string(metadata.creators),
-                 'copyright': str(metadata.rights_list[0].get('rightsURI', None)) if metadata.rights_list else None,
-                 'doi': doi_from_url(metadata.pid),
-                 'issn': metadata.issn,
-                 'issue': container.get('issue', None),
-                 'journal': container.get('title', None),
-                 'language': metadata.language,
-                 'month': get_month_from_date(metadata.dates[0].get('date', None)),
-                 'pages': pages_as_string(container),
-                 'title': metadata.titles[0].get('title', None),
-                 'url': metadata.url,
-                 'urldate': get_date(metadata.dates, date_only=True),
-                 'year': metadata.publication_year})]
+        compact(
+            {
+                "ID": metadata.pid,
+                "ENTRYTYPE": "article",
+                "abstract": metadata.descriptions[0].get("description", None)
+                if metadata.descriptions
+                else None,
+                "author": authors_as_string(metadata.creators),
+                "copyright": str(metadata.rights_list[0].get("rightsURI", None))
+                if metadata.rights_list
+                else None,
+                "doi": doi_from_url(metadata.pid),
+                "issn": metadata.issn,
+                "issue": container.get("issue", None),
+                "journal": container.get("title", None),
+                "language": metadata.language,
+                "month": get_month_from_date(metadata.dates[0].get("date", None)),
+                "pages": pages_as_string(container),
+                "title": metadata.titles[0].get("title", None),
+                "url": metadata.url,
+                "urldate": get_date(metadata.dates, date_only=True),
+                "year": metadata.publication_year,
+            }
+        )
+    ]
     writer = BibTexWriter()
-    writer.indent = '    '
+    writer.indent = "    "
     bibtex_str = writer.write(db)
     return bibtex_str

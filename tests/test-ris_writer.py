@@ -1,54 +1,63 @@
 import pytest
 from talbot import Metadata
 
+
 @pytest.mark.vcr
 def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
     assert subject.pid == "https://doi.org/10.7554/elife.01567"
-    assert subject.types.get('ris') == 'JOUR'
+    assert subject.types.get("ris") == "JOUR"
 
     ris = subject.ris().split("\r\n")
-    assert ris[0] == 'TY  - JOUR'
-    assert ris[1] == 'T1  - Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth'
-    assert ris[2] == 'T2  - eLife'
-    assert ris[3] == 'AU  - Sankar, Martial'
-    assert ris[8] == 'DO  - 10.7554/elife.01567'
-    assert ris[9] == 'UR  - https://elifesciences.org/articles/01567'
-    assert ris[10].startswith('AB  - Among various advantages')
-    assert ris[11] == 'KW  - General Immunology and Microbiology'
-    assert ris[12] == 'KW  - General Biochemistry, Genetics and Molecular Biology'
-    assert ris[13] == 'KW  - General Medicine'
-    assert ris[14] == 'KW  - General Neuroscience'
-    assert ris[15] == 'PY  - 2014'
-    assert ris[16] == 'PB  - eLife Sciences Publications, Ltd'
-    assert ris[17] == 'LA  - en'
-    assert ris[18] == 'VL  - 3'
-    assert ris[19] == 'ER  - '
+    assert ris[0] == "TY  - JOUR"
+    assert (
+        ris[1]
+        == "T1  - Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
+    assert ris[2] == "T2  - eLife"
+    assert ris[3] == "AU  - Sankar, Martial"
+    assert ris[8] == "DO  - 10.7554/elife.01567"
+    assert ris[9] == "UR  - https://elifesciences.org/articles/01567"
+    assert ris[10].startswith("AB  - Among various advantages")
+    assert ris[11] == "KW  - General Immunology and Microbiology"
+    assert ris[12] == "KW  - General Biochemistry, Genetics and Molecular Biology"
+    assert ris[13] == "KW  - General Medicine"
+    assert ris[14] == "KW  - General Neuroscience"
+    assert ris[15] == "PY  - 2014"
+    assert ris[16] == "PB  - eLife Sciences Publications, Ltd"
+    assert ris[17] == "LA  - en"
+    assert ris[18] == "VL  - 3"
+    assert ris[19] == "ER  - "
+
 
 def test_with_pages():
     "with pages"
     subject = Metadata("https://doi.org/10.1155/2012/291294")
     assert subject.pid == "https://doi.org/10.1155/2012/291294"
-    assert subject.types.get('ris') == 'JOUR'
+    assert subject.types.get("ris") == "JOUR"
 
     ris = subject.ris().split("\r\n")
-    assert ris[0] == 'TY  - JOUR'
-    assert ris[1] == 'T1  - Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers'
-    assert ris[2] == 'T2  - Pulmonary Medicine'
-    assert ris[3] == 'AU  - Thanassi, Wendy'
-    assert ris[10] == 'DO  - 10.1155/2012/291294'
-    assert ris[11] == 'UR  - http://www.hindawi.com/journals/pm/2012/291294'
-    assert ris[12].startswith('AB  - Objective. To find a statistically significant')
-    assert ris[13] == 'KW  - Pulmonary and Respiratory Medicine'
-    assert ris[14] == 'KW  - General Medicine'
-    assert ris[15] == 'PY  - 2012'
-    assert ris[16] == 'PB  - Hindawi Limited'
-    assert ris[17] == 'LA  - en'
-    assert ris[18] == 'VL  - 2012'
-    assert ris[19] == 'SP  - 1'
-    assert ris[20] == 'EP  - 7'
-    assert ris[21] == 'ER  - '
+    assert ris[0] == "TY  - JOUR"
+    assert (
+        ris[1]
+        == "T1  - Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
+    )
+    assert ris[2] == "T2  - Pulmonary Medicine"
+    assert ris[3] == "AU  - Thanassi, Wendy"
+    assert ris[10] == "DO  - 10.1155/2012/291294"
+    assert ris[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294"
+    assert ris[12].startswith("AB  - Objective. To find a statistically significant")
+    assert ris[13] == "KW  - Pulmonary and Respiratory Medicine"
+    assert ris[14] == "KW  - General Medicine"
+    assert ris[15] == "PY  - 2012"
+    assert ris[16] == "PB  - Hindawi Limited"
+    assert ris[17] == "LA  - en"
+    assert ris[18] == "VL  - 2012"
+    assert ris[19] == "SP  - 1"
+    assert ris[20] == "EP  - 7"
+    assert ris[21] == "ER  - "
+
 
 #     it 'alternate name' do
 #       input = 'https://doi.org/10.3205/ZMA001102'

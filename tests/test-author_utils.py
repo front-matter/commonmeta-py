@@ -222,8 +222,7 @@ def test_authors_as_string():
         },
         {"nameType": "Organization", "name": "University of California, Santa Barbara"},
     ]
-    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(
-        authors[0:2])
+    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(authors[0:2])
     # single author
     assert "Jones, Matt" == authors_as_string(authors[0])
     # no authors

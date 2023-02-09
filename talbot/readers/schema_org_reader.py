@@ -172,6 +172,8 @@ def read_schema_org(string=None, **kwargs):
         return {"meta": None, "state": "not_found"}
     meta = string
 
+    read_options = kwargs or {}
+
     pid = meta.get("@id", None)
     types = None
 
@@ -391,7 +393,7 @@ def read_schema_org(string=None, **kwargs):
             meta.get("provider", None), content="name", first=True
         ),
         "geo_locations": presence(geo_locations),
-    }
+    } | read_options
 
 
 def schema_org_related_identifier(meta, relation_type=None):

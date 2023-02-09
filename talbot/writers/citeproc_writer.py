@@ -14,9 +14,6 @@ from ..utils import (
 from ..doi_utils import doi_from_url
 
 
-"""Write citeproc"""
-
-
 def write_citeproc(metadata):
     """Write citeproc"""
     if (

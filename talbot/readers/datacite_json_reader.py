@@ -35,6 +35,8 @@ def read_datacite_json(string=None, **kwargs):
         return {"meta": None, "state": "not_found"}
     meta = string
 
+    read_options = kwargs or {}
+
     pid = doi_as_url(meta.get("doi", None))
     resource_type_general = py_.get(meta, "types.resourceTypeGeneral", None)
     resource_type = py_.get(meta, "types.resourceType", None)
@@ -86,4 +88,4 @@ def read_datacite_json(string=None, **kwargs):
         "language": meta.get("language", None),
         "version_info": meta.get("version", None),
         "agency": "DataCite",  # get_doi_ra(id)
-    }
+    } | read_options
