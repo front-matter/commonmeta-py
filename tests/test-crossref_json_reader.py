@@ -1,3 +1,4 @@
+"""Crossref JSON reader tests"""
 import pytest
 from talbot import Metadata
 

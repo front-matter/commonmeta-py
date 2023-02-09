@@ -1,3 +1,4 @@
+"""Citeproc writer tests"""
 import pytest
 import json
 from talbot import Metadata
