@@ -1,5 +1,5 @@
+"""Test utils module"""
 import pytest
-from talbot import utils
 from talbot.utils import (
     parse_attributes,
     get_date_from_date_parts,
@@ -22,7 +22,6 @@ from talbot.utils import (
     from_schema_org,
     from_schema_org_creators,
     pages_as_string,
-    from_schema_org_contributors,
 )
 
 

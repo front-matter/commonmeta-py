@@ -1,3 +1,4 @@
+"""Test author utils"""
 import pytest
 from talbot.author_utils import (
     cleanup_author,
