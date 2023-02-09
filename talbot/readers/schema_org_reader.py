@@ -142,7 +142,7 @@ def get_schema_org(pid=None, **kwargs):
         if length == 1:
             author = {"@type": "Organization", "name": str(au["content"])}
         else:
-            given_name = " ".join(str(au["content"]).split(" ")[0 : length - 1])
+            given_name = " ".join(str(au["content"]).split(" ")[0: length - 1])
             author = {
                 "@type": "Person",
                 "name": str(au["content"]),
@@ -184,7 +184,8 @@ def read_schema_org(string=None, **kwargs):
     pid = normalize_id(pid)
 
     schema_org = (
-        camel_case(meta.get("@type")) if meta.get("@type", None) else "CreativeWork"
+        camel_case(meta.get("@type")) if meta.get("@type",
+                                                  None) else "CreativeWork"
     )
     resource_type_general = SO_TO_DC_TRANSLATIONS.get(schema_org, None)
     types = compact(
@@ -206,7 +207,8 @@ def read_schema_org(string=None, **kwargs):
         creators = authors
 
     contributors = presence(
-        get_authors(from_schema_org_contributors(wrap(meta.get("editor", None))))
+        get_authors(from_schema_org_contributors(
+            wrap(meta.get("editor", None))))
     )
 
     if meta.get("name", None) is not None:
@@ -230,12 +232,14 @@ def read_schema_org(string=None, **kwargs):
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_)
-        rights_list = [dict_to_spdx({"rightsURI": license_})] if license_ else None
+        rights_list = [dict_to_spdx(
+            {"rightsURI": license_})] if license_ else None
     else:
         rights_list = None
 
     issn = py_.get(meta, "isPartOf.issn", None)
-    ct = "includedInDataCatalog" if schema_org in ["Dataset", "Periodical"] else None
+    ct = "includedInDataCatalog" if schema_org in [
+        "Dataset", "Periodical"] else None
     if ct is not None:
         url = parse_attributes(
             from_schema_org(meta.get(ct, None)), content="url", first=True
