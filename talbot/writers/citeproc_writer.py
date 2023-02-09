@@ -1,12 +1,8 @@
 """Citeproc writer for Talbot"""
 import json
-from citeproc import (Citation, CitationItem, CitationStylesBibliography,
-                      CitationStylesStyle, formatter)
-from citeproc.source.json import CiteProcJSON
-from citeproc_styles import get_style_filepath
 
 from ..utils import (compact, pages_as_string, get_date, get_date_parts, wrap,
-     to_citeproc, get_date, parse_attributes,
+     to_citeproc, parse_attributes,
      presence)
 from ..doi_utils import doi_from_url
 
@@ -19,12 +15,12 @@ def write_citeproc(metadata):
         author = to_citeproc(metadata.creators)
 
     if metadata.types.get('resourceTypeGeneral', None) == 'Software' and metadata.version_info is not None:
-        type = 'book'
+        type_ = 'book'
     else:
-        type = metadata.types.get('citeproc', 'article')
+        type_ = metadata.types.get('citeproc', 'article')
 
     dictionary = compact({
-      'type': type,
+      'type': type_,
       'id': metadata.pid,
       'DOI': doi_from_url(metadata.pid),
       'URL': metadata.url,
