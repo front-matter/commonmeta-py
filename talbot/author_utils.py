@@ -151,7 +151,7 @@ def cleanup_author(author):
         return None
 
     # detect pattern "Smith J.", but not "Smith, John K."
-    if not "," in author:
+    if "," not in author:
         author = re.sub(r"/([A-Z]\.)?(-?[A-Z]\.)$/", ", \1\2", author)
 
     # remove spaces around hyphens
