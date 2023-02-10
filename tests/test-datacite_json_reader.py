@@ -863,6 +863,8 @@ def test_geolocation_box():
         'subject': 'FOS: Environmental engineering'}, {'subject': 'FOS: Environmental engineering', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'}]
     assert subject.geo_locations == [{'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}, 'geoLocationPlace': 'Providence Creek (Lower, Upper and P301)', 'geoLocationPoint': {
         'pointLatitude': '37.047756', 'pointLongitude': '-119.221094'}}, {'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}}]
+    assert subject.funding_references == [{'funderName': 'National Science Foundation', 'awardNumber': '1331939', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}, {
+        'funderName': 'National Science Foundation', 'awardNumber': '0725097', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}]
     assert subject.agency == 'DataCite'
 
 
