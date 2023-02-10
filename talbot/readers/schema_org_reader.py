@@ -177,7 +177,6 @@ def read_schema_org(string=None, **kwargs):
     types = None
 
     # if id.blank? && URI(meta.fetch('@id', '')).host == 'doi.org'
-    pid = meta.get("@id", None)
     if pid is None:
         pid = meta.get("identifier", None)
     pid = normalize_id(pid)
@@ -341,37 +340,7 @@ def read_schema_org(string=None, **kwargs):
     else:
         language = None
 
-    geo_locations = py_.map(
-        wrap(meta.get("spatialCoverage", None)),
-        lambda gl: compact(  # noqa: E501
-            {
-                "geoLocationPlace": py_.get(gl, "geo.address", None),
-                "geoLocationPoint": {
-                    "pointLongitude": py_.get(gl, "geo.longitude", None),
-                    "pointLatitude": py_.get(gl, "geo.latitude", None),
-                }
-                if py_.get(gl, "geo.longitude", None) is not None
-                and py_.get(gl, "geo.latitude", None) is not None
-                else None,  # noqa: E501
-                "geoLocationBox": {
-                    "westBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[1]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "eastBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[3]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "southBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[0]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "northBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[2]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                }
-                if py_.get(gl, "geo.box", None) is not None
-                else None,  # noqa: E501
-            }
-        ),
-    )
+    geo_locations = schema_org_geolocations(meta)
 
     return {
         "pid": pid,
@@ -458,3 +427,39 @@ def schema_org_is_supplement_to(meta):
 def schema_org_is_supplemented_by(meta):
     """isSupplementedBy is a special case because it can be a string or an object."""
     schema_org_related_identifier(meta, relation_type="isBasedOn")
+
+
+def schema_org_geolocations(meta):
+    """Geolocations in Schema.org format"""
+    if meta.get("spatialCoverage", None) is None:
+        return None
+
+    py_.map(
+        wrap(meta.get("spatialCoverage", None)),
+        lambda gl: compact(  # noqa: E501
+            {
+                "geoLocationPlace": py_.get(gl, "geo.address", None),
+                "geoLocationPoint": {
+                    "pointLongitude": py_.get(gl, "geo.longitude", None),
+                    "pointLatitude": py_.get(gl, "geo.latitude", None),
+                }
+                if py_.get(gl, "geo.longitude", None) is not None
+                and py_.get(gl, "geo.latitude", None) is not None
+                else None,  # noqa: E501
+                "geoLocationBox": {
+                    "westBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[1]
+                    if py_.get(gl, "geo.box", None) is not None
+                    else None,  # noqa: E501
+                    "eastBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[3]
+                    if py_.get(gl, "geo.box", None) is not None
+                    else None,  # noqa: E501
+                    "southBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[0]
+                    if py_.get(gl, "geo.box", None) is not None
+                    else None,  # noqa: E501
+                    "northBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[2]
+                    if py_.get(gl, "geo.box", None) is not None
+                    else None,  # noqa: E501
+                }
+                if py_.get(gl, "geo.box", None) is not None
+                else None,  # noqa: E501
+            }))

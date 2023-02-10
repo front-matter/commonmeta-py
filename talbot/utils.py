@@ -393,6 +393,8 @@ def to_schema_org_contributors(element):
 
 def to_schema_org_container(element, **kwargs):
     """Convert CSL container to Schema.org container"""
+    if element is None:
+        return None
     if isinstance(element, dict) or (
         element is None and kwargs.get("container_title", None)
     ):
@@ -437,18 +439,18 @@ def to_schema_org_relation(related_identifiers=None, relation_type=None):
     )
 
     formatted_identifiers = []
-    for r in related_identifiers:
-        if r["relatedIdentifierType"] == "ISSN" and r["relationType"] == "IsPartOf":
+    for rel in related_identifiers:
+        if rel["relatedIdentifierType"] == "ISSN" and rel["relationType"] == "IsPartOf":
             formatted_identifiers.append(
-                compact({"@type": "Periodical", "issn": r["relatedIdentifier"]})
+                compact({"@type": "Periodical", "issn": rel["relatedIdentifier"]})
             )
         else:
             formatted_identifiers.append(
                 compact(
                     {
-                        "@id": normalize_id(r["relatedIdentifier"]),
+                        "@id": normalize_id(rel["relatedIdentifier"]),
                         "@type": DC_TO_SO_TRANSLATIONS.get(
-                            r["resourceTypeGeneral"], "CreativeWork"
+                            rel["resourceTypeGeneral"], "CreativeWork"
                         ),
                     }
                 )
@@ -777,15 +779,15 @@ def sanitize(text, **kwargs):
         # remove excessive internal whitespace
         return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
         # return re.sub(r'\\s\\s+', ' ', string)
-    elif isinstance(text, dict):
+    if isinstance(text, dict):
         return sanitize(text.get(content, None))
-    elif isinstance(text, list):
+    if isinstance(text, list):
         if len(text) == 0:
             return None
 
         lst = []
-        for e in text:
+        for elem in text:
             lst.append(
-                sanitize(e.get(content, None)) if isinstance(e, dict) else sanitize(e)
+                sanitize(elem.get(content, None)) if isinstance(elem, dict) else sanitize(elem)
             )  # uniq
         return lst[0] if first else unwrap(lst)
