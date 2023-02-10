@@ -403,9 +403,7 @@ def to_schema_org_container(element, **kwargs):
     """Convert CSL container to Schema.org container"""
     if element is None:
         return None
-    if isinstance(element, dict) or (
-        element is None and kwargs.get("container_title", None)
-    ):
+    if isinstance(element, dict) or kwargs.get("container_title", None) is None:
         return None
 
     return compact(
