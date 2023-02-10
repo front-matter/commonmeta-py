@@ -837,37 +837,34 @@ def test_is_identical():
 #                                         'subjectScheme' => 'DDC' }])
 #     end
 
-#     it 'geo_location_box' do
-#       text = "#{fixture_path}datacite-example-geolocation-2.xml"
-#       doi = '10.6071/Z7WC73'
-#       subject = described_class.new(text: input, doi: doi)
-#       expect(subject.valid?).to be true
-#       expect(subject.pid).to eq('https://doi.org/10.6071/z7wc73')
-#       expect(subject.doi).to eq('10.6071/z7wc73')
-#       expect(subject.creators.length).to eq(6)
-#       expect(subject.creators.first).to eq('familyName' => 'Bales', 'givenName' => 'Roger',
-#                                            'name' => 'Bales, Roger', 'nameType' => 'Personal', 'affiliation' => [{ 'name' => 'UC Merced' }, { 'name' => 'NSF' }])
-#       expect(subject.titles).to eq([{ 'title' => 'Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature' }])
-#       expect(subject.publisher).to eq('UC Merced')
-#       expect(subject.dates).to eq([{ 'date' => '2014-10-17', 'dateType' => 'Updated' },
-#                                    { 'date' => '2016-03-14T17:02:02Z', 'dateType' => 'Available' }, { 'date' => '2013', 'dateType' => 'Issued' }])
-#       expect(subject.publication_year).to eq('2013')
-#       expect(subject.subjects).to eq([{ 'subject' => 'earth sciences' },
-#                                       { 'subject' => 'soil moisture' },
-#                                       { 'subject' => 'soil temperature' },
-#                                       { 'subject' => 'snow depth' },
-#                                       { 'subject' => 'air temperature' },
-#                                       { 'subject' => 'water balance' },
-#                                       { 'subject' => 'nevada, sierra (mountain range)' }])
-#       expect(subject.geo_locations).to eq([{ 'geoLocationBox' =>
-#         { 'eastBoundLongitude' => '-119.182',
-#           'northBoundLatitude' => '37.075',
-#           'southBoundLatitude' => '37.046',
-#           'westBoundLongitude' => '-119.211' },
-#                                              'geoLocationPlace' => 'Providence Creek (Lower, Upper and P301)',
-#                                              'geoLocationPoint' => { 'pointLatitude' => '37.047756',
-#                                                                      'pointLongitude' => '-119.221094' } }])
-#     end
+
+def test_geolocation_box():
+    """geolocation_box"""
+    text = "10.6071/z7wc73"
+    subject = Metadata(text, via="datacite_json")
+    assert subject.pid == "https://doi.org/10.6071/z7wc73"
+    # assert subject.doi == "10.6071/z7wc73"
+    assert subject.types.get('schemaOrg') == 'Dataset'
+    assert len(subject.creators) == 6
+    assert subject.creators[0] == {
+        'familyName': 'Bales',
+        'givenName': 'Roger',
+        'name': 'Roger Bales',
+        'nameType': 'Personal',
+        'affiliation': [{'name': 'University of California, Merced'}]
+    }
+    assert subject.titles == [
+        {'title': 'Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature'}]
+    assert subject.publisher == 'Dryad'
+    assert subject.dates == [{'date': '2014-10-17', 'dateType': 'Updated'},
+                             {'date': '2016-03-14T17:02:02Z', 'dateType': 'Available'}, {'date': '2016', 'dateType': 'Issued'}]
+    assert subject.publication_year == 2016
+    assert subject.subjects == [{'subject': 'air temperature'}, {'subject': 'Earth sciences'}, {'subject': 'Nevada, Sierra (mountain range)'}, {'subject': 'snow depth'}, {'subject': 'soil temperature'}, {'subject': 'water balance'}, {
+        'subject': 'FOS: Environmental engineering'}, {'subject': 'FOS: Environmental engineering', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'}]
+    assert subject.geo_locations == [{'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}, 'geoLocationPlace': 'Providence Creek (Lower, Upper and P301)', 'geoLocationPoint': {
+        'pointLatitude': '37.047756', 'pointLongitude': '-119.221094'}}, {'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}}]
+    assert subject.agency == 'DataCite'
+
 
 #     it 'author only full name' do
 #       text = 'https://doi.org/10.14457/KMITL.RES.2006.17'
@@ -2056,3 +2053,15 @@ def test_is_identical():
 #                                         ])
 #   end
 # end
+
+
+def test_geolocation():
+    """geolocation"""
+    text = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
+    subject = Metadata(text, via="datacite_json")
+    assert subject.pid
+    assert subject.types.get('schemaOrg') == 'Dataset'
+    assert subject.titles[0] == {
+        'title': 'Land cover ground reference data in São Paulo state, Brazil, taken in 2015'}
+    assert subject.geo_locations == [{'geoLocationPlace': 'Mogi Guaçu (municipality)', 'geoLocationPoint': {
+        'pointLatitude': '-22.3680', 'pointLongitude': '-46.9460'}}]

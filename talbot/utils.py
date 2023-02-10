@@ -67,6 +67,7 @@ UNKNOWN_INFORMATION = {
 HTTP_SCHEME = "http://"
 HTTPS_SCHEME = "https://"
 
+
 def wrap(item):
     """Turn None, dict, or list into list"""
     if item is None:
@@ -141,7 +142,7 @@ def normalize_id(pid, **kwargs):
     if not uri.netloc or uri.scheme not in ["http", "https"]:
         return None
     if uri.scheme == "http":
-        pid = pid.replace(HTTP_SCHEME,HTTPS_SCHEME)
+        pid = pid.replace(HTTP_SCHEME, HTTPS_SCHEME)
 
     # make pid lowercase and remove trailing slash
     pid = pid.lower()
@@ -157,7 +158,8 @@ def normalize_ids(ids=None, relation_type=None):
     for idx in wrap(ids):
         if idx.get("@id", None) is not None:
             idn = normalize_id(idx["@id"])
-            related_identifier_type = "DOI" if doi_from_url(idn) is not None else "URL"
+            related_identifier_type = "DOI" if doi_from_url(
+                idn) is not None else "URL"
             idn = doi_from_url(idn) or idn
             type_ = (
                 idx.get("@type")
@@ -185,7 +187,7 @@ def crossref_api_url(doi):
 def datacite_api_url(doi, **kwargs):
     """Return the DataCite API URL for a given DOI"""
     match = re.match(
-        r"\A(?:(http|https):/(/)?(handle\.stage\.datacite\.org))", doi, re.IGNORECASE
+        r"\A(?:(http|https):/(/)?handle\.stage\.datacite\.org)", doi, re.IGNORECASE
     )
     if match is not None or kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
@@ -237,7 +239,8 @@ def validate_orcid(orcid):
 def dict_to_spdx(dict):
     """Convert a dict to SPDX"""
     dict.update({"rightsURI": normalize_cc_url(dict.get("rightsURI", None))})
-    file_path = os.path.join(os.path.dirname(__file__), "resources/spdx/licenses.json")
+    file_path = os.path.join(os.path.dirname(
+        __file__), "resources/spdx/licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
@@ -309,7 +312,8 @@ def to_citeproc(element):
         el["family"] = elem.get("familyName", None)
         el["given"] = elem.get("givenName", None)
         el["literal"] = (
-            elem.get("name", None) if elem.get("familyName", None) is None else None
+            elem.get("name", None) if elem.get(
+                "familyName", None) is None else None
         )
         formatted_element.append(compact(el))
     return formatted_element
@@ -353,7 +357,8 @@ def to_schema_org_creators(element):
 
         #   { '@type': 'Organization', '@id': affiliation_identifier, 'name': name }.compact
         # end.unwrap
-        el["@type"] = elem["nameType"][0:-3] if elem.get("nameType", None) else None
+        el["@type"] = elem["nameType"][0:-
+                                       3] if elem.get("nameType", None) else None
         # el['@id']= vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
         el["name"] = (
             " ".join([elem["givenName"], elem["familyName"]])
@@ -381,7 +386,8 @@ def to_schema_org_contributors(element):
 
         #   { '@type': 'Organization', '@id': affiliation_identifier, 'name': name }.compact
         # end.unwrap
-        el["@type"] = elem["nameType"][0:-3] if elem.get("nameType", None) else None
+        el["@type"] = elem["nameType"][0:-
+                                       3] if elem.get("nameType", None) else None
         # el['@id']=# vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
         el["name"] = (
             " ".join([elem["givenName"], elem["familyName"]])
@@ -437,14 +443,16 @@ def to_schema_org_relation(related_identifiers=None, relation_type=None):
         relation_type = [relation_type]
 
     related_identifiers = py_.filter(
-        wrap(related_identifiers), lambda ri: ri["relationType"] in relation_type
+        wrap(
+            related_identifiers), lambda ri: ri["relationType"] in relation_type
     )
 
     formatted_identifiers = []
     for rel in related_identifiers:
         if rel["relatedIdentifierType"] == "ISSN" and rel["relationType"] == "IsPartOf":
             formatted_identifiers.append(
-                compact({"@type": "Periodical", "issn": rel["relatedIdentifier"]})
+                compact({"@type": "Periodical",
+                        "issn": rel["relatedIdentifier"]})
             )
         else:
             formatted_identifiers.append(
@@ -790,6 +798,27 @@ def sanitize(text, **kwargs):
         lst = []
         for elem in text:
             lst.append(
-                sanitize(elem.get(content, None)) if isinstance(elem, dict) else sanitize(elem)
+                sanitize(elem.get(content, None)) if isinstance(
+                    elem, dict) else sanitize(elem)
             )  # uniq
         return lst[0] if first else unwrap(lst)
+
+
+def get_geolocation_point(geo_location):
+    """Get geolocation point"""
+    if geo_location is None or not isinstance(geo_location, dict):
+        return None
+    return {'geoLocationPoint': {"pointLongitude": py_.get(geo_location, "geo.longitude", None),
+                                 "pointLatitude": py_.get(geo_location, "geo.latitude", None)}}
+
+
+def get_geolocation_box(geo_location):
+    """Get geolocation box"""
+    if geo_location is None or not isinstance(geo_location, dict):
+        return None
+    return compact({"boxLongitude": py_.get(geo_location, "geo.longitude", None),
+                    "boxLatitude": py_.get(geo_location, "geo.latitude", None),
+                    "boxNorthBoundLatitude": py_.get(geo_location, "geo.north", None),
+                    "boxSouthBoundLatitude": py_.get(geo_location, "geo.south", None),
+                    "boxEastBoundLongitude": py_.get(geo_location, "geo.east", None),
+                    "boxWestBoundLongitude": py_.get(geo_location, "geo.west", None)})

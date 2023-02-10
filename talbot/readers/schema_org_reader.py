@@ -20,6 +20,8 @@ from ..utils import (
     normalize_ids,
     normalize_url,
     name_to_fos,
+    get_geolocation_point,
+    get_geolocation_box,
 )
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
@@ -433,33 +435,14 @@ def schema_org_geolocations(meta):
     """Geolocations in Schema.org format"""
     if meta.get("spatialCoverage", None) is None:
         return None
-
-    py_.map(
-        wrap(meta.get("spatialCoverage", None)),
-        lambda gl: compact(  # noqa: E501
-            {
-                "geoLocationPlace": py_.get(gl, "geo.address", None),
-                "geoLocationPoint": {
-                    "pointLongitude": py_.get(gl, "geo.longitude", None),
-                    "pointLatitude": py_.get(gl, "geo.latitude", None),
-                }
-                if py_.get(gl, "geo.longitude", None) is not None
-                and py_.get(gl, "geo.latitude", None) is not None
-                else None,  # noqa: E501
-                "geoLocationBox": {
-                    "westBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[1]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "eastBoundLongitude": py_.get(gl, "geo.box", None).split(" ", 4)[3]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "southBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[0]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                    "northBoundLatitude": py_.get(gl, "geo.box", None).split(" ", 4)[2]
-                    if py_.get(gl, "geo.box", None) is not None
-                    else None,  # noqa: E501
-                }
-                if py_.get(gl, "geo.box", None) is not None
-                else None,  # noqa: E501
-            }))
+    geo_locations = []
+    for geo_location in wrap(meta.get("spatialCoverage", None)):
+        formatted_geo_location = {}
+        geo_location_place = {'geoLocationPlace': py_.get(geo_location, "geo.address", None)}
+        geo_location_point = get_geolocation_point(geo_location)
+        geo_location_box = get_geolocation_box(geo_location)
+        for location in [geo_location_place, geo_location_point, geo_location_box]:
+            for key, val in location.items():
+                formatted_geo_location.setdefault(key, []).append(val)
+        geo_locations.append(geo_location_point)
+    return geo_locations

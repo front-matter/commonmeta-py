@@ -87,5 +87,6 @@ def read_datacite_json(string=None, **kwargs):
         "subjects": presence(meta.get("subjects", None)),
         "language": meta.get("language", None),
         "version_info": meta.get("version", None),
+        "geo_locations": wrap(meta.get("geoLocations", None)),
         "agency": "DataCite",  # get_doi_ra(id)
     } | read_options

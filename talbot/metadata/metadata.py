@@ -5,7 +5,7 @@ from ..readers import (
     get_datacite_json,
     read_datacite_json,
     get_schema_org,
-    read_schema_org,
+    read_schema_org
 )
 from ..writers import (
     write_bibtex,
