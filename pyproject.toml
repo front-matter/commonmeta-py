@@ -20,6 +20,8 @@ dateparser = "^1.1.7"
 codecov = "^2.1"
 vcrpy = "^4.2"
 PyYAML = "^6.0"
+pydash = "^6.0"
+beautifulsoup4 = "^4.11"
 bleach = "^6.0"
 simplejson = "^3.18"
 bibtexparser = "^1.4"
@@ -32,3 +34,19 @@ lxml = "^4.9"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list =
+        py39
+
+    [testenv]
+    deps = 
+        pytest
+        pytest-cov
+    commands = pytest --cov=talbot --cov-report=xml
+
+    [coverage:run]
+"""
