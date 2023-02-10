@@ -46,7 +46,7 @@ legacy_tox_ini = """
     deps = 
         pytest
         pytest-cov
-    commands = pytest --cov=talbot --cov-report xml:coverage-reports/coverage.xml
+    commands = pytest --cov=talbot --cov-report=xml
 
     [coverage:run]
 """
