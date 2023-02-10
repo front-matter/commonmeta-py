@@ -16,7 +16,7 @@ from ..writers import (
 )
 from ..utils import normalize_id
 
-
+# pylint: disable=R0902
 class Metadata:
     """Metadata"""
 
