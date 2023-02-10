@@ -9,8 +9,8 @@ from ..utils import (
     to_schema_org_contributors,
     to_schema_org_relation,
     parse_attributes,
-    get_date,
 )
+from ..date_utils import get_date_by_type
 
 
 def write_schema_org(metadata):
@@ -49,10 +49,10 @@ def write_schema_org(metadata):
                 )
             ),
             "inLanguage": metadata.language,
-            "dateCreated": get_date(metadata.dates, "Created"),
-            "datePublished": get_date(metadata.dates, "Issued")
+            "dateCreated": get_date_by_type(metadata.dates, "Created"),
+            "datePublished": get_date_by_type(metadata.dates, "Issued")
             or metadata.publication_year,
-            "dateModified": get_date(metadata.dates, "Updated"),
+            "dateModified": get_date_by_type(metadata.dates, "Updated"),
             "pageStart": container.get("firstPage", None),
             "pageEnd": container.get("lastPage", None),
             "isPartOf": to_schema_org_relation(

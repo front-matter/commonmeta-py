@@ -1,8 +1,9 @@
 """Bibtex writer for Talbot"""
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
-from ..utils import compact, pages_as_string, get_month_from_date, get_date
+from ..utils import compact, pages_as_string
 from ..author_utils import authors_as_string
+from ..date_utils import get_month_from_date, get_date_by_type
 from ..doi_utils import doi_from_url
 
 
@@ -31,7 +32,7 @@ def write_bibtex(metadata):
                 "pages": pages_as_string(container),
                 "title": metadata.titles[0].get("title", None),
                 "url": metadata.url,
-                "urldate": get_date(metadata.dates, date_only=True),
+                "urldate": get_date_by_type(metadata.dates, date_only=True),
                 "year": metadata.publication_year,
             }
         )

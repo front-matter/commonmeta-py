@@ -1,11 +1,7 @@
-"""Test utils module"""
+"""Test utils"""
 import pytest
 from talbot.utils import (
     parse_attributes,
-    get_date_from_date_parts,
-    get_date_from_parts,
-    get_date_parts,
-    get_iso8601_date,
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
@@ -23,6 +19,8 @@ from talbot.utils import (
     from_schema_org,
     from_schema_org_creators,
     pages_as_string,
+    to_citeproc,
+    to_ris
 )
 
 
@@ -34,57 +32,21 @@ def test_parse_attributes():
     assert "10.5061/DRYAD.8515" == parse_attributes(
         {"__content__": "10.5061/DRYAD.8515"}
     )
-    # list
+    # dict with other keys
     assert "10.5061/DRYAD.8515" == parse_attributes(
-        [{"__content__": "10.5061/DRYAD.8515"}]
+        {"name": "10.5061/DRYAD.8515"}, content="name")
+    # list of dicts
+    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(
+        [{"__content__": "10.5061/DRYAD.8515"}, {"__content__": "10.5061/DRYAD.8516"}]
     )
-
-    # it 'array of strings' do
-    #   element = %w[datacite doi metadata featured]
-    #   response = subject.parse_attributes(element)
-    #   expect(response).to eq(%w[datacite doi metadata featured])
-    # end
-
+    # first in list of dicts
+    assert '10.5061/DRYAD.8515' == parse_attributes(
+        [{"__content__": "10.5061/DRYAD.8515"}, {"__content__": "10.5061/DRYAD.8516"}], first=True)
+    # list of strings
+    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"])
     # None
     assert None is parse_attributes(None)
-    # kwargs['first]
-    # assert '10.5061/DRYAD.8515' == parse_attributes([ { '__content__': '10.5061/DRYAD.8515' }, '__content__': '10.5061/DRYAD.8516' } ], first=True)
 
-
-def test_get_iso8601_date():
-    """get_iso8601_date"""
-    assert "2012-01-01" == get_iso8601_date("2012-01-01")
-    assert "2012-01-01" == get_iso8601_date("2012-01-01T00:00:00Z")
-    assert "2012-01-01" == get_iso8601_date("2012-01-01T00:00:00+00:00")
-    assert "2012-01-01" == get_iso8601_date("2012-01-01T09:12:45+06:00")
-    assert "2012-05-12" == get_iso8601_date("May 12, 2012")
-    assert "2012-01-03" == get_iso8601_date("3. Januar 2012")
-    assert None is get_iso8601_date(None)
-
-def test_get_date_from_date_parts():
-    "get_date_from_date_parts"
-    assert "2012-01-01" == get_date_from_date_parts({"date-parts": [[2012, 1, 1]]})
-    assert "2012-01" == get_date_from_date_parts({"date-parts": [[2012, 1]]})
-    assert "2012" == get_date_from_date_parts({"date-parts": [[2012]]})
-    assert None is get_date_from_date_parts({"date-parts": []})
-    assert None is get_date_from_date_parts({})
-    assert None is get_date_from_date_parts(None)
-
-
-def test_get_date_from_parts():
-    "get_date_from_parts"
-    assert "2012-01-01" == get_date_from_parts(2012, 1, 1)
-    assert "2012-01" == get_date_from_parts(2012, 1)
-    assert "2012" == get_date_from_parts(2012)
-    assert None is get_date_from_parts()
-
-
-def test_get_date_parts():
-    "get_date_parts"
-    assert {"date-parts": [[2012, 1, 1]]} == get_date_parts("2012-01-01")
-    assert {"date-parts": [[2012, 1]]} == get_date_parts("2012-01")
-    assert {"date-parts": [[2012]]} == get_date_parts("2012")
-    assert {"date-parts": [[]]} == get_date_parts(None)
 
 
 def test_wrap():
@@ -197,6 +159,8 @@ def test_normalize_orcid():
     assert "https://orcid.org/0000-0002-2590-225X" == normalize_orcid(
         "0000-0002-2590-225X"
     )
+    # None
+    assert None is normalize_orcid(None)
 
 
 def test_normalize_id():
@@ -210,12 +174,20 @@ def test_normalize_id():
     assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
         "https://blog.datacite.org/eating-your-own-dog-food/"
     )
+    # http url
+    assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
+        "http://blog.datacite.org/eating-your-own-dog-food/"
+    )
     # url with utf-8
     # assert 'http://www.xn--8ws00zhy3a.com/eating-your-own-dog-food' == normalize_id('http://www.詹姆斯.com/eating-your-own-dog-food/')
     # ftp
     assert None is normalize_id("ftp://blog.datacite.org/eating-your-own-dog-food/")
     # invalid url
     assert None is normalize_id("http://")
+    # bytes object
+    assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
+        b"https://blog.datacite.org/eating-your-own-dog-food/"
+    )
     # string
     assert None is normalize_id("eating-your-own-dog-food")
     # filename
@@ -230,6 +202,8 @@ def test_normalize_id():
         "https://handle.stage.datacite.org/10.20375/0000-0001-ddb8-7"
         == normalize_id("10.20375/0000-0001-ddb8-7", sandbox=True)
     )
+    # None
+    assert None is normalize_id(None)
 
 
 def test_normalize_ids():
@@ -294,6 +268,32 @@ def test_from_citeproc():
                         "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
                     }
                 ],
+            }
+        ]
+    )
+    assert [
+        {
+            "@type": "Organization",
+            "name": "University of Lausanne",
+        }
+    ] == from_citeproc(
+        [
+            {
+                "literal": "University of Lausanne",
+                "sequence": "first",
+            }
+        ]
+    )
+    assert [
+        {
+            "@type": "Organization",
+            "name": "University of Lausanne",
+        }
+    ] == from_citeproc(
+        [
+            {
+                "name": "University of Lausanne",
+                "sequence": "first",
             }
         ]
     )
@@ -485,3 +485,43 @@ def test_datacite_api_url():
         response
         == "https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client"
     )
+
+
+def test_to_citeproc():
+    """to citeproc"""
+    authors = [
+        {
+            "ORCID": "http://orcid.org/0000-0003-0077-4738",
+            "givenName": "Matt",
+            "familyName": "Jones",
+        }
+    ]
+    organization_authors = [
+        {
+            "name": "University of California, Berkeley"
+        }
+
+    ]
+    assert [{'family': 'Jones', 'given': 'Matt'}] == to_citeproc(authors)
+    assert [{'literal': 'University of California, Berkeley'}] == to_citeproc(organization_authors)
+    assert [] == to_citeproc(None)
+
+
+def test_to_ris():
+    """to ris"""
+    authors = [
+        {
+            "ORCID": "http://orcid.org/0000-0003-0077-4738",
+            "givenName": "Matt",
+            "familyName": "Jones",
+        }
+    ]
+    organization_authors = [
+        {
+            "name": "University of California, Berkeley"
+        }
+
+    ]
+    assert ['Jones, Matt'] == to_ris(authors)
+    assert ['University of California, Berkeley'] == to_ris(organization_authors)
+    assert [] == to_ris(None)

@@ -1,4 +1,4 @@
-"""Doi utils module for Talbot."""
+"""Doi utils for Talbot"""
 import re
 import requests
 

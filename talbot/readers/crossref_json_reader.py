@@ -5,7 +5,6 @@ from pydash import py_
 
 from ..utils import (
     crossref_api_url,
-    get_date_from_date_parts,
     dict_to_spdx,
     normalize_cc_url,
     wrap,
@@ -16,6 +15,7 @@ from ..utils import (
     normalize_url,
 )
 from ..author_utils import get_authors
+from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_as_url, get_doi_ra
 from ..constants import (
     CR_TO_BIB_TRANSLATIONS,

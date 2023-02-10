@@ -5,7 +5,6 @@ from pydash import py_
 from bs4 import BeautifulSoup
 
 from ..utils import (
-    get_iso8601_date,
     dict_to_spdx,
     normalize_cc_url,
     wrap,
@@ -21,9 +20,9 @@ from ..utils import (
     normalize_ids,
     normalize_url,
     name_to_fos,
-    strip_milliseconds,
 )
 from ..author_utils import get_authors
+from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..constants import (
     SO_TO_BIB_TRANSLATIONS,
     SO_TO_CP_TRANSLATIONS,

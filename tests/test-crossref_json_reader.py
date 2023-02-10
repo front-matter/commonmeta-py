@@ -1075,7 +1075,7 @@ def test_book_chapter():
         "ris": "CHAP",
         "schemaOrg": "Chapter",
     }
-    assert subject.url == "http://link.springer.com/10.1007/978-3-662-46370-3_13"
+    assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
     assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
         "nameType": "Personal",

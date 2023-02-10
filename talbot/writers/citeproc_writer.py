@@ -4,13 +4,12 @@ import json
 from ..utils import (
     compact,
     pages_as_string,
-    get_date,
-    get_date_parts,
     wrap,
     to_citeproc,
     parse_attributes,
     presence,
 )
+from ..date_utils import get_date_by_type, get_date_parts
 from ..doi_utils import doi_from_url
 
 
@@ -47,9 +46,9 @@ def write_citeproc(metadata):
             "author": author,
             "contributor": to_citeproc(metadata.contributors),
             "issued": get_date_parts(
-                get_date(metadata.dates, "Issued") or str(metadata.publication_year)
+                get_date_by_type(metadata.dates, "Issued") or str(metadata.publication_year)
             ),
-            "submitted": get_date(metadata.dates, "Submitted"),
+            "submitted": get_date_by_type(metadata.dates, "Submitted"),
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
