@@ -64,6 +64,8 @@ UNKNOWN_INFORMATION = {
     ":etal": "too numerous to list (et alia)",
 }
 
+HTTP_SCHEME = "http://"
+HTTPS_SCHEME = "https://"
 
 def wrap(item):
     """Turn None, dict, or list into list"""
@@ -138,8 +140,8 @@ def normalize_id(pid, **kwargs):
     uri = urlparse(pid)
     if not uri.netloc or uri.scheme not in ["http", "https"]:
         return None
-    if pid.startswith("http://"):
-        pid = pid.replace("http://", "https://")
+    if uri.scheme == "http":
+        pid = pid.replace(HTTP_SCHEME,HTTPS_SCHEME)
 
     # make pid lowercase and remove trailing slash
     pid = pid.lower()
@@ -197,8 +199,8 @@ def normalize_url(url, secure=False):
         return None
     if url.endswith("/"):
         url = url.strip("/")
-    if secure is True and url.startswith("http://"):
-        url = url.replace("http://", "https://")
+    if secure is True and url.startswith(HTTP_SCHEME):
+        url = url.replace(HTTP_SCHEME, HTTPS_SCHEME)
     return url.lower()
 
 
