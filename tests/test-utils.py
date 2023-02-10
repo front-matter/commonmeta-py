@@ -19,6 +19,7 @@ from talbot.utils import (
     from_schema_org,
     from_schema_org_creators,
     pages_as_string,
+    subjects_as_string,
     to_citeproc,
     to_ris
 )
@@ -416,11 +417,24 @@ def test_pages_as_string():
     assert None is pages_as_string(None)
 
 
+def test_subjects_as_string():
+    """subjects as string"""
+    subjects = [
+        {"subject": "Ecology", "scheme": "http://id.loc.gov/authorities/subjects"},
+        {"subject": "Biodiversity", "scheme": "http://id.loc.gov/authorities/subjects"}
+    ]
+    assert "Ecology, Biodiversity" == subjects_as_string(subjects)
+    assert None is subjects_as_string(None)
+
 def test_sanitize():
     """Sanitize HTML"""
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = "In 1998 <strong>Tim Berners-Lee</strong> coined the term cool URIs"
     assert content == sanitize(text)
+    assert content == sanitize({'__content__': text})
+    assert content == sanitize([{'__content__': text}])
+    assert content == sanitize([{'name': text}], content='name')
+    assert None is sanitize([], content='name')
 
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
