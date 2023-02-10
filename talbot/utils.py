@@ -82,11 +82,11 @@ MONTH_NAMES = {
 
 
 def get_iso8601_date(date):
-    """Get ISO 8601 date"""
+    """Get ISO 8601 date without time"""
     if date is None:
         return None
     if isinstance(date, str):
-        return dateparser.parse(date).isoformat()
+        return dateparser.parse(date).strftime("%Y-%m-%d")
 
     return None
 
@@ -309,7 +309,7 @@ def validate_orcid(orcid):
     )
     if match is None:
         return None
-    orcid = re.sub(" ", "-", match.group(1))
+    orcid = match.group(1).replace(" ", "-")
     return orcid
 
 
@@ -317,7 +317,7 @@ def dict_to_spdx(dict):
     """Convert a dict to SPDX"""
     dict.update({"rightsURI": normalize_cc_url(dict.get("rightsURI", None))})
     file_path = os.path.join(os.path.dirname(__file__), "resources/spdx/licenses.json")
-    with open(file_path) as json_file:
+    with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
         (

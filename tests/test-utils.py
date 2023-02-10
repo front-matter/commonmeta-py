@@ -5,6 +5,7 @@ from talbot.utils import (
     get_date_from_date_parts,
     get_date_from_parts,
     get_date_parts,
+    get_iso8601_date,
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
@@ -49,6 +50,16 @@ def test_parse_attributes():
     # kwargs['first]
     # assert '10.5061/DRYAD.8515' == parse_attributes([ { '__content__': '10.5061/DRYAD.8515' }, '__content__': '10.5061/DRYAD.8516' } ], first=True)
 
+
+def test_get_iso8601_date():
+    """get_iso8601_date"""
+    assert "2012-01-01" == get_iso8601_date("2012-01-01")
+    assert "2012-01-01" == get_iso8601_date("2012-01-01T00:00:00Z")
+    assert "2012-01-01" == get_iso8601_date("2012-01-01T00:00:00+00:00")
+    assert "2012-01-01" == get_iso8601_date("2012-01-01T09:12:45+06:00")
+    assert "2012-05-12" == get_iso8601_date("May 12, 2012")
+    assert "2012-01-03" == get_iso8601_date("3. Januar 2012")
+    assert None is get_iso8601_date(None)
 
 def test_get_date_from_date_parts():
     "get_date_from_date_parts"
