@@ -20,16 +20,19 @@ MONTH_NAMES = {
 }
 
 
+ISO8601_DATE_FORMAT = "%Y-%m-%d"
+
+
 def get_iso8601_date(date):
     """Get ISO 8601 date without time"""
     if date is None:
         return None
     if isinstance(date, datetime.datetime) or isinstance(date, datetime.date):
-        return date.strftime("%Y-%m-%d")
+        return date.strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, str):
-        return dateparser.parse(date).strftime("%Y-%m-%d")
+        return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
-        return datetime.datetime.fromtimestamp(date).strftime("%Y-%m-%d")
+        return datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
     else:
         return None
 
@@ -92,11 +95,11 @@ def get_month_from_date(date):
     if not isinstance(date, (str, int, datetime.datetime, datetime.date)):
         return None
     if isinstance(date, str):
-        date = dateparser.parse(date).strftime("%Y-%m-%d")
+        date = dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
-        date = datetime.datetime.fromtimestamp(date).strftime("%Y-%m-%d")
+        date = datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, (datetime.datetime, datetime.date)):
-        date = date.strftime("%Y-%m-%d")
+        date = date.strftime(ISO8601_DATE_FORMAT)
     date = date.split("-")
     return MONTH_NAMES.get(date[1], None) if len(date) > 1 else None
 
