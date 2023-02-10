@@ -21,7 +21,7 @@ jobs:
       - name: Run tox
         run: tox -e py
       - name: Override Coverage Source Path for Sonar
-        run: sed -i "s/<source>\/home\/runner\/work\/talbot<\/source>/<source>\/github\/workspace<\/source>/g" /home/runner/work/talbot/coverage.xml
+        run: sed -i 's/\/home\/runner\/work\/talbot\/talbot\//\/github\/workspace\//g' coverage.xml
       - uses: actions/upload-artifact@v3
         with:
           name: coverage-report
