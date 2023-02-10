@@ -1084,16 +1084,17 @@ def test_book_chapter():
         "familyName": "Diercks",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights_list == [{'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
-        {"date": "2015-04-13", "dateType": "Updated"},
+        {'date': '2023-02-10', 'dateType': 'Updated'},
     ]
     assert subject.publication_year == "2015"
-    assert subject.date_registered == "2015-04-13"
+    assert subject.date_registered == "2015-04-14"
     assert subject.publisher == "Springer Berlin Heidelberg"
     assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    assert len(subject.related_identifiers) == 16
+    assert subject.related_identifiers[0] == {'relatedIdentifier': '10.1007/s00256-012-1391-8', 'relatedIdentifierType': 'DOI', 'relationType': 'References'}
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Shoulder Stiffness",
