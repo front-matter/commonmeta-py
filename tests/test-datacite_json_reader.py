@@ -865,6 +865,7 @@ def test_geolocation_box():
         'pointLatitude': '37.047756', 'pointLongitude': '-119.221094'}}, {'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}}]
     assert subject.funding_references == [{'funderName': 'National Science Foundation', 'awardNumber': '1331939', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}, {
         'funderName': 'National Science Foundation', 'awardNumber': '0725097', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}]
+    assert subject.sizes == ['2214669067 bytes']
     assert subject.agency == 'DataCite'
 
 

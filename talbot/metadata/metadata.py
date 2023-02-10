@@ -55,6 +55,8 @@ class Metadata:
         self.subjects = meta.get("subjects")
         self.language = meta.get("language")
         self.version_info = meta.get("version_info")
+        self.sizes = meta.get("sizes")
+        self.formats = meta.get("formats")
         self.geo_locations = meta.get("geo_locations")
         self.agency = meta.get("agency")
 
