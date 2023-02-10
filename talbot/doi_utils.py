@@ -56,7 +56,7 @@ def doi_resolver(doi, **kwargs):
     if doi is None:
         return None
     match = re.match(
-        r"\A(?:(http|https):/(/)?(handle\.stage\.datacite\.org))", doi, re.IGNORECASE
+        r"\A(http|https):/(/)?handle\.stage\.datacite\.org", doi, re.IGNORECASE
     )
     if match is not None or kwargs.get("sandbox", False):
         return "https://handle.stage.datacite.org/"
