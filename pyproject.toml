@@ -49,4 +49,7 @@ legacy_tox_ini = """
     commands = pytest --cov=talbot --cov-report=xml
 
     [coverage:run]
+    relative_files = True
+    source = talbot/
+    branch = True
 """
