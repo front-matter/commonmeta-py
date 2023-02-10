@@ -22,10 +22,6 @@ jobs:
         run: tox -e py
       - name: Override Coverage Source Path for Sonar
         run: sed -i 's/\/home\/runner\/work\/talbot\/talbot\//\/github\/workspace\//g' coverage.xml
-      - uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage.xml
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
