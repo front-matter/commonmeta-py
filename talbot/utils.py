@@ -3,6 +3,7 @@ import os
 import html
 import json
 import re
+from typing import Optional, Union
 from urllib.parse import urlparse
 import bleach
 from pydash import py_
@@ -77,23 +78,23 @@ def wrap(item):
     return [item]
 
 
-def unwrap(list):
+def unwrap(lst: list) -> Optional[Union[dict, list]]:
     """Turn list into dict or None, depending on list size"""
-    if len(list) == 0:
+    if len(lst) == 0:
         return None
-    if len(list) == 1:
-        return list[0]
-    return list
+    if len(lst) == 1:
+        return lst[0]
+    return lst
 
 
-def presence(item):
+def presence(item: Optional[Union[dict, list, str]]) -> Optional[Union[dict, list, str]]:
     """Turn empty list, dict or str into None"""
     return None if item is None or len(item) == 0 else item
 
 
 def compact(dict_or_list):
     """Remove None from dict or list"""
-    if type(dict_or_list) in [None, str]:
+    if dict_or_list is None:
         return dict_or_list
     if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
@@ -123,7 +124,7 @@ def parse_attributes(element, **kwargs):
         return arr
 
 
-def normalize_id(pid, **kwargs):
+def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     """Check for valid DOI or HTTP(S) URL"""
     if pid is None:
         return None
@@ -179,12 +180,12 @@ def normalize_ids(ids=None, relation_type=None):
     return formatted_ids
 
 
-def crossref_api_url(doi):
+def crossref_api_url(doi: str):
     """Return the Crossref API URL for a given DOI"""
     return "https://api.crossref.org/works/" + doi
 
 
-def datacite_api_url(doi, **kwargs):
+def datacite_api_url(doi: str, **kwargs) -> str:
     """Return the DataCite API URL for a given DOI"""
     match = re.match(
         r"\A(?:(http|https):/(/)?handle\.stage\.datacite\.org)", doi, re.IGNORECASE
@@ -195,7 +196,7 @@ def datacite_api_url(doi, **kwargs):
         return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
 
 
-def normalize_url(url, secure=False):
+def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
     """Normalize URL"""
     if url is None:
         return None
@@ -206,7 +207,7 @@ def normalize_url(url, secure=False):
     return url.lower()
 
 
-def normalize_cc_url(url):
+def normalize_cc_url(url: Optional[str]):
     """Normalize Creative Commons URL"""
     if url is None:
         return None
@@ -214,7 +215,7 @@ def normalize_cc_url(url):
     return NORMALIZED_LICENSES.get(url, url)
 
 
-def normalize_orcid(orcid):
+def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     """Normalize ORCID"""
     orcid = validate_orcid(orcid)
     if orcid is None:
@@ -222,7 +223,7 @@ def normalize_orcid(orcid):
     return "https://orcid.org/" + orcid
 
 
-def validate_orcid(orcid):
+def validate_orcid(orcid: Optional[str]) -> Optional[str]:
     """Validate ORCID"""
     if orcid is None:
         return None
@@ -236,9 +237,9 @@ def validate_orcid(orcid):
     return orcid
 
 
-def dict_to_spdx(dict):
+def dict_to_spdx(dct: dict):
     """Convert a dict to SPDX"""
-    dict.update({"rightsURI": normalize_cc_url(dict.get("rightsURI", None))})
+    dct.update({"rightsURI": normalize_cc_url(dct.get("rightsURI", None))})
     file_path = os.path.join(os.path.dirname(
         __file__), "resources/spdx/licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
@@ -247,13 +248,13 @@ def dict_to_spdx(dict):
         (
             l
             for l in spdx
-            if l["licenseId"].lower() == dict.get("rightsIdentifier", None)
-            or l["seeAlso"][0] == dict.get("rightsURI", None)
+            if l["licenseId"].lower() == dct.get("rightsIdentifier", None)
+            or l["seeAlso"][0] == dct.get("rightsURI", None)
         ),
         None,
     )
     if license_ is None:
-        return dict
+        return dct
     #   license = spdx.find do |l|
     #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsURI']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
     #   end
@@ -264,7 +265,7 @@ def dict_to_spdx(dict):
             "rightsIdentifier": license_["licenseId"].lower(),
             "rightsIdentifierScheme": "SPDX",
             "schemeUri": "https://spdx.org/licenses/",
-            "lang": dict.get("lang", None),
+            "lang": dct.get("lang", None),
         }
     )
 
@@ -281,54 +282,54 @@ def dict_to_spdx(dict):
     # end
 
 
-def from_citeproc(element):
+def from_citeproc(element: Optional[Union[dict,list]]) -> list:
     """Convert a citeproc element to CSL"""
     formatted_element = []
     for elem in wrap(element):
-        el = {}
+        ele = {}
         if elem.get("literal", None) is not None:
-            el["@type"] = "Organization"
-            el["name"] = elem["literal"]
+            ele["@type"] = "Organization"
+            ele["name"] = elem["literal"]
         elif elem.get("name", None) is not None:
-            el["@type"] = "Organization"
-            el["name"] = elem.get("name")
+            ele["@type"] = "Organization"
+            ele["name"] = elem.get("name")
         else:
-            el["@type"] = "Person"
-            el["name"] = " ".join(
-                compact([elem.get("given", None), elem.get("family", None)])
+            ele["@type"] = "Person"
+            ele["name"] = " ".join(
+                [elem.get("given", None), elem.get("family", None)]
             )
-        el["givenName"] = elem.get("given", None)
-        el["familyName"] = elem.get("family", None)
-        el["affiliation"] = elem.get("affiliation", None)
-        formatted_element.append(compact(el))
+        ele["givenName"] = elem.get("given", None)
+        ele["familyName"] = elem.get("family", None)
+        ele["affiliation"] = elem.get("affiliation", None)
+        formatted_element.append(compact(ele))
     return formatted_element
 
 
-def to_citeproc(element):
+def to_citeproc(element: Optional[Union[dict,list]]) -> list:
     """Convert a CSL element to citeproc"""
     formatted_element = []
     for elem in wrap(element):
-        el = {}
-        el["family"] = elem.get("familyName", None)
-        el["given"] = elem.get("givenName", None)
-        el["literal"] = (
+        ele = {}
+        ele["family"] = elem.get("familyName", None)
+        ele["given"] = elem.get("givenName", None)
+        ele["literal"] = (
             elem.get("name", None) if elem.get(
                 "familyName", None) is None else None
         )
-        formatted_element.append(compact(el))
+        formatted_element.append(compact(ele))
     return formatted_element
 
 
-def to_ris(element):
+def to_ris(element: Optional[Union[dict,list]]) -> list:
     """Convert a CSL element to RIS"""
     formatted_element = []
     for elem in wrap(element):
-        el = {}
+        ele = ''
         if elem.get("familyName", None) is not None:
-            el = ", ".join([elem["familyName"], elem.get("givenName", None)])
+            ele = ", ".join([elem["familyName"], elem.get("givenName", None)])
         else:
-            el = elem.get('name', None)
-        formatted_element.append(compact(el))
+            ele = elem.get('name', None)
+        formatted_element.append(ele)
     return formatted_element
 
 
@@ -417,7 +418,7 @@ def to_schema_org_container(element, **kwargs):
     )
 
 
-def to_schema_org_identifiers(element, **kwargs):
+def to_schema_org_identifiers(element):
     """Convert CSL identifiers to Schema.org identifiers"""
     formatted_element = []
     for elem in wrap(element):
@@ -689,7 +690,7 @@ def from_schema_org_contributors(element):
     return formatted_element
 
 
-def pages_as_string(container, page_range_separator="-"):
+def pages_as_string(container: Optional[dict], page_range_separator="-") -> Optional[str]:
     """Parse pages for BibTeX"""
     if container is None:
         return None
@@ -699,7 +700,7 @@ def pages_as_string(container, page_range_separator="-"):
         return container.get("firstPage", None)
 
     return page_range_separator.join(
-        compact([container.get("firstPage"), container.get("lastPage", None)])
+        [container.get("firstPage"), container.get("lastPage", None)]
     )
 
 

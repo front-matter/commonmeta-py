@@ -26,6 +26,7 @@ def test_get_date_from_date_parts():
     assert "2012-01" == get_date_from_date_parts({"date-parts": [[2012, 1]]})
     assert "2012" == get_date_from_date_parts({"date-parts": [[2012]]})
     assert None is get_date_from_date_parts({"date-parts": []})
+    assert None is get_date_from_date_parts({"date-parts": [[None]]})
     assert None is get_date_from_date_parts({})
     assert None is get_date_from_date_parts(None)
 

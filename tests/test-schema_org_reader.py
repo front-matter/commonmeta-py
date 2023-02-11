@@ -37,9 +37,8 @@ def test_blog_posting():
     ]
     assert subject.publication_year == "2016"
     assert subject.publisher == "Front Matter"
-    assert subject.issn == "2749-9952"
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -57,7 +56,7 @@ def test_blog_posting():
     )
     assert subject.subjects == [{"subject": "feature"}]
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency is None
 
 
@@ -99,9 +98,8 @@ def test_zenodo():
     assert subject.dates == [{"date": "2018-03-14", "dateType": "Issued"}]
     assert subject.publication_year == "2018"
     assert subject.publisher == "Zenodo"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -128,7 +126,7 @@ def test_zenodo():
         {"subject": "gsr"},
     ]
     assert subject.language == "eng"
-    assert subject.version_info == "1.0.2"
+    assert subject.version == "1.0.2"
     assert subject.agency is None
 
 
@@ -168,9 +166,8 @@ def test_pangaea():
     assert subject.dates == [{"date": "2014-09-25", "dateType": "Issued"}]
     assert subject.publication_year == "2014"
     assert subject.publisher == "PANGAEA"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -188,7 +185,7 @@ def test_pangaea():
     )
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.geo_locations == [
         {"geoLocationPoint": {"pointLongitude": -50.18037, "pointLatitude": 67.12594}}
     ]
@@ -234,9 +231,8 @@ def test_dataverse():
     ]
     assert subject.publication_year == "2017"
     assert subject.publisher == "Harvard Dataverse"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -255,7 +251,7 @@ def test_dataverse():
         {"subject": "ankylosing spondylitis"},
     ]
     assert subject.language == "en"
-    assert subject.version_info == "1"
+    assert subject.version == "1"
     assert subject.geo_locations is None
     assert subject.agency == "Harvard Dataverse"
 
@@ -293,8 +289,7 @@ def test_yet_another_blog_post():
     ]
     assert subject.publication_year == "2022"
     assert subject.publisher == "John Hawks"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    assert len(subject.related_items) == 0
     assert subject.container == {
         "type": "Blog",
         "title": "John Hawks",
@@ -316,7 +311,7 @@ def test_yet_another_blog_post():
         {"subject": "middle paleolithic"},
     ]
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.geo_locations is None
     assert subject.agency is None
 
@@ -349,8 +344,7 @@ def test_blog_with_dois():
     assert subject.dates == [{"date": "2022-12-09", "dateType": "Issued"}]
     assert subject.publication_year == "2022"
     assert subject.publisher == "Verfassungsblog"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    assert len(subject.related_items) == 0
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
     assert (
         subject.descriptions[0]
@@ -366,7 +360,7 @@ def test_blog_with_dois():
         {"subject": "bundesinnenministerium"},
     ]
     assert subject.language == "de-DE"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.geo_locations is None
     assert subject.agency is None
 
@@ -402,9 +396,8 @@ def test_another_blog_with_dois():
     ]
     assert subject.publication_year == "2022"
     assert subject.publisher == "JSC Accelerating Devices Lab"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -420,7 +413,7 @@ def test_another_blog_with_dois():
     )
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.geo_locations is None
     assert subject.agency is None
 
@@ -464,9 +457,8 @@ def test_with_upstream_blog_post():
     ]
     assert subject.publication_year == "2021"
     assert subject.publisher == "Upstream"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
-    # assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 0
+    # assert subject.related_items[0] == {
     #     'relatedIdentifier': '2749-9952',
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
@@ -486,7 +478,7 @@ def test_with_upstream_blog_post():
     )
     assert subject.subjects == [{"subject": "news"}]
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.geo_locations is None
     assert subject.agency is None
 

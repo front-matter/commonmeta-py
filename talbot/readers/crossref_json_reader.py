@@ -15,7 +15,7 @@ from ..utils import (
     normalize_url,
 )
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_date_parts
+from ..date_utils import get_date_from_date_parts, strip_milliseconds
 from ..doi_utils import doi_as_url, get_doi_ra
 from ..constants import (
     CR_TO_BIB_TRANSLATIONS,
@@ -49,7 +49,8 @@ def read_crossref_json(string=None, **kwargs):
     #                                                                                  :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
-    pid = doi_as_url(meta.get("DOI", None))
+    doi = meta.get("DOI", None)
+    pid = doi_as_url(doi)
     resource_type = meta.get("type", {}).title().replace("-", "")
     types = {
         "resourceTypeGeneral": CR_TO_DC_TRANSLATIONS[resource_type] or "Text",
@@ -77,32 +78,33 @@ def read_crossref_json(string=None, **kwargs):
         titles = []
     publisher = meta.get("publisher", None)
 
-    issued_date = get_date_from_date_parts(meta.get("issued", None))
-    issued_date = None if issued_date == "None" else issued_date
-    created_date = get_date_from_date_parts(meta.get("created", None))
-    deposited_date = get_date_from_date_parts(meta.get("deposited", None))
-    indexed_date = get_date_from_date_parts(meta.get("indexed", None))
-    published_date = issued_date or created_date
-    updated_date = deposited_date or indexed_date
-    dates = [{"date": published_date, "dateType": "Issued"}]
-    if updated_date is not None:
-        dates.append({"date": updated_date, "dateType": "Updated"})
-    publication_year = published_date[0:4] if published_date else None
-    date_registered = get_date_from_date_parts(
-        meta.get("registered", {})
-    ) or get_date_from_date_parts(meta.get("created", None))
+    date_created = py_.get(meta, 'created.date-time', None)
+    date_issued = py_.get(meta, 'issued.date-time',
+                          None) or get_date_from_date_parts(meta.get('issued', None))
+    date_deposited = py_.get(meta, 'deposited.date-time', None)
+    date_indexed = py_.get(meta, 'indexed.date-time', None)
+    date_registered = py_.get(
+        meta, 'registered.date-time', None) or date_created
+    date_published = date_issued or date_created or ':unav'
+    date_updated = date_deposited or date_indexed
+    dates = [{"date": date_published, "dateType": "Issued"}]
+    if date_updated is not None:
+        dates.append({"date": date_updated, "dateType": "Updated"})
+    publication_year = date_published[0:4] if date_published else None
 
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        rights_list = [dict_to_spdx({"rightsURI": license_})] if license_ else None
+        rights_list = [dict_to_spdx(
+            {"rightsURI": license_})] if license_ else None
     else:
         rights_list = None
 
     issns = meta.get("issn-type", None)
     if issns is not None:
         issn = (
-            next((item for item in issns if item["type"] == "electronic"), None)
+            next(
+                (item for item in issns if item["type"] == "electronic"), None)
             or next((item for item in issns if item["type"] == "print"), None)
             or {}
         )
@@ -110,7 +112,7 @@ def read_crossref_json(string=None, **kwargs):
     else:
         issn = None
     if issn is not None:
-        related_identifiers = [
+        related_items = [
             compact(
                 {
                     "relationType": "IsPartOf",
@@ -121,17 +123,17 @@ def read_crossref_json(string=None, **kwargs):
             )
         ]
     else:
-        related_identifiers = []
+        related_items = []
     for reference in wrap(meta.get("reference", [])):
-        doi = reference.get("DOI", None)
-        if doi is None:
+        doi_ = reference.get("DOI", None)
+        if doi_ is None:
             continue  # skip references without a DOI
         ref = {
             "relationType": "References",
             "relatedIdentifierType": "DOI",
-            "relatedIdentifier": doi.lower(),
+            "relatedIdentifier": doi_.lower(),
         }
-        related_identifiers.append(ref)
+        related_items.append(ref)
 
     if resource_type == "JournalArticle":
         container_type = "Journal"
@@ -153,7 +155,8 @@ def read_crossref_json(string=None, **kwargs):
         last_page = None
 
     container_titles = meta.get("container-title", [])
-    container_title = container_titles[0] if len(container_titles) > 0 else None
+    container_title = container_titles[0] if len(
+        container_titles) > 0 else None
     if container_title is not None:
         container = compact(
             {
@@ -171,7 +174,7 @@ def read_crossref_json(string=None, **kwargs):
         container = None
 
     if issn:
-        related_identifiers = [
+        related_items = [
             {
                 "relationType": "IsPartOf",
                 "relatedIdentifierType": "ISSN",
@@ -180,16 +183,16 @@ def read_crossref_json(string=None, **kwargs):
             }
         ]
     else:
-        related_identifiers = []
+        related_items = []
     references = meta.get("reference", [])
     for ref in references:
-        doi = ref.get("DOI", None)
-        if doi:
-            related_identifiers.append(
+        doi_ = ref.get("DOI", None)
+        if doi_:
+            related_items.append(
                 {
                     "relationType": "References",
                     "relatedIdentifierType": "DOI",
-                    "relatedIdentifier": doi.lower(),
+                    "relatedIdentifier": doi_.lower(),
                 }
             )
 
@@ -219,7 +222,8 @@ def read_crossref_json(string=None, **kwargs):
     description = meta.get("abstract", None)
     if description is not None:
         descriptions = [
-            {"description": sanitize(description), "descriptionType": "Abstract"}
+            {"description": sanitize(description),
+             "descriptionType": "Abstract"}
         ]
     else:
         descriptions = None
@@ -232,25 +236,37 @@ def read_crossref_json(string=None, **kwargs):
     subjects = subjects or None
 
     return {
+        # required properties
         "pid": pid,
+        "doi": doi,
         "url": url,
-        "types": types,
         "creators": creators,
-        "contributors": contributors,
         "titles": presence(titles),
-        "dates": dates,
-        "publication_year": publication_year,
-        "date_registered": date_registered,
+        "types": types,
         "publisher": publisher,
-        "rights_list": rights_list,
-        "issn": issn,
-        "container": container,
-        "related_identifiers": related_identifiers,
-        "funding_references": funding_references,
-        "descriptions": descriptions,
+        "publication_year": publication_year,
+        # recommended and optional properties
         "subjects": subjects,
+        "contributors": contributors,
+        "dates": dates,
         "language": meta.get("language", None),
-        "version_info": meta.get("version", None),
+        "alternate_identifiers": None,
+        "sizes": None,
+        "formats": None,
+        "version": meta.get("version", None),
+        "rights_list": rights_list,
+        "descriptions": descriptions,
+        "geo_locations": None,
+        "funding_references": funding_references,
+        "related_items": related_items,
+        # other properties
+        "date_created": date_created,
+        "date_registered": date_registered,
+        "date_published": date_published,
+        "date_updated": date_updated,
+        "content_url": presence(meta.get("contentUrl", None)),
+        "container": container,
         "agency": get_doi_ra(pid),
         "state": state,
+        "schema_version": None
     } | read_options

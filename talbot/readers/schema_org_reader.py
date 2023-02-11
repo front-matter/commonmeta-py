@@ -25,6 +25,7 @@ from ..utils import (
 )
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
+from ..doi_utils import doi_from_url
 from ..constants import (
     SO_TO_BIB_TRANSLATIONS,
     SO_TO_CP_TRANSLATIONS,
@@ -136,19 +137,20 @@ def get_schema_org(pid=None, **kwargs):
     # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
     auth = soup.select("meta[name='citation_author']")
     authors = []
-    for au in auth:
-        length = len(str(au["content"]).split(" "))
+    for aut in auth:
+        length = len(str(aut["content"]).split(" "))
         if length == 0:
             continue
         if length == 1:
-            author = {"@type": "Organization", "name": str(au["content"])}
+            author = {"@type": "Organization", "name": str(aut["content"])}
         else:
-            given_name = " ".join(str(au["content"]).split(" ")[0: length - 1])
+            given_name = " ".join(
+                str(aut["content"]).split(" ")[0: length - 1])
             author = {
                 "@type": "Person",
-                "name": str(au["content"]),
+                "name": str(aut["content"]),
                 "givenName": given_name,
-                "familyName": str(au["content"]).split(" ")[-1],
+                "familyName": str(aut["content"]).rsplit(' ', maxsplit=1)[-1],
             }
         authors.append(author)
 
@@ -176,6 +178,7 @@ def read_schema_org(string=None, **kwargs):
     read_options = kwargs or {}
 
     pid = meta.get("@id", None)
+    doi = doi_from_url(pid)
     types = None
 
     # if id.blank? && URI(meta.fetch('@id', '')).host == 'doi.org'
@@ -279,7 +282,7 @@ def read_schema_org(string=None, **kwargs):
     else:
         container = {}
 
-    related_identifiers = (
+    related_items = (
         wrap(schema_org_is_identical_to(meta))
         + wrap(schema_org_is_part_of(meta))
         + wrap(schema_org_has_part(meta))
@@ -344,42 +347,52 @@ def read_schema_org(string=None, **kwargs):
 
     geo_locations = schema_org_geolocations(meta)
 
+    alternate_identifiers = None
+    state = None
+
     return {
+        # required attributes
         "pid": pid,
+        "doi": doi,
         "url": normalize_url(meta.get("url", None)),
-        "types": types,
         "creators": creators,
-        "contributors": contributors,
         "titles": titles,
-        "dates": dates,
-        "publication_year": publication_year,
         "publisher": publisher,
-        "rights_list": rights_list,
-        "issn": issn,
-        "container": container,
-        "related_identifiers": related_identifiers,
-        "funding_references": presence(funding_references),
-        "descriptions": descriptions,
+        "publication_year": publication_year,
+        "types": types,
+        # recommended and optional attributes
         "subjects": presence(subjects),
+        "contributors": contributors,
+        "dates": dates,
         "language": language,
-        "version_info": meta.get("version", None),
+        "alternate_identifiers": alternate_identifiers,
+        "sizes": None,
+        "formats": None,
+        "version": meta.get("version", None),
+        "rights_list": rights_list,
+        "descriptions": descriptions,
+        "geo_locations": presence(geo_locations),
+        "funding_references": presence(funding_references),
+        "related_items": related_items,
+        # optional attributes
+        "container": container,
         "agency": parse_attributes(
             meta.get("provider", None), content="name", first=True
         ),
-        "geo_locations": presence(geo_locations),
+        "state": state
     } | read_options
 
 
-def schema_org_related_identifier(meta, relation_type=None):
-    """Related identifiers are a special case because they can be a string or an object."""
+def schema_org_related_item(meta, relation_type=None):
+    """Related items"""
     normalize_ids(
         ids=meta.get(relation_type, None),
         relation_type=SO_TO_DC_RELATION_TYPES.get(relation_type),
     )
 
 
-def schema_org_reverse_related_identifier(meta, relation_type=None):
-    """Related identifiers are a special case because they can be a string or an object."""
+def schema_org_reverse_related_item(meta, relation_type=None):
+    """Reverse related items"""
     normalize_ids(
         ids=py_.get(meta, f"@reverse.{relation_type}", None),
         relation_type=SO_TO_DC_REVERSE_RELATION_TYPES.get(relation_type),
@@ -388,47 +401,47 @@ def schema_org_reverse_related_identifier(meta, relation_type=None):
 
 def schema_org_is_identical_to(meta):
     """isIdenticalTo is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="sameAs")
+    schema_org_related_item(meta, relation_type="sameAs")
 
 
 def schema_org_is_part_of(meta):
     """isPartOf is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="isPartOf")
+    schema_org_related_item(meta, relation_type="isPartOf")
 
 
 def schema_org_has_part(meta):
     """hasPart is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="hasPart")
+    schema_org_related_item(meta, relation_type="hasPart")
 
 
 def schema_org_is_previous_version_of(meta):
     """isPreviousVersionOf is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="PredecessorOf")
+    schema_org_related_item(meta, relation_type="PredecessorOf")
 
 
 def schema_org_is_new_version_of(meta):
     """isNewVersionOf is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="SuccessorOf")
+    schema_org_related_item(meta, relation_type="SuccessorOf")
 
 
 def schema_org_references(meta):
     """references is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="citation")
+    schema_org_related_item(meta, relation_type="citation")
 
 
 def schema_org_is_referenced_by(meta):
     """isReferencedBy is a special case because it can be a string or an object."""
-    schema_org_reverse_related_identifier(meta, relation_type="citation")
+    schema_org_reverse_related_item(meta, relation_type="citation")
 
 
 def schema_org_is_supplement_to(meta):
     """isSupplementTo is a special case because it can be a string or an object."""
-    schema_org_reverse_related_identifier(meta, relation_type="isBasedOn")
+    schema_org_reverse_related_item(meta, relation_type="isBasedOn")
 
 
 def schema_org_is_supplemented_by(meta):
     """isSupplementedBy is a special case because it can be a string or an object."""
-    schema_org_related_identifier(meta, relation_type="isBasedOn")
+    schema_org_related_item(meta, relation_type="isBasedOn")
 
 
 def schema_org_geolocations(meta):
@@ -438,7 +451,8 @@ def schema_org_geolocations(meta):
     geo_locations = []
     for geo_location in wrap(meta.get("spatialCoverage", None)):
         formatted_geo_location = {}
-        geo_location_place = {'geoLocationPlace': py_.get(geo_location, "geo.address", None)}
+        geo_location_place = {'geoLocationPlace': py_.get(
+            geo_location, "geo.address", None)}
         geo_location_point = get_geolocation_point(geo_location)
         geo_location_box = get_geolocation_box(geo_location)
         for location in [geo_location_place, geo_location_point, geo_location_box]:

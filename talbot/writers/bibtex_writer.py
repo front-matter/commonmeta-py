@@ -4,7 +4,6 @@ from bibtexparser.bibdatabase import BibDatabase
 from ..utils import compact, pages_as_string
 from ..author_utils import authors_as_string
 from ..date_utils import get_month_from_date, get_date_by_type
-from ..doi_utils import doi_from_url
 
 
 def write_bibtex(metadata):
@@ -23,8 +22,8 @@ def write_bibtex(metadata):
                 "copyright": str(metadata.rights_list[0].get("rightsURI", None))
                 if metadata.rights_list
                 else None,
-                "doi": doi_from_url(metadata.pid),
-                "issn": metadata.issn,
+                "doi": metadata.doi,
+                "issn": container.get("identifier", None) if container.get('identifierType', None) == 'ISSN' else None,
                 "issue": container.get("issue", None),
                 "journal": container.get("title", None),
                 "language": metadata.language,

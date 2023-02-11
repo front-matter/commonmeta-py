@@ -1,5 +1,6 @@
 """RIS reader for Talbot"""
-from ..utils import compact, normalize_url, get_date_from_parts
+from ..utils import compact, normalize_url
+from ..date_utils import get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
 from ..constants import (
     RIS_TO_CP_TRANSLATIONS,
@@ -40,10 +41,12 @@ def read_ris(string=None, **kwargs):
     created_date_parts = str(meta.get("Y1", None)).split("/")
     dates = []
     if meta.get("PY", None) is not None:
-        dates.append({"date": get_date_from_parts(*date_parts), "dateType": "Issued"})
+        dates.append({"date": get_date_from_parts(
+            *date_parts), "dateType": "Issued"})
     if meta.get("Y1", None) is not None:
         dates.append(
-            {"date": get_date_from_parts(*created_date_parts), "dateType": "Created"}
+            {"date": get_date_from_parts(
+                *created_date_parts), "dateType": "Created"}
         )
     # publication_year = get_date_from_parts(*date_parts).to_s[0..3]
 
@@ -81,7 +84,7 @@ def read_ris(string=None, **kwargs):
     return {
         "id": pid,
         "types": types,
-        "doi": doi_from_url(id),
+        "doi": doi_from_url(pid),
         "url": normalize_url(meta.get("UR", None)),
         # 'titles': meta.get('T1', nil).present? ? [{ 'title': meta.fetch('T1', nil) }] : nil,
         # 'creators': get_authors(author),

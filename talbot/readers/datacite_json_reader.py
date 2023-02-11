@@ -4,7 +4,8 @@ from pydash import py_
 
 from ..utils import datacite_api_url, compact, presence, wrap, camel_case, normalize_url
 from ..author_utils import get_authors
-from ..doi_utils import doi_as_url
+from ..date_utils import strip_milliseconds
+from ..doi_utils import doi_as_url, doi_from_url
 from ..constants import (
     CR_TO_SO_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,
@@ -62,33 +63,41 @@ def read_datacite_json(string=None, **kwargs):
         }
     )
 
-    creators = get_authors(wrap(meta.get("creators", None)))
-    contributors = get_authors(wrap(meta.get("contributors", None)))
-    date_registered = None
+    related_items = meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)
 
     return {
+        # required properties
         "pid": pid,
+        "doi": doi_from_url(pid),
         "url": normalize_url(meta.get("url", None)),
-        "types": types,
-        "creators": creators,
-        "contributors": contributors,
+        "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
+        "publisher": meta.get("publisher", None),
+        "publication_year": meta.get("publicationYear", None),
+        "types": types,
+        # recommended and optional properties
+        "subjects": presence(meta.get("subjects", None)),
+        "contributors": get_authors(wrap(meta.get("contributors", None))),
         "dates": presence(meta.get("dates", None))
         or [{"date": meta.get("publicationYear", None), "dateType": "Issued"}],
-        "publication_year": meta.get("publicationYear", None),
-        "date_registered": date_registered,
-        "publisher": meta.get("publisher", None),
-        "rights_list": presence(meta.get("rightsList", None)),
-        "issn": meta.get("issn", None),
-        "container": meta.get("container", None),
-        "related_identifiers": presence(meta.get("relatedIdentifiers", None)),
-        "funding_references": meta.get("fundingReferences", None),
-        "descriptions": meta.get("descriptions", None),
-        "subjects": presence(meta.get("subjects", None)),
         "language": meta.get("language", None),
-        "version_info": meta.get("version", None),
+        "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
         "sizes": presence(meta.get("sizes", None)),
         "formats": presence(meta.get("formats", None)),
+        "version": meta.get("version", None),
+        "rights_list": presence(meta.get("rightsList", None)),
+        "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
-        "agency": "DataCite",  # get_doi_ra(id)
+        "funding_references": meta.get("fundingReferences", None),
+        "related_items": related_items,
+        # other properties
+        "date_created": strip_milliseconds(meta.get("created", None)),
+        "date_registered": strip_milliseconds(meta.get("registered", None)),
+        "date_published": strip_milliseconds(meta.get("published", None)),
+        "date_updated": strip_milliseconds(meta.get("updated", None)),
+        "content_url": presence(meta.get("contentUrl", None)),
+        "container": presence(meta.get("container", None)),
+        "agency": "DataCite",
+        "state": "findable",
+        "schema_version": meta.get("schemaVersion", None),
     } | read_options

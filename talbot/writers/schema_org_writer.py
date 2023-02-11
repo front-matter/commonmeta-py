@@ -42,7 +42,7 @@ def write_schema_org(metadata):
             "license": metadata.rights_list[0].get("rightsURI", None)
             if metadata.rights_list
             else None,
-            "version": metadata.version_info,
+            "version": metadata.version,
             "keywords": presence(
                 parse_attributes(
                     wrap(metadata.subjects), content="subject", first=False
@@ -56,7 +56,7 @@ def write_schema_org(metadata):
             "pageStart": container.get("firstPage", None),
             "pageEnd": container.get("lastPage", None),
             "isPartOf": to_schema_org_relation(
-                related_identifiers=metadata.related_identifiers,
+                related_identifiers=metadata.related_items,
                 relation_type="IsPartOf",
             ),
             "periodical": periodical,

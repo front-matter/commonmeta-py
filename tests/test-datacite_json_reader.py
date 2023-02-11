@@ -6,10 +6,12 @@ from talbot import Metadata
 @pytest.mark.vcr
 def test_dataset():
     """dataset"""
-    idn = "https://doi.org/10.5061/DRYAD.8515"
-    subject = Metadata(idn, via="datacite_json")
+    pid = "https://doi.org/10.5061/DRYAD.8515"
+    subject = Metadata(pid, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.5061/dryad.8515"
+    assert subject.doi == "10.5061/dryad.8515"
+    assert subject.publisher == "Dryad"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "dataset",
@@ -47,16 +49,14 @@ def test_dataset():
         {"date": "2011", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2011
-    assert subject.date_registered is None
-    assert subject.publisher == "Dryad"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 1
-    assert subject.related_identifiers[0] == {
+    assert subject.date_registered == '2011-02-01T17:32:02Z'
+    assert len(subject.related_items) == 1
+    assert subject.related_items[0] == {
         "relationType": "IsCitedBy",
         "relatedIdentifier": "10.1371/journal.ppat.1000446",
         "relatedIdentifierType": "DOI",
     }
-    assert subject.container == {}
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -71,7 +71,8 @@ def test_dataset():
         {"subject": "Parasites"},
     ]
     assert subject.language == "en"
-    assert subject.version_info == "1"
+    assert subject.version == "1"
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.agency == "DataCite"
 
 
@@ -79,7 +80,7 @@ def test_blog_posting():
     """blog posting"""
     text = "https://doi.org/10.5438/zhyx-n122"
     subject = Metadata(text, via="datacite_json")
-    print(subject.related_identifiers)
+    print(subject.related_items)
     assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
     assert subject.types == {
         "resourceTypeGeneral": "Text",
@@ -112,10 +113,9 @@ def test_blog_posting():
     ]
     assert subject.dates == [{"date": 2023, "dateType": "Issued"}]
     assert subject.publication_year == 2023
-    assert subject.date_registered is None
+    assert subject.date_registered == '2023-01-31T12:41:28Z'
     assert subject.publisher == "DataCite"
-    assert subject.issn is None
-    assert subject.related_identifiers == [
+    assert subject.related_items == [
         {
             "schemeUri": None,
             "schemeType": None,
@@ -189,7 +189,7 @@ def test_blog_posting():
             "relatedMetadataScheme": None,
         },
     ]
-    assert subject.container == {}
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -197,7 +197,8 @@ def test_blog_posting():
     )
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.version_info == "1.0"
+    assert subject.version == "1.0"
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.agency == "DataCite"
 
 
@@ -242,14 +243,13 @@ def test_date():
         {"date": "2013", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2013
-    assert subject.date_registered is None
+    assert subject.date_registered == '2013-11-13T13:42:17Z'
     assert (
         subject.publisher
         == "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"
     )
-    assert subject.issn is None
-    assert subject.related_identifiers is None
-    assert subject.container == {}
+    assert subject.related_items == []
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -265,10 +265,26 @@ def test_date():
         },
     ]
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
+    assert subject.schema_version == "http://datacite.org/schema/kernel-2.1"
     assert subject.agency == "DataCite"
 
 
+def test_affiliation_identifier():
+    """affiliation identifier"""
+    # text = f"{fixture_path}datacite-example-affiliation.xml"
+
+    # subject = Metadata(text, via="datacite_xml")
+    # assert subject.pid == "https://doi.org/10.5438/0012"
+    # assert subject.types == {
+    #     "resourceTypeGeneral": "Software",
+    #     "resourceType": "XML",
+    #     "schemaOrg": "SoftwareSourceCode",
+    #     "citeproc": "article",
+    #     "bibtex": "misc",
+    #     "ris": "COMP",
+    # }
+    # assert subject.url == "
 #     it 'affiliation identifier' do
 #       text = "#{fixture_path}datacite-example-affiliation.xml"
 #       subject = described_class.new(text: input)
@@ -377,8 +393,8 @@ def test_date():
 
 def test_multiple_identifiers():
     """multiple identifiers"""
-    text = "https://doi.org/10.5281/ZENODO.48440"
-    subject = Metadata(text, via="datacite_json")
+    pid = "https://doi.org/10.5281/ZENODO.48440"
+    subject = Metadata(pid, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.5281/zenodo.48440"
     assert subject.types == {
@@ -409,17 +425,16 @@ def test_multiple_identifiers():
     ]
     assert subject.dates == [{"date": "2016-03-27", "dateType": "Issued"}]
     assert subject.publication_year == 2016
-    assert subject.date_registered is None
+    assert subject.date_registered == '2016-03-27T22:18:38Z'
     assert subject.publisher == "Zenodo"
-    assert subject.issn is None
-    assert subject.related_identifiers == [
+    assert subject.related_items == [
         {
             "relatedIdentifier": "https://github.com/kjgarza/frame_experiment_analysis/tree/v1.0",
             "relatedIdentifierType": "URL",
             "relationType": "IsSupplementTo",
         }
     ]
-    assert subject.container == {}
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -431,7 +446,8 @@ def test_multiple_identifiers():
         {"subject": "hci"},
     ]
     assert subject.language is None
-    assert subject.version_info is None
+    assert subject.version is None
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.agency == "DataCite"
 
 
@@ -481,17 +497,16 @@ def test_is_identical():
         {"date": "2016", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2016
-    assert subject.date_registered is None
+    assert subject.date_registered == '2016-11-16T10:49:12Z'
     assert subject.publisher == "figshare"
-    assert subject.issn is None
-    assert subject.related_identifiers == [
+    assert subject.related_items == [
         {
             "relationType": "IsIdenticalTo",
             "relatedIdentifier": "10.6084/m9.figshare.4234751",
             "relatedIdentifierType": "DOI",
         }
     ]
-    assert subject.container == {}
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -521,73 +536,135 @@ def test_is_identical():
         },
     ]
     assert subject.language is None
-    assert subject.version_info is None
+    assert subject.version is None
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.agency == "DataCite"
 
 
-#     it 'subject scheme FOR' do
-#       text = '10.6084/m9.figshare.1449060'
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.pid).to eq('https://doi.org/10.6084/m9.figshare.1449060')
-#       expect(subject.types['schemaOrg']).to eq('Dataset')
-#       expect(subject.types['resourceType']).to eq('Dataset')
-#       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
-#       expect(subject.creators.count).to eq(4)
-#       expect(subject.creators.first).to eq('nameType' => 'Personal', 'familyName' => 'Dworkin',
-#                                            'givenName' => 'Ian',
-#                                            'name' => 'Dworkin, Ian',
-#                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-2874-287X', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }])
-#       expect(subject.titles).to eq([{ 'title' => 'Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia.' }])
-#       expect(subject.descriptions.first['description']).to start_with('These are raw wing images from <i>Drosophila melanogaster</i>')
-#       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Attribution 4.0 International',
-#                                            'rightsIdentifier' => 'cc-by-4.0',
-#                                            'rightsIdentifierScheme' => 'SPDX',
-#                                            'rightsUri' => 'https://creativecommons.org/licenses/by/4.0/legalcode',
-#                                            'schemeUri' => 'https://spdx.org/licenses/' }])
-#       expect(subject.dates).to eq([{ 'date' => '2015-06-14', 'dateType' => 'Created' },
-#                                    { 'date' => '2020-06-02', 'dateType' => 'Updated' }, { 'date' => '2020', 'dateType' => 'Issued' }])
-#       expect(subject.publication_year).to eq('2020')
-#       expect(subject.publisher).to eq('figshare')
-#       expect(subject.subjects).to eq([{ 'subject' => 'evolutionary biology' },
-#                                       { 'subject' => 'FOS: Biological sciences',
-#                                         'subjectScheme' => 'Fields of Science and Technology (FOS)', 'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf' },
-#                                       { 'subject' => '60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)',
-#                                         'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' }])
-#       expect(subject.agency).to eq('DataCite')
-#       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
-#     end
+def test_subject_scheme_for():
+    """subject scheme FOR"""
+    pid = '10.6084/m9.figshare.1449060'
+    subject = Metadata(pid, via="datacite_json")
 
-#     it 'more subject scheme FOR' do
-#       text = '10.4225/03/5a6931f57c654'
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.subjects).to eq([{ 'subject' => '90301 Biomaterials', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
-#                                       { 'subject' => 'FOS: Medical engineering',
-#                                         'subjectScheme' => 'Fields of Science and Technology (FOS)', 'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf' }])
-#     end
+    assert subject.pid == "https://doi.org/10.6084/m9.figshare.1449060"
+    assert subject.types == {
+        "resourceTypeGeneral": "Dataset",
+        "resourceType": "Dataset",
+        "schemaOrg": "Dataset",
+        "citeproc": "dataset",
+        "bibtex": "misc",
+        "ris": "DATA",
+    }
+    assert subject.url == "https://figshare.com/articles/dataset/drosophila_melanogaster_african_wings/1449060/4"
+    assert len(subject.creators) == 4
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "name": "Ian Dworkin",
+        "givenName": "Ian",
+        "familyName": "Dworkin",
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0002-2874-287X",
+                "schemeUri": "https://orcid.org",
+                "nameIdentifierScheme": "ORCID",
+            }
+        ],
+    }
+    assert subject.titles[0] == {
+        'title': 'Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia.'}
+    assert subject.descriptions[0].get('description').startswith(
+        'These are raw wing images from <i>Drosophila melanogaster</i>')
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Attribution 4.0 International",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc-by-4.0",
+            "rightsIdentifierScheme": "SPDX",
+        }
+    ]
+    assert subject.dates == [
+        {"date": "2015-06-14", "dateType": "Created"},
+        {"date": "2020-06-02", "dateType": "Updated"},
+        {"date": "2020", "dateType": "Issued"},
+    ]
+    assert subject.publication_year == 2020
+    assert subject.publisher == "figshare"
+    assert subject.subjects == [
+        {"subject": "Evolutionary Biology"},
+        {
+            "subject": "FOS: Biological sciences",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Biological sciences",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {'subject': '60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)',
+         'subjectScheme': 'FOR'}
+    ]
+    assert subject.language is None
+    assert subject.agency == "DataCite"
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
 
-#     it 'even more subject scheme FOR' do
-#       text = '10.4225/03/5a31ec65634ef'
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.subjects).to eq([{ 'subject' => '130103 Higher Education', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
-#                                       { 'subject' => 'FOS: Educational sciences', 'subjectScheme' => 'Fields of Science and Technology (FOS)', 'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf' },
-#                                       { 'subject' => '130313 Teacher Education and Professional Development of Educators', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
-#                                       { 'subject' => '80799 Library and Information Studies not elsewhere classified', 'subjectScheme' => 'FOR', 'schemeUri' => 'http://www.abs.gov.au/ausstats/abs@.nsf/0/6BB427AB9696C225CA2574180004463E' },
-#                                       { 'subject' => 'FOS: Media and communications', 'subjectScheme' => 'Fields of Science and Technology (FOS)', 'schemeUri' => 'http://www.oecd.org/science/inno/38235147.pdf' }, { 'subject' => 'library and information studies' }])
-#     end
 
-#     it 'cc-by 3.0 us' do
-#       text = '10.6084/m9.figshare.1286826.v1'
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Attribution 4.0 International',
-#                                            'rightsIdentifier' => 'cc-by-4.0',
-#                                            'rightsIdentifierScheme' => 'SPDX',
-#                                            'rightsUri' => 'https://creativecommons.org/licenses/by/4.0/legalcode',
-#                                            'schemeUri' => 'https://spdx.org/licenses/' }])
-#     end
+def test_more_subject_scheme_for():
+    """more subject scheme FOR"""
+    pid = '10.4225/03/5a6931f57c654'
+    subject = Metadata(pid, via="datacite_json")
+
+    assert subject.pid == "https://doi.org/10.4225/03/5a6931f57c654"
+    assert subject.types.get('resourceType') == 'Thesis'
+    assert subject.subjects == [
+        {'subject': '90301 Biomaterials', 'subjectScheme': 'FOR'},
+        {
+            'subject': 'FOS: Medical engineering',
+            'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf',
+            'subjectScheme': 'Fields of Science and Technology (FOS)',
+        },
+        {
+            'subject': 'FOS: Medical engineering',
+            'subjectScheme': 'Fields of Science and Technology (FOS)',
+        },
+    ]
+
+
+def test_even_more_subject_scheme_for():
+    """even more subject scheme FOR"""
+    pid = '10.4225/03/5a31ec65634ef'
+    subject = Metadata(pid, via="datacite_json")
+
+    assert subject.pid == "https://doi.org/10.4225/03/5a31ec65634ef"
+    assert subject.types.get('resourceType') == 'Poster'
+    assert subject.subjects == [
+        {'subject': '130103 Higher Education', 'subjectScheme': 'FOR'},
+        {'subject': 'FOS: Educational sciences', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf',
+            'subjectScheme': 'Fields of Science and Technology (FOS)'},
+        {'subject': 'FOS: Educational sciences', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {
+            'subject': '130313 Teacher Education and Professional Development of Educators', 'subjectScheme': 'FOR'},
+        {'subject': '80799 Library and Information Studies not elsewhere classified', 'subjectScheme': 'FOR'}, {'subject': 'FOS: Media and communications',
+                                                                                                                'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'},
+        {'subject': 'FOS: Media and communications', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {
+            'subject': 'Library and Information Studies'}
+    ]
+
+
+def test_cc_by():
+    """CC-BY"""
+    pid = '10.6084/m9.figshare.1286826.v1'
+    subject = Metadata(pid, via="datacite_json")
+
+    assert subject.pid == "https://doi.org/10.6084/m9.figshare.1286826.v1"
+    assert subject.rights_list == [
+        {
+            "rights": "Creative Commons Attribution 4.0 International",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+            "rightsIdentifier": "cc-by-4.0",
+            "rightsIdentifierScheme": "SPDX",
+        }
+    ]
 
 #     it 'funding schema version 3' do
 #       text = 'https://doi.org/10.5281/ZENODO.1239'
@@ -1433,7 +1510,7 @@ def test_geolocation_box():
 #                                         }],
 #                                         'affiliation' => [{ 'name' => 'Royal Netherlands Meteorological Institute (KNMI)' }] }])
 #       expect(subject.titles).to eq([{ 'title' => 'Multi-Sensor Reanalysis (MSR) of total ozone, version 2' }])
-#       expect(subject.version_info).to eq('2')
+#       expect(subject.version).to eq('2')
 #       expect(subject.dates).to eq([{ 'date' => '2014-04-25', 'dateType' => 'Available' },
 #                                    { 'date' => '2015', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2015')

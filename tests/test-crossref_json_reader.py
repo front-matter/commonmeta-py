@@ -44,20 +44,19 @@ def test_doi_with_data_citation():
     ]
     assert subject.dates == [
         {"date": "2014-02-11", "dateType": "Issued"},
-        {"date": "2022-03-26", "dateType": "Updated"},
+        {"date": "2022-03-26T09:21:50Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2014"
-    assert subject.date_registered == "2014-02-11"
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    assert subject.issn == "2050-084X"
-    assert len(subject.related_identifiers) == 28
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "2050-084X"
+    assert len(subject.related_items) == 28
+    assert subject.related_items[0] == {
         "relatedIdentifier": "2050-084X",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1038/ncb2764",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -107,7 +106,7 @@ def test_doi_with_data_citation():
         {"subject": "General Neuroscience"},
     ]
     assert subject.language == "en"
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -153,20 +152,19 @@ def test_journal_article():
     ]
     assert subject.dates == [
         {"date": "2006-12-20", "dateType": "Issued"},
-        {"date": "2021-08-06", "dateType": "Updated"},
+        {"date": "2021-08-06T23:49:55Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2006"
-    assert subject.date_registered == "2006-12-20"
     assert subject.publisher == "Public Library of Science (PLoS)"
-    assert subject.issn == "1932-6203"
-    assert len(subject.related_identifiers) == 68
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1932-6203"
+    assert len(subject.related_items) == 68
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1932-6203",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1056/nejm199109123251104",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -184,7 +182,7 @@ def test_journal_article():
     assert subject.subjects == [{"subject": "Multidisciplinary"}]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -226,20 +224,19 @@ def test_journal_article_with_funding():
     ]
     assert subject.dates == [
         {"date": "2019-07-02", "dateType": "Issued"},
-        {"date": "2019-09-22", "dateType": "Updated"},
+        {"date": "2019-09-22T02:40:23Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2019"
-    assert subject.date_registered == "2019-07-02"
     assert subject.publisher == "Frontiers Media SA"
-    assert subject.issn == "1664-462X"
-    assert len(subject.related_identifiers) == 70
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1664-462X"
+    assert len(subject.related_items) == 70
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1664-462X",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.17660/actahortic.2004.632.41",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -262,7 +259,7 @@ def test_journal_article_with_funding():
     assert subject.subjects == [{"subject": "Plant Science"}]
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -289,23 +286,22 @@ def test_journal_article_original_language():
     assert subject.rights_list is None
     assert subject.dates == [
         {"date": "2007", "dateType": "Issued"},
-        {"date": "2021-05-20", "dateType": "Updated"},
+        {"date": "2021-05-20T22:32:01Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2007"
-    assert subject.date_registered == "2012-08-30"
     assert (
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
     )
-    assert subject.issn == "1881-4751"
-    assert len(subject.related_identifiers) == 8
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1881-4751"
+    assert len(subject.related_items) == 8
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1881-4751",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1161/01.cir.95.6.1686",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -327,7 +323,7 @@ def test_journal_article_original_language():
     ]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -361,20 +357,19 @@ def test_journal_article_with_rdf_for_container():
     assert subject.rights_list is None
     assert subject.dates == [
         {"date": "2012-01-01", "dateType": "Issued"},
-        {"date": "2019-07-05", "dateType": "Updated"},
+        {"date": "2019-07-05T16:53:10Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2012"
-    assert subject.date_registered == "2012-11-20"
     assert subject.publisher == "Oxford University Press (OUP)"
-    assert subject.issn == "1937-240X"
-    assert len(subject.related_identifiers) == 44
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1937-240X"
+    assert len(subject.related_items) == 44
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1937-240X",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1002/aqc.1122",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -393,7 +388,7 @@ def test_journal_article_with_rdf_for_container():
     assert subject.subjects == [{"subject": "Aquatic Science"}]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -424,20 +419,19 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.rights_list is None
     assert subject.dates == [
         {"date": "2012", "dateType": "Issued"},
-        {"date": "2020-11-24", "dateType": "Updated"},
+        {"date": "2020-11-24T03:11:32Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2012"
-    assert subject.date_registered == "2012-08-21"
     assert subject.publisher == "Springer Berlin Heidelberg"
-    assert subject.issn == "1611-3349"
-    assert len(subject.related_identifiers) == 8
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1611-3349"
+    assert len(subject.related_items) == 8
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1611-3349",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1109/avss.2011.6027284",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -454,7 +448,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -485,14 +479,13 @@ def test_posted_content():
     assert subject.rights_list is None
     assert subject.dates == [
         {"date": "2016-12-28", "dateType": "Issued"},
-        {"date": "2020-01-18", "dateType": "Updated"},
+        {"date": "2020-01-18T02:53:57Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2016"
-    assert subject.date_registered == "2016-12-29"
     assert subject.publisher == "Cold Spring Harbor Laboratory"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 8
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn is None
+    assert len(subject.related_items) == 8
+    assert subject.related_items[0] == {
         "relatedIdentifier": "10.2481/dsj.osom13-043",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -507,7 +500,7 @@ def test_posted_content():
             "descriptionType": "Abstract",
         }
     ]
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -551,19 +544,18 @@ def test_peer_review():
     ]
     assert subject.dates == [
         {"date": "2020-04-29", "dateType": "Issued"},
-        {"date": "2020-05-19", "dateType": "Updated"},
+        {"date": "2020-05-19T20:33:37Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2020"
-    assert subject.date_registered == "2020-05-19"
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    # assert subject.issn is None
+    assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -593,20 +585,19 @@ def test_dissertation():
     assert subject.contributors is None
     assert subject.rights_list is None
     assert subject.dates == [
-        {"date": "2020-06-08", "dateType": "Issued"},
-        {"date": "2020-06-08", "dateType": "Updated"},
+        {"date": "2020-06-08T05:08:58Z", "dateType": "Issued"},
+        {"date": "2020-06-08T05:08:59Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2020"
-    assert subject.date_registered == "2020-06-08"
     assert subject.publisher == "University of Queensland Library"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    # assert subject.issn is None
+    assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -644,20 +635,18 @@ def test_doi_with_sici():
     ]
     assert subject.dates == [
         {"date": "2006-11", "dateType": "Issued"},
-        {"date": "2019-04-28", "dateType": "Updated"},
+        {"date": "2019-04-28T13:51:50Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2006"
-    assert subject.date_registered == "2007-06-04"
     assert subject.publisher == "Wiley"
-    assert subject.issn == "0012-9658"
-    assert len(subject.related_identifiers) == 35
-    assert subject.related_identifiers[0] == {
+    assert len(subject.related_items) == 35
+    assert subject.related_items[0] == {
         "relatedIdentifier": "0012-9658",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1098/rspb.2002.2213",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -678,7 +667,7 @@ def test_doi_with_sici():
     ]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -731,20 +720,19 @@ def test_doi_with_orcid():
     ]
     assert subject.dates == [
         {"date": "2012", "dateType": "Issued"},
-        {"date": "2016-08-02", "dateType": "Updated"},
+        {"date": "2016-08-02T18:42:41Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2012"
-    assert subject.date_registered == "2012-12-30"
     assert subject.publisher == "Hindawi Limited"
-    assert subject.issn == "2090-1844"
-    assert len(subject.related_identifiers) == 18
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "2090-1844"
+    assert len(subject.related_items) == 18
+    assert subject.related_items[0] == {
         "relatedIdentifier": "2090-1844",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1378/chest.12-0045",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -770,7 +758,7 @@ def test_doi_with_orcid():
             "descriptionType": "Abstract",
         }
     ]
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -805,20 +793,19 @@ def test_date_in_future():
     ]
     assert subject.dates == [
         {"date": "2015-07", "dateType": "Issued"},
-        {"date": "2020-08-31", "dateType": "Updated"},
+        {"date": "2020-08-31T14:03:39Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2015"
-    assert subject.date_registered == "2015-04-06"
     assert subject.publisher == "Elsevier BV"
-    assert subject.issn == "0014-2999"
-    assert len(subject.related_identifiers) == 88
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "0014-2999"
+    assert len(subject.related_items) == 88
+    assert subject.related_items[0] == {
         "relatedIdentifier": "0014-2999",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1111/hiv.12134",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -867,7 +854,7 @@ def test_date_in_future():
     assert subject.subjects == [{"subject": "Pharmacology"}]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -898,20 +885,19 @@ def test_vor_with_url():
     assert subject.rights_list == [{"rightsURI": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2013-04-10", "dateType": "Issued"},
-        {"date": "2021-12-02", "dateType": "Updated"},
+        {"date": "2021-12-02T02:50:35Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2013"
-    assert subject.date_registered == "2013-04-10"
     assert subject.publisher == "Springer Science and Business Media LLC"
-    assert subject.issn == "1365-2540"
-    assert len(subject.related_identifiers) == 35
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "1365-2540"
+    assert len(subject.related_items) == 35
+    assert subject.related_items[0] == {
         "relatedIdentifier": "1365-2540",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1111/j.1095-8312.2003.00230.x",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -933,7 +919,7 @@ def test_vor_with_url():
     ]
     assert subject.language == "en"
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -963,19 +949,17 @@ def test_dataset():
     assert subject.rights_list is None
     assert subject.dates == [
         {"date": "1984-07-17", "dateType": "Issued"},
-        {"date": "2023-02-07", "dateType": "Updated"},
+        {"date": "2023-02-07T21:29:26Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "1984"
-    assert subject.date_registered == "2006-01-05"
     assert subject.publisher == "Worldwide Protein Data Bank"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -997,20 +981,18 @@ def test_component():
     assert subject.contributors is None
     assert subject.rights_list is None
     assert subject.dates == [
-        {"date": "2015-10-20", "dateType": "Issued"},
-        {"date": "2018-10-19", "dateType": "Updated"},
+        {"date": "2015-10-20T20:01:19Z", "dateType": "Issued"},
+        {"date": "2018-10-19T21:13:42Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2015"
-    assert subject.date_registered == "2015-10-20"
     assert subject.publisher == "Public Library of Science (PLoS)"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 0
+    assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1038,15 +1020,14 @@ def test_dataset_usda():
     assert subject.contributors is None
     assert subject.rights_list is None
     assert subject.dates == [
-        {"date": "2017-08-09", "dateType": "Issued"},
-        {"date": "2021-07-01", "dateType": "Updated"},
+        {"date": "2017-08-09T19:44:20Z", "dateType": "Issued"},
+        {"date": "2021-07-01T22:10:21Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2017"
-    assert subject.date_registered == "2017-08-09"
     assert subject.publisher == "Forest Service Research Data Archive"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 5
-    assert subject.related_identifiers[-1] == {
+    # assert subject.issn is None
+    assert len(subject.related_items) == 5
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.1674/0003-0031-178.1.47",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -1059,7 +1040,7 @@ def test_dataset_usda():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1087,14 +1068,13 @@ def test_book_chapter():
     assert subject.rights_list == [{'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
-        {'date': '2023-02-10', 'dateType': 'Updated'},
+        {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
     ]
     assert subject.publication_year == "2015"
-    assert subject.date_registered == "2015-04-14"
     assert subject.publisher == "Springer Berlin Heidelberg"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 16
-    assert subject.related_identifiers[0] == {'relatedIdentifier': '10.1007/s00256-012-1391-8', 'relatedIdentifierType': 'DOI', 'relationType': 'References'}
+    # assert subject.issn is None
+    assert len(subject.related_items) == 16
+    assert subject.related_items[0] == {'relatedIdentifier': '10.1007/s00256-012-1391-8', 'relatedIdentifierType': 'DOI', 'relationType': 'References'}
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Shoulder Stiffness",
@@ -1105,7 +1085,7 @@ def test_book_chapter():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1135,13 +1115,12 @@ def test_another_book_chapter():
     assert subject.rights_list == [{"rightsURI": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2018", "dateType": "Issued"},
-        {"date": "2019-10-16", "dateType": "Updated"},
+        {"date": "2019-10-16T02:02:05Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2018"
-    assert subject.date_registered == "2018-04-17"
     assert subject.publisher == "Springer International Publishing"
-    assert subject.issn == "2523-3629"
-    assert len(subject.related_identifiers) == 30
+    # assert subject.issn == "2523-3629"
+    assert len(subject.related_items) == 30
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1154,7 +1133,7 @@ def test_another_book_chapter():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1187,14 +1166,13 @@ def test_yet_another_book_chapter():
     assert subject.contributors is None
     assert subject.rights_list is None
     assert subject.dates == [
-        {"date": "2012-08-08", "dateType": "Issued"},
-        {"date": "2019-07-02", "dateType": "Updated"},
+        {"date": "2012-08-08T16:54:07Z", "dateType": "Issued"},
+        {"date": "2019-07-02T13:17:21Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2012"
-    assert subject.date_registered == "2012-08-08"
     assert subject.publisher == "IGI Global"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 27
+    # assert subject.issn is None
+    assert len(subject.related_items) == 27
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1210,7 +1188,7 @@ def test_yet_another_book_chapter():
             "descriptionType": "Abstract",
         }
     ]
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1248,20 +1226,19 @@ def test_missing_creator():
     ]
     assert subject.dates == [
         {"date": "2018-04-09", "dateType": "Issued"},
-        {"date": "2021-07-22", "dateType": "Updated"},
+        {"date": "2021-07-22T10:05:05Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2018"
-    assert subject.date_registered == "2018-04-10"
     assert subject.publisher == "MDPI AG"
-    assert subject.issn == "2304-6775"
-    assert len(subject.related_identifiers) == 6
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn == "2304-6775"
+    assert len(subject.related_items) == 6
+    assert subject.related_items[0] == {
         "relatedIdentifier": "2304-6775",
         "relatedIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_identifiers[-1] == {
+    assert subject.related_items[-1] == {
         "relatedIdentifier": "10.4119/unibi/ub.2014.18",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -1307,7 +1284,7 @@ def test_missing_creator():
             "descriptionType": "Abstract",
         }
     ]
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"
 
 
@@ -1340,14 +1317,13 @@ def test_book():
     ]
     assert subject.dates == [
         {"date": "2019-07-01", "dateType": "Issued"},
-        {"date": "2022-09-22", "dateType": "Updated"},
+        {"date": "2022-09-22T13:22:42Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == "2019"
-    assert subject.date_registered == "2019-07-01"
     assert subject.publisher == "Cambridge University Press"
-    assert subject.issn is None
-    assert len(subject.related_identifiers) == 90
-    assert subject.related_identifiers[0] == {
+    # assert subject.issn is None
+    assert len(subject.related_items) == 90
+    assert subject.related_items[0] == {
         "relatedIdentifier": "10.1093/acprof:oso/9780199367344.001.0001",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -1357,5 +1333,5 @@ def test_book():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
-    assert subject.version_info is None
+    assert subject.version is None
     assert subject.agency == "Crossref"

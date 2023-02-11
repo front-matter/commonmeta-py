@@ -25,7 +25,7 @@ def write_citeproc(metadata):
 
     if (
         metadata.types.get("resourceTypeGeneral", None) == "Software"
-        and metadata.version_info is not None
+        and metadata.version is not None
     ):
         type_ = "book"
     else:
@@ -61,7 +61,7 @@ def write_citeproc(metadata):
             "copyright": metadata.rights_list[0].get("rights", None)
             if metadata.rights_list
             else None,
-            "version": metadata.version_info,
+            "version": metadata.version,
         }
     )
     return json.dumps(dictionary, indent=4)

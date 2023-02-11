@@ -8,6 +8,7 @@ def test_doi_with_data_citation():
     "DOi with data citation"
     subject = Metadata("10.7554/elife.01567")
     assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.doi == "10.7554/elife.01567"
     assert subject.types.get("bibtex") == "article"
 
     bibtex = subject.bibtex()
