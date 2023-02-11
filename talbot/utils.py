@@ -92,10 +92,10 @@ def presence(item: Optional[Union[dict, list, str]]) -> Optional[Union[dict, lis
     return None if item is None or len(item) == 0 else item
 
 
-def compact(dict_or_list):
+def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, list]]:
     """Remove None from dict or list"""
     if dict_or_list is None:
-        return dict_or_list
+        return None
     if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
     if isinstance(dict_or_list, list):
@@ -198,7 +198,7 @@ def datacite_api_url(doi: str, **kwargs) -> str:
 
 def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
     """Normalize URL"""
-    if url is None:
+    if url is None or not isinstance(url, str):
         return None
     if url.endswith("/"):
         url = url.strip("/")
@@ -209,7 +209,7 @@ def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
 
 def normalize_cc_url(url: Optional[str]):
     """Normalize Creative Commons URL"""
-    if url is None:
+    if url is None or not isinstance(url, str):
         return None
     url = normalize_url(url, secure=True)
     return NORMALIZED_LICENSES.get(url, url)
@@ -217,6 +217,8 @@ def normalize_cc_url(url: Optional[str]):
 
 def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     """Normalize ORCID"""
+    if orcid is None or not isinstance(orcid, str):
+        return None
     orcid = validate_orcid(orcid)
     if orcid is None:
         return None
@@ -225,7 +227,7 @@ def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
 
 def validate_orcid(orcid: Optional[str]) -> Optional[str]:
     """Validate ORCID"""
-    if orcid is None:
+    if orcid is None or not isinstance(orcid, str):
         return None
     match = re.search(
         r"\A(?:(?:http|https)://(?:(?:www|sandbox)?\.)?orcid\.org/)?(\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{3}[0-9X]+)\Z",
@@ -237,7 +239,7 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
     return orcid
 
 
-def dict_to_spdx(dct: dict):
+def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
     dct.update({"rightsURI": normalize_cc_url(dct.get("rightsURI", None))})
     file_path = os.path.join(os.path.dirname(
@@ -402,9 +404,7 @@ def to_schema_org_contributors(element):
 
 def to_schema_org_container(element, **kwargs):
     """Convert CSL container to Schema.org container"""
-    if element is None:
-        return None
-    if isinstance(element, dict) or kwargs.get("container_title", None) is None:
+    if element is None or isinstance(element, dict) or kwargs.get("container_title", None) is None:
         return None
 
     return compact(

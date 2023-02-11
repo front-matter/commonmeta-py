@@ -7,6 +7,7 @@ from talbot.utils import (
     validate_orcid,
     normalize_id,
     normalize_ids,
+    normalize_cc_url,
     wrap,
     unwrap,
     compact,
@@ -85,6 +86,7 @@ def test_presence():
 def test_compact():
     "compact"
     assert {"name": "test"} == compact({"name": "test", "other": None})
+    assert None is compact(None)
 
 
 def test_dict_to_spdx_id():
@@ -243,6 +245,13 @@ def test_normalize_ids():
     ]
     assert response == normalize_ids(ids=ids)
 
+
+def test_normalize_cc_url():
+    """normalize_cc_url"""
+    assert 'https://creativecommons.org/licenses/by/4.0/legalcode' == normalize_cc_url('https://creativecommons.org/licenses/by/4.0/')
+    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url('https://creativecommons.org/publicdomain/zero/1.0')
+    assert None is normalize_cc_url(None)
+    assert None is normalize_cc_url({'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
 
 def test_from_citeproc():
     "from_citeproc"
