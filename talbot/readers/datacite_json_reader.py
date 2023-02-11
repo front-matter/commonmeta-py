@@ -24,7 +24,7 @@ def get_datacite_json(pid=None, **kwargs):
         return {"string": None, "state": "not_found"}
 
     url = datacite_api_url(pid)
-    response = requests.get(url, kwargs)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     return response.json().get("data", {}).get("attributes", {})

@@ -467,10 +467,10 @@ def to_schema_org_relation(related_identifiers=None, relation_type=None):
     return unwrap(formatted_identifiers)
 
 
-def find_from_format(id=None, string=None, ext=None, filename=None):
+def find_from_format(pid=None, string=None, ext=None, filename=None):
     """Find reader from format"""
-    if id is not None:
-        return find_from_format_by_id(id)
+    if pid is not None:
+        return find_from_format_by_id(pid)
     if string is not None and ext is not None:
         return find_from_format_by_ext(string, ext=ext)
     if string is not None:
@@ -480,11 +480,11 @@ def find_from_format(id=None, string=None, ext=None, filename=None):
     return "datacite"
 
 
-def find_from_format_by_id(id):
+def find_from_format_by_id(pid: str) -> Optional[str]:
     """Find reader from format by id"""
-    doi = validate_doi(id)
-    if doi and (ra := get_doi_ra(doi)) is not None:
-        return ra.lower()
+    doi = validate_doi(pid)
+    if doi and (registration_agency := get_doi_ra(doi)) is not None:
+        return registration_agency.lower()
     if (
         re.match(
             r"\A(?:(http|https):/(/)?orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[0-9X]+)\Z",

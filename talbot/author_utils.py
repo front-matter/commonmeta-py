@@ -133,16 +133,15 @@ def get_one_author(author):
                 "contributorType": contributor_type,
             }
         )
-    else:
-        return compact(
-            {
-                "nameType": name_type,
-                "name": name,
-                "nameIdentifiers": name_identifiers,
-                "affiliation": get_affiliations(author.get("affiliation", None)),
-                "contributorType": contributor_type,
-            }
-        )
+    return compact(
+        {
+            "nameType": name_type,
+            "name": name,
+            "nameIdentifiers": name_identifiers,
+            "affiliation": get_affiliations(author.get("affiliation", None)),
+            "contributorType": contributor_type,
+        }
+    )
 
 
 def cleanup_author(author):

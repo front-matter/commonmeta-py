@@ -25,17 +25,16 @@ class Metadata:
 
         if pid is None:
             raise ValueError("No PID found")
+        via = kwargs.get("via", None)  # or find_from_format(id=id)
+        if via == "schema_org":
+            string = get_schema_org(pid=data)
+            meta = read_schema_org(string=string)
+        elif via == "datacite_json":
+            string = get_datacite_json(pid=data)
+            meta = read_datacite_json(string=string)
         else:
-            via = kwargs.get("via", None)  # or find_from_format(id=id)
-            if via == "schema_org":
-                string = get_schema_org(pid=data)
-                meta = read_schema_org(string=string)
-            elif via == "datacite_json":
-                string = get_datacite_json(pid=data)
-                meta = read_datacite_json(string=string)
-            else:
-                string = get_crossref_json(pid=data)
-                meta = read_crossref_json(string=string)
+            string = get_crossref_json(pid=data)
+            meta = read_crossref_json(string=string)
         # required properties
         self.pid = meta.get("pid")
         self.doi = meta.get("doi")

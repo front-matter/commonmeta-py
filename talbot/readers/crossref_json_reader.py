@@ -15,7 +15,7 @@ from ..utils import (
     normalize_url,
 )
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_date_parts, strip_milliseconds
+from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_as_url, get_doi_ra
 from ..constants import (
     CR_TO_BIB_TRANSLATIONS,
@@ -32,7 +32,7 @@ def get_crossref_json(pid=None, **kwargs):
         return {"string": None, "state": "not_found"}
 
     url = crossref_api_url(pid)
-    response = requests.get(url, kwargs)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     return response.json().get("message", {})

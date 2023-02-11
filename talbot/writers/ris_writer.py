@@ -36,10 +36,10 @@ def write_ris(metadata):
         }
     )
     string = []
-    for k, v in ris.items():
-        if isinstance(v, list):
-            for vi in v:
-                string.append(f"{k}  - {vi}")
+    for key, val in ris.items():
+        if isinstance(val, list):
+            for vai in val:
+                string.append(f"{key}  - {vai}")
         else:
-            string.append(f"{k}  - {v}")
+            string.append(f"{key}  - {val}")
     return "\r\n".join(string)

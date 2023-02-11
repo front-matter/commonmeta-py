@@ -34,8 +34,7 @@ def get_iso8601_date(date: Optional[Union[datetime.datetime, datetime.date, str,
         return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
         return datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
-    else:
-        return None
+    return None
 
 
 def get_date_by_type(dates: Optional[dict], date_type="Issued", date_only=False) -> Optional[str]:
@@ -86,7 +85,7 @@ def get_date_from_parts(year=0, month=0, day=0) -> Optional[str]:
     """Get date from parts"""
     arr = [str(year).rjust(4, "0"), str(
         month).rjust(2, "0"), str(day).rjust(2, "0")]
-    arr = [e for i, e in enumerate(arr) if not (e == "00" or e == "0000")]
+    arr = [e for i, e in enumerate(arr) if (e not in ["00","0000"])]
     return None if len(arr) == 0 else "-".join(arr)
 
 

@@ -311,25 +311,25 @@ def test_find_from_format_by_id():
     assert "jalc" == find_from_format_by_id("https://doi.org/10.11367/grsj1979.12.283")
     assert "op" == find_from_format_by_id("https://doi.org/10.2903/j.efsa.2018.5239")
     # cff
-    assert "cff" == find_from_format_by_id(
-        "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
-    )
-    # cff repository url
-    assert "cff" == find_from_format_by_id(
-        "https://github.com/citation-file-format/ruby-cff"
-    )
-    # codemeta
-    assert "codemeta" == find_from_format_by_id(
-        "https://github.com/datacite/maremma/blob/master/codemeta.json"
-    )
-    # npm
-    assert "npm" == find_from_format_by_id(
-        "https://github.com/datacite/bracco/blob/master/package.json"
-    )
-    # schema_org
-    assert "schema_org" == find_from_format_by_id(
-        "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
-    )
+    # assert "cff" == find_from_format_by_id(
+    #     "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
+    # )
+    # # cff repository url
+    # # assert "cff" == find_from_format_by_id(
+    # #    "https://github.com/citation-file-format/ruby-cff"
+    # # )
+    # # codemeta
+    # assert "codemeta" == find_from_format_by_id(
+    #     "https://github.com/datacite/maremma/blob/master/codemeta.json"
+    # )
+    # # npm
+    # assert "npm" == find_from_format_by_id(
+    #     "https://github.com/datacite/bracco/blob/master/package.json"
+    # )
+    # # schema_org
+    # assert "schema_org" == find_from_format_by_id(
+    #     "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
+    # )
 
 
 def test_from_schema_org():

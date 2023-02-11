@@ -12,8 +12,9 @@ from ..constants import (
 def read_ris(string=None, **kwargs):
     """read_ris"""
 
-    #         read_options = ActiveSupport::HashWithIndifferentAccess.new(options.except(:doi, :id, :url,
-    #                                                                                    :sandbox, :validate, :ra))
+    #         read_options = ActiveSupport::HashWithIndifferentAccess.
+    # new(options.except(:doi, :id, :url,
+    # :sandbox, :validate, :ra))
 
     meta = ris_meta(string=string)
 

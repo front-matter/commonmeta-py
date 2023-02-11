@@ -42,7 +42,7 @@ def get_schema_org(pid=None, **kwargs):
         return {"string": None, "state": "not_found"}
 
     url = pid
-    response = requests.get(url, kwargs)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
 
@@ -241,17 +241,17 @@ def read_schema_org(string=None, **kwargs):
         rights_list = None
 
     issn = py_.get(meta, "isPartOf.issn", None)
-    ct = "includedInDataCatalog" if schema_org in [
+    cet = "includedInDataCatalog" if schema_org in [
         "Dataset", "Periodical"] else None
-    if ct is not None:
+    if cet is not None:
         url = parse_attributes(
-            from_schema_org(meta.get(ct, None)), content="url", first=True
+            from_schema_org(meta.get(cet, None)), content="url", first=True
         )
         container = compact(
             {
                 "type": "DataRepository" if schema_org == "Dataset" else "Periodical",
                 "title": parse_attributes(
-                    from_schema_org(meta.get(ct, None)), content="name", first=True
+                    from_schema_org(meta.get(cet, None)), content="name", first=True
                 ),
                 "identifier": url,
                 "identifierType": "URL" if url is not None else None,
@@ -261,7 +261,7 @@ def read_schema_org(string=None, **kwargs):
                 "lastPage": meta.get("pageEnd", None),
             }
         )
-    elif "BlogPosting" == schema_org or "Article" == schema_org:
+    elif schema_org in ("Article", "BlogPosting"):
         url = py_.get(meta, "publisher.url", None)
         container = compact(
             {
