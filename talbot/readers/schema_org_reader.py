@@ -1,4 +1,5 @@
 """schema_org reader for Talbot"""
+from typing import Optional
 import json
 import requests
 from pydash import py_
@@ -33,10 +34,11 @@ from ..constants import (
     SO_TO_DC_RELATION_TYPES,
     SO_TO_DC_REVERSE_RELATION_TYPES,
     SO_TO_RIS_TRANSLATIONS,
+    TalbotMeta,
 )
 
 
-def get_schema_org(pid=None, **kwargs):
+def get_schema_org(pid: Optional[str], **kwargs) -> dict:
     """get_schema_org"""
     if pid is None:
         return {"string": None, "state": "not_found"}
@@ -169,11 +171,11 @@ def get_schema_org(pid=None, **kwargs):
     return string
 
 
-def read_schema_org(string=None, **kwargs):
+def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     """read_schema_org"""
-    if string is None:
+    if data is None:
         return {"meta": None, "state": "not_found"}
-    meta = string
+    meta = data
 
     read_options = kwargs or {}
 

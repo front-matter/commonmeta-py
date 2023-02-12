@@ -388,14 +388,9 @@ def test_from_schema_org_creators():
             },
         }
     ]
-    # response = from_schema_org_creators(authors)
-    # assert response == [{ 'affiliation': [{ 'affiliationIdentifier': 'https://ror.org/04wxnsj81',
-    #     'affiliationIdentifierScheme': 'ROR', '__content__': 'DataCite',
-    #     'schemeUri':'https://ror.org/' }], 'creatorName':
-    #     { '__content__': 'Martin Fenner', 'nameType': 'Personal' },
-    #     'familyName': 'Fenner', 'givenName': 'Martin', 'nameIdentifier': [
-    #     { '__content__': 'http://orcid.org/0000-0003-1419-2405',
-    #     'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org' }] }]
+    response = from_schema_org_creators(authors)
+    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'__content__': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://orcid.org/'},
+                         'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}}]
     # without affiliation
     authors = [
         {
@@ -407,10 +402,8 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    # assert response == [{ 'creatorName': { '__content__': 'Martin Fenner',
-    #     'nameType': 'Personal' }, 'familyName': 'Fenner', 'givenName': 'Martin',
-    #     'nameIdentifier': [{ '__content__': 'http://orcid.org/0000-0003-1419-2405',
-    #      'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org' }] }]
+    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID',
+                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}, 'affiliation': {'schemeUri': 'https://orcid.org/'}}]
 
 
 def test_pages_as_string():

@@ -1,4 +1,39 @@
 """Constants for the Talbot project"""
+from typing import Optional, Union, TypedDict, List
+class TalbotMeta(TypedDict):
+    """TypedDict for TalbotMeta"""
+    pid: str
+    doi: str
+    url: str
+    creators: List[dict]
+    titles: List[dict]
+    publisher: str
+    publication_year: int
+    types: dict
+    subjects: Optional[List[dict]]
+    contributors: Optional[List[dict]]
+    dates: Optional[List[dict]]
+    language: Optional[str]
+    alternate_identifiers: Optional[List[dict]]
+    sizes: Optional[List[dict]]
+    formats: Optional[List[dict]]
+    version: Optional[str]
+    rights_list: Optional[List[dict]]
+    descriptions: Optional[List[dict]]
+    geo_locations: Optional[List[dict]]
+    funding_references: Optional[List[dict]]
+    related_items: Optional[List[dict]]
+    container: Optional[dict]
+    date_created: Optional[str]
+    date_registered: Optional[str]
+    date_published: Optional[str]
+    date_updated: Optional[str]
+    content_url: Optional[List[dict]]
+    agency: Optional[str]
+    state: str
+    schema_version: Optional[str]
+    
+
 CR_TO_BIB_TRANSLATIONS = {
     "Proceedings": "proceedings",
     "ReferenceBook": "book",

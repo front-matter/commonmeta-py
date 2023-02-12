@@ -20,21 +20,21 @@ from ..utils import normalize_id
 class Metadata:
     """Metadata"""
 
-    def __init__(self, data, **kwargs):
-        pid = normalize_id(data)
+    def __init__(self, pid, **kwargs):
+        pid = normalize_id(pid)
 
         if pid is None:
             raise ValueError("No PID found")
         via = kwargs.get("via", None)  # or find_from_format(id=id)
         if via == "schema_org":
-            string = get_schema_org(pid=data)
-            meta = read_schema_org(string=string)
+            data = get_schema_org(pid)
+            meta = read_schema_org(data)
         elif via == "datacite_json":
-            string = get_datacite_json(pid=data)
-            meta = read_datacite_json(string=string)
+            data = get_datacite_json(pid)
+            meta = read_datacite_json(data)
         else:
-            string = get_crossref_json(pid=data)
-            meta = read_crossref_json(string=string)
+            data = get_crossref_json(pid)
+            meta = read_crossref_json(data)
         # required properties
         self.pid = meta.get("pid")
         self.doi = meta.get("doi")

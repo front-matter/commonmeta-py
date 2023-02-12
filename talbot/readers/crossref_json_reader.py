@@ -1,7 +1,7 @@
 """crossref_json reader for Talbot"""
+from typing import Optional, TypedDict
 import requests
 from pydash import py_
-
 
 from ..utils import (
     crossref_api_url,
@@ -12,41 +12,44 @@ from ..utils import (
     from_citeproc,
     presence,
     sanitize,
-    normalize_url,
+    normalize_url
 )
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import doi_as_url, get_doi_ra
+from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra
 from ..constants import (
     CR_TO_BIB_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,
     CR_TO_DC_TRANSLATIONS,
     CR_TO_RIS_TRANSLATIONS,
     CR_TO_SO_TRANSLATIONS,
+    TalbotMeta
 )
 
 
-def get_crossref_json(pid=None, **kwargs):
+def get_crossref_json(pid: Optional[str], **kwargs) -> dict:
     """get_crossref_json"""
+
     if pid is None:
         return {"string": None, "state": "not_found"}
+    doi = doi_from_url(pid)
 
-    url = crossref_api_url(pid)
+    url = crossref_api_url(doi)
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     return response.json().get("message", {})
 
 
-def read_crossref_json(string=None, **kwargs):
+def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
     """read_crossref_json"""
-
-    if string is None:
+    if data is None:
         return {"meta": None, "state": "not_found"}
-    meta = string
+    meta = data
 
-    # read_options = ActiveSupport::HashWithIndifferentAccess.new(options.except(:doi, :id, :url,
-    #                                                                                  :sandbox, :validate, :ra))
+    # read_options = ActiveSupport::HashWithIndifferentAccess.
+    # new(options.except(:doi, :id, :url,
+    # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
     doi = meta.get("DOI", None)

@@ -1,4 +1,5 @@
 """RIS reader for Talbot"""
+from typing import Optional
 from ..utils import compact, normalize_url
 from ..date_utils import get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
@@ -6,17 +7,18 @@ from ..constants import (
     RIS_TO_CP_TRANSLATIONS,
     RIS_TO_DC_TRANSLATIONS,
     RIS_TO_SO_TRANSLATIONS,
+    TalbotMeta
 )
 
 
-def read_ris(string=None, **kwargs):
+def read_ris(data: Optional[str], **kwargs) -> TalbotMeta:
     """read_ris"""
 
     #         read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,
     # :sandbox, :validate, :ra))
 
-    meta = ris_meta(string=string)
+    meta = ris_meta(data=data)
 
     read_options = kwargs or {}
 
@@ -83,17 +85,17 @@ def read_ris(string=None, **kwargs):
     # end
 
     return {
-        "id": pid,
+        "pid": pid,
         "types": types,
         "doi": doi_from_url(pid),
         "url": normalize_url(meta.get("UR", None)),
-        # 'titles': meta.get('T1', nil).present? ? [{ 'title': meta.fetch('T1', nil) }] : nil,
-        # 'creators': get_authors(author),
+        'titles': None, # meta.get('T1', nil).present? ? [{ 'title': meta.fetch('T1', nil) }] : nil,
+        'creators': None, #get_authors(author),
         "publisher": meta.get("PB", "(:unav)"),
+        'publication_year': None, # publication_year,
         "container": container,
         # 'related_identifiers': related_identifiers,
         "dates": dates,
-        # 'publication_year': publication_year,
         # 'descriptions': if meta.fetch('AB', nil).present?
         #                       [{ 'description': sanitize(meta.fetch('AB')),
         #                          'descriptionType': 'Abstract' }]
@@ -104,12 +106,12 @@ def read_ris(string=None, **kwargs):
     }  # .merge(read_options)
 
 
-def ris_meta(string=None):
+def ris_meta(data):
     """ris_meta"""
     meta = {}
-    if string is None:
+    if data is None:
         return meta
-    for line in string.split("\n"):
+    for line in data.split("\n"):
         key, value = line.split("-", 1)
         key = key.strip()
         value = value.strip()
