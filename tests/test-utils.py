@@ -151,6 +151,8 @@ def test_validate_orcid():
     )
     # orcid wrong id format
     assert None is validate_orcid("0000-0002-1394-309")
+    # None
+    assert None is validate_orcid(None)
 
 
 def test_normalize_orcid():
@@ -165,6 +167,10 @@ def test_normalize_orcid():
     # orcid id
     assert "https://orcid.org/0000-0002-2590-225X" == normalize_orcid(
         "0000-0002-2590-225X"
+    )
+    # invalid orcid id
+    assert None == normalize_orcid(
+        "0002-2590-225X"
     )
     # None
     assert None is normalize_orcid(None)
@@ -590,6 +596,8 @@ def test_to_schema_org_container():
     }
     assert {'@id': 'https://www.pangaea.de/', '@type': 'Periodical',
             'name': 'PANGAEA'} == to_schema_org_container(pangaea)
+    assert None is to_schema_org_container("Pangaea")
+    assert None is to_schema_org_container(None)
 
 
 def test_to_schema_org_identifiers():
