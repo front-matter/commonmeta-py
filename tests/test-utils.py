@@ -11,6 +11,7 @@ from talbot.utils import (
     wrap,
     unwrap,
     compact,
+    camel_case,
     from_citeproc,
     crossref_api_url,
     datacite_api_url,
@@ -25,7 +26,9 @@ from talbot.utils import (
     to_ris,
     to_schema_org,
     to_schema_org_container,
-    to_schema_org_identifiers
+    to_schema_org_identifiers,
+    get_geolocation_box,
+    get_geolocation_point,
 )
 
 
@@ -463,6 +466,14 @@ def test_sanitize():
     assert content == sanitize(text, tags={"a"})
 
 
+def test_camel_case():
+    """camel case"""
+    assert "camelCase" == camel_case("camel_case")
+    assert "camelCase" == camel_case("camel-case")
+    assert "" == camel_case("")
+    assert None is camel_case(None)
+
+
 def test_crossref_api_url():
     """generate crossref api url"""
     doi = "10.5555/5412"
@@ -609,3 +620,24 @@ def test_to_schema_org_identifiers():
     assert {'@type': 'PropertyValue', 'propertyID': 'DOI',
             'value': '10.5061/dryad.8515'} == to_schema_org_identifiers(identifier)
     assert None is to_schema_org_identifiers(None)
+
+
+def test_geolocation_point():
+    """geolocation point"""
+    assert {'geoLocationPoint': {'pointLatitude': 67.12594, 'pointLongitude': -50.18037}} == get_geolocation_point({"geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 67.12594,
+        "longitude": -50.18037
+    }})
+    assert None is get_geolocation_point(None)
+
+
+def test_geolocation_box():
+    """geolocation box"""
+    assert {'boxLongitude': '-119.221094', 'boxLatitude': '37.047756'} == get_geolocation_box({"geo": {
+      "@type": "GeoCoordinates",
+      "address": "Providence Creek (Lower, Upper and P301)",
+      "latitude": "37.047756",
+      "longitude": "-119.221094"
+    }})
+    assert None is get_geolocation_box(None)

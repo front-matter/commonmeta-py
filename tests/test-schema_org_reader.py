@@ -1,6 +1,7 @@
 """Test schema.org reader"""
 import pytest
 from talbot import Metadata
+from talbot.readers.schema_org_reader import schema_org_geolocations
 
 
 @pytest.mark.vcr
@@ -501,3 +502,19 @@ def test_with_datacite_blog():
         subject.pid
         == "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed"
     )
+
+
+def test_schema_org_geolocations():
+    "schema_org geolocations"
+    spatial_coverage = {"spatialCoverage": {
+        "@type": "Place",
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 67.12594,
+            "longitude": -50.18037
+        }
+    }}
+    none_coverage = {"spatialCoverage": None}
+    assert [{'geoLocationPoint': {'pointLatitude': 67.12594,
+                                  'pointLongitude': -50.18037}}] == schema_org_geolocations(spatial_coverage)
+    assert None is schema_org_geolocations(none_coverage)
