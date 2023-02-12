@@ -1,6 +1,7 @@
 """Test DataCite JSON reader"""
 import pytest
 from talbot import Metadata
+from talbot.readers.datacite_json_reader import get_datacite_json, read_datacite_json
 
 
 @pytest.mark.vcr
@@ -2145,3 +2146,18 @@ def test_geolocation():
         'title': 'Land cover ground reference data in São Paulo state, Brazil, taken in 2015'}
     assert subject.geo_locations == [{'geoLocationPlace': 'Mogi Guaçu (municipality)', 'geoLocationPoint': {
         'pointLatitude': '-22.3680', 'pointLongitude': '-46.9460'}}]
+
+
+def test_get_datacite_json():
+    """get_datacite_json"""
+    data = get_datacite_json("10.6084/m9.figshare.1449060")
+    assert '10.6084/m9.figshare.1449060' == data['doi']
+    assert {'state': 'not_found', 'string': None} == get_datacite_json(None)
+
+
+def test_read_datacite_json():
+    """test_datacite_json"""
+    data = get_datacite_json("10.6084/m9.figshare.1449060")
+    meta = read_datacite_json(data)
+    assert meta['doi'] == '10.6084/m9.figshare.1449060'
+    assert {"meta": None, "state": "not_found"} == read_datacite_json(None)
