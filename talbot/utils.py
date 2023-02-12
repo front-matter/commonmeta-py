@@ -188,7 +188,7 @@ def crossref_api_url(doi: str):
 def datacite_api_url(doi: str, **kwargs) -> str:
     """Return the DataCite API URL for a given DOI"""
     match = re.match(
-        r"\A(?:(http|https):/(/)?handle\.stage\.datacite\.org)", doi, re.IGNORECASE
+        r"\A(http|https):/(/)?handle\.stage\.datacite\.org", doi, re.IGNORECASE
     )
     if match is not None or kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
@@ -284,7 +284,7 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
-def from_citeproc(element: Optional[Union[dict,list]]) -> list:
+def from_citeproc(element: Optional[Union[dict, list]]) -> list:
     """Convert a citeproc element to CSL"""
     formatted_element = []
     for elem in wrap(element):
@@ -307,7 +307,7 @@ def from_citeproc(element: Optional[Union[dict,list]]) -> list:
     return formatted_element
 
 
-def to_citeproc(element: Optional[Union[dict,list]]) -> list:
+def to_citeproc(element: Optional[Union[dict, list]]) -> list:
     """Convert a CSL element to citeproc"""
     formatted_element = []
     for elem in wrap(element):
@@ -322,7 +322,7 @@ def to_citeproc(element: Optional[Union[dict,list]]) -> list:
     return formatted_element
 
 
-def to_ris(element: Optional[Union[dict,list]]) -> list:
+def to_ris(element: Optional[Union[dict, list]]) -> list:
     """Convert a CSL element to RIS"""
     formatted_element = []
     for elem in wrap(element):
@@ -335,8 +335,10 @@ def to_ris(element: Optional[Union[dict,list]]) -> list:
     return formatted_element
 
 
-def to_schema_org(element):
-    """Convert a CSL element to Schema.org"""
+def to_schema_org(element: Optional[dict]) -> Optional[dict]:
+    """Convert a metadata element to Schema.org"""
+    if not isinstance(element, dict):
+        return None
     mapping = {"type": "@type", "id": "@id", "title": "name"}
     for key, value in mapping.items():
         if element.get(key, None) is not None:
@@ -402,18 +404,20 @@ def to_schema_org_contributors(element):
     return unwrap(formatted_element)
 
 
-def to_schema_org_container(element, **kwargs):
+def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]:
     """Convert CSL container to Schema.org container"""
-    if element is None or isinstance(element, dict) or kwargs.get("container_title", None) is None:
+    if element is None and kwargs.get("container_title", None) is None:
+        return None
+    if not isinstance(element, dict):
         return None
 
     return compact(
         {
             "@id": element.get("identifier", None),
             "@type": "DataCatalog"
-            if kwargs.get("type", None) == "Dataset"
+            if kwargs.get("type", None) == "DataRepository"
             else "Periodical",
-            "name": element["title"] or kwargs.get("container_title", None),
+            "name": element.get("title", None) or kwargs.get("container_title", None),
         }
     )
 

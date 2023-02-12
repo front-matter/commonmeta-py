@@ -22,7 +22,10 @@ from talbot.utils import (
     pages_as_string,
     subjects_as_string,
     to_citeproc,
-    to_ris
+    to_ris,
+    to_schema_org,
+    to_schema_org_container,
+    to_schema_org_identifiers
 )
 
 
@@ -39,16 +42,17 @@ def test_parse_attributes():
         {"name": "10.5061/DRYAD.8515"}, content="name")
     # list of dicts
     assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(
-        [{"__content__": "10.5061/DRYAD.8515"}, {"__content__": "10.5061/DRYAD.8516"}]
+        [{"__content__": "10.5061/DRYAD.8515"},
+            {"__content__": "10.5061/DRYAD.8516"}]
     )
     # first in list of dicts
     assert '10.5061/DRYAD.8515' == parse_attributes(
         [{"__content__": "10.5061/DRYAD.8515"}, {"__content__": "10.5061/DRYAD.8516"}], first=True)
     # list of strings
-    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"])
+    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(
+        ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"])
     # None
     assert None is parse_attributes(None)
-
 
 
 def test_wrap():
@@ -168,7 +172,8 @@ def test_normalize_orcid():
 
 def test_normalize_id():
     "normalize_id"
-    assert "https://doi.org/10.5061/dryad.8515" == normalize_id("10.5061/DRYAD.8515")
+    assert "https://doi.org/10.5061/dryad.8515" == normalize_id(
+        "10.5061/DRYAD.8515")
     # doi as url
     assert "https://doi.org/10.5061/dryad.8515" == normalize_id(
         "http://dx.doi.org/10.5061/DRYAD.8515"
@@ -184,7 +189,8 @@ def test_normalize_id():
     # url with utf-8
     # assert 'http://www.xn--8ws00zhy3a.com/eating-your-own-dog-food' == normalize_id('http://www.詹姆斯.com/eating-your-own-dog-food/')
     # ftp
-    assert None is normalize_id("ftp://blog.datacite.org/eating-your-own-dog-food/")
+    assert None is normalize_id(
+        "ftp://blog.datacite.org/eating-your-own-dog-food/")
     # invalid url
     assert None is normalize_id("http://")
     # bytes object
@@ -248,10 +254,14 @@ def test_normalize_ids():
 
 def test_normalize_cc_url():
     """normalize_cc_url"""
-    assert 'https://creativecommons.org/licenses/by/4.0/legalcode' == normalize_cc_url('https://creativecommons.org/licenses/by/4.0/')
-    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url('https://creativecommons.org/publicdomain/zero/1.0')
+    assert 'https://creativecommons.org/licenses/by/4.0/legalcode' == normalize_cc_url(
+        'https://creativecommons.org/licenses/by/4.0/')
+    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url(
+        'https://creativecommons.org/publicdomain/zero/1.0')
     assert None is normalize_cc_url(None)
-    assert None is normalize_cc_url({'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
+    assert None is normalize_cc_url(
+        {'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
+
 
 def test_from_citeproc():
     "from_citeproc"
@@ -312,13 +322,16 @@ def test_from_citeproc():
 def test_find_from_format_by_id():
     "find_from_format_by_id"
     assert "crossref" == find_from_format_by_id("10.1371/journal.pone.0042793")
-    assert "datacite" == find_from_format_by_id("https://doi.org/10.5061/dryad.8515")
+    assert "datacite" == find_from_format_by_id(
+        "https://doi.org/10.5061/dryad.8515")
     assert "medra" == find_from_format_by_id("10.1392/roma081203")
     assert "kisti" == find_from_format_by_id(
         "https://doi.org/10.5012/bkcs.2013.34.10.2889"
     )
-    assert "jalc" == find_from_format_by_id("https://doi.org/10.11367/grsj1979.12.283")
-    assert "op" == find_from_format_by_id("https://doi.org/10.2903/j.efsa.2018.5239")
+    assert "jalc" == find_from_format_by_id(
+        "https://doi.org/10.11367/grsj1979.12.283")
+    assert "op" == find_from_format_by_id(
+        "https://doi.org/10.2903/j.efsa.2018.5239")
     # cff
     # assert "cff" == find_from_format_by_id(
     #     "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
@@ -435,6 +448,7 @@ def test_subjects_as_string():
     assert "Ecology, Biodiversity" == subjects_as_string(subjects)
     assert None is subjects_as_string(None)
 
+
 def test_sanitize():
     """Sanitize HTML"""
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
@@ -526,7 +540,8 @@ def test_to_citeproc():
 
     ]
     assert [{'family': 'Jones', 'given': 'Matt'}] == to_citeproc(authors)
-    assert [{'literal': 'University of California, Berkeley'}] == to_citeproc(organization_authors)
+    assert [{'literal': 'University of California, Berkeley'}
+            ] == to_citeproc(organization_authors)
     assert [] == to_citeproc(None)
 
 
@@ -546,5 +561,50 @@ def test_to_ris():
 
     ]
     assert ['Jones, Matt'] == to_ris(authors)
-    assert ['University of California, Berkeley'] == to_ris(organization_authors)
+    assert ['University of California, Berkeley'] == to_ris(
+        organization_authors)
     assert [] == to_ris(None)
+
+
+def test_to_schema_org():
+    """to schema.org"""
+    author = {
+        "id": "http://orcid.org/0000-0003-0077-4738",
+        "type": "Person",
+        "givenName": "Matt",
+        "familyName": "Jones",
+    }
+    organization_author = {
+        "id": "https://ror.org/01an7q238",
+        "type": "Organization",
+        "name": "University of California, Berkeley"
+    }
+
+    assert {'givenName': 'Matt', 'familyName': 'Jones', '@type': 'Person',
+            '@id': 'http://orcid.org/0000-0003-0077-4738'} == to_schema_org(author)
+    assert {'name': 'University of California, Berkeley', '@type': 'Organization',
+            '@id': 'https://ror.org/01an7q238'} == to_schema_org(organization_author)
+    assert None is to_schema_org(None)
+
+
+def test_to_schema_org_container():
+    """to schema.org container"""
+    pangaea = {
+        "identifier": "https://www.pangaea.de/",
+        "identifierType": "URL",
+        "title": "PANGAEA",
+        "type": "DataRepository",
+    }
+    assert {'@id': 'https://www.pangaea.de/', '@type': 'Periodical',
+            'name': 'PANGAEA'} == to_schema_org_container(pangaea)
+
+
+def test_to_schema_org_identifiers():
+    """to schema.org identifiers"""
+    identifier = {
+        "identifier": "10.5061/dryad.8515",
+        "identifierType": "DOI",
+    }
+    assert {'@type': 'PropertyValue', 'propertyID': 'DOI',
+            'value': '10.5061/dryad.8515'} == to_schema_org_identifiers(identifier)
+    assert None is to_schema_org_identifiers(None)

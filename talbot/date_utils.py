@@ -85,7 +85,7 @@ def get_date_from_parts(year=0, month=0, day=0) -> Optional[str]:
     """Get date from parts"""
     arr = [str(year).rjust(4, "0"), str(
         month).rjust(2, "0"), str(day).rjust(2, "0")]
-    arr = [e for i, e in enumerate(arr) if (e not in ["00","0000"])]
+    arr = [e for i, e in enumerate(arr) if (e not in ["00", "0000"])]
     return None if len(arr) == 0 else "-".join(arr)
 
 

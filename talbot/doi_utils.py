@@ -68,7 +68,7 @@ def get_doi_ra(doi):
     prefix = validate_prefix(doi)
     if prefix is None:
         return None
-    response = requests.get("https://doi.org/ra/" + prefix, timeout=10)
+    response = requests.get("https://doi.org/ra/" + prefix, timeout=5)
     if response.status_code != 200:
         return None
     return response.json()[0].get("RA", None)
