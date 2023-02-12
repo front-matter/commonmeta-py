@@ -78,8 +78,8 @@ def test_dataset():
 
 def test_blog_posting():
     """blog posting"""
-    text = "https://doi.org/10.5438/zhyx-n122"
-    subject = Metadata(text, via="datacite_json")
+    pid = "https://doi.org/10.5438/zhyx-n122"
+    subject = Metadata(pid, via="datacite_json")
     print(subject.related_items)
     assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
     assert subject.types == {
@@ -205,8 +205,8 @@ def test_blog_posting():
 @pytest.mark.vcr
 def test_date():
     """dataset"""
-    text = "https://doi.org/10.4230/lipics.tqc.2013.93"
-    subject = Metadata(text, via="datacite_json")
+    pid = "https://doi.org/10.4230/lipics.tqc.2013.93"
+    subject = Metadata(pid, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.types == {
@@ -453,8 +453,8 @@ def test_multiple_identifiers():
 
 def test_is_identical():
     """is_identical"""
-    text = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
-    subject = Metadata(text, via="datacite_json")
+    pid = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
+    subject = Metadata(pid, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.types == {
@@ -917,8 +917,8 @@ def test_cc_by():
 
 def test_geolocation_box():
     """geolocation_box"""
-    text = "10.6071/z7wc73"
-    subject = Metadata(text, via="datacite_json")
+    pid = "10.6071/z7wc73"
+    subject = Metadata(pid, via="datacite_json")
     assert subject.pid == "https://doi.org/10.6071/z7wc73"
     # assert subject.doi == "10.6071/z7wc73"
     assert subject.types.get('schemaOrg') == 'Dataset'
@@ -2137,8 +2137,8 @@ def test_geolocation_box():
 
 def test_geolocation():
     """geolocation"""
-    text = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
-    subject = Metadata(text, via="datacite_json")
+    pid = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
+    subject = Metadata(pid, via="datacite_json")
     assert subject.pid
     assert subject.types.get('schemaOrg') == 'Dataset'
     assert subject.titles[0] == {
