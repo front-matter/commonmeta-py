@@ -1,6 +1,7 @@
 """Crossref JSON reader tests"""
 import pytest
 from talbot import Metadata
+from talbot.readers.crossref_json_reader import get_crossref_json, read_crossref_json, get_related_item
 
 
 @pytest.mark.vcr
@@ -49,17 +50,17 @@ def test_doi_with_data_citation():
     ]
     assert subject.publication_year == "2014"
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    # assert subject.issn == "2050-084X"
     assert len(subject.related_items) == 28
     assert subject.related_items[0] == {
-        "relatedIdentifier": "2050-084X",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "2050-084X",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1038/ncb2764",
-        "relatedIdentifierType": "DOI",
+        'key': 'bib27',
+        "relatedItemIdentifier": "10.1038/ncb2764",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     # assert subject.funding_references == [{'name': 'SystemsX'}, {'name': 'EMBO longterm post-doctoral fellowships'},
@@ -158,17 +159,17 @@ def test_journal_article():
     ]
     assert subject.publication_year == "2006"
     assert subject.publisher == "Public Library of Science (PLoS)"
-    # assert subject.issn == "1932-6203"
-    assert len(subject.related_items) == 68
+    assert len(subject.related_items) == 74
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1932-6203",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1932-6203",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1056/nejm199109123251104",
-        "relatedIdentifierType": "DOI",
+        'key': 'ref73',
+        "relatedItemIdentifier": "10.1056/nejm199109123251104",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references is None
@@ -231,17 +232,17 @@ def test_journal_article_with_funding():
     ]
     assert subject.publication_year == "2019"
     assert subject.publisher == "Frontiers Media SA"
-    # assert subject.issn == "1664-462X"
-    assert len(subject.related_items) == 70
+    assert len(subject.related_items) == 71
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1664-462X",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1664-462X",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.17660/actahortic.2004.632.41",
-        "relatedIdentifierType": "DOI",
+        'key': 'ref70',
+        "relatedItemIdentifier": "10.17660/actahortic.2004.632.41",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references == [
@@ -285,7 +286,8 @@ def test_journal_article_original_language():
     )
     # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators[0] == {
+        "nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -297,17 +299,17 @@ def test_journal_article_original_language():
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
     )
-    # assert subject.issn == "1881-4751"
     assert len(subject.related_items) == 8
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1881-4751",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1881-4751",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1161/01.cir.95.6.1686",
-        "relatedIdentifierType": "DOI",
+        'key': '7',
+        "relatedItemIdentifier": "10.1161/01.cir.95.6.1686",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references is None
@@ -366,19 +368,15 @@ def test_journal_article_with_rdf_for_container():
     ]
     assert subject.publication_year == "2012"
     assert subject.publisher == "Oxford University Press (OUP)"
-    # assert subject.issn == "1937-240X"
-    assert len(subject.related_items) == 44
+    assert len(subject.related_items) == 112
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1937-240X",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1937-240X",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1002/aqc.1122",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert subject.related_items[-1] == {'key': 'bibr111', 'relationType': 'References', 'creator': 'Zenina',
+                                         'title': 'Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)', 'publicationYear': '2008', 'volume': 'Vol. 1', 'firstPage': '156'}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1937-240X",
@@ -429,19 +427,15 @@ def test_book_chapter_with_rdf_for_container():
     ]
     assert subject.publication_year == "2012"
     assert subject.publisher == "Springer Berlin Heidelberg"
-    # assert subject.issn == "1611-3349"
-    assert len(subject.related_items) == 8
+    assert len(subject.related_items) == 12
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1611-3349",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1611-3349",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1109/avss.2011.6027284",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert subject.related_items[-1] == {'key': '49_CR11', 'relationType': 'References',
+                                         'unstructured': 'Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)'}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1611-3349",
@@ -490,13 +484,9 @@ def test_posted_content():
     ]
     assert subject.publication_year == "2016"
     assert subject.publisher == "Cold Spring Harbor Laboratory"
-    # assert subject.issn is None
-    assert len(subject.related_items) == 8
-    assert subject.related_items[0] == {
-        "relatedIdentifier": "10.2481/dsj.osom13-043",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert len(subject.related_items) == 26
+    assert subject.related_items[0] == {'key': '2019071613381284000_097196v2.1', 'relationType': 'References', 'title': 'An introduction to the joint principles for data citation',
+                                        'publicationYear': '2015', 'volume': '41', 'issue': '3', 'firstPage': '43', 'containerTitle': 'Bulletin of the American \\ldots'}
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -649,18 +639,15 @@ def test_doi_with_sici():
     ]
     assert subject.publication_year == "2006"
     assert subject.publisher == "Wiley"
-    assert len(subject.related_items) == 35
+    assert len(subject.related_items) == 40
     assert subject.related_items[0] == {
-        "relatedIdentifier": "0012-9658",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "0012-9658",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1098/rspb.2002.2213",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert subject.related_items[-1] == {'key': 'i0012-9658-87-11-2832-ydenberg1', 'relationType': 'References',
+                                         'unstructured': 'R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.'}
     assert subject.funding_references is None
     assert subject.container == {
         "firstPage": "2832",
@@ -735,17 +722,17 @@ def test_doi_with_orcid():
     ]
     assert subject.publication_year == "2012"
     assert subject.publisher == "Hindawi Limited"
-    # assert subject.issn == "2090-1844"
-    assert len(subject.related_items) == 18
+    assert len(subject.related_items) == 28
     assert subject.related_items[0] == {
-        "relatedIdentifier": "2090-1844",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "2090-1844",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1378/chest.12-0045",
-        "relatedIdentifierType": "DOI",
+        'key': '30',
+        "relatedItemIdentifier": "10.1378/chest.12-0045",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references is None
@@ -809,17 +796,17 @@ def test_date_in_future():
     ]
     assert subject.publication_year == "2015"
     assert subject.publisher == "Elsevier BV"
-    # assert subject.issn == "0014-2999"
-    assert len(subject.related_items) == 88
+    assert len(subject.related_items) == 99
     assert subject.related_items[0] == {
-        "relatedIdentifier": "0014-2999",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "0014-2999",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1111/hiv.12134",
-        "relatedIdentifierType": "DOI",
+        'key': '10.1016/j.ejphar.2015.03.018_bib94',
+        "relatedItemIdentifier": "10.1111/hiv.12134",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references == [
@@ -902,17 +889,17 @@ def test_vor_with_url():
     ]
     assert subject.publication_year == "2013"
     assert subject.publisher == "Springer Science and Business Media LLC"
-    # assert subject.issn == "1365-2540"
-    assert len(subject.related_items) == 35
+    assert len(subject.related_items) == 42
     assert subject.related_items[0] == {
-        "relatedIdentifier": "1365-2540",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "1365-2540",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1111/j.1095-8312.2003.00230.x",
-        "relatedIdentifierType": "DOI",
+        'key': 'BFhdy201326_CR41',
+        "relatedItemIdentifier": "10.1111/j.1095-8312.2003.00230.x",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references is None
@@ -992,7 +979,8 @@ def test_component():
     }
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators[0] == {
+        "nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -1041,11 +1029,11 @@ def test_dataset_usda():
     ]
     assert subject.publication_year == "2017"
     assert subject.publisher == "Forest Service Research Data Archive"
-    # assert subject.issn is None
-    assert len(subject.related_items) == 5
+    assert len(subject.related_items) == 6
     assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.1674/0003-0031-178.1.47",
-        "relatedIdentifierType": "DOI",
+        'key': 'ref6',
+        "relatedItemIdentifier": "10.1674/0003-0031-178.1.47",
+        "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
     assert subject.funding_references is None
@@ -1074,7 +1062,8 @@ def test_book_chapter():
         "schemaOrg": "Chapter",
     }
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
-    assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
+    assert subject.titles[0] == {
+        "title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
         "nameType": "Personal",
         "name": "Ronald L. Diercks",
@@ -1082,16 +1071,17 @@ def test_book_chapter():
         "familyName": "Diercks",
     }
     assert subject.contributors is None
-    assert subject.rights == [{'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
+    assert subject.rights == [
+        {'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
         {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
     ]
     assert subject.publication_year == "2015"
     assert subject.publisher == "Springer Berlin Heidelberg"
-    # assert subject.issn is None
-    assert len(subject.related_items) == 16
-    assert subject.related_items[0] == {'relatedIdentifier': '10.1007/s00256-012-1391-8', 'relatedIdentifierType': 'DOI', 'relationType': 'References'}
+    assert len(subject.related_items) == 22
+    assert subject.related_items[0] == {'key': '13_CR1', 'relationType': 'References',
+                                        'relatedItemIdentifier': '10.1007/s00256-012-1391-8', 'relatedItemIdentifierType': 'DOI'}
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Shoulder Stiffness",
@@ -1137,8 +1127,7 @@ def test_another_book_chapter():
     ]
     assert subject.publication_year == "2018"
     assert subject.publisher == "Springer International Publishing"
-    # assert subject.issn == "2523-3629"
-    assert len(subject.related_items) == 30
+    assert len(subject.related_items) == 45
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1190,8 +1179,7 @@ def test_yet_another_book_chapter():
     ]
     assert subject.publication_year == "2012"
     assert subject.publisher == "IGI Global"
-    # assert subject.issn is None
-    assert len(subject.related_items) == 27
+    assert len(subject.related_items) == 33
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1250,19 +1238,15 @@ def test_missing_creator():
     ]
     assert subject.publication_year == "2018"
     assert subject.publisher == "MDPI AG"
-    # assert subject.issn == "2304-6775"
-    assert len(subject.related_items) == 6
+    assert len(subject.related_items) == 24
     assert subject.related_items[0] == {
-        "relatedIdentifier": "2304-6775",
-        "relatedIdentifierType": "ISSN",
+        "relatedItemIdentifier": "2304-6775",
+        "relatedItemIdentifierType": "ISSN",
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {
-        "relatedIdentifier": "10.4119/unibi/ub.2014.18",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert subject.related_items[-1] == {'key': 'ref23', 'relationType': 'References',
+                                         'unstructured': 'SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD'}
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",
@@ -1325,7 +1309,8 @@ def test_book():
         subject.url
         == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
     )
-    assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
+    assert subject.titles[0] == {
+        "title": "The Politics of the Past in Early China"}
     assert subject.creators[0] == {
         "nameType": "Personal",
         "name": "Vincent S. Leung",
@@ -1342,13 +1327,9 @@ def test_book():
     ]
     assert subject.publication_year == "2019"
     assert subject.publisher == "Cambridge University Press"
-    # assert subject.issn is None
-    assert len(subject.related_items) == 90
-    assert subject.related_items[0] == {
-        "relatedIdentifier": "10.1093/acprof:oso/9780199367344.001.0001",
-        "relatedIdentifierType": "DOI",
-        "relationType": "References",
-    }
+    assert len(subject.related_items) == 273
+    assert subject.related_items[0] == {'key': '9781108348843#EMT-rl-1_BIBe-r-273', 'relationType': 'References', 'creator': 'Qiusheng',
+                                        'title': 'Lu Jia de lishi yishi ji qi wenhua yiyi', 'publicationYear': '1997', 'volume': '5', 'firstPage': '67', 'containerTitle': 'Qilu xuekan'}
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -1356,3 +1337,27 @@ def test_book():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.agency == "Crossref"
+
+
+def test_get_related_item():
+    """get_related_item"""
+    doi_metadata = {
+        "key": "978-1-4666-1891-6.ch004.-31",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
+        "DOI": "10.1109/ICCV.2007.4408927"
+    }
+    unstructured_metadata = {
+        "key": "978-1-4666-1891-6.ch004.-14",
+        "first-page": "938",
+        "article-title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
+        "volume": "15",
+        "author": "W.Donath",
+        "year": "1972",
+        "journal-title": "IBM Technical Disclosure Bulletin"
+    }
+    assert {'key': '978-1-4666-1891-6.ch004.-31', 'relatedItemIdentifier': '10.1109/iccv.2007.4408927',
+            'relatedItemIdentifierType': 'DOI', 'relationType': 'References'} == get_related_item(doi_metadata)
+    assert {'key': '978-1-4666-1891-6.ch004.-14', 'relationType': 'References', 'creator': 'W.Donath', 'title': 'Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.',
+            'publicationYear': '1972', 'volume': '15', 'firstPage': '938', 'containerTitle': 'IBM Technical Disclosure Bulletin'} == get_related_item(unstructured_metadata)
+    assert None is get_related_item(None)

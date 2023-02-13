@@ -56,7 +56,7 @@ def write_schema_org(metadata):
             "pageStart": container.get("firstPage", None),
             "pageEnd": container.get("lastPage", None),
             "isPartOf": to_schema_org_relation(
-                related_identifiers=metadata.related_items,
+                related_items=metadata.related_items,
                 relation_type="IsPartOf",
             ),
             "periodical": periodical,

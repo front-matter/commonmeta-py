@@ -434,9 +434,9 @@ def to_schema_org_identifiers(element):
     return unwrap(formatted_element)
 
 
-def to_schema_org_relation(related_identifiers=None, relation_type=None):
-    """Convert CSL related identifiers to Schema.org relations"""
-    if related_identifiers is None or relation_type is None:
+def to_schema_org_relation(related_items=None, relation_type=None):
+    """Convert related:items to Schema.org relations"""
+    if related_items is None or relation_type is None:
         return None
 
     # consolidate different relation types
@@ -445,20 +445,20 @@ def to_schema_org_relation(related_identifiers=None, relation_type=None):
     else:
         relation_type = [relation_type]
 
-    related_identifiers = py_.filter(
+    related_items = py_.filter(
         wrap(
-            related_identifiers), lambda ri: ri["relationType"] in relation_type
+            related_items), lambda ri: ri["relationType"] in relation_type
     )
 
-    formatted_identifiers = []
-    for rel in related_identifiers:
-        if rel["relatedIdentifierType"] == "ISSN" and rel["relationType"] == "IsPartOf":
-            formatted_identifiers.append(
+    formatted_items = []
+    for rel in related_items:
+        if rel["relatedItemIdentifierType"] == "ISSN" and rel["relationType"] == "IsPartOf":
+            formatted_items.append(
                 compact({"@type": "Periodical",
-                        "issn": rel["relatedIdentifier"]})
+                        "issn": rel["relatedItemIdentifier"]})
             )
         else:
-            formatted_identifiers.append(
+            formatted_items.append(
                 compact(
                     {
                         "@id": normalize_id(rel["relatedIdentifier"]),
@@ -468,7 +468,7 @@ def to_schema_org_relation(related_identifiers=None, relation_type=None):
                     }
                 )
             )
-    return unwrap(formatted_identifiers)
+    return unwrap(formatted_items)
 
 
 def find_from_format(pid=None, string=None, ext=None, filename=None):

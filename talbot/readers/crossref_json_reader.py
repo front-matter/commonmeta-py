@@ -119,24 +119,16 @@ def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
             compact(
                 {
                     "relationType": "IsPartOf",
-                    "relatedIdentifierType": "ISSN",
+                    "relatedItemIdentifierType": "ISSN",
                     "resourceTypeGeneral": "Collection",
-                    "relatedIdentifier": issn,
+                    "relatedItemIdentifier": issn,
                 }
             )
         ]
     else:
         related_items = []
     for reference in wrap(meta.get("reference", [])):
-        doi_ = reference.get("DOI", None)
-        if doi_ is None:
-            continue  # skip references without a DOI
-        ref = {
-            "relationType": "References",
-            "relatedIdentifierType": "DOI",
-            "relatedIdentifier": doi_.lower(),
-        }
-        related_items.append(ref)
+        related_items.append(get_related_item(reference))
 
     if resource_type == "JournalArticle":
         container_type = "Journal"
@@ -180,24 +172,16 @@ def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
         related_items = [
             {
                 "relationType": "IsPartOf",
-                "relatedIdentifierType": "ISSN",
+                "relatedItemIdentifierType": "ISSN",
                 "resourceTypeGeneral": "Collection",
-                "relatedIdentifier": issn,
+                "relatedItemIdentifier": issn,
             }
         ]
     else:
         related_items = []
     references = meta.get("reference", [])
     for ref in references:
-        doi_ = ref.get("DOI", None)
-        if doi_:
-            related_items.append(
-                {
-                    "relationType": "References",
-                    "relatedIdentifierType": "DOI",
-                    "relatedIdentifier": doi_.lower(),
-                }
-            )
+        related_items.append(get_related_item(ref))
 
     funding_references = []
     for funding in wrap(meta.get("funder", [])):
@@ -273,3 +257,36 @@ def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
         "state": state,
         "schema_version": None
     } | read_options
+
+
+def get_related_item(reference: Optional[dict]) -> Optional[dict]:
+    """Get related_item from Crossref reference"""
+    if reference is None or not isinstance(reference, dict):
+        return None
+    doi = reference.get("DOI", None)
+    metadata = {
+        "key": reference.get("key", None),
+        "relationType": "References",
+        "relatedItemType": None,
+    }
+    if doi is not None:
+        metadata = metadata | {
+            "relatedItemIdentifier": doi.lower(),
+            "relatedItemIdentifierType": "DOI",
+        }
+    else:
+        metadata = metadata | {
+            "creator": reference.get("author", None),
+            "title": reference.get("article-title", None),
+            "publisher": reference.get("publisher", None),
+            "publicationYear": reference.get("year", None),
+            "volume": reference.get("volume", None),
+            "issue": reference.get("issue", None),
+            "firstPage": reference.get("first-page", None),
+            "lastPage": reference.get("last-page", None),
+            "containerTitle": reference.get("journal-title", None),
+            "edition": None,
+            "contributor": None,
+            "unstructured": reference.get("unstructured", None)
+        }
+    return compact(metadata)
