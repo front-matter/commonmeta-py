@@ -5,7 +5,7 @@
 
 # Talbot
 
-Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Briard is work in progress, the first release is
+Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi is
 planned for March 2023.
 
 ## Installation
