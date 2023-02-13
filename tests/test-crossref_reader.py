@@ -25,7 +25,6 @@ def test_doi_with_data_citation():
     assert len(subject.creators) == 5
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Martial Sankar",
         "givenName": "Martial",
         "familyName": "Sankar",
         "affiliation": [
@@ -132,7 +131,6 @@ def test_journal_article():
     assert len(subject.creators) == 5
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Markus Ralser",
         "givenName": "Markus",
         "familyName": "Ralser",
     }
@@ -140,7 +138,6 @@ def test_journal_article():
         {
             "familyName": "Janbon",
             "givenName": "Guilhem",
-            "name": "Guilhem Janbon",
             "nameType": "Personal",
         }
     ]
@@ -212,7 +209,6 @@ def test_journal_article_with_funding():
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Ana Margarida Fortes",
         "givenName": "Ana Margarida",
         "familyName": "Fortes",
     }
@@ -356,7 +352,6 @@ def test_journal_article_with_rdf_for_container():
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Andreu Escrivà",
         "givenName": "Andreu",
         "familyName": "Escrivà",
     }
@@ -415,7 +410,6 @@ def test_book_chapter_with_rdf_for_container():
     assert len(subject.creators) == 3
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Lili Chen",
         "givenName": "Lili",
         "familyName": "Chen",
     }
@@ -472,7 +466,6 @@ def test_posted_content():
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Martin Fenner",
         "givenName": "Martin",
         "familyName": "Fenner",
     }
@@ -521,7 +514,6 @@ def test_peer_review():
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Jeremy Magland",
         "givenName": "Jeremy",
         "familyName": "Magland",
         "affiliation": [
@@ -546,7 +538,6 @@ def test_peer_review():
     ]
     assert subject.publication_year == "2020"
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    # assert subject.issn is None
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
@@ -578,7 +569,6 @@ def test_dissertation():
     assert subject.creators[0] == {
         "familyName": "Collingwood",
         "givenName": "Patricia Maree",
-        "name": "Patricia Maree Collingwood",
         "nameType": "Personal",
     }
     assert subject.contributors is None
@@ -589,7 +579,6 @@ def test_dissertation():
     ]
     assert subject.publication_year == "2020"
     assert subject.publisher == "University of Queensland Library"
-    # assert subject.issn is None
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
     assert subject.container is None
@@ -625,7 +614,6 @@ def test_doi_with_sici():
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "A. Fenton",
         "givenName": "A.",
         "familyName": "Fenton",
     }
@@ -688,7 +676,6 @@ def test_doi_with_orcid():
     assert len(subject.creators) == 7
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Wendy Thanassi",
         "givenName": "Wendy",
         "familyName": "Thanassi",
         "affiliation": [
@@ -782,7 +769,6 @@ def test_date_in_future():
     assert len(subject.creators) == 10
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Sarah E. Beck",
         "givenName": "Sarah E.",
         "familyName": "Beck",
     }
@@ -877,7 +863,6 @@ def test_vor_with_url():
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "J B Gross",
         "givenName": "J B",
         "familyName": "Gross",
     }
@@ -942,7 +927,6 @@ def test_dataset():
     }
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "G. Fermi",
         "givenName": "G.",
         "familyName": "Fermi",
     }
@@ -1016,7 +1000,6 @@ def test_dataset_usda():
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Christine A. Ribic",
         "givenName": "Christine A.",
         "familyName": "Ribic",
         "affiliation": [{"name": "U.S. Geological Survey"}],
@@ -1066,7 +1049,6 @@ def test_book_chapter():
         "title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Ronald L. Diercks",
         "givenName": "Ronald L.",
         "familyName": "Diercks",
     }
@@ -1115,7 +1097,6 @@ def test_another_book_chapter():
     }
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Hunter M. Jones",
         "givenName": "Hunter M.",
         "familyName": "Jones",
     }
@@ -1167,7 +1148,6 @@ def test_yet_another_book_chapter():
     assert subject.creators[0] == {
         "affiliation": [{"name": "Université de Lyon, France"}],
         "nameType": "Personal",
-        "name": "Charles-Edmond Bichot",
         "givenName": "Charles-Edmond",
         "familyName": "Bichot",
     }
@@ -1218,7 +1198,6 @@ def test_missing_creator():
     }
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Alexander Kohls",
         "givenName": "Alexander",
         "familyName": "Kohls",
     }
@@ -1313,7 +1292,6 @@ def test_book():
         "title": "The Politics of the Past in Early China"}
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Vincent S. Leung",
         "givenName": "Vincent S.",
         "familyName": "Leung",
     }

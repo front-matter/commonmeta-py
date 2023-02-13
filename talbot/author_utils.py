@@ -33,8 +33,6 @@ def get_one_author(author):
     )
 
     name = cleanup_author(name)
-    if family_name and given_name:
-        name = f"{given_name} {family_name}"
     contributor_type = parse_attributes(author.get("contributorType", None))
     name_type = parse_attributes(
         author.get("creatorName", None), content="nameType", first=True
@@ -47,7 +45,7 @@ def get_one_author(author):
         if name_identifier.get("nameIdentifier", None) is None:
             continue
         if name_identifier.get("nameIdentifierScheme", None) == "ORCID":
-            ni = compact(
+            name_ident = compact(
                 {
                     "nameIdentifier": normalize_orcid(
                         name_identifier.get("nameIdentifier", None)
@@ -56,9 +54,9 @@ def get_one_author(author):
                     "nameIdentifierScheme": "ORCID",
                 }
             )
-            name_identifiers.append(ni)
+            name_identifiers.append(name_ident)
         elif name_identifier.get("schemeURI", None) is not None:
-            ni = compact(
+            name_ident = compact(
                 {
                     "nameIdentifier": name_identifier.get("schemeURI")
                     + name_identifier.get("nameIdentifier", None),
@@ -68,9 +66,9 @@ def get_one_author(author):
                     ),
                 }
             )
-            name_identifiers.append(ni)
+            name_identifiers.append(name_ident)
         else:
-            ni = compact(
+            name_ident = compact(
                 {
                     "nameIdentifier": name_identifier.get("nameIdentifier", None),
                     "nameIdentifierScheme": name_identifier.get(
@@ -78,7 +76,7 @@ def get_one_author(author):
                     ),
                 }
             )
-            name_identifiers.append(ni)
+            name_identifiers.append(name_ident)
     if len(name_identifiers) == 0:
         name_identifiers = None
 
@@ -109,7 +107,7 @@ def get_one_author(author):
     author = compact(
         {
             "nameType": name_type,
-            "name": name,
+            "name": name if not family_name else None,
             "givenName": given_name,
             "familyName": family_name,
             "nameIdentifiers": name_identifiers,
@@ -125,7 +123,7 @@ def get_one_author(author):
         return compact(
             {
                 "nameType": "Personal",
-                "name": name,
+                "name": name if not family_name else None,
                 "givenName": given_name,
                 "familyName": family_name,
                 "nameIdentifiers": name_identifiers,
@@ -173,11 +171,11 @@ def authors_as_string(authors):
     formatted_authors = []
     for author in wrap(authors):
         if author.get("familyName", None):
-            a = f"{author['familyName']}, {author['givenName']}"
-            formatted_authors.append(a)
+            aut = f"{author['familyName']}, {author['givenName']}"
+            formatted_authors.append(aut)
         elif author.get("type", None) != "Person":
-            a = author["name"]
-            formatted_authors.append(a)
+            aut = author["name"]
+            formatted_authors.append(aut)
     return " and ".join(formatted_authors)
 
 

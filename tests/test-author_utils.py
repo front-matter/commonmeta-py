@@ -21,7 +21,6 @@ def test_one_author():
     assert {
         "familyName": "Jones",
         "givenName": "Matt",
-        "name": "Matt Jones",
         "nameType": "Personal",
     } == get_one_author(authors[0])
     # has familyName
@@ -33,7 +32,6 @@ def test_one_author():
                 "schemeUri": "https://orcid.org",
             }
         ],
-        "name": "Martin Fenner",
         "givenName": "Martin",
         "familyName": "Fenner",
         "nameType": "Personal",
@@ -54,7 +52,6 @@ def test_one_author():
     # has name in sort-order' do
     assert {
         "nameType": "Personal",
-        "name": "Benjamin Ollomo",
         "givenName": "Benjamin",
         "familyName": "Ollomo",
         "affiliation": [
@@ -127,7 +124,6 @@ def test_one_author():
         ],
         "familyName": "Sankar",
         "givenName": "Martial",
-        "name": "Martial Sankar",
         "nameType": "Personal",
     } == get_one_author(
         {
@@ -144,7 +140,6 @@ def test_one_author():
     # multiple name_identifier
     assert {
         "nameType": "Personal",
-        "name": "Thomas Dubos",
         "givenName": "Thomas",
         "familyName": "Dubos",
         "affiliation": [
@@ -185,7 +180,6 @@ def test_one_author():
     # only familyName and givenName
     assert {
         "nameType": "Personal",
-        "name": "Emma Johansson",
         "givenName": "Emma",
         "familyName": "Johansson",
     } == get_one_author(
@@ -250,11 +244,9 @@ def test_get_authors():
             "nameType": "Personal",
             "givenName": "Matt",
             "familyName": "Jones",
-            "name": "Matt Jones",
         },
         {
             "nameType": "Personal",
-            "name": "Peter Slaughter",
             "givenName": "Peter",
             "familyName": "Slaughter",
         },

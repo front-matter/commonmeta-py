@@ -151,7 +151,6 @@ def test_pangaea():
     assert subject.creators[0] == {
         "familyName": "Johansson",
         "givenName": "Emma",
-        "name": "Emma Johansson",
         "nameType": "Personal",
     }
     assert subject.contributors is None
@@ -335,7 +334,6 @@ def test_blog_with_dois():
     }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "name": "Maria Martha Gerdes",
         "givenName": "Maria Martha",
         "familyName": "Gerdes",
         "nameType": "Personal",
@@ -437,7 +435,6 @@ def test_with_upstream_blog_post():
     }
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
-        "name": "John Chodacki",
         "familyName": "Chodacki",
         "givenName": "John",
         "nameType": "Personal",

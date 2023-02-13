@@ -28,7 +28,6 @@ def test_dataset():
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Benjamin Ollomo",
         "givenName": "Benjamin",
         "familyName": "Ollomo",
         "affiliation": [
@@ -97,7 +96,6 @@ def test_blog_posting():
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Rorie Edmunds",
         "givenName": "Rorie",
         "familyName": "Edmunds",
         "affiliation": [{"name": "DataCite"}],
@@ -225,7 +223,6 @@ def test_date():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Nathaniel Johnston",
         "givenName": "Nathaniel",
         "familyName": "Johnston",
     }
@@ -234,7 +231,6 @@ def test_date():
             "contributorType": "Editor",
             "familyName": "Herbstritt",
             "givenName": "Marc",
-            "name": "Marc Herbstritt",
             "nameType": "Personal",
         }
     ]
@@ -412,7 +408,6 @@ def test_multiple_identifiers():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Kristian Garza",
         "givenName": "Kristian",
         "familyName": "Garza",
     }
@@ -471,7 +466,6 @@ def test_is_identical():
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Alexander Junge",
         "givenName": "Alexander",
         "familyName": "Junge",
         "nameIdentifiers": [
@@ -560,7 +554,6 @@ def test_subject_scheme_for():
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
         "nameType": "Personal",
-        "name": "Ian Dworkin",
         "givenName": "Ian",
         "familyName": "Dworkin",
         "nameIdentifiers": [
@@ -927,7 +920,6 @@ def test_geolocation_box():
     assert subject.creators[0] == {
         'familyName': 'Bales',
         'givenName': 'Roger',
-        'name': 'Roger Bales',
         'nameType': 'Personal',
         'affiliation': [{'name': 'University of California, Merced'}]
     }
