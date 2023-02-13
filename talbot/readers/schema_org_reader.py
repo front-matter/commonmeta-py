@@ -49,92 +49,12 @@ def get_schema_org(pid: Optional[str], **kwargs) -> dict:
         return {"string": None, "state": "not_found"}
 
     soup = BeautifulSoup(response.text, "html.parser")
+    # workaround for metadata not included with schema.org but in html meta tags
+    data = get_html_meta(soup)
+    # load schema.org metadata
     json_ld = soup.find("script", type="application/ld+json")
     if json_ld is not None:
-        string = json.loads(json_ld.text)
-    else:
-        string = {}
-
-    # workaround for doi if not included with schema.org
-    if not string.get("@id", "").startswith("https://doi.org/"):
-        pid = (
-            soup.select_one("meta[name='citation_doi']")
-            or soup.select_one("meta[name='dc.identifier']")
-            or soup.select_one('[rel="canonical"]')
-        )
-        if pid is not None:
-            string["@id"] = pid.get("content", None) or pid.get("href", None)
-
-    # workaround for type if not included with schema.org
-    if string.get("@type", None) is None:
-        type_ = soup.select_one("meta[property='og:type']")
-        if type_ is not None:
-            string["@type"] = str(type_["content"]).capitalize()
-
-    # workaround for url if not included with schema.org
-    if string.get("url", None) is None:
-        url = soup.select_one("meta[property='og:url']")
-        if url is not None:
-            string["url"] = url["content"]
-
-    # workaround for title if not included with schema.org
-    if string.get("name", None) is None:
-        title = (
-            soup.select_one("meta[name='citation_title']")
-            or soup.select_one("meta[name='dc.title']")
-            or soup.select_one("meta[property='og:title']")
-        )
-        if title is not None:
-            string["name"] = title["content"]
-
-    # workaround for description if not included with schema.org
-    if string.get("description", None) is None:
-        description = soup.select_one(
-            "meta[name='citation_abstract']"
-        ) or soup.select_one("meta[name='dc.description']")
-        if description is not None:
-            string["description"] = description["content"]
-
-    # workaround for keywords if not included with schema.org
-    if string.get("keywords", None) is None:
-        keywords = soup.select_one("meta[name='citation_keywords']")
-        if keywords is not None:
-            string["keywords"] = str(keywords["content"]).replace(";", ",")
-
-    # workaround for publication_date if not included with schema.org
-    if string.get("datePublished", None) is None:
-        date = soup.select_one(
-            "meta[name='citation_publication_date']"
-        ) or soup.select_one("meta[name='dc.date']")
-        if date is not None:
-            string["datePublished"] = get_iso8601_date(date["content"])
-
-    # workaround if license not included with schema.org
-    license_ = soup.select_one("meta[name='dc.rights']")
-    if license_ is not None:
-        string["license"] = license_["content"]
-
-    # workaround for html language attribute if no language is set via schema.org
-    if string.get("inLanguage", None) is None:
-        lang = soup.select_one("meta[name='dc.language']") or soup.select_one(
-            "meta[name='citation_language']"
-        )
-        if lang is not None:
-            string["inLanguage"] = lang["content"]
-        else:
-            lang = soup.select_one("html")["lang"]
-            if lang is not None:
-                string["inLanguage"] = lang
-
-    # workaround if issn not included with schema.org
-    name = soup.select_one("meta[property='og:site_name']")
-    issn = soup.select_one("meta[name='citation_issn']")
-    string["isPartOf"] = compact(
-        {
-            "name": name["content"] if name else None,
-            "issn": issn["content"] if issn else None,
-        }
-    )
+        data |= json.loads(json_ld.text)
 
     # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
     auth = soup.select("meta[name='citation_author']")
@@ -156,19 +76,12 @@ def get_schema_org(pid: Optional[str], **kwargs) -> dict:
             }
         authors.append(author)
 
-    if string.get("author", None) is None and string.get("creator", None) is not None:
-        string["author"] = string["creator"]
-    if len(authors) > len(wrap(string.get("author", None))):
-        string["author"] = authors
+    if data.get("author", None) is None and data.get("creator", None) is not None:
+        data["author"] = data["creator"]
+    if len(authors) > len(wrap(data.get("author", None))):
+        data["author"] = authors
 
-    # workaround if publisher not included with schema.org (e.g. Zenodo)
-    if string.get("publisher", None) is None:
-        publisher = soup.select_one("meta[property='og:site_name']")
-        string["publisher"] = compact(
-            {"name": publisher["content"] if publisher else None}
-        )
-
-    return string
+    return data
 
 
 def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
@@ -462,3 +375,67 @@ def schema_org_geolocations(meta):
                 formatted_geo_location.setdefault(key, []).append(val)
         geo_locations.append(geo_location_point)
     return geo_locations
+
+
+def get_html_meta(soup):
+    """Get metadata from HTML meta tags"""
+    data = {}
+    pid = (
+        soup.select_one("meta[name='citation_doi']")
+        or soup.select_one("meta[name='dc.identifier']")
+        or soup.select_one('[rel="canonical"]')
+    )
+    if pid is not None:
+        data["@id"] = pid.get("content", None) or pid.get("href", None)
+
+    type_ = soup.select_one("meta[property='og:type']")
+    data["@type"] = type_["content"].capitalize() if type_ else None
+
+    url = soup.select_one("meta[property='og:url']")
+    data['url'] = url["content"] if url else None
+
+    title = (
+        soup.select_one("meta[name='citation_title']")
+        or soup.select_one("meta[name='dc.title']")
+        or soup.select_one("meta[property='og:title']")
+    )
+    data['name'] = title['content'] if title else None
+
+    description = soup.select_one(
+        "meta[name='citation_abstract']"
+    ) or soup.select_one("meta[name='dc.description']")
+    data['description'] = description["content"] if description else None
+
+    keywords = soup.select_one("meta[name='citation_keywords']")
+    data['keywords'] = str(keywords["content"]).replace(";", ",") if keywords else None
+
+    date_published = soup.select_one(
+        "meta[name='citation_publication_date']"
+    ) or soup.select_one("meta[name='dc.date']")
+    data["datePublished"] = get_iso8601_date(date_published["content"]) if date_published else None
+
+    license_ = soup.select_one("meta[name='dc.rights']")
+    data["license"] = license_["content"] if license_ else None
+
+    lang = soup.select_one("meta[name='dc.language']") or soup.select_one(
+            "meta[name='citation_language']"
+        )
+    if lang is not None:
+        data["inLanguage"] = lang["content"]
+    else:
+        lang = soup.select_one("html")["lang"]
+        if lang is not None:
+            data["inLanguage"] = lang
+
+    publisher = soup.select_one("meta[property='og:site_name']")
+    data["publisher"] = {'name': publisher["content"]} if publisher else None
+
+    name = soup.select_one("meta[property='og:site_name']")
+    issn = soup.select_one("meta[name='citation_issn']")
+    data["isPartOf"] = compact(
+        {
+            "name": name["content"] if name else None,
+            "issn": issn["content"] if issn else None,
+        }
+    )
+    return data
