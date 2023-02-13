@@ -36,7 +36,7 @@ def test_dataset():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Zero v1.0 Universal",
             "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
@@ -103,7 +103,7 @@ def test_blog_posting():
         "affiliation": [{"name": "DataCite"}],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -238,7 +238,7 @@ def test_date():
             "nameType": "Personal",
         }
     ]
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2013-11-05", "dateType": "Available"},
         {"date": "2013", "dateType": "Issued"},
@@ -316,7 +316,7 @@ def test_affiliation_identifier():
 #       expect(subject.pidentifiers).to eq([{ 'identifier' =>
 #            'https://schema.datacite.org/meta/kernel-4.2/example/datacite-example-full-v4.2.xml',
 #                                            'identifierType' => 'URL' }])
-#       expect(subject.rights_list).to eq([{ 'lang' => 'en-US',
+#       expect(subject.rights).to eq([{ 'lang' => 'en-US',
 #                                            'rights' => 'Creative Commons Zero v1.0 Universal', 'rightsIdentifier' => 'cc0-1.0', 'rightsIdentifierScheme' => 'SPDX', 'rightsUri' => 'https://creativecommons.org/publicdomain/zero/1.0/legalcode', 'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publication_year).to eq('2014')
 #       expect(subject.contributors).to eq([{ 'name' => 'Starr, Joan', 'givenName' => 'Joan', 'familyName' => 'Starr', 'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-7285-027X', 'schemeUri' => 'https://orcid.org', 'nameIdentifierScheme' => 'ORCID' }], 'affiliation' =>
@@ -417,7 +417,7 @@ def test_multiple_identifiers():
         "familyName": "Garza",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution-NonCommercial-ShareAlike",
             "rightsUri": "https://creativecommons.org/licenses/by-nc-sa/4.0",
@@ -483,7 +483,7 @@ def test_is_identical():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -575,7 +575,7 @@ def test_subject_scheme_for():
         'title': 'Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia.'}
     assert subject.descriptions[0].get('description').startswith(
         'These are raw wing images from <i>Drosophila melanogaster</i>')
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -657,7 +657,7 @@ def test_cc_by():
     subject = Metadata(pid, via="datacite_json")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.1286826.v1"
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -1142,7 +1142,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf', 'resourceTypeGeneral' => 'Text')
-#       expect(subject.rights_list).to eq([{ 'lang' => 'eng',
+#       expect(subject.rights).to eq([{ 'lang' => 'eng',
 #                                            'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
@@ -1176,7 +1176,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
-#       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
+#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
@@ -1207,7 +1207,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(4)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '19478877',
 #                                                      'relatedIdentifierType' => 'PMID', 'relationType' => 'IsReferencedBy')
-#       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Zero v1.0 Universal',
+#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Zero v1.0 Universal',
 #                                            'rightsIdentifier' => 'cc0-1.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/publicdomain/zero/1.0/legalcode',
@@ -1240,7 +1240,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
-#       expect(subject.rights_list).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
+#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
@@ -1307,7 +1307,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf', 'resourceTypeGeneral' => 'Text')
-#       expect(subject.rights_list).to eq([{ 'lang' => 'eng',
+#       expect(subject.rights).to eq([{ 'lang' => 'eng',
 #                                            'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
@@ -1586,7 +1586,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-multiple-rights.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.rights_list).to eq([{ 'rights' => 'info:eu-repo/semantics/openAccess' },
+#       expect(subject.rights).to eq([{ 'rights' => 'info:eu-repo/semantics/openAccess' },
 #                                          { 'rights' => 'Open Access',
 #                                            'rightsUri' => 'info:eu-repo/semantics/openAccess' }])
 #     end
@@ -1877,7 +1877,7 @@ def test_geolocation_box():
 #       'relationType' => 'IsReviewedBy',
 #       'resourceTypeGeneral' => 'Text'
 #     )
-#     expect(subject.rights_list).to eq([
+#     expect(subject.rights).to eq([
 #                                         {
 #                                           'lang' => 'en-US',
 #                                           'rights' => 'Creative Commons Zero v1.0 Universal',
@@ -2071,7 +2071,7 @@ def test_geolocation_box():
 #           'relationType' => 'Compiles' }
 #       ]
 #     )
-#     expect(subject.rights_list).to eq([
+#     expect(subject.rights).to eq([
 #                                         {
 #                                           'lang' => 'en-US',
 #                                           'rights' => 'Creative Commons Zero v1.0 Universal',

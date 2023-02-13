@@ -87,7 +87,7 @@ def read_datacite_json(data: Optional[dict], **kwargs) -> TalbotMeta:
         "sizes": presence(meta.get("sizes", None)),
         "formats": presence(meta.get("formats", None)),
         "version": meta.get("version", None),
-        "rights_list": presence(meta.get("rightsList", None)),
+        "rights": presence(meta.get("rightsList", None)),
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": meta.get("fundingReferences", None),

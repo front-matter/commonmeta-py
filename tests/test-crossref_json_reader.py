@@ -34,7 +34,7 @@ def test_doi_with_data_citation():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
@@ -143,7 +143,7 @@ def test_journal_article():
             "nameType": "Personal",
         }
     ]
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
@@ -216,7 +216,7 @@ def test_journal_article_with_funding():
         "familyName": "Fortes",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
@@ -287,7 +287,7 @@ def test_journal_article_original_language():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2007", "dateType": "Issued"},
         {"date": "2021-05-20T22:32:01Z", "dateType": "Updated"},
@@ -359,7 +359,7 @@ def test_journal_article_with_rdf_for_container():
         "familyName": "Escrivà",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2012-01-01", "dateType": "Issued"},
         {"date": "2019-07-05T16:53:10Z", "dateType": "Updated"},
@@ -422,7 +422,7 @@ def test_book_chapter_with_rdf_for_container():
         "familyName": "Chen",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2012", "dateType": "Issued"},
         {"date": "2020-11-24T03:11:32Z", "dateType": "Updated"},
@@ -483,7 +483,7 @@ def test_posted_content():
         "familyName": "Fenner",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2016-12-28", "dateType": "Issued"},
         {"date": "2020-01-18T02:53:57Z", "dateType": "Updated"},
@@ -541,7 +541,7 @@ def test_peer_review():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
@@ -592,7 +592,7 @@ def test_dissertation():
         "nameType": "Personal",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2020-06-08T05:08:58Z", "dateType": "Issued"},
         {"date": "2020-06-08T05:08:59Z", "dateType": "Updated"},
@@ -640,7 +640,7 @@ def test_doi_with_sici():
         "familyName": "Fenton",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {"rightsURI": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     ]
     assert subject.dates == [
@@ -720,7 +720,7 @@ def test_doi_with_orcid():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
@@ -800,7 +800,7 @@ def test_date_in_future():
         "familyName": "Beck",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {"rightsURI": "https://www.elsevier.com/tdm/userlicense/1.0"}
     ]
     assert subject.dates == [
@@ -895,7 +895,7 @@ def test_vor_with_url():
         "familyName": "Gross",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [{"rightsURI": "https://www.springer.com/tdm"}]
+    assert subject.rights == [{"rightsURI": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2013-04-10", "dateType": "Issued"},
         {"date": "2021-12-02T02:50:35Z", "dateType": "Updated"},
@@ -960,7 +960,7 @@ def test_dataset():
         "familyName": "Fermi",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "1984-07-17", "dateType": "Issued"},
         {"date": "2023-02-07T21:29:26Z", "dateType": "Updated"},
@@ -994,7 +994,7 @@ def test_component():
     assert subject.titles is None
     assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2015-10-20T20:01:19Z", "dateType": "Issued"},
         {"date": "2018-10-19T21:13:42Z", "dateType": "Updated"},
@@ -1034,7 +1034,7 @@ def test_dataset_usda():
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2017-08-09T19:44:20Z", "dateType": "Issued"},
         {"date": "2021-07-01T22:10:21Z", "dateType": "Updated"},
@@ -1082,7 +1082,7 @@ def test_book_chapter():
         "familyName": "Diercks",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [{'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
+    assert subject.rights == [{'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
         {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
@@ -1130,7 +1130,7 @@ def test_another_book_chapter():
         "familyName": "Jones",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [{"rightsURI": "https://www.springer.com/tdm"}]
+    assert subject.rights == [{"rightsURI": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2018", "dateType": "Issued"},
         {"date": "2019-10-16T02:02:05Z", "dateType": "Updated"},
@@ -1183,7 +1183,7 @@ def test_yet_another_book_chapter():
         "familyName": "Bichot",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2012-08-08T16:54:07Z", "dateType": "Issued"},
         {"date": "2019-07-02T13:17:21Z", "dateType": "Updated"},
@@ -1235,7 +1235,7 @@ def test_missing_creator():
         "familyName": "Kohls",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
@@ -1333,7 +1333,7 @@ def test_book():
         "familyName": "Leung",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {"rightsURI": "https://www.cambridge.org/core/terms"}
     ]
     assert subject.dates == [

@@ -98,10 +98,10 @@ def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        rights_list = [dict_to_spdx(
+        rights = [dict_to_spdx(
             {"rightsURI": license_})] if license_ else None
     else:
-        rights_list = None
+        rights = None
 
     issns = meta.get("issn-type", None)
     if issns is not None:
@@ -257,7 +257,7 @@ def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),
-        "rights_list": rights_list,
+        "rights": rights,
         "descriptions": descriptions,
         "geo_locations": None,
         "funding_references": funding_references,

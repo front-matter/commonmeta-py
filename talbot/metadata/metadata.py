@@ -53,7 +53,7 @@ class Metadata:
         self.sizes = meta.get("sizes")
         self.formats = meta.get("formats")
         self.version = meta.get("version")
-        self.rights_list = meta.get("rights_list")
+        self.rights = meta.get("rights")
         self.descriptions = meta.get("descriptions")
         self.geo_locations = meta.get("geo_locations")
         self.funding_references = meta.get("funding_references")

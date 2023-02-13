@@ -58,8 +58,8 @@ def write_citeproc(metadata):
             "page": pages_as_string(metadata.container),
             "publisher": metadata.publisher,
             "title": parse_attributes(metadata.titles, content="title", first=True),
-            "copyright": metadata.rights_list[0].get("rights", None)
-            if metadata.rights_list
+            "copyright": metadata.rights[0].get("rights", None)
+            if metadata.rights
             else None,
             "version": metadata.version,
         }

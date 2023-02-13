@@ -23,7 +23,7 @@ def test_blog_posting():
     assert subject.creators[0] == {
         "name": "Martin Fenner", "nameType": "Personal"}
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
@@ -87,7 +87,7 @@ def test_zenodo():
         "nameType": "Personal",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution Share Alike 4.0 International",
             "rightsIdentifier": "cc-by-sa-4.0",
@@ -155,7 +155,7 @@ def test_pangaea():
         "nameType": "Personal",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
@@ -217,7 +217,7 @@ def test_dataverse():
         "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Zero v1.0 Universal",
             "rightsURI": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
@@ -283,7 +283,7 @@ def test_yet_another_blog_post():
     assert subject.creators[0] == {
         "name": "John Hawks", "nameType": "Personal"}
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2022-09-24T17:22:00Z", "dateType": "Issued"},
         {"date": "2022-09-30T17:23:04Z", "dateType": "Updated"},
@@ -341,7 +341,7 @@ def test_blog_with_dois():
         "nameType": "Personal",
     }
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [{"date": "2022-12-09", "dateType": "Issued"}]
     assert subject.publication_year == "2022"
     assert subject.publisher == "Verfassungsblog"
@@ -390,7 +390,7 @@ def test_another_blog_with_dois():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {"nameType": "Personal", "name": "Andreas"}
     assert subject.contributors is None
-    assert subject.rights_list is None
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2022-10-05T14:35:47Z", "dateType": "Issued"},
         {"date": "2022-10-05T14:35:47Z", "dateType": "Updated"},
@@ -443,7 +443,7 @@ def test_with_upstream_blog_post():
         "nameType": "Personal",
     }
     assert subject.contributors is None
-    assert subject.rights_list == [
+    assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",

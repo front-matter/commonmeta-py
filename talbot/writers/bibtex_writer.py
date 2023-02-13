@@ -19,8 +19,8 @@ def write_bibtex(metadata):
                 if metadata.descriptions
                 else None,
                 "author": authors_as_string(metadata.creators),
-                "copyright": str(metadata.rights_list[0].get("rightsURI", None))
-                if metadata.rights_list
+                "copyright": str(metadata.rights[0].get("rightsURI", None))
+                if metadata.rights
                 else None,
                 "doi": metadata.doi,
                 "issn": container.get("identifier", None) if container.get('identifierType', None) == 'ISSN' else None,

@@ -328,6 +328,11 @@ def test_from_citeproc():
     )
 
 
+
+def find_from_format():
+    """find_from_format"""
+
+    
 def test_find_from_format_by_id():
     "find_from_format_by_id"
     assert "crossref" == find_from_format_by_id("10.1371/journal.pone.0042793")

@@ -18,7 +18,7 @@ class TalbotMeta(TypedDict):
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]
     version: Optional[str]
-    rights_list: Optional[List[dict]]
+    rights: Optional[List[dict]]
     descriptions: Optional[List[dict]]
     geo_locations: Optional[List[dict]]
     funding_references: Optional[List[dict]]

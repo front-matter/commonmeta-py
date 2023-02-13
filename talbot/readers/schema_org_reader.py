@@ -237,10 +237,10 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_)
-        rights_list = [dict_to_spdx(
+        rights = [dict_to_spdx(
             {"rightsURI": license_})] if license_ else None
     else:
-        rights_list = None
+        rights = None
 
     issn = py_.get(meta, "isPartOf.issn", None)
     cet = "includedInDataCatalog" if schema_org in [
@@ -371,7 +371,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),
-        "rights_list": rights_list,
+        "rights": rights,
         "descriptions": descriptions,
         "geo_locations": presence(geo_locations),
         "funding_references": presence(funding_references),
