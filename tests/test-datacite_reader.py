@@ -1,14 +1,14 @@
 """Test DataCite JSON reader"""
 import pytest
 from talbot import Metadata
-from talbot.readers.datacite_json_reader import get_datacite_json, read_datacite_json
+from talbot.readers.datacite_reader import get_datacite, read_datacite
 
 
 @pytest.mark.vcr
 def test_dataset():
     """dataset"""
     pid = "https://doi.org/10.5061/DRYAD.8515"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.5061/dryad.8515"
     assert subject.doi == "10.5061/dryad.8515"
@@ -80,7 +80,7 @@ def test_dataset():
 def test_blog_posting():
     """blog posting"""
     pid = "https://doi.org/10.5438/zhyx-n122"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
     print(subject.related_items)
     assert subject.pid == "https://doi.org/10.5438/zhyx-n122"
     assert subject.types == {
@@ -207,7 +207,7 @@ def test_blog_posting():
 def test_date():
     """dataset"""
     pid = "https://doi.org/10.4230/lipics.tqc.2013.93"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.types == {
@@ -395,7 +395,7 @@ def test_affiliation_identifier():
 def test_multiple_identifiers():
     """multiple identifiers"""
     pid = "https://doi.org/10.5281/ZENODO.48440"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.5281/zenodo.48440"
     assert subject.types == {
@@ -455,7 +455,7 @@ def test_multiple_identifiers():
 def test_is_identical():
     """is_identical"""
     pid = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.types == {
@@ -545,7 +545,7 @@ def test_is_identical():
 def test_subject_scheme_for():
     """subject scheme FOR"""
     pid = '10.6084/m9.figshare.1449060'
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.1449060"
     assert subject.types == {
@@ -613,7 +613,7 @@ def test_subject_scheme_for():
 def test_more_subject_scheme_for():
     """more subject scheme FOR"""
     pid = '10.4225/03/5a6931f57c654'
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.4225/03/5a6931f57c654"
     assert subject.types.get('resourceType') == 'Thesis'
@@ -634,7 +634,7 @@ def test_more_subject_scheme_for():
 def test_even_more_subject_scheme_for():
     """even more subject scheme FOR"""
     pid = '10.4225/03/5a31ec65634ef'
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.4225/03/5a31ec65634ef"
     assert subject.types.get('resourceType') == 'Poster'
@@ -654,7 +654,7 @@ def test_even_more_subject_scheme_for():
 def test_cc_by():
     """CC-BY"""
     pid = '10.6084/m9.figshare.1286826.v1'
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.1286826.v1"
     assert subject.rights == [
@@ -919,7 +919,7 @@ def test_cc_by():
 def test_geolocation_box():
     """geolocation_box"""
     pid = "10.6071/z7wc73"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
     assert subject.pid == "https://doi.org/10.6071/z7wc73"
     # assert subject.doi == "10.6071/z7wc73"
     assert subject.types.get('schemaOrg') == 'Dataset'
@@ -2139,7 +2139,7 @@ def test_geolocation_box():
 def test_geolocation():
     """geolocation"""
     pid = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
-    subject = Metadata(pid, via="datacite_json")
+    subject = Metadata(pid, via="datacite")
     assert subject.pid
     assert subject.types.get('schemaOrg') == 'Dataset'
     assert subject.titles[0] == {
@@ -2148,16 +2148,16 @@ def test_geolocation():
         'pointLatitude': '-22.3680', 'pointLongitude': '-46.9460'}}]
 
 
-def test_get_datacite_json():
-    """get_datacite_json"""
-    data = get_datacite_json("10.6084/m9.figshare.1449060")
+def test_get_datacite():
+    """get_datacite"""
+    data = get_datacite("10.6084/m9.figshare.1449060")
     assert '10.6084/m9.figshare.1449060' == data['doi']
-    assert {'state': 'not_found', 'string': None} == get_datacite_json(None)
+    assert {'state': 'not_found', 'string': None} == get_datacite(None)
 
 
-def test_read_datacite_json():
-    """test_datacite_json"""
-    data = get_datacite_json("10.6084/m9.figshare.1449060")
-    meta = read_datacite_json(data)
+def test_read_datacite():
+    """test_datacite"""
+    data = get_datacite("10.6084/m9.figshare.1449060")
+    meta = read_datacite(data)
     assert meta['doi'] == '10.6084/m9.figshare.1449060'
-    assert {"meta": None, "state": "not_found"} == read_datacite_json(None)
+    assert {"meta": None, "state": "not_found"} == read_datacite(None)

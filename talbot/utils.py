@@ -525,9 +525,9 @@ def find_from_format_by_string(string):
             .get("schema-version", "")
             .beginswith("http://datacite.org/schema/kernel")
         ):
-            return "datacite_json"
+            return "datacite"
         if json.loads(string).get("source", None) == "Crossref":
-            return "crossref_json"
+            return "crossref"
         if py_.get(json.loads(string), "issued.date-parts", None) is not None:
             return "citeproc"
         if string.startswith("TY  - "):
@@ -537,19 +537,19 @@ def find_from_format_by_string(string):
         return "datacite"
     # if Maremma.from_xml(string).to_h.dig('crossref_result', 'query_result', 'body', 'query',
     #                                        'doi_record', 'crossref').present?
-    #     'crossref'
+    #     'crossref_xml'
     #   elsif Nokogiri::XML(string, None, 'UTF-8', &:noblanks).collect_namespaces.find do |_k, v|
     #           v.start_with?('http://datacite.org/schema/kernel')
     # #         end
-    #     'datacite'
+    #     'datacite_xml'
     #   elsif URI(Maremma.from_json(string).to_h.fetch('@context', '')).host == 'schema.org'
     #     'schema_org'
     #   elsif Maremma.from_json(string).to_h.dig('@context') == ('https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld')
     #     'codemeta'
     #   elsif Maremma.from_json(string).to_h.dig('schema-version').to_s.start_with?('http://datacite.org/schema/kernel')
-    #     'datacite_json'
+    #     'datacite'
     #   elsif Maremma.from_json(string).to_h.dig('source') == ('Crossref')
-    #     'crossref_json'
+    #     'crossref'
     #   elsif Maremma.from_json(string).to_h.dig('types').present? && Maremma.from_json(string).to_h.dig('publication_year').present?
     #     'crosscite'
     #   elsif Maremma.from_json(string).to_h.dig('issued', 'date-parts').present?

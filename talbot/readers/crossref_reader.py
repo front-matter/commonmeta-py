@@ -1,4 +1,4 @@
-"""crossref_json reader for Talbot"""
+"""crossref reader for Talbot"""
 from typing import Optional, TypedDict
 import requests
 from pydash import py_
@@ -27,8 +27,8 @@ from ..constants import (
 )
 
 
-def get_crossref_json(pid: Optional[str], **kwargs) -> dict:
-    """get_crossref_json"""
+def get_crossref(pid: Optional[str], **kwargs) -> dict:
+    """get_crossref"""
 
     if pid is None:
         return {"string": None, "state": "not_found"}
@@ -41,8 +41,8 @@ def get_crossref_json(pid: Optional[str], **kwargs) -> dict:
     return response.json().get("message", {})
 
 
-def read_crossref_json(data: Optional[dict], **kwargs) -> TalbotMeta:
-    """read_crossref_json"""
+def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
+    """read_crossref"""
     if data is None:
         return {"meta": None, "state": "not_found"}
     meta = data

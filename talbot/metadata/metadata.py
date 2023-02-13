@@ -1,9 +1,9 @@
 """Metadata"""
 from ..readers import (
-    get_crossref_json,
-    read_crossref_json,
-    get_datacite_json,
-    read_datacite_json,
+    get_crossref,
+    read_crossref,
+    get_datacite,
+    read_datacite,
     get_schema_org,
     read_schema_org
 )
@@ -29,12 +29,12 @@ class Metadata:
         if via == "schema_org":
             data = get_schema_org(pid)
             meta = read_schema_org(data)
-        elif via == "datacite_json":
-            data = get_datacite_json(pid)
-            meta = read_datacite_json(data)
+        elif via == "datacite":
+            data = get_datacite(pid)
+            meta = read_datacite(data)
         else:
-            data = get_crossref_json(pid)
-            meta = read_crossref_json(data)
+            data = get_crossref(pid)
+            meta = read_crossref(data)
         # required properties
         self.pid = meta.get("pid")
         self.doi = meta.get("doi")

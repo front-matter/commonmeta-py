@@ -1,4 +1,4 @@
-"""datacite_json reader for Talbot"""
+"""datacite reader for Talbot"""
 from typing import Optional
 import requests
 from pydash import py_
@@ -20,8 +20,8 @@ from ..constants import (
 )
 
 
-def get_datacite_json(pid: Optional[str], **kwargs) -> dict:
-    """get_datacite json"""
+def get_datacite(pid: Optional[str], **kwargs) -> dict:
+    """get_datacite"""
     if pid is None:
         return {"string": None, "state": "not_found"}
     doi = doi_from_url(pid)
@@ -32,8 +32,8 @@ def get_datacite_json(pid: Optional[str], **kwargs) -> dict:
     return response.json().get("data", {}).get("attributes", {})
 
 
-def read_datacite_json(data: Optional[dict], **kwargs) -> TalbotMeta:
-    """read_datacite json"""
+def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
+    """read_datacite"""
     if data is None:
         return {"meta": None, "state": "not_found"}
     meta = data
