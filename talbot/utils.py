@@ -169,7 +169,7 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
 
 def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
-    dct.update({"rightsURI": normalize_cc_url(dct.get("rightsURI", None))})
+    dct.update({"rightsUri": normalize_cc_url(dct.get("rightsUri", None))})
     file_path = os.path.join(os.path.dirname(
         __file__), "resources/spdx/licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
@@ -179,19 +179,19 @@ def dict_to_spdx(dct: dict) -> dict:
             l
             for l in spdx
             if l["licenseId"].lower() == dct.get("rightsIdentifier", None)
-            or l["seeAlso"][0] == dct.get("rightsURI", None)
+            or l["seeAlso"][0] == dct.get("rightsUri", None)
         ),
         None,
     )
     if license_ is None:
         return dct
     #   license = spdx.find do |l|
-    #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsURI']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
+    #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsUri']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
     #   end
     return compact(
         {
             "rights": license_["name"],
-            "rightsURI": license_["seeAlso"][0],
+            "rightsUri": license_["seeAlso"][0],
             "rightsIdentifier": license_["licenseId"].lower(),
             "rightsIdentifierScheme": "SPDX",
             "schemeUri": "https://spdx.org/licenses/",
@@ -202,7 +202,7 @@ def dict_to_spdx(dct: dict) -> dict:
     #   else
     #     {
     #       'rights': hsh['__content__'] || hsh['rights'],
-    #       'rightsUri': hsh['rightsURI'] || hsh['rightsUri'],
+    #       'rightsUri': hsh['rightsUri'] || hsh['rightsUri'],
     #       'rightsIdentifier': hsh['rightsIdentifier'].present? ? hsh['rightsIdentifier'].downcase : None,
     #       'rightsIdentifierScheme': hsh['rightsIdentifierScheme'],
     #       'schemeUri': hsh['schemeUri'],
@@ -216,22 +216,24 @@ def from_citeproc(element: Optional[Union[dict, list]]) -> list:
     """Convert a citeproc element to CSL"""
     formatted_element = []
     for elem in wrap(element):
-        ele = {}
         if elem.get("literal", None) is not None:
-            ele["@type"] = "Organization"
-            ele["name"] = elem["literal"]
+            elem["@type"] = "Organization"
+            elem["name"] = elem["literal"]
         elif elem.get("name", None) is not None:
-            ele["@type"] = "Organization"
-            ele["name"] = elem.get("name")
+            elem["@type"] = "Organization"
+            elem["name"] = elem.get("name")
         else:
-            ele["@type"] = "Person"
-            ele["name"] = " ".join(
+            elem["@type"] = "Person"
+            elem["name"] = " ".join(
                 [elem.get("given", None), elem.get("family", None)]
             )
-        ele["givenName"] = elem.get("given", None)
-        ele["familyName"] = elem.get("family", None)
-        ele["affiliation"] = elem.get("affiliation", None)
-        formatted_element.append(compact(ele))
+        elem["givenName"] = elem.get("given", None)
+        elem["familyName"] = elem.get("family", None)
+        elem["affiliation"] = elem.get("affiliation", None)
+        for key in ["literal", "given", "family", "literal", "sequence"]:
+            if key in elem:
+                del elem[key]
+        formatted_element.append(compact(elem))
     return formatted_element
 
 
@@ -438,14 +440,18 @@ def find_from_format_by_string(string):
     if string is None:
         return None
     dictionary = json.loads(string)
+    print(dictionary)
     if dictionary.get("@context", None) == "http://schema.org":
         return "schema_org"
+    if dictionary.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
+        return "codemeta"
     if dictionary.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
         return "datacite"
     if dictionary.get("source", None) == "Crossref":
         return "crossref"
     if py_.get(dictionary, "issued.date-parts", None) is not None:
         return "citeproc"
+
     # no format found
     return None
 
@@ -456,18 +462,6 @@ def find_from_format_by_string(string):
     #           v.start_with?('http://datacite.org/schema/kernel')
     # #         end
     #     'datacite_xml'
-    #   elsif URI(Maremma.from_json(string).to_h.fetch('@context', '')).host == 'schema.org'
-    #     'schema_org'
-    #   elsif Maremma.from_json(string).to_h.dig('@context') == ('https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld')
-    #     'codemeta'
-    #   elsif Maremma.from_json(string).to_h.dig('schema-version').to_s.start_with?('http://datacite.org/schema/kernel')
-    #     'datacite'
-    #   elsif Maremma.from_json(string).to_h.dig('source') == ('Crossref')
-    #     'crossref'
-    #   elsif Maremma.from_json(string).to_h.dig('types').present? && Maremma.from_json(string).to_h.dig('publication_year').present?
-    #     'crosscite'
-    #   elsif Maremma.from_json(string).to_h.dig('issued', 'date-parts').present?
-    #     'citeproc'
 
     #   elsif YAML.load(string).to_h.fetch('cff-version', None).present?
     #     'cff'

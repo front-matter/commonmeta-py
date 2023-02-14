@@ -78,10 +78,10 @@ def get_one_author(author):
         name_identifiers = None
 
     # Crossref metadata
-    if name_identifiers == [] and author.get("ORCID", None):
+    if name_identifiers is None and author.get("ORCID", None):
         name_identifiers = [
             {
-                "nameIdentifier": normalize_orcid(author.get("ORCID", None)),
+                "nameIdentifier": normalize_orcid(author.get("ORCID")),
                 "schemeUri": "https://orcid.org",
                 "nameIdentifierScheme": "ORCID",
             }

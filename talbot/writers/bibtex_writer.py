@@ -20,7 +20,7 @@ def write_bibtex(metadata):
                 if metadata.descriptions
                 else None,
                 "author": authors_as_string(metadata.creators),
-                "copyright": str(metadata.rights[0].get("rightsURI", None))
+                "copyright": str(metadata.rights[0].get("rightsUri", None))
                 if metadata.rights
                 else None,
                 "doi": metadata.doi,

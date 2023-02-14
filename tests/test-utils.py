@@ -29,7 +29,7 @@ def test_dict_to_spdx_id():
     "dict_to_spdx id"
     assert {
         "rights": "Creative Commons Attribution 4.0 International",
-        "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
         "rightsIdentifier": "cc-by-4.0",
         "rightsIdentifierScheme": "SPDX",
         "schemeUri": "https://spdx.org/licenses/",
@@ -40,19 +40,19 @@ def test_dict_to_spdx_url():
     "dict_to_spdx url"
     assert {
         "rights": "Creative Commons Attribution 4.0 International",
-        "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
         "rightsIdentifier": "cc-by-4.0",
         "rightsIdentifierScheme": "SPDX",
         "schemeUri": "https://spdx.org/licenses/",
     } == dict_to_spdx(
-        {"rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode"}
+        {"rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode"}
     )
 
 
 def test_dict_to_spdx_not_found():
     "dict_to_spdx not found"
-    assert {"rightsURI": "info:eu-repo/semantics/openaccess"} == dict_to_spdx(
-        {"rightsURI": "info:eu-repo/semantics/openAccess"}
+    assert {"rightsUri": "info:eu-repo/semantics/openaccess"} == dict_to_spdx(
+        {"rightsUri": "info:eu-repo/semantics/openAccess"}
     )
 
 

@@ -146,7 +146,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     if license_ is not None:
         license_ = normalize_cc_url(license_)
         rights = [dict_to_spdx(
-            {"rightsURI": license_})] if license_ else None
+            {"rightsUri": license_})] if license_ else None
     else:
         rights = None
 

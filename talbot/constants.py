@@ -2,6 +2,7 @@
 from typing import Optional, Union, TypedDict, List
 from os import path
 
+
 class TalbotMeta(TypedDict):
     """TypedDict for TalbotMeta"""
     pid: str
@@ -34,7 +35,7 @@ class TalbotMeta(TypedDict):
     agency: Optional[str]
     state: str
     schema_version: Optional[str]
-    
+
 
 CR_TO_BIB_TRANSLATIONS = {
     "Proceedings": "proceedings",
@@ -403,4 +404,35 @@ SO_TO_RIS_TRANSLATIONS = {
     "WebSite": None,
 }
 
-FIXTURES_DIR = path.join(path.dirname(__file__), 'fixtures')
+CP_TO_SO_TRANSLATIONS = {
+    'song': 'AudioObject',
+    'post-weblog': 'BlogPosting',
+    'dataset': 'Dataset',
+    'graphic': 'ImageObject',
+    'motion_picture': 'Movie',
+    'article-journal': 'ScholarlyArticle',
+    'broadcast': 'VideoObject',
+    'webpage': 'WebPage'
+}
+
+CP_TO_RIS_TRANSLATIONS = {
+    'post-weblog': 'BLOG',
+    'dataset': 'DATA',
+    'graphic': 'FIGURE',
+    'book': 'BOOK',
+    'motion_picture': 'MPCT',
+    'article-journal': 'JOUR',
+    'broadcast': 'MPCT',
+    'webpage': 'ELEC'
+}
+
+CP_TO_DC_TRANSLATIONS = {
+    'song': 'Audiovisual',
+    'post-weblog': 'Text',
+    'dataset': 'Dataset',
+    'graphic': 'Image',
+    'motion_picture': 'Audiovisual',
+    'article-journal': 'JournalArticle',
+    'broadcast': 'Audiovisual',
+    'webpage': 'Text'
+}

@@ -8,9 +8,13 @@ from ..readers import (
     get_datacite,
     read_datacite,
     get_schema_org,
-    read_schema_org
+    read_schema_org,
+    read_citeproc,
+    get_codemeta,
+    read_codemeta,
 )
 from ..writers import (
+    write_datacite,
     write_bibtex,
     write_citation,
     write_citeproc,
@@ -52,6 +56,12 @@ class Metadata:
             elif via == "crossref":
                 data = json.loads(string)
                 meta = read_crossref(data)
+            elif via == "citeproc":
+                data = json.loads(string)
+                meta = read_citeproc(data)
+            elif via == "codemeta":
+                data = json.loads(string)
+                meta = read_codemeta(data)
             else:
                 raise ValueError("No input format found")
         else:
@@ -113,3 +123,7 @@ class Metadata:
     def schema_org(self):
         """Schema.org"""
         return write_schema_org(self)
+    
+    def datacite(self):
+        """Datacite"""
+        return write_datacite(self)

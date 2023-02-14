@@ -28,7 +28,7 @@ def test_blog_posting():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -92,7 +92,7 @@ def test_zenodo():
             "rights": "Creative Commons Attribution Share Alike 4.0 International",
             "rightsIdentifier": "cc-by-sa-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -159,7 +159,7 @@ def test_pangaea():
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/3.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -427,7 +427,7 @@ def test_with_upstream_blog_post():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]

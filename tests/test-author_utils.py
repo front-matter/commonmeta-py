@@ -11,6 +11,7 @@ from talbot.author_utils import (
 
 def test_one_author():
     "one author"
+    # Crossref author with ORCID
     authors = [
         {
             "ORCID": "http://orcid.org/0000-0003-0077-4738",
@@ -22,6 +23,13 @@ def test_one_author():
         "familyName": "Jones",
         "givenName": "Matt",
         "nameType": "Personal",
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-0077-4738",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
     } == get_one_author(authors[0])
     # has familyName
     assert {
@@ -216,7 +224,8 @@ def test_authors_as_string():
         },
         {"nameType": "Organization", "name": "University of California, Santa Barbara"},
     ]
-    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(authors[0:2])
+    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(
+        authors[0:2])
     # single author
     assert "Jones, Matt" == authors_as_string(authors[0])
     # no authors
@@ -244,6 +253,9 @@ def test_get_authors():
             "nameType": "Personal",
             "givenName": "Matt",
             "familyName": "Jones",
+            'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-0077-4738',
+                                 'nameIdentifierScheme': 'ORCID',
+                                 'schemeUri': 'https://orcid.org'}],
         },
         {
             "nameType": "Personal",

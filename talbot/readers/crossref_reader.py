@@ -97,7 +97,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
         rights = [dict_to_spdx(
-            {"rightsURI": license_})] if license_ else None
+            {"rightsUri": license_})] if license_ else None
     else:
         rights = None
 

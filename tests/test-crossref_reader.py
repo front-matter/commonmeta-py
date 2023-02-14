@@ -4,12 +4,13 @@ import pytest
 from talbot import Metadata
 from talbot.readers.crossref_reader import get_crossref, read_crossref, get_related_item
 
+
 @pytest.mark.vcr
 def test_doi_with_data_citation():
     "DOi with data citation"
     data = "10.7554/elife.01567"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -39,7 +40,7 @@ def test_doi_with_data_citation():
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/3.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -115,7 +116,7 @@ def test_journal_article():
     "journal article"
     data = "10.1371/journal.pone.0000030"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1371/journal.pone.0000030"
+    assert subject.pid == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -146,7 +147,7 @@ def test_journal_article():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -190,7 +191,7 @@ def test_journal_article_with_funding():
     "journal article with funding"
     data = "10.3389/fpls.2019.00816"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.3389/fpls.2019.00816"
+    assert subject.pid == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -218,7 +219,7 @@ def test_journal_article_with_funding():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -267,7 +268,7 @@ def test_journal_article_original_language():
     "journal article with original language"
     data = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.7600/jspfsm.56.60"
+    assert subject.pid == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -333,7 +334,7 @@ def test_journal_article_with_rdf_for_container():
     "journal article with RDF for container"
     data = "https://doi.org/10.1163/1937240X-00002096"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1163/1937240x-00002096"
+    assert subject.pid == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -394,7 +395,7 @@ def test_book_chapter_with_rdf_for_container():
     "book chapter with RDF for container"
     data = "https://doi.org/10.1007/978-3-642-33191-6_49"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1007/978-3-642-33191-6_49"
+    assert subject.pid == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -450,7 +451,7 @@ def test_posted_content():
     "posted content"
     data = "https://doi.org/10.1101/097196"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1101/097196"
+    assert subject.pid == "https://doi.org/10.1101/097196"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -468,6 +469,9 @@ def test_posted_content():
         "nameType": "Personal",
         "givenName": "Martin",
         "familyName": "Fenner",
+        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-1419-2405',
+                             'nameIdentifierScheme': 'ORCID',
+                             'schemeUri': 'https://orcid.org'}],
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -498,7 +502,7 @@ def test_peer_review():
     "peer review"
     data = "10.7554/elife.55167.sa2"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.7554/elife.55167.sa2"
+    assert subject.pid == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -516,6 +520,9 @@ def test_peer_review():
         "nameType": "Personal",
         "givenName": "Jeremy",
         "familyName": "Magland",
+        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-5286-4375',
+                             'nameIdentifierScheme': 'ORCID',
+                             'schemeUri': 'https://orcid.org'}],
         "affiliation": [
             {
                 "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
@@ -528,7 +535,7 @@ def test_peer_review():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -552,7 +559,7 @@ def test_dissertation():
     "dissertation"
     data = "10.14264/uql.2020.791"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.14264/uql.2020.791"
+    assert subject.pid == "https://doi.org/10.14264/uql.2020.791"
     assert subject.types == {
         "bibtex": "phdthesis",
         "citeproc": "thesis",
@@ -570,6 +577,9 @@ def test_dissertation():
         "familyName": "Collingwood",
         "givenName": "Patricia Maree",
         "nameType": "Personal",
+        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-3086-4443',
+                             'nameIdentifierScheme': 'ORCID',
+                             'schemeUri': 'https://orcid.org'}],
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -594,7 +604,7 @@ def test_doi_with_sici():
     data = "10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     subject = Metadata(data)
     assert (
-        subject.pid== "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+        subject.pid == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
     assert subject.types == {
         "bibtex": "article",
@@ -619,7 +629,7 @@ def test_doi_with_sici():
     }
     assert subject.contributors is None
     assert subject.rights == [
-        {"rightsURI": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
+        {"rightsUri": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     ]
     assert subject.dates == [
         {"date": "2006-11", "dateType": "Issued"},
@@ -660,7 +670,7 @@ def test_doi_with_orcid():
     "doi_with_orcid"
     data = "10.1155/2012/291294"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1155/2012/291294"
+    assert subject.pid == "https://doi.org/10.1155/2012/291294"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -674,32 +684,17 @@ def test_doi_with_orcid():
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }
     assert len(subject.creators) == 7
-    assert subject.creators[0] == {
-        "nameType": "Personal",
-        "givenName": "Wendy",
-        "familyName": "Thanassi",
-        "affiliation": [
-            {
-                "name": "Department of Medicine, Veterans Affairs Palo Alto Health Care System, 3801 Miranda Avenue MC-, Palo Alto, CA 94304-1207, USA"
-            },
-            {
-                "name": "Occupational Health Strategic Health Care Group, Office of Public Health, Veterans Health Administration, Washington, DC 20006, USA"
-            },
-            {
-                "name": "Division of Emergency Medicine, Stanford University School of Medicine, Stanford, CA 94304, USA"
-            },
-            {
-                "name": "War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA"
-            },
-        ],
-    }
+    assert subject.creators[2] == {'nameType': 'Personal', 'givenName': 'Beatriz', 'familyName': 'Hernandez', 'affiliation': [{'name': 'War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA'}, {
+        'name': 'Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA'}], 'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-2043-4925',
+                                                                                                                                                            'nameIdentifierScheme': 'ORCID',
+                                                                                                                                                            'schemeUri': 'https://orcid.org'}]}
     assert subject.contributors is None
     assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/3.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -751,7 +746,7 @@ def test_date_in_future():
     "date_in_future"
     data = "10.1016/j.ejphar.2015.03.018"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1016/j.ejphar.2015.03.018"
+    assert subject.pid == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -774,7 +769,7 @@ def test_date_in_future():
     }
     assert subject.contributors is None
     assert subject.rights == [
-        {"rightsURI": "https://www.elsevier.com/tdm/userlicense/1.0"}
+        {"rightsUri": "https://www.elsevier.com/tdm/userlicense/1.0"}
     ]
     assert subject.dates == [
         {"date": "2015-07", "dateType": "Issued"},
@@ -847,7 +842,7 @@ def test_vor_with_url():
     "vor_with_url"
     data = "10.1038/hdy.2013.26"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1038/hdy.2013.26"
+    assert subject.pid == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -867,7 +862,7 @@ def test_vor_with_url():
         "familyName": "Gross",
     }
     assert subject.contributors is None
-    assert subject.rights == [{"rightsURI": "https://www.springer.com/tdm"}]
+    assert subject.rights == [{"rightsUri": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2013-04-10", "dateType": "Issued"},
         {"date": "2021-12-02T02:50:35Z", "dateType": "Updated"},
@@ -912,7 +907,7 @@ def test_dataset():
     "dataset"
     data = "10.2210/pdb4hhb/pdb"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.2210/pdb4hhb/pdb"
+    assert subject.pid == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -952,7 +947,7 @@ def test_component():
     "component"
     data = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1371/journal.pmed.0030277.g001"
+    assert subject.pid == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -987,7 +982,7 @@ def test_dataset_usda():
     "dataset usda"
     data = "10.2737/RDS-2018-0001"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.2737/rds-2018-0001"
+    assert subject.pid == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "dataset",
@@ -1002,6 +997,9 @@ def test_dataset_usda():
         "nameType": "Personal",
         "givenName": "Christine A.",
         "familyName": "Ribic",
+        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-2583-1778',
+                             'nameIdentifierScheme': 'ORCID',
+                             'schemeUri': 'https://orcid.org'}],
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.contributors is None
@@ -1035,14 +1033,14 @@ def test_crossref_json():
     """crossref.json"""
     data = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.7554/elife.01567"
+    assert subject.pid == "https://doi.org/10.7554/elife.01567"
 
 
 def test_book_chapter():
     "book chapter"
     data = "10.1007/978-3-662-46370-3_13"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1007/978-3-662-46370-3_13"
+    assert subject.pid == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1061,7 +1059,7 @@ def test_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights == [
-        {'rightsURI': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
+        {'rightsUri': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
         {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
@@ -1089,7 +1087,7 @@ def test_another_book_chapter():
     "another book chapter"
     data = "10.1007/978-3-319-75889-3_1"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1007/978-3-319-75889-3_1"
+    assert subject.pid == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1108,7 +1106,7 @@ def test_another_book_chapter():
         "familyName": "Jones",
     }
     assert subject.contributors is None
-    assert subject.rights == [{"rightsURI": "https://www.springer.com/tdm"}]
+    assert subject.rights == [{"rightsUri": "https://www.springer.com/tdm"}]
     assert subject.dates == [
         {"date": "2018", "dateType": "Issued"},
         {"date": "2019-10-16T02:02:05Z", "dateType": "Updated"},
@@ -1136,7 +1134,7 @@ def test_yet_another_book_chapter():
     "yet another book chapter"
     data = "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
+    assert subject.pid == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1190,7 +1188,7 @@ def test_missing_creator():
     "missing creator"
     data = "https://doi.org/10.3390/publications6020015"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.3390/publications6020015"
+    assert subject.pid == "https://doi.org/10.3390/publications6020015"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -1207,6 +1205,9 @@ def test_missing_creator():
         "nameType": "Personal",
         "givenName": "Alexander",
         "familyName": "Kohls",
+        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-3836-8885',
+                             'nameIdentifierScheme': 'ORCID',
+                             'schemeUri': 'https://orcid.org'}],
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -1214,7 +1215,7 @@ def test_missing_creator():
             "rights": "Creative Commons Attribution 4.0 International",
             "rightsIdentifier": "cc-by-4.0",
             "rightsIdentifierScheme": "SPDX",
-            "rightsURI": "https://creativecommons.org/licenses/by/4.0/legalcode",
+            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
@@ -1282,7 +1283,7 @@ def test_book():
     "book"
     data = "https://doi.org/10.1017/9781108348843"
     subject = Metadata(data)
-    assert subject.pid== "https://doi.org/10.1017/9781108348843"
+    assert subject.pid == "https://doi.org/10.1017/9781108348843"
     assert subject.types == {
         "bibtex": "book",
         "citeproc": "book",
@@ -1304,7 +1305,7 @@ def test_book():
     }
     assert subject.contributors is None
     assert subject.rights == [
-        {"rightsURI": "https://www.cambridge.org/core/terms"}
+        {"rightsUri": "https://www.cambridge.org/core/terms"}
     ]
     assert subject.dates == [
         {"date": "2019-07-01", "dateType": "Issued"},
@@ -1331,6 +1332,7 @@ def test_get_crossref():
     assert data.get('DOI') == '10.1017/9781108348843'
     assert {'state': 'not_found'} == get_crossref('123')
     assert {'state': 'not_found'} == get_crossref(None)
+
 
 def test_read_crossref():
     """read_crossref"""

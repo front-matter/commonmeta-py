@@ -36,7 +36,7 @@ def write_schema_org(metadata):
             "description": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
-            "license": metadata.rights[0].get("rightsURI", None)
+            "license": metadata.rights[0].get("rightsUri", None)
             if metadata.rights
             else None,
             "version": metadata.version,
