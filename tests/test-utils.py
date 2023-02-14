@@ -2,22 +2,13 @@
 from os import path
 import pytest
 from talbot.utils import (
-    parse_attributes,
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
     normalize_id,
     normalize_ids,
     normalize_cc_url,
-    wrap,
-    unwrap,
-    compact,
-    camel_case,
     from_citeproc,
-    crossref_api_url,
-    datacite_api_url,
-    presence,
-    sanitize,
     find_from_format_by_id,
     find_from_format_by_string,
     from_schema_org,
@@ -32,70 +23,6 @@ from talbot.utils import (
     get_geolocation_box,
     get_geolocation_point,
 )
-
-
-def test_parse_attributes():
-    "parse_attributes"
-    # string
-    assert "10.5061/DRYAD.8515" == parse_attributes("10.5061/DRYAD.8515")
-    # dict
-    assert "10.5061/DRYAD.8515" == parse_attributes(
-        {"__content__": "10.5061/DRYAD.8515"}
-    )
-    # dict with other keys
-    assert "10.5061/DRYAD.8515" == parse_attributes(
-        {"name": "10.5061/DRYAD.8515"}, content="name")
-    # list of dicts
-    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(
-        [{"__content__": "10.5061/DRYAD.8515"},
-            {"__content__": "10.5061/DRYAD.8516"}]
-    )
-    # first in list of dicts
-    assert '10.5061/DRYAD.8515' == parse_attributes(
-        [{"__content__": "10.5061/DRYAD.8515"}, {"__content__": "10.5061/DRYAD.8516"}], first=True)
-    # list of strings
-    assert ['10.5061/DRYAD.8515', '10.5061/DRYAD.8516'] == parse_attributes(
-        ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"])
-    # None
-    assert None is parse_attributes(None)
-
-
-def test_wrap():
-    "wrap"
-    # None
-    assert [] == wrap(None)
-    # dict
-    assert [{"name": "test"}] == wrap({"name": "test"})
-    # list
-    assert [{"name": "test"}] == wrap([{"name": "test"}])
-
-
-def test_unwrap():
-    "unwrap"
-    # None
-    assert None is unwrap([])
-    # dict
-    assert {"name": "test"} == unwrap([{"name": "test"}])
-    # list
-    assert [{"name": "test"}, {"name": "test2"}] == unwrap(
-        [{"name": "test"}, {"name": "test2"}]
-    )
-
-
-def test_presence():
-    "presence"
-    assert None is presence("")
-    assert None is presence([])
-    assert None is presence({})
-    assert "test" == presence("test")
-    assert [1] == presence([1])
-    assert {"test": 1} == presence({"test": 1})
-
-
-def test_compact():
-    "compact"
-    assert {"name": "test"} == compact({"name": "test", "other": None})
-    assert None is compact(None)
 
 
 def test_dict_to_spdx_id():
@@ -333,7 +260,6 @@ def test_from_citeproc():
     )
 
 
-
 def find_from_format():
     """find_from_format"""
 
@@ -372,14 +298,16 @@ def test_find_from_format_by_id():
     #     "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     # )
 
+
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
     filepath = path.join(path.dirname(__file__), 'fixtures', 'datacite.json')
     with open(filepath, encoding='utf-8') as file:
-        string = file.read() 
+        string = file.read()
     assert "datacite" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
+
 
 def test_from_schema_org():
     "from_schema_org"
@@ -467,89 +395,6 @@ def test_subjects_as_string():
     ]
     assert "Ecology, Biodiversity" == subjects_as_string(subjects)
     assert None is subjects_as_string(None)
-
-
-def test_sanitize():
-    """Sanitize HTML"""
-    text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
-    content = "In 1998 <strong>Tim Berners-Lee</strong> coined the term cool URIs"
-    assert content == sanitize(text)
-    assert content == sanitize({'__content__': text})
-    assert content == sanitize([{'__content__': text}])
-    assert content == sanitize([{'name': text}], content='name')
-    assert None is sanitize([], content='name')
-
-    text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
-    content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
-    assert content == sanitize(text, tags={"a"})
-
-
-def test_camel_case():
-    """camel case"""
-    assert "camelCase" == camel_case("camel_case")
-    assert "camelCase" == camel_case("camel-case")
-    assert "" == camel_case("")
-    assert None is camel_case(None)
-
-
-def test_crossref_api_url():
-    """generate crossref api url"""
-    doi = "10.5555/5412"
-    url = "https://api.crossref.org/works/10.5555/5412"
-    assert url == crossref_api_url(doi)
-
-
-def test_datacite_api_url():
-    """generate datacite api url"""
-    # doi
-    doi = "10.5061/DRYAD.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # doi with protocol
-    doi = "doi:10.5061/DRYAD.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # https url
-    doi = "https://doi.org/10.5061/dryad.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # dx.doi.org url
-    doi = "http://dx.doi.org/10.5061/dryad.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # test resolver
-    doi = "https://handle.stage.datacite.org/10.5061/dryad.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # test resolver http
-    doi = "http://handle.stage.datacite.org/10.5061/dryad.8515"
-    response = datacite_api_url(doi)
-    assert (
-        response
-        == "https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
-    # force test resolver
-    doi = "https://doi.org/10.5061/dryad.8515"
-    response = datacite_api_url(doi, sandbox=True)
-    assert (
-        response
-        == "https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client"
-    )
 
 
 def test_to_citeproc():
@@ -653,9 +498,9 @@ def test_geolocation_point():
 def test_geolocation_box():
     """geolocation box"""
     assert {'boxLongitude': '-119.221094', 'boxLatitude': '37.047756'} == get_geolocation_box({"geo": {
-      "@type": "GeoCoordinates",
-      "address": "Providence Creek (Lower, Upper and P301)",
-      "latitude": "37.047756",
-      "longitude": "-119.221094"
+        "@type": "GeoCoordinates",
+        "address": "Providence Creek (Lower, Upper and P301)",
+        "latitude": "37.047756",
+        "longitude": "-119.221094"
     }})
     assert None is get_geolocation_box(None)

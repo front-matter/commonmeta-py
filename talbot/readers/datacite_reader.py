@@ -3,10 +3,11 @@ from typing import Optional
 import requests
 from pydash import py_
 
-from ..utils import datacite_api_url, compact, presence, wrap, camel_case, normalize_url
+from ..utils import normalize_url
+from ..base_utils import compact, wrap, presence, camel_case
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
-from ..doi_utils import doi_as_url, doi_from_url
+from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
 from ..constants import (
     CR_TO_SO_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,

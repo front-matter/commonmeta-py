@@ -1,13 +1,10 @@
 """Author utils module for Talbot."""
 import re
 from .utils import (
-    parse_attributes,
-    wrap,
-    presence,
-    compact,
     normalize_orcid,
     normalize_id,
 )
+from .base_utils import parse_attributes, wrap, presence, compact
 
 
 def get_one_author(author):

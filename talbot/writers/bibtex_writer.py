@@ -1,7 +1,8 @@
 """Bibtex writer for Talbot"""
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
-from ..utils import compact, pages_as_string
+from ..utils import pages_as_string
+from ..base_utils import compact
 from ..author_utils import authors_as_string
 from ..date_utils import get_month_from_date, get_date_by_type
 

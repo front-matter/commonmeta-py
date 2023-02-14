@@ -1,14 +1,13 @@
 """Utils module for Talbot."""
 import os
-import html
 import json
 import re
 from typing import Optional, Union
 from urllib.parse import urlparse
-import bleach
 from pydash import py_
 
-from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
+from .base_utils import wrap, unwrap, compact, sanitize
+from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, crossref_api_url, datacite_api_url
 from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 
 NORMALIZED_LICENSES = {
@@ -69,61 +68,6 @@ HTTP_SCHEME = "http://"
 HTTPS_SCHEME = "https://"
 
 
-def wrap(item):
-    """Turn None, dict, or list into list"""
-    if item is None:
-        return []
-    if isinstance(item, list):
-        return item
-    return [item]
-
-
-def unwrap(lst: list) -> Optional[Union[dict, list]]:
-    """Turn list into dict or None, depending on list size"""
-    if len(lst) == 0:
-        return None
-    if len(lst) == 1:
-        return lst[0]
-    return lst
-
-
-def presence(item: Optional[Union[dict, list, str]]) -> Optional[Union[dict, list, str]]:
-    """Turn empty list, dict or str into None"""
-    return None if item is None or len(item) == 0 else item
-
-
-def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, list]]:
-    """Remove None from dict or list"""
-    if dict_or_list is None:
-        return None
-    if isinstance(dict_or_list, dict):
-        return {k: v for k, v in dict_or_list.items() if v is not None}
-    if isinstance(dict_or_list, list):
-        arr = list(map(lambda x: compact(x), dict_or_list))
-        return None if len(arr) == 0 else arr
-
-
-def parse_attributes(element, **kwargs):
-    """extract attributes from a string, dict or list"""
-    content = kwargs.get("content", "__content__")
-
-    if isinstance(element, str) and kwargs.get("content", None) is None:
-        return html.unescape(element)
-    if isinstance(element, dict):
-        return element.get(html.unescape(content), None)
-    if isinstance(element, list):
-        arr = list(
-            map(
-                lambda x: x.get(html.unescape(content), None)
-                if isinstance(x, dict)
-                else x,
-                element,
-            )
-        )
-        arr = arr[0] if kwargs.get("first") else unwrap(arr)
-        return arr
-
-
 def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     """Check for valid DOI or HTTP(S) URL"""
     if pid is None:
@@ -178,22 +122,6 @@ def normalize_ids(ids=None, relation_type=None):
                 )
             )
     return formatted_ids
-
-
-def crossref_api_url(doi: str):
-    """Return the Crossref API URL for a given DOI"""
-    return "https://api.crossref.org/works/" + doi
-
-
-def datacite_api_url(doi: str, **kwargs) -> str:
-    """Return the DataCite API URL for a given DOI"""
-    match = re.match(
-        r"\A(http|https):/(/)?handle\.stage\.datacite\.org", doi, re.IGNORECASE
-    )
-    if match is not None or kwargs.get("sandbox", False):
-        return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
-    else:
-        return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
 
 
 def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
@@ -554,17 +482,6 @@ def find_from_format_by_filename(filename):
     return None
 
 
-def camel_case(text):
-    """Convert text to camel case"""
-    if text is None:
-        return None
-    string = text.replace("-", " ").replace("_", " ")
-    string = string.split()
-    if len(text) == 0:
-        return text
-    return string[0] + "".join(i.capitalize() for i in string[1:])
-
-
 def from_schema_org(element):
     """Convert schema.org to DataCite"""
     if element is None:
@@ -762,35 +679,6 @@ def name_to_fos(name):
     #      }]
     #   else
     return [{"subject": name.lower()}]
-
-
-def sanitize(text, **kwargs):
-    """Sanitize text"""
-    tags = kwargs.get("tags", None) or frozenset(
-        {"b", "br", "code", "em", "i", "sub", "sup", "strong"}
-    )
-    content = kwargs.get("content", None) or "__content__"
-    first = kwargs.get("first", True)
-    strip = kwargs.get("strip", True)
-
-    if isinstance(text, str):
-        string = bleach.clean(text, tags=tags, strip=strip)
-        # remove excessive internal whitespace
-        return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
-        # return re.sub(r'\\s\\s+', ' ', string)
-    if isinstance(text, dict):
-        return sanitize(text.get(content, None))
-    if isinstance(text, list):
-        if len(text) == 0:
-            return None
-
-        lst = []
-        for elem in text:
-            lst.append(
-                sanitize(elem.get(content, None)) if isinstance(
-                    elem, dict) else sanitize(elem)
-            )  # uniq
-        return lst[0] if first else unwrap(lst)
 
 
 def get_geolocation_point(geo_location):

@@ -1,15 +1,12 @@
 """Schema.org writer for Talbot"""
 import json
 from ..utils import (
-    compact,
-    wrap,
-    presence,
     to_schema_org,
     to_schema_org_creators,
     to_schema_org_contributors,
     to_schema_org_relation,
-    parse_attributes,
 )
+from ..base_utils import compact, wrap, presence, parse_attributes
 from ..date_utils import get_date_by_type
 
 

@@ -8,15 +8,9 @@ from bs4 import BeautifulSoup
 from ..utils import (
     dict_to_spdx,
     normalize_cc_url,
-    wrap,
-    compact,
-    camel_case,
-    parse_attributes,
     from_schema_org,
     from_schema_org_creators,
     from_schema_org_contributors,
-    presence,
-    sanitize,
     normalize_id,
     normalize_ids,
     normalize_url,
@@ -24,6 +18,7 @@ from ..utils import (
     get_geolocation_point,
     get_geolocation_box,
 )
+from ..base_utils import (wrap, compact, presence, camel_case, parse_attributes, sanitize)
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..doi_utils import doi_from_url

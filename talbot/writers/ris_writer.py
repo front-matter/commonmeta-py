@@ -1,5 +1,6 @@
 """RIS writer for Talbot"""
-from ..utils import compact, wrap, presence, to_ris, parse_attributes
+from ..utils import to_ris
+from ..base_utils import compact, wrap, presence, parse_attributes
 from ..doi_utils import doi_from_url
 
 

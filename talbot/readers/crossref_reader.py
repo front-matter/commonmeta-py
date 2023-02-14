@@ -4,19 +4,15 @@ import requests
 from pydash import py_
 
 from ..utils import (
-    crossref_api_url,
     dict_to_spdx,
     normalize_cc_url,
-    wrap,
-    compact,
     from_citeproc,
-    presence,
-    sanitize,
     normalize_url
 )
+from ..base_utils import wrap, compact, presence, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra
+from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra, crossref_api_url
 from ..constants import (
     CR_TO_BIB_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,
