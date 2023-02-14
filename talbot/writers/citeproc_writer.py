@@ -30,7 +30,8 @@ def write_citeproc(metadata):
         type_ = "book"
     else:
         type_ = metadata.types.get("citeproc", "article")
-
+    
+    container = metadata.container or {}
     dictionary = compact(
         {
             "type": type_,
@@ -52,10 +53,10 @@ def write_citeproc(metadata):
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
-            "container-title": metadata.container.get("title", None),
-            "volume": metadata.container.get("volume", None),
-            "issue": metadata.container.get("issue", None),
-            "page": pages_as_string(metadata.container),
+            "container-title": container.get("title", None),
+            "volume": container.get("volume", None),
+            "issue": container.get("issue", None),
+            "page": pages_as_string(container),
             "publisher": metadata.publisher,
             "title": parse_attributes(metadata.titles, content="title", first=True),
             "copyright": metadata.rights[0].get("rights", None)

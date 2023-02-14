@@ -21,7 +21,8 @@ def write_citation(metadata):
 
     # Remove keys that are not supported by citeproc-py.
     for key in ["copyright", "categories"]:
-        del citeproc_json[key]
+        if key in citeproc_json:
+            del citeproc_json[key]
 
     # Process the JSON data to generate a citeproc-py BibliographySource.
     source = CiteProcJSON([citeproc_json])
