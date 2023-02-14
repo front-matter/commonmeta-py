@@ -1,4 +1,7 @@
 """Metadata"""
+from os import path
+import json
+from typing import Optional
 from ..readers import (
     get_crossref,
     read_crossref,
@@ -14,27 +17,46 @@ from ..writers import (
     write_ris,
     write_schema_org,
 )
-from ..utils import normalize_id
+from ..utils import normalize_id, find_from_format
 
 # pylint: disable=R0902
 class Metadata:
     """Metadata"""
 
-    def __init__(self, pid, **kwargs):
-        pid = normalize_id(pid)
+    def __init__(self, data: Optional[str], **kwargs):
+        if data is None or not isinstance(data, str):
+            raise ValueError("No metadata found")
+        pid = normalize_id(data)
 
-        if pid is None:
-            raise ValueError("No PID found")
-        via = kwargs.get("via", None)  # or find_from_format(id=id)
-        if via == "schema_org":
-            data = get_schema_org(pid)
-            meta = read_schema_org(data)
-        elif via == "datacite":
-            data = get_datacite(pid)
-            meta = read_datacite(data)
+        if pid is not None:
+            via = kwargs.get("via", None) or find_from_format(pid=pid)
+            if via == "schema_org":
+                data = get_schema_org(pid)
+                meta = read_schema_org(data)
+            elif via == "datacite":
+                data = get_datacite(pid)
+                meta = read_datacite(data)
+            elif via == "crossref":
+                data = get_crossref(pid)
+                meta = read_crossref(data)
+        elif path.exists(data):
+            with open(data, encoding='utf-8') as file:
+                string = file.read()
+            via = kwargs.get("via", None) or find_from_format(string=string)
+            if via == "schema_org":
+                data = json.loads(string)
+                meta = read_schema_org(data)
+            elif via == "datacite":
+                data = json.loads(string)
+                meta = read_datacite(data)
+            elif via == "crossref":
+                data = json.loads(string)
+                meta = read_crossref(data)
+            else:
+                raise ValueError("No input format found")
         else:
-            data = get_crossref(pid)
-            meta = read_crossref(data)
+            raise ValueError("No metadata found")
+    
         # required properties
         self.pid = meta.get("pid")
         self.doi = meta.get("doi")

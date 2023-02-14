@@ -1,15 +1,15 @@
 """Crossref JSON reader tests"""
+from os import path
 import pytest
 from talbot import Metadata
 from talbot.readers.crossref_reader import get_crossref, read_crossref, get_related_item
 
-
 @pytest.mark.vcr
 def test_doi_with_data_citation():
     "DOi with data citation"
-    pid = "10.7554/elife.01567"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    data = "10.7554/elife.01567"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.7554/elife.01567"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -47,7 +47,7 @@ def test_doi_with_data_citation():
         {"date": "2014-02-11", "dateType": "Issued"},
         {"date": "2022-03-26T09:21:50Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2014"
+    assert subject.publication_year == 2014
     assert subject.publisher == "eLife Sciences Publications, Ltd"
     assert len(subject.related_items) == 28
     assert subject.related_items[0] == {
@@ -113,9 +113,9 @@ def test_doi_with_data_citation():
 
 def test_journal_article():
     "journal article"
-    pid = "10.1371/journal.pone.0000030"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1371/journal.pone.0000030"
+    data = "10.1371/journal.pone.0000030"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -154,7 +154,7 @@ def test_journal_article():
         {"date": "2006-12-20", "dateType": "Issued"},
         {"date": "2021-08-06T23:49:55Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2006"
+    assert subject.publication_year == 2006
     assert subject.publisher == "Public Library of Science (PLoS)"
     assert len(subject.related_items) == 74
     assert subject.related_items[0] == {
@@ -188,9 +188,9 @@ def test_journal_article():
 
 def test_journal_article_with_funding():
     "journal article with funding"
-    pid = "10.3389/fpls.2019.00816"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.3389/fpls.2019.00816"
+    data = "10.3389/fpls.2019.00816"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -226,7 +226,7 @@ def test_journal_article_with_funding():
         {"date": "2019-07-02", "dateType": "Issued"},
         {"date": "2019-09-22T02:40:23Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2019"
+    assert subject.publication_year == 2019
     assert subject.publisher == "Frontiers Media SA"
     assert len(subject.related_items) == 71
     assert subject.related_items[0] == {
@@ -265,9 +265,9 @@ def test_journal_article_with_funding():
 
 def test_journal_article_original_language():
     "journal article with original language"
-    pid = "https://doi.org/10.7600/jspfsm.56.60"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.7600/jspfsm.56.60"
+    data = "https://doi.org/10.7600/jspfsm.56.60"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -290,7 +290,7 @@ def test_journal_article_original_language():
         {"date": "2007", "dateType": "Issued"},
         {"date": "2021-05-20T22:32:01Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2007"
+    assert subject.publication_year == 2007
     assert (
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
@@ -331,9 +331,9 @@ def test_journal_article_original_language():
 
 def test_journal_article_with_rdf_for_container():
     "journal article with RDF for container"
-    pid = "https://doi.org/10.1163/1937240X-00002096"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1163/1937240x-00002096"
+    data = "https://doi.org/10.1163/1937240X-00002096"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1163/1937240x-00002096"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -361,7 +361,7 @@ def test_journal_article_with_rdf_for_container():
         {"date": "2012-01-01", "dateType": "Issued"},
         {"date": "2019-07-05T16:53:10Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2012"
+    assert subject.publication_year == 2012
     assert subject.publisher == "Oxford University Press (OUP)"
     assert len(subject.related_items) == 112
     assert subject.related_items[0] == {
@@ -392,9 +392,9 @@ def test_journal_article_with_rdf_for_container():
 
 def test_book_chapter_with_rdf_for_container():
     "book chapter with RDF for container"
-    pid = "https://doi.org/10.1007/978-3-642-33191-6_49"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1007/978-3-642-33191-6_49"
+    data = "https://doi.org/10.1007/978-3-642-33191-6_49"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -419,7 +419,7 @@ def test_book_chapter_with_rdf_for_container():
         {"date": "2012", "dateType": "Issued"},
         {"date": "2020-11-24T03:11:32Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2012"
+    assert subject.publication_year == 2012
     assert subject.publisher == "Springer Berlin Heidelberg"
     assert len(subject.related_items) == 12
     assert subject.related_items[0] == {
@@ -448,9 +448,9 @@ def test_book_chapter_with_rdf_for_container():
 
 def test_posted_content():
     "posted content"
-    pid = "https://doi.org/10.1101/097196"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1101/097196"
+    data = "https://doi.org/10.1101/097196"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1101/097196"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -475,7 +475,7 @@ def test_posted_content():
         {"date": "2016-12-28", "dateType": "Issued"},
         {"date": "2020-01-18T02:53:57Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2016"
+    assert subject.publication_year == 2016
     assert subject.publisher == "Cold Spring Harbor Laboratory"
     assert len(subject.related_items) == 26
     assert subject.related_items[0] == {'key': '2019071613381284000_097196v2.1', 'relationType': 'References', 'title': 'An introduction to the joint principles for data citation',
@@ -496,9 +496,9 @@ def test_posted_content():
 
 def test_peer_review():
     "peer review"
-    pid = "10.7554/elife.55167.sa2"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.7554/elife.55167.sa2"
+    data = "10.7554/elife.55167.sa2"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -536,7 +536,7 @@ def test_peer_review():
         {"date": "2020-04-29", "dateType": "Issued"},
         {"date": "2020-05-19T20:33:37Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2020"
+    assert subject.publication_year == 2020
     assert subject.publisher == "eLife Sciences Publications, Ltd"
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
@@ -550,9 +550,9 @@ def test_peer_review():
 
 def test_dissertation():
     "dissertation"
-    pid = "10.14264/uql.2020.791"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.14264/uql.2020.791"
+    data = "10.14264/uql.2020.791"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.14264/uql.2020.791"
     assert subject.types == {
         "bibtex": "phdthesis",
         "citeproc": "thesis",
@@ -577,7 +577,7 @@ def test_dissertation():
         {"date": "2020-06-08T05:08:58Z", "dateType": "Issued"},
         {"date": "2020-06-08T05:08:59Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2020"
+    assert subject.publication_year == 2020
     assert subject.publisher == "University of Queensland Library"
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
@@ -591,10 +591,10 @@ def test_dissertation():
 
 def test_doi_with_sici():
     "doi with sici"
-    pid = "10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
-    subject = Metadata(pid)
+    data = "10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+    subject = Metadata(data)
     assert (
-        subject.pid == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+        subject.pid== "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
     assert subject.types == {
         "bibtex": "article",
@@ -625,7 +625,7 @@ def test_doi_with_sici():
         {"date": "2006-11", "dateType": "Issued"},
         {"date": "2019-04-28T13:51:50Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2006"
+    assert subject.publication_year == 2006
     assert subject.publisher == "Wiley"
     assert len(subject.related_items) == 40
     assert subject.related_items[0] == {
@@ -658,9 +658,9 @@ def test_doi_with_sici():
 
 def test_doi_with_orcid():
     "doi_with_orcid"
-    pid = "10.1155/2012/291294"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1155/2012/291294"
+    data = "10.1155/2012/291294"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1155/2012/291294"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -707,7 +707,7 @@ def test_doi_with_orcid():
         {"date": "2012", "dateType": "Issued"},
         {"date": "2016-08-02T18:42:41Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2012"
+    assert subject.publication_year == 2012
     assert subject.publisher == "Hindawi Limited"
     assert len(subject.related_items) == 28
     assert subject.related_items[0] == {
@@ -749,9 +749,9 @@ def test_doi_with_orcid():
 
 def test_date_in_future():
     "date_in_future"
-    pid = "10.1016/j.ejphar.2015.03.018"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1016/j.ejphar.2015.03.018"
+    data = "10.1016/j.ejphar.2015.03.018"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -780,7 +780,7 @@ def test_date_in_future():
         {"date": "2015-07", "dateType": "Issued"},
         {"date": "2020-08-31T14:03:39Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2015"
+    assert subject.publication_year == 2015
     assert subject.publisher == "Elsevier BV"
     assert len(subject.related_items) == 99
     assert subject.related_items[0] == {
@@ -845,9 +845,9 @@ def test_date_in_future():
 
 def test_vor_with_url():
     "vor_with_url"
-    pid = "10.1038/hdy.2013.26"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1038/hdy.2013.26"
+    data = "10.1038/hdy.2013.26"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1038/hdy.2013.26"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -872,7 +872,7 @@ def test_vor_with_url():
         {"date": "2013-04-10", "dateType": "Issued"},
         {"date": "2021-12-02T02:50:35Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2013"
+    assert subject.publication_year == 2013
     assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.related_items) == 42
     assert subject.related_items[0] == {
@@ -910,9 +910,9 @@ def test_vor_with_url():
 
 def test_dataset():
     "dataset"
-    pid = "10.2210/pdb4hhb/pdb"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.2210/pdb4hhb/pdb"
+    data = "10.2210/pdb4hhb/pdb"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -936,7 +936,7 @@ def test_dataset():
         {"date": "1984-07-17", "dateType": "Issued"},
         {"date": "2023-02-07T21:29:26Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "1984"
+    assert subject.publication_year == 1984
     assert subject.publisher == "Worldwide Protein Data Bank"
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
@@ -950,9 +950,9 @@ def test_dataset():
 
 def test_component():
     "component"
-    pid = "10.1371/journal.pmed.0030277.g001"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1371/journal.pmed.0030277.g001"
+    data = "10.1371/journal.pmed.0030277.g001"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "article-journal",
@@ -971,7 +971,7 @@ def test_component():
         {"date": "2015-10-20T20:01:19Z", "dateType": "Issued"},
         {"date": "2018-10-19T21:13:42Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2015"
+    assert subject.publication_year == 2015
     assert subject.publisher == "Public Library of Science (PLoS)"
     assert len(subject.related_items) == 0
     assert subject.funding_references is None
@@ -985,9 +985,9 @@ def test_component():
 
 def test_dataset_usda():
     "dataset usda"
-    pid = "10.2737/RDS-2018-0001"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.2737/rds-2018-0001"
+    data = "10.2737/RDS-2018-0001"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.2737/rds-2018-0001"
     assert subject.types == {
         "bibtex": "misc",
         "citeproc": "dataset",
@@ -1010,7 +1010,7 @@ def test_dataset_usda():
         {"date": "2017-08-09T19:44:20Z", "dateType": "Issued"},
         {"date": "2021-07-01T22:10:21Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2017"
+    assert subject.publication_year == 2017
     assert subject.publisher == "Forest Service Research Data Archive"
     assert len(subject.related_items) == 6
     assert subject.related_items[-1] == {
@@ -1031,11 +1031,18 @@ def test_dataset_usda():
     assert subject.agency == "Crossref"
 
 
+def test_crossref_json():
+    """crossref.json"""
+    data = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.7554/elife.01567"
+
+
 def test_book_chapter():
     "book chapter"
-    pid = "10.1007/978-3-662-46370-3_13"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1007/978-3-662-46370-3_13"
+    data = "10.1007/978-3-662-46370-3_13"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1059,7 +1066,7 @@ def test_book_chapter():
         {"date": "2015", "dateType": "Issued"},
         {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
     ]
-    assert subject.publication_year == "2015"
+    assert subject.publication_year == 2015
     assert subject.publisher == "Springer Berlin Heidelberg"
     assert len(subject.related_items) == 22
     assert subject.related_items[0] == {'key': '13_CR1', 'relationType': 'References',
@@ -1080,9 +1087,9 @@ def test_book_chapter():
 
 def test_another_book_chapter():
     "another book chapter"
-    pid = "10.1007/978-3-319-75889-3_1"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1007/978-3-319-75889-3_1"
+    data = "10.1007/978-3-319-75889-3_1"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1106,7 +1113,7 @@ def test_another_book_chapter():
         {"date": "2018", "dateType": "Issued"},
         {"date": "2019-10-16T02:02:05Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2018"
+    assert subject.publication_year == 2018
     assert subject.publisher == "Springer International Publishing"
     assert len(subject.related_items) == 45
     assert subject.funding_references is None
@@ -1127,9 +1134,9 @@ def test_another_book_chapter():
 
 def test_yet_another_book_chapter():
     "yet another book chapter"
-    pid = "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
+    data = "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.types == {
         "bibtex": "inbook",
         "citeproc": "chapter",
@@ -1157,7 +1164,7 @@ def test_yet_another_book_chapter():
         {"date": "2012-08-08T16:54:07Z", "dateType": "Issued"},
         {"date": "2019-07-02T13:17:21Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2012"
+    assert subject.publication_year == 2012
     assert subject.publisher == "IGI Global"
     assert len(subject.related_items) == 33
     assert subject.funding_references is None
@@ -1181,9 +1188,9 @@ def test_yet_another_book_chapter():
 
 def test_missing_creator():
     "missing creator"
-    pid = "https://doi.org/10.3390/publications6020015"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.3390/publications6020015"
+    data = "https://doi.org/10.3390/publications6020015"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.3390/publications6020015"
     assert subject.types == {
         "bibtex": "article",
         "citeproc": "article-journal",
@@ -1215,7 +1222,7 @@ def test_missing_creator():
         {"date": "2018-04-09", "dateType": "Issued"},
         {"date": "2021-07-22T10:05:05Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2018"
+    assert subject.publication_year == 2018
     assert subject.publisher == "MDPI AG"
     assert len(subject.related_items) == 24
     assert subject.related_items[0] == {
@@ -1273,9 +1280,9 @@ def test_missing_creator():
 
 def test_book():
     "book"
-    pid = "https://doi.org/10.1017/9781108348843"
-    subject = Metadata(pid)
-    assert subject.pid == "https://doi.org/10.1017/9781108348843"
+    data = "https://doi.org/10.1017/9781108348843"
+    subject = Metadata(data)
+    assert subject.pid== "https://doi.org/10.1017/9781108348843"
     assert subject.types == {
         "bibtex": "book",
         "citeproc": "book",
@@ -1303,7 +1310,7 @@ def test_book():
         {"date": "2019-07-01", "dateType": "Issued"},
         {"date": "2022-09-22T13:22:42Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2019"
+    assert subject.publication_year == 2019
     assert subject.publisher == "Cambridge University Press"
     assert len(subject.related_items) == 273
     assert subject.related_items[0] == {'key': '9781108348843#EMT-rl-1_BIBe-r-273', 'relationType': 'References', 'creator': 'Qiusheng',
@@ -1315,6 +1322,23 @@ def test_book():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.agency == "Crossref"
+
+
+def test_get_crossref():
+    """get_crossref"""
+    data = get_crossref('https://doi.org/10.1017/9781108348843')
+    assert isinstance(data, dict)
+    assert data.get('DOI') == '10.1017/9781108348843'
+    assert {'state': 'not_found'} == get_crossref('123')
+    assert {'state': 'not_found'} == get_crossref(None)
+
+def test_read_crossref():
+    """read_crossref"""
+    data = get_crossref('https://doi.org/10.1017/9781108348843')
+    meta = read_crossref(data)
+    assert isinstance(meta, dict)
+    assert meta.get('pid') == 'https://doi.org/10.1017/9781108348843'
+    assert {'state': 'not_found'} == read_crossref(None)
 
 
 def test_get_related_item():

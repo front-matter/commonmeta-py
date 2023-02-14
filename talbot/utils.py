@@ -489,25 +489,15 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     doi = validate_doi(pid)
     if doi and (registration_agency := get_doi_ra(doi)) is not None:
         return registration_agency.lower()
-    if (
-        re.match(
-            r"\A(?:(http|https):/(/)?orcid\.org/)?(\d{4}-\d{4}-\d{4}-\d{3}[0-9X]+)\Z",
-            id,
-        )
-        is not None
-    ):
-        return "orcid"
-    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/package.json\Z", id) is not None:
-        return "npm"
-    if (
-        re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", id)
-        is not None
-    ):
-        return "codemeta"
-    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", id) is not None:
-        return "cff"
-    if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", id) is not None:
-        return "cff"
+    # if (
+    #     re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", id)
+    #     is not None
+    # ):
+    #     return "codemeta"
+    # if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", id) is not None:
+    #     return "cff"
+    # if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", id) is not None:
+    #     return "cff"
     return "schema_org"
 
 
@@ -517,24 +507,20 @@ def find_from_format_by_ext(string, ext=None):
 
 def find_from_format_by_string(string):
     """Find reader from format by string"""
-    try:
-        if json.loads(string).get("@context", None) == "http://schema.org":
-            return "schema_org"
-        if (
-            json.loads(string)
-            .get("schema-version", "")
-            .beginswith("http://datacite.org/schema/kernel")
-        ):
-            return "datacite"
-        if json.loads(string).get("source", None) == "Crossref":
-            return "crossref"
-        if py_.get(json.loads(string), "issued.date-parts", None) is not None:
-            return "citeproc"
-        if string.startswith("TY  - "):
-            return "ris"
+    if string is None:
+        return None
+    dictionary = json.loads(string)
+    if dictionary.get("@context", None) == "http://schema.org":
+        return "schema_org"
+    if dictionary.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
         return "datacite"
-    except NameError:
-        return "datacite"
+    if dictionary.get("source", None) == "Crossref":
+        return "crossref"
+    if py_.get(dictionary, "issued.date-parts", None) is not None:
+        return "citeproc"
+    # no format found
+    return None
+
     # if Maremma.from_xml(string).to_h.dig('crossref_result', 'query_result', 'body', 'query',
     #                                        'doi_record', 'crossref').present?
     #     'crossref_xml'
@@ -561,8 +547,8 @@ def find_from_format_by_string(string):
 
 def find_from_format_by_filename(filename):
     """Find reader from format by filename"""
-    if filename == "package.json":
-        return "npm"
+    # if filename == "package.json":
+    #   return "npm"
     if filename == "CITATION.cff":
         return "cff"
     return None

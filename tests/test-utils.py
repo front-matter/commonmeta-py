@@ -1,4 +1,5 @@
 """Test utils"""
+from os import path
 import pytest
 from talbot.utils import (
     parse_attributes,
@@ -18,6 +19,7 @@ from talbot.utils import (
     presence,
     sanitize,
     find_from_format_by_id,
+    find_from_format_by_string,
     from_schema_org,
     from_schema_org_creators,
     pages_as_string,
@@ -267,6 +269,9 @@ def test_normalize_cc_url():
         'https://creativecommons.org/licenses/by/4.0/')
     assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url(
         'https://creativecommons.org/publicdomain/zero/1.0')
+    # http scheme
+    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url(
+        'http://creativecommons.org/publicdomain/zero/1.0')
     assert None is normalize_cc_url(None)
     assert None is normalize_cc_url(
         {'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
@@ -332,7 +337,7 @@ def test_from_citeproc():
 def find_from_format():
     """find_from_format"""
 
-    
+
 def test_find_from_format_by_id():
     "find_from_format_by_id"
     assert "crossref" == find_from_format_by_id("10.1371/journal.pone.0042793")
@@ -367,6 +372,14 @@ def test_find_from_format_by_id():
     #     "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     # )
 
+def test_find_from_format_by_string():
+    """find_from_format_by_string"""
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'datacite.json')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read() 
+    assert "datacite" == find_from_format_by_string(string)
+    assert None is find_from_format_by_string('{"foo": "bar"}')
+    assert None is find_from_format_by_string(None)
 
 def test_from_schema_org():
     "from_schema_org"

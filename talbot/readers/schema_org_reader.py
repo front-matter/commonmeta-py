@@ -141,7 +141,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     dates = [{"date": published_date, "dateType": "Issued"}]
     if updated_date is not None:
         dates.append({"date": updated_date, "dateType": "Updated"})
-    publication_year = published_date[0:4] if published_date else None
+    publication_year = int(published_date[0:4]) if published_date else None
 
     publisher = parse_attributes(
         meta.get("publisher", None), content="name", first=True

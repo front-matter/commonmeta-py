@@ -7,8 +7,8 @@ from talbot.readers.schema_org_reader import schema_org_geolocations
 @pytest.mark.vcr
 def test_blog_posting():
     "blog posting"
-    text = "https://blog.front-matter.io/posts/eating-your-own-dog-food"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+    subject = Metadata(data)
     assert subject.pid == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.types == {
         "bibtex": "article",
@@ -36,7 +36,7 @@ def test_blog_posting():
         {"date": "2016-12-20", "dateType": "Issued"},
         {"date": "2022-08-15T09:06:22Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2016"
+    assert subject.publication_year == 2016
     assert subject.publisher == "Front Matter"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -63,8 +63,8 @@ def test_blog_posting():
 
 def test_zenodo():
     "zenodo"
-    text = "https://www.zenodo.org/record/1196821"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://www.zenodo.org/record/1196821"
+    subject = Metadata(data)
     assert subject.pid == "https://doi.org/10.5281/zenodo.1196821"
     assert subject.types == {
         "bibtex": "misc",
@@ -97,7 +97,7 @@ def test_zenodo():
         }
     ]
     assert subject.dates == [{"date": "2018-03-14", "dateType": "Issued"}]
-    assert subject.publication_year == "2018"
+    assert subject.publication_year == 2018
     assert subject.publisher == "Zenodo"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -133,8 +133,8 @@ def test_zenodo():
 
 def test_pangaea():
     "pangaea"
-    text = "https://doi.pangaea.de/10.1594/PANGAEA.836178"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://doi.pangaea.de/10.1594/PANGAEA.836178"
+    subject = Metadata(data)
     assert subject.pid == "https://doi.org/10.1594/pangaea.836178"
     assert subject.types == {
         "bibtex": "misc",
@@ -164,7 +164,7 @@ def test_pangaea():
         }
     ]
     assert subject.dates == [{"date": "2014-09-25", "dateType": "Issued"}]
-    assert subject.publication_year == "2014"
+    assert subject.publication_year == 2014
     assert subject.publisher == "PANGAEA"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -194,9 +194,9 @@ def test_pangaea():
 
 def test_dataverse():
     "dataverse"
-    text = "https://doi.org/10.7910/dvn/nj7xso"
-    subject = Metadata(text, via="schema_org")
-    print(subject)
+    data=  "https://doi.org/10.7910/dvn/nj7xso"
+    subject = Metadata(data)
+
     assert subject.pid == "https://doi.org/10.7910/dvn/nj7xso"
     assert subject.types == {
         "bibtex": "misc",
@@ -207,29 +207,20 @@ def test_dataverse():
     }
     assert (
         subject.url
-        == "https://dataverse.harvard.edu/dataset.xhtml?persistentid=doi:10.7910/dvn/nj7xso"
+        == "https://dataverse.harvard.edu/citation?persistentid=doi:10.7910/dvn/nj7xso"
     )
     assert subject.titles[0] == {
         "title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
+        "name": "International Genetics Of Ankylosing Spondylitis Consortium (IGAS)"
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Zero v1.0 Universal",
-            "rightsURI": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
-            "rightsIdentifier": "cc0-1.0",
-            "rightsIdentifierScheme": "SPDX",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.rights is None
     assert subject.dates == [
-        {"date": "2017-09-30", "dateType": "Issued"},
-        {"date": "2017-09-30", "dateType": "Updated"},
+        {"date": "2017", "dateType": "Issued"},
     ]
-    assert subject.publication_year == "2017"
+    assert subject.publication_year == 2017
     assert subject.publisher == "Harvard Dataverse"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -237,29 +228,20 @@ def test_dataverse():
     #     'relatedIdentifierType': 'ISSN',
     #     'relationType': 'IsPartOf',
     #     'resourceTypeGeneral': 'Collection' }
-    assert subject.container == {
-        "type": "DataRepository",
-        "title": "Harvard Dataverse",
-        "identifier": "https://dataverse.harvard.edu",
-        "identifierType": "URL",
-    }
+    assert subject.container is None
     # assert subject.descriptions[0].get('description').startswith(
     #     'Summary of association tests for Nature Genetics publication')
-    assert subject.subjects == [
-        {"subject": "medicine, health and life sciences"},
-        {"subject": " genome-wide association studies"},
-        {"subject": "ankylosing spondylitis"},
-    ]
-    assert subject.language == "en"
-    assert subject.version == "1"
-    assert subject.geo_locations is None
-    assert subject.agency == "Harvard Dataverse"
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.version is None
+    # assert subject.geo_locations is None
+    assert subject.agency == "DataCite"
 
 
 def test_yet_another_blog_post():
     "yet another blog post"
-    text = "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
+    subject = Metadata(data)
     assert (
         subject.pid
         == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
@@ -287,7 +269,7 @@ def test_yet_another_blog_post():
         {"date": "2022-09-24T17:22:00Z", "dateType": "Issued"},
         {"date": "2022-09-30T17:23:04Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2022"
+    assert subject.publication_year == 2022
     assert subject.publisher == "John Hawks"
     assert len(subject.related_items) == 0
     assert subject.container == {
@@ -318,8 +300,8 @@ def test_yet_another_blog_post():
 
 def test_blog_with_dois():
     "blog with dois"
-    text = "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
+    subject = Metadata(data)
     assert subject.pid == "https://doi.org/10.17176/20221210-001644-0"
     assert subject.types == {
         "bibtex": "article",
@@ -341,7 +323,7 @@ def test_blog_with_dois():
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [{"date": "2022-12-09", "dateType": "Issued"}]
-    assert subject.publication_year == "2022"
+    assert subject.publication_year == 2022
     assert subject.publisher == "Verfassungsblog"
     assert len(subject.related_items) == 0
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
@@ -366,8 +348,8 @@ def test_blog_with_dois():
 
 def test_another_blog_with_dois():
     "another blog with dois"
-    text = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
+    subject = Metadata(data)
     assert (
         subject.pid
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
@@ -393,7 +375,7 @@ def test_another_blog_with_dois():
         {"date": "2022-10-05T14:35:47Z", "dateType": "Issued"},
         {"date": "2022-10-05T14:35:47Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2022"
+    assert subject.publication_year == 2022
     assert subject.publisher == "JSC Accelerating Devices Lab"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -419,8 +401,8 @@ def test_another_blog_with_dois():
 
 def test_with_upstream_blog_post():
     "with upstream blog post"
-    text = "https://upstream.force11.org/welcome-to-upstream/"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://upstream.force11.org/welcome-to-upstream/"
+    subject = Metadata(data)
     assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types == {
         "bibtex": "article",
@@ -453,7 +435,7 @@ def test_with_upstream_blog_post():
         {"date": "2021-11-22T05:06:00Z", "dateType": "Issued"},
         {"date": "2023-01-06T21:05:45Z", "dateType": "Updated"},
     ]
-    assert subject.publication_year == "2021"
+    assert subject.publication_year == 2021
     assert subject.publisher == "Upstream"
     assert len(subject.related_items) == 0
     # assert subject.related_items[0] == {
@@ -483,8 +465,8 @@ def test_with_upstream_blog_post():
 
 def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
-    text = "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+    subject = Metadata(data)
     assert (
         subject.pid
         == "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
@@ -493,8 +475,8 @@ def test_with_blog_with_datacite_dois():
 
 def test_with_datacite_blog():
     "with datacite blog"
-    text = "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
-    subject = Metadata(text, via="schema_org")
+    data=  "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
+    subject = Metadata(data)
     assert (
         subject.pid
         == "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed"

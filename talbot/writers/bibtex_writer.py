@@ -32,7 +32,7 @@ def write_bibtex(metadata):
                 "title": metadata.titles[0].get("title", None),
                 "url": metadata.url,
                 "urldate": get_date_by_type(metadata.dates, date_only=True),
-                "year": metadata.publication_year,
+                "year": str(metadata.publication_year),
             }
         )
     ]

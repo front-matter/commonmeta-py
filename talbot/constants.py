@@ -1,5 +1,7 @@
 """Constants for the Talbot project"""
 from typing import Optional, Union, TypedDict, List
+from os import path
+
 class TalbotMeta(TypedDict):
     """TypedDict for TalbotMeta"""
     pid: str
@@ -400,3 +402,5 @@ SO_TO_RIS_TRANSLATIONS = {
     "WebPage": "ELEC",
     "WebSite": None,
 }
+
+FIXTURES_DIR = path.join(path.dirname(__file__), 'fixtures')

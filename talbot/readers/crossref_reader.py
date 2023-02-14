@@ -31,20 +31,22 @@ def get_crossref(pid: Optional[str], **kwargs) -> dict:
     """get_crossref"""
 
     if pid is None:
-        return {"string": None, "state": "not_found"}
+        return {"state": "not_found"}
     doi = doi_from_url(pid)
+    if doi is None:
+        return {"state": "not_found"}
 
     url = crossref_api_url(doi)
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
+        return {"state": "not_found"}
     return response.json().get("message", {})
 
 
 def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     """read_crossref"""
     if data is None:
-        return {"meta": None, "state": "not_found"}
+        return {"state": "not_found"}
     meta = data
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
@@ -93,7 +95,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     dates = [{"date": date_published, "dateType": "Issued"}]
     if date_updated is not None:
         dates.append({"date": date_updated, "dateType": "Updated"})
-    publication_year = date_published[0:4] if date_published else None
+    publication_year = int(date_published[0:4]) if date_published else None
 
     license_ = meta.get("license", None)
     if license_ is not None:

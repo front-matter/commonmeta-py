@@ -75,7 +75,7 @@ def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
         "publisher": meta.get("publisher", None),
-        "publication_year": meta.get("publicationYear", None),
+        "publication_year": int(meta.get("publicationYear", None)),
         "types": types,
         # recommended and optional properties
         "subjects": presence(meta.get("subjects", None)),
