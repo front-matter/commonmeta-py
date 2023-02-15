@@ -449,7 +449,7 @@ def find_from_format_by_string(string):
         return "datacite"
     if dictionary.get("source", None) == "Crossref":
         return "crossref"
-    if py_.get(dictionary, "issued.date-parts", None) is not None:
+    if py_.get(dictionary, "issued.date-parts") is not None:
         return "citeproc"
 
     # no format found
@@ -535,8 +535,8 @@ def from_schema_org_creators(element):
         )
         elem["affiliation"] = compact(
             {
-                "__content__": py_.get(elem, "affiliation.name", None),
-                "affiliationIdentifier": py_.get(elem, "affiliation.@id", None),
+                "__content__": py_.get(elem, "affiliation.name"),
+                "affiliationIdentifier": py_.get(elem, "affiliation.@id"),
                 "affiliationIdentifierScheme": affiliation_identifier_scheme,
                 "schemeUri": scheme_uri,
             }
@@ -581,8 +581,8 @@ def from_schema_org_contributors(element):
         )
         elem["affiliation"] = compact(
             {
-                "__content__": py_.get(elem, "affiliation.name", None),
-                "affiliationIdentifier": py_.get(elem, "affiliation.@id", None),
+                "__content__": py_.get(elem, "affiliation.name"),
+                "affiliationIdentifier": py_.get(elem, "affiliation.@id"),
                 "affiliationIdentifierScheme": affiliation_identifier_scheme,
                 "schemeUri": scheme_uri,
             }
@@ -679,17 +679,17 @@ def get_geolocation_point(geo_location):
     """Get geolocation point"""
     if geo_location is None or not isinstance(geo_location, dict):
         return None
-    return {'geoLocationPoint': {"pointLongitude": py_.get(geo_location, "geo.longitude", None),
-                                 "pointLatitude": py_.get(geo_location, "geo.latitude", None)}}
+    return {'geoLocationPoint': {"pointLongitude": py_.get(geo_location, "geo.longitude"),
+                                 "pointLatitude": py_.get(geo_location, "geo.latitude")}}
 
 
 def get_geolocation_box(geo_location):
     """Get geolocation box"""
     if geo_location is None or not isinstance(geo_location, dict):
         return None
-    return compact({"boxLongitude": py_.get(geo_location, "geo.longitude", None),
-                    "boxLatitude": py_.get(geo_location, "geo.latitude", None),
-                    "boxNorthBoundLatitude": py_.get(geo_location, "geo.north", None),
-                    "boxSouthBoundLatitude": py_.get(geo_location, "geo.south", None),
-                    "boxEastBoundLongitude": py_.get(geo_location, "geo.east", None),
-                    "boxWestBoundLongitude": py_.get(geo_location, "geo.west", None)})
+    return compact({"boxLongitude": py_.get(geo_location, "geo.longitude"),
+                    "boxLatitude": py_.get(geo_location, "geo.latitude"),
+                    "boxNorthBoundLatitude": py_.get(geo_location, "geo.north"),
+                    "boxSouthBoundLatitude": py_.get(geo_location, "geo.south"),
+                    "boxEastBoundLongitude": py_.get(geo_location, "geo.east"),
+                    "boxWestBoundLongitude": py_.get(geo_location, "geo.west")})

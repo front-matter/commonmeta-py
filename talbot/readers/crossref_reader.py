@@ -71,21 +71,19 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         editors.append(editor)
     contributors = presence(get_authors(from_citeproc(editors)))
 
-    url = normalize_url(py_.get(meta, "resource.primary.URL", None))
-    title = meta.get("title", None) or meta.get("original-title", None)
+    url = normalize_url(py_.get(meta, "resource.primary.URL"))
+    title = meta.get("title", None) or meta.get("original-title")
     if presence(title) is not None:
         titles = [{"title": sanitize(title)}]
     else:
         titles = []
     publisher = meta.get("publisher", None)
 
-    date_created = py_.get(meta, 'created.date-time', None)
-    date_issued = py_.get(meta, 'issued.date-time',
-                          None) or get_date_from_date_parts(meta.get('issued', None))
-    date_deposited = py_.get(meta, 'deposited.date-time', None)
-    date_indexed = py_.get(meta, 'indexed.date-time', None)
-    date_registered = py_.get(
-        meta, 'registered.date-time', None) or date_created
+    date_created = py_.get(meta, 'created.date-time')
+    date_issued = py_.get(meta, 'issued.date-time') or get_date_from_date_parts(meta.get('issued', None))
+    date_deposited = py_.get(meta, 'deposited.date-time')
+    date_indexed = py_.get(meta, 'indexed.date-time')
+    date_registered = py_.get(meta, 'registered.date-time') or date_created
     date_published = date_issued or date_created or ':unav'
     date_updated = date_deposited or date_indexed
     dates = [{"date": date_published, "dateType": "Issued"}]

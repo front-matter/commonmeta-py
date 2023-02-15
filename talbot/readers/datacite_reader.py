@@ -42,8 +42,8 @@ def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
     read_options = kwargs or {}
 
     pid = doi_as_url(meta.get("doi", None))
-    resource_type_general = py_.get(meta, "types.resourceTypeGeneral", None)
-    resource_type = py_.get(meta, "types.resourceType", None)
+    resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
+    resource_type = py_.get(meta, "types.resourceType")
     schema_org = (
         CR_TO_SO_TRANSLATIONS.get(camel_case(resource_type), None)
         or DC_TO_SO_TRANSLATIONS.get(resource_type_general, None)

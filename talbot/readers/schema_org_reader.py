@@ -18,7 +18,8 @@ from ..utils import (
     get_geolocation_point,
     get_geolocation_box,
 )
-from ..base_utils import (wrap, compact, presence, camel_case, parse_attributes, sanitize)
+from ..base_utils import (wrap, compact, presence,
+                          camel_case, parse_attributes, sanitize)
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..doi_utils import doi_from_url
@@ -150,7 +151,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     else:
         rights = None
 
-    issn = py_.get(meta, "isPartOf.issn", None)
+    issn = py_.get(meta, "isPartOf.issn")
     cet = "includedInDataCatalog" if schema_org in [
         "Dataset", "Periodical"] else None
     if cet is not None:
@@ -172,11 +173,11 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
             }
         )
     elif schema_org in ("Article", "BlogPosting"):
-        url = py_.get(meta, "publisher.url", None)
+        url = py_.get(meta, "publisher.url")
         container = compact(
             {
                 "type": "Blog",
-                "title": py_.get(meta, "isPartOf.name", None),
+                "title": py_.get(meta, "isPartOf.name"),
                 "identifier": issn
                 if issn is not None
                 else url
@@ -247,10 +248,10 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     if isinstance(meta.get("inLanguage"), str):
         language = meta.get("inLanguage")
     elif isinstance(meta.get("inLanguage"), list):
-        language = py_.get(meta, "inLanguage.0", None)
+        language = py_.get(meta, "inLanguage.0")
     elif isinstance(meta.get("inLanguage"), dict):
-        language = py_.get(meta, "inLanguage.alternateName", None) or py_.get(
-            meta, "inLanguage.name", None
+        language = py_.get(meta, "inLanguage.alternateName") or py_.get(
+            meta, "inLanguage.name"
         )
     else:
         language = None
@@ -304,7 +305,7 @@ def schema_org_related_item(meta, relation_type=None):
 def schema_org_reverse_related_item(meta, relation_type=None):
     """Reverse related items"""
     normalize_ids(
-        ids=py_.get(meta, f"@reverse.{relation_type}", None),
+        ids=py_.get(meta, f"@reverse.{relation_type}"),
         relation_type=SO_TO_DC_REVERSE_RELATION_TYPES.get(relation_type),
     )
 
@@ -362,7 +363,7 @@ def schema_org_geolocations(meta):
     for geo_location in wrap(meta.get("spatialCoverage", None)):
         formatted_geo_location = {}
         geo_location_place = {'geoLocationPlace': py_.get(
-            geo_location, "geo.address", None)}
+            geo_location, "geo.address")}
         geo_location_point = get_geolocation_point(geo_location)
         geo_location_box = get_geolocation_box(geo_location)
         for location in [geo_location_place, geo_location_point, geo_location_box]:
@@ -402,19 +403,21 @@ def get_html_meta(soup):
     data['description'] = description["content"] if description else None
 
     keywords = soup.select_one("meta[name='citation_keywords']")
-    data['keywords'] = str(keywords["content"]).replace(";", ",") if keywords else None
+    data['keywords'] = str(keywords["content"]).replace(
+        ";", ",") if keywords else None
 
     date_published = soup.select_one(
         "meta[name='citation_publication_date']"
     ) or soup.select_one("meta[name='dc.date']")
-    data["datePublished"] = get_iso8601_date(date_published["content"]) if date_published else None
+    data["datePublished"] = get_iso8601_date(
+        date_published["content"]) if date_published else None
 
     license_ = soup.select_one("meta[name='dc.rights']")
     data["license"] = license_["content"] if license_ else None
 
     lang = soup.select_one("meta[name='dc.language']") or soup.select_one(
-            "meta[name='citation_language']"
-        )
+        "meta[name='citation_language']"
+    )
     if lang is not None:
         data["inLanguage"] = lang["content"]
     else:
