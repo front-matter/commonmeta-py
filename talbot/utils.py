@@ -633,7 +633,7 @@ def subjects_as_string(subjects):
 #                        end.unwrap }.compact
 
 
-def name_to_fos(name):
+def name_to_fos(name: str) -> Optional[dict]:
     """Convert name to Fields of Science (OECD) subject"""
     #   # first find subject in Fields of Science (OECD)
     #   fos = JSON.load(File.read(File.expand_path('../../resources/oecd/fos-mappings.json',
@@ -672,7 +672,8 @@ def name_to_fos(name):
     #        'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
     #      }]
     #   else
-    return [{"subject": name.lower()}]
+        
+    return {"subject": name.lower()}
 
 
 def get_geolocation_point(geo_location):

@@ -18,8 +18,7 @@ from ..utils import (
     get_geolocation_point,
     get_geolocation_box,
 )
-from ..base_utils import (wrap, compact, presence,
-                          camel_case, parse_attributes, sanitize)
+from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..doi_utils import doi_from_url
@@ -68,7 +67,7 @@ def get_schema_org(pid: Optional[str], **kwargs) -> dict:
                 "@type": "Person",
                 "name": str(aut["content"]),
                 "givenName": given_name,
-                "familyName": str(aut["content"]).rsplit(' ', maxsplit=1)[-1],
+                "familyName": str(aut["content"]).rsplit(" ", maxsplit=1)[-1],
             }
         authors.append(author)
 
@@ -97,10 +96,8 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         pid = meta.get("identifier", None)
     pid = normalize_id(pid)
 
-    schema_org = (
-        camel_case(meta.get("@type")) if meta.get("@type",
-                                                  None) else "CreativeWork"
-    )
+    schema_org = meta.get("@type") if meta.get("@type",
+                                               None) else "CreativeWork"
     resource_type_general = SO_TO_DC_TRANSLATIONS.get(schema_org, None)
     types = compact(
         {
@@ -146,8 +143,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_)
-        rights = [dict_to_spdx(
-            {"rightsUri": license_})] if license_ else None
+        rights = [dict_to_spdx({"rightsUri": license_})] if license_ else None
     else:
         rights = None
 
@@ -206,13 +202,13 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     )
 
     funding_references = py_.map(
-        compact(wrap(meta.get("funder", None))),
+        wrap(meta.get("funder", None)),
         lambda fr: compact(  # noqa: E501
             {
                 "funderName": fr.get("name", None),
                 "funderIdentifier": fr.get("@id", None),
                 "funderIdentifierType": "Crossref Funder ID"
-                if fr.get("@id", None) is not None
+                if fr.get("@id", None)
                 else None,  # noqa: E501
             }
         ),
@@ -236,14 +232,11 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     else:
         descriptions = None
 
-    # handle keywords as array and as comma-separated string
+    # convert keywords as comma-separated string into list
     subj = meta.get("keywords", None)
     if isinstance(subj, str):
         subj = subj.lower().split(", ")
-    subjects = []
-    for subject in wrap(subj):
-        if subject.strip() != "":
-            subjects += name_to_fos(subject)
+    subjects = py_.map(wrap(subj), name_to_fos)
 
     if isinstance(meta.get("inLanguage"), str):
         language = meta.get("inLanguage")
@@ -290,7 +283,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         "agency": parse_attributes(
             meta.get("provider", None), content="name", first=True
         ),
-        "state": state
+        "state": state,
     } | read_options
 
 
@@ -362,7 +355,7 @@ def schema_org_geolocations(meta):
     geo_locations = []
     for geo_location in wrap(meta.get("spatialCoverage", None)):
         formatted_geo_location = {}
-        geo_location_place = {'geoLocationPlace': py_.get(
+        geo_location_place = {"geoLocationPlace": py_.get(
             geo_location, "geo.address")}
         geo_location_point = get_geolocation_point(geo_location)
         geo_location_box = get_geolocation_box(geo_location)
@@ -388,29 +381,32 @@ def get_html_meta(soup):
     data["@type"] = type_["content"].capitalize() if type_ else None
 
     url = soup.select_one("meta[property='og:url']")
-    data['url'] = url["content"] if url else None
+    data["url"] = url["content"] if url else None
 
     title = (
         soup.select_one("meta[name='citation_title']")
         or soup.select_one("meta[name='dc.title']")
         or soup.select_one("meta[property='og:title']")
     )
-    data['name'] = title['content'] if title else None
+    data["name"] = title["content"] if title else None
 
-    description = soup.select_one(
-        "meta[name='citation_abstract']"
-    ) or soup.select_one("meta[name='dc.description']")
-    data['description'] = description["content"] if description else None
+    description = soup.select_one("meta[name='citation_abstract']") or soup.select_one(
+        "meta[name='dc.description']"
+    )
+    data["description"] = description["content"] if description else None
 
     keywords = soup.select_one("meta[name='citation_keywords']")
-    data['keywords'] = str(keywords["content"]).replace(
-        ";", ",") if keywords else None
+    data["keywords"] = (
+        str(keywords["content"]).replace(
+            ";", ",").rstrip(", ") if keywords else None
+    )
 
     date_published = soup.select_one(
         "meta[name='citation_publication_date']"
     ) or soup.select_one("meta[name='dc.date']")
-    data["datePublished"] = get_iso8601_date(
-        date_published["content"]) if date_published else None
+    data["datePublished"] = (
+        get_iso8601_date(date_published["content"]) if date_published else None
+    )
 
     license_ = soup.select_one("meta[name='dc.rights']")
     data["license"] = license_["content"] if license_ else None
@@ -426,7 +422,7 @@ def get_html_meta(soup):
             data["inLanguage"] = lang
 
     publisher = soup.select_one("meta[property='og:site_name']")
-    data["publisher"] = {'name': publisher["content"]} if publisher else None
+    data["publisher"] = {"name": publisher["content"]} if publisher else None
 
     name = soup.select_one("meta[property='og:site_name']")
     issn = soup.select_one("meta[name='citation_issn']")

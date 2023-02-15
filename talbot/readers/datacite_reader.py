@@ -4,7 +4,7 @@ import requests
 from pydash import py_
 
 from ..utils import normalize_url
-from ..base_utils import compact, wrap, presence, camel_case
+from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
@@ -45,7 +45,7 @@ def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
     resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
     resource_type = py_.get(meta, "types.resourceType")
     schema_org = (
-        CR_TO_SO_TRANSLATIONS.get(camel_case(resource_type), None)
+        CR_TO_SO_TRANSLATIONS.get(py_.camel_case(resource_type), None)
         or DC_TO_SO_TRANSLATIONS.get(resource_type_general, None)
         or "CreativeWork"
     )
@@ -54,13 +54,13 @@ def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
             "resourceTypeGeneral": resource_type_general,
             "resourceType": resource_type,
             "schemaOrg": schema_org,
-            "citeproc": CR_TO_CP_TRANSLATIONS.get(camel_case(resource_type), None)
+            "citeproc": CR_TO_CP_TRANSLATIONS.get(py_.camel_case(resource_type), None)
             or SO_TO_CP_TRANSLATIONS.get(schema_org, None)
             or "article",
-            "bibtex": CR_TO_BIB_TRANSLATIONS.get(camel_case(resource_type), None)
+            "bibtex": CR_TO_BIB_TRANSLATIONS.get(py_.camel_case(resource_type), None)
             or SO_TO_BIB_TRANSLATIONS.get(schema_org, None)
             or "misc",
-            "ris": CR_TO_RIS_TRANSLATIONS.get(camel_case(resource_type), None)
+            "ris": CR_TO_RIS_TRANSLATIONS.get(py_.camel_case(resource_type), None)
             or DC_TO_RIS_TRANSLATIONS.get(resource_type_general, None)
             or "GEN",
         }

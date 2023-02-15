@@ -1,8 +1,7 @@
 """Test base utils"""
 import pytest
-
 from talbot.base_utils import (
-    parse_attributes, presence, compact, wrap, unwrap, camel_case, sanitize)
+    parse_attributes, presence, compact, wrap, unwrap, sanitize)
 
 
 def test_wrap():
@@ -69,23 +68,11 @@ def test_parse_attributes():
     assert None is parse_attributes(None)
 
 
-def test_camel_case():
-    """camel case"""
-    assert "camelCase" == camel_case("camel_case")
-    assert "camelCase" == camel_case("camel-case")
-    assert "" == camel_case("")
-    assert None is camel_case(None)
-
-
 def test_sanitize():
     """Sanitize HTML"""
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = "In 1998 <strong>Tim Berners-Lee</strong> coined the term cool URIs"
     assert content == sanitize(text)
-    assert content == sanitize({'__content__': text})
-    assert content == sanitize([{'__content__': text}])
-    assert content == sanitize([{'name': text}], content='name')
-    assert None is sanitize([], content='name')
 
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'

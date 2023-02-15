@@ -15,8 +15,7 @@ from ..utils import (
     get_geolocation_point,
     get_geolocation_box,
 )
-from ..base_utils import (wrap, compact, presence,
-                          camel_case, parse_attributes, sanitize)
+from ..base_utils import (wrap, compact, presence, parse_attributes, sanitize)
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_from_url

@@ -2,6 +2,7 @@
 import html
 import re
 import bleach
+import pydash as py_
 from typing import Optional, Union
 
 def wrap(item):
@@ -34,7 +35,7 @@ def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, l
     if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
     if isinstance(dict_or_list, list):
-        arr = list(map(lambda x: compact(x), dict_or_list))
+        arr = py_.map_(dict_or_list, compact)
         return None if len(arr) == 0 else arr
 
 
@@ -59,41 +60,10 @@ def parse_attributes(element, **kwargs):
         return arr
     
 
-def camel_case(text: Optional[str]) -> Optional[str]:
-    """Convert text to camel case"""
-    if text is None:
-        return None
-    string = text.replace("-", " ").replace("_", " ")
-    lst = string.split()
-    if len(lst) == 0:
-        return text
-    return lst[0] + "".join(i.capitalize() for i in lst[1:])
-
-
-def sanitize(text, **kwargs):
+def sanitize(text: str, tags=None, strip=True):
     """Sanitize text"""
-    tags = kwargs.get("tags", None) or frozenset(
-        {"b", "br", "code", "em", "i", "sub", "sup", "strong"}
-    )
-    content = kwargs.get("content", None) or "__content__"
-    first = kwargs.get("first", True)
-    strip = kwargs.get("strip", True)
-
-    if isinstance(text, str):
-        string = bleach.clean(text, tags=tags, strip=strip)
-        # remove excessive internal whitespace
-        return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
-        # return re.sub(r'\\s\\s+', ' ', string)
-    if isinstance(text, dict):
-        return sanitize(text.get(content, None))
-    if isinstance(text, list):
-        if len(text) == 0:
-            return None
-
-        lst = []
-        for elem in text:
-            lst.append(
-                sanitize(elem.get(content, None)) if isinstance(
-                    elem, dict) else sanitize(elem)
-            )  # uniq
-        return lst[0] if first else unwrap(lst)
+    # default whitelisted HTML tags 
+    tags = tags or {"b", "br", "code", "em", "i", "sub", "sup", "strong"}
+    string = bleach.clean(text, tags=tags, strip=strip)
+    # remove excessive internal whitespace
+    return " ".join(re.split(r"\s+", string, flags=re.UNICODE))

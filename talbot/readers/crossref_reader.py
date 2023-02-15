@@ -73,7 +73,9 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
 
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
     title = meta.get("title", None) or meta.get("original-title")
-    if presence(title) is not None:
+    if isinstance(title, list) and len(title) > 0:
+        title = title[0]
+    if isinstance(title, str):
         titles = [{"title": sanitize(title)}]
     else:
         titles = []
