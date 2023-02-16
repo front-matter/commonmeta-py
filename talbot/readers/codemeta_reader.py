@@ -15,15 +15,12 @@ from ..constants import (
     SO_TO_RIS_TRANSLATIONS)
 
 
-def get_codemeta(pid: Optional[str], **kwargs) -> dict:
+def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
-    if pid is None:
-        return {"string": None, "state": "not_found"}
-
     url = pid
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
+        return {"state": "not_found"}
     return response.json()
     # response = Maremma.get(github_as_codemeta_url(id), accept: 'json', raw: true)
     # string = response.body.get('data', None)

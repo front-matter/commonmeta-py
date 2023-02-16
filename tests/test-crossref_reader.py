@@ -1332,7 +1332,6 @@ def test_get_crossref():
     assert isinstance(data, dict)
     assert data.get('DOI') == '10.1017/9781108348843'
     assert {'state': 'not_found'} == get_crossref('123')
-    assert {'state': 'not_found'} == get_crossref(None)
 
 
 def test_read_crossref():

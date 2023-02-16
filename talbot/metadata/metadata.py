@@ -10,7 +10,6 @@ from ..readers import (
     get_schema_org,
     read_schema_org,
     read_citeproc,
-    get_codemeta,
     read_codemeta,
 )
 from ..writers import (

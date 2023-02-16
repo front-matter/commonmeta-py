@@ -30,16 +30,15 @@ from ..constants import (
 )
 
 
-def get_schema_org(pid: Optional[str], **kwargs) -> dict:
+def get_schema_org(pid: str, **kwargs) -> dict:
     """get_schema_org"""
     if pid is None:
-        return {"string": None, "state": "not_found"}
-
+        return {"state": "not_found"}
     url = pid
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
-
+        return {"state": "not_found"}
+    
     soup = BeautifulSoup(response.text, "html.parser")
     # workaround for metadata not included with schema.org but in html meta tags
     data = get_html_meta(soup)

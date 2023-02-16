@@ -24,15 +24,11 @@ from ..constants import (
 )
 
 
-def get_crossref(pid: Optional[str], **kwargs) -> dict:
+def get_crossref(pid: str, **kwargs) -> dict:
     """get_crossref"""
-
-    if pid is None:
-        return {"state": "not_found"}
     doi = doi_from_url(pid)
     if doi is None:
         return {"state": "not_found"}
-
     url = crossref_api_url(doi)
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:

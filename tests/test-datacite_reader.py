@@ -2174,7 +2174,6 @@ def test_get_datacite():
     """get_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
     assert '10.6084/m9.figshare.1449060' == data['doi']
-    assert {'state': 'not_found', 'string': None} == get_datacite(None)
 
 
 def test_read_datacite():
@@ -2182,4 +2181,4 @@ def test_read_datacite():
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
     assert meta['doi'] == '10.6084/m9.figshare.1449060'
-    assert {"meta": None, "state": "not_found"} == read_datacite(None)
+    

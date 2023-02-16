@@ -26,7 +26,7 @@ from ..constants import (
 )
 
 
-def read_citeproc(data: Optional[dict], **kwargs) -> TalbotMeta:
+def read_citeproc(data: TalbotMeta, **kwargs) -> TalbotMeta:
     """read_citeproc"""
     if data is None:
         return {"state": "not_found"}

@@ -21,22 +21,20 @@ from ..constants import (
 )
 
 
-def get_datacite(pid: Optional[str], **kwargs) -> dict:
+def get_datacite(pid: str, **kwargs) -> dict:
     """get_datacite"""
-    if pid is None:
-        return {"string": None, "state": "not_found"}
     doi = doi_from_url(pid)
+    if doi is None:
+        return {"state": "not_found"}
     url = datacite_api_url(doi)
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
-    return response.json().get("data", {}).get("attributes", {})
+        return {"state": "not_found"}
+    return py_.get(response.json(), "data.attributes", {})
 
 
-def read_datacite(data: Optional[dict], **kwargs) -> TalbotMeta:
+def read_datacite(data: dict, **kwargs) -> TalbotMeta:
     """read_datacite"""
-    if data is None:
-        return {"meta": None, "state": "not_found"}
     meta = data
 
     read_options = kwargs or {}
