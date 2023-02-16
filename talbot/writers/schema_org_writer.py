@@ -11,7 +11,7 @@ from ..date_utils import get_date_by_type
 
 def write_schema_org(metadata):
     """Write schema.org"""
-    container = metadata.container or {}
+    container = metadata.container
     if metadata.types.get("schemaOrg", None) != "Dataset" and container is not None:
         periodical = to_schema_org(container)
     else:
@@ -49,8 +49,8 @@ def write_schema_org(metadata):
             "datePublished": get_date_by_type(metadata.dates, "Issued")
             or metadata.publication_year,
             "dateModified": get_date_by_type(metadata.dates, "Updated"),
-            "pageStart": container.get("firstPage", None),
-            "pageEnd": container.get("lastPage", None),
+            "pageStart": container.get("firstPage", None) if container else None,
+            "pageEnd": container.get("lastPage", None) if container else None,
             "isPartOf": unwrap(to_schema_org_relations(
                 related_items=metadata.related_items,
                 relation_type="IsPartOf",
