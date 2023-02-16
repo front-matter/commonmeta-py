@@ -8,7 +8,7 @@ from ..date_utils import get_date_by_type, get_date_parts
 from ..doi_utils import doi_from_url
 from ..constants import TalbotMeta
 
-def write_datacite(metadata: Optional[TalbotMeta]) -> Optional[dict]:
+def write_datacite(metadata: Optional[TalbotMeta]) -> Optional[str]:
     """Write datacite"""
     if metadata is None:
         return None
