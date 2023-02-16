@@ -83,9 +83,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> TalbotMeta:
         'ris': SO_TO_RIS_TRANSLATIONS.get(schema_org, None) or 'GEN'
     })
 
-    subjects = []
-    for subject in wrap(meta.get('tags', None)):
-        subjects.append(name_to_fos(subject))
+    subjects = [name_to_fos(i) for i in wrap(meta.get('keywords', None))]
 
     has_title = meta.get('title', None)
     if has_title is None:

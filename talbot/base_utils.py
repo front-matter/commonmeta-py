@@ -1,9 +1,9 @@
 """Base utilities for Talbot"""
 import html
 import re
+from typing import Optional, Union
 import bleach
 import pydash as py_
-from typing import Optional, Union
 
 def wrap(item):
     """Turn None, dict, or list into list"""
@@ -29,15 +29,14 @@ def presence(item: Optional[Union[dict, list, str]]) -> Optional[Union[dict, lis
 
 
 def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, list]]:
-    """Remove None from dict or list"""
-    if dict_or_list is None:
-        return None
+    """Remove None from dict or list"""        
     if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
     if isinstance(dict_or_list, list):
-        arr = py_.map_(dict_or_list, compact)
-        return None if len(arr) == 0 else arr
+        lst = [compact(i) for i in dict_or_list]
+        return lst if len(lst) > 0 else None
 
+    return None
 
 def parse_attributes(element, **kwargs):
     """extract attributes from a string, dict or list"""

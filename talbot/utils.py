@@ -674,23 +674,3 @@ def name_to_fos(name: str) -> Optional[dict]:
     #   else
         
     return {"subject": name.lower()}
-
-
-def get_geolocation_point(geo_location):
-    """Get geolocation point"""
-    if geo_location is None or not isinstance(geo_location, dict):
-        return None
-    return {'geoLocationPoint': {"pointLongitude": py_.get(geo_location, "geo.longitude"),
-                                 "pointLatitude": py_.get(geo_location, "geo.latitude")}}
-
-
-def get_geolocation_box(geo_location):
-    """Get geolocation box"""
-    if geo_location is None or not isinstance(geo_location, dict):
-        return None
-    return compact({"boxLongitude": py_.get(geo_location, "geo.longitude"),
-                    "boxLatitude": py_.get(geo_location, "geo.latitude"),
-                    "boxNorthBoundLatitude": py_.get(geo_location, "geo.north"),
-                    "boxSouthBoundLatitude": py_.get(geo_location, "geo.south"),
-                    "boxEastBoundLongitude": py_.get(geo_location, "geo.east"),
-                    "boxWestBoundLongitude": py_.get(geo_location, "geo.west")})

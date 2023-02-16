@@ -1,5 +1,6 @@
 """crossref reader for Talbot"""
 from typing import Optional, TypedDict
+from functools import reduce
 import requests
 from pydash import py_
 
@@ -65,10 +66,10 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         creators = get_authors(from_citeproc(wrap(meta.get("author"))))
     else:
         creators = [{"nameType": "Organizational", "name": ":(unav)"}]
-    editors = []
-    for editor in wrap(meta.get("editor", None)):
-        editor["ContributorType"] = "Editor"
-        editors.append(editor)
+    def editor_type(item):
+        item["ContributorType"] = "Editor"
+        return item
+    editors = [editor_type(i) for i in wrap(meta.get("editor", None))]
     contributors = presence(get_authors(from_citeproc(editors)))
 
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
@@ -125,8 +126,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         ]
     else:
         related_items = []
-    for reference in wrap(meta.get("reference", [])):
-        related_items.append(get_related_item(reference))
+    related_items += [get_related_item(i) for i in wrap(meta.get("reference", []))]
 
     if resource_type == "JournalArticle":
         container_type = "Journal"
@@ -181,28 +181,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     for ref in references:
         related_items.append(get_related_item(ref))
 
-    funding_references = []
-    for funding in wrap(meta.get("funder", [])):
-        funding_reference = compact(
-            {
-                "funderName": funding.get("name", None),
-                "funderIdentifier": doi_as_url(funding["DOI"])
-                if funding.get("DOI", None) is not None
-                else None,
-                "funderIdentifierType": "Crossref Funder ID"
-                if funding.get("DOI", "").startswith("10.13039")
-                else None,
-            }
-        )
-        if (
-            funding.get("name", None) is not None
-            and funding.get("award", None) is not None
-        ):
-            for award in wrap(funding["award"]):
-                fund_ref = funding_reference.copy()
-                fund_ref["awardNumber"] = award
-                funding_references.append(fund_ref)
-    funding_references = funding_references or None
+    funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)
     if description is not None:
@@ -214,11 +193,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         descriptions = None
 
     state = "findable" if meta or read_options else "not_found"
-
-    subjects = []
-    for subject in wrap(meta.get("subject", [])):
-        subjects.append({"subject": subject})
-    subjects = subjects or None
+    subjects = [{'subject': i} for i in wrap(meta.get("subject", []))]
 
     return {
         # required properties
@@ -231,7 +206,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         "publisher": publisher,
         "publication_year": publication_year,
         # recommended and optional properties
-        "subjects": subjects,
+        "subjects": presence(subjects),
         "contributors": contributors,
         "dates": dates,
         "language": meta.get("language", None),
@@ -242,7 +217,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
         "rights": rights,
         "descriptions": descriptions,
         "geo_locations": None,
-        "funding_references": funding_references,
+        "funding_references": presence(funding_references),
         "related_items": related_items,
         # other properties
         "date_created": date_created,
@@ -288,3 +263,31 @@ def get_related_item(reference: Optional[dict]) -> Optional[dict]:
             "unstructured": reference.get("unstructured", None)
         }
     return compact(metadata)
+
+
+def from_crossref_funding(funding_references: list) -> list:
+    """Get funding references from Crossref"""
+    formatted_funding_references = []
+    for funding in funding_references:
+        funding_reference = compact(
+            {
+                "funderName": funding.get("name", None),
+                "funderIdentifier": doi_as_url(funding["DOI"])
+                if funding.get("DOI", None) is not None
+                else None,
+                "funderIdentifierType": "Crossref Funder ID"
+                if funding.get("DOI", "").startswith("10.13039")
+                else None,
+            }
+        )
+        if (
+            funding.get("name", None) is not None
+            and funding.get("award", None) is not None
+        ):
+            for award in wrap(funding["award"]):
+                fund_ref = funding_reference.copy()
+                fund_ref["awardNumber"] = award
+                formatted_funding_references.append(fund_ref)
+        elif funding_reference != {}:
+            formatted_funding_references.append(funding_reference)
+    return formatted_funding_references

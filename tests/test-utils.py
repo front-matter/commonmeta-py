@@ -20,8 +20,6 @@ from talbot.utils import (
     to_schema_org,
     to_schema_org_container,
     to_schema_org_identifiers,
-    get_geolocation_box,
-    get_geolocation_point,
 )
 
 
@@ -483,24 +481,3 @@ def test_to_schema_org_identifiers():
     assert {'@type': 'PropertyValue', 'propertyID': 'DOI',
             'value': '10.5061/dryad.8515'} == to_schema_org_identifiers(identifier)
     assert None is to_schema_org_identifiers(None)
-
-
-def test_geolocation_point():
-    """geolocation point"""
-    assert {'geoLocationPoint': {'pointLatitude': 67.12594, 'pointLongitude': -50.18037}} == get_geolocation_point({"geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 67.12594,
-        "longitude": -50.18037
-    }})
-    assert None is get_geolocation_point(None)
-
-
-def test_geolocation_box():
-    """geolocation box"""
-    assert {'boxLongitude': '-119.221094', 'boxLatitude': '37.047756'} == get_geolocation_box({"geo": {
-        "@type": "GeoCoordinates",
-        "address": "Providence Creek (Lower, Upper and P301)",
-        "latitude": "37.047756",
-        "longitude": "-119.221094"
-    }})
-    assert None is get_geolocation_box(None)

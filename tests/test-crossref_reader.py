@@ -1017,7 +1017,8 @@ def test_dataset_usda():
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
-    assert subject.funding_references is None
+    assert subject.funding_references == [{'funderIdentifier': 'https://doi.org/10.13039/100006959',
+                                           'funderIdentifierType': 'Crossref Funder ID', 'funderName': 'U.S. Forest Service'}]
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
         "type": "Periodical",
