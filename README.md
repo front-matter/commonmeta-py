@@ -11,15 +11,13 @@ planned for March 2023.
 
 ## Installation
 
+Stable version
+
+    pip (or pip3) install talbot
+
 Dev version
 
     pip install git+https://github.com/front-matter/talbot.git#egg=talbot
-
-Or build it yourself locally
-
-    git clone https://github.com/front-matter/talbot.git
-    cd Talbot
-    make install
 
 ## Supported Metadata Formats
 
