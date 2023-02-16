@@ -51,5 +51,5 @@ Documentation (work in progress) for using the library is available at [Front Ma
 
 ## Meta
 
--   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md>). By participating in this project you agree to abide by its terms.
+-   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 -   License: [MIT](https://github.com/front-matter/talbot/blob/main/LICENSE)
