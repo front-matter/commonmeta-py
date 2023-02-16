@@ -66,7 +66,7 @@ class Metadata:
                 raise ValueError("No input format found")
         else:
             raise ValueError("No metadata found")
-    
+
         # required properties
         self.pid = meta.get("pid")
         self.doi = meta.get("doi")
@@ -123,7 +123,7 @@ class Metadata:
     def schema_org(self):
         """Schema.org"""
         return write_schema_org(self)
-    
+
     def datacite(self):
         """Datacite"""
         return write_datacite(self)

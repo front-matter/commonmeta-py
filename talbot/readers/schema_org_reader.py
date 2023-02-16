@@ -10,7 +10,6 @@ from ..utils import (
     normalize_cc_url,
     from_schema_org,
     from_schema_org_creators,
-    from_schema_org_contributors,
     normalize_id,
     normalize_ids,
     normalize_url,
@@ -113,9 +112,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         creators = get_authors(from_schema_org_creators(wrap(authors)))
     else:
         creators = authors
-
+    print(creators)
     contributors = presence(
-        get_authors(from_schema_org_contributors(
+        get_authors(from_schema_org_creators(
             wrap(meta.get("editor", None))))
     )
 
@@ -200,7 +199,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
 
     funding_references = [get_funding_reference(
         i) for i in wrap(meta.get("funder", None))]
-    
+
     if meta.get("description", None) is not None:
         descriptions = [
             {
@@ -268,7 +267,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
 def schema_org_related_item(meta, relation_type=None):
     """Related items"""
     normalize_ids(
-        ids=meta.get(relation_type, None),
+        ids=wrap(meta.get(relation_type, None)),
         relation_type=SO_TO_DC_RELATION_TYPES.get(relation_type),
     )
 
@@ -276,7 +275,7 @@ def schema_org_related_item(meta, relation_type=None):
 def schema_org_reverse_related_item(meta, relation_type=None):
     """Reverse related items"""
     normalize_ids(
-        ids=py_.get(meta, f"@reverse.{relation_type}"),
+        ids=wrap(py_.get(meta, f"@reverse.{relation_type}")),
         relation_type=SO_TO_DC_REVERSE_RELATION_TYPES.get(relation_type),
     )
 
@@ -330,7 +329,7 @@ def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
     """Geolocations in Schema.org format"""
     if not isinstance(geo_location, dict):
         return None
-    
+
     type_ = py_.get(geo_location, "geo.@type")
     longitude = py_.get(geo_location, "geo.longitude")
     latitude = py_.get(geo_location, "geo.latitude")

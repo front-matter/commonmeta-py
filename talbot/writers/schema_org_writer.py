@@ -3,10 +3,9 @@ import json
 from ..utils import (
     to_schema_org,
     to_schema_org_creators,
-    to_schema_org_contributors,
-    to_schema_org_relation,
+    to_schema_org_relations,
 )
-from ..base_utils import compact, wrap, presence, parse_attributes
+from ..base_utils import compact, wrap, unwrap, presence, parse_attributes
 from ..date_utils import get_date_by_type
 
 
@@ -31,8 +30,8 @@ def write_schema_org(metadata):
             if metadata.types is not None
             else None,
             "name": parse_attributes(metadata.titles, content="title", first=True),
-            "author": to_schema_org_creators(metadata.creators),
-            "editor": to_schema_org_contributors(metadata.contributors),
+            "author": to_schema_org_creators(wrap(metadata.creators)),
+            "editor": to_schema_org_creators(wrap(metadata.contributors)),
             "description": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
@@ -52,10 +51,10 @@ def write_schema_org(metadata):
             "dateModified": get_date_by_type(metadata.dates, "Updated"),
             "pageStart": container.get("firstPage", None),
             "pageEnd": container.get("lastPage", None),
-            "isPartOf": to_schema_org_relation(
+            "isPartOf": unwrap(to_schema_org_relations(
                 related_items=metadata.related_items,
                 relation_type="IsPartOf",
-            ),
+            )),
             "periodical": periodical,
             "publisher": {"@type": "Organization", "name": metadata.publisher}
             if metadata.publisher
@@ -67,7 +66,6 @@ def write_schema_org(metadata):
     )
     return json.dumps(dictionary, indent=4)
 
-    #     "keywords" => subjects.present? ? Array.wrap(subjects).map { |k| parse_attributes(k, content: "subject", first: true) }.join(", ") : nil,
     #     "contentSize" => Array.wrap(sizes).unwrap,
     #     "encodingFormat" => Array.wrap(formats).unwrap,
     #     "spatialCoverage" => to_schema_org_spatial_coverage(geo_locations),

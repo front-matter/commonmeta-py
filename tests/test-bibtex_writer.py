@@ -12,7 +12,7 @@ def test_doi_with_data_citation():
     assert subject.types.get("bibtex") == "article"
 
     bibtex = subject.bibtex()
-    
+
     assert (
         bibtex
         == """@article{https://doi.org/10.7554/elife.01567,

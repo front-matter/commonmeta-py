@@ -5,7 +5,7 @@ from typing import Optional, Union
 import bleach
 import pydash as py_
 
-def wrap(item):
+def wrap(item) -> list:
     """Turn None, dict, or list into list"""
     if item is None:
         return []
@@ -28,7 +28,7 @@ def presence(item: Optional[Union[dict, list, str]]) -> Optional[Union[dict, lis
     return None if item is None or len(item) == 0 else item
 
 
-def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, list]]:
+def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
     """Remove None from dict or list"""        
     if isinstance(dict_or_list, dict):
         return {k: v for k, v in dict_or_list.items() if v is not None}
@@ -37,6 +37,7 @@ def compact(dict_or_list: Optional[Union[dict, list]]) -> Optional[Union[dict, l
         return lst if len(lst) > 0 else None
 
     return None
+
 
 def parse_attributes(element, **kwargs):
     """extract attributes from a string, dict or list"""
@@ -57,11 +58,11 @@ def parse_attributes(element, **kwargs):
         )
         arr = arr[0] if kwargs.get("first") else unwrap(arr)
         return arr
-    
+
 
 def sanitize(text: str, tags=None, strip=True):
     """Sanitize text"""
-    # default whitelisted HTML tags 
+    # default whitelisted HTML tags
     tags = tags or {"b", "br", "code", "em", "i", "sub", "sup", "strong"}
     string = bleach.clean(text, tags=tags, strip=strip)
     # remove excessive internal whitespace

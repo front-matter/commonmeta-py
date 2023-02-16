@@ -1,5 +1,6 @@
 """Author utils module for Talbot."""
 import re
+from typing import Optional, List
 from .utils import (
     normalize_orcid,
     normalize_id,
@@ -108,7 +109,7 @@ def get_one_author(author):
             "givenName": given_name,
             "familyName": family_name,
             "nameIdentifiers": name_identifiers,
-            "affiliation": get_affiliations(author.get("affiliation", None)),
+            "affiliation": presence(get_affiliations(wrap(author.get("affiliation", None)))),
             "contributorType": contributor_type,
         }
     )
@@ -124,7 +125,7 @@ def get_one_author(author):
                 "givenName": given_name,
                 "familyName": family_name,
                 "nameIdentifiers": name_identifiers,
-                "affiliation": get_affiliations(author.get("affiliation", None)),
+                "affiliation": presence(get_affiliations(wrap(author.get("affiliation", None)))),
                 "contributorType": contributor_type,
             }
         )
@@ -133,7 +134,7 @@ def get_one_author(author):
             "nameType": name_type,
             "name": name,
             "nameIdentifiers": name_identifiers,
-            "affiliation": get_affiliations(author.get("affiliation", None)),
+            "affiliation": presence(get_affiliations(wrap(author.get("affiliation", None)))),
             "contributorType": contributor_type,
         }
     )
@@ -161,40 +162,31 @@ def get_authors(authors):
     return presence(list(map(lambda author: get_one_author(author), authors)))
 
 
-def authors_as_string(authors):
-    """convert CSL authors list to string, e.g. for bibtex"""
-    if authors is None:
-        return None
-    formatted_authors = []
-    for author in wrap(authors):
+def authors_as_string(authors: List[dict]) -> str:
+    """convert authors list to string, e.g. for bibtex"""
+    def format_author(author):
         if author.get("familyName", None):
-            aut = f"{author['familyName']}, {author['givenName']}"
-            formatted_authors.append(aut)
-        elif author.get("type", None) != "Person":
-            aut = author["name"]
-            formatted_authors.append(aut)
-    return " and ".join(formatted_authors)
+            return f"{author['familyName']}, {author['givenName']}"
+        return author["name"]
+    return " and ".join([format_author(i) for i in authors])
 
 
-def get_affiliations(affiliations):
+def get_affiliations(affiliations: List[dict]) -> List[dict]:
     """parse array of affiliation strings into CSL format"""
-    if affiliations is None:
-        return None
-
-    formatted_affiliations = []
-    for affiliation in wrap(affiliations):
+    def format_element(i):
+        """format single affiliation element"""
         affiliation_identifier = None
-        if isinstance(affiliation, str):
-            name = affiliation
+        if isinstance(i, str):
+            name = i
             affiliation_identifier_scheme = None
             scheme_uri = None
         else:
-            if affiliation.get("affiliationIdentifier", None) is not None:
-                affiliation_identifier = affiliation["affiliationIdentifier"]
-                if affiliation.get("schemeURI", None) is not None:
+            if i.get("affiliationIdentifier", None) is not None:
+                affiliation_identifier = i["affiliationIdentifier"]
+                if i.get("schemeURI", None) is not None:
                     scheme_uri = (
-                        affiliation["schemeURI"]
-                        if affiliation["schemeURI"].endswith("/")
+                        i["schemeURI"]
+                        if i["schemeURI"].endswith("/")
                         else "{affiliation['schemeURI']}/"
                     )
                 affiliation_identifier = (
@@ -205,22 +197,15 @@ def get_affiliations(affiliations):
                     )
                     else normalize_id(affiliation_identifier)
                 )
-            name = affiliation.get("name", None) or affiliation.get("__content__", None)
-            affiliation_identifier_scheme = affiliation.get(
+            name = i.get("name", None) or i.get("__content__", None)
+            affiliation_identifier_scheme = i.get(
                 "affiliationIdentifierScheme", None
             )
-            scheme_uri = affiliation.get("SchemeURI", None)
-
-        if name is None:
-            continue
-
-        formatted_affiliations.append(
-            {
-                "name": name,
-                "affiliationIdentifier": affiliation_identifier,
-                "affiliationIdentifierScheme": affiliation_identifier_scheme,
-                "schemeUri": scheme_uri,
-            }
-        )
-
-    return compact(formatted_affiliations)
+            scheme_uri = i.get("SchemeURI", None)
+        return compact({
+            "name": name,
+            "affiliationIdentifier": affiliation_identifier,
+            "affiliationIdentifierScheme": affiliation_identifier_scheme,
+            "schemeUri": scheme_uri,
+         })
+    return [format_element(i) for i in affiliations]

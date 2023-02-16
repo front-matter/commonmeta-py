@@ -6,7 +6,7 @@ from typing import Optional, Union
 from urllib.parse import urlparse
 from pydash import py_
 
-from .base_utils import wrap, unwrap, compact, sanitize
+from .base_utils import wrap, unwrap, compact
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, crossref_api_url, datacite_api_url
 from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 
@@ -97,31 +97,28 @@ def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     return pid
 
 
-def normalize_ids(ids=None, relation_type=None):
+def normalize_ids(ids: list, relation_type=None) -> list:
     """Normalize identifiers"""
-    formatted_ids = []
-    for idx in wrap(ids):
-        if idx.get("@id", None) is not None:
-            idn = normalize_id(idx["@id"])
-            related_identifier_type = "DOI" if doi_from_url(
-                idn) is not None else "URL"
-            idn = doi_from_url(idn) or idn
+    def format_id(i):
+        if i.get("@id", None):
+            idn = normalize_id(i["@id"])
+            doi = doi_from_url(idn)
+            related_identifier_type = "DOI" if doi is not None else "URL"
+            idn = doi or idn
             type_ = (
-                idx.get("@type")
-                if isinstance(idx.get("@type", None), str)
-                else wrap(idx.get("@type", None))[0]
+                i.get("@type")
+                if isinstance(i.get("@type", None), str)
+                else wrap(i.get("@type", None))[0]
             )
-            formatted_ids.append(
-                compact(
-                    {
-                        "relatedIdentifier": idn,
-                        "relationType": relation_type,
-                        "relatedIdentifierType": related_identifier_type,
-                        "resourceTypeGeneral": SO_TO_DC_TRANSLATIONS.get(type_, None),
-                    }
-                )
-            )
-    return formatted_ids
+            return compact(
+                {
+                    "relatedIdentifier": idn,
+                    "relationType": relation_type,
+                    "relatedIdentifierType": related_identifier_type,
+                    "resourceTypeGeneral": SO_TO_DC_TRANSLATIONS.get(type_, None),
+                })
+        return None
+    return [format_id(i) for i in ids]
 
 
 def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
@@ -212,57 +209,54 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
-def from_citeproc(element: Optional[Union[dict, list]]) -> list:
-    """Convert a citeproc element to CSL"""
-    formatted_element = []
-    for elem in wrap(element):
-        if elem.get("literal", None) is not None:
-            elem["@type"] = "Organization"
-            elem["name"] = elem["literal"]
-        elif elem.get("name", None) is not None:
-            elem["@type"] = "Organization"
-            elem["name"] = elem.get("name")
+def from_citeproc(elements: list) -> list:
+    """Convert from citeproc elements"""
+    def format_element(element):
+        """format element"""
+        if element.get("literal", None) is not None:
+            element["@type"] = "Organization"
+            element["name"] = element["literal"]
+        elif element.get("name", None) is not None:
+            element["@type"] = "Organization"
+            element["name"] = element.get("name")
         else:
-            elem["@type"] = "Person"
-            elem["name"] = " ".join(
-                [elem.get("given", None), elem.get("family", None)]
+            element["@type"] = "Person"
+            element["name"] = " ".join(
+                [element.get("given", None), element.get("family", None)]
             )
-        elem["givenName"] = elem.get("given", None)
-        elem["familyName"] = elem.get("family", None)
-        elem["affiliation"] = elem.get("affiliation", None)
-        for key in ["literal", "given", "family", "literal", "sequence"]:
-            if key in elem:
-                del elem[key]
-        formatted_element.append(compact(elem))
-    return formatted_element
+        element["givenName"] = element.get("given", None)
+        element["familyName"] = element.get("family", None)
+        element["affiliation"] = element.get("affiliation", None)
+        element = py_.omit(element, "given", "family", "literal", "sequence")
+        return compact(element)
+    return [format_element(i) for i in elements]
 
 
-def to_citeproc(element: Optional[Union[dict, list]]) -> list:
-    """Convert a CSL element to citeproc"""
-    formatted_element = []
-    for elem in wrap(element):
-        ele = {}
-        ele["family"] = elem.get("familyName", None)
-        ele["given"] = elem.get("givenName", None)
-        ele["literal"] = (
-            elem.get("name", None) if elem.get(
+def to_citeproc(elements: list) -> list:
+    """Convert elements to citeproc"""
+    def format_element(i):
+        """format element"""
+        element = {}
+        element["family"] = i.get("familyName", None)
+        element["given"] = i.get("givenName", None)
+        element["literal"] = (
+            i.get("name", None) if i.get(
                 "familyName", None) is None else None
         )
-        formatted_element.append(compact(ele))
-    return formatted_element
+        return compact(element)
+    return [format_element(i) for i in elements]
 
 
-def to_ris(element: Optional[Union[dict, list]]) -> list:
-    """Convert a CSL element to RIS"""
-    formatted_element = []
-    for elem in wrap(element):
-        ele = ''
-        if elem.get("familyName", None) is not None:
-            ele = ", ".join([elem["familyName"], elem.get("givenName", None)])
+def to_ris(elements: list) -> list:
+    """Convert element to RIS"""
+    def format_element(i):
+        """format element"""
+        if i.get("familyName", None):
+            element = ", ".join([i["familyName"], i.get("givenName", None)])
         else:
-            ele = elem.get('name', None)
-        formatted_element.append(ele)
-    return formatted_element
+            element = i.get('name', None)
+        return element
+    return [format_element(i) for i in elements]
 
 
 def to_schema_org(element: Optional[dict]) -> Optional[dict]:
@@ -276,62 +270,20 @@ def to_schema_org(element: Optional[dict]) -> Optional[dict]:
     return element
 
 
-def to_schema_org_creators(element):
-    """Convert CSL creators to Schema.org creators"""
-    formatted_element = []
-    for elem in wrap(element):
-        el = {}
-        # el['affiliation'] = wrap(element['affiliation']).map do |a|
-        #   if a.is_a?(String)
-        #     name = a
-        #     affiliation_identifier = nil
-        #   else
-        #     name = a['name']
-        #     affiliation_identifier = a['affiliationIdentifier']
-        #   end
-
-        #   { '@type': 'Organization', '@id': affiliation_identifier, 'name': name }.compact
-        # end.unwrap
-        el["@type"] = elem["nameType"][0:-
-                                       3] if elem.get("nameType", None) else None
-        # el['@id']= vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
-        el["name"] = (
-            " ".join([elem["givenName"], elem["familyName"]])
-            if elem["familyName"]
-            else elem.get("name", None)
-        )
-        # c.except('nameIdentifiers', 'nameType').compact
-        formatted_element.append(compact(el))
-    return unwrap(formatted_element)
-
-
-def to_schema_org_contributors(element):
-    """Convert CSL contributors to Schema.org contributors"""
-    formatted_element = []
-    for elem in wrap(element):
-        el = {}
-        # c['affiliation'] = Array.wrap(c['affiliation']).map do |a|
-        #   if a.is_a?(String)
-        #     name = a
-        #     affiliation_identifier = nil
-        #   else
-        #     name = a['name']
-        #     affiliation_identifier = a['affiliationIdentifier']
-        #   end
-
-        #   { '@type': 'Organization', '@id': affiliation_identifier, 'name': name }.compact
-        # end.unwrap
-        el["@type"] = elem["nameType"][0:-
-                                       3] if elem.get("nameType", None) else None
-        # el['@id']=# vwrap(c['nameIdentifiers']).first.to_h.fetch('nameIdentifier', nil)
-        el["name"] = (
-            " ".join([elem["givenName"], elem["familyName"]])
-            if elem["familyName"]
-            else elem.get("name", None)
-        )
-        # c.except('nameIdentifiers', 'nameType').compact
-        formatted_element.append(compact(el))
-    return unwrap(formatted_element)
+def to_schema_org_creators(elements: list) -> list():
+    """Convert creators to Schema.org"""
+    def format_element(i):
+        """format element"""
+        element = {}
+        element["@type"] = i["nameType"][0:-
+                                         3] if i.get("nameType", None) else None
+        if i["familyName"]:
+            element["name"] = " ".join([i["givenName"], i["familyName"]])
+        else:
+            element["name"] = i.get("name", None)
+        element = py_.omit(element, "nameIdentifiers", "nameType")
+        return compact(element)
+    return [format_element(i) for i in elements]
 
 
 def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]:
@@ -352,22 +304,33 @@ def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]
     )
 
 
-def to_schema_org_identifiers(element):
-    """Convert CSL identifiers to Schema.org identifiers"""
-    formatted_element = []
-    for elem in wrap(element):
-        el = {}
-        el["@type"] = "PropertyValue"
-        el["propertyID"] = elem.get("identifierType", None)
-        el["value"] = elem.get("identifier", None)
-        formatted_element.append(compact(el))
-    return unwrap(formatted_element)
+def to_schema_org_identifiers(elements: list) -> list:
+    """Convert identifiers to Schema.org"""
+    def format_element(i):
+        """format element"""
+        element = {}
+        element["@type"] = "PropertyValue"
+        element["propertyID"] = i.get("identifierType", None)
+        element["value"] = i.get("identifier", None)
+        return compact(element)
+    return [format_element(i) for i in elements]
 
 
-def to_schema_org_relation(related_items=None, relation_type=None):
-    """Convert related:items to Schema.org relations"""
-    if related_items is None or relation_type is None:
-        return None
+def to_schema_org_relations(related_items: list, relation_type=None):
+    """Convert relatedItems to Schema.org relations"""
+    def format_element(i):
+        """format element"""
+        if i["relatedItemIdentifierType"] == "ISSN" and i["relationType"] == "IsPartOf":
+            return compact({"@type": "Periodical",
+                            "issn": i["relatedItemIdentifier"]})
+        return compact(
+            {
+                "@id": normalize_id(i["relatedIdentifier"]),
+                "@type": DC_TO_SO_TRANSLATIONS.get(
+                    i.get("resourceTypeGeneral", "CreativeWork")
+                ),
+            }
+        )
 
     # consolidate different relation types
     if relation_type == "References":
@@ -379,26 +342,7 @@ def to_schema_org_relation(related_items=None, relation_type=None):
         wrap(
             related_items), lambda ri: ri["relationType"] in relation_type
     )
-
-    formatted_items = []
-    for rel in related_items:
-        if rel["relatedItemIdentifierType"] == "ISSN" and rel["relationType"] == "IsPartOf":
-            formatted_items.append(
-                compact({"@type": "Periodical",
-                        "issn": rel["relatedItemIdentifier"]})
-            )
-        else:
-            formatted_items.append(
-                compact(
-                    {
-                        "@id": normalize_id(rel["relatedIdentifier"]),
-                        "@type": DC_TO_SO_TRANSLATIONS.get(
-                            rel["resourceTypeGeneral"], "CreativeWork"
-                        ),
-                    }
-                )
-            )
-    return unwrap(formatted_items)
+    return [format_element(i) for i in related_items]
 
 
 def find_from_format(pid=None, string=None, ext=None, filename=None):
@@ -485,110 +429,56 @@ def from_schema_org(element):
     return compact(py_.omit(element, ["@type", "@id"]))
 
 
-def from_schema_org_creators(element):
+def from_schema_org_creators(elements: list) -> list:
     """Convert schema.org creators to DataCite"""
-    formatted_element = []
-    for elem in wrap(element):
-        if isinstance(elem.get("affiliation", None), str):
-            elem["affiliation"] = {"name": elem["affiliation"]}
+    def format_element(i):
+        """format element"""
+        element = {}
+        if isinstance(i.get("affiliation", None), str):
+            i["affiliation"] = {"name": i["affiliation"]}
             affiliation_identifier_scheme = None
             scheme_uri = None
-        elif py_.get(elem, "affiliation.@id", "").startswith("https://ror.org"):
+        elif py_.get(i, "affiliation.@id", "").startswith("https://ror.org"):
             affiliation_identifier_scheme = "ROR"
             scheme_uri = "https://ror.org/"
-        elif elem.get("affiliation.@id", "").startswith("https://isni.org"):
+        elif i.get("affiliation.@id", "").startswith("https://isni.org"):
             affiliation_identifier_scheme = "ISNI"
             scheme_uri = "https://isni.org/isni/"
         else:
             affiliation_identifier_scheme = None
             scheme_uri = None
-
-        # alternatively find the nameIdentifier in the identifer attribute
-        # if elem.get('identifier', None) is not None and elem.get('@id', None) is not None:
-        #    elem['@id'] = elem['identifier']
-        # alternatively find the nameIdentifier in the sameAs attribute
-        # elem['@id'] = py_.find(wrap(elem.get('sameAs', None)), lambda x: x == 'orcid.org')
-
-        if elem.get("@id", None) is not None:
-            # elem['@id'] = normalize_orcid(elem.get('@id'))
-            # identifier_scheme = "ORCID"
-            scheme_uri = "https://orcid.org/"
-        elem["nameIdentifier"] = [
+        element["nameIdentifier"] = [
             {
-                "__content__": elem.get("@id", None),
+                "__content__": i.get("@id", None),
                 "nameIdentifierScheme": "ORCID",
                 "schemeUri": "https://orcid.org",
             }
         ]
 
-        if isinstance(elem.get("@type", None), list):
-            elem["@type"] = py_.find(
-                elem["@type"], lambda x: x in ["Person", "Organization"]
+        if isinstance(i.get("@type", None), list):
+            element["@type"] = py_.find(
+                i["@type"], lambda x: x in ["Person", "Organization"]
             )
-        elem["creatorName"] = compact(
+        element["creatorName"] = compact(
             {
-                "nameType": elem["@type"].title() + "al"
-                if elem.get("@type", None) is not None
+                "nameType": i["@type"].title() + "al"
+                if i.get("@type", None)
                 else None,
-                "__content__": elem["name"],
+                "__content__": i["name"],
             }
         )
-        elem["affiliation"] = compact(
+        element["givenName"] = i.get("givenName", None)
+        element["familyName"] = i.get("familyName", None)
+        element["affiliation"] = compact(
             {
-                "__content__": py_.get(elem, "affiliation.name"),
-                "affiliationIdentifier": py_.get(elem, "affiliation.@id"),
+                "__content__": py_.get(i, "affiliation.name"),
+                "affiliationIdentifier": py_.get(i, "affiliation.@id"),
                 "affiliationIdentifierScheme": affiliation_identifier_scheme,
                 "schemeUri": scheme_uri,
             }
-        )
-        formatted_element.append(py_.omit(elem, "@id", "@type", "name"))
-    return formatted_element
-
-
-def from_schema_org_contributors(element):
-    """Parse contributors from schema.org"""
-    formatted_element = []
-    for elem in wrap(element):
-        if isinstance(elem.get("affiliation", None), str):
-            elem["affiliation"] = {"name": elem["affiliation"]}
-            affiliation_identifier_scheme = None
-            scheme_uri = None
-        elif py_.get(elem, "affiliation.@id", "").startswith("https://ror.org"):
-            affiliation_identifier_scheme = "ROR"
-            scheme_uri = "https://ror.org/"
-        elif py_.get(elem, "affiliation.@id", "").startswith("https://isni.org"):
-            affiliation_identifier_scheme = "ISNI"
-            scheme_uri = "https://isni.org/isni/"
-        else:
-            affiliation_identifier_scheme = None
-            scheme_uri = None
-
-        if normalize_orcid(elem.get("@id", None)) is not None:
-            elem["nameIdentifier"] = [
-                {
-                    "__content__": elem["@id"],
-                    "nameIdentifierScheme": "ORCID",
-                    "schemeUri": "https://orcid.org",
-                }
-            ]
-        elem["contributorName"] = compact(
-            {
-                "nameType": elem["@type"].titleize + "al"
-                if elem.get("@type", None) is not None
-                else None,
-                "__content__": elem["name"],
-            }
-        )
-        elem["affiliation"] = compact(
-            {
-                "__content__": py_.get(elem, "affiliation.name"),
-                "affiliationIdentifier": py_.get(elem, "affiliation.@id"),
-                "affiliationIdentifierScheme": affiliation_identifier_scheme,
-                "schemeUri": scheme_uri,
-            }
-        )
-        formatted_element.append(py_.omit(elem, "@id", "@type", "name"))
-    return formatted_element
+        ) if i.get("affiliation", None) is not None else None
+        return compact(element)
+    return [format_element(i) for i in wrap(elements)]
 
 
 def pages_as_string(container: Optional[dict], page_range_separator="-") -> Optional[str]:
@@ -672,5 +562,5 @@ def name_to_fos(name: str) -> Optional[dict]:
     #        'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
     #      }]
     #   else
-        
+
     return {"subject": name.lower()}

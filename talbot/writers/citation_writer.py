@@ -1,6 +1,7 @@
 """Citation writer for Talbot"""
 import json
 import re
+from pydash import py_
 from citeproc import CitationStylesStyle, CitationStylesBibliography
 from citeproc import Citation, CitationItem
 from citeproc import formatter
@@ -20,9 +21,7 @@ def write_citation(metadata):
     citeproc_json = json.loads(metadata.citeproc())
 
     # Remove keys that are not supported by citeproc-py.
-    for key in ["copyright", "categories"]:
-        if key in citeproc_json:
-            del citeproc_json[key]
+    citeproc_json = py_.omit(citeproc_json, "copyright", "categories")
 
     # Process the JSON data to generate a citeproc-py BibliographySource.
     source = CiteProcJSON([citeproc_json])

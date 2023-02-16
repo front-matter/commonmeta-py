@@ -24,23 +24,20 @@ MONTH_NAMES = {
 ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
 
-def get_iso8601_date(date: Optional[Union[datetime.datetime, datetime.date, str, int]]) -> Optional[str]:
+def get_iso8601_date(date: Union[datetime.datetime, datetime.date, str, int]) -> str:
     """Get ISO 8601 date without time"""
-    if date is None:
-        return None
     if isinstance(date, (datetime.datetime, datetime.date)):
         return date.strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, str):
         return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
         return datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
-    return None
+    return ''
 
 
-def get_date_by_type(dates: Optional[dict], date_type="Issued", date_only=False) -> Optional[str]:
+def get_date_by_type(dates: list, date_type="Issued", date_only=False) -> Optional[str]:
     """Get date by date type"""
-    date = py_.find(wrap(dates), lambda x: x.get(
-        "dateType", None) == date_type)
+    date = next((i for i in dates if i.get("dateType", None) == date_type), None)
     if not isinstance(date, dict):
         return None
     if date_only:
