@@ -3,7 +3,7 @@ import requests
 from typing import Optional
 
 from ..utils import (normalize_url, normalize_id, from_schema_org_creators,
-                     from_schema_org_contributors, name_to_fos, dict_to_spdx,
+                     name_to_fos, dict_to_spdx,
                      doi_from_url)
 from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
@@ -55,7 +55,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> TalbotMeta:
     authors = meta.get('authors', None) if has_agents is None else has_agents
     creators = get_authors(from_schema_org_creators(wrap(authors)))
     contributors = get_authors(
-        from_schema_org_contributors(wrap(meta.get('editor', None))))
+        from_schema_org_creators(wrap(meta.get('editor', None))))
     dates = []
     if meta.get('datePublished', None):
         dates.append({'date': meta.get('datePublished'), 'dateType': 'Issued'})
@@ -83,9 +83,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> TalbotMeta:
         'ris': SO_TO_RIS_TRANSLATIONS.get(schema_org, None) or 'GEN'
     })
 
-    subjects = []
-    for subject in wrap(meta.get('tags', None)):
-        subjects.append(name_to_fos(subject))
+    subjects = [name_to_fos(i) for i in wrap(meta.get('keywords', None))]
 
     has_title = meta.get('title', None)
     if has_title is None:

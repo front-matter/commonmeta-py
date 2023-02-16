@@ -10,13 +10,10 @@ from ..utils import (
     normalize_cc_url,
     from_schema_org,
     from_schema_org_creators,
-    from_schema_org_contributors,
     normalize_id,
     normalize_ids,
     normalize_url,
-    name_to_fos,
-    get_geolocation_point,
-    get_geolocation_box,
+    name_to_fos
 )
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
@@ -53,23 +50,22 @@ def get_schema_org(pid: Optional[str], **kwargs) -> dict:
 
     # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
     auth = soup.select("meta[name='citation_author']")
-    authors = []
-    for aut in auth:
-        length = len(str(aut["content"]).split(" "))
-        if length == 0:
-            continue
+
+    def format_author(author):
+        length = len(str(author["content"]).split(" "))
         if length == 1:
-            author = {"@type": "Organization", "name": str(aut["content"])}
+            author = {"@type": "Organization", "name": str(author["content"])}
         else:
             given_name = " ".join(
-                str(aut["content"]).split(" ")[0: length - 1])
+                str(author["content"]).split(" ")[0: length - 1])
             author = {
                 "@type": "Person",
-                "name": str(aut["content"]),
+                "name": str(author["content"]),
                 "givenName": given_name,
-                "familyName": str(aut["content"]).rsplit(" ", maxsplit=1)[-1],
+                "familyName": str(author["content"]).rsplit(" ", maxsplit=1)[-1],
             }
-        authors.append(author)
+        return author
+    authors = [format_author(i) for i in auth]
 
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
@@ -116,9 +112,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         creators = get_authors(from_schema_org_creators(wrap(authors)))
     else:
         creators = authors
-
+    print(creators)
     contributors = presence(
-        get_authors(from_schema_org_contributors(
+        get_authors(from_schema_org_creators(
             wrap(meta.get("editor", None))))
     )
 
@@ -201,26 +197,8 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
         + wrap(schema_org_is_supplemented_by(meta))
     )
 
-    funding_references = py_.map(
-        wrap(meta.get("funder", None)),
-        lambda fr: compact(  # noqa: E501
-            {
-                "funderName": fr.get("name", None),
-                "funderIdentifier": fr.get("@id", None),
-                "funderIdentifierType": "Crossref Funder ID"
-                if fr.get("@id", None)
-                else None,  # noqa: E501
-            }
-        ),
-    )
-    # if fr['@id'].present?
-    #   {
-    #     'funderName' => fr['name'],
-    #     'funderIdentifier' => fr['@id'],
-    #     'funderIdentifierType' => fr['@id'].to_s.start_with?('https://doi.org/10.13039') ? 'Crossref Funder ID' : 'Other'
-    #   }.compact
-    # else
-    #   { 'funderName' => fr['name'] }.compact
+    funding_references = [get_funding_reference(
+        i) for i in wrap(meta.get("funder", None))]
 
     if meta.get("description", None) is not None:
         descriptions = [
@@ -236,7 +214,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     subj = meta.get("keywords", None)
     if isinstance(subj, str):
         subj = subj.lower().split(", ")
-    subjects = py_.map(wrap(subj), name_to_fos)
+    subjects = [name_to_fos(i) for i in wrap(subj)]
 
     if isinstance(meta.get("inLanguage"), str):
         language = meta.get("inLanguage")
@@ -249,8 +227,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
     else:
         language = None
 
-    geo_locations = schema_org_geolocations(meta)
-
+    geo_locations = [schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))]
     alternate_identifiers = None
     state = None
 
@@ -290,7 +267,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> TalbotMeta:
 def schema_org_related_item(meta, relation_type=None):
     """Related items"""
     normalize_ids(
-        ids=meta.get(relation_type, None),
+        ids=wrap(meta.get(relation_type, None)),
         relation_type=SO_TO_DC_RELATION_TYPES.get(relation_type),
     )
 
@@ -298,7 +275,7 @@ def schema_org_related_item(meta, relation_type=None):
 def schema_org_reverse_related_item(meta, relation_type=None):
     """Reverse related items"""
     normalize_ids(
-        ids=py_.get(meta, f"@reverse.{relation_type}"),
+        ids=wrap(py_.get(meta, f"@reverse.{relation_type}")),
         relation_type=SO_TO_DC_REVERSE_RELATION_TYPES.get(relation_type),
     )
 
@@ -348,22 +325,19 @@ def schema_org_is_supplemented_by(meta):
     schema_org_related_item(meta, relation_type="isBasedOn")
 
 
-def schema_org_geolocations(meta):
+def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
     """Geolocations in Schema.org format"""
-    if meta.get("spatialCoverage", None) is None:
+    if not isinstance(geo_location, dict):
         return None
-    geo_locations = []
-    for geo_location in wrap(meta.get("spatialCoverage", None)):
-        formatted_geo_location = {}
-        geo_location_place = {"geoLocationPlace": py_.get(
-            geo_location, "geo.address")}
-        geo_location_point = get_geolocation_point(geo_location)
-        geo_location_box = get_geolocation_box(geo_location)
-        for location in [geo_location_place, geo_location_point, geo_location_box]:
-            for key, val in location.items():
-                formatted_geo_location.setdefault(key, []).append(val)
-        geo_locations.append(geo_location_point)
-    return geo_locations
+
+    type_ = py_.get(geo_location, "geo.@type")
+    longitude = py_.get(geo_location, "geo.longitude")
+    latitude = py_.get(geo_location, "geo.latitude")
+
+    if type_ == "GeoCoordinates":
+        return {'geoLocationPoint': {"pointLongitude": longitude,
+                                     "pointLatitude": latitude}}
+    return None
 
 
 def get_html_meta(soup):
@@ -433,3 +407,14 @@ def get_html_meta(soup):
         }
     )
     return data
+
+
+def get_funding_reference(dct):
+    """Get funding reference"""
+    return compact({
+        "funderName": dct.get("name", None),
+        "funderIdentifier": dct.get("@id", None),
+        "funderIdentifierType": "Crossref Funder ID"
+        if dct.get("@id", None)
+        else None
+    })

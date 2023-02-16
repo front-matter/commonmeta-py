@@ -12,13 +12,14 @@ def write_datacite(metadata: Optional[TalbotMeta]) -> Optional[dict]:
     """Write datacite"""
     if metadata is None:
         return None
+    creators = [to_datacite_creator(i) for i in wrap(metadata.creators)]
 
     dictionary = compact(
         {
             "id": metadata.pid,
             "doi": metadata.doi,
             "url": metadata.url,
-            "creators": to_datacite_creators(metadata.creators),
+            "creators": creators,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
             "publicationYear": metadata.publication_year,
@@ -40,21 +41,17 @@ def write_datacite(metadata: Optional[TalbotMeta]) -> Optional[dict]:
     return json.dumps(dictionary, indent=4)
 
 
-def to_datacite_creators(creators: list) -> list:
+def to_datacite_creator(creator: dict) -> dict:
     """Convert creators to datacite creators"""
-    formatted_creators = []
-    for creator in wrap(creators):
-        if creator.get('familyName', None):
-            name = ', '.join([creator.get("familyName", ''), creator.get("givenName", '')])
-        elif creator.get('name', None):
-            name = creator.get("name", None)
-        cre = {
-            "name": name,
-            "givenName": creator.get("givenName", None),
-            "familyName": creator.get("familyName", None),
-            "nameType": creator.get("nameType", None),
-            "nameIdentifiers": creator.get("nameIdentifiers", None),
-            "affiliation": creator.get("affiliation", None),
-        }
-        formatted_creators.append(compact(cre))
-    return formatted_creators
+    if creator.get('familyName', None):
+        name = ', '.join([creator.get("familyName", ''), creator.get("givenName", '')])
+    elif creator.get('name', None):
+        name = creator.get("name", None)
+    return compact({
+        "name": name,
+        "givenName": creator.get("givenName", None),
+        "familyName": creator.get("familyName", None),
+        "nameType": creator.get("nameType", None),
+        "nameIdentifiers": creator.get("nameIdentifiers", None),
+        "affiliation": creator.get("affiliation", None),
+    })

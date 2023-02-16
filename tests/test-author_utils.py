@@ -7,7 +7,7 @@ from talbot.author_utils import (
     get_authors,
     get_affiliations,
 )
-
+from talbot.base_utils import wrap
 
 def test_one_author():
     "one author"
@@ -225,11 +225,11 @@ def test_authors_as_string():
         {"nameType": "Organization", "name": "University of California, Santa Barbara"},
     ]
     assert "Jones, Matt and Slaughter, Peter" == authors_as_string(
-        authors[0:2])
+        wrap(authors[0:2]))
     # single author
-    assert "Jones, Matt" == authors_as_string(authors[0])
+    assert "Jones, Matt" == authors_as_string(wrap(authors[0]))
     # no authors
-    assert None is authors_as_string(None)
+    assert '' == authors_as_string(wrap(None))
     # with organization
     assert (
         "Jones, Matt and Slaughter, Peter and University of California, Santa Barbara"
@@ -268,7 +268,7 @@ def test_get_authors():
 
 def test_get_affiliations():
     "get_affiliations"
-    assert None == get_affiliations(None)
+    assert [] == get_affiliations(wrap(None))
     assert [{"name": "University of California, Santa Barbara"}] == get_affiliations(
         ["University of California, Santa Barbara"]
     )
