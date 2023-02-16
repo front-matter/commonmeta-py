@@ -20,9 +20,8 @@ from talbot.utils import (
     to_schema_org,
     to_schema_org_container,
     to_schema_org_identifiers,
-    get_geolocation_box,
-    get_geolocation_point,
 )
+from talbot.base_utils import wrap
 
 
 def test_dict_to_spdx_id():
@@ -344,7 +343,7 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'__content__': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://orcid.org/'},
+    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'__content__': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://ror.org/'},
                          'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}}]
     # without affiliation
     authors = [
@@ -358,7 +357,7 @@ def test_from_schema_org_creators():
     ]
     response = from_schema_org_creators(authors)
     assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID',
-                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}, 'affiliation': {'schemeUri': 'https://orcid.org/'}}]
+                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}}]
 
 
 def test_pages_as_string():
@@ -415,7 +414,6 @@ def test_to_citeproc():
     assert [{'family': 'Jones', 'given': 'Matt'}] == to_citeproc(authors)
     assert [{'literal': 'University of California, Berkeley'}
             ] == to_citeproc(organization_authors)
-    assert [] == to_citeproc(None)
 
 
 def test_to_ris():
@@ -436,7 +434,6 @@ def test_to_ris():
     assert ['Jones, Matt'] == to_ris(authors)
     assert ['University of California, Berkeley'] == to_ris(
         organization_authors)
-    assert [] == to_ris(None)
 
 
 def test_to_schema_org():
@@ -476,31 +473,10 @@ def test_to_schema_org_container():
 
 def test_to_schema_org_identifiers():
     """to schema.org identifiers"""
-    identifier = {
+    identifiers = [{
         "identifier": "10.5061/dryad.8515",
         "identifierType": "DOI",
-    }
-    assert {'@type': 'PropertyValue', 'propertyID': 'DOI',
-            'value': '10.5061/dryad.8515'} == to_schema_org_identifiers(identifier)
-    assert None is to_schema_org_identifiers(None)
-
-
-def test_geolocation_point():
-    """geolocation point"""
-    assert {'geoLocationPoint': {'pointLatitude': 67.12594, 'pointLongitude': -50.18037}} == get_geolocation_point({"geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 67.12594,
-        "longitude": -50.18037
-    }})
-    assert None is get_geolocation_point(None)
-
-
-def test_geolocation_box():
-    """geolocation box"""
-    assert {'boxLongitude': '-119.221094', 'boxLatitude': '37.047756'} == get_geolocation_box({"geo": {
-        "@type": "GeoCoordinates",
-        "address": "Providence Creek (Lower, Upper and P301)",
-        "latitude": "37.047756",
-        "longitude": "-119.221094"
-    }})
-    assert None is get_geolocation_box(None)
+    }]
+    assert [{'@type': 'PropertyValue', 'propertyID': 'DOI',
+            'value': '10.5061/dryad.8515'}] == to_schema_org_identifiers(identifiers)
+    assert [] == to_schema_org_identifiers(wrap(None))

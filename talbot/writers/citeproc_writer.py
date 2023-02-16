@@ -15,7 +15,7 @@ def write_citeproc(metadata):
     ):
         author = None
     else:
-        author = to_citeproc(metadata.creators)
+        author = to_citeproc(wrap(metadata.creators))
 
     if (
         metadata.types.get("resourceTypeGeneral", None) == "Software"
@@ -39,7 +39,7 @@ def write_citeproc(metadata):
             ),
             "language": metadata.language,
             "author": author,
-            "contributor": to_citeproc(metadata.contributors),
+            "contributor": to_citeproc(wrap(metadata.contributors)),
             "issued": get_date_parts(
                 get_date_by_type(metadata.dates, "Issued") or str(
                     metadata.publication_year)

@@ -11,9 +11,7 @@ from ..utils import (
     normalize_id,
     normalize_ids,
     normalize_url,
-    name_to_fos,
-    get_geolocation_point,
-    get_geolocation_box,
+    name_to_fos
 )
 from ..base_utils import (wrap, compact, presence, parse_attributes, sanitize)
 from ..author_utils import get_authors
@@ -89,11 +87,9 @@ def read_citeproc(data: Optional[dict], **kwargs) -> TalbotMeta:
         'firstPage': pages[0],
         'lastPage': pages[1] if len(pages) > 1 else None, })
 
-    state = 'findable' if id or read_options else 'not_found'
-    subjects = []
-    for subject in wrap(meta.get('categories', None)):
-        subjects.append(name_to_fos(subject))
-    
+    state = 'findable' if pid or read_options else 'not_found'
+    subjects = [name_to_fos(i) for i in wrap(meta.get('keywords', None))]
+
     if meta.get('abstract', None):
         descriptions = [{ 'description': sanitize(meta.get('abstract')),
                                  'descriptionType': 'Abstract' }]
