@@ -1,3 +1,11 @@
+![Talbot Hound](images/talbot-extinct-hunting-dog.jpg)
+
+[![Build](https://github.com/front-matter/talbot/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/talbot/actions/workflows/build.yml)
+[![PyPI version](https://badge.fury.io/py/talbot.svg)](https://badge.fury.io/py/talbot)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
+![GitHub](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
+
 Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023.
 
 ## Installation
