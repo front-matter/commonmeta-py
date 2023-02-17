@@ -6,7 +6,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
 ![GitHub](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
 
-> The Talbot was a type of hunting hound common in England during the Middle Ages. It is now extinct, but is believed to be an ancestor of the modern Beagle and Bloodhound. - [Wikipedia](https://en.wikipedia.org/wiki/Talbot_(hound))
+> The Talbot was a type of hunting hound common in England during the Middle Ages... It is now extinct, but is believed to be an ancestor of the modern Beagle and Bloodhound. - [Wikipedia](https://en.wikipedia.org/wiki/Talbot_(hound))
 
 Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023.
 
