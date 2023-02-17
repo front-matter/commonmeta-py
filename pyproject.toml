@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "talbot"}]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.7.1"
 docutils = "^0.19"
 sphinxcontrib-issuetracker = "^0.11"
 sphinx-autodoc-typehints = "^1.19"
@@ -33,8 +33,9 @@ citeproc-py-styles = ">0.1"
 citeproc-py = "^0.6"
 jsonschema = "^4.17"
 mkdocs = "^1.4"
-mkdocs-material = "^9.0"
-mkdocs-jupyter = "^0.12"
+mkdocs-material = "^8.0"
+mkdocs-material-extensions = "^1.1"
+mkdocs-jupyter = "^0.22"
 datacite = "^1.1"
 lxml = "^4.9"
 
