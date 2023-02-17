@@ -25,13 +25,15 @@ nav:
   - Testing: testing.md
   - Metadata: metadata.md
   - Notebooks:
-      - Crossref Reader: notebooks/crossref_reader.ipynb
-      - DataCite Reader: notebooks/datacite_reader.ipynb
-      - Schema.org Reader: notebooks/schema_org_reader.ipynb
-      - BibTex Writer: notebooks/bibtex.ipynb
-      - Citeproc Writer: notebooks/citeproc_writer.ipynb
-      - Citation Writer: notebooks/citation.ipynb
-      - RIS Writer: notebooks/ris.ipynb
+      - Readers:
+          - Crossref: notebooks/crossref_reader.ipynb
+          - DataCite: notebooks/datacite_reader.ipynb
+          - Schema.org: notebooks/schema_org_reader.ipynb
+      - Writers:
+          - BibTex: notebooks/bibtex.ipynb
+          - Citeproc: notebooks/citeproc_writer.ipynb
+          - Citation: notebooks/citation.ipynb
+          - RIS: notebooks/ris.ipynb
 
 plugins:
   - search
