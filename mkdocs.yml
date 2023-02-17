@@ -24,16 +24,16 @@ nav:
   - Installation: install.md
   - Testing: testing.md
   - Metadata: metadata.md
-  - Notebooks:
-      - Readers:
-          - Crossref: notebooks/crossref_reader.ipynb
-          - DataCite: notebooks/datacite_reader.ipynb
-          - Schema.org: notebooks/schema_org_reader.ipynb
-      - Writers:
-          - BibTex: notebooks/bibtex.ipynb
-          - Citeproc: notebooks/citeproc_writer.ipynb
-          - Citation: notebooks/citation.ipynb
-          - RIS: notebooks/ris.ipynb
+  - Readers:
+      - Crossref: readers/crossref_reader.ipynb
+      - DataCite: readers/datacite_reader.ipynb
+      - Schema.org: readers/schema_org_reader.ipynb
+  - Writers:
+      - BibTex: writers/bibtex_writer.ipynb
+      - RIS: writers/ris_writer.ipynb
+      - Citeproc: writers/citeproc_writer.ipynb
+      - Citation: writers/citation_writer.ipynb
+
 
 plugins:
   - search
