@@ -1,0 +1,39 @@
+site_name: Talbot
+site_description: Talbot PyPi Package Documentation
+repo_url: https://github.com/front-matter/talbot/
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      primary: teal
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: teal
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+nav:
+- Introduction: index.md
+- Installation: install.md
+- Testing: testing.md
+- Metadata: metadata.md
+- Notebooks:
+   - Crossref Reader: notebooks/crossref.ipynb
+
+plugins:
+- mkdocs-jupyter
+
+extra:
+  social:
+    - icon: fontawesome/solid/house
+      link: https://front-matter.io
+    - icon: fontawesome/brands/github
+      link: https://github.com/front-matter/talbot
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/talbot/
+    - icon: fontawesome/brands/mastodon
+      link: https://hachyderm.io/@mfenner
