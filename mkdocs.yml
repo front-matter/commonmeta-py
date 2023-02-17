@@ -17,15 +17,16 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 nav:
-- Introduction: index.md
-- Installation: install.md
-- Testing: testing.md
-- Metadata: metadata.md
-- Notebooks:
-   - Crossref Reader: notebooks/crossref.ipynb
+  - Introduction: index.md
+  - Installation: install.md
+  - Testing: testing.md
+  - Metadata: metadata.md
+  - Notebooks:
+      - Crossref Reader: notebooks/crossref.ipynb
 
 plugins:
-- mkdocs-jupyter
+  - search
+  - mkdocs-jupyter
 
 extra:
   social:
