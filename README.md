@@ -7,8 +7,7 @@
 
 # Talbot
 
-Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi is
-planned for March 2023.
+Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023.
 
 ## Installation
 
@@ -42,7 +41,7 @@ Talbot reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | later | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | later | yes     |
 
-_Planned_: we plan to implement this format for the first public release.  
+_Planned_: we plan to implement this format for the v0.8 public release.  
 _Later_: we plan to implement this format in a later release.
 
 ## Documentation
