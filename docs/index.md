@@ -14,12 +14,12 @@ Talbot is a Python library to convert scholarly metadata, modelled after the [br
 
 Stable version
 ```
-    pip (or pip3) install talbot
+pip (or pip3) install talbot
 ```
 
 Dev version
 ```
-    pip install git+https://github.com/front-matter/talbot.git#egg=talbot
+pip install git+https://github.com/front-matter/talbot.git#egg=talbot
 ```
 
 ## Testing
