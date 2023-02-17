@@ -1,6 +1,8 @@
 site_name: Talbot
 site_description: Talbot PyPi Package Documentation
 repo_url: https://github.com/front-matter/talbot/
+edit_uri: ./edit/main/docs
+
 theme:
   name: material
   palette:
@@ -16,6 +18,7 @@ theme:
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+
 nav:
   - Introduction: index.md
   - Installation: install.md
