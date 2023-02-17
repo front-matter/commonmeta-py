@@ -46,9 +46,10 @@ _Later_: we plan to implement this format in a later release.
 
 ## Documentation
 
-Documentation (work in progress) for using the library is available at [Front Matter Documentation](https://docs.front-matter.io/talbot/).
+Documentation (work in progress) for using the library is available at the [Talbot Documentation](https://talbot.docs.front-matter.io) website and includes several interactive Jupyter Notebooks .
 
 ## Meta
 
--   Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
--   License: [MIT](https://github.com/front-matter/talbot/blob/main/LICENSE)
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.  
+
+License: [MIT](https://github.com/front-matter/talbot/blob/main/LICENSE)
