@@ -15,7 +15,7 @@ def write_bibtex(metadata):
         compact(
             {
                 "ID": metadata.pid,
-                "ENTRYTYPE": "article",
+                "ENTRYTYPE": metadata.types.get("bibtex", "misc"),
                 "abstract": metadata.descriptions[0].get("description", None)
                 if metadata.descriptions
                 else None,
@@ -26,10 +26,13 @@ def write_bibtex(metadata):
                 "doi": metadata.doi,
                 "issn": container.get("identifier", None) if container.get('identifierType', None) == 'ISSN' else None,
                 "issue": container.get("issue", None),
-                "journal": container.get("title", None),
+                "journal": container.get("title", None) if metadata.types.get("bibtex", None) != "inproceedings" else None,
+                "booktitle": container.get("title", None) if metadata.types.get("bibtex", None) == "inproceedings" else None,
                 "language": metadata.language,
                 "month": get_month_from_date(metadata.dates[0].get("date", None)),
                 "pages": pages_as_string(container),
+                "publisher": container.get("publisher", None) if metadata.types.get("bibtex", None) in ["phdthesis"] else None,
+                "institution": container.get("publisher", None) if metadata.types.get("bibtex", None) == "phdthesis" else None,
                 "title": metadata.titles[0].get("title", None),
                 "url": metadata.url,
                 "urldate": get_date_by_type(metadata.dates, date_only=True),

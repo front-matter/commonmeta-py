@@ -41,7 +41,7 @@ CR_TO_BIB_TRANSLATIONS = {
     "Proceedings": "proceedings",
     "ReferenceBook": "book",
     "JournalIssue": None,
-    "ProceedingsArticle": None,
+    "ProceedingsArticle": "inproceedings",
     "Other": None,
     "Dissertation": "phdthesis",
     "Dataset": None,

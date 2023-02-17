@@ -139,3 +139,75 @@ def test_article_dlib_magazine():
 }
 """
     )
+
+def test_book_chapter():
+    """book chapter"""
+    subject = Metadata("https://doi.org/10.1007/978-3-662-46370-3_13")
+    assert subject.pid == "https://doi.org/10.1007/978-3-662-46370-3_13"
+    assert subject.types.get("bibtex") == "inbook"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@inbook{https://doi.org/10.1007/978-3-662-46370-3_13,
+    author = {Diercks, Ronald L. and Ludvigsen, Tom Clement},
+    copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
+    doi = {10.1007/978-3-662-46370-3_13},
+    journal = {Shoulder Stiffness},
+    month = {feb},
+    pages = {155-158},
+    title = {Clinical Symptoms and Physical Examinations},
+    url = {https://link.springer.com/10.1007/978-3-662-46370-3_13},
+    urldate = {2015},
+    year = {2015}
+}
+"""
+    )
+
+
+def test_conference_proceedings():
+    """conference proceedings"""
+    subject = Metadata("https://doi.org/10.1109/iccv.2007.4408927")
+    assert subject.pid == "https://doi.org/10.1109/iccv.2007.4408927"
+    assert subject.types.get("bibtex") == "inproceedings"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@inproceedings{https://doi.org/10.1109/iccv.2007.4408927,
+    author = {Sinop, Ali Kemal and Grady, Leo},
+    booktitle = {2007 IEEE 11th International Conference on Computer Vision},
+    doi = {10.1109/iccv.2007.4408927},
+    month = {feb},
+    title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
+    url = {http://ieeexplore.ieee.org/document/4408927},
+    urldate = {2007},
+    year = {2007}
+}
+"""
+    )
+
+
+def test_phd_thesis():
+    """phd thesis"""
+    subject = Metadata("10.14264/uql.2020.791")
+    assert subject.pid == "https://doi.org/10.14264/uql.2020.791"
+    assert subject.types.get("bibtex") == "phdthesis"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@phdthesis{https://doi.org/10.14264/uql.2020.791,
+    author = {Collingwood, Patricia Maree},
+    doi = {10.14264/uql.2020.791},
+    month = {jun},
+    title = {School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers},
+    url = {http://espace.library.uq.edu.au/view/uq:23a1e74},
+    urldate = {2020-06-08},
+    year = {2020}
+}
+"""
+    )
