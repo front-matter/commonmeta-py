@@ -64,6 +64,8 @@ def read_datacite(data: dict, **kwargs) -> TalbotMeta:
         }
     )
 
+    rights = meta.get("rightsList", None)
+
     related_items = meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)
 
     return {
@@ -86,7 +88,7 @@ def read_datacite(data: dict, **kwargs) -> TalbotMeta:
         "sizes": presence(meta.get("sizes", None)),
         "formats": presence(meta.get("formats", None)),
         "version": meta.get("version", None),
-        "rights": presence(meta.get("rightsList", None)),
+        "rights": presence(rights),
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": meta.get("fundingReferences", None),

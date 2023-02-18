@@ -18,7 +18,7 @@ def test_journal_article():
         == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     )
     assert len(schema_org.get("author")) == 5
-    assert schema_org.get("author")[0] == {"@type": "Perso", "name": "Martial Sankar"}
+    assert schema_org.get("author")[0] == {'givenName': 'Martial', 'familyName': 'Sankar', 'affiliation': [{'name': 'Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland'}], '@type': 'Person'}
     assert schema_org.get("description").startswith(
         "Among various advantages, their small size makes model"
     )
@@ -75,10 +75,7 @@ def test_article_with_pages():
         == "An RNA thermometer dictates production of a secreted bacterial toxin"
     )
     assert len(schema_org.get("author")) == 5
-    assert schema_org.get("author")[0] == {
-        "@type": "Perso",
-        "name": "Christian Twittenhoff",
-    }
+    assert schema_org.get("author")[0] == {'@type': 'Person', 'familyName': 'Twittenhoff', 'givenName': 'Christian'}
     assert schema_org.get("description") is None
     assert schema_org.get("publisher") == {
         "@type": "Organization",

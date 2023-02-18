@@ -9,8 +9,11 @@ from ..readers import (
     read_datacite,
     get_schema_org,
     read_schema_org,
+    get_codemeta,
     read_citeproc,
     read_codemeta,
+    get_cff,
+    read_cff
 )
 from ..writers import (
     write_datacite,
@@ -42,6 +45,12 @@ class Metadata:
             elif via == "crossref":
                 data = get_crossref(pid)
                 meta = read_crossref(data)
+            elif via == "codemeta":
+                data = get_codemeta(pid)
+                meta = read_codemeta(data)
+            elif via == "cff":
+                data = get_cff(pid)
+                meta = read_cff(data)
         elif path.exists(string):
             with open(string, encoding='utf-8') as file:
                 string = file.read()

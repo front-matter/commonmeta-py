@@ -51,19 +51,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     auth = soup.select("meta[name='citation_author']")
 
     def format_author(author):
-        length = len(str(author["content"]).split(" "))
-        if length == 1:
-            author = {"@type": "Organization", "name": str(author["content"])}
-        else:
-            given_name = " ".join(
-                str(author["content"]).split(" ")[0: length - 1])
-            author = {
-                "@type": "Person",
-                "name": str(author["content"]),
-                "givenName": given_name,
-                "familyName": str(author["content"]).rsplit(" ", maxsplit=1)[-1],
-            }
-        return author
+        return {'name': author["content"]}
     authors = [format_author(i) for i in auth]
 
     if data.get("author", None) is None and data.get("creator", None) is not None:

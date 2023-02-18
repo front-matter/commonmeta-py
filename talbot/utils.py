@@ -6,6 +6,7 @@ from typing import Optional, Union
 from urllib.parse import urlparse
 from pydash import py_
 
+# from .author_utils import get_personal_name
 from .base_utils import wrap, unwrap, compact
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, crossref_api_url, datacite_api_url
 from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
@@ -89,8 +90,7 @@ def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     if uri.scheme == "http":
         pid = pid.replace(HTTP_SCHEME, HTTPS_SCHEME)
 
-    # make pid lowercase and remove trailing slash
-    pid = pid.lower()
+    # remove trailing slash
     if pid.endswith("/"):
         pid = pid.strip("/")
 
@@ -175,7 +175,7 @@ def dict_to_spdx(dct: dict) -> dict:
         (
             l
             for l in spdx
-            if l["licenseId"].lower() == dct.get("rightsIdentifier", None)
+            if l["licenseId"].casefold() == dct.get("rightsIdentifier", '').casefold()
             or l["seeAlso"][0] == dct.get("rightsUri", None)
         ),
         None,
@@ -281,10 +281,9 @@ def to_schema_org_creators(elements: list) -> list():
             element["name"] = " ".join([i["givenName"], i["familyName"]])
         else:
             element["name"] = i.get("name", None)
-        element = py_.omit(element, "nameIdentifiers", "nameType")
         return compact(element)
     return [format_element(i) for i in elements]
-
+  
 
 def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]:
     """Convert CSL container to Schema.org container"""
@@ -363,15 +362,15 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     doi = validate_doi(pid)
     if doi and (registration_agency := get_doi_ra(doi)) is not None:
         return registration_agency.lower()
-    # if (
-    #     re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", id)
-    #     is not None
-    # ):
-    #     return "codemeta"
-    # if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", id) is not None:
-    #     return "cff"
-    # if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", id) is not None:
-    #     return "cff"
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", pid) is not None:
+        return "cff"
+    if (
+        re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", pid)
+        is not None
+    ):
+        return "codemeta"
+    if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
+        return "cff"
     return "schema_org"
 
 
@@ -383,17 +382,16 @@ def find_from_format_by_string(string):
     """Find reader from format by string"""
     if string is None:
         return None
-    dictionary = json.loads(string)
-    print(dictionary)
-    if dictionary.get("@context", None) == "http://schema.org":
+    data = json.loads(string)
+    if data.get("@context", None) == "http://schema.org":
         return "schema_org"
-    if dictionary.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
+    if data.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
         return "codemeta"
-    if dictionary.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
+    if data.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
         return "datacite"
-    if dictionary.get("source", None) == "Crossref":
+    if data.get("source", None) == "Crossref":
         return "crossref"
-    if py_.get(dictionary, "issued.date-parts") is not None:
+    if py_.get(data, "issued.date-parts") is not None:
         return "citeproc"
 
     # no format found
@@ -413,8 +411,6 @@ def find_from_format_by_string(string):
 
 def find_from_format_by_filename(filename):
     """Find reader from format by filename"""
-    # if filename == "package.json":
-    #   return "npm"
     if filename == "CITATION.cff":
         return "cff"
     return None
@@ -464,7 +460,7 @@ def from_schema_org_creators(elements: list) -> list:
                 "nameType": i["@type"].title() + "al"
                 if i.get("@type", None)
                 else None,
-                "__content__": i["name"],
+                "__content__": i.get("name", None)
             }
         )
         element["givenName"] = i.get("givenName", None)
@@ -479,6 +475,83 @@ def from_schema_org_creators(elements: list) -> list:
         ) if i.get("affiliation", None) is not None else None
         return compact(element)
     return [format_element(i) for i in wrap(elements)]
+
+
+def github_from_url(url: str) -> dict:
+    """Get github owner, repo, release and path from url"""
+
+    match = re.match(r"\Ahttps://(github|raw\.githubusercontent)\.com/(.+)(?:/)?(.+)?(?:/tree/)?(.*)\Z", url)
+    if match is None:
+      return {}
+    words = urlparse(url).path.lstrip('/').split('/')
+    owner = words[0] if len(words) > 0 else None
+    repo = words[1] if len(words) > 1 else None
+    release = words[3] if len(words) > 3 else None
+    path = '/'.join(words[4:]) if len(words) > 3 else None
+
+    return compact({ 'owner': owner, 'repo': repo, 'release': release, 'path': path })
+
+
+def github_repo_from_url(url: str) -> Optional[str]:
+    """Get github repo from url"""
+    return github_from_url(url).get('repo', None)
+
+
+def github_release_from_url(url: str) -> Optional[str]:
+    """Get github release from url"""
+    return github_from_url(url).get('release', None)
+
+
+def github_owner_from_url(url: str) -> Optional[str]:
+    """Get github owner from url"""
+    return github_from_url(url).get('owner', None)
+
+
+def github_as_owner_url(url: str) -> Optional[str]:
+    """Get github owner url from url"""
+    github_dict = github_from_url(url)
+    if github_dict.get('owner', None) is None:
+        return None
+    return f"https://github.com/{github_dict.get('owner')}"
+
+
+def github_as_repo_url(url) -> Optional[str]:
+    """Get github repo url from url"""
+    github_dict = github_from_url(url)
+    if github_dict.get('repo', None) is None:
+        return None
+    return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}"
+
+
+def github_as_release_url(url: str) -> Optional[str]:
+    """Get github release url from url"""
+    github_dict = github_from_url(url)
+    if github_dict.get('release', None) is None:
+        return None
+    return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}/tree/{github_dict.get('release')}"
+
+
+def github_as_codemeta_url(url: str) -> Optional[str]:
+    """Get github codemeta.json url from url"""
+    github_dict = github_from_url(url)
+
+    if github_dict.get('path', None) and github_dict.get('path').endswith('codemeta.json'):
+        return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
+    elif github_dict.get('owner', None):
+        return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/master/codemeta.json"
+    else:
+        return None
+
+
+def github_as_cff_url(url: str) -> Optional[str]:
+    """Get github CITATION.cff url from url"""
+    github_dict = github_from_url(url)
+
+    if github_dict.get('path', None) and github_dict.get('path').endswith('CITATION.cff'):
+        return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
+    if github_dict.get('owner', None):
+        return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/main/CITATION.cff"
+    return None
 
 
 def pages_as_string(container: Optional[dict], page_range_separator="-") -> Optional[str]:

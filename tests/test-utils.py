@@ -19,7 +19,12 @@ from talbot.utils import (
     to_ris,
     to_schema_org,
     to_schema_org_container,
+    to_schema_org_creators,
     to_schema_org_identifiers,
+    github_from_url,
+    github_as_codemeta_url,
+    github_as_cff_url,
+    github_as_repo_url
 )
 from talbot.base_utils import wrap
 
@@ -32,7 +37,9 @@ def test_dict_to_spdx_id():
         "rightsIdentifier": "cc-by-4.0",
         "rightsIdentifierScheme": "SPDX",
         "schemeUri": "https://spdx.org/licenses/",
-    } == dict_to_spdx({"rightsIdentifier": "cc-by-4.0"})
+    } == dict_to_spdx({"rightsIdentifier": "CC-BY-4.0"})
+    assert {'rights': 'Apache License 2.0', 'rightsUri': 'http://www.apache.org/licenses/LICENSE-2.0', 'rightsIdentifier': 'apache-2.0',
+            'rightsIdentifierScheme': 'SPDX', 'schemeUri': 'https://spdx.org/licenses/'} == dict_to_spdx({"rightsIdentifier": "Apache-2.0"})
 
 
 def test_dict_to_spdx_url():
@@ -119,6 +126,12 @@ def test_normalize_id():
     assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
         "https://blog.datacite.org/eating-your-own-dog-food/"
     )
+    # cff url
+    assert 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff' == normalize_id(
+        "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff")
+    # codemeta url
+    assert 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json' == normalize_id(
+        "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json")
     # http url
     assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
         "http://blog.datacite.org/eating-your-own-dog-food/"
@@ -277,25 +290,17 @@ def test_find_from_format_by_id():
     assert "op" == find_from_format_by_id(
         "https://doi.org/10.2903/j.efsa.2018.5239")
     # cff
-    # assert "cff" == find_from_format_by_id(
-    #     "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
-    # )
-    # # cff repository url
-    # # assert "cff" == find_from_format_by_id(
-    # #    "https://github.com/citation-file-format/ruby-cff"
-    # # )
-    # # codemeta
-    # assert "codemeta" == find_from_format_by_id(
-    #     "https://github.com/datacite/maremma/blob/master/codemeta.json"
-    # )
-    # # npm
-    # assert "npm" == find_from_format_by_id(
-    #     "https://github.com/datacite/bracco/blob/master/package.json"
-    # )
-    # # schema_org
-    # assert "schema_org" == find_from_format_by_id(
-    #     "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
-    # )
+    assert "cff" == find_from_format_by_id(
+        "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
+    )
+    # codemeta
+    assert "codemeta" == find_from_format_by_id(
+        "https://github.com/datacite/maremma/blob/master/codemeta.json"
+    )
+    # schema_org
+    assert "schema_org" == find_from_format_by_id(
+        "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
+    )
 
 
 def test_find_from_format_by_string():
@@ -471,6 +476,26 @@ def test_to_schema_org_container():
     assert None is to_schema_org_container(None)
 
 
+def test_to_schema_org_creators():
+    """to schema.org creators"""
+    authors = [
+        {
+            "ORCID": "http://orcid.org/0000-0003-0077-4738",
+            "givenName": "Matt",
+            "familyName": "Jones",
+        }
+    ]
+    organization_authors = [
+        {
+            "name": "University of California, Berkeley"
+        }
+
+    ]
+    assert [{'givenName': 'Matt', 'familyName': 'Jones', '@type': 'Person',
+             '@id': 'https://orcid.org/0000-0003-0077-4738'}] == to_schema_org_creators(authors)
+    assert [{'name': 'University of California, Berkeley', '@type': 'Organization'}] == to_schema_org_creators(organization_authors)
+
+
 def test_to_schema_org_identifiers():
     """to schema.org identifiers"""
     identifiers = [{
@@ -480,3 +505,67 @@ def test_to_schema_org_identifiers():
     assert [{'@type': 'PropertyValue', 'propertyID': 'DOI',
             'value': '10.5061/dryad.8515'}] == to_schema_org_identifiers(identifiers)
     assert [] == to_schema_org_identifiers(wrap(None))
+
+
+def test_github_from_url():
+    """github from url"""
+    url = 'https://github.com/datacite/bolognese'
+    response = github_from_url(url)
+    assert response == {'owner': 'datacite', 'repo': 'bolognese'}
+
+
+def test_github_from_url_file():
+    """github from url file"""
+    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    response = github_from_url(url)
+    assert response == {'owner': 'datacite', 'repo': 'metadata-reports', 'release': 'master',
+                        'path': 'software/codemeta.json'}
+
+
+def test_github_from_url_cff():
+    """github from url cff"""
+    url = 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff'
+    response = github_from_url(url)
+    assert response == {'owner': 'citation-file-format', 'repo': 'ruby-cff', 'release': 'main',
+                        'path': 'CITATION.cff'}
+
+
+def test_github_as_codemeta_url():
+    """github as codemeta url"""
+    url = 'https://github.com/datacite/bolognese'
+    response = github_as_codemeta_url(url)
+    assert response == 'https://raw.githubusercontent.com/datacite/bolognese/master/codemeta.json'
+
+
+def test_github_as_cff_url():
+    """github as cff url"""
+    url = 'https://github.com/citation-file-format/ruby-cff'
+    response = github_as_cff_url(url)
+    assert response == 'https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff'
+
+
+def test_github_as_codemeta_url_file():
+    """github as codemeta url file"""
+    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    response = github_as_codemeta_url(url)
+    assert response == 'https://raw.githubusercontent.com/datacite/metadata-reports/master/software/codemeta.json'
+
+
+def test_github_as_repo_url():
+    """github as repo url"""
+    # codemeta.json
+    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    response = github_as_repo_url(url)
+    assert response == 'https://github.com/datacite/metadata-reports'
+    # CITATION.cff
+    url = 'https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff'
+    response = github_as_repo_url(url)
+    assert response == 'https://github.com/citation-file-format/ruby-cff'
+    # any other file
+    url = 'https://github.com/mkdocs/mkdocs/blob/master/mkdocs/localization.py'
+    response = github_as_repo_url(url)
+    assert response == 'https://github.com/mkdocs/mkdocs'
+    # github repo url
+    url = 'https://github.com/datacite/metadata-reports'
+    response = github_as_repo_url(url)
+    assert response == 'https://github.com/datacite/metadata-reports'

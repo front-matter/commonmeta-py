@@ -3,8 +3,8 @@ import requests
 from typing import Optional
 
 from ..utils import (normalize_url, normalize_id, from_schema_org_creators,
-                     name_to_fos, dict_to_spdx,
-                     doi_from_url)
+                     name_to_fos, dict_to_spdx, github_as_codemeta_url,
+                     github_as_repo_url, doi_from_url)
 from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
 from ..constants import (
@@ -17,13 +17,15 @@ from ..constants import (
 
 def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
-    url = pid
+    url = github_as_codemeta_url(pid)
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json()
-    # response = Maremma.get(github_as_codemeta_url(id), accept: 'json', raw: true)
-    # string = response.body.get('data', None)
+    data = response.json()
+    if data.get('codeRepository', None) is None:
+        data['codeRepository'] = github_as_repo_url(url)
+
+    return data
 
 
 def read_codemeta(data: Optional[dict], **kwargs) -> TalbotMeta:
@@ -110,6 +112,6 @@ def read_codemeta(data: Optional[dict], **kwargs) -> TalbotMeta:
         'descriptions': descriptions,
         'rights': rights,
         'version': meta.get('version', None),
-        'subjects': subjects,
+        'subjects': presence(subjects),
         'state': state
     } | read_options

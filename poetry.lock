@@ -1220,6 +1220,14 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "types-pyyaml"
+version = "6.0.12.6"
+description = "Typing stubs for PyYAML"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "types-requests"
 version = "2.28.11.13"
 description = "Typing stubs for requests"
@@ -1340,7 +1348,7 @@ typing-extensions = {version = ">=3.7.4", markers = "python_version < \"3.8\""}
 
 [[package]]
 name = "zipp"
-version = "3.13.0"
+version = "3.14.0"
 description = "Backport of pathlib-compatible object wrapper for zip files"
 category = "main"
 optional = false
@@ -1353,7 +1361,7 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7.1"
-content-hash = "d5178df5d690802fa59f4a7cffe5e1f4ee6f550d5c5fc53e8b0d5da163701f9b"
+content-hash = "6ccccf2a46f603148f6eca3e37dc94e19d00f4afd4e0a6b9fba885ecad611e26"
 
 [metadata.files]
 alabaster = [
@@ -2469,6 +2477,10 @@ types-html5lib = [
     {file = "types-html5lib-1.1.11.11.tar.gz", hash = "sha256:8cf7fb57dcaf3e612806e9bc25ae366ff7ca71a3418ae829f5b1a9c52cbb4960"},
     {file = "types_html5lib-1.1.11.11-py3-none-any.whl", hash = "sha256:7456a07a4d162bb8c42c2a088c60cca7c63d06cf2c409a8de39536a6cdbbccc2"},
 ]
+types-pyyaml = [
+    {file = "types-PyYAML-6.0.12.6.tar.gz", hash = "sha256:24e76b938d58e68645271eeb149af6022d1da99788e481f959bd284b164f39a1"},
+    {file = "types_PyYAML-6.0.12.6-py3-none-any.whl", hash = "sha256:77b74d0874482f2b42dd566b7277b0a220068595e0fb42689d0c0560f3d1ae9e"},
+]
 types-requests = [
     {file = "types-requests-2.28.11.13.tar.gz", hash = "sha256:3fd332842e8759ea5f7eb7789df8aa772ba155216ccf10ef4aa3b0e5b42e1b46"},
     {file = "types_requests-2.28.11.13-py3-none-any.whl", hash = "sha256:94896f6f8e9f3db11e422c6e3e4abbc5d7ccace853eac74b23bdd65eeee3cdee"},
@@ -2674,6 +2686,6 @@ yarl = [
     {file = "yarl-1.8.2.tar.gz", hash = "sha256:49d43402c6e3013ad0978602bf6bf5328535c48d192304b91b97a3c6790b1562"},
 ]
 zipp = [
-    {file = "zipp-3.13.0-py3-none-any.whl", hash = "sha256:e8b2a36ea17df80ffe9e2c4fda3f693c3dad6df1697d3cd3af232db680950b0b"},
-    {file = "zipp-3.13.0.tar.gz", hash = "sha256:23f70e964bc11a34cef175bc90ba2914e1e4545ea1e3e2f67c079671883f9cb6"},
+    {file = "zipp-3.14.0-py3-none-any.whl", hash = "sha256:188834565033387710d046e3fe96acfc9b5e86cbca7f39ff69cf21a4128198b7"},
+    {file = "zipp-3.14.0.tar.gz", hash = "sha256:9e5421e176ef5ab4c0ad896624e87a7b2f07aca746c9b2aa305952800cb8eecb"},
 ]
