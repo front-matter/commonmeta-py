@@ -133,8 +133,7 @@ def test_rdataone():
         {"title": "R Interface to the DataONE REST API"}
     ]
     assert len(datacite["creators"]) == 3
-    assert datacite["creators"][0] == {
-        'name': 'Matt Jones', 'nameType': 'Personal', 'affiliation': [{'name': 'NCEAS'}]}
+    assert datacite["creators"][0] == {'name': 'Jones, Matt', 'givenName': 'Matt', 'familyName': 'Jones', 'nameType': 'Personal', 'affiliation': [{'name': 'NCEAS'}]}
     assert datacite["version"] == "2.0.0"
 
 
@@ -167,11 +166,7 @@ def test_from_schema_org():
         {"title": "Eating your own Dog Food"}
     ]
     assert datacite["creators"] == [
-        {
-            "name": "Martin Fenner",
-            "nameType": "Personal",
-        }
-    ]
+        {'name': 'Fenner, Martin', 'givenName': 'Martin', 'familyName': 'Fenner', 'nameType': 'Personal'}]
     assert datacite["descriptions"][0]["description"].startswith(
         "Eating your own dog food")
     assert datacite["types"] == {

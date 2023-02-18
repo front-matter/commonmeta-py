@@ -272,18 +272,20 @@ def to_schema_org(element: Optional[dict]) -> Optional[dict]:
 
 def to_schema_org_creators(elements: list) -> list():
     """Convert creators to Schema.org"""
-    def format_element(i):
+    def format_element(element):
         """format element"""
-        element = {}
-        element["@type"] = i["nameType"][0:-
-                                         3] if i.get("nameType", None) else None
-        if i["familyName"]:
-            element["name"] = " ".join([i["givenName"], i["familyName"]])
+        element["@type"] = element["nameType"][0:-
+                                               2] if element.get("nameType", None) else None
+        if element.get("familyName", None) and element.get("name", None) is None:
+            element["name"] = " ".join(
+                [element.get("givenName", None), element.get("familyName")])
+            element["@type"] = "Person"
         else:
-            element["name"] = i.get("name", None)
+            element["@type"] = "Organization"
+        element = py_.omit(element, "nameType")
         return compact(element)
     return [format_element(i) for i in elements]
-  
+
 
 def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]:
     """Convert CSL container to Schema.org container"""
@@ -463,8 +465,17 @@ def from_schema_org_creators(elements: list) -> list:
                 "__content__": i.get("name", None)
             }
         )
-        element["givenName"] = i.get("givenName", None)
-        element["familyName"] = i.get("familyName", None)
+        length = len(str(i["name"]).split(" "))
+        if i.get("givenName", None):
+            element["givenName"] = i.get("givenName", None)
+        else:
+            element["givenName"] = " ".join(
+                str(i["name"]).split(" ")[0: length - 1])
+        if i.get("familyName", None):
+            element["familyName"] = i.get("familyName", None)
+        else:
+            element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
+
         element["affiliation"] = compact(
             {
                 "__content__": py_.get(i, "affiliation.name"),
@@ -480,16 +491,17 @@ def from_schema_org_creators(elements: list) -> list:
 def github_from_url(url: str) -> dict:
     """Get github owner, repo, release and path from url"""
 
-    match = re.match(r"\Ahttps://(github|raw\.githubusercontent)\.com/(.+)(?:/)?(.+)?(?:/tree/)?(.*)\Z", url)
+    match = re.match(
+        r"\Ahttps://(github|raw\.githubusercontent)\.com/(.+)(?:/)?(.+)?(?:/tree/)?(.*)\Z", url)
     if match is None:
-      return {}
+        return {}
     words = urlparse(url).path.lstrip('/').split('/')
     owner = words[0] if len(words) > 0 else None
     repo = words[1] if len(words) > 1 else None
     release = words[3] if len(words) > 3 else None
     path = '/'.join(words[4:]) if len(words) > 3 else None
 
-    return compact({ 'owner': owner, 'repo': repo, 'release': release, 'path': path })
+    return compact({'owner': owner, 'repo': repo, 'release': release, 'path': path})
 
 
 def github_repo_from_url(url: str) -> Optional[str]:

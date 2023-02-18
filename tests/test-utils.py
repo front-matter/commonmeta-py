@@ -480,9 +480,9 @@ def test_to_schema_org_creators():
     """to schema.org creators"""
     authors = [
         {
-            "ORCID": "http://orcid.org/0000-0003-0077-4738",
             "givenName": "Matt",
             "familyName": "Jones",
+            'nameType': 'Personal'
         }
     ]
     organization_authors = [
@@ -491,8 +491,7 @@ def test_to_schema_org_creators():
         }
 
     ]
-    assert [{'givenName': 'Matt', 'familyName': 'Jones', '@type': 'Person',
-             '@id': 'https://orcid.org/0000-0003-0077-4738'}] == to_schema_org_creators(authors)
+    assert [{'givenName': 'Matt', 'familyName': 'Jones', 'name': 'Matt Jones', '@type': 'Person'}] == to_schema_org_creators(authors)
     assert [{'name': 'University of California, Berkeley', '@type': 'Organization'}] == to_schema_org_creators(organization_authors)
 
 

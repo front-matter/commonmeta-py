@@ -20,8 +20,7 @@ def test_blog_posting():
     assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {
-        "name": "Martin Fenner", "nameType": "Personal"}
+    assert subject.creators[0] == {'familyName': 'Fenner', 'givenName': 'Martin', 'nameType': 'Personal'}
     assert subject.contributors is None
     assert subject.rights == [
         {
@@ -81,11 +80,8 @@ def test_zenodo():
         )
     }
     assert len(subject.creators) == 6
-    assert subject.creators[0] == {
-        "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
-        "name": "Staib, Matthias",
-        "nameType": "Personal",
-    }
+    assert subject.creators[0] == {'nameType': 'Personal', 'givenName': 'Staib,', 'familyName': 'Matthias', 'affiliation': [
+        {'name': 'University of Zurich, Zurich, Switzerland'}]}
     assert subject.contributors is None
     assert subject.rights == [
         {
@@ -262,7 +258,7 @@ def test_yet_another_blog_post():
     }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "name": "John Hawks", "nameType": "Personal"}
+        'familyName': 'Hawks', 'givenName': 'John', 'nameType': 'Personal'}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -495,5 +491,5 @@ def test_schema_org_geolocation():
     }
     none_coverage = {"spatialCoverage": None}
     assert {'geoLocationPoint': {'pointLatitude': 67.12594,
-                                  'pointLongitude': -50.18037}} == schema_org_geolocation(spatial_coverage)
+                                 'pointLongitude': -50.18037}} == schema_org_geolocation(spatial_coverage)
     assert None is schema_org_geolocation(none_coverage)
