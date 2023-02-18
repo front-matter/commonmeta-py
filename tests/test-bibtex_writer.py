@@ -60,8 +60,8 @@ def test_doi_for_blog_post():
 
 def test_blog_post():
     "blog post"
-    data = "https://upstream.force11.org/welcome-to-upstream/"
-    subject = Metadata(data)
+    string = "https://upstream.force11.org/welcome-to-upstream/"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types.get("bibtex") == "article"
     bibtex = subject.bibtex()

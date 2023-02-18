@@ -8,8 +8,8 @@ from talbot.readers.codemeta_reader import get_codemeta, read_codemeta
 @pytest.mark.vcr
 def test_rdataone():
     """rdataone"""
-    data = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
-    subject = Metadata(data)
+    string = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
+    subject = Metadata(string)
     assert subject.pid == 'https://doi.org/10.5063/f1m61h5x'
     assert subject.url == 'https://github.com/dataoneorg/rdataone'
     assert subject.types == {'resourceTypeGeneral': 'Software', 'schemaOrg': 'SoftwareSourceCode', 'citeproc': 'article-journal', 'bibtex': 'misc', 'ris': 'COMP'}

@@ -7,8 +7,8 @@ from talbot.readers.schema_org_reader import schema_org_geolocation
 @pytest.mark.vcr
 def test_blog_posting():
     "blog posting"
-    data=  "https://blog.front-matter.io/posts/eating-your-own-dog-food"
-    subject = Metadata(data)
+    string = "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.types == {
         "bibtex": "article",
@@ -63,8 +63,8 @@ def test_blog_posting():
 
 def test_zenodo():
     "zenodo"
-    data=  "https://www.zenodo.org/record/1196821"
-    subject = Metadata(data)
+    string = "https://www.zenodo.org/record/1196821"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5281/zenodo.1196821"
     assert subject.types == {
         "bibtex": "misc",
@@ -133,8 +133,8 @@ def test_zenodo():
 
 def test_pangaea():
     "pangaea"
-    data=  "https://doi.pangaea.de/10.1594/PANGAEA.836178"
-    subject = Metadata(data)
+    string = "https://doi.pangaea.de/10.1594/PANGAEA.836178"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.1594/pangaea.836178"
     assert subject.types == {
         "bibtex": "misc",
@@ -194,8 +194,8 @@ def test_pangaea():
 
 def test_dataverse():
     "dataverse"
-    data=  "https://doi.org/10.7910/dvn/nj7xso"
-    subject = Metadata(data)
+    string = "https://doi.org/10.7910/dvn/nj7xso"
+    subject = Metadata(string)
 
     assert subject.pid == "https://doi.org/10.7910/dvn/nj7xso"
     assert subject.types == {
@@ -240,8 +240,8 @@ def test_dataverse():
 
 def test_yet_another_blog_post():
     "yet another blog post"
-    data=  "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
-    subject = Metadata(data)
+    string = "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
+    subject = Metadata(string)
     assert (
         subject.pid
         == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
@@ -300,8 +300,8 @@ def test_yet_another_blog_post():
 
 def test_blog_with_dois():
     "blog with dois"
-    data=  "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
-    subject = Metadata(data)
+    string = "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.17176/20221210-001644-0"
     assert subject.types == {
         "bibtex": "article",
@@ -348,8 +348,8 @@ def test_blog_with_dois():
 
 def test_another_blog_with_dois():
     "another blog with dois"
-    data=  "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
-    subject = Metadata(data)
+    string = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
+    subject = Metadata(string)
     assert (
         subject.pid
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
@@ -401,8 +401,8 @@ def test_another_blog_with_dois():
 
 def test_with_upstream_blog_post():
     "with upstream blog post"
-    data=  "https://upstream.force11.org/welcome-to-upstream/"
-    subject = Metadata(data)
+    string = "https://upstream.force11.org/welcome-to-upstream/"
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.types == {
         "bibtex": "article",
@@ -465,8 +465,8 @@ def test_with_upstream_blog_post():
 
 def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
-    data=  "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
-    subject = Metadata(data)
+    string = "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+    subject = Metadata(string)
     assert (
         subject.pid
         == "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
@@ -475,8 +475,8 @@ def test_with_blog_with_datacite_dois():
 
 def test_with_datacite_blog():
     "with datacite blog"
-    data=  "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
-    subject = Metadata(data)
+    string = "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
+    subject = Metadata(string)
     assert (
         subject.pid
         == "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed"

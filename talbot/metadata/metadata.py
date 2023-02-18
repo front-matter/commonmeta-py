@@ -26,10 +26,10 @@ from ..utils import normalize_id, find_from_format
 class Metadata:
     """Metadata"""
 
-    def __init__(self, data: Optional[str], **kwargs):
-        if data is None or not isinstance(data, str):
-            raise ValueError("No metadata found")
-        pid = normalize_id(data)
+    def __init__(self, string: Optional[str], **kwargs):
+        if string is None or not isinstance(string, str):
+            raise ValueError("No input found")
+        pid = normalize_id(string)
 
         if pid is not None:
             via = kwargs.get("via", None) or find_from_format(pid=pid)
@@ -42,8 +42,8 @@ class Metadata:
             elif via == "crossref":
                 data = get_crossref(pid)
                 meta = read_crossref(data)
-        elif path.exists(data):
-            with open(data, encoding='utf-8') as file:
+        elif path.exists(string):
+            with open(string, encoding='utf-8') as file:
                 string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
             if via == "schema_org":

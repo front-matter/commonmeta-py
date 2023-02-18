@@ -100,8 +100,8 @@ def test_with_data_citation():
 
 def test_blogposting_citeproc_json():
     """BlogPosting Citeproc JSON"""
-    data = path.join(path.dirname(__file__), 'fixtures', 'citeproc.json')
-    subject = Metadata(data)
+    string = path.join(path.dirname(__file__), 'fixtures', 'citeproc.json')
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5438/4k3m-nyvg"
 
     datacite = json.loads(subject.datacite())
@@ -124,8 +124,8 @@ def test_blogposting_citeproc_json():
 
 def test_rdataone():
     """Rdataone"""
-    data = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
-    subject = Metadata(data)
+    string = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
+    subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5063/f1m61h5x"
 
     datacite = json.loads(subject.datacite())
