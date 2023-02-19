@@ -22,15 +22,16 @@ theme:
 nav:
   - Introduction: index.md
   - Metadata: metadata.md
-  - Readers:
+  - Readers: 
+      - CFF: readers/cff_reader.ipynb
       - Crossref: readers/crossref_reader.ipynb
       - DataCite: readers/datacite_reader.ipynb
       - Schema.org: readers/schema_org_reader.ipynb
   - Writers:
       - BibTex: writers/bibtex_writer.ipynb
-      - RIS: writers/ris_writer.ipynb
-      - Citeproc: writers/citeproc_writer.ipynb
       - Citation: writers/citation_writer.ipynb
+      - Citeproc: writers/citeproc_writer.ipynb
+      - RIS: writers/ris_writer.ipynb
 
 markdown_extensions:
   - attr_list
