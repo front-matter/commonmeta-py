@@ -1,5 +1,5 @@
 [![Build](https://github.com/front-matter/talbot/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/talbot/actions/workflows/build.yml)
-[![PyPI version](https://badge.fury.io/py/talbot.svg)](https://badge.fury.io/py/talbot)
+[![PyPI version](https://img.shields.io/pypi/v/talbot.svg)](https://pypi.org/project/talbot/)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
 [![docs](https://img.shields.io/badge/docs-passing-blue)](https://talbot.docs.front-matter.io/)
