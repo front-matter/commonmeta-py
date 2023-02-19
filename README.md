@@ -2,6 +2,7 @@
 [![PyPI version](https://badge.fury.io/py/talbot.svg)](https://badge.fury.io/py/talbot)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
+[![docs](https://img.shields.io/readthedocs/d?color=green)](https://talbot.docs.front-matter.io/)
 ![GitHub](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
 
 # Talbot
