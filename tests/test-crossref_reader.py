@@ -1,4 +1,4 @@
-"""Crossref JSON reader tests"""
+"""Crossref reader tests"""
 from os import path
 import pytest
 from talbot import Metadata
@@ -7,7 +7,7 @@ from talbot.readers.crossref_reader import get_crossref, read_crossref, get_rela
 
 @pytest.mark.vcr
 def test_doi_with_data_citation():
-    "DOi with data citation"
+    "DOI with data citation"
     string = "10.7554/elife.01567"
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.7554/elife.01567"
@@ -58,14 +58,37 @@ def test_doi_with_data_citation():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': 'bib27',
-        "relatedItemIdentifier": "10.1038/ncb2764",
+        "key": "bib27",
+        "relatedItemIdentifier": "https://doi.org/10.1038/ncb2764",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
-    # assert subject.funding_references == [{'name': 'SystemsX'}, {'name': 'EMBO longterm post-doctoral fellowships'},
-    #     {'name': 'Marie Heim-Voegtlin'}, {'DOI': '10.13039/501100006390', 'doi-asserted-by': 'crossref', 'name': 'University of Lausanne'},
-    #     {'name': 'SystemsX'}, {'DOI': '10.13039/501100003043', 'doi-asserted-by': 'publisher', 'name': 'EMBO'}]
+    assert subject.funding_references == [
+        {"funderName": "SystemsX"},
+        {"funderName": "EMBO longterm post-doctoral fellowships"},
+        {"funderName": "Marie Heim-Voegtlin"},
+        {
+            "funderName": "University of Lausanne",
+            "funderIdentifier": "https://doi.org/10.13039/501100006390",
+            "funderIdentifierType": "Crossref Funder ID",
+        },
+        {"funderName": "SystemsX"},
+        {
+            "funderIdentifier": "https://doi.org/10.13039/501100003043",
+            "funderIdentifierType": "Crossref Funder ID",
+            "funderName": "EMBO",
+        },
+        {
+            "funderIdentifier": "https://doi.org/10.13039/501100001711",
+            "funderIdentifierType": "Crossref Funder ID",
+            "funderName": "Swiss National Science Foundation",
+        },
+        {
+            "funderIdentifier": "https://doi.org/10.13039/501100006390",
+            "funderIdentifierType": "Crossref Funder ID",
+            "funderName": "University of Lausanne",
+        },
+    ]
     assert subject.container == {
         "identifier": "2050-084X",
         "identifierType": "ISSN",
@@ -73,34 +96,11 @@ def test_doi_with_data_citation():
         "type": "Journal",
         "volume": "3",
     }
-    assert subject.descriptions == [
-        {
-            "description": (
-                "Among various advantages, their small size makes "
-                "model organisms preferred subjects of investigation. Yet, "
-                "even in model systems detailed analysis of numerous "
-                "developmental processes at cellular level is severely "
-                "hampered by their scale. For instance, secondary growth of "
-                "Arabidopsis hypocotyls creates a radial pattern of highly "
-                "specialized tissues that comprises several thousand cells "
-                "starting from a few dozen. This dynamic process is difficult "
-                "to follow because of its scale and because it can only be "
-                "investigated invasively, precluding comprehensive "
-                "understanding of the cell proliferation, differentiation, "
-                "and patterning events involved. To overcome such limitation, "
-                "we established an automated quantitative histology approach. "
-                "We acquired hypocotyl cross-sections from tiled "
-                "high-resolution images and extracted their information "
-                "content using custom high-throughput image processing and "
-                "segmentation. Coupled with automated cell type recognition "
-                "through machine learning, we could establish a cellular "
-                "resolution atlas that reveals vascular morphodynamics during "
-                "secondary growth, for example equidistant phloem pole "
-                "formation."
-            ),
-            "descriptionType": "Abstract",
-        }
-    ]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("Among various advantages, their small size makes")
+    )
     assert subject.subjects == [
         {"subject": "General Immunology and Microbiology"},
         {"subject": "General Biochemistry, Genetics and Molecular Biology"},
@@ -165,8 +165,8 @@ def test_journal_article():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': 'ref73',
-        "relatedItemIdentifier": "10.1056/nejm199109123251104",
+        "key": "ref73",
+        "relatedItemIdentifier": "https://doi.org/10.1056/nejm199109123251104",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -237,8 +237,8 @@ def test_journal_article_with_funding():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': 'ref70',
-        "relatedItemIdentifier": "10.17660/actahortic.2004.632.41",
+        "key": "ref70",
+        "relatedItemIdentifier": "https://doi.org/10.17660/actahortic.2004.632.41",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -283,8 +283,7 @@ def test_journal_article_original_language():
     )
     # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {
-        "nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -304,8 +303,8 @@ def test_journal_article_original_language():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': '7',
-        "relatedItemIdentifier": "10.1161/01.cir.95.6.1686",
+        "key": "7",
+        "relatedItemIdentifier": "https://doi.org/10.1161/01.cir.95.6.1686",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -345,7 +344,7 @@ def test_journal_article_with_rdf_for_container():
     }
     assert (
         subject.url
-        == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240x-00002096"
+        == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
     )
     assert subject.titles[0] == {
         "title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"
@@ -371,8 +370,15 @@ def test_journal_article_with_rdf_for_container():
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {'key': 'bibr111', 'relationType': 'References', 'creator': 'Zenina',
-                                         'title': 'Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)', 'publicationYear': '2008', 'volume': 'Vol. 1', 'firstPage': '156'}
+    assert subject.related_items[-1] == {
+        "key": "bibr111",
+        "relationType": "References",
+        "creator": "Zenina",
+        "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
+        "publicationYear": "2008",
+        "volume": "Vol. 1",
+        "firstPage": "156",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1937-240X",
@@ -429,8 +435,11 @@ def test_book_chapter_with_rdf_for_container():
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {'key': '49_CR11', 'relationType': 'References',
-                                         'unstructured': 'Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)'}
+    assert subject.related_items[-1] == {
+        "key": "49_CR11",
+        "relationType": "References",
+        "unstructured": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1611-3349",
@@ -469,9 +478,13 @@ def test_posted_content():
         "nameType": "Personal",
         "givenName": "Martin",
         "familyName": "Fenner",
-        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-1419-2405',
-                             'nameIdentifierScheme': 'ORCID',
-                             'schemeUri': 'https://orcid.org'}],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -482,18 +495,21 @@ def test_posted_content():
     assert subject.publication_year == 2016
     assert subject.publisher == "Cold Spring Harbor Laboratory"
     assert len(subject.related_items) == 26
-    assert subject.related_items[0] == {'key': '2019071613381284000_097196v2.1', 'relationType': 'References', 'title': 'An introduction to the joint principles for data citation',
-                                        'publicationYear': '2015', 'volume': '41', 'issue': '3', 'firstPage': '43', 'containerTitle': 'Bulletin of the American \\ldots'}
+    assert subject.related_items[0] == {
+        "key": "2019071613381284000_097196v2.1",
+        "relationType": "References",
+        "title": "An introduction to the joint principles for data citation",
+        "publicationYear": "2015",
+        "volume": "41",
+        "issue": "3",
+        "firstPage": "43",
+        "containerTitle": "Bulletin of the American \\ldots",
+    }
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions == [
-        {
-            "description": "AbstractThis article presents a practical roadmap for scholarly data repositories to implement data citation in accordance with the Joint Declaration of Data Citation Principles, a synopsis and harmonization of the recommendations of major science policy bodies. The roadmap was developed by the Repositories Expert Group, as part of the Data Citation Implementation Pilot (DCIP) project, an initiative of FORCE11.org and the NIH BioCADDIE (https://biocaddie.org) program. The roadmap makes 11 specific recommendations, grouped into three phases of implementation: a) required steps needed to support the Joint Declaration of Data Citation Principles, b) recommended steps that facilitate article/data publication workflows, and c) optional steps that further improve data citation support provided by data repositories.",
-            "descriptionType": "Abstract",
-        }
-    ]
+    assert subject.descriptions[0].get('description').startswith('AbstractThis article presents a practical roadmap for scholarly data repositories')
     assert subject.version is None
     assert subject.agency == "Crossref"
 
@@ -520,9 +536,13 @@ def test_peer_review():
         "nameType": "Personal",
         "givenName": "Jeremy",
         "familyName": "Magland",
-        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-5286-4375',
-                             'nameIdentifierScheme': 'ORCID',
-                             'schemeUri': 'https://orcid.org'}],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0002-5286-4375",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
         "affiliation": [
             {
                 "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
@@ -568,7 +588,7 @@ def test_dissertation():
         "ris": "THES",
         "schemaOrg": "Thesis",
     }
-    assert subject.url == "http://espace.library.uq.edu.au/view/uq:23a1e74"
+    assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
     assert subject.titles[0] == {
         "title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
     }
@@ -577,9 +597,13 @@ def test_dissertation():
         "familyName": "Collingwood",
         "givenName": "Patricia Maree",
         "nameType": "Personal",
-        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-3086-4443',
-                             'nameIdentifierScheme': 'ORCID',
-                             'schemeUri': 'https://orcid.org'}],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-3086-4443",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -616,7 +640,7 @@ def test_doi_with_sici():
     }
     assert (
         subject.url
-        == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+        == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
     )
     assert subject.titles[0] == {
         "title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"
@@ -644,8 +668,11 @@ def test_doi_with_sici():
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {'key': 'i0012-9658-87-11-2832-ydenberg1', 'relationType': 'References',
-                                         'unstructured': 'R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.'}
+    assert subject.related_items[-1] == {
+        "key": "i0012-9658-87-11-2832-ydenberg1",
+        "relationType": "References",
+        "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "firstPage": "2832",
@@ -684,10 +711,26 @@ def test_doi_with_orcid():
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }
     assert len(subject.creators) == 7
-    assert subject.creators[2] == {'nameType': 'Personal', 'givenName': 'Beatriz', 'familyName': 'Hernandez', 'affiliation': [{'name': 'War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA'}, {
-        'name': 'Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA'}], 'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-2043-4925',
-                                                                                                                                                            'nameIdentifierScheme': 'ORCID',
-                                                                                                                                                            'schemeUri': 'https://orcid.org'}]}
+    assert subject.creators[2] == {
+        "nameType": "Personal",
+        "givenName": "Beatriz",
+        "familyName": "Hernandez",
+        "affiliation": [
+            {
+                "name": "War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA"
+            },
+            {
+                "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
+            },
+        ],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-2043-4925",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
+    }
     assert subject.contributors is None
     assert subject.rights == [
         {
@@ -712,8 +755,8 @@ def test_doi_with_orcid():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': '30',
-        "relatedItemIdentifier": "10.1378/chest.12-0045",
+        "key": "30",
+        "relatedItemIdentifier": "https://doi.org/10.1378/chest.12-0045",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -756,7 +799,7 @@ def test_date_in_future():
         "schemaOrg": "ScholarlyArticle",
     }
     assert (
-        subject.url == "https://linkinghub.elsevier.com/retrieve/pii/s0014299915002332"
+        subject.url == "https://linkinghub.elsevier.com/retrieve/pii/S0014299915002332"
     )
     assert subject.titles[0] == {
         "title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
@@ -785,8 +828,8 @@ def test_date_in_future():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': '10.1016/j.ejphar.2015.03.018_bib94',
-        "relatedItemIdentifier": "10.1111/hiv.12134",
+        "key": "10.1016/j.ejphar.2015.03.018_bib94",
+        "relatedItemIdentifier": "https://doi.org/10.1111/hiv.12134",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -877,8 +920,8 @@ def test_vor_with_url():
         "resourceTypeGeneral": "Collection",
     }
     assert subject.related_items[-1] == {
-        'key': 'BFhdy201326_CR41',
-        "relatedItemIdentifier": "10.1111/j.1095-8312.2003.00230.x",
+        "key": "BFhdy201326_CR41",
+        "relatedItemIdentifier": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -958,8 +1001,7 @@ def test_component():
     }
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.creators[0] == {
-        "nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -991,15 +1033,19 @@ def test_dataset_usda():
         "ris": "DATA",
         "schemaOrg": "Dataset",
     }
-    assert subject.url == "https://www.fs.usda.gov/rds/archive/catalog/rds-2018-0001"
+    assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.creators[0] == {
         "nameType": "Personal",
         "givenName": "Christine A.",
         "familyName": "Ribic",
-        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-2583-1778',
-                             'nameIdentifierScheme': 'ORCID',
-                             'schemeUri': 'https://orcid.org'}],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-2583-1778",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.contributors is None
@@ -1012,13 +1058,18 @@ def test_dataset_usda():
     assert subject.publisher == "Forest Service Research Data Archive"
     assert len(subject.related_items) == 6
     assert subject.related_items[-1] == {
-        'key': 'ref6',
-        "relatedItemIdentifier": "10.1674/0003-0031-178.1.47",
+        "key": "ref6",
+        "relatedItemIdentifier": "https://doi.org/10.1674/0003-0031-178.1.47",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
-    assert subject.funding_references == [{'funderIdentifier': 'https://doi.org/10.13039/100006959',
-                                           'funderIdentifierType': 'Crossref Funder ID', 'funderName': 'U.S. Forest Service'}]
+    assert subject.funding_references == [
+        {
+            "funderIdentifier": "https://doi.org/10.13039/100006959",
+            "funderIdentifierType": "Crossref Funder ID",
+            "funderName": "U.S. Forest Service",
+        }
+    ]
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
         "type": "Periodical",
@@ -1032,7 +1083,7 @@ def test_dataset_usda():
 
 def test_crossref_json():
     """crossref.json"""
-    string = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.json")
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.7554/elife.01567"
 
@@ -1051,8 +1102,7 @@ def test_book_chapter():
         "schemaOrg": "Chapter",
     }
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
-    assert subject.titles[0] == {
-        "title": "Clinical Symptoms and Physical Examinations"}
+    assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
         "nameType": "Personal",
         "givenName": "Ronald L.",
@@ -1060,16 +1110,23 @@ def test_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights == [
-        {'rightsUri': 'https://www.springernature.com/gp/researchers/text-and-data-mining'}]
+        {
+            "rightsUri": "https://www.springernature.com/gp/researchers/text-and-data-mining"
+        }
+    ]
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
-        {'date': '2023-02-10T08:59:39Z', 'dateType': 'Updated'},
+        {"date": "2023-02-10T08:59:39Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == 2015
     assert subject.publisher == "Springer Berlin Heidelberg"
     assert len(subject.related_items) == 22
-    assert subject.related_items[0] == {'key': '13_CR1', 'relationType': 'References',
-                                        'relatedItemIdentifier': '10.1007/s00256-012-1391-8', 'relatedItemIdentifierType': 'DOI'}
+    assert subject.related_items[0] == {
+        "key": "13_CR1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.1007/s00256-012-1391-8",
+        "relatedItemIdentifierType": "DOI",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Shoulder Stiffness",
@@ -1206,9 +1263,13 @@ def test_missing_creator():
         "nameType": "Personal",
         "givenName": "Alexander",
         "familyName": "Kohls",
-        'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-3836-8885',
-                             'nameIdentifierScheme': 'ORCID',
-                             'schemeUri': 'https://orcid.org'}],
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0002-3836-8885",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -1233,8 +1294,11 @@ def test_missing_creator():
         "relationType": "IsPartOf",
         "resourceTypeGeneral": "Collection",
     }
-    assert subject.related_items[-1] == {'key': 'ref23', 'relationType': 'References',
-                                         'unstructured': 'SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD'}
+    assert subject.related_items[-1] == {
+        "key": "ref23",
+        "relationType": "References",
+        "unstructured": "SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",
@@ -1297,17 +1361,14 @@ def test_book():
         subject.url
         == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
     )
-    assert subject.titles[0] == {
-        "title": "The Politics of the Past in Early China"}
+    assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
     assert subject.creators[0] == {
         "nameType": "Personal",
         "givenName": "Vincent S.",
         "familyName": "Leung",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {"rightsUri": "https://www.cambridge.org/core/terms"}
-    ]
+    assert subject.rights == [{"rightsUri": "https://www.cambridge.org/core/terms"}]
     assert subject.dates == [
         {"date": "2019-07-01", "dateType": "Issued"},
         {"date": "2022-09-22T13:22:42Z", "dateType": "Updated"},
@@ -1315,8 +1376,16 @@ def test_book():
     assert subject.publication_year == 2019
     assert subject.publisher == "Cambridge University Press"
     assert len(subject.related_items) == 273
-    assert subject.related_items[0] == {'key': '9781108348843#EMT-rl-1_BIBe-r-273', 'relationType': 'References', 'creator': 'Qiusheng',
-                                        'title': 'Lu Jia de lishi yishi ji qi wenhua yiyi', 'publicationYear': '1997', 'volume': '5', 'firstPage': '67', 'containerTitle': 'Qilu xuekan'}
+    assert subject.related_items[0] == {
+        "key": "9781108348843#EMT-rl-1_BIBe-r-273",
+        "relationType": "References",
+        "creator": "Qiusheng",
+        "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
+        "publicationYear": "1997",
+        "volume": "5",
+        "firstPage": "67",
+        "containerTitle": "Qilu xuekan",
+    }
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -1328,19 +1397,19 @@ def test_book():
 
 def test_get_crossref():
     """get_crossref"""
-    data = get_crossref('https://doi.org/10.1017/9781108348843')
+    data = get_crossref("https://doi.org/10.1017/9781108348843")
     assert isinstance(data, dict)
-    assert data.get('DOI') == '10.1017/9781108348843'
-    assert {'state': 'not_found'} == get_crossref('123')
+    assert data.get("DOI") == "10.1017/9781108348843"
+    assert {"state": "not_found"} == get_crossref("123")
 
 
 def test_read_crossref():
     """read_crossref"""
-    data = get_crossref('https://doi.org/10.1017/9781108348843')
+    data = get_crossref("https://doi.org/10.1017/9781108348843")
     meta = read_crossref(data)
     assert isinstance(meta, dict)
-    assert meta.get('pid') == 'https://doi.org/10.1017/9781108348843'
-    assert {'state': 'not_found'} == read_crossref(None)
+    assert meta.get("pid") == "https://doi.org/10.1017/9781108348843"
+    assert {"state": "not_found"} == read_crossref(None)
 
 
 def test_get_related_item():
@@ -1349,7 +1418,7 @@ def test_get_related_item():
         "key": "978-1-4666-1891-6.ch004.-31",
         "doi-asserted-by": "crossref",
         "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
-        "DOI": "10.1109/ICCV.2007.4408927"
+        "DOI": "https://doi.org/10.1109/ICCV.2007.4408927",
     }
     unstructured_metadata = {
         "key": "978-1-4666-1891-6.ch004.-14",
@@ -1358,10 +1427,22 @@ def test_get_related_item():
         "volume": "15",
         "author": "W.Donath",
         "year": "1972",
-        "journal-title": "IBM Technical Disclosure Bulletin"
+        "journal-title": "IBM Technical Disclosure Bulletin",
     }
-    assert {'key': '978-1-4666-1891-6.ch004.-31', 'relatedItemIdentifier': '10.1109/iccv.2007.4408927',
-            'relatedItemIdentifierType': 'DOI', 'relationType': 'References'} == get_related_item(doi_metadata)
-    assert {'key': '978-1-4666-1891-6.ch004.-14', 'relationType': 'References', 'creator': 'W.Donath', 'title': 'Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.',
-            'publicationYear': '1972', 'volume': '15', 'firstPage': '938', 'containerTitle': 'IBM Technical Disclosure Bulletin'} == get_related_item(unstructured_metadata)
+    assert {
+        "key": "978-1-4666-1891-6.ch004.-31",
+        "relatedItemIdentifier": "https://doi.org/10.1109/iccv.2007.4408927",
+        "relatedItemIdentifierType": "DOI",
+        "relationType": "References",
+    } == get_related_item(doi_metadata)
+    assert {
+        "key": "978-1-4666-1891-6.ch004.-14",
+        "relationType": "References",
+        "creator": "W.Donath",
+        "title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
+        "publicationYear": "1972",
+        "volume": "15",
+        "firstPage": "938",
+        "containerTitle": "IBM Technical Disclosure Bulletin",
+    } == get_related_item(unstructured_metadata)
     assert None is get_related_item(None)

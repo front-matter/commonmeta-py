@@ -1,7 +1,10 @@
 """Utils module for Talbot."""
 import os
 import json
+import yaml
 import re
+import bibtexparser
+from bs4 import BeautifulSoup
 from typing import Optional, Union
 from urllib.parse import urlparse
 from pydash import py_
@@ -121,7 +124,7 @@ def normalize_ids(ids: list, relation_type=None) -> list:
     return [format_id(i) for i in ids]
 
 
-def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
+def normalize_url(url: Optional[str], secure=False, lower=False) -> Optional[str]:
     """Normalize URL"""
     if url is None or not isinstance(url, str):
         return None
@@ -129,7 +132,9 @@ def normalize_url(url: Optional[str], secure=False) -> Optional[str]:
         url = url.strip("/")
     if secure is True and url.startswith(HTTP_SCHEME):
         url = url.replace(HTTP_SCHEME, HTTPS_SCHEME)
-    return url.lower()
+    if lower is True:
+        return url.lower()
+    return url
 
 
 def normalize_cc_url(url: Optional[str]):
@@ -162,6 +167,29 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
         return None
     orcid = match.group(1).replace(" ", "-")
     return orcid
+
+
+def normalize_issn(string, **kwargs):
+    """Normalize ISSN
+       Pick electronic issn if there are multiple
+       Format issn as xxxx-xxxx"""
+    content = kwargs.get('content', '__content__')
+    if string is None:
+        return None
+    if isinstance(string, str):
+        issn = string
+    elif isinstance(string, dict):
+        issn = string.get(content, None)
+    elif isinstance(string, list):
+        issn = next((i for i in string if i.get('media_type', None)
+                    == 'electronic'), {}).get(content, None)
+    if issn is None:
+        return None
+    if len(issn) == 9:
+        return issn
+    if len(issn) == 8:
+        return issn[0:4] + '-' + issn[4:8]
+    return None
 
 
 def dict_to_spdx(dct: dict) -> dict:
@@ -380,21 +408,43 @@ def find_from_format_by_ext(string, ext=None):
     """Find reader from format by ext"""
 
 
-def find_from_format_by_string(string):
+def find_from_format_by_string(string: str) -> Optional[str]:
     """Find reader from format by string"""
     if string is None:
         return None
-    data = json.loads(string)
-    if data.get("@context", None) == "http://schema.org":
-        return "schema_org"
-    if data.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
-        return "codemeta"
-    if data.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
-        return "datacite"
-    if data.get("source", None) == "Crossref":
-        return "crossref"
-    if py_.get(data, "issued.date-parts") is not None:
-        return "citeproc"
+    try:
+        data = json.loads(string)
+        if data.get("@context", None) == "http://schema.org":
+            return "schema_org"
+        if data.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
+            return "codemeta"
+        if data.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
+            return "datacite"
+        if data.get("source", None) == "Crossref":
+            return "crossref"
+        if py_.get(data, "issued.date-parts") is not None:
+            return "citeproc"
+    except json.JSONDecodeError:
+        pass
+    try:
+        data = BeautifulSoup(string, "xml")
+        if data.find("doi_record"):
+            return 'crossref_xml'
+        if data.find("resource"):
+            return 'datacite_xml'
+    except ValueError:
+        pass
+    try:
+        data = yaml.safe_load(string)
+        if data.get("cff-version", None):
+            return "cff"
+    except (yaml.YAMLError, AttributeError):
+        pass
+
+    if string.startswith('TY  - '):
+        return 'ris'
+    if any(string.startswith(f"@{t}") for t in bibtexparser.bibdatabase.STANDARD_TYPES):
+        return 'bibtex'
 
     # no format found
     return None
@@ -406,9 +456,6 @@ def find_from_format_by_string(string):
     #           v.start_with?('http://datacite.org/schema/kernel')
     # #         end
     #     'datacite_xml'
-
-    #   elsif YAML.load(string).to_h.fetch('cff-version', None).present?
-    #     'cff'
 
 
 def find_from_format_by_filename(filename):

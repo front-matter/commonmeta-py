@@ -8,7 +8,8 @@ from ..utils import (
     dict_to_spdx,
     normalize_cc_url,
     from_citeproc,
-    normalize_url
+    normalize_url,
+    normalize_doi,
 )
 from ..base_utils import wrap, compact, presence, sanitize
 from ..author_utils import get_authors
@@ -51,7 +52,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     pid = doi_as_url(doi)
     resource_type = meta.get("type", {}).title().replace("-", "")
     types = {
-        "resourceTypeGeneral": CR_TO_DC_TRANSLATIONS[resource_type] or "Text",
+        "resourceTypeGeneral": CR_TO_DC_TRANSLATIONS.get(resource_type, None) or "Text",
         "resourceType": resource_type,
         "schemaOrg": CR_TO_SO_TRANSLATIONS.get(resource_type, None) or "CreativeWork",
         "citeproc": CR_TO_CP_TRANSLATIONS.get(resource_type, None) or "article-journal",
@@ -83,12 +84,12 @@ def read_crossref(data: Optional[dict], **kwargs) -> TalbotMeta:
     date_deposited = py_.get(meta, 'deposited.date-time')
     date_indexed = py_.get(meta, 'indexed.date-time')
     date_registered = py_.get(meta, 'registered.date-time') or date_created
-    date_published = date_issued or date_created or ':unav'
+    date_published = date_issued or date_created
     date_updated = date_deposited or date_indexed
     dates = [{"date": date_published, "dateType": "Issued"}]
     if date_updated is not None:
         dates.append({"date": date_updated, "dateType": "Updated"})
-    publication_year = int(date_published[0:4]) if date_published else None
+    publication_year = int(date_published[:4]) if date_published else None
 
     license_ = meta.get("license", None)
     if license_ is not None:
@@ -240,7 +241,7 @@ def get_related_item(reference: Optional[dict]) -> Optional[dict]:
     }
     if doi is not None:
         metadata = metadata | {
-            "relatedItemIdentifier": doi.lower(),
+            "relatedItemIdentifier": normalize_doi(doi),
             "relatedItemIdentifierType": "DOI",
         }
     else:
@@ -276,6 +277,7 @@ def from_crossref_funding(funding_references: list) -> list:
                 else None,
             }
         )
+        funding_reference = py_.omit(funding_reference, "DOI", "doi-asserted-by")
         if (
             funding.get("name", None) is not None
             and funding.get("award", None) is not None

@@ -2,7 +2,7 @@
 from datetime import date
 import pytest
 from talbot.date_utils import (get_iso8601_date, get_date_by_type, get_date_from_date_parts,
-                               get_date_from_parts, get_date_parts, get_month_from_date)
+                               get_date_from_parts, get_date_parts, get_month_from_date, get_date_from_crossref_parts)
 from talbot.base_utils import wrap
 
 def test_get_iso8601_date():
@@ -35,6 +35,14 @@ def test_get_date_from_parts():
     assert "2012-01" == get_date_from_parts(2012, 1)
     assert "2012" == get_date_from_parts(2012)
     assert None is get_date_from_parts()
+
+
+def test_get_date_from_crossref_parts():
+    """get_date_from_crossref_parts"""
+    assert "2012-01-01" == get_date_from_crossref_parts({ 'year': '2012', 'month': '01', 'day': '01'})
+    assert "2012-01" == get_date_from_crossref_parts({ 'year': '2012', 'month': '01'})
+    assert "2012" == get_date_from_crossref_parts({ 'year': '2012'})
+    assert None is get_date_from_crossref_parts({})
 
 
 def test_get_date_parts():

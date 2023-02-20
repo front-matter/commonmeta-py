@@ -5,3 +5,4 @@ from .schema_org_reader import get_schema_org, read_schema_org
 from .citeproc_reader import read_citeproc
 from .codemeta_reader import get_codemeta, read_codemeta
 from .cff_reader import get_cff, read_cff
+from .crossref_xml_reader import get_crossref_xml, read_crossref_xml

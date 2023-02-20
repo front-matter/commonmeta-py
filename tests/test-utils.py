@@ -8,6 +8,7 @@ from talbot.utils import (
     normalize_id,
     normalize_ids,
     normalize_cc_url,
+    normalize_issn,
     from_citeproc,
     find_from_format_by_id,
     find_from_format_by_string,
@@ -57,7 +58,7 @@ def test_dict_to_spdx_url():
 
 def test_dict_to_spdx_not_found():
     "dict_to_spdx not found"
-    assert {"rightsUri": "info:eu-repo/semantics/openaccess"} == dict_to_spdx(
+    assert {"rightsUri": "info:eu-repo/semantics/openAccess"} == dict_to_spdx(
         {"rightsUri": "info:eu-repo/semantics/openAccess"}
     )
 
@@ -216,6 +217,23 @@ def test_normalize_cc_url():
         {'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
 
 
+def test_normalize_issn():
+    """normalize_issn"""
+    # from list
+    string = [{'media_type': 'print', '__content__': '13040855'},
+              {'media_type': 'electronic', '__content__': '21468427'}]
+    assert '2146-8427' == normalize_issn(string)
+    # from empty list
+    string = []
+    assert None is normalize_issn(string)
+    # from dict
+    string = {'media_type': 'electronic', '__content__': '21468427'}
+    assert '2146-8427' == normalize_issn(string)
+    # from string
+    string = '2146-8427'
+    assert '2146-8427' == normalize_issn(string)
+
+
 def test_from_citeproc():
     "from_citeproc"
     assert [
@@ -305,10 +323,58 @@ def test_find_from_format_by_id():
 
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
+    # datacite
     filepath = path.join(path.dirname(__file__), 'fixtures', 'datacite.json')
     with open(filepath, encoding='utf-8') as file:
         string = file.read()
     assert "datacite" == find_from_format_by_string(string)
+    # crossref
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "crossref" == find_from_format_by_string(string)
+    # crossref
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "crossref" == find_from_format_by_string(string)
+    # datacite_xml
+    filepath = path.join(path.dirname(__file__),
+                         'fixtures', 'datacite_dataset.xml')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "datacite_xml" == find_from_format_by_string(string)
+    # crossref_xml
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.xml')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "crossref_xml" == find_from_format_by_string(string)
+    # ris
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.ris')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "ris" == find_from_format_by_string(string)
+    # bibtex
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'pure.bib')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "bibtex" == find_from_format_by_string(string)
+    # cff
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'CITATION.cff')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "cff" == find_from_format_by_string(string)
+    # codemeta
+    filepath = path.join(path.dirname(__file__),
+                         'fixtures', 'codemeta_v2.json')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "codemeta" == find_from_format_by_string(string)
+    # citeproc
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'citeproc.json')
+    with open(filepath, encoding='utf-8') as file:
+        string = file.read()
+    assert "citeproc" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
 
@@ -491,8 +557,10 @@ def test_to_schema_org_creators():
         }
 
     ]
-    assert [{'givenName': 'Matt', 'familyName': 'Jones', 'name': 'Matt Jones', '@type': 'Person'}] == to_schema_org_creators(authors)
-    assert [{'name': 'University of California, Berkeley', '@type': 'Organization'}] == to_schema_org_creators(organization_authors)
+    assert [{'givenName': 'Matt', 'familyName': 'Jones', 'name': 'Matt Jones',
+             '@type': 'Person'}] == to_schema_org_creators(authors)
+    assert [{'name': 'University of California, Berkeley',
+             '@type': 'Organization'}] == to_schema_org_creators(organization_authors)
 
 
 def test_to_schema_org_identifiers():

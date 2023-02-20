@@ -205,7 +205,7 @@ def test_phd_thesis():
     doi = {10.14264/uql.2020.791},
     month = {jun},
     title = {School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers},
-    url = {http://espace.library.uq.edu.au/view/uq:23a1e74},
+    url = {http://espace.library.uq.edu.au/view/UQ:23a1e74},
     urldate = {2020-06-08},
     year = {2020}
 }

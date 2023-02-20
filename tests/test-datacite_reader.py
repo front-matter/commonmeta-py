@@ -461,7 +461,7 @@ def test_is_identical():
         "bibtex": "misc",
         "ris": "DATA",
     }
-    assert subject.url == "https://figshare.com/articles/dataset/rain_v1/4234751/1"
+    assert subject.url == "https://figshare.com/articles/dataset/RAIN_v1/4234751/1"
     assert subject.titles[0] == {"title": "RAIN v1"}
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
@@ -550,7 +550,7 @@ def test_subject_scheme_for():
         "bibtex": "misc",
         "ris": "DATA",
     }
-    assert subject.url == "https://figshare.com/articles/dataset/drosophila_melanogaster_african_wings/1449060/4"
+    assert subject.url == "https://figshare.com/articles/dataset/Drosophila_melanogaster_African_Wings/1449060/4"
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
         "nameType": "Personal",

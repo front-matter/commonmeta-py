@@ -139,7 +139,7 @@ def test_pangaea():
         "ris": "DATA",
         "schemaOrg": "Dataset",
     }
-    assert subject.url == "https://doi.pangaea.de/10.1594/pangaea.836178"
+    assert subject.url == "https://doi.pangaea.de/10.1594/PANGAEA.836178"
     assert subject.titles[0] == {
         "title": "Hydrological and meteorological investigations in a lake near Kangerlussuaq, west Greenland"
     }
@@ -203,7 +203,7 @@ def test_dataverse():
     }
     assert (
         subject.url
-        == "https://dataverse.harvard.edu/citation?persistentid=doi:10.7910/dvn/nj7xso"
+        == "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
     assert subject.titles[0] == {
         "title": "Summary data ankylosing spondylitis GWAS"}

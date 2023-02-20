@@ -84,6 +84,10 @@ def crossref_api_url(doi: str) -> str:
     return "https://api.crossref.org/works/" + doi
 
 
+def crossref_xml_api_url(doi: str) -> str:
+    """Return the Crossref XML API URL for a given DOI"""
+    return "https://api.crossref.org/works/" + doi + "/transform/application/vnd.crossref.unixsd+xml"
+
 def datacite_api_url(doi: str, **kwargs) -> str:
     """Return the DataCite API URL for a given DOI"""
     match = re.match(

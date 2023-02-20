@@ -2,11 +2,15 @@
 from os import path
 import json
 from typing import Optional
+import yaml
+
 from ..readers import (
     get_crossref,
     read_crossref,
     get_datacite,
     read_datacite,
+    get_crossref_xml,
+    read_crossref_xml,
     get_schema_org,
     read_schema_org,
     get_codemeta,
@@ -16,6 +20,7 @@ from ..readers import (
     read_cff
 )
 from ..writers import (
+    write_crosscite,
     write_datacite,
     write_bibtex,
     write_citation,
@@ -45,6 +50,9 @@ class Metadata:
             elif via == "crossref":
                 data = get_crossref(pid)
                 meta = read_crossref(data)
+            elif via == "crossref_xml":
+                data = get_crossref_xml(pid)
+                meta = read_crossref_xml(data)
             elif via == "codemeta":
                 data = get_codemeta(pid)
                 meta = read_codemeta(data)
@@ -64,12 +72,24 @@ class Metadata:
             elif via == "crossref":
                 data = json.loads(string)
                 meta = read_crossref(data)
+            elif via == "datacite_xml":
+                data = json.loads(string)
+                meta = read_datacite(data)
+            elif via == "crossref_xml":
+                data = json.loads(string)
+                meta = read_datacite(data)
             elif via == "citeproc":
                 data = json.loads(string)
                 meta = read_citeproc(data)
             elif via == "codemeta":
                 data = json.loads(string)
                 meta = read_codemeta(data)
+            elif via == "cff":
+                data = yaml.safe_load(string)
+                meta = read_cff(data)
+            elif via == "bibtex":
+                data = yaml.safe_load(string)
+                meta = read_bibtex(data)
             else:
                 raise ValueError("No input format found")
         else:
@@ -112,6 +132,10 @@ class Metadata:
         self.style = kwargs.get("style", "apa")
         self.locale = kwargs.get("locale", "en-US")
 
+    def crosscite(self):
+        """Crosscite"""
+        return write_crosscite(self)
+    
     def bibtex(self):
         """Bibtex"""
         return write_bibtex(self)

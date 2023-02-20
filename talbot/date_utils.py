@@ -37,7 +37,8 @@ def get_iso8601_date(date: Union[datetime.datetime, datetime.date, str, int]) ->
 
 def get_date_by_type(dates: list, date_type="Issued", date_only=False) -> Optional[str]:
     """Get date by date type"""
-    date = next((i for i in dates if i.get("dateType", None) == date_type), None)
+    date = next((i for i in dates if i.get(
+        "dateType", None) == date_type), None)
     if not isinstance(date, dict):
         return None
     if date_only:
@@ -75,6 +76,18 @@ def get_date_from_date_parts(date_as_parts: Optional[dict]) -> Optional[str]:
     year = date_parts[0] if len(date_parts) > 0 else 0
     month = date_parts[1] if len(date_parts) > 1 else 0
     day = date_parts[2] if len(date_parts) > 2 else 0
+    return get_date_from_parts(year, month, day)
+
+
+def get_date_from_crossref_parts(date_parts: dict):
+    """Get date from Crossref XML date parts"""
+    if isinstance(date_parts, list):
+        date_parts = date_parts[0]
+    year = date_parts.get('year', None)
+    if year is None:
+        return None
+    month = date_parts.get('month', 0)
+    day = date_parts.get('day', 0)
     return get_date_from_parts(year, month, day)
 
 
