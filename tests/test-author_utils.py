@@ -1,13 +1,13 @@
 """Test author utils"""
 import pytest
-from talbot.author_utils import (
+from commonmeta.author_utils import (
     cleanup_author,
     authors_as_string,
     get_one_author,
     get_authors,
     get_affiliations,
 )
-from talbot.base_utils import wrap
+from commonmeta.base_utils import wrap
 
 def test_one_author():
     "one author"

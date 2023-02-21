@@ -1,6 +1,6 @@
-"""Test doi_utils module for Talbot"""
+"""Test doi_utils module for commonmeta-py"""
 import pytest
-from talbot.doi_utils import (
+from commonmeta.doi_utils import (
     doi_as_url,
     doi_from_url,
     validate_doi,

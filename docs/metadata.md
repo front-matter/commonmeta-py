@@ -1,6 +1,6 @@
 ## Supported Metadata Formats
 
-Talbot reads and/or writes these metadata formats:
+commonmeta-py reads and/or writes these metadata formats:
 
 | Format                                                                                           | Name          | Content Type                           | Read    | Write   |
 | ------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------- | ------- | ------- |

@@ -1,7 +1,7 @@
 """Citeproc JSON reader tests"""
 from os import path
 import pytest
-from talbot import Metadata
+from commonmeta import Metadata
 
 
 def test_blog_posting():

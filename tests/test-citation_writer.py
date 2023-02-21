@@ -1,6 +1,6 @@
 """Citation writer tests"""
 import pytest
-from talbot import Metadata
+from commonmeta import Metadata
 
 
 @pytest.mark.vcr
@@ -60,6 +60,14 @@ def test_software_with_version():
     subject = Metadata('https://doi.org/10.5281/zenodo.2598836')
     assert subject.citation(
     ) == 'Lab For Exosphere And Near Space Environment Studies. (2019). <i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.2598836'
+
+
+def test_software_via_cff():
+    """software via cff"""
+    subject = Metadata('https://github.com/blebon/directChillFoam')
+    print(subject.url)
+    #assert subject.citation(
+    #) == 'Liang, K. (2023). <i>Long Context Transformer v0.0.1</i> (0.0.1) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.7651809'
 
 
 # def test_interactive_resource_without_dates():

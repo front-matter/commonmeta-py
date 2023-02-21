@@ -1,30 +1,31 @@
-[![Build](https://github.com/front-matter/talbot/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/talbot/actions/workflows/build.yml)
-[![PyPI version](https://img.shields.io/pypi/v/talbot.svg)](https://pypi.org/project/talbot/)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_talbot&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_talbot)
-[![docs](https://img.shields.io/badge/docs-passing-blue)](https://talbot.docs.front-matter.io/)
-![GitHub](https://img.shields.io/github/license/front-matter/talbot?logo=MIT)
+[![Build](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml/badge.svg)](https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml)
+[![PyPI version](https://img.shields.io/pypi/v/commonmeta-py.svg)](https://pypi.org/project/commonmeta-py/)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
+[![docs](https://img.shields.io/badge/docs-passing-blue)](https://commonmeta-py.docs.front-matter.io/)
+![GitHub](https://img.shields.io/github/license/front-matter/commonmeta-py?logo=MIT)
 
-# Talbot
+# commonmeta-py
 
-Talbot is a Python library to convert scholarly metadata, modelled after the [briard ruby gem](https://github.com/front-matter/briard). Talbot is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023.
+commonmeta-py is a Python library to implement Commonmeta, the common Metadata Model for Scholarly Metadata. Use commonmeta-py to convert scholarly metadata, in a variety of formats, listed below. Commonmeta-py is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called commonmeta-py. Commonmeta-py is modelled after the [briard ruby gem](https://github.com/front-matter/briard).
 
 ## Installation
 
 Stable version
 
-    pip (or pip3) install talbot
+    pip (or pip3) install commonmeta-py
 
 Dev version
 
-    pip install git+https://github.com/front-matter/talbot.git#egg=talbot
+    pip install git+https://github.com/front-matter/commonmeta-py.git#egg=commonmeta-py
 
 ## Supported Metadata Formats
 
-Talbot reads and/or writes these metadata formats:
+Commometa-py reads and/or writes these metadata formats:
 
 | Format                                                                                           | Name          | Content Type                           | Read    | Write   |
 | ------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------- | ------- | ------- |
+| Commonmeta                                                                                       | commonmeta    | application/vnd.commonmeta+json        | yes     | yes     |
 | [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref_xml      | application/vnd.crossref.unixref+xml   | later | planned |
 | [Crossref](https://api.crossref.org)                                                             | crossref | application/vnd.crossref+json          | yes     | no      |
 | [DataCite XML](https://schema.datacite.org/)                                                     | datacite_xml      | application/vnd.datacite.datacite+xml  | later | later |
@@ -41,15 +42,16 @@ Talbot reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | later | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | later | yes     |
 
+_commonmeta_: the Commonmeta format is the native format for the library and used internally.
 _Planned_: we plan to implement this format for the v0.8 public release.  
 _Later_: we plan to implement this format in a later release.
 
 ## Documentation
 
-Documentation (work in progress) for using the library is available at the [Talbot Documentation](https://talbot.docs.front-matter.io) website and includes several interactive Jupyter Notebooks .
+Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://commonmeta-py.docs.front-matter.io) website and includes several interactive Jupyter Notebooks .
 
 ## Meta
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/talbot/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.  
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/commonmeta-py/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.  
 
-License: [MIT](https://github.com/front-matter/talbot/blob/main/LICENSE)
+License: [MIT](https://github.com/front-matter/commonmeta-py/blob/main/LICENSE)

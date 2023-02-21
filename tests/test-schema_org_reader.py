@@ -1,7 +1,7 @@
 """Test schema.org reader"""
 import pytest
-from talbot import Metadata
-from talbot.readers.schema_org_reader import schema_org_geolocation
+from commonmeta import Metadata
+from commonmeta.readers.schema_org_reader import schema_org_geolocation
 
 
 @pytest.mark.vcr

@@ -1,6 +1,6 @@
 """Bibtex writer tests"""
 import pytest
-from talbot import Metadata
+from commonmeta import Metadata
 
 
 @pytest.mark.vcr

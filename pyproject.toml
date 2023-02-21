@@ -1,10 +1,10 @@
 [tool.poetry]
-name="talbot"
-version="0.5.1"
-description="Library for conversions of scholarly metadata"
+name="commonmeta-py"
+version="0.6.0"
+description="Library for conversions to/from the Commonmeta scholarly metadata format"
 authors=["Martin Fenner <martin@front-matter.io>"]
 readme = "README.md"
-packages = [{include = "talbot"}]
+packages = [{include = "commonmeta-py"}]
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
@@ -57,7 +57,7 @@ legacy_tox_ini = """
     deps = 
         pytest
         pytest-cov
-    commands = pytest --cov=talbot --cov-report=xml
+    commands = pytest --cov=commonmeta-py --cov-report=xml
 
     [coverage:run]
     relative_files = True

@@ -1,7 +1,7 @@
 """Test utils"""
 from os import path
 import pytest
-from talbot.utils import (
+from commonmeta.utils import (
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
@@ -27,7 +27,7 @@ from talbot.utils import (
     github_as_cff_url,
     github_as_repo_url
 )
-from talbot.base_utils import wrap
+from commonmeta.base_utils import wrap
 
 
 def test_dict_to_spdx_id():

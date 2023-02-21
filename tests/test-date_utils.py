@@ -1,9 +1,9 @@
 """Test date utils"""
 from datetime import date
 import pytest
-from talbot.date_utils import (get_iso8601_date, get_date_by_type, get_date_from_date_parts,
+from commonmeta.date_utils import (get_iso8601_date, get_date_by_type, get_date_from_date_parts,
                                get_date_from_parts, get_date_parts, get_month_from_date, get_date_from_crossref_parts)
-from talbot.base_utils import wrap
+from commonmeta.base_utils import wrap
 
 def test_get_iso8601_date():
     """get_iso8601_date"""

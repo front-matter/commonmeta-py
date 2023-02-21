@@ -1,8 +1,8 @@
 """Test DataCite JSON reader"""
 from os import path
 import pytest
-from talbot import Metadata
-from talbot.readers.datacite_reader import get_datacite, read_datacite
+from commonmeta import Metadata
+from commonmeta.readers.datacite_reader import get_datacite, read_datacite
 
 
 @pytest.mark.vcr

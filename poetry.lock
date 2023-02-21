@@ -1186,7 +1186,7 @@ test = ["argcomplete (>=2.0)", "pre-commit", "pytest", "pytest-mock"]
 
 [[package]]
 name = "types-beautifulsoup4"
-version = "4.11.6.6"
+version = "4.11.6.7"
 description = "Typing stubs for beautifulsoup4"
 category = "main"
 optional = false
@@ -1197,7 +1197,7 @@ types-html5lib = "*"
 
 [[package]]
 name = "types-bleach"
-version = "6.0.0.0"
+version = "6.0.0.1"
 description = "Typing stubs for bleach"
 category = "main"
 optional = false
@@ -1205,7 +1205,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-dateparser"
-version = "1.1.4.7"
+version = "1.1.4.8"
 description = "Typing stubs for dateparser"
 category = "main"
 optional = false
@@ -1213,7 +1213,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-html5lib"
-version = "1.1.11.11"
+version = "1.1.11.12"
 description = "Typing stubs for html5lib"
 category = "main"
 optional = false
@@ -1221,7 +1221,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-pyyaml"
-version = "6.0.12.7"
+version = "6.0.12.8"
 description = "Typing stubs for PyYAML"
 category = "main"
 optional = false
@@ -1229,7 +1229,7 @@ python-versions = "*"
 
 [[package]]
 name = "types-requests"
-version = "2.28.11.13"
+version = "2.28.11.14"
 description = "Typing stubs for requests"
 category = "main"
 optional = false
@@ -1240,7 +1240,7 @@ types-urllib3 = "<1.27"
 
 [[package]]
 name = "types-urllib3"
-version = "1.26.25.6"
+version = "1.26.25.7"
 description = "Typing stubs for urllib3"
 category = "main"
 optional = false
@@ -2462,32 +2462,32 @@ traitlets = [
     {file = "traitlets-5.9.0.tar.gz", hash = "sha256:f6cde21a9c68cf756af02035f72d5a723bf607e862e7be33ece505abf4a3bad9"},
 ]
 types-beautifulsoup4 = [
-    {file = "types-beautifulsoup4-4.11.6.6.tar.gz", hash = "sha256:3eae9907ee46794a4e310f4dae63e5b4229e575d8c2e34955a57d1c0a774345a"},
-    {file = "types_beautifulsoup4-4.11.6.6-py3-none-any.whl", hash = "sha256:470b924035652f1a92b3c143f6cad2fc3b3eaf7dab89d04eb4833025110c0894"},
+    {file = "types-beautifulsoup4-4.11.6.7.tar.gz", hash = "sha256:ecca610052c5418a9a2ade28a0c1995ca0b90c8450a70de8dc26a118de2aca56"},
+    {file = "types_beautifulsoup4-4.11.6.7-py3-none-any.whl", hash = "sha256:49ada75863d0d89fc4ad29f064d75c022cb2ad389e17271f0517f8fb34080715"},
 ]
 types-bleach = [
-    {file = "types-bleach-6.0.0.0.tar.gz", hash = "sha256:770ce9c7ea6173743ef1a4a70f2619bb1819bf53c7cd0336d939af93f488fbe2"},
-    {file = "types_bleach-6.0.0.0-py3-none-any.whl", hash = "sha256:75f55f035837c5fce2cd0bd5162a2a90057680a89c9275588a5c12f5f597a14a"},
+    {file = "types-bleach-6.0.0.1.tar.gz", hash = "sha256:43d9129deb9e82918747437edf78f09ff440f2973f4702625b61994f3e698518"},
+    {file = "types_bleach-6.0.0.1-py3-none-any.whl", hash = "sha256:440df967254007be80bb0f4d851f026c29c709cc48359bf4935d2b2f3a6f9f90"},
 ]
 types-dateparser = [
-    {file = "types-dateparser-1.1.4.7.tar.gz", hash = "sha256:1c3db120a49fbc3729e6fe32682c80d526c44b147a5378127e23538643797ab7"},
-    {file = "types_dateparser-1.1.4.7-py3-none-any.whl", hash = "sha256:2ac3170e8b8544129de9ba603612b00d04364433bf41513aa031ed1429d5a04c"},
+    {file = "types-dateparser-1.1.4.8.tar.gz", hash = "sha256:b2d674d196076875ace0a800dd6496a6739f3c66f65080759819737bdbad012e"},
+    {file = "types_dateparser-1.1.4.8-py3-none-any.whl", hash = "sha256:16b1855dd02e255a6bac8e58a13f30f9fa585442fd0e4a1430312fad72143a76"},
 ]
 types-html5lib = [
-    {file = "types-html5lib-1.1.11.11.tar.gz", hash = "sha256:8cf7fb57dcaf3e612806e9bc25ae366ff7ca71a3418ae829f5b1a9c52cbb4960"},
-    {file = "types_html5lib-1.1.11.11-py3-none-any.whl", hash = "sha256:7456a07a4d162bb8c42c2a088c60cca7c63d06cf2c409a8de39536a6cdbbccc2"},
+    {file = "types-html5lib-1.1.11.12.tar.gz", hash = "sha256:267c58f59977bde713e6077b5ec944e6e44140eb51f859990284cf4e37e17ef9"},
+    {file = "types_html5lib-1.1.11.12-py3-none-any.whl", hash = "sha256:c70bb3c65e061bc1f32bcf0edbb89ebdd5917aee7cc5557f68078ea105069184"},
 ]
 types-pyyaml = [
-    {file = "types-PyYAML-6.0.12.7.tar.gz", hash = "sha256:ad40c99142b1812615bac08d5e240d35107a27ec285af501682c685957692f95"},
-    {file = "types_PyYAML-6.0.12.7-py3-none-any.whl", hash = "sha256:91c64379a9ae88471a473d1ce0abf6a09c285700a297621b2177163d506584b8"},
+    {file = "types-PyYAML-6.0.12.8.tar.gz", hash = "sha256:19304869a89d49af00be681e7b267414df213f4eb89634c4495fa62e8f942b9f"},
+    {file = "types_PyYAML-6.0.12.8-py3-none-any.whl", hash = "sha256:5314a4b2580999b2ea06b2e5f9a7763d860d6e09cdf21c0e9561daa9cbd60178"},
 ]
 types-requests = [
-    {file = "types-requests-2.28.11.13.tar.gz", hash = "sha256:3fd332842e8759ea5f7eb7789df8aa772ba155216ccf10ef4aa3b0e5b42e1b46"},
-    {file = "types_requests-2.28.11.13-py3-none-any.whl", hash = "sha256:94896f6f8e9f3db11e422c6e3e4abbc5d7ccace853eac74b23bdd65eeee3cdee"},
+    {file = "types-requests-2.28.11.14.tar.gz", hash = "sha256:232792870b60adb07d23175451ab4e6190021b0c584edf052d92d9b993118f06"},
+    {file = "types_requests-2.28.11.14-py3-none-any.whl", hash = "sha256:f84613b0d4c5d0eeb7879dfa05e14a3702b9c1f7a4ee81dfe9b4321b13fe93a1"},
 ]
 types-urllib3 = [
-    {file = "types-urllib3-1.26.25.6.tar.gz", hash = "sha256:35586727cbd7751acccf2c0f34a88baffc092f435ab62458f10776466590f2d5"},
-    {file = "types_urllib3-1.26.25.6-py3-none-any.whl", hash = "sha256:a6c23c41bd03e542eaee5423a018f833077b51c4bf9ceb5aa544e12b812d5604"},
+    {file = "types-urllib3-1.26.25.7.tar.gz", hash = "sha256:df4d3e5472bf8830bd74eac12d56e659f88662ba040c7d106bf3a5bee26fff28"},
+    {file = "types_urllib3-1.26.25.7-py3-none-any.whl", hash = "sha256:28d2d7f5c31ff8ed4d9d2e396ce906c49d37523c3ec207d03d3b1695755a7199"},
 ]
 typing-extensions = [
     {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},

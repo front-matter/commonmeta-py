@@ -4,7 +4,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 VERSION = ""
-with open("talbot/__init__.py", "r") as fd:
+with open("commonmeta-py/__init__.py", "r") as fd:
     VERSION = re.search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
     ).group(1)
@@ -21,13 +21,13 @@ with codecs.open("Changelog.rst", "r", "utf-8") as f:
 long_description = "\n\n" + readme + "\n\n" + changes
 
 setup(
-    name="talbot",
+    name="commonmeta-py",
     version=VERSION,
     description="Library for conversions of scholarly metadata",
     long_description=long_description,
     author="Martin Fenner",
     author_email="martin@front-matter.io",
-    url="https://github.com/front-matter/talbot",
+    url="https://github.com/front-matter/commonmeta-py",
     license="MIT",
     packages=find_packages(exclude=["test*"]),
     install_requires=["requests>=2.7.0", "tqdm"],

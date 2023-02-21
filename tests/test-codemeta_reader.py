@@ -1,8 +1,8 @@
 """Test codemeta reader"""
 from os import path
 import pytest
-from talbot import Metadata
-from talbot.readers.codemeta_reader import get_codemeta, read_codemeta
+from commonmeta import Metadata
+from commonmeta.readers.codemeta_reader import get_codemeta, read_codemeta
 
 
 @pytest.mark.vcr

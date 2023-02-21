@@ -1,8 +1,8 @@
 """Crossref reader tests"""
 from os import path
 import pytest
-from talbot import Metadata
-from talbot.readers.crossref_reader import get_crossref, read_crossref, get_related_item
+from commonmeta import Metadata
+from commonmeta.readers.crossref_reader import get_crossref, read_crossref, get_related_item
 
 
 @pytest.mark.vcr

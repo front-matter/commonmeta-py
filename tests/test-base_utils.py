@@ -1,6 +1,6 @@
 """Test base utils"""
 import pytest
-from talbot.base_utils import (
+from commonmeta.base_utils import (
     parse_attributes, presence, compact, wrap, unwrap, sanitize)
 
 

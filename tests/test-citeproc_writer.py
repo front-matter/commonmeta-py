@@ -1,7 +1,7 @@
 """Citeproc writer tests"""
 import pytest
 import json
-from talbot import Metadata
+from commonmeta import Metadata
 
 
 @pytest.mark.vcr
