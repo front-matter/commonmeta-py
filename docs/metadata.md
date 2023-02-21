@@ -20,5 +20,6 @@ commonmeta-py reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | later | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | later | yes     |
 
+_commonmeta_: the Commonmeta format is the native format for the library and used internally.
 _Planned_: we plan to implement this format in the next minor release.  
 _Later_: we plan to implement this format in the next major release.

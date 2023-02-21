@@ -4,7 +4,7 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
 ![GitHub](https://img.shields.io/github/license/front-matter/commonmeta-py?logo=MIT)
 
-commonmeta-py is a Python library to implement Commonmeta, the common Metadata Model for Scholarly Metadata. Use commonmeta-py to convert scholarly metadata, in a variety of formats, listed below. Commonmeta-py is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called commonmeta-py. Commonmeta-py is modelled after the [briard ruby gem](https://github.com/front-matter/briard).
+commonmeta-py is a Python library to implement commonmeta, the metadata format for common scholarly metadata. Use commonmeta-py to convert scholarly metadata from/to a variety of metadata formats, listed below. Commonmeta-py is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called talbot. Commonmeta-py is modelled after the [briard ruby gem](https://github.com/front-matter/briard).
 
 
 ## Installation
