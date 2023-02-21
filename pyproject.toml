@@ -4,7 +4,7 @@ version="0.6.0"
 description="Library for conversions to/from the Commonmeta scholarly metadata format"
 authors=["Martin Fenner <martin@front-matter.io>"]
 readme = "README.md"
-packages = [{include = "commonmeta-py"}]
+packages = [{include = "commonmeta"}]
 
 [tool.poetry.dependencies]
 python = "^3.7.1"
