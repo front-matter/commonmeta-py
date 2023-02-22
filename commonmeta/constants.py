@@ -436,3 +436,8 @@ CP_TO_DC_TRANSLATIONS = {
     'broadcast': 'Audiovisual',
     'webpage': 'Text'
 }
+
+CROSSREF_CONTAINER_TYPES = {
+    'JournalArticle': 'journal',
+    'BookChapter': 'book',
+}

@@ -25,6 +25,7 @@ from ..constants import (
     CR_TO_CP_TRANSLATIONS,
     CR_TO_BIB_TRANSLATIONS,
     CR_TO_RIS_TRANSLATIONS,
+    CROSSREF_CONTAINER_TYPES
 )
 
 
@@ -53,7 +54,7 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
 
-    meta = py_.get(data, "crossref_result.query_result.body.query.doi_record", {})
+    meta = py_.get(data, "crossref_result.query_result.body.query.doi_record.crossref", {})
 
     # query contains information from outside metadata schema, e.g. publisher name
     query = py_.get(data, "crossref_result.query_result.body.query", {})
@@ -62,15 +63,6 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     # new(options.except(:doi, :id, :url,
     # :sandbox, :validate, :ra))
     read_options = kwargs or {}
-
-    resource_type = None
-    bibliographic_metadata = {}
-    program_metadata = {}
-    journal_metadata = {}
-    book_metadata = {}
-    book_series_metadata = {}
-    journal_issue = {}
-    issn = None
 
     publisher = next(
         (
@@ -82,41 +74,33 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     ).get("#text", None)
 
     # fetch metadata depending of Crossref type
-    if py_.get(meta, "crossref.journal", None):
-        journal_metadata = py_.get(meta, "crossref.journal.journal_metadata", {})
-        journal_issue = py_.get(meta, "crossref.journal.journal_issue", {})
-        journal_article = py_.get(meta, "crossref.journal.journal_article", {})
-        bibliographic_metadata = journal_article or journal_issue or journal_metadata
-        program_metadata = py_.get(
-            bibliographic_metadata, "crossmark.custom_metadata.ai:program"
-        ) or py_.get(bibliographic_metadata, "ai:program")
-        if journal_article:
-            resource_type = "JournalArticle"
-        elif journal_issue:
-            resource_type = "JournalIssue"
-        else:
-            resource_type = "Journal"
-    elif py_.get(meta, "crossref.posted_content", None):
-        bibliographic_metadata = py_.get(meta, "crossref.posted_content", {})
+    if py_.get(meta, "journal.journal_article", None):
+        bibliographic_metadata = py_.get(meta, "journal.journal_article", {})
+        resource_type = "JournalArticle"
+    elif py_.get(meta, "journal.journal_issue", None):
+        bibliographic_metadata = py_.get(meta, "journal.journal_issue", {})
+        resource_type = "JournalIssue"
+    elif py_.get(meta, "journal", None):
+        bibliographic_metadata = py_.get(meta, "journal", {})
+        resource_type = "Journal"
+    elif py_.get(meta, "posted_content", None):
+        bibliographic_metadata = meta.get('posted_content', {})
         if publisher is None:
             publisher = py_.get(
                 bibliographic_metadata, "institution.institution_name", None
             )
         resource_type = "PostedContent"
     elif py_.get(meta, "crossref.book", None):
-        book_metadata = py_.get(meta, "crossref.book.book_metadata", {})
-        book_series_metadata = py_.get(meta, "crossref.book.book_series_metadata", {})
-        book_set_metadata = py_.get(meta, "crossref.book.book_set_metadata", {})
         bibliographic_metadata = (
             py_.get(meta, "crossref.book.content_item")
-            or book_metadata
-            or book_series_metadata
-            or book_set_metadata
+            or py_.get(meta, "crossref.book.book_metadata")
+            or py_.get(meta, "crossref.book.book_series_metadata")
+            or py_.get(meta, "crossref.book.book_set_metadata")
         )
         if bibliographic_metadata.get("@component_type", None):
             component_type = bibliographic_metadata.get(
                 "@component_type", ""
-            ).capitalize()
+            ).upper()
             resource_type = f"Book{component_type}"
         else:
             resource_type = "Book"
@@ -131,34 +115,36 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
             meta, "crossref.sa_component.component_list.component", {}
         )
         resource_type = "Component"
-    elif py_.get(meta, "crossref.database", None):
-        bibliographic_metadata = py_.get(meta, "crossref.database.dataset", {})
+    elif py_.get(meta, "database", None):
+        bibliographic_metadata = py_.get(meta, "database.dataset", {})
         resource_type = "Dataset"
-    elif py_.get(meta, "crossref.report_paper", None):
+    elif py_.get(meta, "report_paper", None):
         bibliographic_metadata = py_.get(
-            meta, "crossref.report_paper.report_paper_metadata", {}
+            meta, "report_paper.report_paper_metadata", {}
         )
         resource_type = "Report"
-    elif py_.get(meta, "crossref.peer_review", None):
-        bibliographic_metadata = py_.get(meta, "crossref.peer_review", {})
+    elif py_.get(meta, "peer_review", None):
+        bibliographic_metadata = py_.get(meta, "peer_review", {})
         resource_type = "PeerReview"
-    elif py_.get(meta, "crossref.dissertation", None):
+    elif py_.get(meta, "dissertation", None):
         bibliographic_metadata = py_.get(meta, "crossref.dissertation", {})
         resource_type = "Dissertation"
+    else:
+        bibliographic_metadata = {}
+        resource_type = ''
 
     pid = normalize_doi(
         kwargs.get("doi", None)
         or kwargs.get("pid", None)
         or py_.get(bibliographic_metadata, "doi_data.doi")
     )
+    print(meta)
     if pid:
         doi = doi_from_url(pid)
     else:
         doi = None
-    if resource_type is None:
-        resource_type == ""
 
-    url = normalize_url(py_.get(bibliographic_metadata, "doi_data.resource"))
+    url = normalize_url(py_.get(bibliographic_metadata, "doi_data.resource") or py_.get(meta, "doi_data.resource.#text"))
 
     schema_org = CR_TO_SO_TRANSLATIONS.get(resource_type, None) or "CreativeWork"
     types = compact(
@@ -234,75 +220,47 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     funding_references = crossref_funding(
         wrap(py_.get(bibliographic_metadata, "fr:program.fr:assertion"))
     )
+    rights_list = py_.get(
+        bibliographic_metadata, "ai:program.ai:license_ref"
+    ) or py_.get(
+        bibliographic_metadata, "crossmark.custom_metadata.ai:program.ai:license_ref"
+    )
+    rights = crossref_rights(wrap(rights_list))
 
-    if journal_metadata:
-        issn = next(
-            (
-                i
-                for i in wrap(journal_metadata.get("issn", None))
-                if i.get("@media_type", None) == "electronic"
-            ),
-            {},
-        ).get("#text", None)
-        container = compact(
-            {
-                "type": "Journal",
-                "identifier": issn,
-                "identifierType": "ISSN" if issn else None,
-                "title": parse_attributes(journal_metadata.get("full_title", None)),
-                "volume": parse_attributes(
-                    py_.get(journal_issue, "journal_volume.volume")
-                ),
-                "issue": parse_attributes(journal_issue.get("issue", None)),
-                "firstPage": py_.get(bibliographic_metadata, "pages.first_page"),
-                # parse_attributes(journal_article.to_h.dig('publisher_item', 'item_number'),first: true),
-                "lastPage": py_.get(bibliographic_metadata, "pages.last_page"),
-            }
-        )
     # By using book_metadata, we can account for where resource_type is `BookChapter` and not assume its a whole book
-    elif book_metadata:
-        #   identifiers = crossref_alternate_identifiers(book_metadata)
-        container = compact(
-            {
-                "type": "Book",
-                "title": py_.get(book_metadata, "titles.title"),
-                "firstPage": py_.get(bibliographic_metadata, "pages.first_page"),
-                "lastPage": py_.get(bibliographic_metadata, "pages.last_page"),
-                #'identifiers' => identifiers
-            }
-        )
+    # if book_metadata:
+    #     #   identifiers = crossref_alternate_identifiers(book_metadata)
+    #     container = compact(
+    #         {
+    #             "type": "Book",
+    #             "title": py_.get(book_metadata, "titles.title"),
+    #             "firstPage": py_.get(bibliographic_metadata, "pages.first_page"),
+    #             "lastPage": py_.get(bibliographic_metadata, "pages.last_page"),
+    #             #'identifiers' => identifiers
+    #         }
+    #     )
 
-    elif book_series_metadata.get("series_metadata", None):
-        issn = normalize_issn(py_.get(book_series_metadata, "series_metadata.issn"))
-        container = {
-            "type": "Book Series",
-            "identifier": issn,
-            "identifierType": "ISSN" if issn else None,
-            "title": py_.get(book_series_metadata, "series_metadata.titles.title"),
-            "volume": bibliographic_metadata.get("volume", None),
-        }
-    else:
-        container = None
-
-    if issn is not None:
-        related_items = [
-            compact(
-                {
-                    "relationType": "IsPartOf",
-                    "relatedItemIdentifierType": "ISSN",
-                    "resourceTypeGeneral": "Collection",
-                    "relatedItemIdentifier": issn,
-                }
-            )
-        ]
-    else:
-        related_items = []
-    related_items += [
+    # elif book_series_metadata.get("series_metadata", None):
+    #     issn = normalize_issn(
+    #         py_.get(book_series_metadata, "series_metadata.issn.0.#text")
+    #     )
+    #     container = compact(
+    #         {
+    #             "type": "Book Series",
+    #             "identifier": issn,
+    #             "identifierType": "ISSN" if issn else None,
+    #             "title": py_.get(book_series_metadata, "series_metadata.titles.title"),
+    #             "volume": bibliographic_metadata.get("volume", None),
+    #         }
+    #     )
+    # else:
+    #     container = None
+    container = crossref_container(meta, resource_type=resource_type)
+    related_items = [
         crossref_related_item(i)
         for i in wrap(py_.get(bibliographic_metadata, "citation_list.citation"))
     ]
-
-    language = journal_metadata.get("@language", None)
+    language = py_.get(meta, "journal.journal_metadata.@language")
     agency = bibliographic_metadata.get("@reg-agency", None) or get_doi_ra(pid)
     state = "findable" if meta or read_options else "not_found"
 
@@ -325,7 +283,7 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
         "sizes": None,
         "formats": None,
         "version": None,
-        "rights": crossref_rights(program_metadata),
+        "rights": presence(rights),
         "descriptions": presence(descriptions),
         "geo_locations": None,
         "funding_references": presence(funding_references),
@@ -336,7 +294,7 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
         "date_published": None,
         "date_updated": None,
         "content_url": presence(meta.get("contentUrl", None)),
-        "container": container,
+        "container": presence(container),
         "agency": agency.capitalize() if agency else None,
         "state": state,
         "schema_version": None,
@@ -480,7 +438,10 @@ def crossref_related_item(reference: Optional[dict]) -> Optional[dict]:
             "relatedItemIdentifierType": "DOI",
         }
     else:
+        url = py_.get(reference, "unstructured_citation.u")
         metadata = metadata | {
+            "relatedItemIdentifier": normalize_url(url) if url else None,
+            "relatedItemIdentifierType": "URL" if url else None,
             "creator": reference.get("author", None),
             "title": reference.get("article_title", None),
             "publisher": reference.get("publisher", None),
@@ -492,9 +453,37 @@ def crossref_related_item(reference: Optional[dict]) -> Optional[dict]:
             "containerTitle": reference.get("journal_title", None),
             "edition": None,
             "contributor": None,
-            "unstructured": reference.get("unstructured", None),
+            "unstructured": reference.get("unstructured", None)
+            or py_.get(reference, "unstructured_citation.font")
+            or reference.get("unstructured_citation", None),
         }
     return compact(metadata)
+
+
+def crossref_container(meta: dict, resource_type: str='JournalArticle') -> dict:
+    """Get container from Crossref"""
+    container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
+    issn = next(
+            (
+                i
+                for i in wrap(py_.get(meta, f"{container_type}.{container_type}_metadata.issn"))
+                if i.get("@media_type", None) == "electronic"
+            ),
+            {},
+        ).get("#text", None)
+    return compact(
+        {
+            "type": container_type.capitalize() if container_type else None,
+            "identifier": issn,
+            "identifierType": 'ISSN' if issn else None,
+            "title": py_.get(meta, f"{container_type}.{container_type}_metadata.full_title"),
+            "volume": parse_attributes(
+                py_.get(meta, f"{container_type}.{container_type}_issue.{container_type}_volume.volume")
+            ),
+            "issue": parse_attributes(py_.get(meta, f"{container_type}.{container_type}_issue.issue")),
+            "firstPage": py_.get(meta, f"{container_type}.{container_type}_article.pages.first_page"),
+            "lastPage": py_.get(meta, f"{container_type}.{container_type}_article.pages.last_page"),
+        })
 
 
 def crossref_funding(funding_references: list) -> list:
@@ -527,12 +516,16 @@ def crossref_funding(funding_references: list) -> list:
     #     formatted_funding_references.append(funding_reference)
 
 
-def crossref_rights(program_metadata):
+def crossref_rights(rights_list: list) -> list:
     """Get rights from Crossref"""
     def format_element(element):
         """Format element"""
-        rights_uri = element.get("#text", None)
+        if isinstance(element, str):
+            rights_uri = element
+        elif isinstance(element, dict):
+            rights_uri = element.get("#text", None)
         rights_uri = normalize_cc_url(rights_uri)
         return dict_to_spdx({"rightsUri": rights_uri})
 
-    return [format_element(i) for i in wrap(program_metadata.get('ai:license_ref', None)) if i.get('@applies_to', None) == 'vor']
+    # return only the first license found
+    return wrap(next((format_element(i) for i in rights_list), None))

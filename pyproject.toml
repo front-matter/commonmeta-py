@@ -38,6 +38,7 @@ mkdocs-material = "^8.0"
 mkdocs-material-extensions = "^1.1"
 mkdocs-jupyter = "^0.22"
 datacite = "^1.1"
+xmltodict = "^0.13"
 lxml = "^4.9"
 
 [build-system]
@@ -51,6 +52,7 @@ legacy_tox_ini = """
     env_list =
         py39
         py310
+        py311
 
     [testenv]
     deps = 

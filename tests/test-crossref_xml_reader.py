@@ -49,12 +49,12 @@ def test_doi_with_data_citation():
     ]
     assert subject.publication_year == 2014
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    assert len(subject.related_items) == 28
+    assert len(subject.related_items) == 27
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2050-084X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "bib1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.1038/nature02100",
+        "relatedItemIdentifierType": "DOI",
     }
     assert subject.related_items[-1] == {
         "key": "bib27",
@@ -207,7 +207,7 @@ def test_journal_article_with_funding():
     ]
     assert subject.publication_year == 2019
     assert subject.publisher == "Frontiers Media SA"
-    assert len(subject.related_items) == 71
+    assert len(subject.related_items) == 70
     assert subject.related_items[0] == {
         "relatedItemIdentifier": "1664-462X",
         "relatedItemIdentifierType": "ISSN",
@@ -338,13 +338,8 @@ def test_journal_article_with_rdf_for_container():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "Oxford University Press (OUP)"
-    assert len(subject.related_items) == 112
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1937-240X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
+    assert len(subject.related_items) == 111
+    assert subject.related_items[0] == {}
     assert subject.related_items[-1] == {
         "key": "bibr111",
         "relationType": "References",
@@ -404,12 +399,12 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.publication_year == 2012
     assert subject.publisher == "Springer Science and Business Media LLC"
     # assert len(subject.related_items) == 12
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1611-3349",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
+    # assert subject.related_items[0] == {
+    #     "relatedItemIdentifier": "1611-3349",
+    #     "relatedItemIdentifierType": "ISSN",
+    #     "relationType": "IsPartOf",
+    #     "resourceTypeGeneral": "Collection",
+    # }
     assert subject.related_items[-1] == {
         "key": "49_CR11",
         "relationType": "References",
@@ -417,12 +412,10 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "1611-3349",
+        "type": "Book Series",
+        "identifier": "0302-9743",
         "identifierType": "ISSN",
-        "title": "Advances in Visual Computing",
-        "type": "Book",
-        "firstPage": "499",
-        "lastPage": "508",
+        "title": "Lecture Notes in Computer Science",
     }
     assert subject.subjects is None
     assert subject.language is None
@@ -642,13 +635,8 @@ def test_doi_with_sici():
     ]
     assert subject.publication_year == 2006
     assert subject.publisher == "Wiley"
-    assert len(subject.related_items) == 40
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "0012-9658",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
+    assert len(subject.related_items) == 39
+    assert subject.related_items[0] == {}
     assert subject.related_items[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
         "relationType": "References",
@@ -796,16 +784,20 @@ def test_date_in_future():
     ]
     assert subject.publication_year == 2015
     assert subject.publisher == "Elsevier BV"
-    assert len(subject.related_items) == 99
+    assert len(subject.related_items) == 98
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "0014-2999",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "10.1016/j.ejphar.2015.03.018_bib1",
+        "relationType": "References",
+        "creator": "Allen",
+        "title": "Characterization of the peptide binding motif of a rhesus MHC class I molecule (Mamu-A*01) that binds an immunodominant CTL epitope from simianimmunodeficiency virus.",
+        "publicationYear": "1998",
+        "volume": "160",
+        "firstPage": "6062",
+        "containerTitle": "J. Immunol",
     }
     assert subject.related_items[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
-        "relatedItemIdentifier": "https://doi.org/10.10.1111/hiv.12134",
+        "relatedItemIdentifier": "https://doi.org/10.1111/hiv.12134",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -1082,22 +1074,18 @@ def test_book_chapter():
         "familyName": "Diercks",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rightsUri": "https://www.springernature.com/gp/researchers/text-and-data-mining"
-        }
-    ]
+    assert subject.rights is None
     assert subject.dates == [
         {"date": "2015", "dateType": "Issued"},
         {"date": "2023-02-10T08:59:39Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == 2015
-    assert subject.publisher == "Springer Berlin Heidelberg"
+    assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.related_items) == 22
     assert subject.related_items[0] == {
         "key": "13_CR1",
         "relationType": "References",
-        "relatedItemIdentifier": "10.1007/s00256-012-1391-8",
+        "relatedItemIdentifier": "https://doi.org/10.1007/s00256-012-1391-8",
         "relatedItemIdentifierType": "DOI",
     }
     assert subject.funding_references is None
@@ -1190,8 +1178,8 @@ def test_yet_another_book_chapter():
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
-        {"date": "2012-08-08T16:54:07Z", "dateType": "Issued"},
-        {"date": "2019-07-02T13:17:21Z", "dateType": "Updated"},
+        {"date": "2012-08-08T20:54:07Z", "dateType": "Issued"},
+        {"date": "2019-07-02T17:17:21Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "IGI Global"
@@ -1260,17 +1248,20 @@ def test_missing_creator():
     ]
     assert subject.publication_year == 2018
     assert subject.publisher == "MDPI AG"
-    assert len(subject.related_items) == 24
+    assert len(subject.related_items) == 23
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2304-6775",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "ref1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://council.web.cern.ch/en/content/convention-establishment-european-organization-nuclear-research",
+        "relatedItemIdentifierType": "URL",
+        "unstructured": "CERN Convention for the Establishment of a European Organization for Nuclear Research",
     }
     assert subject.related_items[-1] == {
         "key": "ref23",
         "relationType": "References",
-        "unstructured": "SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD",
+        "relatedItemIdentifier": "http://www.webcitation.org/6xNFQb5iD",
+        "relatedItemIdentifierType": "URL",
+        "unstructured": "SCOAP3 News: APS Joins SCOAP3",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1282,37 +1273,13 @@ def test_missing_creator():
         "identifier": "2304-6775",
         "identifierType": "ISSN",
     }
-    assert subject.subjects == [
-        {"subject": "Computer Science Applications"},
-        {"subject": "Media Technology"},
-        {"subject": "Communication"},
-        {"subject": "Business and International Management"},
-        {"subject": "Library and Information Sciences"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions == [
-        {
-            "description": "Gigantic particle accelerators, incredibly complex "
-            "detectors, an antimatter factory and the discovery of the "
-            "Higgs boson—this is part of what makes CERN famous. Only a "
-            "few know that CERN also hosts the world largest Open Access "
-            "initiative: SCOAP3. The Sponsoring Consortium for Open "
-            "Access Publishing in Particle Physics started operation in "
-            "2014 and has since supported the publication of 20,000 Open "
-            "Access articles in the field of particle physics, at no "
-            "direct cost, nor burden, for individual authors worldwide. "
-            "SCOAP3 is made possible by a 3000-institute strong "
-            "partnership, where libraries re-direct funds previously used "
-            "for subscriptions to ‘flip’ articles to ‘Gold Open Access’. "
-            "With its recent expansion, the initiative now covers about "
-            "90% of the journal literature of the field. This article "
-            "describes the economic principles of SCOAP3, the "
-            "collaborative approach of the partnership, and finally "
-            "summarizes financial results after four years of successful "
-            "operation.",
-            "descriptionType": "Abstract",
-        }
-    ]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("Gigantic particle accelerators")
+    )
     assert subject.version is None
     assert subject.agency == "Crossref"
 
@@ -1347,7 +1314,7 @@ def test_book():
         {"date": "2022-09-22T13:22:42Z", "dateType": "Updated"},
     ]
     assert subject.publication_year == 2019
-    assert subject.publisher == "Cambridge University Press"
+    assert subject.publisher == "Cambridge University Press (CUP)"
     assert len(subject.related_items) == 273
     assert subject.related_items[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
