@@ -3,6 +3,7 @@ from os import path
 import json
 from typing import Optional
 import yaml
+import xmltodict
 
 from ..readers import (
     get_crossref,
@@ -20,7 +21,6 @@ from ..readers import (
     read_cff
 )
 from ..writers import (
-    write_crosscite,
     write_datacite,
     write_bibtex,
     write_citation,
@@ -73,11 +73,12 @@ class Metadata:
                 data = json.loads(string)
                 meta = read_crossref(data)
             elif via == "datacite_xml":
-                data = json.loads(string)
-                meta = read_datacite(data)
+                meta = read_datacite_xml(string)
             elif via == "crossref_xml":
-                data = json.loads(string)
-                meta = read_datacite(data)
+                data = xmltodict.parse(string)
+                null = None
+                data = eval(json.dumps(data))
+                meta = read_crossref_xml(data)
             elif via == "citeproc":
                 data = json.loads(string)
                 meta = read_citeproc(data)

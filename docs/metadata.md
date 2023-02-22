@@ -4,6 +4,7 @@ commonmeta-py reads and/or writes these metadata formats:
 
 | Format                                                                                           | Name          | Content Type                           | Read    | Write   |
 | ------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------- | ------- | ------- |
+| Commonmeta  | commonmeta    | application/vnd.commonmeta+json        | yes     | yes     |
 | [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref_xml      | application/vnd.crossref.unixref+xml   | later | planned |
 | [Crossref](https://api.crossref.org)                                                             | crossref | application/vnd.crossref+json          | yes     | no      |
 | [DataCite XML](https://schema.datacite.org/)                                                     | datacite_xml      | application/vnd.datacite.datacite+xml  | later | later |
@@ -20,6 +21,6 @@ commonmeta-py reads and/or writes these metadata formats:
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | later | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | later | yes     |
 
-_commonmeta_: the Commonmeta format is the native format for the library and used internally.
+_commonmeta_: the Commonmeta format is the native format for the library and used internally.  
 _Planned_: we plan to implement this format in the next minor release.  
 _Later_: we plan to implement this format in the next major release.

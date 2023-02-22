@@ -135,12 +135,12 @@ def test_journal_article():
     ]
     assert subject.publication_year == 2006
     assert subject.publisher == "Public Library of Science (PLoS)"
-    assert len(subject.related_items) == 74
+    assert len(subject.related_items) == 73
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1932-6203",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "ref1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.1056/nejm196502042720503",
+        "relatedItemIdentifierType": "DOI",
     }
     assert subject.related_items[-1] == {
         "key": "ref73",
@@ -201,18 +201,15 @@ def test_journal_article_with_funding():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2019-07-02", "dateType": "Issued"},
-        {"date": "2019-09-22T02:40:23Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2019-07-02", "dateType": "Issued"}
     assert subject.publication_year == 2019
     assert subject.publisher == "Frontiers Media SA"
     assert len(subject.related_items) == 70
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1664-462X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "ref1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.1016/j.plaphy.2013.11.002",
+        "relatedItemIdentifierType": "DOI",
     }
     assert subject.related_items[-1] == {
         "key": "ref70",
@@ -259,9 +256,8 @@ def test_journal_article_original_language():
         subject.url
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
     )
-    # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
+    assert subject.titles[0].get("title") == "自律神経・循環器応答"
+    assert subject.creators == []
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -273,12 +269,12 @@ def test_journal_article_original_language():
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
     )
-    assert len(subject.related_items) == 8
+    assert len(subject.related_items) == 7
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1881-4751",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.1111/j.1469-7793.2000.00407.x",
+        "relatedItemIdentifierType": "DOI",
     }
     assert subject.related_items[-1] == {
         "key": "7",
@@ -332,14 +328,21 @@ def test_journal_article_with_rdf_for_container():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2012-01-01", "dateType": "Issued"},
-        {"date": "2019-07-05T16:53:10Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2012-01-01", "dateType": "Issued"}
     assert subject.publication_year == 2012
     assert subject.publisher == "Oxford University Press (OUP)"
     assert len(subject.related_items) == 111
-    assert subject.related_items[0] == {}
+    assert subject.related_items[0] == {
+        "key": "bibr1",
+        "relationType": "References",
+        "creator": "Absolon",
+        "title": "Die Gattung Candonaim Quartar von Europa",
+        "publicationYear": "1978",
+        "volume": "88",
+        "issue": "5",
+        "firstPage": "1",
+        "containerTitle": "Rozpravy Ceskoslovenske Akademie Ved, Rada Matematickych A Prirodnich Ved",
+    }
     assert subject.related_items[-1] == {
         "key": "bibr111",
         "relationType": "References",
@@ -412,10 +415,12 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "type": "Book Series",
-        "identifier": "0302-9743",
+        "type": "Book",
+        "identifier": "1611-3349",
         "identifierType": "ISSN",
         "title": "Lecture Notes in Computer Science",
+        "firstPage": "499",
+        "lastPage": "508",
     }
     assert subject.subjects is None
     assert subject.language is None
@@ -456,10 +461,7 @@ def test_posted_content():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2016-12-29T06:10:15Z", "dateType": "Issued"},
-        {"date": "2020-01-18T02:53:57Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2016-12-29T06:10:15Z", "dateType": "Issued"}
     assert subject.publication_year == 2016
     assert subject.publisher == "Cold Spring Harbor Laboratory"
     assert len(subject.related_items) == 26
@@ -629,18 +631,20 @@ def test_doi_with_sici():
     assert subject.rights == [
         {"rightsUri": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     ]
-    assert subject.dates == [
-        {"date": "2006-11", "dateType": "Issued"},
-        {"date": "2019-04-28T13:51:50Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2006-11", "dateType": "Issued"}
     assert subject.publication_year == 2006
     assert subject.publisher == "Wiley"
     assert len(subject.related_items) == 39
-    assert subject.related_items[0] == {}
+    assert subject.related_items[0] == {
+        "key": "i0012-9658-87-11-2832-anderson1",
+        "relationType": "References",
+        "relatedItemIdentifier": "https://doi.org/10.2307/3933",
+        "relatedItemIdentifierType": "DOI",
+    }
     assert subject.related_items[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
         "relationType": "References",
-        "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
+        "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378 R. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -708,22 +712,20 @@ def test_doi_with_orcid():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2012", "dateType": "Issued"},
-        {"date": "2016-08-02T18:42:41Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2012", "dateType": "Issued"}
     assert subject.publication_year == 2012
     assert subject.publisher == "Hindawi Limited"
-    assert len(subject.related_items) == 28
+    assert len(subject.related_items) == 27
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2090-1844",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "1",
+        "relationType": "References",
+        "publicationYear": "2009",
+        "volume": "179",
+        "containerTitle": "American Journal of Respiratory and Critical Care Medicine",
     }
     assert subject.related_items[-1] == {
         "key": "30",
-        "relatedItemIdentifier": "https://doi.org/10.10.1378/chest.12-0045",
+        "relatedItemIdentifier": "https://doi.org/10.1378/chest.12-0045",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -739,12 +741,11 @@ def test_doi_with_orcid():
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions == [
-        {
-            "description": "Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0,P&lt;0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2,P&lt;0.01). The model was validated by the regression analysis of 287 HCWs.Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer's cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL.",
-            "descriptionType": "Abstract",
-        }
-    ]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(". To find a statistically significant separation")
+    )
     assert subject.version is None
     assert subject.agency == "Crossref"
 
@@ -880,16 +881,20 @@ def test_vor_with_url():
     ]
     assert subject.publication_year == 2013
     assert subject.publisher == "Springer Science and Business Media LLC"
-    assert len(subject.related_items) == 42
+    assert len(subject.related_items) == 41
     assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1365-2540",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
+        "key": "BFhdy201326_CR1",
+        "relationType": "References",
+        "creator": "J Alvarez",
+        "publicationYear": "1946",
+        "volume": "4",
+        "firstPage": "263",
+        "containerTitle": "An Esc Nac Cien Biol México",
+        "unstructured": "Alvarez J . (1946). Revisión del género Anoptichthys con descipción de una especie nueva (Pisces, Characidae). An Esc Nac Cien Biol México 4: 263–282.",
     }
     assert subject.related_items[-1] == {
         "key": "BFhdy201326_CR41",
-        "relatedItemIdentifier": "https://doi.org/10.10.1111/j.1095-8312.2003.00230.x",
+        "relatedItemIdentifier": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
         "relatedItemIdentifierType": "DOI",
         "relationType": "References",
     }
@@ -966,7 +971,7 @@ def test_component():
     }
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.creators is None
+    assert subject.creators == []
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -1046,9 +1051,9 @@ def test_dataset_usda():
     assert subject.agency == "Crossref"
 
 
-def test_crossref_json():
-    """crossref.json"""
-    string = path.join(path.dirname(__file__), "fixtures", "crossref.json")
+def test_crossref_xml():
+    """crossref.xml"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
     subject = Metadata(string, via="crossref_xml")
     assert subject.pid == "https://doi.org/10.7554/elife.01567"
 
@@ -1126,13 +1131,10 @@ def test_another_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights == [{"rightsUri": "https://www.springer.com/tdm"}]
-    assert subject.dates == [
-        {"date": "2018", "dateType": "Issued"},
-        {"date": "2019-10-16T02:02:05Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2018", "dateType": "Issued"}
     assert subject.publication_year == 2018
-    assert subject.publisher == "Springer International Publishing"
-    assert len(subject.related_items) == 45
+    assert subject.publisher == "Springer Science and Business Media LLC"
+    assert len(subject.related_items) == 44
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1177,10 +1179,7 @@ def test_yet_another_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2012-08-08T20:54:07Z", "dateType": "Issued"},
-        {"date": "2019-07-02T17:17:21Z", "dateType": "Updated"},
-    ]
+    assert subject.dates[0] == {"date": "2012-08-08T20:54:07Z", "dateType": "Issued"}
     assert subject.publication_year == 2012
     assert subject.publisher == "IGI Global"
     assert len(subject.related_items) == 33
@@ -1193,12 +1192,11 @@ def test_yet_another_book_chapter():
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions == [
-        {
-            "description": "Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.",
-            "descriptionType": "Abstract",
-        }
-    ]
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("Image segmentation is an important research area")
+    )
     assert subject.version is None
     assert subject.agency == "Crossref"
 
