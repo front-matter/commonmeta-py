@@ -143,6 +143,38 @@ def test_parse_xmldict():
         }
     }
     assert formatted_funding == parse_xmldict(funding)
+    funding = {
+        "@name": "fundgroup",
+        "assertion": [
+            {
+                "@name": "funder_name",
+                "assertion": {
+                    "@name": "funder_identifier",
+                    "#text": "https://doi.org/10.13039/100000002",
+                },
+                "#text": "NIH",
+            },
+            {"@name": "award_number", "#text": "R01 NS089482"},
+            {"@name": "award_number", "#text": "R01 NS077869"},
+            {"@name": "award_number", "#text": "P01 MH070306"},
+            {"@name": "award_number", "#text": "P40 OD013117"},
+            {"@name": "award_number", "#text": "T32 OD011089"},
+        ],
+    }
+    formatted_funding = {
+        "fundgroup": [
+            {
+                "funder_name": "NIH",
+                "funder_identifier": "https://doi.org/10.13039/100000002",
+            },
+            {"award_number": "R01 NS089482"},
+            {"award_number": "R01 NS077869"},
+            {"award_number": "P01 MH070306"},
+            {"award_number": "P40 OD013117"},
+            {"award_number": "T32 OD011089"},
+        ]
+    }
+    assert formatted_funding == parse_xmldict(funding)
 
 
 def test_sanitize():

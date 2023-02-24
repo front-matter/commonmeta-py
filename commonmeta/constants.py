@@ -440,4 +440,5 @@ CP_TO_DC_TRANSLATIONS = {
 CROSSREF_CONTAINER_TYPES = {
     'JournalArticle': 'journal',
     'BookChapter': 'book',
+    'Dataset': 'database'
 }
