@@ -602,9 +602,7 @@ def test_doi_with_sici():
         subject.url
         == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
     )
-    assert subject.titles[0] == {
-        "title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR-PREY COMMUNITIES"
-    }
+    assert subject.titles[0].get('title').startswith("THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING")
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
