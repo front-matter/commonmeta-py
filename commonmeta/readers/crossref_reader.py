@@ -21,7 +21,7 @@ from ..constants import (
     CR_TO_DC_TRANSLATIONS,
     CR_TO_RIS_TRANSLATIONS,
     CR_TO_SO_TRANSLATIONS,
-    Commonmeta
+    Commonmeta,
 )
 
 
@@ -63,9 +63,11 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         creators = get_authors(from_citeproc(wrap(meta.get("author"))))
     else:
         creators = [{"nameType": "Organizational", "name": ":(unav)"}]
+
     def editor_type(item):
         item["ContributorType"] = "Editor"
         return item
+
     editors = [editor_type(i) for i in wrap(meta.get("editor", None))]
     contributors = presence(get_authors(from_citeproc(editors)))
 
@@ -79,11 +81,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         titles = []
     publisher = meta.get("publisher", None)
 
-    date_created = py_.get(meta, 'created.date-time')
-    date_issued = py_.get(meta, 'issued.date-time') or get_date_from_date_parts(meta.get('issued', None))
-    date_deposited = py_.get(meta, 'deposited.date-time')
-    date_indexed = py_.get(meta, 'indexed.date-time')
-    date_registered = py_.get(meta, 'registered.date-time') or date_created
+    date_created = py_.get(meta, "created.date-time")
+    date_issued = py_.get(meta, "issued.date-time") or get_date_from_date_parts(
+        meta.get("issued", None)
+    )
+    date_deposited = py_.get(meta, "deposited.date-time")
+    date_indexed = py_.get(meta, "indexed.date-time")
+    date_registered = py_.get(meta, "registered.date-time") or date_created
     date_published = date_issued or date_created
     date_updated = date_deposited or date_indexed
     dates = [{"date": date_published, "dateType": "Issued"}]
@@ -94,36 +98,22 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        rights = [dict_to_spdx(
-            {"rightsUri": license_})] if license_ else None
+        rights = [dict_to_spdx({"rightsUri": license_})] if license_ else None
     else:
         rights = None
 
     issns = meta.get("issn-type", None)
     if issns is not None:
         issn = (
-            next(
-                (item for item in issns if item["type"] == "electronic"), None)
+            next((item for item in issns if item["type"] == "electronic"), None)
             or next((item for item in issns if item["type"] == "print"), None)
             or {}
         )
         issn = issn["value"] if issn else None
     else:
         issn = None
-    if issn is not None:
-        related_items = [
-            compact(
-                {
-                    "relationType": "IsPartOf",
-                    "relatedItemIdentifierType": "ISSN",
-                    "resourceTypeGeneral": "Collection",
-                    "relatedItemIdentifier": issn,
-                }
-            )
-        ]
-    else:
-        related_items = []
-    related_items += [get_related_item(i) for i in wrap(meta.get("reference", []))]
+ 
+    references = [get_reference(i) for i in wrap(meta.get("reference", []))]
 
     if resource_type == "JournalArticle":
         container_type = "Journal"
@@ -145,8 +135,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         last_page = None
 
     container_titles = meta.get("container-title", [])
-    container_title = container_titles[0] if len(
-        container_titles) > 0 else None
+    container_title = container_titles[0] if len(container_titles) > 0 else None
     if container_title is not None:
         container = compact(
             {
@@ -163,34 +152,21 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         container = None
 
-    if issn:
-        related_items = [
-            {
-                "relationType": "IsPartOf",
-                "relatedItemIdentifierType": "ISSN",
-                "resourceTypeGeneral": "Collection",
-                "relatedItemIdentifier": issn,
-            }
-        ]
-    else:
-        related_items = []
-    references = meta.get("reference", [])
-    for ref in references:
-        related_items.append(get_related_item(ref))
-
+    references = references = [
+        get_reference(i) for i in wrap(meta.get("reference", None))
+    ]
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)
     if description is not None:
         descriptions = [
-            {"description": sanitize(description),
-             "descriptionType": "Abstract"}
+            {"description": sanitize(description), "descriptionType": "Abstract"}
         ]
     else:
         descriptions = None
 
     state = "findable" if meta or read_options else "not_found"
-    subjects = [{'subject': i} for i in wrap(meta.get("subject", []))]
+    subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
 
     return {
         # required properties
@@ -215,7 +191,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "descriptions": descriptions,
         "geo_locations": None,
         "funding_references": presence(funding_references),
-        "related_items": related_items,
+        "references": references,
         # other properties
         "date_created": date_created,
         "date_registered": date_registered,
@@ -225,40 +201,31 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "container": container,
         "agency": get_doi_ra(pid),
         "state": state,
-        "schema_version": None
+        "schema_version": None,
     } | read_options
 
 
-def get_related_item(reference: Optional[dict]) -> Optional[dict]:
-    """Get related_item from Crossref reference"""
+def get_reference(reference: Optional[dict]) -> Optional[dict]:
+    """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
     doi = reference.get("DOI", None)
     metadata = {
         "key": reference.get("key", None),
-        "relationType": "References",
-        "relatedItemType": None,
+        "doi": normalize_doi(doi) if doi else None,
+        "creator": reference.get("author", None),
+        "title": reference.get("article-title", None),
+        "publisher": reference.get("publisher", None),
+        "publicationYear": reference.get("year", None),
+        "volume": reference.get("volume", None),
+        "issue": reference.get("issue", None),
+        "firstPage": reference.get("first-page", None),
+        "lastPage": reference.get("last-page", None),
+        "containerTitle": reference.get("journal-title", None),
+        "edition": None,
+        "contributor": None,
+        "unstructured": reference.get("unstructured", None) if doi is None else None,
     }
-    if doi is not None:
-        metadata = metadata | {
-            "relatedItemIdentifier": normalize_doi(doi),
-            "relatedItemIdentifierType": "DOI",
-        }
-    else:
-        metadata = metadata | {
-            "creator": reference.get("author", None),
-            "title": reference.get("article-title", None),
-            "publisher": reference.get("publisher", None),
-            "publicationYear": reference.get("year", None),
-            "volume": reference.get("volume", None),
-            "issue": reference.get("issue", None),
-            "firstPage": reference.get("first-page", None),
-            "lastPage": reference.get("last-page", None),
-            "containerTitle": reference.get("journal-title", None),
-            "edition": None,
-            "contributor": None,
-            "unstructured": reference.get("unstructured", None)
-        }
     return compact(metadata)
 
 

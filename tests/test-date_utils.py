@@ -2,7 +2,8 @@
 from datetime import date
 import pytest
 from commonmeta.date_utils import (get_iso8601_date, get_date_by_type, get_date_from_date_parts,
-                               get_date_from_parts, get_date_parts, get_month_from_date, get_date_from_crossref_parts)
+                               get_date_from_parts, get_date_parts, get_month_from_date, get_date_from_crossref_parts,
+                               get_datetime_from_time)
 from commonmeta.base_utils import wrap
 
 def test_get_iso8601_date():
@@ -77,3 +78,26 @@ def test_get_month_from_date():
     assert "may" == get_month_from_date(date(2020, 5, 17))
     assert None is get_month_from_date(None)
     assert None is get_month_from_date([8])
+
+
+def test_get_datetime_from_time():
+    """get datetime from time"""
+    # present
+    time = '20200226071709'
+    response = get_datetime_from_time(time)
+    assert '2020-02-26T07:17:09Z' == response
+
+    # past
+    time = '18770312071709'
+    response = get_datetime_from_time(time)
+    assert '1877-03-12T07:17:09Z' == response
+
+    # future
+    time = '20970114071709'
+    response = get_datetime_from_time(time)
+    assert '2097-01-14T07:17:09Z' == response
+
+    # invalid
+    time = '20201587168864794'
+    response = get_datetime_from_time(time)
+    assert None is response

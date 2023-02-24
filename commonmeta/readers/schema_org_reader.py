@@ -13,7 +13,7 @@ from ..utils import (
     normalize_id,
     normalize_ids,
     normalize_url,
-    name_to_fos
+    name_to_fos,
 )
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
@@ -38,7 +38,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
         return {"state": "not_found"}
-    
+
     soup = BeautifulSoup(response.text, "html.parser")
     # workaround for metadata not included with schema.org but in html meta tags
     data = get_html_meta(soup)
@@ -51,7 +51,8 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     auth = soup.select("meta[name='citation_author']")
 
     def format_author(author):
-        return {'name': author["content"]}
+        return {"name": author["content"]}
+
     authors = [format_author(i) for i in auth]
 
     if data.get("author", None) is None and data.get("creator", None) is not None:
@@ -79,8 +80,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         pid = meta.get("identifier", None)
     pid = normalize_id(pid)
 
-    schema_org = meta.get("@type") if meta.get("@type",
-                                               None) else "CreativeWork"
+    schema_org = meta.get("@type") if meta.get("@type", None) else "CreativeWork"
     resource_type_general = SO_TO_DC_TRANSLATIONS.get(schema_org, None)
     types = compact(
         {
@@ -101,8 +101,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         creators = authors
     print(creators)
     contributors = presence(
-        get_authors(from_schema_org_creators(
-            wrap(meta.get("editor", None))))
+        get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     )
 
     if meta.get("name", None) is not None:
@@ -131,8 +130,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         rights = None
 
     issn = py_.get(meta, "isPartOf.issn")
-    cet = "includedInDataCatalog" if schema_org in [
-        "Dataset", "Periodical"] else None
+    cet = "includedInDataCatalog" if schema_org in ["Dataset", "Periodical"] else None
     if cet is not None:
         url = parse_attributes(
             from_schema_org(meta.get(cet, None)), content="url", first=True
@@ -172,30 +170,18 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         container = {}
 
-    related_items = (
-        wrap(schema_org_is_identical_to(meta))
-        + wrap(schema_org_is_part_of(meta))
-        + wrap(schema_org_has_part(meta))
-        + wrap(schema_org_is_previous_version_of(meta))
-        + wrap(schema_org_is_new_version_of(meta))
-        + wrap(schema_org_references(meta))
-        + wrap(schema_org_is_referenced_by(meta))
-        + wrap(schema_org_is_supplement_to(meta))
-        + wrap(schema_org_is_supplemented_by(meta))
-    )
+    references = wrap(schema_org_references(meta))
+    funding_references = [
+        get_funding_reference(i) for i in wrap(meta.get("funder", None))
+    ]
 
-    funding_references = [get_funding_reference(
-        i) for i in wrap(meta.get("funder", None))]
-
-    if meta.get("description", None) is not None:
-        descriptions = [
-            {
-                "description": sanitize(meta.get("description")),
-                "descriptionType": "Abstract",
-            }
-        ]
-    else:
-        descriptions = None
+    descriptions = [
+        {
+            "description": sanitize(i),
+            "descriptionType": "Abstract",
+        }
+        for i in wrap(meta.get("description"))
+    ]
 
     # convert keywords as comma-separated string into list
     subj = meta.get("keywords", None)
@@ -214,7 +200,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         language = None
 
-    geo_locations = [schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))]
+    geo_locations = [
+        schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
+    ]
     alternate_identifiers = None
     state = None
 
@@ -238,10 +226,10 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "formats": None,
         "version": meta.get("version", None),
         "rights": rights,
-        "descriptions": descriptions,
+        "descriptions": presence(descriptions),
         "geo_locations": presence(geo_locations),
         "funding_references": presence(funding_references),
-        "related_items": related_items,
+        "references": presence(references),
         # optional attributes
         "container": container,
         "agency": parse_attributes(
@@ -322,8 +310,9 @@ def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
     latitude = py_.get(geo_location, "geo.latitude")
 
     if type_ == "GeoCoordinates":
-        return {'geoLocationPoint': {"pointLongitude": longitude,
-                                     "pointLatitude": latitude}}
+        return {
+            "geoLocationPoint": {"pointLongitude": longitude, "pointLatitude": latitude}
+        }
     return None
 
 
@@ -358,8 +347,7 @@ def get_html_meta(soup):
 
     keywords = soup.select_one("meta[name='citation_keywords']")
     data["keywords"] = (
-        str(keywords["content"]).replace(
-            ";", ",").rstrip(", ") if keywords else None
+        str(keywords["content"]).replace(";", ",").rstrip(", ") if keywords else None
     )
 
     date_published = soup.select_one(
@@ -398,10 +386,12 @@ def get_html_meta(soup):
 
 def get_funding_reference(dct):
     """Get funding reference"""
-    return compact({
-        "funderName": dct.get("name", None),
-        "funderIdentifier": dct.get("@id", None),
-        "funderIdentifierType": "Crossref Funder ID"
-        if dct.get("@id", None)
-        else None
-    })
+    return compact(
+        {
+            "funderName": dct.get("name", None),
+            "funderIdentifier": dct.get("@id", None),
+            "funderIdentifierType": "Crossref Funder ID"
+            if dct.get("@id", None)
+            else None,
+        }
+    )

@@ -51,10 +51,10 @@ def write_schema_org(metadata):
             "dateModified": get_date_by_type(metadata.dates, "Updated"),
             "pageStart": container.get("firstPage", None) if container else None,
             "pageEnd": container.get("lastPage", None) if container else None,
-            "isPartOf": unwrap(to_schema_org_relations(
-                related_items=metadata.related_items,
-                relation_type="IsPartOf",
-            )),
+            # "isPartOf": unwrap(to_schema_org_relations(
+            #     related_items=metadata.related_items,
+            #     relation_type="IsPartOf",
+            # )),
             "periodical": periodical,
             "publisher": {"@type": "Organization", "name": metadata.publisher}
             if metadata.publisher

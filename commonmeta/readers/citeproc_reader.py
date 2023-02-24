@@ -67,16 +67,6 @@ def read_citeproc(data: Commonmeta, **kwargs) -> Commonmeta:
     else:
         rights = None
 
-    if meta.get('container-title', None) and meta.get('ISSN', None):
-        related_items = [compact({
-            'type': 'Periodical',
-            'relationType': 'IsPartOf',
-            'relatedIdentifierType': 'ISSN',
-            'title': meta.get('container-title', None),
-            'relatedItemIdentifier': meta.get('ISSN', None)})]
-    else:
-        related_items = None
-
     pages = meta.get('page', '').split('-')
     container = compact({'type': 'Periodical',
         'title': meta.get('container-title', None),
@@ -106,7 +96,7 @@ def read_citeproc(data: Commonmeta, **kwargs) -> Commonmeta:
         'contributors': contributors,
         'container': container,
         'publisher': meta.get('publisher', None),
-        'related_items': related_items,
+        'references': None,
         'dates': dates,
         'publication_year': publication_year,
         'descriptions': descriptions,

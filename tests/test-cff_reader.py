@@ -37,7 +37,7 @@ def test_ruby_cff():
     assert meta.dates == [{'date': '2022-11-05', 'dateType': 'Issued'}]
     assert meta.version == '1.0.1'
     assert meta.rights == None
-    assert meta.related_items is None
+    assert meta.references is None
     assert meta.publication_year == 2022
     assert meta.publisher == 'GitHub'
     assert meta.state == 'findable'
@@ -94,8 +94,8 @@ def test_cff_converter_python():
         'subject': 'citation.cff'}, {'subject': 'codemeta'}, {'subject': 'endnote'}, {'subject': 'ris'}, {'subject': 'citation file format'}]
     assert meta.dates == [{'date': '2021-09-22', 'dateType': 'Issued'}]
     assert meta.version == '2.0.0'
-    assert meta.rights == None
-    assert meta.related_items is None
+    assert meta.rights is None
+    assert meta.references is None
     assert meta.publication_year == 2021
     assert meta.publisher == 'GitHub'
     assert meta.state == 'findable'
@@ -121,8 +121,8 @@ def test_github_repo():
     assert meta.subjects is None
     assert meta.dates == [{'date': '2023-02-17', 'dateType': 'Issued'}]
     assert meta.version == '0.0.1'
-    assert meta.rights == None
-    assert meta.related_items is None
+    assert meta.rights is None
+    assert meta.references is None
     assert meta.publication_year == 2023
     assert meta.publisher == 'GitHub'
     assert meta.state == 'findable'

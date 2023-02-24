@@ -173,7 +173,7 @@ def normalize_issn(string, **kwargs):
     """Normalize ISSN
        Pick electronic issn if there are multiple
        Format issn as xxxx-xxxx"""
-    content = kwargs.get('content', '__content__')
+    content = kwargs.get('content', '#text')
     if string is None:
         return None
     if isinstance(string, str):
@@ -226,7 +226,7 @@ def dict_to_spdx(dct: dict) -> dict:
 
     #   else
     #     {
-    #       'rights': hsh['__content__'] || hsh['rights'],
+    #       'rights': hsh['#text'] || hsh['rights'],
     #       'rightsUri': hsh['rightsUri'] || hsh['rightsUri'],
     #       'rightsIdentifier': hsh['rightsIdentifier'].present? ? hsh['rightsIdentifier'].downcase : None,
     #       'rightsIdentifierScheme': hsh['rightsIdentifierScheme'],
@@ -494,7 +494,7 @@ def from_schema_org_creators(elements: list) -> list:
             scheme_uri = None
         element["nameIdentifier"] = [
             {
-                "__content__": i.get("@id", None),
+                "#text": i.get("@id", None),
                 "nameIdentifierScheme": "ORCID",
                 "schemeUri": "https://orcid.org",
             }
@@ -509,7 +509,7 @@ def from_schema_org_creators(elements: list) -> list:
                 "nameType": i["@type"].title() + "al"
                 if i.get("@type", None)
                 else None,
-                "__content__": i.get("name", None)
+                "#text": i.get("name", None)
             }
         )
         length = len(str(i["name"]).split(" "))
@@ -525,7 +525,7 @@ def from_schema_org_creators(elements: list) -> list:
 
         element["affiliation"] = compact(
             {
-                "__content__": py_.get(i, "affiliation.name"),
+                "#text": py_.get(i, "affiliation.name"),
                 "affiliationIdentifier": py_.get(i, "affiliation.@id"),
                 "affiliationIdentifierScheme": affiliation_identifier_scheme,
                 "schemeUri": scheme_uri,

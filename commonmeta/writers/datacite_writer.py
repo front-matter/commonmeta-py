@@ -1,6 +1,7 @@
 """DataCite writer for commonmeta-py"""
 import json
 from typing import Optional
+from pydash import py_
 
 from ..utils import pages_as_string, to_citeproc
 from ..base_utils import wrap, presence, parse_attributes, compact
@@ -13,8 +14,9 @@ def write_datacite(metadata: Optional[Commonmeta]) -> Optional[str]:
     if metadata is None:
         return None
     creators = [to_datacite_creator(i) for i in wrap(metadata.creators)]
+    related_items = [to_datacite_related_item(i) for i in wrap(metadata.references)]
 
-    dictionary = compact(
+    data = compact(
         {
             "id": metadata.pid,
             "doi": metadata.doi,
@@ -28,7 +30,7 @@ def write_datacite(metadata: Optional[Commonmeta]) -> Optional[str]:
             "dates": metadata.dates,
             "language": metadata.language,
             "types": metadata.types,
-            "relatedItems": metadata.related_items,
+            "relatedItems": related_items,
             "sizes": metadata.sizes,
             "formats": metadata.formats,
             "version": metadata.version,
@@ -38,7 +40,7 @@ def write_datacite(metadata: Optional[Commonmeta]) -> Optional[str]:
             "fundingReferences": metadata.funding_references
         }
     )
-    return json.dumps(dictionary, indent=4)
+    return json.dumps(data, indent=4)
 
 
 def to_datacite_creator(creator: dict) -> dict:
@@ -54,4 +56,14 @@ def to_datacite_creator(creator: dict) -> dict:
         "nameType": creator.get("nameType", None),
         "nameIdentifiers": creator.get("nameIdentifiers", None),
         "affiliation": creator.get("affiliation", None),
+    })
+
+def to_datacite_related_item(reference: dict) -> dict:
+    """Convert reference to datacite related_item"""
+    doi = reference.get('doi', None)
+    url = reference.get('url', None)
+    return compact({
+        "relatedIdentifier": doi if doi else url,
+        "relatedIdentifierType": "DOI" if doi else "URL",
+        "relationType": "References",
     })

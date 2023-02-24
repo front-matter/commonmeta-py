@@ -25,7 +25,7 @@ class Commonmeta(TypedDict):
     descriptions: Optional[List[dict]]
     geo_locations: Optional[List[dict]]
     funding_references: Optional[List[dict]]
-    related_items: Optional[List[dict]]
+    references: Optional[List[dict]]
     container: Optional[dict]
     date_created: Optional[str]
     date_registered: Optional[str]

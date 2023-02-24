@@ -50,13 +50,8 @@ def test_dataset():
         {"date": "2011", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2011
-    assert subject.date_registered == '2011-02-01T17:32:02Z'
-    assert len(subject.related_items) == 1
-    assert subject.related_items[0] == {
-        "relationType": "IsCitedBy",
-        "relatedIdentifier": "10.1371/journal.ppat.1000446",
-        "relatedIdentifierType": "DOI",
-    }
+    assert subject.date_registered == "2011-02-01T17:32:02Z"
+    assert subject.references is None
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -91,8 +86,7 @@ def test_blog_posting():
         "ris": "RPRT",
     }
     assert subject.url == "https://blog.datacite.org/datacite-member-survey-2022"
-    assert subject.titles[0] == {"lang": "en",
-                                 "title": "DataCite Member Survey 2022"}
+    assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
         "nameType": "Personal",
@@ -112,82 +106,10 @@ def test_blog_posting():
     ]
     assert subject.dates == [{"date": 2023, "dateType": "Issued"}]
     assert subject.publication_year == 2023
-    assert subject.date_registered == '2023-01-31T12:41:28Z'
+    assert subject.date_registered == "2023-01-31T12:41:28Z"
     assert subject.publisher == "DataCite"
-    assert subject.related_items == [
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/K1GW-Y723",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/1tek-7522",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/cnsf-ec48",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/q34f-c696",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/vacd-ve62",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/h7x6-qf64",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/vjz9-kx84",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-        {
-            "schemeUri": None,
-            "schemeType": None,
-            "relationType": "Cites",
-            "relatedIdentifier": "10.5438/ptv6-vf36",
-            "resourceTypeGeneral": "Text",
-            "relatedIdentifierType": "DOI",
-            "relatedMetadataScheme": None,
-        },
-    ]
+    assert len(subject.references) == 8
+    assert subject.references[0] == {'doi': 'https://doi.org/10.5438/k1gw-y723'}
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -240,12 +162,12 @@ def test_date():
         {"date": "2013", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2013
-    assert subject.date_registered == '2013-11-13T13:42:17Z'
+    assert subject.date_registered == "2013-11-13T13:42:17Z"
     assert (
         subject.publisher
         == "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"
     )
-    assert subject.related_items == []
+    assert subject.references is None
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -282,6 +204,8 @@ def test_affiliation_identifier():
     #     "ris": "COMP",
     # }
     # assert subject.url == "
+
+
 #     it 'affiliation identifier' do
 #       text = "#{fixture_path}datacite-example-affiliation.xml"
 #       subject = described_class.new(text: input)
@@ -421,15 +345,9 @@ def test_multiple_identifiers():
     ]
     assert subject.dates == [{"date": "2016-03-27", "dateType": "Issued"}]
     assert subject.publication_year == 2016
-    assert subject.date_registered == '2016-03-27T22:18:38Z'
+    assert subject.date_registered == "2016-03-27T22:18:38Z"
     assert subject.publisher == "Zenodo"
-    assert subject.related_items == [
-        {
-            "relatedIdentifier": "https://github.com/kjgarza/frame_experiment_analysis/tree/v1.0",
-            "relatedIdentifierType": "URL",
-            "relationType": "IsSupplementTo",
-        }
-    ]
+    assert subject.references is None
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -492,15 +410,9 @@ def test_is_identical():
         {"date": "2016", "dateType": "Issued"},
     ]
     assert subject.publication_year == 2016
-    assert subject.date_registered == '2016-11-16T10:49:12Z'
+    assert subject.date_registered == "2016-11-16T10:49:12Z"
     assert subject.publisher == "figshare"
-    assert subject.related_items == [
-        {
-            "relationType": "IsIdenticalTo",
-            "relatedIdentifier": "10.6084/m9.figshare.4234751",
-            "relatedIdentifierType": "DOI",
-        }
-    ]
+    assert subject.references is None
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -538,7 +450,7 @@ def test_is_identical():
 
 def test_subject_scheme_for():
     """subject scheme FOR"""
-    string = '10.6084/m9.figshare.1449060'
+    string = "10.6084/m9.figshare.1449060"
     subject = Metadata(string)
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.1449060"
@@ -550,7 +462,10 @@ def test_subject_scheme_for():
         "bibtex": "misc",
         "ris": "DATA",
     }
-    assert subject.url == "https://figshare.com/articles/dataset/Drosophila_melanogaster_African_Wings/1449060/4"
+    assert (
+        subject.url
+        == "https://figshare.com/articles/dataset/Drosophila_melanogaster_African_Wings/1449060/4"
+    )
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
         "nameType": "Personal",
@@ -565,9 +480,13 @@ def test_subject_scheme_for():
         ],
     }
     assert subject.titles[0] == {
-        'title': 'Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia.'}
-    assert subject.descriptions[0].get('description').startswith(
-        'These are raw wing images from <i>Drosophila melanogaster</i>')
+        "title": "Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia."
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("These are raw wing images from <i>Drosophila melanogaster</i>")
+    )
     assert subject.rights == [
         {
             "rights": "Creative Commons Attribution 4.0 International",
@@ -595,8 +514,10 @@ def test_subject_scheme_for():
             "subject": "FOS: Biological sciences",
             "subjectScheme": "Fields of Science and Technology (FOS)",
         },
-        {'subject': '60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)',
-         'subjectScheme': 'FOR'}
+        {
+            "subject": "60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)",
+            "subjectScheme": "FOR",
+        },
     ]
     assert subject.language is None
     assert subject.agency == "DataCite"
@@ -605,48 +526,67 @@ def test_subject_scheme_for():
 
 def test_more_subject_scheme_for():
     """more subject scheme FOR"""
-    string = '10.4225/03/5a6931f57c654'
+    string = "10.4225/03/5a6931f57c654"
     subject = Metadata(string)
 
     assert subject.pid == "https://doi.org/10.4225/03/5a6931f57c654"
-    assert subject.types.get('resourceType') == 'Thesis'
+    assert subject.types.get("resourceType") == "Thesis"
     assert subject.subjects == [
-        {'subject': '90301 Biomaterials', 'subjectScheme': 'FOR'},
+        {"subject": "90301 Biomaterials", "subjectScheme": "FOR"},
         {
-            'subject': 'FOS: Medical engineering',
-            'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf',
-            'subjectScheme': 'Fields of Science and Technology (FOS)',
+            "subject": "FOS: Medical engineering",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
         },
         {
-            'subject': 'FOS: Medical engineering',
-            'subjectScheme': 'Fields of Science and Technology (FOS)',
+            "subject": "FOS: Medical engineering",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
         },
     ]
 
 
 def test_even_more_subject_scheme_for():
     """even more subject scheme FOR"""
-    string = '10.4225/03/5a31ec65634ef'
+    string = "10.4225/03/5a31ec65634ef"
     subject = Metadata(string)
 
     assert subject.pid == "https://doi.org/10.4225/03/5a31ec65634ef"
-    assert subject.types.get('resourceType') == 'Poster'
+    assert subject.types.get("resourceType") == "Poster"
     assert subject.subjects == [
-        {'subject': '130103 Higher Education', 'subjectScheme': 'FOR'},
-        {'subject': 'FOS: Educational sciences', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf',
-            'subjectScheme': 'Fields of Science and Technology (FOS)'},
-        {'subject': 'FOS: Educational sciences', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {
-            'subject': '130313 Teacher Education and Professional Development of Educators', 'subjectScheme': 'FOR'},
-        {'subject': '80799 Library and Information Studies not elsewhere classified', 'subjectScheme': 'FOR'}, {'subject': 'FOS: Media and communications',
-                                                                                                                'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'},
-        {'subject': 'FOS: Media and communications', 'subjectScheme': 'Fields of Science and Technology (FOS)'}, {
-            'subject': 'Library and Information Studies'}
+        {"subject": "130103 Higher Education", "subjectScheme": "FOR"},
+        {
+            "subject": "FOS: Educational sciences",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Educational sciences",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "130313 Teacher Education and Professional Development of Educators",
+            "subjectScheme": "FOR",
+        },
+        {
+            "subject": "80799 Library and Information Studies not elsewhere classified",
+            "subjectScheme": "FOR",
+        },
+        {
+            "subject": "FOS: Media and communications",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Media and communications",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {"subject": "Library and Information Studies"},
     ]
 
 
 def test_cc_by():
     """CC-BY"""
-    string = '10.6084/m9.figshare.1286826.v1'
+    string = "10.6084/m9.figshare.1286826.v1"
     subject = Metadata(string)
 
     assert subject.pid == "https://doi.org/10.6084/m9.figshare.1286826.v1"
@@ -659,6 +599,7 @@ def test_cc_by():
             "rightsIdentifierScheme": "SPDX",
         }
     ]
+
 
 #     it 'funding schema version 3' do
 #       text = 'https://doi.org/10.5281/ZENODO.1239'
@@ -784,7 +725,7 @@ def test_cc_by():
 
 def test_datacite_json():
     """datacite.json"""
-    string = path.join(path.dirname(__file__), 'fixtures', 'datacite.json')
+    string = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.doi == "10.5438/4k3m-nyvg"
@@ -796,7 +737,7 @@ def test_datacite_json():
         "bibtex": "article",
         "ris": "RPRT",
     }
-    assert subject.titles[0] == {'title': 'Eating your own Dog Food'}
+    assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
         "nameType": "Personal",
@@ -805,8 +746,11 @@ def test_datacite_json():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [{'dateType': 'Created', 'date': '2016-12-20'}, {
-        'dateType': 'Issued', 'date': '2016-12-20'}, {'dateType': 'Updated', 'date': '2016-12-20'}]
+    assert subject.dates == [
+        {"dateType": "Created", "date": "2016-12-20"},
+        {"dateType": "Issued", "date": "2016-12-20"},
+        {"dateType": "Updated", "date": "2016-12-20"},
+    ]
     assert subject.publication_year == 2016
     assert subject.publisher == "DataCite"
 
@@ -945,28 +889,79 @@ def test_geolocation_box():
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.6071/z7wc73"
     # assert subject.doi == "10.6071/z7wc73"
-    assert subject.types.get('schemaOrg') == 'Dataset'
+    assert subject.types.get("schemaOrg") == "Dataset"
     assert len(subject.creators) == 6
     assert subject.creators[0] == {
-        'familyName': 'Bales',
-        'givenName': 'Roger',
-        'nameType': 'Personal',
-        'affiliation': [{'name': 'University of California, Merced'}]
+        "familyName": "Bales",
+        "givenName": "Roger",
+        "nameType": "Personal",
+        "affiliation": [{"name": "University of California, Merced"}],
     }
     assert subject.titles == [
-        {'title': 'Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature'}]
-    assert subject.publisher == 'Dryad'
-    assert subject.dates == [{'date': '2014-10-17', 'dateType': 'Updated'},
-                             {'date': '2016-03-14T17:02:02Z', 'dateType': 'Available'}, {'date': '2016', 'dateType': 'Issued'}]
+        {
+            "title": "Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature"
+        }
+    ]
+    assert subject.publisher == "Dryad"
+    assert subject.dates == [
+        {"date": "2014-10-17", "dateType": "Updated"},
+        {"date": "2016-03-14T17:02:02Z", "dateType": "Available"},
+        {"date": "2016", "dateType": "Issued"},
+    ]
     assert subject.publication_year == 2016
-    assert subject.subjects == [{'subject': 'air temperature'}, {'subject': 'Earth sciences'}, {'subject': 'Nevada, Sierra (mountain range)'}, {'subject': 'snow depth'}, {'subject': 'soil temperature'}, {'subject': 'water balance'}, {
-        'subject': 'FOS: Environmental engineering'}, {'subject': 'FOS: Environmental engineering', 'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf', 'subjectScheme': 'Fields of Science and Technology (FOS)'}]
-    assert subject.geo_locations == [{'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}, 'geoLocationPlace': 'Providence Creek (Lower, Upper and P301)', 'geoLocationPoint': {
-        'pointLatitude': '37.047756', 'pointLongitude': '-119.221094'}}, {'geoLocationBox': {'eastBoundLongitude': '-119.182', 'northBoundLatitude': '37.075', 'southBoundLatitude': '37.046', 'westBoundLongitude': '-119.211'}}]
-    assert subject.funding_references == [{'funderName': 'National Science Foundation', 'awardNumber': '1331939', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}, {
-        'funderName': 'National Science Foundation', 'awardNumber': '0725097', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID'}]
-    assert subject.sizes == ['2214669067 bytes']
-    assert subject.agency == 'DataCite'
+    assert subject.subjects == [
+        {"subject": "air temperature"},
+        {"subject": "Earth sciences"},
+        {"subject": "Nevada, Sierra (mountain range)"},
+        {"subject": "snow depth"},
+        {"subject": "soil temperature"},
+        {"subject": "water balance"},
+        {"subject": "FOS: Environmental engineering"},
+        {
+            "subject": "FOS: Environmental engineering",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+    ]
+    assert subject.geo_locations == [
+        {
+            "geoLocationBox": {
+                "eastBoundLongitude": "-119.182",
+                "northBoundLatitude": "37.075",
+                "southBoundLatitude": "37.046",
+                "westBoundLongitude": "-119.211",
+            },
+            "geoLocationPlace": "Providence Creek (Lower, Upper and P301)",
+            "geoLocationPoint": {
+                "pointLatitude": "37.047756",
+                "pointLongitude": "-119.221094",
+            },
+        },
+        {
+            "geoLocationBox": {
+                "eastBoundLongitude": "-119.182",
+                "northBoundLatitude": "37.075",
+                "southBoundLatitude": "37.046",
+                "westBoundLongitude": "-119.211",
+            }
+        },
+    ]
+    assert subject.funding_references == [
+        {
+            "funderName": "National Science Foundation",
+            "awardNumber": "1331939",
+            "funderIdentifier": "https://doi.org/10.13039/100000001",
+            "funderIdentifierType": "Crossref Funder ID",
+        },
+        {
+            "funderName": "National Science Foundation",
+            "awardNumber": "0725097",
+            "funderIdentifier": "https://doi.org/10.13039/100000001",
+            "funderIdentifierType": "Crossref Funder ID",
+        },
+    ]
+    assert subject.sizes == ["2214669067 bytes"]
+    assert subject.agency == "DataCite"
 
 
 #     it 'author only full name' do
@@ -2163,22 +2158,29 @@ def test_geolocation():
     string = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
     subject = Metadata(string)
     assert subject.pid
-    assert subject.types.get('schemaOrg') == 'Dataset'
+    assert subject.types.get("schemaOrg") == "Dataset"
     assert subject.titles[0] == {
-        'title': 'Land cover ground reference data in São Paulo state, Brazil, taken in 2015'}
-    assert subject.geo_locations == [{'geoLocationPlace': 'Mogi Guaçu (municipality)', 'geoLocationPoint': {
-        'pointLatitude': '-22.3680', 'pointLongitude': '-46.9460'}}]
+        "title": "Land cover ground reference data in São Paulo state, Brazil, taken in 2015"
+    }
+    assert subject.geo_locations == [
+        {
+            "geoLocationPlace": "Mogi Guaçu (municipality)",
+            "geoLocationPoint": {
+                "pointLatitude": "-22.3680",
+                "pointLongitude": "-46.9460",
+            },
+        }
+    ]
 
 
 def test_get_datacite():
     """get_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
-    assert '10.6084/m9.figshare.1449060' == data['doi']
+    assert "10.6084/m9.figshare.1449060" == data["doi"]
 
 
 def test_read_datacite():
     """test_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
-    assert meta['doi'] == '10.6084/m9.figshare.1449060'
-    
+    assert meta["doi"] == "10.6084/m9.figshare.1449060"

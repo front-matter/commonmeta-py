@@ -1,9 +1,10 @@
 """datacite reader for Commonmeta"""
 from typing import Optional
+from functools import reduce
 import requests
 from pydash import py_
 
-from ..utils import normalize_url
+from ..utils import normalize_url, normalize_doi
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
@@ -66,7 +67,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     rights = meta.get("rightsList", None)
 
-    related_items = meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)
+    references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
 
     return {
         # required properties
@@ -92,7 +93,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": meta.get("fundingReferences", None),
-        "related_items": related_items,
+        "references": presence(references),
         # other properties
         "date_created": strip_milliseconds(meta.get("created", None)),
         "date_registered": strip_milliseconds(meta.get("registered", None)),
@@ -104,3 +105,33 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "state": "findable",
         "schema_version": meta.get("schemaVersion", None),
     } | read_options
+
+
+def get_references(references: list) -> list:
+    """get_references"""
+    print(references)
+    def is_reference(reference):
+        """is_reference"""
+        return reference.get("relationType", None) in ["Cites", "References"]
+    
+    def map_reference(reference):
+        """map_reference"""
+        identifier = reference.get("relatedIdentifier", None)
+        identifier_type = reference.get("relatedIdentifierType", None)
+        if identifier and identifier_type == "DOI":
+            reference["doi"] = normalize_doi(identifier)
+        elif identifier and identifier_type == "URL":
+            reference["url"] = normalize_url(identifier)
+        reference = py_.omit(
+            reference,
+            [
+                "relationType",
+                "relatedIdentifier",
+                "relatedIdentifierType",
+                "resourceTypeGeneral",
+                "schemeType",
+                "schemeUri",
+                "relatedMetadataScheme"
+            ])
+        return reference
+    return [map_reference(i) for i in references if is_reference(i)]

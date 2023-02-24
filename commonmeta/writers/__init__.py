@@ -1,5 +1,5 @@
 """Writers for different metadata formats"""
-from .crosscite_writer import write_crosscite
+from .commonmeta_writer import write_commonmeta
 from .bibtex_writer import write_bibtex
 from .citation_writer import write_citation
 from .citeproc_writer import write_citeproc

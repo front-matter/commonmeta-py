@@ -2,7 +2,11 @@
 from os import path
 import pytest
 from commonmeta import Metadata
-from commonmeta.readers.crossref_reader import get_crossref, read_crossref, get_related_item
+from commonmeta.readers.crossref_reader import (
+    get_crossref,
+    read_crossref,
+    get_reference,
+)
 
 
 @pytest.mark.vcr
@@ -50,18 +54,16 @@ def test_doi_with_data_citation():
     ]
     assert subject.publication_year == 2014
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    assert len(subject.related_items) == 28
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2050-084X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
-        "key": "bib27",
-        "relatedItemIdentifier": "https://doi.org/10.1038/ncb2764",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+    assert len(subject.references) == 27
+    assert subject.references[0] == {
+        "key": "bib1",
+        "doi": "https://doi.org/10.1038/nature02100",
+        "creator": "Bonke",
+        "title": "APL regulates vascular tissue identity in Arabidopsis",
+        "publicationYear": "2003",
+        "volume": "426",
+        "firstPage": "181",
+        "containerTitle": "Nature",
     }
     assert subject.funding_references == [
         {"funderName": "SystemsX"},
@@ -157,18 +159,16 @@ def test_journal_article():
     ]
     assert subject.publication_year == 2006
     assert subject.publisher == "Public Library of Science (PLoS)"
-    assert len(subject.related_items) == 74
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1932-6203",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 73
+    assert subject.references[-1] == {
         "key": "ref73",
-        "relatedItemIdentifier": "https://doi.org/10.1056/nejm199109123251104",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1056/nejm199109123251104",
+        "creator": "KB Hammond",
+        "title": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
+        "publicationYear": "1991",
+        "volume": "325",
+        "firstPage": "769",
+        "containerTitle": "N Engl J Med",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -229,18 +229,16 @@ def test_journal_article_with_funding():
     ]
     assert subject.publication_year == 2019
     assert subject.publisher == "Frontiers Media SA"
-    assert len(subject.related_items) == 71
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1664-462X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 70
+    assert subject.references[-1] == {
         "key": "ref70",
-        "relatedItemIdentifier": "https://doi.org/10.17660/actahortic.2004.632.41",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.17660/actahortic.2004.632.41",
+        "creator": "Zheng",
+        "title": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
+        "publicationYear": "2004",
+        "volume": "632",
+        "firstPage": "317",
+        "containerTitle": "Acta Hortic.",
     }
     assert subject.funding_references == [
         {
@@ -295,18 +293,10 @@ def test_journal_article_original_language():
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
     )
-    assert len(subject.related_items) == 8
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1881-4751",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 7
+    assert subject.references[-1] == {
         "key": "7",
-        "relatedItemIdentifier": "https://doi.org/10.1161/01.cir.95.6.1686",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1161/01.cir.95.6.1686",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -363,16 +353,9 @@ def test_journal_article_with_rdf_for_container():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "Oxford University Press (OUP)"
-    assert len(subject.related_items) == 112
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1937-240X",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 111
+    assert subject.references[-1] == {
         "key": "bibr111",
-        "relationType": "References",
         "creator": "Zenina",
         "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
         "publicationYear": "2008",
@@ -428,16 +411,9 @@ def test_book_chapter_with_rdf_for_container():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "Springer Berlin Heidelberg"
-    assert len(subject.related_items) == 12
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1611-3349",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 11
+    assert subject.references[-1] == {
         "key": "49_CR11",
-        "relationType": "References",
         "unstructured": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
     }
     assert subject.funding_references is None
@@ -494,10 +470,9 @@ def test_posted_content():
     ]
     assert subject.publication_year == 2016
     assert subject.publisher == "Cold Spring Harbor Laboratory"
-    assert len(subject.related_items) == 26
-    assert subject.related_items[0] == {
+    assert len(subject.references) == 26
+    assert subject.references[0] == {
         "key": "2019071613381284000_097196v2.1",
-        "relationType": "References",
         "title": "An introduction to the joint principles for data citation",
         "publicationYear": "2015",
         "volume": "41",
@@ -509,7 +484,13 @@ def test_posted_content():
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions[0].get('description').startswith('AbstractThis article presents a practical roadmap for scholarly data repositories')
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "AbstractThis article presents a practical roadmap for scholarly data repositories"
+        )
+    )
     assert subject.version is None
     assert subject.agency == "Crossref"
 
@@ -565,7 +546,7 @@ def test_peer_review():
     ]
     assert subject.publication_year == 2020
     assert subject.publisher == "eLife Sciences Publications, Ltd"
-    assert len(subject.related_items) == 0
+    assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -613,7 +594,7 @@ def test_dissertation():
     ]
     assert subject.publication_year == 2020
     assert subject.publisher == "University of Queensland Library"
-    assert len(subject.related_items) == 0
+    assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -661,16 +642,9 @@ def test_doi_with_sici():
     ]
     assert subject.publication_year == 2006
     assert subject.publisher == "Wiley"
-    assert len(subject.related_items) == 40
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "0012-9658",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 39
+    assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
-        "relationType": "References",
         "unstructured": "R. C. Ydenberg, 1998 .Behavioral decisions about foraging and predator avoidance .Pages343 -378inR. Dukas, editorCognitive ecology: the evolutionary ecology of information processing and decision making University of Chicago Press, Chicago, Illinois, USA.",
     }
     assert subject.funding_references is None
@@ -747,18 +721,10 @@ def test_doi_with_orcid():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "Hindawi Limited"
-    assert len(subject.related_items) == 28
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2090-1844",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 27
+    assert subject.references[-1] == {
         "key": "30",
-        "relatedItemIdentifier": "https://doi.org/10.1378/chest.12-0045",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1378/chest.12-0045",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -820,18 +786,16 @@ def test_date_in_future():
     ]
     assert subject.publication_year == 2015
     assert subject.publisher == "Elsevier BV"
-    assert len(subject.related_items) == 99
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "0014-2999",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 98
+    assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
-        "relatedItemIdentifier": "https://doi.org/10.1111/hiv.12134",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1111/hiv.12134",
+        "creator": "Zoufaly",
+        "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
+        "publicationYear": "2014",
+        "volume": "15",
+        "firstPage": "449",
+        "containerTitle": "HIV Med.",
     }
     assert subject.funding_references == [
         {
@@ -912,18 +876,15 @@ def test_vor_with_url():
     ]
     assert subject.publication_year == 2013
     assert subject.publisher == "Springer Science and Business Media LLC"
-    assert len(subject.related_items) == 42
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "1365-2540",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 41
+    assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
-        "relatedItemIdentifier": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
+        "creator": "H Wilkens",
+        "publicationYear": "2003",
+        "volume": "80",
+        "firstPage": "545",
+        "containerTitle": "Biol J Linn Soc",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -976,7 +937,7 @@ def test_dataset():
     ]
     assert subject.publication_year == 1984
     assert subject.publisher == "Worldwide Protein Data Bank"
-    assert len(subject.related_items) == 0
+    assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -1010,7 +971,7 @@ def test_component():
     ]
     assert subject.publication_year == 2015
     assert subject.publisher == "Public Library of Science (PLoS)"
-    assert len(subject.related_items) == 0
+    assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -1056,12 +1017,10 @@ def test_dataset_usda():
     ]
     assert subject.publication_year == 2017
     assert subject.publisher == "Forest Service Research Data Archive"
-    assert len(subject.related_items) == 6
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 6
+    assert subject.references[-1] == {
         "key": "ref6",
-        "relatedItemIdentifier": "https://doi.org/10.1674/0003-0031-178.1.47",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
+        "doi": "https://doi.org/10.1674/0003-0031-178.1.47",
     }
     assert subject.funding_references == [
         {
@@ -1120,12 +1079,16 @@ def test_book_chapter():
     ]
     assert subject.publication_year == 2015
     assert subject.publisher == "Springer Berlin Heidelberg"
-    assert len(subject.related_items) == 22
-    assert subject.related_items[0] == {
+    assert len(subject.references) == 22
+    assert subject.references[0] == {
         "key": "13_CR1",
-        "relationType": "References",
-        "relatedItemIdentifier": "https://doi.org/10.1007/s00256-012-1391-8",
-        "relatedItemIdentifierType": "DOI",
+        "doi": "https://doi.org/10.1007/s00256-012-1391-8",
+        "creator": "KS Ahn",
+        "publicationYear": "2012",
+        "volume": "41",
+        "issue": "10",
+        "firstPage": "1301",
+        "containerTitle": "Skeletal Radiol",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1171,7 +1134,11 @@ def test_another_book_chapter():
     ]
     assert subject.publication_year == 2018
     assert subject.publisher == "Springer International Publishing"
-    assert len(subject.related_items) == 45
+    assert len(subject.references) == 44
+    assert subject.references[0] == {
+        "key": "1_CR1",
+        "unstructured": "Associated Press First heat, now fog dogging Olympic event planning in Sochi (2014) The National [Internet]. 2014 Feb 17; Available from: https://www.thenational.ae/sport/first-heat-now-fog-dogging-olympic-event-planning-in-sochi-1.280874",
+    }
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1222,7 +1189,7 @@ def test_yet_another_book_chapter():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "IGI Global"
-    assert len(subject.related_items) == 33
+    assert len(subject.references) == 33
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Book",
@@ -1287,16 +1254,9 @@ def test_missing_creator():
     ]
     assert subject.publication_year == 2018
     assert subject.publisher == "MDPI AG"
-    assert len(subject.related_items) == 24
-    assert subject.related_items[0] == {
-        "relatedItemIdentifier": "2304-6775",
-        "relatedItemIdentifierType": "ISSN",
-        "relationType": "IsPartOf",
-        "resourceTypeGeneral": "Collection",
-    }
-    assert subject.related_items[-1] == {
+    assert len(subject.references) == 23
+    assert subject.references[-1] == {
         "key": "ref23",
-        "relationType": "References",
         "unstructured": "SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD",
     }
     assert subject.funding_references is None
@@ -1375,10 +1335,9 @@ def test_book():
     ]
     assert subject.publication_year == 2019
     assert subject.publisher == "Cambridge University Press"
-    assert len(subject.related_items) == 273
-    assert subject.related_items[0] == {
+    assert len(subject.references) == 273
+    assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "relationType": "References",
         "creator": "Qiusheng",
         "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
         "publicationYear": "1997",
@@ -1412,8 +1371,8 @@ def test_read_crossref():
     assert {"state": "not_found"} == read_crossref(None)
 
 
-def test_get_related_item():
-    """get_related_item"""
+def test_get_reference():
+    """get_reference"""
     doi_metadata = {
         "key": "978-1-4666-1891-6.ch004.-31",
         "doi-asserted-by": "crossref",
@@ -1431,18 +1390,15 @@ def test_get_related_item():
     }
     assert {
         "key": "978-1-4666-1891-6.ch004.-31",
-        "relatedItemIdentifier": "https://doi.org/10.1109/iccv.2007.4408927",
-        "relatedItemIdentifierType": "DOI",
-        "relationType": "References",
-    } == get_related_item(doi_metadata)
+        "doi": "https://doi.org/10.1109/iccv.2007.4408927",
+    } == get_reference(doi_metadata)
     assert {
         "key": "978-1-4666-1891-6.ch004.-14",
-        "relationType": "References",
         "creator": "W.Donath",
         "title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
         "publicationYear": "1972",
         "volume": "15",
         "firstPage": "938",
         "containerTitle": "IBM Technical Disclosure Bulletin",
-    } == get_related_item(unstructured_metadata)
-    assert None is get_related_item(None)
+    } == get_reference(unstructured_metadata)
+    assert None is get_reference(None)

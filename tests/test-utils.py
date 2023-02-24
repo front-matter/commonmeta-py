@@ -220,14 +220,14 @@ def test_normalize_cc_url():
 def test_normalize_issn():
     """normalize_issn"""
     # from list
-    string = [{'media_type': 'print', '__content__': '13040855'},
-              {'media_type': 'electronic', '__content__': '21468427'}]
+    string = [{'media_type': 'print', '#text': '13040855'},
+              {'media_type': 'electronic', '#text': '21468427'}]
     assert '2146-8427' == normalize_issn(string)
     # from empty list
     string = []
     assert None is normalize_issn(string)
     # from dict
-    string = {'media_type': 'electronic', '__content__': '21468427'}
+    string = {'media_type': 'electronic', '#text': '21468427'}
     assert '2146-8427' == normalize_issn(string)
     # from string
     string = '2146-8427'
@@ -414,8 +414,8 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'__content__': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://ror.org/'},
-                         'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}}]
+    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'#text': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://ror.org/'},
+                         'nameIdentifier': [{'#text': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '#text': 'Martin Fenner'}}]
     # without affiliation
     authors = [
         {
@@ -427,8 +427,8 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'nameIdentifier': [{'__content__': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID',
-                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '__content__': 'Martin Fenner'}}]
+    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'nameIdentifier': [{'#text': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID',
+                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '#text': 'Martin Fenner'}}]
 
 
 def test_pages_as_string():

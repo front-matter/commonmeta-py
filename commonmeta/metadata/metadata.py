@@ -118,7 +118,7 @@ class Metadata:
         self.descriptions = meta.get("descriptions")
         self.geo_locations = meta.get("geo_locations")
         self.funding_references = meta.get("funding_references")
-        self.related_items = meta.get("related_items")
+        self.references = meta.get("references")
         # other properties
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")

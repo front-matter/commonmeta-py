@@ -23,11 +23,16 @@ def test_write_metadata_as_datacite_json():
         "schemaOrg": "ScholarlyArticle",
     }
     assert datacite["titles"] == [
-        {"title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"}
+        {
+            "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+        }
     ]
-    assert len(datacite["relatedItems"]) == 28
-    assert datacite["relatedItems"][0] == {'relationType': 'IsPartOf', 'relatedItemIdentifierType': 'ISSN',
-                                           'resourceTypeGeneral': 'Collection', 'relatedItemIdentifier': '2050-084X'}
+    assert len(datacite["relatedItems"]) == 27
+    assert datacite["relatedItems"][0] == {
+        "relatedIdentifier": "https://doi.org/10.1038/nature02100",
+        "relatedIdentifierType": "DOI",
+        "relationType": "References",
+    }
     assert datacite["rightsList"] == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
@@ -45,11 +50,19 @@ def test_with_orcid_id():
     assert subject.pid == "https://doi.org/10.1155/2012/291294"
 
     datacite = json.loads(subject.datacite())
-    print(datacite['creators'])
-    assert datacite["creators"][2]["name"] == 'Hernandez, Beatriz'
-    assert datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"] == "https://orcid.org/0000-0003-2043-4925"
-    assert datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifierScheme"] == "ORCID"
-    assert datacite["creators"][2]["nameIdentifiers"][0]["schemeUri"] == "https://orcid.org"
+    print(datacite["creators"])
+    assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
+    assert (
+        datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"]
+        == "https://orcid.org/0000-0003-2043-4925"
+    )
+    assert (
+        datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifierScheme"] == "ORCID"
+    )
+    assert (
+        datacite["creators"][2]["nameIdentifiers"][0]["schemeUri"]
+        == "https://orcid.org"
+    )
 
 
 def test_with_data_citation():
@@ -68,11 +81,16 @@ def test_with_data_citation():
         "schemaOrg": "ScholarlyArticle",
     }
     assert datacite["titles"] == [
-        {"title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"}
+        {
+            "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+        }
     ]
-    assert len(datacite["relatedItems"]) == 28
-    assert datacite["relatedItems"][0] == {'relationType': 'IsPartOf', 'relatedItemIdentifierType': 'ISSN',
-                                           'resourceTypeGeneral': 'Collection', 'relatedItemIdentifier': '2050-084X'}
+    assert len(datacite["relatedItems"]) == 27
+    assert datacite["relatedItems"][0] == {
+        "relatedIdentifier": "https://doi.org/10.1038/nature02100",
+        "relatedIdentifierType": "DOI",
+        "relationType": "References",
+    }
     assert datacite["rightsList"] == [
         {
             "rights": "Creative Commons Attribution 3.0 Unported",
@@ -82,6 +100,7 @@ def test_with_data_citation():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
+
 
 #     it 'Crossref DOI' do
 #       input = "#{fixture_path}crossref.bib"
@@ -100,7 +119,7 @@ def test_with_data_citation():
 
 def test_blogposting_citeproc_json():
     """BlogPosting Citeproc JSON"""
-    string = path.join(path.dirname(__file__), 'fixtures', 'citeproc.json')
+    string = path.join(path.dirname(__file__), "fixtures", "citeproc.json")
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5438/4k3m-nyvg"
 
@@ -113,27 +132,36 @@ def test_blogposting_citeproc_json():
         "ris": "GEN",
         "schemaOrg": "BlogPosting",
     }
-    assert datacite["titles"] == [
-        {"title": "Eating your own Dog Food"}
-    ]
+    assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["descriptions"][0]["description"].startswith(
-        "Eating your own dog food")
+        "Eating your own dog food"
+    )
     assert datacite["creators"] == [
-        {'name': 'Fenner, Martin', 'givenName': 'Martin', 'familyName': 'Fenner', 'nameType': 'Personal'}]
+        {
+            "name": "Fenner, Martin",
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "nameType": "Personal",
+        }
+    ]
 
 
 def test_rdataone():
     """Rdataone"""
-    string = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
+    string = path.join(path.dirname(__file__), "fixtures", "codemeta.json")
     subject = Metadata(string)
     assert subject.pid == "https://doi.org/10.5063/f1m61h5x"
 
     datacite = json.loads(subject.datacite())
-    assert datacite["titles"] == [
-        {"title": "R Interface to the DataONE REST API"}
-    ]
+    assert datacite["titles"] == [{"title": "R Interface to the DataONE REST API"}]
     assert len(datacite["creators"]) == 3
-    assert datacite["creators"][0] == {'name': 'Jones, Matt', 'givenName': 'Matt', 'familyName': 'Jones', 'nameType': 'Personal', 'affiliation': [{'name': 'NCEAS'}]}
+    assert datacite["creators"][0] == {
+        "name": "Jones, Matt",
+        "givenName": "Matt",
+        "familyName": "Jones",
+        "nameType": "Personal",
+        "affiliation": [{"name": "NCEAS"}],
+    }
     assert datacite["version"] == "2.0.0"
 
 
@@ -155,20 +183,26 @@ def test_rdataone():
 
 def test_from_schema_org():
     """Schema.org"""
-    subject = Metadata(
-        'https://blog.front-matter.io/posts/eating-your-own-dog-food/')
+    subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
     assert subject.pid == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
 
     datacite = json.loads(subject.datacite())
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
-    assert datacite["url"] == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
-    assert datacite["titles"] == [
-        {"title": "Eating your own Dog Food"}
-    ]
+    assert (
+        datacite["url"] == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+    )
+    assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["creators"] == [
-        {'name': 'Fenner, Martin', 'givenName': 'Martin', 'familyName': 'Fenner', 'nameType': 'Personal'}]
+        {
+            "name": "Fenner, Martin",
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "nameType": "Personal",
+        }
+    ]
     assert datacite["descriptions"][0]["description"].startswith(
-        "Eating your own dog food")
+        "Eating your own dog food"
+    )
     assert datacite["types"] == {
         "bibtex": "article",
         "citeproc": "article-newspaper",

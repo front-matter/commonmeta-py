@@ -1,4 +1,4 @@
-"""Crosscite writer for commonmeta-py"""
+"""Commonmeta writer for commonmeta-py"""
 import json
 
 from ..utils import pages_as_string, to_citeproc
@@ -7,8 +7,8 @@ from ..date_utils import get_date_by_type, get_date_parts
 from ..doi_utils import doi_from_url
 
 
-def write_crosscite(metadata):
-    """Write crosscite"""
+def write_commonmeta(metadata):
+    """Write commonmeta"""
     if metadata is None:
         return None
   
@@ -28,7 +28,7 @@ def write_crosscite(metadata):
             "dates": metadata.dates,
             "language": metadata.language,
             "types": metadata.types,
-            "relatedItems": metadata.related_items,
+            "references": metadata.references,
             # other properties
             "sizes": metadata.sizes,
             "formats": metadata.formats,

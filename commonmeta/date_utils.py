@@ -1,5 +1,6 @@
 """Date utils for commonmeta-py"""
 import datetime
+from datetime import datetime as dt
 from typing import Optional, Union
 import dateparser
 import pydash as py_
@@ -129,3 +130,11 @@ def strip_milliseconds(iso8601_time: Optional[str]) -> Optional[str]:
         return iso8601_time.split(".")[0] + "Z"
 
     return iso8601_time
+
+
+def get_datetime_from_time(time: str) -> Optional[str]:
+    """iso8601 datetime without hyphens and colons, used by Crossref"""
+    try:
+        return dt.strptime(time, '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%SZ')
+    except ValueError:
+        return None

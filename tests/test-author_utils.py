@@ -111,7 +111,7 @@ def test_one_author():
     author = {
         "email": "info@ucop.edu",
         "creatorName": {
-            "__content__": "University of California, Santa Barbara",
+            "#text": "University of California, Santa Barbara",
             "nameType": "Organizational",
         },
         "role": {

@@ -37,12 +37,7 @@ def test_blog_posting():
     ]
     assert subject.publication_year == 2016
     assert subject.publisher == "Front Matter"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
+    assert subject.references is None
     assert subject.container == {
         "identifier": "2749-9952",
         "identifierType": "ISSN",
@@ -95,12 +90,7 @@ def test_zenodo():
     assert subject.dates == [{"date": "2018-03-14", "dateType": "Issued"}]
     assert subject.publication_year == 2018
     assert subject.publisher == "Zenodo"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
+    assert subject.references is None
     assert subject.container == {"type": "DataRepository"}
     assert subject.funding_references is None
     assert (
@@ -162,12 +152,7 @@ def test_pangaea():
     assert subject.dates == [{"date": "2014-09-25", "dateType": "Issued"}]
     assert subject.publication_year == 2014
     assert subject.publisher == "PANGAEA"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
+    assert subject.references is None
     assert subject.container == {
         "identifier": "https://www.pangaea.de/",
         "identifierType": "URL",
@@ -191,7 +176,7 @@ def test_pangaea():
 def test_dataverse():
     "dataverse"
     string = "https://doi.org/10.7910/dvn/nj7xso"
-    subject = Metadata(string)
+    subject = Metadata(string, via="schema_org")
 
     assert subject.pid == "https://doi.org/10.7910/dvn/nj7xso"
     assert subject.types == {
@@ -203,35 +188,26 @@ def test_dataverse():
     }
     assert (
         subject.url
-        == "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO"
+        == "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
     assert subject.titles[0] == {
         "title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {
-        "name": "International Genetics Of Ankylosing Spondylitis Consortium (IGAS)"
-    }
+    assert subject.creators[0] == {'nameType': 'Personal', 'givenName': 'International Genetics of Ankylosing Spondylitis Consortium', 'familyName': '(IGAS)'}
     assert subject.contributors is None
-    assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2017", "dateType": "Issued"},
-    ]
+    assert subject.rights == [{'rights': 'Creative Commons Zero v1.0 Universal', 'rightsIdentifier': 'cc0-1.0', 'rightsIdentifierScheme': 'SPDX', 'rightsUri': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode', 'schemeUri': 'https://spdx.org/licenses/'}]
+    assert subject.dates == [{'date': '2017-09-30', 'dateType': 'Issued'}, {'date': '2017-09-30', 'dateType': 'Updated'}]
     assert subject.publication_year == 2017
     assert subject.publisher == "Harvard Dataverse"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
-    assert subject.container is None
+    assert subject.references is None
+    assert subject.container == {'identifier': 'https://dataverse.harvard.edu', 'identifierType': 'URL', 'title': 'Harvard Dataverse', 'type': 'DataRepository'}
     # assert subject.descriptions[0].get('description').startswith(
     #     'Summary of association tests for Nature Genetics publication')
-    assert subject.subjects is None
-    assert subject.language is None
-    assert subject.version is None
+    assert subject.subjects == [{'subject': 'medicine, health and life sciences'}, {'subject': ' genome-wide association studies'}, {'subject': 'ankylosing spondylitis'}]
+    assert subject.language == 'en'
+    assert subject.version == '1'
     # assert subject.geo_locations is None
-    assert subject.agency == "DataCite"
+    assert subject.agency == "Harvard Dataverse"
 
 
 def test_yet_another_blog_post():
@@ -267,7 +243,7 @@ def test_yet_another_blog_post():
     ]
     assert subject.publication_year == 2022
     assert subject.publisher == "John Hawks"
-    assert len(subject.related_items) == 0
+    assert subject.references is None
     assert subject.container == {
         "type": "Blog",
         "title": "John Hawks",
@@ -321,7 +297,7 @@ def test_blog_with_dois():
     assert subject.dates == [{"date": "2022-12-09", "dateType": "Issued"}]
     assert subject.publication_year == 2022
     assert subject.publisher == "Verfassungsblog"
-    assert len(subject.related_items) == 0
+    assert subject.references is None
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
     assert (
         subject.descriptions[0]
@@ -373,12 +349,7 @@ def test_another_blog_with_dois():
     ]
     assert subject.publication_year == 2022
     assert subject.publisher == "JSC Accelerating Devices Lab"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
+    assert subject.references is None
     assert subject.container == {
         "title": "JSC Accelerating Devices Lab",
         "type": "Blog",
@@ -433,12 +404,7 @@ def test_with_upstream_blog_post():
     ]
     assert subject.publication_year == 2021
     assert subject.publisher == "Upstream"
-    assert len(subject.related_items) == 0
-    # assert subject.related_items[0] == {
-    #     'relatedIdentifier': '2749-9952',
-    #     'relatedIdentifierType': 'ISSN',
-    #     'relationType': 'IsPartOf',
-    #     'resourceTypeGeneral': 'Collection' }
+    assert subject.references is None
     assert subject.container == {
         "identifier": "https://upstream.force11.org/",
         "identifierType": "URL",

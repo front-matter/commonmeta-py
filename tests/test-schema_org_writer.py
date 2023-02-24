@@ -28,7 +28,6 @@ def test_journal_article():
     }
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
-    assert schema_org.get("isPartOf") == {"@type": "Periodical", "issn": "2050-084X"}
     assert schema_org.get("periodical") == {
         "identifier": "2050-084X",
         "identifierType": "ISSN",
@@ -83,7 +82,6 @@ def test_article_with_pages():
     }
     assert schema_org.get("datePublished") == "2020-01-17"
     assert schema_org.get("url") == "https://dx.plos.org/10.1371/journal.ppat.1008184"
-    assert schema_org.get("isPartOf") == {"@type": "Periodical", "issn": "1553-7374"}
     assert schema_org.get("periodical") == {
         "identifier": "1553-7374",
         "identifierType": "ISSN",

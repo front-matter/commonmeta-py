@@ -197,7 +197,7 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
                     )
                     else normalize_id(affiliation_identifier)
                 )
-            name = i.get("name", None) or i.get("__content__", None)
+            name = i.get("name", None) or i.get("#text", None)
             affiliation_identifier_scheme = i.get(
                 "affiliationIdentifierScheme", None
             )
