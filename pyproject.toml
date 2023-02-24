@@ -58,7 +58,7 @@ legacy_tox_ini = """
     deps = 
         pytest
         pytest-cov
-    commands = pytest --cov=commonmeta-py --cov-report=xml
+    commands = pytest --cov=commonmeta --cov-report=xml
 
     [coverage:run]
     relative_files = True
