@@ -51,7 +51,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     )
     if response.status_code != 200:
         return {"state": "not_found"}
-    print(response.text)
+
     # remove namespaces from xml
     namespaces = {
         "http://www.crossref.org/qrschema/3.0": None,
@@ -158,7 +158,7 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         doi = None
 
-    url = parse_xmldict(py_.get(bibmeta, "doi_data.resource"))
+    url = parse_xmldict(py_.get(bibmeta, "doi_data.resource"), ignored_attributes='@content_version')
     url = normalize_url(url)
 
     schema_org = CR_TO_SO_TRANSLATIONS.get(resource_type, None) or "CreativeWork"
@@ -215,6 +215,7 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
     publication_year = int(date_published[:4]) if date_published else None
 
     descriptions = crossref_description(bibmeta)
+    program = py_.get(bibmeta, "program") or py_.get(bibmeta, "crossmark.custom_metadata.program")
     funding = (
         py_.get(bibmeta, "program.assertion")
         or py_.get(bibmeta, "program.0.assertion")
@@ -305,8 +306,6 @@ def read_crossref_xml(data: Optional[dict], **kwargs) -> Commonmeta:
 
 def crossref_titles(bibmeta):
     """Title information from Crossref metadata."""
-    print(bibmeta)
-
     def format_element(element):
         """Format element"""
         if element is None or (
@@ -330,7 +329,6 @@ def crossref_description(bibmeta):
 
     def format_abstract(element):
         """Format abstract"""
-        print(element)
         if isinstance(element.get("p", None), list):
             element["p"] = element["p"][0]
         if isinstance(element.get("p", None), dict):
@@ -366,7 +364,7 @@ def crossref_people(bibmeta, contributor_role="author"):
             [format_affiliation(i) for i in wrap(element.get("affiliation", None))]
         )
         if element.get("ORCID", None) is not None:
-            orcid = parse_xmldict(element.get("ORCID"))
+            orcid = parse_xmldict(element.get("ORCID"), ignored_attributes='@authenticated')
             element["nameIdentifiers"] = [
                 {
                     "nameIdentifier": normalize_orcid(orcid),
@@ -451,7 +449,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
     """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
-    doi = parse_xmldict(reference.get("doi", None))
+    doi = parse_xmldict(reference.get("doi", None), ignored_attributes="@provider")
     unstructured = reference.get("unstructured_citation", None)
     if isinstance(unstructured, dict):
         url = unstructured.get("u", None)
@@ -513,7 +511,7 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
         ),
         {},
     )
-    issn = parse_xmldict(issn)
+    issn = parse_xmldict(issn, ignored_attributes=['@media_type', '@xmlns'])
     container_title = parse_xmldict(
         py_.get(meta, f"{container_type}.{container_type}_metadata.full_title")
         or py_.get(meta, f"{container_type}.{container_type}_metadata.titles.title")
@@ -553,9 +551,9 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
 
 def crossref_funding(funding_references: list) -> list:
     """Get funding references from Crossref"""
+    print(funding_references)
     formatted_funding_references = []
     for funding in funding_references:
-        print(funding)
         funder_name = py_.get(funding, "assertion.")
         doi = py_.get(funding, "assertion.assertion.#text")
         if doi and doi.startswith("5011"):
@@ -639,7 +637,7 @@ def crossref_rights(rights_list: list) -> list:
 
     def map_element(element):
         """Format element"""
-        rights_uri = parse_xmldict(element)
+        rights_uri = parse_xmldict(element, ignored_attributes=["@applies_to", "@start_date", "@end_date"])
         rights_uri = normalize_cc_url(rights_uri)
         return dict_to_spdx({"rightsUri": rights_uri})
 

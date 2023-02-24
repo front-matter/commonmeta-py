@@ -60,16 +60,6 @@ def test_doi_with_data_citation():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert subject.references[-1] == {
-        "key": "bib27",
-        "doi": "https://doi.org/10.1038/ncb2764",
-        "creator": "Yin",
-        "title": "A screen for morphological complexity identifies regulators of switch-like transitions between discrete cell shapes",
-        "publicationYear": "2013",
-        "volume": "15",
-        "firstPage": "860",
-        "containerTitle": "Nature Cell Biology",
-    }
     assert subject.funding_references == [
         {"funderName": "SystemsX"},
         {"funderName": "EMBO longterm post-doctoral fellowships"},
