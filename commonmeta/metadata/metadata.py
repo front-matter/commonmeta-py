@@ -29,6 +29,9 @@ from ..writers import (
     write_schema_org,
 )
 from ..utils import normalize_id, find_from_format
+from ..constants import (
+    Commonmeta,
+    CrossrefXml)
 
 # pylint: disable=R0902
 class Metadata:
@@ -78,19 +81,19 @@ class Metadata:
                 data = xmltodict.parse(string)
                 null = None
                 data = eval(json.dumps(data))
-                meta = read_crossref_xml(data)
+                meta = read_crossref_xml(data) 
             elif via == "citeproc":
-                data = json.loads(string)
-                meta = read_citeproc(data)
+                 data = json.loads(string)
+                 meta = read_citeproc(data)
             elif via == "codemeta":
                 data = json.loads(string)
                 meta = read_codemeta(data)
             elif via == "cff":
                 data = yaml.safe_load(string)
                 meta = read_cff(data)
-            elif via == "bibtex":
-                data = yaml.safe_load(string)
-                meta = read_bibtex(data)
+            # elif via == "bibtex":
+            #     data = yaml.safe_load(string)
+            #     meta = read_bibtex(data)
             else:
                 raise ValueError("No input format found")
         else:
