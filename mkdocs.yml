@@ -25,12 +25,14 @@ nav:
   - Readers: 
       - CFF: readers/cff_reader.ipynb
       - Crossref: readers/crossref_reader.ipynb
+      - Crossref XML: readers/crossref_xml_reader.ipynb
       - DataCite: readers/datacite_reader.ipynb
       - Schema.org: readers/schema_org_reader.ipynb
   - Writers:
       - BibTex: writers/bibtex_writer.ipynb
       - Citation: writers/citation_writer.ipynb
       - Citeproc: writers/citeproc_writer.ipynb
+      - Commonmeta: writers/commonmeta_writer.ipynb
       - RIS: writers/ris_writer.ipynb
 
 markdown_extensions:
