@@ -127,7 +127,6 @@ def read_crossref_xml(data: CrossrefXml, **kwargs) -> Commonmeta:
         bibmeta = py_.get(meta, "book.book_metadata")
         resource_type = "Book"
     elif py_.get(meta, "conference", None):
-        event_metadata = py_.get(meta, "conference.event_metadata", {})
         bibmeta = py_.get(meta, "conference.conference_paper", {})
         resource_type = "ConferencePaper"
     elif py_.get(meta, "sa_component", None):

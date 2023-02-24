@@ -26,7 +26,7 @@ Commometa-py reads and/or writes these metadata formats:
 | Format                                                                                           | Name          | Content Type                           | Read    | Write   |
 | ------------------------------------------------------------------------------------------------ | ------------- | -------------------------------------- | ------- | ------- |
 | Commonmeta  | commonmeta    | application/vnd.commonmeta+json        | yes     | yes     |
-| [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref_xml      | application/vnd.crossref.unixref+xml   | later | planned |
+| [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref_xml      | application/vnd.crossref.unixref+xml   | yes | planned |
 | [Crossref](https://api.crossref.org)                                                             | crossref | application/vnd.crossref+json          | yes     | no      |
 | [DataCite XML](https://schema.datacite.org/)                                                     | datacite_xml      | application/vnd.datacite.datacite+xml  | later | later |
 | [DataCite](https://api.datacite.org/)                                                            | datacite | application/vnd.datacite.datacite+json | yes     | yes |
