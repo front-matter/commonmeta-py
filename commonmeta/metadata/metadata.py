@@ -27,6 +27,7 @@ from ..writers import (
     write_citeproc,
     write_ris,
     write_schema_org,
+    write_commonmeta
 )
 from ..utils import normalize_id, find_from_format
 from ..constants import (
