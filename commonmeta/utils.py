@@ -11,7 +11,7 @@ from pydash import py_
 
 # from .author_utils import get_personal_name
 from .base_utils import wrap, unwrap, compact
-from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, crossref_api_url, datacite_api_url
+from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
 from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 
 NORMALIZED_LICENSES = {
@@ -102,6 +102,7 @@ def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
 
 def normalize_ids(ids: list, relation_type=None) -> list:
     """Normalize identifiers"""
+
     def format_id(i):
         if i.get("@id", None):
             idn = normalize_id(i["@id"])
@@ -119,8 +120,10 @@ def normalize_ids(ids: list, relation_type=None) -> list:
                     "relationType": relation_type,
                     "relatedIdentifierType": related_identifier_type,
                     "resourceTypeGeneral": SO_TO_DC_TRANSLATIONS.get(type_, None),
-                })
+                }
+            )
         return None
+
     return [format_id(i) for i in ids]
 
 
@@ -171,9 +174,9 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
 
 def normalize_issn(string, **kwargs):
     """Normalize ISSN
-       Pick electronic issn if there are multiple
-       Format issn as xxxx-xxxx"""
-    content = kwargs.get('content', '#text')
+    Pick electronic issn if there are multiple
+    Format issn as xxxx-xxxx"""
+    content = kwargs.get("content", "#text")
     if string is None:
         return None
     if isinstance(string, str):
@@ -181,29 +184,29 @@ def normalize_issn(string, **kwargs):
     elif isinstance(string, dict):
         issn = string.get(content, None)
     elif isinstance(string, list):
-        issn = next((i for i in string if i.get('media_type', None)
-                    == 'electronic'), {}).get(content, None)
+        issn = next(
+            (i for i in string if i.get("media_type", None) == "electronic"), {}
+        ).get(content, None)
     if issn is None:
         return None
     if len(issn) == 9:
         return issn
     if len(issn) == 8:
-        return issn[0:4] + '-' + issn[4:8]
+        return issn[0:4] + "-" + issn[4:8]
     return None
 
 
 def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
     dct.update({"rightsUri": normalize_cc_url(dct.get("rightsUri", None))})
-    file_path = os.path.join(os.path.dirname(
-        __file__), "resources/spdx/licenses.json")
+    file_path = os.path.join(os.path.dirname(__file__), "resources/spdx/licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
         (
             l
             for l in spdx
-            if l["licenseId"].casefold() == dct.get("rightsIdentifier", '').casefold()
+            if l["licenseId"].casefold() == dct.get("rightsIdentifier", "").casefold()
             or l["seeAlso"][0] == dct.get("rightsUri", None)
         ),
         None,
@@ -239,6 +242,7 @@ def dict_to_spdx(dct: dict) -> dict:
 
 def from_citeproc(elements: list) -> list:
     """Convert from citeproc elements"""
+
     def format_element(element):
         """format element"""
         if element.get("literal", None) is not None:
@@ -257,33 +261,37 @@ def from_citeproc(elements: list) -> list:
         element["affiliation"] = element.get("affiliation", None)
         element = py_.omit(element, "given", "family", "literal", "sequence")
         return compact(element)
+
     return [format_element(i) for i in elements]
 
 
 def to_citeproc(elements: list) -> list:
     """Convert elements to citeproc"""
+
     def format_element(i):
         """format element"""
         element = {}
         element["family"] = i.get("familyName", None)
         element["given"] = i.get("givenName", None)
         element["literal"] = (
-            i.get("name", None) if i.get(
-                "familyName", None) is None else None
+            i.get("name", None) if i.get("familyName", None) is None else None
         )
         return compact(element)
+
     return [format_element(i) for i in elements]
 
 
 def to_ris(elements: list) -> list:
     """Convert element to RIS"""
+
     def format_element(i):
         """format element"""
         if i.get("familyName", None):
             element = ", ".join([i["familyName"], i.get("givenName", None)])
         else:
-            element = i.get('name', None)
+            element = i.get("name", None)
         return element
+
     return [format_element(i) for i in elements]
 
 
@@ -300,18 +308,22 @@ def to_schema_org(element: Optional[dict]) -> Optional[dict]:
 
 def to_schema_org_creators(elements: list) -> list():
     """Convert creators to Schema.org"""
+
     def format_element(element):
         """format element"""
-        element["@type"] = element["nameType"][0:-
-                                               2] if element.get("nameType", None) else None
+        element["@type"] = (
+            element["nameType"][0:-2] if element.get("nameType", None) else None
+        )
         if element.get("familyName", None) and element.get("name", None) is None:
             element["name"] = " ".join(
-                [element.get("givenName", None), element.get("familyName")])
+                [element.get("givenName", None), element.get("familyName")]
+            )
             element["@type"] = "Person"
         else:
             element["@type"] = "Organization"
         element = py_.omit(element, "nameType")
         return compact(element)
+
     return [format_element(i) for i in elements]
 
 
@@ -335,6 +347,7 @@ def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]
 
 def to_schema_org_identifiers(elements: list) -> list:
     """Convert identifiers to Schema.org"""
+
     def format_element(i):
         """format element"""
         element = {}
@@ -342,16 +355,17 @@ def to_schema_org_identifiers(elements: list) -> list:
         element["propertyID"] = i.get("identifierType", None)
         element["value"] = i.get("identifier", None)
         return compact(element)
+
     return [format_element(i) for i in elements]
 
 
 def to_schema_org_relations(related_items: list, relation_type=None):
     """Convert relatedItems to Schema.org relations"""
+
     def format_element(i):
         """format element"""
         if i["relatedItemIdentifierType"] == "ISSN" and i["relationType"] == "IsPartOf":
-            return compact({"@type": "Periodical",
-                            "issn": i["relatedItemIdentifier"]})
+            return compact({"@type": "Periodical", "issn": i["relatedItemIdentifier"]})
         return compact(
             {
                 "@id": normalize_id(i["relatedIdentifier"]),
@@ -368,8 +382,7 @@ def to_schema_org_relations(related_items: list, relation_type=None):
         relation_type = [relation_type]
 
     related_items = py_.filter(
-        wrap(
-            related_items), lambda ri: ri["relationType"] in relation_type
+        wrap(related_items), lambda ri: ri["relationType"] in relation_type
     )
     return [format_element(i) for i in related_items]
 
@@ -392,7 +405,10 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     doi = validate_doi(pid)
     if doi and (registration_agency := get_doi_ra(doi)) is not None:
         return registration_agency.lower()
-    if re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", pid) is not None:
+    if (
+        re.match(r"\A(http|https):/(/)?github\.com/(.+)/CITATION.cff\Z", pid)
+        is not None
+    ):
         return "cff"
     if (
         re.match(r"\A(http|https):/(/)?github\.com/(.+)/codemeta.json\Z", pid)
@@ -406,10 +422,10 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
 
 def find_from_format_by_ext(ext: str) -> Optional[str]:
     """Find reader from format by ext"""
-    if ext == '.bib':
-        return 'bibtex'
-    if ext == '.ris':
-        return 'ris'
+    if ext == ".bib":
+        return "bibtex"
+    if ext == ".ris":
+        return "ris"
     return None
 
 
@@ -421,9 +437,13 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         data = json.loads(string)
         if data.get("@context", None) == "http://schema.org":
             return "schema_org"
-        if data.get("@context", None) in ['https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld']:
+        if data.get("@context", None) in [
+            "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
+        ]:
             return "codemeta"
-        if data.get("schemaVersion", '').startswith("http://datacite.org/schema/kernel"):
+        if data.get("schemaVersion", "").startswith(
+            "http://datacite.org/schema/kernel"
+        ):
             return "datacite"
         if data.get("source", None) == "Crossref":
             return "crossref"
@@ -434,9 +454,9 @@ def find_from_format_by_string(string: str) -> Optional[str]:
     try:
         data = BeautifulSoup(string, "xml")
         if data.find("doi_record"):
-            return 'crossref_xml'
+            return "crossref_xml"
         if data.find("resource"):
-            return 'datacite_xml'
+            return "datacite_xml"
     except ValueError:
         pass
     try:
@@ -446,10 +466,10 @@ def find_from_format_by_string(string: str) -> Optional[str]:
     except (yaml.YAMLError, AttributeError):
         pass
 
-    if string.startswith('TY  - '):
-        return 'ris'
+    if string.startswith("TY  - "):
+        return "ris"
     if any(string.startswith(f"@{t}") for t in bibtexparser.bibdatabase.STANDARD_TYPES):
-        return 'bibtex'
+        return "bibtex"
 
     # no format found
     return None
@@ -481,6 +501,7 @@ def from_schema_org(element):
 
 def from_schema_org_creators(elements: list) -> list:
     """Convert schema.org creators to DataCite"""
+
     def format_element(i):
         """format element"""
         element = {}
@@ -511,32 +532,34 @@ def from_schema_org_creators(elements: list) -> list:
             )
         element["creatorName"] = compact(
             {
-                "nameType": i["@type"].title() + "al"
-                if i.get("@type", None)
-                else None,
-                "#text": i.get("name", None)
+                "nameType": i["@type"].title() + "al" if i.get("@type", None) else None,
+                "#text": i.get("name", None),
             }
         )
         length = len(str(i["name"]).split(" "))
         if i.get("givenName", None):
             element["givenName"] = i.get("givenName", None)
         else:
-            element["givenName"] = " ".join(
-                str(i["name"]).split(" ")[0: length - 1])
+            element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
         if i.get("familyName", None):
             element["familyName"] = i.get("familyName", None)
         else:
             element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
 
-        element["affiliation"] = compact(
-            {
-                "#text": py_.get(i, "affiliation.name"),
-                "affiliationIdentifier": py_.get(i, "affiliation.@id"),
-                "affiliationIdentifierScheme": affiliation_identifier_scheme,
-                "schemeUri": scheme_uri,
-            }
-        ) if i.get("affiliation", None) is not None else None
+        element["affiliation"] = (
+            compact(
+                {
+                    "#text": py_.get(i, "affiliation.name"),
+                    "affiliationIdentifier": py_.get(i, "affiliation.@id"),
+                    "affiliationIdentifierScheme": affiliation_identifier_scheme,
+                    "schemeUri": scheme_uri,
+                }
+            )
+            if i.get("affiliation", None) is not None
+            else None
+        )
         return compact(element)
+
     return [format_element(i) for i in wrap(elements)]
 
 
@@ -544,39 +567,41 @@ def github_from_url(url: str) -> dict:
     """Get github owner, repo, release and path from url"""
 
     match = re.match(
-        r"\Ahttps://(github|raw\.githubusercontent)\.com/(.+)(?:/)?(.+)?(?:/tree/)?(.*)\Z", url)
+        r"\Ahttps://(github|raw\.githubusercontent)\.com/(.+)(?:/)?(.+)?(?:/tree/)?(.*)\Z",
+        url,
+    )
     if match is None:
         return {}
-    words = urlparse(url).path.lstrip('/').split('/')
+    words = urlparse(url).path.lstrip("/").split("/")
     owner = words[0] if len(words) > 0 else None
     repo = words[1] if len(words) > 1 else None
     release = words[3] if len(words) > 3 else None
-    path = '/'.join(words[4:]) if len(words) > 3 else ''
+    path = "/".join(words[4:]) if len(words) > 3 else ""
     if len(path) == 0:
         path = None
 
-    return compact({'owner': owner, 'repo': repo, 'release': release, 'path': path})
+    return compact({"owner": owner, "repo": repo, "release": release, "path": path})
 
 
 def github_repo_from_url(url: str) -> Optional[str]:
     """Get github repo from url"""
-    return github_from_url(url).get('repo', None)
+    return github_from_url(url).get("repo", None)
 
 
 def github_release_from_url(url: str) -> Optional[str]:
     """Get github release from url"""
-    return github_from_url(url).get('release', None)
+    return github_from_url(url).get("release", None)
 
 
 def github_owner_from_url(url: str) -> Optional[str]:
     """Get github owner from url"""
-    return github_from_url(url).get('owner', None)
+    return github_from_url(url).get("owner", None)
 
 
 def github_as_owner_url(url: str) -> Optional[str]:
     """Get github owner url from url"""
     github_dict = github_from_url(url)
-    if github_dict.get('owner', None) is None:
+    if github_dict.get("owner", None) is None:
         return None
     return f"https://github.com/{github_dict.get('owner')}"
 
@@ -584,7 +609,7 @@ def github_as_owner_url(url: str) -> Optional[str]:
 def github_as_repo_url(url) -> Optional[str]:
     """Get github repo url from url"""
     github_dict = github_from_url(url)
-    if github_dict.get('repo', None) is None:
+    if github_dict.get("repo", None) is None:
         return None
     return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}"
 
@@ -592,7 +617,7 @@ def github_as_repo_url(url) -> Optional[str]:
 def github_as_release_url(url: str) -> Optional[str]:
     """Get github release url from url"""
     github_dict = github_from_url(url)
-    if github_dict.get('release', None) is None:
+    if github_dict.get("release", None) is None:
         return None
     return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}/tree/{github_dict.get('release')}"
 
@@ -601,9 +626,11 @@ def github_as_codemeta_url(url: str) -> Optional[str]:
     """Get github codemeta.json url from url"""
     github_dict = github_from_url(url)
 
-    if github_dict.get('path', None) and github_dict.get('path').endswith('codemeta.json'):
+    if github_dict.get("path", None) and github_dict.get("path").endswith(
+        "codemeta.json"
+    ):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
-    elif github_dict.get('owner', None):
+    elif github_dict.get("owner", None):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/master/codemeta.json"
     else:
         return None
@@ -613,14 +640,18 @@ def github_as_cff_url(url: str) -> Optional[str]:
     """Get github CITATION.cff url from url"""
     github_dict = github_from_url(url)
 
-    if github_dict.get('path', None) and github_dict.get('path').endswith('CITATION.cff'):
+    if github_dict.get("path", None) and github_dict.get("path").endswith(
+        "CITATION.cff"
+    ):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
-    if github_dict.get('owner', None):
+    if github_dict.get("owner", None):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/main/CITATION.cff"
     return None
 
 
-def pages_as_string(container: Optional[dict], page_range_separator="-") -> Optional[str]:
+def pages_as_string(
+    container: Optional[dict], page_range_separator="-"
+) -> Optional[str]:
     """Parse pages for BibTeX"""
     if container is None:
         return None

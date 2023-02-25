@@ -31,7 +31,6 @@ from ..date_utils import (
 from ..doi_utils import doi_as_url, get_doi_ra, crossref_xml_api_url, normalize_doi
 from ..constants import (
     Commonmeta,
-    CrossrefXml,
     CR_TO_DC_TRANSLATIONS,
     CR_TO_SO_TRANSLATIONS,
     CR_TO_CP_TRANSLATIONS,
@@ -74,7 +73,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     return data
 
 
-def read_crossref_xml(data: CrossrefXml, **kwargs) -> Commonmeta:
+def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     """read_crossref_xml"""
     if data is None:
         return {"state": "not_found"}

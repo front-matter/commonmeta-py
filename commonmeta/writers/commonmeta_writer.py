@@ -1,17 +1,14 @@
 """Commonmeta writer for commonmeta-py"""
 import json
 
-from ..utils import pages_as_string, to_citeproc
-from ..base_utils import wrap, presence, parse_attributes, compact
-from ..date_utils import get_date_by_type, get_date_parts
-from ..doi_utils import doi_from_url
+from ..base_utils import compact
 
 
 def write_commonmeta(metadata):
     """Write commonmeta"""
     if metadata is None:
         return None
-  
+
     data = compact(
         {
             # required properties

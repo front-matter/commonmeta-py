@@ -5,6 +5,7 @@ from os import path
 
 class Commonmeta(TypedDict):
     """TypedDict for Commonmeta"""
+
     pid: str
     doi: str
     url: str
@@ -36,39 +37,6 @@ class Commonmeta(TypedDict):
     state: str
     schema_version: Optional[str]
 
-
-class CrossrefXml(TypedDict):
-    """TypedDict for CrossrefXML"""
-    pid: str
-    doi: str
-    url: str
-    creators: List[dict]
-    titles: List[dict]
-    publisher: str
-    publication_year: int
-    types: dict
-    subjects: Optional[List[dict]]
-    contributors: Optional[List[dict]]
-    dates: Optional[List[dict]]
-    language: Optional[str]
-    alternate_identifiers: Optional[List[dict]]
-    sizes: Optional[List[dict]]
-    formats: Optional[List[dict]]
-    version: Optional[str]
-    rights: Optional[List[dict]]
-    descriptions: Optional[List[dict]]
-    geo_locations: Optional[List[dict]]
-    funding_references: Optional[List[dict]]
-    references: Optional[List[dict]]
-    container: Optional[dict]
-    date_created: Optional[str]
-    date_registered: Optional[str]
-    date_published: Optional[str]
-    date_updated: Optional[str]
-    content_url: Optional[List[dict]]
-    agency: Optional[str]
-    state: str
-    schema_version: Optional[str]
 
 CR_TO_BIB_TRANSLATIONS = {
     "Proceedings": "proceedings",
@@ -438,40 +406,40 @@ SO_TO_RIS_TRANSLATIONS = {
 }
 
 CP_TO_SO_TRANSLATIONS = {
-    'song': 'AudioObject',
-    'post-weblog': 'BlogPosting',
-    'dataset': 'Dataset',
-    'graphic': 'ImageObject',
-    'motion_picture': 'Movie',
-    'article-journal': 'ScholarlyArticle',
-    'broadcast': 'VideoObject',
-    'webpage': 'WebPage'
+    "song": "AudioObject",
+    "post-weblog": "BlogPosting",
+    "dataset": "Dataset",
+    "graphic": "ImageObject",
+    "motion_picture": "Movie",
+    "article-journal": "ScholarlyArticle",
+    "broadcast": "VideoObject",
+    "webpage": "WebPage",
 }
 
 CP_TO_RIS_TRANSLATIONS = {
-    'post-weblog': 'BLOG',
-    'dataset': 'DATA',
-    'graphic': 'FIGURE',
-    'book': 'BOOK',
-    'motion_picture': 'MPCT',
-    'article-journal': 'JOUR',
-    'broadcast': 'MPCT',
-    'webpage': 'ELEC'
+    "post-weblog": "BLOG",
+    "dataset": "DATA",
+    "graphic": "FIGURE",
+    "book": "BOOK",
+    "motion_picture": "MPCT",
+    "article-journal": "JOUR",
+    "broadcast": "MPCT",
+    "webpage": "ELEC",
 }
 
 CP_TO_DC_TRANSLATIONS = {
-    'song': 'Audiovisual',
-    'post-weblog': 'Text',
-    'dataset': 'Dataset',
-    'graphic': 'Image',
-    'motion_picture': 'Audiovisual',
-    'article-journal': 'JournalArticle',
-    'broadcast': 'Audiovisual',
-    'webpage': 'Text'
+    "song": "Audiovisual",
+    "post-weblog": "Text",
+    "dataset": "Dataset",
+    "graphic": "Image",
+    "motion_picture": "Audiovisual",
+    "article-journal": "JournalArticle",
+    "broadcast": "Audiovisual",
+    "webpage": "Text",
 }
 
 CROSSREF_CONTAINER_TYPES = {
-    'JournalArticle': 'journal',
-    'BookChapter': 'book',
-    'Dataset': 'database'
+    "JournalArticle": "journal",
+    "BookChapter": "book",
+    "Dataset": "database",
 }

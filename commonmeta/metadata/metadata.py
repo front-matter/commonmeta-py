@@ -10,6 +10,7 @@ from ..readers import (
     read_crossref,
     get_datacite,
     read_datacite,
+    read_datacite_xml,
     get_crossref_xml,
     read_crossref_xml,
     get_schema_org,
@@ -31,8 +32,8 @@ from ..writers import (
 )
 from ..utils import normalize_id, find_from_format
 from ..constants import (
-    Commonmeta,
-    CrossrefXml)
+    Commonmeta)
+
 
 # pylint: disable=R0902
 class Metadata:
@@ -82,10 +83,10 @@ class Metadata:
                 data = xmltodict.parse(string)
                 null = None
                 data = eval(json.dumps(data))
-                meta = read_crossref_xml(data) 
+                meta = read_crossref_xml(data)
             elif via == "citeproc":
-                 data = json.loads(string)
-                 meta = read_citeproc(data)
+                data = json.loads(string)
+                meta = read_citeproc(data)
             elif via == "codemeta":
                 data = json.loads(string)
                 meta = read_codemeta(data)
@@ -140,7 +141,7 @@ class Metadata:
     def commonmeta(self):
         """Commonmeta"""
         return write_commonmeta(self)
-    
+
     def bibtex(self):
         """Bibtex"""
         return write_bibtex(self)
