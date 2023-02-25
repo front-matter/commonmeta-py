@@ -4,7 +4,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 VERSION = ""
-with open("commonmeta-py/__init__.py", "r") as fd:
+with open("commonmeta/__init__.py", "r") as fd:
     VERSION = re.search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE
     ).group(1)
@@ -15,10 +15,7 @@ if not VERSION:
 with codecs.open("README.md", "r", "utf-8") as f:
     readme = f.read()
 
-with codecs.open("Changelog.rst", "r", "utf-8") as f:
-    changes = f.read()
-
-long_description = "\n\n" + readme + "\n\n" + changes
+long_description = "\n\n" + readme
 
 setup(
     name="commonmeta-py",
