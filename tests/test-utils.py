@@ -1,6 +1,7 @@
 """Test utils"""
 from os import path
 import pytest
+
 from commonmeta.utils import (
     dict_to_spdx,
     normalize_orcid,
@@ -27,7 +28,7 @@ from commonmeta.utils import (
     github_from_url,
     github_as_codemeta_url,
     github_as_cff_url,
-    github_as_repo_url
+    github_as_repo_url,
 )
 from commonmeta.base_utils import wrap
 
@@ -41,8 +42,13 @@ def test_dict_to_spdx_id():
         "rightsIdentifierScheme": "SPDX",
         "schemeUri": "https://spdx.org/licenses/",
     } == dict_to_spdx({"rightsIdentifier": "CC-BY-4.0"})
-    assert {'rights': 'Apache License 2.0', 'rightsUri': 'http://www.apache.org/licenses/LICENSE-2.0', 'rightsIdentifier': 'apache-2.0',
-            'rightsIdentifierScheme': 'SPDX', 'schemeUri': 'https://spdx.org/licenses/'} == dict_to_spdx({"rightsIdentifier": "Apache-2.0"})
+    assert {
+        "rights": "Apache License 2.0",
+        "rightsUri": "http://www.apache.org/licenses/LICENSE-2.0",
+        "rightsIdentifier": "apache-2.0",
+        "rightsIdentifierScheme": "SPDX",
+        "schemeUri": "https://spdx.org/licenses/",
+    } == dict_to_spdx({"rightsIdentifier": "Apache-2.0"})
 
 
 def test_dict_to_spdx_url():
@@ -110,17 +116,14 @@ def test_normalize_orcid():
         "0000-0002-2590-225X"
     )
     # invalid orcid id
-    assert None == normalize_orcid(
-        "0002-2590-225X"
-    )
+    assert None == normalize_orcid("0002-2590-225X")
     # None
     assert None is normalize_orcid(None)
 
 
 def test_normalize_id():
     "normalize_id"
-    assert "https://doi.org/10.5061/dryad.8515" == normalize_id(
-        "10.5061/DRYAD.8515")
+    assert "https://doi.org/10.5061/dryad.8515" == normalize_id("10.5061/DRYAD.8515")
     # doi as url
     assert "https://doi.org/10.5061/dryad.8515" == normalize_id(
         "http://dx.doi.org/10.5061/DRYAD.8515"
@@ -130,11 +133,19 @@ def test_normalize_id():
         "https://blog.datacite.org/eating-your-own-dog-food/"
     )
     # cff url
-    assert 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff' == normalize_id(
-        "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff")
+    assert (
+        "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
+        == normalize_id(
+            "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
+        )
+    )
     # codemeta url
-    assert 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json' == normalize_id(
-        "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json")
+    assert (
+        "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
+        == normalize_id(
+            "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
+        )
+    )
     # http url
     assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
         "http://blog.datacite.org/eating-your-own-dog-food/"
@@ -142,8 +153,7 @@ def test_normalize_id():
     # url with utf-8
     # assert 'http://www.xn--8ws00zhy3a.com/eating-your-own-dog-food' == normalize_id('http://www.詹姆斯.com/eating-your-own-dog-food/')
     # ftp
-    assert None is normalize_id(
-        "ftp://blog.datacite.org/eating-your-own-dog-food/")
+    assert None is normalize_id("ftp://blog.datacite.org/eating-your-own-dog-food/")
     # invalid url
     assert None is normalize_id("http://")
     # bytes object
@@ -207,33 +217,41 @@ def test_normalize_ids():
 
 def test_normalize_cc_url():
     """normalize_cc_url"""
-    assert 'https://creativecommons.org/licenses/by/4.0/legalcode' == normalize_cc_url(
-        'https://creativecommons.org/licenses/by/4.0/')
-    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url(
-        'https://creativecommons.org/publicdomain/zero/1.0')
+    assert "https://creativecommons.org/licenses/by/4.0/legalcode" == normalize_cc_url(
+        "https://creativecommons.org/licenses/by/4.0/"
+    )
+    assert (
+        "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+        == normalize_cc_url("https://creativecommons.org/publicdomain/zero/1.0")
+    )
     # http scheme
-    assert 'https://creativecommons.org/publicdomain/zero/1.0/legalcode' == normalize_cc_url(
-        'http://creativecommons.org/publicdomain/zero/1.0')
+    assert (
+        "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
+        == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0")
+    )
     assert None is normalize_cc_url(None)
     assert None is normalize_cc_url(
-        {'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'})
+        {"url": "https://creativecommons.org/licenses/by/4.0/legalcode"}
+    )
 
 
 def test_normalize_issn():
     """normalize_issn"""
     # from list
-    string = [{'media_type': 'print', '#text': '13040855'},
-              {'media_type': 'electronic', '#text': '21468427'}]
-    assert '2146-8427' == normalize_issn(string)
+    string = [
+        {"media_type": "print", "#text": "13040855"},
+        {"media_type": "electronic", "#text": "21468427"},
+    ]
+    assert "2146-8427" == normalize_issn(string)
     # from empty list
     string = []
     assert None is normalize_issn(string)
     # from dict
-    string = {'media_type': 'electronic', '#text': '21468427'}
-    assert '2146-8427' == normalize_issn(string)
+    string = {"media_type": "electronic", "#text": "21468427"}
+    assert "2146-8427" == normalize_issn(string)
     # from string
-    string = '2146-8427'
-    assert '2146-8427' == normalize_issn(string)
+    string = "2146-8427"
+    assert "2146-8427" == normalize_issn(string)
 
 
 def test_from_citeproc():
@@ -299,16 +317,13 @@ def find_from_format():
 def test_find_from_format_by_id():
     "find_from_format_by_id"
     assert "crossref" == find_from_format_by_id("10.1371/journal.pone.0042793")
-    assert "datacite" == find_from_format_by_id(
-        "https://doi.org/10.5061/dryad.8515")
+    assert "datacite" == find_from_format_by_id("https://doi.org/10.5061/dryad.8515")
     assert "medra" == find_from_format_by_id("10.1392/roma081203")
     assert "kisti" == find_from_format_by_id(
         "https://doi.org/10.5012/bkcs.2013.34.10.2889"
     )
-    assert "jalc" == find_from_format_by_id(
-        "https://doi.org/10.11367/grsj1979.12.283")
-    assert "op" == find_from_format_by_id(
-        "https://doi.org/10.2903/j.efsa.2018.5239")
+    assert "jalc" == find_from_format_by_id("https://doi.org/10.11367/grsj1979.12.283")
+    assert "op" == find_from_format_by_id("https://doi.org/10.2903/j.efsa.2018.5239")
     # cff
     assert "cff" == find_from_format_by_id(
         "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
@@ -339,55 +354,53 @@ def test_find_from_format_by_ext():
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
     # datacite
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'datacite.json')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "datacite.json")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "datacite" == find_from_format_by_string(string)
     # crossref
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "crossref.json")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "crossref" == find_from_format_by_string(string)
     # schema_org
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'schema_org_topmed.json')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "schema_org_topmed.json")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "schema_org" == find_from_format_by_string(string)
     # datacite_xml
-    filepath = path.join(path.dirname(__file__),
-                         'fixtures', 'datacite_dataset.xml')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "datacite_dataset.xml")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "datacite_xml" == find_from_format_by_string(string)
     # crossref_xml
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.xml')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "crossref_xml" == find_from_format_by_string(string)
     # ris
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.ris')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "crossref.ris")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "ris" == find_from_format_by_string(string)
     # bibtex
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'pure.bib')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "pure.bib")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "bibtex" == find_from_format_by_string(string)
     # cff
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'CITATION.cff')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "CITATION.cff")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "cff" == find_from_format_by_string(string)
     # codemeta
-    filepath = path.join(path.dirname(__file__),
-                         'fixtures', 'codemeta_v2.json')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "codemeta_v2.json")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "codemeta" == find_from_format_by_string(string)
     # citeproc
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'citeproc.json')
-    with open(filepath, encoding='utf-8') as file:
+    filepath = path.join(path.dirname(__file__), "fixtures", "citeproc.json")
+    with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "citeproc" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
@@ -429,8 +442,26 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'affiliation': {'#text': 'DataCite', 'affiliationIdentifier': 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme': 'ROR', 'schemeUri': 'https://ror.org/'},
-                         'nameIdentifier': [{'#text': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '#text': 'Martin Fenner'}}]
+    assert response == [
+        {
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "affiliation": {
+                "#text": "DataCite",
+                "affiliationIdentifier": "https://ror.org/04wxnsj81",
+                "affiliationIdentifierScheme": "ROR",
+                "schemeUri": "https://ror.org/",
+            },
+            "nameIdentifier": [
+                {
+                    "#text": "http://orcid.org/0000-0003-1419-2405",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+            "creatorName": {"nameType": "Personal", "#text": "Martin Fenner"},
+        }
+    ]
     # without affiliation
     authors = [
         {
@@ -442,8 +473,20 @@ def test_from_schema_org_creators():
         }
     ]
     response = from_schema_org_creators(authors)
-    assert response == [{'givenName': 'Martin', 'familyName': 'Fenner', 'nameIdentifier': [{'#text': 'http://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme': 'ORCID',
-                                                                                            'schemeUri': 'https://orcid.org'}], 'creatorName': {'nameType': 'Personal', '#text': 'Martin Fenner'}}]
+    assert response == [
+        {
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "nameIdentifier": [
+                {
+                    "#text": "http://orcid.org/0000-0003-1419-2405",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+            "creatorName": {"nameType": "Personal", "#text": "Martin Fenner"},
+        }
+    ]
 
 
 def test_pages_as_string():
@@ -476,7 +519,7 @@ def test_subjects_as_string():
     """subjects as string"""
     subjects = [
         {"subject": "Ecology", "scheme": "http://id.loc.gov/authorities/subjects"},
-        {"subject": "Biodiversity", "scheme": "http://id.loc.gov/authorities/subjects"}
+        {"subject": "Biodiversity", "scheme": "http://id.loc.gov/authorities/subjects"},
     ]
     assert "Ecology, Biodiversity" == subjects_as_string(subjects)
     assert None is subjects_as_string(None)
@@ -491,15 +534,11 @@ def test_to_citeproc():
             "familyName": "Jones",
         }
     ]
-    organization_authors = [
-        {
-            "name": "University of California, Berkeley"
-        }
-
-    ]
-    assert [{'family': 'Jones', 'given': 'Matt'}] == to_citeproc(authors)
-    assert [{'literal': 'University of California, Berkeley'}
-            ] == to_citeproc(organization_authors)
+    organization_authors = [{"name": "University of California, Berkeley"}]
+    assert [{"family": "Jones", "given": "Matt"}] == to_citeproc(authors)
+    assert [{"literal": "University of California, Berkeley"}] == to_citeproc(
+        organization_authors
+    )
 
 
 def test_to_ris():
@@ -511,15 +550,9 @@ def test_to_ris():
             "familyName": "Jones",
         }
     ]
-    organization_authors = [
-        {
-            "name": "University of California, Berkeley"
-        }
-
-    ]
-    assert ['Jones, Matt'] == to_ris(authors)
-    assert ['University of California, Berkeley'] == to_ris(
-        organization_authors)
+    organization_authors = [{"name": "University of California, Berkeley"}]
+    assert ["Jones, Matt"] == to_ris(authors)
+    assert ["University of California, Berkeley"] == to_ris(organization_authors)
 
 
 def test_to_schema_org():
@@ -533,13 +566,20 @@ def test_to_schema_org():
     organization_author = {
         "id": "https://ror.org/01an7q238",
         "type": "Organization",
-        "name": "University of California, Berkeley"
+        "name": "University of California, Berkeley",
     }
 
-    assert {'givenName': 'Matt', 'familyName': 'Jones', '@type': 'Person',
-            '@id': 'http://orcid.org/0000-0003-0077-4738'} == to_schema_org(author)
-    assert {'name': 'University of California, Berkeley', '@type': 'Organization',
-            '@id': 'https://ror.org/01an7q238'} == to_schema_org(organization_author)
+    assert {
+        "givenName": "Matt",
+        "familyName": "Jones",
+        "@type": "Person",
+        "@id": "http://orcid.org/0000-0003-0077-4738",
+    } == to_schema_org(author)
+    assert {
+        "name": "University of California, Berkeley",
+        "@type": "Organization",
+        "@id": "https://ror.org/01an7q238",
+    } == to_schema_org(organization_author)
     assert None is to_schema_org(None)
 
 
@@ -551,108 +591,131 @@ def test_to_schema_org_container():
         "title": "PANGAEA",
         "type": "DataRepository",
     }
-    assert {'@id': 'https://www.pangaea.de/', '@type': 'Periodical',
-            'name': 'PANGAEA'} == to_schema_org_container(pangaea)
+    assert {
+        "@id": "https://www.pangaea.de/",
+        "@type": "Periodical",
+        "name": "PANGAEA",
+    } == to_schema_org_container(pangaea)
     assert None is to_schema_org_container("Pangaea")
     assert None is to_schema_org_container(None)
 
 
 def test_to_schema_org_creators():
     """to schema.org creators"""
-    authors = [
+    authors = [{"givenName": "Matt", "familyName": "Jones", "nameType": "Personal"}]
+    organization_authors = [{"name": "University of California, Berkeley"}]
+    assert [
         {
             "givenName": "Matt",
             "familyName": "Jones",
-            'nameType': 'Personal'
+            "name": "Matt Jones",
+            "@type": "Person",
         }
-    ]
-    organization_authors = [
-        {
-            "name": "University of California, Berkeley"
-        }
-
-    ]
-    assert [{'givenName': 'Matt', 'familyName': 'Jones', 'name': 'Matt Jones',
-             '@type': 'Person'}] == to_schema_org_creators(authors)
-    assert [{'name': 'University of California, Berkeley',
-             '@type': 'Organization'}] == to_schema_org_creators(organization_authors)
+    ] == to_schema_org_creators(authors)
+    assert [
+        {"name": "University of California, Berkeley", "@type": "Organization"}
+    ] == to_schema_org_creators(organization_authors)
 
 
 def test_to_schema_org_identifiers():
     """to schema.org identifiers"""
-    identifiers = [{
-        "identifier": "10.5061/dryad.8515",
-        "identifierType": "DOI",
-    }]
-    assert [{'@type': 'PropertyValue', 'propertyID': 'DOI',
-            'value': '10.5061/dryad.8515'}] == to_schema_org_identifiers(identifiers)
+    identifiers = [
+        {
+            "identifier": "10.5061/dryad.8515",
+            "identifierType": "DOI",
+        }
+    ]
+    assert [
+        {"@type": "PropertyValue", "propertyID": "DOI", "value": "10.5061/dryad.8515"}
+    ] == to_schema_org_identifiers(identifiers)
     assert [] == to_schema_org_identifiers(wrap(None))
 
 
 def test_github_from_url():
     """github from url"""
-    url = 'https://github.com/datacite/bolognese'
+    url = "https://github.com/datacite/bolognese"
     response = github_from_url(url)
-    assert response == {'owner': 'datacite', 'repo': 'bolognese'}
+    assert response == {"owner": "datacite", "repo": "bolognese"}
     # organization
-    url = 'https://github.com/datacite'
+    url = "https://github.com/datacite"
     response = github_from_url(url)
-    assert response == {'owner': 'datacite'}
+    assert response == {"owner": "datacite"}
     # not a repo
     url = "https://docs.github.com/en/get-started"
     assert {} == github_from_url(url)
     # codemeta file
-    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    url = "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
     response = github_from_url(url)
-    assert response == {'owner': 'datacite', 'repo': 'metadata-reports', 'release': 'master',
-                        'path': 'software/codemeta.json'}
+    assert response == {
+        "owner": "datacite",
+        "repo": "metadata-reports",
+        "release": "master",
+        "path": "software/codemeta.json",
+    }
     # cff file
-    url = 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff'
+    url = "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
     response = github_from_url(url)
-    assert response == {'owner': 'citation-file-format', 'repo': 'ruby-cff', 'release': 'main',
-                        'path': 'CITATION.cff'}
+    assert response == {
+        "owner": "citation-file-format",
+        "repo": "ruby-cff",
+        "release": "main",
+        "path": "CITATION.cff",
+    }
     # branch
-    url = 'https://github.com/front-matter/Headline/tree/schlagzeile'
+    url = "https://github.com/front-matter/Headline/tree/schlagzeile"
     response = github_from_url(url)
-    assert response == {'owner': 'front-matter', 'repo': 'Headline', 'release': 'schlagzeile'}
+    assert response == {
+        "owner": "front-matter",
+        "repo": "Headline",
+        "release": "schlagzeile",
+    }
 
 
 def test_github_as_codemeta_url():
     """github as codemeta url"""
-    url = 'https://github.com/datacite/bolognese'
+    url = "https://github.com/datacite/bolognese"
     response = github_as_codemeta_url(url)
-    assert response == 'https://raw.githubusercontent.com/datacite/bolognese/master/codemeta.json'
+    assert (
+        response
+        == "https://raw.githubusercontent.com/datacite/bolognese/master/codemeta.json"
+    )
 
 
 def test_github_as_cff_url():
     """github as cff url"""
-    url = 'https://github.com/citation-file-format/ruby-cff'
+    url = "https://github.com/citation-file-format/ruby-cff"
     response = github_as_cff_url(url)
-    assert response == 'https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff'
+    assert (
+        response
+        == "https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff"
+    )
 
 
 def test_github_as_codemeta_url_file():
     """github as codemeta url file"""
-    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    url = "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
     response = github_as_codemeta_url(url)
-    assert response == 'https://raw.githubusercontent.com/datacite/metadata-reports/master/software/codemeta.json'
+    assert (
+        response
+        == "https://raw.githubusercontent.com/datacite/metadata-reports/master/software/codemeta.json"
+    )
 
 
 def test_github_as_repo_url():
     """github as repo url"""
     # codemeta.json
-    url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
+    url = "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
     response = github_as_repo_url(url)
-    assert response == 'https://github.com/datacite/metadata-reports'
+    assert response == "https://github.com/datacite/metadata-reports"
     # CITATION.cff
-    url = 'https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff'
+    url = "https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff"
     response = github_as_repo_url(url)
-    assert response == 'https://github.com/citation-file-format/ruby-cff'
+    assert response == "https://github.com/citation-file-format/ruby-cff"
     # any other file
-    url = 'https://github.com/mkdocs/mkdocs/blob/master/mkdocs/localization.py'
+    url = "https://github.com/mkdocs/mkdocs/blob/master/mkdocs/localization.py"
     response = github_as_repo_url(url)
-    assert response == 'https://github.com/mkdocs/mkdocs'
+    assert response == "https://github.com/mkdocs/mkdocs"
     # github repo url
-    url = 'https://github.com/datacite/metadata-reports'
+    url = "https://github.com/datacite/metadata-reports"
     response = github_as_repo_url(url)
-    assert response == 'https://github.com/datacite/metadata-reports'
+    assert response == "https://github.com/datacite/metadata-reports"

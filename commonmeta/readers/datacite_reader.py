@@ -1,5 +1,4 @@
 """datacite reader for Commonmeta"""
-from typing import Optional
 import requests
 from pydash import py_
 

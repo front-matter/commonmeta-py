@@ -1,7 +1,7 @@
 """Doi utils for commonmeta-py"""
 import re
-import requests
 from typing import Optional
+import requests
 
 
 def validate_doi(doi: Optional[str]) -> Optional[str]:

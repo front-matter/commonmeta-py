@@ -1,10 +1,19 @@
 """Test date utils"""
 from datetime import date
 import pytest
-from commonmeta.date_utils import (get_iso8601_date, get_date_by_type, get_date_from_date_parts,
-                               get_date_from_parts, get_date_parts, get_month_from_date, get_date_from_crossref_parts,
-                               get_datetime_from_time)
+
+from commonmeta.date_utils import (
+    get_iso8601_date,
+    get_date_by_type,
+    get_date_from_date_parts,
+    get_date_from_parts,
+    get_date_parts,
+    get_month_from_date,
+    get_date_from_crossref_parts,
+    get_datetime_from_time,
+)
 from commonmeta.base_utils import wrap
+
 
 def test_get_iso8601_date():
     """get_iso8601_date"""
@@ -20,8 +29,7 @@ def test_get_iso8601_date():
 
 def test_get_date_from_date_parts():
     "get_date_from_date_parts"
-    assert "2012-01-01" == get_date_from_date_parts(
-        {"date-parts": [[2012, 1, 1]]})
+    assert "2012-01-01" == get_date_from_date_parts({"date-parts": [[2012, 1, 1]]})
     assert "2012-01" == get_date_from_date_parts({"date-parts": [[2012, 1]]})
     assert "2012" == get_date_from_date_parts({"date-parts": [[2012]]})
     assert None is get_date_from_date_parts({"date-parts": []})
@@ -40,9 +48,11 @@ def test_get_date_from_parts():
 
 def test_get_date_from_crossref_parts():
     """get_date_from_crossref_parts"""
-    assert "2012-01-01" == get_date_from_crossref_parts({ 'year': '2012', 'month': '01', 'day': '01'})
-    assert "2012-01" == get_date_from_crossref_parts({ 'year': '2012', 'month': '01'})
-    assert "2012" == get_date_from_crossref_parts({ 'year': '2012'})
+    assert "2012-01-01" == get_date_from_crossref_parts(
+        {"year": "2012", "month": "01", "day": "01"}
+    )
+    assert "2012-01" == get_date_from_crossref_parts({"year": "2012", "month": "01"})
+    assert "2012" == get_date_from_crossref_parts({"year": "2012"})
     assert None is get_date_from_crossref_parts({})
 
 
@@ -57,11 +67,22 @@ def test_get_date_parts():
 def test_get_date_by_type():
     """get date by date type"""
     assert "2012-01-01" == get_date_by_type(
-        [{'date': '2012-01-01', 'dateType': 'Issued'}])
-    assert "2013-04-15" == get_date_by_type([{'date': '2012-01-01', 'dateType': 'Issued'}, {
-                                            'date': '2013-04-15', 'dateType': 'Updated'}], date_type='Updated')
-    assert "2012-01-01" == get_date_by_type([{'date': '2012-01-01T23:44:11', 'dateType': 'Issued'}, {
-                                            'date': '2013-04-15', 'dateType': 'Updated'}], date_only=True)
+        [{"date": "2012-01-01", "dateType": "Issued"}]
+    )
+    assert "2013-04-15" == get_date_by_type(
+        [
+            {"date": "2012-01-01", "dateType": "Issued"},
+            {"date": "2013-04-15", "dateType": "Updated"},
+        ],
+        date_type="Updated",
+    )
+    assert "2012-01-01" == get_date_by_type(
+        [
+            {"date": "2012-01-01T23:44:11", "dateType": "Issued"},
+            {"date": "2013-04-15", "dateType": "Updated"},
+        ],
+        date_only=True,
+    )
     assert None is get_date_by_type([])
     assert None is get_date_by_type(wrap(None))
 
@@ -83,21 +104,21 @@ def test_get_month_from_date():
 def test_get_datetime_from_time():
     """get datetime from time"""
     # present
-    time = '20200226071709'
+    time = "20200226071709"
     response = get_datetime_from_time(time)
-    assert '2020-02-26T07:17:09Z' == response
+    assert "2020-02-26T07:17:09Z" == response
 
     # past
-    time = '18770312071709'
+    time = "18770312071709"
     response = get_datetime_from_time(time)
-    assert '1877-03-12T07:17:09Z' == response
+    assert "1877-03-12T07:17:09Z" == response
 
     # future
-    time = '20970114071709'
+    time = "20970114071709"
     response = get_datetime_from_time(time)
-    assert '2097-01-14T07:17:09Z' == response
+    assert "2097-01-14T07:17:09Z" == response
 
     # invalid
-    time = '20201587168864794'
+    time = "20201587168864794"
     response = get_datetime_from_time(time)
     assert None is response

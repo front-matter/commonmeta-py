@@ -1,6 +1,5 @@
 """crossref reader for commonmeta-py"""
-from typing import Optional, TypedDict
-from functools import reduce
+from typing import Optional
 import requests
 from pydash import py_
 
@@ -112,8 +111,6 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         issn = issn["value"] if issn else None
     else:
         issn = None
- 
-    references = [get_reference(i) for i in wrap(meta.get("reference", []))]
 
     if resource_type == "JournalArticle":
         container_type = "Journal"

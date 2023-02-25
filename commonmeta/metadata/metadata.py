@@ -19,7 +19,7 @@ from ..readers import (
     read_citeproc,
     read_codemeta,
     get_cff,
-    read_cff
+    read_cff,
 )
 from ..writers import (
     write_datacite,
@@ -28,11 +28,9 @@ from ..writers import (
     write_citeproc,
     write_ris,
     write_schema_org,
-    write_commonmeta
+    write_commonmeta,
 )
 from ..utils import normalize_id, find_from_format
-from ..constants import (
-    Commonmeta)
 
 
 # pylint: disable=R0902
@@ -65,7 +63,7 @@ class Metadata:
                 data = get_cff(pid)
                 meta = read_cff(data)
         elif path.exists(string):
-            with open(string, encoding='utf-8') as file:
+            with open(string, encoding="utf-8") as file:
                 string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
             if via == "schema_org":

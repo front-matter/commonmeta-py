@@ -2,10 +2,9 @@
 import json
 from ..utils import (
     to_schema_org,
-    to_schema_org_creators,
-    to_schema_org_relations,
+    to_schema_org_creators
 )
-from ..base_utils import compact, wrap, unwrap, presence, parse_attributes
+from ..base_utils import compact, wrap, presence, parse_attributes
 from ..date_utils import get_date_by_type
 
 

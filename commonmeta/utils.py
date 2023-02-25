@@ -1,16 +1,16 @@
 """Utils module for commonmeta-py"""
 import os
 import json
-import yaml
 import re
+from typing import Optional
+from urllib.parse import urlparse
+import yaml
 import bibtexparser
 from bs4 import BeautifulSoup
-from typing import Optional, Union
-from urllib.parse import urlparse
+
 from pydash import py_
 
-# from .author_utils import get_personal_name
-from .base_utils import wrap, unwrap, compact
+from .base_utils import wrap, compact
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
 from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 

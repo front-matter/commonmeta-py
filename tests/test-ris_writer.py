@@ -1,4 +1,6 @@
+"""RIS writer tests"""
 import pytest
+
 from commonmeta import Metadata
 
 

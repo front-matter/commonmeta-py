@@ -5,14 +5,12 @@ from ..utils import pages_as_string, to_citeproc
 from ..base_utils import wrap, presence, parse_attributes, compact
 from ..date_utils import get_date_by_type, get_date_parts
 from ..doi_utils import doi_from_url
+from ..constants import Commonmeta
 
 
-def write_citeproc(metadata):
+def write_citeproc(metadata: Commonmeta) -> str:
     """Write citeproc"""
-    if (
-        len(wrap(metadata.creators)) == 1
-        and wrap(metadata.creators)[0].get("name", None) == ":(unav)"
-    ):
+    if len(wrap(metadata.creators)) == 0:
         author = None
     else:
         author = to_citeproc(wrap(metadata.creators))
@@ -26,7 +24,7 @@ def write_citeproc(metadata):
         type_ = metadata.types.get("citeproc", "article")
 
     container = metadata.container or {}
-    dictionary = compact(
+    data = compact(
         {
             "type": type_,
             "id": metadata.pid,
@@ -41,8 +39,8 @@ def write_citeproc(metadata):
             "author": author,
             "contributor": to_citeproc(wrap(metadata.contributors)),
             "issued": get_date_parts(
-                get_date_by_type(metadata.dates, "Issued") or str(
-                    metadata.publication_year)
+                get_date_by_type(metadata.dates, "Issued")
+                or str(metadata.publication_year)
             ),
             "submitted": get_date_by_type(metadata.dates, "Submitted"),
             "abstract": parse_attributes(
@@ -60,4 +58,4 @@ def write_citeproc(metadata):
             "version": metadata.version,
         }
     )
-    return json.dumps(dictionary, indent=4)
+    return json.dumps(data, indent=4)

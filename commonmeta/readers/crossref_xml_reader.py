@@ -1,7 +1,5 @@
 """crossref_xml reader for commonmeta-py"""
 from typing import Optional
-import ast
-import traceback
 import json
 import requests
 import xmltodict
@@ -24,7 +22,6 @@ from ..base_utils import (
     parse_xmldict,
 )
 from ..date_utils import (
-    get_date_from_parts,
     get_date_from_crossref_parts,
     get_datetime_from_time,
 )
@@ -67,8 +64,6 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     # workaround for eval, used to clean up xmltodict output
     null = None
     data = eval(json.dumps(data))
-    # remove namespaces from dict
-    # data = {k:v for k,v in data.items() if k != "@xmlns"}
 
     return data
 

@@ -1,6 +1,7 @@
 """Crossref reader tests"""
 from os import path
 import pytest
+
 from commonmeta import Metadata
 from commonmeta.readers.crossref_reader import (
     get_crossref,

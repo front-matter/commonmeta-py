@@ -3,7 +3,6 @@ import html
 import re
 from typing import Optional, Union
 import bleach
-import pydash as py_
 
 
 def wrap(item) -> list:

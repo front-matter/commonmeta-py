@@ -1,6 +1,8 @@
-import pytest
+"""Test DataCite Writer"""
 from os import path
 import json
+import pytest
+
 from commonmeta import Metadata
 
 

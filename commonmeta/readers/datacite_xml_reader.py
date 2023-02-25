@@ -2,7 +2,7 @@
 import requests
 from pydash import py_
 
-from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
+from ..doi_utils import doi_from_url, datacite_api_url
 from ..constants import Commonmeta
 
 

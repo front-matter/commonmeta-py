@@ -5,7 +5,6 @@ import yaml
 
 from ..utils import (
     normalize_id,
-    from_schema_org_creators,
     name_to_fos,
     dict_to_spdx,
     normalize_orcid,
@@ -15,13 +14,7 @@ from ..utils import (
 from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url
-from ..constants import (
-    Commonmeta,
-    SO_TO_DC_TRANSLATIONS,
-    SO_TO_CP_TRANSLATIONS,
-    SO_TO_BIB_TRANSLATIONS,
-    SO_TO_RIS_TRANSLATIONS,
-)
+from ..constants import Commonmeta
 
 
 def get_cff(pid: str, **kwargs) -> dict:

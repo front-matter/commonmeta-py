@@ -1,6 +1,7 @@
 """Author utils module for commonmeta-py"""
 import re
-from typing import Optional, List
+from typing import List
+
 from .utils import (
     normalize_orcid,
     normalize_id,

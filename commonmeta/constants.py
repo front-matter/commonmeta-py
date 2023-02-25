@@ -1,6 +1,5 @@
 """Constants for commonmeta-py"""
-from typing import Optional, Union, TypedDict, List
-from os import path
+from typing import Optional, TypedDict, List
 
 
 class Commonmeta(TypedDict):

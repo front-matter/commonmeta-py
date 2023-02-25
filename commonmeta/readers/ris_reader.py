@@ -1,5 +1,6 @@
 """RIS reader for commonmeta-py"""
 from typing import Optional
+
 from ..utils import compact, normalize_url
 from ..date_utils import get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
