@@ -12,6 +12,8 @@ from commonmeta.utils import (
     from_citeproc,
     find_from_format_by_id,
     find_from_format_by_string,
+    find_from_format_by_filename,
+    find_from_format_by_ext,
     from_schema_org,
     from_schema_org_creators,
     pages_as_string,
@@ -321,6 +323,19 @@ def test_find_from_format_by_id():
     )
 
 
+def test_find_from_format_by_filename():
+    """find_from_format_by_filename"""
+    assert "cff" == find_from_format_by_filename("CITATION.cff")
+    assert None is find_from_format_by_filename("text.docx")
+
+
+def test_find_from_format_by_ext():
+    """find_from_format_by_ext"""
+    assert "bibtex" == find_from_format_by_ext(".bib")
+    assert "ris" == find_from_format_by_ext(".ris")
+    assert None is find_from_format_by_ext(".docx")
+
+
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
     # datacite
@@ -333,11 +348,11 @@ def test_find_from_format_by_string():
     with open(filepath, encoding='utf-8') as file:
         string = file.read()
     assert "crossref" == find_from_format_by_string(string)
-    # crossref
-    filepath = path.join(path.dirname(__file__), 'fixtures', 'crossref.json')
+    # schema_org
+    filepath = path.join(path.dirname(__file__), 'fixtures', 'schema_org_topmed.json')
     with open(filepath, encoding='utf-8') as file:
         string = file.read()
-    assert "crossref" == find_from_format_by_string(string)
+    assert "schema_org" == find_from_format_by_string(string)
     # datacite_xml
     filepath = path.join(path.dirname(__file__),
                          'fixtures', 'datacite_dataset.xml')

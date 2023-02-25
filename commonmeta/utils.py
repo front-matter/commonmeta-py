@@ -379,7 +379,7 @@ def find_from_format(pid=None, string=None, ext=None, filename=None):
     if pid is not None:
         return find_from_format_by_id(pid)
     if string is not None and ext is not None:
-        return find_from_format_by_ext(string, ext=ext)
+        return find_from_format_by_ext(ext)
     if string is not None:
         return find_from_format_by_string(string)
     if filename is not None:
@@ -404,8 +404,13 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     return "schema_org"
 
 
-def find_from_format_by_ext(string, ext=None):
+def find_from_format_by_ext(ext: str) -> Optional[str]:
     """Find reader from format by ext"""
+    if ext == '.bib':
+        return 'bibtex'
+    if ext == '.ris':
+        return 'ris'
+    return None
 
 
 def find_from_format_by_string(string: str) -> Optional[str]:
