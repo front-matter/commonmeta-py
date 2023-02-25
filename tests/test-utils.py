@@ -594,22 +594,27 @@ def test_github_from_url():
     url = 'https://github.com/datacite/bolognese'
     response = github_from_url(url)
     assert response == {'owner': 'datacite', 'repo': 'bolognese'}
-
-
-def test_github_from_url_file():
-    """github from url file"""
+    # organization
+    url = 'https://github.com/datacite'
+    response = github_from_url(url)
+    assert response == {'owner': 'datacite'}
+    # not a repo
+    url = "https://docs.github.com/en/get-started"
+    assert {} == github_from_url(url)
+    # codemeta file
     url = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
     response = github_from_url(url)
     assert response == {'owner': 'datacite', 'repo': 'metadata-reports', 'release': 'master',
                         'path': 'software/codemeta.json'}
-
-
-def test_github_from_url_cff():
-    """github from url cff"""
+    # cff file
     url = 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff'
     response = github_from_url(url)
     assert response == {'owner': 'citation-file-format', 'repo': 'ruby-cff', 'release': 'main',
                         'path': 'CITATION.cff'}
+    # branch
+    url = 'https://github.com/front-matter/Headline/tree/schlagzeile'
+    response = github_from_url(url)
+    assert response == {'owner': 'front-matter', 'repo': 'Headline', 'release': 'schlagzeile'}
 
 
 def test_github_as_codemeta_url():

@@ -551,7 +551,9 @@ def github_from_url(url: str) -> dict:
     owner = words[0] if len(words) > 0 else None
     repo = words[1] if len(words) > 1 else None
     release = words[3] if len(words) > 3 else None
-    path = '/'.join(words[4:]) if len(words) > 3 else None
+    path = '/'.join(words[4:]) if len(words) > 3 else ''
+    if len(path) == 0:
+        path = None
 
     return compact({'owner': owner, 'repo': repo, 'release': release, 'path': path})
 
