@@ -112,7 +112,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
 
     return {
         "pid": pid,
-        "doi": doi_from_url(pid),
+        "doi": doi_from_url(pid) if pid else None,
         "url": normalize_id(meta.get("codeRepository", None)),
         "types": types,
         "identifiers": None,

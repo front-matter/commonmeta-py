@@ -70,7 +70,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     return {
         # required properties
         "pid": pid,
-        "doi": doi_from_url(pid),
+        "doi": doi_from_url(pid) if pid else None,
         "url": normalize_url(meta.get("url", None)),
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
