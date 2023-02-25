@@ -1,6 +1,7 @@
+# pylint: disable=invalid-name
 """Test utils"""
 from os import path
-import pytest
+import pytest  # noqa: F401
 
 from commonmeta.utils import (
     dict_to_spdx,
@@ -116,7 +117,7 @@ def test_normalize_orcid():
         "0000-0002-2590-225X"
     )
     # invalid orcid id
-    assert None == normalize_orcid("0002-2590-225X")
+    assert None is normalize_orcid("0002-2590-225X")
     # None
     assert None is normalize_orcid(None)
 

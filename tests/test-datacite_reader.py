@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,too-many-lines
 """Test DataCite JSON reader"""
 from os import path
 import pytest

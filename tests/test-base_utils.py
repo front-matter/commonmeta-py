@@ -1,5 +1,7 @@
+# pylint: disable=invalid-name
 """Test base utils"""
-import pytest
+import pytest  # noqa: F401
+
 from commonmeta.base_utils import (
     parse_attributes,
     presence,

@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """RIS writer tests"""
 import pytest
 

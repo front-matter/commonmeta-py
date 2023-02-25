@@ -1,6 +1,7 @@
+# pylint: disable=invalid-name
 """Test date utils"""
 from datetime import date
-import pytest
+import pytest  # noqa: F401
 
 from commonmeta.date_utils import (
     get_iso8601_date,

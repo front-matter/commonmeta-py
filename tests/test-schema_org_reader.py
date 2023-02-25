@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """Test schema.org reader"""
 import pytest
 from commonmeta import Metadata
@@ -20,7 +21,11 @@ def test_blog_posting():
     assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {'familyName': 'Fenner', 'givenName': 'Martin', 'nameType': 'Personal'}
+    assert subject.creators[0] == {
+        "familyName": "Fenner",
+        "givenName": "Martin",
+        "nameType": "Personal",
+    }
     assert subject.contributors is None
     assert subject.rights == [
         {
@@ -75,8 +80,12 @@ def test_zenodo():
         )
     }
     assert len(subject.creators) == 6
-    assert subject.creators[0] == {'nameType': 'Personal', 'givenName': 'Staib,', 'familyName': 'Matthias', 'affiliation': [
-        {'name': 'University of Zurich, Zurich, Switzerland'}]}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "givenName": "Staib,",
+        "familyName": "Matthias",
+        "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
+    }
     assert subject.contributors is None
     assert subject.rights == [
         {
@@ -190,22 +199,45 @@ def test_dataverse():
         subject.url
         == "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
-    assert subject.titles[0] == {
-        "title": "Summary data ankylosing spondylitis GWAS"}
+    assert subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {'nameType': 'Personal', 'givenName': 'International Genetics of Ankylosing Spondylitis Consortium', 'familyName': '(IGAS)'}
+    assert subject.creators[0] == {
+        "nameType": "Personal",
+        "givenName": "International Genetics of Ankylosing Spondylitis Consortium",
+        "familyName": "(IGAS)",
+    }
     assert subject.contributors is None
-    assert subject.rights == [{'rights': 'Creative Commons Zero v1.0 Universal', 'rightsIdentifier': 'cc0-1.0', 'rightsIdentifierScheme': 'SPDX', 'rightsUri': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode', 'schemeUri': 'https://spdx.org/licenses/'}]
-    assert subject.dates == [{'date': '2017-09-30', 'dateType': 'Issued'}, {'date': '2017-09-30', 'dateType': 'Updated'}]
+    assert subject.rights == [
+        {
+            "rights": "Creative Commons Zero v1.0 Universal",
+            "rightsIdentifier": "cc0-1.0",
+            "rightsIdentifierScheme": "SPDX",
+            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+            "schemeUri": "https://spdx.org/licenses/",
+        }
+    ]
+    assert subject.dates == [
+        {"date": "2017-09-30", "dateType": "Issued"},
+        {"date": "2017-09-30", "dateType": "Updated"},
+    ]
     assert subject.publication_year == 2017
     assert subject.publisher == "Harvard Dataverse"
     assert subject.references is None
-    assert subject.container == {'identifier': 'https://dataverse.harvard.edu', 'identifierType': 'URL', 'title': 'Harvard Dataverse', 'type': 'DataRepository'}
+    assert subject.container == {
+        "identifier": "https://dataverse.harvard.edu",
+        "identifierType": "URL",
+        "title": "Harvard Dataverse",
+        "type": "DataRepository",
+    }
     # assert subject.descriptions[0].get('description').startswith(
     #     'Summary of association tests for Nature Genetics publication')
-    assert subject.subjects == [{'subject': 'medicine, health and life sciences'}, {'subject': ' genome-wide association studies'}, {'subject': 'ankylosing spondylitis'}]
-    assert subject.language == 'en'
-    assert subject.version == '1'
+    assert subject.subjects == [
+        {"subject": "medicine, health and life sciences"},
+        {"subject": " genome-wide association studies"},
+        {"subject": "ankylosing spondylitis"},
+    ]
+    assert subject.language == "en"
+    assert subject.version == "1"
     # assert subject.geo_locations is None
     assert subject.agency == "Harvard Dataverse"
 
@@ -234,7 +266,10 @@ def test_yet_another_blog_post():
     }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        'familyName': 'Hawks', 'givenName': 'John', 'nameType': 'Personal'}
+        "familyName": "Hawks",
+        "givenName": "John",
+        "nameType": "Personal",
+    }
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -337,8 +372,7 @@ def test_another_blog_with_dois():
         subject.url
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
-    assert subject.titles[0] == {
-        "title": "DOIng it Right! (DOIs for This Blog)"}
+    assert subject.titles[0] == {"title": "DOIng it Right! (DOIs for This Blog)"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {"nameType": "Personal", "name": "Andreas"}
     assert subject.contributors is None
@@ -452,10 +486,11 @@ def test_schema_org_geolocation():
         "geo": {
             "@type": "GeoCoordinates",
             "latitude": 67.12594,
-            "longitude": -50.18037
-        }
+            "longitude": -50.18037,
+        },
     }
     none_coverage = {"spatialCoverage": None}
-    assert {'geoLocationPoint': {'pointLatitude': 67.12594,
-                                 'pointLongitude': -50.18037}} == schema_org_geolocation(spatial_coverage)
+    assert {
+        "geoLocationPoint": {"pointLatitude": 67.12594, "pointLongitude": -50.18037}
+    } == schema_org_geolocation(spatial_coverage)
     assert None is schema_org_geolocation(none_coverage)

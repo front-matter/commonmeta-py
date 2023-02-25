@@ -107,11 +107,11 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
 def get_references(references: list) -> list:
     """get_references"""
-    print(references)
+
     def is_reference(reference):
         """is_reference"""
         return reference.get("relationType", None) in ["Cites", "References"]
-    
+
     def map_reference(reference):
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)

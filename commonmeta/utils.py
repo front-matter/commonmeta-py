@@ -204,10 +204,10 @@ def dict_to_spdx(dct: dict) -> dict:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
         (
-            l
-            for l in spdx
-            if l["licenseId"].casefold() == dct.get("rightsIdentifier", "").casefold()
-            or l["seeAlso"][0] == dct.get("rightsUri", None)
+            lic
+            for lic in spdx
+            if lic["licenseId"].casefold() == dct.get("rightsIdentifier", "").casefold()
+            or lic["seeAlso"][0] == dct.get("rightsUri", None)
         ),
         None,
     )

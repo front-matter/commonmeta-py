@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """Test schema.org writer"""
 import json
 import pytest

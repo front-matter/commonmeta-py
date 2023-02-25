@@ -585,7 +585,7 @@ def crossref_funding(funding_references: list) -> list:
                 formatted_funding_references.append(fund_ref)
         if funding_reference != {} and len(wrap(py_.get(funding_dict, "fundgroup"))) == 1:
             formatted_funding_references.append(funding_reference)
-             
+
     return formatted_funding_references
 
 

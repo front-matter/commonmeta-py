@@ -33,13 +33,12 @@ def get_iso8601_date(date: Union[datetime.datetime, datetime.date, str, int]) ->
         return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
         return datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
-    return ''
+    return ""
 
 
 def get_date_by_type(dates: list, date_type="Issued", date_only=False) -> Optional[str]:
     """Get date by date type"""
-    date = next((i for i in dates if i.get(
-        "dateType", None) == date_type), None)
+    date = next((i for i in dates if i.get("dateType", None) == date_type), None)
     if not isinstance(date, dict):
         return None
     if date_only:
@@ -84,23 +83,24 @@ def get_date_from_crossref_parts(date_parts: dict):
     """Get date from Crossref XML date parts"""
     if isinstance(date_parts, list):
         date_parts = date_parts[0]
-    year = date_parts.get('year', None)
+    year = date_parts.get("year", None)
     if year is None:
         return None
-    month = date_parts.get('month', 0)
-    day = date_parts.get('day', 0)
+    month = date_parts.get("month", 0)
+    day = date_parts.get("day", 0)
     return get_date_from_parts(year, month, day)
 
 
 def get_date_from_parts(year=0, month=0, day=0) -> Optional[str]:
     """Get date from parts"""
-    arr = [str(year).rjust(4, "0"), str(
-        month).rjust(2, "0"), str(day).rjust(2, "0")]
+    arr = [str(year).rjust(4, "0"), str(month).rjust(2, "0"), str(day).rjust(2, "0")]
     arr = [e for i, e in enumerate(arr) if (e not in ["00", "0000"])]
     return None if len(arr) == 0 else "-".join(arr)
 
 
-def get_month_from_date(date: Optional[Union[str, int, datetime.datetime, datetime.date]]) -> Optional[str]:
+def get_month_from_date(
+    date: Optional[Union[str, int, datetime.datetime, datetime.date]]
+) -> Optional[str]:
     """Get month from date"""
     if date is None:
         return None
@@ -110,8 +110,7 @@ def get_month_from_date(date: Optional[Union[str, int, datetime.datetime, dateti
     if isinstance(date, str):
         date = dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
-        date = datetime.datetime.fromtimestamp(
-            date).strftime(ISO8601_DATE_FORMAT)
+        date = datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, (datetime.datetime, datetime.date)):
         date = date.strftime(ISO8601_DATE_FORMAT)
     date = date.split("-")
@@ -135,6 +134,6 @@ def strip_milliseconds(iso8601_time: Optional[str]) -> Optional[str]:
 def get_datetime_from_time(time: str) -> Optional[str]:
     """iso8601 datetime without hyphens and colons, used by Crossref"""
     try:
-        return dt.strptime(time, '%Y%m%d%H%M%S').strftime('%Y-%m-%dT%H:%M:%SZ')
+        return dt.strptime(time, "%Y%m%d%H%M%S").strftime("%Y-%m-%dT%H:%M:%SZ")
     except ValueError:
         return None

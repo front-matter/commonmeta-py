@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """Test DataCite Writer"""
 from os import path
 import json

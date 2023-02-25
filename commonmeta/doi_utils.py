@@ -9,7 +9,7 @@ def validate_doi(doi: Optional[str]) -> Optional[str]:
     if doi is None:
         return None
     match = re.search(
-        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/.+)\Z",
+        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/.+)\Z",  # noqa: E501
         doi,
     )
     if match is None:
@@ -22,7 +22,7 @@ def validate_prefix(doi: Optional[str]) -> Optional[str]:
     if doi is None:
         return None
     match = re.search(
-        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}).*\Z",
+        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}).*\Z",  # noqa: E501
         doi,
     )
     if match is None:
@@ -86,7 +86,12 @@ def crossref_api_url(doi: str) -> str:
 
 def crossref_xml_api_url(doi: str) -> str:
     """Return the Crossref XML API URL for a given DOI"""
-    return "https://api.crossref.org/works/" + doi + "/transform/application/vnd.crossref.unixsd+xml"
+    return (
+        "https://api.crossref.org/works/"
+        + doi
+        + "/transform/application/vnd.crossref.unixsd+xml"
+    )
+
 
 def datacite_api_url(doi: str, **kwargs) -> str:
     """Return the DataCite API URL for a given DOI"""
@@ -95,5 +100,4 @@ def datacite_api_url(doi: str, **kwargs) -> str:
     )
     if match is not None or kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
-    else:
-        return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
+    return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"

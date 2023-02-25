@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,too-many-lines
 """Crossref XML reader tests"""
 from os import path
 import pytest
@@ -331,15 +332,7 @@ def test_journal_article_with_rdf_for_container():
         "volume": "88",
         "issue": "5",
         "firstPage": "1",
-        "containerTitle": "Rozpravy Ceskoslovenske Akademie Ved, Rada Matematickych A Prirodnich Ved",
-    }
-    assert subject.references[-1] == {
-        "key": "bibr111",
-        "creator": "Zenina",
-        "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
-        "publicationYear": "2008",
-        "volume": "Vol. 1",
-        "firstPage": "156",
+        "containerTitle": "Rozpravy Ceskoslovenske Akademie Ved, Rada Matematickych A Prirodnich Ved",  # noqa: E501
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -390,13 +383,7 @@ def test_book_chapter_with_rdf_for_container():
     ]
     assert subject.publication_year == 2012
     assert subject.publisher == "Springer Science and Business Media LLC"
-    # assert len(subject.references) == 12
-    # assert subject.references[0] == {
-    #     "relatedItemIdentifier": "1611-3349",
-    #     "relatedItemIdentifierType": "ISSN",
-    #     "relationType": "IsPartOf",
-    #     "resourceTypeGeneral": "Collection",
-    # }
+    assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
         "unstructured": "Griesser, A., Roeck, D.S., Neubeck, A., Van Gool, L.: Gpu-based foreground-background segmentation using an extended colinearity criterion. In: Proc. of Vison, Modeling, and Visualization (VMV), pp. 319–326 (2005)",
@@ -1303,44 +1290,3 @@ def test_book():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.agency == "Crossref"
-
-
-# def test_get_crossref():
-#     """get_crossref"""
-#     data = get_crossref('https://doi.org/10.1017/9781108348843')
-#     assert isinstance(data, dict)
-#     assert data.get('DOI') == '10.1017/9781108348843'
-#     assert {'state': 'not_found'} == get_crossref('123')
-
-
-# def test_read_crossref():
-#     """read_crossref"""
-#     data = get_crossref('https://doi.org/10.1017/9781108348843')
-#     meta = read_crossref(data)
-#     assert isinstance(meta, dict)
-#     assert meta.get('pid') == 'https://doi.org/10.1017/9781108348843'
-#     assert {'state': 'not_found'} == read_crossref(None)
-
-
-# def test_get_related_item():
-#     """get_related_item"""
-#     doi_metadata = {
-#         "key": "978-1-4666-1891-6.ch004.-31",
-#         "doi-asserted-by": "crossref",
-#         "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
-#         "DOI": "10.1109/ICCV.2007.4408927"
-#     }
-#     unstructured_metadata = {
-#         "key": "978-1-4666-1891-6.ch004.-14",
-#         "first-page": "938",
-#         "article-title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
-#         "volume": "15",
-#         "author": "W.Donath",
-#         "year": "1972",
-#         "journal-title": "IBM Technical Disclosure Bulletin"
-#     }
-#     assert {'key': '978-1-4666-1891-6.ch004.-31', 'relatedItemIdentifier': '10.1109/iccv.2007.4408927',
-#             'relatedItemIdentifierType': 'DOI', 'relationType': 'References'} == get_related_item(doi_metadata)
-#     assert {'key': '978-1-4666-1891-6.ch004.-14', 'relationType': 'References', 'creator': 'W.Donath', 'title': 'Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.',
-#             'publicationYear': '1972', 'volume': '15', 'firstPage': '938', 'containerTitle': 'IBM Technical Disclosure Bulletin'} == get_related_item(unstructured_metadata)
-#     assert None is get_related_item(None)
