@@ -27,6 +27,8 @@ ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
 def get_iso8601_date(date: Union[datetime.datetime, datetime.date, str, int]) -> str:
     """Get ISO 8601 date without time"""
+    if date is None:
+        return ""
     if isinstance(date, (datetime.datetime, datetime.date)):
         return date.strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, str):

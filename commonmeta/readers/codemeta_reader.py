@@ -24,7 +24,7 @@ from ..constants import (
 
 def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
-    url = github_as_codemeta_url(pid)
+    url = str(github_as_codemeta_url(pid))
     response = requests.get(url, kwargs, timeout=5)
     if response.status_code != 200:
         return {"state": "not_found"}
@@ -75,7 +75,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     if meta.get("description", None):
         descriptions = [
             {
-                "description": sanitize(meta.get("description")),
+                "description": sanitize(str(meta.get("description"))),
                 "descriptionType": "Abstract",
             }
         ]

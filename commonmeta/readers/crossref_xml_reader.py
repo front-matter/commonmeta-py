@@ -61,9 +61,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     data = xmltodict.parse(
         response.text, process_namespaces=True, namespaces=namespaces
     )
-    # workaround for eval, used to clean up xmltodict output
-    null = None
-    data = eval(json.dumps(data))
+    data = json.loads(str(json.dumps(data)))
 
     return data
 

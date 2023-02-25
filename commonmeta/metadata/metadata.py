@@ -79,8 +79,7 @@ class Metadata:
                 meta = read_datacite_xml(string)
             elif via == "crossref_xml":
                 data = xmltodict.parse(string)
-                null = None
-                data = eval(json.dumps(data))
+                data = json.loads(str(json.dumps(data)))
                 meta = read_crossref_xml(data)
             elif via == "citeproc":
                 data = json.loads(string)

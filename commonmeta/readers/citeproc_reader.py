@@ -75,7 +75,7 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
     if meta.get("abstract", None):
         descriptions = [
             {
-                "description": sanitize(meta.get("abstract")),
+                "description": sanitize(str(meta.get("abstract"))),
                 "descriptionType": "Abstract",
             }
         ]
