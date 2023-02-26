@@ -328,6 +328,7 @@ CM_TO_RIS_TRANSLATIONS = {
     "BookChapter": "CHAP",
     "Collection": "CTLG",
     "Dataset": "DATA",
+    "Dissertation": "THES",
     "Document": "GEN",
     "Entry": "DICT",
     "Event": "GEN",
