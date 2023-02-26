@@ -70,7 +70,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "rights": presence(rights),
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
-        "funding_references": meta.get("fundingReferences", None),
+        "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
         # other properties
         "date_created": strip_milliseconds(meta.get("created", None)),
