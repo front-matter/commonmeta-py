@@ -1,8 +1,8 @@
+# pylint: disable=invalid-name
 """Test codemeta reader"""
 from os import path
 import pytest
 from commonmeta import Metadata
-from commonmeta.readers.codemeta_reader import get_codemeta, read_codemeta
 
 
 @pytest.mark.vcr

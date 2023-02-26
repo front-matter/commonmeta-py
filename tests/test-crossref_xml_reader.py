@@ -269,7 +269,7 @@ def test_journal_article_with_rdf_for_container():
     string = "https://doi.org/10.1163/1937240X-00002096"
     subject = Metadata(string, via="crossref_xml")
     assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
-    assert subject.type ==  "JournalArticle"
+    assert subject.type == "JournalArticle"
     assert (
         subject.url
         == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"

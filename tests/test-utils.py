@@ -190,12 +190,10 @@ def test_normalize_ids():
         {
             "relatedIdentifier": "10.5438/0012",
             "relatedIdentifierType": "DOI",
-            "resourceTypeGeneral": "Text",
         },
         {
             "relatedIdentifier": "10.5438/55e5-t5c0",
             "relatedIdentifierType": "DOI",
-            "resourceTypeGeneral": "Text",
         },
     ]
     assert response == normalize_ids(ids=ids)
@@ -210,7 +208,6 @@ def test_normalize_ids():
         {
             "relatedIdentifier": "https://blog.datacite.org/eating-your-own-dog-food",
             "relatedIdentifierType": "URL",
-            "resourceTypeGeneral": "Text",
         }
     ]
     assert response == normalize_ids(ids=ids)

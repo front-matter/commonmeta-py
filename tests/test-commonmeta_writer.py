@@ -1,6 +1,8 @@
+# pylint: disable=invalid-name
 """Commonmeta writer tests"""
-import pytest
 import json
+import pytest
+
 from commonmeta import Metadata
 
 

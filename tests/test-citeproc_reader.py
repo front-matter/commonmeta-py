@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """Citeproc JSON reader tests"""
 from os import path
 import pytest

@@ -22,6 +22,7 @@ from ..doi_utils import doi_from_url
 from ..constants import (
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
+    SO_TO_DC_REVERSE_RELATION_TYPES,
     Commonmeta,
 )
 

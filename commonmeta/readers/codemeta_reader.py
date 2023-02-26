@@ -11,7 +11,7 @@ from ..utils import (
     github_as_repo_url,
     doi_from_url,
 )
-from ..base_utils import compact, wrap, presence, sanitize
+from ..base_utils import wrap, presence, sanitize
 from ..author_utils import get_authors
 from ..constants import (
     Commonmeta,

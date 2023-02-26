@@ -99,7 +99,7 @@ class Metadata:
             raise ValueError("No metadata found")
 
         # required properties
-        self.id = meta.get("id")
+        self.id = meta.get("id")  # pylint: disable=C0103
         self.doi = meta.get("doi")
         self.url = meta.get("url")
         self.creators = meta.get("creators")

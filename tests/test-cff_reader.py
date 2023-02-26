@@ -30,7 +30,7 @@ def test_ruby_cff():
         'subject': 'software sustainability'}, {'subject': 'metadata'}, {'subject': 'citation file format'}, {'subject': 'cff'}]
     assert subject.dates == [{'date': '2022-11-05', 'dateType': 'Issued'}]
     assert subject.version == '1.0.1'
-    assert subject.rights == None
+    assert subject.rights is None
     assert subject.references is None
     assert subject.publication_year == 2022
     assert subject.publisher == 'GitHub'

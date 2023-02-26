@@ -7,7 +7,7 @@ from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_from_url, doi_as_url, datacite_api_url
 from ..utils import normalize_url
-from ..constants import Commonmeta
+from ..constants import DC_TO_CM_TRANSLATIONS, Commonmeta
 
 
 def get_datacite_xml(pid: str, **kwargs) -> dict:
@@ -32,6 +32,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     id_ = doi_as_url(meta.get("doi", None))
     resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
     type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, 'Other')
+    references = wrap(meta.get("relatedItems", None) + meta.get("relatedIdentifiers", None))
 
     return {
         # required properties
@@ -53,7 +54,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "sizes": presence(meta.get("sizes", None)),
         "formats": presence(meta.get("formats", None)),
         "version": meta.get("version", None),
-        "rights": presence(rights),
+        "rights": presence(meta.get("rights", None),),
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": meta.get("fundingReferences", None),

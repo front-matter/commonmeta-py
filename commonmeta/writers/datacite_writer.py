@@ -19,7 +19,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
         "resourceTypeGeneral": resource_type_general,
         "resourceType": resource_type,
         "schemaOrg": CM_TO_SO_TRANSLATIONS.get(metadata.type, 'CreativeWork'),
-        "citeproc": CM_TO_CP_TRANSLATIONS.get(metadata.type, 'article'), 
+        "citeproc": CM_TO_CP_TRANSLATIONS.get(metadata.type, 'article'),
         "bibtex": CM_TO_BIB_TRANSLATIONS.get(metadata.type, 'misc'),
         "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, 'GEN'),
     })

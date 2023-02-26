@@ -12,7 +12,6 @@ from pydash import py_
 
 from .base_utils import wrap, compact
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
-from .constants import DC_TO_SO_TRANSLATIONS, SO_TO_DC_TRANSLATIONS
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -119,7 +118,6 @@ def normalize_ids(ids: list, relation_type=None) -> list:
                     "relatedIdentifier": idn,
                     "relationType": relation_type,
                     "relatedIdentifierType": related_identifier_type,
-                    "resourceTypeGeneral": SO_TO_DC_TRANSLATIONS.get(type_, None),
                 }
             )
         return None
@@ -368,10 +366,7 @@ def to_schema_org_relations(related_items: list, relation_type=None):
             return compact({"@type": "Periodical", "issn": i["relatedItemIdentifier"]})
         return compact(
             {
-                "@id": normalize_id(i["relatedIdentifier"]),
-                "@type": DC_TO_SO_TRANSLATIONS.get(
-                    i.get("resourceTypeGeneral", "CreativeWork")
-                ),
+                "@id": normalize_id(i["relatedIdentifier"])
             }
         )
 

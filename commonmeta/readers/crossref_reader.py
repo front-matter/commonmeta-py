@@ -15,11 +15,6 @@ from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra, crossref_api_url
 from ..constants import (
-    CR_TO_BIB_TRANSLATIONS,
-    CR_TO_CP_TRANSLATIONS,
-    CR_TO_DC_TRANSLATIONS,
-    CR_TO_RIS_TRANSLATIONS,
-    CR_TO_SO_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
     Commonmeta,
 )

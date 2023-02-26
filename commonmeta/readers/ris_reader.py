@@ -5,9 +5,7 @@ from ..utils import compact, normalize_url
 from ..date_utils import get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
 from ..constants import (
-    RIS_TO_CP_TRANSLATIONS,
-    RIS_TO_DC_TRANSLATIONS,
-    RIS_TO_SO_TRANSLATIONS,
+    RIS_TO_CM_TRANSLATIONS,
     Commonmeta
 )
 
