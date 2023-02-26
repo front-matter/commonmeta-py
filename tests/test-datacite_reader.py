@@ -22,7 +22,7 @@ def test_dataset():
     }
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Benjamin",
         "familyName": "Ollomo",
         "affiliation": [
@@ -76,7 +76,7 @@ def test_blog_posting():
     assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Rorie",
         "familyName": "Edmunds",
         "affiliation": [{"name": "DataCite"}],
@@ -124,7 +124,7 @@ def test_date():
     }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Nathaniel",
         "familyName": "Johnston",
     }
@@ -133,7 +133,7 @@ def test_date():
             "contributorType": "Editor",
             "familyName": "Herbstritt",
             "givenName": "Marc",
-            "nameType": "Personal",
+            "type": "Person",
         }
     ]
     assert subject.rights is None
@@ -183,7 +183,7 @@ def test_affiliation_identifier():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.creators.length).to eq(3)
-#       expect(subject.creators.first).to eq('nameType' => 'Personal', 'affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'DataCite' }],
+#       expect(subject.creators.first).to eq('type' => 'Personal', 'affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'DataCite' }],
 #                                            'familyName' => 'Miller',
 #                                            'givenName' => 'Elizabeth',
 #                                            'name' => 'Miller, Elizabeth',
@@ -209,7 +209,7 @@ def test_affiliation_identifier():
 #       expect(subject.contributors).to eq([{ 'name' => 'Starr, Joan', 'givenName' => 'Joan', 'familyName' => 'Starr', 'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-7285-027X', 'schemeUri' => 'https://orcid.org', 'nameIdentifierScheme' => 'ORCID' }], 'affiliation' =>
 #         [{ 'affiliationIdentifier' => 'https://ror.org/03yrm5c26',
 #            'affiliationIdentifierScheme' => 'ROR',
-#            'name' => 'California Digital Library' }], 'contributorType' => 'ProjectLeader', "nameType"=>"Personal" }])
+#            'name' => 'California Digital Library' }], 'contributorType' => 'ProjectLeader', "type"=>"Person" }])
 #       expect(subject.subjects).to eq([{ 'lang' => 'en-US', 'schemeUri' => 'http://dewey.info/',
 #                                         'subject' => '000 computer science', 'subjectScheme' => 'dewey' }])
 #       expect(subject.dates).to eq([
@@ -292,7 +292,7 @@ def test_multiple_identifiers():
     }
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Kristian",
         "familyName": "Garza",
     }
@@ -337,16 +337,10 @@ def test_is_identical():
     assert subject.titles[0] == {"title": "RAIN v1"}
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0002-2410-9671",
+        "type": "Person",
         "givenName": "Alexander",
         "familyName": "Junge",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0002-2410-9671",
-                "schemeUri": "https://orcid.org",
-                "nameIdentifierScheme": "ORCID",
-            }
-        ],
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -415,16 +409,10 @@ def test_subject_scheme_for():
     )
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0002-2874-287X",
+        "type": "Person",
         "givenName": "Ian",
         "familyName": "Dworkin",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0002-2874-287X",
-                "schemeUri": "https://orcid.org",
-                "nameIdentifierScheme": "ORCID",
-            }
-        ],
     }
     assert subject.titles[0] == {
         "title": "Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia."
@@ -583,7 +571,7 @@ def test_cc_by():
 #       subject = described_class.new(text: nil,
 #                                     from: 'datacite',
 #                                     doi: '10.5281/zenodo.1239',
-#                                     creators: [{ 'nameType' => 'Personal', 'name' => 'Jahn, Najko', 'givenName' => 'Najko',
+#                                     creators: [{ 'type' => 'Personal', 'name' => 'Jahn, Najko', 'givenName' => 'Najko',
 #                                                  'familyName' => 'Jahn' }],
 #                                     titles: [{ 'title' => 'Publication Fp7 Funding Acknowledgment - Plos Openaire' }],
 #                                     descriptions: [{ 'description' => 'The dataset contains a sample of metadata describing papers' }],
@@ -610,7 +598,7 @@ def test_cc_by():
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
 #       expect(subject.creators).to eq([{ 'familyName' => 'Jahn', 'givenName' => 'Najko',
-#                                         'name' => 'Jahn, Najko', 'nameType' => 'Personal' }])
+#                                         'name' => 'Jahn, Najko', 'type' => 'Personal' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Publication Fp7 Funding Acknowledgment - Plos Openaire' }])
 #       expect(subject.descriptions.first['description']).to start_with('The dataset contains a sample of metadata describing papers')
 #       expect(subject.dates).to eq([{ 'date' => '2013-04-03', 'dateType' => 'Issued' }])
@@ -680,7 +668,7 @@ def test_datacite_json():
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Martin",
         "familyName": "Fenner",
     }
@@ -755,7 +743,7 @@ def test_datacite_json():
 #       expect(subject.id).to eq('https://doi.org/10.6071/z7wc73')
 #       expect(subject.creators.length).to eq(6)
 #       expect(subject.creators.first).to eq('familyName' => 'Bales', 'givenName' => 'Roger',
-#                                            'name' => 'Bales, Roger', 'nameType' => 'Personal', 'affiliation' => [{ 'name' => 'UC Merced' }])
+#                                            'name' => 'Bales, Roger', 'type' => 'Personal', 'affiliation' => [{ 'name' => 'UC Merced' }])
 #       expect(subject.subjects).to eq([{ 'subject' => 'earth sciences' },
 #                                       { 'subject' => 'soil moisture' },
 #                                       { 'subject' => 'soil temperature' },
@@ -774,7 +762,7 @@ def test_datacite_json():
 #                                            'identifierType' => 'Local accession number' }])
 #       expect(subject.creators.length).to eq(1)
 #       expect(subject.creators.first).to eq('familyName' => 'Fenner', 'givenName' => 'Martin',
-#                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', "nameType" => "Personal")
+#                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', "type" => "Person")
 #       expect(subject.titles).to eq([{ 'title' => 'Eating your own Dog Food' }])
 #       expect(subject.publisher).to eq('DataCite')
 #       expect(subject.publication_year).to eq('2016')
@@ -806,7 +794,7 @@ def test_datacite_json():
 #       expect(subject.doi).to eq('10.5072/geopointexample')
 #       expect(subject.creators.length).to eq(3)
 #       expect(subject.creators.first).to eq('familyName' => 'Schumann', 'givenName' => 'Kai',
-#                                            'name' => 'Schumann, Kai', 'nameType' => 'Personal')
+#                                            'name' => 'Schumann, Kai', 'type' => 'Personal')
 #       expect(subject.titles).to eq([{ 'title' => 'Gridded results of swath bathymetric mapping of Disko Bay, Western Greenland, 2007-2008' }])
 #       expect(subject.publisher).to eq('PANGAEA - Data Publisher for Earth & Environmental Science')
 #       expect(subject.publication_year).to eq('2011')
@@ -831,7 +819,7 @@ def test_geolocation_box():
     assert subject.creators[0] == {
         "familyName": "Bales",
         "givenName": "Roger",
-        "nameType": "Personal",
+        "type": "Person",
         "affiliation": [{"name": "University of California, Merced"}],
     }
     assert subject.titles == [
@@ -929,7 +917,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.18429/jacow-ipac2016-tupmy003')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.creators.length).to eq(12)
-#       expect(subject.creators.first).to eq('nameType' => 'Personal',
+#       expect(subject.creators.first).to eq('type' => 'Personal',
 #                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'http://jacow.org/JACoW-00077389', 'nameIdentifierScheme' => 'JACoW-ID', 'schemeUri' => 'http://jacow.org/' }], 'name' => 'Otani, Masashi', 'givenName' => 'Masashi', 'familyName' => 'Otani', 'affiliation' => [{ 'name' => 'KEK, Tsukuba, Japan' }])
 #     end
 
@@ -940,7 +928,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.2314/coscv1')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
 #       expect(subject.creators.length).to eq(14)
-#       expect(subject.creators.first).to include('nameType' => 'Personal',
+#       expect(subject.creators.first).to include('type' => 'Personal',
 #                                                 'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-0232-7085', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Heller, Lambert', 'givenName' => 'Lambert', 'familyName' => 'Heller')
 #     end
 
@@ -966,7 +954,7 @@ def test_geolocation_box():
 #       expect(subject.creators.length).to eq(2)
 #       expect(subject.creators.first).to eq(
 #         'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-8740-8284',
-#                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Bimbo, Nuno', 'givenName' => 'Nuno', 'familyName' => 'Bimbo', 'nameType' => 'Personal'
+#                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Bimbo, Nuno', 'givenName' => 'Nuno', 'familyName' => 'Bimbo', 'type' => 'Personal'
 #       )
 #       expect(subject.titles).to eq([{ 'title' => 'Dataset for "Direct Evidence for Solid-Like Hydrogen in a Nanoporous Carbon Hydrogen Storage Material at Supercritical Temperatures"' }])
 #       expect(subject.descriptions.first['description']).to start_with('Dataset for Direct Evidence for Solid-Like Hydrogen')
@@ -998,7 +986,7 @@ def test_geolocation_box():
 #       expect(subject.creators.length).to eq(24)
 #       expect(subject.creators.first).to eq(
 #         'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-5331-6592',
-#                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Farquhar, Adam', 'givenName' => 'Adam', 'familyName' => 'Farquhar', 'affiliation' => [{ 'name' => 'British Library' }], 'nameType' => 'Personal'
+#                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Farquhar, Adam', 'givenName' => 'Adam', 'familyName' => 'Farquhar', 'affiliation' => [{ 'name' => 'British Library' }], 'type' => 'Personal'
 #       )
 #       expect(subject.titles).to eq([{ 'title' => 'Technical and Human Infrastructure for Open Research (THOR)' }])
 #       expect(subject.descriptions.first['description']).to start_with('Five years ago, a global infrastructure')
@@ -1043,7 +1031,7 @@ def test_geolocation_box():
 #       expect(subject.creators).to eq([{
 #                                        'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405',
 #                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner',
-#                                                                "nameType"=>"Personal"}])
+#                                                                "type"=>"Person"}])
 #       expect(subject.titles).to eq([{ 'title' => 'Eating your own Dog Food' }])
 #       expect(subject.id).to eq('https://doi.org/10.5438/4k3m-nyvg')
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
@@ -1061,10 +1049,10 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
-#            'schemeUri' => 'http://isni.org/isni/' }], "nameType"=>"Organizational"}])
+#            'schemeUri' => 'http://isni.org/isni/' }], "type"=>"Organizational"}])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
@@ -1093,10 +1081,10 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.0.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
-#            'schemeUri' => 'http://isni.org/isni/' }], 'nameType' => 'Organizational' }])
+#            'schemeUri' => 'http://isni.org/isni/' }], 'type' => 'Organizational' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
@@ -1123,7 +1111,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.creators.length).to eq(8)
 #       expect(subject.creators.last).to eq('familyName' => 'Renaud', 'givenName' => 'François',
-#                                           'name' => 'Renaud, François', 'nameType' => 'Personal')
+#                                           'name' => 'Renaud, François', 'type' => 'Personal')
 #       expect(subject.titles).to eq([{ 'title' => 'Data from: A new malaria agent in African hominids.' }])
 #       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
 #       expect(subject.identifiers).to eq([{ 'identifier' =>
@@ -1147,10 +1135,10 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v3.0.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
-#            'schemeUri' => 'http://isni.org/isni/' }], "nameType"=>"Organizational" }])
+#            'schemeUri' => 'http://isni.org/isni/' }], "type"=>"Organizational" }])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
@@ -1175,9 +1163,9 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-metadata-sample-complicated-v2.2.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'abc123',
-#            'nameIdentifierScheme' => 'ISNI' }], "nameType"=>"Organizational"}])
+#            'nameIdentifierScheme' => 'ISNI' }], "type"=>"Organizational"}])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
@@ -1198,10 +1186,10 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
 #       subject = described_class.new(text: input, doi: '10.5072/testpub2', content_url: 'https://example.org/report.pdf')
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
-#            'schemeUri' => 'http://isni.org/isni/' }], 'nameType' => 'Organizational' }])
+#            'schemeUri' => 'http://isni.org/isni/' }], 'type' => 'Organizational' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
 #                                     { 'title' => 'Translation of Polish titles',
 #                                       'titleType' => 'TranslatedTitle' }])
@@ -1236,7 +1224,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.4231/d38g8fk8b')
 #       expect(subject.creators.length).to eq(5)
-#       expect(subject.creators.first).to eq('nameType' => 'Personal', 'name' => 'PatiÃ±o, Carlos',
+#       expect(subject.creators.first).to eq('type' => 'Personal', 'name' => 'PatiÃ±o, Carlos',
 #                                            'givenName' => 'Carlos', 'familyName' => 'PatiÃ±o')
 #       expect(subject.titles).to eq([{ 'title' => 'LAMMPS Data-File Generator' }])
 #       expect(subject.dates).to eq([{ 'date' => '2018-07-18', 'dateType' => 'Valid' },
@@ -1254,7 +1242,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.25318/3410014001-fra')
 #       expect(subject.creators.length).to eq(1)
 #       expect(subject.creators.first).to eq('affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04zt3wx35', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'Canada Mortgage and Housing Corporation' }],
-#                                            'name' => 'Statistique Canada', "nameType" => "Organizational")
+#                                            'name' => 'Statistique Canada', "type" => "Organizational")
 #     end
 
 #     it 'doi with + sign' do
@@ -1279,10 +1267,10 @@ def test_geolocation_box():
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'ZA2745', 'identifierType' => 'ZA-No.' },
 #                                          { 'identifier' => 'Internationale Umfrageprogramme',
 #                                            'identifierType' => 'FDZ' }])
-#       expect(subject.creators).to eq([{ 'name' => 'Europäische Kommission', "nameType"=>"Organizational" }])
+#       expect(subject.creators).to eq([{ 'name' => 'Europäische Kommission', "type"=>"Organizational" }])
 #       expect(subject.contributors.length).to eq(18)
 #       expect(subject.contributors.first).to eq(
-#         'affiliation' => [{ 'name' => 'Europäische Kommission, Brüssel' }], 'contributorType' => 'Researcher', 'familyName' => 'Reif', 'givenName' => 'Karlheinz', 'name' => 'Reif, Karlheinz', 'nameType' => 'Personal'
+#         'affiliation' => [{ 'name' => 'Europäische Kommission, Brüssel' }], 'contributorType' => 'Researcher', 'familyName' => 'Reif', 'givenName' => 'Karlheinz', 'name' => 'Reif, Karlheinz', 'type' => 'Personal'
 #       )
 #       expect(subject.titles).to eq([
 #                                      { 'lang' => 'de',
@@ -1380,7 +1368,7 @@ def test_geolocation_box():
 #       # expect(subject.errors.length).to eq(2)
 #       # expect(subject.errors.last).to eq("33:0: ERROR: Element '{http://datacite.org/schema/kernel-4}date': '1970-04-01 / (:tba)' is not a valid value of the atomic type '{http://datacite.org/schema/kernel-4}edtf'.")
 #       expect(subject.id).to eq('https://doi.org/10.21944/temis-ozone-msr2')
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal',
+#       expect(subject.creators).to eq([{ 'type' => 'Personal',
 #                                         'nameIdentifiers' =>
 #                                          [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-0077-5338',
 #                                             'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }],
@@ -1388,12 +1376,12 @@ def test_geolocation_box():
 #                                         'givenName' => 'Ronald',
 #                                         'familyName' => 'Van der A',
 #                                         'affiliation' => [{ 'name' => 'Royal Netherlands Meteorological Institute (KNMI)' }] },
-#                                       { 'nameType' => 'Personal',
+#                                       { 'type' => 'Personal',
 #                                         'name' => 'Allaart, Marc',
 #                                         'givenName' => 'Marc',
 #                                         'familyName' => 'Allaart',
 #                                         'affiliation' => [{ 'name' => 'Royal Netherlands Meteorological Institute (KNMI)' }] },
-#                                       { 'nameType' => 'Personal',
+#                                       { 'type' => 'Personal',
 #                                         'name' => 'Eskes, Henk',
 #                                         'givenName' => 'Henk',
 #                                         'familyName' => 'Eskes',
@@ -1550,7 +1538,7 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.3204/desy-2014-01645')
-#       expect(subject.creators).to eq([{ 'nameType' => 'Personal', 'name' => 'Conrad, Heiko',
+#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Conrad, Heiko',
 #                                         'givenName' => 'Heiko', 'familyName' => 'Conrad' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Dynamics of colloids in molecular glass forming liquids studied via X-ray photon correlation spectroscopy' }])
 #       expect(subject.dates).to eq([{ 'date' => '2014', 'dateType' => 'Issued' },
@@ -1629,7 +1617,7 @@ def test_geolocation_box():
 #       expect(subject.doi).to eq('10.5061/dryad.8515')
 #       expect(subject.creators).to eq([{
 #                                        'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405',
-#                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner', 'nameType' => 'Personal'
+#                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner', 'type' => 'Personal'
 #                                      }])
 #       expect(subject.titles).to eq([{ 'title' => 'Eating your own Dog Food' }])
 #       expect(subject.publisher).to eq('DataCite')
@@ -1650,7 +1638,7 @@ def test_geolocation_box():
 #     expect(subject.content_url).to eq('https://storage.googleapis.com/gtex_analysis_v7/single_tissue_eqtl_data/GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz')
 #     expect(subject.types['schemaOrg']).to eq('Dataset')
 #     expect(subject.types['resourceType']).to eq('DroNc-seq data')
-#     expect(subject.creators).to eq([{ 'name' => 'The GTEx Consortium', 'nameType' => 'Organizational' }])
+#     expect(subject.creators).to eq([{ 'name' => 'The GTEx Consortium', 'type' => 'Organizational' }])
 #     expect(subject.titles).to eq([{ 'title' => 'DroNc-seq data' }])
 #     expect(subject.subjects).to eq([{ 'subject' => 'gtex' }, { 'subject' => 'annotation' },
 #                                     { 'subject' => 'phenotype' }, { 'subject' => 'gene regulation' }, { 'subject' => 'transcriptomics' }])
@@ -1677,7 +1665,7 @@ def test_geolocation_box():
 #     subject = described_class.new(text: input)
 #     expect(subject.id).to eq('https://doi.org/10.5072/example-polygon')
 #     expect(subject.creators.first).to eq('familyName' => 'den Heijer', 'givenName' => 'C',
-#                                          'name' => 'den Heijer, C', 'nameType' => 'Personal')
+#                                          'name' => 'den Heijer, C', 'type' => 'Personal')
 #     expect(subject.titles).to eq([{ 'lang' => 'en',
 #                                     'title' => 'Meteo measurements at the Sand Motor' }])
 #     expect(subject.publication_year).to eq('2017')
@@ -1698,7 +1686,7 @@ def test_geolocation_box():
 #       [
 #         {
 #           'name' => 'Miller, Elizabeth', 'givenName' => 'Elizabeth', 'familyName' => 'Miller',
-#           'nameType' => 'Personal',
+#           'type' => 'Personal',
 #           'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-5000-0007',
 #                                   'schemeUri' => 'https://orcid.org',
 #                                   'nameIdentifierScheme' => 'ORCID' }],
@@ -1796,7 +1784,7 @@ def test_geolocation_box():
 #         'creators' =>
 #         [
 #           { 'name' => 'Smith, John', 'givenName' => 'John',
-#             'familyName' => 'Smith', 'nameType' => 'Personal' }
+#             'familyName' => 'Smith', 'type' => 'Personal' }
 #         ],
 #         'titles' =>
 #         [
@@ -1815,7 +1803,7 @@ def test_geolocation_box():
 #         'contributors' =>
 #         [
 #           { 'name' => 'Hallett, Richard', 'givenName' => 'Richard', 'familyName' => 'Hallett',
-#             'contributorType' => 'ProjectLeader', 'nameType' => 'Personal' }
+#             'contributorType' => 'ProjectLeader', 'type' => 'Personal' }
 #         ]
 #       }
 #     )
@@ -1837,7 +1825,7 @@ def test_geolocation_box():
 #         'relationType' => 'IsPublishedIn',
 #         'creators' =>
 #         [
-#           { 'nameType' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John',
+#           { 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John',
 #             'familyName' => 'Smith' }
 #         ],
 #         'titles' =>
@@ -1857,7 +1845,7 @@ def test_geolocation_box():
 #         'contributors' =>
 #         [
 #           { 'name' => 'Hallett, Richard', 'givenName' => 'Richard', 'familyName' => 'Hallett',
-#             'contributorType' => 'ProjectLeader', 'nameType' => 'Personal' }
+#             'contributorType' => 'ProjectLeader', 'type' => 'Personal' }
 #         ]
 #       }
 #     )
@@ -1873,25 +1861,25 @@ def test_geolocation_box():
 #           'name' => 'Luo, R',
 #           'familyName' => 'Luo',
 #           'givenName' => 'R',
-#           'nameType' => 'Personal'
+#           'type' => 'Personal'
 #         },
 #         {
 #           'name' => 'Liu, B',
 #           'familyName' => 'Liu',
 #           'givenName' => 'B',
-#           'nameType' => 'Personal'
+#           'type' => 'Personal'
 #         },
 #         {
 #           'name' => 'Xie, Y',
 #           'familyName' => 'Xie',
 #           'givenName' => 'Y',
-#           'nameType' => 'Personal'
+#           'type' => 'Personal'
 #         },
 #         {
 #           'name' => 'Li, Z',
 #           'familyName' => 'Li',
 #           'givenName' => 'Z',
-#           'nameType' => 'Personal'
+#           'type' => 'Personal'
 #         }
 #       ]
 #     )

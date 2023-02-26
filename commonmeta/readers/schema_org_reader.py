@@ -81,7 +81,6 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         creators = get_authors(from_schema_org_creators(wrap(authors)))
     else:
         creators = authors
-    print(creators)
     contributors = presence(
         get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     )

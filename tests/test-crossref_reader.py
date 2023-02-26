@@ -24,7 +24,7 @@ def test_doi_with_data_citation():
     }
     assert len(subject.creators) == 5
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Martial",
         "familyName": "Sankar",
         "affiliation": [
@@ -121,7 +121,7 @@ def test_journal_article():
     }
     assert len(subject.creators) == 5
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Markus",
         "familyName": "Ralser",
     }
@@ -129,7 +129,7 @@ def test_journal_article():
         {
             "familyName": "Janbon",
             "givenName": "Guilhem",
-            "nameType": "Personal",
+            "type": "Person",
         }
     ]
     assert subject.rights == [
@@ -190,7 +190,7 @@ def test_journal_article_with_funding():
     }
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Ana Margarida",
         "familyName": "Fortes",
     }
@@ -254,8 +254,7 @@ def test_journal_article_original_language():
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
     )
     # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators is None
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -308,7 +307,7 @@ def test_journal_article_with_rdf_for_container():
     }
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Andreu",
         "familyName": "Escrivà",
     }
@@ -359,7 +358,7 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert len(subject.creators) == 3
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Lili",
         "familyName": "Chen",
     }
@@ -404,16 +403,10 @@ def test_posted_content():
     }
     assert len(subject.creators) == 11
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
         "givenName": "Martin",
         "familyName": "Fenner",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -460,16 +453,10 @@ def test_peer_review():
     }
     assert len(subject.creators) == 8
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0002-5286-4375",
+        "type": "Person",
         "givenName": "Jeremy",
         "familyName": "Magland",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0002-5286-4375",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
         "affiliation": [
             {
                 "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
@@ -516,14 +503,8 @@ def test_dissertation():
     assert subject.creators[0] == {
         "familyName": "Collingwood",
         "givenName": "Patricia Maree",
-        "nameType": "Personal",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-3086-4443",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
+        "id": "https://orcid.org/0000-0003-3086-4443",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -560,7 +541,7 @@ def test_doi_with_sici():
     }
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "A.",
         "familyName": "Fenton",
     }
@@ -611,7 +592,8 @@ def test_doi_with_orcid():
     }
     assert len(subject.creators) == 7
     assert subject.creators[2] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0003-2043-4925",
+        "type": "Person",
         "givenName": "Beatriz",
         "familyName": "Hernandez",
         "affiliation": [
@@ -621,13 +603,6 @@ def test_doi_with_orcid():
             {
                 "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
             },
-        ],
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-2043-4925",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
         ],
     }
     assert subject.contributors is None
@@ -690,7 +665,7 @@ def test_date_in_future():
     }
     assert len(subject.creators) == 10
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Sarah E.",
         "familyName": "Beck",
     }
@@ -775,7 +750,7 @@ def test_vor_with_url():
     }
     assert len(subject.creators) == 2
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "J B",
         "familyName": "Gross",
     }
@@ -829,7 +804,7 @@ def test_dataset():
         "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
     }
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "G.",
         "familyName": "Fermi",
     }
@@ -859,7 +834,7 @@ def test_component():
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.creators[0] == {"nameType": "Organizational", "name": ":(unav)"}
+    assert subject.creators is None
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -887,16 +862,10 @@ def test_dataset_usda():
     assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0003-2583-1778",
+        "type": "Person",
         "givenName": "Christine A.",
         "familyName": "Ribic",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-2583-1778",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.contributors is None
@@ -946,7 +915,7 @@ def test_book_chapter():
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
     assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Ronald L.",
         "familyName": "Diercks",
     }
@@ -998,7 +967,7 @@ def test_another_book_chapter():
         "title": "Climate Change and Increasing Risk of Extreme Heat"
     }
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Hunter M.",
         "familyName": "Jones",
     }
@@ -1046,7 +1015,7 @@ def test_yet_another_book_chapter():
     }
     assert subject.creators[0] == {
         "affiliation": [{"name": "Université de Lyon, France"}],
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Charles-Edmond",
         "familyName": "Bichot",
     }
@@ -1089,16 +1058,10 @@ def test_missing_creator():
         "title": "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
     }
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "id": "https://orcid.org/0000-0002-3836-8885",
+        "type": "Person",
         "givenName": "Alexander",
         "familyName": "Kohls",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0002-3836-8885",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -1178,7 +1141,7 @@ def test_book():
     )
     assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Vincent S.",
         "familyName": "Leung",
     }

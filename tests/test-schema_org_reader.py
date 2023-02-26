@@ -18,7 +18,7 @@ def test_blog_posting():
     assert subject.creators[0] == {
         "familyName": "Fenner",
         "givenName": "Martin",
-        "nameType": "Personal",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -69,7 +69,7 @@ def test_zenodo():
     }
     assert len(subject.creators) == 6
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Staib,",
         "familyName": "Matthias",
         "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
@@ -128,7 +128,7 @@ def test_pangaea():
     assert subject.creators[0] == {
         "familyName": "Johansson",
         "givenName": "Emma",
-        "nameType": "Personal",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights == [
@@ -178,7 +178,7 @@ def test_dataverse():
     assert subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "International Genetics of Ankylosing Spondylitis Consortium",
         "familyName": "(IGAS)",
     }
@@ -238,7 +238,7 @@ def test_yet_another_blog_post():
     assert subject.creators[0] == {
         "familyName": "Hawks",
         "givenName": "John",
-        "nameType": "Personal",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -289,7 +289,7 @@ def test_blog_with_dois():
     assert subject.creators[0] == {
         "givenName": "Maria Martha",
         "familyName": "Gerdes",
-        "nameType": "Personal",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights is None
@@ -332,7 +332,7 @@ def test_another_blog_with_dois():
     )
     assert subject.titles[0] == {"title": "DOIng it Right! (DOIs for This Blog)"}
     assert len(subject.creators) == 1
-    assert subject.creators[0] == {"nameType": "Personal", "name": "Andreas"}
+    assert subject.creators[0] == {"type": "Person", "name": "Andreas"}
     assert subject.contributors is None
     assert subject.rights is None
     assert subject.dates == [
@@ -372,7 +372,7 @@ def test_with_upstream_blog_post():
     assert subject.creators[0] == {
         "familyName": "Chodacki",
         "givenName": "John",
-        "nameType": "Personal",
+        "type": "Person",
     }
     assert subject.contributors is None
     assert subject.rights == [

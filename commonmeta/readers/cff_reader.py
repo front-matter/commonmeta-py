@@ -139,21 +139,13 @@ def cff_creators(creators):
     def format_element(i):
         """format_element"""
         if normalize_orcid(parse_attributes(i.get("orcid", None))):
-            name_identifiers = [
-                {
-                    "nameIdentifier": normalize_orcid(
-                        parse_attributes(i.get("orcid", None))
-                    ),
-                    "nameIdentifierScheme": "ORCID",
-                    "schemeUri": "https://orcid.org",
-                }
-            ]
+            id_ = normalize_orcid(parse_attributes(i.get("orcid", None)))
         else:
-            name_identifiers = None
+            id_ = None
         if (
             i.get("given-names", None)
             or i.get("family-names", None)
-            or name_identifiers
+            or id_
         ):
             given_name = parse_attributes(i.get("given-names", None))
             family_name = parse_attributes(i.get("family-names", None))
@@ -163,15 +155,15 @@ def cff_creators(creators):
 
             return compact(
                 {
-                    "nameType": "Personal",
-                    "nameIdentifiers": name_identifiers,
+                    "id": id_,
+                    "type": "Person",
                     "givenName": given_name,
                     "familyName": family_name,
                     "affiliation": affiliation,
                 }
             )
         return {
-            "nameType": "Organizational",
+            "type": "Organization",
             "name": i.get("name", None) or i.get("#text", None),
         }
 

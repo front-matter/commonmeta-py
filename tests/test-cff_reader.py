@@ -17,12 +17,10 @@ def test_ruby_cff():
         {'affiliation': [{'name': 'The University of Manchester, UK'}],
          'familyName': 'Haines',
          'givenName': 'Robert',
-         'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-9538-7919',
-                              'nameIdentifierScheme': 'ORCID',
-                              'schemeUri': 'https://orcid.org'}],
-         'nameType': 'Personal'},
+         'id': 'https://orcid.org/0000-0002-9538-7919',
+         'type': 'Person'},
         {'name': 'The Ruby Citation File Format Developers',
-         'nameType': 'Organizational'}]
+         'type': 'Organization'}]
     assert subject.titles == [{'title': 'Ruby CFF Library'}]
     assert subject.descriptions[0]['description'].startswith(
         'This library provides a Ruby interface to manipulate Citation File Format files')
@@ -49,32 +47,26 @@ def test_cff_converter_python():
         {'affiliation': [{'name': 'Netherlands eScience Center'}],
          'familyName': 'Spaaks',
          'givenName': 'Jurriaan H.',
-         'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-7064-4069',
-                              'nameIdentifierScheme': 'ORCID',
-                              'schemeUri': 'https://orcid.org'}],
-         'nameType': 'Personal'},
+         'id': 'https://orcid.org/0000-0002-7064-4069',
+         'type': 'Person'},
         {'affiliation': [{'name': 'Netherlands eScience Center'}],
          'familyName': 'Klaver',
          'givenName': 'Tom',
-         'nameType': 'Personal'},
+         'type': 'Person'},
         {'affiliation': [{'name': 'Netherlands eScience Center'}],
          'familyName': 'Verhoeven',
          'givenName': 'Stefan',
-         'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-5821-2060',
-                              'nameIdentifierScheme': 'ORCID',
-                              'schemeUri': 'https://orcid.org'}],
-         'nameType': 'Personal'},
+         'id': 'https://orcid.org/0000-0002-5821-2060',
+         'type': 'Person'},
         {'affiliation': [{'name': 'Humboldt-Universität zu Berlin'}],
          'familyName': 'Druskat',
          'givenName': 'Stephan',
-         'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-4925-7248',
-                              'nameIdentifierScheme': 'ORCID',
-                              'schemeUri': 'https://orcid.org'}],
-         'nameType': 'Personal'},
+         'id': 'https://orcid.org/0000-0003-4925-7248',
+         'type': 'Person'},
         {'affiliation': [{'name': 'University of Oslo'}],
          'familyName': 'Leoncio',
          'givenName': 'Waldir',
-         'nameType': 'Personal'}]
+         'type': 'Person'}]
     assert subject.titles == [{'title': 'cffconvert'}]
     assert subject.descriptions == [
         {'description': 'Command line program to validate and convert CITATION.cff files.', 'descriptionType': 'Abstract'}]
@@ -97,7 +89,7 @@ def test_github_repo():
     assert subject.id == 'https://doi.org/10.5281/zenodo.7651809'
     assert subject.url == 'https://github.com/kyleliang919/Long-context-transformers'
     assert subject.type == 'Software'
-    assert subject.creators == [{'nameType': 'Personal', 'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0002-0055-8659', 'nameIdentifierScheme': 'ORCID', 'schemeUri': 'https://orcid.org'}], 'givenName': 'Kaizhao', 'familyName': 'Liang'}]
+    assert subject.creators == [{'type': 'Person', 'id': 'https://orcid.org/0000-0002-0055-8659', 'givenName': 'Kaizhao', 'familyName': 'Liang'}]
     assert subject.titles == [{'title': 'Long Context Transformer v0.0.1'}]
     assert subject.descriptions is None
     assert subject.subjects is None

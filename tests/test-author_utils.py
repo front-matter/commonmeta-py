@@ -9,6 +9,7 @@ from commonmeta.author_utils import (
 )
 from commonmeta.base_utils import wrap
 
+
 def test_one_author():
     "one author"
     # Crossref author with ORCID
@@ -20,29 +21,17 @@ def test_one_author():
         }
     ]
     assert {
+        "id": "https://orcid.org/0000-0003-0077-4738",
+        "type": "Person",
         "familyName": "Jones",
         "givenName": "Matt",
-        "nameType": "Personal",
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-0077-4738",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
     } == get_one_author(authors[0])
     # has familyName
     assert {
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ],
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
         "givenName": "Martin",
         "familyName": "Fenner",
-        "nameType": "Personal",
     } == get_one_author(
         {
             "name": "Fenner, Martin",
@@ -59,13 +48,12 @@ def test_one_author():
     )
     # has name in sort-order' do
     assert {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Benjamin",
         "familyName": "Ollomo",
         "affiliation": [
             {
-                "affiliationIdentifier": "https://ror.org/01wyqb997",
-                "affiliationIdentifierScheme": "ROR",
+                "id": "https://ror.org/01wyqb997",
                 "name": "Centre International de Recherches Médicales de Franceville",
             }
         ],
@@ -102,9 +90,9 @@ def test_one_author():
     assert {"name": "ALICE Collaboration"} == get_one_author(
         {
             "name": "ALICE Collaboration",
-            "nameType": "Organizational",
+            "type": "Organization",
             "affiliation": [],
-            "nameIdentifiers": [],
+            "id": None,
         }
     )
     # is organization
@@ -112,7 +100,7 @@ def test_one_author():
         "email": "info@ucop.edu",
         "creatorName": {
             "#text": "University of California, Santa Barbara",
-            "nameType": "Organizational",
+            "type": "Organization",
         },
         "role": {
             "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
@@ -121,7 +109,7 @@ def test_one_author():
     }
     assert {
         "name": "University of California, Santa Barbara",
-        "nameType": "Organizational",
+        "type": "Organization",
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
@@ -132,7 +120,7 @@ def test_one_author():
         ],
         "familyName": "Sankar",
         "givenName": "Martial",
-        "nameType": "Personal",
+        "type": "Person",
     } == get_one_author(
         {
             "given": "Martial",
@@ -147,27 +135,17 @@ def test_one_author():
     )
     # multiple name_identifier
     assert {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Thomas",
         "familyName": "Dubos",
         "affiliation": [
             {"name": "École Polytechnique\nLaboratoire de Météorologie Dynamique"}
         ],
-        "nameIdentifiers": [
-            {
-                "nameIdentifier": "http://isni.org/isni/0000 0003 5752 6882",
-                "nameIdentifierScheme": "ISNI",
-            },
-            {
-                "nameIdentifier": "https://orcid.org/0000-0003-4514-4211",
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            },
-        ],
+        "id": "http://isni.org/isni/0000 0003 5752 6882",
     } == get_one_author(
         {
             "name": "Dubos, Thomas",
-            "nameType": "Personal",
+            "type": "Person",
             "givenName": "Thomas",
             "familyName": "Dubos",
             "affiliation": [
@@ -187,7 +165,7 @@ def test_one_author():
     )
     # only familyName and givenName
     assert {
-        "nameType": "Personal",
+        "type": "Person",
         "givenName": "Emma",
         "familyName": "Johansson",
     } == get_one_author(
@@ -211,25 +189,24 @@ def test_authors_as_string():
     "authors_as_string"
     authors = [
         {
-            "nameType": "Person",
+            "type": "Person",
             "id": "http://orcid.org/0000-0003-0077-4738",
             "givenName": "Matt",
             "familyName": "Jones",
         },
         {
-            "nameType": "Person",
+            "type": "Person",
             "id": "http://orcid.org/0000-0002-2192-403X",
             "givenName": "Peter",
             "familyName": "Slaughter",
         },
-        {"nameType": "Organization", "name": "University of California, Santa Barbara"},
+        {"type": "Organization", "name": "University of California, Santa Barbara"},
     ]
-    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(
-        wrap(authors[0:2]))
+    assert "Jones, Matt and Slaughter, Peter" == authors_as_string(wrap(authors[0:2]))
     # single author
     assert "Jones, Matt" == authors_as_string(wrap(authors[0]))
     # no authors
-    assert '' == authors_as_string(wrap(None))
+    assert "" == authors_as_string(wrap(None))
     # with organization
     assert (
         "Jones, Matt and Slaughter, Peter and University of California, Santa Barbara"
@@ -250,15 +227,13 @@ def test_get_authors():
     ]
     assert [
         {
-            "nameType": "Personal",
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "type": "Person",
             "givenName": "Matt",
             "familyName": "Jones",
-            'nameIdentifiers': [{'nameIdentifier': 'https://orcid.org/0000-0003-0077-4738',
-                                 'nameIdentifierScheme': 'ORCID',
-                                 'schemeUri': 'https://orcid.org'}],
         },
         {
-            "nameType": "Personal",
+            "type": "Person",
             "givenName": "Peter",
             "familyName": "Slaughter",
         },
@@ -278,8 +253,7 @@ def test_get_affiliations():
     assert [
         {
             "name": "University of California, Santa Barbara",
-            "affiliationIdentifier": "https://ror.org/02t274463",
-            "affiliationIdentifierScheme": "ROR",
+            "id": "https://ror.org/02t274463",
         }
     ] == get_affiliations(
         [

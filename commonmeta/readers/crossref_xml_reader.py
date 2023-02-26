@@ -333,7 +333,7 @@ def crossref_people(bibmeta, contributor_role="author"):
         """Format person"""
         element["givenName"] = element.get("given_name", None)
         element["familyName"] = element.get("surname", None)
-        element["nameType"] = "Personal"
+        element["type"] = "Person"
         element["affiliation"] = presence(
             [format_affiliation(i) for i in wrap(element.get("affiliation", None))]
         )
@@ -341,13 +341,7 @@ def crossref_people(bibmeta, contributor_role="author"):
             orcid = parse_xmldict(
                 element.get("ORCID"), ignored_attributes="@authenticated"
             )
-            element["nameIdentifiers"] = [
-                {
-                    "nameIdentifier": normalize_orcid(orcid),
-                    "nameIdentifierScheme": "ORCID",
-                    "schemeUri": "https://orcid.org",
-                }
-            ]
+            element["id"] = normalize_orcid(orcid)
         element = py_.omit(
             element,
             "@contributor_role",

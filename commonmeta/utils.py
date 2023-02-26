@@ -310,7 +310,7 @@ def to_schema_org_creators(elements: list) -> list():
     def format_element(element):
         """format element"""
         element["@type"] = (
-            element["nameType"][0:-2] if element.get("nameType", None) else None
+            element["type"][0:-2] if element.get("type", None) else None
         )
         if element.get("familyName", None) and element.get("name", None) is None:
             element["name"] = " ".join(
@@ -319,7 +319,7 @@ def to_schema_org_creators(elements: list) -> list():
             element["@type"] = "Person"
         else:
             element["@type"] = "Organization"
-        element = py_.omit(element, "nameType")
+        element = py_.omit(element, "type")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -495,42 +495,17 @@ def from_schema_org(element):
 
 
 def from_schema_org_creators(elements: list) -> list:
-    """Convert schema.org creators to DataCite"""
+    """Convert schema.org creators to commonmeta"""
 
     def format_element(i):
         """format element"""
         element = {}
-        if isinstance(i.get("affiliation", None), str):
-            i["affiliation"] = {"name": i["affiliation"]}
-            affiliation_identifier_scheme = None
-            scheme_uri = None
-        elif py_.get(i, "affiliation.@id", "").startswith("https://ror.org"):
-            affiliation_identifier_scheme = "ROR"
-            scheme_uri = "https://ror.org/"
-        elif i.get("affiliation.@id", "").startswith("https://isni.org"):
-            affiliation_identifier_scheme = "ISNI"
-            scheme_uri = "https://isni.org/isni/"
-        else:
-            affiliation_identifier_scheme = None
-            scheme_uri = None
-        element["nameIdentifier"] = [
-            {
-                "#text": i.get("@id", None),
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-        ]
+        element["id"] = i.get("@id", None)
 
         if isinstance(i.get("@type", None), list):
-            element["@type"] = py_.find(
+            element["type"] = py_.find(
                 i["@type"], lambda x: x in ["Person", "Organization"]
             )
-        element["creatorName"] = compact(
-            {
-                "nameType": i["@type"].title() + "al" if i.get("@type", None) else None,
-                "#text": i.get("name", None),
-            }
-        )
         length = len(str(i["name"]).split(" "))
         if i.get("givenName", None):
             element["givenName"] = i.get("givenName", None)
@@ -538,21 +513,23 @@ def from_schema_org_creators(elements: list) -> list:
             element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
         if i.get("familyName", None):
             element["familyName"] = i.get("familyName", None)
+            element["type"] = "Person"
         else:
             element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
-
-        element["affiliation"] = (
-            compact(
-                {
-                    "#text": py_.get(i, "affiliation.name"),
-                    "affiliationIdentifier": py_.get(i, "affiliation.@id"),
-                    "affiliationIdentifierScheme": affiliation_identifier_scheme,
-                    "schemeUri": scheme_uri,
-                }
-            )
-            if i.get("affiliation", None) is not None
-            else None
+        if not element["familyName"]:
+            element["creatorName"] = compact(
+            {
+                "type": i.get("@type", None),
+                "#text": i.get("name", None),
+            }
         )
+        if isinstance(i.get("affiliation", None), str):
+            element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
+        elif py_.get(i, "affiliation.@id", "").startswith("https://ror.org"):
+            element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
+        elif i.get("affiliation.@id", "").startswith("https://isni.org"):
+            element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
+
         return compact(element)
 
     return [format_element(i) for i in wrap(elements)]

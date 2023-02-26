@@ -53,17 +53,29 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
 
 def to_datacite_creator(creator: dict) -> dict:
     """Convert creators to datacite creators"""
+    type_ = creator.get("type", None)
     if creator.get("familyName", None):
         name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
     elif creator.get("name", None):
         name = creator.get("name", None)
+    name_identifiers = creator.get("id", None)
+    if name_identifiers:
+        def format_name_identifier(name_identifier):
+            return {
+                "nameIdentifier": name_identifier,
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        name_identifiers = [
+            format_name_identifier(i) for i in wrap(name_identifiers)
+        ]
     return compact(
         {
             "name": name,
             "givenName": creator.get("givenName", None),
             "familyName": creator.get("familyName", None),
-            "nameType": creator.get("nameType", None),
-            "nameIdentifiers": creator.get("nameIdentifiers", None),
+            "nameType": type_ + "al" if type_ else None,
+            "nameIdentifiers": name_identifiers,
             "affiliation": creator.get("affiliation", None),
         }
     )

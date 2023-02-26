@@ -42,7 +42,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         additional_type = None
 
     container = meta.get("container", None)
-    print(container)
     rights = meta.get("rightsList", None)
     references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
 

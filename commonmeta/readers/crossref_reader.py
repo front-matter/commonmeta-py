@@ -51,7 +51,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     if meta.get("author", None):
         creators = get_authors(from_citeproc(wrap(meta.get("author"))))
     else:
-        creators = [{"nameType": "Organizational", "name": ":(unav)"}]
+        creators = None
 
     def editor_type(item):
         item["ContributorType"] = "Editor"

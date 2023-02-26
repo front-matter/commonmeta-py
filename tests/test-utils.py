@@ -442,22 +442,11 @@ def test_from_schema_org_creators():
     response = from_schema_org_creators(authors)
     assert response == [
         {
+            "id": "http://orcid.org/0000-0003-1419-2405",
+            "type": "Person",
             "givenName": "Martin",
             "familyName": "Fenner",
-            "affiliation": {
-                "#text": "DataCite",
-                "affiliationIdentifier": "https://ror.org/04wxnsj81",
-                "affiliationIdentifierScheme": "ROR",
-                "schemeUri": "https://ror.org/",
-            },
-            "nameIdentifier": [
-                {
-                    "#text": "http://orcid.org/0000-0003-1419-2405",
-                    "nameIdentifierScheme": "ORCID",
-                    "schemeUri": "https://orcid.org",
-                }
-            ],
-            "creatorName": {"nameType": "Personal", "#text": "Martin Fenner"},
+            "affiliation": {"id": "https://ror.org/04wxnsj81", "type": "Organization", "name": "DataCite"},
         }
     ]
     # without affiliation
@@ -475,14 +464,8 @@ def test_from_schema_org_creators():
         {
             "givenName": "Martin",
             "familyName": "Fenner",
-            "nameIdentifier": [
-                {
-                    "#text": "http://orcid.org/0000-0003-1419-2405",
-                    "nameIdentifierScheme": "ORCID",
-                    "schemeUri": "https://orcid.org",
-                }
-            ],
-            "creatorName": {"nameType": "Personal", "#text": "Martin Fenner"},
+            "id": "http://orcid.org/0000-0003-1419-2405",
+            "type": "Person",
         }
     ]
 
@@ -600,7 +583,7 @@ def test_to_schema_org_container():
 
 def test_to_schema_org_creators():
     """to schema.org creators"""
-    authors = [{"givenName": "Matt", "familyName": "Jones", "nameType": "Personal"}]
+    authors = [{"givenName": "Matt", "familyName": "Jones", "type": "Person"}]
     organization_authors = [{"name": "University of California, Berkeley"}]
     assert [
         {

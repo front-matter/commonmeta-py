@@ -14,7 +14,7 @@ def test_blog_posting():
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.creators == [
-        {"familyName": "Fenner", "givenName": "Martin", "nameType": "Personal"}
+        {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
@@ -32,7 +32,7 @@ def test_no_categories():
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.creators == [
-        {"familyName": "Fenner", "givenName": "Martin", "nameType": "Personal"}
+        {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
