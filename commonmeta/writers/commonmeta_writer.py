@@ -12,14 +12,14 @@ def write_commonmeta(metadata):
     data = compact(
         {
             # required properties
-            "pid": metadata.pid,
+            "id": metadata.id,
+            "type": metadata.type,
             "doi": metadata.doi,
             "url": metadata.url,
             "creators": metadata.creators,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
             "publicationYear": metadata.publication_year,
-            "types": metadata.types,
             # recommended and optional properties
             "subjects": metadata.subjects,
             "contributors": metadata.contributors,

@@ -11,7 +11,7 @@ from commonmeta import Metadata
 def test_write_metadata_as_datacite_json():
     """Write metadata as datacite json"""
     subject = Metadata("10.7554/eLife.01567")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
 
     datacite = json.loads(subject.datacite())
     assert datacite["id"] == "https://doi.org/10.7554/elife.01567"
@@ -20,7 +20,6 @@ def test_write_metadata_as_datacite_json():
     assert datacite["types"] == {
         "bibtex": "article",
         "citeproc": "article-journal",
-        "resourceType": "JournalArticle",
         "resourceTypeGeneral": "JournalArticle",
         "ris": "JOUR",
         "schemaOrg": "ScholarlyArticle",
@@ -50,7 +49,7 @@ def test_write_metadata_as_datacite_json():
 def test_with_orcid_id():
     """With ORCID ID"""
     subject = Metadata("https://doi.org/10.1155/2012/291294")
-    assert subject.pid == "https://doi.org/10.1155/2012/291294"
+    assert subject.id == "https://doi.org/10.1155/2012/291294"
 
     datacite = json.loads(subject.datacite())
     print(datacite["creators"])
@@ -71,14 +70,13 @@ def test_with_orcid_id():
 def test_with_data_citation():
     """with data citation"""
     subject = Metadata("10.7554/eLife.01567")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
 
     datacite = json.loads(subject.datacite())
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
         "bibtex": "article",
         "citeproc": "article-journal",
-        "resourceType": "JournalArticle",
         "resourceTypeGeneral": "JournalArticle",
         "ris": "JOUR",
         "schemaOrg": "ScholarlyArticle",
@@ -124,16 +122,16 @@ def test_blogposting_citeproc_json():
     """BlogPosting Citeproc JSON"""
     string = path.join(path.dirname(__file__), "fixtures", "citeproc.json")
     subject = Metadata(string)
-    assert subject.pid == "https://doi.org/10.5438/4k3m-nyvg"
+    assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
     datacite = json.loads(subject.datacite())
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
-        "citeproc": "post-weblog",
-        "resourceTypeGeneral": "Text",
-        "ris": "GEN",
-        "schemaOrg": "BlogPosting",
+        "citeproc": "article",
+        "resourceTypeGeneral": "Preprint",
+        "ris": "JOUR",
+        "schemaOrg": "Article",
     }
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["descriptions"][0]["description"].startswith(
@@ -153,7 +151,7 @@ def test_rdataone():
     """Rdataone"""
     string = path.join(path.dirname(__file__), "fixtures", "codemeta.json")
     subject = Metadata(string)
-    assert subject.pid == "https://doi.org/10.5063/f1m61h5x"
+    assert subject.id == "https://doi.org/10.5063/f1m61h5x"
 
     datacite = json.loads(subject.datacite())
     assert datacite["titles"] == [{"title": "R Interface to the DataONE REST API"}]
@@ -187,7 +185,7 @@ def test_rdataone():
 def test_from_schema_org():
     """Schema.org"""
     subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
-    assert subject.pid == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
+    assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
 
     datacite = json.loads(subject.datacite())
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
@@ -208,8 +206,8 @@ def test_from_schema_org():
     )
     assert datacite["types"] == {
         "bibtex": "article",
-        "citeproc": "article-newspaper",
+        "citeproc": "article",
         "resourceTypeGeneral": "Preprint",
-        "ris": "GEN",
+        "ris": "JOUR",
         "schemaOrg": "Article",
     }

@@ -99,15 +99,16 @@ class Metadata:
             raise ValueError("No metadata found")
 
         # required properties
-        self.pid = meta.get("pid")
+        self.id = meta.get("id")
         self.doi = meta.get("doi")
         self.url = meta.get("url")
         self.creators = meta.get("creators")
         self.titles = meta.get("titles")
         self.publisher = meta.get("publisher")
         self.publication_year = meta.get("publication_year")
-        self.types = meta.get("types")
+        self.type = meta.get("type")
         # recommended and optional properties
+        self.additional_type = meta.get("additional_type")
         self.subjects = meta.get("subjects")
         self.contributors = meta.get("contributors")
         self.dates = meta.get("dates")

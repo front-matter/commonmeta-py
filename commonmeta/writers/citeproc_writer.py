@@ -5,7 +5,7 @@ from ..utils import pages_as_string, to_citeproc
 from ..base_utils import wrap, presence, parse_attributes, compact
 from ..date_utils import get_date_by_type, get_date_parts
 from ..doi_utils import doi_from_url
-from ..constants import Commonmeta
+from ..constants import CM_TO_CP_TRANSLATIONS, Commonmeta
 
 
 def write_citeproc(metadata: Commonmeta) -> str:
@@ -16,19 +16,19 @@ def write_citeproc(metadata: Commonmeta) -> str:
         author = to_citeproc(wrap(metadata.creators))
 
     if (
-        metadata.types.get("resourceTypeGeneral", None) == "Software"
+        metadata.type == "Software"
         and metadata.version is not None
     ):
         type_ = "book"
     else:
-        type_ = metadata.types.get("citeproc", "article")
+        type_ = CM_TO_CP_TRANSLATIONS.get(metadata.type, 'Document')
 
     container = metadata.container or {}
     data = compact(
         {
             "type": type_,
-            "id": metadata.pid,
-            "DOI": doi_from_url(metadata.pid),
+            "id": metadata.id,
+            "DOI": doi_from_url(metadata.id) if metadata.id else None,
             "URL": metadata.url,
             "categories": presence(
                 parse_attributes(

@@ -26,18 +26,8 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     if not isinstance(meta, dict):
         return {"state": "not_found"}
 
-    ris_type = meta.get("TY", None) or "GEN"
-    schema_org = RIS_TO_SO_TRANSLATIONS.get(ris_type, None) or "CreativeWork"
-    types = compact(
-        {
-            "resourceTypeGeneral": RIS_TO_DC_TRANSLATIONS.get(ris_type, None),
-            "schemaOrg": schema_org,
-            "citeproc": RIS_TO_CP_TRANSLATIONS.get(schema_org, None) or "misc",
-            "ris": ris_type,
-        }
-    )
-
-    pid = normalize_doi(meta.get("DO", None))  # options[:doi] or
+    id_ = read_options.get('doi', None) or normalize_doi(meta.get("DO", None))
+    type_ = RIS_TO_CM_TRANSLATIONS.get(meta.get("TY", None), "Other")
 
     # author = wrap(meta.get('AU', None)).map {| a | { 'creatorName' = > a } }
 
@@ -86,9 +76,9 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     # end
 
     return {
-        "pid": pid,
-        "types": types,
-        "doi": doi_from_url(pid),
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_),
         "url": normalize_url(meta.get("UR", None)),
         'titles': None,  # meta.get('T1', nil).present? ? [{ 'title': meta.fetch('T1', nil) }] : nil,
         'creators': None,  # get_authors(author),

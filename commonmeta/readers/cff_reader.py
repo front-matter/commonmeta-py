@@ -53,10 +53,11 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     #   end
     # end.compact.uniq
 
-    pid = normalize_id(kwargs.get("doi", None) or meta.get("doi", None))
+    id_ = normalize_id(kwargs.get("doi", None) or meta.get("doi", None))
     # Array.wrap(meta.fetch('identifiers', nil)).find do |i|
     #                                                     i['type'] == 'doi'
     #                                                   end.fetch('value', nil))
+    type_ = "Software"
     url = normalize_id(meta.get("repository-code", None))
     creators = cff_creators(wrap(meta.get("authors", None)))
 
@@ -75,17 +76,6 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         publication_year = None
 
     publisher = "GitHub" if url and url.startswith("https://github.com") else None
-
-    types = compact(
-        {
-            "resourceTypeGeneral": "Software",
-            "resourceType": None,
-            "schemaOrg": "SoftwareSourceCode",
-            "citeproc": "article-journal",
-            "bibtex": "misc",
-            "ris": "COMP",
-        }
-    )
 
     if meta.get("abstract", None):
         descriptions = [
@@ -109,10 +99,10 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "pid": pid,
-        "types": types,
+        "id": id_,
+        "type": type_,
         # 'identifiers' => identifiers,
-        "doi": doi_from_url(pid) if pid else None,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": url,
         "titles": titles,
         "creators": creators,

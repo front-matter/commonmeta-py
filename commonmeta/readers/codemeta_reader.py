@@ -15,10 +15,7 @@ from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
 from ..constants import (
     Commonmeta,
-    SO_TO_DC_TRANSLATIONS,
-    SO_TO_CP_TRANSLATIONS,
-    SO_TO_BIB_TRANSLATIONS,
-    SO_TO_RIS_TRANSLATIONS,
+    SO_TO_CM_TRANSLATIONS,
 )
 
 
@@ -45,8 +42,9 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     # ActiveSupport: : HashWithIndifferentAccess.new(options.except(: doi, : id, : url,
     # : sandbox, : validate, : ra)
 
-    pid = normalize_id(meta.get("pid", None) or meta.get("identifier", None))
+    id_ = normalize_id(meta.get("id", None) or meta.get("identifier", None))
     # id = normalize_id(options[:doi] | | meta.get('@id', None) | | meta.get('identifier', None))
+    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", 'Software'))
     # identifiers = Array.wrap(meta.get('identifier', None)).map do | r|
     #   r = normalize_id(r) if r.is_a?(String)
     #   if r.is_a?(String) & & URI(r) != 'doi.org'
@@ -82,19 +80,6 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    schema_org = meta.get("@type", None)
-    types = compact(
-        {
-            "resourceTypeGeneral": SO_TO_DC_TRANSLATIONS.get(schema_org, None),
-            "resourceType": meta.get("additionalType", None),
-            "schemaOrg": schema_org,
-            "citeproc": SO_TO_CP_TRANSLATIONS.get(schema_org, None)
-            or "article-journal",
-            "bibtex": SO_TO_BIB_TRANSLATIONS.get(schema_org, None) or "misc",
-            "ris": SO_TO_RIS_TRANSLATIONS.get(schema_org, None) or "GEN",
-        }
-    )
-
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
     has_title = meta.get("title", None)
@@ -111,10 +96,10 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "pid": pid,
-        "doi": doi_from_url(pid) if pid else None,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_id(meta.get("codeRepository", None)),
-        "types": types,
         "identifiers": None,
         "titles": titles,
         "creators": creators,

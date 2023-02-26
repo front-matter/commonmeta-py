@@ -5,10 +5,7 @@ from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_from_url
 from ..constants import (
-    CP_TO_SO_TRANSLATIONS,
-    CP_TO_DC_TRANSLATIONS,
-    SO_TO_BIB_TRANSLATIONS,
-    CP_TO_RIS_TRANSLATIONS,
+    CP_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -21,31 +18,16 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    pid = normalize_id(meta.get("id", None) or meta.get("DOI", None))
-    citeproc_type = meta.get("type", None)
-    schema_org = CP_TO_SO_TRANSLATIONS.get(citeproc_type, None) or "CreativeWork"
-    types = compact(
-        {
-            "resourceTypeGeneral": CP_TO_DC_TRANSLATIONS.get(citeproc_type, None),
-            "reourceType": meta.get("additionalType", None),
-            "schemaOrg": schema_org,
-            "citeproc": citeproc_type,
-            "bibtex": SO_TO_BIB_TRANSLATIONS.get(schema_org, None) or "misc",
-            "ris": CP_TO_RIS_TRANSLATIONS.get(schema_org, None) or "GEN",
-        }
-    )
+    id_ = normalize_id(meta.get("id", None) or meta.get("DOI", None))
+    type_ = CP_TO_CM_TRANSLATIONS.get(meta.get("type", None), 'Other')
 
-    if meta.get("author", None):
-        creators = get_authors(from_citeproc(wrap(meta.get("author", None))))
-    else:
-        creators = [{"nameType": "Organizational", "name": ":(unav)"}]
+    creators = get_authors(from_citeproc(wrap(meta.get("author", None))))
     contributors = get_authors(from_citeproc(wrap(meta.get("editor", None))))
 
     date_issued = get_date_from_date_parts(meta.get("issued", None))
     if date_issued:
         dates = [{"date": date_issued, "dateType": "Issued"}]
         publication_year = int(date_issued[0:4])
-        # Date.edtf(date).present?
     else:
         dates = None
         publication_year = None
@@ -69,7 +51,7 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
         }
     )
 
-    state = "findable" if pid or read_options else "not_found"
+    state = "findable" if id_ or read_options else "not_found"
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
     if meta.get("abstract", None):
@@ -83,14 +65,14 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
         descriptions = None
 
     return {
-        "pid": pid,
-        "doi": doi_from_url(pid) if pid else None,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
         "creators": creators,
         "publisher": meta.get("publisher", None),
         "publication_year": publication_year,
-        "types": types,
         "contributors": contributors,
         "container": container,
         "references": None,

@@ -2,18 +2,20 @@
 from ..utils import to_ris
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..doi_utils import doi_from_url
+from ..constants import CM_TO_RIS_TRANSLATIONS
 
 
 def write_ris(metadata):
     """Write ris"""
     container = metadata.container or {}
+    ris = CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN")
     ris = compact(
         {
-            "TY": metadata.types.get("ris", "GEN"),
+            "TY": ris,
             "T1": parse_attributes(metadata.titles, content="title", first=True),
             "T2": container.get("title", None),
             "AU": to_ris(metadata.creators),
-            "DO": doi_from_url(metadata.pid),
+            "DO": doi_from_url(metadata.id) if metadata.id else None,
             "UR": metadata.url,
             "AB": parse_attributes(
                 metadata.descriptions, content="description", first=True

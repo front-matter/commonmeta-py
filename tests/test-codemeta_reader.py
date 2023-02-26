@@ -10,10 +10,9 @@ def test_rdataone():
     """rdataone"""
     string = path.join(path.dirname(__file__), 'fixtures', 'codemeta.json')
     subject = Metadata(string)
-    assert subject.pid == 'https://doi.org/10.5063/f1m61h5x'
+    assert subject.id == 'https://doi.org/10.5063/f1m61h5x'
+    assert subject.type == 'Software'
     assert subject.url == 'https://github.com/DataONEorg/rdataone'
-    assert subject.types == {'resourceTypeGeneral': 'Software', 'schemaOrg': 'SoftwareSourceCode',
-                             'citeproc': 'article-journal', 'bibtex': 'misc', 'ris': 'COMP'}
     assert subject.creators == [{'nameType': 'Personal', 'givenName': 'Matt', 'familyName': 'Jones', 'affiliation': [{'name': 'NCEAS'}]}, {'nameType': 'Personal', 'givenName': 'Peter',
                                                                                                                                            'familyName': 'Slaughter', 'affiliation': [{'name': 'NCEAS'}]}, {'nameType': 'Personal', 'givenName': 'University of California, Santa', 'familyName': 'Barbara'}]
     assert subject.titles == [{'title': 'R Interface to the DataONE REST API'}]
@@ -36,10 +35,9 @@ def test_metadata_reports():
     string = 'https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json'
     subject = Metadata(string)
 
-    assert subject.pid == 'https://doi.org/10.5438/wr0x-e194'
+    assert subject.id == 'https://doi.org/10.5438/wr0x-e194'
+    assert subject.type == 'Software'
     assert subject.url == 'https://github.com/datacite/metadata-reports'
-    assert subject.types == {'resourceTypeGeneral': 'Software', 'schemaOrg': 'SoftwareSourceCode',
-                             'citeproc': 'article-journal', 'bibtex': 'misc', 'ris': 'COMP'}
     assert len(subject.creators) == 4
     assert subject.creators[0] == {
         'nameType': 'Personal', 'givenName': 'Martin', 'familyName': 'Fenner'}

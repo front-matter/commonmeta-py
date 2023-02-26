@@ -8,20 +8,13 @@ from commonmeta import Metadata
 def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
     commonmeta = json.loads(subject.commonmeta())
 
-    assert commonmeta["pid"] == "https://doi.org/10.7554/elife.01567"
+    assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["doi"] == "10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
-    assert commonmeta["types"] == {
-        "bibtex": "article",
-        "citeproc": "article-journal",
-        "resourceType": "JournalArticle",
-        "resourceTypeGeneral": "JournalArticle",
-        "ris": "JOUR",
-        "schemaOrg": "ScholarlyArticle",
-    }
+    assert commonmeta["type"] == "JournalArticle"
     assert commonmeta["titles"] == [
         {
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
@@ -53,20 +46,13 @@ def test_journal_article():
 def test_journal_article_crossref_xml():
     "journal article crossref_xml"
     subject = Metadata("10.7554/elife.01567", via="crossref_xml")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
     commonmeta = json.loads(subject.commonmeta())
 
-    assert commonmeta["pid"] == "https://doi.org/10.7554/elife.01567"
+    assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["doi"] == "10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
-    assert commonmeta["types"] == {
-        "bibtex": "article",
-        "citeproc": "article-journal",
-        "resourceType": "JournalArticle",
-        "resourceTypeGeneral": "JournalArticle",
-        "ris": "JOUR",
-        "schemaOrg": "ScholarlyArticle",
-    }
+    assert commonmeta["type"] == "JournalArticle"
     assert commonmeta["titles"] == [
         {
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"

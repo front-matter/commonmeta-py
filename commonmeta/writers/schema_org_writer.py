@@ -6,28 +6,27 @@ from ..utils import (
 )
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..date_utils import get_date_by_type
+from ..constants import CM_TO_SO_TRANSLATIONS
 
 
 def write_schema_org(metadata):
     """Write schema.org"""
     container = metadata.container
-    if metadata.types.get("schemaOrg", None) != "Dataset" and container is not None:
+    if metadata.type != "Dataset" and container is not None:
         periodical = to_schema_org(container)
     else:
         periodical = None
+    schema_org = CM_TO_SO_TRANSLATIONS.get(metadata.type, "CreativeWork")
+    additional_type = metadata.additional_type
 
-    dictionary = compact(
+    data = compact(
         {
             "@context": "http://schema.org",
-            "@type": metadata.types.get("schema_org", "ScholarlyArticle")
-            if metadata.types is not None
-            else None,
-            "@id": metadata.pid,
+            "@id": metadata.id,
             # 'identifier': metadata.id,
+            "@type": schema_org,
             "url": metadata.url,
-            "additionalType": metadata.types.get("resourceType", None)
-            if metadata.types is not None
-            else None,
+            "additionalType": additional_type,
             "name": parse_attributes(metadata.titles, content="title", first=True),
             "author": to_schema_org_creators(wrap(metadata.creators)),
             "editor": to_schema_org_creators(wrap(metadata.contributors)),
@@ -63,7 +62,7 @@ def write_schema_org(metadata):
             else None,
         }
     )
-    return json.dumps(dictionary, indent=4)
+    return json.dumps(data, indent=4)
 
     #     "contentSize" => Array.wrap(sizes).unwrap,
     #     "encodingFormat" => Array.wrap(formats).unwrap,

@@ -20,6 +20,7 @@ from ..constants import (
     CR_TO_DC_TRANSLATIONS,
     CR_TO_RIS_TRANSLATIONS,
     CR_TO_SO_TRANSLATIONS,
+    CR_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -48,16 +49,10 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     doi = meta.get("DOI", None)
-    pid = doi_as_url(doi)
+    id_ = doi_as_url(doi)
     resource_type = meta.get("type", {}).title().replace("-", "")
-    types = {
-        "resourceTypeGeneral": CR_TO_DC_TRANSLATIONS.get(resource_type, None) or "Text",
-        "resourceType": resource_type,
-        "schemaOrg": CR_TO_SO_TRANSLATIONS.get(resource_type, None) or "CreativeWork",
-        "citeproc": CR_TO_CP_TRANSLATIONS.get(resource_type, None) or "article-journal",
-        "bibtex": CR_TO_BIB_TRANSLATIONS.get(resource_type, None) or "misc",
-        "ris": CR_TO_RIS_TRANSLATIONS.get(resource_type, None) or "GEN",
-    }
+    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, 'Other')
+
     if meta.get("author", None):
         creators = get_authors(from_citeproc(wrap(meta.get("author"))))
     else:
@@ -167,12 +162,12 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     return {
         # required properties
-        "pid": pid,
+        "id": id_,
+        "type": type_,
         "doi": doi,
         "url": url,
         "creators": creators,
         "titles": presence(titles),
-        "types": types,
         "publisher": publisher,
         "publication_year": publication_year,
         # recommended and optional properties
@@ -196,7 +191,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "date_updated": date_updated,
         "content_url": presence(meta.get("contentUrl", None)),
         "container": container,
-        "agency": get_doi_ra(pid),
+        "agency": get_doi_ra(id_),
         "state": state,
         "schema_version": None,
     } | read_options

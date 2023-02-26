@@ -20,12 +20,8 @@ from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..doi_utils import doi_from_url
 from ..constants import (
-    SO_TO_BIB_TRANSLATIONS,
-    SO_TO_CP_TRANSLATIONS,
-    SO_TO_DC_TRANSLATIONS,
+    SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
-    SO_TO_DC_REVERSE_RELATION_TYPES,
-    SO_TO_RIS_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -71,28 +67,13 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    pid = meta.get("@id", None)
-    doi = doi_from_url(pid)
-    types = None
-
+    id_ = meta.get("@id", None)
     # if id.blank? && URI(meta.fetch('@id', '')).host == 'doi.org'
-    if pid is None:
-        pid = meta.get("identifier", None)
-    pid = normalize_id(pid)
-
-    schema_org = meta.get("@type") if meta.get("@type", None) else "CreativeWork"
-    resource_type_general = SO_TO_DC_TRANSLATIONS.get(schema_org, None)
-    types = compact(
-        {
-            "resourceTypeGeneral": resource_type_general,
-            "resourceType": meta.get("additionalType", None),
-            "schemaOrg": schema_org,
-            "citeproc": SO_TO_CP_TRANSLATIONS.get(schema_org, None)
-            or "article-journal",
-            "bibtex": SO_TO_BIB_TRANSLATIONS.get(schema_org, None) or "misc",
-            "ris": SO_TO_RIS_TRANSLATIONS.get(resource_type_general, None) or "GEN",
-        }
-    )
+    if id_ is None:
+        id_ = meta.get("identifier", None)
+    id_ = normalize_id(id_)
+    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), 'Other')
+    additional_type = meta.get("additionalType", None)
     authors = meta.get("author", None) or meta.get("creator", None)
     # Authors should be an object, if it's just a plain string don't try and parse it.
     if not isinstance(authors, str):
@@ -129,17 +110,15 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         rights = None
 
-    issn = py_.get(meta, "isPartOf.issn")
-    cet = "includedInDataCatalog" if schema_org in ["Dataset", "Periodical"] else None
-    if cet is not None:
+    if type_ == "Dataset":
         url = parse_attributes(
-            from_schema_org(meta.get(cet, None)), content="url", first=True
+            from_schema_org(meta.get('includedInDataCatalog', None)), content="url", first=True
         )
         container = compact(
             {
-                "type": "DataRepository" if schema_org == "Dataset" else "Periodical",
+                "type": "DataRepository",
                 "title": parse_attributes(
-                    from_schema_org(meta.get(cet, None)), content="name", first=True
+                    from_schema_org(meta.get('includedInDataCatalog', None)), content="name", first=True
                 ),
                 "identifier": url,
                 "identifierType": "URL" if url is not None else None,
@@ -149,7 +128,8 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
                 "lastPage": meta.get("pageEnd", None),
             }
         )
-    elif schema_org in ("Article", "BlogPosting"):
+    elif type_ == "Article":
+        issn = py_.get(meta, "isPartOf.issn")
         url = py_.get(meta, "publisher.url")
         container = compact(
             {
@@ -208,15 +188,16 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
 
     return {
         # required attributes
-        "pid": pid,
-        "doi": doi,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
         "creators": creators,
         "titles": titles,
         "publisher": publisher,
         "publication_year": publication_year,
-        "types": types,
         # recommended and optional attributes
+        "additional_type": additional_type,
         "subjects": presence(subjects),
         "contributors": contributors,
         "dates": dates,

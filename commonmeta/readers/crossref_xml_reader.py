@@ -28,11 +28,7 @@ from ..date_utils import (
 from ..doi_utils import doi_as_url, get_doi_ra, crossref_xml_api_url, normalize_doi
 from ..constants import (
     Commonmeta,
-    CR_TO_DC_TRANSLATIONS,
-    CR_TO_SO_TRANSLATIONS,
-    CR_TO_CP_TRANSLATIONS,
-    CR_TO_BIB_TRANSLATIONS,
-    CR_TO_RIS_TRANSLATIONS,
+    CR_TO_CM_TRANSLATIONS,
     CROSSREF_CONTAINER_TYPES,
 )
 
@@ -140,35 +136,16 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         bibmeta = {}
         resource_type = ""
 
-    pid = normalize_doi(
+    id_ = normalize_doi(
         kwargs.get("doi", None)
-        or kwargs.get("pid", None)
+        or kwargs.get("id", None)
         or py_.get(bibmeta, "doi_data.doi")
     )
-    if pid:
-        doi = doi_from_url(pid)
-    else:
-        doi = None
-
+    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, 'Other')
     url = parse_xmldict(
         py_.get(bibmeta, "doi_data.resource"), ignored_attributes="@content_version"
     )
     url = normalize_url(url)
-
-    schema_org = CR_TO_SO_TRANSLATIONS.get(resource_type, None) or "CreativeWork"
-    types = compact(
-        {
-            "resourceTypeGeneral": CR_TO_DC_TRANSLATIONS.get(resource_type, None)
-            or "Text",
-            "resourceType": resource_type,
-            "schemaOrg": schema_org,
-            "citeproc": CR_TO_CP_TRANSLATIONS.get(resource_type, None)
-            or "article-journal",
-            "bibtex": CR_TO_BIB_TRANSLATIONS.get(resource_type, None) or "misc",
-            "ris": CR_TO_RIS_TRANSLATIONS.get(resource_type, None) or "GEN",
-        }
-    )
-
     titles = crossref_titles(bibmeta)
 
     date_created = next(
@@ -260,17 +237,17 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         crossref_reference(i) for i in wrap(py_.get(bibmeta, "citation_list.citation"))
     ]
     language = py_.get(meta, "journal.journal_metadata.@language")
-    agency = bibmeta.get("@reg-agency", None) or get_doi_ra(pid)
+    agency = bibmeta.get("@reg-agency", None) or get_doi_ra(id_)
     state = "findable" if meta or read_options else "not_found"
 
     return {
         # required properties
-        "pid": pid,
-        "doi": doi,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": url,
         "creators": wrap(crossref_people(bibmeta, "author")),
         "titles": presence(titles),
-        "types": types,
         "publisher": publisher,
         "publication_year": publication_year,
         # recommended and optional properties

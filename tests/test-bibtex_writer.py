@@ -7,9 +7,9 @@ from commonmeta import Metadata
 def test_doi_with_data_citation():
     "DOi with data citation"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.doi == "10.7554/elife.01567"
-    assert subject.types.get("bibtex") == "article"
+    assert subject.type == "JournalArticle"
 
     bibtex = subject.bibtex()
 
@@ -36,8 +36,8 @@ def test_doi_with_data_citation():
 def test_doi_for_blog_post():
     "DOi for blog post"
     subject = Metadata("10.53731/avg2ykg-gdxppcd")
-    assert subject.pid == "https://doi.org/10.53731/avg2ykg-gdxppcd"
-    assert subject.types.get("bibtex") == "article"
+    assert subject.id == "https://doi.org/10.53731/avg2ykg-gdxppcd"
+    assert subject.type == "Article"
 
     bibtex = subject.bibtex()
 
@@ -62,8 +62,8 @@ def test_blog_post():
     "blog post"
     string = "https://upstream.force11.org/welcome-to-upstream/"
     subject = Metadata(string)
-    assert subject.pid == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
-    assert subject.types.get("bibtex") == "article"
+    assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
+    assert subject.type == "Article"
     bibtex = subject.bibtex()
 
     assert (
@@ -88,8 +88,8 @@ def test_blog_post():
 def test_article_with_pages():
     "article with pages"
     subject = Metadata("https://doi.org/10.1371/journal.ppat.1008184")
-    assert subject.pid == "https://doi.org/10.1371/journal.ppat.1008184"
-    assert subject.types.get("bibtex") == "article"
+    assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
+    assert subject.type == "JournalArticle"
 
     bibtex = subject.bibtex()
 
@@ -117,8 +117,8 @@ def test_article_with_pages():
 def test_article_dlib_magazine():
     "article dlib magazine"
     subject = Metadata("https://doi.org/10.1045/january2017-burton")
-    assert subject.pid == "https://doi.org/10.1045/january2017-burton"
-    assert subject.types.get("bibtex") == "article"
+    assert subject.id == "https://doi.org/10.1045/january2017-burton"
+    assert subject.type == "JournalArticle"
 
     bibtex = subject.bibtex()
 
@@ -143,8 +143,8 @@ def test_article_dlib_magazine():
 def test_book_chapter():
     """book chapter"""
     subject = Metadata("https://doi.org/10.1007/978-3-662-46370-3_13")
-    assert subject.pid == "https://doi.org/10.1007/978-3-662-46370-3_13"
-    assert subject.types.get("bibtex") == "inbook"
+    assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
+    assert subject.type == "BookChapter"
 
     bibtex = subject.bibtex()
 
@@ -169,8 +169,8 @@ def test_book_chapter():
 def test_conference_proceedings():
     """conference proceedings"""
     subject = Metadata("https://doi.org/10.1109/iccv.2007.4408927")
-    assert subject.pid == "https://doi.org/10.1109/iccv.2007.4408927"
-    assert subject.types.get("bibtex") == "inproceedings"
+    assert subject.id == "https://doi.org/10.1109/iccv.2007.4408927"
+    assert subject.type == "ProceedingsArticle"
 
     bibtex = subject.bibtex()
 
@@ -193,8 +193,8 @@ def test_conference_proceedings():
 def test_phd_thesis():
     """phd thesis"""
     subject = Metadata("10.14264/uql.2020.791")
-    assert subject.pid == "https://doi.org/10.14264/uql.2020.791"
-    assert subject.types.get("bibtex") == "phdthesis"
+    assert subject.id == "https://doi.org/10.14264/uql.2020.791"
+    assert subject.type == "Dissertation"
 
     bibtex = subject.bibtex()
 

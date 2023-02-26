@@ -90,8 +90,8 @@ from commonmeta import Metadata
 def test_doi_with_data_citation():
     "doi with data citation"
     subject = Metadata("10.7554/elife.01567")
-    assert subject.pid == "https://doi.org/10.7554/elife.01567"
-    assert subject.types.get("citeproc") == "article-journal"
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.type == "JournalArticle"
 
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
@@ -162,8 +162,8 @@ def test_doi_with_data_citation():
 def test_with_pages():
     "with pages"
     subject = Metadata("10.1155/2012/291294")
-    assert subject.pid == "https://doi.org/10.1155/2012/291294"
-    assert subject.types.get("citeproc") == "article-journal"
+    assert subject.id == "https://doi.org/10.1155/2012/291294"
+    assert subject.type == "JournalArticle"
 
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
@@ -196,8 +196,8 @@ def test_with_pages():
 def test_only_first_page():
     "only first page"
     subject = Metadata("10.1371/journal.pone.0214986")
-    assert subject.pid == "https://doi.org/10.1371/journal.pone.0214986"
-    assert subject.types.get("citeproc") == "article-journal"
+    assert subject.id == "https://doi.org/10.1371/journal.pone.0214986"
+    assert subject.type == "JournalArticle"
 
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
@@ -222,8 +222,8 @@ def test_only_first_page():
 def test_missing_creator():
     "missing creator"
     subject = Metadata("10.3390/publications6020015")
-    assert subject.pid == "https://doi.org/10.3390/publications6020015"
-    assert subject.types.get("citeproc") == "article-journal"
+    assert subject.id == "https://doi.org/10.3390/publications6020015"
+    assert subject.type == "JournalArticle"
 
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"
@@ -317,8 +317,8 @@ def test_missing_creator():
 def test_organization_author():
     "organization author"
     subject = Metadata("10.1186/s13742-015-0103-4")
-    assert subject.pid == "https://doi.org/10.1186/s13742-015-0103-4"
-    assert subject.types.get("citeproc") == "article-journal"
+    assert subject.id == "https://doi.org/10.1186/s13742-015-0103-4"
+    assert subject.type == "JournalArticle"
 
     citeproc = json.loads(subject.citeproc())
     assert citeproc.get("type") == "article-journal"

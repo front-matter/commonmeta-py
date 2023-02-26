@@ -29,18 +29,20 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     meta = data
 
-    pid = doi_as_url(meta.get("doi", None))
+    id_ = doi_as_url(meta.get("doi", None))
+    resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
+    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, 'Other')
 
     return {
         # required properties
-        "pid": pid,
-        "doi": doi_from_url(pid) if pid else None,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
         "publisher": meta.get("publisher", None),
         "publication_year": int(meta.get("publicationYear", None)),
-        "types": types,
         # recommended and optional properties
         "subjects": presence(meta.get("subjects", None)),
         "contributors": get_authors(wrap(meta.get("contributors", None))),

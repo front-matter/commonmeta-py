@@ -8,14 +8,7 @@ from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
 from ..constants import (
-    CR_TO_SO_TRANSLATIONS,
-    CR_TO_CP_TRANSLATIONS,
-    CR_TO_BIB_TRANSLATIONS,
-    CR_TO_RIS_TRANSLATIONS,
-    DC_TO_RIS_TRANSLATIONS,
-    DC_TO_SO_TRANSLATIONS,
-    SO_TO_CP_TRANSLATIONS,
-    SO_TO_BIB_TRANSLATIONS,
+    DC_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -38,46 +31,33 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    pid = doi_as_url(meta.get("doi", None))
+    id_ = doi_as_url(meta.get("doi", None))
     resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
     resource_type = py_.get(meta, "types.resourceType")
-    schema_org = (
-        CR_TO_SO_TRANSLATIONS.get(py_.camel_case(resource_type), None)
-        or DC_TO_SO_TRANSLATIONS.get(resource_type_general, None)
-        or "CreativeWork"
-    )
-    types = compact(
-        {
-            "resourceTypeGeneral": resource_type_general,
-            "resourceType": resource_type,
-            "schemaOrg": schema_org,
-            "citeproc": CR_TO_CP_TRANSLATIONS.get(py_.camel_case(resource_type), None)
-            or SO_TO_CP_TRANSLATIONS.get(schema_org, None)
-            or "article",
-            "bibtex": CR_TO_BIB_TRANSLATIONS.get(py_.camel_case(resource_type), None)
-            or SO_TO_BIB_TRANSLATIONS.get(schema_org, None)
-            or "misc",
-            "ris": CR_TO_RIS_TRANSLATIONS.get(py_.camel_case(resource_type), None)
-            or DC_TO_RIS_TRANSLATIONS.get(resource_type_general, None)
-            or "GEN",
-        }
-    )
+    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, 'Other')
+    additional_type = DC_TO_CM_TRANSLATIONS.get(resource_type, None)
+    # if resource_type is one of the new resource_type_general types introduced in schema 4.3, use it
+    if additional_type:
+        type_ = additional_type
+        additional_type = None
 
+    container = meta.get("container", None)
+    print(container)
     rights = meta.get("rightsList", None)
-
     references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
 
     return {
         # required properties
-        "pid": pid,
-        "doi": doi_from_url(pid) if pid else None,
+        "id": id_,
+        "type": type_,
+        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
         "publisher": meta.get("publisher", None),
         "publication_year": int(meta.get("publicationYear", None)),
-        "types": types,
         # recommended and optional properties
+        "additional_type": additional_type,
         "subjects": presence(meta.get("subjects", None)),
         "contributors": get_authors(wrap(meta.get("contributors", None))),
         "dates": presence(meta.get("dates", None))
@@ -98,7 +78,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "date_published": strip_milliseconds(meta.get("published", None)),
         "date_updated": strip_milliseconds(meta.get("updated", None)),
         "content_url": presence(meta.get("contentUrl", None)),
-        "container": presence(meta.get("container", None)),
+        "container": presence(container),
         "agency": "DataCite",
         "state": "findable",
         "schema_version": meta.get("schemaVersion", None),
