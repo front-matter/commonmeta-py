@@ -23,6 +23,16 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
         "bibtex": CM_TO_BIB_TRANSLATIONS.get(metadata.type, 'misc'),
         "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, 'GEN'),
     })
+    publication_year = metadata.date.get('published')[:4] if metadata.date.get('published', None) else None
+    
+    def to_datacite_date(date: dict) -> dict:
+        """Convert dates to datacite dates"""
+        for k, v in date.items():
+            return {
+                "date": v,
+                "dateType": k.title(),
+            }
+    dates = [to_datacite_date(i) for i in wrap(metadata.date)]
 
     data = compact(
         {
@@ -32,10 +42,10 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
             "creators": creators,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
-            "publicationYear": metadata.publication_year,
+            "publicationYear": publication_year,
             "subjects": metadata.subjects,
             "contributors": metadata.contributors,
-            "dates": metadata.dates,
+            "dates": dates,
             "language": metadata.language,
             "types": types,
             "relatedItems": related_items,

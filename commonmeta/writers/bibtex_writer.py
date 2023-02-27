@@ -5,7 +5,7 @@ from bibtexparser.bibdatabase import BibDatabase
 from ..utils import pages_as_string
 from ..base_utils import compact
 from ..author_utils import authors_as_string
-from ..date_utils import get_month_from_date, get_date_by_type
+from ..date_utils import get_month_from_date, get_iso8601_date
 from ..constants import CM_TO_BIB_TRANSLATIONS, Commonmeta
 
 def write_bibtex(metadata):
@@ -13,6 +13,7 @@ def write_bibtex(metadata):
     container = metadata.container or {}
     type_ = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
     database = BibDatabase()
+    date_published = get_iso8601_date(metadata.date.get('published', None))
     database.entries = [
         compact(
             {
@@ -37,7 +38,7 @@ def write_bibtex(metadata):
                 if type_ == "inproceedings"
                 else None,
                 "language": metadata.language,
-                "month": get_month_from_date(metadata.dates[0].get("date", None)),
+                "month": get_month_from_date(date_published),
                 "pages": pages_as_string(container),
                 "publisher": container.get("publisher", None)
                 if type_ in ["phdthesis"]
@@ -47,8 +48,8 @@ def write_bibtex(metadata):
                 else None,
                 "title": metadata.titles[0].get("title", None),
                 "url": metadata.url,
-                "urldate": get_date_by_type(metadata.dates, date_only=True),
-                "year": str(metadata.publication_year),
+                "urldate": date_published,
+                "year": date_published[:4] if date_published else None,
             }
         )
     ]

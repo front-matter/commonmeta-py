@@ -5,13 +5,12 @@ import pytest  # noqa: F401
 
 from commonmeta.date_utils import (
     get_iso8601_date,
-    get_date_by_type,
     get_date_from_date_parts,
     get_date_from_parts,
     get_date_parts,
     get_month_from_date,
     get_date_from_crossref_parts,
-    get_datetime_from_time,
+    get_datetime_from_time
 )
 from commonmeta.base_utils import wrap
 
@@ -63,29 +62,6 @@ def test_get_date_parts():
     assert {"date-parts": [[2012, 1]]} == get_date_parts("2012-01")
     assert {"date-parts": [[2012]]} == get_date_parts("2012")
     assert {"date-parts": [[]]} == get_date_parts(None)
-
-
-def test_get_date_by_type():
-    """get date by date type"""
-    assert "2012-01-01" == get_date_by_type(
-        [{"date": "2012-01-01", "dateType": "Issued"}]
-    )
-    assert "2013-04-15" == get_date_by_type(
-        [
-            {"date": "2012-01-01", "dateType": "Issued"},
-            {"date": "2013-04-15", "dateType": "Updated"},
-        ],
-        date_type="Updated",
-    )
-    assert "2012-01-01" == get_date_by_type(
-        [
-            {"date": "2012-01-01T23:44:11", "dateType": "Issued"},
-            {"date": "2013-04-15", "dateType": "Updated"},
-        ],
-        date_only=True,
-    )
-    assert None is get_date_by_type([])
-    assert None is get_date_by_type(wrap(None))
 
 
 def test_get_month_from_date():

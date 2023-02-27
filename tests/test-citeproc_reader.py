@@ -18,8 +18,7 @@ def test_blog_posting():
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.dates == [{"date": "2016-12-20", "dateType": "Issued"}]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-12-20'}
 
 
 def test_no_categories():
@@ -36,8 +35,7 @@ def test_no_categories():
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.dates == [{"date": "2016-12-20", "dateType": "Issued"}]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-12-20'}
 
 
 def test_no_author():
@@ -50,5 +48,4 @@ def test_no_author():
     assert subject.creators is None
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.dates == [{"date": "2016-12-20", "dateType": "Issued"}]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-12-20'}

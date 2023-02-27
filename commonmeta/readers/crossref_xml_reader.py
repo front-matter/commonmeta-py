@@ -1,6 +1,7 @@
 """crossref_xml reader for commonmeta-py"""
 from typing import Optional
 import json
+from collections import defaultdict
 import requests
 import xmltodict
 from pydash import py_
@@ -21,10 +22,7 @@ from ..base_utils import (
     parse_attributes,
     parse_xmldict,
 )
-from ..date_utils import (
-    get_date_from_crossref_parts,
-    get_datetime_from_time,
-)
+from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
 from ..doi_utils import doi_as_url, get_doi_ra, crossref_xml_api_url, normalize_doi
 from ..constants import (
     Commonmeta,
@@ -141,14 +139,15 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         or kwargs.get("id", None)
         or py_.get(bibmeta, "doi_data.doi")
     )
-    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, 'Other')
+    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
     url = parse_xmldict(
         py_.get(bibmeta, "doi_data.resource"), ignored_attributes="@content_version"
     )
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
 
-    date_created = next(
+    date: dict = defaultdict(list)
+    date["created"] = next(
         (
             i
             for i in wrap(query.get("crm-item", None))
@@ -164,15 +163,9 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         ),
         {},
     )
-    date_registered = get_datetime_from_time(date_registered.get("#text", None))
-    date_issued = get_date_from_crossref_parts(bibmeta.get("publication_date", {}))
-    date_reviewed = get_date_from_crossref_parts(bibmeta.get("review_date", {}))
-    date_published = date_issued or date_reviewed or date_created
-
-    # convert to date, as timestamp is fluctuating (servers in different timezones)
-    date_published = date_published[:10] if date_published else None
-
-    date_updated = next(
+    date["published"] = get_date_from_crossref_parts(
+        bibmeta.get("publication_date", {})) or get_date_from_crossref_parts(bibmeta.get("review_date", {})) or date['created']
+    date["updated"] = next(
         (
             i
             for i in wrap(query.get("crm-item", None))
@@ -180,10 +173,9 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         ),
         {},
     ).get("#text", None)
-    dates = [{"date": date_published, "dateType": "Issued"}]
-    if date_updated is not None:
-        dates.append({"date": date_updated, "dateType": "Updated"})
-    publication_year = int(date_published[:4]) if date_published else None
+
+    # remove time as this is not always stable with Crossref (different server timezones)
+    date = {k: get_iso8601_date(v) for k, v in date.items()}
 
     descriptions = crossref_description(bibmeta)
     program = py_.get(bibmeta, "program") or py_.get(
@@ -249,11 +241,10 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "creators": wrap(crossref_people(bibmeta, "author")),
         "titles": presence(titles),
         "publisher": publisher,
-        "publication_year": publication_year,
+        "date": compact(date),
         # recommended and optional properties
         "subjects": presence(None),
         "contributors": crossref_people(bibmeta, "editor"),
-        "dates": dates,
         "language": language,
         "alternate_identifiers": None,
         "sizes": None,
@@ -552,7 +543,10 @@ def crossref_funding(funding_references: list) -> list:
                 fund_ref = funding_reference.copy()
                 fund_ref["awardNumber"] = award.get("award_number")
                 formatted_funding_references.append(fund_ref)
-        if funding_reference != {} and len(wrap(py_.get(funding_dict, "fundgroup"))) == 1:
+        if (
+            funding_reference != {}
+            and len(wrap(py_.get(funding_dict, "fundgroup"))) == 1
+        ):
             formatted_funding_references.append(funding_reference)
 
     return formatted_funding_references

@@ -1,5 +1,6 @@
 """codemeta reader for commonmeta-py"""
 from typing import Optional
+from collections import defaultdict
 import requests
 
 from ..utils import (
@@ -11,7 +12,7 @@ from ..utils import (
     github_as_repo_url,
     doi_from_url,
 )
-from ..base_utils import wrap, presence, sanitize
+from ..base_utils import wrap, presence, compact, sanitize
 from ..author_utils import get_authors
 from ..constants import (
     Commonmeta,
@@ -59,14 +60,11 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     authors = meta.get("authors", None) if has_agents is None else has_agents
     creators = get_authors(from_schema_org_creators(wrap(authors)))
     contributors = get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
-    dates = []
-    if meta.get("datePublished", None):
-        dates.append({"date": meta.get("datePublished"), "dateType": "Issued"})
-        publication_year = int(meta.get("datePublished")[0:4])
-    if meta.get("dateCreated", None):
-        dates.append({"date": meta.get("dateCreated"), "dateType": "Created"})
-    if meta.get("dateModified", None):
-        dates.append({"date": meta.get("dateModified"), "dateType": "Updated"})
+    
+    date: dict = defaultdict(list)
+    date['created'] = meta.get("dateCreated", None)
+    date['published'] = meta.get("datePublished", None)
+    date['updated'] = meta.get("dateModified", None)
 
     publisher = meta.get("publisher", None)
 
@@ -105,8 +103,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
         "creators": creators,
         "contributors": contributors,
         "publisher": publisher,
-        "dates": dates,
-        "publication_year": publication_year,
+        "date": compact(date),
         "descriptions": descriptions,
         "rights": rights,
         "version": meta.get("version", None),

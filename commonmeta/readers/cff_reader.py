@@ -66,14 +66,9 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         titles = []
 
-    dates = []
-    if meta.get("date-released", None):
-        released_date = get_iso8601_date(meta.get("date-released"))
-        dates = [{"date": released_date, "dateType": "Issued"}]
-        publication_year = int(released_date[0:4])
-    else:
-        dates = []
-        publication_year = None
+    date = {
+        "published": get_iso8601_date(meta.get("date-released")) if meta.get("date-released", None) else None
+    }
 
     publisher = "GitHub" if url and url.startswith("https://github.com") else None
 
@@ -108,8 +103,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "creators": creators,
         "publisher": publisher,
         "references": presence(references),
-        "dates": dates,
-        "publication_year": publication_year,
+        "date": date,
         "descriptions": presence(descriptions),
         "rights": rights,
         "version": meta.get("version", None),

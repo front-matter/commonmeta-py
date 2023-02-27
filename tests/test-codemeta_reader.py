@@ -38,13 +38,12 @@ def test_rdataone():
     )
     # [{'subject': 'data sharing'}], [{'subject': 'data repository'}], [{'subject': 'dataone'}]
     assert subject.subjects is None
-    assert subject.dates == [
-        {"date": "2016-05-27", "dateType": "Issued"},
-        {"date": "2016-05-27", "dateType": "Created"},
-        {"date": "2016-05-27", "dateType": "Updated"},
-    ]
+    assert subject.date == {
+        "created": "2016-05-27",
+        "published": "2016-05-27",
+        "updated": "2016-05-27",
+    }
     assert subject.publisher == "https://cran.r-project.org"
-    assert subject.publication_year == 2016
     assert subject.rights == [
         {
             "rights": "Apache License 2.0",
@@ -77,12 +76,11 @@ def test_metadata_reports():
         "Analysis of DataCite DOIs registered for software"
     )
     assert subject.subjects is None
-    assert subject.dates == [
-        {"date": "2018-05-17", "dateType": "Issued"},
-        {"date": "2018-03-09", "dateType": "Created"},
-        {"date": "2018-05-17", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2018
+    assert subject.date == {
+        "created": "2018-03-09",
+        "published": "2018-05-17",
+        "updated": "2018-05-17",
+    }
     assert subject.publisher == "DataCite"
     assert subject.rights == [
         {

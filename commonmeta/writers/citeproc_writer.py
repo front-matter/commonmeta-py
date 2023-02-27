@@ -3,7 +3,7 @@ import json
 
 from ..utils import pages_as_string, to_citeproc
 from ..base_utils import wrap, presence, parse_attributes, compact
-from ..date_utils import get_date_by_type, get_date_parts
+from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
 from ..constants import CM_TO_CP_TRANSLATIONS, Commonmeta
 
@@ -38,11 +38,8 @@ def write_citeproc(metadata: Commonmeta) -> str:
             "language": metadata.language,
             "author": author,
             "contributor": to_citeproc(wrap(metadata.contributors)),
-            "issued": get_date_parts(
-                get_date_by_type(metadata.dates, "Issued")
-                or str(metadata.publication_year)
-            ),
-            "submitted": get_date_by_type(metadata.dates, "Submitted"),
+            "issued": get_date_parts(metadata.date.get('published', None)),
+            "submitted": get_date_parts(metadata.date.get('submitted')) if metadata.date.get('submitted', None) else None,
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),

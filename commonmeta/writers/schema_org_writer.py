@@ -5,7 +5,6 @@ from ..utils import (
     to_schema_org_creators
 )
 from ..base_utils import compact, wrap, presence, parse_attributes
-from ..date_utils import get_date_by_type
 from ..constants import CM_TO_SO_TRANSLATIONS
 
 
@@ -43,10 +42,9 @@ def write_schema_org(metadata):
                 )
             ),
             "inLanguage": metadata.language,
-            "dateCreated": get_date_by_type(metadata.dates, "Created"),
-            "datePublished": get_date_by_type(metadata.dates, "Issued")
-            or metadata.publication_year,
-            "dateModified": get_date_by_type(metadata.dates, "Updated"),
+            "dateCreated": metadata.date.get('created', None),
+            "datePublished": metadata.date.get('published', None),
+            "dateModified": metadata.date.get('updated', None),
             "pageStart": container.get("firstPage", None) if container else None,
             "pageEnd": container.get("lastPage", None) if container else None,
             # "isPartOf": unwrap(to_schema_org_relations(

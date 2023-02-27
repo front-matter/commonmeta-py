@@ -37,11 +37,7 @@ def test_doi_with_data_citation():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2014-02-11", "dateType": "Issued"},
-        {"date": "2022-03-26T09:21:50Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2014
+    assert subject.date == {'created': '2014-02-11', 'published': '2014-02-11', 'updated': '2022-03-26'}
     assert subject.publisher == "eLife Sciences Publications, Ltd"
     assert len(subject.references) == 27
     assert subject.references[0] == {
@@ -114,11 +110,7 @@ def test_journal_article():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2006-12-20", "dateType": "Issued"},
-        {"date": "2021-08-06T23:49:55Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2006
+    assert subject.date == {'created': '2006-12-20', 'published': '2006-12-20', 'updated': '2021-08-06'}
     assert subject.publisher == "Public Library of Science (PLoS)"
     assert len(subject.references) == 73
     assert subject.references[0] == {
@@ -177,8 +169,7 @@ def test_journal_article_with_funding():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates[0] == {"date": "2019-07-02", "dateType": "Issued"}
-    assert subject.publication_year == 2019
+    assert subject.date == {'created': '2019-07-02', 'published': '2019-07-02', 'updated': '2019-09-22'}
     assert subject.publisher == "Frontiers Media SA"
     assert len(subject.references) == 70
     assert subject.references[0] == {
@@ -228,11 +219,7 @@ def test_journal_article_original_language():
     assert subject.creators == []
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2007", "dateType": "Issued"},
-        {"date": "2021-05-20T22:32:01Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2007
+    assert subject.date == {'created': '2012-08-30', 'published': '2007', 'updated': '2021-05-20'}
     assert (
         subject.publisher
         == "The Japanese Society of Physical Fitness and Sports Medicine"
@@ -285,8 +272,7 @@ def test_journal_article_with_rdf_for_container():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2012-01-01", "dateType": "Issued"}
-    assert subject.publication_year == 2012
+    assert subject.date == {'created': '2012-11-20', 'published': '2012-01-01', 'updated': '2019-07-05'}
     assert subject.publisher == "Oxford University Press (OUP)"
     assert len(subject.references) == 111
     assert subject.references[0] == {
@@ -335,11 +321,7 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2012", "dateType": "Issued"},
-        {"date": "2020-11-24T03:11:32Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2012
+    assert subject.date == {'created': '2012-08-21', 'published': '2012', 'updated': '2020-11-24'}
     assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.references) == 11
     assert subject.references[-1] == {
@@ -381,8 +363,7 @@ def test_posted_content():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2016-12-29", "dateType": "Issued"}
-    assert subject.publication_year == 2016
+    assert subject.date == {'created': '2016-12-29', 'published': '2016-12-29', 'updated': '2020-01-17'}
     assert subject.publisher == "Cold Spring Harbor Laboratory"
     assert len(subject.references) == 26
     assert subject.references[0] == {
@@ -441,11 +422,7 @@ def test_peer_review():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2020-04-29", "dateType": "Issued"},
-        {"date": "2020-05-19T20:33:37Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2020
+    assert subject.date == {'created': '2020-05-19', 'published': '2020-04-29', 'updated': '2020-05-19'}
     assert subject.publisher == "eLife Sciences Publications, Ltd"
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -476,8 +453,7 @@ def test_dissertation():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2020-06-08", "dateType": "Issued"}
-    assert subject.publication_year == 2020
+    assert subject.date == {'created': '2020-06-08', 'published': '2020-06-08', 'updated': '2020-06-08'}
     assert subject.publisher == "University of Queensland Library"
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -512,8 +488,7 @@ def test_doi_with_sici():
     assert subject.rights == [
         {"rightsUri": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     ]
-    assert subject.dates[0] == {"date": "2006-11", "dateType": "Issued"}
-    assert subject.publication_year == 2006
+    assert subject.date == {'created': '2007-06-04', 'published': '2006-11', 'updated': '2019-04-28'}
     assert subject.publisher == "Wiley"
     assert len(subject.references) == 39
     assert subject.references[0] == {
@@ -577,8 +552,7 @@ def test_doi_with_orcid():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates[0] == {"date": "2012", "dateType": "Issued"}
-    assert subject.publication_year == 2012
+    assert subject.date == {'created': '2012-12-30', 'published': '2012', 'updated': '2016-08-02'}
     assert subject.publisher == "Hindawi Limited"
     assert len(subject.references) == 27
     assert subject.references[0] == {
@@ -634,11 +608,7 @@ def test_date_in_future():
     assert subject.rights == [
         {"rightsUri": "https://www.elsevier.com/tdm/userlicense/1.0"}
     ]
-    assert subject.dates == [
-        {"date": "2015-07", "dateType": "Issued"},
-        {"date": "2020-08-31T14:03:39Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2015
+    assert subject.date == {'created': '2015-04-06', 'published': '2015-07', 'updated': '2020-08-31'}
     assert subject.publisher == "Elsevier BV"
     assert len(subject.references) == 98
     assert subject.references[0] == {
@@ -726,11 +696,7 @@ def test_vor_with_url():
     }
     assert subject.contributors is None
     assert subject.rights == [{"rightsUri": "https://www.springer.com/tdm"}]
-    assert subject.dates == [
-        {"date": "2013-04-10", "dateType": "Issued"},
-        {"date": "2021-12-02T02:50:35Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2013
+    assert subject.date == {'created': '2013-04-10', 'published': '2013-04-10', 'updated': '2021-12-02'}
     assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.references) == 41
     assert subject.references[0] == {
@@ -786,11 +752,7 @@ def test_dataset():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "1984-07-17", "dateType": "Issued"},
-        {"date": "2023-02-07T21:29:26Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 1984
+    assert subject.date == {'created': '2006-01-05', 'published': '1984-07-17', 'updated': '2023-02-07'}
     assert subject.publisher == "Worldwide Protein Data Bank"
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -813,8 +775,7 @@ def test_component():
     assert subject.creators == []
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2015-10-20", "dateType": "Issued"}
-    assert subject.publication_year == 2015
+    assert subject.date == {'created': '2015-10-20', 'published': '2015-10-20', 'updated': '2018-10-19'}
     assert subject.publisher == "Public Library of Science (PLoS)"
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -843,8 +804,7 @@ def test_dataset_usda():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2017-08-09", "dateType": "Issued"}
-    assert subject.publication_year == 2017
+    assert subject.date == {'created': '2017-08-09', 'published': '2017-08-09', 'updated': '2021-07-01'}
     assert subject.publisher == "USDA Forest Service"
     assert len(subject.references) == 6
     assert subject.references[-1] == {
@@ -891,11 +851,7 @@ def test_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2015", "dateType": "Issued"},
-        {"date": "2023-02-10T08:59:39Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2015
+    assert subject.date == {'created': '2015-04-14', 'published': '2015', 'updated': '2023-02-10'}
     assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.references) == 22
     assert subject.references[0] == {
@@ -939,8 +895,7 @@ def test_another_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights == [{"rightsUri": "https://www.springer.com/tdm"}]
-    assert subject.dates[0] == {"date": "2018", "dateType": "Issued"}
-    assert subject.publication_year == 2018
+    assert subject.date['published'] == '2018'
     assert subject.publisher == "Springer Science and Business Media LLC"
     assert len(subject.references) == 44
     assert subject.funding_references is None
@@ -980,8 +935,7 @@ def test_yet_another_book_chapter():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates[0] == {"date": "2012-08-08", "dateType": "Issued"}
-    assert subject.publication_year == 2012
+    assert subject.date == {'created': '2012-08-08', 'published': '2012-08-08', 'updated': '2019-07-02'}
     assert subject.publisher == "IGI Global"
     assert len(subject.references) == 33
     assert subject.funding_references is None
@@ -1028,11 +982,7 @@ def test_missing_creator():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2018-04-09", "dateType": "Issued"},
-        {"date": "2021-07-22T10:05:05Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2018
+    assert subject.date == {'created': '2018-04-10', 'published': '2018-04-09', 'updated': '2021-07-22'}
     assert subject.publisher == "MDPI AG"
     assert len(subject.references) == 23
     assert subject.references[0] == {
@@ -1084,11 +1034,7 @@ def test_book():
     }
     assert subject.contributors is None
     assert subject.rights == [{"rightsUri": "https://www.cambridge.org/core/terms"}]
-    assert subject.dates == [
-        {"date": "2019-07-01", "dateType": "Issued"},
-        {"date": "2022-09-22T13:22:42Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2019
+    assert subject.date == {'created': '2019-07-01', 'published': '2019-07-01', 'updated': '2022-09-22'}
     assert subject.publisher == "Cambridge University Press (CUP)"
     assert len(subject.references) == 273
     assert subject.references[0] == {

@@ -1,11 +1,12 @@
 """datacite reader for Commonmeta"""
+from collections import defaultdict
 import requests
 from pydash import py_
 
 from ..utils import normalize_url, normalize_doi
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
-from ..date_utils import strip_milliseconds
+from ..date_utils import strip_milliseconds, normalize_date_dict
 from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
 from ..constants import (
     DC_TO_CM_TRANSLATIONS,
@@ -41,6 +42,13 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         type_ = additional_type
         additional_type = None
 
+    date: dict = defaultdict(list)
+    date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
+    # convert date list to dict, rename some keys
+    for sub in wrap(meta.get('dates', None)):
+        date[sub.get('dateType', None)] = sub.get('date', None)
+    date = normalize_date_dict(date)
+
     container = meta.get("container", None)
     rights = meta.get("rightsList", None)
     references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
@@ -54,13 +62,11 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
         "publisher": meta.get("publisher", None),
-        "publication_year": int(meta.get("publicationYear", None)),
+        "date": compact(date),
         # recommended and optional properties
         "additional_type": additional_type,
         "subjects": presence(meta.get("subjects", None)),
         "contributors": get_authors(wrap(meta.get("contributors", None))),
-        "dates": presence(meta.get("dates", None))
-        or [{"date": meta.get("publicationYear", None), "dateType": "Issued"}],
         "language": meta.get("language", None),
         "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
         "sizes": presence(meta.get("sizes", None)),

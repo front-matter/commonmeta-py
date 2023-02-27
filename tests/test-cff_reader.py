@@ -26,11 +26,10 @@ def test_ruby_cff():
         'This library provides a Ruby interface to manipulate Citation File Format files')
     assert subject.subjects == [{'subject': 'ruby'}, {'subject': 'credit'}, {'subject': 'software citation'}, {'subject': 'research software'}, {
         'subject': 'software sustainability'}, {'subject': 'metadata'}, {'subject': 'citation file format'}, {'subject': 'cff'}]
-    assert subject.dates == [{'date': '2022-11-05', 'dateType': 'Issued'}]
+    assert subject.date == {'published': '2022-11-05'}
     assert subject.version == '1.0.1'
     assert subject.rights is None
     assert subject.references is None
-    assert subject.publication_year == 2022
     assert subject.publisher == 'GitHub'
     assert subject.state == 'findable'
 
@@ -72,11 +71,10 @@ def test_cff_converter_python():
         {'description': 'Command line program to validate and convert CITATION.cff files.', 'descriptionType': 'Abstract'}]
     assert subject.subjects == [{'subject': 'bibliography'}, {'subject': 'bibtex'}, {'subject': 'cff'}, {'subject': 'citation'}, {
         'subject': 'citation.cff'}, {'subject': 'codemeta'}, {'subject': 'endnote'}, {'subject': 'ris'}, {'subject': 'citation file format'}]
-    assert subject.dates == [{'date': '2021-09-22', 'dateType': 'Issued'}]
+    assert subject.date == {'published': '2021-09-22'}
     assert subject.version == '2.0.0'
     assert subject.rights is None
     assert subject.references is None
-    assert subject.publication_year == 2021
     assert subject.publisher == 'GitHub'
     assert subject.state == 'findable'
 
@@ -93,10 +91,9 @@ def test_github_repo():
     assert subject.titles == [{'title': 'Long Context Transformer v0.0.1'}]
     assert subject.descriptions is None
     assert subject.subjects is None
-    assert subject.dates == [{'date': '2023-02-17', 'dateType': 'Issued'}]
+    assert subject.date == {'published': '2023-02-17'}
     assert subject.version == '0.0.1'
     assert subject.rights is None
     assert subject.references is None
-    assert subject.publication_year == 2023
     assert subject.publisher == 'GitHub'
     assert subject.state == 'findable'

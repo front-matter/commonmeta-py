@@ -12,11 +12,10 @@ class Commonmeta(TypedDict):
     creators: List[dict]
     titles: List[dict]
     publisher: str
-    publication_year: int
+    date: Optional[dict]
     additional_type: Optional[str]
     subjects: Optional[List[dict]]
     contributors: Optional[List[dict]]
-    dates: Optional[List[dict]]
     language: Optional[str]
     alternate_identifiers: Optional[List[dict]]
     sizes: Optional[List[dict]]

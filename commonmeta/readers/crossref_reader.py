@@ -70,20 +70,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         titles = []
     publisher = meta.get("publisher", None)
 
-    date_created = py_.get(meta, "created.date-time")
-    date_issued = py_.get(meta, "issued.date-time") or get_date_from_date_parts(
-        meta.get("issued", None)
-    )
-    date_deposited = py_.get(meta, "deposited.date-time")
-    date_indexed = py_.get(meta, "indexed.date-time")
-    date_registered = py_.get(meta, "registered.date-time") or date_created
-    date_published = date_issued or date_created
-    date_updated = date_deposited or date_indexed
-    dates = [{"date": date_published, "dateType": "Issued"}]
-    if date_updated is not None:
-        dates.append({"date": date_updated, "dateType": "Updated"})
-    publication_year = int(date_published[:4]) if date_published else None
-
+    date: dict = {}
+    date['submitted'] = None
+    date['accepted'] = py_.get(meta, "accepted.date-time")
+    date['published'] = py_.get(meta, "issued.date-time") or get_date_from_date_parts(
+        meta.get("issued", None)) or py_.get(meta, "created.date-time")
+    date['updated'] = py_.get(meta, "updated.date-time") or py_.get(meta, "deposited.date-time")
+    print(date)
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
@@ -164,11 +157,10 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "creators": creators,
         "titles": presence(titles),
         "publisher": publisher,
-        "publication_year": publication_year,
+        "date": compact(date),
         # recommended and optional properties
         "subjects": presence(subjects),
         "contributors": contributors,
-        "dates": dates,
         "language": meta.get("language", None),
         "alternate_identifiers": None,
         "sizes": None,
@@ -180,10 +172,6 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "funding_references": presence(funding_references),
         "references": references,
         # other properties
-        "date_created": date_created,
-        "date_registered": date_registered,
-        "date_published": date_published,
-        "date_updated": date_updated,
         "content_url": presence(meta.get("contentUrl", None)),
         "container": container,
         "agency": get_doi_ra(id_),

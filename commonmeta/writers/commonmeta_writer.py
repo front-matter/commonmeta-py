@@ -19,11 +19,10 @@ def write_commonmeta(metadata):
             "creators": metadata.creators,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
-            "publicationYear": metadata.publication_year,
+            "date": metadata.date,
             # recommended and optional properties
             "subjects": metadata.subjects,
             "contributors": metadata.contributors,
-            "dates": metadata.dates,
             "language": metadata.language,
             "references": metadata.references,
             "sizes": metadata.sizes,

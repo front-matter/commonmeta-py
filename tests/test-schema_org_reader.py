@@ -30,11 +30,7 @@ def test_blog_posting():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2016-12-20", "dateType": "Issued"},
-        {"date": "2022-08-15T09:06:22Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-12-20', 'updated': '2022-08-15T09:06:22Z'}
     assert subject.publisher == "Front Matter"
     assert subject.references is None
     assert subject.container == {
@@ -84,8 +80,7 @@ def test_zenodo():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [{"date": "2018-03-14", "dateType": "Issued"}]
-    assert subject.publication_year == 2018
+    assert subject.date == {'published': '2018-03-14'}
     assert subject.publisher == "Zenodo"
     assert subject.references is None
     assert subject.container == {"type": "DataRepository"}
@@ -140,8 +135,7 @@ def test_pangaea():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [{"date": "2014-09-25", "dateType": "Issued"}]
-    assert subject.publication_year == 2014
+    assert subject.date == {'published': '2014-09-25'}
     assert subject.publisher == "PANGAEA"
     assert subject.references is None
     assert subject.container == {
@@ -192,11 +186,7 @@ def test_dataverse():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2017-09-30", "dateType": "Issued"},
-        {"date": "2017-09-30", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2017
+    assert subject.date == {'published': '2017-09-30', 'updated': '2017-09-30'}
     assert subject.publisher == "Harvard Dataverse"
     assert subject.references is None
     assert subject.container == {
@@ -242,11 +232,7 @@ def test_yet_another_blog_post():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2022-09-24T17:22:00Z", "dateType": "Issued"},
-        {"date": "2022-09-30T17:23:04Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2022
+    assert subject.date == {'published': '2022-09-24T17:22:00Z', 'updated': '2022-09-30T17:23:04Z'}
     assert subject.publisher == "John Hawks"
     assert subject.references is None
     assert subject.container == {
@@ -293,8 +279,7 @@ def test_blog_with_dois():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [{"date": "2022-12-09", "dateType": "Issued"}]
-    assert subject.publication_year == 2022
+    assert subject.date == {'published': '2022-12-09'}
     assert subject.publisher == "Verfassungsblog"
     assert subject.references is None
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
@@ -335,11 +320,7 @@ def test_another_blog_with_dois():
     assert subject.creators[0] == {"type": "Person", "name": "Andreas"}
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2022-10-05T14:35:47Z", "dateType": "Issued"},
-        {"date": "2022-10-05T14:35:47Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2022
+    assert subject.date == {'published': '2022-10-05T14:35:47Z', 'updated': '2022-10-05T14:35:47Z'}
     assert subject.publisher == "JSC Accelerating Devices Lab"
     assert subject.references is None
     assert subject.container == {
@@ -384,11 +365,7 @@ def test_with_upstream_blog_post():
             "schemeUri": "https://spdx.org/licenses/",
         }
     ]
-    assert subject.dates == [
-        {"date": "2021-11-22T05:06:00Z", "dateType": "Issued"},
-        {"date": "2023-01-06T21:05:45Z", "dateType": "Updated"},
-    ]
-    assert subject.publication_year == 2021
+    assert subject.date == {'published': '2021-11-22T05:06:00Z', 'updated': '2023-01-06T21:05:45Z'}
     assert subject.publisher == "Upstream"
     assert subject.references is None
     assert subject.container == {

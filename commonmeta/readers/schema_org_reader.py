@@ -1,6 +1,7 @@
 """schema_org reader for commonmeta-py"""
 from typing import Optional
 import json
+from collections import defaultdict
 import requests
 from pydash import py_
 from bs4 import BeautifulSoup
@@ -92,12 +93,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         titles = None
 
-    published_date = strip_milliseconds(meta.get("datePublished", None))
-    updated_date = strip_milliseconds(meta.get("dateModified", None))
-    dates = [{"date": published_date, "dateType": "Issued"}]
-    if updated_date is not None:
-        dates.append({"date": updated_date, "dateType": "Updated"})
-    publication_year = int(published_date[0:4]) if published_date else None
+    date: dict = defaultdict(list)
+    date['published'] = strip_milliseconds(meta.get("datePublished", None))
+    date['updated'] = strip_milliseconds(meta.get("dateModified", None))
 
     publisher = parse_attributes(
         meta.get("publisher", None), content="name", first=True
@@ -195,12 +193,11 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "creators": creators,
         "titles": titles,
         "publisher": publisher,
-        "publication_year": publication_year,
+        "date": compact(date),
         # recommended and optional attributes
         "additional_type": additional_type,
         "subjects": presence(subjects),
         "contributors": contributors,
-        "dates": dates,
         "language": language,
         "alternate_identifiers": alternate_identifiers,
         "sizes": None,

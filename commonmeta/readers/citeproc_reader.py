@@ -24,13 +24,7 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
     creators = get_authors(from_citeproc(wrap(meta.get("author", None))))
     contributors = get_authors(from_citeproc(wrap(meta.get("editor", None))))
 
-    date_issued = get_date_from_date_parts(meta.get("issued", None))
-    if date_issued:
-        dates = [{"date": date_issued, "dateType": "Issued"}]
-        publication_year = int(date_issued[0:4])
-    else:
-        dates = None
-        publication_year = None
+    date = {'published': get_date_from_date_parts(meta.get("issued", None))}
 
     if meta.get("copyright", None):
         rights = [dict_to_spdx({"rightsURI": meta.get("copyright")})]
@@ -72,11 +66,10 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
         "titles": [{"title": meta.get("title", None)}],
         "creators": creators,
         "publisher": meta.get("publisher", None),
-        "publication_year": publication_year,
+        "date": compact(date),
         "contributors": contributors,
         "container": container,
         "references": None,
-        "dates": dates,
         "descriptions": descriptions,
         "rights": rights,
         "version": meta.get("version", None),

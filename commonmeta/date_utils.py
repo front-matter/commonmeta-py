@@ -1,5 +1,6 @@
 """Date utils for commonmeta-py"""
 import datetime
+from collections import defaultdict
 from datetime import datetime as dt
 from typing import Optional, Union
 import dateparser
@@ -32,20 +33,16 @@ def get_iso8601_date(date: Union[datetime.datetime, datetime.date, str, int]) ->
     if isinstance(date, (datetime.datetime, datetime.date)):
         return date.strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, str):
-        return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
+        length = len(date)
+        if length == 7:
+            return dateparser.parse(date).strftime("%Y-%m")
+        if length == 4:
+            return dateparser.parse(date).strftime("%Y")
+        else:
+            return dateparser.parse(date).strftime(ISO8601_DATE_FORMAT)
     if isinstance(date, int):
         return datetime.datetime.fromtimestamp(date).strftime(ISO8601_DATE_FORMAT)
     return ""
-
-
-def get_date_by_type(dates: list, date_type="Issued", date_only=False) -> Optional[str]:
-    """Get date by date type"""
-    date = next((i for i in dates if i.get("dateType", None) == date_type), None)
-    if not isinstance(date, dict):
-        return None
-    if date_only:
-        return date.get("date", "")[0:10]
-    return date.get("date", None)
 
 
 def get_date_parts(iso8601_time: Optional[str]) -> dict:
@@ -139,3 +136,30 @@ def get_datetime_from_time(time: str) -> Optional[str]:
         return dt.strptime(time, "%Y%m%d%H%M%S").strftime("%Y-%m-%dT%H:%M:%SZ")
     except ValueError:
         return None
+
+
+def normalize_date_dict(data: dict) -> dict:
+    """Normalize date dict
+
+    Supported date types in commonmeta:
+    - created
+    - submitted
+    - accepted
+    - published
+    - available
+    - updated
+    - withdrawn
+    """
+    data = py_.rename_keys(
+        data,
+        {
+            "Created": "created",
+            "Submitted": "submitted",
+            "Accepted": "accepted",
+            "Issued": "published",
+            "Available": "available",
+            "Updated": "updated",
+            "Withdrawn": "withdrawn",
+        },
+    )
+    return data

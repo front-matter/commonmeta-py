@@ -25,7 +25,7 @@ def write_ris(metadata):
                     wrap(metadata.subjects), content="subject", first=False
                 )
             ),
-            "PY": metadata.publication_year,
+            "PY": metadata.date.get('published')[:4] if metadata.date.get('published', None) else None,
             "PB": metadata.publisher,
             "LA": metadata.language,
             "VL": container.get("volume", None),
