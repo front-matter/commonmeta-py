@@ -76,7 +76,9 @@ class Metadata:
                 data = json.loads(string)
                 meta = read_crossref(data)
             elif via == "datacite_xml":
-                meta = read_datacite_xml(string)
+                data = xmltodict.parse(string)
+                data = json.loads(str(json.dumps(data)))
+                meta = read_datacite_xml(data)
             elif via == "crossref_xml":
                 data = xmltodict.parse(string)
                 data = json.loads(str(json.dumps(data)))
@@ -100,18 +102,17 @@ class Metadata:
 
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
+        self.type = meta.get("type")
         self.doi = meta.get("doi")
         self.url = meta.get("url")
         self.creators = meta.get("creators")
         self.titles = meta.get("titles")
         self.publisher = meta.get("publisher")
-        self.publication_year = meta.get("publication_year")
-        self.type = meta.get("type")
+        self.date = meta.get("date")
         # recommended and optional properties
         self.additional_type = meta.get("additional_type")
         self.subjects = meta.get("subjects")
         self.contributors = meta.get("contributors")
-        self.dates = meta.get("dates")
         self.language = meta.get("language")
         self.alternate_identifiers = meta.get("alternate_identifiers")
         self.sizes = meta.get("sizes")

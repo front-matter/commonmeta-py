@@ -39,11 +39,7 @@ def test_dataset():
             "rightsIdentifierScheme": "SPDX",
         }
     ]
-    assert subject.dates == [
-        {"date": "2011-02-01T17:22:41Z", "dateType": "Available"},
-        {"date": "2011", "dateType": "Issued"},
-    ]
-    assert subject.publication_year == 2011
+    assert subject.date == {'published': '2011', 'available': '2011-02-01T17:22:41Z'}
     assert subject.date_registered == "2011-02-01T17:32:02Z"
     assert subject.references is None
     assert subject.container is None
@@ -91,12 +87,11 @@ def test_blog_posting():
             "rightsIdentifierScheme": "SPDX",
         }
     ]
-    assert subject.dates == [{"date": 2023, "dateType": "Issued"}]
-    assert subject.publication_year == 2023
+    assert subject.date == {'published': '2023'}
     assert subject.date_registered == "2023-01-31T12:41:28Z"
     assert subject.publisher == "DataCite"
     assert len(subject.references) == 8
-    assert subject.references[0] == {'doi': 'https://doi.org/10.5438/k1gw-y723'}
+    assert subject.references[0] == {"doi": "https://doi.org/10.5438/k1gw-y723"}
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -137,11 +132,7 @@ def test_date():
         }
     ]
     assert subject.rights is None
-    assert subject.dates == [
-        {"date": "2013-11-05", "dateType": "Available"},
-        {"date": "2013", "dateType": "Issued"},
-    ]
-    assert subject.publication_year == 2013
+    assert subject.date == {'published': '2013', 'available': '2013-11-05'}
     assert subject.date_registered == "2013-11-13T13:42:17Z"
     assert (
         subject.publisher
@@ -168,34 +159,6 @@ def test_date():
     assert subject.schema_version == "http://datacite.org/schema/kernel-2.1"
     assert subject.agency == "DataCite"
 
-
-def test_affiliation_identifier():
-    """affiliation identifier"""
-    # text = f"{fixture_path}datacite-example-affiliation.xml"
-
-    # subject = Metadata(text, via="datacite_xml")
-    # assert subject.id == "https://doi.org/10.5438/0012"
-    # assert subject.url == "
-
-
-#     it 'affiliation identifier' do
-#       text = "#{fixture_path}datacite-example-affiliation.xml"
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.creators.length).to eq(3)
-#       expect(subject.creators.first).to eq('type' => 'Personal', 'affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04wxnsj81', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'DataCite' }],
-#                                            'familyName' => 'Miller',
-#                                            'givenName' => 'Elizabeth',
-#                                            'name' => 'Miller, Elizabeth',
-#                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-5000-0007', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }])
-#       expect(subject.creators.dig(1, 'affiliation')).to eq([{ 'affiliationIdentifier' => 'https://ror.org/05gq02987',
-#                                                               'affiliationIdentifierScheme' => 'ROR',
-#                                                               'name' => 'Brown University' },
-#                                                             { 'affiliationIdentifier' => 'https://grid.ac/institutes/grid.268117.b',
-#                                                               'affiliationIdentifierScheme' => 'GRID',
-#                                                               'name' => 'Wesleyan University' }])
-#       expect(subject.creators.dig(2, 'affiliation')).to eq([{ 'affiliationIdentifier' => 'https://ror.org/05gq02987',
-#                                                               'affiliationIdentifierScheme' => 'ROR', 'name' => 'Brown University' }])
 #       expect(subject.titles).to eq([{ 'lang' => 'en-US', 'title' => 'Full DataCite XML Example' },
 #                                     { 'lang' => 'en-US',
 #                                       'title' => 'Demonstration of DataCite Properties.', 'titleType' => 'Subtitle' }])
@@ -212,7 +175,7 @@ def test_affiliation_identifier():
 #            'name' => 'California Digital Library' }], 'contributorType' => 'ProjectLeader', "type"=>"Person" }])
 #       expect(subject.subjects).to eq([{ 'lang' => 'en-US', 'schemeUri' => 'http://dewey.info/',
 #                                         'subject' => '000 computer science', 'subjectScheme' => 'dewey' }])
-#       expect(subject.dates).to eq([
+#       expect(subject.date ).to eq([
 #                                     { 'date' => '2017-09-13', 'dateInformation' => 'Updated with 4.2 properties',
 #                                       'dateType' => 'Updated' }, { 'date' => '2014', 'dateType' => 'Issued' }
 #                                   ])
@@ -247,7 +210,7 @@ def test_affiliation_identifier():
 #                                            'givenName' => 'Raphaelle Dawn', 'familyName' => 'Haywood', 'affiliation' => [{ 'name' => 'School of Physics and Astronomy' }])
 #       expect(subject.titles).to eq([{ 'lang' => 'en',
 #                                       'title' => 'Data underpinning - The Sun as a planet-host star: Proxies from SDO images for HARPS radial-velocity variations' }])
-#       expect(subject.dates).to eq([{ 'date' => '2016-01-20', 'dateType' => 'Available' },
+#       expect(subject.date ).to eq([{ 'date' => '2016-01-20', 'dateType' => 'Available' },
 #                                    { 'date' => '2016', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2016')
 #       expect(subject.publisher).to eq('University of St Andrews')
@@ -269,7 +232,7 @@ def test_affiliation_identifier():
 #                                        'title' => 'Urdukas (Baltoro Glacier, Baltistan - Pakistan)', 'titleType' => 'Subtitle'
 #                                      }
 #                                    ])
-#       expect(subject.dates).to eq([{ 'date' => '2011', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2011', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2011')
 #       expect(subject.sizes).to eq([])
 #       expect(subject.subjects).to eq([{ 'subject' => 'environmental research' }])
@@ -304,8 +267,7 @@ def test_multiple_identifiers():
         },
         {"rights": "Open Access", "rightsUri": "info:eu-repo/semantics/openAccess"},
     ]
-    assert subject.dates == [{"date": "2016-03-27", "dateType": "Issued"}]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-03-27'}
     assert subject.date_registered == "2016-03-27T22:18:38Z"
     assert subject.publisher == "Zenodo"
     assert subject.references is None
@@ -352,13 +314,7 @@ def test_is_identical():
             "rightsIdentifierScheme": "SPDX",
         }
     ]
-    assert subject.dates == [
-        {"date": "2016-11-16", "dateType": "Created"},
-        {"date": "2016-11-16", "dateType": "Updated"},
-        {"date": "2016", "dateType": "Issued"},
-    ]
-    assert subject.publication_year == 2016
-    assert subject.date_registered == "2016-11-16T10:49:12Z"
+    assert subject.date == {'created': '2016-11-16', 'published': '2016', 'updated': '2016-11-16'}
     assert subject.publisher == "figshare"
     assert subject.references is None
     assert subject.container is None
@@ -431,12 +387,7 @@ def test_subject_scheme_for():
             "rightsIdentifierScheme": "SPDX",
         }
     ]
-    assert subject.dates == [
-        {"date": "2015-06-14", "dateType": "Created"},
-        {"date": "2020-06-02", "dateType": "Updated"},
-        {"date": "2020", "dateType": "Issued"},
-    ]
-    assert subject.publication_year == 2020
+    assert subject.date == {'created': '2015-06-14', 'published': '2020', 'updated': '2020-06-02'}
     assert subject.publisher == "figshare"
     assert subject.subjects == [
         {"subject": "Evolutionary Biology"},
@@ -536,36 +487,55 @@ def test_cc_by():
     ]
 
 
-#     it 'funding schema version 3' do
-#       text = 'https://doi.org/10.5281/ZENODO.1239'
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.id).to eq('https://doi.org/10.5281/zenodo.1239')
-#       expect(subject.identifiers).to eq([{ 'identifier' => 'https://zenodo.org/record/1239',
-#                                            'identifierType' => 'URL' }])
-#       expect(subject.types['schemaOrg']).to eq('Dataset')
-#       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
-#       expect(subject.creators.length).to eq(4)
-#       expect(subject.creators.first).to eq('name' => 'Jahn, Najko', 'givenName' => 'Najko',
-#                                            'familyName' => 'Jahn', 'affiliation' => [{ 'name' => 'Bielefeld University Library' }])
-#       expect(subject.titles).to eq([{ 'title' => 'Publication Fp7 Funding Acknowledgment - Plos Openaire' }])
-#       expect(subject.descriptions.first['description']).to start_with('The dataset contains a sample of metadata describing papers')
-#       expect(subject.dates).to eq([{ 'date' => '2013-04-03', 'dateType' => 'Issued' }])
-#       expect(subject.publication_year).to eq('2013')
-#       expect(subject.publisher).to eq('Zenodo')
-#       expect(subject.funding_references).to eq([{ 'awardNumber' => '246686',
-#                                                   'awardTitle' => 'Open Access Infrastructure for Research in Europe',
-#                                                   'awardUri' => 'info:eu-repo/grantAgreement/EC/FP7/246686/',
-#                                                   'funderIdentifier' => 'https://doi.org/10.13039/501100000780',
-#                                                   'funderIdentifierType' => 'Crossref Funder ID',
-#                                                   'funderName' => 'European Commission' }])
-#       expect(subject.subjects).to eq([{ 'subject' => 'article-level metrics' },
-#                                       { 'subject' => 'data mining' },
-#                                       { 'subject' => 'statistical computing language r' },
-#                                       { 'subject' => 'funded research publications' }])
-#       expect(subject.agency).to eq('DataCite')
-#       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
-#     end
+def test_funding_schema_version_3():
+    """funding schema version 3"""
+    string = "https://doi.org/10.5281/ZENODO.1239"
+    subject = Metadata(string)
+
+    assert subject.id == "https://doi.org/10.5281/zenodo.1239"
+    # assert subject.identifiers == [{'identifier': 'https://zenodo.org/record/1239',
+    #                                 'identifierType': 'URL'}]
+    assert subject.type == "Dataset"
+    assert len(subject.creators) == 4
+    assert subject.creators[0] == {
+        "type": "Person",
+        "givenName": "Najko",
+        "familyName": "Jahn",
+        "affiliation": [{"name": "Bielefeld University Library"}],
+    }
+    assert subject.titles == [
+        {"title": "Publication Fp7 Funding Acknowledgment - Plos Openaire"}
+    ]
+    assert subject.descriptions[0]["description"].startswith(
+        "The dataset contains a sample of metadata describing papers"
+    )
+    assert subject.date == {'published': '2013-04-03'}
+    assert subject.publisher == "Zenodo"
+    assert subject.funding_references == [
+        {
+            "awardUri": "info:eu-repo/grantAgreement/EC/FP7/246686/",
+            "awardTitle": "Open Access Infrastructure for Research in Europe",
+            "funderName": "European Commission",
+            "awardNumber": "246686",
+            "funderIdentifier": "https://doi.org/10.13039/501100000780",
+            "funderIdentifierType": "Crossref Funder ID",
+        }
+    ]
+    assert subject.subjects == [
+        {"subject": "Article-Level Metrics"},
+        {"subject": "Data mining"},
+        {"subject": "Statistical Computing Language R"},
+        {"subject": "funded research publications"},
+    ]
+    assert subject.language == "en"
+    assert subject.rights == [
+        {
+            "rights": "Creative Commons Zero - CC0 1.0",
+            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0",
+        },
+        {"rights": "Open Access", "rightsUri": "info:eu-repo/semantics/openAccess"},
+    ]
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
 
 #     it 'from attributes' do
 #       subject = described_class.new(text: nil,
@@ -601,7 +571,7 @@ def test_cc_by():
 #                                         'name' => 'Jahn, Najko', 'type' => 'Personal' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Publication Fp7 Funding Acknowledgment - Plos Openaire' }])
 #       expect(subject.descriptions.first['description']).to start_with('The dataset contains a sample of metadata describing papers')
-#       expect(subject.dates).to eq([{ 'date' => '2013-04-03', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2013-04-03', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2013')
 #       expect(subject.publisher).to eq('Zenodo')
 #       expect(subject.funding_references).to eq([{ 'awardNumber' => '246686',
@@ -617,14 +587,6 @@ def test_cc_by():
 #       expect(subject.state).to eq('findable')
 #     end
 
-#     it 'missing resource_type_general' do
-#       text = "#{fixture_path}vivli.xml"
-#       subject = described_class.new(text: input)
-#       expect(subject.types['schemaOrg']).to eq('CreativeWork')
-#       expect(subject.types['resourceTypeGeneral'].nil?).to be(true)
-#       expect(subject.valid?).to be false
-#       expect(subject.errors).to eq("2:0: ERROR: Element '{http://datacite.org/schema/kernel-4}resource': Missing child element(s). Expected is one of ( {http://datacite.org/schema/kernel-4}resourceType, {http://datacite.org/schema/kernel-4}subjects, {http://datacite.org/schema/kernel-4}contributors, {http://datacite.org/schema/kernel-4}language, {http://datacite.org/schema/kernel-4}alternateIdentifiers, {http://datacite.org/schema/kernel-4}relatedIdentifiers, {http://datacite.org/schema/kernel-4}sizes, {http://datacite.org/schema/kernel-4}formats, {http://datacite.org/schema/kernel-4}rightsList, {http://datacite.org/schema/kernel-4}descriptions ).")
-#     end
 
 #     it 'multiple languages' do
 #       text = "#{fixture_path}datacite-multiple-language.xml"
@@ -674,23 +636,8 @@ def test_datacite_json():
     }
     assert subject.contributors is None
     assert subject.rights is None
-    assert subject.dates == [
-        {"dateType": "Created", "date": "2016-12-20"},
-        {"dateType": "Issued", "date": "2016-12-20"},
-        {"dateType": "Updated", "date": "2016-12-20"},
-    ]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016-12-20', 'created': '2016-12-20', 'updated': '2016-12-20'}
     assert subject.publisher == "DataCite"
-
-
-#     it 'geo_location empty' do
-#       text = "#{fixture_path}datacite-geolocation-empty.xml"
-#       subject = described_class.new(text: input)
-#       expect(subject.valid?).to be true
-#       expect(subject.types['schemaOrg']).to eq('Dataset')
-#       expect(subject.geo_locations).to eq([{ 'geoLocationPoint' => { 'pointLatitude' => '-11.64583333',
-#                                                                      'pointLongitude' => '-68.2975' } }])
-#     end
 
 #     it 'geo_location in separate input' do
 #       text = "#{fixture_path}datacite-geolocation-empty.xml"
@@ -828,12 +775,7 @@ def test_geolocation_box():
         }
     ]
     assert subject.publisher == "Dryad"
-    assert subject.dates == [
-        {"date": "2014-10-17", "dateType": "Updated"},
-        {"date": "2016-03-14T17:02:02Z", "dateType": "Available"},
-        {"date": "2016", "dateType": "Issued"},
-    ]
-    assert subject.publication_year == 2016
+    assert subject.date == {'published': '2016', 'available': '2016-03-14T17:02:02Z', 'updated': '2014-10-17'}
     assert subject.subjects == [
         {"subject": "air temperature"},
         {"subject": "Earth sciences"},
@@ -1036,7 +978,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.5438/4k3m-nyvg')
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
-#       expect(subject.dates).to eq([{ 'date' => '2016-12-20', 'dateType' => 'Created' },
+#       expect(subject.date ).to eq([{ 'date' => '2016-12-20', 'dateType' => 'Created' },
 #                                    { 'date' => '2016-12-20', 'dateType' => 'Issued' }, { 'date' => '2016-12-20', 'dateType' => 'Updated' }])
 #       expect(subject.publication_year).to eq('2016')
 #       expect(subject.related_identifiers.length).to eq(3)
@@ -1058,7 +1000,7 @@ def test_geolocation_box():
 #                                       'titleType' => 'TranslatedTitle' }])
 #       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
-#       expect(subject.dates).to eq([
+#       expect(subject.date ).to eq([
 #                                     { 'date' => '2012-12-13', 'dateInformation' => 'Correction',
 #                                       'dateType' => 'Other' }, { 'date' => '2010', 'dateType' => 'Issued' }
 #                                   ])
@@ -1171,7 +1113,7 @@ def test_geolocation_box():
 #                                       'titleType' => 'TranslatedTitle' }])
 #       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
-#       expect(subject.dates).to eq([{ 'date' => '2009-04-29', 'dateType' => 'StartDate' },
+#       expect(subject.date ).to eq([{ 'date' => '2009-04-29', 'dateType' => 'StartDate' },
 #                                    { 'date' => '2010-01-05', 'dateType' => 'EndDate' }, { 'date' => '2010', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2010')
 #       expect(subject.related_identifiers.length).to eq(1)
@@ -1196,7 +1138,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.5072/testpub2')
 #       expect(subject.identifiers).to eq([{ 'identifier' => '937-0-4523-12357-6',
 #                                            'identifierType' => 'ISBN' }])
-#       expect(subject.dates).to eq([
+#       expect(subject.date ).to eq([
 #                                     { 'date' => '2012-12-13', 'dateInformation' => 'Correction',
 #                                       'dateType' => 'Other' }, { 'date' => '2010', 'dateType' => 'Issued' }
 #                                   ])
@@ -1227,7 +1169,7 @@ def test_geolocation_box():
 #       expect(subject.creators.first).to eq('type' => 'Personal', 'name' => 'PatiÃ±o, Carlos',
 #                                            'givenName' => 'Carlos', 'familyName' => 'PatiÃ±o')
 #       expect(subject.titles).to eq([{ 'title' => 'LAMMPS Data-File Generator' }])
-#       expect(subject.dates).to eq([{ 'date' => '2018-07-18', 'dateType' => 'Valid' },
+#       expect(subject.date ).to eq([{ 'date' => '2018-07-18', 'dateType' => 'Valid' },
 #                                    { 'date' => '2018-07-18', 'dateType' => 'Accepted' }, { 'date' => '2018', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('nanoHUB')
@@ -1297,7 +1239,7 @@ def test_geolocation_box():
 #                                       { 'lang' => 'en',
 #                                         'subject' => 'Economic systems and development',
 #                                         'subjectScheme' => 'CESSDA Topic Classification' }])
-#       expect(subject.dates).to eq([{ 'date' => '1995-12', 'dateType' => 'Collected' },
+#       expect(subject.date ).to eq([{ 'date' => '1995-12', 'dateType' => 'Collected' },
 #                                    { 'date' => '1996', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('1996')
 #       expect(subject.publisher).to eq('GESIS Data Archive')
@@ -1315,7 +1257,7 @@ def test_geolocation_box():
 #       expect(subject.creators.length).to eq(3)
 #       expect(subject.creators.first).to eq("name"=>"Llamas, P.")
 #       expect(subject.titles).to eq([{ 'title' => 'Rural Electrification With Hybrid Power Systems Based on Renewables - Technical System Configurations From the Point of View of the European Industry' }])
-#       expect(subject.dates).to eq([{ 'date' => '2008-11-01', 'dateType' => 'Valid' },
+#       expect(subject.date ).to eq([{ 'date' => '2008-11-01', 'dateType' => 'Valid' },
 #                                    { 'date' => '2008', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2008')
 #       expect(subject.container).to eq('firstPage' => 'Spain; 3353', 'lastPage' => '3356',
@@ -1353,7 +1295,7 @@ def test_geolocation_box():
 #                                           'identifier' => 'http://www.priorartregister.com/resolve.php?disclosure=OTTX00502', 'identifierType' => 'URL'
 #       expect(subject.creators).to eq([{ 'name' => 'anonymous' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Messung der Bildunschaerfe in H.264-codierten Bildern und Videosequenzen' }])
-#       expect(subject.dates).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2017')
 #       expect(subject.publisher).to eq('Siemens AG')
 #       expect(subject.agency).to eq('DataCite')
@@ -1391,7 +1333,7 @@ def test_geolocation_box():
 #                                         'affiliation' => [{ 'name' => 'Royal Netherlands Meteorological Institute (KNMI)' }] }])
 #       expect(subject.titles).to eq([{ 'title' => 'Multi-Sensor Reanalysis (MSR) of total ozone, version 2' }])
 #       expect(subject.version).to eq('2')
-#       expect(subject.dates).to eq([{ 'date' => '2014-04-25', 'dateType' => 'Available' },
+#       expect(subject.date ).to eq([{ 'date' => '2014-04-25', 'dateType' => 'Available' },
 #                                    { 'date' => '2015', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2015')
 #       expect(subject.publisher).to eq('Royal Netherlands Meteorological Institute (KNMI)')
@@ -1416,7 +1358,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://handle.stage.datacite.org/10.22002/d1.694')
 #       expect(subject.creators).to eq([{ 'affiliation' => [{ 'name' => 'Caltech' }], 'name' => 'Tester' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Test license' }])
-#       expect(subject.dates).to eq([{ 'date' => '2018-01-12', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2018-01-12', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('CaltechDATA')
 #       expect(subject.agency).to eq('DataCite')
@@ -1431,7 +1373,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://handle.stage.datacite.org/10.21956/wellcomeopenres.25947.r17364')
 #       expect(subject.creators).to eq([{ 'name' => 'Fran2 Levy' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Referee report. For: FL Regression Wellcome [version 1; referees: retracted]' }])
-#       expect(subject.dates).to eq([{ 'date' => '2018', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2018', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('F1000 Research Limited')
 #       expect(subject.agency).to eq('DataCite')
@@ -1468,7 +1410,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.titles).to eq([{ 'title' => ':unav' }])
 #       expect(subject.formats).to eq([':null'])
-#       expect(subject.dates).to eq([
+#       expect(subject.date ).to eq([
 #                                     { 'date' => ':tba', 'dateInformation' => 'Correction',
 #                                       'dateType' => 'Other' }, { 'date' => '2010', 'dateType' => 'Issued' }
 #                                   ])
@@ -1478,7 +1420,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-ancientdates-v4.3.xml"
 #       subject = described_class.new(text: input)
 #       # expect(subject.valid?).to be true
-#       expect(subject.dates).to eq([
+#       expect(subject.date ).to eq([
 #                                     { 'date' => '-0024/-0022', 'dateInformation' => 'from 25 BC to 23 BC',
 #                                       'dateType' => 'Created' }, { 'date' => '2010', 'dateType' => 'Issued' }
 #                                   ])
@@ -1541,7 +1483,7 @@ def test_geolocation_box():
 #       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Conrad, Heiko',
 #                                         'givenName' => 'Heiko', 'familyName' => 'Conrad' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Dynamics of colloids in molecular glass forming liquids studied via X-ray photon correlation spectroscopy' }])
-#       expect(subject.dates).to eq([{ 'date' => '2014', 'dateType' => 'Issued' },
+#       expect(subject.date ).to eq([{ 'date' => '2014', 'dateType' => 'Issued' },
 #                                    { 'date' => '2014', 'dateType' => 'Copyrighted' },
 #                                    { 'date' => '2009-10-01/2014-01-23', 'dateType' => 'Created' }])
 #       expect(subject.publication_year).to eq('2014')
@@ -1560,7 +1502,7 @@ def test_geolocation_box():
 #                                            'name' => 'Ганичева, А.В.')
 #       expect(subject.titles.last).to eq('title' => 'MODEL OF SYSTEM DYNAMICS OF PROCESS OF TRAINING',
 #                                         'titleType' => 'TranslatedTitle')
-#       expect(subject.dates).to eq([{ 'date' => '2019-02-09', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2019-02-09', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2019')
 #       expect(subject.publisher).to eq('МОДЕЛИРОВАНИЕ, ОПТИМИЗАЦИЯ И ИНФОРМАЦИОННЫЕ ТЕХНОЛОГИИ')
 #       expect(subject.funding_references.count).to eq(1)
@@ -1576,7 +1518,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.4121/uuid:3926db30-f712-4394-aebc-75976070e91f')
 #       expect(subject.titles).to eq([{ 'title' => 'BPI Challenge 2012' }])
-#       expect(subject.dates).to eq([{ 'date' => '2012-04-23', 'dateType' => 'Issued' }])
+#       expect(subject.date ).to eq([{ 'date' => '2012-04-23', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2012')
 #       expect(subject.state).to eq('findable')
 #     end
@@ -1642,7 +1584,7 @@ def test_geolocation_box():
 #     expect(subject.titles).to eq([{ 'title' => 'DroNc-seq data' }])
 #     expect(subject.subjects).to eq([{ 'subject' => 'gtex' }, { 'subject' => 'annotation' },
 #                                     { 'subject' => 'phenotype' }, { 'subject' => 'gene regulation' }, { 'subject' => 'transcriptomics' }])
-#     expect(subject.dates).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
+#     expect(subject.date ).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
 #     expect(subject.publication_year).to eq('2017')
 #     expect(subject.related_identifiers.length).to eq(4)
 #     expect(subject.related_identifiers.last).to eq(
@@ -1704,7 +1646,7 @@ def test_geolocation_box():
 #     expect(subject.identifiers).to eq([{
 #                                         'identifier' => 'https://schema.datacite.org/meta/kernel-4.4/example/datacite-example-full-v4.4.xml', 'identifierType' => 'URL'
 #                                       }])
-#     expect(subject.dates).to eq(
+#     expect(subject.date ).to eq(
 #       [
 #         { 'date' => '2021-01-26', 'dateInformation' => 'Updated with 4.4 properties',
 #           'dateType' => 'Updated' },
@@ -1890,7 +1832,7 @@ def test_geolocation_box():
 #         }
 #       ]
 #     )
-#     expect(subject.dates).to eq(
+#     expect(subject.date ).to eq(
 #       [
 #         { 'date' => '2012-12-13', 'dateType' => 'Available' },
 #         { 'date' => '2012', 'dateType' => 'Issued' }
@@ -1986,7 +1928,10 @@ def test_geolocation():
     """geolocation"""
     string = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
     subject = Metadata(string)
-    assert subject.id == "https://doi.org/10.4121/uuid:7b900822-4efe-42f1-9b6e-a099eda4ba02"
+    assert (
+        subject.id
+        == "https://doi.org/10.4121/uuid:7b900822-4efe-42f1-9b6e-a099eda4ba02"
+    )
     assert subject.type == "Dataset"
     assert subject.titles[0] == {
         "title": "Land cover ground reference data in São Paulo state, Brazil, taken in 2015"
