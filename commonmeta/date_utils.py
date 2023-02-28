@@ -22,6 +22,7 @@ MONTH_NAMES = {
     "12": "dec",
 }
 
+MONTH_SHORT_NAMES = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
 
 ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
