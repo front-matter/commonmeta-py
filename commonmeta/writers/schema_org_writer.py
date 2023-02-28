@@ -32,8 +32,8 @@ def write_schema_org(metadata):
             "description": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
-            "license": metadata.rights[0].get("rightsUri", None)
-            if metadata.rights
+            "license": metadata.license.get("url", None)
+            if metadata.license
             else None,
             "version": metadata.version,
             "keywords": presence(
@@ -52,11 +52,11 @@ def write_schema_org(metadata):
             #     relation_type="IsPartOf",
             # )),
             "periodical": periodical,
-            "publisher": {"@type": "Organization", "name": metadata.publisher}
+            "publisher": {"@type": "Organization", "name": metadata.publisher.get("name", None)}
             if metadata.publisher
             else None,
-            "provider": {"@type": "Organization", "name": metadata.agency}
-            if metadata.agency
+            "provider": {"@type": "Organization", "name": metadata.provider}
+            if metadata.provider
             else None,
         }
     )

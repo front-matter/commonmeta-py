@@ -3,6 +3,7 @@ import json
 from typing import Optional
 
 from ..base_utils import wrap, compact
+from ..doi_utils import doi_from_url
 from ..constants import (CM_TO_BIB_TRANSLATIONS, CM_TO_CP_TRANSLATIONS, CM_TO_CR_TRANSLATIONS, CM_TO_DC_TRANSLATIONS, CM_TO_RIS_TRANSLATIONS, CM_TO_SO_TRANSLATIONS, Commonmeta)
 
 
@@ -34,10 +35,17 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
             }
     dates = [to_datacite_date(i) for i in wrap(metadata.date)]
 
+    license_ = [compact({
+        "rightsIdentifier": metadata.license.get('id').lower() if metadata.license.get('id', None) else None,
+        'rightsIdentifierScheme': 'SPDX',
+        "rightsUri": metadata.license.get('url', None),
+        'schemeUri': 'https://spdx.org/licenses/',
+    })] if metadata.license else None
+
     data = compact(
         {
             "id": metadata.id,
-            "doi": metadata.doi,
+            "doi": doi_from_url(metadata.id) if metadata.id else None,
             "url": metadata.url,
             "creators": creators,
             "titles": metadata.titles,
@@ -52,7 +60,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
             "sizes": metadata.sizes,
             "formats": metadata.formats,
             "version": metadata.version,
-            "rightsList": metadata.rights,
+            "rightsList": license_,
             "descriptions": metadata.descriptions,
             "geoLocations": metadata.geo_locations,
             "fundingReferences": metadata.funding_references,

@@ -21,17 +21,9 @@ def test_blog_posting():
         "type": "Person",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date == {'published': '2016-12-20', 'updated': '2022-08-15T09:06:22Z'}
-    assert subject.publisher == "Front Matter"
+    assert subject.publisher == {"name": "Front Matter"}
     assert subject.references is None
     assert subject.container == {
         "identifier": "2749-9952",
@@ -47,7 +39,7 @@ def test_blog_posting():
     assert subject.subjects == [{"subject": "feature"}]
     assert subject.language == "en"
     assert subject.version is None
-    assert subject.agency is None
+    assert subject.provider == "Crossref"
 
 
 def test_zenodo():
@@ -71,17 +63,9 @@ def test_zenodo():
         "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution Share Alike 4.0 International",
-            "rightsIdentifier": "cc-by-sa-4.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-SA-4.0', 'url': 'https://creativecommons.org/licenses/by-sa/4.0/legalcode'}
     assert subject.date == {'published': '2018-03-14'}
-    assert subject.publisher == "Zenodo"
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
     assert subject.container == {"type": "DataRepository"}
     assert subject.funding_references is None
@@ -106,7 +90,7 @@ def test_zenodo():
     ]
     assert subject.language == "eng"
     assert subject.version == "1.0.2"
-    assert subject.agency is None
+    assert subject.provider == "DataCite"
 
 
 def test_pangaea():
@@ -126,17 +110,9 @@ def test_pangaea():
         "type": "Person",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 3.0 Unported",
-            "rightsIdentifier": "cc-by-3.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
     assert subject.date == {'published': '2014-09-25'}
-    assert subject.publisher == "PANGAEA"
+    assert subject.publisher == {"name": "PANGAEA"}
     assert subject.references is None
     assert subject.container == {
         "identifier": "https://www.pangaea.de/",
@@ -155,7 +131,7 @@ def test_pangaea():
     assert subject.geo_locations == [
         {"geoLocationPoint": {"pointLongitude": -50.18037, "pointLatitude": 67.12594}}
     ]
-    assert subject.agency is None
+    assert subject.provider == "DataCite"
 
 
 def test_dataverse():
@@ -177,17 +153,9 @@ def test_dataverse():
         "familyName": "(IGAS)",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Zero v1.0 Universal",
-            "rightsIdentifier": "cc0-1.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.license == {'id': 'CC0-1.0', 'url': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'}
     assert subject.date == {'published': '2017-09-30', 'updated': '2017-09-30'}
-    assert subject.publisher == "Harvard Dataverse"
+    assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container == {
         "identifier": "https://dataverse.harvard.edu",
@@ -205,7 +173,7 @@ def test_dataverse():
     assert subject.language == "en"
     assert subject.version == "1"
     # assert subject.geo_locations is None
-    assert subject.agency == "Harvard Dataverse"
+    assert subject.provider == "DataCite"
 
 
 def test_yet_another_blog_post():
@@ -231,9 +199,9 @@ def test_yet_another_blog_post():
         "type": "Person",
     }
     assert subject.contributors is None
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2022-09-24T17:22:00Z', 'updated': '2022-09-30T17:23:04Z'}
-    assert subject.publisher == "John Hawks"
+    assert subject.publisher == {"name": "John Hawks"}
     assert subject.references is None
     assert subject.container == {
         "type": "Blog",
@@ -258,7 +226,7 @@ def test_yet_another_blog_post():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None
-    assert subject.agency is None
+    assert subject.provider is None
 
 
 def test_blog_with_dois():
@@ -278,9 +246,9 @@ def test_blog_with_dois():
         "type": "Person",
     }
     assert subject.contributors is None
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2022-12-09'}
-    assert subject.publisher == "Verfassungsblog"
+    assert subject.publisher == {"name": "Verfassungsblog"}
     assert subject.references is None
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
     assert (
@@ -299,7 +267,7 @@ def test_blog_with_dois():
     assert subject.language == "de-DE"
     assert subject.version is None
     assert subject.geo_locations is None
-    assert subject.agency is None
+    assert subject.provider == "DataCite"
 
 
 def test_another_blog_with_dois():
@@ -319,9 +287,9 @@ def test_another_blog_with_dois():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {"type": "Person", "name": "Andreas"}
     assert subject.contributors is None
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2022-10-05T14:35:47Z', 'updated': '2022-10-05T14:35:47Z'}
-    assert subject.publisher == "JSC Accelerating Devices Lab"
+    assert subject.publisher == {"name": "JSC Accelerating Devices Lab"}
     assert subject.references is None
     assert subject.container == {
         "title": "JSC Accelerating Devices Lab",
@@ -336,7 +304,7 @@ def test_another_blog_with_dois():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None
-    assert subject.agency is None
+    assert subject.provider is None
 
 
 def test_with_upstream_blog_post():
@@ -356,17 +324,9 @@ def test_with_upstream_blog_post():
         "type": "Person",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date == {'published': '2021-11-22T05:06:00Z', 'updated': '2023-01-06T21:05:45Z'}
-    assert subject.publisher == "Upstream"
+    assert subject.publisher == {"name": "Upstream"}
     assert subject.references is None
     assert subject.container == {
         "identifier": "https://upstream.force11.org/",
@@ -385,7 +345,7 @@ def test_with_upstream_blog_post():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None
-    assert subject.agency is None
+    assert subject.provider == "Crossref"
 
 
 def test_with_blog_with_datacite_dois():

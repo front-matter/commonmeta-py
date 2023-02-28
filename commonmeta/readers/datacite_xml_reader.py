@@ -7,7 +7,7 @@ from ..base_utils import compact, wrap, presence, sanitize, parse_xmldict
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds, normalize_date_dict
 from ..doi_utils import doi_from_url, doi_as_url, datacite_api_url, normalize_doi
-from ..utils import normalize_url
+from ..utils import normalize_url, normalize_cc_url, dict_to_spdx
 from ..constants import DC_TO_CM_TRANSLATIONS, Commonmeta
 
 
@@ -61,7 +61,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     titles = [format_title(i) for i in wrap(py_.get(meta, "titles.title"))]
 
     creators = get_authors(wrap(py_.get(meta, "creators.creator")))
-    publisher = py_.get(meta, "publisher")
+    publisher = {"name": py_.get(meta, "publisher")}
 
     date: dict = defaultdict(list)
     date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
@@ -187,22 +187,15 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         return compact(
             {
                 "rights": rights.get("#text", None),
-                "rightsURI": rights.get("@rightsURI", None),
+                "url": rights.get("@rightsURI", None),
                 "lang": rights.get("@xml:lang", None),
             }
         )
 
-    rights = [map_rights(i) for i in wrap(py_.get(meta, "rightsList.rights"))]
-
-    #         rights_list = Array.wrap(meta.dig('rightsList', 'rights')).map do |r|
-    #           if r.blank?
-    #             nil
-    #           elsif r.is_a?(String)
-    #             name_to_spdx(r)
-    #           elsif r.is_a?(Hash)
-    #             hsh_to_spdx(r)
-    #           end
-    #         end.compact
+    license_ = wrap(py_.get(meta, "rightsList.rights"))
+    if len(license_) > 0:
+        license_ = normalize_cc_url(license_[0].get("@rightsURI", None))
+        license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     references = get_xml_references(
         wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
@@ -243,7 +236,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "sizes": presence(sizes),
         "formats": presence(formats),
         "version": meta.get("version", None),
-        "rights": presence(rights),
+        "license": presence(license_),
         "descriptions": presence(descriptions),
         "geo_locations": presence(geo_locations),
         "funding_references": presence(funding_references),
@@ -255,7 +248,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "date_updated": strip_milliseconds(meta.get("updated", None)),
         "content_url": presence(meta.get("contentUrl", None)),
         "container": presence(meta.get("container", None)),
-        "agency": "DataCite",
+        "provider": "DataCite",
         "state": state,
         "schema_version": meta.get("@xmlns", None),
     } | read_options

@@ -6,15 +6,17 @@ from ..utils import pages_as_string
 from ..base_utils import compact
 from ..author_utils import authors_as_string
 from ..date_utils import get_month_from_date, get_iso8601_date
+from ..doi_utils import doi_from_url
 from ..constants import CM_TO_BIB_TRANSLATIONS, Commonmeta
+
 
 def write_bibtex(metadata):
     """Write bibtex"""
     container = metadata.container or {}
     type_ = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
-    database = BibDatabase()
-    date_published = get_iso8601_date(metadata.date.get('published', None))
-    database.entries = [
+    bib_database = BibDatabase()
+    date_published = get_iso8601_date(metadata.date.get("published", None))
+    bib_database.entries = [
         compact(
             {
                 "ID": metadata.id,
@@ -23,27 +25,27 @@ def write_bibtex(metadata):
                 if metadata.descriptions
                 else None,
                 "author": authors_as_string(metadata.creators),
-                "copyright": str(metadata.rights[0].get("rightsUri", None))
-                if metadata.rights
+                "copyright": str(metadata.license.get("url"))
+                if metadata.license
                 else None,
-                "doi": metadata.doi,
+                "doi": doi_from_url(metadata.id),
                 "issn": container.get("identifier", None)
                 if container.get("identifierType", None) == "ISSN"
                 else None,
                 "issue": container.get("issue", None),
                 "journal": container.get("title", None)
-                if type_ != "inproceedings"
+                if type_ not in ["inbook", "inproceedings"]
                 else None,
                 "booktitle": container.get("title", None)
-                if type_ == "inproceedings"
+                if type_ in ["inbook", "inproceedings"]
                 else None,
                 "language": metadata.language,
                 "month": get_month_from_date(date_published),
                 "pages": pages_as_string(container),
-                "publisher": container.get("publisher", None)
-                if type_ in ["phdthesis"]
+                "publisher": metadata.publisher.get("name", None)
+                if type_ not in ["article", "phdthesis"]
                 else None,
-                "institution": container.get("publisher", None)
+                "institution": metadata.publisher.get("name", None)
                 if type_ == "phdthesis"
                 else None,
                 "title": metadata.titles[0].get("title", None),
@@ -55,5 +57,6 @@ def write_bibtex(metadata):
     ]
     writer = BibTexWriter()
     writer.indent = "    "
-    bibtex_str = writer.write(database)
+    writer.common_strings = False
+    bibtex_str = writer.write(bib_database)
     return bibtex_str

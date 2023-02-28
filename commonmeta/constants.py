@@ -7,12 +7,11 @@ class Commonmeta(TypedDict):
 
     id: str
     type: str
-    doi: str
     url: str
     creators: List[dict]
     titles: List[dict]
-    publisher: str
-    date: Optional[dict]
+    publisher: dict
+    date: dict
     additional_type: Optional[str]
     subjects: Optional[List[dict]]
     contributors: Optional[List[dict]]
@@ -21,16 +20,12 @@ class Commonmeta(TypedDict):
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]
     version: Optional[str]
-    rights: Optional[List[dict]]
+    license: Optional[dict]
     descriptions: Optional[List[dict]]
     geo_locations: Optional[List[dict]]
     funding_references: Optional[List[dict]]
     references: Optional[List[dict]]
     container: Optional[dict]
-    date_created: Optional[str]
-    date_registered: Optional[str]
-    date_published: Optional[str]
-    date_updated: Optional[str]
     content_url: Optional[List[dict]]
     agency: Optional[str]
     state: str
@@ -182,20 +177,24 @@ CR_TO_CM_TRANSLATIONS = {
 CM_TO_CR_TRANSLATIONS = {
     "Article": "PostedContent",
     "BookChapter": "BookChapter",
-    "BookPart": "BookPart",
-    "BookSection": "BookSection",
     "BookSeries": "BookSeries",
-    "BookSet": "BookSet",
-    "BookTrack": "BookTrack",
     "Book": "Book",
     "Component": "Component",
-    "Database": "Database",
     "Dataset": "Dataset",
     "Dissertation": "Dissertation",
-    "EditedBook": "EditedBook",
+    "Grant": "Grant",
     "JournalArticle": "JournalArticle",
-    "Other": "Other",
+    "JournalIssue": "JournalIssue",
+    "JournalVolume": "JournalVolume",
+    "Journal": "Journal",
+    "ProceedingsArticle": "ProceedingsArticle",
+    "ProceedingsSeries": "ProceedingsSeries",
+    "Proceedings": "Proceedings",
+    "ReportComponent": "ReportComponent",
+    "ReportSeries": "ReportSeries",
+    "Report": "Report",
     "Review": "PeerReview",
+    "Other": "Other",
 }
 
 # source: https://github.com/datacite/schema/blob/master/source/meta/kernel-4/include/datacite-resourceType-v4.xsd

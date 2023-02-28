@@ -33,16 +33,8 @@ def test_journal_article():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert commonmeta["rights"] == [
-        {
-            "rights": "Creative Commons Attribution 3.0 Unported",
-            "rightsIdentifier": "cc-by-3.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
-    assert commonmeta["agency"] == "Crossref"
+    assert commonmeta["license"] == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
+    assert commonmeta["provider"] == "Crossref"
 
 
 def test_journal_article_crossref_xml():
@@ -71,13 +63,5 @@ def test_journal_article_crossref_xml():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert commonmeta["rights"] == [
-        {
-            "rights": "Creative Commons Attribution 3.0 Unported",
-            "rightsIdentifier": "cc-by-3.0",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-        }
-    ]
-    assert commonmeta["agency"] == "Crossref"
+    assert commonmeta["license"] == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
+    assert commonmeta["provider"] == "Crossref"

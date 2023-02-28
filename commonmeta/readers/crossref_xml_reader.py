@@ -23,7 +23,7 @@ from ..base_utils import (
     parse_xmldict,
 )
 from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
-from ..doi_utils import doi_as_url, get_doi_ra, crossref_xml_api_url, normalize_doi
+from ..doi_utils import doi_as_url, get_doi_ra, get_crossref_member, crossref_xml_api_url, normalize_doi
 from ..constants import (
     Commonmeta,
     CR_TO_CM_TRANSLATIONS,
@@ -76,14 +76,22 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
-    publisher = next(
+    member_id = next(
         (
             i
             for i in wrap(query.get("crm-item", None))
-            if i.get("@name", None) == "publisher-name"
+            if i.get("@name", None) == "member-id"
         ),
         {},
     ).get("#text", None)
+    publisher = {"id": 'https://api.crossref.org/members/' + member_id, "name": next(
+            (
+                i
+                for i in wrap(query.get("crm-item", None))
+                if i.get("@name", None) == "publisher-name"
+            ),
+            {},
+        ).get("#text", None)}
 
     # fetch metadata depending of Crossref type
     if py_.get(meta, "journal.journal_article", None):
@@ -97,8 +105,8 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         resource_type = "Journal"
     elif py_.get(meta, "posted_content", None):
         bibmeta = meta.get("posted_content", {})
-        if publisher is None:
-            publisher = py_.get(bibmeta, "institution.institution_name", None)
+        if publisher.get("name", None) is None:
+            publisher = {"name": py_.get(bibmeta, "institution.institution_name", None)}
         resource_type = "PostedContent"
     elif py_.get(meta, "book.content_item"):
         bibmeta = py_.get(meta, "book.content_item")
@@ -174,13 +182,10 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         {},
     ).get("#text", None)
 
-    # remove time as this is not always stable with Crossref (different server timezones)
+    # TODO: fix timestamp. Until then, remove time as this is not always stable with Crossref (different server timezones)
     date = {k: get_iso8601_date(v) for k, v in date.items()}
 
     descriptions = crossref_description(bibmeta)
-    program = py_.get(bibmeta, "program") or py_.get(
-        bibmeta, "crossmark.custom_metadata.program"
-    )
     funding = (
         py_.get(bibmeta, "program.assertion")
         or py_.get(bibmeta, "program.0.assertion")
@@ -189,12 +194,12 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     )
     funding_references = crossref_funding(wrap(funding))
 
-    rights_list = (
+    license_ = (
         py_.get(bibmeta, "program.license_ref")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.license_ref")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.1.license_ref")
     )
-    rights = crossref_rights(wrap(rights_list))
+    license_ = crossref_license(wrap(license_))
 
     # By using book_metadata, we can account for where resource_type is `BookChapter` and not assume its a whole book
     # if book_metadata:
@@ -229,7 +234,9 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         crossref_reference(i) for i in wrap(py_.get(bibmeta, "citation_list.citation"))
     ]
     language = py_.get(meta, "journal.journal_metadata.@language")
-    agency = bibmeta.get("@reg-agency", None) or get_doi_ra(id_)
+
+    # TODO: consistent case for DOI registration agency
+    provider = bibmeta.get("@reg-agency", None) or get_doi_ra(id_)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -250,7 +257,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "sizes": None,
         "formats": None,
         "version": None,
-        "rights": presence(rights),
+        "license": presence(license_),
         "descriptions": presence(descriptions),
         "geo_locations": None,
         "funding_references": presence(funding_references),
@@ -262,7 +269,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "date_updated": None,
         "content_url": presence(meta.get("contentUrl", None)),
         "container": presence(container),
-        "agency": agency.capitalize() if agency else None,
+        "provider": provider,
         "state": state,
         "schema_version": None,
     } | read_options
@@ -552,16 +559,16 @@ def crossref_funding(funding_references: list) -> list:
     return formatted_funding_references
 
 
-def crossref_rights(rights_list: list) -> list:
-    """Get rights from Crossref"""
+def crossref_license(licenses: list) -> dict:
+    """Get license from Crossref"""
 
     def map_element(element):
         """Format element"""
-        rights_uri = parse_xmldict(
+        url = parse_xmldict(
             element, ignored_attributes=["@applies_to", "@start_date", "@end_date"]
         )
-        rights_uri = normalize_cc_url(rights_uri)
-        return dict_to_spdx({"rightsUri": rights_uri})
+        url = normalize_cc_url(url)
+        return dict_to_spdx({"url": url})
 
     # return only the first license found
-    return wrap(next((map_element(i) for i in rights_list), None))
+    return next((map_element(i) for i in licenses), None)

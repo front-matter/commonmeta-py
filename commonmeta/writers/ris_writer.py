@@ -26,7 +26,7 @@ def write_ris(metadata):
                 )
             ),
             "PY": metadata.date.get('published')[:4] if metadata.date.get('published', None) else None,
-            "PB": metadata.publisher,
+            "PB": metadata.publisher.get("name", None),
             "LA": metadata.language,
             "VL": container.get("volume", None),
             "IS": container.get("issue", None),

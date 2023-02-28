@@ -118,7 +118,7 @@ class Metadata:
         self.sizes = meta.get("sizes")
         self.formats = meta.get("formats")
         self.version = meta.get("version")
-        self.rights = meta.get("rights")
+        self.license = meta.get("license")
         self.descriptions = meta.get("descriptions")
         self.geo_locations = meta.get("geo_locations")
         self.funding_references = meta.get("funding_references")
@@ -130,7 +130,7 @@ class Metadata:
         self.date_updated = meta.get("date_updated")
         self.content_url = meta.get("content_url")
         self.container = meta.get("container")
-        self.agency = meta.get("agency")
+        self.provider = meta.get("provider")
         self.state = meta.get("state")
         self.schema_version = meta.get("schema_version")
         # citation style language options

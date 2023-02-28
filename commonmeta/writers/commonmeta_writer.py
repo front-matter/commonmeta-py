@@ -28,12 +28,12 @@ def write_commonmeta(metadata):
             "sizes": metadata.sizes,
             "formats": metadata.formats,
             "version": metadata.version,
-            "rights": metadata.rights,
+            "license": metadata.license,
             "descriptions": metadata.descriptions,
             "geoLocations": metadata.geo_locations,
             "fundingReferences": metadata.funding_references,
             # other properties
-            "agency": metadata.agency,
+            "provider": metadata.provider,
         }
     )
     return json.dumps(data, indent=4)

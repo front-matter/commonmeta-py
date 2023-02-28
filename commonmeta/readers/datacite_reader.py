@@ -3,7 +3,7 @@ from collections import defaultdict
 import requests
 from pydash import py_
 
-from ..utils import normalize_url, normalize_doi
+from ..utils import normalize_url, normalize_doi, normalize_cc_url, dict_to_spdx
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds, normalize_date_dict
@@ -42,6 +42,8 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         type_ = additional_type
         additional_type = None
 
+    publisher = {"name": meta.get("publisher", None)}
+
     date: dict = defaultdict(list)
     date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
     # convert date list to dict, rename some keys
@@ -50,7 +52,12 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     date = normalize_date_dict(date)
 
     container = meta.get("container", None)
-    rights = meta.get("rightsList", None)
+    license_ = meta.get("rightsList", [])
+    print(license_)
+    if len(license_) > 0:
+        license_ = normalize_cc_url(license_[0].get("rightsUri", None))
+        license_ = dict_to_spdx({"url": license_}) if license_ else None
+
     references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
 
     return {
@@ -61,7 +68,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "url": normalize_url(meta.get("url", None)),
         "creators": get_authors(wrap(meta.get("creators", None))),
         "titles": compact(meta.get("titles", None)),
-        "publisher": meta.get("publisher", None),
+        "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
         "additional_type": additional_type,
@@ -72,19 +79,15 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "sizes": presence(meta.get("sizes", None)),
         "formats": presence(meta.get("formats", None)),
         "version": meta.get("version", None),
-        "rights": presence(rights),
+        "license": presence(license_),
         "descriptions": meta.get("descriptions", None),
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
         # other properties
-        "date_created": strip_milliseconds(meta.get("created", None)),
-        "date_registered": strip_milliseconds(meta.get("registered", None)),
-        "date_published": strip_milliseconds(meta.get("published", None)),
-        "date_updated": strip_milliseconds(meta.get("updated", None)),
         "content_url": presence(meta.get("contentUrl", None)),
         "container": presence(container),
-        "agency": "DataCite",
+        "provider": "DataCite",
         "state": "findable",
         "schema_version": meta.get("schemaVersion", None),
     } | read_options

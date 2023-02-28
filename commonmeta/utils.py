@@ -34,6 +34,7 @@ NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by-nc-sa/2.0": "https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode",
     "https://creativecommons.org/licenses/by-nc-sa/2.5": "https://creativecommons.org/licenses/by-nc-sa/2.5/legalcode",
     "https://creativecommons.org/licenses/by-nc-sa/3.0": "https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode",
+    "https://creativecommons.org/licenses/by-nc-sa/3.0/us": "https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode",
     "https://creativecommons.org/licenses/by-nc-sa/4.0": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode",
     "https://creativecommons.org/licenses/by-nd/1.0": "https://creativecommons.org/licenses/by-nd/1.0/legalcode",
     "https://creativecommons.org/licenses/by-nd/2.0": "https://creativecommons.org/licenses/by-nd/2.0/legalcode",
@@ -196,7 +197,7 @@ def normalize_issn(string, **kwargs):
 
 def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
-    dct.update({"rightsUri": normalize_cc_url(dct.get("rightsUri", None))})
+    dct.update({"url": normalize_cc_url(dct.get("url", None))})
     file_path = os.path.join(os.path.dirname(__file__), "resources/spdx/licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
@@ -204,8 +205,8 @@ def dict_to_spdx(dct: dict) -> dict:
         (
             lic
             for lic in spdx
-            if lic["licenseId"].casefold() == dct.get("rightsIdentifier", "").casefold()
-            or lic["seeAlso"][0] == dct.get("rightsUri", None)
+            if lic["licenseId"].casefold() == dct.get("id", "").casefold()
+            or lic["seeAlso"][0] == dct.get("url", None)
         ),
         None,
     )
@@ -216,12 +217,8 @@ def dict_to_spdx(dct: dict) -> dict:
     #   end
     return compact(
         {
-            "rights": license_["name"],
-            "rightsUri": license_["seeAlso"][0],
-            "rightsIdentifier": license_["licenseId"].lower(),
-            "rightsIdentifierScheme": "SPDX",
-            "schemeUri": "https://spdx.org/licenses/",
-            "lang": dct.get("lang", None),
+            "id": license_["licenseId"],
+            "url": license_["seeAlso"][0],
         }
     )
 

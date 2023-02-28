@@ -43,16 +43,11 @@ def test_rdataone():
         "published": "2016-05-27",
         "updated": "2016-05-27",
     }
-    assert subject.publisher == "https://cran.r-project.org"
-    assert subject.rights == [
-        {
-            "rights": "Apache License 2.0",
-            "rightsUri": "http://www.apache.org/licenses/LICENSE-2.0",
-            "rightsIdentifier": "apache-2.0",
-            "rightsIdentifierScheme": "SPDX",
-            "schemeUri": "https://spdx.org/licenses/",
+    assert subject.publisher == {"name": "https://cran.r-project.org"}
+    assert subject.license == {
+            "id": "Apache-2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0",
         }
-    ]
     assert subject.version == "2.0.0"
     assert subject.state == "findable"
 
@@ -81,15 +76,10 @@ def test_metadata_reports():
         "published": "2018-05-17",
         "updated": "2018-05-17",
     }
-    assert subject.publisher == "DataCite"
-    assert subject.rights == [
-        {
-            "rights": "MIT License",
-            "rightsIdentifier": "mit",
-            "rightsIdentifierScheme": "SPDX",
-            "rightsUri": "https://opensource.org/licenses/MIT",
-            "schemeUri": "https://spdx.org/licenses/",
+    assert subject.publisher == {"name": "DataCite"}
+    assert subject.license == {
+            "id": "MIT",
+            "url": "https://opensource.org/licenses/MIT",
         }
-    ]
     assert subject.version is None
     assert subject.state == "findable"

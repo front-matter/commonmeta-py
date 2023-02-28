@@ -36,39 +36,21 @@ from commonmeta.base_utils import wrap
 
 def test_dict_to_spdx_id():
     "dict_to_spdx id"
-    assert {
-        "rights": "Creative Commons Attribution 4.0 International",
-        "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rightsIdentifier": "cc-by-4.0",
-        "rightsIdentifierScheme": "SPDX",
-        "schemeUri": "https://spdx.org/licenses/",
-    } == dict_to_spdx({"rightsIdentifier": "CC-BY-4.0"})
-    assert {
-        "rights": "Apache License 2.0",
-        "rightsUri": "http://www.apache.org/licenses/LICENSE-2.0",
-        "rightsIdentifier": "apache-2.0",
-        "rightsIdentifierScheme": "SPDX",
-        "schemeUri": "https://spdx.org/licenses/",
-    } == dict_to_spdx({"rightsIdentifier": "Apache-2.0"})
+    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}== dict_to_spdx({"id": "CC-BY-4.0"})
+    assert {'id': 'Apache-2.0', 'url': 'http://www.apache.org/licenses/LICENSE-2.0'} == dict_to_spdx({"id": "Apache-2.0"})
 
 
 def test_dict_to_spdx_url():
     "dict_to_spdx url"
-    assert {
-        "rights": "Creative Commons Attribution 4.0 International",
-        "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rightsIdentifier": "cc-by-4.0",
-        "rightsIdentifierScheme": "SPDX",
-        "schemeUri": "https://spdx.org/licenses/",
-    } == dict_to_spdx(
-        {"rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode"}
+    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'} == dict_to_spdx(
+        {"url": "https://creativecommons.org/licenses/by/4.0/legalcode"}
     )
 
 
 def test_dict_to_spdx_not_found():
     "dict_to_spdx not found"
-    assert {"rightsUri": "info:eu-repo/semantics/openAccess"} == dict_to_spdx(
-        {"rightsUri": "info:eu-repo/semantics/openAccess"}
+    assert {"url": "info:eu-repo/semantics/openAccess"} == dict_to_spdx(
+        {"url": "info:eu-repo/semantics/openAccess"}
     )
 
 

@@ -12,7 +12,7 @@ def test_missing_resource_type_general():
     assert subject.id == "https://doi.org/10.5072/00013641"
     assert subject.type == "Other"
     assert subject.doi == "10.5072/00013641"
-    assert subject.publisher == "Vivli"
+    assert subject.publisher == {'name': 'Vivli'}
     assert subject.url is None
     assert subject.titles[0] == {
         "title": "A Comparative Pilot Study of the Efficacy of Three Portable Oxygen Concentrators During a 6-Minute Walk Test in Patients With Chronic Lung Disease"
@@ -20,7 +20,7 @@ def test_missing_resource_type_general():
     assert len(subject.creators) == 1
     assert subject.creators[0] == {"name": "Vivli"}
     assert subject.contributors is None
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2018'}
     assert subject.references is None
     assert subject.container is None
@@ -29,7 +29,7 @@ def test_missing_resource_type_general():
     assert subject.language is None
     assert subject.version is None
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 def test_geo_location_empty():
@@ -41,7 +41,7 @@ def test_geo_location_empty():
 
     assert subject.id == "https://doi.org/10.1594/ieda/111185"
     assert subject.type == "Dataset"
-    assert subject.publisher == "EarthChem"
+    assert subject.publisher == {'name': 'EarthChem'}
     assert subject.titles[0] == {
         "title": "Geochemical and grain-size analyses of atmospheric dusts from Pennsylvanian carbonates of the Copacabana Formation (Madre de Dios Basin, Bolivia)"
     }
@@ -52,12 +52,7 @@ def test_geo_location_empty():
         "familyName": "Carvajal",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution-NonCommercial-Share Alike 3.0 United States [CC BY-NC-SA 3.0]",
-            "rightsURI": "https://creativecommons.org/licenses/by-nc-sa/3.0/us/",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-NC-SA-3.0', 'url': 'https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode'}
     assert subject.date == {'published': '2018', 'available': '2018-06-21', 'created': '2018-06-20'}
     assert subject.subjects == [
         {"subject": "Global", "subjectScheme": "coverage scope"}
@@ -67,7 +62,7 @@ def test_geo_location_empty():
     assert subject.language == "en"
     assert subject.version == "1.0"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 def test_blog_posting():
@@ -85,10 +80,12 @@ def test_blog_posting():
         }
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
-    assert subject.publisher == "DataCite"
+    assert subject.publisher == {'name': 'DataCite'}
     assert subject.date == {'published': '2016-12-20', 'created': '2016-12-20', 'updated': '2016-12-20'}
     assert subject.subjects == [{'subject': 'datacite'}, {'subject': 'doi'}, {'subject': 'metadata'}, {'subject': 'FOS: Computer and information sciences', 'subjectScheme': 'Fields of Science and Technology (FOS)'}]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
+    assert subject.language == "en"
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food is a slang term")
     assert subject.descriptions[0]["descriptionType"] == "Abstract"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"

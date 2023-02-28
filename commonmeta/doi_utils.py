@@ -79,6 +79,16 @@ def get_doi_ra(doi) -> Optional[str]:
     return response.json()[0].get("RA", None)
 
 
+def get_crossref_member(member_id) -> Optional[dict]:
+    """Return the Crossref member for a given member_id"""
+    response = requests.get("https://api.crossref.org/members/" + member_id, timeout=5)
+    if response.status_code != 200:
+        return None
+    data = response.json().get("message", None)
+    name = data.get("primary-name", None)
+    return {"id": "https://api.crossref.org/members/" + member_id, "name": name}
+
+
 def crossref_api_url(doi: str) -> str:
     """Return the Crossref API URL for a given DOI"""
     return "https://api.crossref.org/works/" + doi

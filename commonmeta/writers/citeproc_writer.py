@@ -47,10 +47,10 @@ def write_citeproc(metadata: Commonmeta) -> str:
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "page": pages_as_string(container),
-            "publisher": metadata.publisher,
+            "publisher": metadata.publisher.get("name", None),
             "title": parse_attributes(metadata.titles, content="title", first=True),
-            "copyright": metadata.rights[0].get("rights", None)
-            if metadata.rights
+            "copyright": metadata.license.get("id", None)
+            if metadata.license
             else None,
             "version": metadata.version,
         }

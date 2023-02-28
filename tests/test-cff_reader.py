@@ -28,9 +28,10 @@ def test_ruby_cff():
         'subject': 'software sustainability'}, {'subject': 'metadata'}, {'subject': 'citation file format'}, {'subject': 'cff'}]
     assert subject.date == {'published': '2022-11-05'}
     assert subject.version == '1.0.1'
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.references is None
-    assert subject.publisher == 'GitHub'
+    assert subject.publisher == {'name': 'GitHub'}
+    assert subject.provider == 'DataCite'
     assert subject.state == 'findable'
 
 
@@ -73,9 +74,10 @@ def test_cff_converter_python():
         'subject': 'citation.cff'}, {'subject': 'codemeta'}, {'subject': 'endnote'}, {'subject': 'ris'}, {'subject': 'citation file format'}]
     assert subject.date == {'published': '2021-09-22'}
     assert subject.version == '2.0.0'
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.references is None
-    assert subject.publisher == 'GitHub'
+    assert subject.publisher == {'name': 'GitHub'}
+    assert subject.provider == "GitHub"
     assert subject.state == 'findable'
 
 
@@ -93,7 +95,8 @@ def test_github_repo():
     assert subject.subjects is None
     assert subject.date == {'published': '2023-02-17'}
     assert subject.version == '0.0.1'
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.references is None
-    assert subject.publisher == 'GitHub'
+    assert subject.publisher == {'name': 'GitHub'}
+    assert subject.provider == "DataCite"
     assert subject.state == 'findable'

@@ -3,7 +3,7 @@ from ..utils import dict_to_spdx, from_citeproc, normalize_id, name_to_fos
 from ..base_utils import wrap, compact, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import doi_from_url
+from ..doi_utils import doi_from_url, get_doi_ra
 from ..constants import (
     CP_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -26,10 +26,9 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
 
     date = {'published': get_date_from_date_parts(meta.get("issued", None))}
 
-    if meta.get("copyright", None):
-        rights = [dict_to_spdx({"rightsURI": meta.get("copyright")})]
-    else:
-        rights = None
+    license_ = meta.get("copyright", None)
+    if license_ is not None:
+        license_ = dict_to_spdx({"url": meta.get("copyright")})
 
     pages = meta.get("page", "").split("-")
     container = compact(
@@ -58,6 +57,8 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
+    provider = get_doi_ra(id_)
+
     return {
         "id": id_,
         "type": type_,
@@ -71,8 +72,9 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
         "container": container,
         "references": None,
         "descriptions": descriptions,
-        "rights": rights,
+        "license": license_,
         "version": meta.get("version", None),
         "subjects": subjects,
+        "provider": provider,
         "state": state,
     } | read_options

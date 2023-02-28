@@ -19,7 +19,7 @@ from ..utils import (
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
-from ..doi_utils import doi_from_url
+from ..doi_utils import doi_from_url, get_doi_ra
 from ..constants import (
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
@@ -97,16 +97,14 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     date['published'] = strip_milliseconds(meta.get("datePublished", None))
     date['updated'] = strip_milliseconds(meta.get("dateModified", None))
 
-    publisher = parse_attributes(
-        meta.get("publisher", None), content="name", first=True
-    )
+    publisher = meta.get("publisher", None)
+    if publisher is not None:
+        publisher = py_.omit(publisher, ["@type", "logo", "url", "disambiguatingDescription"])
 
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_)
-        rights = [dict_to_spdx({"rightsUri": license_})] if license_ else None
-    else:
-        rights = None
+        license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     if type_ == "Dataset":
         url = parse_attributes(
@@ -182,13 +180,15 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
     ]
     alternate_identifiers = None
+    provider = get_doi_ra(id_) if doi_from_url(id_) else parse_attributes(
+            meta.get("provider", None), content="name", first=True
+        )
     state = None
 
     return {
         # required attributes
         "id": id_,
         "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
         "creators": creators,
         "titles": titles,
@@ -203,16 +203,14 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),
-        "rights": rights,
+        "license": license_,
         "descriptions": presence(descriptions),
         "geo_locations": presence(geo_locations),
         "funding_references": presence(funding_references),
         "references": presence(references),
         # optional attributes
         "container": container,
-        "agency": parse_attributes(
-            meta.get("provider", None), content="name", first=True
-        ),
+        "provider": provider,
         "state": state,
     } | read_options
 

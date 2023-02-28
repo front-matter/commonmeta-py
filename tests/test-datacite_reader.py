@@ -14,8 +14,7 @@ def test_dataset():
 
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
-    assert subject.doi == "10.5061/dryad.8515"
-    assert subject.publisher == "Dryad"
+    assert subject.publisher == {"name":  "Dryad"}
     assert subject.url == "http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
         "title": "Data from: A new malaria agent in African hominids."
@@ -30,17 +29,13 @@ def test_dataset():
         ],
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Zero v1.0 Universal",
-            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-            "rightsIdentifier": "cc0-1.0",
-            "rightsIdentifierScheme": "SPDX",
+    assert subject.license == {
+        "id": "CC0-1.0",
+            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+
         }
-    ]
+
     assert subject.date == {'published': '2011', 'available': '2011-02-01T17:22:41Z'}
-    assert subject.date_registered == "2011-02-01T17:32:02Z"
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -59,7 +54,7 @@ def test_dataset():
     assert subject.language == "en"
     assert subject.version == "1"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 def test_blog_posting():
@@ -78,18 +73,9 @@ def test_blog_posting():
         "affiliation": [{"name": "DataCite"}],
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date == {'published': '2023'}
-    assert subject.date_registered == "2023-01-31T12:41:28Z"
-    assert subject.publisher == "DataCite"
+    assert subject.publisher == {"name":  "DataCite"}
     assert len(subject.references) == 8
     assert subject.references[0] == {"doi": "https://doi.org/10.5438/k1gw-y723"}
     assert subject.container is None
@@ -102,7 +88,7 @@ def test_blog_posting():
     assert subject.language == "en"
     assert subject.version == "1.0"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 @pytest.mark.vcr
@@ -131,12 +117,11 @@ def test_date():
             "type": "Person",
         }
     ]
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2013', 'available': '2013-11-05'}
-    assert subject.date_registered == "2013-11-13T13:42:17Z"
     assert (
         subject.publisher
-        == "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"
+        == {"name": "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"}
     )
     assert subject.references is None
     assert subject.container is None
@@ -157,7 +142,7 @@ def test_date():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.schema_version == "http://datacite.org/schema/kernel-2.1"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 #       expect(subject.titles).to eq([{ 'lang' => 'en-US', 'title' => 'Full DataCite XML Example' },
 #                                     { 'lang' => 'en-US',
@@ -166,7 +151,7 @@ def test_date():
 #       expect(subject.identifiers).to eq([{ 'identifier' =>
 #            'https://schema.datacite.org/meta/kernel-4.2/example/datacite-example-full-v4.2.xml',
 #                                            'identifierType' => 'URL' }])
-#       expect(subject.rights).to eq([{ 'lang' => 'en-US',
+#       expect(subject.license).to eq([{ 'lang' => 'en-US',
 #                                            'rights' => 'Creative Commons Zero v1.0 Universal', 'rightsIdentifier' => 'cc0-1.0', 'rightsIdentifierScheme' => 'SPDX', 'rightsUri' => 'https://creativecommons.org/publicdomain/zero/1.0/legalcode', 'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publication_year).to eq('2014')
 #       expect(subject.contributors).to eq([{ 'name' => 'Starr, Joan', 'givenName' => 'Joan', 'familyName' => 'Starr', 'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-7285-027X', 'schemeUri' => 'https://orcid.org', 'nameIdentifierScheme' => 'ORCID' }], 'affiliation' =>
@@ -194,7 +179,7 @@ def test_date():
 #       expect(subject.sizes).to eq(['4 kB'])
 #       expect(subject.formats).to eq(['application/xml'])
 #       expect(subject.publisher).to eq('DataCite')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -214,7 +199,7 @@ def test_date():
 #                                    { 'date' => '2016', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2016')
 #       expect(subject.publisher).to eq('University of St Andrews')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -237,7 +222,7 @@ def test_date():
 #       expect(subject.sizes).to eq([])
 #       expect(subject.subjects).to eq([{ 'subject' => 'environmental research' }])
 #       expect(subject.publisher).to eq('EvK2 CNR Committee')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-2.2')
 #     end
 
@@ -260,16 +245,9 @@ def test_multiple_identifiers():
         "familyName": "Garza",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution-NonCommercial-ShareAlike",
-            "rightsUri": "https://creativecommons.org/licenses/by-nc-sa/4.0",
-        },
-        {"rights": "Open Access", "rightsUri": "info:eu-repo/semantics/openAccess"},
-    ]
+    assert subject.license == {'id': 'CC-BY-NC-SA-4.0', 'url': 'https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode'}
     assert subject.date == {'published': '2016-03-27'}
-    assert subject.date_registered == "2016-03-27T22:18:38Z"
-    assert subject.publisher == "Zenodo"
+    assert subject.publisher == {"name":  "Zenodo"}
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -285,7 +263,7 @@ def test_multiple_identifiers():
     assert subject.language is None
     assert subject.version is None
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 def test_is_identical():
@@ -305,17 +283,9 @@ def test_is_identical():
         "familyName": "Junge",
     }
     assert subject.contributors is None
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date == {'created': '2016-11-16', 'published': '2016', 'updated': '2016-11-16'}
-    assert subject.publisher == "figshare"
+    assert subject.publisher == {"name":  "figshare"}
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -349,7 +319,7 @@ def test_is_identical():
     assert subject.language is None
     assert subject.version is None
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 def test_subject_scheme_for():
@@ -378,17 +348,9 @@ def test_subject_scheme_for():
         .get("description")
         .startswith("These are raw wing images from <i>Drosophila melanogaster</i>")
     )
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-        }
-    ]
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date == {'created': '2015-06-14', 'published': '2020', 'updated': '2020-06-02'}
-    assert subject.publisher == "figshare"
+    assert subject.publisher == {"name":  "figshare"}
     assert subject.subjects == [
         {"subject": "Evolutionary Biology"},
         {
@@ -406,7 +368,7 @@ def test_subject_scheme_for():
         },
     ]
     assert subject.language is None
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
 
 
@@ -476,16 +438,7 @@ def test_cc_by():
     subject = Metadata(string)
 
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1286826.v1"
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Attribution 4.0 International",
-            "rightsUri": "https://creativecommons.org/licenses/by/4.0/legalcode",
-            "schemeUri": "https://spdx.org/licenses/",
-            "rightsIdentifier": "cc-by-4.0",
-            "rightsIdentifierScheme": "SPDX",
-        }
-    ]
-
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
 
 def test_funding_schema_version_3():
     """funding schema version 3"""
@@ -510,7 +463,7 @@ def test_funding_schema_version_3():
         "The dataset contains a sample of metadata describing papers"
     )
     assert subject.date == {'published': '2013-04-03'}
-    assert subject.publisher == "Zenodo"
+    assert subject.publisher == {"name":  "Zenodo"}
     assert subject.funding_references == [
         {
             "awardUri": "info:eu-repo/grantAgreement/EC/FP7/246686/",
@@ -528,13 +481,7 @@ def test_funding_schema_version_3():
         {"subject": "funded research publications"},
     ]
     assert subject.language == "en"
-    assert subject.rights == [
-        {
-            "rights": "Creative Commons Zero - CC0 1.0",
-            "rightsUri": "https://creativecommons.org/publicdomain/zero/1.0",
-        },
-        {"rights": "Open Access", "rightsUri": "info:eu-repo/semantics/openAccess"},
-    ]
+    assert subject.license == {'id': 'CC0-1.0', 'url': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'}
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"
 
 #     it 'from attributes' do
@@ -582,7 +529,7 @@ def test_funding_schema_version_3():
 #                                                   'funderName' => 'European Commission' }])
 #       expect(subject.identifiers).to eq([{ 'identifier' => '123',
 #                                            'identifierType' => 'Repository ID' }])
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #       expect(subject.state).to eq('findable')
 #     end
@@ -635,9 +582,9 @@ def test_datacite_json():
         "familyName": "Fenner",
     }
     assert subject.contributors is None
-    assert subject.rights is None
+    assert subject.license is None
     assert subject.date == {'published': '2016-12-20', 'created': '2016-12-20', 'updated': '2016-12-20'}
-    assert subject.publisher == "DataCite"
+    assert subject.publisher == {"name":  "DataCite"}
 
 #     it 'geo_location in separate input' do
 #       text = "#{fixture_path}datacite-geolocation-empty.xml"
@@ -760,7 +707,6 @@ def test_geolocation_box():
     string = "10.6071/z7wc73"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.6071/z7wc73"
-    # assert subject.doi == "10.6071/z7wc73"
     assert subject.type == "Dataset"
     assert len(subject.creators) == 6
     assert subject.creators[0] == {
@@ -774,7 +720,7 @@ def test_geolocation_box():
             "title": "Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature"
         }
     ]
-    assert subject.publisher == "Dryad"
+    assert subject.publisher == {"name":  "Dryad"}
     assert subject.date == {'published': '2016', 'available': '2016-03-14T17:02:02Z', 'updated': '2014-10-17'}
     assert subject.subjects == [
         {"subject": "air temperature"},
@@ -828,7 +774,7 @@ def test_geolocation_box():
         },
     ]
     assert subject.sizes == ["2214669067 bytes"]
-    assert subject.agency == "DataCite"
+    assert subject.provider == "DataCite"
 
 
 #     it 'author only full name' do
@@ -916,7 +862,7 @@ def test_geolocation_box():
 #                                        'http://www.rcuk.ac.uk/research/efficiency/researchadmin/harmonisation/',
 #                                         'subject' => 'Materials Characterisation',
 #                                         'subjectScheme' => 'RCUK Research Classifications' }])
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -940,7 +886,7 @@ def test_geolocation_box():
 #                                                   'funderIdentifier' => 'https://doi.org/10.13039/501100000780',
 #                                                   'funderIdentifierType' => 'Crossref Funder ID',
 #                                                   'funderName' => 'European Commission' }])
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -962,7 +908,7 @@ def test_geolocation_box():
 #       expect(subject.funding_references.length).to eq(1)
 #       expect(subject.funding_references.first).to eq('awardNumber' => 'проект № 170100728',
 #                                                      'funderName' => 'РФФИ')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -984,7 +930,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(3)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5438/0000-00ss',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #     end
 
 #     it 'Schema 4.1 from string' do
@@ -1008,14 +954,14 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf', 'resourceTypeGeneral' => 'Text')
-#       expect(subject.rights).to eq([{ 'lang' => 'eng',
+#       expect(subject.license).to eq([{ 'lang' => 'eng',
 #                                            'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
 #                                            'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publisher).to eq('Springer')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -1037,13 +983,13 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
-#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
+#       expect(subject.license).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
 #                                            'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publisher).to eq('Springer')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4.0')
 #     end
 
@@ -1063,13 +1009,13 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(4)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '19478877',
 #                                                      'relatedIdentifierType' => 'PMID', 'relationType' => 'IsReferencedBy')
-#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Zero v1.0 Universal',
+#       expect(subject.license).to eq([{ 'rights' => 'Creative Commons Zero v1.0 Universal',
 #                                            'rightsIdentifier' => 'cc0-1.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/publicdomain/zero/1.0/legalcode',
 #                                            'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publisher).to eq('Dryad Digital Repository')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3')
 #     end
 
@@ -1091,13 +1037,13 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
-#       expect(subject.rights).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
+#       expect(subject.license).to eq([{ 'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
 #                                            'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publisher).to eq('Springer')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3.0')
 #     end
 
@@ -1120,7 +1066,7 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf')
 #       expect(subject.publisher).to eq('Springer')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-2.2')
 #     end
 
@@ -1150,14 +1096,14 @@ def test_geolocation_box():
 #       expect(subject.related_identifiers.length).to eq(1)
 #       expect(subject.related_identifiers.last).to eq('relatedIdentifier' => '10.5272/oldertestpub',
 #                                                      'relatedIdentifierType' => 'DOI', 'relationType' => 'IsPartOf', 'resourceTypeGeneral' => 'Text')
-#       expect(subject.rights).to eq([{ 'lang' => 'eng',
+#       expect(subject.license).to eq([{ 'lang' => 'eng',
 #                                            'rights' => 'Creative Commons Attribution No Derivatives 2.0 Generic',
 #                                            'rightsIdentifier' => 'cc-by-nd-2.0',
 #                                            'rightsIdentifierScheme' => 'SPDX',
 #                                            'rightsUri' => 'https://creativecommons.org/licenses/by-nd/2.0/legalcode',
 #                                            'schemeUri' => 'https://spdx.org/licenses/' }])
 #       expect(subject.publisher).to eq('Springer')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #     end
 
 #     it 'namespaced xml from string' do
@@ -1173,7 +1119,7 @@ def test_geolocation_box():
 #                                    { 'date' => '2018-07-18', 'dateType' => 'Accepted' }, { 'date' => '2018', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('nanoHUB')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-2.2')
 #     end
 
@@ -1197,7 +1143,7 @@ def test_geolocation_box():
 #       expect(subject.titles).to eq([{ 'title' => 'CERES Level 3 Cloud Type Historgram Terra+Aqua HDF file - Edition4' }])
 #       expect(subject.publication_year).to eq('2016')
 #       expect(subject.publisher).to eq('NASA Langley Atmospheric Science Data Center DAAC')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -1243,7 +1189,7 @@ def test_geolocation_box():
 #                                    { 'date' => '1996', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('1996')
 #       expect(subject.publisher).to eq('GESIS Data Archive')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -1266,7 +1212,7 @@ def test_geolocation_box():
 #       expect(subject.subjects).to eq([{ 'subject' => 'pv systems' },
 #                                       { 'subject' => 'off-grid applications' }])
 #       expect(subject.publisher).to eq('WIP-Munich')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-2.2')
 #     end
 
@@ -1298,7 +1244,7 @@ def test_geolocation_box():
 #       expect(subject.date ).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2017')
 #       expect(subject.publisher).to eq('Siemens AG')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3')
 #     end
 
@@ -1337,7 +1283,7 @@ def test_geolocation_box():
 #                                    { 'date' => '2015', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2015')
 #       expect(subject.publisher).to eq('Royal Netherlands Meteorological Institute (KNMI)')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -1347,7 +1293,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be false
 #       expect(subject.id).to eq('https://doi.org/10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
 #       expect(subject.doi).to eq('10.4124/05f6c379-dd68-4cdb-880d-33d3e9576d52/1')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.state).to eq('not_found')
 #     end
 
@@ -1361,7 +1307,7 @@ def test_geolocation_box():
 #       expect(subject.date ).to eq([{ 'date' => '2018-01-12', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('CaltechDATA')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #       expect(subject.state).to eq('findable')
 #     end
@@ -1376,7 +1322,7 @@ def test_geolocation_box():
 #       expect(subject.date ).to eq([{ 'date' => '2018', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('F1000 Research Limited')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3')
 #       expect(subject.state).to eq('findable')
 #     end
@@ -1391,7 +1337,7 @@ def test_geolocation_box():
 #       expect(subject.titles).to eq([{ 'title' => 'Referee report. For: Gates - add article keywords to the metatags [version 2; referees: 1 approved]' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('Gates Open Research')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3')
 #     end
 
@@ -1399,7 +1345,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-multiple-rights.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.rights).to eq([{ 'rights' => 'info:eu-repo/semantics/openAccess' },
+#       expect(subject.license).to eq([{ 'rights' => 'info:eu-repo/semantics/openAccess' },
 #                                          { 'rights' => 'Open Access',
 #                                            'rightsUri' => 'info:eu-repo/semantics/openAccess' }])
 #     end
@@ -1488,7 +1434,7 @@ def test_geolocation_box():
 #                                    { 'date' => '2009-10-01/2014-01-23', 'dateType' => 'Created' }])
 #       expect(subject.publication_year).to eq('2014')
 #       expect(subject.publisher).to eq('Deutsches Elektronen-Synchrotron, DESY, Hamburg')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-3')
 #     end
 
@@ -1508,7 +1454,7 @@ def test_geolocation_box():
 #       expect(subject.funding_references.count).to eq(1)
 #       expect(subject.funding_references.first).to eq('awardNumber' => 'проект № 170100728',
 #                                                      'funderName' => 'РФФИ')
-#       expect(subject.agency).to eq('DataCite')
+#       expect(subject.provider).to eq('DataCite')
 #       expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     end
 
@@ -1612,7 +1558,7 @@ def test_geolocation_box():
 #                                     'title' => 'Meteo measurements at the Sand Motor' }])
 #     expect(subject.publication_year).to eq('2017')
 #     expect(subject.publisher).to eq('4TU.Centre for Research Data')
-#     expect(subject.agency).to eq('DataCite')
+#     expect(subject.provider).to eq('DataCite')
 #     expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     expect(subject.geo_locations.first['geoLocationPlace']).to eq('Zandmotor, sand suppletion area on the Dutch coast.')
 #     expect(subject.geo_locations.first['geoLocationPolygon'].first).to eq('polygonPoint' => {
@@ -1670,7 +1616,7 @@ def test_geolocation_box():
 #       'relationType' => 'IsReviewedBy',
 #       'resourceTypeGeneral' => 'Text'
 #     )
-#     expect(subject.rights).to eq([
+#     expect(subject.license).to eq([
 #                                         {
 #                                           'lang' => 'en-US',
 #                                           'rights' => 'Creative Commons Zero v1.0 Universal',
@@ -1681,7 +1627,7 @@ def test_geolocation_box():
 #                                         }
 #                                       ])
 #     expect(subject.publisher).to eq('DataCite')
-#     expect(subject.agency).to eq('DataCite')
+#     expect(subject.provider).to eq('DataCite')
 #     expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #     expect(subject.related_items.last).to eq(
 #       {
@@ -1859,7 +1805,7 @@ def test_geolocation_box():
 #           'relationType' => 'Compiles' }
 #       ]
 #     )
-#     expect(subject.rights).to eq([
+#     expect(subject.license).to eq([
 #                                         {
 #                                           'lang' => 'en-US',
 #                                           'rights' => 'Creative Commons Zero v1.0 Universal',
@@ -1870,7 +1816,7 @@ def test_geolocation_box():
 #                                         }
 #                                       ])
 #     expect(subject.publisher).to eq('GigaScience Database')
-#     expect(subject.agency).to eq('DataCite')
+#     expect(subject.provider).to eq('DataCite')
 #     expect(subject.schema_version).to eq('http://datacite.org/schema/kernel-4')
 #   end
 

@@ -66,7 +66,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     date['published'] = meta.get("datePublished", None)
     date['updated'] = meta.get("dateModified", None)
 
-    publisher = meta.get("publisher", None)
+    publisher = {"name": meta.get("publisher", None)}
 
     if meta.get("description", None):
         descriptions = [
@@ -86,17 +86,16 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         titles = [{"title": has_title}]
 
-    if meta.get("licenseId", None):
-        rights = [dict_to_spdx({"rightsIdentifier": meta.get("licenseId")})]
-    else:
-        rights = None
-
+    license_ = meta.get("licenseId", None)
+    if license_:
+        license_ = dict_to_spdx({"id": meta.get("licenseId")})
+    
+    provider = "DataCite" if doi_from_url(id_) else "GitHub"
     state = "findable" if meta or read_options else "not_found"
 
     return {
         "id": id_,
         "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_id(meta.get("codeRepository", None)),
         "identifiers": None,
         "titles": titles,
@@ -105,8 +104,9 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": compact(date),
         "descriptions": descriptions,
-        "rights": rights,
+        "license": license_,
         "version": meta.get("version", None),
         "subjects": presence(subjects),
+        "provider": provider,
         "state": state,
     } | read_options

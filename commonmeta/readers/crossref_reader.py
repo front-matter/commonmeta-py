@@ -13,7 +13,7 @@ from ..utils import (
 from ..base_utils import wrap, compact, presence, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra, crossref_api_url
+from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra, get_crossref_member, crossref_api_url
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -68,7 +68,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         titles = [{"title": sanitize(title)}]
     else:
         titles = []
-    publisher = meta.get("publisher", None)
+
+    member_id = meta.get("member", None)
+    # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
+    if member_id is not None:
+        publisher = get_crossref_member(member_id)
+    else:
+        publisher = meta.get("publisher", None)
 
     date: dict = {}
     date['submitted'] = None
@@ -80,9 +86,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        rights = [dict_to_spdx({"rightsUri": license_})] if license_ else None
-    else:
-        rights = None
+        license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     issns = meta.get("issn-type", None)
     if issns is not None:
@@ -166,7 +170,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),
-        "rights": rights,
+        "license": license_,
         "descriptions": descriptions,
         "geo_locations": None,
         "funding_references": presence(funding_references),
@@ -174,7 +178,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         # other properties
         "content_url": presence(meta.get("contentUrl", None)),
         "container": container,
-        "agency": get_doi_ra(id_),
+        "provider": get_doi_ra(id_),
         "state": state,
         "schema_version": None,
     } | read_options

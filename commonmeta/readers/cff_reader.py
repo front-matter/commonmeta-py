@@ -70,7 +70,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "published": get_iso8601_date(meta.get("date-released")) if meta.get("date-released", None) else None
     }
 
-    publisher = "GitHub" if url and url.startswith("https://github.com") else None
+    publisher = {"name": "GitHub"} if url and url.startswith("https://github.com") else None
 
     if meta.get("abstract", None):
         descriptions = [
@@ -84,10 +84,9 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
 
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
-    if meta.get("licenseId", None):
-        rights = [dict_to_spdx({"rightsIdentifier": meta.get("licenseId")})]
-    else:
-        rights = None
+    license_ = meta.get("licenseId", None)
+    if license_ is not None:
+        license_ = dict_to_spdx({"id": meta.get("licenseId")})
 
     references = cff_references(wrap(meta.get("references", None)))
 
@@ -97,7 +96,6 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": id_,
         "type": type_,
         # 'identifiers' => identifiers,
-        "doi": doi_from_url(id_) if id_ else None,
         "url": url,
         "titles": titles,
         "creators": creators,
@@ -105,9 +103,10 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "references": presence(references),
         "date": date,
         "descriptions": presence(descriptions),
-        "rights": rights,
+        "license": license_,
         "version": meta.get("version", None),
         "subjects": presence(subjects),
+        "provider": "DataCite" if id_ else "GitHub",
         "state": state,
     } | read_options
 

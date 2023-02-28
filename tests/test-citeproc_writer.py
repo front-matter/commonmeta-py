@@ -118,7 +118,7 @@ def test_doi_with_data_citation():
     assert citeproc.get("page") is None
     assert citeproc.get("language") == "en"
     assert citeproc.get(
-        "copyright") == "Creative Commons Attribution 3.0 Unported"
+        "copyright") == "CC-BY-3.0"
 
 
 #     it 'software' do
@@ -192,7 +192,7 @@ def test_with_pages():
     assert citeproc.get("page") == "1-7"
     assert citeproc.get("language") == "en"
     assert citeproc.get(
-        "copyright") == "Creative Commons Attribution 3.0 Unported"
+        "copyright") == "CC-BY-3.0"
 
 
 def test_only_first_page():
@@ -218,7 +218,7 @@ def test_only_first_page():
     assert citeproc.get("volume") == "14"
     assert citeproc.get("page") == "e0214986"
     assert citeproc.get("language") == "en"
-    assert citeproc.get("copyright") == "Creative Commons Zero v1.0 Universal"
+    assert citeproc.get("copyright") == "CC0-1.0"
 
 
 def test_missing_creator():
@@ -246,7 +246,7 @@ def test_missing_creator():
     assert citeproc.get("page") == "15"
     assert citeproc.get("language") == "en"
     assert citeproc.get(
-        "copyright") == "Creative Commons Attribution 4.0 International"
+        "copyright") == "CC-BY-4.0"
 
 
 #     it 'container title' do

@@ -37,7 +37,6 @@ def test_write_metadata_as_datacite_json():
     }
     assert datacite["rightsList"] == [
         {
-            "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
             "rightsIdentifierScheme": "SPDX",
             "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
@@ -94,7 +93,6 @@ def test_with_data_citation():
     }
     assert datacite["rightsList"] == [
         {
-            "rights": "Creative Commons Attribution 3.0 Unported",
             "rightsIdentifier": "cc-by-3.0",
             "rightsIdentifierScheme": "SPDX",
             "rightsUri": "https://creativecommons.org/licenses/by/3.0/legalcode",
