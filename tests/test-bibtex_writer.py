@@ -140,6 +140,32 @@ def test_article_dlib_magazine():
 """
     )
 
+
+def test_inproceedings():
+    """inproceedings"""
+    subject = Metadata("https://doi.org/10.1145/3448016.3452841")
+    assert subject.id == "https://doi.org/10.1145/3448016.3452841"
+    assert subject.type == "ProceedingsArticle"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@inproceedings{https://doi.org/10.1145/3448016.3452841,
+    author = {Pandey, Prashant and Conway, Alex and Durie, Joe and Bender, Michael A. and Farach-Colton, Martin and Johnson, Rob},
+    booktitle = {Proceedings of the 2021 International Conference on Management of Data},
+    copyright = {https://www.acm.org/publications/policies/copyright_policy#Background},
+    doi = {10.1145/3448016.3452841},
+    month = jun,
+    publisher = {Association for Computing Machinery (ACM)},
+    title = {Vector Quotient Filters},
+    url = {https://dl.acm.org/doi/10.1145/3448016.3452841},
+    urldate = {2021-06-09},
+    year = {2021}
+}
+"""
+    )
+
 def test_book_chapter():
     """book chapter"""
     subject = Metadata("https://doi.org/10.1007/978-3-662-46370-3_13")
