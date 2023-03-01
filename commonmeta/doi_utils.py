@@ -97,9 +97,7 @@ def crossref_api_url(doi: str) -> str:
 def crossref_xml_api_url(doi: str) -> str:
     """Return the Crossref XML API URL for a given DOI"""
     return (
-        "https://api.crossref.org/works/"
-        + doi
-        + "/transform/application/vnd.crossref.unixsd+xml"
+        f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
     )
 
 
