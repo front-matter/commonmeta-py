@@ -198,7 +198,7 @@ def normalize_issn(string, **kwargs):
 def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
     dct.update({"url": normalize_cc_url(dct.get("url", None))})
-    file_path = os.path.join(os.path.dirname(__file__), "resources/spdx/licenses.json")
+    file_path = os.path.join(os.path.dirname(__file__), "resources", "spdx", "licenses.json")
     with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
