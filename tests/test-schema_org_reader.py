@@ -10,6 +10,7 @@ def test_blog_posting():
     "blog posting"
     string = "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.type == "Article"
     assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
@@ -46,6 +47,7 @@ def test_zenodo():
     "zenodo"
     string = "https://www.zenodo.org/record/1196821"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1196821"
     assert subject.type == "Dataset"
     assert subject.url == "https://zenodo.org/record/1196821"
@@ -97,6 +99,7 @@ def test_pangaea():
     "pangaea"
     string = "https://doi.pangaea.de/10.1594/PANGAEA.836178"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1594/pangaea.836178"
     assert subject.type == "Dataset"
     assert subject.url == "https://doi.pangaea.de/10.1594/PANGAEA.836178"
@@ -138,7 +141,7 @@ def test_dataverse():
     "dataverse"
     string = "https://doi.org/10.7910/dvn/nj7xso"
     subject = Metadata(string, via="schema_org")
-
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7910/dvn/nj7xso"
     assert subject.type == "Dataset"
     assert (
@@ -180,6 +183,7 @@ def test_yet_another_blog_post():
     "yet another blog post"
     string = "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
     subject = Metadata(string)
+    assert subject.is_valid
     assert (
         subject.id
         == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
@@ -233,6 +237,7 @@ def test_blog_with_dois():
     "blog with dois"
     string = "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.17176/20221210-001644-0"
     assert subject.type == "Article"
     assert subject.url == "https://verfassungsblog.de/einburgerung-und-ausburgerung"
@@ -274,6 +279,7 @@ def test_another_blog_with_dois():
     "another blog with dois"
     string = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
     subject = Metadata(string)
+    assert subject.is_valid
     assert (
         subject.id
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
@@ -311,6 +317,7 @@ def test_with_upstream_blog_post():
     "with upstream blog post"
     string = "https://upstream.force11.org/welcome-to-upstream/"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.type == "Article"
     assert subject.url == "https://upstream.force11.org/welcome-to-upstream"
@@ -352,6 +359,7 @@ def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
     string = "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     subject = Metadata(string)
+    assert subject.is_valid
     assert (
         subject.id
         == "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
@@ -362,6 +370,7 @@ def test_with_datacite_blog():
     "with datacite blog"
     string = "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
     subject = Metadata(string)
+    assert subject.is_valid
     assert (
         subject.id
         == "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed"

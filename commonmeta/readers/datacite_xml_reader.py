@@ -17,7 +17,7 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
-    response = requests.get(url, kwargs, timeout=5)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
     return py_.get(response.json(), "data.attributes", {})
@@ -31,7 +31,6 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     meta = data.get("resource", {})
-    print(meta)
 
     doi = parse_xmldict(meta.get("identifier"), ignored_attributes="@identifierType")
     id_ = doi_as_url(doi) if doi else None

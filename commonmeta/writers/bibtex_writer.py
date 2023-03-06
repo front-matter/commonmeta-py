@@ -15,6 +15,12 @@ def write_bibtex(metadata: Commonmeta) -> str:
     """Write bibtex"""
     container = metadata.container if metadata.container else {}
     date_published = get_iso8601_date(metadata.date.get("published", None))
+    if len(metadata.titles) > 1:
+        title = ": ".join([metadata.titles[0].get("title", None), metadata.titles[1].get("title", None)])
+    elif len(metadata.titles) == 1:
+        title = metadata.titles[0].get("title", None)
+    else:
+        title = None
 
     id_ = metadata.id
     type_ = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
@@ -22,16 +28,18 @@ def write_bibtex(metadata: Commonmeta) -> str:
     author = authors_as_string(metadata.creators)
     license_ = str(metadata.license.get("url")) if metadata.license else None
     doi = doi_from_url(metadata.id)
+    institution = metadata.publisher.get("name", None) if type_ == "phdthesis" else None
     issn = container.get("identifier", None) if container.get("identifierType", None) == "ISSN" else None
+    isbn = container.get("identifier", None) if container.get("identifierType", None) == "ISBN" else None
     issue = container.get("issue", None)
     journal = container.get("title", None) if type_ not in ["inbook", "inproceedings"] else None
     booktitle = container.get("title", None) if type_ in ["inbook", "inproceedings"] else None
     language = metadata.language
+    location = container.get("location", None) if type_ not in ["article", "phdthesis"] else None
     month = get_month_from_date(date_published)
     pages = pages_as_string(container)
     publisher = metadata.publisher.get("name", None) if type_ not in ["article", "phdthesis"] else None
-    institution = metadata.publisher.get("name", None) if type_ == "phdthesis" else None
-    title = metadata.titles[0].get("title", None)
+    series = container.get("series", None)
     url = metadata.url
     year = date_published[:4] if date_published else None
 
@@ -45,15 +53,18 @@ def write_bibtex(metadata: Commonmeta) -> str:
                 "author": author,
                 "copyright": license_,
                 "doi": doi,
+                "institution": institution,
+                "isbn": isbn,
                 "issn": issn,
                 "issue": issue,
                 "journal": journal,
                 "booktitle": booktitle,
                 "language": language,
+                "location": location,
                 "month": month,
                 "pages": pages,
                 "publisher": publisher,
-                "institution": institution,
+                "series": series,
                 "title": title,
                 "url": url,
                 "urldate": date_published,

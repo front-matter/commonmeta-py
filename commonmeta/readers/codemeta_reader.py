@@ -23,7 +23,7 @@ from ..constants import (
 def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
     url = str(github_as_codemeta_url(pid))
-    response = requests.get(url, kwargs, timeout=5)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
     data = response.json()

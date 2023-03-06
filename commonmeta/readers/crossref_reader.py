@@ -26,7 +26,7 @@ def get_crossref(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_api_url(doi)
-    response = requests.get(url, kwargs, timeout=5)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json().get("message", {})
@@ -82,7 +82,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     date['published'] = py_.get(meta, "issued.date-time") or get_date_from_date_parts(
         meta.get("issued", None)) or py_.get(meta, "created.date-time")
     date['updated'] = py_.get(meta, "updated.date-time") or py_.get(meta, "deposited.date-time")
-    print(date)
+
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))

@@ -73,7 +73,7 @@ def get_doi_ra(doi) -> Optional[str]:
     prefix = validate_prefix(doi)
     if prefix is None:
         return None
-    response = requests.get("https://doi.org/ra/" + prefix, timeout=5)
+    response = requests.get("https://doi.org/ra/" + prefix, timeout=10)
     if response.status_code != 200:
         return None
     return response.json()[0].get("RA", None)
@@ -81,7 +81,7 @@ def get_doi_ra(doi) -> Optional[str]:
 
 def get_crossref_member(member_id) -> Optional[dict]:
     """Return the Crossref member for a given member_id"""
-    response = requests.get("https://api.crossref.org/members/" + member_id, timeout=5)
+    response = requests.get("https://api.crossref.org/members/" + member_id, timeout=10)
     if response.status_code != 200:
         return None
     data = response.json().get("message", None)

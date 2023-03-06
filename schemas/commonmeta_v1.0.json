@@ -5,10 +5,6 @@
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
-    "type": {
-      "type": "string",
-      "enum": ["Organization", "Person"]
-    },
     "affiliations": {
       "type": "array",
       "items": {
@@ -44,7 +40,6 @@
         "Document",
         "Grant",
         "Instrument",
-        "JournalArticle",
         "JournalIssue",
         "JournalVolume",
         "Journal",
@@ -73,7 +68,11 @@
             "description": "The unique identifier for the creator.",
             "type": "string"
           },
-          "type": { "$ref": "#/definitions/type" },
+          "type": { 
+            "description": "The type of the creator.",
+            "type": "string",
+            "enum": ["Organization", "Person"]
+          },
           "name": {
             "description": "The name of the creator.",
             "type": "string"
@@ -87,8 +86,7 @@
             "type": "string"
           },
           "affiliation": { "$ref": "#/definitions/affiliations" }
-        },
-        "required": ["name"]
+        }
       }
     },
     "publisher": {
@@ -202,11 +200,6 @@
         },
         "required": ["description"]
       }
-    },
-    "provider": {
-      "description": "The provider for the metadata, e.g. a DOI registration agency, or a code repository such as GitHub.",
-      "type": "string",
-      "enum": ["Crossref", "DataCite", "GitHub"]
     }
   },
   "required": ["id", "type", "url", "creators", "titles", "publisher", "date"]

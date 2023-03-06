@@ -20,7 +20,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
-    response = requests.get(url, kwargs, timeout=5)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
     return py_.get(response.json(), "data.attributes", {})
@@ -53,7 +53,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     container = meta.get("container", None)
     license_ = meta.get("rightsList", [])
-    print(license_)
     if len(license_) > 0:
         license_ = normalize_cc_url(license_[0].get("rightsUri", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None

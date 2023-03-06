@@ -143,10 +143,9 @@ def test_article_dlib_magazine():
 
 def test_inproceedings():
     """inproceedings"""
-    subject = Metadata("https://doi.org/10.1145/3448016.3452841")
+    subject = Metadata("https://doi.org/10.1145/3448016.3452841", via="crossref_xml")
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
-
     bibtex = subject.bibtex()
 
     assert (
@@ -156,9 +155,13 @@ def test_inproceedings():
     booktitle = {Proceedings of the 2021 International Conference on Management of Data},
     copyright = {https://www.acm.org/publications/policies/copyright_policy#Background},
     doi = {10.1145/3448016.3452841},
+    isbn = {9781450383431},
+    location = {Virtual Event China},
     month = jun,
+    pages = {1386-1399},
     publisher = {Association for Computing Machinery (ACM)},
-    title = {Vector Quotient Filters},
+    series = {SIGMOD/PODS '21},
+    title = {Vector Quotient Filters: Overcoming the Time/Space Trade-Off in Filter Design},
     url = {https://dl.acm.org/doi/10.1145/3448016.3452841},
     urldate = {2021-06-09},
     year = {2021}
@@ -181,7 +184,7 @@ def test_book_chapter():
     booktitle = {Shoulder Stiffness},
     copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
     doi = {10.1007/978-3-662-46370-3_13},
-    month = feb,
+    month = mar,
     pages = {155-158},
     publisher = {Springer Science and Business Media LLC},
     title = {Clinical Symptoms and Physical Examinations},
@@ -207,7 +210,7 @@ def test_conference_proceedings():
     author = {Sinop, Ali Kemal and Grady, Leo},
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
-    month = feb,
+    month = mar,
     publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
     url = {http://ieeexplore.ieee.org/document/4408927},

@@ -33,7 +33,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = pid
-    response = requests.get(url, kwargs, timeout=5)
+    response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
 

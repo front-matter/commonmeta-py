@@ -2,7 +2,9 @@
 from os import path
 import json
 from typing import Optional
+from functools import cached_property
 import yaml
+import jsonschema_rs
 import xmltodict
 
 from ..readers import (
@@ -36,7 +38,6 @@ from ..utils import normalize_id, find_from_format
 # pylint: disable=R0902
 class Metadata:
     """Metadata"""
-
     def __init__(self, string: Optional[str], **kwargs):
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
@@ -136,6 +137,19 @@ class Metadata:
         # citation style language options
         self.style = kwargs.get("style", "apa")
         self.locale = kwargs.get("locale", "en-US")
+
+    @cached_property
+    def load_schema(self) -> str:
+        """Load the JSON schema"""
+        file_path = path.join(path.dirname(path.dirname(__file__)), "schemas", "commonmeta_v1.json")
+        with open(file_path, encoding="utf-8") as file:
+            schema = file.read()
+        return schema
+
+    def is_valid(self) -> bool:
+        """is_Valid"""
+        validator = jsonschema_rs.JSONSchema.from_str(self.load_schema)
+        return validator.is_valid(write_commonmeta(self))
 
     def commonmeta(self):
         """Commonmeta"""

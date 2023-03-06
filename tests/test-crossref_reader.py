@@ -16,6 +16,7 @@ def test_doi_with_data_citation():
     "DOI with data citation"
     string = "10.7554/elife.01567"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
@@ -108,6 +109,7 @@ def test_journal_article():
     "journal article"
     string = "10.1371/journal.pone.0000030"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
@@ -171,6 +173,7 @@ def test_journal_article_with_funding():
     "journal article with funding"
     string = "10.3389/fpls.2019.00816"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.type == "JournalArticle"
     assert (
@@ -236,6 +239,7 @@ def test_journal_article_original_language():
     "journal article with original language"
     string = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
     assert (
@@ -281,6 +285,7 @@ def test_journal_article_with_rdf_for_container():
     "journal article with RDF for container"
     string = "https://doi.org/10.1163/1937240X-00002096"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.type == "JournalArticle"
     assert (
@@ -337,6 +342,7 @@ def test_book_chapter_with_rdf_for_container():
     "book chapter with RDF for container"
     string = "https://doi.org/10.1007/978-3-642-33191-6_49"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.type == "BookChapter"
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
@@ -381,6 +387,7 @@ def test_posted_content():
     "posted content"
     string = "https://doi.org/10.1101/097196"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
     assert subject.type == "Article"
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
@@ -433,6 +440,7 @@ def test_peer_review():
     "peer review"
     string = "10.7554/elife.55167.sa2"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "Review"
     assert subject.url == "https://elifesciences.org/articles/55167#sa2"
@@ -478,6 +486,7 @@ def test_dissertation():
     "dissertation"
     string = "10.14264/uql.2020.791"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.14264/uql.2020.791"
     assert subject.type == "Dissertation"
     assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
@@ -515,6 +524,7 @@ def test_doi_with_sici():
     "doi with sici"
     string = "10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     subject = Metadata(string)
+    assert subject.is_valid
     assert (
         subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
@@ -568,6 +578,7 @@ def test_doi_with_orcid():
     "doi_with_orcid"
     string = "10.1155/2012/291294"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
@@ -633,6 +644,7 @@ def test_date_in_future():
     "date_in_future"
     string = "10.1016/j.ejphar.2015.03.018"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.type == "JournalArticle"
     assert (
@@ -717,6 +729,7 @@ def test_vor_with_url():
     "vor_with_url"
     string = "10.1038/hdy.2013.26"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://www.nature.com/articles/hdy201326"
@@ -774,6 +787,7 @@ def test_dataset():
     "dataset"
     string = "10.2210/pdb4hhb/pdb"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Component"
     assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
@@ -809,6 +823,7 @@ def test_component():
     "component"
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
@@ -838,6 +853,7 @@ def test_dataset_usda():
     "dataset usda"
     string = "10.2737/RDS-2018-0001"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.type == "Dataset"
     assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
@@ -886,6 +902,7 @@ def test_crossref_json():
     """crossref.json"""
     string = path.join(path.dirname(__file__), "fixtures", "crossref.json")
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
 
 
@@ -893,6 +910,7 @@ def test_book_chapter():
     "book chapter"
     string = "10.1007/978-3-662-46370-3_13"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.type == "BookChapter"
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
@@ -940,6 +958,7 @@ def test_another_book_chapter():
     "another book chapter"
     string = "10.1007/978-3-319-75889-3_1"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.type == "BookChapter"
     assert subject.url == "http://link.springer.com/10.1007/978-3-319-75889-3_1"
@@ -983,6 +1002,7 @@ def test_yet_another_book_chapter():
     "yet another book chapter"
     string = "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.type == "BookChapter"
     assert (
@@ -1032,6 +1052,7 @@ def test_missing_creator():
     "missing creator"
     string = "https://doi.org/10.3390/publications6020015"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://www.mdpi.com/2304-6775/6/2/15"
@@ -1111,6 +1132,7 @@ def test_book():
     "book"
     string = "https://doi.org/10.1017/9781108348843"
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1017/9781108348843"
     assert subject.type == "Book"
     assert (

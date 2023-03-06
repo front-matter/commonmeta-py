@@ -9,7 +9,7 @@ def test_ruby_cff():
     """ruby-cff"""
     string = 'https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff'
     subject = Metadata(string)
-
+    assert subject.is_valid
     assert subject.id == 'https://doi.org/10.5281/zenodo.1184077'
     assert subject.url == 'https://github.com/citation-file-format/ruby-cff'
     assert subject.type == "Software"
@@ -39,7 +39,7 @@ def test_cff_converter_python():
     """cff-converter-python"""
     string = 'https://github.com/citation-file-format/cff-converter-python/blob/main/CITATION.cff'
     subject = Metadata(string)
-
+    assert subject.is_valid
     assert subject.id is None
     assert subject.url == 'https://github.com/citation-file-format/cff-converter-python'
     assert subject.type == "Software"
@@ -85,7 +85,7 @@ def test_github_repo():
     """github repo"""
     string = 'https://github.com/kyleliang919/Long-context-transformers'
     subject = Metadata(string)
-
+    assert subject.is_valid
     assert subject.id == 'https://doi.org/10.5281/zenodo.7651809'
     assert subject.url == 'https://github.com/kyleliang919/Long-context-transformers'
     assert subject.type == 'Software'

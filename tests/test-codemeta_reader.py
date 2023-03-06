@@ -10,6 +10,7 @@ def test_rdataone():
     """rdataone"""
     string = path.join(path.dirname(__file__), "fixtures", "codemeta.json")
     subject = Metadata(string)
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5063/f1m61h5x"
     assert subject.type == "Software"
     assert subject.url == "https://github.com/DataONEorg/rdataone"
@@ -56,7 +57,7 @@ def test_metadata_reports():
     """metadata_reports"""
     string = "https://github.com/datacite/metadata-reports/blob/master/software/codemeta.json"
     subject = Metadata(string)
-
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/wr0x-e194"
     assert subject.type == "Software"
     assert subject.url == "https://github.com/datacite/metadata-reports"

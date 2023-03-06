@@ -14,7 +14,6 @@ def write_commonmeta(metadata):
             # required properties
             "id": metadata.id,
             "type": metadata.type,
-            "doi": metadata.doi,
             "url": metadata.url,
             "creators": metadata.creators,
             "titles": metadata.titles,

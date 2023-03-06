@@ -396,7 +396,8 @@ SO_TO_DC_REVERSE_RELATION_TYPES = {
 }
 
 CROSSREF_CONTAINER_TYPES = {
-    "JournalArticle": "journal",
     "BookChapter": "book",
     "Dataset": "database",
+    "JournalArticle": "journal",
+    "ProceedingsArticle": "proceedings",
 }
