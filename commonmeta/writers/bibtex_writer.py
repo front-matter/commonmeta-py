@@ -1,7 +1,7 @@
 """Bibtex writer for commonmeta-py"""
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
-from bibtexparser.customization import author
+from bibtexparser.customization import page_double_hyphen
 
 from ..utils import pages_as_string
 from ..base_utils import compact
@@ -72,6 +72,7 @@ def write_bibtex(metadata: Commonmeta) -> str:
             }
         )
     ]
+    bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
     writer = BibTexWriter()
     writer.common_strings = True
     writer.indent = "    "
