@@ -522,9 +522,9 @@ def from_schema_org_creators(elements: list) -> list:
         )
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif py_.get(i, "affiliation.@id", "").startswith("https://ror.org"):
+        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname == "ror.org":
             element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
-        elif i.get("affiliation.@id", "").startswith("https://isni.org"):
+        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname == "isni.org":
             element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
 
         return compact(element)

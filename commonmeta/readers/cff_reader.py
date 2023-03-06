@@ -2,6 +2,7 @@
 from typing import Optional
 import requests
 import yaml
+from urllib.parse import urlparse
 
 from ..utils import (
     normalize_id,
@@ -70,7 +71,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "published": get_iso8601_date(meta.get("date-released")) if meta.get("date-released", None) else None
     }
 
-    publisher = {"name": "GitHub"} if url and url.startswith("https://github.com") else None
+    publisher = {"name": "GitHub"} if url and urlparse(url).hostname == "github.com" else None
 
     if meta.get("abstract", None):
         descriptions = [
