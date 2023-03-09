@@ -889,7 +889,7 @@ def test_dataset_usda():
     ]
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
-        "type": "Periodical",
+        "type": "Database",
     }
     assert subject.subjects is None
     assert subject.language is None
@@ -941,12 +941,7 @@ def test_book_chapter():
         "containerTitle": "Skeletal Radiol",
     }
     assert subject.funding_references is None
-    assert subject.container == {
-        "title": "Shoulder Stiffness",
-        "type": "Book",
-        "firstPage": "155",
-        "lastPage": "158",
-    }
+    assert subject.container == {'type': 'Book', 'identifier': '9783662463703', 'identifierType': 'ISBN', 'title': 'Shoulder Stiffness', 'firstPage': '155', 'lastPage': '158'}
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
@@ -1009,9 +1004,9 @@ def test_yet_another_book_chapter():
         subject.url
         == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
     )
-    assert subject.titles[0] == {
+    assert subject.titles == [{
         "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
-    }
+    }]
     assert subject.creators[0] == {
         "affiliation": [{"name": "Université de Lyon, France"}],
         "type": "Person",
@@ -1166,13 +1161,38 @@ def test_book():
         "containerTitle": "Qilu xuekan",
     }
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {'identifier': '9781108348843', 'identifierType': 'ISBN', 'type': 'BookSeries'}
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
+
+def test_proceedings_article():
+    "proceedings article"
+    string = "10.1145/3448016.3452841"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.1145/3448016.3452841"
+    assert subject.type == "ProceedingsArticle"
+    assert subject.url == "https://dl.acm.org/doi/10.1145/3448016.3452841"
+    assert subject.titles == [{'title': 'Vector Quotient Filters'}, {'title': 'Overcoming the Time/Space Trade-Off in Filter Design', 'titleType': 'Subtitle'}]
+    assert len(subject.creators) == 6
+    assert subject.creators[0] == {'affiliation': [{'name': 'Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA'}], 'givenName': 'Prashant', 'familyName': 'Pandey', 'type': 'Person'}
+    assert subject.contributors is None
+    assert subject.license == {'url': 'https://www.acm.org/publications/policies/copyright_policy#Background'}
+    assert subject.date == {'published': '2021-06-09', 'updated': '2023-01-06T22:59:32Z'}
+    assert subject.publisher == {'id': 'https://api.crossref.org/members/320', 'name': 'Association for Computing Machinery (ACM)'}
+    assert len(subject.references) == 56
+    assert subject.references[-1] == {'key': 'e_1_3_2_2_56_1', 'doi': 'https://doi.org/10.5555/1364813.1364831'}
+    assert subject.funding_references == [{'funderName': 'NSF (National Science Foundation)', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID', 'awardNumber': 'CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680'}, {'funderName': 'DOE U.S. Department of Energy', 'funderIdentifier': 'https://doi.org/10.13039/100000015', 'funderIdentifierType': 'Crossref Funder ID', 'awardNumber': 'DE-AC02-05CH11231,17-SC-20-SC'}]
+    assert subject.container ==  {'type': 'Proceedings', 'title': 'Proceedings of the 2021 International Conference on Management of Data'}
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.descriptions is None
+    assert subject.version is None
+    assert subject.provider == "Crossref"
 
 def test_get_crossref():
     """get_crossref"""

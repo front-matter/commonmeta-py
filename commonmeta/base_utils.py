@@ -41,26 +41,22 @@ def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
     return None
 
 
-def parse_attributes(element, **kwargs):
+def parse_attributes(element: Union[str, dict, list], **kwargs) -> Optional[Union[str,list]]:
     """extract attributes from a string, dict or list"""
+    def parse_item(item):
+        if isinstance(item, dict):
+            return item.get(html.unescape(content), None)
+        return html.unescape(item)
+    
     content = kwargs.get("content", "#text")
-
     if isinstance(element, str) and kwargs.get("content", None) is None:
         return html.unescape(element)
     if isinstance(element, dict):
         return element.get(html.unescape(content), None)
     if isinstance(element, list):
-        arr = list(
-            map(
-                lambda x: x.get(html.unescape(content), None)
-                if isinstance(x, dict)
-                else x,
-                element,
-            )
-        )
-        arr = arr[0] if kwargs.get("first") else unwrap(arr)
+        arr = [parse_item(i) for i in element if i]
+        arr = arr[0] if len(arr) > 0 and kwargs.get("first") else unwrap(arr)
         return arr
-
 
 def parse_xmldict(
     var: Union[dict, list],

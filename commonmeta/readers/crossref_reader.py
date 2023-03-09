@@ -9,13 +9,14 @@ from ..utils import (
     from_csl,
     normalize_url,
     normalize_doi,
+    normalize_issn
 )
-from ..base_utils import wrap, compact, presence, sanitize
+from ..base_utils import wrap, compact, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_as_url, doi_from_url, get_doi_ra, get_crossref_member, crossref_api_url
 from ..constants import (
-    CR_TO_CM_TRANSLATIONS,
+    CR_TO_CM_TRANSLATIONS, CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
 
@@ -61,13 +62,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     contributors = presence(get_authors(from_csl(editors)))
 
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
-    title = meta.get("title", None) or meta.get("original-title")
-    if isinstance(title, list) and len(title) > 0:
-        title = title[0]
-    if isinstance(title, str):
-        titles = [{"title": sanitize(title)}]
-    else:
-        titles = []
+    titles = get_titles(meta)
 
     member_id = meta.get("member", None)
     # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
@@ -88,53 +83,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = normalize_cc_url(license_[0].get("URL", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
-    issns = meta.get("issn-type", None)
-    if issns is not None:
-        issn = (
-            next((item for item in issns if item["type"] == "electronic"), None)
-            or next((item for item in issns if item["type"] == "print"), None)
-            or {}
-        )
-        issn = issn["value"] if issn else None
-    else:
-        issn = None
-
-    if resource_type == "JournalArticle":
-        container_type = "Journal"
-    elif resource_type == "JournalIssue":
-        container_type = "Journal"
-    elif resource_type == "BookChapter":
-        container_type = "Book"
-    elif resource_type == "Monograph":
-        container_type = "BookSeries"
-    else:
-        container_type = "Periodical"
-
-    if meta.get("page", None):
-        pages = meta.get("page", None).split("-")
-        first_page = pages[0]
-        last_page = pages[1] if len(pages) > 1 else None
-    else:
-        first_page = None
-        last_page = None
-
-    container_titles = meta.get("container-title", [])
-    container_title = container_titles[0] if len(container_titles) > 0 else None
-    if container_title is not None:
-        container = compact(
-            {
-                "type": container_type,
-                "title": container_title,
-                "identifier": issn,
-                "identifierType": "ISSN" if issn else None,
-                "volume": meta.get("volume", None),
-                "issue": meta.get("issue", None),
-                "firstPage": first_page,
-                "lastPage": last_page,
-            }
-        )
-    else:
-        container = None
+    container = get_container(meta, resource_type=resource_type)
 
     references = references = [
         get_reference(i) for i in wrap(meta.get("reference", None))
@@ -156,7 +105,6 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         # required properties
         "id": id_,
         "type": type_,
-        "doi": doi,
         "url": url,
         "creators": creators,
         "titles": presence(titles),
@@ -177,12 +125,40 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "references": references,
         # other properties
         "content_url": presence(meta.get("contentUrl", None)),
-        "container": container,
+        "container": presence(container),
         "provider": get_doi_ra(id_),
         "state": state,
         "schema_version": None,
     } | read_options
 
+
+def get_titles(meta):
+    """Title information from Crossref metadata."""
+    title = parse_attributes(meta.get("title", None))
+    print(title)
+    subtitle = parse_attributes(meta.get("subtitle", None))
+    print(subtitle)
+    original_language_title = meta.get("original_language_title", None)
+    language = None
+    if title is None and original_language_title is None and subtitle is None:
+        return None
+    if title is not None and subtitle is None:
+        return [{"title": sanitize(title)}]
+    if original_language_title:
+        return [compact({
+            "title": sanitize(original_language_title),
+            "lang": language,
+        })]
+    if subtitle:
+        return [compact(
+            {
+                "title": sanitize(title)
+            }),
+            {
+                "title": sanitize(subtitle),
+                "titleType": "Subtitle",
+            }
+        ]
 
 def get_reference(reference: Optional[dict]) -> Optional[dict]:
     """Get reference from Crossref reference"""
@@ -206,6 +182,48 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
         "unstructured": reference.get("unstructured", None) if doi is None else None,
     }
     return compact(metadata)
+
+
+def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
+    """Get container from Crossref"""
+    container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
+    issn = (
+        next((item for item in wrap(meta.get("issn-type", None)) if item["type"] == "electronic"), None)
+        or next((item for item in wrap(meta.get("issn-type", None)) if item["type"] == "print"), None)
+        or {}
+    )
+    issn = normalize_issn(issn["value"]) if issn else None
+    isbn = (
+        next((item for item in wrap(meta.get("isbn-type", None)) if item["type"] == "electronic"), None)
+        or next((item for item in wrap(meta.get("isbn-type", None)) if item["type"] == "print"), None)
+        or {}
+    )
+    isbn = isbn["value"] if isbn else None
+    container_title = parse_attributes(meta.get("container-title", None), first=True)
+    volume = meta.get("volume", None)
+    issue = py_.get(meta, "journal-issue.issue")
+    if meta.get("page", None):
+        pages = meta.get("page", None).split("-")
+        first_page = pages[0]
+        last_page = pages[1] if len(pages) > 1 else None
+    else:
+        first_page = None
+        last_page = None
+    
+   # TODO: add support for series, location, missing in Crossref JSON
+
+    return compact(
+        {
+            "type": py_.pascal_case(container_type) if container_type else None,
+            "identifier": issn or isbn,
+            "identifierType": "ISSN" if issn else "ISBN" if isbn else None,
+            "title": container_title,
+            "volume": volume,
+            "issue": issue,
+            "firstPage": first_page,
+            "lastPage": last_page
+        }
+    )
 
 
 def from_crossref_funding(funding_references: list) -> list:

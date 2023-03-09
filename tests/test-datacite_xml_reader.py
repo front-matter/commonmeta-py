@@ -12,7 +12,6 @@ def test_missing_resource_type_general():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5072/00013641"
     assert subject.type == "Other"
-    assert subject.doi == "10.5072/00013641"
     assert subject.publisher == {'name': 'Vivli'}
     assert subject.url is None
     assert subject.titles[0] == {

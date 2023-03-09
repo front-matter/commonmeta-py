@@ -8,7 +8,6 @@ def test_doi_with_data_citation():
     "DOi with data citation"
     subject = Metadata("10.7554/elife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.doi == "10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
     bibtex = subject.bibtex()
@@ -184,6 +183,7 @@ def test_book_chapter():
     booktitle = {Shoulder Stiffness},
     copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
     doi = {10.1007/978-3-662-46370-3_13},
+    isbn = {9783662463703},
     month = mar,
     pages = {155--158},
     publisher = {Springer Science and Business Media LLC},

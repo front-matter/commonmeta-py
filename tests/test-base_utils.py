@@ -73,6 +73,10 @@ def test_parse_attributes():
     assert ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"] == parse_attributes(
         ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"]
     )
+    # list of empty strings
+    assert None == parse_attributes(
+        [""]
+    )
     # None
     assert None is parse_attributes(None)
 

@@ -399,5 +399,7 @@ CROSSREF_CONTAINER_TYPES = {
     "BookChapter": "book",
     "Dataset": "database",
     "JournalArticle": "journal",
+    "JournalIssue": "journal",
+    "Monograph": "book-series",
     "ProceedingsArticle": "proceedings",
 }
