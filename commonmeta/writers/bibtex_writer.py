@@ -21,13 +21,14 @@ def write_bibtex(metadata: Commonmeta) -> str:
         title = metadata.titles[0].get("title", None)
     else:
         title = None
+    doi = doi_from_url(metadata.id)
 
-    id_ = metadata.id
+    id_ = doi if doi else metadata.id
     type_ = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
     abstract = metadata.descriptions[0].get("description", None) if metadata.descriptions else None
     author = authors_as_string(metadata.creators)
     license_ = str(metadata.license.get("url")) if metadata.license else None
-    doi = doi_from_url(metadata.id)
+    doi = doi
     institution = metadata.publisher.get("name", None) if type_ == "phdthesis" else None
     issn = container.get("identifier", None) if container.get("identifierType", None) == "ISSN" else None
     isbn = container.get("identifier", None) if container.get("identifierType", None) == "ISBN" else None
