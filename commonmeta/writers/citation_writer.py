@@ -18,13 +18,13 @@ def write_citation(metadata):
         text = re.sub(r"\.\.+", ".", text)
         return text
 
-    citeproc_json = json.loads(metadata.citeproc())
+    csl = json.loads(metadata.csl())
 
     # Remove keys that are not supported by citeproc-py.
-    citeproc_json = py_.omit(citeproc_json, "copyright", "categories")
+    csl = py_.omit(csl, "copyright", "categories")
 
     # Process the JSON data to generate a citeproc-py BibliographySource.
-    source = CiteProcJSON([citeproc_json])
+    source = CiteProcJSON([csl])
     style_path = get_style_filepath(metadata.style)
     style = CitationStylesStyle(style_path, locale=metadata.locale)
     bib = CitationStylesBibliography(style, source, formatter.html)

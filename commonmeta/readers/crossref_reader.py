@@ -6,7 +6,7 @@ from pydash import py_
 from ..utils import (
     dict_to_spdx,
     normalize_cc_url,
-    from_citeproc,
+    from_csl,
     normalize_url,
     normalize_doi,
 )
@@ -49,7 +49,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, 'Other')
 
     if meta.get("author", None):
-        creators = get_authors(from_citeproc(wrap(meta.get("author"))))
+        creators = get_authors(from_csl(wrap(meta.get("author"))))
     else:
         creators = None
 
@@ -58,7 +58,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         return item
 
     editors = [editor_type(i) for i in wrap(meta.get("editor", None))]
-    contributors = presence(get_authors(from_citeproc(editors)))
+    contributors = presence(get_authors(from_csl(editors)))
 
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
     title = meta.get("title", None) or meta.get("original-title")

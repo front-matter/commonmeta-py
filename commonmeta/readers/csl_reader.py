@@ -1,17 +1,17 @@
-"""schema_org reader for commonmeta-py"""
-from ..utils import dict_to_spdx, from_citeproc, normalize_id, name_to_fos
+"""CSL-JSON reader for commonmeta-py"""
+from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos
 from ..base_utils import wrap, compact, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import doi_from_url, get_doi_ra
 from ..constants import (
-    CP_TO_CM_TRANSLATIONS,
+    CSL_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 
 
-def read_citeproc(data: dict, **kwargs) -> Commonmeta:
-    """read_citeproc"""
+def read_csl(data: dict, **kwargs) -> Commonmeta:
+    """read_csl"""
     if data is None:
         return {"state": "not_found"}
     meta = data
@@ -19,10 +19,10 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     id_ = normalize_id(meta.get("id", None) or meta.get("DOI", None))
-    type_ = CP_TO_CM_TRANSLATIONS.get(meta.get("type", None), 'Other')
+    type_ = CSL_TO_CM_TRANSLATIONS.get(meta.get("type", None), 'Other')
 
-    creators = get_authors(from_citeproc(wrap(meta.get("author", None))))
-    contributors = get_authors(from_citeproc(wrap(meta.get("editor", None))))
+    creators = get_authors(from_csl(wrap(meta.get("author", None))))
+    contributors = get_authors(from_csl(wrap(meta.get("editor", None))))
 
     date = {'published': get_date_from_date_parts(meta.get("issued", None))}
 
@@ -62,7 +62,6 @@ def read_citeproc(data: dict, **kwargs) -> Commonmeta:
     return {
         "id": id_,
         "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
         "creators": creators,

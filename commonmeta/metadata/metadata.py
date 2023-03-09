@@ -18,8 +18,8 @@ from ..readers import (
     get_schema_org,
     read_schema_org,
     get_codemeta,
-    read_citeproc,
     read_codemeta,
+    read_csl,
     get_cff,
     read_cff,
 )
@@ -27,7 +27,7 @@ from ..writers import (
     write_datacite,
     write_bibtex,
     write_citation,
-    write_citeproc,
+    write_csl,
     write_ris,
     write_schema_org,
     write_commonmeta,
@@ -84,9 +84,9 @@ class Metadata:
                 data = xmltodict.parse(string)
                 data = json.loads(str(json.dumps(data)))
                 meta = read_crossref_xml(data)
-            elif via == "citeproc":
+            elif via == "csl":
                 data = json.loads(string)
-                meta = read_citeproc(data)
+                meta = read_csl(data)
             elif via == "codemeta":
                 data = json.loads(string)
                 meta = read_codemeta(data)
@@ -159,9 +159,9 @@ class Metadata:
         """Bibtex"""
         return write_bibtex(self)
 
-    def citeproc(self):
-        """Citeproc"""
-        return write_citeproc(self)
+    def csl(self):
+        """CSL-JSON"""
+        return write_csl(self)
 
     def citation(self):
         """Citation"""

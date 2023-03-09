@@ -11,7 +11,7 @@ from commonmeta.utils import (
     normalize_ids,
     normalize_cc_url,
     normalize_issn,
-    from_citeproc,
+    from_csl,
     find_from_format_by_id,
     find_from_format_by_string,
     find_from_format_by_filename,
@@ -20,7 +20,7 @@ from commonmeta.utils import (
     from_schema_org_creators,
     pages_as_string,
     subjects_as_string,
-    to_citeproc,
+    to_csl,
     to_ris,
     to_schema_org,
     to_schema_org_container,
@@ -234,8 +234,8 @@ def test_normalize_issn():
     assert "2146-8427" == normalize_issn(string)
 
 
-def test_from_citeproc():
-    "from_citeproc"
+def test_from_csl():
+    "from_csl"
     assert [
         {
             "@type": "Person",
@@ -248,7 +248,7 @@ def test_from_citeproc():
             "givenName": "Martial",
             "name": "Martial Sankar",
         }
-    ] == from_citeproc(
+    ] == from_csl(
         [
             {
                 "given": "Martial",
@@ -267,7 +267,7 @@ def test_from_citeproc():
             "@type": "Organization",
             "name": "University of Lausanne",
         }
-    ] == from_citeproc(
+    ] == from_csl(
         [
             {
                 "literal": "University of Lausanne",
@@ -280,7 +280,7 @@ def test_from_citeproc():
             "@type": "Organization",
             "name": "University of Lausanne",
         }
-    ] == from_citeproc(
+    ] == from_csl(
         [
             {
                 "name": "University of Lausanne",
@@ -378,11 +378,11 @@ def test_find_from_format_by_string():
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "codemeta" == find_from_format_by_string(string)
-    # citeproc
+    # csl
     filepath = path.join(path.dirname(__file__), "fixtures", "citeproc.json")
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
-    assert "citeproc" == find_from_format_by_string(string)
+    assert "csl" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
 
@@ -488,8 +488,8 @@ def test_subjects_as_string():
     assert None is subjects_as_string(None)
 
 
-def test_to_citeproc():
-    """to citeproc"""
+def test_to_csl():
+    """to csl"""
     authors = [
         {
             "ORCID": "http://orcid.org/0000-0003-0077-4738",
@@ -498,8 +498,8 @@ def test_to_citeproc():
         }
     ]
     organization_authors = [{"name": "University of California, Berkeley"}]
-    assert [{"family": "Jones", "given": "Matt"}] == to_citeproc(authors)
-    assert [{"literal": "University of California, Berkeley"}] == to_citeproc(
+    assert [{"family": "Jones", "given": "Matt"}] == to_csl(authors)
+    assert [{"literal": "University of California, Berkeley"}] == to_csl(
         organization_authors
     )
 

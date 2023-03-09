@@ -198,7 +198,9 @@ def normalize_issn(string, **kwargs):
 def dict_to_spdx(dct: dict) -> dict:
     """Convert a dict to SPDX"""
     dct.update({"url": normalize_cc_url(dct.get("url", None))})
-    file_path = os.path.join(os.path.dirname(__file__), "resources", "spdx", "licenses.json")
+    file_path = os.path.join(
+        os.path.dirname(__file__), "resources", "spdx", "licenses.json"
+    )
     with open(file_path, encoding="utf-8") as json_file:
         spdx = json.load(json_file).get("licenses")
     license_ = next(
@@ -235,8 +237,8 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
-def from_citeproc(elements: list) -> list:
-    """Convert from citeproc elements"""
+def from_csl(elements: list) -> list:
+    """Convert from csl elements"""
 
     def format_element(element):
         """format element"""
@@ -260,8 +262,8 @@ def from_citeproc(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def to_citeproc(elements: list) -> list:
-    """Convert elements to citeproc"""
+def to_csl(elements: list) -> list:
+    """Convert elements to CSL-JSON"""
 
     def format_element(i):
         """format element"""
@@ -306,9 +308,7 @@ def to_schema_org_creators(elements: list) -> list():
 
     def format_element(element):
         """format element"""
-        element["@type"] = (
-            element["type"][0:-2] if element.get("type", None) else None
-        )
+        element["@type"] = element["type"][0:-2] if element.get("type", None) else None
         if element.get("familyName", None) and element.get("name", None) is None:
             element["name"] = " ".join(
                 [element.get("givenName", None), element.get("familyName")]
@@ -361,11 +361,7 @@ def to_schema_org_relations(related_items: list, relation_type=None):
         """format element"""
         if i["relatedItemIdentifierType"] == "ISSN" and i["relationType"] == "IsPartOf":
             return compact({"@type": "Periodical", "issn": i["relatedItemIdentifier"]})
-        return compact(
-            {
-                "@id": normalize_id(i["relatedIdentifier"])
-            }
-        )
+        return compact({"@id": normalize_id(i["relatedIdentifier"])})
 
     # consolidate different relation types
     if relation_type == "References":
@@ -440,7 +436,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         if data.get("source", None) == "Crossref":
             return "crossref"
         if py_.get(data, "issued.date-parts") is not None:
-            return "citeproc"
+            return "csl"
     except json.JSONDecodeError:
         pass
     try:
@@ -497,36 +493,70 @@ def from_schema_org_creators(elements: list) -> list:
     def format_element(i):
         """format element"""
         element = {}
-        element["id"] = i.get("@id", None)
-
-        if isinstance(i.get("@type", None), list):
+        if urlparse(i.get("@id", None)).hostname == "orcid.org":
+            element["id"] = i.get("@id")
+            element["type"] = "Person"
+        elif isinstance(i.get("@type", None), str):
+            element["type"] = i.get("@type")
+        elif isinstance(i.get("@type", None), list):
             element["type"] = py_.find(
                 i["@type"], lambda x: x in ["Person", "Organization"]
             )
+
+        # strip text after comma if suffix is an academic title
+        if str(i["name"]).split(", ", maxsplit=1)[-1] in [
+            "MD",
+            "PhD",
+            "DVM",
+            "DDS",
+            "DMD",
+            "JD",
+            "MBA",
+            "MPH",
+            "MS",
+            "MA",
+            "MFA",
+            "MSc",
+            "MEd",
+            "MEng",
+            "MPhil",
+            "MRes",
+            "LLM",
+            "LLB",
+            "BSc",
+            "BA",
+            "BFA",
+            "BEd",
+            "BEng",
+            "BPhil",
+        ]:
+            i["name"] = str(i["name"]).split(", ", maxsplit=1)[0]
         length = len(str(i["name"]).split(" "))
         if i.get("givenName", None):
             element["givenName"] = i.get("givenName", None)
-        else:
-            element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
         if i.get("familyName", None):
             element["familyName"] = i.get("familyName", None)
             element["type"] = "Person"
-        else:
+        # parentheses around the last word indicate an organization
+        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith("("):
+            element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
             element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
-        if not element["familyName"]:
+        if not element.get("familyName", None):
             element["creatorName"] = compact(
-            {
-                "type": i.get("@type", None),
-                "#text": i.get("name", None),
-            }
-        )
+                {
+                    "type": i.get("@type", None),
+                    "#text": i.get("name", None),
+                }
+            )
+
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname == "ror.org":
-            element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
-        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname == "isni.org":
-            element["affiliation"] = {"id": i["affiliation"]["@id"], "type": "Organization", "name": i["affiliation"]["name"]}
-
+        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in ["ror.org", "isni.org"]:
+            element["affiliation"] = {
+                "id": i["affiliation"]["@id"],
+                "type": "Organization",
+                "name": i["affiliation"]["name"],
+            }
         return compact(element)
 
     return [format_element(i) for i in wrap(elements)]

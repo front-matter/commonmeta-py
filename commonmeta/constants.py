@@ -62,7 +62,7 @@ CM_TO_BIB_TRANSLATIONS = {
 }
 
 # source: https://docs.citationstyles.org/en/stable/specification.html?highlight=book#appendix-iii-types
-CP_TO_CM_TRANSLATIONS = {
+CSL_TO_CM_TRANSLATIONS = {
     "article": "Article",
     "article-journal": "JournalArticle",
     "article-magazine": "Article",
@@ -110,7 +110,7 @@ CP_TO_CM_TRANSLATIONS = {
     "webpage": "WebPage",
 }
 
-CM_TO_CP_TRANSLATIONS = {
+CM_TO_CSL_TRANSLATIONS = {
     "Article": "article",
     "JournalArticle": "article-journal",
     "Book": "book",

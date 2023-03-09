@@ -151,9 +151,7 @@ def test_dataverse():
     assert subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.creators) == 1
     assert subject.creators[0] == {
-        "type": "Person",
-        "givenName": "International Genetics of Ankylosing Spondylitis Consortium",
-        "familyName": "(IGAS)",
+        "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)",
     }
     assert subject.contributors is None
     assert subject.license == {'id': 'CC0-1.0', 'url': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'}
@@ -392,3 +390,45 @@ def test_schema_org_geolocation():
         "geoLocationPoint": {"pointLatitude": 67.12594, "pointLongitude": -50.18037}
     } == schema_org_geolocation(spatial_coverage)
     assert None is schema_org_geolocation(none_coverage)
+
+
+def test_yet_another_ghost_post():
+    """yet another ghost post"""
+    string = "https://www.ideasurg.pub/why-surgery-needs-ideas/"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert (
+        subject.id
+        == "https://www.ideasurg.pub/why-surgery-needs-ideas"
+    )
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://www.ideasurg.pub/why-surgery-needs-ideas")
+    assert subject.titles[0] == {
+        "title": 'Why Surgery Needs I.D.E.A.S.'
+    }
+    assert len(subject.creators) == 1
+    assert subject.creators[0] == {
+        "familyName": "Sathe",
+        "givenName": "Tejas S.",
+        "type": "Person",
+    }
+    assert subject.contributors is None
+    assert subject.license is None
+    assert subject.date == {'published': '2022-12-19T05:42:45Z', 'updated': '2023-01-20T04:14:21Z'}
+    assert subject.publisher == {"name": "I.D.E.A.S."}
+    assert subject.references is None
+    assert subject.container == {'type': 'Blog', 'title': 'I.D.E.A.S.', 'identifier': 'https://www.ideasurg.pub/', 'identifierType': 'URL'}
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "I am by no means an expert on the future of academic publishing."
+        )
+    )
+    assert subject.subjects == [{'subject': 'essay'}]
+    assert subject.language == "en"
+    assert subject.version is None
+    assert subject.geo_locations is None
+    assert subject.provider is None

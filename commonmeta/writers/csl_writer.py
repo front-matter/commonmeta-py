@@ -1,19 +1,19 @@
-"""Citeproc writer for commonmeta-py"""
+"""CSL-JSON writer for commonmeta-py"""
 import json
 
-from ..utils import pages_as_string, to_citeproc
+from ..utils import pages_as_string, to_csl
 from ..base_utils import wrap, presence, parse_attributes, compact
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
-from ..constants import CM_TO_CP_TRANSLATIONS, Commonmeta
+from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 
 
-def write_citeproc(metadata: Commonmeta) -> str:
-    """Write citeproc"""
+def write_csl(metadata: Commonmeta) -> str:
+    """Write CSL-JSON"""
     if len(wrap(metadata.creators)) == 0:
         author = None
     else:
-        author = to_citeproc(wrap(metadata.creators))
+        author = to_csl(wrap(metadata.creators))
 
     if (
         metadata.type == "Software"
@@ -21,7 +21,7 @@ def write_citeproc(metadata: Commonmeta) -> str:
     ):
         type_ = "book"
     else:
-        type_ = CM_TO_CP_TRANSLATIONS.get(metadata.type, 'Document')
+        type_ = CM_TO_CSL_TRANSLATIONS.get(metadata.type, 'Document')
 
     container = metadata.container or {}
     data = compact(
@@ -37,7 +37,7 @@ def write_citeproc(metadata: Commonmeta) -> str:
             ),
             "language": metadata.language,
             "author": author,
-            "contributor": to_citeproc(wrap(metadata.contributors)),
+            "contributor": to_csl(wrap(metadata.contributors)),
             "issued": get_date_parts(metadata.date.get('published', None)),
             "submitted": get_date_parts(metadata.date.get('submitted')) if metadata.date.get('submitted', None) else None,
             "abstract": parse_attributes(

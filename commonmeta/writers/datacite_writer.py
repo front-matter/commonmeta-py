@@ -4,7 +4,7 @@ from typing import Optional
 
 from ..base_utils import wrap, compact
 from ..doi_utils import doi_from_url
-from ..constants import (CM_TO_BIB_TRANSLATIONS, CM_TO_CP_TRANSLATIONS, CM_TO_CR_TRANSLATIONS, CM_TO_DC_TRANSLATIONS, CM_TO_RIS_TRANSLATIONS, CM_TO_SO_TRANSLATIONS, Commonmeta)
+from ..constants import (CM_TO_BIB_TRANSLATIONS, CM_TO_CSL_TRANSLATIONS, CM_TO_CR_TRANSLATIONS, CM_TO_DC_TRANSLATIONS, CM_TO_RIS_TRANSLATIONS, CM_TO_SO_TRANSLATIONS, Commonmeta)
 
 
 def write_datacite(metadata: Commonmeta) -> Optional[str]:
@@ -20,7 +20,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
         "resourceTypeGeneral": resource_type_general,
         "resourceType": resource_type,
         "schemaOrg": CM_TO_SO_TRANSLATIONS.get(metadata.type, 'CreativeWork'),
-        "citeproc": CM_TO_CP_TRANSLATIONS.get(metadata.type, 'article'),
+        "citeproc": CM_TO_CSL_TRANSLATIONS.get(metadata.type, 'article'),
         "bibtex": CM_TO_BIB_TRANSLATIONS.get(metadata.type, 'misc'),
         "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, 'GEN'),
     })
