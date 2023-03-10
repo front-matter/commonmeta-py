@@ -28,7 +28,6 @@ def write_bibtex(metadata: Commonmeta) -> str:
     abstract = metadata.descriptions[0].get("description", None) if metadata.descriptions else None
     author = authors_as_string(metadata.creators)
     license_ = str(metadata.license.get("url")) if metadata.license else None
-    doi = doi
     institution = metadata.publisher.get("name", None) if type_ == "phdthesis" else None
     issn = container.get("identifier", None) if container.get("identifierType", None) == "ISSN" else None
     isbn = container.get("identifier", None) if container.get("identifierType", None) == "ISBN" else None
