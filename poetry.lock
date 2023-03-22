@@ -498,25 +498,25 @@ toml = ["tomli"]
 
 [[package]]
 name = "datacite"
-version = "1.1.2"
+version = "1.1.3"
 description = "Python API wrapper for the DataCite Metadata Store API."
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "datacite-1.1.2-py2.py3-none-any.whl", hash = "sha256:a9dc41df3413e2d7d854bda5cea38cfdccabc9cd6ce3652cecd47db534c76c29"},
-    {file = "datacite-1.1.2.tar.gz", hash = "sha256:0164bc2ff35bba643897201eb359611abb43ff5811a9ac17fb5592cd643b4443"},
+    {file = "datacite-1.1.3-py2.py3-none-any.whl", hash = "sha256:d5b4587019ae66d09d6679df4f0adf157b40e8b1da371739e4ecf2301fd6530f"},
+    {file = "datacite-1.1.3.tar.gz", hash = "sha256:86461b16f1990090aee56cc11f29a60f71eff006227a9d577cf4bc628f21f5a9"},
 ]
 
 [package.dependencies]
 idutils = ">=1.0.0"
 jsonschema = ">=3.0.0"
-lxml = ">=4.5.0"
-requests = ">=2.5.0"
+lxml = ">=4.5.2"
+requests = ">=2.12.2"
 
 [package.extras]
-all = ["Sphinx (>=3)", "mock (>=1.3.0)", "pytest-invenio (>=1.4.0)", "responses (>=0.10.6)"]
-docs = ["Sphinx (>=3)"]
+all = ["Sphinx (>=4.5.0)", "mock (>=1.3.0)", "pytest-invenio (>=1.4.0)", "responses (>=0.10.6)"]
+docs = ["Sphinx (>=4.5.0)"]
 tests = ["mock (>=1.3.0)", "pytest-invenio (>=1.4.0)", "responses (>=0.10.6)"]
 
 [[package]]
