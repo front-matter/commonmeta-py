@@ -27,7 +27,8 @@ simplejson = "^3.18"
 bibtexparser = "^1.4"
 citeproc-py-styles = ">0.1"
 citeproc-py = "^0.6"
-jsonschema-rs = "^0.16.3"
+jsonschema = "^4.17"
+base32_lib = "^1.0"
 mkdocs = "^1.4"
 mkdocs-material = "^8.0"
 mkdocs-material-extensions = "^1.1"
@@ -39,7 +40,7 @@ types-xmltodict = "^0.13"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
-flake8 = "^6.0.0"
+ruff = "^0.0.47"
 pytest = "^7.2.1"
 pytest-cov = "^4.0.0"
 pytest-recording = "^0.12.2"
@@ -49,6 +50,13 @@ codecov = "^2.1.12"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = [
+    "F401",
+    "F403",
+]
 
 [tool.tox]
 legacy_tox_ini = """
