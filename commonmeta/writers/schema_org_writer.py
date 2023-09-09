@@ -27,7 +27,7 @@ def write_schema_org(metadata):
             "url": metadata.url,
             "additionalType": additional_type,
             "name": parse_attributes(metadata.titles, content="title", first=True),
-            "author": to_schema_org_creators(wrap(metadata.creators)),
+            "author": to_schema_org_creators(wrap(metadata.contributors)),
             "editor": to_schema_org_creators(wrap(metadata.contributors)),
             "description": parse_attributes(
                 metadata.descriptions, content="description", first=True

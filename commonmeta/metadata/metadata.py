@@ -4,7 +4,7 @@ import json
 from typing import Optional
 from functools import cached_property
 import yaml
-import jsonschema_rs
+from jsonschema import validate
 import xmltodict
 
 from ..readers import (
@@ -38,6 +38,7 @@ from ..utils import normalize_id, find_from_format
 # pylint: disable=R0902
 class Metadata:
     """Metadata"""
+
     def __init__(self, string: Optional[str], **kwargs):
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
@@ -106,14 +107,13 @@ class Metadata:
         self.type = meta.get("type")
         self.doi = meta.get("doi")
         self.url = meta.get("url")
-        self.creators = meta.get("creators")
+        self.contributors = meta.get("contributors")
         self.titles = meta.get("titles")
         self.publisher = meta.get("publisher")
         self.date = meta.get("date")
         # recommended and optional properties
         self.additional_type = meta.get("additional_type")
         self.subjects = meta.get("subjects")
-        self.contributors = meta.get("contributors")
         self.language = meta.get("language")
         self.alternate_identifiers = meta.get("alternate_identifiers")
         self.sizes = meta.get("sizes")
@@ -141,15 +141,17 @@ class Metadata:
     @cached_property
     def load_schema(self) -> str:
         """Load the JSON schema"""
-        file_path = path.join(path.dirname(path.dirname(__file__)), "schemas", "commonmeta_v1.json")
+        file_path = path.join(
+            path.dirname(path.dirname(__file__)), "resources", "commonmeta_v0.10.json"
+        )
         with open(file_path, encoding="utf-8") as file:
             schema = file.read()
         return schema
 
     def is_valid(self) -> bool:
         """is_Valid"""
-        validator = jsonschema_rs.JSONSchema.from_str(self.load_schema)
-        return validator.is_valid(write_commonmeta(self))
+        validate(instance=write_commonmeta(self), schema=json.loads(self.load_schema))
+        return True
 
     def commonmeta(self):
         """Commonmeta"""

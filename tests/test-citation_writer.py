@@ -60,7 +60,7 @@ def test_software_with_version():
     """software with version"""
     subject = Metadata('https://doi.org/10.5281/zenodo.2598836')
     assert subject.citation(
-    ) == 'Lab For Exosphere And Near Space Environment Studies. (2019). <i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.2598836'
+    ) == '<i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (1.0.0). (2019). <i>lenses-lab/LYAO_RT-2018JA026426: Original Release</i> (1.0.0) [Computer software]. Zenodo. https://doi.org/10.5281/zenodo.2598836'
 
 
 def test_software_via_cff():

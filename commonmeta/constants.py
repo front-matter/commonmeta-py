@@ -403,3 +403,26 @@ CROSSREF_CONTAINER_TYPES = {
     "Monograph": "book-series",
     "ProceedingsArticle": "proceedings",
 }
+
+DATACITE_CONTRIBUTOR_TYPES = {
+    "ContactPerson": "ContactPerson",
+    "DataCurator": "DataCuration",
+    "DataManager": "Other",
+    "Distributor": "Other",
+    "Editor": "Editor",
+    "HostingInstitution": "Other",
+    "Other": "Other",
+    "Producer": "Other",
+    "ProjectLeader": "Other",
+    "ProjectManager": "Other",
+    "ProjectMember": "Other",
+    "RegistrationAgency": "Other",
+    "RegistrationAuthority": "Other",
+    "RelatedPerson": "Other",
+    "ResearchGroup": "Other",
+    "RightsHolder": "Other",
+    "Researcher": "Other",
+    "Sponsor": "Other",
+    "Supervisor": "Supervision",
+    "WorkPackageLeader": "Other",
+}

@@ -1,8 +1,8 @@
 """cff reader for commonmeta-py"""
 from typing import Optional
+from urllib.parse import urlparse
 import requests
 import yaml
-from urllib.parse import urlparse
 
 from ..utils import (
     normalize_id,
@@ -14,7 +14,6 @@ from ..utils import (
 )
 from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url
 from ..constants import Commonmeta
 
 
@@ -60,7 +59,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     #                                                   end.fetch('value', nil))
     type_ = "Software"
     url = normalize_id(meta.get("repository-code", None))
-    creators = cff_creators(wrap(meta.get("authors", None)))
+    contributors = cff_contributors(wrap(meta.get("authors", None)))
 
     if meta.get("title", None):
         titles = [{"title": meta.get("title", None)}]
@@ -68,10 +67,14 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         titles = []
 
     date = {
-        "published": get_iso8601_date(meta.get("date-released")) if meta.get("date-released", None) else None
+        "published": get_iso8601_date(meta.get("date-released"))
+        if meta.get("date-released", None)
+        else None
     }
 
-    publisher = {"name": "GitHub"} if url and urlparse(url).hostname == "github.com" else None
+    publisher = (
+        {"name": "GitHub"} if url and urlparse(url).hostname == "github.com" else None
+    )
 
     if meta.get("abstract", None):
         descriptions = [
@@ -85,9 +88,9 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
 
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
-    license_ = meta.get("licenseId", None)
+    license_ = meta.get("license", None)
     if license_ is not None:
-        license_ = dict_to_spdx({"id": meta.get("licenseId")})
+        license_ = dict_to_spdx({"id": meta.get("license")})
 
     references = cff_references(wrap(meta.get("references", None)))
 
@@ -99,7 +102,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         # 'identifiers' => identifiers,
         "url": url,
         "titles": titles,
-        "creators": creators,
+        "contributors": contributors,
         "publisher": publisher,
         "references": presence(references),
         "date": date,
@@ -112,8 +115,8 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     } | read_options
 
 
-def cff_creators(creators):
-    """cff_creators"""
+def cff_contributors(contributors):
+    """cff_contributors"""
 
     def format_affiliation(affiliation):
         """format_affiliation"""
@@ -136,11 +139,7 @@ def cff_creators(creators):
             id_ = normalize_orcid(parse_attributes(i.get("orcid", None)))
         else:
             id_ = None
-        if (
-            i.get("given-names", None)
-            or i.get("family-names", None)
-            or id_
-        ):
+        if i.get("given-names", None) or i.get("family-names", None) or id_:
             given_name = parse_attributes(i.get("given-names", None))
             family_name = parse_attributes(i.get("family-names", None))
             affiliation = compact(
@@ -161,7 +160,7 @@ def cff_creators(creators):
             "name": i.get("name", None) or i.get("#text", None),
         }
 
-    return [format_element(i) for i in creators]
+    return [format_element(i) for i in contributors]
 
 
 def cff_references(references):

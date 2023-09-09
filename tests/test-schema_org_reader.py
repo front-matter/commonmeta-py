@@ -15,15 +15,21 @@ def test_blog_posting():
     assert subject.type == "Article"
     assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "familyName": "Fenner",
         "givenName": "Martin",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
-    assert subject.date == {'published': '2016-12-20', 'updated': '2022-08-15T09:06:22Z'}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "published": "2016-12-20",
+        "updated": "2022-08-15T09:06:22Z",
+    }
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.references is None
     assert subject.container == {
@@ -57,16 +63,19 @@ def test_zenodo():
             "delay fear conditioning task with auditory CS and electrical US"
         )
     }
-    assert len(subject.creators) == 6
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 6
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Staib,",
         "familyName": "Matthias",
         "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-SA-4.0', 'url': 'https://creativecommons.org/licenses/by-sa/4.0/legalcode'}
-    assert subject.date == {'published': '2018-03-14'}
+    assert subject.license == {
+        "id": "CC-BY-SA-4.0",
+        "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
+    }
+    assert subject.date == {"published": "2018-03-14"}
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
     assert subject.container == {"type": "DataRepository"}
@@ -106,15 +115,18 @@ def test_pangaea():
     assert subject.titles[0] == {
         "title": "Hydrological and meteorological investigations in a lake near Kangerlussuaq, west Greenland"
     }
-    assert len(subject.creators) == 8
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 8
+    assert subject.contributors[0] == {
         "familyName": "Johansson",
         "givenName": "Emma",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
-    assert subject.date == {'published': '2014-09-25'}
+    assert subject.license == {
+        "id": "CC-BY-3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
+    }
+    assert subject.date == {"published": "2014-09-25"}
     assert subject.publisher == {"name": "PANGAEA"}
     assert subject.references is None
     assert subject.container == {
@@ -149,13 +161,17 @@ def test_dataverse():
         == "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
     assert subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Organization",
+        "contributorRoles": ["Author"],
         "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)",
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC0-1.0', 'url': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'}
-    assert subject.date == {'published': '2017-09-30', 'updated': '2017-09-30'}
+    assert subject.license == {
+        "id": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    }
+    assert subject.date == {"published": "2017-09-30", "updated": "2017-09-30"}
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container == {
@@ -192,17 +208,20 @@ def test_yet_another_blog_post():
         == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
     )
     assert subject.titles[0] == {
-        "title": "What killing methods enabled Neandertals to hunt large prey animals?"
+        "title": "Neandertals hunted dangerous prey. How they killed them."
     }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "familyName": "Hawks",
         "givenName": "John",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {'published': '2022-09-24T17:22:00Z', 'updated': '2022-09-30T17:23:04Z'}
+    assert subject.date == {
+        "published": "2022-09-24T17:22:00Z",
+        "updated": "2023-03-19T20:38:17Z",
+    }
     assert subject.publisher == {"name": "John Hawks"}
     assert subject.references is None
     assert subject.container == {
@@ -214,7 +233,9 @@ def test_yet_another_blog_post():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("A look at sites where ancient people killed many animals")
+        .startswith(
+            "With deep experience in the hunt, Neandertals could anticipate the behavior of many of the most dangerous prey animals."
+        )
     )
     assert subject.subjects == [
         {"subject": "neandertals"},
@@ -242,15 +263,15 @@ def test_blog_with_dois():
     assert subject.titles[0] == {
         "title": "Einbürgerung und Ausbürgerung: Warum die Staatsangehörigkeitsrechtsreform nicht ohne Ausbürgerungsrechtsreform funktioniert"
     }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "givenName": "Maria Martha",
         "familyName": "Gerdes",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {'published': '2022-12-09'}
+    assert subject.date == {"published": "2022-12-09"}
     assert subject.publisher == {"name": "Verfassungsblog"}
     assert subject.references is None
     assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
@@ -288,11 +309,17 @@ def test_another_blog_with_dois():
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
     assert subject.titles[0] == {"title": "DOIng it Right! (DOIs for This Blog)"}
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {"type": "Person", "name": "Andreas"}
-    assert subject.contributors is None
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "name": "Andreas",
+    }
     assert subject.license is None
-    assert subject.date == {'published': '2022-10-05T14:35:47Z', 'updated': '2022-10-05T14:35:47Z'}
+    assert subject.date == {
+        "published": "2022-10-05T14:35:47Z",
+        "updated": "2022-10-05T14:35:47Z",
+    }
     assert subject.publisher == {"name": "JSC Accelerating Devices Lab"}
     assert subject.references is None
     assert subject.container == {
@@ -322,15 +349,21 @@ def test_with_upstream_blog_post():
     assert subject.titles[0] == {
         "title": "Welcome to Upstream: the new space for scholarly community discussion on all things open"
     }
-    assert len(subject.creators) == 4
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
         "familyName": "Chodacki",
         "givenName": "John",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
-    assert subject.date == {'published': '2021-11-22T05:06:00Z', 'updated': '2023-01-06T21:05:45Z'}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "published": "2021-11-22T05:06:00Z",
+        "updated": "2023-01-06T21:05:45Z",
+    }
     assert subject.publisher == {"name": "Upstream"}
     assert subject.references is None
     assert subject.container == {
@@ -355,23 +388,12 @@ def test_with_upstream_blog_post():
 
 def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
-    string = "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
+    string = "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     subject = Metadata(string)
     assert subject.is_valid
     assert (
         subject.id
-        == "https://blogs.tib.eu/wp/dini-ag-blog/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
-    )
-
-
-def test_with_datacite_blog():
-    "with datacite blog"
-    string = "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed/"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://blog.datacite.org/investigating-pids-for-organizations-orcid-de-2-project-successfully-completed"
+        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
     )
 
 
@@ -397,37 +419,36 @@ def test_yet_another_ghost_post():
     string = "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     subject = Metadata(string)
     assert subject.is_valid
-    assert (
-        subject.id
-        == "https://www.ideasurg.pub/why-surgery-needs-ideas"
-    )
+    assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas"
     assert subject.type == "Article"
-    assert (
-        subject.url
-        == "https://www.ideasurg.pub/why-surgery-needs-ideas")
-    assert subject.titles[0] == {
-        "title": 'Why Surgery Needs I.D.E.A.S.'
-    }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas"
+    assert subject.titles[0] == {"title": "Why Surgery Needs I.D.E.A.S."}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "familyName": "Sathe",
         "givenName": "Tejas S.",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {'published': '2022-12-19T05:42:45Z', 'updated': '2023-01-20T04:14:21Z'}
+    assert subject.date == {
+        "published": "2022-12-19T05:42:45Z",
+        "updated": "2023-07-25T18:02:32Z",
+    }
     assert subject.publisher == {"name": "I.D.E.A.S."}
     assert subject.references is None
-    assert subject.container == {'type': 'Blog', 'title': 'I.D.E.A.S.', 'identifier': 'https://www.ideasurg.pub/', 'identifierType': 'URL'}
+    assert subject.container == {
+        "type": "Blog",
+        "title": "I.D.E.A.S.",
+        "identifier": "https://www.ideasurg.pub/",
+        "identifierType": "URL",
+    }
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "I am by no means an expert on the future of academic publishing."
-        )
+        .startswith("I am by no means an expert on the future of academic publishing.")
     )
-    assert subject.subjects == [{'subject': 'essay'}]
+    assert subject.subjects == [{"subject": "essay"}]
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None

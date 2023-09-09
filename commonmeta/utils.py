@@ -7,10 +7,10 @@ from urllib.parse import urlparse
 import yaml
 import bibtexparser
 from bs4 import BeautifulSoup
-
 from pydash import py_
+import base32_lib as base32
 
-from .base_utils import wrap, compact
+from .base_utils import wrap, compact, parse_xmldict
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
 
 NORMALIZED_LICENSES = {
@@ -235,6 +235,35 @@ def dict_to_spdx(dct: dict) -> dict:
     #     }.compact
     #   end
     # end
+
+
+def from_crossref_xml(elements: list) -> list:
+    """Convert from crossref_xml elements"""
+    def format_affiliation(element):
+        """Format affiliation"""
+        return {"name": element}
+
+    def format_element(element):
+        """format element"""
+        if element.get("name", None) is not None:
+            element["@type"] = "Organization"
+            element["name"] = element.get("name")
+        else:
+            element["@type"] = "Person"
+        element["givenName"] = element.get("given_name", None)
+        element["familyName"] = element.get("surname", None)
+        element["contributorType"] = element.get("@contributor_role", "author").capitalize()
+        if element.get("ORCID", None) is not None:
+            orcid = parse_xmldict(
+                element.get("ORCID"), ignored_attributes="@authenticated"
+            )
+            element["ORCID"] = normalize_orcid(orcid)
+        element = py_.omit(
+            element, "given_name", "surname", "sequence", "@contributor_role"
+        )
+        return compact(element)
+
+    return [format_element(i) for i in elements]
 
 
 def from_csl(elements: list) -> list:
@@ -538,7 +567,9 @@ def from_schema_org_creators(elements: list) -> list:
             element["familyName"] = i.get("familyName", None)
             element["type"] = "Person"
         # parentheses around the last word indicate an organization
-        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith("("):
+        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith(
+            "("
+        ):
             element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
             element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
         if not element.get("familyName", None):
@@ -551,7 +582,10 @@ def from_schema_org_creators(elements: list) -> list:
 
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in ["ror.org", "isni.org"]:
+        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in [
+            "ror.org",
+            "isni.org",
+        ]:
             element["affiliation"] = {
                 "id": i["affiliation"]["@id"],
                 "type": "Organization",
@@ -733,3 +767,15 @@ def name_to_fos(name: str) -> Optional[dict]:
     #   else
 
     return {"subject": name.lower()}
+
+
+def encode_doi(prefix):
+    """Generate a DOI using the DOI prefix and a random base32 suffix"""
+    suffix = base32.generate(length=10, split_every=5, checksum=True)
+    return f"https://doi.org/{prefix}/{suffix}"
+
+
+def decode_doi(doi: str) -> int:
+    """Decode a DOI to a number"""
+    suffix = doi.split("/", maxsplit=5)[-1]
+    return base32.decode(suffix)

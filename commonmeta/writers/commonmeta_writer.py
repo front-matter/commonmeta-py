@@ -15,7 +15,7 @@ def write_commonmeta(metadata):
             "id": metadata.id,
             "type": metadata.type,
             "url": metadata.url,
-            "creators": metadata.creators,
+            "creators": metadata.contributors,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
             "date": metadata.date,

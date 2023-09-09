@@ -14,7 +14,7 @@ def write_ris(metadata):
             "TY": ris,
             "T1": parse_attributes(metadata.titles, content="title", first=True),
             "T2": container.get("title", None),
-            "AU": to_ris(metadata.creators),
+            "AU": to_ris(metadata.contributors),
             "DO": doi_from_url(metadata.id) if metadata.id else None,
             "UR": metadata.url,
             "AB": parse_attributes(

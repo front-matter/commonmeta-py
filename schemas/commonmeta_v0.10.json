@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.9.1.json",
-  "title": "Commonmeta v0.9.1",
+  "$id": "https://commonmeta.org/commonmeta_v0.10.json",
+  "title": "Commonmeta v0.10",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -13,9 +13,48 @@
           "id": { "type": "string", "format": "uri" },
           "name": { "type": "string" }
         },
-        "required": ["name"]
+        "anyOf": [
+          {
+            "required": ["id"]
+          },
+          {
+            "required": ["name"]
+          }
+        ]
       },
       "uniqueItems": true
+    },
+    "contributorRole": {
+      "description": "The type of contribution made by a contributor",
+      "enum": [
+        "Author",
+        "Editor",
+        "Chair",
+        "Reviewer",
+        "ReviewAssistant",
+        "StatsReviewer",
+        "ReviewerExternal",
+        "Reader",
+        "Translator",
+        "ContactPerson",
+        "Maintainer",
+        "Conceptualization",
+        "DataCuration",
+        "FormalAnalysis",
+        "FundingAcquisition",
+        "Investigation",
+        "Methodology",
+        "ProjectAdministration",
+        "Resources",
+        "Software",
+        "Supervision",
+        "Validation",
+        "Visualization",
+        "WritingOriginalDraft",
+        "WritingReviewEditing",
+        "Other"
+      ],
+      "type": "string"
     },
     "latitude": {
       "type": "number",
@@ -78,42 +117,58 @@
       "description": "The additional type of the resource.",
       "type": "string"
     },
-     
+
     "url": {
       "description": "The URL of the resource.",
       "type": "string",
       "format": "uri"
     },
-    "creators": {
-      "description": "The creators of the resource.",
+    "contributors": {
+      "description": "The contributors to the resource.",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "id": {
-            "description": "The unique identifier for the creator.",
-            "type": "string",
-            "format": "uri"
+            "description": "The unique identifier for the contributor.",
+            "type": "string"
           },
           "type": {
-            "description": "The type of the creator.",
+            "description": "The type of the contributor.",
             "type": "string",
             "enum": ["Organization", "Person"]
           },
+          "contributorRoles": {
+            "description": "List of roles assumed by the contributor when working on the resource.",
+            "items": {
+              "$ref": "#/definitions/contributorRole"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
           "name": {
-            "description": "The name of the creator.",
+            "description": "The name of the contributor.",
             "type": "string"
           },
           "givenName": {
-            "description": "The given name of the creator.",
+            "description": "The given name of the contributor.",
             "type": "string"
           },
           "familyName": {
-            "description": "The family name of the creator.",
+            "description": "The family name of the contributor.",
             "type": "string"
           },
           "affiliation": { "$ref": "#/definitions/affiliations" }
-        }
+        },
+        "anyOf": [
+          {
+            "required": ["familyName"]
+          },
+          {
+            "required": ["name"]
+          }
+        ],
+        "required": ["type", "contributorRoles"]
       },
       "minItems": 1,
       "uniqueItems": true
@@ -168,42 +223,18 @@
         "type": {
           "description": "The type of the container.",
           "type": "string",
-          "enum": ["Book", "BookSeries", "Journal", "Periodical", "ProceedingsSeries", "Series"]
+          "enum": [
+            "Book",
+            "BookSeries",
+            "Journal",
+            "Periodical",
+            "ProceedingsSeries",
+            "Series"
+          ]
         },
         "title": {
           "description": "The title of the container.",
           "type": "string"
-        }
-      }
-    },
-    "contributors": {
-      "description": "The contributors to the resource.",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "The unique identifier for the contributor.",
-            "type": "string"
-          },
-          "type": {
-            "description": "The type of the contributor.",
-            "type": "string",
-            "enum": ["Organization", "Person"]
-          },
-          "name": {
-            "description": "The name of the contributor.",
-            "type": "string"
-          },
-          "givenName": {
-            "description": "The given name of the contributor.",
-            "type": "string"
-          },
-          "familyName": {
-            "description": "The family name of the contributor.",
-            "type": "string"
-          },
-          "affiliation": { "$ref": "#/definitions/affiliations" }
         }
       }
     },
@@ -257,7 +288,7 @@
         "properties": {
           "key": { "type": "string" },
           "doi": { "type": "string" },
-          "creator": { "type": "string" },
+          "contributor": { "type": "string" },
           "title": { "type": "string" },
           "publisher": { "type": "string" },
           "publicationYear": { "type": "string" },
@@ -267,10 +298,39 @@
           "lastPage": { "type": "string" },
           "containerTitle": { "type": "string" },
           "edition": { "type": "string" },
-          "contributor": { "type": "string" },
           "unstructured": { "type": "string" }
         },
         "required": ["key"]
+      },
+      "uniqueItems": true
+    },
+    "related_identifiers": {
+      "description": "Other resolvable persistent unique IDs related to the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "IsIdenticalTo",
+              "IsNewVersionOf",
+              "IsPreviousVersionOf",
+              "IsPartOf",
+              "HasPart",
+              "IsVariantFormOf",
+              "IsTranslationOf",
+              "IsVersionOf",
+              "IsReviewOf",
+              "IsPreprintOf",
+              "HasPreprint"
+            ]
+          }
+        },
+        "required": ["id", "type"]
       },
       "uniqueItems": true
     },
@@ -399,5 +459,5 @@
       "enum": ["findable", "not_found"]
     }
   },
-  "required": ["id", "type", "url", "creators", "titles", "publisher", "date"]
+  "required": ["id", "type", "url", "contributors", "titles", "publisher", "date"]
 }

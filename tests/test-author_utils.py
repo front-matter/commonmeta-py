@@ -23,6 +23,7 @@ def test_one_author():
     assert {
         "id": "https://orcid.org/0000-0003-0077-4738",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "familyName": "Jones",
         "givenName": "Matt",
     } == get_one_author(authors[0])
@@ -30,6 +31,7 @@ def test_one_author():
     assert {
         "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
     } == get_one_author(
@@ -37,6 +39,7 @@ def test_one_author():
             "name": "Fenner, Martin",
             "givenName": "Martin",
             "familyName": "Fenner",
+            "contributorRoles": ["Author"],
             "nameIdentifiers": [
                 {
                     "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
@@ -49,6 +52,7 @@ def test_one_author():
     # has name in sort-order' do
     assert {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Benjamin",
         "familyName": "Ollomo",
         "affiliation": [
@@ -73,12 +77,13 @@ def test_one_author():
         }
     )
     # has name in Thai
-    assert ({"name": "กัญจนา แซ่เตียว"}) == get_one_author(
+    assert ({"name": "กัญจนา แซ่เตียว", 'contributorRoles': ['Author']}) == get_one_author(
         {"name": "กัญจนา แซ่เตียว", "affiliation": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
-        "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)"
+        "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
+        'contributorRoles': ['Author']
     } == get_one_author(
         {
             "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
@@ -87,7 +92,7 @@ def test_one_author():
         }
     )
     # 'hyper-authorship'
-    assert {"name": "ALICE Collaboration"} == get_one_author(
+    assert {'contributorRoles': ['Author'], "name": "ALICE Collaboration"} == get_one_author(
         {
             "name": "ALICE Collaboration",
             "type": "Organization",
@@ -110,6 +115,7 @@ def test_one_author():
     assert {
         "name": "University of California, Santa Barbara",
         "type": "Organization",
+        'contributorRoles': ['Author']
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
@@ -121,11 +127,13 @@ def test_one_author():
         "familyName": "Sankar",
         "givenName": "Martial",
         "type": "Person",
+        'contributorRoles': ['Author']
     } == get_one_author(
         {
             "given": "Martial",
             "family": "Sankar",
             "sequence": "first",
+            'contributorRoles': ['Author'],
             "affiliation": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
@@ -136,6 +144,7 @@ def test_one_author():
     # multiple name_identifier
     assert {
         "type": "Person",
+        'contributorRoles': ['Author'],
         "givenName": "Thomas",
         "familyName": "Dubos",
         "affiliation": [
@@ -146,6 +155,7 @@ def test_one_author():
         {
             "name": "Dubos, Thomas",
             "type": "Person",
+            'contributorRoles': ['Author'],
             "givenName": "Thomas",
             "familyName": "Dubos",
             "affiliation": [
@@ -166,6 +176,7 @@ def test_one_author():
     # only familyName and givenName
     assert {
         "type": "Person",
+        'contributorRoles': ['Author'],
         "givenName": "Emma",
         "familyName": "Johansson",
     } == get_one_author(
@@ -190,12 +201,14 @@ def test_authors_as_string():
     authors = [
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "id": "http://orcid.org/0000-0003-0077-4738",
             "givenName": "Matt",
             "familyName": "Jones",
         },
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "id": "http://orcid.org/0000-0002-2192-403X",
             "givenName": "Peter",
             "familyName": "Slaughter",
@@ -223,21 +236,29 @@ def test_get_authors():
             "family": "Jones",
         },
         {"given": "Peter", "family": "Slaughter"},
-        {"name": "University of California, Santa Barbara"},
+        {
+            "name": "University of California, Santa Barbara",
+            "contributorRoles": ["Author"],
+        },
     ]
     assert [
         {
             "id": "https://orcid.org/0000-0003-0077-4738",
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Matt",
             "familyName": "Jones",
         },
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Peter",
             "familyName": "Slaughter",
         },
-        {"name": "University of California, Santa Barbara"},
+        {
+            "name": "University of California, Santa Barbara",
+            "contributorRoles": ["Author"],
+        },
     ] == get_authors(authors)
 
 

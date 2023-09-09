@@ -10,18 +10,15 @@ from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 
 def write_csl(metadata: Commonmeta) -> str:
     """Write CSL-JSON"""
-    if len(wrap(metadata.creators)) == 0:
+    if len(wrap(metadata.contributors)) == 0:
         author = None
     else:
-        author = to_csl(wrap(metadata.creators))
+        author = to_csl(wrap(metadata.contributors))
 
-    if (
-        metadata.type == "Software"
-        and metadata.version is not None
-    ):
+    if metadata.type == "Software" and metadata.version is not None:
         type_ = "book"
     else:
-        type_ = CM_TO_CSL_TRANSLATIONS.get(metadata.type, 'Document')
+        type_ = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
     data = compact(
@@ -38,8 +35,10 @@ def write_csl(metadata: Commonmeta) -> str:
             "language": metadata.language,
             "author": author,
             "contributor": to_csl(wrap(metadata.contributors)),
-            "issued": get_date_parts(metadata.date.get('published', None)),
-            "submitted": get_date_parts(metadata.date.get('submitted')) if metadata.date.get('submitted', None) else None,
+            "issued": get_date_parts(metadata.date.get("published", None)),
+            "submitted": get_date_parts(metadata.date.get("submitted"))
+            if metadata.date.get("submitted", None)
+            else None,
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
@@ -49,9 +48,7 @@ def write_csl(metadata: Commonmeta) -> str:
             "page": pages_as_string(container),
             "publisher": metadata.publisher.get("name", None),
             "title": parse_attributes(metadata.titles, content="title", first=True),
-            "copyright": metadata.license.get("id", None)
-            if metadata.license
-            else None,
+            "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
         }
     )

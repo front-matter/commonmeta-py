@@ -14,23 +14,25 @@ def test_rdataone():
     assert subject.id == "https://doi.org/10.5063/f1m61h5x"
     assert subject.type == "Software"
     assert subject.url == "https://github.com/DataONEorg/rdataone"
-    assert subject.creators == [
+    assert subject.contributors == [
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Matt",
             "familyName": "Jones",
             "affiliation": [{"name": "NCEAS"}],
         },
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Peter",
             "familyName": "Slaughter",
             "affiliation": [{"name": "NCEAS"}],
         },
         {
-            "type": "Person",
-            "givenName": "University of California, Santa",
-            "familyName": "Barbara",
+            "type": "Organization",
+            "contributorRoles": ["Author"],
+            "name": "University of California, Santa Barbara",
         },
     ]
     assert subject.titles == [{"title": "R Interface to the DataONE REST API"}]
@@ -46,9 +48,9 @@ def test_rdataone():
     }
     assert subject.publisher == {"name": "https://cran.r-project.org"}
     assert subject.license == {
-            "id": "Apache-2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0",
-        }
+        "id": "Apache-2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+    }
     assert subject.version == "2.0.0"
     assert subject.state == "findable"
 
@@ -61,9 +63,10 @@ def test_metadata_reports():
     assert subject.id == "https://doi.org/10.5438/wr0x-e194"
     assert subject.type == "Software"
     assert subject.url == "https://github.com/datacite/metadata-reports"
-    assert len(subject.creators) == 4
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
     }
@@ -79,8 +82,8 @@ def test_metadata_reports():
     }
     assert subject.publisher == {"name": "DataCite"}
     assert subject.license == {
-            "id": "MIT",
-            "url": "https://opensource.org/licenses/MIT",
-        }
+        "id": "MIT",
+        "url": "https://opensource.org/licenses/MIT",
+    }
     assert subject.version is None
     assert subject.state == "findable"

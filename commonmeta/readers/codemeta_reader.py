@@ -58,9 +58,10 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
 
     has_agents = meta.get("agents", None)
     authors = meta.get("authors", None) if has_agents is None else has_agents
-    creators = get_authors(from_schema_org_creators(wrap(authors)))
-    contributors = get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
-    
+    contributors = get_authors(from_schema_org_creators(wrap(authors)))
+    contrib = get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
+    if contrib:
+        contributors += contrib
     date: dict = defaultdict(list)
     date['created'] = meta.get("dateCreated", None)
     date['published'] = meta.get("datePublished", None)
@@ -99,7 +100,6 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
         "url": normalize_id(meta.get("codeRepository", None)),
         "identifiers": None,
         "titles": titles,
-        "creators": creators,
         "contributors": contributors,
         "publisher": publisher,
         "date": compact(date),

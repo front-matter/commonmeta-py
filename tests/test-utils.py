@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 """Test utils"""
 from os import path
+import re
 import pytest  # noqa: F401
 
 from commonmeta.utils import (
@@ -30,21 +31,30 @@ from commonmeta.utils import (
     github_as_codemeta_url,
     github_as_cff_url,
     github_as_repo_url,
+    encode_doi,
+    decode_doi,
 )
 from commonmeta.base_utils import wrap
 
 
 def test_dict_to_spdx_id():
     "dict_to_spdx id"
-    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}== dict_to_spdx({"id": "CC-BY-4.0"})
-    assert {'id': 'Apache-2.0', 'url': 'http://www.apache.org/licenses/LICENSE-2.0'} == dict_to_spdx({"id": "Apache-2.0"})
+    assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"id": "CC-BY-4.0"})
+    assert {
+        "id": "Apache-2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+    } == dict_to_spdx({"id": "Apache-2.0"})
 
 
 def test_dict_to_spdx_url():
     "dict_to_spdx url"
-    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'} == dict_to_spdx(
-        {"url": "https://creativecommons.org/licenses/by/4.0/legalcode"}
-    )
+    assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"url": "https://creativecommons.org/licenses/by/4.0/legalcode"})
 
 
 def test_dict_to_spdx_not_found():
@@ -428,7 +438,11 @@ def test_from_schema_org_creators():
             "type": "Person",
             "givenName": "Martin",
             "familyName": "Fenner",
-            "affiliation": {"id": "https://ror.org/04wxnsj81", "type": "Organization", "name": "DataCite"},
+            "affiliation": {
+                "id": "https://ror.org/04wxnsj81",
+                "type": "Organization",
+                "name": "DataCite",
+            },
         }
     ]
     # without affiliation
@@ -682,3 +696,16 @@ def test_github_as_repo_url():
     url = "https://github.com/datacite/metadata-reports"
     response = github_as_repo_url(url)
     assert response == "https://github.com/datacite/metadata-reports"
+
+
+def test_encode_doi():
+    """Generate a random DOI"""
+    response = encode_doi("10.5555")
+    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
+
+
+def test_decode_doi():
+    """Extract number from random DOI"""
+    doi = "10.5555/f9zqn-sf065"
+    response = decode_doi(doi)
+    assert response == 538751765283013

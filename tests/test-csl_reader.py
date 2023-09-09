@@ -13,7 +13,7 @@ def test_blog_posting():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
-    assert subject.creators == [
+    assert subject.contributors == [
         {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
@@ -33,7 +33,7 @@ def test_no_categories():
     assert subject.id == "https://doi.org/10.5072/4k3m-nyvg"
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
-    assert subject.creators == [
+    assert subject.contributors == [
         {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
@@ -50,7 +50,7 @@ def test_no_author():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
-    assert subject.creators is None
+    assert subject.contributors is None
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
     assert subject.date == {'published': '2016-12-20'}

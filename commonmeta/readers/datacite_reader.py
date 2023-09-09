@@ -42,6 +42,11 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         type_ = additional_type
         additional_type = None
 
+    contributors = get_authors(wrap(meta.get("creators", None)))
+    contrib = get_authors(wrap(meta.get("contributors", None)))
+    if contrib:
+        contributors = contributors + contrib
+
     publisher = {"name": meta.get("publisher", None)}
 
     date: dict = defaultdict(list)
@@ -65,14 +70,13 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "type": type_,
         "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
-        "creators": get_authors(wrap(meta.get("creators", None))),
+        "contributors": contributors,
         "titles": compact(meta.get("titles", None)),
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
         "additional_type": additional_type,
         "subjects": presence(meta.get("subjects", None)),
-        "contributors": get_authors(wrap(meta.get("contributors", None))),
         "language": meta.get("language", None),
         "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
         "sizes": presence(meta.get("sizes", None)),

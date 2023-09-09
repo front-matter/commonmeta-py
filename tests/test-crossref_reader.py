@@ -23,9 +23,10 @@ def test_doi_with_data_citation():
     assert subject.titles[0] == {
         "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     }
-    assert len(subject.creators) == 5
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 5
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martial",
         "familyName": "Sankar",
         "affiliation": [
@@ -34,7 +35,6 @@ def test_doi_with_data_citation():
             }
         ],
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
@@ -44,12 +44,15 @@ def test_doi_with_data_citation():
         "published": "2014-02-11",
         "updated": "2022-03-26T09:21:50Z",
     }
-    assert subject.publisher == {'id': 'https://api.crossref.org/members/4374', 'name': 'eLife Sciences Publications, Ltd'}
+    assert subject.publisher == {
+        "id": "https://api.crossref.org/members/4374",
+        "name": "eLife Sciences Publications, Ltd",
+    }
     assert len(subject.references) == 27
     assert subject.references[0] == {
         "key": "bib1",
         "doi": "https://doi.org/10.1038/nature02100",
-        "creator": "Bonke",
+        "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
         "volume": "426",
@@ -116,19 +119,20 @@ def test_journal_article():
     assert subject.titles[0] == {
         "title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     }
-    assert len(subject.creators) == 5
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 6
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Markus",
         "familyName": "Ralser",
     }
-    assert subject.contributors == [
-        {
-            "familyName": "Janbon",
-            "givenName": "Guilhem",
-            "type": "Person",
-        }
-    ]
+    assert subject.contributors[5] == {
+        "familyName": "Janbon",
+        "givenName": "Guilhem",
+        "type": "Person",
+        "contributorRoles": ["Editor"],
+    }
+
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -145,7 +149,7 @@ def test_journal_article():
     assert subject.references[-1] == {
         "key": "ref73",
         "doi": "https://doi.org/10.1056/nejm199109123251104",
-        "creator": "KB Hammond",
+        "contributor": "KB Hammond",
         "title": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
         "publicationYear": "1991",
         "volume": "325",
@@ -183,13 +187,13 @@ def test_journal_article_with_funding():
     assert subject.titles[0] == {
         "title": "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"
     }
-    assert len(subject.creators) == 4
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Ana Margarida",
         "familyName": "Fortes",
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -206,7 +210,7 @@ def test_journal_article_with_funding():
     assert subject.references[-1] == {
         "key": "ref70",
         "doi": "https://doi.org/10.17660/actahortic.2004.632.41",
-        "creator": "Zheng",
+        "contributor": "Zheng",
         "title": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
         "publicationYear": "2004",
         "volume": "632",
@@ -247,7 +251,6 @@ def test_journal_article_original_language():
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
     )
     # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
-    assert subject.creators is None
     assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {"published": "2007", "updated": "2021-05-20T22:32:01Z"}
@@ -295,13 +298,13 @@ def test_journal_article_with_rdf_for_container():
     assert subject.titles[0] == {
         "title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"
     }
-    assert len(subject.creators) == 8
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 8
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Andreu",
         "familyName": "Escrivà",
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "2012-01-01",
@@ -314,7 +317,7 @@ def test_journal_article_with_rdf_for_container():
     assert len(subject.references) == 111
     assert subject.references[-1] == {
         "key": "bibr111",
-        "creator": "Zenina",
+        "contributor": "Zenina",
         "title": "Ostracod assemblages of the freshened part of Amursky Bay and lower reaches of Razdolnaya River (Sea of Japan)",
         "publicationYear": "2008",
         "volume": "Vol. 1",
@@ -349,13 +352,13 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.titles[0] == {
         "title": "Human Body Orientation Estimation in Multiview Scenarios"
     }
-    assert len(subject.creators) == 3
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 3
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Lili",
         "familyName": "Chen",
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {"published": "2012", "updated": "2020-11-24T03:11:32Z"}
     assert subject.publisher == {
@@ -394,14 +397,14 @@ def test_posted_content():
     assert subject.titles[0] == {
         "title": "A Data Citation Roadmap for Scholarly Data Repositories"
     }
-    assert len(subject.creators) == 11
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 11
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "2016-12-28",
@@ -447,10 +450,11 @@ def test_peer_review():
     assert subject.titles[0] == {
         "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     }
-    assert len(subject.creators) == 8
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 8
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0002-5286-4375",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Jeremy",
         "familyName": "Magland",
         "affiliation": [
@@ -459,7 +463,6 @@ def test_peer_review():
             }
         ],
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -493,14 +496,14 @@ def test_dissertation():
     assert subject.titles[0] == {
         "title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
     }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "familyName": "Collingwood",
         "givenName": "Patricia Maree",
         "id": "https://orcid.org/0000-0003-3086-4443",
         "type": "Person",
+        "contributorRoles": ["Author"],
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "2020-06-08T05:08:58Z",
@@ -536,13 +539,13 @@ def test_doi_with_sici():
     assert subject.titles[0] == {
         "title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"
     }
-    assert len(subject.creators) == 2
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "A.",
         "familyName": "Fenton",
     }
-    assert subject.contributors is None
     assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     assert subject.date == {"published": "2006-11", "updated": "2019-04-28T13:51:50Z"}
     assert subject.publisher == {
@@ -585,10 +588,11 @@ def test_doi_with_orcid():
     assert subject.titles[0] == {
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }
-    assert len(subject.creators) == 7
-    assert subject.creators[2] == {
+    assert len(subject.contributors) == 7
+    assert subject.contributors[2] == {
         "id": "https://orcid.org/0000-0003-2043-4925",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Beatriz",
         "familyName": "Hernandez",
         "affiliation": [
@@ -600,7 +604,6 @@ def test_doi_with_orcid():
             },
         ],
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
@@ -653,15 +656,15 @@ def test_date_in_future():
     assert subject.titles[0] == {
         "title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
     }
-    assert len(subject.creators) == 10
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 10
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Sarah E.",
         "familyName": "Beck",
     }
-    assert subject.contributors is None
     assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
-    assert subject.date == {"published": "2015-07", "updated": "2020-08-31T14:03:39Z"}
+    assert subject.date == {"published": "2015-07", "updated": "2023-08-09T06:50:30Z"}
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/78",
         "name": "Elsevier BV",
@@ -670,7 +673,7 @@ def test_date_in_future():
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
         "doi": "https://doi.org/10.1111/hiv.12134",
-        "creator": "Zoufaly",
+        "contributor": "Zoufaly",
         "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
         "publicationYear": "2014",
         "volume": "15",
@@ -732,21 +735,21 @@ def test_vor_with_url():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
-    assert subject.url == "http://www.nature.com/articles/hdy201326"
+    assert subject.url == "https://www.nature.com/articles/hdy201326"
     assert subject.titles[0] == {
         "title": "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"
     }
-    assert len(subject.creators) == 2
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "J B",
         "familyName": "Gross",
     }
-    assert subject.contributors is None
     assert subject.license == {"url": "https://www.springer.com/tdm"}
     assert subject.date == {
         "published": "2013-04-10",
-        "updated": "2021-12-02T02:50:35Z",
+        "updated": "2023-05-18T16:57:05Z",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/297",
@@ -756,7 +759,7 @@ def test_vor_with_url():
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
         "doi": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
-        "creator": "H Wilkens",
+        "contributor": "H Wilkens",
         "publicationYear": "2003",
         "volume": "80",
         "firstPage": "545",
@@ -794,16 +797,16 @@ def test_dataset():
     assert subject.titles[0] == {
         "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
     }
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "G.",
         "familyName": "Fermi",
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "1984-07-17",
-        "updated": "2023-02-07T21:29:26Z",
+        "updated": "2023-03-14T17:26:34Z",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/7763",
@@ -828,7 +831,6 @@ def test_component():
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.creators is None
     assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
@@ -858,14 +860,14 @@ def test_dataset_usda():
     assert subject.type == "Dataset"
     assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0003-2583-1778",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Christine A.",
         "familyName": "Ribic",
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "2017-08-09T19:44:20Z",
@@ -915,12 +917,12 @@ def test_book_chapter():
     assert subject.type == "BookChapter"
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
     assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Ronald L.",
         "familyName": "Diercks",
     }
-    assert subject.contributors is None
     assert subject.license == {
         "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
     }
@@ -933,7 +935,7 @@ def test_book_chapter():
     assert subject.references[0] == {
         "key": "13_CR1",
         "doi": "https://doi.org/10.1007/s00256-012-1391-8",
-        "creator": "KS Ahn",
+        "contributor": "KS Ahn",
         "publicationYear": "2012",
         "volume": "41",
         "issue": "10",
@@ -941,7 +943,14 @@ def test_book_chapter():
         "containerTitle": "Skeletal Radiol",
     }
     assert subject.funding_references is None
-    assert subject.container == {'type': 'Book', 'identifier': '9783662463703', 'identifierType': 'ISBN', 'title': 'Shoulder Stiffness', 'firstPage': '155', 'lastPage': '158'}
+    assert subject.container == {
+        "type": "Book",
+        "identifier": "9783662463703",
+        "identifierType": "ISBN",
+        "title": "Shoulder Stiffness",
+        "firstPage": "155",
+        "lastPage": "158",
+    }
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
@@ -960,12 +969,12 @@ def test_another_book_chapter():
     assert subject.titles[0] == {
         "title": "Climate Change and Increasing Risk of Extreme Heat"
     }
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Hunter M.",
         "familyName": "Jones",
     }
-    assert subject.contributors is None
     assert subject.license == {"url": "https://www.springer.com/tdm"}
     assert subject.date == {"published": "2018", "updated": "2019-10-16T02:02:05Z"}
     assert subject.publisher == {
@@ -1004,16 +1013,18 @@ def test_yet_another_book_chapter():
         subject.url
         == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
     )
-    assert subject.titles == [{
-        "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
-    }]
-    assert subject.creators[0] == {
+    assert subject.titles == [
+        {
+            "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
+        }
+    ]
+    assert subject.contributors[0] == {
         "affiliation": [{"name": "Université de Lyon, France"}],
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Charles-Edmond",
         "familyName": "Bichot",
     }
-    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "published": "2012-08-08T16:54:07Z",
@@ -1043,8 +1054,8 @@ def test_yet_another_book_chapter():
     assert subject.provider == "Crossref"
 
 
-def test_missing_creator():
-    "missing creator"
+def test_missing_contributor():
+    "missing contributor"
     string = "https://doi.org/10.3390/publications6020015"
     subject = Metadata(string)
     assert subject.is_valid
@@ -1054,13 +1065,13 @@ def test_missing_creator():
     assert subject.titles[0] == {
         "title": "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
     }
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0002-3836-8885",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Alexander",
         "familyName": "Kohls",
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -1135,12 +1146,12 @@ def test_book():
         == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
     )
     assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
-    assert subject.creators[0] == {
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Vincent S.",
         "familyName": "Leung",
     }
-    assert subject.contributors is None
     assert subject.license == {"url": "https://www.cambridge.org/core/terms"}
     assert subject.date == {
         "published": "2019-07-01",
@@ -1153,7 +1164,7 @@ def test_book():
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
-        "creator": "Qiusheng",
+        "contributor": "Qiusheng",
         "title": "Lu Jia de lishi yishi ji qi wenhua yiyi",
         "publicationYear": "1997",
         "volume": "5",
@@ -1161,7 +1172,11 @@ def test_book():
         "containerTitle": "Qilu xuekan",
     }
     assert subject.funding_references is None
-    assert subject.container == {'identifier': '9781108348843', 'identifierType': 'ISBN', 'type': 'BookSeries'}
+    assert subject.container == {
+        "identifier": "9781108348843",
+        "identifierType": "ISBN",
+        "type": "BookSeries",
+    }
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
@@ -1177,22 +1192,65 @@ def test_proceedings_article():
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
     assert subject.url == "https://dl.acm.org/doi/10.1145/3448016.3452841"
-    assert subject.titles == [{'title': 'Vector Quotient Filters'}, {'title': 'Overcoming the Time/Space Trade-Off in Filter Design', 'titleType': 'Subtitle'}]
-    assert len(subject.creators) == 6
-    assert subject.creators[0] == {'affiliation': [{'name': 'Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA'}], 'givenName': 'Prashant', 'familyName': 'Pandey', 'type': 'Person'}
-    assert subject.contributors is None
-    assert subject.license == {'url': 'https://www.acm.org/publications/policies/copyright_policy#Background'}
-    assert subject.date == {'published': '2021-06-09', 'updated': '2023-01-06T22:59:32Z'}
-    assert subject.publisher == {'id': 'https://api.crossref.org/members/320', 'name': 'Association for Computing Machinery (ACM)'}
+    assert subject.titles == [
+        {"title": "Vector Quotient Filters"},
+        {
+            "title": "Overcoming the Time/Space Trade-Off in Filter Design",
+            "titleType": "Subtitle",
+        },
+    ]
+    assert len(subject.contributors) == 6
+    assert subject.contributors[0] == {
+        "affiliation": [
+            {
+                "name": "Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA"
+            }
+        ],
+        "givenName": "Prashant",
+        "familyName": "Pandey",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+    }
+    assert subject.license == {
+        "url": "https://www.acm.org/publications/policies/copyright_policy#Background"
+    }
+    assert subject.date == {
+        "published": "2021-06-09",
+        "updated": "2023-07-02T06:00:46Z",
+    }
+    assert subject.publisher == {
+        "id": "https://api.crossref.org/members/320",
+        "name": "Association for Computing Machinery (ACM)",
+    }
     assert len(subject.references) == 56
-    assert subject.references[-1] == {'key': 'e_1_3_2_2_56_1', 'doi': 'https://doi.org/10.5555/1364813.1364831'}
-    assert subject.funding_references == [{'funderName': 'NSF (National Science Foundation)', 'funderIdentifier': 'https://doi.org/10.13039/100000001', 'funderIdentifierType': 'Crossref Funder ID', 'awardNumber': 'CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680'}, {'funderName': 'DOE U.S. Department of Energy', 'funderIdentifier': 'https://doi.org/10.13039/100000015', 'funderIdentifierType': 'Crossref Funder ID', 'awardNumber': 'DE-AC02-05CH11231,17-SC-20-SC'}]
-    assert subject.container ==  {'type': 'Proceedings', 'title': 'Proceedings of the 2021 International Conference on Management of Data'}
+    assert subject.references[-1] == {
+        "key": "e_1_3_2_2_56_1",
+        "doi": "https://doi.org/10.5555/1364813.1364831",
+    }
+    assert subject.funding_references == [
+        {
+            "funderName": "NSF (National Science Foundation)",
+            "funderIdentifier": "https://doi.org/10.13039/100000001",
+            "funderIdentifierType": "Crossref Funder ID",
+            "awardNumber": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
+        },
+        {
+            "funderName": "DOE U.S. Department of Energy",
+            "funderIdentifier": "https://doi.org/10.13039/100000015",
+            "funderIdentifierType": "Crossref Funder ID",
+            "awardNumber": "DE-AC02-05CH11231,17-SC-20-SC",
+        },
+    ]
+    assert subject.container == {
+        "type": "Proceedings",
+        "title": "Proceedings of the 2021 International Conference on Management of Data",
+    }
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+
 
 def test_get_crossref():
     """get_crossref"""
@@ -1234,7 +1292,7 @@ def test_get_reference():
     } == get_reference(doi_metadata)
     assert {
         "key": "978-1-4666-1891-6.ch004.-14",
-        "creator": "W.Donath",
+        "contributor": "W.Donath",
         "title": "Algorithms for partitioning graphs and computer logic based on eigenvectors of connection matrices.",
         "publicationYear": "1972",
         "volume": "15",

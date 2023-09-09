@@ -74,17 +74,19 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     if id_ is None:
         id_ = meta.get("identifier", None)
     id_ = normalize_id(id_)
-    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), 'Other')
+    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "Other")
     additional_type = meta.get("additionalType", None)
     authors = meta.get("author", None) or meta.get("creator", None)
     # Authors should be an object, if it's just a plain string don't try and parse it.
     if not isinstance(authors, str):
-        creators = get_authors(from_schema_org_creators(wrap(authors)))
+        contributors = get_authors(from_schema_org_creators(wrap(authors)))
     else:
-        creators = authors
-    contributors = presence(
+        contributors = authors
+    contrib = presence(
         get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     )
+    if contrib:
+        contributors = contributors + contrib
 
     if meta.get("name", None) is not None:
         titles = [{"title": meta.get("name")}]
@@ -94,12 +96,14 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         titles = None
 
     date: dict = defaultdict(list)
-    date['published'] = strip_milliseconds(meta.get("datePublished", None))
-    date['updated'] = strip_milliseconds(meta.get("dateModified", None))
+    date["published"] = strip_milliseconds(meta.get("datePublished", None))
+    date["updated"] = strip_milliseconds(meta.get("dateModified", None))
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
-        publisher = py_.omit(publisher, ["@type", "logo", "url", "disambiguatingDescription"])
+        publisher = py_.omit(
+            publisher, ["@type", "logo", "url", "disambiguatingDescription"]
+        )
 
     license_ = meta.get("license", None)
     if license_ is not None:
@@ -108,13 +112,17 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
 
     if type_ == "Dataset":
         url = parse_attributes(
-            from_schema_org(meta.get('includedInDataCatalog', None)), content="url", first=True
+            from_schema_org(meta.get("includedInDataCatalog", None)),
+            content="url",
+            first=True,
         )
         container = compact(
             {
                 "type": "DataRepository",
                 "title": parse_attributes(
-                    from_schema_org(meta.get('includedInDataCatalog', None)), content="name", first=True
+                    from_schema_org(meta.get("includedInDataCatalog", None)),
+                    content="name",
+                    first=True,
                 ),
                 "identifier": url,
                 "identifierType": "URL" if url is not None else None,
@@ -180,9 +188,11 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
     ]
     alternate_identifiers = None
-    provider = get_doi_ra(id_) if doi_from_url(id_) else parse_attributes(
-            meta.get("provider", None), content="name", first=True
-        )
+    provider = (
+        get_doi_ra(id_)
+        if doi_from_url(id_)
+        else parse_attributes(meta.get("provider", None), content="name", first=True)
+    )
     state = None
 
     return {
@@ -190,14 +200,13 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": id_,
         "type": type_,
         "url": normalize_url(meta.get("url", None)),
-        "creators": creators,
+        "contributors": contributors,
         "titles": titles,
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional attributes
         "additional_type": additional_type,
         "subjects": presence(subjects),
-        "contributors": contributors,
         "language": language,
         "alternate_identifiers": alternate_identifiers,
         "sizes": None,

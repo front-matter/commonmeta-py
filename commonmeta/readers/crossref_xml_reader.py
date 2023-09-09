@@ -9,6 +9,7 @@ from pydash import py_
 from ..utils import (
     doi_from_url,
     dict_to_spdx,
+    from_crossref_xml,
     normalize_cc_url,
     normalize_issn,
     normalize_url,
@@ -22,6 +23,7 @@ from ..base_utils import (
     parse_attributes,
     parse_xmldict,
 )
+from ..author_utils import get_authors
 from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
 from ..doi_utils import (
     doi_as_url,
@@ -162,6 +164,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     )
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
+    contributors = crossref_people(bibmeta)
 
     date: dict = defaultdict(list)
     date["created"] = next(
@@ -248,13 +251,12 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "id": id_,
         "type": type_,
         "url": url,
-        "creators": wrap(crossref_people(bibmeta, "author")),
+        "contributors": contributors,
         "titles": presence(titles),
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
         "subjects": presence(None),
-        "contributors": crossref_people(bibmeta, "editor"),
         "language": language,
         "alternate_identifiers": None,
         "sizes": None,
@@ -282,26 +284,32 @@ def crossref_titles(bibmeta):
     """Title information from Crossref metadata."""
     title = parse_attributes(py_.get(bibmeta, "titles.title"))
     subtitle = parse_attributes(py_.get(bibmeta, "titles.subtitle"))
-    original_language_title = parse_attributes(py_.get(bibmeta, "titles.original_language_title"))
-    language = parse_attributes(py_.get(bibmeta, "titles.original_language_title"), content="language")
+    original_language_title = parse_attributes(
+        py_.get(bibmeta, "titles.original_language_title")
+    )
+    language = parse_attributes(
+        py_.get(bibmeta, "titles.original_language_title"), content="language"
+    )
     if title is None and original_language_title is None:
         return None
     if title and original_language_title is None and subtitle is None:
         return [{"title": sanitize(title)}]
     if original_language_title:
-        return [compact({
-            "title": sanitize(original_language_title),
-            "lang": language,
-        })]
+        return [
+            compact(
+                {
+                    "title": sanitize(original_language_title),
+                    "lang": language,
+                }
+            )
+        ]
     if subtitle:
-        return [compact(
-            {
-                "title": sanitize(title)
-            }),
+        return [
+            compact({"title": sanitize(title)}),
             {
                 "title": sanitize(subtitle),
                 "titleType": "Subtitle",
-            }
+            },
         ]
 
 
@@ -329,61 +337,16 @@ def crossref_description(bibmeta):
     return [format_abstract(i) for i in wrap(bibmeta.get("abstract", None))]
 
 
-def crossref_people(bibmeta, contributor_role="author"):
+def crossref_people(bibmeta):
     """Person information from Crossref metadata."""
-
-    def format_affiliation(element):
-        """Format affiliation"""
-        return {"name": element}
-
-    def format_person(element):
-        """Format person"""
-        element["givenName"] = element.get("given_name", None)
-        element["familyName"] = element.get("surname", None)
-        element["type"] = "Person"
-        element["affiliation"] = presence(
-            [format_affiliation(i) for i in wrap(element.get("affiliation", None))]
-        )
-        if element.get("ORCID", None) is not None:
-            orcid = parse_xmldict(
-                element.get("ORCID"), ignored_attributes="@authenticated"
-            )
-            element["id"] = normalize_orcid(orcid)
-        element = py_.omit(
-            element,
-            "@contributor_role",
-            "@sequence",
-            "given_name",
-            "surname",
-            "ORCID",
-            "@xmlns",
-        )
-        return compact(element)
-
-    def format_organization(element):
-        """Format organization"""
-        return compact({element})
 
     person = py_.get(bibmeta, "contributors.person_name") or bibmeta.get(
         "person_name", None
     )
     organization = wrap(py_.get(bibmeta, "contributors.organization"))
     # + [format_organization(i) for i in wrap(organization)]
-    return compact(
-        [
-            format_person(i)
-            for i in wrap(person)
-            if i.get("@contributor_role", None) == contributor_role
-        ]
-    )
 
-    # if contributor_role == 'author' and wrap(person).select do |a|
-    #          a['contributor_role'] == 'author'
-    #        end.blank? && Array.wrap(organization).select do |a|
-    #                        a['contributor_role'] == 'author'
-    #                      end.blank?
-    #       person = [{ 'name' => ':(unav)', 'contributor_role' => 'author' }]
-    #     end
+    return get_authors(from_crossref_xml(wrap(person) + wrap(organization)))
 
     #     (Array.wrap(person) + Array.wrap(organization)).select do |a|
     #       a['contributor_role'] == contributor_role
@@ -438,7 +401,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
         "key": reference.get("@key", None),
         "doi": normalize_doi(doi) if doi else None,
         "url": normalize_url(url) if url else None,
-        "creator": reference.get("author", None),
+        "contributor": reference.get("author", None),
         "title": reference.get("article_title", None),
         "publisher": reference.get("publisher", None),
         "publicationYear": reference.get("cYear", None),
@@ -448,7 +411,6 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
         "lastPage": reference.get("last_page", None),
         "containerTitle": reference.get("journal_title", None),
         "edition": None,
-        "contributor": None,
         "unstructured": sanitize(text) if text and doi is None else None,
     }
     return compact(metadata)

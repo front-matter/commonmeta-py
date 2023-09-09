@@ -59,14 +59,21 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     titles = [format_title(i) for i in wrap(py_.get(meta, "titles.title"))]
 
-    creators = get_authors(wrap(py_.get(meta, "creators.creator")))
+    contributors = get_authors(wrap(py_.get(meta, "creators.creator")))
+    contrib = get_authors(
+        wrap(meta.get("contributors", None))
+    )
+    if contrib:
+        contributors = contributors + contrib
     publisher = {"name": py_.get(meta, "publisher")}
 
     date: dict = defaultdict(list)
-    date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
+    date["published"] = (
+        str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
+    )
     # convert date list to dict, rename some keys
     for sub in wrap(py_.get(meta, "dates.date")):
-        date[sub.get('@dateType', None)] = sub.get('#text', None)
+        date[sub.get("@dateType", None)] = sub.get("#text", None)
     date = normalize_date_dict(date)
 
     def format_description(description):
@@ -222,14 +229,13 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "type": type_,
         "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
-        "creators": creators,
+        "contributors": contributors,
         "titles": compact(titles),
         "publisher": publisher,
         "date": date,
         # recommended and optional properties
         "additional_type": presence(additional_type),
         "subjects": presence(subjects),
-        "contributors": get_authors(wrap(meta.get("contributors", None))),
         "language": meta.get("language", None),
         "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
         "sizes": presence(sizes),
