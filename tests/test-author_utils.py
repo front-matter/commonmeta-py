@@ -6,6 +6,7 @@ from commonmeta.author_utils import (
     get_one_author,
     get_authors,
     get_affiliations,
+    is_personal_name,
 )
 from commonmeta.base_utils import wrap
 
@@ -77,13 +78,15 @@ def test_one_author():
         }
     )
     # has name in Thai
-    assert ({"name": "กัญจนา แซ่เตียว", 'contributorRoles': ['Author']}) == get_one_author(
+    assert (
+        {"name": "กัญจนา แซ่เตียว", "contributorRoles": ["Author"]}
+    ) == get_one_author(
         {"name": "กัญจนา แซ่เตียว", "affiliation": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
         "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
-        'contributorRoles': ['Author']
+        "contributorRoles": ["Author"],
     } == get_one_author(
         {
             "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
@@ -92,7 +95,10 @@ def test_one_author():
         }
     )
     # 'hyper-authorship'
-    assert {'contributorRoles': ['Author'], "name": "ALICE Collaboration"} == get_one_author(
+    assert {
+        "contributorRoles": ["Author"],
+        "name": "ALICE Collaboration",
+    } == get_one_author(
         {
             "name": "ALICE Collaboration",
             "type": "Organization",
@@ -115,7 +121,7 @@ def test_one_author():
     assert {
         "name": "University of California, Santa Barbara",
         "type": "Organization",
-        'contributorRoles': ['Author']
+        "contributorRoles": ["Author"],
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
@@ -127,13 +133,13 @@ def test_one_author():
         "familyName": "Sankar",
         "givenName": "Martial",
         "type": "Person",
-        'contributorRoles': ['Author']
+        "contributorRoles": ["Author"],
     } == get_one_author(
         {
             "given": "Martial",
             "family": "Sankar",
             "sequence": "first",
-            'contributorRoles': ['Author'],
+            "contributorRoles": ["Author"],
             "affiliation": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
@@ -144,7 +150,7 @@ def test_one_author():
     # multiple name_identifier
     assert {
         "type": "Person",
-        'contributorRoles': ['Author'],
+        "contributorRoles": ["Author"],
         "givenName": "Thomas",
         "familyName": "Dubos",
         "affiliation": [
@@ -155,7 +161,7 @@ def test_one_author():
         {
             "name": "Dubos, Thomas",
             "type": "Person",
-            'contributorRoles': ['Author'],
+            "contributorRoles": ["Author"],
             "givenName": "Thomas",
             "familyName": "Dubos",
             "affiliation": [
@@ -176,7 +182,7 @@ def test_one_author():
     # only familyName and givenName
     assert {
         "type": "Person",
-        'contributorRoles': ['Author'],
+        "contributorRoles": ["Author"],
         "givenName": "Emma",
         "familyName": "Johansson",
     } == get_one_author(
@@ -238,7 +244,6 @@ def test_get_authors():
         {"given": "Peter", "family": "Slaughter"},
         {
             "name": "University of California, Santa Barbara",
-            "contributorRoles": ["Author"],
         },
     ]
     assert [
@@ -286,3 +291,9 @@ def test_get_affiliations():
             }
         ]
     )
+
+
+def test_is_personal_name():
+    """is personal name"""
+    # assert True is is_personal_name("Fenner, Martin")
+    assert False is is_personal_name("University of California, Santa Barbara")

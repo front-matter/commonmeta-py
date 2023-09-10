@@ -62,6 +62,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         license_ = normalize_cc_url(license_[0].get("rightsUri", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
+    files = meta.get("contentUrl", None)
     references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
 
     return {
@@ -88,7 +89,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
         # other properties
-        "content_url": presence(meta.get("contentUrl", None)),
+        "files": presence(files),
         "container": presence(container),
         "provider": "DataCite",
         "state": "findable",

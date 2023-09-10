@@ -1,9 +1,6 @@
 """Schema.org writer for commonmeta-py"""
 import json
-from ..utils import (
-    to_schema_org,
-    to_schema_org_creators
-)
+from ..utils import to_schema_org, to_schema_org_creators
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..constants import CM_TO_SO_TRANSLATIONS
 
@@ -17,6 +14,12 @@ def write_schema_org(metadata):
         periodical = None
     schema_org = CM_TO_SO_TRANSLATIONS.get(metadata.type, "CreativeWork")
     additional_type = metadata.additional_type
+    authors = [
+        au for au in wrap(metadata.contributors) if au["contributorRoles"] == ["Author"]
+    ]
+    editors = [
+        au for au in wrap(metadata.contributors) if au["contributorRoles"] == ["Editor"]
+    ]
 
     data = compact(
         {
@@ -27,14 +30,12 @@ def write_schema_org(metadata):
             "url": metadata.url,
             "additionalType": additional_type,
             "name": parse_attributes(metadata.titles, content="title", first=True),
-            "author": to_schema_org_creators(wrap(metadata.contributors)),
-            "editor": to_schema_org_creators(wrap(metadata.contributors)),
+            "author": to_schema_org_creators(authors),
+            "editor": to_schema_org_creators(editors),
             "description": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
-            "license": metadata.license.get("url", None)
-            if metadata.license
-            else None,
+            "license": metadata.license.get("url", None) if metadata.license else None,
             "version": metadata.version,
             "keywords": presence(
                 parse_attributes(
@@ -42,9 +43,9 @@ def write_schema_org(metadata):
                 )
             ),
             "inLanguage": metadata.language,
-            "dateCreated": metadata.date.get('created', None),
-            "datePublished": metadata.date.get('published', None),
-            "dateModified": metadata.date.get('updated', None),
+            "dateCreated": metadata.date.get("created", None),
+            "datePublished": metadata.date.get("published", None),
+            "dateModified": metadata.date.get("updated", None),
             "pageStart": container.get("firstPage", None) if container else None,
             "pageEnd": container.get("lastPage", None) if container else None,
             # "isPartOf": unwrap(to_schema_org_relations(
@@ -52,7 +53,10 @@ def write_schema_org(metadata):
             #     relation_type="IsPartOf",
             # )),
             "periodical": periodical,
-            "publisher": {"@type": "Organization", "name": metadata.publisher.get("name", None)}
+            "publisher": {
+                "@type": "Organization",
+                "name": metadata.publisher.get("name", None),
+            }
             if metadata.publisher
             else None,
             "provider": {"@type": "Organization", "name": metadata.provider}

@@ -221,6 +221,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         []
     )  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
 
+    files = meta.get("contentUrl", None)
     state = "findable" if id_ or read_options else "not_found"
 
     return {
@@ -251,7 +252,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "date_registered": strip_milliseconds(meta.get("registered", None)),
         "date_published": strip_milliseconds(meta.get("published", None)),
         "date_updated": strip_milliseconds(meta.get("updated", None)),
-        "content_url": presence(meta.get("contentUrl", None)),
+        "files": presence(files),
         "container": presence(meta.get("container", None)),
         "provider": "DataCite",
         "state": state,

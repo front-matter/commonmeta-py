@@ -22,7 +22,20 @@ MONTH_NAMES = {
     "12": "dec",
 }
 
-MONTH_SHORT_NAMES = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+MONTH_SHORT_NAMES = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+]
 
 ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
@@ -61,6 +74,13 @@ def get_date_parts(iso8601_time: Optional[str]) -> dict:
 
     date_parts = py_.reject([year, month, day], lambda x: x == 0)
     return {"date-parts": [date_parts]}
+
+
+def get_date_from_unix_timestamp(timestamp: Optional[int]) -> Optional[str]:
+    """Get date from unix timestamp"""
+    if timestamp is None:
+        return None
+    return datetime.datetime.fromtimestamp(timestamp).replace(microsecond=0).isoformat()
 
 
 def get_date_from_date_parts(date_as_parts: Optional[dict]) -> Optional[str]:
@@ -123,11 +143,10 @@ def strip_milliseconds(iso8601_time: Optional[str]) -> Optional[str]:
         return None
     if "T00:00:00" in iso8601_time:
         return iso8601_time.split("T")[0]
-    if "+00:00" in iso8601_time:
-        return iso8601_time.split("+")[0] + "Z"
     if "." in iso8601_time:
         return iso8601_time.split(".")[0] + "Z"
-
+    if "+00:00" in iso8601_time:
+        return iso8601_time.split("+")[0] + "Z"
     return iso8601_time
 
 

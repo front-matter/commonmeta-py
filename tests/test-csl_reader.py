@@ -14,12 +14,17 @@ def test_blog_posting():
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.contributors == [
-        {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
+        {
+            "familyName": "Fenner",
+            "givenName": "Martin",
+            "type": "Person",
+            "contributorRoles": ["Author"],
+        }
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
     assert subject.license is None
-    assert subject.date == {'published': '2016-12-20'}
+    assert subject.date == {"published": "2016-12-20"}
     assert subject.provider == "DataCite"
 
 
@@ -34,11 +39,16 @@ def test_no_categories():
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.contributors == [
-        {"familyName": "Fenner", "givenName": "Martin", "type": "Person"}
+        {
+            "familyName": "Fenner",
+            "givenName": "Martin",
+            "type": "Person",
+            "contributorRoles": ["Author"],
+        }
     ]
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.date == {'published': '2016-12-20'}
+    assert subject.date == {"published": "2016-12-20"}
     assert subject.provider == "DataCite"
 
 
@@ -53,5 +63,5 @@ def test_no_author():
     assert subject.contributors is None
     assert subject.titles == [{"title": "Eating your own Dog Food"}]
     assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.date == {'published': '2016-12-20'}
+    assert subject.date == {"published": "2016-12-20"}
     assert subject.provider == "DataCite"

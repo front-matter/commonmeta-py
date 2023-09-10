@@ -22,6 +22,10 @@ from ..readers import (
     read_csl,
     get_cff,
     read_cff,
+    get_json_feed_item,
+    read_json_feed_item,
+    get_inveniordm,
+    read_inveniordm,
 )
 from ..writers import (
     write_datacite,
@@ -64,6 +68,12 @@ class Metadata:
             elif via == "cff":
                 data = get_cff(pid)
                 meta = read_cff(data)
+            elif via == "json_feed_item":
+                data = get_json_feed_item(pid)
+                meta = read_json_feed_item(data)
+            elif via == "inveniordm":
+                data = get_inveniordm(pid)
+                meta = read_inveniordm(data)
         elif path.exists(string):
             with open(string, encoding="utf-8") as file:
                 string = file.read()
@@ -94,6 +104,9 @@ class Metadata:
             elif via == "cff":
                 data = yaml.safe_load(string)
                 meta = read_cff(data)
+            elif via == "inveniordm":
+                data = json.loads(string)
+                meta = read_inveniordm(data)
             # elif via == "bibtex":
             #     data = yaml.safe_load(string)
             #     meta = read_bibtex(data)
@@ -116,6 +129,7 @@ class Metadata:
         self.subjects = meta.get("subjects")
         self.language = meta.get("language")
         self.alternate_identifiers = meta.get("alternate_identifiers")
+        self.related_identifiers = meta.get("related_identifiers")
         self.sizes = meta.get("sizes")
         self.formats = meta.get("formats")
         self.version = meta.get("version")
@@ -129,7 +143,7 @@ class Metadata:
         self.date_registered = meta.get("date_registered")
         self.date_published = meta.get("date_published")
         self.date_updated = meta.get("date_updated")
-        self.content_url = meta.get("content_url")
+        self.files = meta.get("files")
         self.container = meta.get("container")
         self.provider = meta.get("provider")
         self.state = meta.get("state")

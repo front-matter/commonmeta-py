@@ -21,9 +21,11 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
     id_ = normalize_id(meta.get("id", None) or meta.get("DOI", None))
     type_ = CSL_TO_CM_TRANSLATIONS.get(meta.get("type", None), 'Other')
 
-    creators = get_authors(from_csl(wrap(meta.get("author", None))))
-    contributors = get_authors(from_csl(wrap(meta.get("editor", None))))
-
+    contributors = get_authors(from_csl(wrap(meta.get("author", None))))
+    contrib = get_authors(from_csl(wrap(meta.get("editor", None))))
+    if contrib:
+        contributors += contrib
+    
     date = {'published': get_date_from_date_parts(meta.get("issued", None))}
 
     license_ = meta.get("copyright", None)
@@ -64,10 +66,9 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         "type": type_,
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
-        "creators": creators,
+        "contributors": contributors,
         "publisher": meta.get("publisher", None),
         "date": compact(date),
-        "contributors": contributors,
         "container": container,
         "references": None,
         "descriptions": descriptions,

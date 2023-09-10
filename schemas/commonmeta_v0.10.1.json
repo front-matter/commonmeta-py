@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.10.json",
-  "title": "Commonmeta v0.10",
+  "$id": "https://commonmeta.org/commonmeta_v0.10.1.json",
+  "title": "Commonmeta v0.10.1",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -316,17 +316,21 @@
           "type": {
             "type": "string",
             "enum": [
-              "IsIdenticalTo",
               "IsNewVersionOf",
               "IsPreviousVersionOf",
+              "IsVersionOf",
+              "HasVersion",
               "IsPartOf",
               "HasPart",
               "IsVariantFormOf",
+              "IsOriginalFormOf",
+              "IsIdenticalTo",
               "IsTranslationOf",
-              "IsVersionOf",
-              "IsReviewOf",
+              "IsReviewedBy",
+              "Reviews",
               "IsPreprintOf",
-              "HasPreprint"
+              "HasPreprint",
+              "isSupplementTo"
             ]
           }
         },
@@ -437,12 +441,20 @@
         "required": ["alternateIdentifier", "alternateIdentifierType"]
       }
     },
-    "content_url": {
-      "description": "The URL of the content of the resource.",
+    "files": {
+      "description": "The downloadable files for the resource.",
       "type": "array",
       "items": {
-        "type": "string",
-        "format": "uri"
+        "type": "object",
+        "properties": {
+          "bucket": { "type": "string" },
+          "key": { "type": "string" },
+          "checksum": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "size": { "type": "integer" },
+          "mimeType": { "type": "string" }
+        },
+        "required": ["url"]
       }
     },
     "schema_version": {
@@ -459,5 +471,13 @@
       "enum": ["findable", "not_found"]
     }
   },
-  "required": ["id", "type", "url", "contributors", "titles", "publisher", "date"]
+  "required": [
+    "id",
+    "type",
+    "url",
+    "contributors",
+    "titles",
+    "publisher",
+    "date"
+  ]
 }

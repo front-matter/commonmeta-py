@@ -313,7 +313,7 @@ def test_another_blog_with_dois():
     assert subject.contributors[0] == {
         "type": "Person",
         "contributorRoles": ["Author"],
-        "name": "Andreas",
+        "givenName": "Andreas",
     }
     assert subject.license is None
     assert subject.date == {

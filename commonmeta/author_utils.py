@@ -2,6 +2,8 @@
 import re
 from typing import List
 from urllib.parse import urlparse
+from nameparser import HumanName
+
 from .utils import (
     normalize_orcid,
     normalize_id,
@@ -47,7 +49,7 @@ def get_one_author(author):
     ) or parse_attributes(
         author.get("contributorName", None), content="type", first=True
     )
-    
+
     # DataCite metadata
     if isinstance(type_, str) and type_.endswith("al"):
         type_ = type_[:-3]
@@ -63,18 +65,6 @@ def get_one_author(author):
     elif not type_ and name:
         type_ = "Organization"
 
-    def format_name_identifier(name_identifier):
-        """format_name_identifier"""
-        if name_identifier.get("nameIdentifier", None) is None:
-            return None
-        if name_identifier.get("nameIdentifierScheme", None) == "ORCID":
-            return normalize_orcid(name_identifier.get("nameIdentifier", None))
-        if name_identifier.get("schemeURI", None) is not None:
-            return name_identifier.get("schemeURI") + name_identifier.get(
-                "nameIdentifier", None
-            )
-        return name_identifier.get("nameIdentifier", None)
-
     id_ = next(
         (format_name_identifier(i) for i in wrap(author.get("nameIdentifiers", None))),
         None,
@@ -84,49 +74,47 @@ def get_one_author(author):
     if id_ is None and author.get("ORCID", None):
         id_ = normalize_orcid(author.get("ORCID"))
 
-    if family_name or given_name or (type_ is None and id_ is not None):
-        type_ = "Person"
-    author = compact(
-        {
-            "id": id_,
-            "type": type_,
-            "name": name if not family_name else None,
-            "givenName": given_name,
-            "familyName": family_name,
-            "affiliation": presence(
-                get_affiliations(wrap(author.get("affiliation", None)))
-            ),
-            "contributorRoles": [contributor_role],
-        }
-    )
+    # split name for type Person into given/family name if not already provided
+    if type_ == "Person" and name and not given_name and not family_name:
+        names = HumanName(name)
 
-    if family_name:
-        return author
+        if names:
+            given_name = (
+                " ".join([names.first, names.middle]).strip() if names.first else None
+            )
+            family_name = names.last if names.last else None
+        else:
+            given_name = None
+            family_name = None
 
-    if type_ == "Person":
-        return compact(
-            {
-                "id": id_,
-                "type": "Person",
-                "givenName": given_name,
-                "familyName": family_name,
-                "affiliation": presence(
-                    get_affiliations(wrap(author.get("affiliation", None)))
-                ),
-                "contributorRoles": [contributor_role],
-            }
-        )
+    # return author in commonmeta format, using name vs. given/family name
+    # depending on type
     return compact(
         {
             "id": id_,
             "type": type_,
-            "name": name,
+            "contributorRoles": [contributor_role],
+            "name": name if type_ == "Organization" else None,
+            "givenName": given_name if type_ == "Person" else None,
+            "familyName": family_name if type_ == "Person" else None,
             "affiliation": presence(
                 get_affiliations(wrap(author.get("affiliation", None)))
             ),
-            "contributorRoles": [contributor_role],
         }
     )
+
+
+def format_name_identifier(name_identifier):
+    """format_name_identifier"""
+    if name_identifier.get("nameIdentifier", None) is None:
+        return None
+    if name_identifier.get("nameIdentifierScheme", None) == "ORCID":
+        return normalize_orcid(name_identifier.get("nameIdentifier", None))
+    if name_identifier.get("schemeURI", None) is not None:
+        return name_identifier.get("schemeURI") + name_identifier.get(
+            "nameIdentifier", None
+        )
+    return name_identifier.get("nameIdentifier", None)
 
 
 def is_personal_name(name):
@@ -142,8 +130,14 @@ def is_personal_name(name):
     # check for suffixes, e.g. "John Smith, MD"
     if name.split(", ")[-1] in ["MD", "PhD"]:
         return True
-    
+
+    # check of name can be parsed into given/family name
+    names = HumanName(name)
+    if names and (names.first or names.last):
+        return True
+
     return False
+
 
 def cleanup_author(author):
     """clean up author string"""

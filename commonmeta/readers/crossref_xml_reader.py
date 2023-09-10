@@ -242,6 +242,8 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     ]
     language = py_.get(meta, "journal.journal_metadata.@language")
 
+    files = presence(meta.get("contentUrl", None))
+
     # TODO: consistent case for DOI registration agency
     provider = bibmeta.get("@reg-agency", None) or get_doi_ra(id_)
     state = "findable" if meta or read_options else "not_found"
@@ -272,7 +274,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "date_registered": None,
         "date_published": None,
         "date_updated": None,
-        "content_url": presence(meta.get("contentUrl", None)),
+        "content_url": presence(files),
         "container": presence(container),
         "provider": provider,
         "state": state,

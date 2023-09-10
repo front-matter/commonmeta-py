@@ -1,25 +1,25 @@
 """JSON Feed reader for commonmeta-py"""
 from typing import Optional
+import requests
+from pydash import py_
 
-from ..utils import compact, normalize_url
-from ..date_utils import get_date_from_parts
-from ..doi_utils import normalize_doi, doi_from_url
-from ..constants import (
-    RIS_TO_CM_TRANSLATIONS,
-    Commonmeta
-)
+from ..utils import compact, normalize_url, from_json_feed, wrap, dict_to_spdx
+from ..author_utils import get_authors
+from ..base_utils import presence, sanitize, parse_attributes
+from ..date_utils import get_date_from_unix_timestamp
+from ..doi_utils import validate_doi, normalize_doi
+from ..constants import Commonmeta
 
 
 def get_json_feed_item(pid: str, **kwargs) -> dict:
     """get_json_feed_item"""
-    doi = doi_from_url(pid)
-    if doi is None:
+    if pid is None:
         return {"state": "not_found"}
-    url = crossref_api_url(doi)
+    url = normalize_url(pid)
     response = requests.get(url, kwargs, timeout=10)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json().get("message", {})
+    return response.json()
 
 
 def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
@@ -27,74 +27,77 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
+    print(meta)
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,
     # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
-    doi = meta.get("DOI", None)
-    id_ = doi_as_url(doi)
-    resource_type = meta.get("type", {}).title().replace("-", "")
-    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    url = normalize_url(meta.get("url", None))
+    id_ = meta.get("doi", None) or url
+    type_ = "Article"
 
-    if meta.get("author", None):
-        contributors = get_authors(from_csl(wrap(meta.get("author"))))
+    if meta.get("authors", None):
+        contributors = get_authors(from_json_feed(wrap(meta.get("authors"))))
     else:
-        contributors = None
+        contributors = [{"type": "Organization", "name": ":(unav)"}]
 
-    def editor_type(item):
-        item["contributorType"] = "Editor"
-        return item
+    title = parse_attributes(meta.get("title", None))
+    titles = [{"title": sanitize(title)}] if title else None
 
-    editors = [editor_type(i) for i in wrap(meta.get("editor", None))]
-    if editors:
-        contributors += get_authors(from_csl(editors))
-
-    url = normalize_url(py_.get(meta, "resource.primary.URL"))
-    titles = get_titles(meta)
-
-    member_id = meta.get("member", None)
-    # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
-    if member_id is not None:
-        publisher = get_crossref_member(member_id)
-    else:
-        publisher = meta.get("publisher", None)
+    publisher = py_.get(meta, "blog.title", None)
+    if publisher is not None:
+        publisher = {"name": publisher}
 
     date: dict = {}
-    date["submitted"] = None
-    date["accepted"] = py_.get(meta, "accepted.date-time")
     date["published"] = (
-        py_.get(meta, "issued.date-time")
-        or get_date_from_date_parts(meta.get("issued", None))
-        or py_.get(meta, "created.date-time")
+        get_date_from_unix_timestamp(meta.get("published_at", None))
+        if meta.get("published_at", None)
+        else None
     )
-    date["updated"] = py_.get(meta, "updated.date-time") or py_.get(
-        meta, "deposited.date-time"
+    date["updated"] = (
+        get_date_from_unix_timestamp(meta.get("updated_at", None))
+        if meta.get("updated_at", None)
+        else None
     )
 
-    license_ = meta.get("license", None)
+    license_ = py_.get(meta, "blog.license", None)
     if license_ is not None:
-        license_ = normalize_cc_url(license_[0].get("URL", None))
-        license_ = dict_to_spdx({"url": license_}) if license_ else None
+        license_ = dict_to_spdx({"url": license_})
 
-    container = get_container(meta, resource_type=resource_type)
+    container = compact(
+        {
+            "type": "Periodical",
+            "title": py_.get(meta, "blog.title", None),
+            "identifier": py_.get(meta, "blog.issn", None),
+            "identifierType": "ISSN" if py_.get(meta, "blog.issn", None) else None,
+        }
+    )
 
-    references = references = [
-        get_reference(i) for i in wrap(meta.get("reference", None))
-    ]
-    funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
-
-    description = meta.get("abstract", None)
+    description = meta.get("summary", None)
     if description is not None:
         descriptions = [
             {"description": sanitize(description), "descriptionType": "Abstract"}
         ]
     else:
         descriptions = None
+    #     language = meta.fetch("language", nil) || meta.dig("blog", "language")
+    #     state = id.present? || read_options.present? ? "findable" : "not_found"
+    #     subjects = Array.wrap(meta.dig("blog", "category")).reduce([]) do |sum, subject|
+    #       sum += name_to_fos(subject.underscore.humanize)
 
+    #       sum
+    #     end
+    references = [
+        get_reference(i) for i in wrap(meta.get("reference", None))
+    ]
+    #     funding_references = get_funding_references(meta)
+    #     related_identifiers = get_related_identifiers(meta)
+    #     alternate_identifiers = [{ "alternateIdentifier" => meta["id"], "alternateIdentifierType" => "UUID" }]
+
+    related_identifiers = []
     state = "findable" if meta or read_options else "not_found"
-    subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
 
     return {
         # required properties
@@ -106,21 +109,36 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
-        "subjects": presence(subjects),
+        # "subjects": presence(subjects),
         "language": meta.get("language", None),
         "alternate_identifiers": None,
         "sizes": None,
         "formats": None,
-        "version": meta.get("version", None),
+        "version": None,
         "license": license_,
         "descriptions": descriptions,
         "geo_locations": None,
-        "funding_references": presence(funding_references),
+        # "funding_references": presence(funding_references),
         "references": references,
+        "related_identifiers": presence(related_identifiers),
         # other properties
-        "content_url": presence(meta.get("contentUrl", None)),
         "container": presence(container),
-        "provider": get_doi_ra(id_),
+        # "provider": get_doi_ra(id_),
         "state": state,
         "schema_version": None,
     } | read_options
+
+
+def get_reference(reference: Optional[dict]) -> Optional[dict]:
+    """get json feed reference"""
+    if reference is None or not isinstance(reference, dict):
+        return None
+    doi = reference.get("doi", None)
+    metadata = {
+        "key": reference.get("key", None),
+        "doi": normalize_doi(doi) if doi else None,
+        "title": None,
+        "publicationYear": None,
+        "url": reference.get("url", None) if doi is None else None,
+    }
+    return compact(metadata)

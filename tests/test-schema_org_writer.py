@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test schema.org writer"""
+from os import path
 import json
 import pytest
 
@@ -57,6 +58,232 @@ def test_journal_article():
     )
 
 
+@pytest.mark.vcr
+def test_inveniordm_software():
+    "inveniordm software"
+    string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
+    assert subject.type == "Software"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7752775"
+    assert schema_org.get("@type") == "SoftwareSourceCode"
+    assert schema_org.get("name") == "commonmeta-ruby"
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [{"name": "Front Matter"}],
+        "@type": "Person",
+        "name": "Martin Fenner",
+    }
+    assert schema_org.get("description").startswith(
+        "Ruby gem and command-line utility for conversion"
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2023-03-20"
+    assert schema_org.get("url") == "https://zenodo.org/record/7752775"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert schema_org.get("license") == "https://opensource.org/licenses/MIT"
+
+
+@pytest.mark.vcr
+def test_inveniordm_presentation():
+    "inveniordm presentation"
+    string = "https://zenodo.org/api/records/8173303"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
+    assert subject.type == "Speech"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8173303"
+    assert schema_org.get("@type") == "PresentationDigitalDocument"
+    assert (
+        schema_org.get("name")
+        == "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+    )
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0002-8960-9642",
+        "givenName": "Heidi",
+        "familyName": "Seibold",
+        "@type": "Person",
+        "name": "Heidi Seibold",
+    }
+    assert schema_org.get("description").startswith(
+        "CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;"
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2023-07-21"
+    assert schema_org.get("url") == "https://zenodo.org/record/8173303"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_publication():
+    "inveniordm publication"
+    string = "https://zenodo.org/api/records/5244404"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.5244404"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert schema_org.get("name") == "The Origins of SARS-CoV-2: A Critical Review"
+    assert len(schema_org.get("author")) == 21
+    assert schema_org.get("author")[0] == {
+        "givenName": "Edward C",
+        "familyName": "Holmes",
+        "affiliation": [
+            {
+                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
+            }
+        ],
+        "@type": "Person",
+        "name": "Edward C Holmes",
+    }
+    assert schema_org.get("description").startswith(
+        "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2021-08-18"
+    assert schema_org.get("url") == "https://zenodo.org/record/5244404"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_report():
+    "inveniordm report"
+    string = "https://zenodo.org/api/records/3871094"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.3871094"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.3871094"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert schema_org.get("name") == "An open letter to Mehra et al and The Lancet"
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0001-5524-0325",
+        "givenName": "James Watson on the behalf of 201",
+        "familyName": "signatories",
+        "affiliation": [{"name": "Mahidol Oxford Tropical Medicine Research Unit"}],
+        "@type": "Person",
+        "name": "James Watson on the behalf of 201 signatories",
+    }
+    assert schema_org.get("description").startswith(
+        "Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel"
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2020-05-28"
+    assert schema_org.get("url") == "https://zenodo.org/record/3871094"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "eng"
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_preprint():
+    "inveniordm preprint"
+    string = "https://zenodo.org/api/records/8120771"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8120771"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8120771"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert (
+        schema_org.get("name")
+        == "A SYSTEMATIC REVIEW OF AUTOPSY FINDINGS IN DEATHS AFTER COVID-19 VACCINATION"
+    )
+    assert len(schema_org.get("author")) == 9
+    assert schema_org.get("author")[0] == {
+        "givenName": "BS",
+        "familyName": "Nicolas Hulscher",
+        "affiliation": [{"name": "University of Michigan School of Public Health"}],
+        "@type": "Person",
+        "name": "BS Nicolas Hulscher",
+    }
+    assert schema_org.get("description").startswith(
+        "<strong>ABSTRACT</strong> <strong>Background:</strong>"
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2023-07-06"
+    assert schema_org.get("url") == "https://zenodo.org/record/8120771"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "eng"
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_dataset():
+    "inveniordm dataset"
+    string = "https://zenodo.org/api/records/7834392"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
+    assert subject.type == "Dataset"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7834392"
+    assert schema_org.get("@type") == "Dataset"
+    assert (
+        schema_org.get("name")
+        == "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"
+    )
+    assert len(schema_org.get("author")) == 9
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0001-8499-824X",
+        "givenName": "Juan M.",
+        "familyName": "Banda",
+        "affiliation": [{"name": "Georgia State University"}],
+        "@type": "Person",
+        "name": "Juan M. Banda",
+    }
+    assert schema_org.get("description").startswith(
+        "<em><strong>Version 162&nbsp;of the dataset."
+    )
+    assert schema_org.get("publisher") is None
+    assert schema_org.get("datePublished") == "2023-04-16"
+    assert schema_org.get("url") == "https://zenodo.org/record/7834392"
+    assert schema_org.get("periodical") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "eng"
+    assert schema_org.get("license") is None
+
+
 #       expect(json['citation'].length).to eq(27)
 #       expect(json['citation'].first).to eq('@id' => 'https://doi.org/10.1038/nature02100',
 #                                            '@type' => 'CreativeWork')
@@ -93,6 +320,14 @@ def test_article_with_pages():
         "givenName": "Christian",
         "name": "Christian Twittenhoff",
     }
+    assert schema_org.get("editor") == [
+        {
+            "givenName": "Guy",
+            "familyName": "Tran Van Nhieu",
+            "@type": "Person",
+            "name": "Guy Tran Van Nhieu",
+        }
+    ]
     assert schema_org.get("description") is None
     assert schema_org.get("publisher") == {
         "@type": "Organization",

@@ -7,3 +7,5 @@ from .codemeta_reader import get_codemeta, read_codemeta
 from .cff_reader import get_cff, read_cff
 from .crossref_xml_reader import get_crossref_xml, read_crossref_xml
 from .datacite_xml_reader import get_datacite_xml, read_datacite_xml
+from .json_feed_reader import get_json_feed_item, read_json_feed_item
+from .inveniordm_reader import get_inveniordm, read_inveniordm

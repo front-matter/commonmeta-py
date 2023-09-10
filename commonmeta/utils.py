@@ -237,8 +237,40 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
+def from_json_feed(elements: list) -> list:
+    """Convert from JSON Feed elements"""
+
+    def format_element(element):
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        mapping = {"url": "ORCID"}
+        for key, value in mapping.items():
+            if element.get(key, None) is not None:
+                element[value] = element.pop(key)
+        return element
+
+    return [format_element(i) for i in elements]
+
+
+def from_inveniordm(elements: list) -> list:
+    """Convert from inveniordm elements"""
+
+    def format_element(element):
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        mapping = {"orcid": "ORCID"}
+        for key, value in mapping.items():
+            if element.get(key, None) is not None:
+                element[value] = element.pop(key)
+        return element
+
+    return [format_element(i) for i in elements]
+
 def from_crossref_xml(elements: list) -> list:
     """Convert from crossref_xml elements"""
+
     def format_affiliation(element):
         """Format affiliation"""
         return {"name": element}
@@ -252,7 +284,9 @@ def from_crossref_xml(elements: list) -> list:
             element["@type"] = "Person"
         element["givenName"] = element.get("given_name", None)
         element["familyName"] = element.get("surname", None)
-        element["contributorType"] = element.get("@contributor_role", "author").capitalize()
+        element["contributorType"] = element.get(
+            "@contributor_role", "author"
+        ).capitalize()
         if element.get("ORCID", None) is not None:
             orcid = parse_xmldict(
                 element.get("ORCID"), ignored_attributes="@authenticated"
@@ -345,7 +379,7 @@ def to_schema_org_creators(elements: list) -> list():
             element["@type"] = "Person"
         else:
             element["@type"] = "Organization"
-        element = py_.omit(element, "type")
+        element = py_.omit(element, "type", "contributorRoles")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -434,6 +468,16 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         return "codemeta"
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
+    if (
+        re.match(r"\Ahttps:/(/)?rogue-scholar\.org/api/posts/(.+)\Z", pid)
+        is not None
+    ):
+        return "json_feed_item"
+    if (
+        re.match(r"\Ahttps:/(/)?zenodo\.org/api/records/(.+)\Z", pid)
+        is not None
+    ):
+        return "inveniordm"
     return "schema_org"
 
 
@@ -466,6 +510,8 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "crossref"
         if py_.get(data, "issued.date-parts") is not None:
             return "csl"
+        if py_.get(data, "conceptdoi") is not None:
+            return "inveniordm"
     except json.JSONDecodeError:
         pass
     try:

@@ -17,6 +17,7 @@ class Commonmeta(TypedDict):
     contributors: Optional[List[dict]]
     language: Optional[str]
     alternate_identifiers: Optional[List[dict]]
+    related_identifiers: Optional[List[dict]]
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]
     version: Optional[str]
@@ -26,7 +27,7 @@ class Commonmeta(TypedDict):
     funding_references: Optional[List[dict]]
     references: Optional[List[dict]]
     container: Optional[dict]
-    content_url: Optional[List[dict]]
+    files: Optional[List[dict]]
     agency: Optional[str]
     state: str
     schema_version: Optional[str]
@@ -130,7 +131,6 @@ CM_TO_CSL_TRANSLATIONS = {
     "Performance": "performance",
     "Journal": "periodical",
     "PersonalCommunication": "personal_communication",
-    "Post": "post",
     "Report": "report",
     "Review": "review",
     "Software": "software",
@@ -230,6 +230,39 @@ DC_TO_CM_TRANSLATIONS = {
     "Thesis": "Dissertation",
     "Workflow": "Workflow",
     "Other": "Other",
+}
+
+# https://github.com/zenodo/zenodo/blob/master/zenodo/modules/records/data/objecttypes.json
+INVENIORDM_TO_CM_TRANSLATIONS = {
+    "book": "Book",
+    "section": "BookChapter",
+    "conferencepaper": "ProceedingsArticle",
+    "article": "JournalArticle",
+    "patent": "Patent",
+    "publication": "JournalArticle",
+    "report": "Report",
+    "softwaredocumentation": "Software",
+    "thesis": "Dissertation",
+    "technicalnote": "Report",
+    "workingpaper": "Report",
+    "datamanagementplan": "OutputManagementPlan",
+    "annotationcollection": "Collection",
+    "taxonomictreatment": "Collection",
+    "peerreview": "PeerReview",
+    "poster": "Speech",
+    "presentation": "Speech",
+    "dataset": "Dataset",
+    "figure": "Image",
+    "plot": "Image",
+    "drawing": "Image",
+    "photo": "Image",
+    "image": "Image",
+    "video": "Audiovisual",
+    "software": "Software",
+    "lesson": "InteractiveResource",
+    "physicalobject": "PhysicalObject",
+    "workflow": "Workflow",
+    "other": "Other",
 }
 
 CM_TO_DC_TRANSLATIONS = {
@@ -366,13 +399,21 @@ SO_TO_CM_TRANSLATIONS = {
 
 CM_TO_SO_TRANSLATIONS = {
     "Article": "Article",
+    "Audiovisual": "CreativeWork",
     "Book": "Book",
     "BookChapter": "BookChapter",
+    "Collection": "CreativeWork",
     "Dataset": "Dataset",
     "Dissertation": "Dissertation",
-    "LegalDocument": "Legislation",
+    "Document": "CreativeWork",
+    "Entry": "CreativeWork",
+    "Event": "CreativeWork",
+    "Figure": "CreativeWork",
+    "Image": "CreativeWork",
     "JournalArticle": "ScholarlyArticle",
+    "LegalDocument": "Legislation",
     "Software": "SoftwareSourceCode",
+    "Speech": "PresentationDigitalDocument"
 }
 
 SO_TO_DC_RELATION_TYPES = {
@@ -426,3 +467,22 @@ DATACITE_CONTRIBUTOR_TYPES = {
     "Supervisor": "Supervision",
     "WorkPackageLeader": "Other",
 }
+
+# from commonmeta schema
+COMMONMETA_RELATION_TYPES = [
+    "IsNewVersionOf",
+    "IsPreviousVersionOf",
+    "IsVersionOf",
+    "HasVersion",
+    "IsPartOf",
+    "HasPart",
+    "IsVariantFormOf",
+    "IsOriginalFormOf",
+    "IsIdenticalTo",
+    "IsTranslationOf",
+    "IsReviewedBy",
+    "Reviews",
+    "IsPreprintOf",
+    "HasPreprint",
+    "IsSupplementTo",
+]

@@ -98,7 +98,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     container = get_container(meta, resource_type=resource_type)
 
-    references = references = [
+    references = [
         get_reference(i) for i in wrap(meta.get("reference", None))
     ]
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
@@ -111,9 +111,11 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    state = "findable" if meta or read_options else "not_found"
     subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
+    files = presence(meta.get("contentUrl", None))
 
+    state = "findable" if meta or read_options else "not_found"
+    
     return {
         # required properties
         "id": id_,
@@ -136,7 +138,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "funding_references": presence(funding_references),
         "references": references,
         # other properties
-        "content_url": presence(meta.get("contentUrl", None)),
+        "files": presence(files),
         "container": presence(container),
         "provider": get_doi_ra(id_),
         "state": state,
