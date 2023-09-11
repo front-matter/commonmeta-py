@@ -79,13 +79,19 @@ def test_one_author():
     )
     # has name in Thai
     assert (
-        {"name": "กัญจนา แซ่เตียว", "contributorRoles": ["Author"]}
+        {
+            "givenName": "กัญจนา",
+            "familyName": "แซ่เตียว",
+            "contributorRoles": ["Author"],
+            "type": "Person",
+        }
     ) == get_one_author(
         {"name": "กัญจนา แซ่เตียว", "affiliation": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
         "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
+        "type": "Organization",
         "contributorRoles": ["Author"],
     } == get_one_author(
         {
@@ -97,11 +103,11 @@ def test_one_author():
     # 'hyper-authorship'
     assert {
         "contributorRoles": ["Author"],
+        "type": "Organization",
         "name": "ALICE Collaboration",
     } == get_one_author(
         {
             "name": "ALICE Collaboration",
-            "type": "Organization",
             "affiliation": [],
             "id": None,
         }
@@ -111,7 +117,6 @@ def test_one_author():
         "email": "info@ucop.edu",
         "creatorName": {
             "#text": "University of California, Santa Barbara",
-            "type": "Organization",
         },
         "role": {
             "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
@@ -262,6 +267,7 @@ def test_get_authors():
         },
         {
             "name": "University of California, Santa Barbara",
+            "type": "Organization",
             "contributorRoles": ["Author"],
         },
     ] == get_authors(authors)
@@ -295,5 +301,10 @@ def test_get_affiliations():
 
 def test_is_personal_name():
     """is personal name"""
-    # assert True is is_personal_name("Fenner, Martin")
+    assert True is is_personal_name("Fenner, Martin")
     assert False is is_personal_name("University of California, Santa Barbara")
+    assert False is is_personal_name("ALICE Collaboration")
+    assert True is is_personal_name("กัญจนา แซ่เตียว")
+    assert False is is_personal_name(
+        "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
+    )

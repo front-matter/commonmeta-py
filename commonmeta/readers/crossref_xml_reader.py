@@ -28,7 +28,6 @@ from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
 from ..doi_utils import (
     doi_as_url,
     get_doi_ra,
-    get_crossref_member,
     crossref_xml_api_url,
     normalize_doi,
 )

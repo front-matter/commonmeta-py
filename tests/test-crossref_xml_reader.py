@@ -115,7 +115,7 @@ def test_journal_article():
         "updated": "2021-08-06",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
+        "id": "https://api.crossref.org/members/44970",
         "name": "Public Library of Science (PLoS)",
     }
     assert len(subject.references) == 73
@@ -234,7 +234,7 @@ def test_journal_article_original_language():
         "updated": "2021-05-20",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4426",
+        "id": "https://api.crossref.org/members/46023",
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
     assert len(subject.references) == 7
@@ -292,7 +292,7 @@ def test_journal_article_with_rdf_for_container():
         "updated": "2019-07-05",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/286",
+        "id": "https://api.crossref.org/members/44406",
         "name": "Oxford University Press (OUP)",
     }
     assert len(subject.references) == 111
@@ -349,7 +349,7 @@ def test_book_chapter_with_rdf_for_container():
         "updated": "2020-11-24",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
+        "id": "https://api.crossref.org/members/44520",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 11
@@ -457,7 +457,7 @@ def test_peer_review():
         "updated": "2020-05-19",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
+        "id": "https://api.crossref.org/members/45970",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 0
@@ -496,7 +496,7 @@ def test_dissertation():
         "updated": "2020-06-08",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/5387",
+        "id": "https://api.crossref.org/members/47038",
         "name": "University of Queensland Library",
     }
     assert len(subject.references) == 0
@@ -541,7 +541,7 @@ def test_doi_with_sici():
         "updated": "2019-04-28",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/311",
+        "id": "https://api.crossref.org/members/44667",
         "name": "Wiley",
     }
     assert len(subject.references) == 39
@@ -767,7 +767,7 @@ def test_vor_with_url():
         "updated": "2023-05-18",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
+        "id": "https://api.crossref.org/members/44520",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 41
@@ -861,7 +861,7 @@ def test_component():
         "updated": "2018-10-19",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
+        "id": "https://api.crossref.org/members/44970",
         "name": "Public Library of Science (PLoS)",
     }
     assert len(subject.references) == 0
@@ -954,7 +954,7 @@ def test_book_chapter():
         "updated": "2023-02-10",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
+        "id": "https://api.crossref.org/members/44520",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 22
@@ -1002,7 +1002,7 @@ def test_another_book_chapter():
     assert subject.license == {"url": "https://www.springer.com/tdm"}
     assert subject.date["published"] == "2018"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
+        "id": "https://api.crossref.org/members/44520",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 44
@@ -1160,7 +1160,7 @@ def test_book():
         "updated": "2022-09-22",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/56",
+        "id": "https://api.crossref.org/members/47269",
         "name": "Cambridge University Press (CUP)",
     }
     assert len(subject.references) == 273
@@ -1218,7 +1218,7 @@ def test_proceedings_article():
         "updated": "2023-07-02",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/320",
+        "id": "https://api.crossref.org/members/44763",
         "name": "Association for Computing Machinery (ACM)",
     }
     assert len(subject.references) == 56

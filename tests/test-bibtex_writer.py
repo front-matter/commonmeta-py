@@ -1,4 +1,5 @@
 """Bibtex writer tests"""
+from os import path
 import pytest
 from commonmeta import Metadata
 
@@ -43,7 +44,7 @@ def test_doi_for_blog_post():
     assert (
         bibtex
         == """@article{10.53731/avg2ykg-gdxppcd,
-    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people. The user experience has greatly improved over the last few years and there are a number of affordable ways for hosting a blog that also work for science blogs, including free options such as GitHub},
+    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? &lt;strong&gt;Barriers to Entry&lt;/strong&gt; Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
     author = {Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.53731/avg2ykg-gdxppcd},
@@ -95,7 +96,7 @@ def test_article_with_pages():
     assert (
         bibtex
         == """@article{10.1371/journal.ppat.1008184,
-    author = {Twittenhoff, Christian and Heroven, Ann Kathrin and Mühlen, Sabrina and Dersch, Petra and Narberhaus, Franz},
+    author = {Twittenhoff, Christian and Heroven, Ann Kathrin and Mühlen, Sabrina and Dersch, Petra and Narberhaus, Franz and Tran Van Nhieu, Guy},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.1371/journal.ppat.1008184},
     issn = {1553-7374},
@@ -168,6 +169,7 @@ def test_inproceedings():
 """
     )
 
+
 def test_book_chapter():
     """book chapter"""
     subject = Metadata("https://doi.org/10.1007/978-3-662-46370-3_13")
@@ -184,7 +186,7 @@ def test_book_chapter():
     copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
     doi = {10.1007/978-3-662-46370-3_13},
     isbn = {9783662463703},
-    month = mar,
+    month = sep,
     pages = {155--158},
     publisher = {Springer Science and Business Media LLC},
     title = {Clinical Symptoms and Physical Examinations},
@@ -210,7 +212,7 @@ def test_conference_proceedings():
     author = {Sinop, Ali Kemal and Grady, Leo},
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
-    month = mar,
+    month = sep,
     publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
     url = {http://ieeexplore.ieee.org/document/4408927},
@@ -240,6 +242,174 @@ def test_phd_thesis():
     url = {http://espace.library.uq.edu.au/view/UQ:23a1e74},
     urldate = {2020-06-08},
     year = {2020}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_software():
+    "inveniordm software"
+    string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
+    assert subject.type == "Software"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@misc{10.5281/zenodo.7752775,
+    abstract = {Ruby gem and command-line utility for conversion of DOI metadata from and to different metadata formats, including schema.org. Fork of version 1.19.12 of the bolognese gem.},
+    author = {Fenner, Martin},
+    copyright = {https://opensource.org/licenses/MIT},
+    doi = {10.5281/zenodo.7752775},
+    month = mar,
+    publisher = {Zenodo},
+    title = {commonmeta-ruby},
+    url = {https://zenodo.org/record/7752775},
+    urldate = {2023-03-20},
+    year = {2023}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_presentation():
+    "inveniordm presentation"
+    string = "https://zenodo.org/api/records/8173303"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
+    assert subject.type == "Speech"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@misc{10.5281/zenodo.8173303,
+    abstract = {CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;, from July 10th-14th at CERN in Geneva, Switzerland https://indico.cern.ch/event/1254282/ 11&nbsp;July 2023 (Day 2)&nbsp;Open Data Sharing},
+    author = {Seibold, Heidi},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+    doi = {10.5281/zenodo.8173303},
+    month = jul,
+    publisher = {Zenodo},
+    title = {11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes},
+    url = {https://zenodo.org/record/8173303},
+    urldate = {2023-07-21},
+    year = {2023}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_publication():
+    "inveniordm publication"
+    string = "https://zenodo.org/api/records/5244404"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
+    assert subject.type == "JournalArticle"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@article{10.5281/zenodo.5244404,
+    abstract = {The Origins of SARS-CoV-2: A Critical Review Holmes et al. Published online: 18-Aug-2021,&nbsp;Cell,&nbsp;https://doi.org/10.1016/j.cell.2021.08.017 Since the first reports of a novel SARS-like coronavirus in December 2019 in Wuhan, China, there has been intense interest in understanding how SARS-CoV-2 emerged in the human population. Recent debate has coalesced around two competing ideas: a &ldquo;laboratory escape&rdquo; scenario and zoonotic emergence. Here, we critically review the current scientific evidence that may help clarify the origin of SARS-CoV-2. Computer readable versions of data tables, SVG maps, and acknowledgements of sequence data used are available from: https://github.com/sars-cov-2-origins/critical-review &nbsp;},
+    author = {Holmes, Edward C and Goldstein, Stephen A and Rasmussen, Angela L and Robertson, David L and Crits-Christoph, Alexander and Wertheim, Joel O and Anthony, Simon J and Barclay, Wendy S and Boni, Maciej F and Doherty, Peter C and Farrar, Jeremy and Geoghegan, Jemma L and Jiang, Xiaowei and Leibowitz, Julian L and Neil, Stuart J D and Skern, Tim and Weiss, Susan R and Worobey, Michael and Andersen, Kristian G and Garry, Robert F and Rambaut, Andrew},
+    copyright = {https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode},
+    doi = {10.5281/zenodo.5244404},
+    month = aug,
+    title = {The Origins of SARS-CoV-2: A Critical Review},
+    url = {https://zenodo.org/record/5244404},
+    urldate = {2021-08-18},
+    year = {2021}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_report():
+    "inveniordm report"
+    string = "https://zenodo.org/api/records/3871094"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.3871094"
+    assert subject.type == "JournalArticle"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@article{10.5281/zenodo.3871094,
+    abstract = {Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel, authors of <strong>&ldquo;Hydroxychloroquine or chloroquine with or without a macrolide for treatment of COVID-19: a multinational registry analysis&rdquo;. Lancet. 2020 May 22:S0140-6736(20)31180-6. doi: 10.1016/S0140-6736(20)31180-6. PMID: 32450107</strong> and to Richard Horton (editor of The Lancet).},
+    author = {signatories, James Watson on the behalf of 201},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+    doi = {10.5281/zenodo.3871094},
+    language = {eng},
+    month = may,
+    title = {An open letter to Mehra et al and The Lancet},
+    url = {https://zenodo.org/record/3871094},
+    urldate = {2020-05-28},
+    year = {2020}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_preprint():
+    "inveniordm preprint"
+    string = "https://zenodo.org/api/records/8120771"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8120771"
+    assert subject.type == "JournalArticle"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@article{10.5281/zenodo.8120771,
+    abstract = {<strong>ABSTRACT</strong> <strong>Background:</strong> The rapid development and widespread deployment of COVID-19 vaccines, combined with a high number of adverse event reports, have led to concerns over possible mechanisms of injury including systemic lipid nanoparticle (LNP) and mRNA distribution, spike protein-associated tissue damage, thrombogenicity, immune system dysfunction, and carcinogenicity. The aim of this systematic review is to investigate possible causal links between COVID-19 vaccine administration and death using autopsies and post-mortem analysis. &nbsp; <strong>Methods:</strong> We searched for all published autopsy and necropsy reports relating to COVID-19 vaccination up until May 18<sup>th</sup>, 2023. We initially identified 678 studies and, after screening for our inclusion criteria, included 44 papers that contained 325 autopsy cases and one necropsy case. Three physicians independently reviewed all deaths and determined whether COVID-19 vaccination was the direct cause or contributed significantly to death. &nbsp; <strong>Findings:</strong> The most implicated organ system in COVID-19 vaccine-associated death was the cardiovascular system (53%), followed by the hematological system (17%), the respiratory system (8%), and multiple organ systems (7%). Three or more organ systems were affected in 21 cases. The mean time from vaccination to death was 14.3 days. Most deaths occurred within a week from last vaccine administration. A total of 240 deaths (73.9%) were independently adjudicated as directly due to or significantly contributed to by COVID-19 vaccination. &nbsp; <strong>Interpretation:</strong> The consistency seen among cases in this review with known COVID-19 vaccine adverse events, their mechanisms, and related excess death, coupled with autopsy confirmation and physician-led death adjudication, suggests there is a high likelihood of a causal link between COVID-19 vaccines and death in most cases. Further urgent investigation is required for the purpose of clarifying our findings.&nbsp;},
+    author = {Nicolas Hulscher, BS and Alexander, Paul E. and Amerling, Richard and Gessling, Heather and Hodkinson, Roger and Makis, William and Risch, Harvey A. and Trozzi, Mark and McCullough, Peter A.},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+    doi = {10.5281/zenodo.8120771},
+    language = {eng},
+    month = jul,
+    title = {A SYSTEMATIC REVIEW OF AUTOPSY FINDINGS IN DEATHS AFTER COVID-19 VACCINATION},
+    url = {https://zenodo.org/record/8120771},
+    urldate = {2023-07-06},
+    year = {2023}
+}
+"""
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_dataset():
+    "inveniordm dataset"
+    string = "https://zenodo.org/api/records/7834392"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
+    assert subject.type == "Dataset"
+
+    bibtex = subject.bibtex()
+
+    assert (
+        bibtex
+        == """@misc{10.5281/zenodo.7834392,
+    abstract = {<em><strong>Version 162&nbsp;of the dataset. NOTES: Data for 3/15 - 3/18 was not extracted due to unexpected and unannounced downtime of our university infrastructure. We will try to backfill those days by next release.&nbsp;</strong></em><em><strong>FUTURE CHANGES: Due to the imminent&nbsp;paywalling of Twitter&#39;s API access&nbsp;this might be the last full update of this dataset. If the API access is not blocked, we will be stopping updates for this dataset with release 165 - a bit more than 3 years after our initial release. It&#39;s been a joy seeing all the work that uses this resource and we are glad that so many found it useful.&nbsp;</strong></em> <em><strong>The dataset files: full_dataset.tsv.gz and&nbsp;full_dataset_clean.tsv.gz have&nbsp;been split in 1 GB&nbsp;parts using the Linux utility called Split. So make sure to join the&nbsp;parts before unzipping. We had to make this change as we had huge issues uploading files larger than 2GB&#39;s&nbsp;(hence the delay in the dataset releases).&nbsp;The peer-reviewed publication for this dataset has now been published&nbsp; in&nbsp;Epidemiologia an&nbsp;MDPI journal, and can be accessed here:&nbsp;https://doi.org/10.3390/epidemiologia2030024. Please cite this when using the dataset.</strong></em> <strong>Due to the relevance of the COVID-19 global pandemic, we are releasing our dataset of tweets acquired from the Twitter Stream related to COVID-19 chatter. Since our first release we have received additional data from our new collaborators, allowing this resource to grow to its current size. Dedicated data gathering started from March 11th yielding over 4 million tweets a day. We have added additional data provided by our new collaborators from January 27th to March 27th, to provide extra longitudinal coverage. Version 10 added&nbsp;~1.5 million tweets in the Russian language collected between January 1st and May 8th, gracefully provided to us by:&nbsp;Katya Artemova (NRU HSE) and Elena Tutubalina (KFU). From version 12 we have included daily hashtags, mentions and emoijis and their frequencies the respective zip files. From version 14&nbsp;<em>we</em>&nbsp;have included the tweet identifiers and their respective language for the clean version of the dataset. Since&nbsp;version 20 we have included language and place location for all tweets.</strong> <strong>The data collected from the stream captures all languages, but the higher prevalence are:&nbsp; English, Spanish, and French. We release all tweets and retweets on the full_dataset.tsv file (1,395,222,801 unique tweets), and a cleaned version with no retweets on the full_dataset-clean.tsv file (361,748,721 unique tweets). There are several practical reasons for us to leave the retweets, tracing important tweets and their dissemination is one of them. For NLP tasks we provide the top 1000 frequent terms in frequent_terms.csv, the top 1000 bigrams in frequent_bigrams.csv, and the top 1000 trigrams in frequent_trigrams.csv. Some general statistics per day are included for both datasets in the full_dataset-statistics.tsv and full_dataset-clean-statistics.tsv files. For more statistics and some visualizations visit:&nbsp;http://www.panacealab.org/covid19/&nbsp;</strong> <strong>More details can be found (and will be updated faster at: https://github.com/thepanacealab/covid19_twitter) and our pre-print about the dataset (https://arxiv.org/abs/2004.03688)&nbsp;</strong> <strong>As always, the tweets distributed here are only tweet identifiers (with date and time added) due to the terms and conditions of Twitter to re-distribute Twitter data ONLY for research purposes. They need to be hydrated to be used.</strong>},
+    author = {Banda, Juan M. and Tekumalla, Ramya and Wang, Guanyu and Yu, Jingyuan and Liu, Tuo and Ding, Yuning and Artemova, Katya and Tutubalina, Elena and Chowell, Gerardo},
+    copyright = {None},
+    doi = {10.5281/zenodo.7834392},
+    language = {eng},
+    month = apr,
+    publisher = {Zenodo},
+    title = {A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration},
+    url = {https://zenodo.org/record/7834392},
+    urldate = {2023-04-16},
+    year = {2023}
 }
 """
     )

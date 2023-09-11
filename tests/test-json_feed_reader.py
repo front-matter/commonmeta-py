@@ -197,7 +197,7 @@ def test_ghost_with_personal_name_parsing():
         "contributorRoles": ["Author"],
         "type": "Person",
         'familyName': 'Sathe',
-        'givenName': 'Tejas',
+        'givenName': 'Tejas S.',
     }
     assert subject.license == {
         "id": "CC-BY-4.0",

@@ -9,7 +9,8 @@ from ..constants import (CM_TO_BIB_TRANSLATIONS, CM_TO_CSL_TRANSLATIONS, CM_TO_C
 
 def write_datacite(metadata: Commonmeta) -> Optional[str]:
     """Write datacite"""
-    creators = [to_datacite_creator(i) for i in wrap(metadata.contributors)]
+    creators = [to_datacite_creator(i) for i in wrap(metadata.contributors) if i.get('contributorRoles', None) == ['Author']]
+    contributors = [to_datacite_creator(i) for i in wrap(metadata.contributors) if i.get('contributorRoles', None) == ['Author']]
     related_items = [to_datacite_related_item(i) for i in wrap(metadata.references)]
 
     resource_type_general = CM_TO_DC_TRANSLATIONS.get(metadata.type, 'Other')
@@ -52,7 +53,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
             "publisher": metadata.publisher,
             "publicationYear": publication_year,
             "subjects": metadata.subjects,
-            "contributors": metadata.contributors,
+            "contributors": contributors,
             "dates": dates,
             "language": metadata.language,
             "types": types,

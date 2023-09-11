@@ -1,6 +1,6 @@
 """Schema.org writer for commonmeta-py"""
 import json
-from ..utils import to_schema_org, to_schema_org_creators
+from ..utils import to_schema_org, to_schema_org_creators, github_as_repo_url
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..constants import CM_TO_SO_TRANSLATIONS
 
@@ -8,6 +8,42 @@ from ..constants import CM_TO_SO_TRANSLATIONS
 def write_schema_org(metadata):
     """Write schema.org"""
     container = metadata.container
+    if metadata.type == "Dataset" and metadata.files is not None:
+        media_objects = [
+            compact(
+                {
+                    "@type": "DataDownload",
+                    "contentUrl": file.get("url"),
+                    "encodingFormat": file.get("mimeType", None),
+                    "name": file.get("key", None),
+                    "sha256": file["checksum"]
+                    if file.get("checksum", None)
+                    and file["checksum"].startswith("sha256")
+                    else None,
+                    "size": file.get("size", None),
+                }
+            )
+            for file in metadata.files
+        ]
+    elif metadata.files is not None:
+        media_objects = [
+            compact(
+                {
+                    "@type": "MediaObject",
+                    "contentUrl": file.get("url"),
+                    "encodingFormat": file.get("mimeType", None),
+                    "name": file.get("key", None),
+                    "sha256": file["checksum"]
+                    if file.get("checksum", None)
+                    and file["checksum"].startswith("sha256")
+                    else None,
+                    "size": file.get("size", None),
+                }
+            )
+            for file in metadata.files
+        ]
+    else:
+        media_objects = None
     if metadata.type != "Dataset" and container is not None:
         periodical = to_schema_org(container)
     else:
@@ -20,12 +56,24 @@ def write_schema_org(metadata):
     editors = [
         au for au in wrap(metadata.contributors) if au["contributorRoles"] == ["Editor"]
     ]
+    if metadata.type == "Software":
+        rel = next(
+            (
+                relation
+                for relation in metadata.related_identifiers
+                if relation["type"] == "IsSupplementTo"
+            ),
+            None,
+        )
+        code_repository = github_as_repo_url(rel["id"])
+    else:
+        code_repository = None
 
     data = compact(
         {
             "@context": "http://schema.org",
             "@id": metadata.id,
-            # 'identifier': metadata.id,
+            "identifier": metadata.id,
             "@type": schema_org,
             "url": metadata.url,
             "additionalType": additional_type,
@@ -53,6 +101,9 @@ def write_schema_org(metadata):
             #     relation_type="IsPartOf",
             # )),
             "periodical": periodical,
+            "distribution": media_objects if metadata.type == "Dataset" else None,
+            "encoding": media_objects if metadata.type != "Dataset" else None,
+            "codeRepository": code_repository,
             "publisher": {
                 "@type": "Organization",
                 "name": metadata.publisher.get("name", None),

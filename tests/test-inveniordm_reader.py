@@ -45,46 +45,10 @@ def test_software():
         },
         {"id": "https://doi.org/10.5281/zenodo.5785518", "type": "IsVersionOf"},
     ]
-
-    # assert subject.publisher == {
-    #     "name": "Sauropod Vertebra Picture of the Week",
-    # }
-    # assert len(subject.references) == 3
-    # assert subject.references[0] == {
-    #     "key": "ref1",
-    #     "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
-    # }
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
-    # assert subject.container == {
-    #     "title": "Sauropod Vertebra Picture of the Week",
-    #     "type": "Periodical",
-    # }
+    assert subject.publisher == {
+        "name": "Zenodo",
+    }
+    assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -142,46 +106,10 @@ def test_presentation():
     assert subject.related_identifiers == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
     ]
-
-    # assert subject.publisher == {
-    #     "name": "Sauropod Vertebra Picture of the Week",
-    # }
-    # assert len(subject.references) == 3
-    # assert subject.references[0] == {
-    #     "key": "ref1",
-    #     "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
-    # }
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
-    # assert subject.container == {
-    #     "title": "Sauropod Vertebra Picture of the Week",
-    #     "type": "Periodical",
-    # }
+    assert subject.publisher == {
+        "name": "Zenodo",
+    }
+    assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -209,7 +137,7 @@ def test_publication():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
-    assert subject.type == "Article"
+    assert subject.type == "JournalArticle"
     assert subject.url == "https://zenodo.org/record/5244404"
     assert subject.titles[0] == {
         "title": "The Origins of SARS-CoV-2: A Critical Review"
@@ -238,46 +166,10 @@ def test_publication():
     assert subject.related_identifiers == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
-
-    # assert subject.publisher == {
-    #     "name": "Sauropod Vertebra Picture of the Week",
-    # }
-    # assert len(subject.references) == 3
-    # assert subject.references[0] == {
-    #     "key": "ref1",
-    #     "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
-    # }
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
-    # assert subject.container == {
-    #     "title": "Sauropod Vertebra Picture of the Week",
-    #     "type": "Periodical",
-    # }
+    assert subject.publisher == {
+        "name": "Zenodo",
+    }
+    assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -337,46 +229,10 @@ def test_dataset():
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]
-
-    # assert subject.publisher == {
-    #     "name": "Sauropod Vertebra Picture of the Week",
-    # }
-    # assert len(subject.references) == 3
-    # assert subject.references[0] == {
-    #     "key": "ref1",
-    #     "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
-    # }
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
-    # assert subject.container == {
-    #     "title": "Sauropod Vertebra Picture of the Week",
-    #     "type": "Periodical",
-    # }
+    assert subject.publisher == {
+        "name": "Zenodo",
+    }
+    assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")

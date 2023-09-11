@@ -126,6 +126,10 @@ def is_personal_name(name):
     # check if a name has only one word, e.g. "FamousOrganization", not including commas
     if len(name.split(" ")) == 1 and "," not in name:
         return False
+    
+    # check if name contains words known to be used in organization names
+    if any(word in name for word in ["University", "College", "Institute", "School", "Center", "Department", "Laboratory", "Library", "Museum", "Foundation", "Society", "Association", "Company", "Corporation", "Collaboration", "Consortium", "Incorporated", "Inc.", "Institute", "Institut"]):
+        return False
 
     # check for suffixes, e.g. "John Smith, MD"
     if name.split(", ")[-1] in ["MD", "PhD"]:
@@ -157,7 +161,7 @@ def cleanup_author(author):
 
 
 def get_authors(authors):
-    """parse array of author strings into CSL format"""
+    """trsnsform                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        array of author dicts into commonmeta format"""
     return presence(list(map(lambda author: get_one_author(author), authors)))
 
 

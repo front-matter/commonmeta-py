@@ -25,7 +25,7 @@ def test_journal_article():
     assert commonmeta["references"][0] == {
         "key": "bib1",
         "doi": "https://doi.org/10.1038/nature02100",
-        "creator": "Bonke",
+        "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
         "volume": "426",
@@ -54,7 +54,7 @@ def test_journal_article_crossref_xml():
     assert commonmeta["references"][0] == {
         "key": "bib1",
         "doi": "https://doi.org/10.1038/nature02100",
-        "creator": "Bonke",
+        "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
         "volume": "426",

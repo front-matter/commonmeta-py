@@ -117,8 +117,7 @@ def test_doi_with_data_citation():
     assert csl.get("volume") == "3"
     assert csl.get("page") is None
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-3.0"
+    assert csl.get("copyright") == "CC-BY-3.0"
 
 
 #     it 'software' do
@@ -170,8 +169,7 @@ def test_with_pages():
     csl = json.loads(subject.csl())
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1155/2012/291294"
-    assert csl.get(
-        "URL") == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294"
     assert (
         csl.get("title")
         == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
@@ -191,8 +189,7 @@ def test_with_pages():
     assert csl.get("volume") == "2012"
     assert csl.get("page") == "1-7"
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-3.0"
+    assert csl.get("copyright") == "CC-BY-3.0"
 
 
 def test_only_first_page():
@@ -204,13 +201,12 @@ def test_only_first_page():
     csl = json.loads(subject.csl())
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1371/journal.pone.0214986"
-    assert csl.get(
-        "URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
-    assert csl.get(
-        "title") == "River metrics by the public, for the public"
+    assert csl.get("URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
+    assert csl.get("title") == "River metrics by the public, for the public"
     assert csl.get("author") == [
         {"family": "Weber", "given": "Matthew A."},
         {"family": "Ringold", "given": "Paul L."},
+        {"family": "Cañedo-Argüelles Iglesias", "given": "Miguel"},
     ]
     assert csl.get("publisher") == "Public Library of Science (PLoS)"
     assert csl.get("issued") == {"date-parts": [[2019, 5, 8]]}
@@ -245,8 +241,7 @@ def test_missing_creator():
     assert csl.get("volume") == "6"
     assert csl.get("page") == "15"
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-4.0"
+    assert csl.get("copyright") == "CC-BY-4.0"
 
 
 #     it 'container title' do

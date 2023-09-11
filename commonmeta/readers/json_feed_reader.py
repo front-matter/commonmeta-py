@@ -27,7 +27,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
-    print(meta)
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,

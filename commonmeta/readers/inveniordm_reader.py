@@ -35,7 +35,6 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
 def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     """read_inveniordm"""
     meta = data
-    print(meta)
     read_options = kwargs or {}
 
     id_ = doi_as_url(meta.get("doi", None))
@@ -48,7 +47,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     # if contrib:
     #     contributors = contributors + contrib
 
-    # publisher = {"name": meta.get("publisher", None)}
+    publisher = {"name": meta.get("publisher", None) or "Zenodo"}
 
     title = py_.get(meta, "metadata.title")
     titles = [{"title": sanitize(title)}] if title else None
@@ -85,7 +84,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "url": normalize_url(py_.get(meta, "links.html")),
         "contributors": contributors,
         "titles": titles,
-        # "publisher": publisher,
+        "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
         # "additional_type": additional_type,

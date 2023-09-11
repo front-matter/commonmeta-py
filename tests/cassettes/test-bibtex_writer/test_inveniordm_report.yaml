@@ -1,0 +1,85 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://zenodo.org/api/records/3871094
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6RWC0/kNhD+K1aknu7UTWLnnRQhXUHVXXWUE1CqqodWXsfZWGTjYDvAgvjvHSdZ
+        WI5HaYtAu57n55lvxtw6TLaMd6aUwikcgr04yIh/w1tZSi/MkiDNMme2sVKciRLsthSKU8OtLMAB
+        dnHiYnKCoyIKi5h4OCFpjH/EuMAYjF9IkhKcR6CuRMO1U/x16yx6ds4N2C4YzcqUUZfhlLoRY6Gb
+        k4C6BNMwSnHK0qSyKGrOznW/Ao9VGRdZmWRJRTlJsqrKIx7FPM4hQlIG1SLAOXic8zUYH3a8RV+4
+        MVyh08jrShusEe05wLh1NG8qMKqN6XThb/BKtfRpJ/wBrf8WgL5N80OAx0TwZUp1N3O0uOFOQUIc
+        ZcHMMesOTs6gO5s5ttRTdbZQLWi55M/DGlQ+VNl/vsaevlzCBe+r+79v9sCM/4ZqYNGE6hERN2Hg
+        NMR4kZhvNN9QrDar5nmUQG2pSv/BtAFe61eqNDroJx7zf5HjdYZ9nwH4suKGltRQSwTKGNd6rsSy
+        tjAlkAxCbkvnDBAtpbJU1/2g2IysVOOk0Qq6LagRsgWjA1qLUjbo8LqCzOhEyU4w2qADXgomWo6O
+        uOZUsRr93goDsVq6sl3/FT40+oMaLVsEv6bmaMFr2lRIVijABGmxbG1WwS0EqcY9guHHhT/ixnEQ
+        uTgM4oH5JddMiW5CtdPtDoPajINqJDo4Aki1ojN0fIz2uaZihn5BR71mtTA35yCnbYk+/oa+QgEa
+        OPWmhhsDmB2/2/3Wfmsh5o42SrbL3XdNedHLnz6tSyWv16xupJIXvb2tVGj7eCVMbWX2U/YGUbSi
+        TMlGlBxBvZCxhV3x1thL7x2eft53SV5Ys74xoh2KDMVUfCkg9Row0mathX6nBgAe+kJhBIyH7CpF
+        B3SNgqA4xiTCbpKGyfsAfwgJyeDkIWB6gYDmBJPEf8Hm68Hn/QKFQRRjgtMdf7rvVglslaCcR4LV
+        FPr9SSoD3XsP3YZW2VucQCNHVB886/fPSxwW65VlLbDLeVpSMHgICYehr8dMcDg7Z3aE2mVPh03C
+        2+WwjBlvNbd8Hxizt+f+/KcbedhOQ9cvQD/UdQ5Twe9fodgN7HJQ3I5kOYcGtUZUgk+kfzi/9uYN
+        3iMDhT4FX/h+aFcesIwPtLelsHTdWA77+XK0HBIx2bcwm7C+RVvya1jn8E3PG2oXi1E9tzeGlQG0
+        bUrr3IlyPr0C41s7G0SXtOmtbGsTdFRxG/sNPuOF7u7O7ixULXvF+OQBj1y/uHfuoP/gbYRprODo
+        XjC9Sw/ltgg2Zh9h5L8bTzubiMOENMMgPmr5fX2c4R7yqh3bQnCYhfFQzUsxWsCTqA0sFYuzBMNG
+        UkusPAlzD8+cvhUXPZ9vabIsxluaS8GvQEriFBMrnlJvexAchEG6rXwaNYfpSp4x2YSPcpI/0m8U
+        WYjDR4kvZdNb5kRJkuMwyhN4k616sk/TKBvOkxkJ4jQlcZ6DFErVd+XT/7UIhjwFyb08CHESTv9r
+        3f0NAAD//wMA/kgB2NkJAAA=
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 10 Sep 2023 19:16:25 GMT
+      ETag:
+      - W/"2"
+      Last-Modified:
+      - Mon, 01 Jun 2020 10:18:19 GMT
+      Link:
+      - <https://zenodo.org/api/records/3871094>; rel="self"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-RateLimit-Limit:
+      - '60'
+      X-RateLimit-Remaining:
+      - '57'
+      X-RateLimit-Reset:
+      - '1694373446'
+      X-Request-ID:
+      - 337f76c9e251a37d89a0bf057be6c3e4
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

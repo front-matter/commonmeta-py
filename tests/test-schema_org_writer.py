@@ -56,6 +56,12 @@ def test_journal_article():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/3.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 2
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
+        "encodingFormat": "application/pdf",
+    }
 
 
 @pytest.mark.vcr
@@ -82,7 +88,7 @@ def test_inveniordm_software():
     assert schema_org.get("description").startswith(
         "Ruby gem and command-line utility for conversion"
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-03-20"
     assert schema_org.get("url") == "https://zenodo.org/record/7752775"
     assert schema_org.get("periodical") is None
@@ -90,6 +96,18 @@ def test_inveniordm_software():
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
     assert schema_org.get("license") == "https://opensource.org/licenses/MIT"
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/7cd6cc32-96a6-405d-b0ff-1811b378cc69/front-matter/commonmeta-ruby-v3.0.1.zip",
+        "encodingFormat": "application/zip",
+        "name": "front-matter/commonmeta-ruby-v3.0.1.zip",
+        "size": 5061453,
+    }
+    assert (
+        schema_org.get("codeRepository")
+        == "https://github.com/front-matter/commonmeta-ruby"
+    )
 
 
 @pytest.mark.vcr
@@ -118,7 +136,7 @@ def test_inveniordm_presentation():
     assert schema_org.get("description").startswith(
         "CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;"
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-21"
     assert schema_org.get("url") == "https://zenodo.org/record/8173303"
     assert schema_org.get("periodical") is None
@@ -129,6 +147,14 @@ def test_inveniordm_presentation():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/edf85f83-a9ec-4935-85ca-9da47a3815fd/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
+        "encodingFormat": "application/pdf",
+        "name": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
+        "size": 13994803,
+    }
 
 
 @pytest.mark.vcr
@@ -158,7 +184,7 @@ def test_inveniordm_publication():
     assert schema_org.get("description").startswith(
         "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2021-08-18"
     assert schema_org.get("url") == "https://zenodo.org/record/5244404"
     assert schema_org.get("periodical") is None
@@ -169,6 +195,14 @@ def test_inveniordm_publication():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 3
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/449ea104-433b-4347-889b-a4535cd37e92/gisaid_acknowledgement_table.pdf",
+        "encodingFormat": "application/pdf",
+        "name": "gisaid_acknowledgement_table.pdf",
+        "size": 5335,
+    }
 
 
 @pytest.mark.vcr
@@ -195,7 +229,7 @@ def test_inveniordm_report():
     assert schema_org.get("description").startswith(
         "Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel"
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2020-05-28"
     assert schema_org.get("url") == "https://zenodo.org/record/3871094"
     assert schema_org.get("periodical") is None
@@ -206,6 +240,14 @@ def test_inveniordm_report():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/bca8d7ca-c07a-4cc3-912a-10a34707c76f/Open%20Letter%20V4.pdf",
+        "encodingFormat": "application/pdf",
+        "name": "Open Letter V4.pdf",
+        "size": 130482,
+    }
 
 
 @pytest.mark.vcr
@@ -234,7 +276,7 @@ def test_inveniordm_preprint():
     assert schema_org.get("description").startswith(
         "<strong>ABSTRACT</strong> <strong>Background:</strong>"
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-06"
     assert schema_org.get("url") == "https://zenodo.org/record/8120771"
     assert schema_org.get("periodical") is None
@@ -245,6 +287,14 @@ def test_inveniordm_preprint():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 2
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/304e8fbb-7fa2-493e-93d8-82cd3f8442cd/AUTOPSY%20REVIEW%20SUPPLEMENTAL%20TABLE%201.pdf",
+        "encodingFormat": "application/pdf",
+        "name": "AUTOPSY REVIEW SUPPLEMENTAL TABLE 1.pdf",
+        "size": 904297,
+    }
 
 
 @pytest.mark.vcr
@@ -274,7 +324,7 @@ def test_inveniordm_dataset():
     assert schema_org.get("description").startswith(
         "<em><strong>Version 162&nbsp;of the dataset."
     )
-    assert schema_org.get("publisher") is None
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-04-16"
     assert schema_org.get("url") == "https://zenodo.org/record/7834392"
     assert schema_org.get("periodical") is None
@@ -282,21 +332,14 @@ def test_inveniordm_dataset():
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
     assert schema_org.get("license") is None
-
-
-#       expect(json['citation'].length).to eq(27)
-#       expect(json['citation'].first).to eq('@id' => 'https://doi.org/10.1038/nature02100',
-#                                            '@type' => 'CreativeWork')
-#       expect(json['funder']).to eq([{ 'name' => 'SystemsX', '@type' => 'Organization' },
-#                                     { 'name' => 'EMBO',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100003043' },
-#                                     { 'name' => 'Swiss National Science Foundation',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100001711' },
-#                                     { 'name' => 'University of Lausanne',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100006390' }])
+    assert len(schema_org.get("distribution")) == 24
+    assert schema_org.get("distribution")[0] == {
+        "@type": "DataDownload",
+        "contentUrl": "https://zenodo.org/api/files/fafb41f4-4679-4ade-8ec6-1e48ecd43072/emojis.zip",
+        "encodingFormat": "application/zip",
+        "name": "emojis.zip",
+        "size": 15058751,
+    }
 
 
 def test_article_with_pages():
@@ -351,6 +394,7 @@ def test_article_with_pages():
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
     )
+    assert schema_org.get("encoding") is None
 
 
 #     it 'maremma schema.org JSON' do

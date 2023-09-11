@@ -15,13 +15,13 @@ def write_commonmeta(metadata):
             "id": metadata.id,
             "type": metadata.type,
             "url": metadata.url,
-            "creators": metadata.contributors,
+            "contributors": metadata.contributors,
             "titles": metadata.titles,
             "publisher": metadata.publisher,
             "date": metadata.date,
             # recommended and optional properties
+            "container": metadata.container,
             "subjects": metadata.subjects,
-            "contributors": metadata.contributors,
             "language": metadata.language,
             "references": metadata.references,
             "sizes": metadata.sizes,
@@ -32,6 +32,7 @@ def write_commonmeta(metadata):
             "geoLocations": metadata.geo_locations,
             "fundingReferences": metadata.funding_references,
             # other properties
+            "files": metadata.files,
             "provider": metadata.provider,
         }
     )

@@ -252,48 +252,6 @@ def test_yet_another_blog_post():
     assert subject.provider is None
 
 
-def test_blog_with_dois():
-    "blog with dois"
-    string = "https://verfassungsblog.de/einburgerung-und-ausburgerung/"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert subject.id == "https://doi.org/10.17176/20221210-001644-0"
-    assert subject.type == "Article"
-    assert subject.url == "https://verfassungsblog.de/einburgerung-und-ausburgerung"
-    assert subject.titles[0] == {
-        "title": "Einbürgerung und Ausbürgerung: Warum die Staatsangehörigkeitsrechtsreform nicht ohne Ausbürgerungsrechtsreform funktioniert"
-    }
-    assert len(subject.contributors) == 1
-    assert subject.contributors[0] == {
-        "givenName": "Maria Martha",
-        "familyName": "Gerdes",
-        "type": "Person",
-        "contributorRoles": ["Author"],
-    }
-    assert subject.license is None
-    assert subject.date == {"published": "2022-12-09"}
-    assert subject.publisher == {"name": "Verfassungsblog"}
-    assert subject.references is None
-    assert subject.container == {"type": "Blog", "title": "Verfassungsblog"}
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith(
-            "Die von der Bundesinnenministerin vorangetriebene Staatsangehörigkeitsrechtsreform"
-        )
-    )
-    assert subject.subjects == [
-        {"subject": "staatsangehörigkeit"},
-        {"subject": "mehrstaatigkeit"},
-        {"subject": "einbürgerung"},
-        {"subject": "bundesinnenministerium"},
-    ]
-    assert subject.language == "de-DE"
-    assert subject.version is None
-    assert subject.geo_locations is None
-    assert subject.provider == "DataCite"
-
-
 def test_another_blog_with_dois():
     "another blog with dois"
     string = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"

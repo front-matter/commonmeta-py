@@ -106,6 +106,11 @@ def test_doi_with_data_citation():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert len(subject.files) == 2
+    assert subject.files[0] == {
+        "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
+        "mimeType": "application/pdf",
+    }
 
 
 def test_journal_article():
@@ -171,6 +176,7 @@ def test_journal_article():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_journal_article_with_funding():
@@ -237,6 +243,7 @@ def test_journal_article_with_funding():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_journal_article_original_language():
@@ -282,6 +289,7 @@ def test_journal_article_original_language():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_journal_article_with_rdf_for_container():
@@ -339,6 +347,7 @@ def test_journal_article_with_rdf_for_container():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_book_chapter_with_rdf_for_container():
@@ -384,6 +393,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_posted_content():
@@ -437,6 +447,7 @@ def test_posted_content():
     )
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_peer_review():
@@ -483,6 +494,7 @@ def test_peer_review():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_dissertation():
@@ -521,6 +533,7 @@ def test_dissertation():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_doi_with_sici():
@@ -575,6 +588,7 @@ def test_doi_with_sici():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_doi_with_orcid():
@@ -641,6 +655,11 @@ def test_doi_with_orcid():
     ]
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert len(subject.files) == 2
+    assert subject.files[0] == {
+        "url": "http://downloads.hindawi.com/journals/pm/2012/291294.pdf",
+        "mimeType": "application/pdf",
+    }
 
 
 def test_date_in_future():
@@ -726,6 +745,11 @@ def test_date_in_future():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert len(subject.files) == 2
+    assert subject.files[0] == {
+        "url": "https://api.elsevier.com/content/article/PII:S0014299915002332?httpAccept=text/xml",
+        "mimeType": "text/xml",
+    }
 
 
 def test_vor_with_url():
@@ -784,6 +808,11 @@ def test_vor_with_url():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert len(subject.files) == 3
+    assert subject.files[0] == {
+        "url": "http://www.nature.com/articles/hdy201326.pdf",
+        "mimeType": "application/pdf",
+    }
 
 
 def test_dataset():
@@ -820,6 +849,7 @@ def test_dataset():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_component():
@@ -849,6 +879,7 @@ def test_component():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_dataset_usda():
@@ -906,6 +937,11 @@ def test_crossref_json():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert len(subject.files) == 2
+    assert subject.files[0] == {
+        "mimeType": "application/pdf",
+        "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
+    }
 
 
 def test_book_chapter():
@@ -956,6 +992,7 @@ def test_book_chapter():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_another_book_chapter():
@@ -1000,6 +1037,7 @@ def test_another_book_chapter():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_yet_another_book_chapter():
@@ -1052,6 +1090,7 @@ def test_yet_another_book_chapter():
     ]
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_missing_contributor():
@@ -1132,6 +1171,7 @@ def test_missing_contributor():
     ]
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_book():
@@ -1182,6 +1222,7 @@ def test_book():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert subject.files is None
 
 
 def test_proceedings_article():
@@ -1250,6 +1291,11 @@ def test_proceedings_article():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
+    assert len(subject.files) == 1
+    assert subject.files[0] == {
+        "url": "https://dl.acm.org/doi/pdf/10.1145/3448016.3452841",
+        "mimeType": "application/pdf",
+    }
 
 
 def test_get_crossref():

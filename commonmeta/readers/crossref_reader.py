@@ -112,7 +112,9 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         descriptions = None
 
     subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
-    files = presence(meta.get("contentUrl", None))
+    files = [
+        get_file(i) for i in wrap(meta.get("link", None)) if i["content-type"] != "unspecified"
+    ]
 
     state = "findable" if meta or read_options else "not_found"
     
@@ -149,9 +151,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 def get_titles(meta):
     """Title information from Crossref metadata."""
     title = parse_attributes(meta.get("title", None))
-    print(title)
     subtitle = parse_attributes(meta.get("subtitle", None))
-    print(subtitle)
     original_language_title = meta.get("original_language_title", None)
     language = None
     if title is None and original_language_title is None and subtitle is None:
@@ -199,6 +199,15 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
     }
     return compact(metadata)
 
+
+def get_file(file: dict) -> dict:
+    """Get file from Crossref"""
+    return compact(
+        {
+            "url": file.get("URL", None),
+            "mimeType": file.get("content-type", None),
+        }
+    )
 
 def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
     """Get container from Crossref"""
