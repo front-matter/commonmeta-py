@@ -30,7 +30,7 @@ Commometa-py reads and/or writes these metadata formats:
 | Commonmeta  | commonmeta    | application/vnd.commonmeta+json        | yes     | yes     |
 | [CrossRef Unixref XML](https://www.crossref.org/schema/documentation/unixref1.1/unixref1.1.html) | crossref_xml      | application/vnd.crossref.unixref+xml   | yes | planned |
 | [Crossref](https://api.crossref.org)                                                             | crossref | application/vnd.crossref+json          | yes     | no      |
-| [DataCite XML](https://schema.datacite.org/)                                                     | datacite_xml      | application/vnd.datacite.datacite+xml  | planned | later |
+| [DataCite XML](https://schema.datacite.org/)                                                     | datacite_xml      | application/vnd.datacite.datacite+xml  | yes | later |
 | [DataCite](https://api.datacite.org/)                                                            | datacite | application/vnd.datacite.datacite+json | yes     | yes |
 | [Schema.org (in JSON-LD)](http://schema.org/)                                                    | schema_org    | application/vnd.schemaorg.ld+json      | yes     | yes     |
 | [RDF XML](http://www.w3.org/TR/rdf-syntax-grammar/)                                              | rdf_xml       | application/rdf+xml                    | no      | later   |
@@ -43,9 +43,11 @@ Commometa-py reads and/or writes these metadata formats:
 | [CSV](ttps://en.wikipedia.org/wiki/Comma-separated_values)                                       | csv           | text/csv                               | no      | later   |
 | [BibTex](http://en.wikipedia.org/wiki/BibTeX)                                                    | bibtex        | application/x-bibtex                   | later | yes     |
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | later | yes     |
+| [InvenioRDM](https://inveniordm.docs.cern.ch/reference/metadata/)                                | inveniordm    | application/vnd.inveniordm.v1+jsonv    | later | yes     |
+| [JSON Feed](https://www.jsonfeed.org/)                                                           | json_feed_item     | application/feed+json    | yes | later     |
 
 _commonmeta_: the Commonmeta format is the native format for the library and used internally.
-_Planned_: we plan to implement this format for the v0.8 public release.  
+_Planned_: we plan to implement this format for the v1.0 public release.  
 _Later_: we plan to implement this format in a later release.
 
 ## Documentation
