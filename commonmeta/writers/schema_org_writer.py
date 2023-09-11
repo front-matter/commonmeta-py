@@ -44,10 +44,33 @@ def write_schema_org(metadata):
         ]
     else:
         media_objects = None
-    if metadata.type != "Dataset" and container is not None:
-        periodical = to_schema_org(container)
+    if metadata.type == "Dataset" and container is not None:
+        data_catalog = compact(
+            {
+                "@id": container.get("id", None),
+                "@type": "DataCatalog",
+                "name": container.get("title", None),
+            }
+        )
+        periodical = None
+    elif container is not None:
+        periodical = compact(
+            {
+                "issn": container.get("identifier", None)
+                if container.get("identifierType", None) == "ISSN"
+                else None,
+                "@id": container.get("identifier", None)
+                if container.get("identifierType", None) != "ISSN"
+                else None,
+                "@type": container.get("type", None) if container.get("type", None) == "Journal" else None,
+                "additionalType": container.get("type", None) if container.get("type", None) != "Journal" else None,
+                "name": container.get("title", None),
+            }
+        )
+        data_catalog = None
     else:
         periodical = None
+        data_catalog = None
     schema_org = CM_TO_SO_TRANSLATIONS.get(metadata.type, "CreativeWork")
     additional_type = metadata.additional_type
     authors = [
@@ -100,7 +123,8 @@ def write_schema_org(metadata):
             #     related_items=metadata.related_items,
             #     relation_type="IsPartOf",
             # )),
-            "periodical": periodical,
+            "periodical": periodical if periodical else None,
+            "includedInDataCatalog": data_catalog if data_catalog else None,
             "distribution": media_objects if metadata.type == "Dataset" else None,
             "encoding": media_objects if metadata.type != "Dataset" else None,
             "codeRepository": code_repository,
@@ -116,18 +140,3 @@ def write_schema_org(metadata):
         }
     )
     return json.dumps(data, indent=4)
-
-    #     "contentSize" => Array.wrap(sizes).unwrap,
-    #     "encodingFormat" => Array.wrap(formats).unwrap,
-    #     "spatialCoverage" => to_schema_org_spatial_coverage(geo_locations),
-
-    #     "sameAs" => to_schema_org_relation(related_identifiers: related_identifiers, relation_type: "IsIdenticalTo"),
-    #     "hasPart" => to_schema_org_relation(related_identifiers: related_identifiers, relation_type: "HasPart"),
-    #     "predecessor_of" => to_schema_org_relation(related_identifiers: related_identifiers, relation_type: "IsPreviousVersionOf"),
-    #     "successor_of" => to_schema_org_relation(related_identifiers: related_identifiers, relation_type: "IsNewVersionOf"),
-    #     "citation" => to_schema_org_relation(related_identifiers: related_identifiers, relation_type: "References"),
-    #     "@reverse" => reverse.presence,
-    #     "contentUrl" => Array.wrap(content_url).unwrap,
-    #     "schemaVersion" => schema_version,
-    #         #     "includedInDataCatalog" => types.present? ? ((types["schemaOrg"] == "Dataset") && container.present? ? to_schema_org_container(container, type: "Dataset") : nil) : nil,
-    #     "funder" => to_schema_org_funder(funding_references),

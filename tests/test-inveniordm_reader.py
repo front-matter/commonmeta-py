@@ -60,6 +60,11 @@ def test_software():
         {"subject": "software citation"},
         {"subject": "research software"},
     ]
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "Repository",
+        "title": "Zenodo",
+    }
     assert subject.language is None
     assert subject.version == "v3.0.1"
     assert subject.files == [
@@ -116,6 +121,11 @@ def test_presentation():
         .startswith("CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;")
     )
     assert subject.subjects is None
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "Repository",
+        "title": "Zenodo",
+    }
     assert subject.language is None
     assert subject.version is None
     assert subject.files == [
@@ -186,6 +196,11 @@ def test_publication():
         {"subject": "origins"},
         {"subject": "zoonosis"},
     ]
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "Repository",
+        "title": "Zenodo",
+    }
     assert subject.language is None
     assert subject.version == "Authors' final version"
     assert len(subject.files) == 3
@@ -252,6 +267,11 @@ def test_dataset():
         {"subject": "covid-19"},
         {"subject": "covid19"},
     ]
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "DataCatalog",
+        "title": "Zenodo",
+    }
     assert subject.language == "eng"
     assert subject.version == "162"
     assert len(subject.files) == 24

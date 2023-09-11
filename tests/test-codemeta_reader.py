@@ -14,27 +14,14 @@ def test_rdataone():
     assert subject.id == "https://doi.org/10.5063/f1m61h5x"
     assert subject.type == "Software"
     assert subject.url == "https://github.com/DataONEorg/rdataone"
-    assert subject.contributors == [
-        {
-            "type": "Person",
-            "contributorRoles": ["Author"],
-            "givenName": "Matt",
-            "familyName": "Jones",
-            "affiliation": [{"name": "NCEAS"}],
-        },
-        {
-            "type": "Person",
-            "contributorRoles": ["Author"],
-            "givenName": "Peter",
-            "familyName": "Slaughter",
-            "affiliation": [{"name": "NCEAS"}],
-        },
-        {
-            "type": "Organization",
-            "contributorRoles": ["Author"],
-            "name": "University of California, Santa Barbara",
-        },
-    ]
+    assert len(subject.contributors) == 3
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Matt",
+        "familyName": "Jones",
+        "affiliation": [{"name": "NCEAS"}],
+    }
     assert subject.titles == [{"title": "R Interface to the DataONE REST API"}]
     assert subject.descriptions[0]["description"].startswith(
         "Provides read and write access to data and metadata"

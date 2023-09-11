@@ -42,13 +42,7 @@ def test_journal_article():
     }
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
-    assert schema_org.get("periodical") == {
-        "identifier": "2050-084X",
-        "identifierType": "ISSN",
-        "volume": "3",
-        "@type": "Journal",
-        "name": "eLife",
-    }
+    assert schema_org.get("periodical") == {'issn': '2050-084X', '@type': 'Journal', 'name': 'eLife'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "en"
@@ -91,7 +85,7 @@ def test_inveniordm_software():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-03-20"
     assert schema_org.get("url") == "https://zenodo.org/record/7752775"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -139,7 +133,7 @@ def test_inveniordm_presentation():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-21"
     assert schema_org.get("url") == "https://zenodo.org/record/8173303"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -187,7 +181,7 @@ def test_inveniordm_publication():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2021-08-18"
     assert schema_org.get("url") == "https://zenodo.org/record/5244404"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -232,7 +226,7 @@ def test_inveniordm_report():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2020-05-28"
     assert schema_org.get("url") == "https://zenodo.org/record/3871094"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
@@ -279,7 +273,7 @@ def test_inveniordm_preprint():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-06"
     assert schema_org.get("url") == "https://zenodo.org/record/8120771"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
@@ -327,7 +321,7 @@ def test_inveniordm_dataset():
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-04-16"
     assert schema_org.get("url") == "https://zenodo.org/record/7834392"
-    assert schema_org.get("periodical") is None
+    assert schema_org.get("inDataCatalog") is None
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
@@ -379,11 +373,7 @@ def test_article_with_pages():
     assert schema_org.get("datePublished") == "2020-01-17"
     assert schema_org.get("url") == "https://dx.plos.org/10.1371/journal.ppat.1008184"
     assert schema_org.get("periodical") == {
-        "identifier": "1553-7374",
-        "identifierType": "ISSN",
-        "volume": "16",
-        "issue": "1",
-        "firstPage": "e1008184",
+        "issn": "1553-7374",
         "@type": "Journal",
         "name": "PLOS Pathogens",
     }

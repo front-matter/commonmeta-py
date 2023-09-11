@@ -7,7 +7,7 @@ from ..utils import compact, normalize_url, from_json_feed, wrap, dict_to_spdx
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
 from ..date_utils import get_date_from_unix_timestamp
-from ..doi_utils import validate_doi, normalize_doi
+from ..doi_utils import normalize_doi
 from ..constants import Commonmeta
 
 
@@ -27,10 +27,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
-
-    # read_options = ActiveSupport::HashWithIndifferentAccess.
-    # new(options.except(:doi, :id, :url,
-    # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
     url = normalize_url(meta.get("url", None))
@@ -81,8 +77,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         ]
     else:
         descriptions = None
-    #     language = meta.fetch("language", nil) || meta.dig("blog", "language")
-    #     state = id.present? || read_options.present? ? "findable" : "not_found"
+
     #     subjects = Array.wrap(meta.dig("blog", "category")).reduce([]) do |sum, subject|
     #       sum += name_to_fos(subject.underscore.humanize)
 

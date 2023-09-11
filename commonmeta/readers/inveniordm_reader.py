@@ -17,6 +17,7 @@ from ..doi_utils import doi_as_url, doi_from_url
 from ..constants import (
     INVENIORDM_TO_CM_TRANSLATIONS,
     COMMONMETA_RELATION_TYPES,
+    COMMONMETA_CONTAINER_TYPES,
     Commonmeta,
 )
 
@@ -55,16 +56,23 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     date: dict = {}
     date["published"] = py_.get(meta, ("metadata.publication_date"))
     date["updated"] = strip_milliseconds(meta.get("updated", None))
-
-    # container = meta.get("container", None)
+    container = compact(
+        {
+            "id": "https://www.re3data.org/repository/r3d100010468",
+            "type": "DataCatalog" if type_ == "Dataset" else "Repository",
+            "title": "Zenodo",
+        }
+    )
     license_ = py_.get(meta, "metadata.license.id")
     if license_:
         license_ = dict_to_spdx({"id": license_})
 
-    descriptions = format_descriptions([
-        py_.get(meta, "metadata.description"),
-        py_.get(meta, "metadata.notes"),
-    ])
+    descriptions = format_descriptions(
+        [
+            py_.get(meta, "metadata.description"),
+            py_.get(meta, "metadata.notes"),
+        ]
+    )
     language = py_.get(meta, "metadata.language")
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
@@ -102,7 +110,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "related_identifiers": presence(related_identifiers),
         # other properties
         "files": files,
-        # "container": presence(container),
+        "container": container,
         "provider": "Zenodo",
         "state": state,
         # "schema_version": meta.get("schemaVersion", None),
@@ -184,5 +192,6 @@ def format_descriptions(descriptions: list) -> list:
             "description": sanitize(i),
             "descriptionType": "Abstract" if index == 0 else "Other",
         }
-        for index, i in enumerate(descriptions) if i
+        for index, i in enumerate(descriptions)
+        if i
     ]

@@ -132,7 +132,7 @@ def is_personal_name(name):
         return False
 
     # check for suffixes, e.g. "John Smith, MD"
-    if name.split(", ")[-1] in ["MD", "PhD"]:
+    if name.split(", ")[-1] in ["MD", "PhD", "BS"]:
         return True
 
     # check of name can be parsed into given/family name

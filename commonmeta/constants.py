@@ -445,6 +445,16 @@ CROSSREF_CONTAINER_TYPES = {
     "ProceedingsArticle": "proceedings",
 }
 
+COMMONMETA_CONTAINER_TYPES = {
+    "Article": "Periodical",
+    "BookChapter": "Book",
+    "Dataset": "Repository",
+    "JournalArticle": "Journal",
+    "JournalIssue": "Journal",
+    "Monograph": "Book",
+    "ProceedingsArticle": "Proceedings",
+}
+
 DATACITE_CONTRIBUTOR_TYPES = {
     "ContactPerson": "ContactPerson",
     "DataCurator": "DataCuration",
