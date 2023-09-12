@@ -270,6 +270,7 @@ def test_inveniordm_software():
     url = {https://zenodo.org/record/7752775},
     urldate = {2023-03-20},
     year = {2023}
+}
 """
     )
 

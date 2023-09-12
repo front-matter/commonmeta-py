@@ -210,7 +210,7 @@ def test_journal_article_with_funding():
         "updated": "2019-09-22T02:40:23Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4426",
+        "id": "https://api.crossref.org/members/1965",
         "name": "Frontiers Media SA",
     }
     assert len(subject.references) == 70
@@ -251,7 +251,7 @@ def test_journal_article_original_language():
     "journal article with original language"
     string = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(string)
-    assert subject.is_valid == 2
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
     assert (

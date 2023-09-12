@@ -45,7 +45,7 @@ def get_one_author(author):
     ) or wrap(parse_attributes(author.get("contributor_roles", None)))
     contributor_roles = [
         i for i in contributor_roles if i in COMMONMETA_CONTRIBUTOR_ROLES
-    ]
+    ] or ["Author"]
 
     # parse author type, i.e. "Person", "Organization" or not specified
     type_ = parse_attributes(
