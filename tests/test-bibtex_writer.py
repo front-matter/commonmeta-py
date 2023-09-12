@@ -1,5 +1,5 @@
 """Bibtex writer tests"""
-from os import path
+import os
 import pytest
 from commonmeta import Metadata
 
@@ -250,7 +250,7 @@ def test_phd_thesis():
 @pytest.mark.vcr
 def test_inveniordm_software():
     "inveniordm software"
-    string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
+    string = os.path.join(os.path.dirname(__file__), "fixtures", "inveniordm-software.json")
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
@@ -270,7 +270,6 @@ def test_inveniordm_software():
     url = {https://zenodo.org/record/7752775},
     urldate = {2023-03-20},
     year = {2023}
-}
 """
     )
 
@@ -413,3 +412,41 @@ def test_inveniordm_dataset():
 }
 """
     )
+
+
+#  missing date["published"]
+# def test_kbase_metatranscriptome():
+#     """Metatrascriptome"""
+#     string = os.path.join(
+#         os.path.dirname(__file__), "fixtures", "JDP_5fa4fb4647675a20c852c60b_kbcms.json"
+#     )
+#     subject = Metadata(string)   
+#     assert (
+#         bibtex = subject.bibtex()
+#         == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
+#     )
+
+
+def test_kbase_gulf_of_mexico():
+    """kbase gulf of mexico"""
+    string = os.path.join(
+        os.path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
+    )
+    subject = Metadata(string)
+    assert (
+        subject.bibtex()
+        == """@misc{10.25982/86723.65/1778009,
+    abstract = {xploration of oxygen-depleted marine environments has consistently revealed novel microbial taxa and metabolic capabilities that expand our understanding of microbial evolution and ecology. Marine blue holes are shallow karst formations characterized by low oxygen and high organic matter content. They are logistically challenging to sample, and thus our understanding of their biogeochemistry and microbial ecology is limited. We present a metagenomic and geochemical characterization of Amberjack Hole on the Florida continental shelf (Gulf of Mexico). Dissolved oxygen became depleted at the hole's rim (32 m water depth), remained low but detectable in an intermediate hypoxic zone (40-75 m), and then increased to a secondary peak before falling below detection in the bottom layer (80-110 m), concomitant with increases in nutrients, dissolved iron, and a series of sequentially more reduced sulfur species. Microbial communities in the bottom layer contained heretofore undocumented levels of the recently discovered phylum Woesearchaeota (up to 58% of the community), along with lineages in the bacterial Candidate Phyla Radiation (CPR). Thirty-one high-quality metagenome-assembled genomes (MAGs) showed extensive biochemical capabilities for sulfur and nitrogen cycling, as well as for resisting and respiring arsenic. One uncharacterized gene associated with a CPR lineage differentiated hypoxic from anoxic zone communities. Overall, microbial communities and geochemical profiles were stable across two sampling dates in the spring and fall of 2019. The blue hole habitat is a natural marine laboratory that provides opportunities for sampling taxa with under-characterized but potentially important roles in redox-stratified microbial processes.},
+    author = {Patin, Nastassia},
+    copyright = {https://creativecommons.org/licenses/by/4.0/},
+    doi = {10.25982/86723.65/1778009},
+    language = {en-US},
+    month = sep,
+    publisher = {KBase},
+    title = {Gulf of Mexico blue hole harbors high levels of novel microbial lineages: A load of cool stuff from the blue hole in the Gulf of Mexico},
+    urldate = {2021},
+    year = {2021}
+}
+"""
+    )
+

@@ -35,7 +35,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     id_ = doi_as_url(meta.get("doi", None))
     resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
     resource_type = py_.get(meta, "types.resourceType")
-    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, 'Other')
+    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, "Other")
     additional_type = DC_TO_CM_TRANSLATIONS.get(resource_type, None)
     # if resource_type is one of the new resource_type_general types introduced in schema 4.3, use it
     if additional_type:
@@ -50,10 +50,12 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     publisher = {"name": meta.get("publisher", None)}
 
     date: dict = defaultdict(list)
-    date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
+    date["published"] = (
+        str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
+    )
     # convert date list to dict, rename some keys
-    for sub in wrap(meta.get('dates', None)):
-        date[sub.get('dateType', None)] = sub.get('date', None)
+    for sub in wrap(meta.get("dates", None)):
+        date[sub.get("dateType", None)] = sub.get("date", None)
     date = normalize_date_dict(date)
 
     container = meta.get("container", None)
@@ -62,8 +64,10 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         license_ = normalize_cc_url(license_[0].get("rightsUri", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
-    files = meta.get("contentUrl", None)
-    references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
+    files = [get_file(i) for i in wrap(meta.get("content_url"))]
+    references = get_references(
+        wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
+    )
 
     return {
         # required properties
@@ -121,7 +125,19 @@ def get_references(references: list) -> list:
                 "resourceTypeGeneral",
                 "schemeType",
                 "schemeUri",
-                "relatedMetadataScheme"
-            ])
+                "relatedMetadataScheme",
+            ],
+        )
         return reference
+
     return [map_reference(i) for i in references if is_reference(i)]
+
+
+def get_file(file: str) -> dict:
+    """get_file"""
+    return compact(
+        {
+
+            "url": file
+        }
+    )

@@ -11,7 +11,8 @@ from pydash import py_
 import base32_lib as base32
 
 from .base_utils import wrap, compact, parse_xmldict
-from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
+from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
+from .constants import DATACITE_CONTRIBUTOR_TYPES
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -268,6 +269,7 @@ def from_inveniordm(elements: list) -> list:
 
     return [format_element(i) for i in elements]
 
+
 def from_crossref_xml(elements: list) -> list:
     """Convert from crossref_xml elements"""
 
@@ -295,6 +297,33 @@ def from_crossref_xml(elements: list) -> list:
         element = py_.omit(
             element, "given_name", "surname", "sequence", "@contributor_role"
         )
+        return compact(element)
+
+    return [format_element(i) for i in elements]
+
+
+def from_kbase(elements: list) -> list:
+    """Convert from kbase elements"""
+
+    def map_contributor_role(role):
+        if role.split(":")[0] == "CRediT":
+            return py_.pascal_case(role.split(":")[1])
+        elif role.split(":")[0] == "DataCite":
+            return DATACITE_CONTRIBUTOR_TYPES.get(role.split(":")[1], "Other")
+        else:
+            return role.split(":")[1]
+
+    def format_element(element):
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        if element.get("contributor_id", None) is not None:
+            element["ORCID"] = from_curie(element["contributor_id"])
+        element["contributor_roles"] = [
+            map_contributor_role(i)
+            for i in wrap(element.get("contributor_roles", None))
+        ]
+        element = py_.omit(element, "contributor_id")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -468,15 +497,9 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         return "codemeta"
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
-    if (
-        re.match(r"\Ahttps:/(/)?rogue-scholar\.org/api/posts/(.+)\Z", pid)
-        is not None
-    ):
+    if re.match(r"\Ahttps:/(/)?rogue-scholar\.org/api/posts/(.+)\Z", pid) is not None:
         return "json_feed_item"
-    if (
-        re.match(r"\Ahttps:/(/)?zenodo\.org/api/records/(.+)\Z", pid)
-        is not None
-    ):
+    if re.match(r"\Ahttps:/(/)?zenodo\.org/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
     return "schema_org"
 
@@ -512,6 +535,8 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "csl"
         if py_.get(data, "conceptdoi") is not None:
             return "inveniordm"
+        if py_.get(data, "credit_metadata") is not None:
+            return "kbase"
     except json.JSONDecodeError:
         pass
     try:
@@ -825,3 +850,24 @@ def decode_doi(doi: str) -> int:
     """Decode a DOI to a number"""
     suffix = doi.split("/", maxsplit=5)[-1]
     return base32.decode(suffix)
+
+
+def from_curie(id: Optional[str]) -> Optional[str]:
+    """from CURIE"""
+    if id is None:
+        return None
+    type_ = id.split(":")[0]
+    if type_ == "DOI":
+        return doi_as_url(id.split(":")[1])
+    elif type_ == "ROR":
+        return "https://ror.org/" + id.split(":")[1]
+    elif type_ == "ISNI":
+        # TODO: support for https
+        return "http://www.isni.org/isni/" + id.split(":")[1]
+    elif type_ == "ORCID":
+        return normalize_orcid(id.split(":")[1])
+    elif type_ == "URL":
+        return normalize_url(id.split(":")[1])
+    # TODO: resolvable url for other identifier types
+    # elif identifier_type == "JDP":
+    return None

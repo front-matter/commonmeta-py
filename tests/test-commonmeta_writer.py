@@ -12,8 +12,8 @@ def test_journal_article():
     subject = Metadata("10.7554/elife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     commonmeta = json.loads(subject.commonmeta())
-
-    assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
+    print(commonmeta)
+    assert commonmeta["id"] == "https://doi.org/10.7554/elife.0156117"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
     assert commonmeta["titles"] == [

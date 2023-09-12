@@ -1,5 +1,5 @@
 # pylint: disable=invalid-name,too-many-lines
-"""Test DataCite JSON reader"""
+"""DataCite reader tests"""
 from os import path
 import pytest
 from commonmeta import Metadata

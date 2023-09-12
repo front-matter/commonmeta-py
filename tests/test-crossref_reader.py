@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref reader tests"""
 from os import path
+import json
 import pytest
 
 from commonmeta import Metadata
@@ -209,7 +210,7 @@ def test_journal_article_with_funding():
         "updated": "2019-09-22T02:40:23Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1965",
+        "id": "https://api.crossref.org/members/4426",
         "name": "Frontiers Media SA",
     }
     assert len(subject.references) == 70
@@ -250,14 +251,14 @@ def test_journal_article_original_language():
     "journal article with original language"
     string = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid == 2
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
     assert (
         subject.url
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
     )
-    # assert subject.titles[0] == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
+    assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {"published": "2007", "updated": "2021-05-20T22:32:01Z"}

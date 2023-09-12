@@ -234,7 +234,7 @@ def test_journal_article_original_language():
         "updated": "2021-05-20",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/46023",
+        "id": "https://api.crossref.org/members/4426",
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
     assert len(subject.references) == 7

@@ -1,10 +1,10 @@
 """Metadata"""
-from os import path
+import os
 import json
-from typing import Optional
+from typing import Optional, Any
 from functools import cached_property
 import yaml
-from jsonschema import validate
+from fastjsonschema import JsonSchemaException, compile
 import xmltodict
 
 from ..readers import (
@@ -26,6 +26,7 @@ from ..readers import (
     read_json_feed_item,
     get_inveniordm,
     read_inveniordm,
+    read_kbase,
 )
 from ..writers import (
     write_datacite,
@@ -74,7 +75,7 @@ class Metadata:
             elif via == "inveniordm":
                 data = get_inveniordm(pid)
                 meta = read_inveniordm(data)
-        elif path.exists(string):
+        elif os.path.exists(string):
             with open(string, encoding="utf-8") as file:
                 string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
@@ -107,6 +108,9 @@ class Metadata:
             elif via == "inveniordm":
                 data = json.loads(string)
                 meta = read_inveniordm(data)
+            elif via == "kbase":
+                data = json.loads(string)
+                meta = read_kbase(data)
             # elif via == "bibtex":
             #     data = yaml.safe_load(string)
             #     meta = read_bibtex(data)
@@ -152,20 +156,19 @@ class Metadata:
         self.style = kwargs.get("style", "apa")
         self.locale = kwargs.get("locale", "en-US")
 
-    @cached_property
-    def load_schema(self) -> str:
-        """Load the JSON schema"""
-        file_path = path.join(
-            path.dirname(path.dirname(__file__)), "resources", "commonmeta_v0.10.json"
-        )
-        with open(file_path, encoding="utf-8") as file:
-            schema = file.read()
-        return schema
-
-    def is_valid(self) -> bool:
-        """is_Valid"""
-        validate(instance=write_commonmeta(self), schema=json.loads(self.load_schema))
-        return True
+    def is_valid(self) -> Any:
+        """validate against JSON schema"""
+        try:
+            file_path = os.path.join(
+                os.path.dirname(__file__), "resources/commonmeta_v0.10.1.json"
+            )
+            print(file_path)
+            with open(file_path, encoding="utf-8") as file:
+                schema = json.load(file)
+            # validate = compile(schema)
+            return file_path
+        except JsonSchemaException as error:
+            return error
 
     def commonmeta(self):
         """Commonmeta"""

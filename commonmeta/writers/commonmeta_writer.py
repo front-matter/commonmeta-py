@@ -29,8 +29,8 @@ def write_commonmeta(metadata):
             "version": metadata.version,
             "license": metadata.license,
             "descriptions": metadata.descriptions,
-            "geoLocations": metadata.geo_locations,
-            "fundingReferences": metadata.funding_references,
+            "geo_locations": metadata.geo_locations,
+            "funding_references": metadata.funding_references,
             # other properties
             "files": metadata.files,
             "provider": metadata.provider,

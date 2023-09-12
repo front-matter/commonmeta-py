@@ -33,6 +33,7 @@ from commonmeta.utils import (
     github_as_repo_url,
     encode_doi,
     decode_doi,
+    from_curie,
 )
 from commonmeta.base_utils import wrap
 
@@ -709,3 +710,17 @@ def test_decode_doi():
     doi = "10.5555/f9zqn-sf065"
     response = decode_doi(doi)
     assert response == 538751765283013
+
+
+def test_from_curie():
+    """test_from_curie"""
+    assert "https://doi.org/10.6084/m9.figshare.12644018.v3" == from_curie(
+        "DOI:10.6084/m9.figshare.12644018.v3"
+    )
+    assert "https://ror.org/01znn6x10" == from_curie("ROR:01znn6x10")
+    assert "https://orcid.org/0000-0001-8522-7682" == from_curie(
+        "ORCID:0000-0001-8522-7682"
+    )
+    assert "http://www.isni.org/isni/0000000121099845" == from_curie(
+        "ISNI:0000000121099845"
+    )

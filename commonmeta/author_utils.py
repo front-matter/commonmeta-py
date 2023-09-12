@@ -11,7 +11,7 @@ from .utils import (
 from .base_utils import parse_attributes, wrap, presence, compact
 
 from .constants import (
-    DATACITE_CONTRIBUTOR_TYPES,
+    COMMONMETA_CONTRIBUTOR_ROLES,
 )
 
 
@@ -39,9 +39,13 @@ def get_one_author(author):
 
     name = cleanup_author(name)
 
-    contributor_role = parse_attributes(author.get("contributorType", "Author"))
-    if contributor_role != "Author":
-        contributor_role = DATACITE_CONTRIBUTOR_TYPES.get(contributor_role, "Other")
+    # parse contributor roles, checking for roles supported by commonmeta
+    contributor_roles = wrap(
+        parse_attributes(author.get("contributorType", None))
+    ) or wrap(parse_attributes(author.get("contributor_roles", None)))
+    contributor_roles = [
+        i for i in contributor_roles if i in COMMONMETA_CONTRIBUTOR_ROLES
+    ]
 
     # parse author type, i.e. "Person", "Organization" or not specified
     type_ = parse_attributes(
@@ -93,7 +97,7 @@ def get_one_author(author):
         {
             "id": id_,
             "type": type_,
-            "contributorRoles": [contributor_role],
+            "contributorRoles": contributor_roles,
             "name": name if type_ == "Organization" else None,
             "givenName": given_name if type_ == "Person" else None,
             "familyName": family_name if type_ == "Person" else None,
@@ -126,9 +130,33 @@ def is_personal_name(name):
     # check if a name has only one word, e.g. "FamousOrganization", not including commas
     if len(name.split(" ")) == 1 and "," not in name:
         return False
-    
+
     # check if name contains words known to be used in organization names
-    if any(word in name for word in ["University", "College", "Institute", "School", "Center", "Department", "Laboratory", "Library", "Museum", "Foundation", "Society", "Association", "Company", "Corporation", "Collaboration", "Consortium", "Incorporated", "Inc.", "Institute", "Institut"]):
+    if any(
+        word in name
+        for word in [
+            "University",
+            "College",
+            "Institute",
+            "School",
+            "Center",
+            "Department",
+            "Laboratory",
+            "Library",
+            "Museum",
+            "Foundation",
+            "Society",
+            "Association",
+            "Company",
+            "Corporation",
+            "Collaboration",
+            "Consortium",
+            "Incorporated",
+            "Inc.",
+            "Institute",
+            "Institut",
+        ]
+    ):
         return False
 
     # check for suffixes, e.g. "John Smith, MD"

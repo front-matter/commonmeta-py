@@ -1,4 +1,4 @@
-"""datacite reader for Commonmeta"""
+"""InvenioRDM reader for Commonmeta"""
 from collections import defaultdict
 import requests
 from pydash import py_
@@ -76,7 +76,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     language = py_.get(meta, "metadata.language")
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
-    # references = get_references(wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None)))
+    references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
     related_identifiers = get_related_identifiers(
         wrap(py_.get(meta, "metadata.related_identifiers"))
     )
