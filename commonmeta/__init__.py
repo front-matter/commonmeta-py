@@ -10,8 +10,80 @@ commonmeta-py is a Python library to convert scholarly metadata
 """
 
 __title__ = "commonmeta-py"
-__version__ = "0.7.1"
+__version__ = "0.8.3"
 __author__ = "Martin Fenner"
 __license__ = "MIT"
 
 from .metadata import Metadata
+from .readers import (
+    cff_reader,
+    codemeta_reader,
+    crossref_reader,
+    crossref_xml_reader,
+    datacite_reader,
+    datacite_xml_reader,
+    inveniordm_reader,
+    json_feed_reader,
+    kbase_reader,
+    ris_reader,
+    schema_org_reader,
+)
+from .writers import (
+    bibtex_writer,
+    citation_writer,
+    commonmeta_writer,
+    csl_writer,
+    datacite_writer,
+    ris_writer,
+    schema_org_writer,
+)
+from .utils import (
+    dict_to_spdx,
+    from_csl,
+    from_schema_org,
+    normalize_cc_url,
+    normalize_id,
+    normalize_ids,
+    normalize_orcid,
+    normalize_url,
+    pages_as_string,
+    to_csl,
+    validate_orcid,
+)
+from .author_utils import (
+    authors_as_string,
+    cleanup_author,
+    get_affiliations,
+    get_authors,
+    get_one_author,
+    is_personal_name,
+)
+from .base_utils import (
+    wrap,
+    unwrap,
+    compact,
+    presence,
+    parse_attributes,
+    parse_xmldict,
+    sanitize,
+)
+from .date_utils import (
+    get_date_from_crossref_parts,
+    get_date_from_date_parts,
+    get_date_from_unix_timestamp,
+    get_date_parts,
+    get_iso8601_date,
+    strip_milliseconds,
+)
+from .doi_utils import (
+    crossref_api_url,
+    crossref_xml_api_url,
+    doi_from_url,
+    doi_as_url,
+    doi_resolver,
+    datacite_api_url,
+    get_doi_ra,
+    normalize_doi,
+    validate_doi,
+    validate_prefix,
+)
