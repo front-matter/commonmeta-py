@@ -9,6 +9,7 @@ import bibtexparser
 from bs4 import BeautifulSoup
 from pydash import py_
 import base32_lib as base32
+import pycountry
 
 from .base_utils import wrap, compact, parse_xmldict
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
@@ -871,3 +872,18 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     # TODO: resolvable url for other identifier types
     # elif identifier_type == "JDP":
     return None
+
+
+def get_language(lang: str) -> Optional[dict]:
+    """Provide a language object based on ISO 639, with either a name in English,
+    ISO 639-1, or ISO 639-3 code as input.
+    """
+    if not lang:
+        return None
+    if len(lang) == 2:
+        language = pycountry.languages.get(alpha_2=lang)
+    elif len(lang) == 3:
+        language = pycountry.languages.get(alpha_3=lang)
+    else:
+        language = pycountry.languages.get(name=lang)
+    return language

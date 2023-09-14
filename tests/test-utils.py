@@ -34,6 +34,7 @@ from commonmeta.utils import (
     encode_doi,
     decode_doi,
     from_curie,
+    get_language
 )
 from commonmeta.base_utils import wrap
 
@@ -724,3 +725,12 @@ def test_from_curie():
     assert "http://www.isni.org/isni/0000000121099845" == from_curie(
         "ISNI:0000000121099845"
     )
+
+
+def test_get_language():
+    """Get language from string"""
+    assert "English" == get_language("en").name
+    assert "Danish" == get_language("dan").name
+    assert "en" == get_language("English").alpha_2
+    assert None is get_language("xyz")
+    assert "tlh" == get_language("Klingon").alpha_3
