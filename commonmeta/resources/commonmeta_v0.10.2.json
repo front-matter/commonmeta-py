@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.10.1.json",
-  "title": "Commonmeta v0.10.1",
+  "$id": "https://commonmeta.org/commonmeta_v0.10.2.json",
+  "title": "Commonmeta v0.10.2",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -206,7 +206,43 @@
     "date": {
       "description": "The dates for the resource.",
       "type": "object",
-      "format": "date"
+      "properties": {
+        "created": {
+          "description": "The date the resource was created.",
+          "type": "string",
+          "format": "date"
+        },
+        "submitted": {
+          "description": "The date the resource was submitted.",
+          "type": "string",
+          "format": "date"
+        },
+        "accepted": {
+          "description": "The date the resource was accepted.",
+          "type": "string",
+          "format": "date"
+        },
+        "published": {
+          "description": "The date the resource was published.",
+          "type": "string",
+          "format": "date"
+        },
+        "updated": {
+          "description": "The date the resource was updated.",
+          "type": "string",
+          "format": "date"
+        },
+        "available": {
+          "description": "The date the resource was made available.",
+          "type": "string",
+          "format": "date"
+        },
+        "withdrawn": {
+          "description": "The date the resource was withdrawn.",
+          "type": "string",
+          "format": "date"
+        }
+      }
     },
     "titles": {
       "description": "The titles of the resource.",
