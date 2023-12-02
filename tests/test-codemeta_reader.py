@@ -5,7 +5,6 @@ import pytest
 from commonmeta import Metadata
 
 
-@pytest.mark.vcr
 def test_rdataone():
     """rdataone"""
     string = path.join(path.dirname(__file__), "fixtures", "codemeta.json")

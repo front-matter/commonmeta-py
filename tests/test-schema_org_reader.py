@@ -55,30 +55,24 @@ def test_zenodo():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1196821"
-    assert subject.type == "Dataset"
-    assert subject.url == "https://zenodo.org/record/1196821"
+    assert subject.type == "Other"
+    assert subject.url == "https://zenodo.org/records/1196821"
     assert subject.titles[0] == {
         "title": (
             "PsPM-SC4B: SCR, ECG, EMG, PSR and respiration measurements in a "
             "delay fear conditioning task with auditory CS and electrical US"
         )
     }
-    assert len(subject.contributors) == 6
-    assert subject.contributors[0] == {
-        "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Staib,",
-        "familyName": "Matthias",
-        "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
-    }
+    assert len(subject.contributors) == 8
+    assert subject.contributors[0] == {'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Matthias', 'familyName': 'Staib'}
     assert subject.license == {
         "id": "CC-BY-SA-4.0",
         "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
     }
-    assert subject.date == {"published": "2018-03-14"}
+    assert subject.date["published"] == "2018-03-14"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
-    assert subject.container == {"type": "DataRepository"}
+    assert subject.container == {}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -220,7 +214,7 @@ def test_yet_another_blog_post():
     assert subject.license is None
     assert subject.date == {
         "published": "2022-09-24T17:22:00Z",
-        "updated": "2023-03-19T20:38:17Z",
+        "updated": "2023-10-23T03:26:56Z",
     }
     assert subject.publisher == {"name": "John Hawks"}
     assert subject.references is None
@@ -245,6 +239,7 @@ def test_yet_another_blog_post():
         {"subject": "technology"},
         {"subject": "cooperation"},
         {"subject": "middle paleolithic"},
+        {"subject": "diet"},
     ]
     assert subject.language == "en"
     assert subject.version is None

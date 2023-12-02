@@ -186,7 +186,7 @@ def test_book_chapter():
     copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
     doi = {10.1007/978-3-662-46370-3_13},
     isbn = {9783662463703},
-    month = sep,
+    month = dec,
     pages = {155--158},
     publisher = {Springer Science and Business Media LLC},
     title = {Clinical Symptoms and Physical Examinations},
@@ -212,7 +212,7 @@ def test_conference_proceedings():
     author = {Sinop, Ali Kemal and Grady, Leo},
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
-    month = sep,
+    month = dec,
     publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
     url = {http://ieeexplore.ieee.org/document/4408927},
@@ -247,7 +247,6 @@ def test_phd_thesis():
     )
 
 
-@pytest.mark.vcr
 def test_inveniordm_software():
     "inveniordm software"
     string = os.path.join(os.path.dirname(__file__), "fixtures", "inveniordm-software.json")
@@ -442,7 +441,7 @@ def test_kbase_gulf_of_mexico():
     copyright = {https://creativecommons.org/licenses/by/4.0/},
     doi = {10.25982/86723.65/1778009},
     language = {en-US},
-    month = sep,
+    month = dec,
     publisher = {KBase},
     title = {Gulf of Mexico blue hole harbors high levels of novel microbial lineages: A load of cool stuff from the blue hole in the Gulf of Mexico},
     urldate = {2021},

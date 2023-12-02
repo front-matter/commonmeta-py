@@ -6,7 +6,6 @@ from commonmeta import Metadata
 from commonmeta.readers.kbase_reader import read_kbase
 
 
-@pytest.mark.vcr
 def test_metatranscriptome():
     """Metatrascriptome"""
     string = os.path.join(
@@ -62,7 +61,6 @@ def test_metatranscriptome():
     assert subject.schema_version == "0.0.1-commonmeta"
 
 
-@pytest.mark.vcr
 def test_gulf_of_mexico():
     """Metatrascriptome"""
     string = os.path.join(

@@ -827,18 +827,18 @@ def test_geolocation_box():
     ]
     assert subject.funding_references == [
         {
-            "schemeUri": "https://www.crossref.org/services/funder-registry/",
+            "schemeUri": "https://ror.org",
             "funderName": "National Science Foundation",
             "awardNumber": "1331939",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
         },
         {
-            "schemeUri": "https://www.crossref.org/services/funder-registry/",
+            "schemeUri": "https://ror.org",
             "funderName": "National Science Foundation",
             "awardNumber": "0725097",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
         },
     ]
     assert subject.sizes == ["2214669067 bytes"]

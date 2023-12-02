@@ -58,7 +58,6 @@ def test_journal_article():
     }
 
 
-@pytest.mark.vcr
 def test_inveniordm_software():
     "inveniordm software"
     string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
