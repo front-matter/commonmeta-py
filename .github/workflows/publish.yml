@@ -18,5 +18,6 @@ jobs:
       - name: Render and Publish 
         uses: quarto-dev/quarto-actions/publish@v2
         with:
+          path: docs
           target: netlify
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
