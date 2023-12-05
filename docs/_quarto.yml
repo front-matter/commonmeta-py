@@ -1,6 +1,8 @@
 project:
   type: website
-
+  output-dir: _site
+  preview:
+    port: 4300
 website:
   title: "commonmeta-py"
   navbar:
