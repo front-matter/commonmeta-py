@@ -1,0 +1,44 @@
+project:
+  type: website
+
+website:
+  title: "commonmeta-py"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Guide
+      - href: examples.qmd
+        text: Examples
+    tools:
+      - icon: github
+        href: https://github.com/front-matter/commonmeta-py
+  page-footer:
+    left: "Copyright &copy;2023 Front Matter."
+    right:
+      - icon: envelope
+        href: mailto:info@front-matter.io
+      - icon: mastodon 
+        href: https://rogue-scholar.social/@admin
+
+format:
+  html:
+    theme:
+      light: [flatly, theme.scss]
+      dark: [darkly, theme.scss]
+    page-layout: article
+    toc: true
+    toc-location: left
+
+metadata-files:
+  - _sidebar.yml
+
+quartodoc:
+  package: commonmeta
+
+  sidebar: _sidebar.yml
+
+  sections:
+    - title: Some functions
+      desc: Functions to inspect docstrings.
+        # the functions being documented in the package.
+        # you can refer to anything: class methods, modules, etc..

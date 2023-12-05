@@ -1,7 +1,5 @@
 """Bibtex writer for commonmeta-py"""
-from bibtexparser.bwriter import BibTexWriter
-from bibtexparser.bibdatabase import BibDatabase
-from bibtexparser.customization import page_double_hyphen
+import bibtexparser
 
 from ..utils import pages_as_string
 from ..base_utils import compact
@@ -75,40 +73,43 @@ def write_bibtex(metadata: Commonmeta) -> str:
     url = metadata.url
     year = date_published[:4] if date_published else None
 
-    bib_database = BibDatabase()
-    bib_database.entries = [
-        compact(
-            {
-                "ID": id_,
-                "ENTRYTYPE": type_,
-                "abstract": abstract,
-                "author": author,
-                "copyright": license_,
-                "doi": doi,
-                "institution": institution,
-                "isbn": isbn,
-                "issn": issn,
-                "issue": issue,
-                "journal": journal,
-                "booktitle": booktitle,
-                "language": language,
-                "location": location,
-                "month": month,
-                "pages": pages,
-                "publisher": publisher,
-                "series": series,
-                "title": title,
-                "url": url,
-                "urldate": date_published,
-                "year": year,
-            }
-        )
-    ]
-    bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
-    writer = BibTexWriter()
-    writer.common_strings = True
-    writer.indent = "    "
-    bibtex_str = writer.write(bib_database)
+    bibtex_str = """
+    @comment{
+        BibTeX entry created by commonmeta-py
+    }
+    """
+    library = bibtexparser.parse_string(None)
+    library.entries[0] = compact(
+        {
+            "ID": id_,
+            "ENTRYTYPE": type_,
+            "abstract": abstract,
+            "author": author,
+            "copyright": license_,
+            "doi": doi,
+            "institution": institution,
+            "isbn": isbn,
+            "issn": issn,
+            "issue": issue,
+            "journal": journal,
+            "booktitle": booktitle,
+            "language": language,
+            "location": location,
+            "month": month,
+            "pages": pages,
+            "publisher": publisher,
+            "series": series,
+            "title": title,
+            "url": url,
+            "urldate": date_published,
+            "year": year,
+        }
+    )
+
+    bibtex_format = bibtexparser.BibtexFormat()
+    bibtex_format.indent = "    "
+    bibtex_format.block_separator = "\n\n"
+    bib_str = bibtexparser.write_string(library, bibtex_format=bibtex_format)
 
     # Hack to remove curly braces around month names
     for month_name in MONTH_SHORT_NAMES:
