@@ -3,6 +3,8 @@ project:
   output-dir: _site
   preview:
     port: 4300
+execute:
+  freeze: true
 website:
   title: "commonmeta-py"
   navbar:
