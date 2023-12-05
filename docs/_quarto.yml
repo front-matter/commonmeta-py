@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: docs/_site
+  output-dir: _site
   preview:
     port: 4300
 execute:
@@ -32,17 +32,3 @@ format:
     page-layout: article
     toc: true
     toc-location: left
-
-metadata-files:
-  - _sidebar.yml
-
-quartodoc:
-  package: commonmeta
-
-  sidebar: _sidebar.yml
-
-  sections:
-    - title: Some functions
-      desc: Functions to inspect docstrings.
-        # the functions being documented in the package.
-        # you can refer to anything: class methods, modules, etc..
