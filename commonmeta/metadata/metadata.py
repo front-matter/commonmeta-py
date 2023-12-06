@@ -160,7 +160,7 @@ class Metadata:
         """validate against JSON schema"""
         try:
             file_path = os.path.join(
-                os.path.dirname(__file__), "resources/commonmeta_v0.10.1.json"
+                os.path.dirname(__file__), "resources/commonmeta_v0.10.4.json"
             )
             print(file_path)
             with open(file_path, encoding="utf-8") as file:

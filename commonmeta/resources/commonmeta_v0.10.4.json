@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.10.2.json",
-  "title": "Commonmeta v0.10.2",
+  "$id": "https://commonmeta.org/commonmeta_v0.10.4.json",
+  "title": "Commonmeta v0.10.4",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -205,42 +205,36 @@
     },
     "date": {
       "description": "The dates for the resource.",
+      "$comment": "The date fields are not required. Dates should be formatted as ISO 8601 dates.",
       "type": "object",
       "properties": {
         "created": {
           "description": "The date the resource was created.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "submitted": {
           "description": "The date the resource was submitted.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "accepted": {
           "description": "The date the resource was accepted.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "published": {
           "description": "The date the resource was published.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "updated": {
           "description": "The date the resource was updated.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "available": {
           "description": "The date the resource was made available.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         },
         "withdrawn": {
           "description": "The date the resource was withdrawn.",
-          "type": "string",
-          "format": "date"
+          "type": "string"
         }
       }
     },
@@ -522,6 +516,15 @@
       "description": "The state of the resource.",
       "type": "string",
       "enum": ["findable", "not_found"]
+    },
+    "archive_locations": {
+      "description": "The location where content is archived.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["CLOCKSS", "LOCKSS", "Portico", "KB", "Internet Archive", "DWT"]
+      },
+      "uniqueItems": true
     }
   },
   "required": [
