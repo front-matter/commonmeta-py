@@ -8,18 +8,22 @@ execute:
 website:
   title: "commonmeta-py"
   favicon: favicon.ico
+  bread-crumbs: false
   navbar:
     background: light
     logo: "/images/icon.png"
     logo-alt: "commonmeta-py"
-    left:
-      - href: index.qmd
-        text: Guide
-      - href: examples.qmd
-        text: Examples
-    tools:
+    right:
       - icon: github
         href: https://github.com/front-matter/commonmeta-py
+  sidebar:
+    collapse-level: 3
+    contents:
+      - index.qmd
+      - section: "Readers"
+        contents: "readers/*.ipynb"
+      - section: "Writers"
+        contents: "writers/*.ipynb"
   page-footer:
     left: "Copyright &copy;2023 Front Matter."
     right:
@@ -33,6 +37,9 @@ format:
     theme:
       light: [flatly, theme.scss]
       dark: [darkly, theme.scss]
-    page-layout: article
+    code-fold: false
+    code-block-bg: true
+    code-block-border-left: "#38a169"
+    highlight-style: github
     toc: true
-    toc-location: left
+    toc-location: right

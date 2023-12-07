@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>commonmeta-py</title>
+<title>commonmeta-py - Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -91,54 +91,164 @@ ul.task-list li input[type="checkbox"] {
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Guide</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./examples.html"> 
-<span class="menu-text">Examples</span></a>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/front-matter/commonmeta-py"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
-    <a href="https://github.com/front-matter/commonmeta-py" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Guide</h1>
+        </a>     
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation">Installation</a></li>
-  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
-  <li><a href="#supported-formats" id="toc-supported-formats" class="nav-link" data-scroll-target="#supported-formats">Supported Formats</a></li>
-  </ul>
-</nav>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Guide</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Readers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readers/cff_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CFF Reader</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readers/crossref_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Crossref Reader</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readers/crossref_xml_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Crossref XML Reader</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readers/datacite_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DataCite Reader</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readers/schema_org_reader.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SchemaOrg Reader</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Writers</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writers/bibtex_writer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BibTex Writer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writers/citation_writer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Citation Writer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writers/commonmeta_writer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commonmeta Writer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writers/csl_writer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CSL-JSON Writer</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./writers/ris_writer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RIS Writer</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="99">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#installation" id="toc-installation" class="nav-link active" data-scroll-target="#installation">Installation</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
+  <li><a href="#supported-formats" id="toc-supported-formats" class="nav-link" data-scroll-target="#supported-formats">Supported Formats</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Guide</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <p><a href="https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml"><img src="https://github.com/front-matter/commonmeta-py/actions/workflows/build.yml/badge.svg" class="img-fluid" alt="Build"></a> <a href="https://pypi.org/project/commonmeta-py/"><img src="https://img.shields.io/pypi/v/commonmeta-py.svg" class="img-fluid" alt="PyPI version"></a> <a href="https://python.commonmeta.org/"><img src="https://img.shields.io/badge/docs-passing-blue.png" class="img-fluid" alt="docs"></a> <img src="https://img.shields.io/github/license/front-matter/commonmeta-py?logo=MIT.png" class="img-fluid" alt="GitHub"></p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>commonmeta-py is a Python library to implement commonmeta, the metadata format for common scholarly metadata. Use commonmeta-py to convert scholarly metadata from/to a variety of metadata formats, listed below. Commonmeta-py is work in progress, the first release on PyPi (version 0.5.0) was on February 16, 2023. Up until version 0.5.1, the library was called talbot. Commonmeta-py is modelled after the <a href="https://github.com/front-matter/briard">briard ruby gem</a>.</p>
-</section>
 <section id="installation" class="level2">
 <h2 class="anchored" data-anchor-id="installation">Installation</h2>
 <p>Stable version</p>
