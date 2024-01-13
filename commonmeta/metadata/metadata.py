@@ -76,9 +76,10 @@ class Metadata:
             elif via == "inveniordm":
                 data = get_inveniordm(pid)
                 meta = read_inveniordm(data)
-        elif os.path.exists(string):
-            with open(string, encoding="utf-8") as file:
-                string = file.read()
+        elif string:
+            if os.path.exists(string):
+                with open(string, encoding="utf-8") as file:
+                    string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
             if via == "commonmeta":
                 data = json.loads(string)
