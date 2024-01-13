@@ -27,6 +27,7 @@ from ..readers import (
     get_inveniordm,
     read_inveniordm,
     read_kbase,
+    read_commonmeta,
 )
 from ..writers import (
     write_datacite,
@@ -79,7 +80,10 @@ class Metadata:
             with open(string, encoding="utf-8") as file:
                 string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
-            if via == "schema_org":
+            if via == "commonmeta":
+                data = json.loads(string)
+                meta = read_commonmeta(data)
+            elif via == "schema_org":
                 data = json.loads(string)
                 meta = read_schema_org(data)
             elif via == "datacite":
@@ -160,7 +164,7 @@ class Metadata:
         """validate against JSON schema"""
         try:
             file_path = os.path.join(
-                os.path.dirname(__file__), "resources/commonmeta_v0.10.4.json"
+                os.path.dirname(__file__), "resources/commonmeta_v0.10.5.json"
             )
             print(file_path)
             with open(file_path, encoding="utf-8") as file:

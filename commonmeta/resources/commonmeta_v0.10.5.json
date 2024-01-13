@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.10.4.json",
-  "title": "Commonmeta v0.10.4",
+  "$id": "https://commonmeta.org/commonmeta_v0.10.5.json",
+  "title": "Commonmeta v0.10.5",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -508,6 +508,7 @@
       "description": "The schema version of the resource.",
       "type": "string",
       "enum": [
+        "https://commonmeta.org/commonmeta_v0.10.5.json",
         "http://datacite.org/schema/kernel-3",
         "http://datacite.org/schema/kernel-4"
       ]
@@ -522,7 +523,14 @@
       "type": "array",
       "items": {
         "type": "string",
-        "enum": ["CLOCKSS", "LOCKSS", "Portico", "KB", "Internet Archive", "DWT"]
+        "enum": [
+          "CLOCKSS",
+          "LOCKSS",
+          "Portico",
+          "KB",
+          "Internet Archive",
+          "DWT"
+        ]
       },
       "uniqueItems": true
     }

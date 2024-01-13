@@ -1,5 +1,7 @@
 """Bibtex writer for commonmeta-py"""
-import bibtexparser
+from bibtexparser.bwriter import BibTexWriter
+from bibtexparser.bibdatabase import BibDatabase
+from bibtexparser.customization import page_double_hyphen
 
 from ..utils import pages_as_string
 from ..base_utils import compact
@@ -78,8 +80,9 @@ def write_bibtex(metadata: Commonmeta) -> str:
         BibTeX entry created by commonmeta-py
     }
     """
-    library = bibtexparser.parse_string(None)
-    library.entries[0] = compact(
+    bib_database = BibDatabase()
+    bib_database.entries = [
+      compact(
         {
             "ID": id_,
             "ENTRYTYPE": type_,
@@ -104,12 +107,13 @@ def write_bibtex(metadata: Commonmeta) -> str:
             "urldate": date_published,
             "year": year,
         }
-    )
+    )]
 
-    bibtex_format = bibtexparser.BibtexFormat()
-    bibtex_format.indent = "    "
-    bibtex_format.block_separator = "\n\n"
-    bib_str = bibtexparser.write_string(library, bibtex_format=bibtex_format)
+    bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
+    writer = BibTexWriter()
+    writer.common_strings = True
+    writer.indent = "    "
+    bibtex_str = writer.write(bib_database)
 
     # Hack to remove curly braces around month names
     for month_name in MONTH_SHORT_NAMES:

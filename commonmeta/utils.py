@@ -520,6 +520,10 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         return None
     try:
         data = json.loads(string)
+        if data.get("schema_version", "").startswith(
+            "https://commonmeta.org"
+        ):
+            return "commonmeta"
         if data.get("@context", None) == "http://schema.org":
             return "schema_org"
         if data.get("@context", None) in [
