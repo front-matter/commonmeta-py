@@ -28,6 +28,21 @@ def test_one_author():
         "familyName": "Jones",
         "givenName": "Matt",
     } == get_one_author(authors[0])
+    # Crossref author with url
+    authors = [
+        {
+            "url": "http://orcid.org/0000-0003-0077-4738",
+            "givenName": "Matt",
+            "familyName": "Jones",
+        }
+    ]
+    assert {
+        "id": "https://orcid.org/0000-0003-0077-4738",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "familyName": "Jones",
+        "givenName": "Matt",
+    } == get_one_author(authors[0])
     # has familyName
     assert {
         "id": "https://orcid.org/0000-0003-1419-2405",

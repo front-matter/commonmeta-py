@@ -77,6 +77,10 @@ def get_one_author(author):
     # Crossref metadata
     if id_ is None and author.get("ORCID", None):
         id_ = normalize_orcid(author.get("ORCID"))
+        
+    # JSON Feed metadata
+    if id_ is None and author.get("url", None):
+        id_ = normalize_orcid(author.get("url"))
 
     # split name for type Person into given/family name if not already provided
     if type_ == "Person" and name and not given_name and not family_name:
