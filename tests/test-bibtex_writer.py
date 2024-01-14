@@ -73,6 +73,7 @@ def test_blog_post():
     author = {Chodacki, John and Hendricks, Ginny and Ferguson, Christine and Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.54900/rckn8ey-1fm76va-qsrnf},
+    journal = {Upstream},
     language = {en},
     month = nov,
     title = {Welcome to Upstream: the new space for scholarly community discussion on all things open},

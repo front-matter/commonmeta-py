@@ -28,6 +28,7 @@ from ..readers import (
     read_inveniordm,
     read_kbase,
     read_commonmeta,
+    read_ris,
 )
 from ..writers import (
     write_datacite,
@@ -116,6 +117,8 @@ class Metadata:
             elif via == "kbase":
                 data = json.loads(string)
                 meta = read_kbase(data)
+            elif via == "ris":
+                meta = read_ris(string)
             # elif via == "bibtex":
             #     data = yaml.safe_load(string)
             #     meta = read_bibtex(data)

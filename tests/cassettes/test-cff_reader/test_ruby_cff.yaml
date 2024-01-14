@@ -1345,4 +1345,274 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
+        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBzG
+        YfRzGLyA33A9g9ra1sxGIyeyxLUJlV6O3MuI5Elofn9/EiqE5VaohjkjrFJ6zW24FLbuFqFQoyCg
+        M2yD2pDMjCwlYRSs0Ri+xBk8VLBTHXQGT/6Ixq1p2Cq9egmtRE67ZAVBWJIUzRJsjVApKdXW/Vuj
+        5SW3PLDCSlL6kTQ5H+GtWGiudwFfGKt5YWd9amS/DK1WG1GiAd4fEY1FXfECwSpY80a0naRswXwf
+        Idy7NN77CH1KTcA7WyttZgGDiq+F3LGGU3AzeM1FQ/sAS7HB5rD6US1QW1pVuhDlKYf+r89yRB9G
+        v4Tlk5uMpXmckzivyJzwTrgYED41wqfU7kBV8I43RY2GvH8Jn96QL85cL9jnYiiAO9ygVC1pCVa4
+        o2SXPgxXBnoQUEph6cWoym659hXwSpwMGuS6qI+bz+VMZywFzxfksXWqjuVhRx09IHus0DLVKniG
+        EMJiUCpBr1E4SbJ49BUbVaowjrNxlKYBKUOm0QODkphEyQ2LxiyOAikKbAyFfttyyghzWNPYKkqU
+        0jvGtRWVx8H3Ef7sSKFKPInvYV2o9SDsRwcMk4YKNTYF+pzaXUtKjskC2AN1qC6u2gdQAZzD6k53
+        ZuWFzpD1aLGteeM3fgiuGzbOkwlLk3E2YOOx5XxlLk383mktOG/gdXidmYSl0XTMxtE0HzAzrzuE
+        16pZXlp6j0JeayLL0ilLp9F0wMTxEv7XNfzfF/Hcwiu+Qj2QKve4Vn8yzRI2zZNkSL90agfK3Tpw
+        6WtNxAm9xdM88wdwzYUkPPY6woW38cvSrTpoD7jxp5BSLGtq2QO+/LpUV+IuZulknLAoyYaq9ce3
+        vzV+ZY/dt7/oeWnnjlO3vhbgUZqNKalR7g9scUH3+dlFLltToxTqRFQDDr1RjdpwqTaXvtxK/MKb
+        8toKxGyS5Dm7SXJXZOKchhqRwMMd7/sDtTyvjUx2eNn8KKp43IdDnFVo0Z7ooFBUyZZ6+ocH11U9
+        PxbEj1j49kLbriU7ruRSwr7VGkcdTnKoDYVXOzaJ0zi/SYcd25uiieO5a/vVfhj4kRcncnIeDTKI
+        23AcciFg/NIlhflanyn4fPvu7b/Fz5jM7V0yn7fZkyV17uOgcTF+0ZRBKltJCsHil/0AAVvCH9Qd
+        TRsMCFA0dhQ1NS2iN+LMhTz5TNNJ76yPjRJ58CCEOXEUpf5A51BwJ13IjpYps2s3UdFTaDgSmyDT
+        NORItKBoiw6tGrWFmn60XCitCTpy149d/dmTPT9E0ddVjZpIQVAuTn59r5aXzB2zKGP+lh65ez5n
+        rz6zMVE3wNnc+A+Qsh8u3AoAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1102'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Sun, 14 Jan 2024 18:47:48 GMT
+      ETag:
+      - W/"fc4495635d30b739de66e8e61c5de741a6b232bd94849bb3fb15c6d630923d28"
+      Expires:
+      - Sun, 14 Jan 2024 18:52:48 GMT
+      Source-Age:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - 22a0275f4a92db661d4af06a125bf8b9195a3c1c
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - EBD0:CE533:7AC416:812B63:65A42C53
+      X-Served-By:
+      - cache-ams21037-AMS
+      X-Timer:
+      - S1705258068.220391,VS0,VE152
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
+        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBzG
+        YfRzGLyA33A9g9ra1sxGIyeyxLUJlV6O3MuI5Elofn9/EiqE5VaohjkjrFJ6zW24FLbuFqFQoyCg
+        M2yD2pDMjCwlYRSs0Ri+xBk8VLBTHXQGT/6Ixq1p2Cq9egmtRE67ZAVBWJIUzRJsjVApKdXW/Vuj
+        5SW3PLDCSlL6kTQ5H+GtWGiudwFfGKt5YWd9amS/DK1WG1GiAd4fEY1FXfECwSpY80a0naRswXwf
+        Idy7NN77CH1KTcA7WyttZgGDiq+F3LGGU3AzeM1FQ/sAS7HB5rD6US1QW1pVuhDlKYf+r89yRB9G
+        v4Tlk5uMpXmckzivyJzwTrgYED41wqfU7kBV8I43RY2GvH8Jn96QL85cL9jnYiiAO9ygVC1pCVa4
+        o2SXPgxXBnoQUEph6cWoym659hXwSpwMGuS6qI+bz+VMZywFzxfksXWqjuVhRx09IHus0DLVKniG
+        EMJiUCpBr1E4SbJ49BUbVaowjrNxlKYBKUOm0QODkphEyQ2LxiyOAikKbAyFfttyyghzWNPYKkqU
+        0jvGtRWVx8H3Ef7sSKFKPInvYV2o9SDsRwcMk4YKNTYF+pzaXUtKjskC2AN1qC6u2gdQAZzD6k53
+        ZuWFzpD1aLGteeM3fgiuGzbOkwlLk3E2YOOx5XxlLk383mktOG/gdXidmYSl0XTMxtE0HzAzrzuE
+        16pZXlp6j0JeayLL0ilLp9F0wMTxEv7XNfzfF/Hcwiu+Qj2QKve4Vn8yzRI2zZNkSL90agfK3Tpw
+        6WtNxAm9xdM88wdwzYUkPPY6woW38cvSrTpoD7jxp5BSLGtq2QO+/LpUV+IuZulknLAoyYaq9ce3
+        vzV+ZY/dt7/oeWnnjlO3vhbgUZqNKalR7g9scUH3+dlFLltToxTqRFQDDr1RjdpwqTaXvtxK/MKb
+        8toKxGyS5Dm7SXJXZOKchhqRwMMd7/sDtTyvjUx2eNn8KKp43IdDnFVo0Z7ooFBUyZZ6+ocH11U9
+        PxbEj1j49kLbriU7ruRSwr7VGkcdTnKoDYVXOzaJ0zi/SYcd25uiieO5a/vVfhj4kRcncnIeDTKI
+        23AcciFg/NIlhflanyn4fPvu7b/Fz5jM7V0yn7fZkyV17uOgcTF+0ZRBKltJCsHil/0AAVvCH9Qd
+        TRsMCFA0dhQ1NS2iN+LMhTz5TNNJ76yPjRJ58CCEOXEUpf5A51BwJ13IjpYps2s3UdFTaDgSmyDT
+        NORItKBoiw6tGrWFmn60XCitCTpy149d/dmTPT9E0ddVjZpIQVAuTn59r5aXzB2zKGP+lh65ez5n
+        rz6zMVE3wNnc+A+Qsh8u3AoAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1102'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Sun, 14 Jan 2024 18:50:16 GMT
+      ETag:
+      - W/"fc4495635d30b739de66e8e61c5de741a6b232bd94849bb3fb15c6d630923d28"
+      Expires:
+      - Sun, 14 Jan 2024 18:55:16 GMT
+      Source-Age:
+      - '149'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - f060cb9e3dee783d36269568e58d43954f6308cb
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - EBD0:CE533:7AC416:812B63:65A42C53
+      X-Served-By:
+      - cache-ams21020-AMS
+      X-Timer:
+      - S1705258217.945079,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
+        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBzG
+        YfRzGLyA33A9g9ra1sxGIyeyxLUJlV6O3MuI5Elofn9/EiqE5VaohjkjrFJ6zW24FLbuFqFQoyCg
+        M2yD2pDMjCwlYRSs0Ri+xBk8VLBTHXQGT/6Ixq1p2Cq9egmtRE67ZAVBWJIUzRJsjVApKdXW/Vuj
+        5SW3PLDCSlL6kTQ5H+GtWGiudwFfGKt5YWd9amS/DK1WG1GiAd4fEY1FXfECwSpY80a0naRswXwf
+        Idy7NN77CH1KTcA7WyttZgGDiq+F3LGGU3AzeM1FQ/sAS7HB5rD6US1QW1pVuhDlKYf+r89yRB9G
+        v4Tlk5uMpXmckzivyJzwTrgYED41wqfU7kBV8I43RY2GvH8Jn96QL85cL9jnYiiAO9ygVC1pCVa4
+        o2SXPgxXBnoQUEph6cWoym659hXwSpwMGuS6qI+bz+VMZywFzxfksXWqjuVhRx09IHus0DLVKniG
+        EMJiUCpBr1E4SbJ49BUbVaowjrNxlKYBKUOm0QODkphEyQ2LxiyOAikKbAyFfttyyghzWNPYKkqU
+        0jvGtRWVx8H3Ef7sSKFKPInvYV2o9SDsRwcMk4YKNTYF+pzaXUtKjskC2AN1qC6u2gdQAZzD6k53
+        ZuWFzpD1aLGteeM3fgiuGzbOkwlLk3E2YOOx5XxlLk383mktOG/gdXidmYSl0XTMxtE0HzAzrzuE
+        16pZXlp6j0JeayLL0ilLp9F0wMTxEv7XNfzfF/Hcwiu+Qj2QKve4Vn8yzRI2zZNkSL90agfK3Tpw
+        6WtNxAm9xdM88wdwzYUkPPY6woW38cvSrTpoD7jxp5BSLGtq2QO+/LpUV+IuZulknLAoyYaq9ce3
+        vzV+ZY/dt7/oeWnnjlO3vhbgUZqNKalR7g9scUH3+dlFLltToxTqRFQDDr1RjdpwqTaXvtxK/MKb
+        8toKxGyS5Dm7SXJXZOKchhqRwMMd7/sDtTyvjUx2eNn8KKp43IdDnFVo0Z7ooFBUyZZ6+ocH11U9
+        PxbEj1j49kLbriU7ruRSwr7VGkcdTnKoDYVXOzaJ0zi/SYcd25uiieO5a/vVfhj4kRcncnIeDTKI
+        23AcciFg/NIlhflanyn4fPvu7b/Fz5jM7V0yn7fZkyV17uOgcTF+0ZRBKltJCsHil/0AAVvCH9Qd
+        TRsMCFA0dhQ1NS2iN+LMhTz5TNNJ76yPjRJ58CCEOXEUpf5A51BwJ13IjpYps2s3UdFTaDgSmyDT
+        NORItKBoiw6tGrWFmn60XCitCTpy149d/dmTPT9E0ddVjZpIQVAuTn59r5aXzB2zKGP+lh65ez5n
+        rz6zMVE3wNnc+A+Qsh8u3AoAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1102'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Sun, 14 Jan 2024 22:20:59 GMT
+      ETag:
+      - W/"fc4495635d30b739de66e8e61c5de741a6b232bd94849bb3fb15c6d630923d28"
+      Expires:
+      - Sun, 14 Jan 2024 22:25:59 GMT
+      Source-Age:
+      - '0'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - 14c0cdb0432e8819089bf9558049baebab1bf925
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - 8EF4:1ECF8C:1BC5A:1D216:65A45E4A
+      X-Served-By:
+      - cache-ams21053-AMS
+      X-Timer:
+      - S1705270859.910100,VS0,VE174
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1

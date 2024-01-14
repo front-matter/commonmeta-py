@@ -52,7 +52,7 @@ def write_bibtex(metadata: Commonmeta) -> str:
     journal = (
         container.get("title", None)
         if type_ not in ["inbook", "inproceedings"]
-        and container.get("type") in ["Journal", "Blog"]
+        and container.get("type") in ["Journal", "Periodical"]
         else None
     )
     booktitle = (

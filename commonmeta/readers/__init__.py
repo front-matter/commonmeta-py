@@ -11,3 +11,4 @@ from .json_feed_reader import get_json_feed_item, read_json_feed_item
 from .inveniordm_reader import get_inveniordm, read_inveniordm
 from .kbase_reader import read_kbase
 from .commonmeta_reader import read_commonmeta
+from .ris_reader import read_ris
