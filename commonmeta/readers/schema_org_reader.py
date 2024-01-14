@@ -137,7 +137,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         url = py_.get(meta, "publisher.url")
         container = compact(
             {
-                "type": "Blog",
+                "type": "Periodical",
                 "title": py_.get(meta, "isPartOf.name"),
                 "identifier": issn
                 if issn is not None

@@ -34,7 +34,7 @@ def write_csl(metadata: Commonmeta) -> str:
             ),
             "language": metadata.language,
             "author": author,
-            "contributor": to_csl(wrap(metadata.contributors)),
+            # "contributor": to_csl(wrap(metadata.contributors)),
             "issued": get_date_parts(metadata.date.get("published", None)),
             "submitted": get_date_parts(metadata.date.get("submitted"))
             if metadata.date.get("submitted", None)

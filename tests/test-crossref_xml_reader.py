@@ -36,7 +36,7 @@ def test_doi_with_data_citation():
     assert subject.date == {
         "created": "2014-02-11",
         "published": "2014-02-11",
-        "updated": "2022-03-26",
+        "updated": "2023-10-12",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/4374",

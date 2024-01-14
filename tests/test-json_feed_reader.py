@@ -23,7 +23,7 @@ def test_wordpress_with_references():
         == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa"
     )
     assert subject.titles[0] == {
-        "title": "New paper: Curtice et al. (2023) on the first Haplocanthosaurus from Dry Mesa"
+        "title": "New paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry Mesa"
     }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -83,7 +83,7 @@ def test_wordpress_with_references():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("<em>Haplocanthosaurus</em> tibiae and dorsal vertebrae.")
+        .startswith("Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon,")
     )
     # assert subject.subjects == [
     #     {"subject": "General Immunology and Microbiology"},
@@ -123,7 +123,7 @@ def test_ghost_with_institutional_author():
 
     assert subject.date == {
         "published": "2023-01-24T12:11:47",
-        "updated": "2023-01-24T12:11:47",
+        "updated": "2023-10-01T17:34:13",
     }
     assert subject.publisher == {
         "name": "OA.Works Blog",

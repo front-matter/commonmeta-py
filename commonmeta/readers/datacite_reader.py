@@ -48,16 +48,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         contributors = contributors + contrib
 
     publisher = {"name": meta.get("publisher", None)}
-
-    date: dict = defaultdict(list)
-    date["published"] = (
-        str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
-    )
-    # convert date list to dict, rename some keys
-    for sub in wrap(meta.get("dates", None)):
-        date[sub.get("dateType", None)] = sub.get("date", None)
-    date = normalize_date_dict(date)
-
+    date = get_dates(wrap(meta.get("dates", None)), meta.get("publicationYear", None))
     container = meta.get("container", None)
     license_ = meta.get("rightsList", [])
     if len(license_) > 0:
@@ -135,9 +126,14 @@ def get_references(references: list) -> list:
 
 def get_file(file: str) -> dict:
     """get_file"""
-    return compact(
-        {
+    return compact({"url": file})
 
-            "url": file
-        }
-    )
+
+def get_dates(dates: list, publication_year) -> dict:
+    """convert date list to dict, rename and/or remove some keys"""
+    date: dict = defaultdict(list)
+    for sub in dates:
+        date[sub.get("dateType", None)] = sub.get("date", None)
+    if date.get("Issued", None) is None and publication_year is not None:
+        date["Issued"] = str(publication_year)
+    return normalize_date_dict(date)

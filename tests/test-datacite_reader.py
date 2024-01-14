@@ -15,7 +15,7 @@ def test_dataset():
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "Dryad"}
-    assert subject.url == "http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
+    assert subject.url == "https://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
         "title": "Data from: A new malaria agent in African hominids."
     }
@@ -34,7 +34,10 @@ def test_dataset():
         "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
     }
 
-    assert subject.date == {"published": "2011", "available": "2011-02-01T17:22:41Z"}
+    assert subject.date == {
+        "published": "2011-02-01T17:22:41Z",
+        "available": "2011-02-01T17:22:41Z",
+    }
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -45,8 +48,16 @@ def test_dataset():
         )
     )
     assert subject.subjects == [
-        {"subject": "Plasmodium"},
-        {"subject": "malaria"},
+        {
+            "subject": "Plasmodium",
+            "schemeUri": "https://github.com/PLOS/plos-thesaurus",
+            "subjectScheme": "PLOS Subject Area Thesaurus",
+        },
+        {
+            "subject": "Malaria",
+            "schemeUri": "https://github.com/PLOS/plos-thesaurus",
+            "subjectScheme": "PLOS Subject Area Thesaurus",
+        },
         {"subject": "mitochondrial genome"},
         {"subject": "Parasites"},
     ]
@@ -102,11 +113,15 @@ def test_date():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.type == "ProceedingsArticle"
-    assert subject.url == "http://drops.dagstuhl.de/opus/volltexte/2013/4317"
+    assert (
+        subject.url
+        == "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93"
+    )
     assert subject.titles[0] == {
-        "title": "The Minimum Size of Qubit Unextendible Product Bases"
+        "lang": "en",
+        "title": "The Minimum Size of Qubit Unextendible Product Bases",
     }
-    assert len(subject.contributors) == 2
+    assert len(subject.contributors) == 3
     assert subject.contributors[0] == {
         "type": "Person",
         "contributorRoles": ["Author"],
@@ -115,14 +130,21 @@ def test_date():
     }
     assert subject.contributors[1] == {
         "contributorRoles": ["Editor"],
-        "familyName": "Herbstritt",
-        "givenName": "Marc",
+        "familyName": "Severini",
+        "givenName": "Simone",
         "type": "Person",
     }
-    assert subject.license is None
-    assert subject.date == {"published": "2013", "available": "2013-11-05"}
+    assert subject.license == {
+        "id": "CC-BY-3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
+    }
+    assert subject.date == {
+        "published": "2013",
+        "available": "2013-11-13",
+        "created": "2013-11-13",
+    }
     assert subject.publisher == {
-        "name": "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"
+        "name": "Schloss Dagstuhl – Leibniz-Zentrum für Informatik"
     }
     assert subject.references is None
     assert subject.container is None
@@ -134,15 +156,14 @@ def test_date():
         )
     )
     assert subject.subjects == [
-        {"subject": "Computer Science"},
         {
-            "subject": "000 Computer science, knowledge, general works",
-            "subjectScheme": "DDC",
-        },
+            "lang": "en",
+            "subject": "unextendible product basis; quantum entanglement; graph factorization",
+        }
     ]
     assert subject.language == "en"
     assert subject.version is None
-    assert subject.schema_version == "http://datacite.org/schema/kernel-2.1"
+    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
@@ -470,7 +491,7 @@ def test_funding_schema_version_3():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1239"
-    # assert subject.identifiers == [{'identifier': 'https://zenodo.org/record/1239',
+    # assert subject.identifiers == [{'identifier': 'https://zenodo.org/records/1239',
     #                                 'identifierType': 'URL'}]
     assert subject.type == "Dataset"
     assert len(subject.contributors) == 4

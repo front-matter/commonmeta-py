@@ -109,6 +109,7 @@ def test_doi_with_data_citation():
         {"family": "Xenarios", "given": "Ioannis"},
         {"family": "Hardtke", "given": "Christian S"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "eLife Sciences Publications, Ltd"
 
     assert csl.get("issued") == {"date-parts": [[2014, 2, 11]]}
@@ -183,6 +184,7 @@ def test_with_pages():
         {"family": "Marder", "given": "David"},
         {"family": "Yesavage", "given": "Jerome A."},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Hindawi Limited"
     assert csl.get("issued") == {"date-parts": [[2012]]}
     assert csl.get("container-title") == "Pulmonary Medicine"
@@ -208,6 +210,7 @@ def test_only_first_page():
         {"family": "Ringold", "given": "Paul L."},
         {"family": "Cañedo-Argüelles Iglesias", "given": "Miguel"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Public Library of Science (PLoS)"
     assert csl.get("issued") == {"date-parts": [[2019, 5, 8]]}
     assert csl.get("container-title") == "PLOS ONE"
@@ -235,6 +238,7 @@ def test_missing_creator():
         {"family": "Kohls", "given": "Alexander"},
         {"family": "Mele", "given": "Salvatore"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "MDPI AG"
     assert csl.get("issued") == {"date-parts": [[2018, 4, 9]]}
     assert csl.get("container-title") == "Publications"
@@ -337,6 +341,7 @@ def test_organization_author():
         {"family": "Krogh", "given": "Anders"},
         {"family": "Wang", "given": "Jun"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Oxford University Press (OUP)"
     assert csl.get("issued") == {"date-parts": [[2015, 12]]}
     assert csl.get("container-title") == "GigaScience"

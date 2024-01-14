@@ -73,7 +73,6 @@ def test_blog_post():
     author = {Chodacki, John and Hendricks, Ginny and Ferguson, Christine and Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.54900/rckn8ey-1fm76va-qsrnf},
-    journal = {Upstream},
     language = {en},
     month = nov,
     title = {Welcome to Upstream: the new space for scholarly community discussion on all things open},
@@ -266,7 +265,7 @@ def test_inveniordm_software():
     month = mar,
     publisher = {Zenodo},
     title = {commonmeta-ruby},
-    url = {https://zenodo.org/record/7752775},
+    url = {https://zenodo.org/records/7752775},
     urldate = {2023-03-20},
     year = {2023}
 }
@@ -294,7 +293,7 @@ def test_inveniordm_presentation():
     month = jul,
     publisher = {Zenodo},
     title = {11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes},
-    url = {https://zenodo.org/record/8173303},
+    url = {https://zenodo.org/records/8173303},
     urldate = {2023-07-21},
     year = {2023}
 }
@@ -321,7 +320,7 @@ def test_inveniordm_publication():
     doi = {10.5281/zenodo.5244404},
     month = aug,
     title = {The Origins of SARS-CoV-2: A Critical Review},
-    url = {https://zenodo.org/record/5244404},
+    url = {https://zenodo.org/records/5244404},
     urldate = {2021-08-18},
     year = {2021}
 }
@@ -349,7 +348,7 @@ def test_inveniordm_report():
     language = {eng},
     month = may,
     title = {An open letter to Mehra et al and The Lancet},
-    url = {https://zenodo.org/record/3871094},
+    url = {https://zenodo.org/records/3871094},
     urldate = {2020-05-28},
     year = {2020}
 }
@@ -377,7 +376,7 @@ def test_inveniordm_preprint():
     language = {eng},
     month = jul,
     title = {A SYSTEMATIC REVIEW OF AUTOPSY FINDINGS IN DEATHS AFTER COVID-19 VACCINATION},
-    url = {https://zenodo.org/record/8120771},
+    url = {https://zenodo.org/records/8120771},
     urldate = {2023-07-06},
     year = {2023}
 }
@@ -406,7 +405,7 @@ def test_inveniordm_dataset():
     month = apr,
     publisher = {Zenodo},
     title = {A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration},
-    url = {https://zenodo.org/record/7834392},
+    url = {https://zenodo.org/records/7834392},
     urldate = {2023-04-16},
     year = {2023}
 }

@@ -1,11 +1,11 @@
 """Date utils for commonmeta-py"""
 import datetime
-from collections import defaultdict
 from datetime import datetime as dt
 from typing import Optional, Union
 import dateparser
 import pydash as py_
 
+from .base_utils import compact
 
 MONTH_NAMES = {
     "01": "jan",
@@ -119,7 +119,7 @@ def get_date_from_parts(year=0, month=0, day=0) -> Optional[str]:
 
 
 def get_month_from_date(
-    date: Optional[Union[str, int, datetime.datetime, datetime.date]]
+    date: Optional[Union[str, int, datetime.datetime, datetime.date]],
 ) -> Optional[str]:
     """Get month from date"""
     if date is None:
@@ -170,16 +170,14 @@ def normalize_date_dict(data: dict) -> dict:
     - updated
     - withdrawn
     """
-    data = py_.rename_keys(
-        data,
+    return compact(
         {
-            "Created": "created",
-            "Submitted": "submitted",
-            "Accepted": "accepted",
-            "Issued": "published",
-            "Available": "available",
-            "Updated": "updated",
-            "Withdrawn": "withdrawn",
-        },
+            "created": data.get("Created", None),
+            "submitted": data.get("Submitted", None),
+            "accepted": data.get("Accepted", None),
+            "published": data.get("Issued", None),
+            "available": data.get("Available", None),
+            "updated": data.get("Updated", None),
+            "withdrawn": data.get("Withdrawn", None),
+        }
     )
-    return data

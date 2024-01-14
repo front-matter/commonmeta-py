@@ -66,15 +66,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     if contrib:
         contributors = contributors + contrib
     publisher = {"name": py_.get(meta, "publisher")}
-
-    date: dict = defaultdict(list)
-    date["published"] = (
-        str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
-    )
-    # convert date list to dict, rename some keys
-    for sub in wrap(py_.get(meta, "dates.date")):
-        date[sub.get("@dateType", None)] = sub.get("#text", None)
-    date = normalize_date_dict(date)
+    date = get_dates(wrap(py_.get(meta, "dates.date")), meta.get("publicationYear", None))
 
     def format_description(description):
         """format_description"""
@@ -290,3 +282,13 @@ def get_xml_references(references: list) -> list:
         return reference
 
     return [map_reference(i) for i in references if is_reference(i)]
+
+
+def get_dates(dates: list, publication_year) -> dict:
+    """convert date list to dict, rename and/or remove some keys"""
+    date: dict = defaultdict(list)
+    for sub in dates:
+        date[sub.get("@dateType", None)] = sub.get("#text", None)
+    if date.get("Issued", None) is None and publication_year is not None:
+        date["Issued"] = str(publication_year)
+    return normalize_date_dict(date)

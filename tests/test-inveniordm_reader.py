@@ -18,7 +18,7 @@ def test_software():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
-    assert subject.url == "https://zenodo.org/record/7752775"
+    assert subject.url == "https://zenodo.org/records/7752775"
     assert subject.titles[0] == {"title": "commonmeta-ruby"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -87,7 +87,7 @@ def test_presentation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
     assert subject.type == "Speech"
-    assert subject.url == "https://zenodo.org/record/8173303"
+    assert subject.url == "https://zenodo.org/records/8173303"
     assert subject.titles[0] == {
         "title": "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
     }
@@ -130,12 +130,10 @@ def test_presentation():
     assert subject.version is None
     assert subject.files == [
         {
-            "bucket": "edf85f83-a9ec-4935-85ca-9da47a3815fd",
             "key": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
             "checksum": "md5:45d8b11d4ef0da78b9db5397d8e0e8d9",
-            "url": "https://zenodo.org/api/files/edf85f83-a9ec-4935-85ca-9da47a3815fd/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
+            "url": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content",
             "size": 13994803,
-            "mimeType": "application/pdf",
         }
     ]
 
@@ -148,7 +146,7 @@ def test_publication():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
-    assert subject.url == "https://zenodo.org/record/5244404"
+    assert subject.url == "https://zenodo.org/records/5244404"
     assert subject.titles[0] == {
         "title": "The Origins of SARS-CoV-2: A Critical Review"
     }
@@ -205,12 +203,10 @@ def test_publication():
     assert subject.version == "Authors' final version"
     assert len(subject.files) == 3
     assert subject.files[0] == {
-        "bucket": "449ea104-433b-4347-889b-a4535cd37e92",
-        "key": "gisaid_acknowledgement_table.pdf",
-        "checksum": "md5:b1b5979db4d4755601b85f160ce664b9",
-        "url": "https://zenodo.org/api/files/449ea104-433b-4347-889b-a4535cd37e92/gisaid_acknowledgement_table.pdf",
-        "size": 5335,
-        "mimeType": "application/pdf",
+        "key": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "checksum": "md5:bdb88fc94708d8fd7d87854031faa8ab",
+        "url": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
+        "size": 197003,
     }
 
 
@@ -222,7 +218,7 @@ def test_dataset():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
-    assert subject.url == "https://zenodo.org/record/7834392"
+    assert subject.url == "https://zenodo.org/records/7834392"
     assert subject.titles[0] == {
         "title": "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"
     }
@@ -276,10 +272,8 @@ def test_dataset():
     assert subject.version == "162"
     assert len(subject.files) == 24
     assert subject.files[0] == {
-        "bucket": "fafb41f4-4679-4ade-8ec6-1e48ecd43072",
-        "key": "emojis.zip",
-        "checksum": "md5:794aa07e49f5edf3ed72d552321bb2f5",
-        "url": "https://zenodo.org/api/files/fafb41f4-4679-4ade-8ec6-1e48ecd43072/emojis.zip",
-        "size": 15058751,
-        "mimeType": "application/zip",
+        "key": "frequent_trigrams.csv",
+        "checksum": "md5:b1f7edcfd008053c53659131f654f17d",
+        "url": "https://zenodo.org/api/records/7834392/files/frequent_trigrams.csv/content",
+        "size": 24991,
     }

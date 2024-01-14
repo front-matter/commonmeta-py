@@ -42,7 +42,11 @@ def test_journal_article():
     }
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
-    assert schema_org.get("periodical") == {'issn': '2050-084X', '@type': 'Journal', 'name': 'eLife'}
+    assert schema_org.get("periodical") == {
+        "issn": "2050-084X",
+        "@type": "Journal",
+        "name": "eLife",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "en"
@@ -83,8 +87,11 @@ def test_inveniordm_software():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-03-20"
-    assert schema_org.get("url") == "https://zenodo.org/record/7752775"
-    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
+    assert schema_org.get("url") == "https://zenodo.org/records/7752775"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -131,8 +138,11 @@ def test_inveniordm_presentation():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-21"
-    assert schema_org.get("url") == "https://zenodo.org/record/8173303"
-    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
+    assert schema_org.get("url") == "https://zenodo.org/records/8173303"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -143,8 +153,7 @@ def test_inveniordm_presentation():
     assert len(schema_org.get("encoding")) == 1
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/files/edf85f83-a9ec-4935-85ca-9da47a3815fd/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
-        "encodingFormat": "application/pdf",
+        "contentUrl": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content",
         "name": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
         "size": 13994803,
     }
@@ -179,8 +188,11 @@ def test_inveniordm_publication():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2021-08-18"
-    assert schema_org.get("url") == "https://zenodo.org/record/5244404"
-    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
+    assert schema_org.get("url") == "https://zenodo.org/records/5244404"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") is None
@@ -191,10 +203,9 @@ def test_inveniordm_publication():
     assert len(schema_org.get("encoding")) == 3
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/files/449ea104-433b-4347-889b-a4535cd37e92/gisaid_acknowledgement_table.pdf",
-        "encodingFormat": "application/pdf",
-        "name": "gisaid_acknowledgement_table.pdf",
-        "size": 5335,
+        "contentUrl": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
+        "name": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "size": 197003,
     }
 
 
@@ -224,8 +235,11 @@ def test_inveniordm_report():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2020-05-28"
-    assert schema_org.get("url") == "https://zenodo.org/record/3871094"
-    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
+    assert schema_org.get("url") == "https://zenodo.org/records/3871094"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
@@ -236,8 +250,7 @@ def test_inveniordm_report():
     assert len(schema_org.get("encoding")) == 1
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/files/bca8d7ca-c07a-4cc3-912a-10a34707c76f/Open%20Letter%20V4.pdf",
-        "encodingFormat": "application/pdf",
+        "contentUrl": "https://zenodo.org/api/records/3871094/files/Open Letter V4.pdf/content",
         "name": "Open Letter V4.pdf",
         "size": 130482,
     }
@@ -271,8 +284,11 @@ def test_inveniordm_preprint():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-06"
-    assert schema_org.get("url") == "https://zenodo.org/record/8120771"
-    assert schema_org.get("periodical") == {'additionalType': 'Repository', 'name': 'Zenodo'}
+    assert schema_org.get("url") == "https://zenodo.org/records/8120771"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
     assert schema_org.get("inLanguage") == "eng"
@@ -283,10 +299,9 @@ def test_inveniordm_preprint():
     assert len(schema_org.get("encoding")) == 2
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/files/304e8fbb-7fa2-493e-93d8-82cd3f8442cd/AUTOPSY%20REVIEW%20SUPPLEMENTAL%20TABLE%201.pdf",
-        "encodingFormat": "application/pdf",
-        "name": "AUTOPSY REVIEW SUPPLEMENTAL TABLE 1.pdf",
-        "size": 904297,
+        "contentUrl": "https://zenodo.org/api/records/8120771/files/(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf/content",
+        "name": "(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf",
+        "size": 832057,
     }
 
 
@@ -319,7 +334,7 @@ def test_inveniordm_dataset():
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-04-16"
-    assert schema_org.get("url") == "https://zenodo.org/record/7834392"
+    assert schema_org.get("url") == "https://zenodo.org/records/7834392"
     assert schema_org.get("inDataCatalog") is None
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
@@ -328,10 +343,9 @@ def test_inveniordm_dataset():
     assert len(schema_org.get("distribution")) == 24
     assert schema_org.get("distribution")[0] == {
         "@type": "DataDownload",
-        "contentUrl": "https://zenodo.org/api/files/fafb41f4-4679-4ade-8ec6-1e48ecd43072/emojis.zip",
-        "encodingFormat": "application/zip",
-        "name": "emojis.zip",
-        "size": 15058751,
+        "contentUrl": "https://zenodo.org/api/records/7834392/files/frequent_trigrams.csv/content",
+        "name": "frequent_trigrams.csv",
+        "size": 24991,
     }
 
 

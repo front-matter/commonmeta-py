@@ -17,7 +17,6 @@ from ..doi_utils import doi_as_url, doi_from_url
 from ..constants import (
     INVENIORDM_TO_CM_TRANSLATIONS,
     COMMONMETA_RELATION_TYPES,
-    COMMONMETA_CONTAINER_TYPES,
     Commonmeta,
 )
 
@@ -80,6 +79,13 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     related_identifiers = get_related_identifiers(
         wrap(py_.get(meta, "metadata.related_identifiers"))
     )
+    if meta.get("conceptdoi", None):
+        related_identifiers.append(
+            {
+                "id": doi_as_url(meta.get("conceptdoi")),
+                "type": "IsVersionOf",
+            }
+        )
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
     state = "findable" if meta or read_options else "not_found"
@@ -89,7 +95,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "id": id_,
         "type": type_,
         "doi": doi_from_url(id_) if id_ else None,
-        "url": normalize_url(py_.get(meta, "links.html")),
+        "url": normalize_url(py_.get(meta, "links.self_html")),
         "contributors": contributors,
         "titles": titles,
         "publisher": publisher,
@@ -182,7 +188,11 @@ def get_related_identifiers(related_identifiers: list) -> list:
         }
 
     identifiers = [map_related_identifier(i) for i in related_identifiers]
-    return [i for i in identifiers if i["type"] in COMMONMETA_RELATION_TYPES]
+    return [
+        i
+        for i in identifiers
+        if py_.upper_first(i["type"]) in COMMONMETA_RELATION_TYPES
+    ]
 
 
 def format_descriptions(descriptions: list) -> list:

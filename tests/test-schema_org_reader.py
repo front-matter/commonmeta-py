@@ -28,15 +28,15 @@ def test_blog_posting():
     }
     assert subject.date == {
         "published": "2016-12-20",
-        "updated": "2022-08-15T09:06:22Z",
+        "updated": "2023-09-07T08:34:41Z",
     }
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.references is None
     assert subject.container == {
-        "identifier": "2749-9952",
-        "identifierType": "ISSN",
+        "identifier": "https://blog.front-matter.io/",
+        "identifierType": "URL",
         "title": "Front Matter",
-        "type": "Blog",
+        "type": "Periodical",
     }
     assert (
         subject.descriptions[0]
@@ -51,7 +51,7 @@ def test_blog_posting():
 
 def test_zenodo():
     "zenodo"
-    string = "https://www.zenodo.org/record/1196821"
+    string = "https://www.zenodo.org/records/1196821"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1196821"
@@ -64,7 +64,12 @@ def test_zenodo():
         )
     }
     assert len(subject.contributors) == 8
-    assert subject.contributors[0] == {'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Matthias', 'familyName': 'Staib'}
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Matthias",
+        "familyName": "Staib",
+    }
     assert subject.license == {
         "id": "CC-BY-SA-4.0",
         "url": "https://creativecommons.org/licenses/by-sa/4.0/legalcode",
@@ -219,7 +224,7 @@ def test_yet_another_blog_post():
     assert subject.publisher == {"name": "John Hawks"}
     assert subject.references is None
     assert subject.container == {
-        "type": "Blog",
+        "type": "Periodical",
         "title": "John Hawks",
         "identifier": "https://johnhawks.net/",
         "identifierType": "URL",
@@ -277,7 +282,7 @@ def test_another_blog_with_dois():
     assert subject.references is None
     assert subject.container == {
         "title": "JSC Accelerating Devices Lab",
-        "type": "Blog",
+        "type": "Periodical",
     }
     assert (
         subject.descriptions[0]
@@ -323,7 +328,7 @@ def test_with_upstream_blog_post():
         "identifier": "https://upstream.force11.org/",
         "identifierType": "URL",
         "title": "Upstream",
-        "type": "Blog",
+        "type": "Periodical",
     }
     assert (
         subject.descriptions[0]
@@ -391,7 +396,7 @@ def test_yet_another_ghost_post():
     assert subject.publisher == {"name": "I.D.E.A.S."}
     assert subject.references is None
     assert subject.container == {
-        "type": "Blog",
+        "type": "Periodical",
         "title": "I.D.E.A.S.",
         "identifier": "https://www.ideasurg.pub/",
         "identifierType": "URL",
