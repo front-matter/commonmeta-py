@@ -1,5 +1,5 @@
 """Bibtex writer tests"""
-import os
+from os import path
 import pytest
 from commonmeta import Metadata
 
@@ -249,7 +249,7 @@ def test_phd_thesis():
 
 def test_inveniordm_software():
     "inveniordm software"
-    string = os.path.join(os.path.dirname(__file__), "fixtures", "inveniordm-software.json")
+    string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
@@ -414,23 +414,10 @@ def test_inveniordm_dataset():
     )
 
 
-#  missing date["published"]
-# def test_kbase_metatranscriptome():
-#     """Metatrascriptome"""
-#     string = os.path.join(
-#         os.path.dirname(__file__), "fixtures", "JDP_5fa4fb4647675a20c852c60b_kbcms.json"
-#     )
-#     subject = Metadata(string)   
-#     assert (
-#         bibtex = subject.bibtex()
-#         == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
-#     )
-
-
 def test_kbase_gulf_of_mexico():
     """kbase gulf of mexico"""
-    string = os.path.join(
-        os.path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
+    string = path.join(
+        path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
     )
     subject = Metadata(string)
     assert (

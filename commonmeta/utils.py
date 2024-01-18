@@ -498,7 +498,7 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         return "codemeta"
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
-    if re.match(r"\Ahttps:/(/)?rogue-scholar\.org/api/posts/(.+)\Z", pid) is not None:
+    if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
         return "json_feed_item"
     if re.match(r"\Ahttps:/(/)?zenodo\.org/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
@@ -530,6 +530,8 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
         ]:
             return "codemeta"
+        if py_.get(data, "blog.version", None) == "https://jsonfeed.org/version/1.1":
+            return "json_feed_item"
         if data.get("schemaVersion", "").startswith(
             "http://datacite.org/schema/kernel"
         ):
@@ -842,7 +844,7 @@ def name_to_fos(name: str) -> Optional[dict]:
     #      }]
     #   else
 
-    return {"subject": name.lower()}
+    return {"subject": name.strip()}
 
 
 def encode_doi(prefix):
@@ -891,3 +893,11 @@ def get_language(lang: str) -> Optional[dict]:
     else:
         language = pycountry.languages.get(name=lang)
     return language
+
+
+
+def start_case(content: str) -> str:
+    """Capitalize first letter of each word without lowercasing the rest"""
+    words = content.split(" ")
+    content = " ".join([word[0].upper() + word[1:] for word in words])
+    return content

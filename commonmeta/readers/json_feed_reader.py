@@ -3,7 +3,7 @@ from typing import Optional
 import requests
 from pydash import py_
 
-from ..utils import compact, normalize_url, from_json_feed, wrap, dict_to_spdx
+from ..utils import compact, normalize_url, from_json_feed, wrap, dict_to_spdx, name_to_fos
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
 from ..date_utils import get_date_from_unix_timestamp
@@ -77,12 +77,9 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         ]
     else:
         descriptions = None
-
-    #     subjects = Array.wrap(meta.dig("blog", "category")).reduce([]) do |sum, subject|
-    #       sum += name_to_fos(subject.underscore.humanize)
-
-    #       sum
-    #     end
+    category = py_.get(meta, "blog.category", None)
+    if category is not None:
+        subjects = [name_to_fos(py_.human_case(category))]
     references = [
         get_reference(i) for i in wrap(meta.get("reference", None))
     ]
@@ -103,7 +100,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
-        # "subjects": presence(subjects),
+        "subjects": presence(subjects),
         "language": meta.get("language", None),
         "alternate_identifiers": None,
         "sizes": None,

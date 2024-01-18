@@ -1,5 +1,5 @@
 """Metadata"""
-import os
+from os import path
 import json
 from typing import Optional, Any
 from functools import cached_property
@@ -34,6 +34,7 @@ from ..writers import (
     write_datacite,
     write_bibtex,
     write_citation,
+    write_crossref_xml,
     write_csl,
     write_ris,
     write_schema_org,
@@ -78,7 +79,7 @@ class Metadata:
                 data = get_inveniordm(pid)
                 meta = read_inveniordm(data)
         elif string:
-            if os.path.exists(string):
+            if path.exists(string):
                 with open(string, encoding="utf-8") as file:
                     string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
@@ -167,8 +168,8 @@ class Metadata:
     def is_valid(self) -> Any:
         """validate against JSON schema"""
         try:
-            file_path = os.path.join(
-                os.path.dirname(__file__), "resources/commonmeta_v0.10.5.json"
+            file_path = path.join(
+                path.dirname(__file__), "resources/commonmeta_v0.10.5.json"
             )
             print(file_path)
             with open(file_path, encoding="utf-8") as file:
@@ -205,3 +206,7 @@ class Metadata:
     def datacite(self):
         """Datacite"""
         return write_datacite(self)
+    
+    def crossref_xml(self):
+        """Crossref XML"""
+        return write_crossref_xml(self)

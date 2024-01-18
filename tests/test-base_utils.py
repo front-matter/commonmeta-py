@@ -1,6 +1,8 @@
 # pylint: disable=invalid-name
 """Test base utils"""
 import pytest  # noqa: F401
+from os import path
+import pydash as py_
 
 from commonmeta.base_utils import (
     parse_attributes,
@@ -10,6 +12,7 @@ from commonmeta.base_utils import (
     unwrap,
     sanitize,
     parse_xmldict,
+    parse_xml,
 )
 
 
@@ -192,3 +195,17 @@ def test_sanitize():
     text = 'In 1998 <strong>Tim Berners-Lee</strong> coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     content = 'In 1998 Tim Berners-Lee coined the term <a href="https://www.w3.org/Provider/Style/URI">cool URIs</a>'
     assert content == sanitize(text, tags={"a"})
+
+
+def test_parse_xml():
+    "parse XML"
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
+    data = parse_xml(string)
+    assert py_.get(data, "crossref_result.@xmlns") == "http://www.crossref.org/qrschema/3.0"
+    
+    
+def test_parse_xml_crossref():
+    "parse Crossref XML"
+    string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
+    data = parse_xml(string, dialect="crossref")
+    assert py_.get(data, "doi_record.crossref.journal.journal_article.doi_data.doi") == "10.7554/eLife.01567"

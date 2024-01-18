@@ -35,7 +35,7 @@ def test_ruby_cff():
         {"subject": "software sustainability"},
         {"subject": "metadata"},
         {"subject": "citation file format"},
-        {"subject": "cff"},
+        {"subject": "CFF"},
     ]
     assert subject.date == {"published": "2023-04-10"}
     assert subject.version == "1.1.0"
@@ -74,14 +74,14 @@ def test_cff_converter_python():
     ]
     assert subject.subjects == [
         {"subject": "bibliography"},
-        {"subject": "bibtex"},
+        {"subject": "BibTeX"},
         {"subject": "cff"},
         {"subject": "citation"},
-        {"subject": "citation.cff"},
-        {"subject": "codemeta"},
-        {"subject": "endnote"},
-        {"subject": "ris"},
-        {"subject": "citation file format"},
+        {"subject": "CITATION.cff"},
+        {"subject": "CodeMeta"},
+        {"subject": "EndNote"},
+        {"subject": "RIS"},
+        {"subject": "Citation File Format"},
     ]
     assert subject.date == {"published": "2021-09-22"}
     assert subject.version == "3.0.0a0"

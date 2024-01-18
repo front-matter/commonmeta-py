@@ -22,6 +22,7 @@ from ..base_utils import (
     sanitize,
     parse_attributes,
     parse_xmldict,
+    parse_xml,
 )
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
@@ -50,33 +51,22 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if response.status_code != 200:
         return {"state": "not_found"}
 
-    # remove namespaces from xml
-    namespaces = {
-        "http://www.crossref.org/qrschema/3.0": None,
-        "http://www.crossref.org/xschema/1.0": None,
-        "http://www.crossref.org/xschema/1.1": None,
-        "http://www.crossref.org/AccessIndicators.xsd": None,
-        "http://www.crossref.org/fundref.xsd": None,
-        "http://www.ncbi.nlm.nih.gov/JATS1": None,
-    }
-    data = xmltodict.parse(
-        response.text, process_namespaces=True, namespaces=namespaces
-    )
-    data = json.loads(str(json.dumps(data)))
-
-    return data
+    return parse_xml(response.text, dialect="crossref")
 
 
 def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     """read_crossref_xml"""
     if data is None:
         return {"state": "not_found"}
+    print(data)
     meta = py_.get(
         data, "crossref_result.query_result.body.query.doi_record.crossref", {}
     )
 
     # query contains information from outside metadata schema, e.g. publisher name
-    query = py_.get(data, "crossref_result.query_result.body.query", {})
+    query = py_.get(
+        data, "crossref_result.query_result.body.query", {}
+    )
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,
@@ -91,8 +81,9 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         ),
         {},
     ).get("#text", None)
-    publisher = {
-        "id": "https://api.crossref.org/members/" + member_id,
+    publisher_id = "https://api.crossref.org/members/" + member_id if member_id else None
+    publisher = compact({
+        "id": publisher_id,
         "name": next(
             (
                 i
@@ -101,7 +92,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
             ),
             {},
         ).get("#text", None),
-    }
+    })
 
     # fetch metadata depending of Crossref type
     if py_.get(meta, "journal.journal_article", None):

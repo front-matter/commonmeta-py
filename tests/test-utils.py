@@ -34,7 +34,7 @@ from commonmeta.utils import (
     encode_doi,
     decode_doi,
     from_curie,
-    get_language
+    get_language,
 )
 from commonmeta.base_utils import wrap
 
@@ -328,6 +328,10 @@ def test_find_from_format_by_id():
     assert "schema_org" == find_from_format_by_id(
         "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     )
+    # json_feed
+    assert "json_feed_item" == find_from_format_by_id(
+        "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
+    )  # noqa: E501
 
 
 def test_find_from_format_by_filename():
@@ -395,6 +399,10 @@ def test_find_from_format_by_string():
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "csl" == find_from_format_by_string(string)
+    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "json_feed_item" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
 

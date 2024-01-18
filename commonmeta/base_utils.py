@@ -1,7 +1,11 @@
 """Base utilities for commonmeta-py"""
 import html
+from os import path
 import re
+import xmltodict
+import json
 from typing import Optional, Union
+import pydash as py_
 import bleach
 
 
@@ -58,6 +62,30 @@ def parse_attributes(element: Union[str, dict, list], **kwargs) -> Optional[Unio
         arr = arr[0] if len(arr) > 0 and kwargs.get("first") else unwrap(arr)
         return arr
 
+
+def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
+    """Parse XML into dict"""
+    if path.exists(string):
+        with open(string, encoding="utf-8") as file:
+            string = file.read()
+    
+    dialect = kwargs.get("dialect", None)
+    if dialect == "crossref":
+        # remove namespaces from xml
+        namespaces = {
+            "http://www.crossref.org/qrschema/3.0": None,
+            "http://www.crossref.org/xschema/1.0": None,
+            "http://www.crossref.org/xschema/1.1": None,
+            "http://www.crossref.org/AccessIndicators.xsd": None,
+            "http://www.crossref.org/fundref.xsd": None,
+            "http://www.ncbi.nlm.nih.gov/JATS1": None,
+        }
+        kwargs = {"process_namespaces": True, "namespaces": namespaces}
+    
+    data = xmltodict.parse(string, **kwargs)
+    return json.loads(str(json.dumps(data)))
+
+    
 def parse_xmldict(
     var: Union[dict, list],
     element_name=None,

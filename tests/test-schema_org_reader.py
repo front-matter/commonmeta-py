@@ -179,12 +179,15 @@ def test_dataverse():
         "title": "Harvard Dataverse",
         "type": "DataRepository",
     }
-    # assert subject.descriptions[0].get('description').startswith(
-    #     'Summary of association tests for Nature Genetics publication')
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("Summary of association tests for Nature Genetics publication")
+    )
     assert subject.subjects == [
-        {"subject": "medicine, health and life sciences"},
-        {"subject": " genome-wide association studies"},
-        {"subject": "ankylosing spondylitis"},
+        {"subject": "Medicine, Health and Life Sciences"},
+        {"subject": "Genome-Wide Association Studies"},
+        {"subject": "Ankylosing spondylitis"},
     ]
     assert subject.language == "en"
     assert subject.version == "1"
