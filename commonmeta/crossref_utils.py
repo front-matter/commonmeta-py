@@ -528,7 +528,7 @@ def crossref_root():
         "http://www.w3.org/2001/XMLSchema-instance", "schemaLocation"
     )
     nsmap = {
-        None: "http://www.crossref.org/schema/5.3.1",
+        # None: "http://www.crossref.org/schema/5.3.1",
         "jats": "http://www.ncbi.nlm.nih.gov/JATS1",
         "fr": "http://www.crossref.org/fundref.xsd",
         "mml": "http://www.w3.org/1998/Math/MathML",

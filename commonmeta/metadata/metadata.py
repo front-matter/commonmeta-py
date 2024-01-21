@@ -5,7 +5,6 @@ from typing import Optional, Any
 from functools import cached_property
 import yaml
 from fastjsonschema import JsonSchemaException, compile
-import xmltodict
 
 from ..readers import (
     get_crossref,
@@ -41,7 +40,7 @@ from ..writers import (
     write_commonmeta,
 )
 from ..utils import normalize_id, find_from_format
-
+from ..base_utils import parse_xml
 
 # pylint: disable=R0902
 class Metadata:
@@ -96,12 +95,10 @@ class Metadata:
                 data = json.loads(string)
                 meta = read_crossref(data)
             elif via == "datacite_xml":
-                data = xmltodict.parse(string, dict_constructor=dict)
-                # data = json.loads(str(json.dumps(data)))
+                data = parse_xml(string)
                 meta = read_datacite_xml(data)
             elif via == "crossref_xml":
-                data = xmltodict.parse(string, dict_constructor=dict)
-                # data = json.loads(str(json.dumps(data)))
+                data = parse_xml(string, dialect="crossref")
                 meta = read_crossref_xml(data)
             elif via == "csl":
                 data = json.loads(string)

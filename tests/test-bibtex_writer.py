@@ -44,7 +44,7 @@ def test_doi_for_blog_post():
     assert (
         bibtex
         == """@article{10.53731/avg2ykg-gdxppcd,
-    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? &lt;strong&gt;Barriers to Entry&lt;/strong&gt; Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
+    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
     author = {Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.53731/avg2ykg-gdxppcd},
