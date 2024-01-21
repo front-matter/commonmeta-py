@@ -80,9 +80,9 @@ def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
             "http://www.ncbi.nlm.nih.gov/JATS1": None,
         }
         kwargs = {
-            # "process_namespaces": True,
-            # "namespaces": namespaces,
-            # "force_list": ["contributors", "titles", "item", "citation"],
+            "process_namespaces": True,
+            "namespaces": namespaces,
+            "force_list": ["contributors", "titles", "item", "citation"],
         }
 
     data = xmltodict.parse(string, **kwargs)
