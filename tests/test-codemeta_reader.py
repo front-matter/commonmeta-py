@@ -16,6 +16,7 @@ def test_rdataone():
     assert len(subject.contributors) == 3
     assert subject.contributors[0] == {
         "type": "Person",
+        "id": "https://orcid.org/0000-0003-0077-4738",
         "contributorRoles": ["Author"],
         "givenName": "Matt",
         "familyName": "Jones",
@@ -52,6 +53,7 @@ def test_metadata_reports():
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
+        "id": "https://orcid.org/0000-0003-0077-4738",
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",

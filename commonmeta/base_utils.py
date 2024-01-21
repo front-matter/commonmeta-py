@@ -67,13 +67,12 @@ def parse_attributes(
 
 
 def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
-    """Parse XML into dict"""
+    """Parse XML into dict. Set default options, and options for Crossref XML"""
     if path.exists(string):
         with open(string, encoding="utf-8") as file:
             string = file.read()
 
-    dialect = kwargs.get("dialect", None)
-    if dialect == "crossref":
+    if kwargs.get("dialect", None) == "crossref":
         # remove namespaces from xml
         namespaces = {
             "http://www.crossref.org/qrschema/3.0": None,
@@ -83,14 +82,14 @@ def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
             "http://www.crossref.org/fundref.xsd": None,
             "http://www.ncbi.nlm.nih.gov/JATS1": None,
         }
-        kwargs = {
-            "process_namespaces": True,
-            "namespaces": namespaces,
-            "force_list": ["contributors", "titles", "item", "citation"],
-        }
-
-    data = xmltodict.parse(string, **kwargs)
-    return json.loads(str(json.dumps(data)))
+  
+        kwargs["process_namespaces"] = True
+        kwargs["namespaces"] = namespaces
+        kwargs["force_list"] = ["contributors", "titles", "item", "citation"]
+    
+    kwargs["dict_constructor"] = dict
+    kwargs.pop('dialect', None)
+    return xmltodict.parse(string, **kwargs)
 
 
 def parse_xmldict(

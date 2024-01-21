@@ -150,7 +150,6 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         
     def format_funding(url: str) -> dict:
         """format funding. Prefix 10.3030 means funder is European Commission"""
-        print(url)
         return {
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",

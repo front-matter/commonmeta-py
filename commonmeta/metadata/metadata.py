@@ -96,12 +96,12 @@ class Metadata:
                 data = json.loads(string)
                 meta = read_crossref(data)
             elif via == "datacite_xml":
-                data = xmltodict.parse(string)
-                data = json.loads(str(json.dumps(data)))
+                data = xmltodict.parse(string, dict_constructor=dict)
+                # data = json.loads(str(json.dumps(data)))
                 meta = read_datacite_xml(data)
             elif via == "crossref_xml":
-                data = xmltodict.parse(string)
-                data = json.loads(str(json.dumps(data)))
+                data = xmltodict.parse(string, dict_constructor=dict)
+                # data = json.loads(str(json.dumps(data)))
                 meta = read_crossref_xml(data)
             elif via == "csl":
                 data = json.loads(string)
@@ -177,7 +177,6 @@ class Metadata:
             file_path = path.join(
                 path.dirname(__file__), "resources/commonmeta_v0.10.5.json"
             )
-            print(file_path)
             with open(file_path, encoding="utf-8") as file:
                 schema = json.load(file)
             # validate = compile(schema)

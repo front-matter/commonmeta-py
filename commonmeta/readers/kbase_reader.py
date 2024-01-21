@@ -20,7 +20,6 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
     """read_kbase"""
     meta = data.get("credit_metadata", {})
     read_options = kwargs or {}
-    print(meta)
 
     id_ = from_curie(meta.get("identifier", None))
     type_ = "Dataset"

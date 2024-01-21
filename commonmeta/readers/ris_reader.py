@@ -13,7 +13,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
 
     meta = ris_meta(data=data)
     read_options = kwargs or {}
-    print(meta)
+ 
     if not isinstance(meta, dict):
         return {"state": "not_found"}
 

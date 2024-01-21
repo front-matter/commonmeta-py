@@ -58,7 +58,6 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     """read_crossref_xml"""
     if data is None:
         return {"state": "not_found"}
-    print(data)
     meta = py_.get(
         data, "crossref_result.query_result.body.query.doi_record.crossref", {}
     )
@@ -274,13 +273,13 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
 def crossref_titles(bibmeta):
     """Title information from Crossref metadata."""
-    title = parse_attributes(py_.get(bibmeta, "titles.title"))
-    subtitle = parse_attributes(py_.get(bibmeta, "titles.subtitle"))
+    title = parse_attributes(py_.get(bibmeta, "titles.0.title"))
+    subtitle = parse_attributes(py_.get(bibmeta, "titles.0.subtitle"))
     original_language_title = parse_attributes(
-        py_.get(bibmeta, "titles.original_language_title")
+        py_.get(bibmeta, "titles.0.original_language_title")
     )
     language = parse_attributes(
-        py_.get(bibmeta, "titles.original_language_title"), content="language"
+        py_.get(bibmeta, "titles.0.original_language_title"), content="language"
     )
     if title is None and original_language_title is None:
         return None
@@ -332,10 +331,10 @@ def crossref_description(bibmeta):
 def crossref_people(bibmeta):
     """Person information from Crossref metadata."""
 
-    person = py_.get(bibmeta, "contributors.person_name") or bibmeta.get(
+    person = py_.get(bibmeta, "contributors.0.person_name") or bibmeta.get(
         "person_name", None
     )
-    organization = wrap(py_.get(bibmeta, "contributors.organization"))
+    organization = wrap(py_.get(bibmeta, "contributors.0.organization"))
     # + [format_organization(i) for i in wrap(organization)]
 
     return get_authors(from_crossref_xml(wrap(person) + wrap(organization)))
@@ -452,11 +451,11 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     isbn = py_.get(meta, f"conference.{container_type}_metadata.isbn.#text")
     container_title = (
         py_.get(meta, f"{container_type}.{container_type}_metadata.full_title")
-        or py_.get(meta, f"{container_type}.{container_type}_metadata.titles.title")
+        or py_.get(meta, f"{container_type}.{container_type}_metadata.titles.0.title")
         or py_.get(meta, f"conference.{container_type}_metadata.{container_type}_title")
         or py_.get(
             meta,
-            f"{container_type}.{container_type}_series_metadata.series_metadata.titles.title",
+            f"{container_type}.{container_type}_series_metadata.series_metadata.titles.0.title",
         )
     )
     volume = py_.get(

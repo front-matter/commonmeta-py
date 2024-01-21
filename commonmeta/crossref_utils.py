@@ -27,7 +27,10 @@ def generate_crossref_xml(metadata: Commonmeta) -> str:
     body = etree.SubElement(xml, "body")
     body = insert_crossref_work(metadata, body)
     return etree.tostring(
-        xml, encoding="UTF-8", xml_declaration=True, pretty_print=True
+        xml,
+        encoding="UTF-8",
+        xml_declaration=True,
+        pretty_print=True,
     )
 
 
@@ -532,7 +535,9 @@ def crossref_root():
     }
     elem = etree.Element(
         "doi_batch",
-        {attr_qname: "http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd"},
+        {
+            attr_qname: "https://www.crossref.org/schemas/crossref5.3.1.xsd"
+        },
         nsmap=nsmap,
         version="5.3.1",
     )
