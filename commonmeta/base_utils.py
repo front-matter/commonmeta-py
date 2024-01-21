@@ -68,6 +68,10 @@ def parse_attributes(
 
 def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
     """Parse XML into dict"""
+    if path.exists(string):
+        with open(string, encoding="utf-8") as file:
+            string = file.read()
+
     dialect = kwargs.get("dialect", None)
     if dialect == "crossref":
         # remove namespaces from xml
