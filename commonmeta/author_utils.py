@@ -1,7 +1,6 @@
 """Author utils module for commonmeta-py"""
 import re
 from typing import List
-from urllib.parse import urlparse
 from nameparser import HumanName
 
 from .utils import (

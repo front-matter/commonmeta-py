@@ -575,6 +575,7 @@ def test_doi_with_orcid():
     "doi_with_orcid"
     string = "10.1155/2012/291294"
     subject = Metadata(string, via="crossref_xml")
+    print(subject.contributors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"

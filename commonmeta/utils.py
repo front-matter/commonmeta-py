@@ -11,7 +11,7 @@ from pydash import py_
 import base32_lib as base32
 import pycountry
 
-from .base_utils import wrap, compact, parse_xmldict
+from .base_utils import wrap, compact, parse_attributes
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
 from .constants import DATACITE_CONTRIBUTOR_TYPES
 
@@ -106,15 +106,15 @@ def normalize_ids(ids: list, relation_type=None) -> list:
     """Normalize identifiers"""
 
     def format_id(i):
-        if i.get("@id", None):
-            idn = normalize_id(i["@id"])
+        if i.get("id", None):
+            idn = normalize_id(i["id"])
             doi = doi_from_url(idn)
             related_identifier_type = "DOI" if doi is not None else "URL"
             idn = doi or idn
             type_ = (
-                i.get("@type")
-                if isinstance(i.get("@type", None), str)
-                else wrap(i.get("@type", None))[0]
+                i.get("type")
+                if isinstance(i.get("type", None), str)
+                else wrap(i.get("type", None))[0]
             )
             return compact(
                 {
@@ -327,22 +327,20 @@ def from_crossref_xml(elements: list) -> list:
     def format_element(element):
         """format element"""
         if element.get("name", None) is not None:
-            element["@type"] = "Organization"
+            element["type"] = "Organization"
             element["name"] = element.get("name")
         else:
-            element["@type"] = "Person"
+            element["type"] = "Person"
         element["givenName"] = element.get("given_name", None)
         element["familyName"] = element.get("surname", None)
         element["contributorType"] = element.get(
-            "@contributor_role", "author"
+            "contributor_role", "author"
         ).capitalize()
         if element.get("ORCID", None) is not None:
-            orcid = parse_xmldict(
-                element.get("ORCID"), ignored_attributes="@authenticated"
-            )
+            orcid = parse_attributes(element.get("ORCID"))
             element["ORCID"] = normalize_orcid(orcid)
         element = py_.omit(
-            element, "given_name", "surname", "sequence", "@contributor_role"
+            element, "given_name", "surname", "sequence", "contributor_role"
         )
         return compact(element)
 
@@ -382,13 +380,13 @@ def from_csl(elements: list) -> list:
     def format_element(element):
         """format element"""
         if element.get("literal", None) is not None:
-            element["@type"] = "Organization"
+            element["type"] = "Organization"
             element["name"] = element["literal"]
         elif element.get("name", None) is not None:
-            element["@type"] = "Organization"
+            element["type"] = "Organization"
             element["name"] = element.get("name")
         else:
-            element["@type"] = "Person"
+            element["type"] = "Person"
             element["name"] = " ".join(
                 [element.get("given", None), element.get("family", None)]
             )

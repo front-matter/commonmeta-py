@@ -65,7 +65,6 @@ from .base_utils import (
     compact,
     presence,
     parse_attributes,
-    parse_xmldict,
     sanitize,
 )
 from .date_utils import (

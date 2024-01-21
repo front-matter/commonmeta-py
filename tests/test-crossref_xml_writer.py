@@ -30,7 +30,7 @@ def test_write_metadata_as_crossref_xml():
     assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 27
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
-        "@key": "bib1",
+        "key": "bib1",
         "volume": "426",
         "cYear": "2003",
         "article_title": "APL regulates vascular tissue identity in Arabidopsis",
@@ -55,9 +55,9 @@ def test_write_crossref_xml_journal_article_plos():
     )
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name.0") == {
-        "@contributor_role": "author",
+        "contributor_role": "author",
         "given_name": "Markus",
-        "@sequence": "first",
+        "sequence": "first",
         "surname": "Ralser",
     }
 
@@ -96,8 +96,8 @@ def test_write_crossref_journal_article_from_datacite():
     )
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "David J",
         "surname": "Mossman",
     }
@@ -147,9 +147,9 @@ def test_write_crossref_embedded_schema_org_front_matter():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(wrap(crossref_xml.get("contributors"))) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
+        "contributor_role": "author",
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
-        "@sequence": "first",
+        "sequence": "first",
         "given_name": "Martin",
         "surname": "Fenner",
     }
@@ -170,8 +170,8 @@ def test_write_crossref_schema_org_from_another_science_blog():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(wrap(crossref_xml.get("contributors"))) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Donny",
         "surname": "Winston",
     }
@@ -192,8 +192,8 @@ def test_write_crossref_schema_org_upstream_blog():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name.0") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Mohammad",
         "surname": "Hosseini",
     }
@@ -215,8 +215,8 @@ def test_json_feed_item_upstream_blog():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Esha",
         "surname": "Datta",
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
@@ -227,12 +227,12 @@ def test_json_feed_item_upstream_blog():
     )
     assert py_.get(crossref_xml, "item_number") == {
         "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
-        "@item_number_type": "uuid",
+        "item_number_type": "uuid",
     }
     assert len(py_.get(crossref_xml, "doi_data.item")) == 1
     assert py_.get(crossref_xml, "doi_data.item.0.resource") == {
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
-        "@mime_type": "text/html",
+        "mime_type": "text/html",
     }
 
 
@@ -248,9 +248,9 @@ def test_json_feed_item_with_references():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.0.person_name")) == 2
     assert py_.get(crossref_xml, "contributors.0.person_name.0") == {
-        "@contributor_role": "author",
+        "contributor_role": "author",
         "ORCID": "https://orcid.org/0000-0001-5934-7525",
-        "@sequence": "first",
+        "sequence": "first",
         "given_name": "Daniel S.",
         "surname": "Katz",
     }
@@ -260,7 +260,7 @@ def test_json_feed_item_with_references():
     )
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 11
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
-        "@key": "ref1",
+        "key": "ref1",
         "unstructured_citation": "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
 
@@ -277,8 +277,8 @@ def test_json_feed_item_with_doi():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Heinz",
         "surname": "Pampel",
         "ORCID": "https://orcid.org/0000-0003-3334-2771",
@@ -290,7 +290,7 @@ def test_json_feed_item_with_doi():
     assert py_.get(crossref_xml, "doi_data.item.0") == {
         "resource": {
             "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
-            "@mime_type": "text/html",
+            "mime_type": "text/html",
         }
     }
 
@@ -314,8 +314,8 @@ def test_json_feed_item_with_organizational_author():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.organization") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "#text": "Liberate Science",
     }
     assert (
@@ -323,7 +323,7 @@ def test_json_feed_item_with_organizational_author():
     )
     assert py_.get(crossref_xml, "doi_data.item.0") == {
         "resource": {
-            "@mime_type": "text/html",
+            "mime_type": "text/html",
             "#text": "https://libscie.org/ku-leuven-supports-researchequals",
         }
     }
@@ -343,8 +343,8 @@ def test_json_feed_item_with_archived_content():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Markus",
         "surname": "Stocker",
         "ORCID": "https://orcid.org/0000-0001-5492-3212",
@@ -354,7 +354,7 @@ def test_json_feed_item_with_archived_content():
     )
     assert py_.get(crossref_xml, "doi_data.item.0") == {
         "resource": {
-            "@mime_type": "text/html",
+            "mime_type": "text/html",
             "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
         }
     }
@@ -377,7 +377,7 @@ def test_json_feed_item_with_relations():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 1
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
-        "@key": "ref1",
+        "key": "ref1",
         "doi": "10.5281/zenodo.30799",
     }
 
@@ -404,24 +404,24 @@ def test_json_feed_item_with_relations_and_funding():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 3
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
-        "@key": "ref1",
+        "key": "ref1",
         "doi": "10.14454/3bpw-w381",
     }
     assert py_.get(crossref_xml, "program.0") == {
-        "@name": "fundref",
-        "@xmlns": {"": "http://www.crossref.org/fundref.xsd"},
+        "name": "fundref",
+        "xmlns": {"": "http://www.crossref.org/fundref.xsd"},
         "assertion": {
-            "@name": "fundgroup",
+            "name": "fundgroup",
             "assertion": [
                 {
-                    "@name": "funder_name",
+                    "name": "funder_name",
                     "assertion": {
-                        "@name": "funder_identifier",
+                        "name": "funder_identifier",
                         "#text": "https://doi.org/10.13039/501100000780",
                     },
                     "#text": "European Commission",
                 },
-                {"@name": "award_number", "#text": "777523"},
+                {"name": "award_number", "#text": "777523"},
             ],
         },
     }
@@ -440,8 +440,8 @@ def test_json_feed_item_with_anonymous_author():
     print(crossref_xml)
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
-        "@contributor_role": "author",
-        "@sequence": "first",
+        "contributor_role": "author",
+        "sequence": "first",
         "given_name": "Mathias",
         "surname": "Göbel",
     }

@@ -221,8 +221,8 @@ def test_normalize_ids():
     "normalize_ids"
     # doi
     ids = [
-        {"@type": "CreativeWork", "@id": "https://doi.org/10.5438/0012"},
-        {"@type": "CreativeWork", "@id": "https://doi.org/10.5438/55E5-T5C0"},
+        {"type": "CreativeWork", "id": "https://doi.org/10.5438/0012"},
+        {"type": "CreativeWork", "id": "https://doi.org/10.5438/55E5-T5C0"},
     ]
     response = [
         {
@@ -238,8 +238,8 @@ def test_normalize_ids():
     # url
     ids = [
         {
-            "@type": "CreativeWork",
-            "@id": "https://blog.datacite.org/eating-your-own-dog-food/",
+            "type": "CreativeWork",
+            "id": "https://blog.datacite.org/eating-your-own-dog-food/",
         }
     ]
     response = [
@@ -294,7 +294,7 @@ def test_from_csl():
     "from_csl"
     assert [
         {
-            "@type": "Person",
+            "type": "Person",
             "affiliation": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
@@ -320,7 +320,7 @@ def test_from_csl():
     )
     assert [
         {
-            "@type": "Organization",
+            "type": "Organization",
             "name": "University of Lausanne",
         }
     ] == from_csl(
@@ -333,7 +333,7 @@ def test_from_csl():
     )
     assert [
         {
-            "@type": "Organization",
+            "type": "Organization",
             "name": "University of Lausanne",
         }
     ] == from_csl(

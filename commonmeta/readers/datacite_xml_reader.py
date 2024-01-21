@@ -3,7 +3,7 @@ from collections import defaultdict
 import requests
 from pydash import py_
 
-from ..base_utils import compact, wrap, presence, sanitize, parse_xmldict
+from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds, normalize_date_dict
 from ..doi_utils import doi_from_url, doi_as_url, datacite_api_url, normalize_doi
@@ -32,7 +32,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     meta = data.get("resource", {})
 
-    doi = parse_xmldict(meta.get("identifier"), ignored_attributes="@identifierType")
+    doi = parse_attributes(meta.get("identifier", None))
     id_ = doi_as_url(doi) if doi else None
     #         identifiers = Array.wrap(meta.dig('alternateIdentifiers', 'alternateIdentifier')).map do |r|
     #           if r['__content__'].present?
@@ -41,7 +41,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     #           end
     #         end.compact
 
-    resource_type_general = py_.get(meta, "resourceType.@resourceTypeGeneral")
+    resource_type_general = py_.get(meta, "resourceType.resourceTypeGeneral")
     type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, "Other")
     additional_type = py_.get(meta, "resourceType.#text")
 
@@ -52,8 +52,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         if isinstance(title, dict):
             return {
                 "title": title.get("#text", None),
-                "titleType": title.get("@titleType", None),
-                "lang": title.get("@xml:lang", None),
+                "titleType": title.get("titleType", None),
+                "lang": title.get("xml:lang", None),
             }
         return None
 
@@ -76,8 +76,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             return compact(
                 {
                     "description": sanitize(description.get("#text", None)),
-                    "descriptionType": description.get("@descriptionType", "Abstract"),
-                    "lang": description.get("@xml:lang", None),
+                    "descriptionType": description.get("descriptionType", "Abstract"),
+                    "lang": description.get("xml:lang", None),
                 }
             )
         return None
@@ -94,8 +94,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             return compact(
                 {
                     "subject": subject.get("#text", None),
-                    "subjectScheme": subject.get("@subjectScheme", None),
-                    "lang": subject.get("@xml:lang", None),
+                    "subjectScheme": subject.get("subjectScheme", None),
+                    "lang": subject.get("xml:lang", None),
                 }
             )
         return None
@@ -185,14 +185,14 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         return compact(
             {
                 "rights": rights.get("#text", None),
-                "url": rights.get("@rightsURI", None),
-                "lang": rights.get("@xml:lang", None),
+                "url": rights.get("rightsURI", None),
+                "lang": rights.get("xml:lang", None),
             }
         )
 
     license_ = wrap(py_.get(meta, "rightsList.rights"))
     if len(license_) > 0:
-        license_ = normalize_cc_url(license_[0].get("@rightsURI", None))
+        license_ = normalize_cc_url(license_[0].get("rightsURI", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     references = get_xml_references(
@@ -248,7 +248,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "container": presence(meta.get("container", None)),
         "provider": "DataCite",
         "state": state,
-        "schema_version": meta.get("@xmlns", None),
+        "schema_version": meta.get("xmlns", None),
     } | read_options
 
 
@@ -257,7 +257,9 @@ def get_xml_references(references: list) -> list:
 
     def is_reference(reference):
         """is_reference"""
-        return reference.get("relationType", None) in ["Cites", "References"]
+        return reference.get("relationType", None) in ["Cites", "References"] and reference.get(
+            "relatedIdentifierType", None
+        ) in ["DOI", "URL"]
 
     def map_reference(reference):
         """map_reference"""
@@ -288,7 +290,7 @@ def get_dates(dates: list, publication_year) -> dict:
     """convert date list to dict, rename and/or remove some keys"""
     date: dict = defaultdict(list)
     for sub in dates:
-        date[sub.get("@dateType", None)] = sub.get("#text", None)
+        date[sub.get("dateType", None)] = sub.get("#text", None)
     if date.get("Issued", None) is None and publication_year is not None:
         date["Issued"] = str(publication_year)
     return normalize_date_dict(date)

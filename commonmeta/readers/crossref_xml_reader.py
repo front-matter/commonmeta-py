@@ -21,7 +21,6 @@ from ..base_utils import (
     presence,
     sanitize,
     parse_attributes,
-    parse_xmldict,
     parse_xml,
 )
 from ..author_utils import get_authors
@@ -76,7 +75,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         (
             i
             for i in wrap(query.get("crm-item", None))
-            if i.get("@name", None) == "member-id"
+            if i.get("name", None) == "member-id"
         ),
         {},
     ).get("#text", None)
@@ -87,7 +86,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
             (
                 i
                 for i in wrap(query.get("crm-item", None))
-                if i.get("@name", None) == "publisher-name"
+                if i.get("name", None) == "publisher-name"
             ),
             {},
         ).get("#text", None),
@@ -148,9 +147,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         or py_.get(bibmeta, "doi_data.doi")
     )
     type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
-    url = parse_xmldict(
-        py_.get(bibmeta, "doi_data.resource"), ignored_attributes="@content_version"
-    )
+    url = parse_attributes(py_.get(bibmeta, "doi_data.resource"))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
     contributors = crossref_people(bibmeta)
@@ -160,7 +157,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         (
             i
             for i in wrap(query.get("crm-item", None))
-            if i.get("@name", None) == "created"
+            if i.get("name", None) == "created"
         ),
         {},
     ).get("#text", None)
@@ -173,7 +170,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         (
             i
             for i in wrap(query.get("crm-item", None))
-            if i.get("@name", None) == "last-update"
+            if i.get("name", None) == "last-update"
         ),
         {},
     ).get("#text", None)
@@ -229,12 +226,12 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     references = [
         crossref_reference(i) for i in wrap(py_.get(bibmeta, "citation_list.citation"))
     ]
-    language = py_.get(meta, "journal.journal_metadata.@language")
+    language = py_.get(meta, "journal.journal_metadata.language")
 
     files = presence(meta.get("contentUrl", None))
 
     # TODO: consistent case for DOI registration agency
-    provider = bibmeta.get("@reg-agency", None) or get_doi_ra(id_)
+    provider = bibmeta.get("reg-agency", None) or get_doi_ra(id_)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -314,7 +311,7 @@ def crossref_description(bibmeta):
         if isinstance(element.get("p", None), dict):
             element["p"] = element["p"]["#text"]
         description_type = (
-            "Abstract" if element.get("@abstract-type", None) == "abstract" else "Other"
+            "Abstract" if element.get("abstract-type", None) == "abstract" else "Other"
         )
         return compact(
             {
@@ -335,7 +332,6 @@ def crossref_people(bibmeta):
         "person_name", None
     )
     organization = wrap(py_.get(bibmeta, "contributors.0.organization"))
-    # + [format_organization(i) for i in wrap(organization)]
 
     return get_authors(from_crossref_xml(wrap(person) + wrap(organization)))
 
@@ -380,7 +376,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
     """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
-    doi = parse_xmldict(reference.get("doi", None), ignored_attributes="@provider")
+    doi = parse_attributes(reference.get("doi", None))
     unstructured = reference.get("unstructured_citation", None)
     if isinstance(unstructured, dict):
         url = unstructured.get("u", None)
@@ -389,7 +385,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
         url = reference.get("url", None)
         text = reference.get("unstructured_citation", None)
     metadata = {
-        "key": reference.get("@key", None),
+        "key": reference.get("key", None),
         "doi": normalize_doi(doi) if doi else None,
         "url": normalize_url(url) if url else None,
         "contributor": reference.get("author", None),
@@ -410,8 +406,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
 def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
     """Get container from Crossref"""
     container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
-    issn = parse_xmldict(
-        next(
+    issn = next(
             (
                 i
                 for i in wrap(
@@ -423,13 +418,10 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
                         f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                     )
                 )
-                if i.get("@media_type", None) == "electronic"
+                if i.get("media_type", None) == "electronic"
             ),
             {},
-        ),
-        ignored_attributes=["@media_type", "@xmlns"],
-    ) or parse_xmldict(
-        next(
+        ) or next(
             (
                 i
                 for i in wrap(
@@ -441,12 +433,10 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
                         f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                     )
                 )
-                if i.get("@media_type", None) == "print"
+                if i.get("media_type", None) == "print"
             ),
             {},
-        ),
-        ignored_attributes=["@media_type", "@xmlns"],
-    )
+        )
     issn = normalize_issn(issn) if issn else None
     isbn = py_.get(meta, f"conference.{container_type}_metadata.isbn.#text")
     container_title = (
@@ -489,20 +479,12 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
 
 def crossref_funding(funding_references: list) -> list:
     """Get funding references from Crossref"""
-    formatted_funding_references = []
-    for funding in funding_references:
-        funding_dict = parse_xmldict(funding, ignored_attributes=["@xmlns"])
-        if isinstance(funding_dict, dict) and isinstance(
-            funding_dict.get("fundgroup", None), list
-        ):
-            path = "fundgroup.0"
-        else:
-            path = "fundgroup"
-        funder_name = py_.get(funding_dict, f"{path}.funder_name")
-        funder_identifier = py_.get(funding_dict, f"{path}.funder_identifier")
+    def format_funding(funding):
+        funder_name = py_.get(funding, "assertion.#text")
+        funder_identifier = py_.get(funding, "assertion.assertion.#text")
         if funder_identifier and funder_identifier.startswith("5011"):
             funder_identifier = doi_as_url("10.13039/" + funder_identifier)
-        funding_reference = compact(
+        return compact(
             {
                 "funderName": funder_name,
                 "funderIdentifier": normalize_doi(funder_identifier)
@@ -513,28 +495,25 @@ def crossref_funding(funding_references: list) -> list:
                 else None,
             }
         )
-        for award in wrap(py_.get(funding_dict, "fundgroup")):
+        for award in wrap(py_.get(funding, "fundgroup")):
             if award.get("award_number", None):
                 fund_ref = funding_reference.copy()
                 fund_ref["awardNumber"] = award.get("award_number")
                 formatted_funding_references.append(fund_ref)
-        if (
-            funding_reference != {}
-            and len(wrap(py_.get(funding_dict, "fundgroup"))) == 1
-        ):
-            formatted_funding_references.append(funding_reference)
+        # if (
+        #     funding_reference != {}
+        #     and len(wrap(py_.get(funding, "fundgroup"))) == 1
+        # ):
+        #     formatted_funding_references.append(funding_reference)
 
-    return formatted_funding_references
+    return [format_funding(i) for i in funding_references]
 
 
 def crossref_license(licenses: list) -> dict:
     """Get license from Crossref"""
-
     def map_element(element):
         """Format element"""
-        url = parse_xmldict(
-            element, ignored_attributes=["@applies_to", "@start_date", "@end_date"]
-        )
+        url = parse_attributes(element)
         url = normalize_cc_url(url)
         return dict_to_spdx({"url": url})
 
