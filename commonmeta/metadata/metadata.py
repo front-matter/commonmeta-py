@@ -74,7 +74,7 @@ class Metadata:
                 meta = read_cff(data)
             elif via == "json_feed_item":
                 data = get_json_feed_item(pid)
-                meta = read_json_feed_item(data)
+                meta = read_json_feed_item(data, **kwargs)
             elif via == "inveniordm":
                 data = get_inveniordm(pid)
                 meta = read_inveniordm(data)
@@ -161,9 +161,15 @@ class Metadata:
         self.provider = meta.get("provider")
         self.state = meta.get("state")
         self.schema_version = meta.get("schema_version")
+        self.archive_locations = meta.get("archive_locations", None)
         # citation style language options
         self.style = kwargs.get("style", "apa")
         self.locale = kwargs.get("locale", "en-US")
+        
+        # options needed for Crossref DOI registration
+        self.depositor = kwargs.get("depositor", None)
+        self.email = kwargs.get("email", None)
+        self.registrant = kwargs.get("registrant", None)
 
     def is_valid(self) -> Any:
         """validate against JSON schema"""

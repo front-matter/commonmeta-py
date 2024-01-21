@@ -7,6 +7,10 @@ from nameparser import HumanName
 from .utils import (
     normalize_orcid,
     normalize_id,
+    normalize_ror,
+    normalize_isni,
+    validate_ror,
+    validate_orcid,
 )
 from .base_utils import parse_attributes, wrap, presence, compact
 
@@ -53,14 +57,18 @@ def get_one_author(author):
     ) or parse_attributes(
         author.get("contributorName", None), content="type", first=True
     )
-
+    id_ = author.get("id", None) or author.get("ORCID", None) or next(
+        (format_name_identifier(i) for i in wrap(author.get("nameIdentifiers", None))),
+        None,
+    )
+    id_ = normalize_orcid(id_) or normalize_ror(id_) or normalize_isni(id_)
     # DataCite metadata
     if isinstance(type_, str) and type_.endswith("al"):
         type_ = type_[:-3]
 
-    if not type_ and isinstance(id, str) and urlparse(id).hostname == "ror.org":
+    if not type_ and isinstance(id_, str) and validate_ror(id_) is not None:
         type_ = "Organization"
-    elif not type_ and isinstance(id, str) and urlparse(id).hostname == "orcid.org":
+    elif not type_ and isinstance(id_, str) and validate_orcid(id_) is not None:
         type_ = "Person"
     elif not type_ and (given_name or family_name):
         type_ = "Person"
@@ -68,19 +76,6 @@ def get_one_author(author):
         type_ = "Person"
     elif not type_ and name:
         type_ = "Organization"
-
-    id_ = next(
-        (format_name_identifier(i) for i in wrap(author.get("nameIdentifiers", None))),
-        None,
-    )
-
-    # Crossref metadata
-    if id_ is None and author.get("ORCID", None):
-        id_ = normalize_orcid(author.get("ORCID"))
-        
-    # JSON Feed metadata
-    if id_ is None and author.get("url", None):
-        id_ = normalize_orcid(author.get("url"))
 
     # split name for type Person into given/family name if not already provided
     if type_ == "Person" and name and not given_name and not family_name:
@@ -94,7 +89,7 @@ def get_one_author(author):
         else:
             given_name = None
             family_name = None
-
+ 
     # return author in commonmeta format, using name vs. given/family name
     # depending on type
     return compact(
@@ -114,10 +109,16 @@ def get_one_author(author):
 
 def format_name_identifier(name_identifier):
     """format_name_identifier"""
-    if name_identifier.get("nameIdentifier", None) is None:
+    if name_identifier is None:
         return None
-    if name_identifier.get("nameIdentifierScheme", None) == "ORCID":
+    elif isinstance(name_identifier, str):
+        return normalize_orcid(name_identifier) or normalize_ror(name_identifier) or normalize_isni(name_identifier)
+    elif name_identifier.get("nameIdentifier", None) is None:
+        return None
+    elif name_identifier.get("nameIdentifierScheme", None) == "ORCID":
         return normalize_orcid(name_identifier.get("nameIdentifier", None))
+    elif name_identifier.get("nameIdentifierScheme", None) == "ISNI":
+        return normalize_isni(name_identifier.get("nameIdentifier", None))
     if name_identifier.get("schemeURI", None) is not None:
         return name_identifier.get("schemeURI") + name_identifier.get(
             "nameIdentifier", None

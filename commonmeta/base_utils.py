@@ -28,7 +28,7 @@ def unwrap(lst: list) -> Optional[Union[dict, list]]:
 
 
 def presence(
-    item: Optional[Union[dict, list, str]]
+    item: Optional[Union[dict, list, str]],
 ) -> Optional[Union[dict, list, str]]:
     """Turn empty list, dict or str into None"""
     return None if item is None or len(item) == 0 else item
@@ -45,13 +45,16 @@ def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
     return None
 
 
-def parse_attributes(element: Union[str, dict, list], **kwargs) -> Optional[Union[str,list]]:
+def parse_attributes(
+    element: Union[str, dict, list], **kwargs
+) -> Optional[Union[str, list]]:
     """extract attributes from a string, dict or list"""
+
     def parse_item(item):
         if isinstance(item, dict):
             return item.get(html.unescape(content), None)
         return html.unescape(item)
-    
+
     content = kwargs.get("content", "#text")
     if isinstance(element, str) and kwargs.get("content", None) is None:
         return html.unescape(element)
@@ -65,10 +68,6 @@ def parse_attributes(element: Union[str, dict, list], **kwargs) -> Optional[Unio
 
 def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
     """Parse XML into dict"""
-    if path.exists(string):
-        with open(string, encoding="utf-8") as file:
-            string = file.read()
-    
     dialect = kwargs.get("dialect", None)
     if dialect == "crossref":
         # remove namespaces from xml
@@ -80,12 +79,16 @@ def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
             "http://www.crossref.org/fundref.xsd": None,
             "http://www.ncbi.nlm.nih.gov/JATS1": None,
         }
-        kwargs = {"process_namespaces": True, "namespaces": namespaces}
-    
+        kwargs = {
+            # "process_namespaces": True,
+            # "namespaces": namespaces,
+            # "force_list": ["contributors", "titles", "item", "citation"],
+        }
+
     data = xmltodict.parse(string, **kwargs)
     return json.loads(str(json.dumps(data)))
 
-    
+
 def parse_xmldict(
     var: Union[dict, list],
     element_name=None,

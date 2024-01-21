@@ -149,6 +149,30 @@ def normalize_cc_url(url: Optional[str]):
     return NORMALIZED_LICENSES.get(url, url)
 
 
+def normalize_ror(ror: Optional[str]) -> Optional[str]:
+    """Normalize ROR ID"""
+    ror = validate_ror(ror)
+    if ror is None:
+        return None
+    
+    # turn ROR ID into URL
+    return "https://ror.org/" + ror
+
+
+def validate_ror(ror: Optional[str]) -> Optional[str]:
+    """Validate ROR"""
+    if ror is None or not isinstance(ror, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://ror\.org/)?([0-9a-z]{7}\d{2})\Z",
+        ror,
+    )
+    if match is None:
+        return None
+    ror = match.group(1).replace(" ", "-")
+    return ror
+
+    
 def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     """Normalize ORCID"""
     if orcid is None or not isinstance(orcid, str):
@@ -171,6 +195,28 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
         return None
     orcid = match.group(1).replace(" ", "-")
     return orcid
+
+
+def validate_isni(isni: Optional[str]) -> Optional[str]:
+    """Validate ISNI"""
+    if isni is None or not isinstance(isni, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://isni\.org/isni/)?(\d{4}([ -])?\d{4}([ -])?\d{4}([ -])?\d{3}[0-9X]+)\Z",
+        isni,
+    )
+    if match is None:
+        return None
+    isni = match.group(1).replace(" ", "")
+    return isni
+
+
+def normalize_isni(isni: Optional[str]) -> Optional[str]:
+    """Normalize ISNI"""
+    if isni is None or not isinstance(isni, str):
+        return None
+    isni = validate_isni(isni)
+    return "https://isni.org/isni/" + isni
 
 
 def normalize_issn(string, **kwargs):
@@ -246,7 +292,7 @@ def from_json_feed(elements: list) -> list:
         """format element"""
         if not isinstance(element, dict):
             return None
-        mapping = {"url": "ORCID"}
+        mapping = {"url": "id"}
         for key, value in mapping.items():
             if element.get(key, None) is not None:
                 element[value] = element.pop(key)
@@ -869,8 +915,7 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     elif type_ == "ROR":
         return "https://ror.org/" + id.split(":")[1]
     elif type_ == "ISNI":
-        # TODO: support for https
-        return "http://www.isni.org/isni/" + id.split(":")[1]
+        return "https://isni.org/isni/" + id.split(":")[1]
     elif type_ == "ORCID":
         return normalize_orcid(id.split(":")[1])
     elif type_ == "URL":

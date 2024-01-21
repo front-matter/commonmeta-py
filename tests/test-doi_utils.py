@@ -9,7 +9,8 @@ from commonmeta.doi_utils import (
     get_doi_ra,
     doi_resolver,
     crossref_api_url,
-    datacite_api_url
+    datacite_api_url,
+    is_rogue_scholar_doi,
 )
 
 
@@ -163,3 +164,9 @@ def test_datacite_api_url():
         response
         == "https://api.stage.datacite.org/dois/10.5061/dryad.8515?include=media,client"
     )
+
+
+def test_is_rogue_scholar():
+    """Check if doi is from Rogue Scholar"""
+    assert True is is_rogue_scholar_doi("10.53731/cjx855h-hn5jtq8")
+    assert False is is_rogue_scholar_doi("10.1371/journal.pone.0000030")

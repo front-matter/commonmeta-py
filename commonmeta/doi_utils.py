@@ -96,9 +96,7 @@ def crossref_api_url(doi: str) -> str:
 
 def crossref_xml_api_url(doi: str) -> str:
     """Return the Crossref XML API URL for a given DOI"""
-    return (
-        f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
-    )
+    return f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
 
 
 def datacite_api_url(doi: str, **kwargs) -> str:
@@ -109,3 +107,17 @@ def datacite_api_url(doi: str, **kwargs) -> str:
     if match is not None or kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
     return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
+
+
+def is_rogue_scholar_doi(doi: str) -> bool:
+    """Return True if DOI is from Rogue Scholar"""
+    prefix = validate_prefix(doi)
+    return prefix in [
+        "10.34732",
+        "10.53731",
+        "10.54900",
+        "10.57689",
+        "10.59348",
+        "10.59349",
+        "10.59350",
+    ]

@@ -8,6 +8,10 @@ from commonmeta.utils import (
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
+    normalize_ror,
+    validate_isni,
+    normalize_isni,
+    validate_ror,
     normalize_id,
     normalize_ids,
     normalize_cc_url,
@@ -97,6 +101,32 @@ def test_validate_orcid():
     assert None is validate_orcid(None)
 
 
+def test_validate_ror():
+    "validate_ror"
+    assert "0342dzm54" == validate_ror(
+        "https://ror.org/0342dzm54"
+    )
+    # None
+    assert None is validate_ror(None)
+
+
+def test_validate_isni():
+    "validate_isni"
+    assert "0000000357526882" == validate_isni(
+        "https://isni.org/isni/0000000357526882"
+    )
+    # http
+    assert "0000000357526882" == validate_isni(
+        "http://isni.org/isni/0000000357526882"
+    )
+    # only isni id
+    assert "0000000357526882" == validate_isni(
+        "0000000357526882"
+    )
+    # None
+    assert None is validate_isni(None)
+    
+
 def test_normalize_orcid():
     "normalize_orcid"
     assert "https://orcid.org/0000-0002-2590-225X" == normalize_orcid(
@@ -114,6 +144,20 @@ def test_normalize_orcid():
     assert None is normalize_orcid("0002-2590-225X")
     # None
     assert None is normalize_orcid(None)
+
+
+def test_normalize_ror():
+    "normalize_ror"
+    assert "https://ror.org/0342dzm54" == normalize_ror(
+        "http://ror.org/0342dzm54"
+    )
+
+
+def test_normalize_isni():
+    "normalize_isni"
+    assert "https://isni.org/isni/0000000357526882" == normalize_isni(
+        "http://isni.org/isni/0000 0003 5752 6882"
+    )
 
 
 def test_normalize_id():
@@ -730,7 +774,7 @@ def test_from_curie():
     assert "https://orcid.org/0000-0001-8522-7682" == from_curie(
         "ORCID:0000-0001-8522-7682"
     )
-    assert "http://www.isni.org/isni/0000000121099845" == from_curie(
+    assert "https://isni.org/isni/0000000121099845" == from_curie(
         "ISNI:0000000121099845"
     )
 

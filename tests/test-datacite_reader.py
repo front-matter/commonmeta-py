@@ -292,6 +292,25 @@ def test_multiple_identifiers():
     assert subject.provider == "DataCite"
 
 
+def test_missing_description():
+    """missing description"""
+    string = "10.2312/geowissenschaften.1989.7.181"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
+    assert subject.type == "JournalArticle"
+    assert (
+        subject.url
+        == "https://www.tib.eu/suchen/id/awi:7058a56c5e43afd705af945d01536b9aaeeee491"
+    )
+    assert subject.titles[0] == {
+        "title": "An Overview of the Geology of Canadian Gold Occurrences"
+    }
+    assert subject.descriptions == [
+        {"description": "Die Geowissenschaften", "descriptionType": "SeriesInformation"}
+    ]
+
+
 def test_is_identical():
     """is_identical"""
     string = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
@@ -632,6 +651,7 @@ def test_datacite_json():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
+        "id": "https://orcid.org/0000-0003-1419-2405",
     }
     assert subject.license is None
     assert subject.date == {

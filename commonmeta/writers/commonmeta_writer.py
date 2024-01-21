@@ -30,6 +30,8 @@ def write_commonmeta(metadata):
             "license": metadata.license,
             "descriptions": metadata.descriptions,
             "geo_locations": metadata.geo_locations,
+            "alternate_identifiers": metadata.alternate_identifiers,
+            "related_identifiers": metadata.related_identifiers,
             "funding_references": metadata.funding_references,
             # other properties
             "files": metadata.files,

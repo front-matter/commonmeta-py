@@ -158,6 +158,13 @@ def test_rdataone():
         "givenName": "Matt",
         "familyName": "Jones",
         "nameType": "Personal",
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-0077-4738",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
         "affiliation": [{"name": "NCEAS"}],
     }
     assert datacite["version"] == "2.0.0"

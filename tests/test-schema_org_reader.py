@@ -66,6 +66,7 @@ def test_zenodo():
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {
         "type": "Person",
+        "id": "https://orcid.org/0000-0001-9688-838X",
         "contributorRoles": ["Author"],
         "givenName": "Matthias",
         "familyName": "Staib",

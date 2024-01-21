@@ -59,6 +59,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
+    descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
 
     return {
         # required properties
@@ -79,7 +80,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "formats": presence(meta.get("formats", None)),
         "version": meta.get("version", None),
         "license": presence(license_),
-        "descriptions": meta.get("descriptions", None),
+        "descriptions": descriptions,
         "geo_locations": wrap(meta.get("geoLocations", None)),
         "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
@@ -137,3 +138,31 @@ def get_dates(dates: list, publication_year) -> dict:
     if date.get("Issued", None) is None and publication_year is not None:
         date["Issued"] = str(publication_year)
     return normalize_date_dict(date)
+
+
+def get_descriptions(descriptions: list) -> list:
+    """get_descriptions"""
+
+    def is_description(description):
+        """is_description"""
+        return description.get("descriptionType", None) in [
+            "Abstract",
+            "Methods",
+            "SeriesInformation",
+            "TableOfContents",
+            "TechnicalInfo",
+            "Other",
+        ]
+
+    def map_description(description):
+        """map_description"""
+        return {
+            "description": description.get("description", None),
+            "descriptionType": description.get("descriptionType", None),
+        }
+
+    return [
+        map_description(i)
+        for i in descriptions
+        if is_description(i) and i.get("description", None) is not None
+    ]
