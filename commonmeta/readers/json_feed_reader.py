@@ -127,7 +127,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
 
 
 def get_references(references: list) -> list:
-    """get json feed references. Check that references resolve."""
+    """get json feed references."""
 
     def get_reference(reference: dict) -> Optional[dict]:
         if reference is None or not isinstance(reference, dict):
@@ -146,7 +146,6 @@ def get_references(references: list) -> list:
                 publication_year = py_.get(csl, "issued.date-parts.0.0", None)
                 return compact(
                     {
-                        "key": reference.get("key", None),
                         "doi": doi,
                         "title": csl.get("title", None),
                         "publicationYear": str(publication_year)
@@ -161,7 +160,9 @@ def get_references(references: list) -> list:
                 and validate_url(reference.get("url")) == "URL"
             ):
                 response = requests.head(reference.get("url", None), timeout=10)
-                if response.status_code not in [200, 301, 302]:
+                # check that URL resolves.
+                # TODO: check for redirects
+                if response.status_code in [404]:
                     return None
                 return {
                     "url": reference.get("url"),

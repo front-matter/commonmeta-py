@@ -250,6 +250,7 @@ def test_date():
 #     end
 
 
+@pytest.mark.vcr
 def test_multiple_identifiers():
     """multiple identifiers"""
     string = "https://doi.org/10.5281/ZENODO.48440"
@@ -374,6 +375,7 @@ def test_is_identical():
     assert subject.provider == "DataCite"
 
 
+@pytest.mark.vcr
 def test_subject_scheme_for():
     """subject scheme FOR"""
     string = "10.6084/m9.figshare.1449060"
@@ -2003,14 +2005,16 @@ def test_geolocation():
     ]
 
 
+@pytest.mark.vcr
 def test_get_datacite():
     """get_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
-    assert "10.6084/m9.figshare.1449060" == data["doi"]
+    assert "10.6084/m9.figshare.1449060" == data.get("doi", None)
 
 
+@pytest.mark.vcr
 def test_read_datacite():
     """test_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
-    assert meta["doi"] == "10.6084/m9.figshare.1449060"
+    assert meta.get("doi", None) == "10.6084/m9.figshare.1449060"

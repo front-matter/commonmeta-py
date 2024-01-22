@@ -47,9 +47,15 @@ from .utils import (
     normalize_ids,
     normalize_orcid,
     normalize_url,
+    normalize_ror,
     pages_as_string,
     to_csl,
     validate_orcid,
+    validate_url,
+    get_language,
+    encode_doi,
+    name_to_fos,
+    from_json_feed,
 )
 from .author_utils import (
     authors_as_string,
