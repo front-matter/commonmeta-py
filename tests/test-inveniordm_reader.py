@@ -118,7 +118,7 @@ def test_presentation():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;")
+        .startswith("CERN/NASA “Accelerating the Adoption of Open Science”")
     )
     assert subject.subjects is None
     assert subject.container == {

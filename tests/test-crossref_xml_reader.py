@@ -275,7 +275,7 @@ def test_journal_article_with_rdf_for_container():
         == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
     )
     assert subject.titles[0] == {
-        "title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"
+        "title": "Global distribution of Fabaeformiscandona subacuta: an&nbsp;exotic&nbsp;invasive Ostracoda on the Iberian Peninsula?"
     }
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {

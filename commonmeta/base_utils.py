@@ -3,10 +3,9 @@ import html
 from os import path
 import re
 import xmltodict
-import json
 from typing import Optional, Union
 import pydash as py_
-import bleach
+import nh3
 
 
 def wrap(item) -> list:
@@ -82,21 +81,31 @@ def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
             "http://www.crossref.org/fundref.xsd": None,
             "http://www.ncbi.nlm.nih.gov/JATS1": None,
         }
-  
+
         kwargs["process_namespaces"] = True
         kwargs["namespaces"] = namespaces
         kwargs["force_list"] = {"contributors", "titles", "item", "citation"}
-    
+
     kwargs["attr_prefix"] = ""
     kwargs["dict_constructor"] = dict
-    kwargs.pop('dialect', None)
+    kwargs.pop("dialect", None)
     return xmltodict.parse(string, **kwargs)
 
 
-def sanitize(text: str, tags=None, strip=True):
+def sanitize(text: str, **kwargs) -> str:
     """Sanitize text"""
     # default whitelisted HTML tags
-    tags = tags or {"b", "br", "code", "em", "i", "sub", "sup", "strong"}
-    string = bleach.clean(text, tags=tags, strip=strip)
+    tags = kwargs.get("tags", None) or {
+        "b",
+        "br",
+        "code",
+        "em",
+        "i",
+        "sub",
+        "sup",
+        "strong",
+    }
+    attributes = kwargs.get("attributes", None)
+    string = nh3.clean(text, tags=tags, attributes=attributes, link_rel=None)
     # remove excessive internal whitespace
     return " ".join(re.split(r"\s+", string, flags=re.UNICODE))

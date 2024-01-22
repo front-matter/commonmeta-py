@@ -134,7 +134,7 @@ def test_inveniordm_presentation():
         "name": "Heidi Seibold",
     }
     assert schema_org.get("description").startswith(
-        "CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;"
+        "CERN/NASA “Accelerating the Adoption of Open Science”"
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-07-21"
