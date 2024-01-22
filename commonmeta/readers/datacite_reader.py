@@ -31,7 +31,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
 def read_datacite(data: dict, **kwargs) -> Commonmeta:
     """read_datacite"""
     meta = data
-    if data is None or data.get("state", None) not in ["findable", "registered"]:
+    if data is None:
         return {"state": "not_found"}
 
     read_options = kwargs or {}

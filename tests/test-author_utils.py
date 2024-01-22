@@ -29,12 +29,11 @@ def test_one_author():
         "familyName": "Jones",
         "givenName": "Matt",
     } == get_one_author(authors[0])
-    # Crossref author with url
+    # JSON Feed author with url
     authors = [
         {
-            "id": "http://orcid.org/0000-0003-0077-4738",
-            "givenName": "Matt",
-            "familyName": "Jones",
+            "url": "http://orcid.org/0000-0003-0077-4738",
+            "name": "Matt Jones",
         }
     ]
     assert {
