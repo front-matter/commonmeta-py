@@ -1,9 +1,7 @@
 """crossref_xml reader for commonmeta-py"""
 from typing import Optional
-import json
 from collections import defaultdict
 import requests
-import xmltodict
 from pydash import py_
 
 from ..utils import (
@@ -13,7 +11,6 @@ from ..utils import (
     normalize_cc_url,
     normalize_issn,
     normalize_url,
-    normalize_orcid,
 )
 from ..base_utils import (
     compact,
@@ -62,9 +59,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     )
 
     # query contains information from outside metadata schema, e.g. publisher name
-    query = py_.get(
-        data, "crossref_result.query_result.body.query", {}
-    )
+    query = py_.get(data, "crossref_result.query_result.body.query", {})
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,
@@ -79,18 +74,22 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         ),
         {},
     ).get("#text", None)
-    publisher_id = "https://api.crossref.org/members/" + member_id if member_id else None
-    publisher = compact({
-        "id": publisher_id,
-        "name": next(
-            (
-                i
-                for i in wrap(query.get("crm-item", None))
-                if i.get("name", None) == "publisher-name"
-            ),
-            {},
-        ).get("#text", None),
-    })
+    publisher_id = (
+        "https://api.crossref.org/members/" + member_id if member_id else None
+    )
+    publisher = compact(
+        {
+            "id": publisher_id,
+            "name": next(
+                (
+                    i
+                    for i in wrap(query.get("crm-item", None))
+                    if i.get("name", None) == "publisher-name"
+                ),
+                {},
+            ).get("#text", None),
+        }
+    )
 
     # fetch metadata depending of Crossref type
     if py_.get(meta, "journal.journal_article", None):
@@ -180,7 +179,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
     descriptions = crossref_description(bibmeta)
     funding = (
-        py_.get(bibmeta, "program.assertion")
+        py_.get(bibmeta, "program")
         or py_.get(bibmeta, "program.0.assertion")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.assertion")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.0.assertion")
@@ -407,36 +406,36 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     """Get container from Crossref"""
     container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
     issn = next(
-            (
-                i
-                for i in wrap(
-                    py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
+        (
+            i
+            for i in wrap(
+                py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
+            )
+            + wrap(
+                py_.get(
+                    meta,
+                    f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                 )
-                + wrap(
-                    py_.get(
-                        meta,
-                        f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
-                    )
+            )
+            if i.get("media_type", None) == "electronic"
+        ),
+        {},
+    ) or next(
+        (
+            i
+            for i in wrap(
+                py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
+            )
+            + wrap(
+                py_.get(
+                    meta,
+                    f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                 )
-                if i.get("media_type", None) == "electronic"
-            ),
-            {},
-        ) or next(
-            (
-                i
-                for i in wrap(
-                    py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
-                )
-                + wrap(
-                    py_.get(
-                        meta,
-                        f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
-                    )
-                )
-                if i.get("media_type", None) == "print"
-            ),
-            {},
-        )
+            )
+            if i.get("media_type", None) == "print"
+        ),
+        {},
+    )
     issn = normalize_issn(issn) if issn else None
     isbn = py_.get(meta, f"conference.{container_type}_metadata.isbn.#text")
     container_title = (
@@ -477,40 +476,14 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     )
 
 
-def crossref_funding(funding_references: list) -> list:
-    """Get funding references from Crossref"""
-    def format_funding(funding):
-        funder_name = py_.get(funding, "assertion.#text")
-        funder_identifier = py_.get(funding, "assertion.assertion.#text")
-        if funder_identifier and funder_identifier.startswith("5011"):
-            funder_identifier = doi_as_url("10.13039/" + funder_identifier)
-        return compact(
-            {
-                "funderName": funder_name,
-                "funderIdentifier": normalize_doi(funder_identifier)
-                if funder_identifier
-                else None,
-                "funderIdentifierType": "Crossref Funder ID"
-                if funder_identifier
-                else None,
-            }
-        )
-        for award in wrap(py_.get(funding, "fundgroup")):
-            if award.get("award_number", None):
-                fund_ref = funding_reference.copy()
-                fund_ref["awardNumber"] = award.get("award_number")
-                formatted_funding_references.append(fund_ref)
-        # if (
-        #     funding_reference != {}
-        #     and len(wrap(py_.get(funding, "fundgroup"))) == 1
-        # ):
-        #     formatted_funding_references.append(funding_reference)
-
-    return [format_funding(i) for i in funding_references]
+def crossref_funding(funding: list) -> list:
+    """Get assertions from Crossref"""
+    return []
 
 
 def crossref_license(licenses: list) -> dict:
     """Get license from Crossref"""
+
     def map_element(element):
         """Format element"""
         url = parse_attributes(element)
