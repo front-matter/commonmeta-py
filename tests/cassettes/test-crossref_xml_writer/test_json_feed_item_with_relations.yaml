@@ -129,11 +129,255 @@ interactions:
       - '22'
       server:
       - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
       via:
       - 1.1 fly.io
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.citationstyles.csl+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://doi.org/10.5281/ZENODO.30799
+  response:
+    body:
+      string: '<html><head><title>Handle Redirect</title></head>
+
+        <body><a href="https://data.crosscite.org/10.5281%2FZENODO.30799">https://data.crosscite.org/10.5281%2FZENODO.30799</a></body></html>'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 84974a7b185d5c3d-AMS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '183'
+      Content-Type:
+      - text/html;charset=utf-8
+      Date:
+      - Mon, 22 Jan 2024 11:00:02 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=0lNywuq96R%2FqtY4v4xFCim9tiA885Ig6uFO93WCfMQOf4gpCJdCrNp2VwHaA74ADrurGPgCCdXuu6WlCNNEjetRDElvuzV24CRlKqTxLWbGQ6Gmo2Edp%2FedjF126jzW%2BQ3F3aiw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      alt-svc:
+      - h3=":443"; ma=86400
+      expires:
+      - Mon, 22 Jan 2024 11:34:08 GMT
+      location:
+      - https://data.crosscite.org/10.5281%2FZENODO.30799
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Accept
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.citationstyles.csl+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://data.crosscite.org/10.5281%2FZENODO.30799
+  response:
+    body:
+      string: !!binary |
+        H4sIALJKrmUAA4RUTW/bMAy991cQPnv56FZs7WUokg0r1i5F9gV06IGR6ZioLRkSnS4t+t9L2amT
+        DSlysSVSfHx8ovh4BJDIuqbkDBJPtfOSpNHGWbQUInU4Gw4zxwPnl8PxaHBy/GE8fCDrMjd4O3p/
+        etqdNyi0dJ4paNwftaitJh84CFkBzvTLOZNvj0enZtgsnTfbjabqlyhoWCjR7W2bBRspnO8zPLZf
+        tedYcbmOjD+TtX0S9Sx5RTY6rtAL26S1P6WvhU+pIo92xWVJe0B+uOoQwlcn6MMd74meoymQykMI
+        vziws3uzZ9mh4HlDGe6JvcTG48HqMZR7xZu7xWHtviDevZKZDsVOfBP2CX6N4tnwC/O+ETgELVRP
+        PPatQm9qveJt+0H/BzgejU/Sfne6XY7Hm+Xt0cv3qeu0RRCPRlrdCw6QOdNU/7RygCXWAdgC/dU2
+        Z7uE64up7nOPGtwY0cJDCvcsBSDkChDAWZjNJ3oMbQZTbfCJNjhckWDs9tZasr0LsCC5J7JgnFUJ
+        Fo04r1j6CNHyA4p2SGhPa82UK9EwgN8FCtSeVDsJoMly7yqgILgoORSRIFsh7/Rh4oJLlnUL4Vbk
+        jauif4Fe37Dfpo8V1SVK7nylgM7/R6hP3yG19EJHL21NKgGhNwUEVzYd7YiSU6YkhLQA6eDUlYIp
+        kSORFOqmJx1hMvZkBDqRjKEQPsKFwNJRq6k4LdzVLhDEe9NZFO9HrZvaCKRQIu2NDbqJNZ1dxMt9
+        GWk3n77NprPdkbZhQHHeJDftxOscwlK2A3N6PBifwflGghQmW2lSOFfWsx09YE5lJ0zBdXv18N0U
+        VHWvNfk5v9yduJsJG4euFu58Ntwdtq5ee14W0j0dUtgVafaqivKebwWFd4NRcvT0DAAA//8DAODM
+        bmfmBQAA
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.citationstyles.csl+json; charset=utf-8
+      Date:
+      - Mon, 22 Jan 2024 11:00:02 GMT
+      ETag:
+      - W/"123720c5faafacda4fb0dee42268896b"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.19
+      Status:
+      - 200 OK
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Accept-Encoding, Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Powered-By:
+      - Phusion Passenger(R) 6.0.19
+      X-Request-Id:
+      - 96b5db9e-510a-41b3-bbeb-0afd546f6ea6
+      X-Runtime:
+      - '0.023185'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.citationstyles.csl+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://doi.org/10.5281/zenodo.30799
+  response:
+    body:
+      string: '<html><head><title>Handle Redirect</title></head>
+
+        <body><a href="https://data.crosscite.org/10.5281%2Fzenodo.30799">https://data.crosscite.org/10.5281%2Fzenodo.30799</a></body></html>'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 849765cecb8366fc-AMS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '183'
+      Content-Type:
+      - text/html;charset=utf-8
+      Date:
+      - Mon, 22 Jan 2024 11:18:41 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=j9jQc7r9fMTSo%2Bi%2BKKVt4LobO5HUvgZQ0JRE5cBQwSiwEIIugA%2FQidQrjuq%2F%2FiSXx%2FkyddPmVsqEdb3Bqv0zxkc4zUnf%2FHe8YoYECjKecMMCVbncio7EE1VaR%2FwrBglDWuzceAg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      alt-svc:
+      - h3=":443"; ma=86400
+      expires:
+      - Mon, 22 Jan 2024 11:34:08 GMT
+      location:
+      - https://data.crosscite.org/10.5281%2Fzenodo.30799
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Accept
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - application/vnd.citationstyles.csl+json
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://data.crosscite.org/10.5281%2Fzenodo.30799
+  response:
+    body:
+      string: !!binary |
+        H4sIABpPrmUAA4RUTW/bMAy991cQPnv56FZs7WUokg0r1i5F9gV06IGR6ZioLRkSnS4t+t9L2amT
+        DSlysSVSfHx8ovh4BJDIuqbkDBJPtfOSpNHGWbQUInU4Gw4zxwPnl8PxaHBy/GE8fCDrMjd4O3p/
+        etqdNyi0dJ4paNwftaitJh84CFkBzvTLOZNvj0enZtgsnTfbjabqlyhoWCjR7W2bBRspnO8zPLZf
+        tedYcbmOjD+TtX0S9Sx5RTY6rtAL26S1P6WvhU+pIo92xWVJe0B+uOoQwlcn6MMd74meoymQykMI
+        vziws3uzZ9mh4HlDGe6JvcTG48HqMZR7xZu7xWHtviDevZKZDsVOfBP2CX6N4tnwC/O+ETgELVRP
+        PPatQm9qveJt+0H/BzgejU/Sfne6XY7Hm+Xt0cv3qeu0RRCPRlrdCw6QOdNU/7RygCXWAdgC/dU2
+        Z7uE64up7nOPGtwY0cJDCvcsBSDkChDAWZjNJ3oMbQZTbfCJNjhckWDs9tZasr0LsCC5J7JgnFUJ
+        Fo04r1j6CNHyA4p2SGhPa82UK9EwgN8FCtSeVDsJoMly7yqgILgoORSRIFsh7/Rh4oJLlnUL4Vbk
+        jauif4Fe37Dfpo8V1SVK7nylgM7/R6hP3yG19EJHL21NKgGhNwUEVzYd7YiSU6YkhLQA6eDUlYIp
+        kSORFOqmJx1hMvZkBDqRjKEQPsKFwNJRq6k4LdzVLhDEe9NZFO9HrZvaCKRQIu2NDbqJNZ1dxMt9
+        GWk3n77NprPdkbZhQHHeJDftxOscwlK2A3N6PBifwflGghQmW2lSOFfWsx09YE5lJ0zBdXv18N0U
+        VHWvNfk5v9yduJsJG4euFu58Ntwdtq5ee14W0j0dUtgVafaqivKebwWFd4NRcvT0DAAA//8DAODM
+        bmfmBQAA
+    headers:
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/vnd.citationstyles.csl+json; charset=utf-8
+      Date:
+      - Mon, 22 Jan 2024 11:18:50 GMT
+      ETag:
+      - W/"b56259cb2bdfb75cfe1820268b06ff3b"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.19
+      Status:
+      - 200 OK
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept, Accept-Encoding, Origin
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Powered-By:
+      - Phusion Passenger(R) 6.0.19
+      X-Request-Id:
+      - 43d1151e-8b62-42de-bab7-3885fe2490d7
+      X-Runtime:
+      - '8.784117'
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1

@@ -5,6 +5,7 @@ import re
 from typing import Optional
 from urllib.parse import urlparse
 import yaml
+from furl import furl
 import bibtexparser
 from bs4 import BeautifulSoup
 from pydash import py_
@@ -154,7 +155,7 @@ def normalize_ror(ror: Optional[str]) -> Optional[str]:
     ror = validate_ror(ror)
     if ror is None:
         return None
-    
+
     # turn ROR ID into URL
     return "https://ror.org/" + ror
 
@@ -172,7 +173,24 @@ def validate_ror(ror: Optional[str]) -> Optional[str]:
     ror = match.group(1).replace(" ", "-")
     return ror
 
-    
+
+def validate_url(url: str) -> Optional[str]:
+    if url is None:
+        return None
+    elif validate_doi(url):
+        return "DOI"
+    f = furl(url)
+    if f and f.scheme in ["http", "https"]:
+        return "URL"
+    match = re.search(
+        r"\A(ISSN|eISSN) (\d{4}-\d{3}[0-9X]+)\Z",
+        url,
+    )
+    if match is not None:
+        return "ISSN"
+    return None
+
+
 def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     """Normalize ORCID"""
     if orcid is None or not isinstance(orcid, str):
@@ -564,9 +582,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         return None
     try:
         data = json.loads(string)
-        if data.get("schema_version", "").startswith(
-            "https://commonmeta.org"
-        ):
+        if data.get("schema_version", "").startswith("https://commonmeta.org"):
             return "commonmeta"
         if data.get("@context", None) == "http://schema.org":
             return "schema_org"
@@ -936,7 +952,6 @@ def get_language(lang: str) -> Optional[dict]:
     else:
         language = pycountry.languages.get(name=lang)
     return language
-
 
 
 def start_case(content: str) -> str:

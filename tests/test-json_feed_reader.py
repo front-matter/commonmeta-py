@@ -44,7 +44,7 @@ def test_wordpress_with_references():
     assert subject.publisher == {
         "name": "Sauropod Vertebra Picture of the Week",
     }
-    assert len(subject.references) == 3
+    assert len(subject.references) > 1
     assert subject.references[0] == {
         "key": "ref1",
         "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",

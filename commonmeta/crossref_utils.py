@@ -393,7 +393,7 @@ def insert_posted_date(metadata, xml):
     if pub_date is None:
         return xml
 
-    posted_date = etree.SubElement(xml, "publication_date", {"media_type": "online"})
+    posted_date = etree.SubElement(xml, "posted_date", {"media_type": "online"})
     etree.SubElement(posted_date, "year").text = str(pub_date.year)
     etree.SubElement(posted_date, "month").text = f"{pub_date.month:02d}"
     etree.SubElement(posted_date, "day").text = f"{pub_date.day:02d}"

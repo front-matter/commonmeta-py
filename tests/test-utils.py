@@ -39,6 +39,7 @@ from commonmeta.utils import (
     decode_doi,
     from_curie,
     get_language,
+    validate_url,
 )
 from commonmeta.base_utils import wrap
 
@@ -786,3 +787,11 @@ def test_get_language():
     assert "en" == get_language("English").alpha_2
     assert None is get_language("xyz")
     assert "tlh" == get_language("Klingon").alpha_3
+
+
+def test_validate_url():
+    """Check whether URL is DOI, URL or ISSN"""
+    assert "DOI" == validate_url("https://doi.org/10.5438/0000-00ss")
+    assert "URL" == validate_url("https://blog.datacite.org/eating-your-own-dog-food")
+    assert "ISSN" == validate_url("ISSN 2050-084X")
+    assert None is validate_url("eating-your-own-dog-food")

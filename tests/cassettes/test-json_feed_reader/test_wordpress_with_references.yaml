@@ -181,15 +181,15 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 21 Jan 2024 09:16:56 GMT
+      - Mon, 22 Jan 2024 10:57:21 GMT
       fly-request-id:
-      - 01HMNMY2J8JMR1TPEN7XSW9JY9-fra
+      - 01HMRD2MNKW415D5VN8EA2FG63-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '11'
+      - '14'
       ratelimit-reset:
-      - '13'
+      - '3'
       server:
       - Fly/f9c163a6 (2024-01-16)
       transfer-encoding:
@@ -199,4 +199,124 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: HEAD
+    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
+  response:
+    body:
+      string: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2204946'
+      Content-Type:
+      - application/pdf
+      Date:
+      - Mon, 22 Jan 2024 10:57:21 GMT
+      Expires:
+      - Thu, 15 Feb 2024 15:55:23 GMT
+      Last-Modified:
+      - Mon, 16 Mar 2015 08:57:22 GMT
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Orig-Src:
+      - 01_mogdir
+      X-nc:
+      - HIT ams 26 np
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: HEAD
+    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
+  response:
+    body:
+      string: ''
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '162'
+      Content-Type:
+      - text/html
+      Date:
+      - Mon, 22 Jan 2024 10:57:21 GMT
+      Server:
+      - nginx
+    status:
+      code: 429
+      message: Too Many Requests
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: HEAD
+    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
+  response:
+    body:
+      string: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2729453'
+      Content-Type:
+      - application/pdf
+      Date:
+      - Mon, 22 Jan 2024 10:57:21 GMT
+      Expires:
+      - Thu, 22 Feb 2024 20:42:23 GMT
+      Last-Modified:
+      - Tue, 29 Mar 2022 07:37:54 GMT
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Orig-Src:
+      - 01_mogdir
+      X-nc:
+      - HIT ams 17 np
+    status:
+      code: 200
+      message: OK
 version: 1

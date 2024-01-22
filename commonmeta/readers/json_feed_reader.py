@@ -10,11 +10,12 @@ from ..utils import (
     wrap,
     dict_to_spdx,
     name_to_fos,
+    validate_url,
 )
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
 from ..date_utils import get_date_from_unix_timestamp
-from ..doi_utils import normalize_doi, validate_prefix
+from ..doi_utils import normalize_doi, validate_prefix, validate_doi
 from ..constants import Commonmeta
 
 
@@ -87,7 +88,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     category = py_.get(meta, "blog.category", None)
     if category is not None:
         subjects = [name_to_fos(py_.human_case(category))]
-    references = [get_reference(i) for i in wrap(meta.get("reference", None))]
+    references = get_references(wrap(meta.get("reference", None)))
     funding_references = get_funding_references(meta)
     related_identifiers = get_related_identifiers(wrap(meta.get("relationships", None)))
     alternate_identifiers = [
@@ -125,29 +126,71 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     } | read_options
 
 
-def get_reference(reference: Optional[dict]) -> Optional[dict]:
-    """get json feed reference"""
-    if reference is None or not isinstance(reference, dict):
-        return None
-    doi = reference.get("doi", None)
-    metadata = {
-        "key": reference.get("key", None),
-        "doi": normalize_doi(doi) if doi else None,
-        "title": None,
-        "publicationYear": None,
-        "url": reference.get("url", None) if doi is None else None,
-    }
-    return compact(metadata)
+def get_references(references: list) -> list:
+    """get json feed references. Check that references resolve."""
+
+    def get_reference(reference: dict) -> Optional[dict]:
+        if reference is None or not isinstance(reference, dict):
+            return None
+        try:
+            if reference.get("doi", None) and validate_doi(reference.get("doi")):
+                doi = normalize_doi(reference.get("doi"))
+                response = requests.get(
+                    doi,
+                    headers={"Accept": "application/vnd.citationstyles.csl+json"},
+                    timeout=10,
+                )
+                if response.status_code not in [200, 301, 302]:
+                    return None
+                csl = response.json()
+                publication_year = py_.get(csl, "issued.date-parts.0.0", None)
+                return compact(
+                    {
+                        "key": reference.get("key", None),
+                        "doi": doi,
+                        "title": csl.get("title", None),
+                        "publicationYear": str(publication_year)
+                        if publication_year
+                        else None,
+                        "url": reference.get("url", None),
+                    }
+                )
+
+            elif (
+                reference.get("url", None)
+                and validate_url(reference.get("url")) == "URL"
+            ):
+                response = requests.head(reference.get("url", None), timeout=10)
+                if response.status_code not in [200, 301, 302]:
+                    return None
+                return {
+                    "url": reference.get("url"),
+                }
+        except Exception as error:
+            print(error)
+            return None
+
+    def number_reference(reference: dict, index: int) -> dict:
+        """number reference"""
+        reference["key"] = f"ref{index +1}"
+        return reference
+
+    references = [get_reference(i) for i in references]
+    return [
+        number_reference(i, index)
+        for index, i in enumerate(references)
+        if i is not None
+    ]
 
 
 def get_funding_references(meta: Optional[dict]) -> Optional[list]:
     """get json feed funding references.
-    Check that relationships resolve and have type "HasAward" or 
+    Check that relationships resolve and have type "HasAward" or
     funding is provided by blog metadata"""
-    
+
     if meta is None or not isinstance(meta, dict):
         return None
-        
+
     def format_funding(url: str) -> dict:
         """format funding. Prefix 10.3030 means funder is European Commission"""
         return {
@@ -156,21 +199,24 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             "funderIdentifierType": "Crossref Funder ID",
             "awardNumber": url.split("/")[-1],
         }
-        
+
     awards = [
         format_funding(i.get("url"))
         for i in wrap(meta.get("relationships", None))
-        if i.get("type", None) == "HasAward" and validate_prefix(i.get("url", None)) == "10.3030"
+        if i.get("type", None) == "HasAward"
+        and validate_prefix(i.get("url", None)) == "10.3030"
     ]
     funding = py_.get(meta, "blog.funding", None)
     if funding is not None:
-        awards += [{
-            "funderName": funding.get("funder_name", None),
-            "funderIdentifier": funding.get("funder_id", None),
-            "funderIdentifierType": "Crossref Funder ID",
-            "awardTitle": funding.get("award", None),
-            "awardNumber": funding.get("award_number", None),
-        }]
+        awards += [
+            {
+                "funderName": funding.get("funder_name", None),
+                "funderIdentifier": funding.get("funder_id", None),
+                "funderIdentifierType": "Crossref Funder ID",
+                "awardTitle": funding.get("award", None),
+                "awardNumber": funding.get("award_number", None),
+            }
+        ]
     return awards
 
 

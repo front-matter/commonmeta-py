@@ -20,15 +20,19 @@ def get_datacite(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
-    response = requests.get(url, kwargs, timeout=10)
-    if response.status_code != 200:
-        return {"state": "not_found"}
-    return py_.get(response.json(), "data.attributes", {})
-
+    try:
+        response = requests.get(url, kwargs, timeout=10)
+        if response.status_code != 200:
+            return {"state": "not_found"}
+        return py_.get(response.json(), "data.attributes", {})
+    except requests.exceptions.ReadTimeout:
+        return {"state": "timeout"}
 
 def read_datacite(data: dict, **kwargs) -> Commonmeta:
     """read_datacite"""
     meta = data
+    if data is None or data.get("state", None) not in ["findable", "registered"]:
+        return {"state": "not_found"}
 
     read_options = kwargs or {}
 
