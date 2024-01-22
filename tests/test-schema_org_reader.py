@@ -324,7 +324,7 @@ def test_with_upstream_blog_post():
     }
     assert subject.date == {
         "published": "2021-11-22T05:06:00Z",
-        "updated": "2023-01-06T21:05:45Z",
+        "updated": "2024-01-21T18:45:49Z",
     }
     assert subject.publisher == {"name": "Upstream"}
     assert subject.references is None
