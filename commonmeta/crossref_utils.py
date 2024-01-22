@@ -125,9 +125,11 @@ def insert_posted_content(metadata, xml):
 
 def insert_group_title(metadata, xml):
     """Insert group title"""
-    if metadata.subjects is None:
+    if metadata.subjects is None or len(metadata.subjects) == 0:
         return xml
-    etree.SubElement(xml, "group_title").text = metadata.subjects[0]["subject"]
+    etree.SubElement(xml, "group_title").text = metadata.subjects[0].get(
+        "subject", None
+    )
     return xml
 
 
@@ -535,9 +537,7 @@ def crossref_root():
     }
     elem = etree.Element(
         "doi_batch",
-        {
-            attr_qname: "https://www.crossref.org/schemas/crossref5.3.1.xsd"
-        },
+        {attr_qname: "https://www.crossref.org/schemas/crossref5.3.1.xsd"},
         nsmap=nsmap,
         version="5.3.1",
     )

@@ -234,6 +234,7 @@ def test_json_feed_item_upstream_blog():
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
         "mime_type": "text/html",
     }
+    assert crossref_xml.get("group_title") == "Humanities"
 
 
 @pytest.mark.vcr
@@ -263,6 +264,7 @@ def test_json_feed_item_with_references():
         "key": "ref1",
         "unstructured_citation": "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
+    assert crossref_xml.get("group_title") == "Humanities"
 
 
 @pytest.mark.vcr
@@ -293,6 +295,7 @@ def test_json_feed_item_with_doi():
             "mime_type": "text/html",
         }
     }
+    assert crossref_xml.get("group_title") == "Social sciences"
 
 
 @pytest.mark.vcr
@@ -327,6 +330,7 @@ def test_json_feed_item_with_organizational_author():
             "#text": "https://libscie.org/ku-leuven-supports-researchequals",
         }
     }
+    assert crossref_xml.get("group_title") == "Social sciences"
 
 
 @pytest.mark.vcr
@@ -358,6 +362,7 @@ def test_json_feed_item_with_archived_content():
             "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
         }
     }
+    assert crossref_xml.get("group_title") == "Computer and information sciences"
 
 
 @pytest.mark.vcr
@@ -425,6 +430,7 @@ def test_json_feed_item_with_relations_and_funding():
             ],
         },
     }
+    assert crossref_xml.get("group_title") == "Computer and information sciences"
 
 
 @pytest.mark.vcr
@@ -445,3 +451,4 @@ def test_json_feed_item_with_anonymous_author():
         "given_name": "Mathias",
         "surname": "Göbel",
     }
+    assert crossref_xml.get("group_title") == "Computer and information sciences"
