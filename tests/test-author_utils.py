@@ -7,7 +7,6 @@ from commonmeta.author_utils import (
     get_authors,
     get_affiliations,
     is_personal_name,
-    format_name_identifier,
 )
 from commonmeta.base_utils import wrap
 
@@ -323,50 +322,3 @@ def test_is_personal_name():
     assert False is is_personal_name(
         "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
     )
-
-
-def test_format_name_identifier():
-    """Format name identifier"""
-    assert (
-        "https://orcid.org/0000-0003-0077-4738"
-        == format_name_identifier(
-            {
-                "nameIdentifier": "0000-0003-0077-4738",
-                "nameIdentifierScheme": "ORCID",
-            }
-        )
-    )
-    assert (
-        "https://ror.org/02t274463"
-        == format_name_identifier(
-            {
-                "nameIdentifier": "02t274463",
-                "nameIdentifierScheme": "ROR",
-                "schemeURI": "https://ror.org/",
-            }
-        )
-    )
-    assert (
-        "https://isni.org/isni/0000000110230567"
-        == format_name_identifier(
-            {
-                "nameIdentifier": "0000000110230567",
-                "nameIdentifierScheme": "ISNI",
-            }
-        )
-    )
-    assert (
-        "https://isni.org/isni/0000000110230567"
-        == format_name_identifier("0000000110230567")
-    )
-    assert (
-        "https://isni.org/isni/0000000110230567"
-        == format_name_identifier(
-            {
-                "nameIdentifier": "0000000110230567",
-                "nameIdentifierScheme": "ISNI",
-                "schemeURI": "http://isni.org/isni/",
-            }
-        )
-    )
-

@@ -234,7 +234,54 @@ def normalize_isni(isni: Optional[str]) -> Optional[str]:
     if isni is None or not isinstance(isni, str):
         return None
     isni = validate_isni(isni)
+    if isni is None:
+        return None
     return "https://isni.org/isni/" + isni
+
+
+def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
+    """Normalize name identifier"""
+    if ni is None:
+        return None
+    if isinstance(ni, str):
+        return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
+    if isinstance(ni, dict):
+        return format_name_identifier(ni)
+    if isinstance(ni, list):
+        return next(
+            (format_name_identifier(i) for i in wrap(ni.get("nameIdentifiers", None))),
+            None,
+        )
+    return None
+
+
+def format_name_identifier(ni):
+    """format_name_identifier"""
+    print(ni)
+    if ni is None:
+        return None
+    elif isinstance(ni, str):
+        return (
+            normalize_orcid(ni)
+            or normalize_ror(ni)
+            or normalize_isni(ni)
+        )
+    name_identifier = ni.get("nameIdentifier", None)
+    name_identifier_scheme = ni.get("nameIdentifierScheme", None)
+    scheme_uri = ni.get("schemeURI", None) or ni.get("schemeUri", None)
+    if name_identifier is None:
+        return None
+    elif name_identifier_scheme == "ORCID":
+        return normalize_orcid(name_identifier)
+    elif name_identifier_scheme == "ISNI":
+        return normalize_isni(name_identifier)
+    elif name_identifier_scheme == "ROR":
+        return normalize_ror(name_identifier)
+    elif validate_url(name_identifier) == "URL":
+        return name_identifier
+    elif isinstance(name_identifier, str) and scheme_uri is not None:
+        return scheme_uri + name_identifier
+    return None
 
 
 def normalize_issn(string, **kwargs):

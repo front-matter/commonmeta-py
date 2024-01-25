@@ -2005,6 +2005,48 @@ def test_geolocation():
     ]
 
 
+def test_datacite_v4_5():
+    """Dataset schema v4.5"""
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.82433/b09z-4k37"
+    assert subject.publisher == {
+        "lang": "en",
+        "name": "Example Publisher",
+        "publisherIdentifier": "https://ror.org/04z8jg394",
+        "publisherIdentifierScheme": "ROR",
+        "schemeUri": "https://ror.org/",
+    }
+
+
+def test_datacite_instrument():
+    """Dataset instrument"""
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-instrument.json")
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.82433/08qf-ee96"
+    assert subject.type == "Instrument"
+    assert subject.additional_type == "Raster image pixel detector"
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
+        "contributorRoles": ["Author"],
+        "name": "DECTRIS",
+        "type": "Organization",
+        "id": "https://www.wikidata.org/wiki/Q107529885"
+    }
+    assert subject.contributors[1] == {
+        "id": "https://ror.org/02aj13c28",
+        "type": "Organization",
+        "contributorRoles": ["HostingInstitution"],
+        "name": "Helmholtz-Zentrum Berlin Für Materialien Und Energie",
+    }
+    assert subject.publisher == {
+        "lang": "en",
+        "name": "Helmholtz Centre Potsdam - GFZ German Research Centre for Geosciences",
+    }
+
+
 @pytest.mark.vcr
 def test_get_datacite():
     """get_datacite"""

@@ -450,9 +450,7 @@ def test_json_feed_item_with_anonymous_author():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/33es7-fqz31"
     crossref_xml = parse_xml(subject.crossref_xml(), dialect="crossref")
-    print(crossref_xml)
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    print(crossref_xml)
     assert len(crossref_xml.get("contributors")) == 1
     assert py_.get(crossref_xml, "contributors.0.person_name") == {
         "contributor_role": "author",

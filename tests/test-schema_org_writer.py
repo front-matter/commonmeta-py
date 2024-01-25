@@ -400,6 +400,21 @@ def test_article_with_pages():
     assert schema_org.get("encoding") is None
 
 
+def test_instrument():
+    "instrument"
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-instrument.json")
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.82433/08qf-ee96"
+    assert subject.type == "Instrument"
+
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.82433/08qf-ee96"
+    assert schema_org.get("@type") == "Instrument"
+    assert (
+        schema_org.get("name")
+        == "Pilatus detector at MX station 14.1"
+    )
+
 #     it 'maremma schema.org JSON' do
 #       text = 'https://github.com/datacite/maremma'
 #       subject = described_class.new(input: input, from: 'codemeta')

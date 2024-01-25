@@ -8,6 +8,7 @@ from .utils import (
     normalize_id,
     normalize_ror,
     normalize_isni,
+    format_name_identifier,
     validate_ror,
     validate_orcid,
 )
@@ -57,20 +58,16 @@ def get_one_author(author):
         author.get("contributorName", None), content="type", first=True
     )
 
-    # handle Crossref, JSON Feed, or DataCite  metadata
-    id_ = (
-        author.get("id", None)
-        or author.get("ORCID", None)
-        or author.get("url", None)
-        or next(
+    # also handle Crossref, JSON Feed, or DataCite metadata
+    id_ = author.get("id", None) or author.get("ORCID", None) or author.get("url", None) or next(
             (
                 format_name_identifier(i)
                 for i in wrap(author.get("nameIdentifiers", None))
             ),
             None,
         )
-    )
-    id_ = normalize_orcid(id_) or normalize_ror(id_) or normalize_isni(id_)
+    id_ = normalize_orcid(id_) or normalize_ror(id_) or normalize_isni(id_) or id_
+
     # DataCite metadata
     if isinstance(type_, str) and type_.endswith("al"):
         type_ = type_[:-3]
@@ -114,29 +111,6 @@ def get_one_author(author):
             ),
         }
     )
-
-
-def format_name_identifier(name_identifier):
-    """format_name_identifier"""
-    if name_identifier is None:
-        return None
-    elif isinstance(name_identifier, str):
-        return (
-            normalize_orcid(name_identifier)
-            or normalize_ror(name_identifier)
-            or normalize_isni(name_identifier)
-        )
-    elif name_identifier.get("nameIdentifier", None) is None:
-        return None
-    elif name_identifier.get("nameIdentifierScheme", None) == "ORCID":
-        return normalize_orcid(name_identifier.get("nameIdentifier", None))
-    elif name_identifier.get("nameIdentifierScheme", None) == "ISNI":
-        return normalize_isni(name_identifier.get("nameIdentifier", None))
-    if name_identifier.get("schemeURI", None) is not None:
-        return name_identifier.get("schemeURI") + name_identifier.get(
-            "nameIdentifier", None
-        )
-    return name_identifier.get("nameIdentifier", None)
 
 
 def is_personal_name(name):

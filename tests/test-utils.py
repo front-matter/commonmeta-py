@@ -40,6 +40,7 @@ from commonmeta.utils import (
     from_curie,
     get_language,
     validate_url,
+    format_name_identifier,
 )
 from commonmeta.base_utils import wrap
 
@@ -795,3 +796,43 @@ def test_validate_url():
     assert "URL" == validate_url("https://blog.datacite.org/eating-your-own-dog-food")
     assert "ISSN" == validate_url("ISSN 2050-084X")
     assert None is validate_url("eating-your-own-dog-food")
+
+
+def test_format_name_identifier():
+    """Format name identifier"""
+    assert "https://orcid.org/0000-0003-0077-4738" == format_name_identifier(
+        {
+            "nameIdentifier": "0000-0003-0077-4738",
+            "nameIdentifierScheme": "ORCID",
+        }
+    )
+    assert "https://ror.org/02t274463" == format_name_identifier(
+        {
+            "nameIdentifier": "02t274463",
+            "nameIdentifierScheme": "ROR",
+            "schemeURI": "https://ror.org/",
+        }
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        {
+            "nameIdentifier": "0000000110230567",
+            "nameIdentifierScheme": "ISNI",
+        }
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        "0000000110230567"
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        {
+            "nameIdentifier": "0000000110230567",
+            "nameIdentifierScheme": "ISNI",
+            "schemeURI": "http://isni.org/isni/",
+        }
+    )
+    assert "https://www.wikidata.org/wiki/Q107529885" == format_name_identifier(
+        {
+            "schemeUri": "https://www.wikidata.org/wiki/",
+            "nameIdentifier": "Q107529885",
+            "nameIdentifierScheme": "Wikidata",
+        }
+    )

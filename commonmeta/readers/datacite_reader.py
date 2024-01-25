@@ -45,13 +45,17 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     if additional_type:
         type_ = additional_type
         additional_type = None
+    else:
+        additional_type = resource_type
 
     contributors = get_authors(wrap(meta.get("creators", None)))
     contrib = get_authors(wrap(meta.get("contributors", None)))
     if contrib:
         contributors = contributors + contrib
 
-    publisher = {"name": meta.get("publisher", None)}
+    publisher = meta.get("publisher", None)
+    if isinstance(publisher, str):
+        publisher = {"name": publisher}
     date = get_dates(wrap(meta.get("dates", None)), meta.get("publicationYear", None))
     container = meta.get("container", None)
     license_ = meta.get("rightsList", [])
