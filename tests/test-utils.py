@@ -105,29 +105,21 @@ def test_validate_orcid():
 
 def test_validate_ror():
     "validate_ror"
-    assert "0342dzm54" == validate_ror(
-        "https://ror.org/0342dzm54"
-    )
+    assert "0342dzm54" == validate_ror("https://ror.org/0342dzm54")
     # None
     assert None is validate_ror(None)
 
 
 def test_validate_isni():
     "validate_isni"
-    assert "0000000357526882" == validate_isni(
-        "https://isni.org/isni/0000000357526882"
-    )
+    assert "0000000357526882" == validate_isni("https://isni.org/isni/0000000357526882")
     # http
-    assert "0000000357526882" == validate_isni(
-        "http://isni.org/isni/0000000357526882"
-    )
+    assert "0000000357526882" == validate_isni("http://isni.org/isni/0000000357526882")
     # only isni id
-    assert "0000000357526882" == validate_isni(
-        "0000000357526882"
-    )
+    assert "0000000357526882" == validate_isni("0000000357526882")
     # None
     assert None is validate_isni(None)
-    
+
 
 def test_normalize_orcid():
     "normalize_orcid"
@@ -150,9 +142,7 @@ def test_normalize_orcid():
 
 def test_normalize_ror():
     "normalize_ror"
-    assert "https://ror.org/0342dzm54" == normalize_ror(
-        "http://ror.org/0342dzm54"
-    )
+    assert "https://ror.org/0342dzm54" == normalize_ror("http://ror.org/0342dzm54")
 
 
 def test_normalize_isni():
@@ -834,5 +824,14 @@ def test_format_name_identifier():
             "schemeUri": "https://www.wikidata.org/wiki/",
             "nameIdentifier": "Q107529885",
             "nameIdentifierScheme": "Wikidata",
+        }
+    )
+    assert "https://ror.org/04z8jg394" == format_name_identifier(
+        {
+            "lang": "en",
+            "name": "Example Publisher",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/04z8jg394",
+            "publisherIdentifierScheme": "ROR",
         }
     )

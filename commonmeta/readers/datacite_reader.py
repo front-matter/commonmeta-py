@@ -3,10 +3,16 @@ from collections import defaultdict
 import requests
 from pydash import py_
 
-from ..utils import normalize_url, normalize_doi, normalize_cc_url, dict_to_spdx
+from ..utils import (
+    normalize_url,
+    normalize_doi,
+    normalize_cc_url,
+    dict_to_spdx,
+    format_name_identifier,
+)
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
-from ..date_utils import strip_milliseconds, normalize_date_dict
+from ..date_utils import normalize_date_dict
 from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
 from ..constants import (
     DC_TO_CM_TRANSLATIONS,
@@ -27,6 +33,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
         return py_.get(response.json(), "data.attributes", {})
     except requests.exceptions.ReadTimeout:
         return {"state": "timeout"}
+
 
 def read_datacite(data: dict, **kwargs) -> Commonmeta:
     """read_datacite"""
@@ -56,6 +63,8 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     publisher = meta.get("publisher", None)
     if isinstance(publisher, str):
         publisher = {"name": publisher}
+    elif isinstance(publisher, dict):
+        publisher = get_publisher(publisher)
     date = get_dates(wrap(meta.get("dates", None)), meta.get("publicationYear", None))
     container = meta.get("container", None)
     license_ = meta.get("rightsList", [])
@@ -174,3 +183,10 @@ def get_descriptions(descriptions: list) -> list:
         for i in descriptions
         if is_description(i) and i.get("description", None) is not None
     ]
+
+
+def get_publisher(publisher: dict) -> dict:
+    """get_publisher"""
+    return compact(
+        {"id": format_name_identifier(publisher), "name": publisher.get("name", None)}
+    )

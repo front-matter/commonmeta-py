@@ -2012,11 +2012,8 @@ def test_datacite_v4_5():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/b09z-4k37"
     assert subject.publisher == {
-        "lang": "en",
         "name": "Example Publisher",
-        "publisherIdentifier": "https://ror.org/04z8jg394",
-        "publisherIdentifierScheme": "ROR",
-        "schemeUri": "https://ror.org/",
+        "id": "https://ror.org/04z8jg394",
     }
 
 
@@ -2042,7 +2039,6 @@ def test_datacite_instrument():
         "name": "Helmholtz-Zentrum Berlin Für Materialien Und Energie",
     }
     assert subject.publisher == {
-        "lang": "en",
         "name": "Helmholtz Centre Potsdam - GFZ German Research Centre for Geosciences",
     }
 

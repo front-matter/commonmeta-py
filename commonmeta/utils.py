@@ -244,7 +244,7 @@ def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
     if ni is None:
         return None
     if isinstance(ni, str):
-        return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
+        return
     if isinstance(ni, dict):
         return format_name_identifier(ni)
     if isinstance(ni, list):
@@ -257,17 +257,16 @@ def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
 
 def format_name_identifier(ni):
     """format_name_identifier"""
-    print(ni)
     if ni is None:
         return None
     elif isinstance(ni, str):
-        return (
-            normalize_orcid(ni)
-            or normalize_ror(ni)
-            or normalize_isni(ni)
-        )
-    name_identifier = ni.get("nameIdentifier", None)
-    name_identifier_scheme = ni.get("nameIdentifierScheme", None)
+        return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
+    name_identifier = ni.get("nameIdentifier", None) or ni.get(
+        "publisherIdentifier", None
+    )
+    name_identifier_scheme = ni.get("nameIdentifierScheme", None) or ni.get(
+        "publisherIdentifierScheme", None
+    )
     scheme_uri = ni.get("schemeURI", None) or ni.get("schemeUri", None)
     if name_identifier is None:
         return None
