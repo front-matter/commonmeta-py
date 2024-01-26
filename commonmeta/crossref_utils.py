@@ -457,8 +457,8 @@ def insert_doi_data(metadata, xml):
     doi_data = etree.SubElement(xml, "doi_data")
     etree.SubElement(doi_data, "doi").text = doi_from_url(metadata.id)
     etree.SubElement(doi_data, "resource").text = metadata.url
-    etree.SubElement(doi_data, "collection", {"property": "text-mining"})
-    item = etree.SubElement(doi_data, "item")
+    collection = etree.SubElement(doi_data, "collection", {"property": "text-mining"})
+    item = etree.SubElement(collection, "item")
     etree.SubElement(item, "resource", {"mime_type": "text/html"}).text = metadata.url
 
     if not is_rogue_scholar_doi(doi_from_url(metadata.id)) or metadata.files is None:

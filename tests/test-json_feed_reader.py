@@ -83,9 +83,11 @@ def test_wordpress_with_references():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon,")
+        .startswith(
+            "Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon,"
+        )
     )
-    assert subject.subjects == [{'subject': 'Earth and related environmental sciences'}]
+    assert subject.subjects == [{"subject": "Earth and related environmental sciences"}]
     assert subject.language == "en"
     assert subject.version is None
 
@@ -162,9 +164,10 @@ def test_ghost_with_institutional_author():
             "After a couple of years of working to support institutions implementing their OA policies"
         )
     )
-    assert subject.subjects == [{'subject': 'Computer and information sciences'}]
+    assert subject.subjects == [{"subject": "Computer and information sciences"}]
     assert subject.language == "en"
     assert subject.version is None
+
 
 @pytest.mark.vcr
 def test_ghost_with_personal_name_parsing():
@@ -174,20 +177,15 @@ def test_ghost_with_personal_name_parsing():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/kj95y-gp867"
     assert subject.type == "Article"
-    assert (
-        subject.url
-        == "https://www.ideasurg.pub/residency-visual-abstract"
-    )
-    assert subject.titles[0] == {
-        "title": "The Residency Visual Abstract"
-    }
+    assert subject.url == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert subject.titles[0] == {"title": "The Residency Visual Abstract"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        'id': 'https://orcid.org/0000-0003-0449-4469',
+        "id": "https://orcid.org/0000-0003-0449-4469",
         "contributorRoles": ["Author"],
         "type": "Person",
-        'familyName': 'Sathe',
-        'givenName': 'Tejas S.',
+        "familyName": "Sathe",
+        "givenName": "Tejas S.",
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -230,18 +228,30 @@ def test_ghost_with_personal_name_parsing():
     #     },
     # ]
     assert subject.container == {
-        'identifier': '2993-1150',
-        'identifierType': 'ISSN',
-        'title': 'I.D.E.A.S.',
+        "identifier": "2993-1150",
+        "identifierType": "ISSN",
+        "title": "I.D.E.A.S.",
         "type": "Periodical",
     }
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "My prototype for a Residency Visual Abstract"
-        )
+        .startswith("My prototype for a Residency Visual Abstract")
     )
-    assert subject.subjects == [{'subject': 'Clinical medicine'}]
+    assert subject.subjects == [{"subject": "Clinical medicine"}]
     assert subject.language == "en"
     assert subject.version is None
+
+
+@pytest.mark.vcr
+def test_blog_post_without_doi():
+    "blog post without DOI"
+    string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    assert subject.type == "Article"
+    assert subject.url == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    assert subject.titles[0] == {"title": "An open approach for classifying research publications"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {'id': 'https://ror.org/027bh9e22', 'type': 'Organization', 'contributorRoles': ['Author'], 'name': 'Leiden Madtrics'}

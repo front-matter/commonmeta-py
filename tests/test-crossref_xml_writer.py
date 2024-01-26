@@ -229,8 +229,8 @@ def test_json_feed_item_upstream_blog():
         "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
         "item_number_type": "uuid",
     }
-    assert len(py_.get(crossref_xml, "doi_data.item")) == 1
-    assert py_.get(crossref_xml, "doi_data.item.0.resource") == {
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 1
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
         "mime_type": "text/html",
     }
@@ -289,13 +289,46 @@ def test_json_feed_item_with_doi():
         py_.get(crossref_xml, "titles.0.title")
         == "EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten Open-Access-Modellen jenseits von APCs"
     )
-    assert py_.get(crossref_xml, "doi_data.item.0") == {
-        "resource": {
-            "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
-            "mime_type": "text/html",
-        }
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
+        "mime_type": "text/html",
     }
     assert crossref_xml.get("group_title") == "Social sciences"
+
+
+@pytest.mark.vcr
+def test_json_feed_item_without_doi():
+    """JSON Feed item without DOI"""
+    string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
+    subject = Metadata(string, doi="10.5555/test")
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.5555/test"
+    assert subject.contributors == [
+        {
+            "id": "https://ror.org/027bh9e22",
+            "type": "Organization",
+            "contributorRoles": ["Author"],
+            "name": "Leiden Madtrics",
+        }
+    ]
+    print(subject.crossref_xml())
+    crossref_xml = parse_xml(subject.crossref_xml(), dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    assert py_.get(crossref_xml, "doi_data.doi") == "10.5555/test"
+    assert (
+        py_.get(crossref_xml, "doi_data.resource")
+        == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    )
+    assert len(crossref_xml.get("contributors")) == 1
+    assert py_.get(crossref_xml, "contributors.0.organization") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "#text": "Leiden Madtrics",
+    }
+    assert (
+        py_.get(crossref_xml, "titles.0.title")
+        == "An open approach for classifying research publications"
+    )
 
 
 @pytest.mark.vcr
@@ -324,11 +357,9 @@ def test_json_feed_item_with_organizational_author():
     assert (
         py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
     )
-    assert py_.get(crossref_xml, "doi_data.item.0") == {
-        "resource": {
-            "mime_type": "text/html",
-            "#text": "https://libscie.org/ku-leuven-supports-researchequals",
-        }
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "mime_type": "text/html",
+        "#text": "https://libscie.org/ku-leuven-supports-researchequals",
     }
     assert crossref_xml.get("group_title") == "Social sciences"
 
@@ -356,11 +387,9 @@ def test_json_feed_item_with_archived_content():
     assert (
         py_.get(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
     )
-    assert py_.get(crossref_xml, "doi_data.item.0") == {
-        "resource": {
-            "mime_type": "text/html",
-            "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
-        }
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "mime_type": "text/html",
+        "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
 
