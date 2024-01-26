@@ -293,6 +293,7 @@ def test_json_feed_item_with_doi():
         py_.get(crossref_xml, "titles.0.title")
         == "EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten Open-Access-Modellen jenseits von APCs"
     )
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
         "mime_type": "text/html",
@@ -366,6 +367,7 @@ def test_json_feed_item_with_organizational_author():
     assert (
         py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
     )
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
         "#text": "https://libscie.org/ku-leuven-supports-researchequals",
@@ -396,6 +398,7 @@ def test_json_feed_item_with_archived_content():
     assert (
         py_.get(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
     )
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
         "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",

@@ -7,7 +7,7 @@ import pydash as py_
 
 from .constants import Commonmeta
 from .utils import wrap, compact, normalize_orcid, normalize_id
-from .doi_utils import doi_from_url, validate_doi, is_rogue_scholar_doi
+from .doi_utils import doi_from_url, validate_doi
 
 
 def generate_crossref_xml(metadata: Commonmeta) -> str:
@@ -460,8 +460,7 @@ def insert_doi_data(metadata, xml):
     collection = etree.SubElement(doi_data, "collection", {"property": "text-mining"})
     item = etree.SubElement(collection, "item")
     etree.SubElement(item, "resource", {"mime_type": "text/html"}).text = metadata.url
-
-    if not is_rogue_scholar_doi(doi_from_url(metadata.id)) or metadata.files is None:
+    if metadata.files is None:
         return xml
     for file in metadata.files:
         # Crossref schema currently doesn't support text/markdown
