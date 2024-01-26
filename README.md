@@ -2,7 +2,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/commonmeta-py.svg)](https://pypi.org/project/commonmeta-py/)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=coverage)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=front-matter_commonmeta-py&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=front-matter_commonmeta-py)
-[![docs](https://img.shields.io/badge/docs-passing-blue)](https://commonmeta-py.docs.front-matter.io/)
+[![docs](https://img.shields.io/badge/docs-passing-blue)](https://python.commonmeta.org)
 ![GitHub](https://img.shields.io/github/license/front-matter/commonmeta-py?logo=MIT)
 
 # commonmeta-py
