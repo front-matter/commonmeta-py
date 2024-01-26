@@ -87,6 +87,11 @@ def test_wordpress_with_references():
             "Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon,"
         )
     )
+    assert len(subject.files) == 4
+    assert subject.files[0] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.59350/hke8v-d1e66.md",
+    }
     assert subject.subjects == [{"subject": "Earth and related environmental sciences"}]
     assert subject.language == "en"
     assert subject.version is None
@@ -164,6 +169,11 @@ def test_ghost_with_institutional_author():
             "After a couple of years of working to support institutions implementing their OA policies"
         )
     )
+    assert len(subject.files) == 4
+    assert subject.files[0] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.59350/tfahc-rp566.md",
+    }
     assert subject.subjects == [{"subject": "Computer and information sciences"}]
     assert subject.language == "en"
     assert subject.version is None
@@ -238,6 +248,11 @@ def test_ghost_with_personal_name_parsing():
         .get("description")
         .startswith("My prototype for a Residency Visual Abstract")
     )
+    assert len(subject.files) == 4
+    assert subject.files[0] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.59350/kj95y-gp867.md",
+    }
     assert subject.subjects == [{"subject": "Clinical medicine"}]
     assert subject.language == "en"
     assert subject.version is None
@@ -249,9 +264,22 @@ def test_blog_post_without_doi():
     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    assert (
+        subject.id
+        == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    )
     assert subject.type == "Article"
-    assert subject.url == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
-    assert subject.titles[0] == {"title": "An open approach for classifying research publications"}
+    assert (
+        subject.url
+        == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+    )
+    assert subject.titles[0] == {
+        "title": "An open approach for classifying research publications"
+    }
     assert len(subject.contributors) == 1
-    assert subject.contributors[0] == {'id': 'https://ror.org/027bh9e22', 'type': 'Organization', 'contributorRoles': ['Author'], 'name': 'Leiden Madtrics'}
+    assert subject.contributors[0] == {
+        "id": "https://ror.org/027bh9e22",
+        "type": "Organization",
+        "contributorRoles": ["Author"],
+        "name": "Leiden Madtrics",
+    }

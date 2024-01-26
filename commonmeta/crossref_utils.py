@@ -467,6 +467,7 @@ def insert_doi_data(metadata, xml):
         # Crossref schema currently doesn't support text/markdown
         if file["mimeType"] == "text/markdown":
             file["mimeType"] = "text/plain"
+        item = etree.SubElement(collection, "item")
         etree.SubElement(item, "resource", {"mime_type": file["mimeType"]}).text = file[
             "url"
         ]
@@ -477,7 +478,7 @@ def insert_crossref_license(metadata, xml):
     """Insert crossref license"""
     if metadata.license is None:
         return xml
-    license = etree.SubElement(xml, "license")
+    license_ = etree.SubElement(xml, "license")
     if isinstance(metadata.license, dict):
         r = metadata.license
     else:
@@ -493,7 +494,7 @@ def insert_crossref_license(metadata, xml):
             "xml:lang": r["lang"],
         }
     )
-    etree.SubElement(license, "rights", attributes).text = r["rights"]
+    etree.SubElement(license_, "rights", attributes).text = r["rights"]
     return xml
 
 

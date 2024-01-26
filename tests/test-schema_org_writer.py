@@ -786,3 +786,25 @@ def test_instrument():
 #     end
 #   end
 # end
+
+@pytest.mark.vcr
+def test_json_feed_item_upstream_blog():
+    """json_feed_item upstream blog"""
+    string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
+    assert subject.type == "Article"
+    schema_org = json.loads(subject.schema_org())
+    assert schema_org.get("@id") == "https://doi.org/10.54900/n6dnt-xpq48"
+    assert schema_org.get("@type") == "Article"
+    assert (
+        schema_org.get("name")
+        == "Attempts at automating journal subject classification"
+    )
+    assert len(schema_org.get("encoding")) == 4
+    assert schema_org.get("encoding")[1] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.pdf",
+        "encodingFormat": "application/pdf",
+    }

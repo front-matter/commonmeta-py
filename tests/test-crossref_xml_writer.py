@@ -229,10 +229,14 @@ def test_json_feed_item_upstream_blog():
         "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
         "item_number_type": "uuid",
     }
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 1
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
         "mime_type": "text/html",
+    }
+    assert py_.get(crossref_xml, "doi_data.collection.item.1.resource") == {
+        "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
+        "mime_type": "text/plain",
     }
     assert crossref_xml.get("group_title") == "Humanities"
 
@@ -292,6 +296,11 @@ def test_json_feed_item_with_doi():
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
         "mime_type": "text/html",
+    }
+    print(subject.crossref_xml().decode())
+    assert py_.get(crossref_xml, "doi_data.collection.item.1.resource") == {
+        "#text": "https://api.rogue-scholar.org/posts/10.59350/9ry27-7cz42.md",
+        "mime_type": "text/plain",
     }
     assert crossref_xml.get("group_title") == "Social sciences"
 

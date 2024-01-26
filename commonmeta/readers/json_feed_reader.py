@@ -15,7 +15,7 @@ from ..utils import (
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
 from ..date_utils import get_date_from_unix_timestamp
-from ..doi_utils import normalize_doi, validate_prefix, validate_doi
+from ..doi_utils import normalize_doi, validate_prefix, validate_doi, doi_from_url, is_rogue_scholar_doi
 from ..constants import Commonmeta
 
 
@@ -94,6 +94,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     alternate_identifiers = [
         {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
     ]
+    files = get_files(id_)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -118,6 +119,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "funding_references": presence(funding_references),
         "references": references,
         "related_identifiers": presence(related_identifiers),
+        "files": files,
         # other properties
         "container": presence(container),
         # "provider": get_doi_ra(id_),
@@ -237,4 +239,17 @@ def get_related_identifiers(relationships: Optional[list]) -> Optional[list]:
         format_relationship(i)
         for i in relationships
         if i.get("type", None) in supported_types
+    ]
+
+
+def get_files(pid: str) -> Optional[list]:
+    """get json feed file links"""
+    doi = doi_from_url(pid)
+    if not is_rogue_scholar_doi(doi):
+        return None
+    return [
+        {"mimeType": "text/markdown", "url": f"https://api.rogue-scholar.org/posts/{doi}.md"},
+        {"mimeType": "application/pdf", "url": f"https://api.rogue-scholar.org/posts/{doi}.pdf"},
+        {"mimeType": "application/epub+zip", "url": f"https://api.rogue-scholar.org/posts/{doi}.epub"},
+        {"mimeType": "application/xml", "url": f"https://api.rogue-scholar.org/posts/{doi}.xml"},
     ]
