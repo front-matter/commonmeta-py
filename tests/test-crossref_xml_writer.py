@@ -86,7 +86,7 @@ def test_write_crossref_journal_article_from_datacite():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
     assert subject.descriptions == [
-        {"description": "Die Geowissenschaften", "descriptionType": "SeriesInformation"}
+        {"description": "Die Geowissenschaften", "type": "Other"}
     ]
     crossref_xml = parse_xml(subject.crossref_xml(), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})

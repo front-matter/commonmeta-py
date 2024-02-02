@@ -300,6 +300,7 @@ def test_missing_description():
     """missing description"""
     string = "10.2312/geowissenschaften.1989.7.181"
     subject = Metadata(string)
+    print(subject)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
     assert subject.type == "JournalArticle"
@@ -311,7 +312,7 @@ def test_missing_description():
         "title": "An Overview of the Geology of Canadian Gold Occurrences"
     }
     assert subject.descriptions == [
-        {"description": "Die Geowissenschaften", "descriptionType": "SeriesInformation"}
+        {"description": "Die Geowissenschaften", "type": "Other"}
     ]
 
 
@@ -2033,14 +2034,16 @@ def test_datacite_v4_5():
         },
     ]
     assert subject.descriptions == [
-        {"description": "Example Abstract", "language": "en", "type": "Abstract"},
-        {"description": "Example Methods", "language": "en", "type": "Methods"},
+        {"description": "Example Abstract", "type": "Abstract", "language": "en"},
+        {"description": "Example Methods", "type": "Methods", "language": "en"},
+        {"description": "Example SeriesInformation", "type": "Other", "language": "en"},
+        {"description": "Example TableOfContents", "type": "Other", "language": "en"},
         {
             "description": "Example TechnicalInfo",
-            "language": "en",
             "type": "TechnicalInfo",
+            "language": "en",
         },
-        {"description": "Example Other", "language": "en", "type": "Other"},
+        {"description": "Example Other", "type": "Other", "language": "en"},
     ]
 
 

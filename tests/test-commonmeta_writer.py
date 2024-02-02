@@ -83,6 +83,7 @@ def test_datacite_schema_45():
     assert commonmeta["url"] == "https://example.com"
     assert commonmeta["type"] == "Dataset"
     assert commonmeta["titles"] == [
+        {"title": "Example Title", "language": "en"},
         {"title": "Example Subtitle", "type": "Subtitle", "language": "en"},
         {
             "title": "Example TranslatedTitle",
@@ -98,6 +99,8 @@ def test_datacite_schema_45():
     assert commonmeta["descriptions"] == [
         {"description": "Example Abstract", "type": "Abstract", "language": "en"},
         {"description": "Example Methods", "type": "Methods", "language": "en"},
+        {"description": "Example SeriesInformation", "type": "Other", "language": "en"},
+        {"description": "Example TableOfContents", "type": "Other", "language": "en"},
         {
             "description": "Example TechnicalInfo",
             "type": "TechnicalInfo",

@@ -165,7 +165,6 @@ def get_descriptions(descriptions: list) -> list:
         """is_description"""
         return description.get("descriptionType", None) in [
             "Abstract",
-            "Summary",
             "Methods",
             "TechnicalInfo",
             "Other",
@@ -176,7 +175,7 @@ def get_descriptions(descriptions: list) -> list:
         return compact(
             {
                 "description": description.get("description", None),
-                "type": description.get("descriptionType", None) or "Other",
+                "type": description.get("descriptionType") if description.get("descriptionType", None) in ["Abstract", "Methods", "TechnicalInfo", "Other"] else "Other",
                 "language": description.get("lang", None),
             }
         )
@@ -184,7 +183,7 @@ def get_descriptions(descriptions: list) -> list:
     return [
         map_description(i)
         for i in descriptions
-        if is_description(i) and i.get("description", None) is not None
+        if i.get("description", None) is not None
     ]
 
 

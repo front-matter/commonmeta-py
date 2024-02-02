@@ -116,6 +116,6 @@ def test_blog_posting():
     assert subject.descriptions[0]["description"].startswith(
         "Eating your own dog food is a slang term"
     )
-    assert subject.descriptions[0]["descriptionType"] == "Abstract"
+    assert subject.descriptions[0]["type"] == "Abstract"
     assert subject.provider == "DataCite"
     assert subject.schema_version == "http://datacite.org/schema/kernel-4"

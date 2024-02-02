@@ -27,7 +27,7 @@ from .readers.codemeta_reader import (
     read_codemeta,
 )
 from .readers.csl_reader import read_csl
-from .readers.cff_reader import read_cff
+from .readers.cff_reader import get_cff, read_cff
 from .readers.json_feed_reader import (
     get_json_feed_item,
     read_json_feed_item,
