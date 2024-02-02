@@ -1,6 +1,6 @@
 [tool.poetry]
 name="commonmeta-py"
-version="0.11.4"
+version="0.11.5"
 repository = "https://github.com/front-matter/commonmeta-py"
 homepage = "https://python.commonmeta.org"
 documentation = "https://python.commonmeta.org"
@@ -50,8 +50,7 @@ nh3 = "^0.2.14"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "*"
-ruff = "^0.1.5"
-black = "^23.9.1"
+ruff = "^0.2.0"
 pytest = "^7.2.1"
 pytest-cov = "^4.1.0"
 pytest-recording = "^0.13.1"

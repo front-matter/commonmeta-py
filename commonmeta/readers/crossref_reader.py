@@ -97,9 +97,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     container = get_container(meta, resource_type=resource_type)
 
-    references = [
-        get_reference(i) for i in wrap(meta.get("reference", None))
-    ]
+    references = [get_reference(i) for i in wrap(meta.get("reference", None))]
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)
@@ -112,11 +110,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
     files = [
-        get_file(i) for i in wrap(meta.get("link", None)) if i["content-type"] != "unspecified"
+        get_file(i)
+        for i in wrap(meta.get("link", None))
+        if i["content-type"] != "unspecified"
     ]
 
     state = "findable" if meta or read_options else "not_found"
-    
+
     return {
         # required properties
         "id": id_,
@@ -207,6 +207,7 @@ def get_file(file: dict) -> dict:
             "mimeType": file.get("content-type", None),
         }
     )
+
 
 def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
     """Get container from Crossref"""

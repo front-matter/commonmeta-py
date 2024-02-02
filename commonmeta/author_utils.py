@@ -59,13 +59,18 @@ def get_one_author(author):
     )
 
     # also handle Crossref, JSON Feed, or DataCite metadata
-    id_ = author.get("id", None) or author.get("ORCID", None) or author.get("url", None) or next(
+    id_ = (
+        author.get("id", None)
+        or author.get("ORCID", None)
+        or author.get("url", None)
+        or next(
             (
                 format_name_identifier(i)
                 for i in wrap(author.get("nameIdentifiers", None))
             ),
             None,
         )
+    )
     id_ = normalize_orcid(id_) or normalize_ror(id_) or normalize_isni(id_) or id_
 
     # DataCite metadata
@@ -145,8 +150,8 @@ def is_personal_name(name):
             "Consortium",
             "Incorporated",
             "Inc.",
-            "Institute",
             "Institut",
+            "Research",
         ]
     ):
         return False

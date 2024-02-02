@@ -4,7 +4,6 @@ from os import path
 import re
 import xmltodict
 from typing import Optional, Union
-import pydash as py_
 import nh3
 
 

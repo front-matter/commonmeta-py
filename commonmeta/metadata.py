@@ -5,41 +5,50 @@ from typing import Optional, Any
 import yaml
 from fastjsonschema import JsonSchemaException
 
-from ..readers import (
+from .readers.crossref_reader import (
     get_crossref,
     read_crossref,
+)
+from .readers.datacite_reader import (
     get_datacite,
     read_datacite,
-    read_datacite_xml,
+)
+from .readers.datacite_xml_reader import read_datacite_xml
+from .readers.crossref_xml_reader import (
     get_crossref_xml,
     read_crossref_xml,
+)
+from .readers.schema_org_reader import (
     get_schema_org,
     read_schema_org,
+)
+from .readers.codemeta_reader import (
     get_codemeta,
     read_codemeta,
-    read_csl,
-    get_cff,
-    read_cff,
+)
+from .readers.csl_reader import read_csl
+from .readers.cff_reader import read_cff
+from .readers.json_feed_reader import (
     get_json_feed_item,
     read_json_feed_item,
+)
+from .readers.inveniordm_reader import (
     get_inveniordm,
     read_inveniordm,
-    read_kbase,
-    read_commonmeta,
-    read_ris,
 )
-from ..writers import (
-    write_datacite,
-    write_bibtex,
-    write_citation,
-    write_crossref_xml,
-    write_csl,
-    write_ris,
-    write_schema_org,
-    write_commonmeta,
-)
-from ..utils import normalize_id, find_from_format
-from ..base_utils import parse_xml
+from .readers.kbase_reader import read_kbase
+from .readers.commonmeta_reader import read_commonmeta
+from .readers.ris_reader import read_ris
+from .writers.datacite_writer import write_datacite
+from .writers.bibtex_writer import write_bibtex
+from .writers.citation_writer import write_citation
+from .writers.crossref_xml_writer import write_crossref_xml
+from .writers.csl_writer import write_csl
+from .writers.ris_writer import write_ris
+from .writers.schema_org_writer import write_schema_org
+from .writers.commonmeta_writer import write_commonmeta
+from .utils import normalize_id, find_from_format
+from .base_utils import parse_xml
 
 
 # pylint: disable=R0902
