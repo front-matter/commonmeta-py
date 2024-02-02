@@ -14,6 +14,7 @@ __version__ = "0.8.4"
 __author__ = "Martin Fenner"
 __license__ = "MIT"
 
+# ruff: noqa: F401
 from .metadata import Metadata
 from .readers import (
     cff_reader,
