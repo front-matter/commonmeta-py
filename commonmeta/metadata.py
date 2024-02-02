@@ -185,9 +185,9 @@ class Metadata:
             )
             with open(file_path, encoding="utf-8") as file:
                 schema = json.load(file)
-            validate(instance=self.commonmeta, schema=schema)
+            return validate(instance=self.commonmeta(), schema=schema)
         except ValidationError as error:
-            return error
+            return error.message
 
     def commonmeta(self):
         """Commonmeta"""

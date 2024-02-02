@@ -10,7 +10,7 @@ def test_missing_resource_type_general():
     """missing resource_type_general"""
     string = path.join(path.dirname(__file__), "fixtures", "vivli.xml")
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id == "https://doi.org/10.5072/00013641"
     assert subject.type == "Other"
     assert subject.publisher == {"name": "Vivli"}
@@ -42,7 +42,7 @@ def test_geo_location_empty():
         path.dirname(__file__), "fixtures", "datacite-geolocation-empty.xml"
     )
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id == "https://doi.org/10.1594/ieda/111185"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "EarthChem"}
@@ -80,7 +80,7 @@ def test_blog_posting():
     """blog_posting"""
     string = "10.5438/4K3M-NYVG"
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.type == "Article"
     assert subject.contributors == [

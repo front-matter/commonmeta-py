@@ -8,7 +8,7 @@ def test_journal_article():
     "journal article"
     string = path.join(path.dirname(__file__), "fixtures", "crossref.ris")
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://elifesciences.org/lookup/doi/10.7554/eLife.01567"
@@ -42,7 +42,7 @@ def test_thesis():
     "Thesis, DOI does not exist"
     string = path.join(path.dirname(__file__), "fixtures", "pure.ris")
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id is None
     assert subject.type == "Dissertation"
     assert subject.url is None

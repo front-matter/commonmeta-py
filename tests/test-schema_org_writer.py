@@ -791,7 +791,7 @@ def test_json_feed_item_upstream_blog():
     """json_feed_item upstream blog"""
     string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid()
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "Article"
     schema_org = json.loads(subject.schema_org())
