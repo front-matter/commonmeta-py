@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name
 """RIS reader tests"""
 from os import path
-import pytest
 from commonmeta import Metadata
 
 
@@ -66,4 +65,4 @@ def test_thesis():
     assert subject.container == {
         "title": "from city averaged temperatures to the energy demand of individual buildings"
     }
-    assert subject.date == {'published': '2018-04-25', 'created': '2018-04-25'}
+    assert subject.date == {"published": "2018-04-25", "created": "2018-04-25"}

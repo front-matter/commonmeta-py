@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
+from os import path
 import json
 import pytest
 
@@ -31,7 +32,10 @@ def test_journal_article():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert commonmeta["license"] == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
+    assert commonmeta["license"] == {
+        "id": "CC-BY-3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
+    }
     assert commonmeta["provider"] == "Crossref"
 
 
@@ -60,5 +64,49 @@ def test_journal_article_crossref_xml():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert commonmeta["license"] == {'id': 'CC-BY-3.0', 'url': 'https://creativecommons.org/licenses/by/3.0/legalcode'}
+    assert commonmeta["license"] == {
+        "id": "CC-BY-3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
+    }
     assert commonmeta["provider"] == "Crossref"
+
+
+def test_datacite_schema_45():
+    """datacite schema 4.5"""
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.82433/b09z-4k37"
+
+    commonmeta = json.loads(subject.commonmeta())
+    assert commonmeta["id"] == "https://doi.org/10.82433/b09z-4k37"
+    assert commonmeta["url"] == "https://example.com"
+    assert commonmeta["type"] == "Dataset"
+    assert commonmeta["titles"] == [
+        {"title": "Example Subtitle", "type": "Subtitle", "language": "en"},
+        {
+            "title": "Example TranslatedTitle",
+            "type": "TranslatedTitle",
+            "language": "fr",
+        },
+        {
+            "title": "Example AlternativeTitle",
+            "type": "AlternativeTitle",
+            "language": "en",
+        },
+    ]
+    assert commonmeta["descriptions"] == [
+        {"description": "Example Abstract", "type": "Abstract", "language": "en"},
+        {"description": "Example Methods", "type": "Methods", "language": "en"},
+        {
+            "description": "Example TechnicalInfo",
+            "type": "TechnicalInfo",
+            "language": "en",
+        },
+        {"description": "Example Other", "type": "Other", "language": "en"},
+    ]
+    assert commonmeta["license"] == {
+        "id": "CC-PDDC",
+        "url": "https://creativecommons.org/licenses/publicdomain/",
+    }
+    assert commonmeta["provider"] == "DataCite"

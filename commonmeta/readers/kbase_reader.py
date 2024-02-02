@@ -1,6 +1,4 @@
 """kbase reader for Commonmeta"""
-from typing import Optional
-from collections import defaultdict
 
 # import requests
 from pydash import py_

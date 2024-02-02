@@ -1,5 +1,4 @@
 """InvenioRDM reader for Commonmeta"""
-from collections import defaultdict
 import requests
 from pydash import py_
 

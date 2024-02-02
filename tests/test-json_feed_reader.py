@@ -1,13 +1,8 @@
 # pylint: disable=invalid-name,too-many-lines
 """JSON Feed reader tests"""
-from os import path
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.json_feed_reader import (
-    get_json_feed_item,
-    read_json_feed_item,
-)
 
 
 @pytest.mark.vcr
@@ -282,4 +277,27 @@ def test_blog_post_without_doi():
         "type": "Organization",
         "contributorRoles": ["Author"],
         "name": "Leiden Madtrics",
+    }
+
+
+@pytest.mark.vcr
+def test_medium_post_with_institutional_author():
+    """blog post with institutional author"""
+    string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://medium.com/@researchgraph/unveiling-the-synergy-retrieval-augmented-generation-rag-meets-knowledge-graphs-fc0a6900f7eb"
+    )
+    assert subject.titles[0] == {
+        "title": "Unveiling the Synergy: Retrieval Augmented Generation (RAG) Meets Knowledge Graphs"
+    }
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Organization",
+        "contributorRoles": ["Author"],
+        "name": "Research Graph",
     }

@@ -1,5 +1,4 @@
 """Test author utils"""
-import pytest
 from commonmeta.author_utils import (
     cleanup_author,
     authors_as_string,
@@ -322,3 +321,4 @@ def test_is_personal_name():
     assert False is is_personal_name(
         "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
     )
+    assert False is is_personal_name("Research Graph")

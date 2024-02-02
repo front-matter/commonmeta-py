@@ -15,7 +15,13 @@ from ..utils import (
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
 from ..date_utils import get_date_from_unix_timestamp
-from ..doi_utils import normalize_doi, validate_prefix, validate_doi, doi_from_url, is_rogue_scholar_doi
+from ..doi_utils import (
+    normalize_doi,
+    validate_prefix,
+    validate_doi,
+    doi_from_url,
+    is_rogue_scholar_doi,
+)
 from ..constants import Commonmeta
 
 
@@ -248,8 +254,20 @@ def get_files(pid: str) -> Optional[list]:
     if not is_rogue_scholar_doi(doi):
         return None
     return [
-        {"mimeType": "text/markdown", "url": f"https://api.rogue-scholar.org/posts/{doi}.md"},
-        {"mimeType": "application/pdf", "url": f"https://api.rogue-scholar.org/posts/{doi}.pdf"},
-        {"mimeType": "application/epub+zip", "url": f"https://api.rogue-scholar.org/posts/{doi}.epub"},
-        {"mimeType": "application/xml", "url": f"https://api.rogue-scholar.org/posts/{doi}.xml"},
+        {
+            "mimeType": "text/markdown",
+            "url": f"https://api.rogue-scholar.org/posts/{doi}.md",
+        },
+        {
+            "mimeType": "application/pdf",
+            "url": f"https://api.rogue-scholar.org/posts/{doi}.pdf",
+        },
+        {
+            "mimeType": "application/epub+zip",
+            "url": f"https://api.rogue-scholar.org/posts/{doi}.epub",
+        },
+        {
+            "mimeType": "application/xml",
+            "url": f"https://api.rogue-scholar.org/posts/{doi}.xml",
+        },
     ]

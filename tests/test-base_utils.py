@@ -76,9 +76,7 @@ def test_parse_attributes():
         ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"]
     )
     # list of empty strings
-    assert None == parse_attributes(
-        [""]
-    )
+    assert None == parse_attributes([""])
     # None
     assert None is parse_attributes(None)
 
@@ -98,11 +96,19 @@ def test_parse_xml():
     "parse XML"
     string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
     data = parse_xml(string)
-    assert py_.get(data, "crossref_result.xmlns") == "http://www.crossref.org/qrschema/3.0"
-    
-    
+    assert (
+        py_.get(data, "crossref_result.xmlns") == "http://www.crossref.org/qrschema/3.0"
+    )
+
+
 def test_parse_xml_crossref():
     "parse Crossref XML"
     string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
     data = parse_xml(string, dialect="crossref")
-    assert py_.get(data, "crossref_result.query_result.body.query.doi_record.crossref.journal.journal_article.doi_data.doi") == "10.7554/eLife.01567"
+    assert (
+        py_.get(
+            data,
+            "crossref_result.query_result.body.query.doi_record.crossref.journal.journal_article.doi_data.doi",
+        )
+        == "10.7554/eLife.01567"
+    )

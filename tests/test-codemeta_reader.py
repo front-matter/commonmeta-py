@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name
 """Test codemeta reader"""
 from os import path
-import pytest
 from commonmeta import Metadata
 
 

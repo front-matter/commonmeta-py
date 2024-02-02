@@ -82,32 +82,33 @@ def write_bibtex(metadata: Commonmeta) -> str:
     """
     bib_database = BibDatabase()
     bib_database.entries = [
-      compact(
-        {
-            "ID": id_,
-            "ENTRYTYPE": type_,
-            "abstract": abstract,
-            "author": author,
-            "copyright": license_,
-            "doi": doi,
-            "institution": institution,
-            "isbn": isbn,
-            "issn": issn,
-            "issue": issue,
-            "journal": journal,
-            "booktitle": booktitle,
-            "language": language,
-            "location": location,
-            "month": month,
-            "pages": pages,
-            "publisher": publisher,
-            "series": series,
-            "title": title,
-            "url": url,
-            "urldate": date_published,
-            "year": year,
-        }
-    )]
+        compact(
+            {
+                "ID": id_,
+                "ENTRYTYPE": type_,
+                "abstract": abstract,
+                "author": author,
+                "copyright": license_,
+                "doi": doi,
+                "institution": institution,
+                "isbn": isbn,
+                "issn": issn,
+                "issue": issue,
+                "journal": journal,
+                "booktitle": booktitle,
+                "language": language,
+                "location": location,
+                "month": month,
+                "pages": pages,
+                "publisher": publisher,
+                "series": series,
+                "title": title,
+                "url": url,
+                "urldate": date_published,
+                "year": year,
+            }
+        )
+    ]
 
     bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
     writer = BibTexWriter()

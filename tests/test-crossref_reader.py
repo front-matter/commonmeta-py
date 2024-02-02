@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref reader tests"""
 from os import path
-import json
 import pytest
 
 from commonmeta import Metadata

@@ -1,6 +1,6 @@
 """Schema.org writer for commonmeta-py"""
 import json
-from ..utils import to_schema_org, to_schema_org_creators, github_as_repo_url
+from ..utils import to_schema_org_creators, github_as_repo_url
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..constants import CM_TO_SO_TRANSLATIONS
 
@@ -62,8 +62,12 @@ def write_schema_org(metadata):
                 "@id": container.get("identifier", None)
                 if container.get("identifierType", None) != "ISSN"
                 else None,
-                "@type": container.get("type", None) if container.get("type", None) == "Journal" else None,
-                "additionalType": container.get("type", None) if container.get("type", None) != "Journal" else None,
+                "@type": container.get("type", None)
+                if container.get("type", None) == "Journal"
+                else None,
+                "additionalType": container.get("type", None)
+                if container.get("type", None) != "Journal"
+                else None,
                 "name": container.get("title", None),
             }
         )

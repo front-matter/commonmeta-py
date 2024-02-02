@@ -75,7 +75,10 @@ def test_blog_posting():
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
     assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022"
-    assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
+    assert subject.titles[0] == {
+        "language": "en",
+        "title": "DataCite Member Survey 2022",
+    }
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Person",
@@ -118,7 +121,7 @@ def test_date():
         == "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93"
     )
     assert subject.titles[0] == {
-        "lang": "en",
+        "language": "en",
         "title": "The Minimum Size of Qubit Unextendible Product Bases",
     }
     assert len(subject.contributors) == 3
@@ -2015,6 +2018,30 @@ def test_datacite_v4_5():
         "name": "Example Publisher",
         "id": "https://ror.org/04z8jg394",
     }
+    assert subject.titles == [
+        {"language": "en", "title": "Example Title"},
+        {"language": "en", "title": "Example Subtitle", "type": "Subtitle"},
+        {
+            "language": "fr",
+            "title": "Example TranslatedTitle",
+            "type": "TranslatedTitle",
+        },
+        {
+            "language": "en",
+            "title": "Example AlternativeTitle",
+            "type": "AlternativeTitle",
+        },
+    ]
+    assert subject.descriptions == [
+        {"description": "Example Abstract", "language": "en", "type": "Abstract"},
+        {"description": "Example Methods", "language": "en", "type": "Methods"},
+        {
+            "description": "Example TechnicalInfo",
+            "language": "en",
+            "type": "TechnicalInfo",
+        },
+        {"description": "Example Other", "language": "en", "type": "Other"},
+    ]
 
 
 def test_datacite_instrument():
@@ -2030,7 +2057,7 @@ def test_datacite_instrument():
         "contributorRoles": ["Author"],
         "name": "DECTRIS",
         "type": "Organization",
-        "id": "https://www.wikidata.org/wiki/Q107529885"
+        "id": "https://www.wikidata.org/wiki/Q107529885",
     }
     assert subject.contributors[1] == {
         "id": "https://ror.org/02aj13c28",

@@ -410,10 +410,8 @@ def test_instrument():
     schema_org = json.loads(subject.schema_org())
     assert schema_org.get("@id") == "https://doi.org/10.82433/08qf-ee96"
     assert schema_org.get("@type") == "Instrument"
-    assert (
-        schema_org.get("name")
-        == "Pilatus detector at MX station 14.1"
-    )
+    assert schema_org.get("name") == "Pilatus detector at MX station 14.1"
+
 
 #     it 'maremma schema.org JSON' do
 #       text = 'https://github.com/datacite/maremma'
@@ -786,6 +784,7 @@ def test_instrument():
 #     end
 #   end
 # end
+
 
 @pytest.mark.vcr
 def test_json_feed_item_upstream_blog():

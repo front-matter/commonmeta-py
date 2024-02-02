@@ -2,7 +2,6 @@
 """Test datacite_xml reader"""
 from os import path
 
-import pytest
 
 from commonmeta import Metadata
 

@@ -1,5 +1,4 @@
 """Test doi_utils module for commonmeta-py"""
-import pytest
 from commonmeta.doi_utils import (
     doi_as_url,
     doi_from_url,

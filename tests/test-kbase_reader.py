@@ -1,9 +1,7 @@
 # pylint: disable=invalid-name,too-many-lines
 """kbase reader tests"""
 import os
-import pytest
 from commonmeta import Metadata
-from commonmeta.readers.kbase_reader import read_kbase
 
 
 def test_metatranscriptome():
@@ -22,7 +20,7 @@ def test_metatranscriptome():
     assert len(subject.contributors) == 15
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ['Investigation', 'ProjectLeader'],
+        "contributorRoles": ["Investigation", "ProjectLeader"],
         "givenName": "Kelly",
         "familyName": "Wrighton",
     }

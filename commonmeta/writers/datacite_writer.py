@@ -4,29 +4,57 @@ from typing import Optional
 
 from ..base_utils import wrap, compact
 from ..doi_utils import doi_from_url
-from ..constants import (CM_TO_BIB_TRANSLATIONS, CM_TO_CSL_TRANSLATIONS, CM_TO_CR_TRANSLATIONS, CM_TO_DC_TRANSLATIONS, CM_TO_RIS_TRANSLATIONS, CM_TO_SO_TRANSLATIONS, Commonmeta)
+from ..constants import (
+    CM_TO_BIB_TRANSLATIONS,
+    CM_TO_CSL_TRANSLATIONS,
+    CM_TO_CR_TRANSLATIONS,
+    CM_TO_DC_TRANSLATIONS,
+    CM_TO_RIS_TRANSLATIONS,
+    CM_TO_SO_TRANSLATIONS,
+    Commonmeta,
+)
 
 
 def write_datacite(metadata: Commonmeta) -> Optional[str]:
     """Write datacite"""
-    creators = [to_datacite_creator(i) for i in wrap(metadata.contributors) if i.get('contributorRoles', None) == ['Author']]
-    contributors = [to_datacite_creator(i) for i in wrap(metadata.contributors) if i.get('contributorRoles', None) == ['Author']]
+    creators = [
+        to_datacite_creator(i)
+        for i in wrap(metadata.contributors)
+        if i.get("contributorRoles", None) == ["Author"]
+    ]
+    contributors = [
+        to_datacite_creator(i)
+        for i in wrap(metadata.contributors)
+        if i.get("contributorRoles", None) == ["Author"]
+    ]
     related_items = [to_datacite_related_item(i) for i in wrap(metadata.references)]
 
-    resource_type_general = CM_TO_DC_TRANSLATIONS.get(metadata.type, 'Other')
-    resource_type = CM_TO_CR_TRANSLATIONS.get(metadata.type, 'Other')
-    if resource_type_general == resource_type or resource_type_general in ['Dataset', 'JournalArticle', 'Other', 'Preprint', 'Software']:
+    resource_type_general = CM_TO_DC_TRANSLATIONS.get(metadata.type, "Other")
+    resource_type = CM_TO_CR_TRANSLATIONS.get(metadata.type, "Other")
+    if resource_type_general == resource_type or resource_type_general in [
+        "Dataset",
+        "JournalArticle",
+        "Other",
+        "Preprint",
+        "Software",
+    ]:
         resource_type = None
-    types = compact({
-        "resourceTypeGeneral": resource_type_general,
-        "resourceType": resource_type,
-        "schemaOrg": CM_TO_SO_TRANSLATIONS.get(metadata.type, 'CreativeWork'),
-        "citeproc": CM_TO_CSL_TRANSLATIONS.get(metadata.type, 'article'),
-        "bibtex": CM_TO_BIB_TRANSLATIONS.get(metadata.type, 'misc'),
-        "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, 'GEN'),
-    })
-    publication_year = metadata.date.get('published')[:4] if metadata.date.get('published', None) else None
-    
+    types = compact(
+        {
+            "resourceTypeGeneral": resource_type_general,
+            "resourceType": resource_type,
+            "schemaOrg": CM_TO_SO_TRANSLATIONS.get(metadata.type, "CreativeWork"),
+            "citeproc": CM_TO_CSL_TRANSLATIONS.get(metadata.type, "article"),
+            "bibtex": CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc"),
+            "ris": CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN"),
+        }
+    )
+    publication_year = (
+        metadata.date.get("published")[:4]
+        if metadata.date.get("published", None)
+        else None
+    )
+
     def to_datacite_date(date: dict) -> dict:
         """Convert dates to datacite dates"""
         for k, v in date.items():
@@ -34,14 +62,25 @@ def write_datacite(metadata: Commonmeta) -> Optional[str]:
                 "date": v,
                 "dateType": k.title(),
             }
+
     dates = [to_datacite_date(i) for i in wrap(metadata.date)]
 
-    license_ = [compact({
-        "rightsIdentifier": metadata.license.get('id').lower() if metadata.license.get('id', None) else None,
-        'rightsIdentifierScheme': 'SPDX',
-        "rightsUri": metadata.license.get('url', None),
-        'schemeUri': 'https://spdx.org/licenses/',
-    })] if metadata.license else None
+    license_ = (
+        [
+            compact(
+                {
+                    "rightsIdentifier": metadata.license.get("id").lower()
+                    if metadata.license.get("id", None)
+                    else None,
+                    "rightsIdentifierScheme": "SPDX",
+                    "rightsUri": metadata.license.get("url", None),
+                    "schemeUri": "https://spdx.org/licenses/",
+                }
+            )
+        ]
+        if metadata.license
+        else None
+    )
 
     data = compact(
         {
@@ -79,15 +118,15 @@ def to_datacite_creator(creator: dict) -> dict:
         name = creator.get("name", None)
     name_identifiers = creator.get("id", None)
     if name_identifiers:
+
         def format_name_identifier(name_identifier):
             return {
                 "nameIdentifier": name_identifier,
                 "nameIdentifierScheme": "ORCID",
                 "schemeUri": "https://orcid.org",
             }
-        name_identifiers = [
-            format_name_identifier(i) for i in wrap(name_identifiers)
-        ]
+
+        name_identifiers = [format_name_identifier(i) for i in wrap(name_identifiers)]
     return compact(
         {
             "name": name,

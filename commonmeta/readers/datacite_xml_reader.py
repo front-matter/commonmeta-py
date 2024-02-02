@@ -60,13 +60,13 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     titles = [format_title(i) for i in wrap(py_.get(meta, "titles.title"))]
 
     contributors = get_authors(wrap(py_.get(meta, "creators.creator")))
-    contrib = get_authors(
-        wrap(meta.get("contributors", None))
-    )
+    contrib = get_authors(wrap(meta.get("contributors", None)))
     if contrib:
         contributors = contributors + contrib
     publisher = {"name": py_.get(meta, "publisher")}
-    date = get_dates(wrap(py_.get(meta, "dates.date")), meta.get("publicationYear", None))
+    date = get_dates(
+        wrap(py_.get(meta, "dates.date")), meta.get("publicationYear", None)
+    )
 
     def format_description(description):
         """format_description"""
@@ -164,9 +164,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             )
         return None
 
-    geo_locations = (
-        []
-    )  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
+    geo_locations = []  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
 
     def map_size(size):
         """map_size"""
@@ -209,9 +207,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "awardTitle": funding_reference.get("awardTitle", None),
         }
 
-    funding_references = (
-        []
-    )  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
+    funding_references = []  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
 
     files = meta.get("contentUrl", None)
     state = "findable" if id_ or read_options else "not_found"
@@ -257,9 +253,10 @@ def get_xml_references(references: list) -> list:
 
     def is_reference(reference):
         """is_reference"""
-        return reference.get("relationType", None) in ["Cites", "References"] and reference.get(
-            "relatedIdentifierType", None
-        ) in ["DOI", "URL"]
+        return reference.get("relationType", None) in [
+            "Cites",
+            "References",
+        ] and reference.get("relatedIdentifierType", None) in ["DOI", "URL"]
 
     def map_reference(reference):
         """map_reference"""

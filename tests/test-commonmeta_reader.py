@@ -1,7 +1,6 @@
 # pylint: disable=invalid-name
 """Citeproc JSON reader tests"""
 from os import path
-import pytest
 from commonmeta import Metadata
 
 
@@ -11,7 +10,7 @@ def test_default():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10.6.json"
+    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {
@@ -512,14 +511,14 @@ def test_string():
   ],
   "subjects": [],
   "provider": "Crossref",
-  "schema_version": "https://commonmeta.org/commonmeta_v0.10.6.json",
+  "schema_version": "https://commonmeta.org/commonmeta_v0.10",
   "state": "findable"
 }
 """
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10.6.json"
+    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {

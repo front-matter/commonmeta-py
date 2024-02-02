@@ -4,10 +4,6 @@ from os import path
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.inveniordm_reader import (
-    get_inveniordm,
-    read_inveniordm,
-)
 
 
 @pytest.mark.vcr
