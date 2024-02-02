@@ -3,7 +3,7 @@ from os import path
 import json
 from typing import Optional, Any
 import yaml
-from fastjsonschema import JsonSchemaException
+from jsonschema import validate, ValidationError
 
 from .readers.crossref_reader import (
     get_crossref,
@@ -185,9 +185,8 @@ class Metadata:
             )
             with open(file_path, encoding="utf-8") as file:
                 schema = json.load(file)
-            # validate = compile(schema)
-            return file_path
-        except JsonSchemaException as error:
+            validate(instance=self.commonmeta, schema=schema)
+        except ValidationError as error:
             return error
 
     def commonmeta(self):
