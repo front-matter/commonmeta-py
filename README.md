@@ -51,7 +51,7 @@ _Later_: we plan to implement this format in a later release.
 
 ## Documentation
 
-Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://commonmeta-py.docs.front-matter.io) website and includes several interactive Jupyter Notebooks .
+Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://python.commonmeta.org/) website and includes several interactive Jupyter Notebooks .
 
 ## Meta
 
