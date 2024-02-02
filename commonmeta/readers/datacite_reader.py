@@ -175,7 +175,10 @@ def get_descriptions(descriptions: list) -> list:
         return compact(
             {
                 "description": description.get("description", None),
-                "type": description.get("descriptionType") if description.get("descriptionType", None) in ["Abstract", "Methods", "TechnicalInfo", "Other"] else "Other",
+                "type": description.get("descriptionType")
+                if description.get("descriptionType", None)
+                in ["Abstract", "Methods", "TechnicalInfo", "Other"]
+                else "Other",
                 "language": description.get("lang", None),
             }
         )
