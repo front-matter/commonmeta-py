@@ -54,6 +54,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         additional_type = None
     else:
         additional_type = resource_type
+    titles = get_titles(wrap(meta.get("titles", None)))
 
     contributors = get_authors(wrap(meta.get("creators", None)))
     contrib = get_authors(wrap(meta.get("contributors", None)))
@@ -85,7 +86,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "doi": doi_from_url(id_) if id_ else None,
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
-        "titles": compact(meta.get("titles", None)),
+        "titles": titles,
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
@@ -164,25 +165,46 @@ def get_descriptions(descriptions: list) -> list:
         """is_description"""
         return description.get("descriptionType", None) in [
             "Abstract",
+            "Summary",
             "Methods",
-            "SeriesInformation",
-            "TableOfContents",
             "TechnicalInfo",
             "Other",
         ]
 
     def map_description(description):
         """map_description"""
-        return {
-            "description": description.get("description", None),
-            "descriptionType": description.get("descriptionType", None),
-        }
+        return compact(
+            {
+                "description": description.get("description", None),
+                "type": description.get("descriptionType", None) or "Other",
+                "language": description.get("lang", None),
+            }
+        )
 
     return [
         map_description(i)
         for i in descriptions
         if is_description(i) and i.get("description", None) is not None
     ]
+
+
+def get_titles(titles: list) -> list:
+    """get_titles"""
+
+    def map_title(title):
+        """map_title"""
+        return compact(
+            {
+                "title": title.get("title", None),
+                "type": title.get("titleType")
+                if title.get("titleType", None)
+                in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+                else None,
+                "language": title.get("lang", None),
+            }
+        )
+
+    return [map_title(i) for i in titles if i.get("title", None) is not None]
 
 
 def get_publisher(publisher: dict) -> dict:
