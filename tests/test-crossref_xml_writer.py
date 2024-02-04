@@ -14,8 +14,8 @@ def test_write_crossref_xml_header():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     lines = subject.write(to="crossref_xml").decode().split("\n")
-    assert lines[0] == "<?xml version='1.0' encoding='UTF-8'?>"
-    # assert lines[1] == '<doi_batch xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="5.3.1" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd">'
+    assert lines[0] == '<?xml version="1.0" encoding="UTF-8"?>'
+    assert lines[1] == '<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1">'
 
 
 def test_write_metadata_as_crossref_xml():
@@ -26,6 +26,7 @@ def test_write_metadata_as_crossref_xml():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    print(crossref_xml)
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 27

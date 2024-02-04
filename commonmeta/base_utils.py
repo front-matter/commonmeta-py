@@ -73,6 +73,7 @@ def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
     if kwargs.get("dialect", None) == "crossref":
         # remove namespaces from xml
         namespaces = {
+            "http://www.crossref.org/schema/5.3.1": None,
             "http://www.crossref.org/qrschema/3.0": None,
             "http://www.crossref.org/xschema/1.0": None,
             "http://www.crossref.org/xschema/1.1": None,
