@@ -8,7 +8,7 @@ def test_ruby_cff():
     """ruby-cff"""
     string = "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1184077"
     assert subject.url == "https://github.com/citation-file-format/ruby-cff"
     assert subject.type == "Software"
@@ -18,9 +18,14 @@ def test_ruby_cff():
             "familyName": "Haines",
             "givenName": "Robert",
             "id": "https://orcid.org/0000-0002-9538-7919",
+            "contributorRoles": ["Author"],
             "type": "Person",
         },
-        {"name": "The Ruby Citation File Format Developers", "type": "Organization"},
+        {
+            "name": "The Ruby Citation File Format Developers",
+            "contributorRoles": ["Author"],
+            "type": "Organization",
+        },
     ]
     assert subject.titles == [{"title": "Ruby CFF Library"}]
     assert subject.descriptions[0]["description"].startswith(
@@ -52,7 +57,8 @@ def test_cff_converter_python():
     """cff-converter-python"""
     string = "https://github.com/citation-file-format/cff-converter-python/blob/main/CITATION.cff"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid is False
+    assert subject.errors == "'id' is a required property"
     assert subject.id is None
     assert subject.url == "https://github.com/citation-file-format/cffconvert"
     assert subject.type == "Software"
@@ -62,6 +68,7 @@ def test_cff_converter_python():
         "familyName": "Spaaks",
         "givenName": "Jurriaan H.",
         "id": "https://orcid.org/0000-0002-7064-4069",
+        "contributorRoles": ["Author"],
         "type": "Person",
     }
     assert subject.titles == [{"title": "cffconvert"}]
@@ -98,7 +105,7 @@ def test_github_repo():
     """github repo"""
     string = "https://github.com/kyleliang919/Long-context-transformers"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7651809"
     assert subject.url == "https://github.com/kyleliang919/Long-context-transformers"
     assert subject.type == "Software"
@@ -106,6 +113,7 @@ def test_github_repo():
         {
             "type": "Person",
             "id": "https://orcid.org/0000-0002-0055-8659",
+            "contributorRoles": ["Author"],
             "givenName": "Kaizhao",
             "familyName": "Liang",
         }

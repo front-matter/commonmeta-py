@@ -176,4 +176,48 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiYGJgp++SUKbvml
+        eSk2+hBBLpsMQzsk0QxDOy6bAruQjFSFotTC0tTiktQUhdAgH4XyxGKFvPwShTSQboX8PIWSjFSF
+        4tSistQiPQXPNIXK/FKF1LyS1KLUFLAUSE9uYl5pYk5OpUJBTmpicapCckZqcjZIZZFCcUFqTk5m
+        XrpCYl6KQklRpUJiemJmnp6NfoEdFwCJiwL3zwAAAA==
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - text/html; charset=utf-8
+      date:
+      - Sun, 04 Feb 2024 09:42:47 GMT
+      fly-request-id:
+      - 01HNSQZF6CMNW2SP9G1TYS498Y-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '15'
+      ratelimit-reset:
+      - '0'
+      server:
+      - Fly/ba9e227a (2024-01-26)
+      transfer-encoding:
+      - chunked
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
 version: 1

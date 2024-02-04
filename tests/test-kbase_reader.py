@@ -10,8 +10,9 @@ def test_metatranscriptome():
         os.path.dirname(__file__), "fixtures", "JDP_5fa4fb4647675a20c852c60b_kbcms.json"
     )
     subject = Metadata(string)
-    assert subject.is_valid()
-    assert subject.id is None
+    assert subject.is_valid is False
+    assert subject.errors == "'url' is a required property"
+    assert subject.id == "5fa4fb4647675a20c852c60b"
     assert subject.type == "Dataset"
     assert subject.url is None
     assert subject.titles[0] == {
@@ -65,7 +66,8 @@ def test_gulf_of_mexico():
         os.path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
     )
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid is False
+    assert subject.errors == "'url' is a required property"
     assert subject.id == "https://doi.org/10.25982/86723.65/1778009"
     assert subject.type == "Dataset"
     assert subject.url is None

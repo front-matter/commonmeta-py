@@ -3,14 +3,18 @@
 import pytest
 
 from commonmeta import Metadata
-
+from commonmeta.readers.json_feed_reader import (
+    get_json_feed_item_uuid,
+    get_json_feed_unregistered,
+    get_json_feed_updated,
+)
 
 @pytest.mark.vcr
 def test_wordpress_with_references():
     "Wordpress with references"
     string = "https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
     assert subject.type == "Article"
     assert (
@@ -97,7 +101,7 @@ def test_ghost_with_institutional_author():
     "ghost with institutional author"
     string = "https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/tfahc-rp566"
     assert subject.type == "Article"
     assert (
@@ -179,7 +183,7 @@ def test_ghost_with_personal_name_parsing():
     "ghost with with personal name parsing"
     string = "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/kj95y-gp867"
     assert subject.type == "Article"
     assert subject.url == "https://www.ideasurg.pub/residency-visual-abstract"
@@ -258,7 +262,7 @@ def test_blog_post_without_doi():
     "blog post without DOI"
     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert (
         subject.id
         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
@@ -285,7 +289,7 @@ def test_medium_post_with_institutional_author():
     """blog post with institutional author"""
     string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
     assert subject.type == "Article"
     assert (
@@ -301,3 +305,13 @@ def test_medium_post_with_institutional_author():
         "contributorRoles": ["Author"],
         "name": "Research Graph",
     }
+
+
+def test_get_json_feed_item():
+    """Test get_json_feed_item_id"""
+    item = get_json_feed_item_uuid("1357c246-b632-462a-9876-753ef8b6927d")
+    assert item["guid"] == "http://gigasciencejournal.com/blog/?p=5621"
+
+def test_get_json_feed_item_not_found():
+    """Test get_json_feed_item_id not found"""
+    assert {"error":"An error occured."} == get_json_feed_item_uuid("notfound")

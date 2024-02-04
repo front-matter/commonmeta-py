@@ -8,7 +8,7 @@ def test_default():
     "default"
     string = path.join(path.dirname(__file__), "fixtures", "commonmeta.json")
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"
@@ -516,7 +516,7 @@ def test_string():
 }
 """
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"

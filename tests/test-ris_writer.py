@@ -12,7 +12,7 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    ris = subject.ris().split("\r\n")
+    ris = subject.write(to="ris").split("\r\n")
     assert ris[0] == "TY  - JOUR"
     assert (
         ris[1]
@@ -40,7 +40,7 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    ris = subject.ris().split("\r\n")
+    ris = subject.write(to="ris").split("\r\n")
     assert ris[0] == "TY  - JOUR"
     assert (
         ris[1]

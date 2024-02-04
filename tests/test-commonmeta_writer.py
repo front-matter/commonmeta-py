@@ -12,7 +12,7 @@ def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    commonmeta = json.loads(subject.commonmeta())
+    commonmeta = json.loads(subject.write())
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
@@ -43,7 +43,7 @@ def test_journal_article_crossref_xml():
     "journal article crossref_xml"
     subject = Metadata("10.7554/elife.01567", via="crossref_xml")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    commonmeta = json.loads(subject.commonmeta())
+    commonmeta = json.loads(subject.write())
 
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
@@ -75,10 +75,10 @@ def test_datacite_schema_45():
     """datacite schema 4.5"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/b09z-4k37"
 
-    commonmeta = json.loads(subject.commonmeta())
+    commonmeta = json.loads(subject.write())
     assert commonmeta["id"] == "https://doi.org/10.82433/b09z-4k37"
     assert commonmeta["url"] == "https://example.com"
     assert commonmeta["type"] == "Dataset"

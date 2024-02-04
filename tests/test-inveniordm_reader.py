@@ -11,7 +11,7 @@ def test_software():
     """Software"""
     string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
     assert subject.url == "https://zenodo.org/records/7752775"
@@ -80,9 +80,9 @@ def test_presentation():
     """Presentation"""
     string = "https://zenodo.org/api/records/8173303"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
-    assert subject.type == "Speech"
+    assert subject.type == "Presentation"
     assert subject.url == "https://zenodo.org/records/8173303"
     assert subject.titles[0] == {
         "title": "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
@@ -139,7 +139,7 @@ def test_publication():
     """Publication"""
     string = "https://zenodo.org/api/records/5244404"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://zenodo.org/records/5244404"
@@ -211,7 +211,7 @@ def test_dataset():
     """Dataset"""
     string = "https://zenodo.org/api/records/7834392"
     subject = Metadata(string)
-    assert subject.is_valid()
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
     assert subject.url == "https://zenodo.org/records/7834392"
@@ -227,7 +227,7 @@ def test_dataset():
         "familyName": "Banda",
         "affiliation": [{"name": "Georgia State University"}],
     }
-    assert subject.license == {"id": "other-pd", "url": None}
+    assert subject.license == {"id": "other-pd"}
     assert subject.date == {
         "published": "2023-04-16",
         "updated": "2023-04-17T14:26:45Z",

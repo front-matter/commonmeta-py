@@ -95,7 +95,7 @@ def test_doi_with_data_citation():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.7554/elife.01567"
     assert (
@@ -167,7 +167,7 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1155/2012/291294"
     assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294"
@@ -200,7 +200,7 @@ def test_only_first_page():
     assert subject.id == "https://doi.org/10.1371/journal.pone.0214986"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1371/journal.pone.0214986"
     assert csl.get("URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
@@ -226,7 +226,7 @@ def test_missing_creator():
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.3390/publications6020015"
     assert csl.get("URL") == "https://www.mdpi.com/2304-6775/6/2/15"
@@ -321,7 +321,7 @@ def test_organization_author():
     assert subject.id == "https://doi.org/10.1186/s13742-015-0103-4"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1186/s13742-015-0103-4"
     assert (
