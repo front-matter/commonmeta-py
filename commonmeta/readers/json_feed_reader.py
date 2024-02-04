@@ -290,7 +290,7 @@ def get_json_feed_updated():
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     posts = response.json()
-    return posts[0].get("id") if posts else None            
+    return posts[0].get("id") if posts else None
 
 
 def get_json_feed_item_uuid(id: str):
@@ -302,7 +302,23 @@ def get_json_feed_item_uuid(id: str):
     if response.status_code != 200:
         return response.json()
     post = response.json()
-    return py_.pick(post, ["id","guid", "url", "doi", "title", "blog.slug", "blog.issn", "blog.status", "published_at", "updated_at", "indexed_at"])
+    return py_.pick(
+        post,
+        [
+            "id",
+            "guid",
+            "url",
+            "doi",
+            "title",
+            "blog.slug",
+            "blog.issn",
+            "blog.prefix",
+            "blog.status",
+            "published_at",
+            "updated_at",
+            "indexed_at",
+        ],
+    )
 
 
 def get_json_feed_blog_slug(id: str):

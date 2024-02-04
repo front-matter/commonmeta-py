@@ -28,8 +28,7 @@ def generate_crossref_xml(metadata: Commonmeta) -> str:
     body = insert_crossref_work(metadata, body)
     return etree.tostring(
         xml,
-        encoding="UTF-8",
-        xml_declaration=True,
+        doctype='<?xml version="1.0" encoding="UTF-8"?>',
         pretty_print=True,
     )
 
@@ -526,19 +525,5 @@ def insert_crossref_abstract(metadata, xml):
 
 def crossref_root():
     """Crossref root with namespaces"""
-    attr_qname = etree.QName(
-        "http://www.w3.org/2001/XMLSchema-instance", "schemaLocation"
-    )
-    nsmap = {
-        # None: "http://www.crossref.org/schema/5.3.1",
-        "jats": "http://www.ncbi.nlm.nih.gov/JATS1",
-        "fr": "http://www.crossref.org/fundref.xsd",
-        "mml": "http://www.w3.org/1998/Math/MathML",
-    }
-    elem = etree.Element(
-        "doi_batch",
-        {attr_qname: "https://www.crossref.org/schemas/crossref5.3.1.xsd"},
-        nsmap=nsmap,
-        version="5.3.1",
-    )
-    return elem
+    doi_batch = """<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1"></doi_batch>"""
+    return etree.fromstring(doi_batch)
