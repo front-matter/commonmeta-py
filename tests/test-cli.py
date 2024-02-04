@@ -1,7 +1,7 @@
 """Test cli"""
 import pytest
 from click.testing import CliRunner
-from commonmeta.cli import convert, encode, decode, json_feed
+from commonmeta.cli import convert, encode, decode, json_feed, encode_by_id
 
 
 @pytest.mark.vcr
@@ -123,3 +123,14 @@ def test_decode():
     result = runner.invoke(decode, [string])
     assert result.exit_code == 0
     assert "1053628090261604" in result.output
+
+
+@pytest.mark.vcr
+def test_encode_by_id():
+    """Test encode by id"""
+    runner = CliRunner()
+    string = "d0ca6fa3-3a93-46d3-b820-446938d78f70"
+    result = runner.invoke(encode_by_id, [string])
+    assert result.exit_code == 0
+    assert "https://doi.org/10.53731/" in result.output
+

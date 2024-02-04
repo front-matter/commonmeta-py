@@ -61,8 +61,10 @@ def decode(doi):
 
 
 @cli.command()
-@click.argument("slug", type=str, required=True)
-def encode_by_slug(slug):
+@click.argument("id", type=str, required=True)
+def encode_by_id(id):
+    post = get_json_feed_item_uuid(id)
+    prefix = py_.get(post, "blog.prefix")
     if validate_prefix(prefix) is None:
         return None
     output = encode_doi(prefix)
