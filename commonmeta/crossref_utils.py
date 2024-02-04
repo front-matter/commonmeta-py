@@ -381,8 +381,8 @@ def insert_crossref_publication_date(metadata, xml):
         xml, "publication_date", {"media_type": "online"}
     )
     etree.SubElement(publication_date, "year").text = str(pub_date.year)
-    etree.SubElement(publication_date, "month").text = f"{pub_date.month:02d}"
-    etree.SubElement(publication_date, "day").text = f"{pub_date.day:02d}"
+    etree.SubElement(publication_date, "month").text = f"{pub_date.month:d}"
+    etree.SubElement(publication_date, "day").text = f"{pub_date.day:d}"
     return xml
 
 
@@ -394,8 +394,8 @@ def insert_posted_date(metadata, xml):
 
     posted_date = etree.SubElement(xml, "posted_date", {"media_type": "online"})
     etree.SubElement(posted_date, "year").text = str(pub_date.year)
-    etree.SubElement(posted_date, "month").text = f"{pub_date.month:02d}"
-    etree.SubElement(posted_date, "day").text = f"{pub_date.day:02d}"
+    etree.SubElement(posted_date, "month").text = f"{pub_date.month:d}"
+    etree.SubElement(posted_date, "day").text = f"{pub_date.day:d}"
     return xml
 
 
