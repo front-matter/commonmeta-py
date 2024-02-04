@@ -1,6 +1,6 @@
 [tool.poetry]
 name="commonmeta-py"
-version="0.12.0"
+version="0.13.0"
 repository = "https://github.com/front-matter/commonmeta-py"
 homepage = "https://python.commonmeta.org"
 documentation = "https://python.commonmeta.org"
@@ -14,6 +14,7 @@ packages = [{include = "commonmeta"}]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0.0"
 docutils = "^0.19"
+setuptools = "^69.0"
 sphinxcontrib-issuetracker = "^0.11"
 sphinx-autodoc-typehints = "^1.19"
 tqdm = "^4.64"
@@ -37,7 +38,7 @@ datacite = "^1.1"
 xmltodict = "^0.12"
 types-xmltodict = "^0.13"
 nameparser = "^1.1.2"
-pycountry = "^22.3.5"
+pycountry = "^23.12.11"
 click = "^8.1.7"
 quartodoc = "^0.7.1"
 jupyterlab = "^4.0.9"
@@ -47,6 +48,10 @@ vcrpy = "^5.1.0"
 lxml = "^5.1.0"
 python-dateutil = "^2.8.2"
 nh3 = "^0.2.14"
+pyjwt = "^2.8.0"
+
+[tool.poetry.scripts]
+commonmeta = "commonmeta.cli:cli"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "*"

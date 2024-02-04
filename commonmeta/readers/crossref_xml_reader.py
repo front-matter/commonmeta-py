@@ -31,6 +31,7 @@ from ..constants import (
     Commonmeta,
     CR_TO_CM_TRANSLATIONS,
     CROSSREF_CONTAINER_TYPES,
+    CR_TO_CM_CONTAINER_TRANSLATIONS,
 )
 
 
@@ -453,7 +454,7 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     issue = py_.get(meta, f"{container_type}.{container_type}_issue.issue")
     return compact(
         {
-            "type": py_.pascal_case(container_type) if container_type else None,
+            "type": CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None),
             "identifier": issn or isbn,
             "identifierType": "ISSN" if issn else "ISBN" if isbn else None,
             "title": container_title,

@@ -149,6 +149,7 @@ def cff_contributors(contributors):
             return compact(
                 {
                     "id": id_,
+                    "contributorRoles": ["Author"],
                     "type": "Person",
                     "givenName": given_name,
                     "familyName": family_name,
@@ -156,6 +157,7 @@ def cff_contributors(contributors):
                 }
             )
         return {
+            "contributorRoles": ["Author"],
             "type": "Organization",
             "name": i.get("name", None) or i.get("#text", None),
         }

@@ -16,6 +16,7 @@ from .base_utils import wrap, compact, parse_attributes
 from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
 from .constants import DATACITE_CONTRIBUTOR_TYPES
 
+
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
     "https://creativecommons.org/licenses/by/2.0": "https://creativecommons.org/licenses/by/2.0/legalcode",
@@ -325,7 +326,7 @@ def dict_to_spdx(dct: dict) -> dict:
         None,
     )
     if license_ is None:
-        return dct
+        return compact(dct)
     #   license = spdx.find do |l|
     #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsUri']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
     #   end
@@ -980,8 +981,9 @@ def from_curie(id: Optional[str]) -> Optional[str]:
         return normalize_orcid(id.split(":")[1])
     elif type_ == "URL":
         return normalize_url(id.split(":")[1])
+    elif type_ == "JDP":
+        return id.split(":")[1]
     # TODO: resolvable url for other identifier types
-    # elif identifier_type == "JDP":
     return None
 
 

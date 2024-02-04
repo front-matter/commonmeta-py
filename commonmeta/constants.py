@@ -104,7 +104,7 @@ CSL_TO_CM_TRANSLATIONS = {
     "review-book": "Review",
     "software": "Software",
     "song": "Audiovisual",
-    "speech": "Speech",
+    "speech": "Presentation",
     "standard": "Standard",
     "thesis": "Dissertation",
     "treaty": "LegalDocument",
@@ -134,7 +134,7 @@ CM_TO_CSL_TRANSLATIONS = {
     "Report": "report",
     "Review": "review",
     "Software": "software",
-    "Speech": "speech",
+    "Presentation": "speech",
     "Standard": "standard",
     "Dissertation": "thesis",
     "WebPage": "webpage",
@@ -161,7 +161,7 @@ CR_TO_CM_TRANSLATIONS = {
     "Journal": "Journal",
     "Monograph": "Book",
     "Other": "Other",
-    "PeerReview": "Review",
+    "PeerReview": "PeerReview",
     "PostedContent": "Article",
     "ProceedingsArticle": "ProceedingsArticle",
     "ProceedingsSeries": "ProceedingsSeries",
@@ -220,7 +220,7 @@ DC_TO_CM_TRANSLATIONS = {
     "OutputManagementPlan": "OutputManagementPlan",
     "PeerReview": "PeerReview",
     "PhysicalObject": "PhysicalObject",
-    "Poster": "Speech",
+    "Poster": "Presentation",
     "Preprint": "Article",
     "Report": "Report",
     "Service": "Service",
@@ -251,8 +251,8 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
     "annotationcollection": "Collection",
     "taxonomictreatment": "Collection",
     "peerreview": "PeerReview",
-    "poster": "Speech",
-    "presentation": "Speech",
+    "poster": "Presentation",
+    "presentation": "Presentation",
     "dataset": "Dataset",
     "figure": "Image",
     "plot": "Image",
@@ -419,7 +419,7 @@ CM_TO_SO_TRANSLATIONS = {
     "JournalArticle": "ScholarlyArticle",
     "LegalDocument": "Legislation",
     "Software": "SoftwareSourceCode",
-    "Speech": "PresentationDigitalDocument",
+    "Presentation": "PresentationDigitalDocument",
 }
 
 SO_TO_DC_RELATION_TYPES = {
@@ -459,6 +459,25 @@ COMMONMETA_CONTAINER_TYPES = {
     "JournalIssue": "Journal",
     "Monograph": "Book",
     "ProceedingsArticle": "Proceedings",
+}
+
+CR_TO_CM_CONTAINER_TRANSLATIONS = {
+    "book": "Book",
+    "book-series": "BookSeries",
+    "database": "DataCatalog",
+    "journal": "Journal",
+    "proceedings": "Proceedings",
+}
+
+DC_TO_CM_CONTAINER_TRANSLATIONS = {
+    "Book": "Book",
+    "BookSeries": "BookSeries",
+    "DataRepository": "DataCatalog",
+    "Journal": "Journal",
+    "Periodical": "Periodical",
+    "Proceedings": "ProceedingsSeries",
+    "Repository": "Repository",
+    "Series": "Series",
 }
 
 DATACITE_CONTRIBUTOR_TYPES = {

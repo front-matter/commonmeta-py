@@ -271,3 +271,59 @@ def get_files(pid: str) -> Optional[list]:
             "url": f"https://api.rogue-scholar.org/posts/{doi}.xml",
         },
     ]
+
+
+def get_json_feed_unregistered():
+    """get JSON Feed items not registered as DOIs"""
+    url = "https://api.rogue-scholar.org/posts/unregistered"
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        return {"string": None, "state": "not_found"}
+    posts = response.json()
+    return posts[0].get("id") if posts else None
+
+
+def get_json_feed_updated():
+    """get JSON Feed items that have been updated"""
+    url = "https://api.rogue-scholar.org/posts/updated"
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        return {"string": None, "state": "not_found"}
+    posts = response.json()
+    return posts[0].get("id") if posts else None            
+
+
+def get_json_feed_item_uuid(id: str):
+    """get JSON Feed item by uuid"""
+    if id is None:
+        return None
+    url = f"https://api.rogue-scholar.org/posts/{id}"
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        return response.json()
+    post = response.json()
+    return py_.pick(post, ["id","guid", "url", "doi", "title", "blog.slug", "blog.issn", "blog.status", "published_at", "updated_at", "indexed_at"])
+
+
+def get_json_feed_blog_slug(id: str):
+    """get JSON Feed item by id and return blog slug"""
+    if id is None:
+        return None
+    url = f"https://api.rogue-scholar.org/posts/{id}"
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        return response.json()
+    post = response.json()
+    return py_.get(post, "blog.slug", None)
+
+
+def get_json_feed_blog_slug(id: str):
+    """get JSON Feed item by id and return blog slug"""
+    if id is None:
+        return None
+    url = f"https://api.rogue-scholar.org/posts/#{id}"
+    response = requests.get(url, timeout=10)
+    if response.status_code != 200:
+        return None
+    post = response.json()
+    return py_.get(post, "blog.slug", None)

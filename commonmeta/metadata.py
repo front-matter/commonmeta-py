@@ -30,7 +30,7 @@ from .readers.csl_reader import read_csl
 from .readers.cff_reader import get_cff, read_cff
 from .readers.json_feed_reader import (
     get_json_feed_item,
-    read_json_feed_item,
+    read_json_feed_item
 )
 from .readers.inveniordm_reader import (
     get_inveniordm,
@@ -176,19 +176,51 @@ class Metadata:
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
+        
+        # not found
+        self.exists = meta.get("state", None) != "not_found"
+        
+        # Catch errors in the reader, then validate against JSON schema for Commonmeta
+        self.errors = meta.get("errors", None) or self.json_schema_errors()
+        self.is_valid = self.exists and self.errors is None
 
-    def is_valid(self) -> Any:
+    
+    def json_schema_errors(self) -> Any:
         """validate against JSON schema"""
         try:
             file_path = path.join(
-                path.dirname(__file__), "resources/commonmeta_v0.10.7.json"
+                path.dirname(__file__), "resources/commonmeta_v0.10.8.json"
             )
             with open(file_path, encoding="utf-8") as file:
                 schema = json.load(file)
-            return validate(instance=self.commonmeta(), schema=schema)
+            instance = json.loads(self.write())
+            return validate(instance=instance, schema=schema)
         except ValidationError as error:
-            return error.message
+            return (error.message)
 
+
+    def write(self, to: str="commonmeta") -> str:
+        """convert metadata into different formats"""
+        if to == "commonmeta":
+            return write_commonmeta(self)
+        elif to == "bibtex":
+            return write_bibtex(self)
+        elif to == "csl":
+            return write_csl(self)
+        elif to == "citation":
+            return write_citation(self)
+        elif to == "ris":
+            return write_ris(self)
+        elif to == "schema_org":
+            return write_schema_org(self)
+        elif to == "datacite":
+            return write_datacite(self)
+        elif to == "crossref_xml":
+            return write_crossref_xml(self)
+        else:
+            raise ValueError("No output format found")
+
+    # legacy methods, to be removed in version 0.14.0
     def commonmeta(self):
         """Commonmeta"""
         return write_commonmeta(self)

@@ -116,7 +116,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         # other properties
         "files": files,
         "container": container,
-        "provider": "Zenodo",
+        "provider": "InvenioRDM",
         "state": state,
         # "schema_version": meta.get("schemaVersion", None),
     } | read_options

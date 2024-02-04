@@ -23,6 +23,7 @@ from ..doi_utils import (
 )
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
+    CR_TO_CM_CONTAINER_TRANSLATIONS,
     CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
@@ -212,6 +213,7 @@ def get_file(file: dict) -> dict:
 def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
     """Get container from Crossref"""
     container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
+    container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
     issn = (
         next(
             (
@@ -267,7 +269,7 @@ def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
 
     return compact(
         {
-            "type": py_.pascal_case(container_type) if container_type else None,
+            "type": container_type,
             "identifier": issn or isbn,
             "identifierType": "ISSN" if issn else "ISBN" if isbn else None,
             "title": container_title,

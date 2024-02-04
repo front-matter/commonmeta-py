@@ -1,5 +1,6 @@
 """datacite reader for Commonmeta"""
 from collections import defaultdict
+from typing import Optional
 import requests
 from pydash import py_
 
@@ -15,7 +16,7 @@ from ..author_utils import get_authors
 from ..date_utils import normalize_date_dict
 from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
 from ..constants import (
-    DC_TO_CM_TRANSLATIONS,
+    DC_TO_CM_TRANSLATIONS, DC_TO_CM_CONTAINER_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -67,7 +68,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     elif isinstance(publisher, dict):
         publisher = get_publisher(publisher)
     date = get_dates(wrap(meta.get("dates", None)), meta.get("publicationYear", None))
-    container = meta.get("container", None)
+    container = get_container(meta.get("container", None))
     license_ = meta.get("rightsList", [])
     if len(license_) > 0:
         license_ = normalize_cc_url(license_[0].get("rightsUri", None))
@@ -78,7 +79,8 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
     descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
-
+    geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
+    
     return {
         # required properties
         "id": id_,
@@ -99,7 +101,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": descriptions,
-        "geo_locations": wrap(meta.get("geoLocations", None)),
+        "geo_locations": presence(geo_locations),
         "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
         # other properties
@@ -118,29 +120,17 @@ def get_references(references: list) -> list:
         """is_reference"""
         return reference.get("relationType", None) in ["Cites", "References"]
 
-    def map_reference(reference):
+    def map_reference(reference, index):
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
-        if identifier and identifier_type == "DOI":
-            reference["doi"] = normalize_doi(identifier)
-        elif identifier and identifier_type == "URL":
-            reference["url"] = normalize_url(identifier)
-        reference = py_.omit(
-            reference,
-            [
-                "relationType",
-                "relatedIdentifier",
-                "relatedIdentifierType",
-                "resourceTypeGeneral",
-                "schemeType",
-                "schemeUri",
-                "relatedMetadataScheme",
-            ],
-        )
-        return reference
+        return compact({
+            "key": f"ref{index + 1}",
+            "doi": normalize_doi(identifier) if identifier_type == "DOI" else None,
+            "url": normalize_url(identifier) if identifier_type == "URL" else None,
+        })
 
-    return [map_reference(i) for i in references if is_reference(i)]
+    return [map_reference(i, index) for index, i in enumerate(references) if is_reference(i)]
 
 
 def get_file(file: str) -> dict:
@@ -160,15 +150,6 @@ def get_dates(dates: list, publication_year) -> dict:
 
 def get_descriptions(descriptions: list) -> list:
     """get_descriptions"""
-
-    def is_description(description):
-        """is_description"""
-        return description.get("descriptionType", None) in [
-            "Abstract",
-            "Methods",
-            "TechnicalInfo",
-            "Other",
-        ]
 
     def map_description(description):
         """map_description"""
@@ -213,4 +194,52 @@ def get_publisher(publisher: dict) -> dict:
     """get_publisher"""
     return compact(
         {"id": format_name_identifier(publisher), "name": publisher.get("name", None)}
+    )
+    
+    
+def get_geolocation(geolocations: list) -> list:
+    """get_geolocation"""
+    
+    def geo_location_point(point: dict):
+        """geo_location_point, convert lat and long to int"""
+        return {
+                "pointLatitude": float(point.get("pointLatitude")) if point.get("pointLatitude", None) else None,
+                "pointLongitude": float(point.get("pointLongitude")) if point.get("pointLongitude", None) else None,
+            }
+    
+    
+    def geo_location_box(box: dict):
+        """geo_location_box, convert lat and long to int"""
+        return {
+                "eastBoundLongitude": float(box.get("eastBoundLongitude")) if box.get("eastBoundLongitude", None) else None,
+                "northBoundLatitude": float(box.get("northBoundLatitude")) if box.get("northBoundLatitude", None) else None,
+                "southBoundLatitude": float(box.get("southBoundLatitude")) if box.get("southBoundLatitude", None) else None,
+                "westBoundLongitude": float(box.get("westBoundLongitude")) if box.get("westBoundLongitude", None) else None,
+            }
+
+    
+    return [
+        compact(
+            {
+                "geoLocationPoint": geo_location_point(location.get("geoLocationPoint")) if location.get("geoLocationPoint", None) else None,
+                "geoLocationBox": geo_location_box(location.get("geoLocationBox")) if location.get("geoLocationBox", None) else None,
+                "geoLocationPlace": location.get("geoLocationPlace", None),
+            }
+        )
+        for location in geolocations
+    ]
+    
+    
+def get_container(container: Optional[dict]) -> dict or None:
+    """get_container"""
+    if container is None:
+        return None
+    type_ = DC_TO_CM_CONTAINER_TRANSLATIONS.get(container.get("type"), None) if container.get("type", None) else None
+    
+    return compact(
+        {
+            "id": container.get("identifier", None),
+            "type": type_,
+            "title": container.get("title", None),
+        }
     )

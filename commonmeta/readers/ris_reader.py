@@ -2,6 +2,7 @@
 from typing import Optional
 
 from ..utils import compact, normalize_url, wrap
+from ..base_utils import presence
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_parts
 from ..doi_utils import normalize_doi, doi_from_url
@@ -56,6 +57,10 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
         )
     else:
         container = None
+    if meta.get("PB", None) is not None:
+        publisher = {"name": meta.get("PB")}
+    else:
+        publisher = None
     subjects = wrap(meta.get("KW", None))
     state = "findable" if meta.get("DO", None) or read_options else "not_found"
 
@@ -67,7 +72,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
         "titles": [{"title": meta.get("T1", None)}],
         "descriptions": descriptions,
         "contributors": get_authors(authors),
-        "publisher": meta.get("PB", "(:unav)"),
+        "publisher": presence(publisher),
         "container": container,
         # 'related_identifiers': related_identifiers,
         "date": date,
