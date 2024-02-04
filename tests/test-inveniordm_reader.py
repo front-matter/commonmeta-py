@@ -261,7 +261,7 @@ def test_dataset():
     ]
     assert subject.container == {
         "id": "https://www.re3data.org/repository/r3d100010468",
-        "type": "DataCatalog",
+        "type": "DataRepository",
         "title": "Zenodo",
     }
     assert subject.language == "eng"

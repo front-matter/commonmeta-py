@@ -118,7 +118,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         )
         container = compact(
             {
-                "type": "DataCatalog",
+                "type": "DataRepository",
                 "title": parse_attributes(
                     from_schema_org(meta.get("includedInDataCatalog", None)),
                     content="name",

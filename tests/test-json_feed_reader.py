@@ -9,6 +9,7 @@ from commonmeta.readers.json_feed_reader import (
     get_json_feed_updated,
 )
 
+
 @pytest.mark.vcr
 def test_wordpress_with_references():
     "Wordpress with references"
@@ -312,6 +313,19 @@ def test_get_json_feed_item():
     item = get_json_feed_item_uuid("1357c246-b632-462a-9876-753ef8b6927d")
     assert item["guid"] == "http://gigasciencejournal.com/blog/?p=5621"
 
+
 def test_get_json_feed_item_not_found():
     """Test get_json_feed_item_id not found"""
-    assert {"error":"An error occured."} == get_json_feed_item_uuid("notfound")
+    assert {"error": "An error occured."} == get_json_feed_item_uuid("notfound")
+
+
+@pytest.mark.vcr
+def test_get_json_feed_unregistered():
+    """Test get_json_feed_unregistered"""
+    assert "1f047b9c-e87b-47cf-996f-bca2f906d4c0" == get_json_feed_unregistered()
+
+
+@pytest.mark.vcr
+def test_get_json_feed_updated():
+    """Test get_json_feed_updated"""
+    assert "5adb2552-268d-4e43-881c-10bf7c22c7c7" == get_json_feed_updated()

@@ -133,7 +133,7 @@ def test_pangaea():
         "identifier": "https://www.pangaea.de/",
         "identifierType": "URL",
         "title": "PANGAEA",
-        "type": "DataCatalog",
+        "type": "DataRepository",
     }
     assert (
         subject.descriptions[0]
@@ -178,7 +178,7 @@ def test_dataverse():
         "identifier": "https://dataverse.harvard.edu",
         "identifierType": "URL",
         "title": "Harvard Dataverse",
-        "type": "DataCatalog",
+        "type": "DataRepository",
     }
     assert (
         subject.descriptions[0]

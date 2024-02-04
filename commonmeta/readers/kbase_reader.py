@@ -42,7 +42,7 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
     container = compact(
         {
             "id": "https://www.re3data.org/repository/r3d100012864",
-            "type": "DataCatalog",
+            "type": "DataRepository",
             "title": "KBase",
         }
     )

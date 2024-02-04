@@ -57,7 +57,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     container = compact(
         {
             "id": "https://www.re3data.org/repository/r3d100010468",
-            "type": "DataCatalog" if type_ == "Dataset" else "Repository",
+            "type": "DataRepository" if type_ == "Dataset" else "Repository",
             "title": "Zenodo",
         }
     )

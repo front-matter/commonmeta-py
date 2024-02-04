@@ -924,7 +924,7 @@ def test_dataset_usda():
     ]
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
-        "type": "DataCatalog",
+        "type": "DataRepository",
     }
     assert subject.subjects is None
     assert subject.language is None

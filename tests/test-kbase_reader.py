@@ -51,7 +51,7 @@ def test_metatranscriptome():
     # ]
     assert subject.container == {
         "id": "https://www.re3data.org/repository/r3d100012864",
-        "type": "DataCatalog",
+        "type": "DataRepository",
         "title": "KBase",
     }
     assert subject.language is None
@@ -117,7 +117,7 @@ def test_gulf_of_mexico():
     # ]
     assert subject.container == {
         "id": "https://www.re3data.org/repository/r3d100012864",
-        "type": "DataCatalog",
+        "type": "DataRepository",
         "title": "KBase",
     }
     assert subject.language == "en-US"

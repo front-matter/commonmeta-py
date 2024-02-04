@@ -464,7 +464,7 @@ COMMONMETA_CONTAINER_TYPES = {
 CR_TO_CM_CONTAINER_TRANSLATIONS = {
     "book": "Book",
     "book-series": "BookSeries",
-    "database": "DataCatalog",
+    "database": "DataRepository",
     "journal": "Journal",
     "proceedings": "Proceedings",
 }
@@ -472,7 +472,7 @@ CR_TO_CM_CONTAINER_TRANSLATIONS = {
 DC_TO_CM_CONTAINER_TRANSLATIONS = {
     "Book": "Book",
     "BookSeries": "BookSeries",
-    "DataRepository": "DataCatalog",
+    "DataRepository": "DataRepository",
     "Journal": "Journal",
     "Periodical": "Periodical",
     "Proceedings": "ProceedingsSeries",
