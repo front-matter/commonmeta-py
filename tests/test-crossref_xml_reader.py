@@ -822,7 +822,7 @@ def test_component():
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string, via="crossref_xml")
     assert subject.is_valid is False
-    assert subject.errors == "'contributors' is a required property"
+    assert subject.errors == "'CrossRef' is not one of ['Crossref', 'DataCite', 'GitHub', 'JaLC', 'KISTI', 'mEDRA', 'OP', 'InvenioRDM']"
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"

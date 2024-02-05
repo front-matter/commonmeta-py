@@ -3,7 +3,7 @@ from os import path
 import json
 from typing import Optional, Any
 import yaml
-from jsonschema import validate, ValidationError
+from jsonschema import Draft202012Validator, ValidationError
 
 from .readers.crossref_reader import (
     get_crossref,
@@ -91,6 +91,7 @@ class Metadata:
                 with open(string, encoding="utf-8") as file:
                     string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
+            print(via)
             if via == "commonmeta":
                 data = json.loads(string)
                 meta = read_commonmeta(data)
@@ -126,7 +127,8 @@ class Metadata:
                 meta = read_kbase(data)
             elif via == "ris":
                 meta = read_ris(string)
-            # elif via == "bibtex":
+            elif via == "bibtex":
+                raise ValueError("Bibtex not supported")
             #     data = yaml.safe_load(string)
             #     meta = read_bibtex(data)
             else:
@@ -194,7 +196,7 @@ class Metadata:
             with open(file_path, encoding="utf-8") as file:
                 schema = json.load(file)
             instance = json.loads(self.write())
-            return validate(instance=instance, schema=schema)
+            return Draft202012Validator(schema).validate(instance)
         except ValidationError as error:
             return (error.message)
 

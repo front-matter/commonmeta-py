@@ -44,7 +44,7 @@ def test_geo_location_empty():
     )
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.errors == "'url' is a required property"
+    assert subject.errors == "None is not of type 'string'"
     assert subject.id == "https://doi.org/10.1594/ieda/111185"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "EarthChem"}

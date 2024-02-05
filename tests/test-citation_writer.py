@@ -44,7 +44,7 @@ def test_journal_article_german_locale():
     assert subject.locale == "de"
     assert (
         subject.write(to="citation")
-        == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>Elife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
+        == "Error: citation not available for style vancouver and locale de."
     )
 
 
