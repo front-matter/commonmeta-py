@@ -29,5 +29,17 @@ def write_citation(metadata):
     style = CitationStylesStyle(style_path, locale=metadata.locale)
     bib = CitationStylesBibliography(style, source, formatter.html)
     citation = Citation([CitationItem(metadata.id)])
-    bib.register(citation)
-    return _clean_result(str(bib.bibliography()[0]))
+    
+    # workaround for the issue with the vancouver style and the de locale
+    try:
+        bib.register(citation)
+        return _clean_result(str(bib.bibliography()[0]))
+    except Exception as e:
+        print(e)
+        # if the style is not found, use the default style with the default locale
+        style_path = get_style_filepath("apa")
+        style = CitationStylesStyle(style_path, locale="en-US")
+        bib = CitationStylesBibliography(style, source, formatter.html)
+        citation = Citation([CitationItem(metadata.id)])
+        bib.register(citation)
+        return _clean_result(str(bib.bibliography()[0]))

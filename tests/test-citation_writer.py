@@ -34,18 +34,18 @@ def test_journal_article_vancouver_style():
     )
     
     
-# def test_journal_article_german_locale():
-#     "journal article german locale"
-#     subject = Metadata("10.7554/elife.01567", style="vancouver", locale="de-DE")
-#     assert subject.id == "https://doi.org/10.7554/elife.01567"
-#     assert subject.type == "JournalArticle"
+def test_journal_article_german_locale():
+    "journal article german locale"
+    subject = Metadata("10.7554/elife.01567", style="vancouver", locale="de")
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.type == "JournalArticle"
 
-#     assert subject.style == "vancouver"
-#     assert subject.locale == "de-DE"
-#     assert (
-#         subject.write(to="citation")
-#         == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>Elife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
-#     )
+    assert subject.style == "vancouver"
+    assert subject.locale == "de"
+    assert (
+        subject.write(to="citation")
+        == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>Elife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
+    )
 
 
 def test_dataset():
