@@ -1,0 +1,248 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://doi.org/ra/10.7600
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9czMDAyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        65axkDYAAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 850a0a16bfff0eae-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 05 Feb 2024 09:13:47 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=f6aoT35LlvHuqyD0y%2Foho7S%2FXXL9rvtmLO9s1A4ISHXmZEpRToz6ybPn%2FpsK6hIP%2BoSflZIfwXs1RN03Ttdo%2BGuiX3VV9gaBf3C6m0Ih9MR2OQCM0h0AEEMG86Twm6aoqFTotq0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.crossref.org/works/10.7600/jspfsm.56.60
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/62W227jNhBAf4XQUwuINElJlOS3Ntm2yW52F3EKtI2NgJZom7EsCqSUxAjy7x3K
+        19yATdE8xNKQHJ258zFwrWw7FwwDswzCYKWck3OF23WjQHZv7LH0TlmnTQ0LjFBCDyvB8DHQdake
+        VOkfS9kq3Ejbgt7ra045D+MwmkzCzUqrV165l2MaYxpd0XQYpUOe/gMq/SpArZpgyESc5SmL4zRJ
+        +VMYWDVTVtWFwoXp6jYYpmHQdNNKu4WyoPFqodC5bGStnEIjU2jVrpGZoe+LtdOFrNBvuoU1h2Rd
+        olFjABBdqFIXulbwZe1c58EYPBemblXd4tKspK57o7ZP12BGYY1zK2mX2AKr1UXbu2UmK6eA0y1A
+        NfYq4ISyYHBbgeLr4EpquzbLDn2Wc7ns4DvnTU3QOekRyZ7vwEaCycHGEjdWe7tfu5imkwl8+fTb
+        mTeAklRQOh7cumbmViQRRPhobaN6azpbywrDaV1U3vLCKtD3ZuwYD7Mwoq+DxyB4GY7oFY2HjA6T
+        5GXwoljwPM+ShFIKaE2fJ4GguGdxAFF4wYn3JUS2DwDeh7jE0/UuzNQr3rqw9wfs0g8HQ+Honam6
+        HiwRfVqupn1GxDH373utoOExWKr1Nsql0Vg6p2zbfw+kxYGmqyG0XdF21nsmGCmILjq9RJ9cpSy6
+        OEXnm8QyFUEJz9AQxTTFMUtDBPHwUPtoMPiDaBAWixynaR4Rv4NQCifIQ/AU7qD4B6F+WTpVWQPZ
+        jFSLJJCMIOvBUMRZBEScU8yh/BDLM/aciIvxwG02E8GEoHFyBBJ9EOS7tLLV6Pcdxjn6A5INTtaQ
+        1sw7J8Usf8MzNE/HAxDSOEs59ssso4xiL4qOgOIPAv0tV3JlWoM+75AuRqNPBEXeLSzOBU4o73nY
+        2zxJKjLPAxJ48zyMH/Ek/9FBIfpVQfXZUqMvL9zEY49GaY6ZLzvPJt5gY2RxuyAekXPBMkGyiOWc
+        5MfeEh+ku9BrWSz0zlUn2hZdJX1Xg+gx+hPLfoZkyhLwSCaiHi1+nk6C9WgnZ5c9GmR6lEGGZzEI
+        8/wILf0g2slCQe3r2lfcazyUJ95pIhOYpXHsEz1P3yXLEyKI3xw8TTY9/kWD3k+P802P/OHpAeqM
+        1XPt++pe27jLmJLjLpll03GX5omC/2VcjLuIzqZeLmE1jacUnoXIvKSE1XSaxF5jJet5t2mbqgaj
+        wAvLvoP9efkFZIu2bdxwPBgP7u/vyS303bnyP2RuyG0zHmz7+24MjAcJlDzzPzfsRsB4uGnK2dGs
+        244H8H+jCj3T4P7D4mH23xnre7UXlxA+2TQVuGczAQOnV7qSVrfQvBeqWOp63vu6VI1x+p0Zw1mY
+        hPyNGcMZpgkU4RXnw4gPKXt1QeAsifOcs82McYWxcJL5jr8bMI8wLjTM6rV//L8ct98BVkoLG+V4
+        EDx5gm66C/9kdxE4EvRXjDd9sB3g+0nlju44u4G9vaA8Prup/OjlAJQfrO+NLx8IFCIxdg7WvXNl
+        sKrahvYRFJyNRl99YkNrznFOxV+wg2UZw3BDY8HGvnqbR5Cmd7LqMY+3b5Nsw+q7wm7TQc9+k6pU
+        0VpT66LPIfDtLQg8wL4m4cpnZbMOdwW5fe9r9FIt5FRXut1YEAbfbLswjS/Zd4t47833/fj0L3Pb
+        g0I1CwAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1260'
+      content-type:
+      - application/json
+      date:
+      - Mon, 05 Feb 2024 09:13:47 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://api.crossref.org/members/4426
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/81WyW7jOBD9FUNnKuAiLvIHzGGAAQbouQU+MDLdYVuWDEnuHiPwv09JRXmhpKTR
+        mUNfkudi1SuyVNtb0na2O7XJOqn3CUkOrm3tV5d256MD2cEdXlxzJ//umtbXFRyxJ/pEbyfJ+i0p
+        bdulyJcWr67Yp50/wAnTVNOccikzyklybPzBNue0sv1h8s+rW/1pj7ZyrVt9qQvvuvOq3q3+fj23
+        vrDl6g/fwVm7stV29eVYN127+sttfeErB/6L+lR1be++ODWNq7p0W3v4LTUjyYst9jtfulEmmCBJ
+        V3e2HCXGZBfQa5zdb+sf1UDUH6Uv59S37clt07OzTbJ+fuaUZYTn+Yb0UBFuMoSCcI2Qc8KVREgJ
+        FxoVJECGEBQ4SjmYcYVSTThFBgq8FHU5IywPDAYg8rKcMB0gKMjASwnLDDJogGhGwSwLvGDG0IxK
+        Eh5BBcnDxTNiKCCW54aoYM2IUijjV5QTJRAJojgiTRRDpIjMByQNkYElIxJfSSkilhs5ohxOM0Qg
+        C3yMSLyLomR4CcgABRZOMokshmRoa0CGN5BqREYTYVDGiUBvMici2Coigi0bkbwiJYjAG5j+i6OM
+        jcjAl8VbaTUiKUdk4LOiN52PSGZXREekQBbuAnroV4MtRldekYbcwLhAQo/IEI6v1NkVQWbhnbWE
+        DEEfijD0IfukQBmcIrPiI9KQPcisIGOQT+krgtRB5gzQZnPpS9jt/L8OquU5YfRJK0qTTV+L0B9C
+        M7A7KDxvO+gW0A2wNJM1fcqpUFpraQQzWsC3Tlp/8KVtfHfGruGrrzcDaDMk2bq2aPxxwgVHTd2k
+        fhtLd6dqC50qHes/iEtfuKp1E/mo/kjy8IJ7CyGo4MxIThWF3JNwC9fWp6Zwaemr/YS+bor+ipH0
+        dNzazqXHGm7l3dK75qkedecCeLMbIgjfy4FFEb2da8GogPZsjBIM0uUx1JFz+8M227Q69TPhw+cs
+        hT6K8QNldPbSdo0tuglXFO0lqyigtwjcHXDoCbovKKh0Lgy/5jZk9lvy/0yo77Y89TRjoVygUvw2
+        WWcZV/002rtqKKTutdf+FhwBbNEVoHoHf47BHcAdOgQELnvNwekwjYPbzTgZwyiHgizL/t83CF0F
+        8882nS/6kI4j8BrjOR0YnKBzDdycimaXy60FfOj2p9eF+zIcqs9IaMa5oErmGYPWevvkD0USJd4k
+        DTD/peA8pzCv4InQ4sdWsFxZoaAeEvexZucLYjZ3g/C+6AbR5aMP8uvRm/Suz0Qv7h6/T/TeS9Vf
+        Dt50dn0ieFHn+X2CB9HblfYrrsLuWLceushMW93ZsnXkphLPpug8WXfN6V5/Yb5GWstzJfb//hiM
+        nc8PnphzadRM9OI1JFYIyfdBFK7mkdJkQZnec2a+RyTTlWJyyZmJG+vM7FATmoU9IdabX+veedpS
+        eBbXr3c9LqtNFrZYYbpfxhqL293PZO3SO6dL1MAGBVvWxZBCsGYMmwqsAv3yMuwVn1pfNpfLf44y
+        H2IkEAAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1146'
+      content-type:
+      - application/json
+      date:
+      - Mon, 05 Feb 2024 09:13:48 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://doi.org/ra/10.7600
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9czMDAyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        65axkDYAAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 850a0a1dcc4d0a49-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 05 Feb 2024 09:13:48 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rMchdQqmKtJpVrWj9bTaNL8FMak3Ee8WpbbSwqaOL6u0VTR4hJulU%2B7YiiJUyktMSpjN%2ByFtltagjoCnEXvbwPJq0kvV3GJ1fMT0a540jkhSkDnEAMpZHpR5On6sQNxyuIXW6Ek%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    status:
+      code: 200
+      message: OK
+version: 1

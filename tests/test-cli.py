@@ -15,6 +15,16 @@ def test_convert():
 
 
 @pytest.mark.vcr
+def test_convert_show_error():
+    """Test commonmeta generation"""
+    runner = CliRunner()
+    string = "10.7600/jspfsm.56.60"
+    result = runner.invoke(convert, [string, "--show-errors"])
+    assert result.exit_code == 1
+    assert "Error: 'contributors' is a required property" in result.output
+
+
+@pytest.mark.vcr
 def test_convert_crossref_xml():
     """Test crossref_xml generation"""
     runner = CliRunner()

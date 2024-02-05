@@ -29,7 +29,8 @@ def cli(show_errors):
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-def convert(input, via, to, style, locale, doi, depositor, email, registrant):
+@click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
+def convert(input, via, to, style, locale, doi, depositor, email, registrant, show_errors):
     metadata = Metadata(
         input,
         via=via,
@@ -40,8 +41,9 @@ def convert(input, via, to, style, locale, doi, depositor, email, registrant):
         email=email,
         registrant=registrant,
     )
-    output = metadata.write(to=to)
-    click.echo(output)
+    if show_errors and not metadata.is_valid:
+        raise click.ClickException(str(metadata.errors))
+    click.echo(metadata.write(to=to))
 
 
 @cli.command()
