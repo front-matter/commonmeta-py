@@ -15,7 +15,10 @@ def test_write_crossref_xml_header():
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     lines = subject.write(to="crossref_xml").decode().split("\n")
     assert lines[0] == '<?xml version="1.0" encoding="UTF-8"?>'
-    assert lines[1] == '<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1">'
+    assert (
+        lines[1]
+        == '<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1">'
+    )
 
 
 def test_write_metadata_as_crossref_xml():
@@ -499,3 +502,29 @@ def test_json_feed_item_with_anonymous_author():
         "surname": "Göbel",
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
+
+
+@pytest.mark.vcr
+def test_json_feed_item_with_references():
+    """JSON Feed item with references"""
+    string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
+    subject = Metadata(string)
+    print(subject.errors)
+    print(subject.write())
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(crossref_xml.get("contributors")) == 1
+    assert py_.get(crossref_xml, "contributors.0.person_name") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Mark",
+        "surname": "Dingemanse",
+    }
+    assert len(py_.get(crossref_xml, "citation_list.citation")) == 7
+    assert py_.get(crossref_xml, "citation_list.citation.2") == {
+        "key": "ref3",
+        "cYear": "1991",
+        "doi": "10.1023/a:1022699029236",
+    }
