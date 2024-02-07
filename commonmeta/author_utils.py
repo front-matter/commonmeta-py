@@ -2,6 +2,7 @@
 import re
 from typing import List
 from nameparser import HumanName
+from pydash import py_
 
 from .utils import (
     normalize_orcid,
@@ -187,19 +188,22 @@ def cleanup_author(author):
 
 
 def get_authors(authors):
-    """trsnsform                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        array of author dicts into commonmeta format"""
-    return presence(list(map(lambda author: get_one_author(author), authors)))
+    """transform 
+    array of author dicts into commonmeta format"""
+    return presence(py_.uniq(list(map(lambda author: get_one_author(author), authors))))
 
 
 def authors_as_string(authors: List[dict]) -> str:
     """convert authors list to string, e.g. for bibtex"""
-
+    
     def format_author(author):
-        if author.get("familyName", None):
+        if author.get("familyName", None) and author.get("givenName", None):
             return f"{author['familyName']}, {author['givenName']}"
-        return author["name"]
+        elif author.get("familyName", None):
+            return author["familyName"]
+        return author.get("name", None)
 
-    return " and ".join([format_author(i) for i in authors])
+    return " and ".join([format_author(i) for i in wrap(authors) if i is not None])
 
 
 def get_affiliations(affiliations: List[dict]) -> List[dict]:

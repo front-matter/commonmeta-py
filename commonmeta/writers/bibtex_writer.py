@@ -15,14 +15,15 @@ def write_bibtex(metadata: Commonmeta) -> str:
     """Write bibtex"""
     container = metadata.container if metadata.container else {}
     date_published = get_iso8601_date(metadata.date.get("published", None))
-    if len(metadata.titles) > 1:
+    authors = authors_as_string(metadata.contributors)
+    if metadata.titles and len(metadata.titles) > 1:
         title = ": ".join(
             [
                 metadata.titles[0].get("title", None),
                 metadata.titles[1].get("title", None),
             ]
         )
-    elif len(metadata.titles) == 1:
+    elif metadata.titles and len(metadata.titles) == 1:
         title = metadata.titles[0].get("title", None)
     else:
         title = None
@@ -35,7 +36,7 @@ def write_bibtex(metadata: Commonmeta) -> str:
         if metadata.descriptions
         else None
     )
-    author = authors_as_string(metadata.contributors)
+    author = authors if authors and len(authors) > 0 else None
     license_ = str(metadata.license.get("url")) if metadata.license else None
     institution = metadata.publisher.get("name", None) if _type == "phdthesis" else None
     issn = (
