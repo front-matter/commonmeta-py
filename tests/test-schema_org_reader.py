@@ -353,12 +353,13 @@ def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
     string = "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'url' is a required property"
+    assert subject.is_valid
     assert (
         subject.id
         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
     )
+    assert subject.type == "Other"
+    assert subject.url is None
 
 
 def test_schema_org_geolocation():

@@ -1,9 +1,9 @@
 """Metadata"""
 from os import path
 import json
-from typing import Optional, Any
+from typing import Optional
 import yaml
-from jsonschema import Draft202012Validator, ValidationError
+from pydash import py_
 
 from .readers.crossref_reader import (
     get_crossref,
@@ -49,7 +49,9 @@ from .writers.schema_org_writer import write_schema_org
 from .writers.commonmeta_writer import write_commonmeta
 from .utils import normalize_id, find_from_format
 from .base_utils import parse_xml
-
+from .doi_utils import doi_from_url
+from .schema_utils import json_schema_errors
+from .constants import CM_TO_CR_TRANSLATIONS
 
 # pylint: disable=R0902
 class Metadata:
@@ -59,7 +61,6 @@ class Metadata:
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
         pid = normalize_id(string)
-
         if pid is not None:
             via = kwargs.get("via", None) or find_from_format(pid=pid)
             if via == "schema_org":
@@ -91,7 +92,6 @@ class Metadata:
                 with open(string, encoding="utf-8") as file:
                     string = file.read()
             via = kwargs.get("via", None) or find_from_format(string=string)
-            print(via)
             if via == "commonmeta":
                 data = json.loads(string)
                 meta = read_commonmeta(data)
@@ -183,22 +183,9 @@ class Metadata:
         self.exists = meta.get("state", None) != "not_found"
         
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
-        self.errors = meta.get("errors", None) or self.json_schema_errors()
+        self.errors = meta.get("errors", None) or json_schema_errors(json.loads(self.write()))
+        self.write_errors = None
         self.is_valid = self.exists and self.errors is None
-
-    
-    def json_schema_errors(self) -> Any:
-        """validate against JSON schema"""
-        try:
-            file_path = path.join(
-                path.dirname(__file__), "resources/commonmeta_v0.10.8.json"
-            )
-            with open(file_path, encoding="utf-8") as file:
-                schema = json.load(file)
-            instance = json.loads(self.write())
-            return Draft202012Validator(schema).validate(instance)
-        except ValidationError as error:
-            return (error.message)
 
 
     def write(self, to: str="commonmeta") -> str:
@@ -208,6 +195,8 @@ class Metadata:
         elif to == "bibtex":
             return write_bibtex(self)
         elif to == "csl":
+            instance = py_.omit(json.loads(write_csl(self)), [])
+            self.errors = json_schema_errors(instance, schema="csl")
             return write_csl(self)
         elif to == "citation":
             return write_citation(self)
@@ -216,8 +205,14 @@ class Metadata:
         elif to == "schema_org":
             return write_schema_org(self)
         elif to == "datacite":
+            instance = json.loads(write_datacite(self))
+            self.write_errors = json_schema_errors(instance, schema="datacite")
             return write_datacite(self)
         elif to == "crossref_xml":
+            doi = doi_from_url(self.id) if self.id is not None else self.id
+            _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
+            instance = {"doi": doi, "type": _type}
+            self.write_errors = json_schema_errors(instance, schema="crossref")
             return write_crossref_xml(self)
         else:
             raise ValueError("No output format found")

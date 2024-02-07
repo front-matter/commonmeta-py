@@ -10,8 +10,7 @@ def test_missing_resource_type_general():
     """missing resource_type_general"""
     string = path.join(path.dirname(__file__), "fixtures", "vivli.xml")
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'url' is a required property"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5072/00013641"
     assert subject.type == "Other"
     assert subject.publisher == {"name": "Vivli"}

@@ -64,8 +64,10 @@ def parse_attributes(
         return arr
 
 
-def parse_xml(string: str, **kwargs) -> Optional[Union[dict, list]]:
+def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
     """Parse XML into dict. Set default options, and options for Crossref XML"""
+    if string is None:
+        return None
     if path.exists(string):
         with open(string, encoding="utf-8") as file:
             string = file.read()

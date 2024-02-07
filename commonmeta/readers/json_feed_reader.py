@@ -44,8 +44,8 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     url = normalize_url(meta.get("url", None))
-    id_ = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
-    type_ = "Article"
+    _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
+    _type = "Article"
 
     if meta.get("authors", None):
         contributors = get_authors(from_json_feed(wrap(meta.get("authors"))))
@@ -100,13 +100,13 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     alternate_identifiers = [
         {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
     ]
-    files = get_files(id_)
+    files = get_files(_id)
     state = "findable" if meta or read_options else "not_found"
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": url,
         "contributors": contributors,
         "titles": presence(titles),
@@ -128,7 +128,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "files": files,
         # other properties
         "container": presence(container),
-        # "provider": get_doi_ra(id_),
+        # "provider": get_doi_ra(_id),
         "state": state,
         "schema_version": None,
     } | read_options

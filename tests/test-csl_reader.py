@@ -55,8 +55,7 @@ def test_no_author():
     """no author"""
     string = path.join(path.dirname(__file__), "fixtures", "citeproc-no-author.json")
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'contributors' is a required property"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.type == "Article"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"

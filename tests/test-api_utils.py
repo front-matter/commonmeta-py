@@ -11,19 +11,19 @@ from commonmeta.api_utils import (
 
 def test_generate_ghost_token():
     "generate_ghost_token"
-    id_ = "abc"
+    _id = "abc"
     key = b"secret"
-    token = generate_ghost_token(f"{id_}:{key.hex()}")
+    token = generate_ghost_token(f"{_id}:{key.hex()}")
     decoded_token = jwt.decode(token, key, algorithms="HS256", audience="/admin/")
     assert decoded_token["iat"] == int(date.now().timestamp())
 
 
 def test_generate_ghost_token_broken_key():
     "generate_ghost_token broken key"
-    id_ = "abc"
+    _id = "abc"
     key = "secret"
     with pytest.raises(ValueError):
-        generate_ghost_token(f"{id_}:{key}")
+        generate_ghost_token(f"{_id}:{key}")
 
 
 # def test_update_ghost_post_via_api():
@@ -39,7 +39,7 @@ def test_generate_ghost_token_broken_key():
 #     } == update_ghost_post_via_api(_id, api_key, api_url)
 
 
-def test_update_ghost_post_via_api_id_not_found():
+def test_update_ghost_post_via_api__idnot_found():
     "update_ghost_post_via_api id not found"
     _id = "abc"
     api_key = "def"

@@ -36,9 +36,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    id_ = doi_as_url(meta.get("doi", None))
+    _id = doi_as_url(meta.get("doi", None))
     resource_type = py_.get(meta, "metadata.resource_type.type")
-    type_ = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
     contributors = get_authors(
         from_inveniordm(wrap(py_.get(meta, "metadata.creators")))
     )
@@ -57,7 +57,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     container = compact(
         {
             "id": "https://www.re3data.org/repository/r3d100010468",
-            "type": "DataRepository" if type_ == "Dataset" else "Repository",
+            "type": "DataRepository" if _type == "Dataset" else "Repository",
             "title": "Zenodo",
         }
     )
@@ -91,9 +91,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id) if _id else None,
         "url": normalize_url(py_.get(meta, "links.self_html")),
         "contributors": contributors,
         "titles": titles,
@@ -156,7 +156,7 @@ def get_references(references: list) -> list:
 
 def get_file(file: dict) -> str:
     """get_file"""
-    type_ = file.get("type", None)
+    _type = file.get("type", None)
     return compact(
         {
             "bucket": file.get("bucket", None),
@@ -164,7 +164,7 @@ def get_file(file: dict) -> str:
             "checksum": file.get("checksum", None),
             "url": py_.get(file, "links.self"),
             "size": file.get("size", None),
-            "mimeType": "application/" + type_ if type_ else None,
+            "mimeType": "application/" + _type if _type else None,
         }
     )
 

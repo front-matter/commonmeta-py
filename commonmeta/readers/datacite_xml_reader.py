@@ -33,7 +33,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     meta = data.get("resource", {})
 
     doi = parse_attributes(meta.get("identifier", None))
-    id_ = doi_as_url(doi) if doi else None
+    _id = doi_as_url(doi) if doi else None
     #         identifiers = Array.wrap(meta.dig('alternateIdentifiers', 'alternateIdentifier')).map do |r|
     #           if r['__content__'].present?
     #             { 'identifierType' => get_identifier_type(r['alternateIdentifierType']),
@@ -41,8 +41,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     #           end
     #         end.compact
 
-    resource_type_general = py_.get(meta, "resourceType.resourceTypeGeneral")
-    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, "Other")
+    resource__typegeneral = py_.get(meta, "resourceType.resourceTypeGeneral")
+    _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = py_.get(meta, "resourceType.#text")
 
     def format_title(title):
@@ -210,13 +210,13 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     funding_references = []  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
 
     files = meta.get("contentUrl", None)
-    state = "findable" if id_ or read_options else "not_found"
+    state = "findable" if _id or read_options else "not_found"
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id) if _id else None,
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
         "titles": compact(titles),

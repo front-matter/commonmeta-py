@@ -10,20 +10,23 @@ from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 
 def write_csl(metadata: Commonmeta) -> str:
     """Write CSL-JSON"""
+    if metadata.write_errors is not None:
+        return None
+    
     if len(wrap(metadata.contributors)) == 0:
         author = None
     else:
         author = to_csl(wrap(metadata.contributors))
 
     if metadata.type == "Software" and metadata.version is not None:
-        type_ = "book"
+        _type = "book"
     else:
-        type_ = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
+        _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
     data = compact(
         {
-            "type": type_,
+            "type": _type,
             "id": metadata.id,
             "DOI": doi_from_url(metadata.id) if metadata.id else None,
             "URL": metadata.url,

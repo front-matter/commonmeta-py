@@ -8,10 +8,10 @@ from ..constants import CM_TO_RIS_TRANSLATIONS
 def write_ris(metadata):
     """Write ris"""
     container = metadata.container or {}
-    type_ = CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN")
+    _type = CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN")
     ris = compact(
         {
-            "TY": type_,
+            "TY": _type,
             "T1": parse_attributes(metadata.titles, content="title", first=True),
             "T2": container.get("title", None),
             "AU": to_ris(metadata.contributors),

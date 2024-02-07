@@ -217,8 +217,7 @@ def test_journal_article_original_language():
     "journal article with original language"
     string = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(string, via="crossref_xml")
-    assert subject.is_valid is False
-    assert subject.errors == "'contributors' is a required property"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
     assert (
@@ -821,8 +820,7 @@ def test_component():
     "component"
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string, via="crossref_xml")
-    assert subject.is_valid is False
-    assert subject.errors == "'CrossRef' is not one of ['Crossref', 'DataCite', 'GitHub', 'JaLC', 'KISTI', 'mEDRA', 'OP', 'InvenioRDM']"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
@@ -845,7 +843,7 @@ def test_component():
     assert subject.language is None
     assert subject.descriptions is None
     assert subject.version is None
-    assert subject.provider == "CrossRef"
+    assert subject.provider == "Crossref"
 
 
 def test_dataset_usda():

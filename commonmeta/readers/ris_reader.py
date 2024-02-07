@@ -18,9 +18,9 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     if not isinstance(meta, dict):
         return {"state": "not_found"}
 
-    id_ = read_options.get("doi", None) or normalize_doi(meta.get("DO", None))
-    type_ = RIS_TO_CM_TRANSLATIONS.get(meta.get("TY", None), "Other")
-    container_type = "Journal" if type_ == "JournalArticle" else None
+    _id = read_options.get("doi", None) or normalize_doi(meta.get("DO", None))
+    _type = RIS_TO_CM_TRANSLATIONS.get(meta.get("TY", None), "Other")
+    container_type = "Journal" if _type == "JournalArticle" else None
 
     def get_author(author):
         """get_author"""
@@ -65,9 +65,9 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     state = "findable" if meta.get("DO", None) or read_options else "not_found"
 
     return {
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id) if _id else None,
         "url": normalize_url(meta.get("UR", None)),
         "titles": [{"title": meta.get("T1", None)}],
         "descriptions": descriptions,

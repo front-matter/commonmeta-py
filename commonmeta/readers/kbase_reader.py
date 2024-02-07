@@ -19,8 +19,8 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
     meta = data.get("credit_metadata", {})
     read_options = kwargs or {}
 
-    id_ = from_curie(meta.get("identifier", None))
-    type_ = "Dataset"
+    _id = from_curie(meta.get("identifier", None))
+    _type = "Dataset"
     contributors = get_authors(from_kbase(wrap(meta.get("contributors", None))))
 
     publisher = meta.get("publisher", None)
@@ -72,9 +72,9 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id) if _id else None,
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
         "titles": titles,
@@ -105,12 +105,12 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
 
 def format_title(title: dict) -> dict:
     """format_title"""
-    type_ = title.get("title_type", None)
+    _type = title.get("title_type", None)
     return compact(
         {
             "title": title.get("title", None),
-            "type": type_
-            if type_ in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+            "type": _type
+            if _type in ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
             else None,
         }
     )
@@ -158,9 +158,9 @@ def get_related_identifiers(related_identifiers: list) -> list:
     def map_related_identifier(related_identifier: dict) -> dict:
         """get_related_identifier"""
         identifier = from_curie(related_identifier.get("id", None))
-        type_ = related_identifier.get("relationship_type", None)
+        _type = related_identifier.get("relationship_type", None)
         # remove DataCite: and Crossref: prefixes
-        type_ = type_.split(":")[1] if type_ else None
+        _type = _type.split(":")[1] if _type else None
         if normalize_url(identifier):
             identifier = normalize_url(identifier)
         # TODO: resolvable url for other identifier types
@@ -168,7 +168,7 @@ def get_related_identifiers(related_identifiers: list) -> list:
             identifier = None
         return {
             "id": identifier,
-            "type": type_,
+            "type": _type,
         }
 
     identifiers = [map_related_identifier(i) for i in related_identifiers]

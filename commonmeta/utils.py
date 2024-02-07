@@ -113,7 +113,7 @@ def normalize_ids(ids: list, relation_type=None) -> list:
             doi = doi_from_url(idn)
             related_identifier_type = "DOI" if doi is not None else "URL"
             idn = doi or idn
-            type_ = (
+            _type = (
                 i.get("type")
                 if isinstance(i.get("type", None), str)
                 else wrap(i.get("type", None))[0]
@@ -629,6 +629,8 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         return None
     try:
         data = json.loads(string)
+        if not isinstance(data, dict):
+            raise TypeError
         if data.get("schema_version", "").startswith("https://commonmeta.org"):
             return "commonmeta"
         if data.get("@context", None) == "http://schema.org":
@@ -651,7 +653,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "inveniordm"
         if py_.get(data, "credit_metadata") is not None:
             return "kbase"
-    except json.JSONDecodeError:
+    except (TypeError, json.JSONDecodeError):
         pass
     try:
         data = BeautifulSoup(string, "xml")
@@ -970,18 +972,18 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     """from CURIE"""
     if id is None:
         return None
-    type_ = id.split(":")[0]
-    if type_ == "DOI":
+    _type = id.split(":")[0]
+    if _type == "DOI":
         return doi_as_url(id.split(":")[1])
-    elif type_ == "ROR":
+    elif _type == "ROR":
         return "https://ror.org/" + id.split(":")[1]
-    elif type_ == "ISNI":
+    elif _type == "ISNI":
         return "https://isni.org/isni/" + id.split(":")[1]
-    elif type_ == "ORCID":
+    elif _type == "ORCID":
         return normalize_orcid(id.split(":")[1])
-    elif type_ == "URL":
+    elif _type == "URL":
         return normalize_url(id.split(":")[1])
-    elif type_ == "JDP":
+    elif _type == "JDP":
         return id.split(":")[1]
     # TODO: resolvable url for other identifier types
     return None

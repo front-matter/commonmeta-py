@@ -1,5 +1,6 @@
 """Crossref utils module for commonmeta-py"""
 from lxml import etree
+from typing import Optional
 from datetime import datetime
 from dateutil.parser import parse
 import uuid
@@ -10,8 +11,10 @@ from .utils import wrap, compact, normalize_orcid, normalize_id
 from .doi_utils import doi_from_url, validate_doi
 
 
-def generate_crossref_xml(metadata: Commonmeta) -> str:
-    """Generate Crossref XML"""
+def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
+    """Generate Crossref XML. First checks for write errors (JSON schema validation)"""
+    if metadata.write_errors is not None:
+        return None
     xml = crossref_root()
     head = etree.SubElement(xml, "head")
     # we use a uuid as batch_id
@@ -298,7 +301,7 @@ def insert_crossref_relations(metadata, xml):
         identifier_type = (
             "doi" if validate_doi(related_identifier.get("id", None)) else "uri"
         )
-        id_ = (
+        _id = (
             doi_from_url(related_identifier["id"])
             if identifier_type == "doi"
             else related_identifier["id"]
@@ -310,7 +313,7 @@ def insert_crossref_relations(metadata, xml):
                 "relationship-type": related_identifier["type"],
                 "identifier-type": identifier_type,
             },
-        ).text = id_
+        ).text = _id
 
     return xml
 

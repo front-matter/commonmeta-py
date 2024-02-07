@@ -52,14 +52,14 @@ def get_one_author(author):
     ] or ["Author"]
 
     # parse author type, i.e. "Person", "Organization" or not specified
-    type_ = parse_attributes(
+    _type = parse_attributes(
         author.get("creatorName", None), content="type", first=True
     ) or parse_attributes(
         author.get("contributorName", None), content="type", first=True
     )
 
     # also handle Crossref, JSON Feed, or DataCite metadata
-    id_ = (
+    _id = (
         author.get("id", None)
         or author.get("ORCID", None)
         or author.get("url", None)
@@ -71,25 +71,25 @@ def get_one_author(author):
             None,
         )
     )
-    id_ = normalize_orcid(id_) or normalize_ror(id_) or normalize_isni(id_) or id_
+    _id = normalize_orcid(_id) or normalize_ror(_id) or normalize_isni(_id) or _id
 
     # DataCite metadata
-    if isinstance(type_, str) and type_.endswith("al"):
-        type_ = type_[:-3]
+    if isinstance(_type, str) and _type.endswith("al"):
+        _type = _type[:-3]
 
-    if not type_ and isinstance(id_, str) and validate_ror(id_) is not None:
-        type_ = "Organization"
-    elif not type_ and isinstance(id_, str) and validate_orcid(id_) is not None:
-        type_ = "Person"
-    elif not type_ and (given_name or family_name):
-        type_ = "Person"
-    elif not type_ and is_personal_name(name):
-        type_ = "Person"
-    elif not type_ and name:
-        type_ = "Organization"
+    if not _type and isinstance(_id, str) and validate_ror(_id) is not None:
+        _type = "Organization"
+    elif not _type and isinstance(_id, str) and validate_orcid(_id) is not None:
+        _type = "Person"
+    elif not _type and (given_name or family_name):
+        _type = "Person"
+    elif not _type and is_personal_name(name):
+        _type = "Person"
+    elif not _type and name:
+        _type = "Organization"
 
     # split name for type Person into given/family name if not already provided
-    if type_ == "Person" and name and not given_name and not family_name:
+    if _type == "Person" and name and not given_name and not family_name:
         names = HumanName(name)
 
         if names:
@@ -105,12 +105,12 @@ def get_one_author(author):
     # depending on type
     return compact(
         {
-            "id": id_,
-            "type": type_,
+            "id": _id,
+            "type": _type,
             "contributorRoles": contributor_roles,
-            "name": name if type_ == "Organization" else None,
-            "givenName": given_name if type_ == "Person" else None,
-            "familyName": family_name if type_ == "Person" else None,
+            "name": name if _type == "Organization" else None,
+            "givenName": given_name if _type == "Person" else None,
+            "familyName": family_name if _type == "Person" else None,
             "affiliation": presence(
                 get_affiliations(wrap(author.get("affiliation", None)))
             ),

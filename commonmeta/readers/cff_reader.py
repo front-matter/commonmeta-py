@@ -53,11 +53,11 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     #   end
     # end.compact.uniq
 
-    id_ = normalize_id(kwargs.get("doi", None) or meta.get("doi", None))
+    _id = normalize_id(kwargs.get("doi", None) or meta.get("doi", None))
     # Array.wrap(meta.fetch('identifiers', nil)).find do |i|
     #                                                     i['type'] == 'doi'
     #                                                   end.fetch('value', nil))
-    type_ = "Software"
+    _type = "Software"
     url = normalize_id(meta.get("repository-code", None))
     contributors = cff_contributors(wrap(meta.get("authors", None)))
 
@@ -97,8 +97,8 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         # 'identifiers' => identifiers,
         "url": url,
         "titles": titles,
@@ -110,7 +110,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         "license": license_,
         "version": meta.get("version", None),
         "subjects": presence(subjects),
-        "provider": "DataCite" if id_ else "GitHub",
+        "provider": "DataCite" if _id else "GitHub",
         "state": state,
     } | read_options
 
@@ -136,10 +136,10 @@ def cff_contributors(contributors):
     def format_element(i):
         """format_element"""
         if normalize_orcid(parse_attributes(i.get("orcid", None))):
-            id_ = normalize_orcid(parse_attributes(i.get("orcid", None)))
+            _id = normalize_orcid(parse_attributes(i.get("orcid", None)))
         else:
-            id_ = None
-        if i.get("given-names", None) or i.get("family-names", None) or id_:
+            _id = None
+        if i.get("given-names", None) or i.get("family-names", None) or _id:
             given_name = parse_attributes(i.get("given-names", None))
             family_name = parse_attributes(i.get("family-names", None))
             affiliation = compact(
@@ -148,7 +148,7 @@ def cff_contributors(contributors):
 
             return compact(
                 {
-                    "id": id_,
+                    "id": _id,
                     "contributorRoles": ["Author"],
                     "type": "Person",
                     "givenName": given_name,

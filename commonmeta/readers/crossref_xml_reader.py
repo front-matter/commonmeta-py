@@ -140,12 +140,12 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         bibmeta = {}
         resource_type = ""
 
-    id_ = normalize_doi(
+    _id = normalize_doi(
         kwargs.get("doi", None)
         or kwargs.get("id", None)
         or py_.get(bibmeta, "doi_data.doi")
     )
-    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
     url = parse_attributes(py_.get(bibmeta, "doi_data.resource"))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
@@ -228,15 +228,16 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     language = py_.get(meta, "journal.journal_metadata.language")
 
     files = presence(meta.get("contentUrl", None))
-
-    # TODO: consistent case for DOI registration agency
-    provider = bibmeta.get("reg-agency", None) or get_doi_ra(id_)
+    provider = bibmeta.get("reg-agency").capitalize() if bibmeta.get("reg-agency", None) else None
+    if provider is None:
+        provider = get_doi_ra(_id)
+    print(provider)
     state = "findable" if meta or read_options else "not_found"
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": url,
         "contributors": contributors,
         "titles": presence(titles),

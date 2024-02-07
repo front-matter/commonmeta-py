@@ -52,9 +52,9 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     doi = meta.get("DOI", None)
-    id_ = doi_as_url(doi)
+    _id = doi_as_url(doi)
     resource_type = meta.get("type", {}).title().replace("-", "")
-    type_ = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
 
     if meta.get("author", None):
         contributors = get_authors(from_csl(wrap(meta.get("author"))))
@@ -120,8 +120,8 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": url,
         "contributors": contributors,
         "titles": presence(titles),
@@ -142,7 +142,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         # other properties
         "files": presence(files),
         "container": presence(container),
-        "provider": get_doi_ra(id_),
+        "provider": get_doi_ra(_id),
         "state": state,
         "schema_version": None,
     } | read_options

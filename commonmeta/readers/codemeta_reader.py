@@ -43,9 +43,9 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     # ActiveSupport: : HashWithIndifferentAccess.new(options.except(: doi, : id, : url,
     # : sandbox, : validate, : ra)
 
-    id_ = normalize_id(meta.get("id", None) or meta.get("identifier", None))
+    _id = normalize_id(meta.get("id", None) or meta.get("identifier", None))
     # id = normalize_id(options[:doi] | | meta.get('@id', None) | | meta.get('identifier', None))
-    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", "Software"))
+    _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", "Software"))
     # identifiers = Array.wrap(meta.get('identifier', None)).map do | r|
     #   r = normalize_id(r) if r.is_a?(String)
     #   if r.is_a?(String) & & URI(r) != 'doi.org'
@@ -91,12 +91,12 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     if license_:
         license_ = dict_to_spdx({"id": meta.get("licenseId")})
 
-    provider = "DataCite" if doi_from_url(id_) else "GitHub"
+    provider = "DataCite" if doi_from_url(_id) else "GitHub"
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": normalize_id(meta.get("codeRepository", None)),
         "identifiers": None,
         "titles": titles,

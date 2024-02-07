@@ -250,8 +250,7 @@ def test_journal_article_original_language():
     "journal article with original language"
     string = "https://doi.org/10.7600/jspfsm.56.60"
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'contributors' is a required property"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
     assert (
@@ -857,8 +856,7 @@ def test_component():
     "component"
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'contributors' is a required property"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
@@ -1295,6 +1293,25 @@ def test_proceedings_article():
         "url": "https://dl.acm.org/doi/pdf/10.1145/3448016.3452841",
         "mimeType": "application/pdf",
     }
+    
+# 10.1111/gwat.13068
+# 10.4028/www.scientific.net/ddf.309-310.265
+# 10.1002/crat.19800150912
+  # 10.1017/cbo9780511686917.006
+# 10.1371/journal.pone.0285264.g007
+# 10.1253/circj.cj-13-1221
+# 10.4324/9781315625263-1
+  # 10.2995/jacsurg.21.502_2
+  # 10.1111/j.1467-8519.2004.00388.x
+  # 10.1007/s40278-016-17560-1
+
+def test_random_doi():
+    """Random DOI from Crossref API"""
+    string = "10.4028/www.scientific.net/ddf.309-310.265"
+    subject = Metadata(string)
+    print(subject.errors)
+    print(subject.write())
+    assert subject.is_valid
 
 
 def test_get_crossref():

@@ -44,14 +44,14 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    id_ = doi_as_url(meta.get("doi", None))
-    resource_type_general = py_.get(meta, "types.resourceTypeGeneral")
+    _id = doi_as_url(meta.get("doi", None))
+    resource__typegeneral = py_.get(meta, "types.resourceTypeGeneral")
     resource_type = py_.get(meta, "types.resourceType")
-    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, "Other")
+    _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = DC_TO_CM_TRANSLATIONS.get(resource_type, None)
-    # if resource_type is one of the new resource_type_general types introduced in schema 4.3, use it
+    # if resource_type is one of the new resource__typegeneral types introduced in schema 4.3, use it
     if additional_type:
-        type_ = additional_type
+        _type = additional_type
         additional_type = None
     else:
         additional_type = resource_type
@@ -83,9 +83,9 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     
     return {
         # required properties
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id) if _id else None,
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
         "titles": titles,
@@ -234,12 +234,12 @@ def get_container(container: Optional[dict]) -> dict or None:
     """get_container"""
     if container is None:
         return None
-    type_ = DC_TO_CM_CONTAINER_TRANSLATIONS.get(container.get("type"), None) if container.get("type", None) else None
+    _type = DC_TO_CM_CONTAINER_TRANSLATIONS.get(container.get("type"), None) if container.get("type", None) else None
     
     return compact(
         {
             "id": container.get("identifier", None),
-            "type": type_,
+            "type": _type,
             "title": container.get("title", None),
         }
     )

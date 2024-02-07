@@ -69,12 +69,12 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    id_ = meta.get("@id", None)
+    _id = meta.get("@id", None)
     # if id.blank? && URI(meta.fetch('@id', '')).host == 'doi.org'
-    if id_ is None:
-        id_ = meta.get("identifier", None)
-    id_ = normalize_id(id_)
-    type_ = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "Other")
+    if _id is None:
+        _id = meta.get("identifier", None)
+    _id = normalize_id(_id)
+    _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "Other")
     additional_type = meta.get("additionalType", None)
     authors = meta.get("author", None) or meta.get("creator", None)
     # Authors should be an object, if it's just a plain string don't try and parse it.
@@ -110,7 +110,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = normalize_cc_url(license_)
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
-    if type_ == "Dataset":
+    if _type == "Dataset":
         url = parse_attributes(
             from_schema_org(meta.get("includedInDataCatalog", None)),
             content="url",
@@ -132,7 +132,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
                 "lastPage": meta.get("pageEnd", None),
             }
         )
-    elif type_ == "Article":
+    elif _type == "Article":
         issn = py_.get(meta, "isPartOf.issn")
         url = py_.get(meta, "publisher.url")
         container = compact(
@@ -189,16 +189,16 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     ]
     alternate_identifiers = None
     provider = (
-        get_doi_ra(id_)
-        if doi_from_url(id_)
+        get_doi_ra(_id)
+        if doi_from_url(_id)
         else parse_attributes(meta.get("provider", None), content="name", first=True)
     )
     state = None
 
     return {
         # required attributes
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
         "titles": titles,
@@ -290,11 +290,11 @@ def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
     if not isinstance(geo_location, dict):
         return None
 
-    type_ = py_.get(geo_location, "geo.@type")
+    _type = py_.get(geo_location, "geo.@type")
     longitude = py_.get(geo_location, "geo.longitude")
     latitude = py_.get(geo_location, "geo.latitude")
 
-    if type_ == "GeoCoordinates":
+    if _type == "GeoCoordinates":
         return {
             "geoLocationPoint": {"pointLongitude": longitude, "pointLatitude": latitude}
         }
@@ -312,8 +312,8 @@ def get_html_meta(soup):
     if pid is not None:
         data["@id"] = pid.get("content", None) or pid.get("href", None)
 
-    type_ = soup.select_one("meta[property='og:type']")
-    data["@type"] = type_["content"].capitalize() if type_ else None
+    _type = soup.select_one("meta[property='og:type']")
+    data["@type"] = _type["content"].capitalize() if _type else None
 
     url = soup.select_one("meta[property='og:url']")
     data["url"] = url["content"] if url else None

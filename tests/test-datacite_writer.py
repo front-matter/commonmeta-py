@@ -12,8 +12,10 @@ def test_write_metadata_as_datacite_json():
     """Write metadata as datacite json"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-
+    print(subject.titles)
     datacite = json.loads(subject.write(to="datacite"))
+    print(subject.write_errors)
+    print(datacite)
     assert datacite["id"] == "https://doi.org/10.7554/elife.01567"
     assert datacite["doi"] == "10.7554/elife.01567"
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
@@ -29,8 +31,8 @@ def test_write_metadata_as_datacite_json():
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
         }
     ]
-    assert len(datacite["relatedItems"]) == 27
-    assert datacite["relatedItems"][0] == {
+    assert len(datacite["relatedIdentifiers"]) == 27
+    assert datacite["relatedIdentifiers"][0] == {
         "relatedIdentifier": "https://doi.org/10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -49,8 +51,10 @@ def test_with_orcid_id():
     """With ORCID ID"""
     subject = Metadata("https://doi.org/10.1155/2012/291294")
     assert subject.id == "https://doi.org/10.1155/2012/291294"
-
+    assert subject.type == "JournalArticle"
+    print(subject.references)
     datacite = json.loads(subject.write(to="datacite"))
+    assert subject.write_errors == None
     assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
     assert (
         datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"]
@@ -69,8 +73,8 @@ def test_with_data_citation():
     """with data citation"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-
     datacite = json.loads(subject.write(to="datacite"))
+    print(subject.write_errors)
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -84,8 +88,8 @@ def test_with_data_citation():
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
         }
     ]
-    assert len(datacite["relatedItems"]) == 27
-    assert datacite["relatedItems"][0] == {
+    assert len(datacite["relatedIdentifiers"]) == 27
+    assert datacite["relatedIdentifiers"][0] == {
         "relatedIdentifier": "https://doi.org/10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",

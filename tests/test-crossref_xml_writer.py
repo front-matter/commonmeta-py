@@ -29,7 +29,6 @@ def test_write_metadata_as_crossref_xml():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    print(crossref_xml)
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 27
@@ -509,8 +508,6 @@ def test_json_feed_item_with_references():
     """JSON Feed item with references"""
     string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
     subject = Metadata(string)
-    print(subject.errors)
-    print(subject.write())
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
@@ -528,3 +525,17 @@ def test_json_feed_item_with_references():
         "cYear": "1991",
         "doi": "10.1023/a:1022699029236",
     }
+
+
+@pytest.mark.vcr
+def test_software():
+    """software"""
+    string = "https://github.com/citation-file-format/ruby-cff/blob/main/CITATION.cff"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.5281/zenodo.1184077"
+    assert subject.url == "https://github.com/citation-file-format/ruby-cff"
+    assert subject.type == "Software"
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    assert crossref_xml is None
+    assert subject.write_errors == "None is not one of ['BookChapter', 'BookPart', 'BookSection', 'BookSeries', 'BookSet', 'BookTrack', 'Book', 'Component', 'Database', 'Dataset', 'Dissertation', 'EditedBook', 'Grant', 'JournalArticle', 'JournalIssue', 'JournalVolume', 'Journal', 'Monograph', 'Other', 'PeerReview', 'PostedContent', 'ProceedingsArticle', 'ProceedingsSeries', 'Proceedings', 'ReferenceBook', 'ReferenceEntry', 'ReportComponent', 'ReportSeries', 'Report', 'Standard']"

@@ -18,8 +18,8 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
 
     read_options = kwargs or {}
 
-    id_ = normalize_id(meta.get("id", None) or meta.get("DOI", None))
-    type_ = CSL_TO_CM_TRANSLATIONS.get(meta.get("type", None), "Other")
+    _id = normalize_id(meta.get("id", None) or meta.get("DOI", None))
+    _type = CSL_TO_CM_TRANSLATIONS.get(meta.get("type", None), "Other")
 
     contributors = get_authors(from_csl(wrap(meta.get("author", None))))
     contrib = get_authors(from_csl(wrap(meta.get("editor", None))))
@@ -46,7 +46,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         }
     )
 
-    state = "findable" if id_ or read_options else "not_found"
+    state = "findable" if _id or read_options else "not_found"
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
     if meta.get("abstract", None):
@@ -59,11 +59,11 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    provider = get_doi_ra(id_)
+    provider = get_doi_ra(_id)
 
     return {
-        "id": id_,
-        "type": type_,
+        "id": _id,
+        "type": _type,
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
         "contributors": contributors,
