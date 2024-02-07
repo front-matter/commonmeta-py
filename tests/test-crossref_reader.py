@@ -1294,6 +1294,7 @@ def test_proceedings_article():
         "mimeType": "application/pdf",
     }
 
+
 def test_random_doi():
     """Random DOI from Crossref API"""
     string = "10.4028/www.scientific.net/ddf.309-310.265"
