@@ -51,12 +51,13 @@ def convert(input, via, to, style, locale, doi, depositor, email, registrant, sh
 @cli.command()
 @click.option("--provider", type=str, default="crossref")
 @click.option("--prefix", type=str)
+@click.option("--type", type=str)
 @click.option("--number", "-n", type=int, default=1)
 @click.option("--to", "-t", type=str, default="commonmeta")
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
-def sample(provider, prefix, number, to, show_errors):
+def sample(provider, prefix, type, number, to, show_errors):
     if provider == "crossref":
-        ids = get_random_crossref_id(number, prefix=prefix)
+        ids = get_random_crossref_id(number, prefix=prefix, _type=type)
     elif provider == "datacite":
         ids = get_random_datacite_id(number)
     else:

@@ -99,11 +99,58 @@ def crossref_xml_api_url(doi: str) -> str:
     return f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
 
 
-def crossref_api_sample_url(number: int=1, **kwargs) -> str:
+def crossref_api_sample_url(number: int = 1, **kwargs) -> str:
     """Return the Crossref API URL for a sample of works"""
+    types = [
+        "book-section",
+        "monograph",
+        "report-component",
+        "report",
+        "peer-review",
+        "book-track",
+        "journal-article",
+        "book-part",
+        "other",
+        "book",
+        "journal-volume",
+        "book-set",
+        "reference-entry",
+        "proceedings-article",
+        "journal",
+        "component",
+        "book-chapter",
+        "proceedings-series",
+        "report-series",
+        "proceedings",
+        "database",
+        "standard",
+        "reference-book",
+        "posted-content",
+        "journal-issue",
+        "dissertation",
+        "grant",
+        "dataset",
+        "book-series",
+        "edited-book",
+        "journal-section",
+        "monograph-series",
+        "journal-meta",
+        "book-series-meta",
+        "component-list",
+        "journal-issue-meta",
+        "journal-meta",
+        "book-part-meta",
+        "book-meta",
+        "proceedings-meta",
+        "book-series-meta",
+        "book-set",
+    ]
+    url = f"https://api.crossref.org/works?sample={number}"
     if kwargs.get("prefix", None) and validate_prefix(kwargs.get("prefix")):
-        return f"https://api.crossref.org/works?sample={number}&filter=prefix:{kwargs.get('prefix')}"
-    return f"https://api.crossref.org/works?sample={number}"
+        url += f"&filter=prefix:{kwargs.get('prefix')}"
+    if kwargs.get("_type", None) and kwargs.get("_type") in types:
+        url += f"&filter=type:{kwargs.get('_type')}"
+    return url
 
 
 def datacite_api_url(doi: str, **kwargs) -> str:
@@ -116,7 +163,7 @@ def datacite_api_url(doi: str, **kwargs) -> str:
     return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
 
 
-def datacite_api_sample_url(number: int=1, **kwargs) -> str:
+def datacite_api_sample_url(number: int = 1, **kwargs) -> str:
     """Return the DataCite API URL for a sample of dois"""
     if kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois?random=true&page[size]={number}"
