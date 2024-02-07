@@ -14,7 +14,7 @@ from ..utils import (
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
 from ..date_utils import normalize_date_dict
-from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url
+from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url, datacite_api_sample_url
 from ..constants import (
     DC_TO_CM_TRANSLATIONS, DC_TO_CM_CONTAINER_TRANSLATIONS,
     Commonmeta,
@@ -243,3 +243,18 @@ def get_container(container: Optional[dict]) -> dict or None:
             "title": container.get("title", None),
         }
     )
+
+
+def get_random_datacite_id(number: int=1) -> list:
+    """Get random DOI from DataCite"""
+    number = 20 if number > 20 else number
+    url = datacite_api_sample_url(number)
+    try:
+        response = requests.get(url, timeout=60)
+        if response.status_code != 200:
+            return []
+        
+        items = py_.get(response.json(), "data")
+        return [i.get("id") for i in items]
+    except requests.exceptions.ReadTimeout:
+        return []

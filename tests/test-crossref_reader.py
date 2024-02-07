@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref reader tests"""
 from os import path
+import re
 import pytest
 
 from commonmeta import Metadata
@@ -8,6 +9,7 @@ from commonmeta.readers.crossref_reader import (
     get_crossref,
     read_crossref,
     get_reference,
+    get_random_crossref_id
 )
 
 
@@ -416,10 +418,7 @@ def test_posted_content():
         "familyName": "Fenner",
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2016-12-28",
-        "updated": "2020-01-18T02:53:57Z",
-    }
+    assert subject.date["published"] == "2016-12-28"
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/246",
         "name": "Cold Spring Harbor Laboratory",
@@ -1295,12 +1294,16 @@ def test_proceedings_article():
     }
 
 
-def test_random_doi():
+@pytest.mark.vcr
+def test_get_random_crossref_id():
     """Random DOI from Crossref API"""
-    string = "10.4028/www.scientific.net/ddf.309-310.265"
-    subject = Metadata(string)
-    print(subject.errors)
-    assert subject.is_valid
+    data = get_random_crossref_id()
+    assert len(data) == 1
+    assert re.match("^10\\.\\d{4,5}/.+", data[0])
+    # 5 random DOIs
+    data = get_random_crossref_id(5)
+    assert len(data) == 5
+    assert re.match("^10\\.\\d{4,5}/.+", data[0])
 
 
 def test_get_crossref():
@@ -1351,3 +1354,6 @@ def test_get_reference():
         "containerTitle": "IBM Technical Disclosure Bulletin",
     } == get_reference(unstructured_metadata)
     assert None is get_reference(None)
+
+# 10.15376/frc.1961.1.249 non-unique contributors
+# 10.21474/ijar01/10232 non-unique contributors

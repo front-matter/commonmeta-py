@@ -10,6 +10,8 @@ from commonmeta.readers.json_feed_reader import (
     get_json_feed_updated,
     get_json_feed_item_uuid,
 )
+from commonmeta.readers.crossref_reader import get_random_crossref_id
+from commonmeta.readers.datacite_reader import get_random_datacite_id
 
 
 @click.group()
@@ -46,6 +48,30 @@ def convert(input, via, to, style, locale, doi, depositor, email, registrant, sh
     click.echo(metadata.write(to=to))
 
 
+@cli.command()
+@click.option("--provider", type=str, default="crossref")
+@click.option("--prefix", type=str)
+@click.option("--number", "-n", type=int, default=1)
+@click.option("--to", "-t", type=str, default="commonmeta")
+@click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
+def sample(provider, prefix, number, to, show_errors):
+    if provider == "crossref":
+        ids = get_random_crossref_id(number, prefix=prefix)
+    elif provider == "datacite":
+        ids = get_random_datacite_id(number)
+    else:
+        output = "Provider not supported. Use 'crossref' or 'datacite' instead."
+        click.echo(output)
+    with click.progressbar(ids) as _ids:
+        for _id in _ids:
+            metadata = Metadata(_id)
+            output = metadata.write(to=to)
+            if show_errors and not metadata.is_valid:
+                message = f"{_id}: {metadata.errors}"
+                raise click.ClickException(message)
+            click.echo(output)
+    
+    
 @cli.command()
 @click.argument("prefix", type=str, required=True)
 def encode(prefix):

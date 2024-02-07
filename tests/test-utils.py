@@ -336,6 +336,23 @@ def test_from_csl():
             }
         ]
     )
+    assert [
+        {
+            "affiliation": [],
+            "familyName": "Dana Gertrud Schabo",
+            "name": " Dana Gertrud Schabo",
+            "type": "Person",
+        }
+    ] == from_csl(
+        [
+            {
+                "family": "Dana Gertrud Schabo",
+                "sequence": "first",
+                "affiliation": [],
+                "type": "Person",
+            }
+        ]
+    )
 
 
 def find_from_format():

@@ -20,6 +20,7 @@ from ..doi_utils import (
     get_doi_ra,
     get_crossref_member,
     crossref_api_url,
+    crossref_api_sample_url
 )
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
@@ -59,7 +60,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     if meta.get("author", None):
         contributors = get_authors(from_csl(wrap(meta.get("author"))))
     else:
-        contributors = None
+        contributors = []
 
     def editor_type(item):
         item["contributorType"] = "Editor"
@@ -109,7 +110,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    subjects = [{"subject": i} for i in wrap(meta.get("subject", []))]
+    subjects = py_.uniq([{"subject": i} for i in wrap(meta.get("subject", []))])
     files = [
         get_file(i)
         for i in wrap(meta.get("link", None))
@@ -123,7 +124,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         "url": url,
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "titles": presence(titles),
         "publisher": publisher,
         "date": compact(date),
@@ -308,3 +309,18 @@ def from_crossref_funding(funding_references: list) -> list:
         elif funding_reference != {}:
             formatted_funding_references.append(funding_reference)
     return formatted_funding_references
+
+
+def get_random_crossref_id(number: int=1, **kwargs) -> list:
+    """Get random DOI from Crossref"""
+    number = 20 if number > 20 else number
+    url = crossref_api_sample_url(number, **kwargs)
+    try:
+        response = requests.get(url, timeout=10)
+        if response.status_code != 200:
+            return []
+        
+        items = py_.get(response.json(), "message.items")
+        return [i.get("DOI") for i in items]
+    except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError):
+        return []

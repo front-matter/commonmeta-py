@@ -441,7 +441,6 @@ def from_kbase(elements: list) -> list:
 
 def from_csl(elements: list) -> list:
     """Convert from csl elements"""
-
     def format_element(element):
         """format element"""
         if element.get("literal", None) is not None:
@@ -453,7 +452,7 @@ def from_csl(elements: list) -> list:
         else:
             element["type"] = "Person"
             element["name"] = " ".join(
-                [element.get("given", None), element.get("family", None)]
+                [element.get("given", ""), element.get("family", "")]
             )
         element["givenName"] = element.get("given", None)
         element["familyName"] = element.get("family", None)

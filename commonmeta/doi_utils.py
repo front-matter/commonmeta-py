@@ -99,6 +99,13 @@ def crossref_xml_api_url(doi: str) -> str:
     return f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
 
 
+def crossref_api_sample_url(number: int=1, **kwargs) -> str:
+    """Return the Crossref API URL for a sample of works"""
+    if kwargs.get("prefix", None) and validate_prefix(kwargs.get("prefix")):
+        return f"https://api.crossref.org/works?sample={number}&filter=prefix:{kwargs.get('prefix')}"
+    return f"https://api.crossref.org/works?sample={number}"
+
+
 def datacite_api_url(doi: str, **kwargs) -> str:
     """Return the DataCite API URL for a given DOI"""
     match = re.match(
@@ -107,6 +114,13 @@ def datacite_api_url(doi: str, **kwargs) -> str:
     if match is not None or kwargs.get("sandbox", False):
         return f"https://api.stage.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
     return f"https://api.datacite.org/dois/{doi_from_url(doi)}?include=media,client"
+
+
+def datacite_api_sample_url(number: int=1, **kwargs) -> str:
+    """Return the DataCite API URL for a sample of dois"""
+    if kwargs.get("sandbox", False):
+        return f"https://api.stage.datacite.org/dois?random=true&page[size]={number}"
+    return f"https://api.datacite.org/dois?random=true&page[size]={number}"
 
 
 def is_rogue_scholar_doi(doi: str) -> bool:

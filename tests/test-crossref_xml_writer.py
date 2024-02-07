@@ -538,4 +538,5 @@ def test_software():
     assert subject.type == "Software"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     assert crossref_xml is None
-    assert subject.write_errors == "None is not one of ['BookChapter', 'BookPart', 'BookSection', 'BookSeries', 'BookSet', 'BookTrack', 'Book', 'Component', 'Database', 'Dataset', 'Dissertation', 'EditedBook', 'Grant', 'JournalArticle', 'JournalIssue', 'JournalVolume', 'Journal', 'Monograph', 'Other', 'PeerReview', 'PostedContent', 'ProceedingsArticle', 'ProceedingsSeries', 'Proceedings', 'ReferenceBook', 'ReferenceEntry', 'ReportComponent', 'ReportSeries', 'Report', 'Standard']"
+    assert subject.write_errors == "None is not one of ['BookChapter', 'BookPart', 'BookSection', 'BookSeries', 'BookSet', 'BookTrack', 'Book', 'Component', 'Database', 'Dataset', 'Dissertation', 'EditedBook', 'Entry', 'Grant', 'JournalArticle', 'JournalIssue', 'JournalVolume', 'Journal', 'Monograph', 'Other', 'PeerReview', 'PostedContent', 'ProceedingsArticle', 'ProceedingsSeries', 'Proceedings', 'ReferenceBook', 'ReferenceEntry', 'ReportComponent', 'ReportSeries', 'Report', 'Standard']"
+    
