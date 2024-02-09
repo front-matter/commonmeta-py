@@ -67,7 +67,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     return {
         "id": _id,
         "type": _type,
-        "doi": doi_from_url(_id) if _id else None,
+        "doi": doi_from_url(_id),
         "url": normalize_url(meta.get("UR", None)),
         "titles": [{"title": meta.get("T1", None)}],
         "descriptions": descriptions,

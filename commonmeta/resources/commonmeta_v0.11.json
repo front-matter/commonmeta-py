@@ -37,6 +37,7 @@
         "Reader",
         "Translator",
         "ContactPerson",
+        "DataCollector",
         "DataManager",
         "Distributor",
         "HostingInstitution",
@@ -106,12 +107,14 @@
         "BookChapter",
         "BookSeries",
         "Book",
+        "Collection",
         "Component",
         "Dataset",
         "Dissertation",
         "Document",
         "Entry",
         "Grant",
+        "Image",
         "Instrument",
         "JournalArticle",
         "JournalIssue",
@@ -507,7 +510,16 @@
     "provider": {
       "description": "The provider of the resource. This can be a DOI registration agency or a repository.",
       "type": "string",
-      "enum": ["Crossref", "DataCite", "GitHub", "JaLC", "KISTI", "mEDRA", "OP", "InvenioRDM"]
+      "enum": [
+        "Crossref",
+        "DataCite",
+        "GitHub",
+        "JaLC",
+        "KISTI",
+        "mEDRA",
+        "OP",
+        "InvenioRDM"
+      ]
     },
     "alternate_identifiers": {
       "description": "Alternate identifiers for the resource.",
@@ -568,8 +580,5 @@
       "uniqueItems": true
     }
   },
-  "required": [
-    "id",
-    "type"
-  ]
+  "required": ["id", "type"]
 }

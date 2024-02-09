@@ -153,6 +153,7 @@ def is_personal_name(name):
             "Inc.",
             "Institut",
             "Research",
+            "Science",
             "Team",
         ]
     ):
@@ -240,4 +241,4 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
             }
         )
 
-    return [format_element(i) for i in affiliations]
+    return py_.uniq([format_element(i) for i in affiliations])

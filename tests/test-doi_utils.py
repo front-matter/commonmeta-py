@@ -32,6 +32,7 @@ def test_doi_from_url():
         "doi:10.1371/journal.pone.0042793"
     )
     assert None is doi_from_url("https://doi.org/10.1371")
+    assert None is doi_from_url(None)
     assert "10.5438/55e5-t5c0" == doi_from_url(
         "https://handle.stage.datacite.org/10.5438/55e5-t5c0"
     )

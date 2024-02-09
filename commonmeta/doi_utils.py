@@ -30,8 +30,10 @@ def validate_prefix(doi: Optional[str]) -> Optional[str]:
     return match.group(6)
 
 
-def doi_from_url(url: str) -> Optional[str]:
+def doi_from_url(url: Optional[str]) -> Optional[str]:
     """Return a DOI from a URL"""
+    if url is None:
+        return None
     match = re.search(
         r"\A(?:(http|https)://(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/.+)\Z",
         url,

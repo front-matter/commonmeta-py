@@ -90,7 +90,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     data = compact(
         {
             "id": metadata.id,
-            "doi": doi_from_url(metadata.id) if metadata.id else None,
+            "doi": doi_from_url(metadata.id),
             "url": metadata.url,
             "creators": creators,
             "titles": metadata.titles,

@@ -28,7 +28,6 @@ def write_bibtex(metadata: Commonmeta) -> str:
     else:
         title = None
     doi = doi_from_url(metadata.id)
-
     _id = doi if doi else metadata.id
     _type = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
     abstract = (

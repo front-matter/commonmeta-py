@@ -28,7 +28,7 @@ def write_csl(metadata: Commonmeta) -> str:
         {
             "type": _type,
             "id": metadata.id,
-            "DOI": doi_from_url(metadata.id) if metadata.id else None,
+            "DOI": doi_from_url(metadata.id),
             "URL": metadata.url,
             "categories": presence(
                 parse_attributes(

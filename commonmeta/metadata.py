@@ -69,7 +69,7 @@ class Metadata:
             elif via == "datacite":
                 data = get_datacite(pid)
                 meta = read_datacite(data)
-            elif via == "crossref":
+            elif via in ["crossref", "op"]:
                 data = get_crossref(pid)
                 meta = read_crossref(data)
             elif via == "crossref_xml":
@@ -209,7 +209,7 @@ class Metadata:
             self.write_errors = json_schema_errors(instance, schema="datacite")
             return write_datacite(self)
         elif to == "crossref_xml":
-            doi = doi_from_url(self.id) if self.id is not None else self.id
+            doi = doi_from_url(self.id) or self.id
             _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
             instance = {"doi": doi, "type": _type}
             self.write_errors = json_schema_errors(instance, schema="crossref")

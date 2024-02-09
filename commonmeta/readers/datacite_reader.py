@@ -80,12 +80,13 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     )
     descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
     geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
-    
+    formats = py_.uniq(meta.get("formats", None))
+
     return {
         # required properties
         "id": _id,
         "type": _type,
-        "doi": doi_from_url(_id) if _id else None,
+        "doi": doi_from_url(_id),
         "url": normalize_url(meta.get("url", None)),
         "contributors": contributors,
         "titles": titles,
@@ -97,7 +98,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "language": meta.get("language", None),
         "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
         "sizes": presence(meta.get("sizes", None)),
-        "formats": presence(meta.get("formats", None)),
+        "formats": presence(formats),
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": descriptions,

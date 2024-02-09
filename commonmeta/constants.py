@@ -482,6 +482,7 @@ DC_TO_CM_CONTAINER_TRANSLATIONS = {
 
 DATACITE_CONTRIBUTOR_TYPES = {
     "ContactPerson": "ContactPerson",
+    "DataCollector": "DataCollector",
     "DataCurator": "DataCuration",
     "DataManager": "DataManager",
     "Distributor": "Distributor",
@@ -534,6 +535,7 @@ COMMONMETA_CONTRIBUTOR_ROLES = [
     "Reader",
     "Translator",
     "ContactPerson",
+    "DataCollector",
     "DataManager",
     "Distributor",
     "HostingInstitution",

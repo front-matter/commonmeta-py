@@ -12,10 +12,7 @@ def test_write_metadata_as_datacite_json():
     """Write metadata as datacite json"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    print(subject.titles)
     datacite = json.loads(subject.write(to="datacite"))
-    print(subject.write_errors)
-    print(datacite)
     assert datacite["id"] == "https://doi.org/10.7554/elife.01567"
     assert datacite["doi"] == "10.7554/elife.01567"
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
@@ -52,7 +49,6 @@ def test_with_orcid_id():
     subject = Metadata("https://doi.org/10.1155/2012/291294")
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    print(subject.references)
     datacite = json.loads(subject.write(to="datacite"))
     assert subject.write_errors == None
     assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
@@ -74,7 +70,6 @@ def test_with_data_citation():
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     datacite = json.loads(subject.write(to="datacite"))
-    print(subject.write_errors)
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
         "bibtex": "article",
