@@ -1,6 +1,6 @@
 """crossref reader for commonmeta-py"""
 from typing import Optional
-import requests
+import httpx
 from pydash import py_
 
 from ..utils import (
@@ -18,9 +18,10 @@ from ..doi_utils import (
     doi_as_url,
     doi_from_url,
     get_doi_ra,
-    get_crossref_member,
+    # get_crossref_member,
     crossref_api_url,
-    crossref_api_sample_url
+    crossref_api_query_url,
+    crossref_api_sample_url,
 )
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
@@ -30,13 +31,22 @@ from ..constants import (
 )
 
 
+def get_crossref_list(query: dict, **kwargs) -> list[dict_to_spdx]:
+    """get_crossref list from Crossref API."""
+    url = crossref_api_query_url(query, **kwargs)
+    response = httpx.get(url, timeout=30, **kwargs)
+    if response.status_code != 200:
+        return []
+    return response.json().get("message", {}).get("items", [])
+
+
 def get_crossref(pid: str, **kwargs) -> dict:
     """get_crossref"""
     doi = doi_from_url(pid)
     if doi is None:
         return {"state": "not_found"}
     url = crossref_api_url(doi)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json().get("message", {})
@@ -73,13 +83,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
     titles = get_titles(meta)
 
-    member_id = meta.get("member", None)
-    # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
-    if member_id is not None:
-        publisher = get_crossref_member(member_id)
-    else:
-        publisher = meta.get("publisher", None)
+    # member_id = meta.get("member", None)
+    # # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
 
+    # if member_id is not None:
+    #     publisher = get_crossref_member(member_id)
+    # else:
+    publisher = compact({"name": meta.get("publisher", None)})
     date: dict = {}
     date["submitted"] = None
     date["accepted"] = py_.get(meta, "accepted.date-time")
@@ -311,16 +321,16 @@ def from_crossref_funding(funding_references: list) -> list:
     return formatted_funding_references
 
 
-def get_random_crossref_id(number: int=1, **kwargs) -> list:
+def get_random_crossref_id(number: int = 1, **kwargs) -> list:
     """Get random DOI from Crossref"""
     number = 20 if number > 20 else number
     url = crossref_api_sample_url(number, **kwargs)
     try:
-        response = requests.get(url, timeout=10)
+        response = httpx.get(url, timeout=10)
         if response.status_code != 200:
             return []
-        
+
         items = py_.get(response.json(), "message.items")
         return [i.get("DOI") for i in items]
-    except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError):
+    except (httpx.exceptions.ReadTimeout, httpx.exceptions.ConnectionError):
         return []

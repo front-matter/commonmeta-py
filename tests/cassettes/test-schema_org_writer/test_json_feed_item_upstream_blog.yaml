@@ -1,210 +1,242 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d
   response:
-    body:
-      string: !!binary |
-        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
-        uSZYkxp5R6rUcgEAvl7aL+xFAAA=
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22124/20231105103706/https://upstream.force11.org/attempts-at-automating-journal-subject-classification","authors":[{"name":"Esha
+      Datta","url":"https://orcid.org/0000-0001-9165-2757"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22124/20231105103706/","authors":null,"backlog":0,"canonical_url":null,"category":"humanities","created_at":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
+      community blog for all things Open Research.","favicon":"https://upstream.force11.org/favicon.png","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.25","home_page_url":"https://upstream.force11.org","id":"e3952730-ffb7-4ef9-b4a5-6433d86b2819","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scicomm.xyz/@upstream","plan":"Team","prefix":"10.54900","relative_url":null,"ror":null,"secure":true,"slug":"upstream","status":"active","title":"Upstream","updated_at":1705865031,"use_api":true,"use_mastodon":false,"user_id":"08014cf6-3335-4588-96f4-c77ac1e535b2","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Upstream","blog_slug":"upstream","content_text":"Traditionally,
+      journal subject classification was done manually at\nvarying levels of granularity,
+      depending on the use case for the\ninstitution. Subject classification is done
+      to help collate resources by\nsubject enabling the user to discover publications
+      based on different\nlevels of subject specificity. It can also be used to help
+      determine\nwhere to publish and the direction a particular author may be pursuing\nin
+      their research if one wants to track where their work is being\npublished. Currently,
+      most subject classification is done manually as it\nis a speciality that requires
+      a lot of training. However, this effort\ncan be siloed by institution or can
+      be hampered by various\ninter-institutional agreements that prevent other resources
+      from being\nclassified. It could also prevent a standardized approach to classifying\nitems
+      if different publications in separate institutions use different\ntaxonomies
+      and classification systems. Automating classification work\nsurfaces questions
+      about the relevance of the taxonomy used, the\npotential bias that might exist,
+      and the texts being classified.\nCurrently, journals are classified using various
+      taxonomies and are\nsiloed in many systems, such as library databases or software
+      for\npublishers. Providing a service that can automatically classify a text\n(and
+      provide a measure of accuracy!) outside of a specific system can\ndemocratize
+      access to this information across all systems. Crossref\ninfrastructure enables
+      a range of services for the research community;\nwe have a wealth of metadata
+      created by a very large global community.\nWe wondered how we could contribute
+      in this area.\n\nIn our own metadata corpus, we had subject classifications
+      for a subset\nof our journals provided by Elsevier. However, this meant that
+      we were\nproviding subject information unevenly across our metadata. We wondered\nif
+      we could extrapolate the information and provide the data across all\nour metadata.\n\nWe
+      looked specifically at journal-level classification instead of\narticle-level
+      classification for a few reasons. We had the training data\nfor journal-level
+      subject classification; it was a good place to begin\nunderstanding what would
+      be needed. Our work so far provides a\nfoundation for further article-level
+      classification - if Crossref\ndecides to investigate further.\n\nTo start with,
+      I used Elsevier''s All Science Journal Classification\nCodes\n([ASJC](https://service.elsevier.com/app/answers/detail/a_id/15181/supporthub/scopus/)),\nwhich
+      have been applied to their\n[database](https://www.elsevier.com/solutions/scopus/how-scopus-works/content)\nof
+      publications, which includes journals and books. We used ASJC because\nit contained
+      metadata that could be parsed programmatically. If the\nproject progressed well,
+      we felt that we could look at other\nclassification systems.\n\nAfter pre-processing,
+      three methods (tf-idf, Embeddings, LLM) were used,\nand their performances were
+      benchmarked. The following outlines the\nsteps taken for the pre-processing,
+      cleaning, and implementation details\nof the methods used to predict the subject
+      classification of journals.\n\n### Pre-processing of data\n\nThe Excel document
+      was processed as a CSV file and has various\ninformation, including journal
+      titles, the corresponding print and e-\nISSNs, and their ASJC codes. The journals
+      were mostly in English but\nwere also in many other languages, such as Russian,
+      Italian, Spanish,\nChinese, and others. First, there was a process to see which
+      journals in\nthe Elsevier list also existed in the Crossref corpus. As of June
+      2022,\nthere were 26,000 journals covered by the Elsevier database. The\njournals
+      could contain one or many subject categories. For example, the\n*Journal of
+      Children''s Services* has several subjects assigned to them,\nsuch as Law, Sociology
+      and Political Science, Education, and Health. The\njournal titles have some
+      data, but not a lot. They averaged about four\nwords per title, so more data
+      was needed. First, 10 - 20 journal article\ntitles per journal were added if
+      there were that many journal articles\navailable. At Crossref, a few journal
+      articles contain abstracts, but\nnot all. So, for the moment, journal titles
+      and their corresponding\narticle titles were the additional data points that
+      were used.\n\n##### **Cleaning the data**\n\nThe data was cleaned up to remove
+      stop words, various types of formulae,\nand XML from the titles. Stop words
+      generally consist of articles,\npronouns, conjunctions, and other frequently
+      used words. The [stop words\nlist](https://github.com/stopwords-iso/stopwords-iso)
+      of all languages\nin the ISO-639 standard was used to process the titles. Some\ndomain-specific
+      terms to the stop words, such as \"journal\", \"archive\",\n\"book\", \"studies\",
+      and so on, were also added to the list. Formulae and\nXML tags were removed
+      with regular expressions. Rare subject categories\nthat were assigned to very
+      few journals (less than 50 out of 26000\njournals) \u00a0were also removed.
+      The cleaned data was now ready for\nprocessing. It was split into training,
+      validation, and test sets.\n\n### Methods\n\nThis particular type of classification
+      is known as a multi-label\nclassification problem since zero, or many subjects
+      can be assigned to a\njournal. Three methods were used to see which performed
+      best.\n\n#### **TF-IDF + Linear Support Vector Classification** {#tf-idf-linear-support-vector-classification}\n\nThe
+      first approach used the tf-idf and multilabel binarizer libraries\nfrom [scikit
+      learn](https://scikit-learn.org/stable/index.html).\n[Tf-idf](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+      is a numerical\nstatistic that is intended to reflect how important a word is
+      to a\ndocument in a collection. Using tf-idf, a \u00a0number of different\nstrategies
+      that can be used within a multi-label classification problem\nwere benchmarked.
+      The tf-idf vectorizer and multilabel binarizer are\nPython libraries that convert
+      data into machine parseable vectors.\nEssentially, the data is a table of journal
+      and article titles and their\ncorresponding subjects.\n\nA baseline prediction
+      was needed to benchmark the performance of the\nstrategies used. This prediction
+      was made by comparing the presence of\nthe subject codes assigned to the journal
+      with the most common subject\ncodes present in the corpus. The measure used
+      to compare the\nperformances was the micro [F1](https://en.wikipedia.org/wiki/F-score)\nscore.
+      The micro F1 score of the baseline prediction was 0.067. It shows\nthat applying
+      a naive approach will provide a prediction at 6.67%\naccuracy. That measure
+      provided a good starting point to get an idea of\nthe performance of subsequent
+      methods.\n\nAmong the strategies used, the best-performing strategy was One
+      vs Rest\nusing LinearSVC. The micro F1 score was 0.43 after processing 20,000\nfeatures
+      using the validation dataset. This was a decent increase from\nthe baseline;
+      however, it is still not very serviceable. In order to\nimprove performance,
+      it was decided to reduce the granularity of\nsubjects. For example, the journal,
+      *Journal of Children''s Services,*\nhas several subjects assigned to them, such
+      as Law, Sociology and\nPolitical Science\\'', Education, and Health. Elsevier''s
+      ASJC subjects are\nin hierarchies. There are several subgroups of fields within
+      some\noverarching fields. For example, the group, Medicine, has several\nspecialities
+      of medicine listed under it. The subjects, Social Sciences\nand Psychology work
+      similarly. They are two separate fields of study,\nand the journal has articles
+      that apply to either or both fields of\nstudy. The subjects listed in the \u00a0*Journal
+      of Children''s Services* are\nin two different groups: Social Sciences and Psychology.
+      Downgrading the\ngranularity makes the learning process a little simpler. So,
+      instead of\nthe \u00a0*Journal of Children''s Services* belonging to several
+      different\nsubjects, the journal now belonged to two subjects. Using the same\nstrategy,
+      one vs rest with LinearSVC, we get an F1 score of 0.72 for the\nsame number
+      of titles. This was a marked improvement from before. There\nwere other avenues
+      that could be looked at, such as bringing in more\ndata in the form of references,
+      but there were also other methods to\nlook at. We were curious about the role
+      of embeddings and decided to\npursue that approach.\n\n#### **Embeddings + Linear
+      Support Vector Classification** {#embeddings-linear-support-vector-classification}\n\nThis
+      approach is slightly different from the tf-idf approach. For the\ntitles, we
+      decided to use a model that was already trained on a\nscientific corpus. For
+      this, AllenAI''s\n[SciBERT](https://github.com/allenai/scibert) was used, a
+      fine-tuned\n[BERT](https://arxiv.org/abs/1810.04805) model trained on papers
+      from\nthe corpus of [semanticscholar.org](https://semanticscholar.org); a tool\nprovided
+      by AllenAI. The model provides an embedding: a vector\nrepresentation of the
+      titles, based on the data it has already been\ntrained on. This allows it to
+      provide more semantic weight on the data\nrather than simple occurrence of the
+      words in the document (this occurs\nwith the previous method, tf-idf). The generation
+      of the embedding took\nover 18 hours on a laptop, but after that, generating
+      predictions became\nquite fast. The amount of data needed to generate this vector
+      is also\nlower than the tf-idf generation. The subjects were processed similarly\nto
+      before and generated a vector using the multilabel binarizer. With\n512 features
+      from the titles (instead of 20,000) in the previous\napproach, the same strategy
+      was used as earlier. Using the one vs rest\nstrategy with LinearSVC the strategy
+      was run against the validation set\nand got a F1 score of 0.71.\n\nSo far, the
+      tally is:\n\n| Method                                   | F1 Score |\n|------------------------------------------|----------|\n|
+      Tf-idf + multilabel binarizer            | 0.73     |\n| SciBERT embedding +
+      multilabel binarizer | 0.71     |\n\nAt this point, we were going to look into
+      gathering more data points\nsuch as references and run a comparison between
+      these two methods.\nHowever, large language models, especially ChatGPT, came
+      into the\nzeitgeist, a few weeks into mulling over other options.\n\n#### **OpenAI:
+      LLM + sentence completion** {#openai-llm-sentence-completion}\n\nOut of curiosity,
+      the author looked to see what chatGPT could do.\nChatGPT was asked to figure
+      out what topics an existing journal title\nbelonged to, and it came very close
+      to predicting the correct answer.\nThe author also asked it to figure out to
+      which topic multiple Dutch\njournal article titles belonged, and it predicted
+      the correct answer\nagain. The author decided to investigate this avenue knowing
+      that if\nthere were good results, open large language models would be used to
+      see\nif there would be comparable results. The screenshot below shows the\nexamples
+      listed above.\n\n<figure class=\"kg-card kg-image-card\">\n<img\nsrc=\"https://upstream.force11.org/content/images/2023/08/openai_experiment.png\"\nclass=\"kg-image\"
+      loading=\"lazy\"\nsrcset=\"https://upstream.force11.org/content/images/size/w600/2023/08/openai_experiment.png
+      600w, https://upstream.force11.org/content/images/size/w1000/2023/08/openai_experiment.png
+      1000w, https://upstream.force11.org/content/images/2023/08/openai_experiment.png
+      1600w\"\nsizes=\"(min-width: 720px) 720px\" width=\"1600\" height=\"1495\" />\n</figure>\n\nSubjects
+      had to be processed a little differently for this model. The\nASJC codes have
+      subjects in text form as well as numerical values. For\nexample, if there is
+      a journal classified as \"Medicine\", it has a code\nof \"27\". The author fine-tuned
+      the openAI model using their \"ada\" model\n\u00a0 (it is the fastest and the
+      cheapest) and sent it some sentence\ncompletion prompts. Essentially, this means
+      that the model is being\nfine-tuned into telling it what subject codes it needs
+      to complete the\nsentences that it is being sent. So, suppose several different
+      titles\nare sent to the model and asked to complete it with several delimited\nsubject
+      codes. In that case, the model should be able to predict which\nsubject codes
+      should complete the sentences. A set of prompts were\ncreated with the journal
+      titles and their corresponding subject codes as\nthe sentence completion prompt
+      to train the model. It looked like this:\n\n**`{\"prompt\":\"Lower Middle Ordovician
+      carbon and oxygen\u2026..,\"completion\":\" 11\\n19\"}`**\n\nThe above snippet
+      has several different titles where the subjects\nassigned to these titles are
+      11 and 19, which are *Agricultural and\nBiological Sciences* and *Earth and
+      Planetary Sciences,* respectively.\n\nThe openAI''s API was used to fine-tune
+      and train a model using the above\nprompts, and \\$10.00 later, generated a
+      model.\n\n<figure class=\"kg-card kg-image-card\">\n<img\nsrc=\"https://upstream.force11.org/content/images/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png\"\nclass=\"kg-image\"
+      loading=\"lazy\"\nsrcset=\"https://upstream.force11.org/content/images/size/w600/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+      600w, https://upstream.force11.org/content/images/size/w1000/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+      1000w, https://upstream.force11.org/content/images/2023/08/data-src-image-60e0df22-f6e0-4c81-adf0-fe21d2839897.png
+      1600w\"\nsizes=\"(min-width: 720px) 720px\" width=\"1600\" height=\"702\" />\n</figure>\n\nThe
+      validation dataset was run against the model and got a micro F1\nscore of 0.69.
+      So, the tally now is:\n\n| Method                                   | F1 Score
+      |\n|------------------------------------------|----------|\n| Tf-idf + multilabel
+      binarizer            | 0.73     |\n| SciBERT embedding + multilabel binarizer
+      | 0.71     |\n| ChatGPT + sentence completion            | 0.69     |\n\n###
+      Summary\n\nSo, sad trombone, using three different methods, the F1 score is
+      similar\nacross all three methods. Essentially, we needed more data for more\naccurate
+      predictions. Crossref has abstracts for a subset of the\ndeposited publication
+      metadata. Therefore, this data could not be used\nat this time for comparison.
+      However, having that data could possibly\nyield better results. The only way
+      to do that is to use a similar method\nto get those results. We do not have
+      that currently, and so, for now,\n\u00a0it becomes a chicken and egg thought
+      exercise. Getting even more data,\nsuch as full-text, could also produce interesting
+      results, but we do not\nhave the data for that either. For now, Crossref decided
+      to remove the\nexisting subject classifications that were present in some of
+      our\nmetadata. We could revisit the problem later - if we have more data.\nThere
+      are certainly interesting applications of these methods. We could:\n\n1.  Look
+      into topic clustering across our metadata and see what\n    surfaces. This could
+      also have applications in looking at the\n    research zeitgeist across various
+      time periods.\n2.  Measure the similarities of embeddings with each other to
+      look at\n    article similarities, which could yield interesting results in\n    recommendations
+      and search.  \n\nAutomated subject classification also raises questions about
+      fairness\nand bias in its algorithms and training and validation data. It would\nalso
+      be productive to clearly understand how the algorithm reaches its\nconclusions.
+      Therefore, any automated system must be thoroughly tested,\nand anyone using
+      it should have a very good understanding of what is\nhappening within the algorithm.\n\nThis
+      was an interesting exercise for the author to get acquainted with\nmachine learning
+      and become familiar with some of the available\ntechniques.\n","doi":"https://doi.org/10.54900/n6dnt-xpq48","guid":"646b67ec54fc56091f756304","id":"5d14ffac-b9ac-4e20-bdc0-d9248df4e80d","image":"https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg","indexed_at":1705662327,"language":"en","published_at":1684834305,"reference":[],"relationships":[],"summary":"Traditionally,
+      journal subject classification was done manually at varying levels of granularity,
+      depending on the use case for the institution. Subject classification is done
+      to help collate resources by subject enabling the user to discover publications
+      based on different levels of subject specificity.\n","tags":["Original Research"],"title":"Attempts
+      at automating journal subject classification","updated_at":1705661262,"url":"https://upstream.force11.org/attempts-at-automating-journal-subject-classification"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Fri, 26 Jan 2024 11:20:54 GMT
+      - Sat, 10 Feb 2024 10:01:18 GMT
       fly-request-id:
-      - 01HN2R0MG1WNQ1A7RJ7TTYN3AT-fra
+      - 01HP97DP0K2G9S137BTHRQZD4R-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
-      ratelimit-reset:
       - '3'
+      ratelimit-reset:
+      - '44'
       server:
-      - Fly/90094c67 (2024-01-25)
+      - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

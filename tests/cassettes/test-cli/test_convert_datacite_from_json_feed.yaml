@@ -1,89 +1,82 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/d0ca6fa3-3a93-46d3-b820-446938d78f70
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KUbJSyigpKSi20tcvT6xMSkzO
-        1oPK6maW6OUXpesbGRlYmukbGRgZGxoaGBqaG5mbWOjD9CTl5KfrpRXl55Xo5iaWlKQW6WXm6xfk
-        F5cU6yfn5+bm5+UmFmXrJual6JZkpOqmlZaUFqXq5qfpFidn5OckFuVU6oIUpOSX5ynpKCWWlmTk
-        FxUrWUVXK+Ul5qYqWSn5JhaVZOYpuKXm5aUWKekoobo4vyg5MwXsSAMDAwNdAwMDY11DE0NLXSMT
-        A1Ol2lgdJZD7lKyqlRILMpWsSopKUxGeLyhKTcusINP/yK6FhCko6HLy05WsDHSUkhPz8vMykxNz
-        ICEMUZCcWJKanl9UqWSllJyfW1BaklrkmJfimZeWX5SbWJKZnxecnJmal5xarKSjlFyUmliSmhKf
-        WKJkZWhmbmRqZmhoaqyjlFxaVJSaVxKflpqaAjEbHnsgn2LERGJJfq6+ko5SSmpxclFmAcgWJSul
-        kIxUBTdQnCn4guNMwSknP10hOb8stahYoSQjVSEzryS1qDg1GaReIT9NoRjiMoXEvBSFktTkjLz8
-        nPz0SoXizLzkVAUjAwNzPSUdpbTEsszk/DykAMXqJKgyvYK8dJAmkEcgIaBkpZRYUJCTmQwODH2Q
-        07UrcnNgilBjHqvRIC0g5Zk5JalFsLSeVpqXkpmXDuOmp+alFiWW5BcpWSm5Z+QXlyjpKMHF4osS
-        y2HiCqZ6pkZKOkoZ+bmp8QWJ6ei5BZsLlHSUMlOUrJTMTcxMLZOSTXVTjc1SdU0Sjcx1LQ0M03TT
-        DJItUkzNzSyTkyxAavNSUitSU2BOyywuBoWekbmJpa6lJdjynMS89NLEdFBOSAXlkJzM5NS8YhAX
-        lgHBKSWzLBWS24rBmQGqqlg/qVLfRM9APyc1PTEnOT8lVUlHKTexuCQ/BSWacvOrMnNyEvWK85Mz
-        E3P0HXLBeU5JR6kgJxHkoJDUxFwQD5ZfDA30TI3NjQ2VdJSKUnMSS+AlCSSdF4HCFsIsTk0uLUqF
-        ZbzinNJ0JSslcGkRDyktlHSUiksSS0qLQZGfDDJJSUepJLMkB+RF5CQKyvoFKYg8YW5gZmpsbmlg
-        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
-        a7kA6Fr0ZLMVAAA=
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/commonmark-and-the-future-of-scholarly-markdown","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+      Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Team","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1707416598,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Front
+      Matter","blog_slug":"front_matter","content_text":"One of the important outcomes
+      of the [Markdown for\nScience](https://github.com/scholmd/scholmd/wiki) workshop
+      that took\nplace in June 2013 was a decision on a name - *Scholarly Markdown*
+      - and\na brief\n[definition](https://github.com/scholmd/scholmd/wiki/What-is-Markdown):\n\n1.  Markdown
+      that supports the requirements of scientific texts\n2.  Markdown as format that
+      glues open scientific text resources\n    together\n3.  A reference implementation
+      with documentation and tests\n4.  A community\n\nIn my eyes this is still a
+      great definition. And this week something\nimportant happened that is very relevant
+      for Scholarly Markdown. A small\ngroup of people deeply involved in Markdown
+      announced [Standard\nMarkdown](http://commonmark.org/):\n\n> We propose a standard,
+      unambiguous syntax specification for Markdown,\n> along with a suite of comprehensive
+      tests to validate Markdown\n> implementations against this specification. We
+      believe this is\n> necessary, even essential, for the future of Markdown.\n\nMarkdown
+      is in widespread use, but a lack of standard syntax and set of\ncomprehensive
+      tests has hindered the adoption for more complex use\ncases, the development
+      of cross-platform tools, and the use of markdown\nas a document interchange
+      format. I am therefore 100% behind this\ninitiative. In particular since this
+      is not just an initiative by large\ncommercial organizations heavily using Markdown
+      such as Stack Exchange,\nGithub or Reddit, but that the entire spec and both
+      reference\nimplementations have been written by [John\nMacFarlane](http://johnmacfarlane.net/),
+      the author of Pandoc, the\nuniversal document converter. Not only does Pandoc
+      already support many\nof the features required by Scholarly Markdown (e.g. math
+      and\ncitations), but John is the Chair of the Department of Philosophy at UC\nBerkeley.\n\nMarkdown
+      was developed in 2004 by John Gruber, and he [holds the\nrights](http://daringfireball.net/projects/markdown/license)
+      to the name\nMarkdown. He didn''t want this initiative to use the name ****Standard\nMarkdown****,
+      so the implementation was\n[renamed](http://blog.codinghorror.com/standard-markdown-is-now-common-markdown/)\nto
+      [CommonMark](http://commonmark.org/).\n\nThe consequences of all this for Scholarly
+      Markdown?\n\n- CommonMark focusses on the basic features of the language, but
+      once\n  the specification is agreed upon and implemented by a critical mass
+      of\n  tools, it is clear that there needs to be a standardized way to handle\n  extensions
+      of the language. This is both about features used by lots\n  of people such
+      as tables, but also functionality relevant only for\n  scholarly content.\n-
+      This brings us one gigantic step closer to a reference implementation\n  and
+      set of tests for Scholarly Markdown, as hopefully Scholarly\n  Markdown can
+      build upon the work by John and the CommonMark team.\n- The name Scholarly Markdown
+      might not be a good idea going forward. We\n  should either change the name
+      to align with CommonMark, or we should\n  come up with a totally different name,
+      something that the\n  screenwriters have done with [their](http://fountain.io/)\n  implementation
+      of Markdown.\n","doi":"https://doi.org/10.53731/r294649-6f79289-8cw06","guid":"62d42bbd41e317003df48d61","id":"d0ca6fa3-3a93-46d3-b820-446938d78f70","image":"https://blog.front-matter.io/content/images/2023/09/typewriter.png","indexed_at":1705647986,"language":"en","published_at":1410102600,"reference":[],"relationships":[],"summary":"One
+      of the important outcomes of the Markdown for Science workshop that took place
+      in June 2013 was a decision on a name -\n<em>\n Scholarly Markdown\n</em>\n-
+      and a brief definition:Markdown that supports the requirements of scientific
+      textsMarkdown as format that glues open scientific text resources togetherA
+      reference implementation with documentation and testsA community In my eyes
+      this is still a great definition.\n","tags":["Feature"],"title":"CommonMark
+      and the Future of Scholarly Markdown","updated_at":1693606076,"url":"https://blog.front-matter.io/posts/commonmark-and-the-future-of-scholarly-markdown"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Sun, 04 Feb 2024 11:04:32 GMT
+      - Sat, 10 Feb 2024 09:59:23 GMT
       fly-request-id:
-      - 01HNSWN4FJ467BD7YA2STAJZG4-fra
+      - 01HP97A5R596WYKF40RBF17V9Y-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
@@ -94,9 +87,10 @@ interactions:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

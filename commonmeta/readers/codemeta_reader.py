@@ -1,7 +1,7 @@
 """codemeta reader for commonmeta-py"""
 from typing import Optional
 from collections import defaultdict
-import requests
+import httpx
 
 from ..utils import (
     normalize_id,
@@ -23,7 +23,7 @@ from ..constants import (
 def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
     url = str(github_as_codemeta_url(pid))
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     data = response.json()

@@ -1,7 +1,7 @@
 import click
 import pydash as py_
 
-from commonmeta import Metadata # __version__
+from commonmeta import Metadata, MetadataList # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.doi_utils import validate_prefix
 from commonmeta.utils import encode_doi, decode_doi
@@ -63,12 +63,12 @@ def sample(provider, prefix, type, number, to, show_errors):
     else:
         output = "Provider not supported. Use 'crossref' or 'datacite' instead."
         click.echo(output)
-    with click.progressbar(ids) as _ids:
-        for _id in _ids:
-            metadata = Metadata(_id)
-            output = metadata.write(to=to)
-            if show_errors and not metadata.is_valid:
-                message = f"{_id}: {metadata.errors}"
+    lst = MetadataList(ids, via=provider)
+    with click.progressbar(lst.items) as items:
+        for item in items:
+            output = item.write(to=to)
+            if show_errors and not item.is_valid:
+                message = f"{item}: {item.errors}"
                 raise click.ClickException(message)
             click.echo(output)
     

@@ -1,25 +1,26 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - blog.front-matter.io
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
   response:
-    body:
-      string: ''
+    content: ''
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '2301'
+      - '136977'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -29,7 +30,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Sun, 21 Jan 2024 09:16:31 GMT
+      - Sat, 10 Feb 2024 10:32:48 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -49,162 +50,370 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Request-ID:
-      - b7b07260-523c-45a2-bb4f-780999c2fdcd
-      - b7b07260-523c-45a2-bb4f-780999c2fdcd
+      - 1e3cbfc7-1c6a-41a9-bb60-f312520cd6f2
       X-Served-By:
-      - cache-ams21038-AMS
+      - cache-ams21078-AMS
       X-Timer:
-      - S1705828591.402547,VS0,VE1
+      - S1707561169.711993,VS0,VE1
       location:
       - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
       x-request-id:
-      - b7b07260-523c-45a2-bb4f-780999c2fdcd
-      - b7b07260-523c-45a2-bb4f-780999c2fdcd
-    status:
-      code: 301
-      message: Moved Permanently
+      - 1e3cbfc7-1c6a-41a9-bb60-f312520cd6f2
+    http_version: HTTP/1.1
+    status_code: 301
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - blog.front-matter.io
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
   response:
-    body:
-      string: !!binary |
-        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
-        AwAeHHJ83oEAAA==
+    content: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"utf-8\">\n
+      \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
+      \   <title>Editorial by more than 200 health journals: Call for emergency action
+      to limit global temperature increases, restore biodiversity, and protect health</title>\n
+      \   <link rel=\"stylesheet\" href=\"https://blog.front-matter.io/assets/built/screen.css?v=52cb4b923e\">\n\n
+      \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
+      \   <meta name=\"citation_title\" content=\"Editorial by more than 200 health
+      journals: Call for emergency action to limit global temperature increases, restore
+      biodiversity, and protect health\">\n    <meta name=\"citation_abstract\" content=\"More
+      than 200 health journals today published an editorial calling for urgent action
+      to keep average global temperature increases below 1.5\xB0C, halt the destruction
+      of nature, and protect health. The editorial can be read for example here (published
+      under a CC-BY Open Access license), and the full list\">\n    <meta name=\"citation_author\"
+      content=\"Martin Fenner\">\n    <meta name=\"citation_date\" content=\"2021-09-06\"/>\n
+      \   <meta name=\"citation_keywords\" content=\"News\"/>\n    <meta name=\"citation_journal_title\"
+      content=\"Front Matter\"/>\n    <meta name=\"citation_language\" content=\"en\">\n\n\n
+      \   <meta name=\"dc.identifier\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
+      \   <meta name=\"dc.creator\" content=\"Martin Fenner\" />\n    <meta name=\"dc.title\"
+      content=\"Editorial by more than 200 health journals: Call for emergency action
+      to limit global temperature increases, restore biodiversity, and protect health\"
+      />\n    <meta name=\"dc.description\" content=\"More than 200 health journals
+      today published an editorial calling for urgent action to keep average global
+      temperature increases below 1.5\xB0C, halt the destruction of nature, and protect
+      health. The editorial can be read for example here (published under a CC-BY
+      Open Access license), and the full list\" />\n    <meta name=\"dc.date\" content=\"2021-09-06\"
+      />\n    <meta name=\"dc.subject\" content=\"News\" />\n    <meta name=\"dc.language\"
+      content=\"en\" />   \n    <meta name=\"dc.format\" content=\"text/html\" />
+      \n    <meta name=\"dc.source\" content=\"Front Matter\" />\n    <meta name=\"dc.type\"
+      content=\"article\" />\n    \n    <meta name=\"dc.rights\" content=\"https://creativecommons.org/licenses/by/4.0/legalcode\"
+      />\n\n    <link rel=\"icon\" href=\"https://blog.front-matter.io/content/images/size/w256h256/2023/04/front-matter.png\"
+      type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
+      \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    <link
+      rel=\"amphtml\" href=\"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/amp/\">\n
+      \   \n    <meta property=\"og:site_name\" content=\"Front Matter\">\n    <meta
+      property=\"og:type\" content=\"article\">\n    <meta property=\"og:title\" content=\"Editorial
+      by more than 200 health journals: Call for emergency action to limit global
+      temperature increases, restore biodiversity, and protect health\">\n    <meta
+      property=\"og:description\" content=\"More than 200 health journals today published
+      an editorial calling for urgent action to keep average global temperature increases
+      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
+      can be read for example here (published under a CC-BY Open Access license),
+      and the full list\">\n    <meta property=\"og:url\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
+      \   <meta property=\"og:image\" content=\"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\">\n
+      \   <meta property=\"article:published_time\" content=\"2021-09-06T07:50:05.000Z\">\n
+      \   <meta property=\"article:modified_time\" content=\"2022-08-15T19:04:52.000Z\">\n
+      \   <meta property=\"article:tag\" content=\"News\">\n    \n    <meta name=\"twitter:card\"
+      content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Editorial
+      by more than 200 health journals: Call for emergency action to limit global
+      temperature increases, restore biodiversity, and protect health\">\n    <meta
+      name=\"twitter:description\" content=\"More than 200 health journals today published
+      an editorial calling for urgent action to keep average global temperature increases
+      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
+      can be read for example here (published under a CC-BY Open Access license),
+      and the full list\">\n    <meta name=\"twitter:url\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
+      \   <meta name=\"twitter:image\" content=\"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\">\n
+      \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
+      content=\"Martin Fenner\">\n    <meta name=\"twitter:label2\" content=\"Filed
+      under\">\n    <meta name=\"twitter:data2\" content=\"News\">\n    <meta property=\"og:image:width\"
+      content=\"1200\">\n    <meta property=\"og:image:height\" content=\"1186\">\n
+      \   \n    <script type=\"application/ld+json\">\n{\n    \"@context\": \"https://schema.org\",\n
+      \   \"@type\": \"Article\",\n    \"publisher\": {\n        \"@type\": \"Organization\",\n
+      \       \"name\": \"Front Matter\",\n        \"url\": \"https://blog.front-matter.io/\",\n
+      \       \"logo\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
+      \"https://blog.front-matter.io/content/images/2022/12/logo.png\",\n            \"width\":
+      200,\n            \"height\": 31\n        }\n    },\n    \"author\": {\n        \"@type\":
+      \"Person\",\n        \"name\": \"Martin Fenner\",\n        \"image\": {\n            \"@type\":
+      \"ImageObject\",\n            \"url\": \"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s=250&r=x&d=mp\",\n
+      \           \"width\": 250,\n            \"height\": 250\n        },\n        \"url\":
+      \"https://blog.front-matter.io/author/martin/\",\n        \"sameAs\": [\n            \"https://orcid.org/0000-0003-1419-2405\"\n
+      \       ]\n    },\n    \"headline\": \"Editorial by more than 200 health journals:
+      Call for emergency action to limit global temperature increases, restore biodiversity,
+      and protect health\",\n    \"url\": \"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/\",\n
+      \   \"datePublished\": \"2021-09-06T07:50:05.000Z\",\n    \"dateModified\":
+      \"2022-08-15T19:04:52.000Z\",\n    \"image\": {\n        \"@type\": \"ImageObject\",\n
+      \       \"url\": \"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\",\n
+      \       \"width\": 1200,\n        \"height\": 1186\n    },\n    \"keywords\":
+      \"News\",\n    \"description\": \"More than 200 health journals today published
+      an editorial calling for urgent action to keep average global temperature increases
+      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
+      can be read for example here (published under a CC-BY Open Access license),
+      and the full list of participating journals can be found here.\\n\\nThe greatest
+      threat to global public health is the continued failure of world leaders to
+      keep the global temperature rise below 1.5\xB0C and to restore na\",\n    \"mainEntityOfPage\":
+      \"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/\"\n}\n
+      \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 5.79\">\n    <link
+      rel=\"alternate\" type=\"application/rss+xml\" title=\"Front Matter\" href=\"https://blog.front-matter.io/rss/\">\n
+      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.37/umd/portal.min.js\"
+      data-i18n=\"true\" data-ghost=\"https://blog.front-matter.io/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
+      data-api=\"https://front-matter.ghost.io/ghost/api/content/\" crossorigin=\"anonymous\"></script><style
+      id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
+      {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
+      \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
+      center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
+      {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
+      h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
+      \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
+      20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
+      16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
+      #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
+      \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
+      #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
+      a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
+      none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
+      \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
+      {\n    opacity: 0.92;\n}</style><script async src=\"https://js.stripe.com/v3/\"></script>\n
+      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js\"
+      data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
+      data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
+      \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
+      \   <script defer src=\"/public/cards.min.js?v=52cb4b923e\"></script>\n    <link
+      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=52cb4b923e\">\n
+      \   <script defer src=\"/public/comment-counts.min.js?v=52cb4b923e\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
+      \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
+      feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
+      defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
+      {--ghost-accent-color: #059669;}</style>\n</head>\n\n<body class=\"post-template
+      tag-news is-head-stacked has-serif-body\">\n<div class=\"gh-site\">\n\n    <header
+      id=\"gh-head\" class=\"gh-head gh-outer\">\n        <div class=\"gh-head-inner
+      gh-inner\">\n            <div class=\"gh-head-brand\">\n                <div
+      class=\"gh-head-brand-wrapper\">\n                    \n                    <a
+      class=\"gh-head-logo\" href=\"https://blog.front-matter.io\">\n                            <img
+      src=\"https://blog.front-matter.io/content/images/2022/12/logo.png\" alt=\"Front
+      Matter\">\n                    </a>\n                    \n                </div>\n
+      \               <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
+      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
+      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
+      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
+      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                <button
+      class=\"gh-burger\"></button>\n            </div>\n\n            <nav class=\"gh-head-menu\">\n
+      \               <ul class=\"nav\">\n    <li class=\"nav-feature\"><a href=\"https://blog.front-matter.io/tag/feature/\">Feature</a></li>\n
+      \   <li class=\"nav-news\"><a href=\"https://blog.front-matter.io/tag/news/\">News</a></li>\n
+      \   <li class=\"nav-meeting-report\"><a href=\"https://blog.front-matter.io/tag/meeting-report/\">Meeting
+      Report</a></li>\n    <li class=\"nav-interview\"><a href=\"https://blog.front-matter.io/tag/interview/\">Interview</a></li>\n
+      \   <li class=\"nav-chart\"><a href=\"https://blog.front-matter.io/tag/chart/\">Chart</a></li>\n
+      \   <li class=\"nav-science-hack\"><a href=\"https://blog.front-matter.io/tag/science-hack/\">Science
+      Hack</a></li>\n    <li class=\"nav-book-review\"><a href=\"https://blog.front-matter.io/tag/book-review/\">Book
+      Review</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-head-actions\">\n
+      \                   <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
+      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
+      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
+      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
+      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                    <div
+      class=\"gh-head-members\">\n                                <a class=\"gh-head-link\"
+      href=\"#/portal/signin\" data-portal=\"signin\">Sign in</a>\n                                <a
+      class=\"gh-head-btn gh-btn gh-primary-btn\" href=\"#/portal/signup\" data-portal=\"signup\">Subscribe</a>\n
+      \                   </div>\n            </div>\n        </div>\n    </header>\n\n
+      \   \n<main class=\"gh-main\">\n        <article class=\"gh-article post tag-news\">\n\n
+      \           <header class=\"gh-article-header gh-canvas\">\n                    <a
+      class=\"gh-article-tag\" href=\"https://blog.front-matter.io/tag/news/\">News</a>\n\n
+      \               <h1 class=\"gh-article-title\">Editorial by more than 200 health
+      journals: Call for emergency action to limit global temperature increases, restore
+      biodiversity, and protect health</h1>\n\n                    <aside class=\"gh-article-sidebar\">\n\n
+      \       <div class=\"gh-author-image-list\">\n                <a class=\"gh-author-image\"
+      href=\"/author/martin/\">\n                        <img src=\"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp\"
+      alt=\"Martin Fenner\">\n                </a>\n        </div>\n\n        <div
+      class=\"gh-author-name-list\">\n                <h4 class=\"gh-author-name\">\n
+      \                   <a href=\"/author/martin/\">Martin Fenner</a>\n                </h4>\n
+      \               \n        </div>\n\n        <div class=\"gh-article-meta\">\n
+      \           <div class=\"gh-article-meta-inner\">\n                <time class=\"gh-article-date\"
+      datetime=\"2021-09-06\">Sep 6, 2021</time>\n                    <span class=\"gh-article-meta-sep\"></span>\n
+      \                   <span class=\"gh-article-length\">1 min</span>\n            </div>\n
+      \               <a class=\"gh-card-link\" href=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw</a>\n
+      \       </div>\n\n    </aside>\n\n\n                    <figure class=\"gh-article-image\">\n
+      \       <img\n            srcset=\"/content/images/size/w300/2022/07/photo-1578403881967-084f9885be74.jpeg
+      300w,\n                    /content/images/size/w720/2022/07/photo-1578403881967-084f9885be74.jpeg
+      720w,\n                    /content/images/size/w960/2022/07/photo-1578403881967-084f9885be74.jpeg
+      960w,\n                    /content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg
+      1200w,\n                    /content/images/size/w2000/2022/07/photo-1578403881967-084f9885be74.jpeg
+      2000w\"\n            sizes=\"(max-width: 1200px) 100vw, 1200px\"\n            src=\"/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\"\n
+      \           alt=\"Editorial by more than 200 health journals: Call for emergency
+      action to limit global temperature increases, restore biodiversity, and protect
+      health\"\n        >\n    </figure>\n            </header>\n\n            <section
+      class=\"gh-content gh-canvas\">\n                <p>More than 200 health journals
+      today published an editorial calling for urgent action to keep average global
+      temperature increases below 1.5\xB0C, halt the destruction of nature, and protect
+      health. The editorial can be read for example <a href=\"https://doi.org/10.1136/bmj.n1734\">here</a>
+      (published under a CC-BY Open Access license), and the full list of participating
+      journals can be found <a href=\"https://www.bmj.com/content/full-list-authors-and-signatories-climate-emergency-editorial-september-2021\">here</a>.</p><blockquote>The
+      greatest threat to global public health is the continued failure of world leaders
+      to keep the global temperature rise below 1.5\xB0C and to restore nature. Urgent,
+      society-wide changes must be made and will lead to a fairer and healthier world.
+      We, as editors of health journals, call for governments and other leaders to
+      act, marking 2021 as the year that the world finally changes course.</blockquote><p>The
+      COVID Pandemic is currently taking up all our attention. But we should not loose
+      time addressing the environmental crisis triggered by climate change, and having
+      a significant negative impact on global health, both via direct effects of global
+      heating and extreme weather events, and indirectly via reduced food production.</p><p>This
+      joint editorial by more than 200 health journals worldwide is yet another clear
+      sign of the urgency of the situation, and the need for action. And we should
+      not forget that health is just one aspect of how the climate crisis is seriously
+      affecting all our lives, in particular those most vulnerable.</p><p>The editorial
+      makes a strong point that the time for action is now, and that wealthy nations
+      must do much more, and much faster. It is also an opportunity to think about
+      what we as individuals can do, whether it is about re-evaluating our individual
+      carbon footprint, thinking about what political parties we support (Germany
+      where I live for example has a federal election in three weeks), and whether
+      the organizations we work for can do more to slow down global warming.</p>\n
+      \                       <div class=\"gh-license\">\n                            Copyright
+      \xA9 2021 Martin Fenner. Distributed under the terms of the\n                            <a\n
+      \                               class=\"gh-license-link\"\n                                href=\"https://creativecommons.org/licenses/by/4.0/legalcode\"\n
+      \                           >\n                                Creative Commons
+      Attribution 4.0 License.\n                            </a>\n                        </div>\n
+      \           </section> \n            </section>\n\n        </article>\n\n                <div
+      class=\"gh-read-next gh-canvas\">\n                <section class=\"gh-pagehead\">\n
+      \                   <h4 class=\"gh-pagehead-title\">Read next</h4>\n                </section>\n\n
+      \               <div class=\"gh-topic gh-topic-grid\">\n                    <div
+      class=\"gh-topic-content\">\n                            <article class=\"gh-card
+      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-has-an-advisory-board/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
+      300w,\n                            /content/images/size/w720/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
+      720w,\n                            /content/images/size/w960/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
+      960w,\n                            /content/images/size/w1200/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
+      1200w,\n                            /content/images/size/w2000/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/02/photo-1579052511406-ebe4c90f299f.jpeg\"\n
+      \                   alt=\"Introducing the Rogue Scholar Advisory Board\"\n                >\n
+      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
+      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Introducing
+      the Rogue Scholar Advisory Board</h3>\n            </header>\n\n                    <div
+      class=\"gh-card-excerpt\">In January 2024 the new Rogue Scholar Advisory Board
+      had its first meeting. It consists of six people with diverse expertise in scholarly
+      blogging. Advisory Board members come from different scholarly disciplines and
+      geographic regions, write in several languages besides English, and have different
+      levels of technical expertise.\n\nThe Advisory</div>\n\n            <footer
+      class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
+      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2024-02-08\">Feb
+      8, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65c4809686e93a00017b47f7\"\n
+      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
+      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
+      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
+      \           </footer>\n        </div>\n    </a>\n</article>                            <article
+      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/an-update-on-the-rogue-scholar-fediverse/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/01/51387246685_0c704e4647_c.jpg
+      300w,\n                            /content/images/size/w720/2024/01/51387246685_0c704e4647_c.jpg
+      720w,\n                            /content/images/size/w960/2024/01/51387246685_0c704e4647_c.jpg
+      960w,\n                            /content/images/size/w1200/2024/01/51387246685_0c704e4647_c.jpg
+      1200w,\n                            /content/images/size/w2000/2024/01/51387246685_0c704e4647_c.jpg
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/01/51387246685_0c704e4647_c.jpg\"\n
+      \                   alt=\"An update on Rogue Scholar in the fediverse\"\n                >\n
+      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
+      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">An update
+      on Rogue Scholar in the fediverse</h3>\n            </header>\n\n                    <div
+      class=\"gh-card-excerpt\">The Rogue Scholar science blogging archive joined
+      the fediverse in August of last year. This week I want to report on an updated
+      strategy for Rogue Scholar, and what it means for science blogs participating
+      in Rogue Scholar.\n\nThe fediverse is a collection of community-owned, ad-free,
+      decentralised, and privacy-centric social</div>\n\n            <footer class=\"gh-card-footer\">\n
+      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
+      class=\"gh-card-date\" datetime=\"2024-01-29\">Jan 29, 2024</time>\n                    <script\n
+      \   data-ghost-comment-count=\"65b794cec28c930001fa98f8\"\n    data-ghost-comment-count-empty=\"\"\n
+      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
+      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
+      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
+      \       </div>\n    </a>\n</article>                            <article class=\"gh-card
+      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-updates-documentation-and-comments/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
+      300w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
+      720w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
+      960w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
+      1200w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
+      \                   alt=\"Rogue Scholar updates: documentation and comments\"\n
+      \               >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
+      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Rogue
+      Scholar updates: documentation and comments</h3>\n            </header>\n\n
+      \                   <div class=\"gh-card-excerpt\">Shortly following an update
+      earlier this week, the Rogue Scholar science blog archive has updated or added
+      two features today: better documentation and new comments.\n\n\nDocumentation\n\nThe
+      Rogue Scholar documentation site was launched with the service but hasn&#39;t
+      seen any updates in several months. Today I updated the</div>\n\n            <footer
+      class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
+      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2023-11-24\">Nov
+      24, 2023</time>\n                    <script\n    data-ghost-comment-count=\"6560a5078567500001d4ff1d\"\n
+      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
+      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
+      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
+      \           </footer>\n        </div>\n    </a>\n</article>                    </div>\n
+      \               </div>\n            </div>\n\n                <div class=\"gh-comments
+      gh-read-next gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
+      class=\"gh-pagehead-title\">Comments (<script\n    data-ghost-comment-count=\"62d42bbd41e317003df48f15\"\n
+      \   data-ghost-comment-count-empty=\"0\"\n    data-ghost-comment-count-singular=\"\"\n
+      \   data-ghost-comment-count-plural=\"\"\n    data-ghost-comment-count-tag=\"span\"\n
+      \   data-ghost-comment-count-class-name=\"\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>)</h3>\n
+      \           </section>\n            \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js\"
+      data-locale=\"en\" data-ghost-comments=\"https://blog.front-matter.io/\" data-api=\"https://front-matter.ghost.io/ghost/api/content/\"
+      data-admin=\"https://front-matter.ghost.io/ghost/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
+      data-title=\"\" data-count=\"false\" data-post-id=\"62d42bbd41e317003df48f15\"
+      data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#059669\"
+      data-comments-enabled=\"all\" data-publication=\"Front Matter\" crossorigin=\"anonymous\"></script>\n
+      \   \n        </div>\n</main>\n\n    <footer class=\"gh-foot gh-outer\">\n        <div
+      class=\"gh-foot-inner gh-inner\">\n                <section class=\"gh-subscribe\">\n
+      \                   <h3 class=\"gh-subscribe-title\">Subscribe to Front Matter</h3>\n
+      \                       <div class=\"gh-subscribe-description\">Subscribe to
+      the Front Matter Blog to automatically receive blog posts via email newsletter.</div>\n
+      \                   <button class=\"gh-subscribe-btn gh-btn\" data-portal=\"signup\"><svg
+      width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\"
+      xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M3.33332 3.33334H16.6667C17.5833
+      3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667
+      16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334
+      2.41666 3.33334 3.33332 3.33334Z\" stroke-width=\"1.5\" stroke-linecap=\"round\"
+      stroke-linejoin=\"round\"/>\n    <path d=\"M18.3333 5L9.99999 10.8333L1.66666
+      5\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>
+      Subscribe now</button>\n                </section>\n\n            <nav class=\"gh-foot-menu\">\n
+      \               <ul class=\"nav\">\n    <li class=\"nav-front-matter\"><a href=\"https://front-matter.io\">Front
+      Matter</a></li>\n    <li class=\"nav-about\"><a href=\"https://blog.front-matter.io/about/\">About</a></li>\n
+      \   <li class=\"nav-privacy-policy\"><a href=\"https://blog.front-matter.io/privacy-policy/\">Privacy
+      Policy</a></li>\n    <li class=\"nav-rss\"><a href=\"https://blog.front-matter.io/atom/\">RSS</a></li>\n
+      \   <li class=\"nav-usage-stats\"><a href=\"https://plausible.io/blog.front-matter.io\">Usage
+      Stats</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-copyright\">\n
+      \                   Front Matter \xA9 2024. Powered by <a href=\"https://ghost.org/\"
+      target=\"_blank\" rel=\"noopener\">Ghost</a>\n            </div>\n        </div>\n
+      \   </footer>\n\n</div>\n\n    <div class=\"pswp\" tabindex=\"-1\" role=\"dialog\"
+      aria-hidden=\"true\">\n    <div class=\"pswp__bg\"></div>\n\n    <div class=\"pswp__scroll-wrap\">\n
+      \       <div class=\"pswp__container\">\n            <div class=\"pswp__item\"></div>\n
+      \           <div class=\"pswp__item\"></div>\n            <div class=\"pswp__item\"></div>\n
+      \       </div>\n\n        <div class=\"pswp__ui pswp__ui--hidden\">\n            <div
+      class=\"pswp__top-bar\">\n                <div class=\"pswp__counter\"></div>\n\n
+      \               <button class=\"pswp__button pswp__button--close\" title=\"Close
+      (Esc)\"></button>\n                <button class=\"pswp__button pswp__button--share\"
+      title=\"Share\"></button>\n                <button class=\"pswp__button pswp__button--fs\"
+      title=\"Toggle fullscreen\"></button>\n                <button class=\"pswp__button
+      pswp__button--zoom\" title=\"Zoom in/out\"></button>\n\n                <div
+      class=\"pswp__preloader\">\n                    <div class=\"pswp__preloader__icn\">\n
+      \                       <div class=\"pswp__preloader__cut\">\n                            <div
+      class=\"pswp__preloader__donut\"></div>\n                        </div>\n                    </div>\n
+      \               </div>\n            </div>\n\n            <div class=\"pswp__share-modal
+      pswp__share-modal--hidden pswp__single-tap\">\n                <div class=\"pswp__share-tooltip\"></div>\n
+      \           </div>\n\n            <button class=\"pswp__button pswp__button--arrow--left\"
+      title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
+      pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
+      class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
+      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=52cb4b923e\"></script>\n\n\n\n</body>\n\n</html>\n"
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '89262'
+      - '136977'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -214,11 +423,11 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '6850'
+      - '6802'
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sun, 21 Jan 2024 09:16:31 GMT
+      - Sat, 10 Feb 2024 10:32:48 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -238,43 +447,39 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Request-ID:
-      - fca9b352-3720-417e-bb50-f388a5b40756
-      - fca9b352-3720-417e-bb50-f388a5b40756
+      - 7e2beb7e-7c40-440e-ac5c-d4683f56a1b0
       X-Served-By:
-      - cache-ams21038-AMS
+      - cache-ams21078-AMS
       X-Timer:
-      - S1705828591.444201,VS0,VE1
+      - S1707561169.742876,VS0,VE5
       etag:
-      - W/"81de-lMCoYHKsoDFPTl+c8uVPusikUo4"
+      - W/"78bf-ETp1fRnHOkiQ4yrPT4ags4akCzA"
       x-request-id:
-      - fca9b352-3720-417e-bb50-f388a5b40756
-      - fca9b352-3720-417e-bb50-f388a5b40756
-    status:
-      code: 200
-      message: OK
+      - 7e2beb7e-7c40-440e-ac5c-d4683f56a1b0
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
+    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 848e757948111c8c-AMS
+      - 8533b0ba1c596640-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -282,11 +487,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 21 Jan 2024 09:16:31 GMT
+      - Sat, 10 Feb 2024 10:32:49 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3aFgktDPd7v%2FnMH2NyQlDBzFlNqYuBQdoDKB0Dh3SEAgYIi3itSJEZeyWOYq8itHLyEKnOt83JeZOivDhi7ZhWSybEbA6EK%2FSTqhelQR44P7I%2FO4rClrjts4%2BX02FQypIoQplCA%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2FEbZB8aL%2FKcMMzsX3d6U5DC9HrVhH6mdGldA4aE2yYXx8suBH0KSSjTHy5irbF17S%2Bx9fR5Lmee9l%2FwcjsTN1GdkRcJ7509ungn4jIutoEbbnWxRXfp4qHYB2eALotasotL7maU%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -297,910 +502,6 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '0'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=31536000
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      Date:
-      - Mon, 22 Jan 2024 21:58:30 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 301 Moved Permanently
-      Vary:
-      - Cookie
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - MISS
-      X-Cache-Hits:
-      - '0'
-      X-Request-ID:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      X-Served-By:
-      - cache-ams21083-AMS
-      X-Timer:
-      - S1705960710.215476,VS0,VE47
-      location:
-      - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-      x-request-id:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-  response:
-    body:
-      string: !!binary |
-        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
-        AFd5q2rSgQAA
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '36428'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=0
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Length:
-      - '6849'
-      Content-Type:
-      - text/html; charset=utf-8
-      Date:
-      - Mon, 22 Jan 2024 21:58:30 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 200 OK
-      Vary:
-      - Cookie, Accept-Encoding
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      X-Served-By:
-      - cache-ams21083-AMS
-      X-Timer:
-      - S1705960710.296410,VS0,VE2
-      etag:
-      - W/"81d2-WMUwACAdElog1nnd6URQyDQ6W4Q"
-      x-request-id:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.53731
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b0f081839b96f-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 21:58:30 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=biphP4jqTvsmMntgGZ%2FC0WIbOuGN8OigIjAmQ7dMp50QN11jbnrftJbkqxM0E5NFhmv5FH8HZiWHWrlQfDVjYM8VV1DkWzo8g17QuA99%2FK82agHOvs4RvCcZ92zzxrcsNSEnvSE%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '583'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=31536000
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      Date:
-      - Mon, 22 Jan 2024 22:08:13 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 301 Moved Permanently
-      Vary:
-      - Cookie
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      X-Served-By:
-      - cache-ams21029-AMS
-      X-Timer:
-      - S1705961294.669914,VS0,VE26
-      location:
-      - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-      x-request-id:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-  response:
-    body:
-      string: !!binary |
-        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
-        AFd5q2rSgQAA
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '37011'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=0
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Length:
-      - '6849'
-      Content-Type:
-      - text/html; charset=utf-8
-      Date:
-      - Mon, 22 Jan 2024 22:08:13 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 200 OK
-      Vary:
-      - Cookie, Accept-Encoding
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      X-Served-By:
-      - cache-ams21029-AMS
-      X-Timer:
-      - S1705961294.742960,VS0,VE1
-      etag:
-      - W/"81d2-WMUwACAdElog1nnd6URQyDQ6W4Q"
-      x-request-id:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.53731
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b1d469def66ea-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:08:13 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=1ptwJP%2BjDh%2B69X4ys%2FOFwR49LIRHB0TY%2ByFHH7vXaxywadEYdCfylGaMi2JA5%2BRhRyQrQanFpLViyjcPsRL10jOy1UvXjzvPtmglhcv1OXULlXqAU%2BiS22to7mZ4QnVZ4bkQb3U%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '854'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=31536000
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      Date:
-      - Mon, 22 Jan 2024 22:12:44 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 301 Moved Permanently
-      Vary:
-      - Cookie
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      X-Served-By:
-      - cache-ams21025-AMS
-      X-Timer:
-      - S1705961564.026655,VS0,VE1
-      location:
-      - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-      x-request-id:
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-      - 3fa37649-0a1f-4431-b15e-afb23b213ca5
-    status:
-      code: 301
-      message: Moved Permanently
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
-  response:
-    body:
-      string: !!binary |
-        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
-        AFd5q2rSgQAA
-    headers:
-      Accept-Ranges:
-      - bytes
-      Age:
-      - '37281'
-      Alt-Svc:
-      - clear
-      Cache-Control:
-      - public, max-age=0
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Length:
-      - '6849'
-      Content-Type:
-      - text/html; charset=utf-8
-      Date:
-      - Mon, 22 Jan 2024 22:12:44 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
-      Ghost-Fastly:
-      - 'true'
-      Server:
-      - openresty
-      Status:
-      - 200 OK
-      Vary:
-      - Cookie, Accept-Encoding
-      Via:
-      - 1.1 varnish
-      X-Cache:
-      - HIT
-      X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      X-Served-By:
-      - cache-ams21025-AMS
-      X-Timer:
-      - S1705961564.059220,VS0,VE1
-      etag:
-      - W/"81d2-WMUwACAdElog1nnd6URQyDQ6W4Q"
-      x-request-id:
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-      - 5c07f177-90b7-4038-850c-64cb50c8a8ad
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.53731
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b23e01cbc65ff-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:12:44 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kwJj6XVIyEVfNWZYpJfOwm04Yp6oXjsBfbySx99FyW8VJbO0xxO5lBgCmeshhwdD7%2B7GM7oUE9nohESAbd%2FFP2uX%2F6nh%2BlfMeVjRuqqotHUqijPvwMuGgHEYAMDlYo0DSZFNhPs%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

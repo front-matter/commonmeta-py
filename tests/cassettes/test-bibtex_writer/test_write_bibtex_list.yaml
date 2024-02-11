@@ -1,0 +1,922 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92bfdc456570-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:13 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2BSrB7XlnR9S1HfeOHgNr5H03dPf2d8ikid0hU1C43YyNRdoJssbvW4e5BI%2FYZvDzg%2F3%2BmysAyHKECh%2F%2BhxjAOkvGCK3t%2Fe93qut7O7raGChVzLzE040rHqHD25zWJPQI9YLu%2BVw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c13d35b88e-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:13 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=CmnjS6EZh9LITtVcX%2FVfRFTDEi9CpYLm0adcjVIQzUFIlhXkgRDp1WqkgZ%2BnawuRgcOC3JsY4uMo3cf18znN3bO6ziYtGNjE4W3b2PexE1V4mlkPUPgRiJcZ7xNEvud3%2BpRnyR0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c2b9060b5e-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:13 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=DJny%2F41KDXbsjfD%2BtiPakXmgwe19CQFrpTNwqXGwhP8m1SuI2Zu7uAVnVm%2F4HJZFUraeiRk295PzmsPJgZ41um4ox6N%2FNnxD2PoH%2Bh%2BAJEKZMr6ya4OarWLOTXk8fkdgEhB0l7I%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1007
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c3ac990c2d-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:13 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=GaXbceN0b%2FMuMg9ZNq%2BrN4BIQYtpMFYK5GCHkgEaA9wwIih1dJi34oPIYxNaEfYDtmPSVtCLhEi19Kk0H%2BQAiMJhXAxTBEwvlJak0ycpPvNGAQqIaqHPUAiczqsIncwUAaHQ%2Bdg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c4ea5a660f-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:13 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=DSyeJUvCPoyPK4hz5Gnh75t%2BqycRijsGdbluZXqxucWyObgIN4Q%2BrlbrIrlkbU5RjwbVKpW9OaKX9kTHOnAowp%2FgydG6tDXaVCZ%2BZyAi%2FYWbTOXZ0Zw7fCMq4e6VFRy16hEjr7E%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.5424
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.5424\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c64a60b8c1-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ASIKGGsLdDFRxGiManjo3yuE44GtmsO4ng%2F%2FuZEaRYPYpm%2F1wPYrrfT%2FrneL1wcbDf80R2XC%2FLEi0ydEE6tHk3T6EeVLH8fZ5HkLN06MxtdnshZYK%2B6kCXY5OZVZbQ3L%2F8tHsGU%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c7b8c006be-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4nTz1nQV12gZEMdt%2FB0SmA6xc%2BbjOtU4Y3yXY8U4CMice4uM8fMfVbjJhYJU8Sxf8JHKCtMfAoixNfti5W6v4E%2BjtiB4owDLePg5%2B7gwCtWUTbTpYxPZyUOKvOUwo1vqsLklIUY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c89db90b38-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dKnFZnLHWUxxD6bcTbdFo1SZc5WY5HFNOw3v9RC1rC2Cy6zK2pT5GqpdF7lJpaoKU1Hmruf7KIPvqgN4wiwu9mHuc8e4Qm%2Fxoeztw9mwiFrnRTM13A9EdUCtPYgW7MCGueKy%2BGY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92c9781966c0-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=x8tG2b4dIfCLlOloC0xCfRVulDISjUxP5sMCZk4Ud1vv1eVoo3QXrMCdo7PsOgKCyKHsO1WsfAhmo1r69b0kQzJ3fKebaQiOgfvD%2FHzraAznK8RJq7ap4oiOc0PBcTtqmDTSa7U%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.31030
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.31030\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92ca69726694-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=m3F30K3HktWb2neFEA%2FBGF%2BjJkkArVC1%2BHFJyXnkS99oY6RrxHKtffhqiQ7RYCi%2BHBe4d6d4Fz5B3vJFBun02Qod0MPNMUDW1wGtOKmOt0Rn3eh38wViYitb2xo2HhbvvYVHzyY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1037
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1037\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92cbc8c7669c-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:14 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=V2Jv64OrUSYcbXGMs8NT4ljx4GyjLdEFEkJCwK7vIzi452TvLV7QzZFadTxZz%2FxVJXouRz9AtnN6pdfuRUqRzH480FHn8yHVwRXUiU62ZBWWTBvTy2qYeIpSo0vJk%2FvAhk%2FnTjs%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1037
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1037\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92ccbed70e3b-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=bOCI%2FRb19OoVDFuud07N7I%2FdZFbQYQ0EPyRk1H631LmFLbCKNIn%2BFFn3NUS6KNQpZvnoo7uacw3f7ZH4In1BpmPh1SLyEhdMWZJBpH9snTcCYt%2Bk9RW8BOHt%2B5V30LvncYRAOVw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92cd9c720b83-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=aEnYSPFGIH388RP0ayLgKkBQPCqX1V6HUjFg98qJ4a9sC%2BQPSWdFczXS7I6ysZQqHUweRg3On4BJBilPWDu01rYIC5SKUGTnf3ImrRA4N%2FuzUXItSB0VeEPsxC%2BduiB8jea5vHk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1037
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1037\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92ce9f4166e8-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9tHK39b%2Bkt71KqrX%2BdpBu1UqV8W6dT8ZgbdyG2tKcLibUePXYJUvf0zWlaygM0Psq%2F5jxSe9K1HOFwbo3W4sO1PBl77%2Fp%2Bdjgq0av24d2oLnsTeK9j8g7%2BGAROBdY9P2UbbqexQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92cf7ee365fc-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7xNQWYBK66oGX0bpWcKGyEffErddf2iohiXeCkDftarC%2FHoaReRbVRWTbiCJooDOdqauugdX6qAa6elIDTXOmHPgmj5RNX9FTQgs2bi3aIei6CcOZPh3JM7ciK6yz15f9752lJQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92d05f490e36-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lyvbUU20EQSNPfyar6MfXydLRj9zS7fj2NX0tGJ0lBqoDPtjXyuRRAZ9RxZ3hDYtI93oPZmdK1Unqnq%2BVdVt2Y3enEDrCeNa258ABdo6lDAQsfBi%2FYcs6Wkk1JxbhAgXaF8Cm2w%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1037
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1037\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92d15d1a6637-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=YOn4tFCY9VakCp8UpRlSXMUvvnOsoOdBgowDP7ReVfYhu77fn42v2iqjIcCoIXQeoxEv4IPs%2BSGaG4Ve4lxGl4qZn1kwJIYh%2BfbVYGVTfvzZ5iSXKO3dZ%2FqkgRDhr8hlUctKLow%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1002
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1002\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92d24eb3b97a-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dOgCfBlNuLs69dtFx%2BZi63vXhhrpJlc8P8aI2Tq0LUxBmTg2ZFsZFTr%2Fy%2Fp9tUqmZvBu%2FLMQ6zZ8lq4i0d3VQ2LJ4mc7pc1l7Mb2ipQoNg%2FyhUcD0gDZk1hbvM0PJ%2Ff2HRRBoKM%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92d31b3fb912-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:16 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=a2ucsU6h5NIAVe4oTnenWSFF6qYdIOxbqDZNFWCTNYI%2B8fq2PLM5qHdGlaZTIze83Iq4aIkCFTsZznD6fj936hUzg%2BtjRORqLBMXvRF3ER6hQsJ%2B4lB8Ehxve4jr81YbU%2ByKrtk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1306
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1306\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853c92d40a5d1c7a-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 11 Feb 2024 12:25:16 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=gI1zEqaQ6ERq7B%2BBNkJfTcwzVybfj6zcWxuGJsL%2FCUmwy9GlMPAAZxitIKi%2FH%2BD%2Fin0JzwOWurl2%2BVM2%2BD1WUUY2DfwjO%2FUPJZuCs6re3NIjThHzKh9JIruAFMgD91sTUniXqys%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

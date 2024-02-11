@@ -116,6 +116,7 @@ def test_date():
     """dataset"""
     string = "https://doi.org/10.4230/lipics.tqc.2013.93"
     subject = Metadata(string)
+    print(subject.write())
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.type == "ProceedingsArticle"

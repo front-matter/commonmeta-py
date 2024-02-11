@@ -86,7 +86,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
 
         kwargs["process_namespaces"] = True
         kwargs["namespaces"] = namespaces
-        kwargs["force_list"] = {"contributors", "titles", "item", "citation"}
+        kwargs["force_list"] = {"person_name", "organization", "titles", "item", "citation"}
 
     kwargs["attr_prefix"] = ""
     kwargs["dict_constructor"] = dict

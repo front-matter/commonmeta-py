@@ -2,7 +2,7 @@
 
 from typing import Optional
 from datetime import datetime as date
-import requests
+import httpx
 from furl import furl
 import jwt
 
@@ -49,7 +49,7 @@ def update_ghost_post_via_api(_id: str, api_key: Optional[str]=None, api_url: Op
     f = furl(url)
     slug = f.path.segments[-1]
     ghost_url = f"{api_url}/ghost/api/admin/posts/slug/{slug}/"
-    response = requests.get(ghost_url, headers=headers, timeout=10)
+    response = httpx.get(ghost_url, headers=headers, timeout=10)
     if response.status_code != 200:
         return {"error": "Error fetching post"}
     ghost_post = response.json().get("posts")[0]
@@ -64,7 +64,7 @@ def update_ghost_post_via_api(_id: str, api_key: Optional[str]=None, api_url: Op
     ghost_url = f"{api_url}/ghost/api/admin/posts/{guid}/"
     
     json = {"posts": [{"canonical_url": doi, "updated_at": updated_at}]}
-    response = requests.put(
+    response = httpx.put(
         ghost_url,
         headers=headers,
         json=json,

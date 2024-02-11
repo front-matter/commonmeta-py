@@ -1,43 +1,59 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/works?sample=1
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAA/7VXbW/iOBD+Kyif7iQMdkIgiXQ6td2Vtnu77YpyJ90WdDKJAW+dOGc7tKjiv9/Y
-        SUugsLutdAgk44nH88w885JHTxtqKu0lnrzzul7OtKZLhsymZLB3L9UdElyblmjNlOayACnp4R7e
-        Sbzk0VvQlBnQ9rjtekYaKpBiuhJ2i3Q9blgOq9tHjxcZe2CZPZJRw1BJlX3m9tbHftAluEvi2axb
-        ywzPrS1WgghGJJ6QMMFxQshXuNxKAUNewg3DeDTyIxKSYBCCAYotmGJFylAqq8J4yaDrldUc8KyY
-        Ao3vhWZrzlTn/C9QxLWu3D2wFjxlhWbOVFCuzEtDSTzwu4MuOTTT7iM8QJhMME7c98BMFI3CKBhG
-        2H7AzFQWhhWm5ViT5XAkY4JuEC9QRjdwJe56f44/gXRlTKmTaX/av7+/77EGRC+V+bQPJ6f9SjPV
-        IJj2IUjTvrftngQCfsXW4z4+4nFsPe7jU1DIEAck9PFpKGupXkLxo2Hst+E4NKli1PA1AyC5LHRP
-        quW03+DQ0/58M+0PajCz3U2ZzCkvHKpmdWulSmqdUyAv0M8onhpnzYKCs8BMvZLKIKsCTjAFeI2w
-        wfY+ykoVVHTkonPOpZBLnsK/ixXLIQfUxpvtCJShUvHiJDFmM7jn3fWlZQTuEUyG077G2Cco9sPo
-        FxL9OvKHgwEaWofWyfatvhyBIp6CPRYGeORElpAu6YZHIkaAeQiHEz9IwjgJhi8jFkcxIaNhHbHS
-        Ja4XhgSFoTVGgxWp3bqwPoQUcqmBnnMpQ/PNUz6RyOpufHdxNj6//vD3u/HZ5H3n4sPZ+Oxi8n58
-        +fVscnl95TwHOvjDziGgeC1FVWfNIIC/tDIQGZd1SyCC5c9YCkGLDIQLmnOxga1PcgWhtaayfytr
-        EuwtuHJFii4WXHBah/t2Zmm/0zRnynQ+9tq63vFcsANdNMu4VUDF9xXeGFospNqz7bOUir1N3R9U
-        ic4XWok9rLy4e4W6mS3G+dxVt1HktUqgc+od27T5eHOMj//M+ZzYlJUcUQ2VxLiQw7l0RwjnbtRw
-        x49t7A64fqA7CIiPRnsRD9oRf3bchlFVV1HbWZ5SoiGZ97Hn8rLnUrLnqtrPYvJfhWkYjPYx+WTa
-        /yYx8YlPMcFtJOGbcFyr5VtgBK+CEe6hGGI/AhRQEnsYB/CL2jD2wvGhyjRwqoXDj4/gOK9Ur2Pz
-        IKMq05BbnTHTcCJdvQrU4FWggsPYHNEdxkFdW3d8w6QN8IqznBZ7CB0hf8S4pvW8vm9AFVtWNQBW
-        uBEDMtsm5WFTpyU/aOpNrwNR3Rmm/S+Xl4lDbAGTyLly+LvVcZamrDS/GfYAzz/ktkg8tcqmzRwT
-        HfZrbrczCAQtS+jATYFxR1HOC14sXXz/R9NLYZv5CeMPhW8x33ZOVkrNTzdYGERHxzssDKKjCYmS
-        QZT48YsOCz0WD2Mc1x1Wp7YiJDAq23L81F4foR1yaGMbuzz0o+UGGLmq5gfuVAyGGbYGN5acN6Rv
-        +9HbbptB9gim1mDy3BZ0azR+on4zCD/uTcQ/P/aAeioMA1V2mEM8swny0tLZi/kve+hBEajHvh/O
-        TJc3N1dW8bPYKgSDi4YpkFhrKpz5u0eeR60ag+WArubfWGrcAMOEaNJ3A49+loKllaCqtQer9Ogw
-        +D1/zJoXH1RCyahrGEzcHnT0OvpuLkfujchN+XUBReBC+7JUVEJst9v/AB94pWqpDQAA
+    content: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1,"items":[{"indexed":{"date-parts":[[2022,4,3]],"date-time":"2022-04-03T12:16:39Z","timestamp":1648988199589},"reference-count":32,"publisher":"Informa
+      UK Limited","issue":"3","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Project
+      Appraisal"],"published-print":{"date-parts":[[1996,9]]},"DOI":"10.1080\/02688867.1996.9727537","type":"journal-article","created":{"date-parts":[[2012,4,24]],"date-time":"2012-04-24T06:29:34Z","timestamp":1335248974000},"page":"157-168","source":"Crossref","is-referenced-by-count":3,"title":["Long
+      time horizons, low discount rates and moderate investment criteria"],"prefix":"10.1080","volume":"11","author":[{"given":"Colin","family":"Price","sequence":"first","affiliation":[]}],"member":"301","reference":[{"issue":"4","key":"CIT0001","first-page":"788","volume":"58","author":"Baumol
+      W J","year":"1968","journal-title":"American Economic Review"},{"issue":"1","key":"CIT0002","first-page":"6","volume":"30","author":"Birdsall
+      N","year":"1993","journal-title":"Finance and Development"},{"issue":"1","key":"CIT0003","doi-asserted-by":"crossref","first-page":"57","DOI":"10.2307\/2297877","volume":"61","author":"Blundell
+      R","year":"1994","journal-title":"Review of Economic Studies"},{"issue":"5","key":"CIT0004","first-page":"887","volume":"65","author":"Bradford
+      D F","year":"1975","journal-title":"American Economic Review"},{"key":"CIT0005","volume-title":"The
+      Economics of Global Warming","author":"Cline W R","year":"1992"},{"issue":"1","key":"CIT0006","first-page":"3","volume":"30","author":"Cline
+      W R","year":"1993","journal-title":"Finance and Development"},{"key":"CIT0007","first-page":"251","volume":"72","author":"d''Arge
+      R C","year":"1982","journal-title":"American Economic Review Papers and Proceedings"},{"key":"CIT0008","volume-title":"Policy
+      Appraisal and the Environment","year":"1991"},{"key":"CIT0009","volume-title":"Water
+      Resource Development: the Economics of Project Evaluation","author":"Eckstein
+      O","year":"1958"},{"key":"CIT0010","volume-title":"Environmental Accounting
+      for Sustainable Development","author":"El Serafy S","year":"1989"},{"key":"CIT0011","volume":"42","author":"Faustmann
+      M","year":"1849","journal-title":"Institute Paper of the Commonwealth Forestry
+      Institute"},{"issue":"1","key":"CIT0012","doi-asserted-by":"crossref","first-page":"114","DOI":"10.1093\/oxfordjournals.oep.a040937","volume":"16","author":"Feldstein
+      M S","year":"1964","journal-title":"Oxford Economic Papers"},{"issue":"4","key":"CIT0013","first-page":"605","volume":"62","author":"Fisher
+      A C","year":"1972","journal-title":"American Economic Review"},{"issue":"1","key":"CIT0014","first-page":"33","volume":"80","author":"Garfitt
+      J E","year":"1985","journal-title":"Quarterly Journal of Forestry"},{"key":"CIT0015","volume-title":"Discounting
+      for Time and Risk in Energy Policy","author":"Lind R C","year":"1982"},{"key":"CIT0016","volume":"18","author":"Lind
+      R C","year":"1990","journal-title":"Journal of Environmental Economics and Management"},{"key":"CIT0017","volume-title":"Project
+      Appraisal and Planning for Developing Countries","author":"Little I MD","year":"1974"},{"issue":"2","key":"CIT0018","doi-asserted-by":"crossref","first-page":"66","DOI":"10.1080\/02688867.1995.9726978","volume":"10","author":"Livingstone
+      I","year":"1995","journal-title":"Project Appraisal"},{"issue":"2","key":"CIT0019","doi-asserted-by":"crossref","first-page":"274","DOI":"10.2307\/1884403","volume":"77","author":"Marglin
+      S A","year":"1963","journal-title":"Quarterly Journal of Economics"},{"issue":"3","key":"CIT0020","doi-asserted-by":"crossref","first-page":"478","DOI":"10.1029\/WR017i003p00478","volume":"17","author":"McDonald
+      J F","year":"1981","journal-title":"Water Resources Research"},{"issue":"4","key":"CIT0021","doi-asserted-by":"crossref","first-page":"920","DOI":"10.2307\/2233864","volume":"101","author":"Nordhaus
+      W D","year":"1991","journal-title":"The Economic Journal"},{"key":"CIT0022","volume-title":"Energy
+      and the Future","author":"Page T","year":"1983"},{"key":"CIT0023","volume-title":"Blueprint
+      for a Green Economy","author":"Pearce D W","year":"1989"},{"key":"CIT0024","volume-title":"A
+      Social Discount Rate for the United Kingdom","author":"Pearce D","year":"1995"},{"issue":"3","key":"CIT0025","doi-asserted-by":"crossref","first-page":"159","DOI":"10.1080\/02688867.1990.9726765","volume":"5","author":"Price
+      C","year":"1990","journal-title":"Project Appraisal"},{"key":"CIT0026","volume-title":"Time,
+      Discounting and Value","author":"Price C","year":"1993"},{"issue":"1","key":"CIT0027","doi-asserted-by":"crossref","first-page":"87","DOI":"10.1016\/0928-7655(94)00028-I","volume":"17","author":"Price
+      C","year":"1995","journal-title":"Resource and Energy Economics"},{"issue":"4","key":"CIT0028","doi-asserted-by":"crossref","first-page":"543","DOI":"10.2307\/2224098","volume":"38","author":"Ramsey
+      F P","year":"1928","journal-title":"Economic Journal"},{"issue":"2","key":"CIT0029","doi-asserted-by":"crossref","first-page":"133","DOI":"10.1080\/02688867.1996.9727028","volume":"11","author":"Roberts
+      J","year":"1996","journal-title":"Project Appraisal"},{"key":"CIT0030","first-page":"251","volume":"23","author":"Shepard
+      W","year":"1925","journal-title":"Journal of Forestry"},{"key":"CIT0031","volume-title":"Economic
+      Appraisal of Projects","author":"Squire L","year":"1975"},{"key":"CIT0032","volume-title":"Guidelines
+      for Project Evaluation","year":"1972"}],"container-title":["Project Appraisal"],"language":"en","link":[{"URL":"http:\/\/www.tandfonline.com\/doi\/pdf\/10.1080\/02688867.1996.9727537","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2019,6,27]],"date-time":"2019-06-27T16:01:21Z","timestamp":1561651281000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.tandfonline.com\/doi\/abs\/10.1080\/02688867.1996.9727537"}},"issued":{"date-parts":[[1996,9]]},"references-count":32,"journal-issue":{"issue":"3","published-print":{"date-parts":[[1996,9]]}},"alternative-id":["10.1080\/02688867.1996.9727537"],"URL":"http:\/\/dx.doi.org\/10.1080\/02688867.1996.9727537","ISSN":["0268-8867"],"issn-type":[{"value":"0268-8867","type":"print"}],"subject":["General
+      Earth and Planetary Sciences","General Environmental Science"],"published":{"date-parts":[[1996,9]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -51,11 +67,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1305'
+      - '2091'
       content-type:
       - application/json
       date:
-      - Wed, 07 Feb 2024 11:36:13 GMT
+      - Sat, 10 Feb 2024 10:00:05 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -72,105 +88,46 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/works?sample=5
   response:
-    body:
-      string: !!binary |
-        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
-        /g9sLJks/joAAA==
+    content: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":5,"items":[{"indexed":{"date-parts":[[2022,4,5]],"date-time":"2022-04-05T07:20:36Z","timestamp":1649143236855},"reference-count":0,"publisher":"Public
+      Library of Science (PLoS)","content-domain":{"domain":[],"crossmark-restriction":false},"DOI":"10.1371\/journal.pone.0002202.s004","type":"component","created":{"date-parts":[[2013,1,28]],"date-time":"2013-01-28T19:06:56Z","timestamp":1359400016000},"source":"Crossref","is-referenced-by-count":0,"prefix":"10.1371","member":"340","deposited":{"date-parts":[[2018,10,19]],"date-time":"2018-10-19T21:38:39Z","timestamp":1539985119000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.pone.0002202.s004"}},"issued":{"date-parts":[[null]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.1371\/journal.pone.0002202.s004"},{"indexed":{"date-parts":[[2022,4,5]],"date-time":"2022-04-05T04:14:45Z","timestamp":1649132085601},"reference-count":0,"publisher":"JSTOR","issue":"4","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Copeia"],"published-print":{"date-parts":[[1979,11,28]]},"DOI":"10.2307\/1443890","type":"journal-article","created":{"date-parts":[[2006,4,26]],"date-time":"2006-04-26T08:16:31Z","timestamp":1146039391000},"page":"751","source":"Crossref","is-referenced-by-count":0,"title":["Hildatia
+      Fernandex-Yepez, a Synonym of the Gymnotoid Genus Sternopygus M\u00fcller and
+      Troschel"],"prefix":"10.2307","volume":"1979","author":[{"given":"William L.","family":"Fink","sequence":"first","affiliation":[]}],"member":"1121","container-title":["Copeia"],"deposited":{"date-parts":[[2018,5,8]],"date-time":"2018-05-08T23:59:44Z","timestamp":1525823984000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.jstor.org\/stable\/1443890?origin=crossref"}},"issued":{"date-parts":[[1979,11,28]]},"references-count":0,"journal-issue":{"issue":"4","published-print":{"date-parts":[[1979,11,28]]}},"URL":"http:\/\/dx.doi.org\/10.2307\/1443890","ISSN":["0045-8511"],"issn-type":[{"value":"0045-8511","type":"print"}],"subject":["Animal
+      Science and Zoology","Aquatic Science","Ecology, Evolution, Behavior and Systematics"],"published":{"date-parts":[[1979,11,28]]}},{"indexed":{"date-parts":[[2022,12,30]],"date-time":"2022-12-30T11:50:37Z","timestamp":1672401037527},"reference-count":0,"publisher":"American
+      Diabetes Association","issue":"Supplement_1","license":[{"start":{"date-parts":[[2021,6,22]],"date-time":"2021-06-22T00:00:00Z","timestamp":1624320000000},"content-version":"vor","delay-in-days":21,"URL":"http:\/\/www.diabetesjournals.org\/content\/license"}],"content-domain":{"domain":["diabetesjournals.org"],"crossmark-restriction":true},"published-print":{"date-parts":[[2021,6,1]]},"DOI":"10.2337\/db21-307-or","type":"journal-article","created":{"date-parts":[[2021,6,24]],"date-time":"2021-06-24T22:14:53Z","timestamp":1624572893000},"update-policy":"http:\/\/dx.doi.org\/10.2337\/ada-journal-policies","source":"Crossref","is-referenced-by-count":1,"title":["307-OR:
+      Mean Blood Beta-Hydroxybutyrate Predicts Clinically Significant Weight Loss
+      following 90 Days Carbohydrate-Restricted Nutrition Therapy"],"prefix":"10.2337","volume":"70","author":[{"given":"AMY
+      L.","family":"MCKENZIE","sequence":"first","affiliation":[{"name":"San Francisco,
+      CA"}]},{"given":"SHAMINIE J.","family":"ATHINARAYANAN","sequence":"additional","affiliation":[{"name":"San
+      Francisco, CA"}]},{"given":"REBECCA N.","family":"ADAMS","sequence":"additional","affiliation":[{"name":"San
+      Francisco, CA"}]},{"given":"BRITTANIE M.","family":"VOLK","sequence":"additional","affiliation":[{"name":"San
+      Francisco, CA"}]},{"given":"STEPHEN","family":"PHINNEY","sequence":"additional","affiliation":[{"name":"San
+      Francisco, CA"}]},{"given":"ROBERT E.","family":"RATNER","sequence":"additional","affiliation":[{"name":"San
+      Francisco, CA"}]}],"member":"1167","container-title":["Diabetes"],"language":"en","link":[{"URL":"https:\/\/diabetesjournals.org\/diabetes\/article\/70\/Supplement_1\/307-OR\/139987\/307-OR-Mean-Blood-Beta-Hydroxybutyrate-Predicts","content-type":"application\/pdf","content-version":"vor","intended-application":"syndication"},{"URL":"https:\/\/diabetesjournals.org\/diabetes\/article\/70\/Supplement_1\/307-OR\/139987\/307-OR-Mean-Blood-Beta-Hydroxybutyrate-Predicts","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2022,3,13]],"date-time":"2022-03-13T11:44:24Z","timestamp":1647171864000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/diabetesjournals.org\/diabetes\/article\/70\/Supplement_1\/307-OR\/139987\/307-OR-Mean-Blood-Beta-Hydroxybutyrate-Predicts"}},"issued":{"date-parts":[[2021,6,1]]},"references-count":0,"journal-issue":{"issue":"Supplement_1","published-print":{"date-parts":[[2021,6,1]]}},"URL":"http:\/\/dx.doi.org\/10.2337\/db21-307-or","ISSN":["0012-1797","1939-327X"],"issn-type":[{"value":"0012-1797","type":"print"},{"value":"1939-327X","type":"electronic"}],"subject":["Endocrinology,
+      Diabetes and Metabolism","Internal Medicine"],"published":{"date-parts":[[2021,6,1]]}},{"indexed":{"date-parts":[[2022,3,30]],"date-time":"2022-03-30T14:07:37Z","timestamp":1648649257276},"reference-count":0,"publisher":"Jaypee
+      Brothers Medical Publishers (P) Ltd.","content-domain":{"domain":[],"crossmark-restriction":false},"DOI":"10.5005\/jp\/books\/11397_99","type":"book-chapter","created":{"date-parts":[[2013,2,22]],"date-time":"2013-02-22T20:38:40Z","timestamp":1361565520000},"page":"514-514","source":"Crossref","is-referenced-by-count":0,"title":["Receptors"],"prefix":"10.5005","author":[{"given":"K","family":"Sembulingam","sequence":"first","affiliation":[]},{"given":"Prema","family":"Sembulingam","sequence":"additional","affiliation":[]}],"member":"2914","published-online":{"date-parts":[[2011]]},"container-title":["Essentials
+      of Physiology for Dental Students"],"deposited":{"date-parts":[[2019,8,14]],"date-time":"2019-08-14T16:37:07Z","timestamp":1565800627000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.jaypeedigital.com\/book\/9789350250761\/chapter\/ch85"}},"issued":{"date-parts":[[2011]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.5005\/jp\/books\/11397_99","published":{"date-parts":[[2011]]}},{"indexed":{"date-parts":[[2022,4,6]],"date-time":"2022-04-06T04:04:29Z","timestamp":1649217869112},"reference-count":0,"publisher":"S.
+      Karger AG","license":[{"content-version":"vor","delay-in-days":0,"URL":"https:\/\/www.karger.com\/Services\/SiteLicenses"},{"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.karger.com\/Services\/SiteLicenses"}],"content-domain":{"domain":[],"crossmark-restriction":false},"DOI":"10.1159\/000384025","type":"book-chapter","created":{"date-parts":[[2015,4,15]],"date-time":"2015-04-15T12:42:45Z","timestamp":1429101765000},"page":"105-111","source":"Crossref","is-referenced-by-count":0,"title":["Bluttransfusionen
+      bei Herzoperationen"],"prefix":"10.1159","author":[{"given":"G.","family":"Korff","sequence":"first","affiliation":[]},{"given":"O.","family":"Meyer","sequence":"additional","affiliation":[]}],"member":"127","container-title":["Nicht
+      durch Blutgruppen bedingte Transfusionsst\ufffdrungen - Freie Vortr\ufffdge","Ergebnisse
+      der Bluttransfusionsforschung"],"link":[{"URL":"https:\/\/www.karger.com\/Article\/Pdf\/384025","content-type":"unspecified","content-version":"vor","intended-application":"text-mining"},{"URL":"http:\/\/www.karger.com\/Article\/Pdf\/384025","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2018,8,22]],"date-time":"2018-08-22T15:48:55Z","timestamp":1534952935000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.karger.com\/Article\/FullText\/384025"}},"issued":{"date-parts":[[null]]},"references-count":0,"alternative-id":["000384025"],"URL":"http:\/\/dx.doi.org\/10.1159\/000384025","ISSN":["0301-3553"],"issn-type":[{"value":"0301-3553","type":"print"}]}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -184,11 +141,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '4513'
+      - '2437'
       content-type:
       - application/json
       date:
-      - Wed, 07 Feb 2024 11:46:12 GMT
+      - Sat, 10 Feb 2024 10:00:05 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -205,7 +162,6 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

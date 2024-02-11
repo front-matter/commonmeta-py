@@ -1,27 +1,26 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8519e2d09a7b1cb6-AMS
+      - 853382483ea86654-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +28,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2024 07:23:10 GMT
+      - Sat, 10 Feb 2024 10:01:06 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PvEE4H1FtIAFvPBa%2B90ZIhDaxxxwV8nYfX1nXe0ia2zaaqcvNDU2ZHrYQ2GmDGmP1LHzpbI0zJ2lV5N7EvyjyfA6T3ODIohSdNMpxqm2G3M%2FnzFEc5oUVwHRTCfN4HYxLTayzOU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dwhI1yRxybL8XdS6VnRSycF6wPtmHsz3Y7Us2gSsxFDqPwDhyRVsa8RAK7hIljtkGLq%2BEU6n8nCHkhJB%2Fa2GBDVVP9dsCucQLTrpIMcbgjmwkW1%2Ffa3zbLPeRv6IrK0tlb2skRc%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -44,99 +43,111 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/works/10.7554/elife.01567
   response:
-    body:
-      string: !!binary |
-        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
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2024,2,7]],"date-time":"2024-02-07T03:23:52Z","timestamp":1707276232803},"reference-count":27,"publisher":"eLife
+      Sciences Publications, Ltd","license":[{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"}],"funder":[{"name":"SystemsX"},{"name":"EMBO
+      longterm post-doctoral fellowships"},{"name":"Marie Heim-Voegtlin"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"},{"name":"SystemsX"},{"DOI":"10.13039\/501100003043","name":"EMBO","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100001711","name":"Swiss
+      National Science Foundation","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"}],"content-domain":{"domain":["www.elifesciences.org"],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Among
+      various advantages, their small size makes model organisms preferred subjects
+      of investigation. Yet, even in model systems detailed analysis of numerous developmental
+      processes at cellular level is severely hampered by their scale. For instance,
+      secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly
+      specialized tissues that comprises several thousand cells starting from a few
+      dozen. This dynamic process is difficult to follow because of its scale and
+      because it can only be investigated invasively, precluding comprehensive understanding
+      of the cell proliferation, differentiation, and patterning events involved.
+      To overcome such limitation, we established an automated quantitative histology
+      approach. We acquired hypocotyl cross-sections from tiled high-resolution images
+      and extracted their information content using custom high-throughput image processing
+      and segmentation. Coupled with automated cell type recognition through machine
+      learning, we could establish a cellular resolution atlas that reveals vascular
+      morphodynamics during secondary growth, for example equidistant phloem pole
+      formation.<\/jats:p>","DOI":"10.7554\/elife.01567","type":"journal-article","created":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T16:29:04Z","timestamp":1392136144000},"source":"Crossref","is-referenced-by-count":31,"title":["Automated
+      quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl
+      secondary growth"],"prefix":"10.7554","volume":"3","author":[{"given":"Martial","family":"Sankar","sequence":"first","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Kaisa","family":"Nieminen","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Laura","family":"Ragni","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Ioannis","family":"Xenarios","sequence":"additional","affiliation":[{"name":"Vital-IT,
+      Swiss Institute of Bioinformatics, Lausanne, Switzerland"}]},{"given":"Christian
+      S","family":"Hardtke","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]}],"member":"4374","published-online":{"date-parts":[[2014,2,11]]},"reference":[{"key":"bib1","doi-asserted-by":"publisher","first-page":"181","DOI":"10.1038\/nature02100","article-title":"APL
+      regulates vascular tissue identity in Arabidopsis","volume":"426","author":"Bonke","year":"2003","journal-title":"Nature"},{"key":"bib2","doi-asserted-by":"publisher","first-page":"413","DOI":"10.1534\/genetics.109.104976","article-title":"In
+      the beginning was the worm","volume":"182","author":"Brenner","year":"2009","journal-title":"Genetics"},{"key":"bib3","doi-asserted-by":"publisher","first-page":"594","DOI":"10.1034\/j.1399-3054.2002.1140413.x","article-title":"Secondary
+      xylem development in Arabidopsis: a model for wood formation","volume":"114","author":"Chaffey","year":"2002","journal-title":"Physiologia
+      Plantarum"},{"key":"bib4","doi-asserted-by":"publisher","first-page":"2119","DOI":"10.1162\/089976601750399335","article-title":"Training
+      nu-support vector classifiers: theory and algorithms","volume":"13","author":"Chang","year":"2001","journal-title":"Neural
+      computation"},{"key":"bib5","doi-asserted-by":"crossref","first-page":"273","DOI":"10.1007\/BF00994018","article-title":"Support-vector
+      Networks","volume":"20","author":"Cortes","year":"1995","journal-title":"Machine
+      Learning"},{"key":"bib6","doi-asserted-by":"crossref","first-page":"71","DOI":"10.1242\/dev.119.1.71","article-title":"Cellular
+      organisation of the Arabidopsis thaliana root","volume":"119","author":"Dolan","year":"1993","journal-title":"Development"},{"key":"bib7","doi-asserted-by":"publisher","first-page":"1097","DOI":"10.1016\/j.semcdb.2009.09.009","article-title":"Stem
+      cell function during plant vascular development","volume":"20","author":"Elo","year":"2009","journal-title":"Seminars
+      in Cell & Developmental Biology"},{"key":"bib8","doi-asserted-by":"publisher","first-page":"2224","DOI":"10.1242\/dev.091314","article-title":"WOX4
+      and WOX14 act downstream of the PXY receptor kinase to regulate plant vascular
+      proliferation independently of any role in vascular organisation","volume":"140","author":"Etchells","year":"2013","journal-title":"Development"},{"key":"bib9","doi-asserted-by":"publisher","first-page":"e1002997","DOI":"10.1371\/journal.pgen.1002997","article-title":"Plant
+      vascular cell division is maintained by an interaction between PXY and ethylene
+      signalling","volume":"8","author":"Etchells","year":"2012","journal-title":"PLOS
+      Genetics"},{"key":"bib10","doi-asserted-by":"publisher","first-page":"370","DOI":"10.1038\/msb.2010.25","article-title":"Clustering
+      phenotype populations by genome-wide RNAi and multiparametric imaging","volume":"6","author":"Fuchs","year":"2010","journal-title":"Molecular
+      Systems Biology"},{"key":"bib11","doi-asserted-by":"publisher","first-page":"60","DOI":"10.1016\/j.biosystems.2012.07.004","article-title":"BaSAR-A
+      tool in R for frequency detection","volume":"110","author":"Granqvist","year":"2012","journal-title":"Bio
+      Systems"},{"key":"bib12","doi-asserted-by":"publisher","first-page":"55","DOI":"10.1016\/j.pbi.2005.11.013","article-title":"Developmental
+      mechanisms regulating secondary growth in woody plants","volume":"9","author":"Groover","year":"2006","journal-title":"Current
+      Opinion in Plant Biology"},{"key":"bib13","doi-asserted-by":"publisher","first-page":"2618","DOI":"10.1105\/tpc.110.076083","article-title":"TDIF
+      peptide signaling regulates vascular stem cell proliferation via the WOX4 homeobox
+      gene in Arabidopsis","volume":"22","author":"Hirakawa","year":"2010","journal-title":"Plant
+      Cell"},{"key":"bib14","doi-asserted-by":"publisher","first-page":"15208","DOI":"10.1073\/pnas.0808444105","article-title":"Non-cell-autonomous
+      control of vascular stem cell fate by a CLE peptide\/receptor system","volume":"105","author":"Hirakawa","year":"2008","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib15","doi-asserted-by":"publisher","first-page":"263","DOI":"10.1016\/0092-8674(89)90900-8","article-title":"Arabidopsis,
+      a useful weed","volume":"56","author":"Meyerowitz","year":"1989","journal-title":"Cell"},{"key":"bib16","doi-asserted-by":"publisher","first-page":"1482","DOI":"10.1126\/science.1066609","article-title":"Plants
+      compared to animals: the broadest comparative study of development","volume":"295","author":"Meyerowitz","year":"2002","journal-title":"Science"},{"key":"bib17","doi-asserted-by":"publisher","first-page":"653","DOI":"10.1104\/pp.104.040212","article-title":"A
+      weed for wood? Arabidopsis as a genetic model for xylem development","volume":"135","author":"Nieminen","year":"2004","journal-title":"Plant
+      Physiol"},{"key":"bib18","doi-asserted-by":"publisher","first-page":"1565","DOI":"10.1038\/nbt1206-1565","article-title":"What
+      is a support vector machine?","volume":"24","author":"Noble","year":"2006","journal-title":"Nature
+      Biotechnology"},{"key":"bib19","doi-asserted-by":"publisher","first-page":"1516","DOI":"10.1073\/pnas.77.3.1516","article-title":"Classification
+      of cultured mammalian cells by shape analysis and pattern recognition","volume":"77","author":"Olson","year":"1980","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib20","doi-asserted-by":"publisher","first-page":"979","DOI":"10.1093\/bioinformatics\/btq046","article-title":"EBImage\u2013an
+      R package for image processing with applications to cellular phenotypes","volume":"26","author":"Pau","year":"2010","journal-title":"Bioinformatics"},{"key":"bib21","doi-asserted-by":"publisher","first-page":"1322","DOI":"10.1105\/tpc.111.084020","article-title":"Mobile
+      gibberellin directly stimulates Arabidopsis hypocotyl xylem expansion","volume":"23","author":"Ragni","year":"2011","journal-title":"Plant
+      Cell"},{"key":"bib22","doi-asserted-by":"publisher","article-title":"Data from:
+      Automated quantitative histology reveals vascular morphodynamics during Arabidopsis
+      hypocotyl secondary growth","author":"Sankar","year":"2014","journal-title":"Dryad
+      Digital Repository","DOI":"10.5061\/dryad.b835k"},{"key":"bib23","doi-asserted-by":"publisher","first-page":"458","DOI":"10.1016\/j.cub.2008.02.070","article-title":"Flowering
+      as a condition for xylem expansion in Arabidopsis hypocotyl and root","volume":"18","author":"Sibout","year":"2008","journal-title":"Current
+      Biology"},{"key":"bib24","doi-asserted-by":"publisher","first-page":"577","DOI":"10.1111\/j.1469-8137.2010.03236.x","article-title":"Evolution
+      of development of vascular cambia and secondary growth","volume":"186","author":"Spicer","year":"2010","journal-title":"The
+      New Phytologist"},{"key":"bib25","doi-asserted-by":"publisher","first-page":"659","DOI":"10.1007\/s00138-011-0345-9","article-title":"Cell
+      morphology classification and clutter mitigation in phase-contrast microscopy
+      images using machine learning","volume":"23","author":"Theriault","year":"2012","journal-title":"Machine
+      Vision and Applications"},{"key":"bib26","doi-asserted-by":"publisher","first-page":"439","DOI":"10.1016\/j.cell.2012.02.048","article-title":"Mechanical
+      stress acts via katanin to amplify differences in growth rate between adjacent
+      cells in Arabidopsis","volume":"149","author":"Uyttewaal","year":"2012","journal-title":"Cell"},{"key":"bib27","doi-asserted-by":"publisher","first-page":"860","DOI":"10.1038\/ncb2764","article-title":"A
+      screen for morphological complexity identifies regulators of switch-like transitions
+      between discrete cell shapes","volume":"15","author":"Yin","year":"2013","journal-title":"Nature
+      Cell Biology"}],"container-title":["eLife"],"original-title":[],"language":"en","link":[{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/elifesciences.org\/articles\/01567","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,10,12]],"date-time":"2023-10-12T00:43:13Z","timestamp":1697071393000},"score":1,"resource":{"primary":{"URL":"https:\/\/elifesciences.org\/articles\/01567"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2014,2,11]]},"references-count":27,"alternative-id":["10.7554\/eLife.01567"],"URL":"http:\/\/dx.doi.org\/10.7554\/elife.01567","archive":["CLOCKSS"],"relation":{"is-supplemented-by":[{"id-type":"doi","id":"10.5061\/dryad.b835k","asserted-by":"subject"}],"has-review":[{"id-type":"doi","id":"10.7554\/eLife.01567.017","asserted-by":"object"},{"id-type":"doi","id":"10.7554\/eLife.01567.016","asserted-by":"object"}]},"ISSN":["2050-084X"],"issn-type":[{"value":"2050-084X","type":"electronic"}],"subject":["General
+      Immunology and Microbiology","General Biochemistry, Genetics and Molecular Biology","General
+      Medicine","General Neuroscience"],"published":{"date-parts":[[2014,2,11]]},"assertion":[{"value":"2013-09-20","order":0,"name":"received","label":"Received","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2013-12-24","order":1,"name":"accepted","label":"Accepted","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2014-02-11","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
+      History"}}]}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -154,7 +165,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Wed, 07 Feb 2024 07:23:11 GMT
+      - Sat, 10 Feb 2024 10:01:07 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -171,56 +182,29 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/members/4374
   response:
-    body:
-      string: !!binary |
-        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
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707522299459,"primary-name":"eLife
+      Sciences Publications, Ltd","counts":{"current-dois":23313,"backfile-dois":35573,"total-dois":58886},"breakdowns":{"dois-by-issued-year":[[2023,13154],[2022,7431],[2021,7267],[2020,6188],[2019,4848],[2017,4118],[2018,4058],[2016,3512],[2015,2808],[2024,2728],[2014,1804],[2013,811],[2012,159]]},"prefixes":["10.7554"],"coverage":{"affiliations-current":0.6588169690730494,"similarity-checking-current":0.211512889803972,"descriptions-current":0.0,"ror-ids-current":0.4895551838030284,"funders-backfile":0.2981474713968459,"licenses-backfile":0.9999718887920614,"funders-current":0.1644147042422683,"affiliations-backfile":0.9904984117167515,"resource-links-backfile":0.3367722711044894,"orcids-backfile":0.8700418856998285,"update-policies-current":0.1797280487281774,"ror-ids-backfile":0.04211058949203047,"orcids-current":0.5906146785055548,"similarity-checking-backfile":0.3368566047283052,"references-backfile":0.3290135777134343,"descriptions-backfile":0.0,"award-numbers-backfile":0.2818710820003936,"update-policies-backfile":0.1168864026087201,"licenses-current":0.9995281602539356,"award-numbers-current":0.1584523656329087,"abstracts-backfile":0.330250470862733,"resource-links-current":0.1797280487281774,"abstracts-current":0.3035645348089049,"references-current":0.1745807060438382},"prefix":[{"name":"eLife
+      Sciences Publications, Ltd.","value":"10.7554"}],"id":4374,"tokens":["elife","sciences","publications","ltd"],"counts-type":{"all":{"peer-review":39753,"journal-article":16172,"journal":1,"component":143804,"posted-content":2961},"backfile":{"peer-review":23585,"journal-article":11982,"posted-content":6},"current":{"peer-review":16168,"journal-article":4190,"posted-content":2955}},"coverage-type":{"all":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.799763539858627,"abstracts":0.0,"orcids":0.700726989158051,"licenses":0.9998239126606797,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.2259955223505144,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9798417017066535,"abstracts":0.9809547365817461,"orcids":0.8883873361365323,"licenses":0.9999381647291615,"references":0.9753895622062825,"funders":0.8928394756369032,"similarity-checking":0.9992579767499382,"award-numbers":0.8484417511748701,"ror-ids":0.2428271085827356,"update-policies":0.5162008409596834,"resource-links":0.999876329458323,"descriptions":0.0},"journal":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":4.867736641539874E-4,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979736575481256,"abstracts":1.0,"orcids":0.8429584599797366,"licenses":0.9986491050320838,"references":0.0,"funders":0.0,"similarity-checking":0.2546437014522121,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.996565613737545,"abstracts":0.0,"orcids":0.8804324782700869,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.06292134831460675,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9785511600734434,"abstracts":0.9799699549323986,"orcids":0.8495242864296445,"licenses":0.999916541478885,"references":0.9767985311300283,"funders":0.885161074945752,"similarity-checking":0.999582707394425,"award-numbers":0.8368385912201636,"ror-ids":0.001168419295610082,"update-policies":0.3470205307961943,"resource-links":0.99983308295777,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":1.0,"abstracts":1.0,"orcids":1.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.5126793666501732,"abstracts":0.0,"orcids":0.4385823849579416,"licenses":0.9995670460168234,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.4638792676892627,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9835322195704057,"abstracts":0.9837708830548926,"orcids":0.9995226730310263,"licenses":1.0,"references":0.9713603818615753,"funders":0.9147971360381862,"similarity-checking":0.9983293556085919,"award-numbers":0.8816229116945107,"ror-ids":0.933890214797136,"update-policies":1.0,"resource-links":1.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979695431472081,"abstracts":1.0,"orcids":0.8426395939086294,"licenses":0.9986463620981387,"references":0.0,"funders":0.0,"similarity-checking":0.2531302876480541,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":true,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["eLife Sciences Publications, Ltd","eLife Sciences
+      Publications, Ltd."]}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -234,11 +218,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1761'
+      - '1757'
       content-type:
       - application/json
       date:
-      - Wed, 07 Feb 2024 07:23:11 GMT
+      - Sat, 10 Feb 2024 10:01:07 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -255,32 +239,30 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8519e2d79836775e-AMS
+      - 8533824ecacd66c4-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -288,11 +270,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 07 Feb 2024 07:23:11 GMT
+      - Sat, 10 Feb 2024 10:01:07 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ConARnWk%2BI2c2zCPqf6438emtl7fbLDn37qiOWp6CGIGvQAgEsGgH2D6sk%2FJ4d9hHXSCtB%2FPO9eqhvFZiAUoM4AKbBYQpoOQBdDn9zR8PuwYhY7yWjesPx0yTUVQZ4XEl9syNHY%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tNENq3zFwCvc0ycwJOMcKwhue01ptEs%2BTUAb3c4D46zQeKC32nHdKtUTPXRvnOpRqJ4Osz1DGLoDJe5a9JGL3McZovSEgWoXSDoBLVXXkGEoxJZ1sjRZ711CPUmnEYxn2jhrSOU%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -303,7 +285,155 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.7554
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8535eebb6bfb66fd-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 17:04:40 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=6RTJmJMtbq2HrQv3nOIXakOqznGFkm%2FMx1WUapznRVBLwB%2BbPOyd3FqSlaPgLpJv3KhhZ7b27H73q3kyVtdh9OCCgnkjOmJGxBGcENgk6HfduohB99cSxwdSyLcKYC8OmTJ%2BcZU%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/4374
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707522299459,"primary-name":"eLife
+      Sciences Publications, Ltd","counts":{"current-dois":23313,"backfile-dois":35573,"total-dois":58886},"breakdowns":{"dois-by-issued-year":[[2023,13154],[2022,7431],[2021,7267],[2020,6188],[2019,4848],[2017,4118],[2018,4058],[2016,3512],[2015,2808],[2024,2728],[2014,1804],[2013,811],[2012,159]]},"prefixes":["10.7554"],"coverage":{"affiliations-current":0.6588169690730494,"similarity-checking-current":0.211512889803972,"descriptions-current":0.0,"ror-ids-current":0.4895551838030284,"funders-backfile":0.2981474713968459,"licenses-backfile":0.9999718887920614,"funders-current":0.1644147042422683,"affiliations-backfile":0.9904984117167515,"resource-links-backfile":0.3367722711044894,"orcids-backfile":0.8700418856998285,"update-policies-current":0.1797280487281774,"ror-ids-backfile":0.04211058949203047,"orcids-current":0.5906146785055548,"similarity-checking-backfile":0.3368566047283052,"references-backfile":0.3290135777134343,"descriptions-backfile":0.0,"award-numbers-backfile":0.2818710820003936,"update-policies-backfile":0.1168864026087201,"licenses-current":0.9995281602539356,"award-numbers-current":0.1584523656329087,"abstracts-backfile":0.330250470862733,"resource-links-current":0.1797280487281774,"abstracts-current":0.3035645348089049,"references-current":0.1745807060438382},"prefix":[{"name":"eLife
+      Sciences Publications, Ltd.","value":"10.7554"}],"id":4374,"tokens":["elife","sciences","publications","ltd"],"counts-type":{"all":{"peer-review":39753,"journal-article":16172,"journal":1,"component":143804,"posted-content":2961},"backfile":{"peer-review":23585,"journal-article":11982,"posted-content":6},"current":{"peer-review":16168,"journal-article":4190,"posted-content":2955}},"coverage-type":{"all":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.799763539858627,"abstracts":0.0,"orcids":0.700726989158051,"licenses":0.9998239126606797,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.2259955223505144,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9798417017066535,"abstracts":0.9809547365817461,"orcids":0.8883873361365323,"licenses":0.9999381647291615,"references":0.9753895622062825,"funders":0.8928394756369032,"similarity-checking":0.9992579767499382,"award-numbers":0.8484417511748701,"ror-ids":0.2428271085827356,"update-policies":0.5162008409596834,"resource-links":0.999876329458323,"descriptions":0.0},"journal":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":4.867736641539874E-4,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979736575481256,"abstracts":1.0,"orcids":0.8429584599797366,"licenses":0.9986491050320838,"references":0.0,"funders":0.0,"similarity-checking":0.2546437014522121,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.996565613737545,"abstracts":0.0,"orcids":0.8804324782700869,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.06292134831460675,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9785511600734434,"abstracts":0.9799699549323986,"orcids":0.8495242864296445,"licenses":0.999916541478885,"references":0.9767985311300283,"funders":0.885161074945752,"similarity-checking":0.999582707394425,"award-numbers":0.8368385912201636,"ror-ids":0.001168419295610082,"update-policies":0.3470205307961943,"resource-links":0.99983308295777,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":1.0,"abstracts":1.0,"orcids":1.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.5126793666501732,"abstracts":0.0,"orcids":0.4385823849579416,"licenses":0.9995670460168234,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.4638792676892627,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9835322195704057,"abstracts":0.9837708830548926,"orcids":0.9995226730310263,"licenses":1.0,"references":0.9713603818615753,"funders":0.9147971360381862,"similarity-checking":0.9983293556085919,"award-numbers":0.8816229116945107,"ror-ids":0.933890214797136,"update-policies":1.0,"resource-links":1.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979695431472081,"abstracts":1.0,"orcids":0.8426395939086294,"licenses":0.9986463620981387,"references":0.0,"funders":0.0,"similarity-checking":0.2531302876480541,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":true,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["eLife Sciences Publications, Ltd","eLife Sciences
+      Publications, Ltd."]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1757'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 17:04:40 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.7554
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8535f2505b3b1c82-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 17:07:06 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=VnW4a9AoA49pjebC2BJrKJyivakmJIEcDkewjsuIg4h4ze30B3tOIjkb%2BwRPoY8an2vb%2BfV%2Bhsu5xGq31LJ09dP74C6RQT7sIhBNLopkYrumdFDvjhKQthJggofUAegdMY1bibw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

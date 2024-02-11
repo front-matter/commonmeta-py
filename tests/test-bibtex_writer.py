@@ -1,7 +1,7 @@
 """Bibtex writer tests"""
 from os import path
 import pytest
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 
 
 @pytest.mark.vcr
@@ -33,6 +33,7 @@ def test_doi_with_data_citation():
     )
 
 
+@pytest.mark.vcr
 def test_doi_for_blog_post():
     "DOi for blog post"
     subject = Metadata("10.53731/avg2ykg-gdxppcd")
@@ -58,6 +59,7 @@ def test_doi_for_blog_post():
     )
 
 
+@pytest.mark.vcr
 def test_blog_post():
     "blog post"
     string = "https://upstream.force11.org/welcome-to-upstream/"
@@ -85,6 +87,7 @@ def test_blog_post():
     )
 
 
+@pytest.mark.vcr
 def test_article_with_pages():
     "article with pages"
     subject = Metadata("https://doi.org/10.1371/journal.ppat.1008184")
@@ -114,6 +117,7 @@ def test_article_with_pages():
     )
 
 
+@pytest.mark.vcr
 def test_article_dlib_magazine():
     "article dlib magazine"
     subject = Metadata("https://doi.org/10.1045/january2017-burton")
@@ -141,6 +145,7 @@ def test_article_dlib_magazine():
     )
 
 
+@pytest.mark.vcr
 def test_inproceedings():
     """inproceedings"""
     subject = Metadata("https://doi.org/10.1145/3448016.3452841", via="crossref_xml")
@@ -170,6 +175,7 @@ def test_inproceedings():
     )
 
 
+@pytest.mark.vcr
 def test_book_chapter():
     """book chapter"""
     subject = Metadata("https://doi.org/10.1007/978-3-662-46370-3_13")
@@ -188,7 +194,7 @@ def test_book_chapter():
     isbn = {9783662463703},
     month = feb,
     pages = {155--158},
-    publisher = {Springer Science and Business Media LLC},
+    publisher = {Springer Berlin Heidelberg},
     title = {Clinical Symptoms and Physical Examinations},
     url = {https://link.springer.com/10.1007/978-3-662-46370-3_13},
     urldate = {2015},
@@ -198,6 +204,7 @@ def test_book_chapter():
     )
 
 
+@pytest.mark.vcr
 def test_conference_proceedings():
     """conference proceedings"""
     subject = Metadata("https://doi.org/10.1109/iccv.2007.4408927")
@@ -213,7 +220,7 @@ def test_conference_proceedings():
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
     month = feb,
-    publisher = {Institute of Electrical and Electronics Engineers (IEEE)},
+    publisher = {IEEE},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
     url = {http://ieeexplore.ieee.org/document/4408927},
     urldate = {2007},
@@ -223,6 +230,7 @@ def test_conference_proceedings():
     )
 
 
+@pytest.mark.vcr
 def test_phd_thesis():
     """phd thesis"""
     subject = Metadata("10.14264/uql.2020.791")
@@ -436,3 +444,44 @@ def test_kbase_gulf_of_mexico():
 }
 """
     )
+
+
+@pytest.mark.vcr
+def test_post_without_doi():
+    """blog post without doi"""
+    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert subject.type == "Article"
+    bibtex = subject.write(to="bibtex")
+
+    assert (
+        bibtex
+        =="""@article{https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii,
+    abstract = {Das demokratische Haus in Deutschland brennt. Es ist höchste Zeit, die Instrumente der streitbaren Demokratie gegen Landesverbände der AfD einzusetzen, die mit hoher Wahrscheinlichkeit verfassungswidrig sind, wie die in Thüringen, Sachsen und Sachsen-Anhalt. Warum die Voraussetzungen für Grundrechtsverwirkung und Parteiverbot dort vorliegen, und die Verfassungstreue es auch verlangt, sie zu beantragen, soll dieser dreiteilige Beitrag begründen.},
+    author = {Hong, Mathias},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
+    journal = {Verfassungsblog},
+    language = {de},
+    month = feb,
+    title = {Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)},
+    url = {https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii},
+    urldate = {2024-02-08},
+    year = {2024}
+}
+"""
+    )
+    
+    
+@pytest.mark.vcr
+def test_write_bibtex_list():
+    """write_bibtex_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    bibtex_list = subject_list.write(to="bibtex")
+    lines = bibtex_list.splitlines()
+    assert lines[0] == "@article{10.1002/fedr.4910730105,"
+    assert lines[1].lstrip() == "author = {Dvořák, František},"
+    assert lines[2].lstrip() == "doi = {10.1002/fedr.4910730105},"

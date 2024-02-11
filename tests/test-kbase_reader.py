@@ -1,13 +1,13 @@
 # pylint: disable=invalid-name,too-many-lines
 """kbase reader tests"""
-import os
+from os import path
 from commonmeta import Metadata
 
 
 def test_metatranscriptome():
     """Metatrascriptome"""
-    string = os.path.join(
-        os.path.dirname(__file__), "fixtures", "JDP_5fa4fb4647675a20c852c60b_kbcms.json"
+    string = path.join(
+        path.dirname(__file__), "fixtures", "JDP_5fa4fb4647675a20c852c60b_kbcms.json"
     )
     subject = Metadata(string)
     assert subject.is_valid is False
@@ -62,8 +62,8 @@ def test_metatranscriptome():
 
 def test_gulf_of_mexico():
     """Metatrascriptome"""
-    string = os.path.join(
-        os.path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
+    string = path.join(
+        path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
     )
     subject = Metadata(string)
     assert subject.is_valid is False

@@ -15,7 +15,7 @@ __author__ = "Martin Fenner"
 __license__ = "MIT"
 
 # ruff: noqa: F401
-from .metadata import Metadata
+from .metadata import Metadata, MetadataList
 from .readers import (
     cff_reader,
     codemeta_reader,

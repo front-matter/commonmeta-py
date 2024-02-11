@@ -1,0 +1,1284 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.7554
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a19ebb06564-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:55:58 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=AgP3MDZ6VBO1gybaYKI6zi7L32Xv74hDXq1jlP4ZzclP56Lyx2jmfh5qqXZwLEEBqjCiDO%2FHrWJZ7dpZl1%2BtCRT8lWIOLkCb1UwrlINjWv2r9SzCzfhn%2BjJi2oXBpeMebcw7NLw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.7554/elife.01567
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2024,2,7]],"date-time":"2024-02-07T03:23:52Z","timestamp":1707276232803},"reference-count":27,"publisher":"eLife
+      Sciences Publications, Ltd","license":[{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"}],"funder":[{"name":"SystemsX"},{"name":"EMBO
+      longterm post-doctoral fellowships"},{"name":"Marie Heim-Voegtlin"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"},{"name":"SystemsX"},{"DOI":"10.13039\/501100003043","name":"EMBO","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100001711","name":"Swiss
+      National Science Foundation","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"}],"content-domain":{"domain":["www.elifesciences.org"],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Among
+      various advantages, their small size makes model organisms preferred subjects
+      of investigation. Yet, even in model systems detailed analysis of numerous developmental
+      processes at cellular level is severely hampered by their scale. For instance,
+      secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly
+      specialized tissues that comprises several thousand cells starting from a few
+      dozen. This dynamic process is difficult to follow because of its scale and
+      because it can only be investigated invasively, precluding comprehensive understanding
+      of the cell proliferation, differentiation, and patterning events involved.
+      To overcome such limitation, we established an automated quantitative histology
+      approach. We acquired hypocotyl cross-sections from tiled high-resolution images
+      and extracted their information content using custom high-throughput image processing
+      and segmentation. Coupled with automated cell type recognition through machine
+      learning, we could establish a cellular resolution atlas that reveals vascular
+      morphodynamics during secondary growth, for example equidistant phloem pole
+      formation.<\/jats:p>","DOI":"10.7554\/elife.01567","type":"journal-article","created":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T16:29:04Z","timestamp":1392136144000},"source":"Crossref","is-referenced-by-count":31,"title":["Automated
+      quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl
+      secondary growth"],"prefix":"10.7554","volume":"3","author":[{"given":"Martial","family":"Sankar","sequence":"first","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Kaisa","family":"Nieminen","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Laura","family":"Ragni","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Ioannis","family":"Xenarios","sequence":"additional","affiliation":[{"name":"Vital-IT,
+      Swiss Institute of Bioinformatics, Lausanne, Switzerland"}]},{"given":"Christian
+      S","family":"Hardtke","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]}],"member":"4374","published-online":{"date-parts":[[2014,2,11]]},"reference":[{"key":"bib1","doi-asserted-by":"publisher","first-page":"181","DOI":"10.1038\/nature02100","article-title":"APL
+      regulates vascular tissue identity in Arabidopsis","volume":"426","author":"Bonke","year":"2003","journal-title":"Nature"},{"key":"bib2","doi-asserted-by":"publisher","first-page":"413","DOI":"10.1534\/genetics.109.104976","article-title":"In
+      the beginning was the worm","volume":"182","author":"Brenner","year":"2009","journal-title":"Genetics"},{"key":"bib3","doi-asserted-by":"publisher","first-page":"594","DOI":"10.1034\/j.1399-3054.2002.1140413.x","article-title":"Secondary
+      xylem development in Arabidopsis: a model for wood formation","volume":"114","author":"Chaffey","year":"2002","journal-title":"Physiologia
+      Plantarum"},{"key":"bib4","doi-asserted-by":"publisher","first-page":"2119","DOI":"10.1162\/089976601750399335","article-title":"Training
+      nu-support vector classifiers: theory and algorithms","volume":"13","author":"Chang","year":"2001","journal-title":"Neural
+      computation"},{"key":"bib5","doi-asserted-by":"crossref","first-page":"273","DOI":"10.1007\/BF00994018","article-title":"Support-vector
+      Networks","volume":"20","author":"Cortes","year":"1995","journal-title":"Machine
+      Learning"},{"key":"bib6","doi-asserted-by":"crossref","first-page":"71","DOI":"10.1242\/dev.119.1.71","article-title":"Cellular
+      organisation of the Arabidopsis thaliana root","volume":"119","author":"Dolan","year":"1993","journal-title":"Development"},{"key":"bib7","doi-asserted-by":"publisher","first-page":"1097","DOI":"10.1016\/j.semcdb.2009.09.009","article-title":"Stem
+      cell function during plant vascular development","volume":"20","author":"Elo","year":"2009","journal-title":"Seminars
+      in Cell & Developmental Biology"},{"key":"bib8","doi-asserted-by":"publisher","first-page":"2224","DOI":"10.1242\/dev.091314","article-title":"WOX4
+      and WOX14 act downstream of the PXY receptor kinase to regulate plant vascular
+      proliferation independently of any role in vascular organisation","volume":"140","author":"Etchells","year":"2013","journal-title":"Development"},{"key":"bib9","doi-asserted-by":"publisher","first-page":"e1002997","DOI":"10.1371\/journal.pgen.1002997","article-title":"Plant
+      vascular cell division is maintained by an interaction between PXY and ethylene
+      signalling","volume":"8","author":"Etchells","year":"2012","journal-title":"PLOS
+      Genetics"},{"key":"bib10","doi-asserted-by":"publisher","first-page":"370","DOI":"10.1038\/msb.2010.25","article-title":"Clustering
+      phenotype populations by genome-wide RNAi and multiparametric imaging","volume":"6","author":"Fuchs","year":"2010","journal-title":"Molecular
+      Systems Biology"},{"key":"bib11","doi-asserted-by":"publisher","first-page":"60","DOI":"10.1016\/j.biosystems.2012.07.004","article-title":"BaSAR-A
+      tool in R for frequency detection","volume":"110","author":"Granqvist","year":"2012","journal-title":"Bio
+      Systems"},{"key":"bib12","doi-asserted-by":"publisher","first-page":"55","DOI":"10.1016\/j.pbi.2005.11.013","article-title":"Developmental
+      mechanisms regulating secondary growth in woody plants","volume":"9","author":"Groover","year":"2006","journal-title":"Current
+      Opinion in Plant Biology"},{"key":"bib13","doi-asserted-by":"publisher","first-page":"2618","DOI":"10.1105\/tpc.110.076083","article-title":"TDIF
+      peptide signaling regulates vascular stem cell proliferation via the WOX4 homeobox
+      gene in Arabidopsis","volume":"22","author":"Hirakawa","year":"2010","journal-title":"Plant
+      Cell"},{"key":"bib14","doi-asserted-by":"publisher","first-page":"15208","DOI":"10.1073\/pnas.0808444105","article-title":"Non-cell-autonomous
+      control of vascular stem cell fate by a CLE peptide\/receptor system","volume":"105","author":"Hirakawa","year":"2008","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib15","doi-asserted-by":"publisher","first-page":"263","DOI":"10.1016\/0092-8674(89)90900-8","article-title":"Arabidopsis,
+      a useful weed","volume":"56","author":"Meyerowitz","year":"1989","journal-title":"Cell"},{"key":"bib16","doi-asserted-by":"publisher","first-page":"1482","DOI":"10.1126\/science.1066609","article-title":"Plants
+      compared to animals: the broadest comparative study of development","volume":"295","author":"Meyerowitz","year":"2002","journal-title":"Science"},{"key":"bib17","doi-asserted-by":"publisher","first-page":"653","DOI":"10.1104\/pp.104.040212","article-title":"A
+      weed for wood? Arabidopsis as a genetic model for xylem development","volume":"135","author":"Nieminen","year":"2004","journal-title":"Plant
+      Physiol"},{"key":"bib18","doi-asserted-by":"publisher","first-page":"1565","DOI":"10.1038\/nbt1206-1565","article-title":"What
+      is a support vector machine?","volume":"24","author":"Noble","year":"2006","journal-title":"Nature
+      Biotechnology"},{"key":"bib19","doi-asserted-by":"publisher","first-page":"1516","DOI":"10.1073\/pnas.77.3.1516","article-title":"Classification
+      of cultured mammalian cells by shape analysis and pattern recognition","volume":"77","author":"Olson","year":"1980","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib20","doi-asserted-by":"publisher","first-page":"979","DOI":"10.1093\/bioinformatics\/btq046","article-title":"EBImage\u2013an
+      R package for image processing with applications to cellular phenotypes","volume":"26","author":"Pau","year":"2010","journal-title":"Bioinformatics"},{"key":"bib21","doi-asserted-by":"publisher","first-page":"1322","DOI":"10.1105\/tpc.111.084020","article-title":"Mobile
+      gibberellin directly stimulates Arabidopsis hypocotyl xylem expansion","volume":"23","author":"Ragni","year":"2011","journal-title":"Plant
+      Cell"},{"key":"bib22","doi-asserted-by":"publisher","article-title":"Data from:
+      Automated quantitative histology reveals vascular morphodynamics during Arabidopsis
+      hypocotyl secondary growth","author":"Sankar","year":"2014","journal-title":"Dryad
+      Digital Repository","DOI":"10.5061\/dryad.b835k"},{"key":"bib23","doi-asserted-by":"publisher","first-page":"458","DOI":"10.1016\/j.cub.2008.02.070","article-title":"Flowering
+      as a condition for xylem expansion in Arabidopsis hypocotyl and root","volume":"18","author":"Sibout","year":"2008","journal-title":"Current
+      Biology"},{"key":"bib24","doi-asserted-by":"publisher","first-page":"577","DOI":"10.1111\/j.1469-8137.2010.03236.x","article-title":"Evolution
+      of development of vascular cambia and secondary growth","volume":"186","author":"Spicer","year":"2010","journal-title":"The
+      New Phytologist"},{"key":"bib25","doi-asserted-by":"publisher","first-page":"659","DOI":"10.1007\/s00138-011-0345-9","article-title":"Cell
+      morphology classification and clutter mitigation in phase-contrast microscopy
+      images using machine learning","volume":"23","author":"Theriault","year":"2012","journal-title":"Machine
+      Vision and Applications"},{"key":"bib26","doi-asserted-by":"publisher","first-page":"439","DOI":"10.1016\/j.cell.2012.02.048","article-title":"Mechanical
+      stress acts via katanin to amplify differences in growth rate between adjacent
+      cells in Arabidopsis","volume":"149","author":"Uyttewaal","year":"2012","journal-title":"Cell"},{"key":"bib27","doi-asserted-by":"publisher","first-page":"860","DOI":"10.1038\/ncb2764","article-title":"A
+      screen for morphological complexity identifies regulators of switch-like transitions
+      between discrete cell shapes","volume":"15","author":"Yin","year":"2013","journal-title":"Nature
+      Cell Biology"}],"container-title":["eLife"],"original-title":[],"language":"en","link":[{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/elifesciences.org\/articles\/01567","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,10,12]],"date-time":"2023-10-12T00:43:13Z","timestamp":1697071393000},"score":1,"resource":{"primary":{"URL":"https:\/\/elifesciences.org\/articles\/01567"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2014,2,11]]},"references-count":27,"alternative-id":["10.7554\/eLife.01567"],"URL":"http:\/\/dx.doi.org\/10.7554\/elife.01567","archive":["CLOCKSS"],"relation":{"is-supplemented-by":[{"id-type":"doi","id":"10.5061\/dryad.b835k","asserted-by":"subject"}],"has-review":[{"id-type":"doi","id":"10.7554\/eLife.01567.017","asserted-by":"object"},{"id-type":"doi","id":"10.7554\/eLife.01567.016","asserted-by":"object"}]},"ISSN":["2050-084X"],"issn-type":[{"value":"2050-084X","type":"electronic"}],"subject":["General
+      Immunology and Microbiology","General Biochemistry, Genetics and Molecular Biology","General
+      Medicine","General Neuroscience"],"published":{"date-parts":[[2014,2,11]]},"assertion":[{"value":"2013-09-20","order":0,"name":"received","label":"Received","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2013-12-24","order":1,"name":"accepted","label":"Accepted","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2014-02-11","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
+      History"}}]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '4211'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:55:58 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/4374
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707522299459,"primary-name":"eLife
+      Sciences Publications, Ltd","counts":{"current-dois":23313,"backfile-dois":35573,"total-dois":58886},"breakdowns":{"dois-by-issued-year":[[2023,13154],[2022,7431],[2021,7267],[2020,6188],[2019,4848],[2017,4118],[2018,4058],[2016,3512],[2015,2808],[2024,2728],[2014,1804],[2013,811],[2012,159]]},"prefixes":["10.7554"],"coverage":{"affiliations-current":0.6588169690730494,"similarity-checking-current":0.211512889803972,"descriptions-current":0.0,"ror-ids-current":0.4895551838030284,"funders-backfile":0.2981474713968459,"licenses-backfile":0.9999718887920614,"funders-current":0.1644147042422683,"affiliations-backfile":0.9904984117167515,"resource-links-backfile":0.3367722711044894,"orcids-backfile":0.8700418856998285,"update-policies-current":0.1797280487281774,"ror-ids-backfile":0.04211058949203047,"orcids-current":0.5906146785055548,"similarity-checking-backfile":0.3368566047283052,"references-backfile":0.3290135777134343,"descriptions-backfile":0.0,"award-numbers-backfile":0.2818710820003936,"update-policies-backfile":0.1168864026087201,"licenses-current":0.9995281602539356,"award-numbers-current":0.1584523656329087,"abstracts-backfile":0.330250470862733,"resource-links-current":0.1797280487281774,"abstracts-current":0.3035645348089049,"references-current":0.1745807060438382},"prefix":[{"name":"eLife
+      Sciences Publications, Ltd.","value":"10.7554"}],"id":4374,"tokens":["elife","sciences","publications","ltd"],"counts-type":{"all":{"peer-review":39753,"journal-article":16172,"journal":1,"component":143804,"posted-content":2961},"backfile":{"peer-review":23585,"journal-article":11982,"posted-content":6},"current":{"peer-review":16168,"journal-article":4190,"posted-content":2955}},"coverage-type":{"all":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.799763539858627,"abstracts":0.0,"orcids":0.700726989158051,"licenses":0.9998239126606797,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.2259955223505144,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9798417017066535,"abstracts":0.9809547365817461,"orcids":0.8883873361365323,"licenses":0.9999381647291615,"references":0.9753895622062825,"funders":0.8928394756369032,"similarity-checking":0.9992579767499382,"award-numbers":0.8484417511748701,"ror-ids":0.2428271085827356,"update-policies":0.5162008409596834,"resource-links":0.999876329458323,"descriptions":0.0},"journal":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":4.867736641539874E-4,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979736575481256,"abstracts":1.0,"orcids":0.8429584599797366,"licenses":0.9986491050320838,"references":0.0,"funders":0.0,"similarity-checking":0.2546437014522121,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.996565613737545,"abstracts":0.0,"orcids":0.8804324782700869,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.06292134831460675,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9785511600734434,"abstracts":0.9799699549323986,"orcids":0.8495242864296445,"licenses":0.999916541478885,"references":0.9767985311300283,"funders":0.885161074945752,"similarity-checking":0.999582707394425,"award-numbers":0.8368385912201636,"ror-ids":0.001168419295610082,"update-policies":0.3470205307961943,"resource-links":0.99983308295777,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":1.0,"abstracts":1.0,"orcids":1.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.5126793666501732,"abstracts":0.0,"orcids":0.4385823849579416,"licenses":0.9995670460168234,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.4638792676892627,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9835322195704057,"abstracts":0.9837708830548926,"orcids":0.9995226730310263,"licenses":1.0,"references":0.9713603818615753,"funders":0.9147971360381862,"similarity-checking":0.9983293556085919,"award-numbers":0.8816229116945107,"ror-ids":0.933890214797136,"update-policies":1.0,"resource-links":1.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979695431472081,"abstracts":1.0,"orcids":0.8426395939086294,"licenses":0.9986463620981387,"references":0.0,"funders":0.0,"similarity-checking":0.2531302876480541,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":true,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["eLife Sciences Publications, Ltd","eLife Sciences
+      Publications, Ltd."]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1757'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:55:59 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.7554
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a204b760b5e-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:55:59 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PnSYyUALr0v%2FDKhX3z%2B5Ygr0wc2NUviFW%2B0ZJv4jtYRzg6bTBsxcAJMhqX4qVkxOEwkQhXm8ewZIUbik4zVKr6DKVf%2FKxVi8IUTwhTJZ6%2B4p5RBF9UxdL3hKV5ZWlZI%2Bh625mmw%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1017
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1017\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a21286d66fe-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:55:59 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jpmeRDudQKBCFON9ftExuaXjGhcKr7FqrH60zadE5MFzuE4yxHYxvCHWPuKtuROpVHOBbQl1FWt3tI9ToIz6ExDIbMxIKKHF9X0pbvXODd%2BBeQYk37xJSfZmo3K56kfZcTvFKqg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.1017/9781108348843
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2023,9,18]],"date-time":"2023-09-18T04:30:38Z","timestamp":1695011438039},"edition-number":"1","reference-count":273,"publisher":"Cambridge
+      University Press","isbn-type":[{"value":"9781108348843","type":"electronic"},{"value":"9781108425728","type":"print"},{"value":"9781108443241","type":"print"}],"license":[{"start":{"date-parts":[[2019,7,1]],"date-time":"2019-07-01T00:00:00Z","timestamp":1561939200000},"content-version":"unspecified","delay-in-days":0,"URL":"https:\/\/www.cambridge.org\/core\/terms"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2019,7,18]]},"DOI":"10.1017\/9781108348843","type":"monograph","created":{"date-parts":[[2019,7,1]],"date-time":"2019-07-01T04:08:07Z","timestamp":1561954087000},"source":"Crossref","is-referenced-by-count":5,"title":["The
+      Politics of the Past in Early China"],"prefix":"10.1017","author":[{"given":"Vincent
+      S.","family":"Leung","sequence":"first","affiliation":[]}],"member":"56","published-online":{"date-parts":[[2019,7,1]]},"reference":[{"key":"9781108348843#EMT-rl-1_BIBe-r-273","first-page":"67","article-title":"Lu
+      Jia de lishi yishi ji qi wenhua yiyi","volume":"5","author":"Qiusheng","year":"1997","journal-title":"Qilu
+      xuekan"},{"key":"9781108348843#EMT-rl-1_BIBe-r-271","volume-title":"Han Fei
+      sixiang de lishi yanjiu","author":"Zhang","year":"1986"},{"key":"9781108348843#EMT-rl-1_BIBe-r-270","volume-title":"Qin
+      Han bei shu","author":"Yuan","year":"1990"},{"key":"9781108348843#EMT-rl-1_BIBe-r-269","volume-title":"Zhongguo
+      gudai shenhua","author":"Yuan","year":"1960"},{"key":"9781108348843#EMT-rl-1_BIBe-r-266","doi-asserted-by":"publisher","DOI":"10.1093\/acprof:oso\/9780199367344.001.0001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-264","volume-title":"Shuihudi
+      Qin jian yanjiu","author":"Fuchang","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-261","volume-title":"Sima
+      Qian jing ji si xiang yan jiu","author":"Wei","year":"1995"},{"key":"9781108348843#EMT-rl-1_BIBe-r-259","volume-title":"Records
+      of the Grand Historian: Qin Dynasty","author":"Watson","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-258","volume-title":"Records
+      of the Grand Historian: Han Dynasty","author":"Watson","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-257","volume-title":"Han
+      Feizi: Basic Writings","author":"Watson","year":"2003"},{"key":"9781108348843#EMT-rl-1_BIBe-r-256","volume-title":"The
+      Analects of Confucius","author":"Watson","year":"2007"},{"key":"9781108348843#EMT-rl-1_BIBe-r-255","volume-title":"Kodai
+      Ch\u016bgoku shis\u014d no kenky\u016b: K\u014dshi den no keisei to Ju Boku
+      sh\u016bdan no shis\u014d to k\u014dd\u014d","author":"Takashi","year":"1973"},{"key":"9781108348843#EMT-rl-1_BIBe-r-253","volume-title":"Zhongguo
+      shixue shi gangyao","author":"Shumin","year":"1997"},{"key":"9781108348843#EMT-rl-1_BIBe-r-252","volume-title":"Turning
+      Points in Historiography: A Cross-cultural Perspective","author":"Wang","year":"2001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-251","first-page":"231","article-title":"Western
+      Zhou Remembering and Forgetting","volume":"1","author":"Wang","year":"1999","journal-title":"Journal
+      of East Asian Archaeology"},{"key":"9781108348843#EMT-rl-1_BIBe-r-247","first-page":"39","article-title":"Getting
+      the Terms Right: Political Realism, Politics, and the State in Ancient China","volume":"55","author":"Vogelsang","year":"2016","journal-title":"Oriens
+      Extremus"},{"key":"9781108348843#EMT-rl-1_BIBe-r-241","doi-asserted-by":"publisher","DOI":"10.1017\/CBO9780511606960.009"},{"key":"9781108348843#EMT-rl-1_BIBe-r-239","volume-title":"Confucius
+      and the Analects: New Essays","author":"Van Norden","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-238","doi-asserted-by":"publisher","DOI":"10.1017\/CHOL9780521243278"},{"key":"9781108348843#EMT-rl-1_BIBe-r-237","volume-title":"The
+      Marx\u2013Engels Reader","author":"Tucker","year":"1978"},{"key":"9781108348843#EMT-rl-1_BIBe-r-234","doi-asserted-by":"publisher","DOI":"10.2307\/1398936"},{"key":"9781108348843#EMT-rl-1_BIBe-r-230","first-page":"465","volume-title":"Confucius
+      beyond the Analects","volume":"41","author":"Slingerland","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-229","first-page":"53","volume-title":"Confucius
+      and the Analects: New Essays","author":"Shun","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-254","volume-title":"Xian
+      Qin fajia sixiang shilun","author":"Xiaobo","year":"1991"},{"key":"9781108348843#EMT-rl-1_BIBe-r-224","volume-title":"Sources
+      of Western Zhou History: Inscribed Bronze Vessels","author":"Shaughnessy","year":"1991"},{"key":"9781108348843#EMT-rl-1_BIBe-r-222","doi-asserted-by":"crossref","volume-title":"The
+      World of Thought in Ancient China","author":"Schwartz","year":"1985","DOI":"10.4159\/9780674043312"},{"key":"9781108348843#EMT-rl-1_BIBe-r-221","volume-title":"A
+      Dictionary of Early Zhou Chinese","author":"Sch\u00fcssler","year":"1987"},{"key":"9781108348843#EMT-rl-1_BIBe-r-218","doi-asserted-by":"publisher","DOI":"10.1163\/ej.9789004194854.i-354.54"},{"key":"9781108348843#EMT-rl-1_BIBe-r-215","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctt1tg5npx"},{"key":"9781108348843#EMT-rl-1_BIBe-r-214","first-page":"392","volume-title":"The
+      Oxford History of Historical Writing, Volume 1: Beginnings to AD 600","author":"Schaberg","year":"2011"},{"key":"9781108348843#EMT-rl-1_BIBe-r-211","first-page":"31","article-title":"Rituals
+      That Don\u2019t Reach, Punishments That Don\u2019t Impugn: Jia Yi on the Exclusions
+      from Punishment and Ritual","volume":"125","author":"Sanft","year":"2005","journal-title":"Journal
+      of the American Oriental Society"},{"key":"9781108348843#EMT-rl-1_BIBe-r-209","volume-title":"Original
+      Tao: Inward Training (Nei-Yeh) and the Foundations of Taoist Mysticism","author":"Roth","year":"1999"},{"key":"9781108348843#EMT-rl-1_BIBe-r-272","volume-title":"Shiji
+      yanjiu","author":"Dake","year":"2011"},{"key":"9781108348843#EMT-rl-1_BIBe-r-208","first-page":"80","volume-title":"Historical
+      Truth, Historical Criticism, and Ideology: Chinese Historiography and Historical
+      Culture from a New Comparative Perspective","author":"Roetz","year":"2005"},{"key":"9781108348843#EMT-rl-1_BIBe-r-205","doi-asserted-by":"publisher","DOI":"10.1163\/156852006778388754"},{"key":"9781108348843#EMT-rl-1_BIBe-r-202","volume-title":"Jiazi
+      tanwei","author":"Yuzhang","year":"1969"},{"key":"9781108348843#EMT-rl-1_BIBe-r-199","first-page":"267","volume-title":"The
+      Huainanzi and Textual Production in Early China","author":"193Puett","year":"2014"},{"key":"9781108348843#EMT-rl-1_BIBe-r-198","first-page":"271","article-title":"Listening
+      to Sages: Divination, Omens, and the Rhetoric of Antiquity in Wang Chong\u2019s
+      Lunheng","volume":"45","author":"Puett","year":"2005","journal-title":"Oriens
+      Extremus"},{"key":"9781108348843#EMT-rl-1_BIBe-r-197","volume-title":"The Ambivalence
+      of Creation: Debates Concerning Innovation and Artifice in Early China","author":"Puett","year":"2001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-196","volume-title":"From
+      Herodotus to H-Net: The Story of Historiography","author":"Popkin","year":"2015"},{"key":"9781108348843#EMT-rl-1_BIBe-r-194","doi-asserted-by":"publisher","DOI":"10.1007\/978-94-007-4318-2_4"},{"key":"9781108348843#EMT-rl-1_BIBe-r-191","doi-asserted-by":"publisher","DOI":"10.1007\/978-94-007-4318-2_2"},{"key":"9781108348843#EMT-rl-1_BIBe-r-190","doi-asserted-by":"crossref","volume-title":"Foundations
+      of Confucian Thought: Intellectual Life in the Chunqiu Period, 722\u2013453
+      BCE","author":"Pines","year":"2002","DOI":"10.1515\/9780824862572"},{"key":"9781108348843#EMT-rl-1_BIBe-r-189","volume-title":"The
+      Book of Lord Shang: Apologetics of State Power in Early China","author":"Pines","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-188","first-page":"10","article-title":"Biases
+      and Their Sources: Qin History in the Shiji","volume":"45","author":"Pines","year":"2005","journal-title":"Oriens
+      Extremus"},{"key":"9781108348843#EMT-rl-1_BIBe-r-184","first-page":"185","article-title":"The
+      Laozi and the Cosmogonic Turn in Classical Chinese Philosophy","volume":"11","author":"Perkins","year":"2016","journal-title":"Frontiers
+      of Philosophy in China"},{"key":"9781108348843#EMT-rl-1_BIBe-r-242","volume-title":"La
+      formation du l\u00e9gisme: Recherche sur la constitution d\u2019une philosophie
+      politique caract\u00e9ristique de la Chine ancienne","author":"Vandermeersch","year":"1965"},{"key":"9781108348843#EMT-rl-1_BIBe-r-183","doi-asserted-by":"publisher","DOI":"10.1017\/eac.2015.7"},{"key":"9781108348843#EMT-rl-1_BIBe-r-180","volume-title":"Jia
+      Yi ji qi Xinshu yanjiu","author":"Pan","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-179","doi-asserted-by":"publisher","DOI":"10.2307\/3558570"},{"key":"9781108348843#EMT-rl-1_BIBe-r-178","volume-title":"An
+      Anthology of Chinese Literature: Beginnings to 1911","author":"Owen","year":"1996"},{"key":"9781108348843#EMT-rl-1_BIBe-r-177","doi-asserted-by":"crossref","volume-title":"Dubious
+      Facts: The Evidence of Early Chinese Historiography","author":"Olberding","year":"2012","DOI":"10.1353\/book21286"},{"key":"9781108348843#EMT-rl-1_BIBe-r-176","doi-asserted-by":"publisher","DOI":"10.4324\/9780203804599"},{"key":"9781108348843#EMT-rl-1_BIBe-r-175","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.2008.00508.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-173","volume-title":"Shin
+      Kan h\u014dseishi no kenky\u016b","author":"Osamu","year":"1982"},{"key":"9781108348843#EMT-rl-1_BIBe-r-172","volume-title":"Qin
+      Han fazhishi yanjiu","author":"Osamu","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-169","doi-asserted-by":"crossref","first-page":"61","DOI":"10.1163\/26669323-04301004","article-title":"Mapping
+      Time in the Shiji and Hanshu Tables \u8868","volume":"43","author":"Nylan","year":"2016","journal-title":"East
+      Asian Science, Technology, and Medicine"},{"key":"9781108348843#EMT-rl-1_BIBe-r-167","doi-asserted-by":"publisher","DOI":"10.2307\/2928520"},{"key":"9781108348843#EMT-rl-1_BIBe-r-165","doi-asserted-by":"publisher","DOI":"10.2307\/2719108"},{"key":"9781108348843#EMT-rl-1_BIBe-r-164","doi-asserted-by":"crossref","volume-title":"Mirroring
+      the Past: The Writing and Use of History in Imperial China","author":"Ng","year":"2005","DOI":"10.1515\/9780824843205"},{"key":"9781108348843#EMT-rl-1_BIBe-r-163","volume-title":"Ch\u016bgoku
+      rekishi rinen no kongen","author":"Nakoto","year":"1943"},{"key":"9781108348843#EMT-rl-1_BIBe-r-161","volume-title":"Learning
+      Places: The Afterlives of Area Studies","author":"Masao","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-160","volume-title":"Riku
+      Ka \u201cShingo\u201d no kenky\u00fb","author":"Ichisada","year":"1965"},{"key":"9781108348843#EMT-rl-1_BIBe-r-159","first-page":"1","article-title":"Riku
+      Ka Shingo d\u014dki hen no kenky\u016b\u201d \u9678\u8cc8\u65b0\u8a9e\u9053\u57fa\u7de8\u306e\u7814\u7a76","volume":"25","author":"Ichisada","year":"1963","journal-title":"T\u014dh\u014d
+      gaku"},{"key":"9781108348843#EMT-rl-1_BIBe-r-181","volume-title":"Law and Morality
+      in Ancient China: The Silk Manuscripts of Huang-Lao","author":"Peerenboom","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-158","doi-asserted-by":"crossref","volume-title":"Philosophy
+      on Bamboo: Text and the Production of Meaning in Early China","author":"Meyer","year":"2012","DOI":"10.1163\/9789004208087"},{"key":"9781108348843#EMT-rl-1_BIBe-r-157","volume-title":"Capital:
+      A Critique of Political Economy, Volume Three","author":"Marx","year":"1981"},{"key":"9781108348843#EMT-rl-1_BIBe-r-156","volume-title":"The
+      Huainanzi: A Guide to the Theory and Practice of Government in Early Han China,
+      by Liu An, King of Huainan","author":"Major","year":"2010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-152","volume-title":"Early
+      Chinese Texts: A Bibliographical Guide","author":"Loewe","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-151","volume-title":"Adversaries
+      and Authorities: Investigations into Ancient Greek and Chinese Science","author":"Lloyd","year":"1996"},{"key":"9781108348843#EMT-rl-1_BIBe-r-150","first-page":"21","article-title":"Han-chu
+      rusheng Lu Jia de shengping ji qi zhushu\u201d \u6f22\u521d\u5112\u751f\u9678\u8cc8\u7684\u751f\u5e73\u53ca\u5176\u8457\u8ff0","volume":"7","author":"Rongmao","year":"1969","journal-title":"Kong\u2013Meng
+      Yuekan"},{"key":"9781108348843#EMT-rl-1_BIBe-r-149","first-page":"352","volume-title":"Zhongguo
+      lishi wenxuan","volume":"2","author":"Liang","year":"1962"},{"key":"9781108348843#EMT-rl-1_BIBe-r-147","volume-title":"The
+      Readability of the Past in Early Chinese Historiography","author":"Wai-yee","year":"2008"},{"key":"9781108348843#EMT-rl-1_BIBe-r-213","doi-asserted-by":"publisher","DOI":"10.1017\/S0362502800003667"},{"key":"9781108348843#EMT-rl-1_BIBe-r-203","doi-asserted-by":"publisher","DOI":"10.1007\/s11466-009-0006-5"},{"key":"9781108348843#EMT-rl-1_BIBe-r-144","volume-title":"Bureaucracy
+      and the State in Early China: Governing the Western Zhou","author":"Li","year":"2008"},{"key":"9781108348843#EMT-rl-1_BIBe-r-143","volume-title":"Sima
+      Qian zhi renge yu fengge","author":"Li","year":"1963"},{"key":"9781108348843#EMT-rl-1_BIBe-r-142","volume-title":"Writing
+      and Authority in Early China","author":"Lewis","year":"1999"},{"key":"9781108348843#EMT-rl-1_BIBe-r-141","doi-asserted-by":"publisher","DOI":"10.1017\/CHOL9780521470308.011"},{"key":"9781108348843#EMT-rl-1_BIBe-r-195","first-page":"85","volume-title":"Perceptions
+      of Antiquity in Chinese Civilization","author":"Poo","year":"2008"},{"key":"9781108348843#EMT-rl-1_BIBe-r-135","volume-title":"Mencius","author":"Lau","year":"1970"},{"key":"9781108348843#EMT-rl-1_BIBe-r-134","volume-title":"Reassembling
+      the Social: An Introduction to Actor-Network Theory","author":"Latour","year":"2005"},{"key":"9781108348843#EMT-rl-1_BIBe-r-226","doi-asserted-by":"crossref","volume-title":"Deep
+      History: The Architecture of Past and Present","author":"Shryock","year":"2011","DOI":"10.1525\/9780520949669"},{"key":"9781108348843#EMT-rl-1_BIBe-r-122","doi-asserted-by":"publisher","DOI":"10.1163\/9789004343504"},{"key":"9781108348843#EMT-rl-1_BIBe-r-130","doi-asserted-by":"publisher","DOI":"10.2307\/2652033"},{"key":"9781108348843#EMT-rl-1_BIBe-r-233","volume-title":"Shiki
+      kaich\u016b k\u014dsh\u014d","author":"Kametar\u014d","year":"1958"},{"key":"9781108348843#EMT-rl-1_BIBe-r-185","doi-asserted-by":"publisher","DOI":"10.5790\/hongkong\/9789888028931.003.0004"},{"key":"9781108348843#EMT-rl-1_BIBe-r-212","doi-asserted-by":"publisher","DOI":"10.1353\/mln.2000.0075"},{"key":"9781108348843#EMT-rl-1_BIBe-r-050","volume-title":"Xi
+      Zhou tongqi duandai","volume":"2","author":"Mengjia","year":"2004"},{"key":"9781108348843#EMT-rl-1_BIBe-r-070","doi-asserted-by":"crossref","volume-title":"Empires","author":"Doyle","year":"1986","DOI":"10.7591\/9781501734137"},{"key":"9781108348843#EMT-rl-1_BIBe-r-145","volume-title":"Landscape
+      and Power in Early China: The Crisis and Fall of the Western Zhou, 1045\u2013771
+      BC","author":"Li","year":"2006"},{"key":"9781108348843#EMT-rl-1_BIBe-r-099","volume-title":"Thinking
+      through Confucius","author":"Hall","year":"1987"},{"key":"9781108348843#EMT-rl-1_BIBe-r-067","volume-title":"Specters
+      of Marx: The State of the Debt, the Work of Mourning and the New International","author":"Derrida","year":"1994"},{"key":"9781108348843#EMT-rl-1_BIBe-r-039","doi-asserted-by":"publisher","DOI":"10.21313\/hawaii\/9780824833862.001.0001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-260","volume-title":"Ssu-Ma
+      Ch\u2019ien, Grand Historian of China","author":"Watson","year":"1958"},{"key":"9781108348843#EMT-rl-1_BIBe-r-217","doi-asserted-by":"publisher","DOI":"10.2307\/2652717"},{"key":"9781108348843#EMT-rl-1_BIBe-r-155","doi-asserted-by":"publisher","DOI":"10.4159\/9780674040458"},{"key":"9781108348843#EMT-rl-1_BIBe-r-138","volume-title":"The
+      Early Chinese Empires: Qin and Han","author":"Lewis","year":"2007"},{"key":"9781108348843#EMT-rl-1_BIBe-r-042","doi-asserted-by":"publisher","DOI":"10.1163\/9789004246201_006"},{"key":"9781108348843#EMT-rl-1_BIBe-r-036","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctt1dnnb5m"},{"key":"9781108348843#EMT-rl-1_BIBe-r-201","first-page":"135","volume-title":"Historians
+      of China and Japan","author":"Pulleyblank","year":"1961"},{"key":"9781108348843#EMT-rl-1_BIBe-r-249","doi-asserted-by":"publisher","DOI":"10.1017\/eac.2014.20"},{"key":"9781108348843#EMT-rl-1_BIBe-r-132","doi-asserted-by":"publisher","DOI":"10.1007\/978-94-007-7113-0_5"},{"key":"9781108348843#EMT-rl-1_BIBe-r-055","doi-asserted-by":"publisher","DOI":"10.1017\/S0041977X00036399"},{"key":"9781108348843#EMT-rl-1_BIBe-r-235","doi-asserted-by":"publisher","DOI":"10.1093\/past\/38.1.56"},{"key":"9781108348843#EMT-rl-1_BIBe-r-081","doi-asserted-by":"crossref","volume-title":"Caesar\u2019s
+      Calendar: Ancient Time and the Beginnings of History","author":"Feeney","year":"2007","DOI":"10.1525\/9780520933767"},{"key":"9781108348843#EMT-rl-1_BIBe-r-032","volume-title":"Mencius","author":"Bloom","year":"2009"},{"key":"9781108348843#EMT-rl-1_BIBe-r-057","volume-title":"The
+      Bamboo Texts of Guodian: A Study and Complete Translation","author":"Cook","year":"2012"},{"key":"9781108348843#EMT-rl-1_BIBe-r-034","volume-title":"The
+      Uses of History: Essays in Intellectual and Social History, Presented to William
+      J. Bossenbrook","author":"William John","year":"1968"},{"key":"9781108348843#EMT-rl-1_BIBe-r-166","first-page":"282","volume-title":"Mencius:
+      Contexts and Interpretations","author":"Nivison","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-162","volume-title":"Time
+      and Eastern Man","author":"Needham","year":"1965"},{"key":"9781108348843#EMT-rl-1_BIBe-r-123","doi-asserted-by":"publisher","DOI":"10.1007\/978-94-007-7113-0_2"},{"key":"9781108348843#EMT-rl-1_BIBe-r-193","first-page":"258","volume-title":"Birth
+      of an Empire: The State of Qin Revisited","author":"Pines","year":"2014"},{"key":"9781108348843#EMT-rl-1_BIBe-r-117","volume-title":"Jia
+      Yi yanjiu","author":"Jiang Runxun","year":"1958"},{"key":"9781108348843#EMT-rl-1_BIBe-r-148","first-page":"35","volume-title":"Yinbingshi
+      heji","author":"Liang","year":"1996"},{"key":"9781108348843#EMT-rl-1_BIBe-r-227","doi-asserted-by":"publisher","DOI":"10.1017\/CBO9780511606960.010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-9","volume-title":"Kinbun
+      ts\u016bshaku","volume":"7","author":"Shirakawa","year":"1964"},{"key":"9781108348843#EMT-rl-1_BIBe-r-265","volume-title":"Liang
+      Han sixiang shi","author":"Fuguang","year":"1975"},{"key":"9781108348843#EMT-rl-1_BIBe-r-096","first-page":"283","volume-title":"Studies
+      in Chinese Philosophy and Philosophical Literature","author":"Graham","year":"1990"},{"key":"9781108348843#EMT-rl-1_BIBe-r-6","volume-title":"Guanzi
+      jiaozhu","author":"Xiangfeng","year":"2004"},{"key":"9781108348843#EMT-rl-1_BIBe-r-116","volume-title":"Ethics
+      in the Confucian Tradition: The Thought of Mencius and Wang Yang-ming","author":"Ivanhoe","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-064","first-page":"153","article-title":"The
+      Profit That Does Not Profit: Paradoxes with \u2018Li\u2019 in Early Chinese
+      Texts","volume":"21","author":"Defoort","year":"2008","journal-title":"Asia
+      Major"},{"key":"9781108348843#EMT-rl-1_BIBe-r-048","first-page":"33","volume-title":"Interpretation
+      and Intellectual Change: Chinese Hermeneutics in Historical Perspective","author":"Chen","year":"2005"},{"key":"9781108348843#EMT-rl-1_BIBe-r-029","volume-title":"Mencius
+      on Becoming Human","author":"Behuniak","year":"2005"},{"key":"9781108348843#EMT-rl-1_BIBe-r-231","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.1999.tb00531.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-243","first-page":"1","article-title":"Boyi
+      and Shuqi: Worthy Men of Old?","volume":"28","author":"Vervoorn","year":"1983","journal-title":"Papers
+      on Far Eastern History"},{"key":"9781108348843#EMT-rl-1_BIBe-r-7","volume-title":"Shangshu
+      jishi","author":"Wanli","year":"1983"},{"key":"9781108348843#EMT-rl-1_BIBe-r-080","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctvdmwwt6"},{"key":"9781108348843#EMT-rl-1_BIBe-r-037","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctt1dnnb3k"},{"key":"9781108348843#EMT-rl-1_BIBe-r-090","doi-asserted-by":"publisher","DOI":"10.26530\/OAPEN_625891"},{"key":"9781108348843#EMT-rl-1_BIBe-r-18","volume-title":"Mengzi
+      yizhu","author":"Yang","year":"1981"},{"key":"9781108348843#EMT-rl-1_BIBe-r-174","doi-asserted-by":"publisher","DOI":"10.4159\/9780674915992"},{"key":"9781108348843#EMT-rl-1_BIBe-r-182","volume-title":"Zhongguo
+      huobi shi","author":"Xinwei","year":"1958"},{"key":"9781108348843#EMT-rl-1_BIBe-r-192","unstructured":"Pines,
+      Yuri , \u201cLegalism in Chinese Philosophy,\u201d The Stanford Encyclopedia
+      of Philosophy, 2017 https:\/\/plato.stanford.edu\/archives\/spr2017\/entries\/chinese-legalism,
+      accessed May 31, 2018"},{"key":"9781108348843#EMT-rl-1_BIBe-r-204","volume-title":"Between
+      History and Philosophy: Anecdotes in Early China","author":"Queen","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-240","doi-asserted-by":"publisher","DOI":"10.1017\/CBO9780511497995"},{"key":"9781108348843#EMT-rl-1_BIBe-r-1","unstructured":"Ban
+      Gu \u73ed\u56fa, Hanshu \u6f22\u66f8 (Beijing: Zhonghua shuju, 1962)"},{"key":"9781108348843#EMT-rl-1_BIBe-r-051","doi-asserted-by":"crossref","first-page":"217","DOI":"10.1163\/23521341-12340035","article-title":"The
+      Difference between Confucian and Mencian Benevolence","volume":"2","author":"Chen","year":"2016","journal-title":"Journal
+      of Chinese Humanities"},{"key":"9781108348843#EMT-rl-1_BIBe-r-268","volume-title":"Xi
+      Zhou Wei Shi Jia Zu Qing Tong Qi Qun Yan Jiu","author":"Shengping","year":"1992"},{"key":"9781108348843#EMT-rl-1_BIBe-r-171","doi-asserted-by":"publisher","DOI":"10.1017\/S0362502800000985"},{"key":"9781108348843#EMT-rl-1_BIBe-r-098","first-page":"63","volume-title":"Gushibian","volume":"7","author":"Jiegang","year":"1982"},{"key":"9781108348843#EMT-rl-1_BIBe-r-040","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.2011.01648.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-068","doi-asserted-by":"publisher","DOI":"10.1017\/CBO9780511511967"},{"key":"9781108348843#EMT-rl-1_BIBe-r-10","volume-title":"Shuihudi
+      Qin mu zhujian","author":"Shuihudi Qin mu zhujian","year":"1990"},{"key":"9781108348843#EMT-rl-1_BIBe-r-126","volume-title":"Mozi:
+      A Study and Translation of the Ethical and Political Writings","author":"Knoblock","year":"2013"},{"key":"9781108348843#EMT-rl-1_BIBe-r-094","volume-title":"Disputers
+      of the Tao: Philosophical Argument in Ancient China","author":"Graham","year":"1989"},{"key":"9781108348843#EMT-rl-1_BIBe-r-146","first-page":"28","article-title":"Qin
+      \u2018fazhi\u2019 de Lilun Kunjin Touxi: Yi Shuihudi Qin Jian \u2018Yushu\u2019
+      \u2018Wei Li Zhi Dao\u2019 Wei Zhongxin\u201d \u79e6\u201c\u6cd5\u6cbb\u201d\u7684\u7406\u8ad6\u56f0\u5883\u900f\u6790\u2014\u2014\u4ee5\u7761\u864e\u5730\u79e6\u7b80\u300a\u8a9e\u66f8\u300b\u3001\u300a\u70ba\u540f\u4e4b\u9053\u300b\u70ba\u4e2d\u5fc3","volume":"11","author":"Li","year":"2012","journal-title":"Xueshu
+      tanshuo"},{"key":"9781108348843#EMT-rl-1_BIBe-r-027","volume-title":"H\u014dka
+      shis\u014d no genry\u016b","author":"\u014ctsuka","year":"1980"},{"key":"9781108348843#EMT-rl-1_BIBe-r-128","first-page":"347","volume-title":"Between
+      History and Philosophy: Anecdotes in Early China","author":"Krijgsman","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-200","first-page":"29","article-title":"Violent
+      Misreadings: The Hermeneutics of Cosmology in the Huainanzi","volume":"72","author":"Puett","year":"2000","journal-title":"Bulletin
+      of the Museum of Far Eastern Antiquities"},{"key":"9781108348843#EMT-rl-1_BIBe-r-170","doi-asserted-by":"crossref","first-page":"1225","DOI":"10.1515\/asia-2014-0052","article-title":"On
+      the Antique Rhetoric of Friendship","volume":"68","author":"Nylan","year":"2014","journal-title":"Asiatische
+      Studien\u2013\u00c9tudes asiatiques"},{"key":"9781108348843#EMT-rl-1_BIBe-r-187","first-page":"31","volume-title":"Ways
+      with Words: Writing about Reading Texts from Early China","author":"Peterson","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-079","doi-asserted-by":"publisher","DOI":"10.1353\/pew.2012.0041"},{"key":"9781108348843#EMT-rl-1_BIBe-r-052","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctt1dnn9vg"},{"key":"9781108348843#EMT-rl-1_BIBe-r-244","first-page":"1","article-title":"Friendship
+      in Ancient China","volume":"27","author":"Vervoorn","year":"2004","journal-title":"East
+      Asian history"},{"key":"9781108348843#EMT-rl-1_BIBe-r-121","volume-title":"The
+      Stele Inscriptions of Ch\u2019in Shih-Huang: Text and Ritual in Early Chinese
+      Imperial Representation","author":"Kern","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-20","volume-title":"Shangjunshu
+      jiegu dingben","author":"Zhu","year":"1956"},{"key":"9781108348843#EMT-rl-1_BIBe-r-262","first-page":"94","volume-title":"Confucius
+      and the Analects: New Essays","author":"Wilson","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-236","volume-title":"The
+      Shen Tzu Fragments","author":"Thompson","year":"1979"},{"key":"9781108348843#EMT-rl-1_BIBe-r-16","volume-title":"Xinshu
+      jiaozhu","author":"Zhenyi","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-093","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.2010.01629.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-228","volume-title":"Mencius
+      and Early Chinese Thought","author":"195Shun","year":"1997"},{"key":"9781108348843#EMT-rl-1_BIBe-r-14","volume-title":"Xinyu
+      jiaozhu","author":"Wang","year":"1986"},{"key":"9781108348843#EMT-rl-1_BIBe-r-186","doi-asserted-by":"publisher","DOI":"10.1080\/02549948.1995.11731268"},{"key":"9781108348843#EMT-rl-1_BIBe-r-263","volume-title":"A
+      Global History of History","author":"Woolf","year":"2011"},{"key":"9781108348843#EMT-rl-1_BIBe-r-097","first-page":"43","volume-title":"Gushibian","volume":"7","author":"Jiegang","year":"1982"},{"key":"9781108348843#EMT-rl-1_BIBe-r-088","doi-asserted-by":"publisher","DOI":"10.17875\/gup2009-452"},{"key":"9781108348843#EMT-rl-1_BIBe-r-225","doi-asserted-by":"publisher","DOI":"10.1353\/jas.2015.0022"},{"key":"9781108348843#EMT-rl-1_BIBe-r-232","doi-asserted-by":"crossref","volume-title":"A
+      Chinese Bestiary: Strange Creatures from the Guideways through Mountains and
+      Seas = [Shan Hai Jing]","author":"Strassberg","year":"2002","DOI":"10.1525\/9780520922785"},{"key":"9781108348843#EMT-rl-1_BIBe-r-087","volume-title":"Chinese
+      Traditional Historiography","author":"Gardner","year":"1938"},{"key":"9781108348843#EMT-rl-1_BIBe-r-246","volume-title":"Geschichte
+      als Problem: Entstehung, Formen und Funktionen von Geschichtsschreibung im alten
+      China","author":"Vogelsang","year":"2007"},{"key":"9781108348843#EMT-rl-1_BIBe-r-216","doi-asserted-by":"publisher","DOI":"10.1017\/S0362502800003266"},{"key":"9781108348843#EMT-rl-1_BIBe-r-103","doi-asserted-by":"publisher","DOI":"10.7312\/harr17766"},{"key":"9781108348843#EMT-rl-1_BIBe-r-139","first-page":"440","volume-title":"The
+      Oxford History of Historical Writing","author":"Lewis","year":"2011"},{"key":"9781108348843#EMT-rl-1_BIBe-r-219","doi-asserted-by":"crossref","volume-title":"Historical
+      Truth, Historical Criticism, and Ideology: Chinese Historiography and Historical
+      Culture from a New Comparative Perspective","author":"Schmidt-Glintzer","year":"2005","DOI":"10.1163\/9789047406914"},{"key":"9781108348843#EMT-rl-1_BIBe-r-114","doi-asserted-by":"publisher","DOI":"10.1163\/15685322-10013p02"},{"key":"9781108348843#EMT-rl-1_BIBe-r-038","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.2007.00426.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-2","volume-title":"Han
+      Feizi jishi","author":"Chen","year":"1974"},{"key":"9781108348843#EMT-rl-1_BIBe-r-3","volume-title":"L\u00fcshi
+      Chunqiu jiaoshi","author":"Chen","year":"1984"},{"key":"9781108348843#EMT-rl-1_BIBe-r-104","volume-title":"Xi
+      Han zhengzhi sixiang lunji","author":"He Lingxu \u8cc0\u51cc\u865b","year":"1988"},{"key":"9781108348843#EMT-rl-1_BIBe-r-136","volume-title":"Tao
+      Te Ching","author":"Lau","year":"2003"},{"key":"9781108348843#EMT-rl-1_BIBe-r-4","first-page":"164","volume-title":"The
+      Bamboo Texts of Guodian: A Study and Complete Translation","author":"Cook","year":"2012"},{"key":"9781108348843#EMT-rl-1_BIBe-r-065","doi-asserted-by":"crossref","volume-title":"The
+      Mozi as an Evolving Text: Different Voices in Early Chinese Thought","author":"Defoort","year":"2013","DOI":"10.1163\/9789004246201"},{"key":"9781108348843#EMT-rl-1_BIBe-r-207","volume-title":"Confucian
+      Ethics of the Axial Age: A Reconstruction under the Aspect of the Breakthrough
+      toward Postconventional Thinking","author":"Roetz","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-11","volume-title":"Shiji","author":"Sima
+      Qian","year":"1956"},{"key":"9781108348843#EMT-rl-1_BIBe-r-250","volume-title":"The
+      Book of Songs: The Ancient Chinese Classic of Poetry","author":"Waley","year":"1996"},{"key":"9781108348843#EMT-rl-1_BIBe-r-12","volume-title":"Mozi
+      jian gu","author":"Sun","year":"2001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-13","volume-title":"Shang
+      Zhou jinwen","author":"Hui","year":"2006"},{"key":"9781108348843#EMT-rl-1_BIBe-r-8","volume-title":"Shijing
+      quanshi","author":"Wanli","year":"1983"},{"key":"9781108348843#EMT-rl-1_BIBe-r-060","volume-title":"Shen
+      Pu-Hai: A Chinese Political Philosopher of the Fourth Century B.C","author":"Creel","year":"1974"},{"key":"9781108348843#EMT-rl-1_BIBe-r-15","volume-title":"Zhuangzi
+      ji jie","author":"Wang","year":"1987"},{"key":"9781108348843#EMT-rl-1_BIBe-r-17","volume-title":"Lunyu
+      yizhu","author":"Yang","year":"1980"},{"key":"9781108348843#EMT-rl-1_BIBe-r-120","volume-title":"The
+      Ancestral Landscape: Time, Space, and Community in Late Shang China, ca. 1200\u20131045
+      B.C","author":"Keightley","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-21","volume-title":"Laozi
+      jiaoshi","author":"Qianzhi","year":"1984"},{"key":"9781108348843#EMT-rl-1_BIBe-r-022","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.1976.tb00388.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-109","first-page":"1","volume-title":"The
+      Invention of Tradition","author":"Hobsbawm","year":"1983"},{"key":"9781108348843#EMT-rl-1_BIBe-r-023","volume-title":"The
+      Art of Rulership: A Study in Ancient Chinese Political Thought","author":"Ames","year":"1983"},{"key":"9781108348843#EMT-rl-1_BIBe-r-025","volume-title":"The
+      Dialogic Imagination: Four Essays","author":"Bakhtin","year":"2004"},{"key":"9781108348843#EMT-rl-1_BIBe-r-026","volume-title":"Chinese
+      Civilization and Bureaucracy: Variations on a Theme","author":"Balazs","year":"1964"},{"key":"9781108348843#EMT-rl-1_BIBe-r-076","volume-title":"Zuo
+      Traditions = Zuozhuan: Commentary on the \u201cSpring and Autumn Annals\u201d","volume":"3","author":"Durrant","year":"2016"},{"key":"9781108348843#EMT-rl-1_BIBe-r-153","volume-title":"The
+      Government of the Qin and Han Empires: 221 BCE\u2013220 CE","author":"Loewe","year":"2006"},{"key":"9781108348843#EMT-rl-1_BIBe-r-028","volume-title":"Historians
+      of China and Japan, Historical Writing on the Peoples of Asia","author":"Beasley","year":"1961"},{"key":"9781108348843#EMT-rl-1_BIBe-r-092","first-page":"54","volume-title":"Between
+      History and Philosophy: Anecdotes in Early China","author":"Goldin","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-030","first-page":"91","volume-title":"Mencius:
+      Contexts and Interpretations","author":"Bloom","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-031","doi-asserted-by":"publisher","DOI":"10.2307\/1400248"},{"key":"9781108348843#EMT-rl-1_BIBe-r-083","volume-title":"A
+      Short History of Chinese Philosophy","author":"Feng","year":"1948"},{"key":"9781108348843#EMT-rl-1_BIBe-r-033","volume-title":"China\u2019s
+      First Unifier: A Study of the Ch\u2019in Dynasty as Seen in the Life of Li Ss\u016d
+      (280?\u2013208 B.C.)","author":"Bodde","year":"1938"},{"key":"9781108348843#EMT-rl-1_BIBe-r-035","volume-title":"Readings
+      in Economic Sociology","author":"Bourdieu","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-069","first-page":"189","volume-title":"The
+      Book of Mencius and Its Reception in China and Beyond","author":"D\u00f6ring","year":"2008"},{"key":"9781108348843#EMT-rl-1_BIBe-r-107","volume-title":"Lao
+      Tzu\u2019s Tao Te Ching: A Translation of the Startling New Documents Found
+      at Guodian","author":"Henricks","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-041","volume-title":"The
+      Original Analects: Sayings of Confucius and His Successors","author":"Brooks","year":"1998"},{"key":"9781108348843#EMT-rl-1_BIBe-r-082","doi-asserted-by":"publisher","DOI":"10.1353\/nlh.2011.0045"},{"key":"9781108348843#EMT-rl-1_BIBe-r-043","volume-title":"Qin
+      Han guanliao zhidu","author":"Xianqun","year":"2002"},{"key":"9781108348843#EMT-rl-1_BIBe-r-024","doi-asserted-by":"publisher","DOI":"10.18399\/acta.2017.20.1.001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-111","unstructured":"Huang
+      Peirong \u9ec3\u6c9b\u69ae, \u201cZhoushu yanjiu\u201d \u5468\u66f8\u7814\u7a76,
+      PhD dissertation (Guoli Taiwan daxue zhongwen yanjiusuo \u570b\u7acb\u53f0\u7063\u5927\u5b78\u4e2d\u6587\u7814\u7a76\u6240,
+      1976)"},{"key":"9781108348843#EMT-rl-1_BIBe-r-5","volume-title":"Quan Han fu","author":"Fei
+      Zhen\u2019gang","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-044","volume-title":"Empires
+      in World History: Power and the Politics of Difference","author":"Burbank","year":"2010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-137","doi-asserted-by":"publisher","DOI":"10.4324\/9781315773605-8"},{"key":"9781108348843#EMT-rl-1_BIBe-r-084","doi-asserted-by":"publisher","DOI":"10.7312\/fras14926"},{"key":"9781108348843#EMT-rl-1_BIBe-r-045","volume-title":"History
+      and Man\u2019s Attitude to the Past: Their Role in the Story of Civilisation","author":"Butterfield","year":"1961"},{"key":"9781108348843#EMT-rl-1_BIBe-r-046","doi-asserted-by":"publisher","DOI":"10.1007\/s40636-015-0044-8"},{"key":"9781108348843#EMT-rl-1_BIBe-r-131","doi-asserted-by":"publisher","DOI":"10.2307\/j.ctv2n7r6s.13"},{"key":"9781108348843#EMT-rl-1_BIBe-r-047","volume-title":"The
+      Writing of History","author":"Certeau","year":"1988"},{"key":"9781108348843#EMT-rl-1_BIBe-r-168","first-page":"131","volume-title":"Views
+      from Within, Views from Beyond: Approaches to the Shiji as an Early Work of
+      Historiography","author":"Nylan","year":"2015"},{"key":"9781108348843#EMT-rl-1_BIBe-r-075","first-page":"184","volume-title":"The
+      Oxford Handbook of Classical Chinese Literature (1000 BCE\u2013900 CE)","author":"Durrant","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-220","volume-title":"Imperialism
+      and Social Classes: Two Essays","author":"Schumpeter","year":"1955"},{"key":"9781108348843#EMT-rl-1_BIBe-r-095","volume-title":"Divisions
+      in Early Mohism Reflected in the Core Chapters of Mo-Tzu","author":"Graham","year":"1985"},{"key":"9781108348843#EMT-rl-1_BIBe-r-049","volume-title":"Xi
+      Zhou niandai kao","author":"Mengjia","year":"1945"},{"key":"9781108348843#EMT-rl-1_BIBe-r-053","doi-asserted-by":"publisher","DOI":"10.1179\/tcr.2011.18.1.1"},{"key":"9781108348843#EMT-rl-1_BIBe-r-210","doi-asserted-by":"publisher","DOI":"10.1080\/02549948.2017.1393950"},{"key":"9781108348843#EMT-rl-1_BIBe-r-066","volume-title":"The
+      Dynamics of Masters Literature: Early Chinese Thought from Confucius to Han
+      Feizi","author":"Denecke","year":"2010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-054","volume-title":"The
+      Idea of History","author":"Collingwood","year":"1962"},{"key":"9781108348843#EMT-rl-1_BIBe-r-056","volume-title":"A
+      Source Book of Ancient Chinese Bronze Inscriptions","author":"Cook","year":"2016"},{"key":"9781108348843#EMT-rl-1_BIBe-r-223","first-page":"63","article-title":"Arraying
+      the Ancestors in Ancient China: Narratives of Lineage History in the \u2018Scribe
+      Qiang\u2019 and \u2018Qiu\u2019 Bronzes","volume":"25","author":"Sena","year":"2012","journal-title":"Asia
+      Major"},{"key":"9781108348843#EMT-rl-1_BIBe-r-058","first-page":"45","article-title":"The
+      Use and Abuse of History in Early China from Xun Zi to L\u00fcshi Chunqiu","volume":"18","author":"Cook","year":"2005","journal-title":"Asia
+      Major"},{"key":"9781108348843#EMT-rl-1_BIBe-r-059","first-page":"92","volume-title":"What
+      Is Taoism? And Other Studies in Chinese Cultural History","author":"Creel","year":"1970"},{"key":"9781108348843#EMT-rl-1_BIBe-r-061","doi-asserted-by":"crossref","volume-title":"Material
+      Virtue: Ethics and the Body in Early China","author":"Csikszentmihalyi","year":"2004","DOI":"10.1163\/9789047406778"},{"key":"9781108348843#EMT-rl-1_BIBe-r-062","doi-asserted-by":"publisher","DOI":"10.1007\/978-90-481-2927-0_3"},{"key":"9781108348843#EMT-rl-1_BIBe-r-206","first-page":"127","volume-title":"Religious
+      and Philosophical Aspects of the Laozi","author":"Robinet","year":"1999"},{"key":"9781108348843#EMT-rl-1_BIBe-r-089","doi-asserted-by":"publisher","DOI":"10.1111\/j.1540-6253.2007.00464.x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-245","volume-title":"Men
+      of the Cliffs and Caves: The Development of the Chinese Eremitic Tradition to
+      the End of the Han Dynasty","author":"196Vervoorn","year":"1990"},{"key":"9781108348843#EMT-rl-1_BIBe-r-154","first-page":"308","volume-title":"China\u2019s
+      Early Empires: A Re-appraisal","author":"Loewe","year":"2010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-063","doi-asserted-by":"publisher","DOI":"10.1017\/CBO9781107477711"},{"key":"9781108348843#EMT-rl-1_BIBe-r-127","volume-title":"Introduction
+      to the Reading of Hegel","author":"Koj\u00e8ve","year":"1980"},{"key":"9781108348843#EMT-rl-1_BIBe-r-19","volume-title":"182Yin
+      Zhou jinwen jicheng: xiuding zengbu ben","volume":"8","year":"2007"},{"key":"9781108348843#EMT-rl-1_BIBe-r-071","volume-title":"Zhongguo
+      shi xue shi \u4e2d\u570b\u53f2\u5b78\u53f2","author":"Weiyun","year":"1993"},{"key":"9781108348843#EMT-rl-1_BIBe-r-140","volume-title":"Sanctioned
+      Violence in Early China","author":"Lewis","year":"1990"},{"key":"9781108348843#EMT-rl-1_BIBe-r-072","volume-title":"Zhongguo
+      shi xue yu shi jie shi xue","author":"Weiyun","year":"2008"},{"key":"9781108348843#EMT-rl-1_BIBe-r-073","doi-asserted-by":"publisher","DOI":"10.2307\/2049671"},{"key":"9781108348843#EMT-rl-1_BIBe-r-074","volume-title":"The
+      Cloudy Mirror: Tension and Conflict in the Writings of Sima Qian","author":"Durrant","year":"1995"},{"key":"9781108348843#EMT-rl-1_BIBe-r-133","volume-title":"How
+      the Past Was Used: Historical Cultures, c.750\u20132000","author":"Peter","year":"2017"},{"key":"9781108348843#EMT-rl-1_BIBe-r-077","doi-asserted-by":"publisher","DOI":"10.1215\/9780822386889-003"},{"key":"9781108348843#EMT-rl-1_BIBe-r-078","volume-title":"The
+      Book of Lord Shang: A Classic of the Chinese School of Law, Translated from
+      the Chinese with Introduction and Notes","volume":"XVII","author":"Duyvendak","year":"1928"},{"key":"9781108348843#EMT-rl-1_BIBe-r-085","volume-title":"The
+      End of History and the Last Man","author":"Fukuyama","year":"1992"},{"key":"9781108348843#EMT-rl-1_BIBe-r-105","doi-asserted-by":"publisher","DOI":"10.1007\/s11466-007-0019-x"},{"key":"9781108348843#EMT-rl-1_BIBe-r-086","doi-asserted-by":"publisher","DOI":"10.1007\/978-94-007-4318-2_5"},{"key":"9781108348843#EMT-rl-1_BIBe-r-091","doi-asserted-by":"publisher","DOI":"10.1179\/mon.2008.56.1.001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-100","volume-title":"Elements
+      of Chinese Historiography","author":"Han","year":"1955"},{"key":"9781108348843#EMT-rl-1_BIBe-r-101","volume-title":"Empire","author":"Hardt","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-102","volume-title":"Worlds
+      of Bronze and Bamboo","author":"Hardy","year":"1999"},{"key":"9781108348843#EMT-rl-1_BIBe-r-106","volume-title":"Hegel\u2019s
+      Philosophy of Right","author":"Hegel","year":"1967"},{"key":"9781108348843#EMT-rl-1_BIBe-r-108","volume-title":"Anthropology:
+      Theoretical Practice in Culture and Society","author":"Herzfeld","year":"2001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-110","doi-asserted-by":"publisher","DOI":"10.1093\/past\/55.1.3"},{"key":"9781108348843#EMT-rl-1_BIBe-r-112","doi-asserted-by":"crossref","volume-title":"China\u2019s
+      Imperial Past: An Introduction to Chinese History and Culture","author":"Hucker","year":"1975","DOI":"10.1515\/9781503621190"},{"key":"9781108348843#EMT-rl-1_BIBe-r-113","doi-asserted-by":"publisher","DOI":"10.1163\/9789004339026"},{"key":"9781108348843#EMT-rl-1_BIBe-r-124","doi-asserted-by":"publisher","DOI":"10.1163\/9789004376878"},{"key":"9781108348843#EMT-rl-1_BIBe-r-267","volume-title":"Five
+      Lost Classics: Tao, Huanglao, and Yin\u2013Yang in Han China","author":"Yates","year":"1997"},{"key":"9781108348843#EMT-rl-1_BIBe-r-115","doi-asserted-by":"publisher","DOI":"10.1093\/acprof:oso\/9780190679118.001.0001"},{"key":"9781108348843#EMT-rl-1_BIBe-r-248","first-page":"3","article-title":"The
+      Scribes\u2019 Genealogy","volume":"44","author":"Vogelsang","year":"2003","journal-title":"Oriens
+      Extremus"},{"key":"9781108348843#EMT-rl-1_BIBe-r-118","doi-asserted-by":"publisher","DOI":"10.1353\/pew.2011.0021"},{"key":"9781108348843#EMT-rl-1_BIBe-r-119","volume-title":"The
+      Mozi: A Complete Translation","author":"Johnston","year":"2010"},{"key":"9781108348843#EMT-rl-1_BIBe-r-125","volume-title":"The
+      Annals of L\u00fc Buwei","author":"Knoblock","year":"2000"},{"key":"9781108348843#EMT-rl-1_BIBe-r-129","volume-title":"A
+      Chinese Mirror for Magistrates: The Hsin-Y\u00fc of Lu Chia","author":"Ku","year":"1988"}],"container-title":[],"original-title":[],"deposited":{"date-parts":[[2023,9,17]],"date-time":"2023-09-17T21:46:24Z","timestamp":1694987184000},"score":1,"resource":{"primary":{"URL":"https:\/\/www.cambridge.org\/core\/product\/identifier\/9781108348843\/type\/book"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2019,7,1]]},"ISBN":["9781108348843","9781108425728","9781108443241"],"references-count":273,"URL":"http:\/\/dx.doi.org\/10.1017\/9781108348843","relation":{},"published":{"date-parts":[[2019,7,1]]}}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '10022'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:55:59 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/56
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521350004,"primary-name":"Cambridge
+      University Press (CUP)","counts":{"current-dois":131928,"backfile-dois":2311503,"total-dois":2443431},"breakdowns":{"dois-by-issued-year":[[2011,81090],[2012,78209],[2010,78026],[2013,76623],[2014,74663],[2021,66070],[2022,63683],[2023,63536],[2019,62740],[2015,62516],[2009,62401],[2020,61877],[2017,54080],[2016,51372],[2007,45420],[2008,44699],[2006,43409],[2018,42308],[2005,41580],[2004,40739],[2001,37886],[2003,37388],[2000,37305],[2002,36906],[1996,36644],[1995,35101],[1999,34690],[1998,34227],[1997,33193],[1994,32859],[1993,32352],[1992,30536],[1991,30438],[1990,29430],[1989,28111],[1988,27044],[1987,25225],[1986,23873],[1985,23455],[1984,22865],[1983,22422],[1982,21229],[1980,19385],[1981,19258],[1978,19086],[1977,18289],[1979,17593],[1976,16917],[1974,16140],[1975,16042],[1972,15630],[1973,15215],[1971,14488],[1970,13930],[1969,12638],[1968,12257],[1967,11529],[1966,11109],[1965,10025],[1963,9950],[1964,9698],[1962,9111],[1960,8745],[1961,8574],[1959,8375],[1957,8326],[1958,7819],[1956,7165],[1955,7092],[1954,6721],[1953,6601],[1951,6408],[1952,5745],[1950,5457],[1949,5267],[1936,5156],[1939,5027],[1932,4990],[1937,4816],[1938,4747],[2024,4694],[1935,4682],[1948,4670],[1933,4592],[1947,4403],[1934,4387],[1940,4363],[1929,4095],[1928,4010],[1945,3979],[1931,3924],[1946,3912],[1930,3849],[1927,3637],[1926,3594],[1942,3385],[1941,3383],[1925,3332],[1924,3119],[1944,3045],[1923,2965],[1943,2865],[1922,2707],[1920,2673],[1921,2608],[1914,2500],[1912,2465],[1913,2424],[1909,2397],[1910,2362],[1908,2274],[1911,2260],[1907,2170],[1916,2142],[1919,2130],[1915,2124],[1918,2059],[1917,1921],[1906,1701],[1905,1599],[1904,1572],[1903,1473],[1897,1449],[1898,1341],[1901,1339],[1902,1332],[1895,1321],[1900,1305],[1896,1294],[1899,1265],[1894,1185],[1893,1181],[1892,1179],[1888,1159],[1889,1124],[1891,1090],[1890,1087],[1887,1060],[1878,850],[1880,840],[1872,824],[1881,797],[1875,741],[1884,715],[1882,685],[1886,681],[1883,654],[1873,653],[1876,641],[1877,603],[1874,589],[1885,581],[1870,548],[1867,543],[1869,542],[1879,513],[1863,485],[1866,454],[1868,443],[1871,422],[1857,420],[1862,404],[1851,390],[1845,378],[1853,371],[1864,341],[1861,327],[1856,306],[1865,304],[1859,303],[1849,286],[1854,265],[1858,262],[1855,218],[1843,208],[1860,196],[1847,135],[1844,134],[1852,128],[1841,118],[1779,117],[1846,115],[1839,108],[1836,92],[1850,90],[1834,87],[1827,87],[1838,84],[1789,82],[1812,71],[1770,66],[1848,64],[1840,64],[1831,59],[1842,58],[1830,53],[1785,52],[1832,51],[1817,51],[1775,47],[1821,46],[1809,46],[1835,45],[1787,45],[1773,45],[1823,44],[1806,44],[1788,43],[1814,42],[1826,41],[1803,40],[1837,39],[1790,37],[1800,36],[1782,36],[1794,35],[1792,34],[1805,32],[1798,32],[1829,31],[1777,30],[1818,27],[1824,20],[1815,20],[1833,17],[2025,15],[1828,15]]},"prefixes":["10.7135","10.3815","10.5949","10.1375","10.7313","10.1154","10.4039","10.5948","10.1017","10.33774"],"coverage":{"affiliations-current":0.00950518464617064,"similarity-checking-current":0.5905569704687404,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.001617562252785309,"licenses-backfile":0.9498183649339845,"funders-current":0.05183130192226063,"affiliations-backfile":0.001830843394968555,"resource-links-backfile":0.02851002140165944,"orcids-backfile":0.02248450467077049,"update-policies-current":0.2392744527317931,"ror-ids-backfile":0.0,"orcids-current":0.2777575647322782,"similarity-checking-backfile":0.9382799849275558,"references-backfile":0.3643836932074066,"descriptions-backfile":0.0,"award-numbers-backfile":0.001320785653317344,"update-policies-backfile":0.07681668593984087,"licenses-current":0.9791249772603238,"award-numbers-current":0.04499423928203262,"abstracts-backfile":0.3292264816441943,"resource-links-current":0.002857619307501061,"abstracts-current":0.3656236735188891,"references-current":0.3219786550239525},"prefix":[{"name":"Cambridge
+      University Press (Anthem Press)","value":"10.7135"},{"name":"Cambridge University
+      Press (Society for the Promotion of Roman Studies)","value":"10.3815"},{"name":"Cambridge
+      University Press (CUP)","value":"10.5949"},{"name":"Cambridge University Press
+      (Australian Academic Press)","value":"10.1375"},{"name":"Cambridge University
+      Press (Nottingham University Press)","value":"10.7313"},{"name":"International
+      Centre for Diffraction Data","value":"10.1154"},{"name":"Cambridge University
+      Press (Entomological Society of Canada)","value":"10.4039"},{"name":"Cambridge
+      University Press (Mathematical Association of America)","value":"10.5948"},{"name":"Cambridge
+      University Press","value":"10.1017"},{"name":"Cambridge University Press pre-prints","value":"10.33774"}],"id":56,"tokens":["cambridge","university","press","cup"],"counts-type":{"all":{"book-section":3,"monograph":33841,"peer-review":3083,"book-track":20,"journal-article":1697296,"book-part":5984,"other":92556,"book":10774,"journal-volume":239,"reference-entry":8,"journal":21,"component":93,"book-chapter":651887,"posted-content":5014,"journal-issue":3211,"dataset":251,"edited-book":2837},"backfile":{"monograph":30610,"peer-review":345,"journal-article":1635015,"book-part":3083,"other":74952,"book":10475,"reference-entry":2,"book-chapter":548209,"posted-content":3529,"journal-issue":3195,"edited-book":2088},"current":{"monograph":3231,"peer-review":2738,"journal-article":62277,"book-part":2591,"other":14147,"book":299,"reference-entry":1,"book-chapter":44394,"posted-content":1485,"journal-issue":16,"edited-book":749}},"coverage-type":{"all":{"book-section":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.8068910493188736,"orcids":0.0,"licenses":0.9204219733459413,"references":0.1247599066221447,"funders":5.909990839514199E-5,"similarity-checking":0.0,"award-numbers":5.909990839514199E-5,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.5562763542004541,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-track":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":4.884239401966422E-4,"abstracts":0.4509790867356077,"orcids":0.04876639077685919,"licenses":0.9378375957994363,"references":0.4289157577700059,"funders":0.005527615689897343,"similarity-checking":0.9761827047256342,"award-numbers":0.004692169191466898,"ror-ids":0.0,"update-policies":0.1232130400354446,"resource-links":0.0379562551258001,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.956216577540107,"references":0.3544451871657754,"funders":0.0,"similarity-checking":0.5121991978609626,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.9664311335839924,"references":0.07513289251912356,"funders":0.0,"similarity-checking":0.6275227970093781,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":9.281603861147207E-5,"abstracts":0.7453127900501207,"orcids":0.0,"licenses":0.9078336736588082,"references":0.01522183033228142,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-volume":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.375,"references":0.125,"funders":0.0,"similarity-checking":0.25,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.04761904761904762,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.01075268817204301},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.002066309038222882,"orcids":0.0,"licenses":0.9106639647668998,"references":0.2274335889502322,"funders":0.0,"similarity-checking":0.8031146502384616,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.9285999202233746,"abstracts":0.9978061428001596,"orcids":0.8238930993218987,"licenses":1.0,"references":0.0,"funders":0.2379337854008775,"similarity-checking":0.9978061428001596,"award-numbers":0.2040287195851615,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.5777016505761445,"references":0.0,"funders":0.0,"similarity-checking":0.05792587978822797,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.5777016505761445,"descriptions":0.0},"dataset":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.7448008459640465,"orcids":0.0,"licenses":0.9457173070144519,"references":0.2594289742685936,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.788500490035936,"orcids":0.0,"licenses":0.9120222149624306,"references":0.1131329630839595,"funders":6.533812479581836E-5,"similarity-checking":0.0,"award-numbers":6.533812479581836E-5,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.8376811594202899,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":5.05194141949768E-4,"abstracts":0.4421317235621692,"orcids":0.02979422207135714,"licenses":0.9354721516316364,"references":0.422549640217368,"funders":0.001606713088259129,"similarity-checking":0.9752779026492112,"award-numbers":0.001268489891530047,"ror-ids":0.0,"update-policies":0.1085996152940493,"resource-links":0.03917150607180974,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.5994161530976322,"funders":0.0,"similarity-checking":0.8319818358741486,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.9978252748425659,"references":0.08525456292026896,"funders":0.0,"similarity-checking":0.7403538264489273,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":9.54653937947494E-5,"abstracts":0.7390930787589499,"orcids":0.0,"licenses":0.9052028639618138,"references":0.01556085918854415,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.5,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.002457092094438435,"orcids":0.0,"licenses":0.991238742888205,"references":0.2531917571583101,"funders":0.0,"similarity-checking":0.9348277755381615,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.9648625672995182,"abstracts":0.996882969679796,"orcids":0.8415981864550864,"licenses":1.0,"references":0.0,"funders":0.3145366959478606,"similarity-checking":0.996882969679796,"award-numbers":0.2768489657126665,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.5805946791862285,"references":0.0,"funders":0.0,"similarity-checking":0.05821596244131455,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.5805946791862285,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.6575670498084291,"orcids":0.0,"licenses":0.9262452107279693,"references":0.3505747126436782,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9811203961621789,"orcids":0.0,"licenses":1.0,"references":0.2349117920148561,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.52081811541271,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":4.817187725805675E-5,"abstracts":0.6832859643206962,"orcids":0.5468632079258795,"licenses":1.0,"references":0.5960788091911942,"funders":0.1084670102927244,"similarity-checking":1.0,"award-numbers":0.09457745234998476,"ror-ids":0.0,"update-policies":0.5068805498016924,"resource-links":0.006053599242095798,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.09185642609031262,"funders":0.0,"similarity-checking":0.192975685063682,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.01088570014844137,"funders":0.0,"similarity-checking":0.1830776843146957,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9632107023411371,"orcids":0.0,"licenses":1.0,"references":0.003344481605351171,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.0946073793755913,"funders":0.0,"similarity-checking":0.2491102401225391,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.8424242424242424,"abstracts":1.0,"orcids":0.7818181818181817,"licenses":1.0,"references":0.0,"funders":0.05589225589225589,"similarity-checking":1.0,"award-numbers":0.03097643097643098,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9879839786381842,"orcids":0.0,"licenses":1.0,"references":0.00534045393858478,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["Cambridge University Press (CUP)","Cambridge University
+      Press (Anthem Press)","Cambridge University Press (Society for the Promotion
+      of Roman Studies)","Cambridge University Press (Australian Academic Press)","Cambridge
+      University Press (Nottingham University Press)","International Centre for Diffraction
+      Data","Cambridge University Press (Entomological Society of Canada)","Cambridge
+      University Press (Mathematical Association of America)","Cambridge University
+      Press","Cambridge University Press pre-prints"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '4171'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:56:00 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1017
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1017\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a283c106602-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:56:00 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PIOuAabvRqySkOo2fdvFXU15qY8z%2Fiwr%2Br5w%2FcitLgDeipVis3Xz%2F6DVStMXZHRxYhBVUYvau45CVWrDz9y20eE9EjR%2FlzbqIWQ7nzcCH3OVC%2FFjjWNi4ci6bzrI6%2BuqgZzD2Mg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1145
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1145\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a29c9771c81-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:56:00 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=6Po5yJmfpafDbEJ%2B8Endly0BGWFY9MRDExk%2BgwOifHpXh%2F5ltEa0kGbNhvrrPwZ1KVqH3VEa2Zh2N6ZvcJgTAqGQzvG1OV6AJrR2ueUF%2BDGhHx64zwYauK3PwCm8B8vou8QyTFg%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.1145/3448016.3452841
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2024,2,2]],"date-time":"2024-02-02T20:22:07Z","timestamp":1706905327469},"publisher-location":"New
+      York, NY, USA","reference-count":56,"publisher":"ACM","license":[{"start":{"date-parts":[[2021,6,18]],"date-time":"2021-06-18T00:00:00Z","timestamp":1623974400000},"content-version":"vor","delay-in-days":9,"URL":"http:\/\/www.acm.org\/publications\/policies\/copyright_policy#Background"}],"funder":[{"DOI":"10.13039\/100000001","name":"NSF
+      (National Science Foundation)","doi-asserted-by":"publisher","award":["CCF 805476,
+      CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789,
+      CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252,
+      CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680"]},{"DOI":"10.13039\/100000015","name":"DOE
+      U.S. Department of Energy","doi-asserted-by":"publisher","award":["DE-AC02-05CH11231,17-SC-20-SC"]}],"content-domain":{"domain":["dl.acm.org"],"crossmark-restriction":true},"short-container-title":[],"published-print":{"date-parts":[[2021,6,9]]},"DOI":"10.1145\/3448016.3452841","type":"proceedings-article","created":{"date-parts":[[2021,6,18]],"date-time":"2021-06-18T17:22:39Z","timestamp":1624036959000},"update-policy":"http:\/\/dx.doi.org\/10.1145\/crossmark-policy","source":"Crossref","is-referenced-by-count":11,"title":["Vector
+      Quotient Filters"],"prefix":"10.1145","author":[{"given":"Prashant","family":"Pandey","sequence":"first","affiliation":[{"name":"Lawrence
+      Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA,
+      USA"}]},{"given":"Alex","family":"Conway","sequence":"additional","affiliation":[{"name":"VMware
+      Research, Palo Alto, CA, USA"}]},{"given":"Joe","family":"Durie","sequence":"additional","affiliation":[{"name":"Rutgers
+      University, New Brunswick, NJ, USA"}]},{"given":"Michael A.","family":"Bender","sequence":"additional","affiliation":[{"name":"Stony
+      Brook University, Stony Brook, NY, USA"}]},{"given":"Martin","family":"Farach-Colton","sequence":"additional","affiliation":[{"name":"Rutgers
+      University, New Brunswick, NJ, USA"}]},{"given":"Rob","family":"Johnson","sequence":"additional","affiliation":[{"name":"VMware
+      Research, Palo Alto, CA, USA"}]}],"member":"320","published-online":{"date-parts":[[2021,6,18]]},"reference":[{"key":"e_1_3_2_2_1_1","doi-asserted-by":"publisher","DOI":"10.5555\/1224252.1224501"},{"key":"e_1_3_2_2_2_1","doi-asserted-by":"publisher","DOI":"10.1007\/978-3-030-17083-7_1"},{"key":"e_1_3_2_2_3_1","doi-asserted-by":"publisher","DOI":"10.1089\/cmb.2019.0322"},{"key":"e_1_3_2_2_4_1","doi-asserted-by":"publisher","DOI":"10.14778\/2732951.2732958"},{"key":"e_1_3_2_2_5_1","doi-asserted-by":"publisher","DOI":"10.1145\/2254756.2254766"},{"key":"e_1_3_2_2_6_1","doi-asserted-by":"publisher","DOI":"10.1137\/S0097539795288490"},{"key":"e_1_3_2_2_7_1","doi-asserted-by":"publisher","DOI":"10.14778\/2350229.2350275"},{"key":"e_1_3_2_2_8_1","doi-asserted-by":"publisher","DOI":"10.1137\/S009753970444435X"},{"key":"e_1_3_2_2_9_1","doi-asserted-by":"publisher","DOI":"10.1145\/362686.362692"},{"key":"e_1_3_2_2_10_1","doi-asserted-by":"publisher","DOI":"10.1007\/11841036_61"},{"key":"e_1_3_2_2_11_1","volume-title":"Eduardo
+      PC Rocha, Gil McVean, and Zamin Iqbal.","author":"Bradley Phelim","year":"2019","unstructured":"Phelim
+      Bradley , Henk C Den Bakker , Eduardo PC Rocha, Gil McVean, and Zamin Iqbal.
+      2019 . Ultrafast search of all deposited bacterial and viral genomic data. Nature
+      biotechnology 37, 2 (2019), 152--159. Phelim Bradley, Henk C Den Bakker, Eduardo
+      PC Rocha, Gil McVean, and Zamin Iqbal. 2019. Ultrafast search of all deposited
+      bacterial and viral genomic data. Nature biotechnology 37, 2 (2019), 152--159."},{"key":"e_1_3_2_2_12_1","volume-title":"Morton
+      Filter source code in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter.
+      [Online","author":"Breslow Alex D","year":"2020","unstructured":"Alex D Breslow
+      . 2018. Morton Filter source code in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter.
+      [Online ; accessed 19- July - 2020 ]. Alex D Breslow. 2018. Morton Filter source
+      code in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter. [Online;
+      accessed 19-July-2020]."},{"key":"e_1_3_2_2_13_1","doi-asserted-by":"publisher","DOI":"10.14778\/3213880.3213884"},{"key":"e_1_3_2_2_14_1","doi-asserted-by":"publisher","DOI":"10.1080\/15427951.2004.10129096"},{"key":"e_1_3_2_2_15_1","volume-title":"Proceedings
+      of the InternationalWorkshop on Accelerating Analytics and Data Management Systems
+      Using Modern Processor and Storage Architectures (ADMS). 1--8.","author":"Canim
+      Mustafa","year":"2010","unstructured":"Mustafa Canim , George A Mihaila , Bishwaranjan
+      Bhattacharjee , Christian A Lang , andKennethARoss. 2010 . Buffered BloomFiltersonSolid
+      State Storage .. In Proceedings of the InternationalWorkshop on Accelerating
+      Analytics and Data Management Systems Using Modern Processor and Storage Architectures
+      (ADMS). 1--8. Mustafa Canim, George A Mihaila, Bishwaranjan Bhattacharjee, Christian
+      A Lang, andKennethARoss. 2010. Buffered BloomFiltersonSolid State Storage..
+      In Proceedings of the InternationalWorkshop on Accelerating Analytics and Data
+      Management Systems Using Modern Processor and Storage Architectures (ADMS).
+      1--8."},{"key":"e_1_3_2_2_16_1","doi-asserted-by":"publisher","DOI":"10.5555\/3386691.3386712"},{"key":"e_1_3_2_2_17_1","doi-asserted-by":"publisher","DOI":"10.1145\/800133.804332"},{"key":"e_1_3_2_2_18_1","doi-asserted-by":"publisher","DOI":"10.1109\/SFCS.1985.48"},{"key":"e_1_3_2_2_19_1","doi-asserted-by":"publisher","DOI":"10.1186\/1748-7188-8-22"},{"key":"e_1_3_2_2_20_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btu558"},{"key":"e_1_3_2_2_21_1","first-page":"1","article-title":"Optimal
+      Hashing in External Memory. In ICALP (LIPIcs), Vol. 107","volume":"39","author":"Conway
+      Alexander","year":"2018","unstructured":"Alexander Conway , Martin Farach-Colton
+      , and Philip Shilane . 2018 . Optimal Hashing in External Memory. In ICALP (LIPIcs),
+      Vol. 107 . Schloss Dagstuhl - Leibniz-Zentrum f\u00fcr Informatik , 39 : 1 --
+      39 :14. Alexander Conway, Martin Farach-Colton, and Philip Shilane. 2018. Optimal
+      Hashing in External Memory. In ICALP (LIPIcs), Vol. 107. Schloss Dagstuhl -
+      Leibniz-Zentrum f\u00fcr Informatik, 39:1--39:14.","journal-title":"Schloss
+      Dagstuhl - Leibniz-Zentrum f\u00fcr Informatik"},{"key":"e_1_3_2_2_22_1","volume-title":"SplinterDB:
+      Closing the Bandwidth Gap for NVMe Key-Value Stores. In USENIX Annual Technical
+      Conference. USENIX Association, 49--63","author":"Conway Alexander","year":"2020","unstructured":"Alexander
+      Conway , Abhishek Gupta , Vijay Chidambaram , Martin Farach-Colton , Richard
+      P. Spillane , Amy Tai , and Rob Johnson . 2020 . SplinterDB: Closing the Bandwidth
+      Gap for NVMe Key-Value Stores. In USENIX Annual Technical Conference. USENIX
+      Association, 49--63 . Alexander Conway, Abhishek Gupta, Vijay Chidambaram, Martin
+      Farach-Colton, Richard P. Spillane, Amy Tai, and Rob Johnson. 2020. SplinterDB:
+      Closing the Bandwidth Gap for NVMe Key-Value Stores. In USENIX Annual Technical
+      Conference. USENIX Association, 49--63."},{"key":"e_1_3_2_2_23_1","doi-asserted-by":"publisher","DOI":"10.1145\/3035918.3064054"},{"key":"e_1_3_2_2_24_1","doi-asserted-by":"publisher","DOI":"10.1145\/2883591.2883597"},{"key":"e_1_3_2_2_25_1","doi-asserted-by":"publisher","DOI":"10.1109\/ICDCS.2011.44"},{"key":"e_1_3_2_2_26_1","volume-title":"Proceedings
+      of the USENIX Annual Technical Conference (ATC).","author":"Debnath Biplob K","year":"2010","unstructured":"Biplob
+      K Debnath , Sudipta Sengupta , and Jin Li . 2010 . ChunkStash: Speeding Up Inline
+      Storage Deduplication Using Flash Memory .. In Proceedings of the USENIX Annual
+      Technical Conference (ATC). Biplob K Debnath, Sudipta Sengupta, and Jin Li.
+      2010. ChunkStash: Speeding Up Inline Storage Deduplication Using Flash Memory..
+      In Proceedings of the USENIX Annual Technical Conference (ATC)."},{"key":"e_1_3_2_2_27_1","volume-title":"Proceedings
+      of the 16th International SPIN Workshop on Model Checking Software. Springer-Verlag","author":"Peter","unstructured":"Peter
+      C. Dillinger and Panagiotis (Pete) Manolios. 2009. Fast, All-Purpose State Storage
+      . In Proceedings of the 16th International SPIN Workshop on Model Checking Software.
+      Springer-Verlag , Berlin, Heidelberg, 12--31. https:\/\/doi.org\/10.1007\/978--3--642-02652--2_6
+      10.1007\/978--3--642-02652--2_6 Peter C. Dillinger and Panagiotis (Pete) Manolios.
+      2009. Fast, All-Purpose State Storage. In Proceedings of the 16th International
+      SPIN Workshop on Model Checking Software. Springer-Verlag, Berlin, Heidelberg,
+      12--31. https:\/\/doi.org\/10.1007\/978--3--642-02652--2_6"},{"key":"e_1_3_2_2_28_1","doi-asserted-by":"publisher","DOI":"10.1145\/2833312.2833449"},{"key":"e_1_3_2_2_29_1","volume-title":"Proc.
+      4th USENIXWorkshop on Hot Topics in Storage (HotStorage)","author":"Esmet John","unstructured":"John
+      Esmet , Michael A. Bender , Martin Farach-Colton , and Bradley C. Kuszmaul .
+      2012. The TokuFS Streaming File System . In Proc. 4th USENIXWorkshop on Hot
+      Topics in Storage (HotStorage) . Boston, MA, USA. John Esmet, Michael A. Bender,
+      Martin Farach-Colton, and Bradley C. Kuszmaul. 2012. The TokuFS Streaming File
+      System. In Proc. 4th USENIXWorkshop on Hot Topics in Storage (HotStorage). Boston,
+      MA, USA."},{"key":"e_1_3_2_2_30_1","volume-title":"Cuckoo Filter source code
+      in C++. https:\/\/github.com\/efficient\/ cuckoofilter. [Online","author":"Fan
+      Bin","year":"2014","unstructured":"Bin Fan . 2014. Cuckoo Filter source code
+      in C++. https:\/\/github.com\/efficient\/ cuckoofilter. [Online ; accessed 19-
+      July - 2014 ]. Bin Fan. 2014. Cuckoo Filter source code in C++. https:\/\/github.com\/efficient\/
+      cuckoofilter. [Online; accessed 19-July-2014]."},{"key":"e_1_3_2_2_31_1","doi-asserted-by":"publisher","DOI":"10.1145\/2674005.2674994"},{"key":"e_1_3_2_2_32_1","doi-asserted-by":"publisher","DOI":"10.1109\/90.851975"},{"key":"e_1_3_2_2_33_1","volume-title":"Perfect
+      Hashing for Strings: Formalization and Algorithms. In CPM (Lecture Notes in
+      Computer Science)","volume":"1075","author":"Farach Martin","unstructured":"Martin
+      Farach and S. Muthukrishnan . 1996 . Perfect Hashing for Strings: Formalization
+      and Algorithms. In CPM (Lecture Notes in Computer Science) , Vol. 1075 . Springer,
+      130--140. Martin Farach and S. Muthukrishnan. 1996. Perfect Hashing for Strings:
+      Formalization and Algorithms. In CPM (Lecture Notes in Computer Science), Vol.
+      1075. Springer, 130--140."},{"key":"e_1_3_2_2_34_1","doi-asserted-by":"publisher","DOI":"10.1145\/1597036.1597040"},{"key":"e_1_3_2_2_35_1","doi-asserted-by":"publisher","DOI":"10.1109\/IPDPS.2018.00055"},{"key":"e_1_3_2_2_36_1","volume-title":"Golnaz
+      Jahesh, Hamza Khan, Lauren Coombe, Rene L Warren, et al.","author":"Jackman
+      Shaun D","year":"2017","unstructured":"Shaun D Jackman , Benjamin P Vandervalk
+      , Hamid Mohamadi , Justin Chu , Sarah Yeo , S Austin Hammond , Golnaz Jahesh,
+      Hamza Khan, Lauren Coombe, Rene L Warren, et al. 2017 . ABySS 2.0: resource-efficient
+      assembly of large genomes using a Bloom filter. Genome research 27, 5 (2017),
+      768--777. Shaun D Jackman, Benjamin P Vandervalk, Hamid Mohamadi, Justin Chu,
+      Sarah Yeo, S Austin Hammond, Golnaz Jahesh, Hamza Khan, Lauren Coombe, Rene
+      L Warren, et al. 2017. ABySS 2.0: resource-efficient assembly of large genomes
+      using a Bloom filter. Genome research 27, 5 (2017), 768--777."},{"key":"e_1_3_2_2_37_1","volume-title":"Proceedings
+      of the 27th Symposium on Mass Storage Systems and Technologies (MSST). 1--6.","author":"Lu
+      Guanlin","year":"2011","unstructured":"Guanlin Lu , Biplob Debnath , and David
+      HC Du . 2011 . A Forest-structured Bloom Filter with flash memory . In Proceedings
+      of the 27th Symposium on Mass Storage Systems and Technologies (MSST). 1--6.
+      Guanlin Lu, Biplob Debnath, and David HC Du. 2011. A Forest-structured Bloom
+      Filter with flash memory. In Proceedings of the 27th Symposium on Mass Storage
+      Systems and Technologies (MSST). 1--6."},{"key":"e_1_3_2_2_38_1","doi-asserted-by":"publisher","DOI":"10.5555\/1070432.1070548"},{"key":"e_1_3_2_2_39_1","doi-asserted-by":"publisher","DOI":"10.1007\/3-540-44676-1_10"},{"key":"e_1_3_2_2_40_1","volume-title":"Mantis:
+      A fast, small, and exact large-scale sequence-search index. Cell systems 7,
+      2","author":"Pandey Prashant","year":"2018","unstructured":"Prashant Pandey
+      , Fatemeh Almodaresi , Michael A Bender , Michael Ferdman , Rob Johnson , and
+      Rob Patro . 2018 . Mantis: A fast, small, and exact large-scale sequence-search
+      index. Cell systems 7, 2 (2018), 201--207. Prashant Pandey, Fatemeh Almodaresi,
+      Michael A Bender, Michael Ferdman, Rob Johnson, and Rob Patro. 2018. Mantis:
+      A fast, small, and exact large-scale sequence-search index. Cell systems 7,
+      2 (2018), 201--207."},{"key":"e_1_3_2_2_41_1","volume-title":"A fast x86 implementation
+      of select. arXiv preprint arXiv:1706.00990","author":"Pandey Prashant","year":"2017","unstructured":"Prashant
+      Pandey , Michael A Bender , and Rob Johnson . 2017. A fast x86 implementation
+      of select. arXiv preprint arXiv:1706.00990 ( 2017 ). Prashant Pandey, Michael
+      A Bender, and Rob Johnson. 2017. A fast x86 implementation of select. arXiv
+      preprint arXiv:1706.00990 (2017)."},{"key":"e_1_3_2_2_42_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btx261"},{"key":"e_1_3_2_2_43_1","doi-asserted-by":"publisher","DOI":"10.1145\/3035918.3035963"},{"key":"e_1_3_2_2_44_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btx636"},{"key":"e_1_3_2_2_45_1","doi-asserted-by":"publisher","DOI":"10.1145\/3318464.3380598"},{"key":"e_1_3_2_2_46_1","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.1121464109"},{"key":"e_1_3_2_2_47_1","doi-asserted-by":"publisher","DOI":"10.1007\/978-3-540-72845-0_9"},{"key":"e_1_3_2_2_48_1","doi-asserted-by":"publisher","DOI":"10.1109\/TPDS.2013.46"},{"key":"e_1_3_2_2_49_1","doi-asserted-by":"publisher","DOI":"10.1145\/3132747.3132765"},{"key":"e_1_3_2_2_50_1","volume-title":"Weightless:
+      Lossy weight encoding for deep neural network compression. arXiv preprint arXiv:1711.04686","author":"Reagen
+      Brandon","year":"2017","unstructured":"Brandon Reagen , Udit Gupta , RobertAdolf,
+      MichaelMMitzenmacher, Alexander M Rush , Gu-YeonWei, and David Brooks . 2017
+      . Weightless: Lossy weight encoding for deep neural network compression. arXiv
+      preprint arXiv:1711.04686 (2017). Brandon Reagen, Udit Gupta, RobertAdolf, MichaelMMitzenmacher,
+      AlexanderM Rush, Gu-YeonWei, and David Brooks. 2017. Weightless: Lossy weight
+      encoding for deep neural network compression. arXiv preprint arXiv:1711.04686
+      (2017)."},{"key":"e_1_3_2_2_51_1","volume-title":"Last Accessed","author":"DB","year":"2018","unstructured":"Rocks
+      DB [n. d.]. RocksDB. https:\/\/rocksdb.org\/ , Last Accessed Sep. 26, 2018 .
+      RocksDB [n. d.]. RocksDB. https:\/\/rocksdb.org\/, Last Accessed Sep. 26, 2018."},{"key":"e_1_3_2_2_52_1","volume-title":"Fast
+      search of thousands of short-read sequencing experiments. Nature biotechnology
+      34, 3","author":"Solomon Brad","year":"2016","unstructured":"Brad Solomon and
+      Carl Kingsford . 2016. Fast search of thousands of short-read sequencing experiments.
+      Nature biotechnology 34, 3 ( 2016 ), 300. Brad Solomon and Carl Kingsford. 2016.
+      Fast search of thousands of short-read sequencing experiments. Nature biotechnology
+      34, 3 (2016), 300."},{"key":"e_1_3_2_2_53_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btq230"},{"key":"e_1_3_2_2_54_1","volume-title":"Proceedings
+      of the 9th European Conference on Computer Systems (EuroSys). 16:1--16:14","author":"Sun
+      Guangyu","year":"2014","unstructured":"PengWang, Guangyu Sun , Song Jiang ,
+      Jian Ouyang , Shiding Lin , Chen Zhang , and Jason Cong . 2014 . An efficient
+      design and implementation of LSM-tree based key-value store on open-channel
+      SSD . In Proceedings of the 9th European Conference on Computer Systems (EuroSys).
+      16:1--16:14 . PengWang, Guangyu Sun, Song Jiang, Jian Ouyang, Shiding Lin, Chen
+      Zhang, and Jason Cong. 2014. An efficient design and implementation of LSM-tree
+      based key-value store on open-channel SSD. In Proceedings of the 9th European
+      Conference on Computer Systems (EuroSys). 16:1--16:14."},{"key":"e_1_3_2_2_55_1","unstructured":"Maysam
+      Yabandeh. 2017. Partitioned Index\/Filters. https:\/\/rocksdb.org\/blog\/2017\/
+      05\/12\/partitioned-index-filter.html.  Maysam Yabandeh. 2017. Partitioned Index\/Filters.
+      https:\/\/rocksdb.org\/blog\/2017\/ 05\/12\/partitioned-index-filter.html."},{"key":"e_1_3_2_2_56_1","doi-asserted-by":"publisher","DOI":"10.5555\/1364813.1364831"}],"event":{"name":"SIGMOD\/PODS
+      ''21: International Conference on Management of Data","location":"Virtual Event
+      China","acronym":"SIGMOD\/PODS ''21","sponsor":["SIGMOD ACM Special Interest
+      Group on Management of Data"]},"container-title":["Proceedings of the 2021 International
+      Conference on Management of Data"],"original-title":[],"link":[{"URL":"https:\/\/dl.acm.org\/doi\/pdf\/10.1145\/3448016.3452841","content-type":"application\/pdf","content-version":"vor","intended-application":"syndication"},{"URL":"https:\/\/dl.acm.org\/doi\/pdf\/10.1145\/3448016.3452841","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,7,2]],"date-time":"2023-07-02T06:00:46Z","timestamp":1688277646000},"score":1,"resource":{"primary":{"URL":"https:\/\/dl.acm.org\/doi\/10.1145\/3448016.3452841"}},"subtitle":["Overcoming
+      the Time\/Space Trade-Off in Filter Design"],"short-title":[],"issued":{"date-parts":[[2021,6,9]]},"references-count":56,"alternative-id":["10.1145\/3448016.3452841","10.1145\/3448016"],"URL":"http:\/\/dx.doi.org\/10.1145\/3448016.3452841","relation":{},"published":{"date-parts":[[2021,6,9]]},"assertion":[{"value":"2021-06-18","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
+      History"}}]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '4861'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:56:01 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/320
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521512502,"primary-name":"Association
+      for Computing Machinery (ACM)","counts":{"current-dois":69140,"backfile-dois":576553,"total-dois":645693},"breakdowns":{"dois-by-issued-year":[[2021,35715],[2019,34768],[2022,34394],[2023,33388],[2020,32762],[2018,32733],[2017,28946],[2016,26885],[2014,24743],[2015,24599],[2012,23261],[2013,23150],[2010,22891],[2011,22490],[2009,20520],[2008,19122],[2007,16812],[2006,16142],[2005,14302],[2003,13120],[2002,12415],[2004,11481],[2001,8156],[2000,7475],[1999,6794],[1998,6570],[1997,5956],[1996,5879],[1995,5352],[1993,4601],[1994,4538],[1992,4340],[1989,4204],[1991,4101],[1990,3922],[1988,3743],[1986,3235],[1987,3113],[1985,2690],[1982,2634],[1983,2552],[1984,2393],[1976,2339],[1980,2249],[1981,2182],[1978,2136],[1977,1923],[1973,1741],[1975,1736],[1979,1712],[1974,1594],[2024,1358],[1972,1287],[1971,1225],[1970,790],[1969,789],[1967,692],[1968,613],[1966,605],[1962,490],[1965,486],[1964,481],[1961,466],[1963,440],[1959,370],[1958,315],[1960,249],[1957,125],[1956,124],[1952,77],[1955,68],[1954,67],[1953,57],[1951,20]]},"prefixes":["10.14778","10.1145"],"coverage":{"affiliations-current":0.9695400636389933,"similarity-checking-current":0.9461382701764536,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.1688257627659556,"licenses-backfile":0.2593135409927622,"funders-current":0.4170089673126989,"affiliations-backfile":0.8012446383940418,"resource-links-backfile":0.001817699326861537,"orcids-backfile":0.008717325206876037,"update-policies-current":0.9146225050621927,"ror-ids-backfile":0.0,"orcids-current":0.5542956320509111,"similarity-checking-backfile":0.9158290738232218,"references-backfile":0.7249897234079087,"descriptions-backfile":0.0,"award-numbers-backfile":0.1507406951312369,"update-policies-backfile":0.8165199036341845,"licenses-current":0.06013884871275673,"award-numbers-current":0.3835551055828753,"abstracts-backfile":0.1624586117841725,"resource-links-current":0.0,"abstracts-current":0.1810529360717385,"references-current":0.9364622505062193},"prefix":[{"name":"VLDB
+      Endowment","value":"10.14778"},{"name":"Association for Computing Machinery","value":"10.1145"}],"id":320,"tokens":["association","for","computing","machinery","acm"],"counts-type":{"all":{"monograph":50,"report":4,"journal-article":144029,"other":577,"book":64,"proceedings-article":481283,"journal":1,"component":7,"book-chapter":1096,"proceedings":11258,"database":1,"reference-book":1,"journal-issue":6830,"dataset":527,"edited-book":18},"backfile":{"monograph":36,"report":4,"journal-article":130779,"other":571,"book":34,"proceedings-article":427170,"book-chapter":661,"proceedings":10022,"reference-book":1,"journal-issue":6830,"dataset":438,"edited-book":7},"current":{"monograph":14,"journal-article":13250,"other":6,"book":30,"proceedings-article":54113,"book-chapter":391,"proceedings":1236,"dataset":89,"edited-book":11}},"coverage-type":{"all":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.76,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.56,"funders":0.0,"similarity-checking":0.92,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.76,"resource-links":0.0,"descriptions":0.0},"report":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.8578897305403773,"abstracts":0.7372404168604934,"orcids":0.08283748411778184,"licenses":0.17840851495185,"references":0.748390949044984,"funders":0.171409924390227,"similarity-checking":0.9576335321358893,"award-numbers":0.1526914718563623,"ror-ids":0.0,"update-policies":0.9518777468426497,"resource-links":0.007276312409306459,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.194107452339688,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1317157712305026,"funders":0.0,"similarity-checking":0.1993067590987868,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.01039861351819757,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":0.484375,"abstracts":0.0,"orcids":0.28125,"licenses":0.0,"references":0.21875,"funders":0.0,"similarity-checking":0.640625,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.484375,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.841756305541646,"abstracts":0.0,"orcids":0.06524435727004695,"licenses":0.2658934556175888,"references":0.7773389045530384,"funders":0.2108551517506332,"similarity-checking":0.9423042160225896,"award-numbers":0.1899859334320971,"ror-ids":0.0,"update-policies":0.8231477114296578,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":1.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.1177007299270073,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.6487226277372263,"funders":0.0,"similarity-checking":0.9443430656934307,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5930656934306568,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.06883993604547876,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"database":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1666666666666667,"funders":0.0,"similarity-checking":0.8333333333333333,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.7777777777777778,"resource-links":0.0,"descriptions":0.0}},"backfile":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.7222222222222222,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.611111111111111,"funders":0.0,"similarity-checking":0.888888888888889,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.6666666666666667,"resource-links":0.0,"descriptions":0.0},"report":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.8458162243173598,"abstracts":0.7162159062234762,"orcids":0.03369042430359614,"licenses":0.190749279318545,"references":0.7311800824291362,"funders":0.1433639957485529,"similarity-checking":0.9542434182858104,"award-numbers":0.1264346722333096,"ror-ids":0.0,"update-policies":0.9516436125065951,"resource-links":0.00801351899005192,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.1961471103327496,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1260945709281961,"funders":0.0,"similarity-checking":0.1908931698774081,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":0.02941176470588235,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.3235294117647059,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.02941176470588235,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.8221410679588922,"abstracts":0.0,"orcids":0.001451412786478451,"licenses":0.291598192756982,"references":0.7536039515883606,"funders":0.1839735936512396,"similarity-checking":0.9417913242971182,"award-numbers":0.1647470562071307,"ror-ids":0.0,"update-policies":0.8098298101458437,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.01815431164901664,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.5446293494704992,"funders":0.0,"similarity-checking":0.9258698940998487,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5264750378214826,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.01516663340650569,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1428571428571429,"funders":0.0,"similarity-checking":0.7142857142857143,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5714285714285714,"resource-links":0.0,"descriptions":0.0}},"current":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.8571428571428571,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.4285714285714286,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.9770566037735849,"abstracts":0.9447547169811321,"orcids":0.5679245283018868,"licenses":0.05660377358490566,"references":0.9182641509433962,"funders":0.4482264150943396,"similarity-checking":0.9910943396226415,"award-numbers":0.4118490566037736,"ror-ids":0.0,"update-policies":0.954188679245283,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.6666666666666667,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":1.0,"abstracts":0.0,"orcids":0.6,"licenses":0.0,"references":0.4666666666666667,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.9965997080184059,"abstracts":0.0,"orcids":0.5688281928556909,"licenses":0.06297932105039454,"references":0.9647034908432355,"funders":0.4230591539925711,"similarity-checking":0.946353002051263,"award-numbers":0.3892225528061649,"ror-ids":0.0,"update-policies":0.9282797109751816,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.29923273657289,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.8976982097186701,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.7723785166240409,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5040453074433657,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1818181818181818,"funders":0.0,"similarity-checking":0.9090909090909091,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.9090909090909091,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":false,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"New
+      York, NY, United States","names":["Association for Computing Machinery (ACM)","VLDB
+      Endowment","Association for Computing Machinery"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '2835'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 15:56:01 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1145
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1145\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85358a304e25b93c-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 15:56:02 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=EtRfg6OzAOhfhhqsk92U201%2F7G4WikwVp17NRn4WSz%2BIP8CazJF5ztSMLag5d9KNJnjRLp8qWazx7CeddG2yr8C0NkPifwxwoTtdQgn07C62P6cMpPG3Oum9juMziea%2FAnN%2FBAQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/4374
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707522299459,"primary-name":"eLife
+      Sciences Publications, Ltd","counts":{"current-dois":23313,"backfile-dois":35573,"total-dois":58886},"breakdowns":{"dois-by-issued-year":[[2023,13154],[2022,7431],[2021,7267],[2020,6188],[2019,4848],[2017,4118],[2018,4058],[2016,3512],[2015,2808],[2024,2728],[2014,1804],[2013,811],[2012,159]]},"prefixes":["10.7554"],"coverage":{"affiliations-current":0.6588169690730494,"similarity-checking-current":0.211512889803972,"descriptions-current":0.0,"ror-ids-current":0.4895551838030284,"funders-backfile":0.2981474713968459,"licenses-backfile":0.9999718887920614,"funders-current":0.1644147042422683,"affiliations-backfile":0.9904984117167515,"resource-links-backfile":0.3367722711044894,"orcids-backfile":0.8700418856998285,"update-policies-current":0.1797280487281774,"ror-ids-backfile":0.04211058949203047,"orcids-current":0.5906146785055548,"similarity-checking-backfile":0.3368566047283052,"references-backfile":0.3290135777134343,"descriptions-backfile":0.0,"award-numbers-backfile":0.2818710820003936,"update-policies-backfile":0.1168864026087201,"licenses-current":0.9995281602539356,"award-numbers-current":0.1584523656329087,"abstracts-backfile":0.330250470862733,"resource-links-current":0.1797280487281774,"abstracts-current":0.3035645348089049,"references-current":0.1745807060438382},"prefix":[{"name":"eLife
+      Sciences Publications, Ltd.","value":"10.7554"}],"id":4374,"tokens":["elife","sciences","publications","ltd"],"counts-type":{"all":{"peer-review":39753,"journal-article":16172,"journal":1,"component":143804,"posted-content":2961},"backfile":{"peer-review":23585,"journal-article":11982,"posted-content":6},"current":{"peer-review":16168,"journal-article":4190,"posted-content":2955}},"coverage-type":{"all":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.799763539858627,"abstracts":0.0,"orcids":0.700726989158051,"licenses":0.9998239126606797,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.2259955223505144,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9798417017066535,"abstracts":0.9809547365817461,"orcids":0.8883873361365323,"licenses":0.9999381647291615,"references":0.9753895622062825,"funders":0.8928394756369032,"similarity-checking":0.9992579767499382,"award-numbers":0.8484417511748701,"ror-ids":0.2428271085827356,"update-policies":0.5162008409596834,"resource-links":0.999876329458323,"descriptions":0.0},"journal":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":4.867736641539874E-4,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979736575481256,"abstracts":1.0,"orcids":0.8429584599797366,"licenses":0.9986491050320838,"references":0.0,"funders":0.0,"similarity-checking":0.2546437014522121,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.996565613737545,"abstracts":0.0,"orcids":0.8804324782700869,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.06292134831460675,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9785511600734434,"abstracts":0.9799699549323986,"orcids":0.8495242864296445,"licenses":0.999916541478885,"references":0.9767985311300283,"funders":0.885161074945752,"similarity-checking":0.999582707394425,"award-numbers":0.8368385912201636,"ror-ids":0.001168419295610082,"update-policies":0.3470205307961943,"resource-links":0.99983308295777,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":1.0,"abstracts":1.0,"orcids":1.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.5126793666501732,"abstracts":0.0,"orcids":0.4385823849579416,"licenses":0.9995670460168234,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.4638792676892627,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9835322195704057,"abstracts":0.9837708830548926,"orcids":0.9995226730310263,"licenses":1.0,"references":0.9713603818615753,"funders":0.9147971360381862,"similarity-checking":0.9983293556085919,"award-numbers":0.8816229116945107,"ror-ids":0.933890214797136,"update-policies":1.0,"resource-links":1.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979695431472081,"abstracts":1.0,"orcids":0.8426395939086294,"licenses":0.9986463620981387,"references":0.0,"funders":0.0,"similarity-checking":0.2531302876480541,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":true,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["eLife Sciences Publications, Ltd","eLife Sciences
+      Publications, Ltd."]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1757'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 17:04:41 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/56
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521350004,"primary-name":"Cambridge
+      University Press (CUP)","counts":{"current-dois":131928,"backfile-dois":2311503,"total-dois":2443431},"breakdowns":{"dois-by-issued-year":[[2011,81090],[2012,78209],[2010,78026],[2013,76623],[2014,74663],[2021,66070],[2022,63683],[2023,63536],[2019,62740],[2015,62516],[2009,62401],[2020,61877],[2017,54080],[2016,51372],[2007,45420],[2008,44699],[2006,43409],[2018,42308],[2005,41580],[2004,40739],[2001,37886],[2003,37388],[2000,37305],[2002,36906],[1996,36644],[1995,35101],[1999,34690],[1998,34227],[1997,33193],[1994,32859],[1993,32352],[1992,30536],[1991,30438],[1990,29430],[1989,28111],[1988,27044],[1987,25225],[1986,23873],[1985,23455],[1984,22865],[1983,22422],[1982,21229],[1980,19385],[1981,19258],[1978,19086],[1977,18289],[1979,17593],[1976,16917],[1974,16140],[1975,16042],[1972,15630],[1973,15215],[1971,14488],[1970,13930],[1969,12638],[1968,12257],[1967,11529],[1966,11109],[1965,10025],[1963,9950],[1964,9698],[1962,9111],[1960,8745],[1961,8574],[1959,8375],[1957,8326],[1958,7819],[1956,7165],[1955,7092],[1954,6721],[1953,6601],[1951,6408],[1952,5745],[1950,5457],[1949,5267],[1936,5156],[1939,5027],[1932,4990],[1937,4816],[1938,4747],[2024,4694],[1935,4682],[1948,4670],[1933,4592],[1947,4403],[1934,4387],[1940,4363],[1929,4095],[1928,4010],[1945,3979],[1931,3924],[1946,3912],[1930,3849],[1927,3637],[1926,3594],[1942,3385],[1941,3383],[1925,3332],[1924,3119],[1944,3045],[1923,2965],[1943,2865],[1922,2707],[1920,2673],[1921,2608],[1914,2500],[1912,2465],[1913,2424],[1909,2397],[1910,2362],[1908,2274],[1911,2260],[1907,2170],[1916,2142],[1919,2130],[1915,2124],[1918,2059],[1917,1921],[1906,1701],[1905,1599],[1904,1572],[1903,1473],[1897,1449],[1898,1341],[1901,1339],[1902,1332],[1895,1321],[1900,1305],[1896,1294],[1899,1265],[1894,1185],[1893,1181],[1892,1179],[1888,1159],[1889,1124],[1891,1090],[1890,1087],[1887,1060],[1878,850],[1880,840],[1872,824],[1881,797],[1875,741],[1884,715],[1882,685],[1886,681],[1883,654],[1873,653],[1876,641],[1877,603],[1874,589],[1885,581],[1870,548],[1867,543],[1869,542],[1879,513],[1863,485],[1866,454],[1868,443],[1871,422],[1857,420],[1862,404],[1851,390],[1845,378],[1853,371],[1864,341],[1861,327],[1856,306],[1865,304],[1859,303],[1849,286],[1854,265],[1858,262],[1855,218],[1843,208],[1860,196],[1847,135],[1844,134],[1852,128],[1841,118],[1779,117],[1846,115],[1839,108],[1836,92],[1850,90],[1834,87],[1827,87],[1838,84],[1789,82],[1812,71],[1770,66],[1848,64],[1840,64],[1831,59],[1842,58],[1830,53],[1785,52],[1832,51],[1817,51],[1775,47],[1821,46],[1809,46],[1835,45],[1787,45],[1773,45],[1823,44],[1806,44],[1788,43],[1814,42],[1826,41],[1803,40],[1837,39],[1790,37],[1800,36],[1782,36],[1794,35],[1792,34],[1805,32],[1798,32],[1829,31],[1777,30],[1818,27],[1824,20],[1815,20],[1833,17],[2025,15],[1828,15]]},"prefixes":["10.7135","10.3815","10.5949","10.1375","10.7313","10.1154","10.4039","10.5948","10.1017","10.33774"],"coverage":{"affiliations-current":0.00950518464617064,"similarity-checking-current":0.5905569704687404,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.001617562252785309,"licenses-backfile":0.9498183649339845,"funders-current":0.05183130192226063,"affiliations-backfile":0.001830843394968555,"resource-links-backfile":0.02851002140165944,"orcids-backfile":0.02248450467077049,"update-policies-current":0.2392744527317931,"ror-ids-backfile":0.0,"orcids-current":0.2777575647322782,"similarity-checking-backfile":0.9382799849275558,"references-backfile":0.3643836932074066,"descriptions-backfile":0.0,"award-numbers-backfile":0.001320785653317344,"update-policies-backfile":0.07681668593984087,"licenses-current":0.9791249772603238,"award-numbers-current":0.04499423928203262,"abstracts-backfile":0.3292264816441943,"resource-links-current":0.002857619307501061,"abstracts-current":0.3656236735188891,"references-current":0.3219786550239525},"prefix":[{"name":"Cambridge
+      University Press (Anthem Press)","value":"10.7135"},{"name":"Cambridge University
+      Press (Society for the Promotion of Roman Studies)","value":"10.3815"},{"name":"Cambridge
+      University Press (CUP)","value":"10.5949"},{"name":"Cambridge University Press
+      (Australian Academic Press)","value":"10.1375"},{"name":"Cambridge University
+      Press (Nottingham University Press)","value":"10.7313"},{"name":"International
+      Centre for Diffraction Data","value":"10.1154"},{"name":"Cambridge University
+      Press (Entomological Society of Canada)","value":"10.4039"},{"name":"Cambridge
+      University Press (Mathematical Association of America)","value":"10.5948"},{"name":"Cambridge
+      University Press","value":"10.1017"},{"name":"Cambridge University Press pre-prints","value":"10.33774"}],"id":56,"tokens":["cambridge","university","press","cup"],"counts-type":{"all":{"book-section":3,"monograph":33841,"peer-review":3083,"book-track":20,"journal-article":1697296,"book-part":5984,"other":92556,"book":10774,"journal-volume":239,"reference-entry":8,"journal":21,"component":93,"book-chapter":651887,"posted-content":5014,"journal-issue":3211,"dataset":251,"edited-book":2837},"backfile":{"monograph":30610,"peer-review":345,"journal-article":1635015,"book-part":3083,"other":74952,"book":10475,"reference-entry":2,"book-chapter":548209,"posted-content":3529,"journal-issue":3195,"edited-book":2088},"current":{"monograph":3231,"peer-review":2738,"journal-article":62277,"book-part":2591,"other":14147,"book":299,"reference-entry":1,"book-chapter":44394,"posted-content":1485,"journal-issue":16,"edited-book":749}},"coverage-type":{"all":{"book-section":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.8068910493188736,"orcids":0.0,"licenses":0.9204219733459413,"references":0.1247599066221447,"funders":5.909990839514199E-5,"similarity-checking":0.0,"award-numbers":5.909990839514199E-5,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.5562763542004541,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-track":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":4.884239401966422E-4,"abstracts":0.4509790867356077,"orcids":0.04876639077685919,"licenses":0.9378375957994363,"references":0.4289157577700059,"funders":0.005527615689897343,"similarity-checking":0.9761827047256342,"award-numbers":0.004692169191466898,"ror-ids":0.0,"update-policies":0.1232130400354446,"resource-links":0.0379562551258001,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.956216577540107,"references":0.3544451871657754,"funders":0.0,"similarity-checking":0.5121991978609626,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.9664311335839924,"references":0.07513289251912356,"funders":0.0,"similarity-checking":0.6275227970093781,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":9.281603861147207E-5,"abstracts":0.7453127900501207,"orcids":0.0,"licenses":0.9078336736588082,"references":0.01522183033228142,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-volume":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.375,"references":0.125,"funders":0.0,"similarity-checking":0.25,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.04761904761904762,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.01075268817204301},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.002066309038222882,"orcids":0.0,"licenses":0.9106639647668998,"references":0.2274335889502322,"funders":0.0,"similarity-checking":0.8031146502384616,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.9285999202233746,"abstracts":0.9978061428001596,"orcids":0.8238930993218987,"licenses":1.0,"references":0.0,"funders":0.2379337854008775,"similarity-checking":0.9978061428001596,"award-numbers":0.2040287195851615,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.5777016505761445,"references":0.0,"funders":0.0,"similarity-checking":0.05792587978822797,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.5777016505761445,"descriptions":0.0},"dataset":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.7448008459640465,"orcids":0.0,"licenses":0.9457173070144519,"references":0.2594289742685936,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.788500490035936,"orcids":0.0,"licenses":0.9120222149624306,"references":0.1131329630839595,"funders":6.533812479581836E-5,"similarity-checking":0.0,"award-numbers":6.533812479581836E-5,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.8376811594202899,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":5.05194141949768E-4,"abstracts":0.4421317235621692,"orcids":0.02979422207135714,"licenses":0.9354721516316364,"references":0.422549640217368,"funders":0.001606713088259129,"similarity-checking":0.9752779026492112,"award-numbers":0.001268489891530047,"ror-ids":0.0,"update-policies":0.1085996152940493,"resource-links":0.03917150607180974,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.5994161530976322,"funders":0.0,"similarity-checking":0.8319818358741486,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.9978252748425659,"references":0.08525456292026896,"funders":0.0,"similarity-checking":0.7403538264489273,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":9.54653937947494E-5,"abstracts":0.7390930787589499,"orcids":0.0,"licenses":0.9052028639618138,"references":0.01556085918854415,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.5,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.002457092094438435,"orcids":0.0,"licenses":0.991238742888205,"references":0.2531917571583101,"funders":0.0,"similarity-checking":0.9348277755381615,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.9648625672995182,"abstracts":0.996882969679796,"orcids":0.8415981864550864,"licenses":1.0,"references":0.0,"funders":0.3145366959478606,"similarity-checking":0.996882969679796,"award-numbers":0.2768489657126665,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.5805946791862285,"references":0.0,"funders":0.0,"similarity-checking":0.05821596244131455,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.5805946791862285,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.6575670498084291,"orcids":0.0,"licenses":0.9262452107279693,"references":0.3505747126436782,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"monograph":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9811203961621789,"orcids":0.0,"licenses":1.0,"references":0.2349117920148561,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"peer-review":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.52081811541271,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521350004,"affiliations":4.817187725805675E-5,"abstracts":0.6832859643206962,"orcids":0.5468632079258795,"licenses":1.0,"references":0.5960788091911942,"funders":0.1084670102927244,"similarity-checking":1.0,"award-numbers":0.09457745234998476,"ror-ids":0.0,"update-policies":0.5068805498016924,"resource-links":0.006053599242095798,"descriptions":0.0},"book-part":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.09185642609031262,"funders":0.0,"similarity-checking":0.192975685063682,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.01088570014844137,"funders":0.0,"similarity-checking":0.1830776843146957,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9632107023411371,"orcids":0.0,"licenses":1.0,"references":0.003344481605351171,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":0.0946073793755913,"funders":0.0,"similarity-checking":0.2491102401225391,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521350004,"affiliations":0.8424242424242424,"abstracts":1.0,"orcids":0.7818181818181817,"licenses":1.0,"references":0.0,"funders":0.05589225589225589,"similarity-checking":1.0,"award-numbers":0.03097643097643098,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521350004,"affiliations":0.0,"abstracts":0.9879839786381842,"orcids":0.0,"licenses":1.0,"references":0.00534045393858478,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["Cambridge University Press (CUP)","Cambridge University
+      Press (Anthem Press)","Cambridge University Press (Society for the Promotion
+      of Roman Studies)","Cambridge University Press (Australian Academic Press)","Cambridge
+      University Press (Nottingham University Press)","International Centre for Diffraction
+      Data","Cambridge University Press (Entomological Society of Canada)","Cambridge
+      University Press (Mathematical Association of America)","Cambridge University
+      Press","Cambridge University Press pre-prints"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '4171'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 17:04:42 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/320
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521512502,"primary-name":"Association
+      for Computing Machinery (ACM)","counts":{"current-dois":69140,"backfile-dois":576553,"total-dois":645693},"breakdowns":{"dois-by-issued-year":[[2021,35715],[2019,34768],[2022,34394],[2023,33388],[2020,32762],[2018,32733],[2017,28946],[2016,26885],[2014,24743],[2015,24599],[2012,23261],[2013,23150],[2010,22891],[2011,22490],[2009,20520],[2008,19122],[2007,16812],[2006,16142],[2005,14302],[2003,13120],[2002,12415],[2004,11481],[2001,8156],[2000,7475],[1999,6794],[1998,6570],[1997,5956],[1996,5879],[1995,5352],[1993,4601],[1994,4538],[1992,4340],[1989,4204],[1991,4101],[1990,3922],[1988,3743],[1986,3235],[1987,3113],[1985,2690],[1982,2634],[1983,2552],[1984,2393],[1976,2339],[1980,2249],[1981,2182],[1978,2136],[1977,1923],[1973,1741],[1975,1736],[1979,1712],[1974,1594],[2024,1358],[1972,1287],[1971,1225],[1970,790],[1969,789],[1967,692],[1968,613],[1966,605],[1962,490],[1965,486],[1964,481],[1961,466],[1963,440],[1959,370],[1958,315],[1960,249],[1957,125],[1956,124],[1952,77],[1955,68],[1954,67],[1953,57],[1951,20]]},"prefixes":["10.14778","10.1145"],"coverage":{"affiliations-current":0.9695400636389933,"similarity-checking-current":0.9461382701764536,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.1688257627659556,"licenses-backfile":0.2593135409927622,"funders-current":0.4170089673126989,"affiliations-backfile":0.8012446383940418,"resource-links-backfile":0.001817699326861537,"orcids-backfile":0.008717325206876037,"update-policies-current":0.9146225050621927,"ror-ids-backfile":0.0,"orcids-current":0.5542956320509111,"similarity-checking-backfile":0.9158290738232218,"references-backfile":0.7249897234079087,"descriptions-backfile":0.0,"award-numbers-backfile":0.1507406951312369,"update-policies-backfile":0.8165199036341845,"licenses-current":0.06013884871275673,"award-numbers-current":0.3835551055828753,"abstracts-backfile":0.1624586117841725,"resource-links-current":0.0,"abstracts-current":0.1810529360717385,"references-current":0.9364622505062193},"prefix":[{"name":"VLDB
+      Endowment","value":"10.14778"},{"name":"Association for Computing Machinery","value":"10.1145"}],"id":320,"tokens":["association","for","computing","machinery","acm"],"counts-type":{"all":{"monograph":50,"report":4,"journal-article":144029,"other":577,"book":64,"proceedings-article":481283,"journal":1,"component":7,"book-chapter":1096,"proceedings":11258,"database":1,"reference-book":1,"journal-issue":6830,"dataset":527,"edited-book":18},"backfile":{"monograph":36,"report":4,"journal-article":130779,"other":571,"book":34,"proceedings-article":427170,"book-chapter":661,"proceedings":10022,"reference-book":1,"journal-issue":6830,"dataset":438,"edited-book":7},"current":{"monograph":14,"journal-article":13250,"other":6,"book":30,"proceedings-article":54113,"book-chapter":391,"proceedings":1236,"dataset":89,"edited-book":11}},"coverage-type":{"all":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.76,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.56,"funders":0.0,"similarity-checking":0.92,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.76,"resource-links":0.0,"descriptions":0.0},"report":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.8578897305403773,"abstracts":0.7372404168604934,"orcids":0.08283748411778184,"licenses":0.17840851495185,"references":0.748390949044984,"funders":0.171409924390227,"similarity-checking":0.9576335321358893,"award-numbers":0.1526914718563623,"ror-ids":0.0,"update-policies":0.9518777468426497,"resource-links":0.007276312409306459,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.194107452339688,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1317157712305026,"funders":0.0,"similarity-checking":0.1993067590987868,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.01039861351819757,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":0.484375,"abstracts":0.0,"orcids":0.28125,"licenses":0.0,"references":0.21875,"funders":0.0,"similarity-checking":0.640625,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.484375,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.841756305541646,"abstracts":0.0,"orcids":0.06524435727004695,"licenses":0.2658934556175888,"references":0.7773389045530384,"funders":0.2108551517506332,"similarity-checking":0.9423042160225896,"award-numbers":0.1899859334320971,"ror-ids":0.0,"update-policies":0.8231477114296578,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":1.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.1177007299270073,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.6487226277372263,"funders":0.0,"similarity-checking":0.9443430656934307,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5930656934306568,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.06883993604547876,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"database":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1666666666666667,"funders":0.0,"similarity-checking":0.8333333333333333,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.7777777777777778,"resource-links":0.0,"descriptions":0.0}},"backfile":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.7222222222222222,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.611111111111111,"funders":0.0,"similarity-checking":0.888888888888889,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.6666666666666667,"resource-links":0.0,"descriptions":0.0},"report":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.8458162243173598,"abstracts":0.7162159062234762,"orcids":0.03369042430359614,"licenses":0.190749279318545,"references":0.7311800824291362,"funders":0.1433639957485529,"similarity-checking":0.9542434182858104,"award-numbers":0.1264346722333096,"ror-ids":0.0,"update-policies":0.9516436125065951,"resource-links":0.00801351899005192,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.1961471103327496,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1260945709281961,"funders":0.0,"similarity-checking":0.1908931698774081,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":0.02941176470588235,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.3235294117647059,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.02941176470588235,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.8221410679588922,"abstracts":0.0,"orcids":0.001451412786478451,"licenses":0.291598192756982,"references":0.7536039515883606,"funders":0.1839735936512396,"similarity-checking":0.9417913242971182,"award-numbers":0.1647470562071307,"ror-ids":0.0,"update-policies":0.8098298101458437,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.01815431164901664,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.5446293494704992,"funders":0.0,"similarity-checking":0.9258698940998487,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5264750378214826,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.01516663340650569,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1428571428571429,"funders":0.0,"similarity-checking":0.7142857142857143,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.5714285714285714,"resource-links":0.0,"descriptions":0.0}},"current":{"monograph":{"last-status-check-time":1707521512502,"affiliations":0.8571428571428571,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.4285714285714286,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521512502,"affiliations":0.9770566037735849,"abstracts":0.9447547169811321,"orcids":0.5679245283018868,"licenses":0.05660377358490566,"references":0.9182641509433962,"funders":0.4482264150943396,"similarity-checking":0.9910943396226415,"award-numbers":0.4118490566037736,"ror-ids":0.0,"update-policies":0.954188679245283,"resource-links":0.0,"descriptions":0.0},"other":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.6666666666666667,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"book":{"last-status-check-time":1707521512502,"affiliations":1.0,"abstracts":0.0,"orcids":0.6,"licenses":0.0,"references":0.4666666666666667,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521512502,"affiliations":0.9965997080184059,"abstracts":0.0,"orcids":0.5688281928556909,"licenses":0.06297932105039454,"references":0.9647034908432355,"funders":0.4230591539925711,"similarity-checking":0.946353002051263,"award-numbers":0.3892225528061649,"ror-ids":0.0,"update-policies":0.9282797109751816,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521512502,"affiliations":0.29923273657289,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.8976982097186701,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.7723785166240409,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.5040453074433657,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521512502,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.1818181818181818,"funders":0.0,"similarity-checking":0.9090909090909091,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.9090909090909091,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":false,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"New
+      York, NY, United States","names":["Association for Computing Machinery (ACM)","VLDB
+      Endowment","Association for Computing Machinery"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '2835'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 17:04:42 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

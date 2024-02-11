@@ -13,6 +13,30 @@ from ..constants import CM_TO_BIB_TRANSLATIONS, Commonmeta
 
 def write_bibtex(metadata: Commonmeta) -> str:
     """Write bibtex"""
+    if metadata.write_errors is not None:
+        return None
+    item = write_bibtex_item(metadata)
+    bibtex_str = """
+    @comment{
+        BibTeX entry created by commonmeta-py
+    }
+    """
+    bib_database = BibDatabase()
+    bib_database.entries = [item]
+    bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
+    writer = BibTexWriter()
+    writer.common_strings = True
+    writer.indent = "    "
+    bibtex_str = writer.write(bib_database)
+
+    # Hack to remove curly braces around month names
+    for month_name in MONTH_SHORT_NAMES:
+        bibtex_str = bibtex_str.replace(f"{{{month_name}}}", month_name)
+    return bibtex_str
+
+
+def write_bibtex_item(metadata: Commonmeta) -> dict:
+    """Write bibtex item"""
     container = metadata.container if metadata.container else {}
     date_published = get_iso8601_date(metadata.date.get("published", None))
     authors = authors_as_string(metadata.contributors)
@@ -75,48 +99,51 @@ def write_bibtex(metadata: Commonmeta) -> str:
     url = metadata.url
     year = date_published[:4] if date_published else None
 
-    bibtex_str = """
-    @comment{
-        BibTeX entry created by commonmeta-py
-    }
-    """
-    bib_database = BibDatabase()
-    bib_database.entries = [
-        compact(
-            {
-                "ID": _id,
-                "ENTRYTYPE": _type,
-                "abstract": abstract,
-                "author": author,
-                "copyright": license_,
-                "doi": doi,
-                "institution": institution,
-                "isbn": isbn,
-                "issn": issn,
-                "issue": issue,
-                "journal": journal,
-                "booktitle": booktitle,
-                "language": language,
-                "location": location,
-                "month": month,
-                "pages": pages,
-                "publisher": publisher,
-                "series": series,
-                "title": title,
-                "url": url,
-                "urldate": date_published,
-                "year": year,
-            }
-        )
-    ]
+    return compact(
+        {
+            "ID": _id,
+            "ENTRYTYPE": _type,
+            "abstract": abstract,
+            "author": author,
+            "copyright": license_,
+            "doi": doi,
+            "institution": institution,
+            "isbn": isbn,
+            "issn": issn,
+            "issue": issue,
+            "journal": journal,
+            "booktitle": booktitle,
+            "language": language,
+            "location": location,
+            "month": month,
+            "pages": pages,
+            "publisher": publisher,
+            "series": series,
+            "title": title,
+            "url": url,
+            "urldate": date_published,
+            "year": year,
+        }
+    )
 
-    bib_database.entries[0] = page_double_hyphen(bib_database.entries[0])
+
+def write_bibtex_list(metalist):
+    """Write bibtex list"""
+    if metalist is None:
+        return None
+
+    bib_database = BibDatabase()
+    bib_database.entries = [write_bibtex_item(item) for item in metalist.items]
+    
+    # TODO: Fix page_double_hyphen in write_bibtex_item
+    bib_database.entries = [page_double_hyphen(entry) for entry in bib_database.entries]
     writer = BibTexWriter()
     writer.common_strings = True
     writer.indent = "    "
     bibtex_str = writer.write(bib_database)
 
     # Hack to remove curly braces around month names
+    # TODO: Fix this in write_bibtex_item
     for month_name in MONTH_SHORT_NAMES:
         bibtex_str = bibtex_str.replace(f"{{{month_name}}}", month_name)
     return bibtex_str

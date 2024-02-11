@@ -1,370 +1,75 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
   response:
-    body:
-      string: !!binary |
-        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
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22105/20231101173119/https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice","authors":[{"name":"OA.Works"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22105/20231101173119/","authors":null,"backlog":0,"canonical_url":true,"category":"computerAndInformationSciences","created_at":1672790400,"current_feed_url":null,"description":"OA.Works
+      Blog","favicon":"https://blog.oa.works/favicon.png","feed_format":"application/rss+xml","feed_url":"https://blog.oa.works/rss/","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.79","home_page_url":"https://blog.oa.works/","id":"e70b452d-1b21-43f1-8726-07f4192f32ef","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"oa_works","status":"active","title":"OA.Works
+      Blog","updated_at":1703027736,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"OA.Works
+      Blog","blog_slug":"oa_works","content_text":"After a couple of years of working
+      to support institutions implementing\ntheir OA policies, we\\''re so proud to
+      see\n[OA.Report](https://oa.report/?ref=blog.oa.works), [our development\npartner](https://blog.oa.works/grant-to-bolster-oa-policies-from-bmgf/),\nand
+      [one of our collaborators](https://dataseer.ai/?ref=blog.oa.works)\n[featured
+      in\nNature](https://www.nature.com/articles/d41586-023-00175-1?ref=blog.oa.works).\nWe
+      appreciate Nature bringing attention to the progress being made in\nmore effectively
+      implementing OA policies.\n\nRead the full story on [Nature\\''s\nwebsite](https://www.nature.com/articles/d41586-023-00175-1?ref=blog.oa.works).\n\n<figure
+      class=\"kg-card kg-image-card kg-card-hascaption\">\n<a\nhref=\"https://www.nature.com/articles/d41586-023-00175-1?ref=blog.oa.works\"><img\nsrc=\"https://blog.oa.works/content/images/2023/01/nature-website-v2-1.png\"\nclass=\"kg-image\"
+      loading=\"lazy\"\nsrcset=\"https://blog.oa.works/content/images/size/w600/2023/01/nature-website-v2-1.png
+      600w, https://blog.oa.works/content/images/size/w1000/2023/01/nature-website-v2-1.png
+      1000w, https://blog.oa.works/content/images/2023/01/nature-website-v2-1.png
+      1520w\"\nsizes=\"(min-width: 720px) 720px\" width=\"1520\" height=\"1584\"\nalt=\"A
+      screenshot Nature\u2019s website shows the title &quot;Confused by open-access
+      policies? These tools can help&quot; alongside a decorative image of a room
+      full of open filing cases.\" /></a>\n<figcaption>Screenshot of the story on
+      the Nature website</figcaption>\n</figure>\n\nFind out more about how OA.Report
+      can help your organization [on our\nwebsite](https://oa.report/?ref=blog.oa.works)
+      or [in our recent\nupdate](https://blog.oa.works/oa-report-helps-funders-measure-and-increase-oa-policy-compliance-and-their-investments-impact/).\n\n------------------------------------------------------------------------\n\nGrant
+      support for this work was provided in part by the Bill and Melinda\nGates Foundation
+      and the Robert Wood Johnson Foundation. The views\nexpressed here do not necessarily
+      reflect the views of either\nfoundation.\n","doi":"https://doi.org/10.59350/tfahc-rp566","guid":"63cef642602205003d6f50fb","id":"2b3cdd27-5123-4167-9482-3c074392e2d2","image":"https://blog.oa.works/content/images/2023/01/nature-website-v2.png","indexed_at":1698287730,"language":"en","published_at":1674558707,"reference":[],"relationships":[],"summary":"After
+      a couple of years of working to support institutions implementing their OA policies,
+      we''re so proud to see OA.Report, our development partner, and one of our collaborators
+      featured in Nature. We appreciate Nature bringing attention to the progress
+      being made in more effectively implementing OA policies.\n","tags":["Nofeature","Noexcerpt","OA.Report"],"title":"Nature
+      features OA.Report''s work putting OA policy into practice!","updated_at":1696174453,"url":"https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Mon, 22 Jan 2024 10:57:21 GMT
+      - Sat, 10 Feb 2024 10:01:04 GMT
       fly-request-id:
-      - 01HMRD2N31456RM1539AVDF0XW-fra
+      - 01HP97D8HBN43EC8P7HYQZC0YW-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '13'
-      ratelimit-reset:
-      - '7'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
-  response:
-    body:
-      string: !!binary |
-        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
-        aqyjhK+3Bmnkkd8Pr+UCACMK7tckEAAA
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:59:03 GMT
-      fly-request-id:
-      - 01HMSJY89N2YDRM8S66QQM1SW8-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '12'
-      ratelimit-reset:
       - '9'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:08:46 GMT
-      fly-request-id:
-      - 01HMSKG1QY5341KRD2YZXHA0JV-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '12'
       ratelimit-reset:
-      - '9'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
-  response:
-    body:
-      string: !!binary |
-        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
-        aqyjhK+3Bmnkkd8Pr+UCACMK7tckEAAA
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:13:15 GMT
-      fly-request-id:
-      - 01HMSKR85S9D61YP2MHG84QGRB-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '12'
-      ratelimit-reset:
-      - '11'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiYGJgp++SUKbvml
-        eSk2+hBBLpsMQzsk0QxDOy6bAruQjFSFotTC0tTiktQUhdAgH4XyxGKFvPwShTSQboX8PIWSjFSF
-        4tSistQiPQXPNIXK/FKF1LyS1KLUFLAUSE9uYl5pYk5OpUJBTmpicapCckZqcjZIZZFCcUFqTk5m
-        XrpCYl6KQklRpUJiemJmnp6NfoEdFwCJiwL3zwAAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - text/html; charset=utf-8
-      date:
-      - Sun, 04 Feb 2024 09:42:47 GMT
-      fly-request-id:
-      - 01HNSQZETQEB2ZF0W3264QZ8P6-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '15'
-      ratelimit-reset:
-      - '0'
+      - '22'
       server:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 404
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

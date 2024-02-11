@@ -1,5 +1,5 @@
 """InvenioRDM reader for Commonmeta"""
-import requests
+import httpx
 from pydash import py_
 
 from ..utils import (
@@ -25,7 +25,7 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json()

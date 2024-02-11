@@ -1,27 +1,26 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 848e76511b810bda-AMS
+      - 85338273bd670e88-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +28,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 21 Jan 2024 09:17:06 GMT
+      - Sat, 10 Feb 2024 10:01:13 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4oq65URLYc9ZNrB6mxdEIDxs8eoRO6aE7JYK6ahLa7AJezNCMWhYlD0Ef7X6xs9dODRu2ub869DnE2Y3moLKXiZAcyQ44BVs8n9c12l7CNrhm4Ul4HLzbP%2FggRw7rDtTh6rx%2FFI%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ZZqTpc8xtBetwnTTYTAmiplJGJxDXlTJQq90PTnChKKJbC3M9xRr%2BWkTRiiPy8dYsxo%2FrfC2kx%2F0y5VVEsB9km0gsKaxak1Ygx%2Fta3ZPSmKOQjjWeIcgNEMuzT%2BRTsNZDyW5eEg%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -44,99 +43,111 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/works/10.7554/elife.01567
   response:
-    body:
-      string: !!binary |
-        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
-        MGR77XsI8+nr1/8BcVcINfk1AAA=
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2024,2,7]],"date-time":"2024-02-07T03:23:52Z","timestamp":1707276232803},"reference-count":27,"publisher":"eLife
+      Sciences Publications, Ltd","license":[{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"am","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"},{"start":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T00:00:00Z","timestamp":1392076800000},"content-version":"tdm","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/3.0\/"}],"funder":[{"name":"SystemsX"},{"name":"EMBO
+      longterm post-doctoral fellowships"},{"name":"Marie Heim-Voegtlin"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"},{"name":"SystemsX"},{"DOI":"10.13039\/501100003043","name":"EMBO","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100001711","name":"Swiss
+      National Science Foundation","doi-asserted-by":"publisher"},{"DOI":"10.13039\/501100006390","name":"University
+      of Lausanne","doi-asserted-by":"crossref"}],"content-domain":{"domain":["www.elifesciences.org"],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Among
+      various advantages, their small size makes model organisms preferred subjects
+      of investigation. Yet, even in model systems detailed analysis of numerous developmental
+      processes at cellular level is severely hampered by their scale. For instance,
+      secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly
+      specialized tissues that comprises several thousand cells starting from a few
+      dozen. This dynamic process is difficult to follow because of its scale and
+      because it can only be investigated invasively, precluding comprehensive understanding
+      of the cell proliferation, differentiation, and patterning events involved.
+      To overcome such limitation, we established an automated quantitative histology
+      approach. We acquired hypocotyl cross-sections from tiled high-resolution images
+      and extracted their information content using custom high-throughput image processing
+      and segmentation. Coupled with automated cell type recognition through machine
+      learning, we could establish a cellular resolution atlas that reveals vascular
+      morphodynamics during secondary growth, for example equidistant phloem pole
+      formation.<\/jats:p>","DOI":"10.7554\/elife.01567","type":"journal-article","created":{"date-parts":[[2014,2,11]],"date-time":"2014-02-11T16:29:04Z","timestamp":1392136144000},"source":"Crossref","is-referenced-by-count":31,"title":["Automated
+      quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl
+      secondary growth"],"prefix":"10.7554","volume":"3","author":[{"given":"Martial","family":"Sankar","sequence":"first","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Kaisa","family":"Nieminen","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Laura","family":"Ragni","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]},{"given":"Ioannis","family":"Xenarios","sequence":"additional","affiliation":[{"name":"Vital-IT,
+      Swiss Institute of Bioinformatics, Lausanne, Switzerland"}]},{"given":"Christian
+      S","family":"Hardtke","sequence":"additional","affiliation":[{"name":"Department
+      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"}]}],"member":"4374","published-online":{"date-parts":[[2014,2,11]]},"reference":[{"key":"bib1","doi-asserted-by":"publisher","first-page":"181","DOI":"10.1038\/nature02100","article-title":"APL
+      regulates vascular tissue identity in Arabidopsis","volume":"426","author":"Bonke","year":"2003","journal-title":"Nature"},{"key":"bib2","doi-asserted-by":"publisher","first-page":"413","DOI":"10.1534\/genetics.109.104976","article-title":"In
+      the beginning was the worm","volume":"182","author":"Brenner","year":"2009","journal-title":"Genetics"},{"key":"bib3","doi-asserted-by":"publisher","first-page":"594","DOI":"10.1034\/j.1399-3054.2002.1140413.x","article-title":"Secondary
+      xylem development in Arabidopsis: a model for wood formation","volume":"114","author":"Chaffey","year":"2002","journal-title":"Physiologia
+      Plantarum"},{"key":"bib4","doi-asserted-by":"publisher","first-page":"2119","DOI":"10.1162\/089976601750399335","article-title":"Training
+      nu-support vector classifiers: theory and algorithms","volume":"13","author":"Chang","year":"2001","journal-title":"Neural
+      computation"},{"key":"bib5","doi-asserted-by":"crossref","first-page":"273","DOI":"10.1007\/BF00994018","article-title":"Support-vector
+      Networks","volume":"20","author":"Cortes","year":"1995","journal-title":"Machine
+      Learning"},{"key":"bib6","doi-asserted-by":"crossref","first-page":"71","DOI":"10.1242\/dev.119.1.71","article-title":"Cellular
+      organisation of the Arabidopsis thaliana root","volume":"119","author":"Dolan","year":"1993","journal-title":"Development"},{"key":"bib7","doi-asserted-by":"publisher","first-page":"1097","DOI":"10.1016\/j.semcdb.2009.09.009","article-title":"Stem
+      cell function during plant vascular development","volume":"20","author":"Elo","year":"2009","journal-title":"Seminars
+      in Cell & Developmental Biology"},{"key":"bib8","doi-asserted-by":"publisher","first-page":"2224","DOI":"10.1242\/dev.091314","article-title":"WOX4
+      and WOX14 act downstream of the PXY receptor kinase to regulate plant vascular
+      proliferation independently of any role in vascular organisation","volume":"140","author":"Etchells","year":"2013","journal-title":"Development"},{"key":"bib9","doi-asserted-by":"publisher","first-page":"e1002997","DOI":"10.1371\/journal.pgen.1002997","article-title":"Plant
+      vascular cell division is maintained by an interaction between PXY and ethylene
+      signalling","volume":"8","author":"Etchells","year":"2012","journal-title":"PLOS
+      Genetics"},{"key":"bib10","doi-asserted-by":"publisher","first-page":"370","DOI":"10.1038\/msb.2010.25","article-title":"Clustering
+      phenotype populations by genome-wide RNAi and multiparametric imaging","volume":"6","author":"Fuchs","year":"2010","journal-title":"Molecular
+      Systems Biology"},{"key":"bib11","doi-asserted-by":"publisher","first-page":"60","DOI":"10.1016\/j.biosystems.2012.07.004","article-title":"BaSAR-A
+      tool in R for frequency detection","volume":"110","author":"Granqvist","year":"2012","journal-title":"Bio
+      Systems"},{"key":"bib12","doi-asserted-by":"publisher","first-page":"55","DOI":"10.1016\/j.pbi.2005.11.013","article-title":"Developmental
+      mechanisms regulating secondary growth in woody plants","volume":"9","author":"Groover","year":"2006","journal-title":"Current
+      Opinion in Plant Biology"},{"key":"bib13","doi-asserted-by":"publisher","first-page":"2618","DOI":"10.1105\/tpc.110.076083","article-title":"TDIF
+      peptide signaling regulates vascular stem cell proliferation via the WOX4 homeobox
+      gene in Arabidopsis","volume":"22","author":"Hirakawa","year":"2010","journal-title":"Plant
+      Cell"},{"key":"bib14","doi-asserted-by":"publisher","first-page":"15208","DOI":"10.1073\/pnas.0808444105","article-title":"Non-cell-autonomous
+      control of vascular stem cell fate by a CLE peptide\/receptor system","volume":"105","author":"Hirakawa","year":"2008","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib15","doi-asserted-by":"publisher","first-page":"263","DOI":"10.1016\/0092-8674(89)90900-8","article-title":"Arabidopsis,
+      a useful weed","volume":"56","author":"Meyerowitz","year":"1989","journal-title":"Cell"},{"key":"bib16","doi-asserted-by":"publisher","first-page":"1482","DOI":"10.1126\/science.1066609","article-title":"Plants
+      compared to animals: the broadest comparative study of development","volume":"295","author":"Meyerowitz","year":"2002","journal-title":"Science"},{"key":"bib17","doi-asserted-by":"publisher","first-page":"653","DOI":"10.1104\/pp.104.040212","article-title":"A
+      weed for wood? Arabidopsis as a genetic model for xylem development","volume":"135","author":"Nieminen","year":"2004","journal-title":"Plant
+      Physiol"},{"key":"bib18","doi-asserted-by":"publisher","first-page":"1565","DOI":"10.1038\/nbt1206-1565","article-title":"What
+      is a support vector machine?","volume":"24","author":"Noble","year":"2006","journal-title":"Nature
+      Biotechnology"},{"key":"bib19","doi-asserted-by":"publisher","first-page":"1516","DOI":"10.1073\/pnas.77.3.1516","article-title":"Classification
+      of cultured mammalian cells by shape analysis and pattern recognition","volume":"77","author":"Olson","year":"1980","journal-title":"Proceedings
+      of the National Academy of Sciences of the United States of America"},{"key":"bib20","doi-asserted-by":"publisher","first-page":"979","DOI":"10.1093\/bioinformatics\/btq046","article-title":"EBImage\u2013an
+      R package for image processing with applications to cellular phenotypes","volume":"26","author":"Pau","year":"2010","journal-title":"Bioinformatics"},{"key":"bib21","doi-asserted-by":"publisher","first-page":"1322","DOI":"10.1105\/tpc.111.084020","article-title":"Mobile
+      gibberellin directly stimulates Arabidopsis hypocotyl xylem expansion","volume":"23","author":"Ragni","year":"2011","journal-title":"Plant
+      Cell"},{"key":"bib22","doi-asserted-by":"publisher","article-title":"Data from:
+      Automated quantitative histology reveals vascular morphodynamics during Arabidopsis
+      hypocotyl secondary growth","author":"Sankar","year":"2014","journal-title":"Dryad
+      Digital Repository","DOI":"10.5061\/dryad.b835k"},{"key":"bib23","doi-asserted-by":"publisher","first-page":"458","DOI":"10.1016\/j.cub.2008.02.070","article-title":"Flowering
+      as a condition for xylem expansion in Arabidopsis hypocotyl and root","volume":"18","author":"Sibout","year":"2008","journal-title":"Current
+      Biology"},{"key":"bib24","doi-asserted-by":"publisher","first-page":"577","DOI":"10.1111\/j.1469-8137.2010.03236.x","article-title":"Evolution
+      of development of vascular cambia and secondary growth","volume":"186","author":"Spicer","year":"2010","journal-title":"The
+      New Phytologist"},{"key":"bib25","doi-asserted-by":"publisher","first-page":"659","DOI":"10.1007\/s00138-011-0345-9","article-title":"Cell
+      morphology classification and clutter mitigation in phase-contrast microscopy
+      images using machine learning","volume":"23","author":"Theriault","year":"2012","journal-title":"Machine
+      Vision and Applications"},{"key":"bib26","doi-asserted-by":"publisher","first-page":"439","DOI":"10.1016\/j.cell.2012.02.048","article-title":"Mechanical
+      stress acts via katanin to amplify differences in growth rate between adjacent
+      cells in Arabidopsis","volume":"149","author":"Uyttewaal","year":"2012","journal-title":"Cell"},{"key":"bib27","doi-asserted-by":"publisher","first-page":"860","DOI":"10.1038\/ncb2764","article-title":"A
+      screen for morphological complexity identifies regulators of switch-like transitions
+      between discrete cell shapes","volume":"15","author":"Yin","year":"2013","journal-title":"Nature
+      Cell Biology"}],"container-title":["eLife"],"original-title":[],"language":"en","link":[{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/cdn.elifesciences.org\/articles\/01567\/elife-01567-v1.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/elifesciences.org\/articles\/01567","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,10,12]],"date-time":"2023-10-12T00:43:13Z","timestamp":1697071393000},"score":1,"resource":{"primary":{"URL":"https:\/\/elifesciences.org\/articles\/01567"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2014,2,11]]},"references-count":27,"alternative-id":["10.7554\/eLife.01567"],"URL":"http:\/\/dx.doi.org\/10.7554\/elife.01567","archive":["CLOCKSS"],"relation":{"is-supplemented-by":[{"id-type":"doi","id":"10.5061\/dryad.b835k","asserted-by":"subject"}],"has-review":[{"id-type":"doi","id":"10.7554\/eLife.01567.017","asserted-by":"object"},{"id-type":"doi","id":"10.7554\/eLife.01567.016","asserted-by":"object"}]},"ISSN":["2050-084X"],"issn-type":[{"value":"2050-084X","type":"electronic"}],"subject":["General
+      Immunology and Microbiology","General Biochemistry, Genetics and Molecular Biology","General
+      Medicine","General Neuroscience"],"published":{"date-parts":[[2014,2,11]]},"assertion":[{"value":"2013-09-20","order":0,"name":"received","label":"Received","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2013-12-24","order":1,"name":"accepted","label":"Accepted","group":{"name":"publication_history","label":"Publication
+      History"}},{"value":"2014-02-11","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
+      History"}}]}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -150,11 +161,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '4181'
+      - '4211'
       content-type:
       - application/json
       date:
-      - Sun, 21 Jan 2024 09:17:06 GMT
+      - Sat, 10 Feb 2024 10:01:13 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -171,56 +182,29 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.crossref.org/members/4374
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAA/81ZTW/jNhD9K4HOUsAhh1+5Fj11DwWKnhY5KDadVWNLhiTvNlj4v/fRlmN92Qmy
-        yHaTQyhqNEO+mXkzZL4nTZu3uya5S6qnJE02oWnyx5C1z9uAuU3YPIS6N/811E1RlXhFt+JWnN8k
-        d9+Tdd602VFftvgSFk9ZW2zwhqzQ1rMiIslpsq2LTV4/Z2UeXybhU7EKN38tilAuQnPz5+5hXSzy
-        Flaa9OZTu4SNRbUr2yaaWOzqOpRttqwKPEvyVqfJQ754WhXr0M0qra1Kk7Zq83U3pa1mt4dkHfKn
-        ZfWtPCiL77KH56xoml1YZs8hr5O7z5+lkColRVbdp/FBppaJj2NKrTT2OBapIecOY/IpO+7GNmWi
-        buxSFrobm1RpksexTqUT3Tyn5ESnH2N10qlSR3QcypS0v7/fR/DCqvg3YP2fExK3VmtO7iNC8Ezn
-        hnwFMIojglkHWHInbo3x3jkjFSttZfREU2yKdV4X7fPRX0X52P9ACrZKGi2s8myNTZNlaBZ1sZ2o
-        FmlSV3VWLAezGm4nEkoDMsUePlntyiUiKDt57GDFO2LLlpQ3jrVPE/g/lE0Yinn8WODtrJfCALQX
-        ZT2LZKx1pLFRo50VsDgAY6hPsHfwlMVHGg5J6tBUu3oRsnVRPg2FlYJiKeNumJ2H8apexN32hWBQ
-        MFYYzTvpoHG3XeZtyLYVdlSE4UqdssJZ7b1mQGPPAPZVCpYwqWERm1Zwx4vhvl+Fsoo0KeEg4ufd
-        OtoNFmmgTuILLePWV6E+5N9QUHqEobYWzmH8jgJgsFJA/S2vl1m5i5QxcrEjZ0k4KYRQXpkpMn1p
-        IizPSU8sRPRmLyB6u47hII03kpHtyvqx/UFUIHvgPNfFP0QfmrbOF+3Yy0JqoCIgBJ2TiLjqvrPK
-        nhjQ9SpirXWEcgB0X5vFdkEOWmmnQCoveY4s/568kSdvQZRf8/Uuyp6YYQ9qKJbJHSvLkRGfQnlg
-        jrCGLsg3nTYMtz19eFyDeO9PzNuVA1DLeh3/bEOoszp8LcI30K1DaqTJP0CqBOHmdVssIp5kIi2e
-        5vEctW22VXnYNLFyAp9tq6YF9y6qsj3MS6vt/kzpE2sSEOk5a4Scm6oz0PUC9EgVUsbZGVUsoj9n
-        Fkb7/Zlpr2Ly5lrYp6cDh5C0UhvrFOLaMPXiqsuyY/7HB0vMOhKiA52T6eVJlx8OhKqkNdojifux
-        16nqCLR7mmGNucQe0v0hu6UF9RkJzgN/62l2nz4ZZFM32SeUw9R+xiPvhtNbj4RiZol6B1IZwemd
-        8IhS4Z3xSFDfRxe4KkkxgdmT02qCLrJeozFQwiL0xuiiL4FLPGqbh5BzA7CdlxLmGOQllYyuuYA9
-        jICQHHQYZ1TMsokrHAozAXaQP/bg5dAzsdAL8C6jc+FIATOe0YREwFbgPYkOZFIIT8GE+GcnUXmV
-        11f99gP+EtfiXQxdID4uosUPh3CP6X4CGHzrQBkCJVqK2Eyp3zP+ldEZc+v789ujciIxEJQG/Ykf
-        IEZDxBxaUNRhUIE2AueBSUJLG1sJMDARm/fCR2gTQR0Ucxu9KH84mteK5Q/gajR+CY0lkNLXAtHF
-        uJMMP6D9BQf1YaUPTVIjPQianYK7hLHTfvv/rDtOg1cNGljFSMtx3bEAOLaOHvSP4jPAk1GKWDrD
-        0qNyTau6R6nHedSi8k+KuscpzaNYEcqSQHM/LDtOoxMWlj3iPHb9l6uOjt6Mpz6O9WBadHCAQFvr
-        ScZjbezn+34RsYFnQvFDBMXqM+sYxQYVVMRTFQ6YftJtn8oOmnI0x/EM8qFcQiO6HZAHDen23WFN
-        P4FdrzS87w5nLaObpAI5OuWtusYHaFvRDMZTHnoFNJ+T+LXKmBggSqEH+jh6YIc+HtmFRaBrsb9U
-        V4r80cgdHEudAKaTrlQ59I1gNg2ReA49oxtzU6DrxwsBpjCvhKXHQmDHaIXGXMdE7aGLU4HCEQ29
-        JSgIJesKIcCewckd9QDus3OMYAE0uk2QnWGcngeu8IpQJbBgcJeTswcEmnMF/ZT+gZy3scVH2Tev
-        9A9GaA3uNjhOm2lgI0MiOYM1hXp3YGPB3Lf08XwBPFfr/PF4IxoAbYED/8xtRlvvQnqWGN9DDV9P
-        xC/cw42kLl8LjQSvX3GNbc9fDI2kLl32jMXG95xjY0d6eAWBS19P7jQni5y5qLuwwst4zNx+jURm
-        rmCvgnpRbP7GeJWvmwvbeqN73mbwLDW2OLm/veCIN4fqpXVfvWO/hPpAAAm6ro43c8ld8lu+eaiL
-        5WNIb/4uC9DgzR9Quaw2SXq4KTze773+P5XXrxPv9/v/AAvJaQ4fGgAA
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707522299459,"primary-name":"eLife
+      Sciences Publications, Ltd","counts":{"current-dois":23313,"backfile-dois":35573,"total-dois":58886},"breakdowns":{"dois-by-issued-year":[[2023,13154],[2022,7431],[2021,7267],[2020,6188],[2019,4848],[2017,4118],[2018,4058],[2016,3512],[2015,2808],[2024,2728],[2014,1804],[2013,811],[2012,159]]},"prefixes":["10.7554"],"coverage":{"affiliations-current":0.6588169690730494,"similarity-checking-current":0.211512889803972,"descriptions-current":0.0,"ror-ids-current":0.4895551838030284,"funders-backfile":0.2981474713968459,"licenses-backfile":0.9999718887920614,"funders-current":0.1644147042422683,"affiliations-backfile":0.9904984117167515,"resource-links-backfile":0.3367722711044894,"orcids-backfile":0.8700418856998285,"update-policies-current":0.1797280487281774,"ror-ids-backfile":0.04211058949203047,"orcids-current":0.5906146785055548,"similarity-checking-backfile":0.3368566047283052,"references-backfile":0.3290135777134343,"descriptions-backfile":0.0,"award-numbers-backfile":0.2818710820003936,"update-policies-backfile":0.1168864026087201,"licenses-current":0.9995281602539356,"award-numbers-current":0.1584523656329087,"abstracts-backfile":0.330250470862733,"resource-links-current":0.1797280487281774,"abstracts-current":0.3035645348089049,"references-current":0.1745807060438382},"prefix":[{"name":"eLife
+      Sciences Publications, Ltd.","value":"10.7554"}],"id":4374,"tokens":["elife","sciences","publications","ltd"],"counts-type":{"all":{"peer-review":39753,"journal-article":16172,"journal":1,"component":143804,"posted-content":2961},"backfile":{"peer-review":23585,"journal-article":11982,"posted-content":6},"current":{"peer-review":16168,"journal-article":4190,"posted-content":2955}},"coverage-type":{"all":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.799763539858627,"abstracts":0.0,"orcids":0.700726989158051,"licenses":0.9998239126606797,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.2259955223505144,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9798417017066535,"abstracts":0.9809547365817461,"orcids":0.8883873361365323,"licenses":0.9999381647291615,"references":0.9753895622062825,"funders":0.8928394756369032,"similarity-checking":0.9992579767499382,"award-numbers":0.8484417511748701,"ror-ids":0.2428271085827356,"update-policies":0.5162008409596834,"resource-links":0.999876329458323,"descriptions":0.0},"journal":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707522299459,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":4.867736641539874E-4,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979736575481256,"abstracts":1.0,"orcids":0.8429584599797366,"licenses":0.9986491050320838,"references":0.0,"funders":0.0,"similarity-checking":0.2546437014522121,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.996565613737545,"abstracts":0.0,"orcids":0.8804324782700869,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.06292134831460675,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9785511600734434,"abstracts":0.9799699549323986,"orcids":0.8495242864296445,"licenses":0.999916541478885,"references":0.9767985311300283,"funders":0.885161074945752,"similarity-checking":0.999582707394425,"award-numbers":0.8368385912201636,"ror-ids":0.001168419295610082,"update-policies":0.3470205307961943,"resource-links":0.99983308295777,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":1.0,"abstracts":1.0,"orcids":1.0,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"peer-review":{"last-status-check-time":1707522299459,"affiliations":0.5126793666501732,"abstracts":0.0,"orcids":0.4385823849579416,"licenses":0.9995670460168234,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.4638792676892627,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707522299459,"affiliations":0.9835322195704057,"abstracts":0.9837708830548926,"orcids":0.9995226730310263,"licenses":1.0,"references":0.9713603818615753,"funders":0.9147971360381862,"similarity-checking":0.9983293556085919,"award-numbers":0.8816229116945107,"ror-ids":0.933890214797136,"update-policies":1.0,"resource-links":1.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707522299459,"affiliations":0.9979695431472081,"abstracts":1.0,"orcids":0.8426395939086294,"licenses":0.9986463620981387,"references":0.0,"funders":0.0,"similarity-checking":0.2531302876480541,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":true,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Cambridge,
+      United Kingdom","names":["eLife Sciences Publications, Ltd","eLife Sciences
+      Publications, Ltd."]}}'
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -234,11 +218,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1752'
+      - '1757'
       content-type:
       - application/json
       date:
-      - Sun, 21 Jan 2024 09:17:06 GMT
+      - Sat, 10 Feb 2024 10:01:14 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -255,339 +239,30 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 848e76577c651c90-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sun, 21 Jan 2024 09:17:07 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9d1W6Ob9b6RhtJ%2BfQo2wv2KgKf9hb%2BdApd1Pk5PnEA7Jw6FKGHKzv7HIk3DQmJrRFQ0Kxoa1N44b4FaIZvXpImUq1%2BrCaptGK3kUogRCzwPIg7AduK65Nu24yFzxO7X80wAzClw%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b100f89d85c48-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 21:59:12 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7wpOjowSmBkuNIGb3iuZEH6y5kfcgdao%2BGm4PgjMkPmUAGw5fx1GcylTh99l%2B1htehV5go2jfOv2P6iXTc1NeHN1yjImCFrEbLoNjuDzSwqBCC8uU6TsH4it%2BqnsNfo%2FRGlwR1Y%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/works/10.7554/elife.01567
-  response:
-    body:
-      string: !!binary |
-        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
-        MGR77XsI8+nr1/8BcVcINfk1AAA=
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
       connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '4181'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:59:12 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/members/4374
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '1750'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:59:13 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
+    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 849b10162c187748-AMS
+      - 85338279cb230bea-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -595,11 +270,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 22 Jan 2024 21:59:13 GMT
+      - Sat, 10 Feb 2024 10:01:14 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=MfjAi4w1MyhO4Lg1odGss2KrmkAfbUpr2Bm01zzz7psX0O9E%2BC18kdn2VtfBwFaaUnS36XO92EtpRGumnpXU1NR8oaBZQFp5BE84GBzGeJsaIZ0IWXXDJo9Bvkn4cU431UjJDzw%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=inJIwLXLeyJiVlIU1lXSO16WW7PhkzVX46YYTwIvTVLW960CNCaPQvluRzg0L1q0AAAwCtvBQz%2F95dOOh4M8Ix3wr9zoNsPUK9%2B6akJWRMEjpw%2B7XfmC2fSX3462Sda%2Bpppv8oE%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -610,621 +285,6 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b1e4c7efcb900-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:08:55 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=804qm5GjcA1oDn1S2smAb2IZPMbvC14VybfSEnVTBPOYNvugOV3wvoB1YBRJ8cigtJ8sdDb5G15Z%2BLMQ1p1MyP3RYebzSHT9M%2BhcZ%2FplU4RF88xwNn8RfXgydTSQ60%2FUsodv60E%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/works/10.7554/elife.01567
-  response:
-    body:
-      string: !!binary |
-        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
-        MGR77XsI8+nr1/8BcVcINfk1AAA=
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '4181'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:08:56 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/members/4374
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '1750'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:08:56 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b1e53081206dc-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:08:56 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=acnMmjDRdZidOZ0v0wBrbgrj%2BBdRBVhD5i5NWAXtEV8SUlqdkFybKTWk0RNlOUzWaxg9g1OJIi%2BgdzInpWQgEC7IfiisYdVtIIKJs6GwxfoRz6sd5E90Pau4RofpAGLvEBdQN1s%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b24d6ee0b6681-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:13:23 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2BGlAj0%2Fy9k3gM3A1XbNztQcVAurxOrpWsenOyfn368cky9ESvjDekGe7p9jAHDNNs1Ox1K2JqbJjfZTe9BmoU8WfaDHMjQdMB3bSXhAkLh65srYkNCa%2FJBmFfWoeDqTCvdXbab4%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/works/10.7554/elife.01567
-  response:
-    body:
-      string: !!binary |
-        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
-        MGR77XsI8+nr1/8BcVcINfk1AAA=
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '4181'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:13:24 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.crossref.org/members/4374
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '1750'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:13:24 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://doi.org/ra/10.7554
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        4VlVnTYAAAA=
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 849b24dd1bd766c1-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Mon, 22 Jan 2024 22:13:24 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rfJLArsHmC221ngn0NmE10aAqm096gxNGC6LP9or9hINvhCp%2FIGGMoefolJgQWO0x46mQKykMH9u8RDrskv9hELEptOuLeFvWOdKGTG3pukMLDbHC5bDuVOkbKevxWSmmHubgR8%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

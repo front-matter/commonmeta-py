@@ -593,6 +593,7 @@ def test_to_ris():
     organization_authors = [{"name": "University of California, Berkeley"}]
     assert ["Jones, Matt"] == to_ris(authors)
     assert ["University of California, Berkeley"] == to_ris(organization_authors)
+    assert [] == to_ris(None)
 
 
 def test_to_schema_org():

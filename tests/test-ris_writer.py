@@ -1,8 +1,9 @@
 # pylint: disable=invalid-name
 """RIS writer tests"""
 import pytest
+from os import path
 
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 
 
 @pytest.mark.vcr
@@ -12,7 +13,7 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    ris = subject.write(to="ris").split("\r\n")
+    ris = subject.write(to="ris").splitlines()
     assert ris[0] == "TY  - JOUR"
     assert (
         ris[1]
@@ -40,7 +41,7 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    ris = subject.write(to="ris").split("\r\n")
+    ris = subject.write(to="ris").splitlines()
     assert ris[0] == "TY  - JOUR"
     assert (
         ris[1]
@@ -222,3 +223,14 @@ def test_with_pages():
 #     end
 #   end
 # end
+
+
+@pytest.mark.vcr
+def test_write_ris_list():
+    """write_ris_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    ris_list = subject_list.write(to="ris").splitlines()
+    assert ris_list[0].startswith("TY  - JOUR")
+    assert ris_list[1].startswith("T1  - Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT")

@@ -2,7 +2,7 @@
 from typing import Optional
 import json
 from collections import defaultdict
-import requests
+import httpx
 from pydash import py_
 from bs4 import BeautifulSoup
 
@@ -33,7 +33,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = pid
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
 
@@ -70,7 +70,6 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = meta.get("@id", None)
-    # if id.blank? && URI(meta.fetch('@id', '')).host == 'doi.org'
     if _id is None:
         _id = meta.get("identifier", None)
     _id = normalize_id(_id)

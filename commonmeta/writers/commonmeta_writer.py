@@ -39,3 +39,11 @@ def write_commonmeta(metadata):
         }
     )
     return json.dumps(data, indent=4)
+
+
+def write_commonmeta_list(metalist):
+    """Write commonmeta list"""
+    if metalist is None:
+        return None
+    items = [vars(item) for item in metalist.items]
+    return json.dumps(items, indent=4)

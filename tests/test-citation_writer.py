@@ -2,7 +2,7 @@
 """Citation writer tests"""
 from os import path
 import pytest
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 
 
 @pytest.mark.vcr
@@ -97,3 +97,43 @@ def test_kbase_gulf_of_mexico():
         subject.write(to="citation")
         == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
     )
+    
+    
+@pytest.mark.vcr
+def test_post_without_doi():
+    """blog post without doi"""
+    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert subject.type == "Article"
+    assert (
+        subject.write(to="citation")
+        == "Hong, M. (2024). Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III). In <i>Verfassungsblog</i>. Verfassungsblog. https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    )    
+
+
+@pytest.mark.vcr
+def test_write_citation_list():
+    """write_citation_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    citation_list = subject_list.write(to="citation")
+    lines = citation_list.splitlines()
+    assert len(lines) == 20
+    assert lines[0] == "Newell P. Campbell. (1987). Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT. <i>AAPG Bulletin</i>, <i>71</i>. https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert lines[2] == "Hasbenli, A., &amp; Zaitzev, V. F. (2000). Two new species ofBombylius Linnaeus, 1758 (Diptera, Bombyliidae) from Turkey. <i>Deutsche Entomologische Zeitschrift</i>, <i>47</i>(1), 105–108. https://doi.org/10.1002/mmnd.4800470110"
+
+@pytest.mark.vcr
+def test_write_citation_list_ieee_style_german():
+    """write_citation_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    citation_list = subject_list.write(to="citation", style="ieee", locale="de")
+    lines = citation_list.splitlines()
+    assert len(lines) == 20
+    assert lines[0] == "[1]Newell P. Campbell, „Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 71, 1987, doi: 10.1306/703c7c64-1707-11d7-8645000102c1865d."
+    assert lines[2] == "[1]A. Hasbenli und V. F. Zaitzev, „Two new species ofBombylius Linnaeus, 1758 (Diptera, Bombyliidae) from Turkey“, <i>Deutsche Entomologische Zeitschrift</i>, Bd. 47, Nr. 1, S. 105–108, Juni 2000, doi: 10.1002/mmnd.4800470110."
+    

@@ -1,0 +1,216 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 853399effd39d0b9-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 10:17:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=8vYrjknZPNO5Oh2q12qqbLHAD8iHRk6zFz5ylfOX1OPQUABl2i5GQMZ1Oe%2Bd7GloM8Pwimxx%2BWGr%2Fq0Mz8bzxbfJGqfx9cMpat1gYtq8t%2BRs3rMHuI31E5NLf6Y1ebZF%2BbvBf5g%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.53731/avg2ykg-gdxppcd
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
+      Matter"}],"indexed":{"date-parts":[[2024,1,19]],"date-time":"2024-01-19T00:12:51Z","timestamp":1705623171790},"posted":{"date-parts":[[2023,1,25]]},"group-title":"Computer
+      and information sciences","reference-count":2,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>Science
+      blogs have been around for at least 20 years and have become an important part
+      of science communication. So are there any fundamental issues that need fixing?
+      Barriers to Entry Blogging platforms are mature at this point, and the technology
+      is not imposing barriers to entry for most people.<\/p>","DOI":"10.53731\/avg2ykg-gdxppcd","type":"posted-content","created":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T15:16:36Z","timestamp":1674659796000},"source":"Crossref","is-referenced-by-count":0,"title":["Do
+      we need to fix science blogs?"],"prefix":"10.53731","author":[{"ORCID":"http:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","article-title":"Interview
+      with Geoffrey Bilder","year":"2009","DOI":"10.53731\/r294649-6f79289-8cw1h"},{"key":"ref2","doi-asserted-by":"publisher","article-title":"Open
+      access may become mandatory for NIH-funded research","year":"2007","DOI":"10.53731\/r294649-6f79289-8cw1q"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.io\/posts\/need-to-fix-science-blogs","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,1,18]],"date-time":"2024-01-18T22:42:25Z","timestamp":1705617745000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.io\/posts\/need-to-fix-science-blogs"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,1,25]]},"references-count":2,"URL":"http:\/\/dx.doi.org\/10.53731\/avg2ykg-gdxppcd","relation":{},"published":{"date-parts":[[2023,1,25]]},"subtype":"other"}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1207'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 10:17:16 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/31795
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707530379746,"primary-name":"Front
+      Matter","counts":{"current-dois":2413,"backfile-dois":11949,"total-dois":14362},"breakdowns":{"dois-by-issued-year":[[2013,1358],[2023,1212],[2012,1116],[2014,1043],[2022,996],[2016,873],[2011,869],[2015,808],[2021,792],[2020,732],[2010,703],[2008,674],[2017,666],[2018,589],[2019,578],[2009,544],[2007,283],[2024,205],[2006,180],[2005,132],[1999,4],[2003,3],[2004,2]]},"prefixes":["10.59704","10.59350","10.59351","10.57099","10.59347","10.59349","10.54900","10.59348","10.53731"],"coverage":{"affiliations-current":0.04434314131786158,"similarity-checking-current":0.0,"descriptions-current":0.0,"ror-ids-current":0.03605470368835475,"funders-backfile":0.0070298769771529,"licenses-backfile":1.0,"funders-current":0.002900953170327393,"affiliations-backfile":0.0,"resource-links-backfile":0.9999163109883672,"orcids-backfile":0.409657711942422,"update-policies-current":0.0,"ror-ids-backfile":0.0,"orcids-current":0.4612515540820555,"similarity-checking-backfile":0.0,"references-backfile":0.07573855552765922,"descriptions-backfile":0.0,"award-numbers-backfile":0.0070298769771529,"update-policies-backfile":0.0,"licenses-current":1.0,"award-numbers-current":0.002900953170327393,"abstracts-backfile":0.9943928362206041,"resource-links-current":0.8661417322834646,"abstracts-current":0.9440530460008288,"references-current":0.07501036054703689},"prefix":[{"name":"Verfassungsblog","value":"10.59704"},{"name":"Daniel
+      Katz Blog","value":"10.59350"},{"name":"wisspub.net","value":"10.59351"},{"name":"Science
+      Blog","value":"10.57099"},{"name":"Ideas","value":"10.59347"},{"name":"Liberate
+      Science","value":"10.59349"},{"name":"FORCE11 Upstream","value":"10.54900"},{"name":"Jaberwocky
+      Ecology","value":"10.59348"},{"name":"Front Matter","value":"10.53731"}],"id":31795,"tokens":["front","matter"],"counts-type":{"all":{"posted-content":14362},"backfile":{"posted-content":11949},"current":{"posted-content":2413}},"coverage-type":{"all":{"posted-content":{"last-status-check-time":1707530379746,"affiliations":0.007450215847375017,"abstracts":0.9859351065311238,"orcids":0.4183261384208328,"licenses":1.0,"references":0.07561620944158196,"funders":0.006336164879543239,"similarity-checking":0.0,"award-numbers":0.006336164879543239,"ror-ids":0.006057652137585295,"update-policies":0.0,"resource-links":0.9774404679014065,"descriptions":0.0}},"backfile":{"posted-content":{"last-status-check-time":1707530379746,"affiliations":0.0,"abstracts":0.9943928362206041,"orcids":0.409657711942422,"licenses":1.0,"references":0.07573855552765922,"funders":0.0070298769771529,"similarity-checking":0.0,"award-numbers":0.0070298769771529,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.9999163109883672,"descriptions":0.0}},"current":{"posted-content":{"last-status-check-time":1707530379746,"affiliations":0.04434314131786158,"abstracts":0.9440530460008288,"orcids":0.4612515540820555,"licenses":1.0,"references":0.07501036054703689,"funders":0.002900953170327393,"similarity-checking":0.0,"award-numbers":0.002900953170327393,"ror-ids":0.03605470368835475,"update-policies":0.0,"resource-links":0.8661417322834646,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":false,"deposits-update-policies-backfile":false,"deposits-similarity-checking-backfile":false,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":true,"deposits-articles":false,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":false,"deposits-similarity-checking-current":false,"deposits-licenses-current":true},"location":"Munster,
+      Germany","names":["Front Matter","Verfassungsblog","Daniel Katz Blog","wisspub.net","Science
+      Blog","Ideas","Liberate Science","FORCE11 Upstream","Jaberwocky Ecology"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1279'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 10:17:17 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85339a00ad8f6711-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 10:17:18 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=12ZFVDP2wMwvQmN%2FyGQ8qt58BvXVbbbPYr0LPcKZU4kd7rEvobUmAf9pZj9wCYuNF0CQknj6WujWxTjBrv1kYfgTdCBUdgl69BSuyobatJO91vhzvaLv%2F8HknrvHLjXrdbxBrc0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

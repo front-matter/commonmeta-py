@@ -1,7 +1,7 @@
 """cff reader for commonmeta-py"""
 from typing import Optional
 from urllib.parse import urlparse
-import requests
+import httpx
 import yaml
 
 from ..utils import (
@@ -20,7 +20,7 @@ from ..constants import Commonmeta
 def get_cff(pid: str, **kwargs) -> dict:
     """get_cff"""
     url = github_as_cff_url(pid)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     text = response.text

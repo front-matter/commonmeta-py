@@ -1,312 +1,311 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f
   response:
-    body:
-      string: !!binary |
-        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
-        LRcALHwQZWNdAAA=
+    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Research Graph"}],"blog":{"api":false,"archive_prefix":null,"authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1706685423,"current_feed_url":null,"description":"Stories
+      by Research Graph on Medium","favicon":"https://cdn-images-1.medium.com/fit/c/150/150/1*laJi0jBkVoGhXid7gD_DmQ.png","feed_format":"application/rss+xml","feed_url":"https://medium.com/@researchgraph/feed","filter":null,"funding":null,"generator":"Medium","generator_raw":"Medium","home_page_url":"https://medium.com/@researchgraph","id":"30da2ca9-8258-4ab5-acca-3919d9a5d98d","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"","plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"researchgraph","status":"active","title":"Stories
+      by Research Graph on Medium","updated_at":1707184406,"use_api":null,"use_mastodon":false,"user_id":"a7e16958-1175-437c-b839-d4b8a47ec811","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Research
+      Graph","blog_slug":"researchgraph","content_text":"**Tools and Platform for
+      Integration of Knowledge Graph with RAG\npipelines.**\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png\"\nalt=\"Complex
+      network connected to books and showing information from magespace\" />\n<figcaption>Image
+      Created in <a\nhref=\"https://www.mage.space/\">https://www.mage.space/</a></figcaption>\n</figure>\n\nAuthors:
+      [Aland\nAstudillo](https://www.linkedin.com/in/aland-astudillo/), [Aishwarya\nNambissan](https://www.linkedin.com/in/aishwarya-nambissan-127229200/)\n\nMany
+      users of chatbots such as ChatGPT, have encountered the problem of\nreceiving
+      inappropriate or incompatible responses. There are several\nreasons why this
+      might\u00a0happen.\n\nOne reason is the lack of appropriate training data, as
+      chatbots are\nusually trained on large amounts of text and code. If the data
+      is\ninsufficient or of poor quality, the chatbot may misunderstand queries\nand
+      provide inaccurate responses. Another reason is that some chatbots\nare designed
+      for specific tasks or domains, which limits their ability\nto handle broader
+      queries or understand subtle nuances in conversation.\nAdditionally, chatbots
+      may struggle with natural language, which is\ncomplex and often ambiguous. This
+      can cause them to misunderstand a\nuser''s query and provide irrelevant or off-topic
+      responses. Finally,\nthere are technical limitations, such as the chatbot''s
+      inability to\nreason or make inferences.\n\nThis article explores a potential
+      solution by combining two influential\napproaches in the field of Natural Language
+      Processing\u200a---\u200aRetrieval\nAugmented Generation (**RAG**) and Knowledge
+      Graphs(**KGs**). We will\ndelve into the partnership between these two entities,
+      discuss the\nnotable technologies and software used in their processes, and
+      highlight\nvarious options for utilizing their combined potential.\n\n### **RAG**\n\nRetrieval-Augmented
+      Generation is the process of optimizing the output\nof a large language model
+      using a knowledge base outside of its training\ndata sources before generating
+      a response. It takes an input and\nretrieves a set of relevant/supporting documents
+      given a source (e.g.,\nWikipedia). This can be thought of as a Large Language
+      Model (LLM) not\njust putting words together, but carefully selecting relevant\ninformation
+      from external sources and Knowledge Graphs to create\nwell-informed and detailed
+      responses.\n\n### RAG Retrieval Techniques\n\nThe following are some crucial
+      technologies that enable RAG''s impressive\nability to retrieve and incorporate
+      relevant information:\n\n**Vector Search**: It transforms text into numerical
+      vectors, capturing\ntheir meaning and nuances in a mathematical space, creating
+      a map of\nrelationships. Similar texts, like those discussing shared topics
+      or\nusing similar language, end up positioned close together in this space,\nallowing
+      vector search to quickly identify them as related. This allows\nlightning-fast
+      comparisons, finding similar texts based on meaning, not\njust keywords.\n\nAlgorithms
+      like [**Faiss**](https://github.com/facebookresearch/faiss)\nand [**Annoy**](https://github.com/spotify/annoy)
+      map text into dense\nvectors, enabling fast comparisons and retrieval of relevant
+      passages\nbased on semantic similarity.\n\n**Passage Ranking**: It is an internal
+      algorithm that scores candidate\ntext passages based on their relevance to a
+      query. It considers factors\nlike keyword frequency, keyword overlap, and document
+      structure to act\nlike a judge, sifting through information to select the most
+      fitting and\ninformative passages.\n\nKeyword overlap measures how often the
+      same keywords appear in **both**\nthe query and the candidate passage, emphasizing
+      shared vocabulary and\npotential relevance. It differs from keyword frequency,
+      which simply\ncounts how often individual keywords appear within a passage,
+      regardless\nof their presence in the\u00a0query.\n\nTechniques like [**BM25**](https://github.com/getalp/wikIR)
+      and\n[**TF-IDF**](https://github.com/marcocor/wikipedia-idf) score candidate\npassages
+      based on keyword overlap and frequency, ensuring retrieved\ninformation truly
+      fits the\u00a0context.\n\n**Graph Neural Networks** (**GNNs**): They are neural
+      networks designed\nto explore and learn from interconnected data like maps,
+      social\nnetworks, and other complex relationships. Unlike traditional processing\nmethods
+      that go through data in a linear fashion, GNNs are capable of\nrecognizing hidden
+      patterns and understanding relationships like \"who\nknows who\" and \"what
+      connects to what\" by \"hopping\" across connections\nin\u00a0data.\n\nConsider
+      a graph as a network of dots(nodes) connected by lines (edges).\nEach dot represents
+      some information, like a person, object, or concept.\nThe lines tell you how
+      these things relate to each\u00a0other.\n\nGNNs work in rounds. In each\u00a0round:\n\n1.  Message
+      Passing: Each node \"talks\" to its neighbors, sending\n    messages along the
+      edges. These messages contain information about\n    the node itself and its
+      features.\n2.  Node Update: Each node receives messages from all its neighbors
+      and\n    combines them with its own information. This update can involve\n    calculations
+      and applying a special function.\n3.  Output Calculation: Based on the updated
+      information, the network\n    calculates an output for each node. This output
+      could be a\n    prediction about the node''s category, its relationship to another\n    node,
+      or some other relevant information.\n\nThis process repeats for multiple rounds,
+      allowing nodes to incorporate\ninformation from their entire neighborhood, not
+      just their direct\nneighbors. As the rounds progress, the network learns to
+      understand the\nrelationships between nodes and the overall structure of the\u00a0graph.\n\nWhen
+      dealing with Knowledge Graphs, frameworks like\n[**PyTorch-Geometric**](https://readthedocs.org/projects/pytorch-geometric/)\nand
+      [**DeepMind''s\nGNN**](https://github.com/deepmind/deepmind-research/blob/master/learning_to_simulate/graph_network.py)\nlibrary
+      come into play. These frameworks allow GNNs to traverse\ninterconnected entities
+      and relationships within the graph, retrieve\nrelevant knowledge fragments,
+      and understand complex connections.\n\n### **Knowledge Graphs: The Structured
+      Wisdom\u00a0Library**\n\nA knowledge graph, also referred to as a semantic network,
+      is a\nstructure that represents a network of real-world entities such as\nobjects,
+      events, situations, or concepts. It helps to illustrate the\nconstantly changing
+      representations of the world, connecting entities\n(such as \"Marie Curie\")
+      and relationships (such as \"won Nobel Prize\") to\nform a complex network of
+      information. This information is typically\nstored in a graph database and visualized
+      as a graph structure, thus the\nterm knowledge \"graph\".\n\nKGs go beyond simply
+      finding relevant facts and delve deeper into\nunderstanding the relationships
+      and insights hidden within using these\nprocesses:\n\n**Entity Linking**: Imagine
+      a vast network of information, like a big\npuzzle of dots. Now imagine trying
+      to connect specific names, places,\nand concepts to their corresponding dots
+      in the puzzle. That is what\nentity linking does with text and knowledge graphs,
+      connecting the\nspecific components of the text to the corresponding nodes in
+      the graph.\nThey help systems understand the exact meaning of entities, and
+      find\nrelevant information from the\u00a0graph.\n\nLibraries like [**DGL-KeLP**](https://github.com/awslabs/dgl-ke)\nleverage
+      GNNs to identify and link named entities (like \"Marie Curie\")\nto their respective
+      nodes within the Knowledge Graphs, enabling RAG to\nretrieve information that
+      is directly relevant to the core subject of a\nsearch\u00a0query\n\n**Path Mining**:
+      Path mining is a process of uncovering hidden\nrelationships and patterns that
+      are not easily noticeable. It involves\nexploring complicated networks of information
+      and identifying and\ntracing connections between entities that may seem unrelated.
+      By doing\nso, path mining reveals surprising insights and useful knowledge,\nimproving
+      our understanding of the complex structures within knowledge\ngraphs.\n\nTools
+      like [**Neo4j**](https://neo4j.com/) and\n[**Stanza**](https://github.com/stanfordnlp/stanza)
+      allow traversing\npaths between entities, uncovering hidden relationships, and
+      generating\ninsightful responses based on this deeper understanding.\n\n**Reasoning
+      and Inference**: In the context of knowledge graphs,\nreasoning and inference
+      are not just limited to discovering facts; they\nare also concerned with utilizing
+      them effectively. This involves\nintegrating data, drawing meaningful connections,
+      and using logical\nreasoning to resolve issues, foresee future occurrences,
+      or even\nconstruct narratives leveraging the insights provided by the knowledge\ngraph.\n\nConsider
+      the scenario of trying to find an organization that works in\nspecific sectors
+      with the help of a knowledge graph. This analogy\neffectively highlights the
+      active role of reasoning and inference in\nknowledge graphs:\n\n1.  Gathering
+      Facts: Knowledge graphs collect and organize information\n    from various sources,
+      such as websites, databases, academic papers,\n    and social media platforms.
+      These facts are represented as\n    structured data, with entities (e.g., organizations)
+      and their\n    attributes (e.g., sectors in which they operate) forming nodes
+      and\n    edges in the graph. By combining data about organizations and\n    sectors,
+      knowledge graphs enable the gathering of relevant facts for\n    analysis.\n2.  Integrating
+      information: By connecting an organization''s\n    relationships with specific
+      sectors, such as partnerships,\n    investments, or certifications, knowledge
+      graphs reveal the scope\n    and relevance of their work within those sectors.
+      Links to related\n    entities like employees, board members, or projects can
+      further\n    contribute to understanding an organization''s involvement in\n    specific\u00a0sectors.\n3.  Predicting
+      and Creating: Knowledge graphs can leverage machine\n    learning and predictive
+      models to infer missing or hidden\n    information. By analyzing the available
+      facts and connections within\n    the graph, these models can predict an organization''s
+      potential\n    involvement in sectors that have common attributes with their
+      known\n    areas of operation. For example, if an organization has expertise
+      in\n    renewable energy, predictive models could suggest their likely\n    involvement
+      in related sectors like clean transportation or\n    sustainable infrastructure.
+      Additionally, knowledge graphs\n    facilitate the creation of new information
+      and insights by combining\n    existing facts with external data sources. For
+      instance, by\n    integrating real-time data on industry trends, market analysis,
+      or\n    news articles, knowledge graphs enable the discovery of emerging\n    sectors
+      or upcoming organizations that might align with the given\n    parameters.\n\nA
+      framework like [**Atomspace**](https://github.com/opencog/atomspace)\nfrom [**OpenCog**](https://opencog.org/)
+      empowers RAG to reason and\ninfer new knowledge. By traversing paths and combining
+      information from\ninterconnected entities, the system can generate informed
+      predictions or\nanswer hypothetical questions.\n\n### Purpose\n\nThe combination
+      of Retrieval-Augmented Generation (RAG) and Knowledge\nGraphs (KG) is beneficial
+      for several\u00a0reasons:\n\n1.  **Enhanced information retrieval**: Knowledge
+      graphs provide\n    structured and interconnected information that can significantly\n    improve
+      the effectiveness of information retrieval. By using KGs,\n    RAG models can
+      retrieve more accurate and relevant information,\n    leading to better generation
+      and response\u00a0quality.\n2.  **Reliable and diverse information:** KGs are
+      constructed from\n    authoritative sources, making them reliable and trustworthy
+      sources\n    of information. RAG models can leverage this reliable information
+      to\n    generate more accurate responses. Additionally, KGs help in\n    diversifying
+      the generated responses by providing a broader pool of\n    related facts and
+      entities.\n3.  **Context-aware understanding**: KGs enable RAG models to understand\n    and
+      reason over the contextual information. By leveraging the\n    relationships
+      and semantic connections encoded in KGs, RAG models\n    can better grasp the
+      context of user queries or conversations,\n    resulting in more coherent and
+      appropriate responses.\n4.  **Handling complex queries**: KGs allow RAG models
+      to tackle complex\n    queries by breaking them down into smaller sub-queries,
+      retrieving\n    relevant pieces of information from the KG, and then generating
+      a\n    response based on the retrieved knowledge. This enables RAG models\n    to
+      handle a wide range of user queries effectively.\n5.  **Explainability and transparency**:
+      KGs provide a transparent and\n    interpretable representation of knowledge.
+      By integrating KG-based\n    retrieval into RAG models, the reasoning behind
+      the generated\n    responses becomes more explainable. Users can have a clear\n    understanding
+      of the knowledge sources and connections used to\n    produce the response.\n6.  **Scalability**:
+      Knowledge graphs act as large-scale repositories of\n    information. RAG models
+      can leverage KGs to generate responses to\n    various queries or conversations
+      without requiring additional\n    supervised training data. This makes the RAG+KG
+      approach scalable to\n    handle an extensive range of knowledge domains and
+      user\u00a0queries.\n\n### **Pipeline Possibilities: Orchestrating RAG and\u00a0KGs:**\n\nLet''s
+      explore some exciting pipeline options for harnessing the combined\npower of
+      RAG and Knowledge Graphs. There are two options in which either\nthe LLM is
+      prioritized or the Knowledge Graph is prioritized:\n\n**Option 1: LLM-Centric
+      Pipeline:**\n\nThe LLM-Centric pipeline is a RAG and Knowledge Graph combination
+      that\nempowers LLMs to craft well-informed responses. Here''s how it\u00a0works:\n\n1.  Start
+      with the user''s question or statement\n2.  The LLM (like GPT-3) generates an
+      initial draft response based on\n    its internal knowledge. This draft may
+      lack specific factual details\n    or nuances that a knowledge graph can\u00a0provide.\n3.  RAG
+      kicks in, searching the text corpus or the Knowledge Graph for\n    relevant
+      passages that enrich the draft. During the retrieval\n    process, RAG retrieval
+      techniques are used to search not only text\n    corpora but also knowledge
+      graphs to find relevant information. This\n    means that RAG can directly tap
+      into the structured knowledge within\n    the graph to retrieve facts, relationships,
+      and entities that align\n    with the user''s query and the LLM''s generated
+      draft.\n4.  The retrieved information is carefully fused with the LLM''s output,\n    creating
+      a more factually accurate and insightful response\n5.  A final polishing step
+      ensures the response is fluent, grammatically\n    correct, and ready to\u00a0show.\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/0*3pd9MOIflkbS07wI\"
+      />\n<figcaption>RAG LLM-centric generic\u00a0scheme.</figcaption>\n</figure>\n\nThe
+      basic steps to perform this\u00a0are:\n\n1.  **Pre-processing**: Clean and tokenize
+      user input to prepare for\n    processing.\n2.  **LLM Generation**: Generate
+      an initial draft response using an LLM\n    like [**GPT-3**](https://openai.com/product)
+      or [**Jurassic-1\n    Jumbo**](https://www.livescience.com/google-sentient-ai-lamda-lemoine).\n3.  **Retrieval**:
+      Employ RAG techniques to retrieve relevant passages\n    from a text corpus
+      or Knowledge Graphs.\n4.  **Fusion**: Integrate retrieved information into the
+      LLM-generated\n    draft, creating a more informed and factually-grounded response.\n5.  **Post-processing**:
+      Refine the final response for fluency,\n    grammatical correctness, and overall
+      coherence.\n\n**Option 2: Knowledge Graphs-Centric Pipeline:**\n\nIn this approach,
+      knowledge graphs take center stage. In essence, this\npipeline prioritizes the
+      structured knowledge within knowledge graphs,\nusing RAG retrieval techniques
+      to translate those insights into\ncompelling and informative language. Here''s
+      how it\u00a0unfolds:\n\n1.  User input: The process begins with the user''s
+      question or statement\n2.  Graph exploration: The knowledge graph is meticulously
+      explored to\n    identify relevant entities, relationships, and paths that align
+      with\n    the user''s input. This stage involves techniques like entity\n    linking,
+      path mining, and reasoning to uncover valuable information\n    within the\u00a0graph\n3.  Response
+      planning: The insights extracted from the graph are used to\n    create a structured
+      response plan. This plan outlines the key\n    points, facts, and logical flow
+      that the final response\n    should\u00a0embody\n4.  Language generation: This
+      is where RAG steps in. Its purpose is to\n    create human-like text that follows
+      the response plan. It uses LLMs\n    to produce well-written sentences and paragraphs,
+      combining the\n    relevant information from the knowledge graph while maintaining\n    cohesiveness
+      and readability.\n5.  Post-processing: The generated response undergoes a final
+      refinement\n    process to ensure grammatical correctness, clarity, and\n    overall\u00a0quality\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/0*mZ83esKBjbPmCq_C\"
+      />\n<figcaption>RAG Knowledge Graph-centric generic\u00a0scheme.</figcaption>\n</figure>\n\nThe
+      basic steps\u00a0are:\n\n1.  **Query Formulation**: Transform the user input
+      into a query\n    suitable for Knowledge Graph''s exploration.\n2.  **Knowledge
+      Graphs:** You can use either Neo4j or\n    [NebulaGraph](https://www.nebula-graph.io/)
+      to implement a retrieval\n    enhancement technique. This technique involves
+      utilizing a knowledge\n    graph to illustrate the connections between entities
+      and\n    relationships. Additionally, it incorporates a powerful language\n    model
+      to improve the retrieval process.\n3.  **Fact Selection**: Employ entity linking
+      and reasoning algorithms\n    to select and prioritize the most relevant facts
+      based on the query\n    and\u00a0context.\n4.  **Natural Language Generation**
+      (**NLG**): Utilise specialized NLG\n    models like\n    [BART](https://research.facebook.com/publications/controllable-abstractive-summarization/)\n    to
+      translate the extracted facts into a natural language response.\n5.  **Refinement**:
+      Enhance the generated response for clarity and\n    coherence.\n\n### **Unveiling
+      a Future of Intelligent Interaction**\n\nThe combination of RAG and Knowledge
+      Graphs goes beyond just being a\ntechnological fusion. It paves the way for
+      a future where the\ninteraction between humans and computers goes beyond simple
+      words and\nbecomes a more informed and refined form of communication. As these\ntechnologies
+      continue to develop, we can expect to witness a significant\ntransformation
+      in:\n\n- AI-powered assistants that answer your questions with the confidence\n  of
+      a well-read friend, seamlessly combining relevant facts and\n  insights gleaned
+      from Knowledge Graphs.\n- Next-generation search engines that go beyond keyword
+      matching,\n  understanding the deeper meaning behind your queries and delivering\n  comprehensive,
+      contextual results enriched with information from\n  Knowledge Graphs.\n- Creative
+      writing tools that utilize RAG and Knowledge Graphs to\n  generate stories that
+      are both factually accurate and full of\n  unexpected plot twists and character
+      development, moving beyond\n  clich\u00e9d patterns.\n\n### **Conclusion**\n\nThe
+      convergence of Retrieval Augmented Generation (RAG) and Knowledge\nGraphs (KGs)
+      brings about an exciting synergy in the world of Natural\nLanguage Processing
+      (NLP). RAG enhances the output of large language\nmodels by carefully selecting
+      relevant information from external sources\nand KGs, allowing for well-informed
+      and detailed responses. KGs, on the\nother hand, provide a structured representation
+      of real-world entities\nand their relationships, enabling the exploration of
+      hidden insights and\nthe discovery of complex connections.\n\nThe integration
+      of RAG and KGs opens up two pipeline possibilities. The\nLLM-centric pipeline
+      prioritizes the language model''s output, which is\nthen enriched with information
+      retrieved from KGs. The Knowledge\nGraphs-centric pipeline, on the other hand,
+      places KGs at the center,\nutilizing RAG techniques to translate the structured
+      insights into\ncompelling and informative language.\n\nWhile integrating LLMs
+      and a knowledge graph for content retrieval\nrequires careful planning, the
+      reward is significant. You can gain\naccess to hidden relationships within information,
+      ultimately leading to\nhigher-quality output information.\n\nTools like **OpenAI**,
+      **Langchain**, and **LlamaIndex** provide\nready-made pipelines to integrate
+      knowledge graphs (like **Neo4j**)\neasily. Meanwhile, open-source LLMs like
+      **Mistral**, **Llama**, and\n**Dolphin** are catching up to proprietary models
+      in performance, making\nthem attractive choices for building custom architectures.
+      This\nopen-source scenario allows for the exploration and examination of\nvarious
+      methods before fully committing to a particular technological\nframework. So,
+      it is crucial to evaluate your needs and choose the\napproach that best fits
+      your use\u00a0case.\n\n![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=fc0a6900f7eb){width=\"1\"\nheight=\"1\"}\n","doi":"https://doi.org/10.59350/jhrs4-22440","guid":"https://medium.com/p/fc0a6900f7eb","id":"05f01f68-ef81-47d7-a3c1-40aba91d358f","image":"https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png","indexed_at":1706733243,"language":"en","published_at":1705557796,"reference":[],"relationships":[],"summary":"<strong>\n
+      Tools and Platform for Integration of Knowledge Graph with RAG pipelines.\n</strong>\nAuthors:
+      Aland Astudillo, Aishwarya Nambissan Many users of chatbots such as ChatGPT,
+      have encountered the problem of receiving inappropriate or incompatible responses.
+      There are several reasons why this might\u00a0happen. One reason is the lack
+      of appropriate training data, as chatbots are usually trained on large amounts
+      of text and code.","tags":["Artificial Intelligence","Machine Learning","Retrieval
+      Augmented","Knowledge Graph"],"title":"Unveiling the Synergy: Retrieval Augmented
+      Generation (RAG) Meets Knowledge Graphs","updated_at":1705557796,"url":"https://medium.com/@researchgraph/unveiling-the-synergy-retrieval-augmented-generation-rag-meets-knowledge-graphs-fc0a6900f7eb"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Thu, 01 Feb 2024 17:18:36 GMT
+      - Sat, 10 Feb 2024 10:01:05 GMT
       fly-request-id:
-      - 01HNJTVXHXYYBAF7BQXAKYVZD0-fra
+      - 01HP97D93FB08MQ6PV8XHGBFJ0-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '6'
       ratelimit-reset:
-      - '3'
+      - '33'
       server:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiYGJgp++SUKbvml
-        eSk2+hBBLpsMQzsk0QxDOy6bAruQjFSFotTC0tTiktQUhdAgH4XyxGKFvPwShTSQboX8PIWSjFSF
-        4tSistQiPQXPNIXK/FKF1LyS1KLUFLAUSE9uYl5pYk5OpUJBTmpicapCckZqcjZIZZFCcUFqTk5m
-        XrpCYl6KQklRpUJiemJmnp6NfoEdFwCJiwL3zwAAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - text/html; charset=utf-8
-      date:
-      - Sun, 04 Feb 2024 09:42:47 GMT
-      fly-request-id:
-      - 01HNSQZFAJ1DXKA91CRAJXYKX2-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '15'
-      ratelimit-reset:
-      - '0'
-      server:
-      - Fly/ba9e227a (2024-01-26)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 404
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

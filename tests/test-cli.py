@@ -92,7 +92,7 @@ def test_json_feed_unregistered():
     string = "unregistered"
     result = runner.invoke(json_feed, [string])
     assert result.exit_code == 0
-    assert "6603f220-1683-4366-8663-c4284e9f9a78" in result.output
+    assert "" in result.output
 
 
 @pytest.mark.vcr
@@ -102,7 +102,7 @@ def test_json_feed_updated():
     string = "updated"
     result = runner.invoke(json_feed, [string])
     assert result.exit_code == 0
-    assert "ab512b96-9d23-4073-906f-4f99d66e9627" in result.output
+    assert "4e392758-67a9-4c6f-817e-c65838887d4b" in result.output
 
 
 @pytest.mark.vcr

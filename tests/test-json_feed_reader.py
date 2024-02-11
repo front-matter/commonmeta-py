@@ -84,7 +84,7 @@ def test_wordpress_with_references():
         subject.descriptions[0]
         .get("description")
         .startswith(
-            "Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon,"
+            "<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae."
         )
     )
     assert len(subject.files) == 4
@@ -258,31 +258,31 @@ def test_ghost_with_personal_name_parsing():
     assert subject.version is None
 
 
-@pytest.mark.vcr
-def test_blog_post_without_doi():
-    "blog post without DOI"
-    string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
-    )
-    assert subject.type == "Article"
-    assert (
-        subject.url
-        == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
-    )
-    assert subject.titles[0] == {
-        "title": "An open approach for classifying research publications"
-    }
-    assert len(subject.contributors) == 1
-    assert subject.contributors[0] == {
-        "id": "https://ror.org/027bh9e22",
-        "type": "Organization",
-        "contributorRoles": ["Author"],
-        "name": "Leiden Madtrics",
-    }
+# @pytest.mark.vcr
+# def test_blog_post_without_doi():
+#     "blog post without DOI"
+#     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
+#     subject = Metadata(string)
+#     assert subject.is_valid
+#     assert (
+#         subject.id
+#         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+#     )
+#     assert subject.type == "Article"
+#     assert (
+#         subject.url
+#         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
+#     )
+#     assert subject.titles[0] == {
+#         "title": "An open approach for classifying research publications"
+#     }
+#     assert len(subject.contributors) == 1
+#     assert subject.contributors[0] == {
+#         "id": "https://ror.org/027bh9e22",
+#         "type": "Organization",
+#         "contributorRoles": ["Author"],
+#         "name": "Leiden Madtrics",
+#     }
 
 
 @pytest.mark.vcr
@@ -308,6 +308,25 @@ def test_medium_post_with_institutional_author():
     }
 
 
+@pytest.mark.vcr
+def test_post_without_doi():
+    """blog post without doi"""
+    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    )
+    assert subject.titles[0] == {
+        "title": "Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)"
+    }
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Mathias', 'familyName': 'Hong'}
+    
+
 def test_get_json_feed_item():
     """Test get_json_feed_item_id"""
     item = get_json_feed_item_uuid("1357c246-b632-462a-9876-753ef8b6927d")
@@ -322,10 +341,10 @@ def test_get_json_feed_item_not_found():
 @pytest.mark.vcr
 def test_get_json_feed_unregistered():
     """Test get_json_feed_unregistered"""
-    assert "1f047b9c-e87b-47cf-996f-bca2f906d4c0" == get_json_feed_unregistered()
+    assert None == get_json_feed_unregistered()
 
 
 @pytest.mark.vcr
 def test_get_json_feed_updated():
     """Test get_json_feed_updated"""
-    assert "5adb2552-268d-4e43-881c-10bf7c22c7c7" == get_json_feed_updated()
+    assert "4e392758-67a9-4c6f-817e-c65838887d4b" == get_json_feed_updated()

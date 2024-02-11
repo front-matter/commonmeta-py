@@ -1,6 +1,6 @@
 """JSON Feed reader for commonmeta-py"""
 from typing import Optional
-import requests
+import httpx
 from pydash import py_
 
 from ..utils import (
@@ -30,7 +30,7 @@ def get_json_feed_item(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json()
@@ -143,7 +143,7 @@ def get_references(references: list) -> list:
         try:
             if reference.get("doi", None) and validate_doi(reference.get("doi")):
                 doi = normalize_doi(reference.get("doi"))
-                response = requests.get(
+                response = httpx.get(
                     doi,
                     headers={"Accept": "application/vnd.citationstyles.csl+json"},
                     timeout=10,
@@ -168,7 +168,7 @@ def get_references(references: list) -> list:
                 reference.get("url", None)
                 and validate_url(reference.get("url")) == "URL"
             ):
-                response = requests.head(reference.get("url", None), timeout=10)
+                response = httpx.head(reference.get("url", None), timeout=10)
                 # check that URL resolves.
                 # TODO: check for redirects
                 if response.status_code in [404]:
@@ -277,7 +277,7 @@ def get_files(pid: str) -> Optional[list]:
 def get_json_feed_unregistered():
     """get JSON Feed items not registered as DOIs"""
     url = "https://api.rogue-scholar.org/posts/unregistered"
-    response = requests.get(url, timeout=10)
+    response = httpx.get(url, timeout=10)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     posts = response.json()
@@ -287,7 +287,7 @@ def get_json_feed_unregistered():
 def get_json_feed_updated():
     """get JSON Feed items that have been updated"""
     url = "https://api.rogue-scholar.org/posts/updated"
-    response = requests.get(url, timeout=10)
+    response = httpx.get(url, timeout=10)
     if response.status_code != 200:
         return {"string": None, "state": "not_found"}
     posts = response.json()
@@ -299,7 +299,7 @@ def get_json_feed_item_uuid(id: str):
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
-    response = requests.get(url, timeout=10)
+    response = httpx.get(url, timeout=10)
     if response.status_code != 200:
         return response.json()
     post = response.json()
@@ -327,7 +327,7 @@ def get_json_feed_blog_slug(id: str):
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
-    response = requests.get(url, timeout=10)
+    response = httpx.get(url, timeout=10)
     if response.status_code != 200:
         return response.json()
     post = response.json()
@@ -339,7 +339,7 @@ def get_json_feed_blog_slug(id: str):
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/#{id}"
-    response = requests.get(url, timeout=10)
+    response = httpx.get(url, timeout=10)
     if response.status_code != 200:
         return None
     post = response.json()

@@ -479,18 +479,19 @@ def to_csl(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def to_ris(elements: list) -> list:
+def to_ris(elements: Optional[list]) -> list:
     """Convert element to RIS"""
-
+    if elements is None:
+        return []
     def format_element(i):
         """format element"""
-        if i.get("familyName", None):
+        if i.get("familyName", None) and i.get("givenName", None):
             element = ", ".join([i["familyName"], i.get("givenName", None)])
         else:
             element = i.get("name", None)
         return element
 
-    return [format_element(i) for i in elements]
+    return [format_element(i) for i in elements if i.get("name", None) or i.get("familyName", None)]
 
 
 def to_schema_org(element: Optional[dict]) -> Optional[dict]:
@@ -576,12 +577,14 @@ def to_schema_org_relations(related_items: list, relation_type=None):
     return [format_element(i) for i in related_items]
 
 
-def find_from_format(pid=None, string=None, ext=None, filename=None):
+def find_from_format(pid=None, string=None, ext=None, dct=None, filename=None):
     """Find reader from format"""
     if pid is not None:
         return find_from_format_by_id(pid)
     if string is not None and ext is not None:
         return find_from_format_by_ext(ext)
+    if dct is not None:
+        return find_from_format_by_dict(dct)
     if string is not None:
         return find_from_format_by_string(string)
     if filename is not None:
@@ -622,12 +625,41 @@ def find_from_format_by_ext(ext: str) -> Optional[str]:
     return None
 
 
+def find_from_format_by_dict(dct: dict) -> Optional[str]:
+    if dct is None or not isinstance(dct, dict):
+        return None
+    """Find reader from format by dict"""
+    if dct.get("schema_version", "").startswith("https://commonmeta.org"):
+        return "commonmeta"
+    if dct.get("@context", None) == "http://schema.org":
+        return "schema_org"
+    if dct.get("@context", None) in [
+        "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
+    ]:
+        return "codemeta"
+    if py_.get(dct, "blog.version", None) == "https://jsonfeed.org/version/1.1":
+        return "json_feed_item"
+    if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
+        return "datacite"
+    if dct.get("source", None) == "Crossref":
+        return "crossref"
+    if py_.get(dct, "issued.date-parts") is not None:
+        return "csl"
+    if py_.get(dct, "conceptdoi") is not None:
+        return "inveniordm"
+    if py_.get(dct, "credit_metadata") is not None:
+        return "kbase"
+    return None
+
+
 def find_from_format_by_string(string: str) -> Optional[str]:
     """Find reader from format by string"""
     if string is None:
         return None
     try:
         data = json.loads(string)
+        if isinstance(data, list):
+            data = data[0]
         if not isinstance(data, dict):
             raise TypeError
         if data.get("schema_version", "").startswith("https://commonmeta.org"):

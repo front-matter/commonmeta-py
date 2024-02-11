@@ -1,6 +1,6 @@
 """datacite_xml reader for Commonmeta"""
 from collections import defaultdict
-import requests
+import httpx
 from pydash import py_
 
 from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
@@ -17,7 +17,7 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return py_.get(response.json(), "data.attributes", {})

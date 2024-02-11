@@ -42,9 +42,17 @@ def write_ris(metadata):
     )
     string = []
     for key, val in ris.items():
-        if isinstance(val, list):
+        if isinstance(val, list) and val not in [[],[None]]:
             for vai in val:
                 string.append(f"{key}  - {vai}")
-        else:
+        elif val not in [[],[None]]:
             string.append(f"{key}  - {val}")
     return "\r\n".join(string)
+
+
+def write_ris_list(metalist):
+    """Write RIS list"""
+    if metalist is None:
+        return None
+    items = [write_ris(item) for item in metalist.items]
+    return "\r\n\r\n".join(items)

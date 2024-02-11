@@ -1,6 +1,4 @@
 """kbase reader for Commonmeta"""
-
-# import requests
 from pydash import py_
 
 from ..utils import normalize_url, normalize_doi, from_curie, from_kbase

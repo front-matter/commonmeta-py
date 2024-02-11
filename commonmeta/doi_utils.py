@@ -1,7 +1,10 @@
 """Doi utils for commonmeta-py"""
 import re
 from typing import Optional
-import requests
+import httpx
+from furl import furl
+
+from .base_utils import compact
 
 
 def validate_doi(doi: Optional[str]) -> Optional[str]:
@@ -75,7 +78,7 @@ def get_doi_ra(doi) -> Optional[str]:
     prefix = validate_prefix(doi)
     if prefix is None:
         return None
-    response = requests.get("https://doi.org/ra/" + prefix, timeout=10)
+    response = httpx.get("https://doi.org/ra/" + prefix, timeout=10)
     if response.status_code != 200:
         return None
     return response.json()[0].get("RA", None)
@@ -83,7 +86,7 @@ def get_doi_ra(doi) -> Optional[str]:
 
 def get_crossref_member(member_id) -> Optional[dict]:
     """Return the Crossref member for a given member_id"""
-    response = requests.get("https://api.crossref.org/members/" + member_id, timeout=10)
+    response = httpx.get("https://api.crossref.org/members/" + member_id, timeout=10)
     if response.status_code != 200:
         return None
     data = response.json().get("message", None)
@@ -99,6 +102,41 @@ def crossref_api_url(doi: str) -> str:
 def crossref_xml_api_url(doi: str) -> str:
     """Return the Crossref XML API URL for a given DOI"""
     return f"https://api.crossref.org/works/{doi}/transform/application/vnd.crossref.unixsd+xml"
+
+
+def crossref_api_query_url(query: dict) -> str:
+    """Return the Crossref API query URL"""
+    url = "https://api.crossref.org/works"
+    f = furl(url)
+    rows = min(int(query.get("rows", 20)), 1000)
+    queries = []
+    filters = []
+    for key, value in query.items():
+        if key in [
+            "query.bibliographic",
+            "query.author",
+            "query.title",
+            "query.container-title",
+        ]:
+            queries += [f"{key}:{value}"]
+        _query = ",".join(queries) if len(queries) > 0 else None
+
+    for key, value in query.items():
+        if key in [
+            "prefix",
+            "member",
+            "type",
+            "has-full-text",
+            "has-references",
+            "has-orcid",
+            "has-funder",
+            "has-license",
+        ]:
+            filters += [f"{key}:{value}"]
+        _filter = ",".join(filters) if len(filters) > 0 else None
+    f.args = compact({"rows": rows, "query": _query, "filter": _filter})
+    
+    return f.url
 
 
 def crossref_api_sample_url(number: int = 1, **kwargs) -> str:

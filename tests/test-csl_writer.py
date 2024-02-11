@@ -2,8 +2,9 @@
 """Citeproc writer tests"""
 import json
 import pytest
+from os import path
 
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 
 
 @pytest.mark.vcr
@@ -358,3 +359,35 @@ def test_organization_author():
 #       expect(json['type']).to eq('article')
 #       expect(json['DOI']).to eq('10.34747/g6yb-3412')
 #       expect(json['issued']).to eq('date-parts' => [[2019]])
+
+@pytest.mark.vcr
+def test_post_without_doi():
+    """blog post without doi"""
+    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert subject.type == "Article"
+    csl = json.loads(subject.write(to="csl"))
+    assert csl.get("type") == "article"
+    assert (
+        csl.get("URL")
+        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    )
+    assert (
+        csl.get("title")
+        == "Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)"
+    )
+
+
+@pytest.mark.vcr
+def test_write_csl_list():
+    """write_csl_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    csl_list = json.loads(subject_list.write(to="csl"))
+    assert len(csl_list) == 20
+    csl = csl_list[0]
+    assert csl.get("id") == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert csl.get("type") == "article-journal"

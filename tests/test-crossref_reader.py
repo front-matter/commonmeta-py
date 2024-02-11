@@ -4,12 +4,13 @@ from os import path
 import re
 import pytest
 
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 from commonmeta.readers.crossref_reader import (
     get_crossref,
     read_crossref,
     get_reference,
-    get_random_crossref_id
+    get_crossref_list,
+    get_random_crossref_id,
 )
 
 
@@ -47,7 +48,6 @@ def test_doi_with_data_citation():
         "updated": "2023-10-12T00:43:13Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 27
@@ -149,7 +149,6 @@ def test_journal_article():
         "updated": "2021-08-06T23:49:55Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
         "name": "Public Library of Science (PLoS)",
     }
     assert len(subject.references) == 73
@@ -211,7 +210,6 @@ def test_journal_article_with_funding():
         "updated": "2019-09-22T02:40:23Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1965",
         "name": "Frontiers Media SA",
     }
     assert len(subject.references) == 70
@@ -264,7 +262,6 @@ def test_journal_article_original_language():
     assert subject.license is None
     assert subject.date == {"published": "2007", "updated": "2021-05-20T22:32:01Z"}
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4426",
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
     assert len(subject.references) == 7
@@ -321,7 +318,6 @@ def test_journal_article_with_rdf_for_container():
         "updated": "2019-07-05T16:53:10Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/286",
         "name": "Oxford University Press (OUP)",
     }
     assert len(subject.references) == 111
@@ -372,10 +368,7 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.license is None
     assert subject.date == {"published": "2012", "updated": "2020-11-24T03:11:32Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
-        "name": "Springer Science and Business Media LLC",
-    }
+    assert subject.publisher == {'name': 'Springer Berlin Heidelberg'}
     assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
@@ -420,7 +413,6 @@ def test_posted_content():
     assert subject.license is None
     assert subject.date["published"] == "2016-12-28"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/246",
         "name": "Cold Spring Harbor Laboratory",
     }
     assert len(subject.references) == 26
@@ -482,7 +474,6 @@ def test_peer_review():
         "updated": "2020-05-19T20:33:37Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 0
@@ -521,7 +512,6 @@ def test_dissertation():
         "updated": "2020-06-08T05:08:59Z",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/5387",
         "name": "University of Queensland Library",
     }
     assert len(subject.references) == 0
@@ -560,10 +550,7 @@ def test_doi_with_sici():
     }
     assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
     assert subject.date == {"published": "2006-11", "updated": "2019-04-28T13:51:50Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/311",
-        "name": "Wiley",
-    }
+    assert subject.publisher == {"name": "Wiley"}
     assert len(subject.references) == 39
     assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
@@ -622,10 +609,7 @@ def test_doi_with_orcid():
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
     assert subject.date == {"published": "2012", "updated": "2016-08-02T18:42:41Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/98",
-        "name": "Hindawi Limited",
-    }
+    assert subject.publisher == {"name": "Hindawi Limited"}
     assert len(subject.references) == 27
     assert subject.references[-1] == {
         "key": "30",
@@ -683,10 +667,7 @@ def test_date_in_future():
     }
     assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
     assert subject.date == {"published": "2015-07", "updated": "2023-08-09T06:50:30Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/78",
-        "name": "Elsevier BV",
-    }
+    assert subject.publisher == {"name": "Elsevier BV"}
     assert len(subject.references) == 98
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
@@ -774,10 +755,7 @@ def test_vor_with_url():
         "published": "2013-04-10",
         "updated": "2023-05-18T16:57:05Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
-        "name": "Springer Science and Business Media LLC",
-    }
+    assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
     assert len(subject.references) == 41
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
@@ -836,10 +814,7 @@ def test_dataset():
         "published": "1984-07-17",
         "updated": "2023-03-14T17:26:34Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/7763",
-        "name": "Worldwide Protein Data Bank",
-    }
+    assert subject.publisher == {"name": "Worldwide Protein Data Bank"}
     assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
@@ -866,10 +841,7 @@ def test_component():
         "published": "2015-10-20T20:01:19Z",
         "updated": "2018-10-19T21:13:42Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
-        "name": "Public Library of Science (PLoS)",
-    }
+    assert subject.publisher == {"name": "Public Library of Science (PLoS)"}
     assert len(subject.references) == 0
     assert subject.funding_references is None
     assert subject.container is None
@@ -903,10 +875,7 @@ def test_dataset_usda():
         "published": "2017-08-09T19:44:20Z",
         "updated": "2021-07-01T22:10:21Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1450",
-        "name": "USDA Forest Service",
-    }
+    assert subject.publisher == {"name": "Forest Service Research Data Archive"}
     assert len(subject.references) == 6
     assert subject.references[-1] == {
         "key": "ref6",
@@ -962,10 +931,7 @@ def test_book_chapter():
         "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
     }
     assert subject.date == {"published": "2015", "updated": "2023-02-10T08:59:39Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
-        "name": "Springer Science and Business Media LLC",
-    }
+    assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
     assert len(subject.references) == 22
     assert subject.references[0] == {
         "key": "13_CR1",
@@ -1013,10 +979,7 @@ def test_another_book_chapter():
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
     assert subject.date == {"published": "2018", "updated": "2019-10-16T02:02:05Z"}
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
-        "name": "Springer Science and Business Media LLC",
-    }
+    assert subject.publisher == {"name": "Springer International Publishing"}
     assert len(subject.references) == 44
     assert subject.references[0] == {
         "key": "1_CR1",
@@ -1067,10 +1030,7 @@ def test_yet_another_book_chapter():
         "published": "2012-08-08T16:54:07Z",
         "updated": "2019-07-02T13:17:21Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/2432",
-        "name": "IGI Global",
-    }
+    assert subject.publisher == {"name": "IGI Global"}
     assert len(subject.references) == 33
     assert subject.funding_references is None
     assert subject.container == {
@@ -1118,10 +1078,7 @@ def test_missing_contributor():
         "published": "2018-04-09",
         "updated": "2021-07-22T10:05:05Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1968",
-        "name": "MDPI AG",
-    }
+    assert subject.publisher == {"name": "MDPI AG"}
     assert len(subject.references) == 23
     assert subject.references[-1] == {
         "key": "ref23",
@@ -1193,10 +1150,7 @@ def test_book():
     }
     assert subject.license == {"url": "https://www.cambridge.org/core/terms"}
     assert subject.date["updated"] > "2022-09-22"
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/56",
-        "name": "Cambridge University Press (CUP)",
-    }
+    assert subject.publisher == {"name": "Cambridge University Press"}
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
@@ -1255,10 +1209,7 @@ def test_proceedings_article():
         "published": "2021-06-09",
         "updated": "2023-07-02T06:00:46Z",
     }
-    assert subject.publisher == {
-        "id": "https://api.crossref.org/members/320",
-        "name": "Association for Computing Machinery (ACM)",
-    }
+    assert subject.publisher == {"name": "ACM"}
     assert len(subject.references) == 56
     assert subject.references[-1] == {
         "key": "e_1_3_2_2_56_1",
@@ -1323,6 +1274,29 @@ def test_read_crossref():
     assert {"state": "not_found"} == read_crossref(None)
 
 
+@pytest.mark.vcr
+def test_get_crossref_list():
+    """get_crossref_list"""
+    query = query = {"prefix": "10.5555", "type": "journal-article"}
+    data = get_crossref_list(query)
+    assert isinstance(data, list)
+    assert len(data) == 20
+    assert data[0].get("DOI") == "10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert data[0].get("type") == "journal-article"
+
+
+def test_read_crossref_list():
+    """read_crossref_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    title = "Crossref"
+    subject_list = MetadataList(string, title=title)
+    assert subject_list.title == "Crossref"
+    assert len(subject_list.items) == 20
+    subject = subject_list.items[0]
+    assert subject.id == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert subject.type == "JournalArticle"
+
+
 def test_get_reference():
     """get_reference"""
     doi_metadata = {
@@ -1354,6 +1328,7 @@ def test_get_reference():
         "containerTitle": "IBM Technical Disclosure Bulletin",
     } == get_reference(unstructured_metadata)
     assert None is get_reference(None)
+
 
 # 10.15376/frc.1961.1.249 non-unique contributors
 # 10.21474/ijar01/10232 non-unique contributors

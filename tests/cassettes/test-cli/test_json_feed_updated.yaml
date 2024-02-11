@@ -1,188 +1,184 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/updated
   response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/4quVkpMKi4pSkwuUbLKK83J0VFKLErOyCxLjS8tylGyUsooKSkottLXL0+sTEpM
-        ztaDyupmlujlF6XrGxkZmhrrGxkYGRsaGpgaGRpbGpvow/QUlxXkl+sl5+fqGxkYmusbGugbGOqX
-        pObpVqYmFhXr5qfpFieWFuUX5KfolqUWlaQmFSWmKukoJZaWZOQXFStZRVcr5SXmpipZKflmZqcq
-        hCRW5uQXKdXG6igl5eSnK1lVKyUnlqSm5xdVKlkppSYWlWQ45qUEpeYklqSmuOaVZRbl5+Wm5pUk
-        5gQnZ6bmJacWK+kopaQWJxdlFpRk5ucpWSkFh+kG+IcrKijo6ekpKDjm5CjAXKQAd5GOQmpFcmpB
-        iUJ5RmqeQnmqelGqQkliTnZmXrpCYlJ+aYmCf0FqnoJjcnJqMciGtNTUFLTAQwQESFI/sSQ/V19J
-        Ryk9NS+1KLEkv0jJSik8vygloCi1uBgUXko6Shn5uanxBYnp6PEAN0pJRyknMS+9NDEdFECpeSB+
-        ZnJqXjGIC4uB5KLUxJLMstTk/Nzc/LxicJTlQFQV6ydV6pvoGejnpKYn5iTnp4CCvjinNF3JSgls
-        iZKOUnFJYklpsZKVUmIyyBQlHaWSzJIckAXB0IhTCINGnEJAZnJJaVGqQn6aQklGqkJ4amq2ko5S
-        aUEKKDbiE0uUrAzNDcxMLMxNLC1qITEYD41dYg0DxXo8mhNT8jORUmlKfibYj4YGeqaWxqYG+lnF
-        WRkZuoVJJmYGoAAvzUyBqrbS1wf7EhTc+vYFtoYmJkZmSjpKYAWJSaaGRkmWZrqWKUbGuiYG5sa6
-        lgZmabomaZaWKWZmqZZmRuYgtbmQwIeFNsTAtMyc1GK98vyilAJYfMLTf0pxcp6BobmpXlZBun25
-        rYmFgVqGrTHYbZl5KakVqSlKVmmJOcWpOkpQPiTkMOO6oDQpJ7M4IzUFosDUwMzC0sjQ0FBHqSg1
-        LbUIlNyVrKJjQdycRFBqL87ILADlqVgdpeLS3NxEcKZxzE2sysxLz6lU0CjJV8hN1VFIzKssT6zU
-        1FGAZY3MYoWS1DwFcJZVyM9JUSjJT0ms1FPwLFEoTyxWyM9TMCwuUfBPLslPSi1SMDIwMFcoyUgs
-        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
+    content: '[{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/kunstwissenschaftler-fordern-in-zuercher-erklaerung-die-foerderung-und-anerkennung-von-open-access/23690","authors":[{"name":"Henry
+      Steinhau"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/3peev-bxj24","guid":"https://irights.info/?post_type=custom_artikel&p=23690","id":"4e392758-67a9-4c6f-817e-c65838887d4b","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1405678744,"reference":[],"relationships":[],"summary":"Kunstwissenschaftler
+      aus mehreren L\u00e4ndern\u00a0legten als Ergebnis einer zweit\u00e4gigen Konferenz
+      in Z\u00fcrich\u00a0eine \u201eErkl\u00e4rung zur digitalen Kunstgeschichte\u201c
+      vor. Sie enth\u00e4lt acht Anliegen der kunstwissenschaftlichen Community \u2013
+      gerichtet an die Entscheidungstr\u00e4ger in Politik und Forschungsf\u00f6rderung.\n","tags":["Gesellschaft
+      + Kunst","Politik + Recht","Urheberrecht","Wissen + Open Access","Wissenschaft"],"title":"Kunstwissenschaftler
+      fordern in \u201eZ\u00fcrcher Erkl\u00e4rung\u201c die F\u00f6rderung und Anerkennung
+      von Open Access","updated_at":1474297831,"url":"https://irights.info/artikel/kunstwissenschaftler-fordern-in-zuercher-erklaerung-die-foerderung-und-anerkennung-von-open-access/23690"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/oer-urheberrecht-finanzierung-qualitaetssicherung/23916","authors":[{"name":"Till
+      Kreutzer"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/97nba-v1e23","guid":"https://irights.info/?post_type=custom_artikel&p=23916","id":"bda6dc25-e24b-47bc-8283-6a353f6f142a","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1410424932,"reference":[],"relationships":[],"summary":"Das
+      Urheberrecht, die Finanzierung und die Qualit\u00e4tssicherung werden oft als
+      H\u00fcrden genannt, die dem Einsatz von freien Lehr- und Lernmaterialien (Open
+      Educational Resources) im Weg st\u00fcnden. Dabei zeigen die Erfahrungen mit
+      freien Lizenzen, Open-Source-Software und Wikipedia, dass kein Problem un\u00fcberwindbar
+      ist, oft aber neue Antworten gefunden werden.\n","tags":["Bildung + OER","Creative
+      Commons + Lizenzen","Urheberrecht","Wissen + Open Access","Commons-based Peer
+      Production"],"title":"Drei Mythen \u00fcber Open Educational Resources","updated_at":1474297814,"url":"https://irights.info/artikel/oer-urheberrecht-finanzierung-qualitaetssicherung/23916"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/urheberrecht-schwerpunkt-beim-deutschen-juristentag-2014/23946","authors":[{"name":"Henry
+      Steinhau"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/mfnpc-6fj95","guid":"https://irights.info/?post_type=custom_artikel&p=23946","id":"aa564826-e0f5-4890-9605-874a55d1e632","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1411041793,"reference":[],"relationships":[],"summary":"Was
+      sagen Juristen \u00fcber das Urheberrecht? Vier Wissenschaftler\u00a0haben im
+      Vorfeld dazu Stellung bezogen \u2013 von Remix und Fair use, \u00fcber europ\u00e4ische
+      Regelungen bis zu Wissenschaftsschranke. Die Beitr\u00e4ge erschienen in einem
+      Thesenband, der vorab zum 70. Deutschen Juristentag ver\u00f6ffentlicht wurde.
+      Gestern\u00a0begann in Hannover der 70. Deutsche Juristentag.\n","tags":["Europa","Politik
+      + Recht","Rechtsdurchsetzung Im Internet","Sampling + Remix","Urheberrecht"],"title":"Urheberrecht
+      ist ein Schwerpunkt beim Deutschen Juristentag 2014","updated_at":1474297804,"url":"https://irights.info/artikel/urheberrecht-schwerpunkt-beim-deutschen-juristentag-2014/23946"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/forschen-in-der-digitalen-welt-juristische-handreichung-fuer-die-geisteswissenschaften-veroeffentlicht/25989","authors":[{"name":"David
+      Pachali"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/7ndw3-34n60","guid":"https://irights.info/?post_type=custom_artikel&p=25989","id":"624f1873-3b85-4ef1-a89a-f8f061eca441","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1441100282,"reference":[],"relationships":[],"summary":"Geistes-
+      und Kulturwissenschaften besch\u00e4ftigen sich verst\u00e4rkt mit der quantitativen
+      Auswertung von Forschungsdaten, etwa unter dem Schlagwort \u201eDigital Humanities\u201c.
+      Die Ergebnisse werden oft im Open Access und unter freien Lizenzen ver\u00f6ffentlicht.
+      Die jetzt ver\u00f6ffentlichte Handreichung bietet einen \u00dcberblick, welche
+      Rolle das Urheberrecht und andere Schutzrechte, gesetzliche Regelungen und Lizenzen
+      dabei spielen.\n","tags":["Autor + Text","Creative Commons + Lizenzen","Grundwissen","In
+      Eigener Sache","Urheberrecht"],"title":"Forschen in der digitalen Welt: Juristische
+      Handreichung f\u00fcr die Geisteswissenschaften ver\u00f6ffentlicht","updated_at":1474297787,"url":"https://irights.info/artikel/forschen-in-der-digitalen-welt-juristische-handreichung-fuer-die-geisteswissenschaften-veroeffentlicht/25989"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/wikipedia-streit-um-gemaelde-fotos-aus-museum-landet-vor-gericht/26075","authors":[{"name":"David
+      Pachali"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/8kswm-65665","guid":"https://irights.info/?post_type=custom_artikel&p=26075","id":"d0296286-8de1-40ab-8a43-f6e4645ae2f2","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1442401317,"reference":[],"relationships":[],"summary":"Gemeinfrei
+      oder doch gesch\u00fctzt? Die Mannheimer Reiss-Engelhorn-Museen haben eine Klage
+      gegen Wikimedia eingereicht. Der Streit betrifft die Frage, ob Reproduktions-Fotos
+      von urheberrechtsfreien Gem\u00e4lden ebenfalls frei verwendet werden d\u00fcrfen.
+      Ausl\u00f6ser des Streits ist ein Foto, das der Hausfotograf der Mannheimer
+      Reiss-Engelhorn-Museen von einem Gem\u00e4lde Richard Wagners angefertigt hatte.\n","tags":["Fotos
+      + Grafiken","Museen + Archive","Politik + Recht","Urheberrecht","Wissen + Open
+      Access"],"title":"Wikipedia: Streit um Gem\u00e4lde-Fotos aus Museum landet
+      vor Gericht","updated_at":1474297737,"url":"https://irights.info/artikel/wikipedia-streit-um-gemaelde-fotos-aus-museum-landet-vor-gericht/26075"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/museums-und-rechtsexperten-urheberrecht-bleibt-huerde-fuer-digitale-sammlungen/26243","authors":[{"name":"David
+      Pachali"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/kayap-h5k57","guid":"https://irights.info/?post_type=custom_artikel&p=26243","id":"823fcd8e-58da-492c-9823-edb7ebf66d4b","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1444200823,"reference":[],"relationships":[],"summary":"Kultureinrichtungen
+      sind unzufrieden mit dem geltenden Urheberrecht f\u00fcr Museen, Bibliotheken
+      und Archive. In einer Erkl\u00e4rung sprechen sich Museumsleute und Rechtsexperten
+      f\u00fcr neue gesetzliche Regelungen aus. Als Hemmschuh f\u00fcr den Aufbau
+      digitaler Sammlungen sehen sie die Rechtekl\u00e4rung f\u00fcr jedes einzelne
+      Objekt aus den Best\u00e4nden der Einrichtungen.\n","tags":["Museen + Archive","Politik
+      + Recht","Urheberrecht","Urheberrechtsreform","Wissen + Open Access"],"title":"Museums-
+      und Rechtsexperten: Urheberrecht bleibt H\u00fcrde f\u00fcr digitale Sammlungen","updated_at":1474297707,"url":"https://irights.info/artikel/museums-und-rechtsexperten-urheberrecht-bleibt-huerde-fuer-digitale-sammlungen/26243"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/eu-kommission-urheberrecht-mitteilungsentwurf/26383","authors":[{"name":"David
+      Pachali"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/sn8hb-3a935","guid":"https://irights.info/?post_type=custom_artikel&p=26383","id":"1c12493d-7ea3-491d-b638-749ba892a655","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1447054538,"reference":[],"relationships":[],"summary":"Die
+      von der EU-Kommission angek\u00fcndigte Urheberrechts-Reform nimmt Konturen
+      an. Zun\u00e4chst soll der Zugriff auf bezahlte Inhalte im Ausland geregelt
+      und eine Ausnahmeregelung f\u00fcr Blinde umgesetzt werden. Weitere Schritte
+      vor allem bei Bildung und Wissenschaft sollen erst sp\u00e4ter \u00fcberhaupt
+      konkretisiert werden.   Dazu hat die Europ\u00e4ische Kommission nun einen Fahrplan
+      ver\u00f6ffentlicht, der einen \u201ezweistufigen Ansatz\u201c f\u00fcr neue
+      Regelungen vorsieht.\n","tags":["Museen + Archive","Politik + Recht","Urheberrecht","Urheberrechtsreform","Wissen
+      + Open Access"],"title":"EU-Kommission skizziert Urheberrechtsreform: Scheibchenweise
+      zum digitalen Binnenmarkt","updated_at":1474297673,"url":"https://irights.info/artikel/eu-kommission-urheberrecht-mitteilungsentwurf/26383"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/oer-freie-lizenzen-urheberrecht-bildungsschranke/26608","authors":[{"name":"John
+      Hendrik Weitzmann"}],"blog":{"category":"law","description":"Urheberrecht und
+      kreatives Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/81htt-4f862","guid":"https://irights.info/?post_type=custom_artikel&p=26608","id":"7e0c9a02-524b-4167-9b9b-8c83c3ca8218","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1450349199,"reference":[],"relationships":[],"summary":"Lehr-
+      und Lernmaterialien unter freien Lizenzen haben viele Vorteile, k\u00f6nnen
+      Anwender aber auch mit rechtlicher Komplexit\u00e4t belasten. Auch neue, spezielle
+      OER-Lizenzen w\u00fcrden das Problem nicht beheben, sondern nur verst\u00e4rken.
+      Gesetzesreformen f\u00fcr die Bildung bleiben daher notwendig.\n","tags":["Bildung
+      + OER","Creative Commons + Lizenzen","Politik + Recht","Urheberrecht","Urheberrechtsreform"],"title":"Freie
+      Lizenzen sind f\u00fcr Bildungsmaterialien nur der zweitbeste Weg","updated_at":1474297578,"url":"https://irights.info/artikel/oer-freie-lizenzen-urheberrecht-bildungsschranke/26608"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/creative-commons-fuer-kulturinstitutionen/26817","authors":[{"name":"John
+      Hendrik Weitzmann"}],"blog":{"category":"law","description":"Urheberrecht und
+      kreatives Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/gqa5b-qs062","guid":"https://irights.info/?post_type=custom_artikel&p=26817","id":"bbdb674c-15ff-4481-be10-ede09ef40975","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1454324746,"reference":[],"relationships":[],"summary":"Die
+      freien Lizenzen von Creative Commons k\u00f6nnen f\u00fcr Kultur\u00adeinrichtungen
+      ein Instrument sein,\u00a0ihrem Vermittlungsauftrag in Zeiten digitaler Vernetzung
+      nachzukommen. Dieser Artikel\u00a0stellt die Entstehungsgeschichte und Philosophie
+      von Creative Commons vor und bietet einen ersten \u00dcberblick, wann die Lizenzen
+      eingesetzt werden k\u00f6nnen.\n","tags":["Creative Commons + Lizenzen","Grundwissen","Museen
+      + Archive","Urheberrecht","Wissen + Open Access"],"title":"Creative Commons
+      f\u00fcr Kulturinstitutionen","updated_at":1474297568,"url":"https://irights.info/artikel/creative-commons-fuer-kulturinstitutionen/26817"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/eigentum-an-metadaten-urheberrechtliche-aspekte-von-bestandsinformationen-und-ihre-freigabe-2/26829","authors":[{"name":"Paul
+      Klimpel"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/4chhm-gmv78","guid":"https://irights.info/?post_type=custom_artikel&p=26829","id":"109e35f9-38d3-4799-a5fb-04aeacd2d9a7","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1455259803,"reference":[],"relationships":[],"summary":"Metadaten
+      \u2013 also Daten, die der Beschreibung von Werken,\u00a0Ressourcen und anderen
+      Objekten dienen \u2013\u00a0sind f\u00fcr die Best\u00e4nde von Bibliotheken,
+      Archiven und Museen\u00a0zentral. Dieser Artikel bietet einen \u00dcberblick,
+      welche dieser Daten unter welchen Bedingungen gesch\u00fctzt sein k\u00f6nnen.\n","tags":["Grundwissen","Museen
+      + Archive","Urheberrecht","Verwandte Schutzrechte","Wissen + Open Access"],"title":"Eigentum
+      an Metadaten? Urheberrechtliche Aspekte von Bestandsinformationen und ihre Freigabe","updated_at":1474297558,"url":"https://irights.info/artikel/eigentum-an-metadaten-urheberrechtliche-aspekte-von-bestandsinformationen-und-ihre-freigabe-2/26829"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/das-verlorene-potenzial-von-forschung/27025","authors":[{"name":"Christian
+      Gutknecht"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/4adfd-89y22","guid":"https://irights.info/?post_type=custom_artikel&p=27025","id":"6267ddb2-e77a-40ff-b3ae-0557ef82a0f0","image":"https://irights.info/wp-content/uploads/2016/03/zika_elsevier-490x399.jpg","indexed":true,"indexed_at":1,"language":"de","published_at":1457009085,"reference":[],"relationships":[],"summary":"Wissenschaftsverlage
+      haben erkl\u00e4rt, Ver\u00f6ffentlichungen zum Zika-Virus frei zug\u00e4nglich
+      zu machen. Das ist l\u00f6blich, f\u00fchrt aber erneut vor Augen, wieviel Potenzial
+      sonst verschenkt wird, kommentiert Christian Gutknecht. Es ist ein zynisches
+      Schauspiel, welches Subskriptionsverlage immer dann wieder vorf\u00fchren, wenn
+      der freie Zugang zu Forschungsresultaten ein bisschen h\u00f6her auf der Agenda
+      ist als sonst.\n","tags":["Urheberrecht","Wissen + Open Access","Wissenschaft","Bibliotheken","Elsevier"],"title":"Das
+      verlorene Potenzial von Forschung","updated_at":1474297540,"url":"https://irights.info/artikel/das-verlorene-potenzial-von-forschung/27025"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/nicht-alles-was-geht-erlaubt-broschuere-irightsinfo-klicksafe/23533","authors":[{"name":"Redaktion
+      iRights.info"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/7k5jn-p6b62","guid":"https://irights.info/?post_type=custom_artikel&p=23533","id":"83ef03b7-3f1d-47cd-9e9d-4225b4f0014f","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1463475377,"reference":[],"relationships":[],"summary":"Die
+      Brosch\u00fcre \u201eNicht alles, was geht, ist auch erlaubt!\u201c von iRights.info
+      und Klicksafe informiert auf 16 Seiten \u00fcber Urheber- und Pers\u00f6nlichkeitsrechte
+      im Internet und beantwortet die wichtigsten Fragen. Jetzt ist sie in neuer Auflage
+      wieder erh\u00e4ltlich. Facebook, Whatsapp, Snapchat und Youtube geh\u00f6ren
+      besonders f\u00fcr Jugendliche zum Alltag, aber auch Filehoster, Bittorrent
+      und Kinox.to. Den \u00dcberblick zu behalten, kann schwierig werden.\n","tags":["Abmahnung
+      + Anwalt","Filesharing + Streaming","Fotos + Grafiken","Grundwissen","In Eigener
+      Sache"],"title":"Urheber- und Pers\u00f6nlichkeitsrechte im Internet: Brosch\u00fcre
+      f\u00fcr Jugendliche, Eltern und P\u00e4dagogen in neuer Version erh\u00e4ltlich","updated_at":1474297492,"url":"https://irights.info/artikel/nicht-alles-was-geht-erlaubt-broschuere-irightsinfo-klicksafe/23533"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22103/20231101172252/https://jabberwocky.weecology.org/2016/09/19/phd-student-opening-community-ecology-ernest-lab","authors":[{"name":"Morgan
+      Ernest","url":"https://orcid.org/0000-0002-6026-8530"}],"blog":{"category":"biologicalSciences","description":"Ethan
+      White and Morgan Ernest''s blog for discussing issues and ideas related to ecology
+      and academia.","feed_url":"https://jabberwocky.weecology.org/feed/atom/","generator":"WordPress.com","home_page_url":"https://jabberwocky.weecology.org","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"jabberwocky_ecology","status":"active","title":"Jabberwocky
+      Ecology","updated_at":1705934943},"blog_name":"Jabberwocky Ecology","blog_slug":"jabberwocky_ecology","doi":"https://doi.org/10.59350/vkxdd-2t713","guid":"http://jabberwocky.weecology.org/?p=1687","id":"e88972af-26f7-44ad-bcca-840a5f03e64d","image":"https://i0.wp.com/jabberwocky.weecology.org/wp-content/uploads/2016/09/20916401782_019d3c14eb_z.jpg?resize=436%2C327&ssl=1","indexed":false,"indexed_at":1,"language":"en","published_at":1474290031,"reference":[],"relationships":[],"summary":"<strong>\n
+      PH.D STUDENT OPENING IN COMMUNITY ECOLOGY IN THE ERNEST LAB\n</strong>\nThe
+      Ernest Lab at the University of Florida has an opening for a Ph.D student in
+      the area of Community Ecology to start fall 2017.","tags":["Science"],"title":"PhD
+      Student Opening, Community Ecology, Ernest Lab","updated_at":1474290864,"url":"https://jabberwocky.weecology.org/2016/09/19/phd-student-opening-community-ecology-ernest-lab"},{"abstract":null,"archive_url":null,"authors":[{"name":"Henry
+      Rzepa","url":"https://orcid.org/0000-0002-8635-8390"}],"blog":{"category":"chemicalSciences","description":"Chemistry
+      with a twist","feed_url":"https://www.ch.imperial.ac.uk/rzepa/blog/?feed=atom","generator":"WordPress","home_page_url":"https://www.ch.imperial.ac.uk/rzepa/blog","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"rzepa","status":"active","title":"Henry
+      Rzepa''s Blog","updated_at":1707384246},"blog_name":"Henry Rzepa''s Blog","blog_slug":"rzepa","doi":"https://doi.org/10.59350/rv64h-s3387","guid":"http://www.ch.imperial.ac.uk/rzepa/blog/?p=16819","id":"bd678f64-ec64-4c68-9b45-299ef759ecf3","image":"http://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2016/09/carbenes-1.svg","indexed":true,"indexed_at":1,"language":"en","published_at":1474279357,"reference":[{"doi":"https://doi.org/10.1016/j.jorganchem.2014.05.036","key":"ref1"},{"doi":"https://doi.org/10.1021/ja047503f","key":"ref2"},{"doi":"https://doi.org/10.1073/pnas.0705809104","key":"ref3"},{"doi":"https://doi.org/10.1016/j.ica.2007.02.050","key":"ref4"},{"doi":"https://doi.org/10.1002/anie.200462239","key":"ref5"},{"doi":"https://doi.org/10.1021/ja9819312","key":"ref6"},{"doi":"https://doi.org/10.1002/jlac.199719970213","key":"ref7"}],"relationships":[],"summary":"I
+      previously explored stabilized \u201ccarbenes\u201d with the formal structures
+      (R\n<sub>\n 2\n</sub>\nN)\n<sub>\n 2\n</sub>\nC:, concluding that perhaps the
+      alternative ionic representation R\n<sub>\n 2\n</sub>\nN\n<sup>\n +\n</sup>\n=C\n<sup>\n
+      \u2013\n</sup>\nNR\n<sub>\n 2\n</sub>\nmight reflect their structures better.\n","tags":["Crystal_structure_mining"],"title":"What\u2019s
+      in a name? Stabilised &#8220;nitrenes&#8221;.","updated_at":1474279947,"url":"https://www.ch.imperial.ac.uk/rzepa/blog?p=16819"},{"abstract":null,"archive_url":"https://wayback.archive-it.org/22135/20231101173016/https://irights.info/artikel/vg-wort-noch-keine-einigung-ueber-rueckforderung-an-verlage/27900","authors":[{"name":"Henry
+      Steinhau"}],"blog":{"category":"law","description":"Urheberrecht und kreatives
+      Schaffen in der digitalen Welt","feed_url":"https://irights.info/feed/atom","generator":"WordPress","home_page_url":"https://irights.info/","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","slug":"irights","status":"active","title":"iRights.info","updated_at":1707292625},"blog_name":"iRights.info","blog_slug":"irights","doi":"https://doi.org/10.59350/hprn3-php34","guid":"https://irights.info/?post_type=custom_artikel&p=27900","id":"a9c8efbf-2435-44ca-bd22-77b8f165125f","image":null,"indexed":true,"indexed_at":1,"language":"de","published_at":1473846788,"reference":[],"relationships":[],"summary":"Nachdem
+      sich eine Mitgliederversammlung der Verwertungsgesellschaft nicht auf ein Vorgehen
+      bei den anstehenden Nachzahlungen f\u00fcr Autoren einigen konnte, gehen die
+      Berichte \u00fcber die Zukunft der VG Wort weit auseinander. Eine Presseschau
+      und eine Einsch\u00e4tzung.\u00a0 Am vergangenen Samstag fand in M\u00fcnchen
+      eine Mitgliederversammlung der VG Wort statt, die erste von zwei dazu angesetzten
+      Terminen.\n","tags":["Autor + Text","Politik + Recht","Urheberrecht","Martin
+      Vogel","Verlegerbeteiligung"],"title":"VG Wort: Noch keine Einigung \u00fcber
+      R\u00fcckforderung an Verlage","updated_at":1474272531,"url":"https://irights.info/artikel/vg-wort-noch-keine-einigung-ueber-rueckforderung-an-verlage/27900"}]
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Sat, 03 Feb 2024 21:12:32 GMT
+      - Sat, 10 Feb 2024 09:59:24 GMT
       fly-request-id:
-      - 01HNRD1PN7SH2XCFN65R9FN2D6-fra
+      - 01HP97A6490SZ7RVD7Q1RHC90K-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '11'
       ratelimit-reset:
-      - '3'
+      - '15'
       server:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

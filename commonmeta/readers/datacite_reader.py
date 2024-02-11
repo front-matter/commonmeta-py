@@ -1,7 +1,7 @@
 """datacite reader for Commonmeta"""
 from collections import defaultdict
 from typing import Optional
-import requests
+import httpx
 from pydash import py_
 
 from ..utils import (
@@ -28,11 +28,11 @@ def get_datacite(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
     try:
-        response = requests.get(url, kwargs, timeout=10)
+        response = httpx.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         return py_.get(response.json(), "data.attributes", {})
-    except requests.exceptions.ReadTimeout:
+    except httpx.exceptions.ReadTimeout:
         return {"state": "timeout"}
 
 
@@ -251,11 +251,11 @@ def get_random_datacite_id(number: int=1) -> list:
     number = 20 if number > 20 else number
     url = datacite_api_sample_url(number)
     try:
-        response = requests.get(url, timeout=60)
+        response = httpx.get(url, timeout=60)
         if response.status_code != 200:
             return []
         
         items = py_.get(response.json(), "data")
         return [i.get("id") for i in items]
-    except requests.exceptions.ReadTimeout:
+    except httpx.exceptions.ReadTimeout:
         return []

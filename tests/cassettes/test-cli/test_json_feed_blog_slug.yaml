@@ -1,173 +1,164 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/6603f220-1683-4366-8663-c4284e9f9a78
   response:
-    body:
-      string: !!binary |
-        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
-        AA==
+    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Ben Kaden","url":"https://orcid.org/0000-0002-8021-1785"}],"blog":{"api":true,"archive_prefix":null,"authors":null,"backlog":0,"canonical_url":null,"category":"otherSocialSciences","created_at":1706811303,"current_feed_url":null,"description":"weblogs","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://libreas.wordpress.com/feed/atom","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://libreas.wordpress.com","id":"623981d8-f442-4db2-a46e-7a553009fbec","indexed":true,"issn":"1860-7950","language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"","plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"libreas","status":"active","title":"LIBREAS.Library
+      Ideas","updated_at":1704989593,"use_api":true,"use_mastodon":false,"user_id":"36565831-b661-4f85-8e3a-fd190dd746a8","version":"https://jsonfeed.org/version/1.1"},"blog_name":"LIBREAS.Library
+      Ideas","blog_slug":"libreas","content_text":"Eine kurze Besprechung zu: Jussi
+      Parikka: *The Anthrobscene*.\nMinneapolis: University of Minnesota Press. 2014.
+      ([Angaben zum Titel\nbeim\nVerlag](http://www.upress.umn.edu/book-division/books/the-anthrobscene))\n\nvon
+      Ben Kaden ([@bkaden](https://twitter.com/bkaden))\n\nEine buchst\u00e4blich
+      globale Perspektive auf die Folgen der Digitalisierung\ner\u00f6ffnet eine schmale
+      Publikation des Medientheoretikers Jussi Parikka,\ndie unl\u00e4ngst bei der
+      *Minnesota University Press* erschien und den\nwortverspielten Titel *The Anthrobscene*
+      tr\u00e4gt. Das \u00a0\u201eer\u00f6ffnet\" bezieht\nsich darauf, dass sie als
+      eine Art ausgelagerte Vorthematisierung (die\nReihe hei\u00dft *[Forerunners:
+      Ideas\nFirst](http://www.upress.umn.edu/press/press-releases/announcing-forerunners-ideas-first)*)\nder
+      f\u00fcr das Fr\u00fchjahr angek\u00fcndigten Band *A Geology of Media*\n([Verlagsseite](http://www.upress.umn.edu/book-division/books/a-geology-of-media))\nfungiert
+      und bereits vorab in einige zentrale Thesen dieser kommenden\nMediengeologie
+      einf\u00fchrt.\n\nDie Idee einer Geologisierung der Medienwissenschaft ist nicht
+      neu.\nParikka zitiert John Durham Peters mit dessen naturwissenschaftlichen\nVerortung
+      der Kommunikationstheorie (oder eben der\nkommunikationstheoretischen Verortung
+      naturwissenschaftlicher Ans\u00e4tze):\n\n> \u00a0\u201eBoth geology and astronomy
+      face the problem of belated reception,\n> interpreting messages that come posthumously,
+      as it were, after long\n> delays. Both sciences are always also media studies;
+      they necessarily\n> study not only content, but signal and channel properties
+      as well\n> (this is also true of quantum physics).\" (Peters)\n\nDie Biologie
+      und bei Parikka zweifelsohne in der Konkretisierung zur\nZoologie (vgl.Parikka,
+      2010) Werden wir konkreter, werden auch die\nChemie und die Materialkunde pl\u00f6tzlich
+      sehr relevant f\u00fcr unsere\nAuseinandersetzung mit der digitalen Transformation.
+      (vgl. Parikka, 17)\n\nDer Ansatz Parikkas in *Anthrobscene* ist also dahingehend\nau\u00dferordentlich
+      interessant, dass er etwas ins Zentrum r\u00fcckt, was\nMedien- und insbesondere
+      Digitalisierungsdiskurse gern ausblenden und in\neine abstrakte Blackbox auslagern:
+      die Materialit\u00e4t, die Digitalit\u00e4t\n\u00fcberhaupt erm\u00f6glicht.
+      Wie auch in den sozialen Transformationen zeichnen\nsich medientechnische Transformationen
+      durch ein erhebliche Steigerung\nder zu bew\u00e4ltigenden materialien Komplexit\u00e4t
+      aus. Parikka zitiert in\nseiner Arbeit (S.15) den Aufsatz \u201eOn the materials
+      basis of modern\nsociety\" dessen Autoren mit der Auskunft er\u00f6ffnen:\n\n>
+      \u201eA century ago, or even half a century ago, less than 12 materials\n> were
+      in wide use: wood, brick, iron, copper, gold, silver, and a few\n> plastics.
+      Today, however, substantial materials diversity in products\n> of every kind
+      is the rule rather than the exception. \\[A modern\n> computer chip, for example,
+      employs more than 60 different\n> elements\\[...\\].\" (Graedel et al, S.1)\n\nDie
+      stoffliche Seite moderner Kommunikationstechnologien, die, wie\nParikka herausarbeitet,
+      derzeit eine metallische ist, weist weit dar\u00fcber\nhinaus, was bisweilen
+      bei der Betrachtung der Hardware als materiale\nBedingung des Digitalen im Mittelpunkt
+      steht. (\u201eHardware perspectives\nare not necessarily hard enough \\[...\\]\",
+      Parikka17) Hier geht es um\nerdgeschichtliche Dimensionen. Der M\u00f6glichkeit
+      des Data Mining geht\nimmer Minentreiben in die Rohstoffst\u00f6cke voraus.\n\nDie
+      Folgen der Digitalisierung reichen diesbez\u00fcglich \u00fcber\nPartikularaspekte
+      mit nicht zuletzt bemerkenswert metaphorischer Tiefe\nim Sinne der Beschreibung
+      Benjamin Brattons:\n\n> \u201ehow we carry small pieces of Africa in our pockets,
+      referring to the\n> role of, say coltan in digital media technologies.\" (Parikka,
+      37)\n\nhinaus. Die Obsz\u00f6nisierung des Anthropoz\u00e4ns, also der Erdperiode,
+      in der\nMensch und die Folge seines Handelns als Hauptpr\u00e4gekraft des Planeten\nwirkt
+      (und gewirkt haben wird), ergibt sich laut Parikka aus der ethisch\nund politisch
+      h\u00f6chst fragw\u00fcrdigen R\u00fccksichtslosigkeit, mit der die\nmetallischen
+      Grundlagen digitaler Technologie in der Regel bar jeder\nnachhaltigen Perspektivplanung
+      abgebaut, benutzt und entsorgt werden.\n(vgl. Parikaa, 6) F\u00fcr die Umwelt
+      in vielerlei Hinsicht (potentiell)\nsch\u00e4dlich -- Stichworte u.a.: \u201eplanned
+      obsolescence of electronic media,\nthe energy costs of digital culture, and,
+      for instance, the neocolonial\narrangements of material and energy extraction
+      across the globe\" -- und\ndamit die Lebensgrundlagen von Menschen bzw. der
+      Menschheit bedrohend,\nsind die derzeitigen Handlungspraxen im Hintergrund der
+      Digitalisierung\nunmoralisch. Das gilt insbesondere f\u00fcr die Bedingungen,
+      unter denen die\n\u201eBr\u00f6ckchen Afrika\", also die so genannten Konfliktmineralien,
+      gewonnen\nwerden.\n\n::: {#attachment_4594 .wp-caption .alignnone shortcode=\"caption\"
+      style=\"width: 610px\"}\n![Cover \\\"The\nAnthrobscene\\\"](https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=600&h=800){.size-full\n.wp-image-4594
+      aria-describedby=\"caption-attachment-4594\" loading=\"lazy\"\nattachment-id=\"4594\"\npermalink=\"https://libreas.wordpress.com/2015/01/30/die-geologisierung-der-medientheorie/anthobscene/\"\norig-file=\"https://libreas.files.wordpress.com/2015/01/anthobscene.jpg\"\norig-size=\"600,800\"
+      comments-opened=\"1\"\nimage-meta=\"{\\\"aperture\\\":\\\"0\\\",\\\"credit\\\":\\\"\\\",\\\"camera\\\":\\\"\\\",\\\"caption\\\":\\\"\\\",\\\"created_timestamp\\\":\\\"0\\\",\\\"copyright\\\":\\\"\\\",\\\"focal_length\\\":\\\"0\\\",\\\"iso\\\":\\\"0\\\",\\\"shutter_speed\\\":\\\"0\\\",\\\"title\\\":\\\"\\\",\\\"orientation\\\":\\\"0\\\"}\"\nimage-title=\"Cover
+      \u201cThe Anthrobscene\u201d\"\nimage-description=\"<p>Cover \u201cThe Anthrobscene\u201d</p>\n\"
+      image-caption=\"<p>Cover \u201cThe Anthrobscene\u201d</p>\n\"\nmedium-file=\"https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=225\"\nlarge-file=\"https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=600\"\nwidth=\"600\"
+      height=\"800\"\nsrcset=\"https://libreas.files.wordpress.com/2015/01/anthobscene.jpg
+      600w, https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=113&h=150
+      113w, https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=225&h=300
+      225w\"\nsizes=\"(max-width: 600px) 100vw, 600px\"}\n\nJussi Parikka:\u00a0 The
+      Anthrobscene.\n:::\n\nBer\u00fccksichtigt man dies, wirkt es erstaunlich, wie
+      randst\u00e4ndig im\n\u00f6ffentlichen Diskurs die Auswirkungen der Digitalisierung
+      aus einer\numweltpolitischen Perspektive verhandelt werden. Und auch in den
+      mit den\nTransformationsprozessen besch\u00e4ftigten Wissenschaftszweigen inklusive\nder
+      Bibliothekswissenschaft findet sich wenig Engagement oder \u00fcberhaupt\nBewusstsein
+      gegen\u00fcber der Prozesskette, die der orts- und\nzeitunabh\u00e4ngigen Vermittelung
+      menschlicher Kommunikation und des\nDatenhandel(n)s vorausgeht (und nachfolgt).
+      Was man derzeit unter\nGreen-IT versteht, bezieht sich vor allem auf das Energiemanagement,\nwenngleich
+      sich in [Verlautbarungen des BMBF](www.bmub.bund.de/P438/)\nund auch [in der
+      Digitalen\nAgenda](http://www.digitale-agenda.de/DA/Navigation/DE/Handlungsfelder/2-Digitale-Wirtschaft/5-Energiewende-und-Green-IT-voranbringen/5-Energiewende-und-Green-IT-voranbringen.html))\nder
+      Bundesregierung, \u201eetwa durch weitere Zertifizierungen und die\nAnregung
+      zur freiwilligen Selbstverpflichtung in der Wirtschaft\" einige\nzaghaft gelegte
+      Spuren zu entdecken sind. Dominiert wird diese\nGreen-IT-Debatte bisher freilich
+      durch die Frage der Energieeffizienz,\nwas am Ende jedoch nur einer von zwei
+      zentralen Aspekten dessen ist, was\nim Zusammenhang der digitalen Informations-
+      und\nKommunikationstechnologien auf das Geosystem zur\u00fcckwirkt. Sicher ist,\ndass
+      diese Transformation der Informationsverarbeitung und Kommunikation\nin die
+      Erde erheblich eindringt und letztlich in gewisser Weise zu\ndieser wird:\n\n>
+      \u201eThe earth is a machine of variation, and media can live off variation\n>
+      -- but both earth and media are machines that need energy and are tied\n> together
+      in their dynamic feedback loop. Electronic waste is an\n> example of how media
+      feeds back to earth history and future fossil\n> times.\" (29)\n\nDie Erde selbst
+      fungiert in dieser Schleife sowohl als Materialspeicher\n(\u201ethe future landscape
+      of media technological fossils\", 44) wie auch als\nZeitspeicher also als Basis
+      (ferner) zuk\u00fcnftiger Wissenschaft, die an\neine Perspektive des 19. Jahrhunderts
+      anschlie\u00dft:\n\n> \u201eprocesses of transmission and recording are already
+      present in the\n> earth itself, a vast library waiting to be deciphered.\" (27)\n\nFast
+      also k\u00f6nnte man vermuten, dass weitaus l\u00e4nger als die digitalen\nInhalte
+      ihre Tempor\u00e4rtr\u00e4ger und deren Materialit\u00e4t Zeugnis \u00fcber
+      unsere\nKultur geben werden. Wir graben derzeit all das aus und ein, was als\nSediment
+      zuk\u00fcnftigen Arch\u00e4ologien, die als diszplin\u00e4re Idee nat\u00fcrlich\nselbst
+      Medienwissenschaften sind, R\u00fcckschl\u00fcsse auf die Art des\nmenschlichen
+      Lebens im fr\u00fchen 21. Jahrhundert erm\u00f6glicht. Sofern das in\ndieser
+      Zukunft noch jemanden interessiert.\n\n(Berlin, 30.01.2015)\n\n*Quellen*\n\nE.
+      Graedel, E. M. Harper, N. T. Nassar, Barbara K. Reck (2013) [*On the\nmaterials
+      basis of modern\nsociety*](http://www.pnas.org/content/early/2013/11/27/1312752110.abstract).\nIn:
+      PNAS 2013 : 1312752110v1-201312752. DOI:\u00a0\u00a0 10.1073/pnas.1312752110\n\nJohn
+      Durham Peters (2003) *[Space, Time, and Communication\nTheory](http://www.cjc-online.ca/index.php/journal/article/view/1389/1467).*\nIn:
+      Canadian Journal of Communication. Vol. 28, No. 4\n\nJussi Parikka (2010) Insect
+      Media. An Archaeology of Animals and\nTechnology. Minneapolis: University of
+      Minnesota Press\n","doi":"https://doi.org/10.59350/xynma-f1b03","guid":"https://libreas.wordpress.com/?p=4593","id":"6603f220-1683-4366-8663-c4284e9f9a78","image":"https://libreas.files.wordpress.com/2015/01/anthobscene.jpg?w=600&h=800","indexed_at":1706994886,"language":"de","published_at":1422632047,"reference":[],"relationships":[],"summary":"Eine
+      kurze Besprechung zu: Jussi Parikka:\n<em>\n The Anthrobscene\n</em>\n. Minneapolis:
+      University of Minnesota Press. 2014. (Angaben zum Titel beim Verlag) von Ben
+      Kaden (@bkaden)  Eine buchst\u00e4blich globale Perspektive auf die Folgen der
+      Digitalisierung er\u00f6ffnet eine schmale Publikation des Medientheoretikers
+      Jussi Parikka, die unl\u00e4ngst bei der\n<em>\n Minnesota University Press\n</em>\nerschien
+      und den wortverspielten Titel\n<em>\n The Anthrobscene\n</em>\ntr\u00e4gt.","tags":["LIBREAS.Referate"],"title":"Die
+      Geologisierung der Medientheorie.","updated_at":1422632249,"url":"https://libreas.wordpress.com/2015/01/30/die-geologisierung-der-medientheorie"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Sun, 04 Feb 2024 10:55:11 GMT
+      - Sat, 10 Feb 2024 09:59:24 GMT
       fly-request-id:
-      - 01HNSW4126GFPH5756F4G6P8B1-fra
+      - 01HP97A6B4M53KPCYGXG778ETX-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '10'
       ratelimit-reset:
-      - '3'
+      - '19'
       server:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

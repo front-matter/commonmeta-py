@@ -1,447 +1,111 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
   response:
-    body:
-      string: !!binary |
-        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
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea","authors":[{"name":"Markus
+      Stocker","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22143/20231103191454/","authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1695254400,"current_feed_url":null,"description":"Technical
+      and Human infrastructure for Open Research.","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"funding":{"award_number":"654039","award_uri":"https://doi.org/10.3030/654039","funder_id":"https://doi.org/10.13039/501100007601","funder_name":"European
+      Union\u2019s Horizon 2020 research and innovation programme"},"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://project-thor.eu","id":"2a309edc-7a90-4735-807c-a81a7e5eb890","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"thor","status":"archived","title":"Project
+      THOR","updated_at":1511522178,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Project
+      THOR","blog_slug":"thor","content_text":"[This is the first in a [series of\nposts](http://wp.me/p5O69U-aF)]{style=\"font-weight:400;\"}[\u00a0describing\nhow
+      THOR partners have recently integrated [ORCID](http://orcid.org/) in\ntheir
+      disciplinary data repositories. This post describes ORCID\nintegration in [PANGAEA](https://www.pangaea.de/),
+      the Data Publisher\nfor Earth & Environmental Science.]{style=\"font-weight:400;\"}\n\n[PANGAEA
+      is rolling out a new version of its website. Developers and\ndesigners are currently
+      ironing out a few remaining open issues. The\nrelease is expected for autumn
+      2016. Among major improvements in search,\ndesign, and usability, a key new
+      feature is the integration of\nORCID.]{style=\"font-weight:400;\"}\n\n[The new
+      feature enables existing PANGAEA users to connect their PANGAEA\nprofile with
+      their ORCID iD, as demonstrated in the video\nbelow.\u00a0]{style=\"font-weight:400;\"}\n\n[]{.embed-youtube
+      style=\"text-align:center; display: block;\"}\n\n[With this connection, PANGAEA
+      obtains the\n]{style=\"font-weight:400;\"}*[validated]{style=\"font-weight:400;\"}*[\nORCID
+      iD of its users from ORCID. By connecting their ORCID iD, users\ncan also choose
+      to sign in to PANGAEA using ORCID, as an alternative to\nsigning in using PANGAEA
+      user credentials. This can be handy when a user\nis already signed in to ORCID,
+      or it is quicker to recall ORCID\ncredentials.]{style=\"font-weight:400;\"}\n\n[Obtaining
+      the validated ORCID iDs of its users is significant for\nPANGAEA as, contrary
+      to a researcher''s name, the iD is unambiguous: two\nresearchers with the same
+      name can be distinguished by their respective\niDs. The iD is also persistent
+      through possible changes in a person''s\nname: the same researcher may change
+      marital status, or their name may\nappear in different permutations, at times
+      appear with full name,\ninitials for first name, and with or without middle
+      name (initial).\nFurthermore, the iD is actionable and can be used to discover\ninformation
+      about the researcher.]{style=\"font-weight:400;\"}\n\n[For researchers, the
+      greatest advantage of connecting their ORCID iD to\ntheir PANGAEA profile is
+      that PANGAEA can then record the relationships\nbetween dataset publication
+      DOIs and contributor ORCID iDs. This\ninformation is then shared with the global
+      network of PID\ninfrastructures, and researchers benefit from automated updates
+      to their\nORCID Record for data published at PANGAEA, gaining unambiguous\nattribution
+      for published datasets and benefiting from greater credit\nfor sharing data
+      early.]{style=\"font-weight:400;\"}\n\n[Let''s take a look at how the ORCID
+      integration in PANGAEA is making a\ndifference to [Dr Alice\nLefebvre](https://www.marum.de/en/Alice_Lefebvre.html),\n[GLOMAR](https://www.marum.de/en/GLOMAR.html)
+      Associate Scientist at the\n[MARUM](https://www.marum.de/en/index.html) Center
+      for Marine\nEnvironmental Sciences of the [University of\nBremen](http://www.uni-bremen.de/en.html).
+      ]{style=\"font-weight:400;\"}\n\n[Alice has recently joined ORCID and decided
+      to claim the 14 data\npublications deposited at PANGAEA that she has authored.
+      As a\nconsequence, Alice gains a more complete [ORCID\nRecord](http://orcid.org/0000-0002-9234-8279),
+      one that does not just\ninclude her journal article publications but also her
+      authorship in data\npublications ]{style=\"font-weight:400;\"}[\u2212]{style=\"font-weight:400;\"}[
+      a\nrecord that better reflects her true contribution to the scientific\nrecord.
+      Alice was also surprised to learn about\n[DataCite](http://datacite.org) and
+      the\n[overview](http://search.datacite.org/contributors/0000-0002-9234-8279)\nDataCite
+      provides about her contributions. ]{style=\"font-weight:400;\"}\n\n[The upcoming
+      release of the PANGAEA website automates the sharing of\ninformation with the
+      global network of PID infrastructures. Authors of\ndatasets published at PANGAEA
+      who have connected their ORCID iD, like\nAlice, will benefit from a workflow
+      that ensures information appears\nautomatically and accurately on their ORCID\nRecord.]{style=\"font-weight:400;\"}\n\n[This
+      shows how far the integration between disciplinary repositories\nand the global
+      network of PID infrastructures has come over the past\nyears, and how the persistent
+      identification of contributors and\nresearch artefacts together with infrastructures
+      that aggregate,\nprocess, and share information about persistently identified
+      resources\nare driving and shaping 21st-century attribution, credit, communication,\nand
+      measurement of scholarly activity.]{style=\"font-weight:400;\"}\n\n**Want to
+      Know More?  \n**[Readers interested in performing an ORCID integration in their
+      own\ndisciplinary repository can find more information in our recent report,\n''[Demonstration
+      of Services to Integrate ORCIDs into Data Records and\nDatabase\nSystems](http://doi.org/10.5281/zenodo.58971)'']{style=\"font-weight:400;\"}[.\n]{style=\"font-weight:400;\"}\n","doi":"https://doi.org/10.59350/faeph-x4x84","guid":"http://project-thor.eu/?p=664","id":"570c8129-e867-49e6-8517-bd783627e76e","image":null,"indexed_at":1695449798,"language":"en","published_at":1470819639,"reference":[],"relationships":[],"summary":"This
+      is the first in a series of posts&nbsp;describing how THOR partners have recently
+      integrated ORCID in their disciplinary data repositories. This post describes
+      ORCID integration in PANGAEA, the Data Publisher for Earth &amp; Environmental
+      Science. PANGAEA is rolling out a new version of its website.","tags":["Uncategorized"],"title":"ORCID
+      Integration Series: PANGAEA","updated_at":1470818410,"url":"https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Sun, 21 Jan 2024 09:16:35 GMT
+      - Sat, 10 Feb 2024 10:32:54 GMT
       fly-request-id:
-      - 01HMNMXDBJSV9JYMCYW2ZREE80-fra
+      - 01HP997H579H40RSS6F9YTD291-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '10'
+      - '9'
       ratelimit-reset:
-      - '18'
+      - '21'
       server:
-      - Fly/f9c163a6 (2024-01-16)
+      - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
-  response:
-    body:
-      string: !!binary |
-        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
-        AA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:58:39 GMT
-      fly-request-id:
-      - 01HMSJXGNV7S1YMCSR1YSHCJ7W-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
-      - '13'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:08:22 GMT
-      fly-request-id:
-      - 01HMSKFA5G1FCCXMM4DE4QP54F-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
-      - '13'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/6pWSixKzsgsS40vLcpRslLKKCkpKLbS1y9PrExKTM7Wg8rqZpbo5Rel6xsZGZoY
-        6xsZGBkbGhoYG1oampia6MP0FBTlZ6Uml+iWZOQX6aWW6hsZGJrpG1joGxro5xclZ6boZuaVpKYX
-        JZZk5ufpZubpFiTmpSemJirpKCWWgvQUK1lFVyvlJeamKlkp+SYWZZcWKwSX5CdnpxYp6Sihug9s
-        INhJBgYGBroGBgaGuqYmlka6xkaGRkq1sTpKSTn56UpW1UqJBZlKViVFpak6cK8WFKWmZVaQ6Vtk
-        5+aV5uToKIECCmyZgY5ScmJefl5mcmIOJDwhCpITS1LT84sqlayUkvNzC0pLUosc81I889Lyi3LB
-        oRGcnJmal5xarKSjlFyUmliSmhKfWKJkZWhmaWpkamJiADK4tKgoNa8kPi01NQXZ7JTU4uSizAJQ
-        mCpZKYWkJmeArVdIzEtR8CjNTcxTyMxLK0osLikqTS4pLUpVSMsvUvAvSM1TCEotTgVFr56SjlJa
-        Yllmcn6ekhXEwWBLIK5TslJKLCjIyUwGO1Q/sSQ/V7siNwekB+4SeKpBTwEgc8Ba9EHqM3NKUovg
-        VpTmpWTmQWKoPLEoJT6vNDcJJK1kZmpiYGwJCmaweGlRJlJMpeRngmPd0EDP2MDYQB+uOK00LyW1
-        KD4zBbtiQ2MDY0t9UwNDQ1B6MTczMAS5CKIHmuJcS4vyC1IT8xRC8zLz82JKjQwMLYsVPPKLMqvy
-        8xSMDIwMFIqgQQYO3cy8vPwycKgoFBTlpxcl5uamKtXqKKWn5qUWJZbkFylZKYXnF6UEFKUWF+sl
-        5+cqIcnFFyWWY5HPyM9NjS9ITEfPjmgBq6SjBPZocrplVaGRGYibl5JakZqiZJWWmFOcqqOUWVwM
-        j82cxLz00sR0UK5KzVPSUcrJTE7NKwZxYTkXnOgyy1KT83Nz8/OKwSEMVVWsn1Spb6JnoJ+Tmp6Y
-        k5yfkqqko1SQk5gHTm2JIE/Bs5OhgZ6ppbGpgZKOUlFqTmIJvFiBpKri1OTSolRYZizOKU1XslIC
-        ZXwlHaXiksSS0mJQYoMURylKOkolmSU5IFcGQMoVhRAP/yBQQVCQgsghpoaGpkZGhuYWOkqlxanx
-        SJkdxM1NLC7JTwGla2iwlBbD0khKamKKhWGSsa5FokWSrolpsqWuhWlaqm6agWFSkrGliUWyubmS
-        jlJZalFxJsgAeBrPKs7PA6VrcCBBpfUN9QxBUQ8qc+KhyQnN1WApVD8n5+eVgLJ0SWpFiZKVUnRI
-        RmaxQmaxQklGqkJaZlFxiUJmnkKiQnRxalFmarFCflpMXkF+cUlxrAYo3kCFdIFebqp+gam/mWWo
-        bqKbZmx1cUllTqptjFJafl6JbnlqZnpGiZWJgYF1jFJtdEypgUGiAaS8SMrMS4/Jy8gvBweqQkFi
-        UUlealGxQkZiWapCUWpyal5JTqUCrLxOTVGI9g9y9nSB24wofjUVMvNi8koyUjOLFFIyi5MzC3Iy
-        8xKLKhVSEksSFYpSC/KLM0vyQR7QUwB7EOQFBagrUosVwObG5MGsyswHFVgK0QGOfu6Oro4QC8EV
-        Unm5HrTC0EtJ1dfUAQeTC8iSgNKknMzijNSiGFCJquCaWFSSoaCm4JpXllmUn5ebmleSmKMALWL1
-        8IZRTF5MHsxqUEwU5efkZOalK+SXligkKuSllitAI1whP00hs6RYoTw1qTizJFVPwSW1LDUnvwAU
-        hol5KTF5KanFmengIE0sSlVIhhTeoCAtys9DmJiWWq5QlJqbmAkRA5XKmcXFpanFoLBKjckrSs1J
-        TSxOBTkltaIgNbkkNQVcfieWlpTmgsokQzM9Bcfc/Lx0hdzErPwihczcgqL8slSQn4tBqQdSwuvA
-        3KMDLrhKixOTMnMySyp1FBIVslMrwR5LS00EVw/Q9IccH6CEB44mIgIvJCMVxbjUvMSknNRihdSK
-        zOISkMehEasAyonFCiX5Csn5eXmpySWg6MwsUoBKx+QVFOWnZeakKpRnlmRA5cBuUMh00VFILFZI
-        SQWVVCVFoKIA5FNQpinLTEnNj8lLSs3JL9eDJHfC0R1brZeam5SaoluZX1pSmpSqAMtDoGypm5iT
-        mZ5nBcoPqUXWoARekJNYaaWQlJOfnA3KVeAUEw5xY2YxzDOZ+Xk6MK8o5CeVJGbmgbN1TB5e92hF
-        lyXmZIJLNwLqYvJggQFLiZDwTCvKz4VkKT0Fp0q4c/LSMYIQrD4mLzkxTyExpzhfITkjP784FRQh
-        oIQLDtF8uBdKi0FRB7YSHPhgTSWpRXngMl6hJD8mD6QLpCgzTwGiGhqT4IhWSC5KTUnNK8lMzAEn
-        bVBIJeYpJKUqZCTmpVQqlGekgko6kJti8jKLFRJzilITUyoVQIampkAdA7UelMpLQDmisDQT1DQE
-        ObkoNTkxJwfi8Zg8ZMvwhiM48vzB0QNyOjgJwSIAYphCpguo4AXndZDrwOUzyFWZaZnJiXkloNwY
-        kwfzamKxDijIS4pA5V9JvgKo/IPkwNQi9WIFUMUAKbYyXUAeKM1LzE3KTC/NLy22Uigpzwfld5jy
-        YnjCVyhOzE0F61UARVZSKigVgrJSKajMS1FIqoTGbVFqMaiIyCxLjcnLdAGHc6oCxCZwDIMKp8xi
-        UI2jUJJRlF+anqFQkF9cnJmUk6qQnJGYl54KLjISFUAK8/PUi2PyQC62AhkPcQSs+ZNapJCbWAnV
-        pJCbWJQJKmEhVbiOQn4RSEdmEcTNuYmVMXmJBQWpiUWgeEzJTEtLBTVkQbbklpYkghquxToKiSUK
-        JZm5qcUKUKXgbJ9WmpMDNkUHVEFkgpMPKMShtSPIdZASDaw6vwgcZqCyOjczJSUHGmgamXlgnZp6
-        MXlupUUlGalFuflFqcgRkZgMcgWooAKXj9BgLi1OTQElLlCtll8Gql0yQfULpMWukJgEsgiUZBCh
-        QkT56JZfBG9FphYVQ1yRDm7zF5coJKaUJeaVJKangnI1tGCEpszMIniKBOe3EnCNC0t5sNISXHon
-        lsAzLsgrJaDMVZSanF+UAooYBUjTLD+vOCOzoBhUWpaUp6bmgevr4tQShQJQbQpp7Su4+HsWQ4Ik
-        P6+kKDOptATUeQC1BEAZA1RJZRaDogbSVQDX3eByLk+hOCOxKDUFHCFgS9Nz8pMScxTyUkvK84uy
-        Qd4L8HQBa0Xqm4DSQV4KcvgoJKXmpaZlliiAC7bE0pL8XHCBXwpuA4LrD3BAwMrDIIg3QX0ccPsD
-        7JnijNQUUAKDBpaOQjq0wkXKgDF5iSUQH4J8AdKP0AoyqTi1BBISUAeBYgXsJkjcFYFLuMwSSAsE
-        5HmQApBGhdTEopxKIlKGT2qJerFCSWJ2qkKiQk5+fjbIyaAWGiiNgcs+eHsM5MTMPHgkZxYr5CZm
-        gyxMjMmDZbBkcFke7VKk4Ahqycfk+aSmpSaVFaWiNqlyE4tKc0ENqtQ8fbDCeJg6vYyS3BxNnZi8
-        aHcff1/HINz6IPIQ9QqOxcX5yZmJJamQFldJJihZg2v3mLxoX8egUF/cBmWCOjFQc5xT80pSi8C5
-        3TexKDMvNSYPa4MOXDyDgig6NC8T3DorqQQ3lZ2KQM0giGWgtnJ5uV5pXqZuElgY4mOIVXoKhCsJ
-        cNAoZCQWIxrHWfmZeakp0EwJ6m2npCZnpkCKjOScxMxccLo3NAFnrJg8cHKCZCtQ4wXcLEZJlgol
-        GYklCsUZoDqxWAEyIpKaoqfgWKyQGJOXnJ9XnFpYChol0IHEKDgVFyskKoBKMwXQuEJOakmqAqSh
-        HpMHyQlw7yMa7KD+L2i8xEjX0sjYRNfCyNxSU0chPy8V4oCU/NRihbz8EoWs0uISUAZNzilNSVXI
-        SC1SyMovLcpLzFFILCrJTM5JRS4pihWSQE1kUEMCpBLielABAy7zE0sS0QIAb4hHx5QaGRka4VcD
-        ChR4oZZYopCUWgJKL0WpaTmpySXFYAeDRn0gFTKo6ALlmpJ8cKwUg8ZbSkB1OKjOBZWMetBALU8E
-        tT6K8xWKS4sKijKhVUBOamJRHqTIj8mLBnU6nDNLoDnJSl8flM+TQd2A/KJ0TXB5WZKRGpMXDao1
-        yjJTy+GxAKnd9ZDV64N6gdCitVgfW+TE5MEsBI0zgNq4xRCngP0I154J6rgTkZRBLfTSguT8XFCB
-        Aetg5KeBwwVaQsK6NaBUCC5wwYU6uEwHaQL1B5CrQnDtC8qCWAt5tPGnYj0FR8hoHziXgoICXLaC
-        8wdaSa1QnpEP6ZJC60JQ7gLXe9Dy0EVHISczOzUmD5w/dRTKM3Ny0KoMBVB9k5aTXw5J3ql5xaVF
-        4IYOos6CNDmKY/Kg9Qto+C6nEhyPicnJpaAuRk6lQn4eKIhg1TAsgxFRsIN7vcUZ+eXFCqDiPC0R
-        3D5CKcyTUqF1MHIHGrnvHJMHKmGIDmNwSZWcn5uqAEqCIHcrFCSCsnNlaiKo0QEyDOQWkIGg1h60
-        WZgJbqODWrag9hCokoanrvwicPUHyi6QRAwqBVLTEkFZrSQ/PRXUrILU9qjDjaCUk1iikJieXpSa
-        nliSqgPu2SWnFkPrelBVmQpKIvnQoVBo0ka4CtRphrorFdw2yC8tSk4FxVZRqkJKUWYZKEmCPFSc
-        kVgAYhsZFpfognpspUWVCki1ug60jga10XNzS0HDpCBv6kDCNjc1EZQyQD1nkMeLkzPyc0A1twKo
-        cViWWUJEFa6lFQ7qEpTkK3jn5Zcr+OYXpdorKMTkaWlFB6UmpoDGBkDd6qLUYlA/PjMP1AQGpUKQ
-        oxPzoDUJSAV0jBxUdoJbNwr55Xmgmh1pdAWeOCrBvYK0zLwUSEWAnDEz8xTyS0HtTVBogMdiikp0
-        YvLUo13gnWdQoZifphCcWlSWmZwKblB5QkfpUyEuAnUKSvIVQGWQAqRSgaYEkEhSYnFqTF5wZXFJ
-        ai5iXAppkNbUyMJQvyo1Lz8lX8/UwtLcUFMdf7muR6CPHAMawUzJxzEmDB5+1E9LTC3I0K0wqbAw
-        AY25lmbCBoWt9PXRRlL17QtszcxAysCKTM0Nki0MjSx1Uy3MzHVNLFPNdC1MDc11k1LMLYzNjMxT
-        zc1A45+ZueDhVMiwJrjVgjRib2JiaW5poaOEPuwKL+EgY/sm5gYWhpZmxpagwVJwnyg5VckqOhbE
-        BY2dQhvoEKHi0tzcRPAEArg0ATfzUQYJi2FjhKA+XUmxWl5ScYE1dJQNlL5AuR00fkrEUB+0bIUV
-        d6DuD1mDeiglHKK5CunygBKPAnzgDjBwMw86bpeYW2CNY+wOucVL9NAcaCA5MR00t6QUmgedicms
-        Sk1RikWMMEO8DEv4oDwRDA5PK5iN6MPO4MizMDE0QJ+XQk9exM6B1XIBAIgS5r+KGwAA
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:12:52 GMT
-      fly-request-id:
-      - 01HMSKQHZ50ZS02J4GA563FV8S-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
-      - '14'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

@@ -1,0 +1,311 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1007
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85339a216952b8ca-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 10:17:23 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4QkRYuPUksHLHAP1%2Bp7bGTrgHnDOCg%2BySy9bQE3K%2BrBSWNSFWlGguPb%2Bj3eiMFDMmwwHSXl%2Bw2gpUHMmQIfZFN%2FgdjoG0dL%2FaSOV3PqsySPGN2vjI5mHNssCMPUCqgCTVYl%2F9s0%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.1007/978-3-662-46370-3_13
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2023,2,10]],"date-time":"2023-02-10T09:40:31Z","timestamp":1676022031544},"publisher-location":"Berlin,
+      Heidelberg","reference-count":22,"publisher":"Springer Berlin Heidelberg","isbn-type":[{"value":"9783662463697","type":"print"},{"value":"9783662463703","type":"electronic"}],"license":[{"start":{"date-parts":[[2015,1,1]],"date-time":"2015-01-01T00:00:00Z","timestamp":1420070400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.springernature.com\/gp\/researchers\/text-and-data-mining"},{"start":{"date-parts":[[2015,1,1]],"date-time":"2015-01-01T00:00:00Z","timestamp":1420070400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/www.springernature.com\/gp\/researchers\/text-and-data-mining"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2015]]},"DOI":"10.1007\/978-3-662-46370-3_13","type":"book-chapter","created":{"date-parts":[[2015,4,14]],"date-time":"2015-04-14T02:31:00Z","timestamp":1428978660000},"page":"155-158","source":"Crossref","is-referenced-by-count":1,"title":["Clinical
+      Symptoms and Physical Examinations"],"prefix":"10.1007","author":[{"given":"Ronald
+      L.","family":"Diercks","sequence":"first","affiliation":[]},{"given":"Tom Clement","family":"Ludvigsen","sequence":"additional","affiliation":[]}],"member":"297","reference":[{"issue":"10","key":"13_CR1","doi-asserted-by":"publisher","first-page":"1301","DOI":"10.1007\/s00256-012-1391-8","volume":"41","author":"KS
+      Ahn","year":"2012","unstructured":"Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation
+      between magnetic resonance imaging and clinical impairment in patients with
+      adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301\u20138.","journal-title":"Skeletal
+      Radiol"},{"issue":"3","key":"13_CR2","doi-asserted-by":"publisher","first-page":"333","DOI":"10.1016\/j.arthro.2004.11.003","volume":"21","author":"JR
+      Andrews","year":"2005","unstructured":"Andrews JR. Diagnosis and treatment of
+      chronic painful shoulder: review of nonsurgical interventions. Arthroscopy.
+      2005;21(3):333\u201347.","journal-title":"Arthroscopy"},{"key":"13_CR3","first-page":"1773","volume":"39","author":"HA
+      Anton","year":"1993","unstructured":"Anton HA. Frozen shoulder. Can Fam Physician.
+      1993;39:1773\u20138.","journal-title":"Can Fam Physician"},{"issue":"5","key":"13_CR4","doi-asserted-by":"publisher","first-page":"321","DOI":"10.3109\/03009749009096786","volume":"19","author":"B
+      Baslund","year":"1990","unstructured":"Baslund B, Thomsen BS, Jensen EM. Frozen
+      shoulder: current concepts. Scand J Rheumatol. 1990;19(5):321\u20135.","journal-title":"Scand
+      J Rheumatol"},{"issue":"8","key":"13_CR5","doi-asserted-by":"publisher","first-page":"1048","DOI":"10.1007\/s00167-007-0291-2","volume":"15","author":"S
+      Brue","year":"2007","unstructured":"Brue S, Valentin A, Forssblad M, Werner
+      S, Mikkelsen C, Cerulli G. Idiopathic adhesive capsulitis of the shoulder: a
+      review. Knee Surg Sports Traumatol Arthrosc. 2007;15(8):1048\u201354.","journal-title":"Knee
+      Surg Sports Traumatol Arthrosc"},{"issue":"1640","key":"13_CR6","first-page":"730","volume":"246","author":"S
+      Cutts","year":"2002","unstructured":"Cutts S, Clarke D. The patient with frozen
+      shoulder. Practitioner. 2002;246(1640):730, 734\u20136, 738\u20139.","journal-title":"Practitioner"},{"issue":"7530","key":"13_CR7","doi-asserted-by":"publisher","first-page":"1453","DOI":"10.1136\/bmj.331.7530.1453","volume":"331","author":"R
+      Dias","year":"2005","unstructured":"Dias R, Cutts S, Massoud S. Frozen shoulder.
+      BMJ. 2005;331(7530):1453\u20136.","journal-title":"BMJ"},{"issue":"5","key":"13_CR8","doi-asserted-by":"publisher","first-page":"499","DOI":"10.1016\/j.jse.2004.03.002","volume":"13","author":"RL
+      Diercks","year":"2004","unstructured":"Diercks RL, Stevens M. Gentle thawing
+      of the frozen shoulder: a prospective study of supervised neglect versus intensive
+      physical therapy in seventy-seven patients with frozen shoulder syndrome followed
+      up for two years. J Shoulder Elbow Surg. 2004;13(5):499\u2013502.","journal-title":"J
+      Shoulder Elbow Surg"},{"issue":"6","key":"13_CR9","doi-asserted-by":"publisher","first-page":"1457","DOI":"10.2214\/ajr.164.6.7754892","volume":"164","author":"EW
+      Emig","year":"1995","unstructured":"Emig EW, Schweitzer ME, Karasick D, Lubowitz
+      J. Adhesive capsulitis of the shoulder: MR diagnosis. AJR Am J Roentgenol. 1995;164(6):1457\u20139.","journal-title":"AJR
+      Am J Roentgenol"},{"issue":"2","key":"13_CR10","doi-asserted-by":"publisher","first-page":"117","DOI":"10.1016\/j.physio.2012.01.001","volume":"98","author":"NC
+      Hanchard","year":"2012","unstructured":"Hanchard NC, Goodchild L, Thompson J,
+      O\u2019Brien T, Davison D, Richardson C. Evidence-based clinical guidelines
+      for the diagnosis, assessment and physiotherapy management of contracted (frozen)
+      shoulder: quick reference summary. Physiotherapy. 2012;98(2):117\u201320.","journal-title":"Physiotherapy"},{"issue":"4","key":"13_CR11","doi-asserted-by":"publisher","first-page":"264","DOI":"10.1136\/oem.55.4.264","volume":"55","author":"JM
+      Harrington","year":"1998","unstructured":"Harrington JM, Carter JT, Birrell
+      L, Gompertz D. Surveillance case definitions for work related upper limb pain
+      syndromes. Occup Environ Med. 1998;55(4):264\u201371.","journal-title":"Occup
+      Environ Med"},{"issue":"10","key":"13_CR12","first-page":"845","volume":"29","author":"R
+      Hertel","year":"2000","unstructured":"Hertel R. The frozen shoulder. Orthopade.
+      2000;29(10):845\u201351.","journal-title":"Orthopade"},{"issue":"3","key":"13_CR13","doi-asserted-by":"publisher","first-page":"502","DOI":"10.1016\/j.jse.2010.08.023","volume":"20","author":"JE
+      Hsu","year":"2011","unstructured":"Hsu JE, Anakwenze OA, Warrender WJ, Abboud
+      JA. Current review of adhesive capsulitis. J Shoulder Elbow Surg. 2011;20(3):502\u201314.","journal-title":"J
+      Shoulder Elbow Surg"},{"key":"13_CR14","doi-asserted-by":"publisher","first-page":"1","DOI":"10.3109\/ort.1969.40.suppl-119.01","volume":"Suppl
+      119","author":"J Lundberg","year":"1969","unstructured":"Lundberg J. The frozen
+      shoulder. Clinical and radiographical observations. The effect of manipulation
+      under general anesthesia. Structure and glycosaminoglycan content of the joint
+      capsule. Local bone metabolism. Acta Orthop Scand. 1969;Suppl 119:1\u201359.","journal-title":"Acta
+      Orthop Scand"},{"issue":"11","key":"13_CR15","doi-asserted-by":"publisher","first-page":"2346","DOI":"10.1177\/0363546509348048","volume":"38","author":"AS
+      Neviaser","year":"2010","unstructured":"Neviaser AS, Hannafin JA. Adhesive capsulitis:
+      a review of current treatment. Am J Sports Med. 2010;38(11):2346\u201356.","journal-title":"Am
+      J Sports Med"},{"issue":"223","key":"13_CR16","first-page":"59","volume":"223","author":"RJ
+      Neviaser","year":"1987","unstructured":"Neviaser RJ, Neviaser TJ. The frozen
+      shoulder. Diagnosis and management. Clin Orthop Relat Res. 1987;223(223):59\u201364.","journal-title":"Clin
+      Orthop Relat Res"},{"issue":"11","key":"13_CR17","first-page":"619","volume":"64","author":"E
+      Noel","year":"1997","unstructured":"Noel E. Treatment of calcific tendinitis
+      and adhesive capsulitis of the shoulder. Rev Rhum Engl Ed. 1997;64(11):619\u201328.","journal-title":"Rev
+      Rhum Engl Ed"},{"issue":"5","key":"13_CR18","first-page":"393","volume":"67","author":"E
+      Noel","year":"2000","unstructured":"Noel E, Thomas T, Schaeverbeke T, Thomas
+      P, Bonjean M, Revel M. Frozen shoulder. Joint Bone Spine. 2000;67(5):393\u2013400.","journal-title":"Joint
+      Bone Spine"},{"issue":"8","key":"13_CR19","doi-asserted-by":"publisher","first-page":"445","DOI":"10.1136\/ard.57.8.445","volume":"57","author":"K
+      Palmer","year":"1998","unstructured":"Palmer K, Coggon D, Cooper C, Doherty
+      M. Work related upper limb disorders: getting down to specifics. Ann Rheum Dis.
+      1998;57(8):445\u20136.","journal-title":"Ann Rheum Dis"},{"issue":"6","key":"13_CR20","doi-asserted-by":"publisher","first-page":"478","DOI":"10.1016\/j.math.2008.04.005","volume":"13","author":"JM
+      Schellingerhout","year":"2008","unstructured":"Schellingerhout JM, Verhagen
+      AP, Thomas S, Koes BW. Lack of uniformity in diagnostic labeling of shoulder
+      pain: time for a different approach. Man Ther. 2008;13(6):478\u201383.","journal-title":"Man
+      Ther"},{"issue":"1","key":"13_CR21","doi-asserted-by":"publisher","first-page":"22","DOI":"10.3928\/01477447-20090101-29","volume":"32","author":"JC
+      Yoo","year":"2009","unstructured":"Yoo JC, Ahn JH, Lee YS, Koh KH. Magnetic
+      resonance arthrographic findings of presumed stage-2 adhesive capsulitis: focus
+      on combined rotator cuff pathology. Orthopedics. 2009;32(1):22.","journal-title":"Orthopedics"},{"issue":"2","key":"13_CR22","doi-asserted-by":"publisher","first-page":"322","DOI":"10.1016\/j.jse.2010.07.008","volume":"20","author":"JD
+      Zuckerman","year":"2011","unstructured":"Zuckerman JD, Rokito A. Frozen shoulder:
+      a consensus definition. J Shoulder Elbow Surg. 2011;20(2):322\u20135.","journal-title":"J
+      Shoulder Elbow Surg"}],"container-title":["Shoulder Stiffness"],"original-title":[],"link":[{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/978-3-662-46370-3_13","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,2,10]],"date-time":"2023-02-10T08:59:39Z","timestamp":1676019579000},"score":1,"resource":{"primary":{"URL":"https:\/\/link.springer.com\/10.1007\/978-3-662-46370-3_13"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2015]]},"ISBN":["9783662463697","9783662463703"],"references-count":22,"URL":"http:\/\/dx.doi.org\/10.1007\/978-3-662-46370-3_13","relation":{},"published":{"date-parts":[[2015]]}}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '3495'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 10:17:24 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/members/297
+  response:
+    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521496452,"primary-name":"Springer
+      Science and Business Media LLC","counts":{"current-dois":1552277,"backfile-dois":14577647,"total-dois":16129924},"breakdowns":{"dois-by-issued-year":[[2023,743978],[2022,737625],[2021,735117],[2020,695500],[2019,636436],[2018,625176],[2017,605314],[2014,592355],[2016,585051],[2013,574713],[2015,521619],[2012,467317],[2011,450633],[2010,413591],[2009,401130],[2008,321497],[2007,281409],[2006,254238],[2004,251697],[2005,239277],[2003,236220],[2000,236218],[2002,226734],[2001,223368],[1999,205238],[1998,204901],[1997,199003],[1996,189103],[1995,177361],[1994,170834],[1993,167503],[1991,163546],[1992,162382],[1990,157741],[1989,152967],[1988,143193],[1987,136152],[1986,125683],[1985,117749],[1984,115222],[1983,101685],[1982,99264],[1981,96120],[1980,90962],[1979,84465],[1978,83796],[1977,79898],[1976,73688],[2024,70674],[1975,69947],[1974,67826],[1973,63233],[1972,60153],[1971,55894],[1970,53214],[1969,49914],[1968,49087],[1967,47255],[1966,42581],[1965,37547],[1964,33289],[1963,30605],[1962,30123],[1961,29459],[1960,28966],[1959,25705],[1958,24582],[1956,22044],[1957,21921],[1955,19969],[1953,16731],[1954,16726],[1932,16476],[1928,16395],[1930,16227],[1927,15879],[1926,15604],[1929,15365],[1931,15329],[1933,15181],[1952,15021],[1936,14746],[1938,14668],[1950,14537],[1935,14414],[1937,14343],[1939,14101],[1951,13963],[1934,13789],[1925,13441],[1924,13137],[1923,12839],[1922,12384],[1949,11838],[1913,11548],[1921,11472],[1940,11296],[1914,10102],[1941,10048],[1920,9980],[1942,9664],[1948,9435],[1912,9334],[1910,9144],[1911,9073],[1943,8597],[1904,8251],[1903,8074],[1909,7974],[1919,7952],[1908,7919],[1905,7569],[1907,7555],[1902,7422],[1906,7308],[1918,7189],[1901,7171],[1915,7046],[1900,7025],[1916,6836],[1897,6815],[1917,6753],[1887,6742],[1886,6713],[1899,6699],[1888,6513],[1947,6411],[1893,6407],[1898,6398],[1889,6357],[1895,6147],[1891,6122],[1894,6116],[1944,6110],[1880,6105],[1885,6076],[1892,6068],[1890,5981],[1896,5963],[1877,5912],[1884,5771],[1883,5732],[1878,5634],[1882,5628],[1946,5607],[1881,5603],[1876,5486],[1879,5427],[1847,5058],[1945,3954],[1848,3882],[1872,3827],[1875,3819],[1873,3766],[1870,3725],[1874,3641],[1871,3604],[1852,3066],[1849,3025],[1869,3021],[1856,2944],[1855,2836],[1857,2796],[1854,2772],[1851,2733],[1850,2690],[1860,2628],[1867,2601],[1859,2530],[1853,2512],[1868,2447],[1858,2435],[1865,2238],[1863,2148],[1864,2145],[1866,2110],[1862,2044],[1846,1921],[1861,1703],[1845,278],[1844,176],[1843,99],[1837,66],[1840,64],[1836,62],[1835,62],[1833,62],[1400,57],[1834,56],[1838,55],[1841,50],[1832,50],[1839,49],[1842,42],[1827,2],[1815,2]]},"prefixes":["10.1208","10.19150","10.1245","10.7603","10.1007","10.17269","10.4076","10.7123","10.1140","10.1381","10.33283","10.4333","10.1186","10.1065","10.1361","10.4056","10.1023","10.1385","10.26778","10.26777","10.5819","10.1617","10.1013","10.1057","10.1379","10.1038","10.1114","10.3758","10.1557","10.3858","10.7759","10.2165","10.1251","10.5052"],"coverage":{"affiliations-current":0.001048137671304799,"similarity-checking-current":0.9962120162831763,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.05581140769837546,"licenses-backfile":0.7329772767854785,"funders-current":0.2565540815202441,"affiliations-backfile":0.001200193693810805,"resource-links-backfile":0.535765202710698,"orcids-backfile":0.0683722825775655,"update-policies-current":0.9200948026673074,"ror-ids-backfile":0.0,"orcids-current":0.3807232858568413,"similarity-checking-backfile":0.9363465173769127,"references-backfile":0.678038163497854,"descriptions-backfile":0.0,"award-numbers-backfile":0.04484948771224876,"update-policies-backfile":0.3143348168603616,"licenses-current":0.9842650506320715,"award-numbers-current":0.197360393795695,"abstracts-backfile":0.04212895263549735,"resource-links-current":0.6221260767247083,"abstracts-current":0.2269762419980455,"references-current":0.8754616605154879},"prefix":[{"name":"American
+      Association of Pharmaceutical Scientists","value":"10.1208"},{"name":"Society
+      for Mining, Metallurgy & Exploration Inc.","value":"10.19150"},{"name":"Springer
+      - Society of Surgical Oncology","value":"10.1245"},{"name":"Springer - Global
+      Science Journals","value":"10.7603"},{"name":"Springer-Verlag","value":"10.1007"},{"name":"Canadian
+      Public Health Association","value":"10.17269"},{"name":"Springer (Cases Network,
+      Ltd.)","value":"10.4076"},{"name":"Springer Science and Business Media LLC","value":"10.7123"},{"name":"Springer-Verlag","value":"10.1140"},{"name":"Springer
+      - FD Communications","value":"10.1381"},{"name":"Springer Science and Business
+      Media LLC","value":"10.33283"},{"name":"Springer - The Korean Society of Pharmaceutical
+      Sciences and Technology","value":"10.4333"},{"name":"Springer (Biomed Central
+      Ltd.)","value":"10.1186"},{"name":"Springer - Ecomed Publishers","value":"10.1065"},{"name":"Springer
+      - ASM International","value":"10.1361"},{"name":"Genomic Standards Consortium","value":"10.4056"},{"name":"Springer
+      (Kluwer Academic Publishers)","value":"10.1023"},{"name":"Springer - Humana
+      Press","value":"10.1385"},{"name":"SpringerNature","value":"10.26778"},{"name":"SpringerNature","value":"10.26777"},{"name":"Springer
+      - (backfiles)","value":"10.5819"},{"name":"Springer - RILEM Publishing","value":"10.1617"},{"name":"Springer
+      Science and Business Media LLC","value":"10.1013"},{"name":"Springer Science
+      and Business Media LLC","value":"10.1057"},{"name":"Springer - Cell Stress Society
+      International","value":"10.1379"},{"name":"Springer Science and Business Media
+      LLC","value":"10.1038"},{"name":"Springer (Kluwer Academic Publishers - Biomedical
+      Engineering Society (BMES))","value":"10.1114"},{"name":"Springer - Psychonomic
+      Society","value":"10.3758"},{"name":"Materials Research Society","value":"10.1557"},{"name":"Springer
+      Science and Business Media LLC","value":"10.3858"},{"name":"Cureus, Inc.","value":"10.7759"},{"name":"Springer
+      - Adis","value":"10.2165"},{"name":"Springer (Biological Procedures Online)","value":"10.1251"},{"name":"Springer
+      - Real Academia de Ciencias Exactas, Fisicas y Naturales","value":"10.5052"}],"id":297,"tokens":["springer","science","and","business","media","llc"],"counts-type":{"all":{"monograph":360,"journal-article":9696140,"book":337090,"reference-entry":89664,"proceedings-article":1149,"journal":2134,"component":5657,"book-chapter":6602773,"reference-book":1081,"journal-issue":2194,"dataset":24379,"edited-book":18},"backfile":{"monograph":360,"journal-article":8739732,"book":307630,"proceedings-article":1149,"book-chapter":5504320,"reference-book":843,"journal-issue":2194,"dataset":21401,"edited-book":18},"current":{"journal-article":956407,"book":29460,"book-chapter":563196,"reference-book":238,"dataset":2976}},"coverage-type":{"all":{"monograph":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.6277777777777778,"references":0.0,"funders":0.0,"similarity-checking":0.6277777777777778,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.6277777777777778,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521496452,"affiliations":0.00197222812376884,"abstracts":0.09693187185828588,"orcids":0.1467696423525238,"licenses":0.8804597499623562,"references":0.7345411679286808,"funders":0.1230390650300016,"similarity-checking":0.9085061684340366,"award-numbers":0.09886325898759712,"ror-ids":0.0,"update-policies":0.3871043528661921,"resource-links":0.8704089462404627,"descriptions":0.0},"book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.03044587498887537,"licenses":0.9940164347800291,"references":2.966566792251328E-6,"funders":0.004986798777774482,"similarity-checking":0.9941172980509656,"award-numbers":6.674775282565487E-4,"ror-ids":0.0,"update-policies":2.966566792251328E-6,"resource-links":0.9919635705597912,"descriptions":0.0},"reference-entry":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.005163722341184868,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.006092254134029591,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0014058106841612,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":5.30316422131872E-4},"book-chapter":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.004029519112651609,"orcids":0.02236636031558256,"licenses":0.5056810222008238,"references":0.6611019339904614,"funders":0.00141137670490868,"similarity-checking":0.9693940712485497,"award-numbers":2.027935838472714E-4,"ror-ids":0.0,"update-policies":0.3387791765671787,"resource-links":1.514515189300011E-7,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.02775208140610546,"licenses":0.9898242368177613,"references":0.0,"funders":0.001850138760407031,"similarity-checking":0.9944495837187789,"award-numbers":0.001850138760407031,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.9898242368177613,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.284412032816773,"references":0.0,"funders":0.0,"similarity-checking":0.05104831358249772,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.284412032816773,"descriptions":0.0},"dataset":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.2716682390582058,"licenses":0.0,"references":0.0,"funders":0.3214241765453874,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.8287050330202222,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"monograph":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.6277777777777778,"references":0.0,"funders":0.0,"similarity-checking":0.6277777777777778,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.6277777777777778,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521496452,"affiliations":0.002001892048863741,"abstracts":0.06915143393412979,"orcids":0.1054151317225746,"licenses":0.8696234621381983,"references":0.713340409065175,"funders":0.09151928228462841,"similarity-checking":0.8985846476756953,"award-numbers":0.07467437216610304,"ror-ids":0.0,"update-policies":0.329817550469511,"resource-links":0.858547836478281,"descriptions":0.0},"book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.01679290056236388,"licenses":0.993462926242564,"references":3.250658258297305E-6,"funders":0.002805318076910574,"similarity-checking":0.9939245197152423,"award-numbers":4.648441309365146E-4,"ror-ids":0.0,"update-policies":3.250658258297305E-6,"resource-links":0.9915645418197185,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.006092254134029591,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.001776059531422592,"orcids":0.01192299866286844,"licenses":0.5046049284925295,"references":0.6630784547410034,"funders":0.001226491192372536,"similarity-checking":0.9972888567525144,"award-numbers":1.858540201151096E-4,"ror-ids":0.0,"update-policies":0.3051314240451137,"resource-links":1.816754839834893E-7,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.01779359430604982,"licenses":0.9869513641755635,"references":0.0,"funders":0.0,"similarity-checking":0.9928825622775801,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.9869513641755635,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.284412032816773,"references":0.0,"funders":0.0,"similarity-checking":0.05104831358249772,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.284412032816773,"descriptions":0.0},"dataset":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.2148497733750759,"licenses":0.0,"references":0.0,"funders":0.2864819400962572,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.9440213074155414,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"journal-article":{"last-status-check-time":1707521496452,"affiliations":0.001701158607162014,"abstracts":0.350792079104398,"orcids":0.5246709821237193,"licenses":0.9794825842972709,"references":0.9282763509677365,"funders":0.4110697642321731,"similarity-checking":0.9991698095057857,"award-numbers":0.3199035557037956,"ror-ids":0.0,"update-policies":0.9105966392968684,"resource-links":0.978796683838575,"descriptions":0.0},"book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.1730142566191446,"licenses":0.99979633401222,"references":0.0,"funders":0.02776646300067889,"similarity-checking":0.9961303462321792,"award-numbers":0.002783435166327223,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.9961303462321792,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0298830247373916,"orcids":0.1456899551843408,"licenses":0.9967684429576915,"references":0.8365631147948493,"funders":0.004559691475081499,"similarity-checking":0.9964559407382155,"award-numbers":5.610835304228013E-4,"ror-ids":0.0,"update-policies":0.9896039744600459,"resource-links":0.0,"descriptions":0.0},"reference-book":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.06302521008403361,"licenses":1.0,"references":0.0,"funders":0.008403361344537815,"similarity-checking":1.0,"award-numbers":0.008403361344537815,"ror-ids":0.0,"update-policies":0.0,"resource-links":1.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521496452,"affiliations":0.0,"abstracts":0.0,"orcids":0.6804435483870968,"licenses":0.0,"references":0.0,"funders":0.5729166666666667,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Dordrecht,
+      GX, Netherlands","names":["Springer Science and Business Media LLC","American
+      Association of Pharmaceutical Scientists","Society for Mining, Metallurgy &
+      Exploration Inc.","Springer - Society of Surgical Oncology","Springer - Global
+      Science Journals","Springer-Verlag","Canadian Public Health Association","Springer
+      (Cases Network, Ltd.)","Springer - FD Communications","Springer - The Korean
+      Society of Pharmaceutical Sciences and Technology","Springer (Biomed Central
+      Ltd.)","Springer - Ecomed Publishers","Springer - ASM International","Genomic
+      Standards Consortium","Springer (Kluwer Academic Publishers)","Springer - Humana
+      Press","SpringerNature","Springer - (backfiles)","Springer - RILEM Publishing","Springer
+      - Cell Stress Society International","Springer (Kluwer Academic Publishers -
+      Biomedical Engineering Society (BMES))","Springer - Psychonomic Society","Materials
+      Research Society","Cureus, Inc.","Springer - Adis","Springer (Biological Procedures
+      Online)","Springer - Real Academia de Ciencias Exactas, Fisicas y Naturales"]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '4474'
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 Feb 2024 10:17:24 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1007
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 85339a2ceddc06bc-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 Feb 2024 10:17:25 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tCRsi4Kov%2BGBkSEu6hzIiaAYqESEsrDXbJXmubdvkKNVFa2bB3smLbjiCJY0ktcE1uJzTecRXnpKb6KiY9N%2B5iz71OZ6%2FlNCNXHN%2BIfWmwM34eYyjwRpalYo8NsTe7eIN74%2FQWI%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

@@ -8,6 +8,7 @@ from commonmeta.doi_utils import (
     get_doi_ra,
     doi_resolver,
     crossref_api_url,
+    crossref_api_query_url,
     datacite_api_url,
     is_rogue_scholar_doi,
 )
@@ -170,3 +171,25 @@ def test_is_rogue_scholar():
     """Check if doi is from Rogue Scholar"""
     assert True is is_rogue_scholar_doi("10.53731/cjx855h-hn5jtq8")
     assert False is is_rogue_scholar_doi("10.1371/journal.pone.0000030")
+
+
+def test_crossref_api_query_url():
+    """generate crossref api query url"""
+    query = {"has-full-text": "true", "has-references": "true"}
+    response = crossref_api_query_url(query)
+    assert (
+        response
+        == "https://api.crossref.org/works?rows=20&filter=has-full-text%3Atrue%2Chas-references%3Atrue"
+    )
+    query = {"prefix": "10.5555", "type": "journal-article"}
+    response = crossref_api_query_url(query)
+    assert (
+        response
+        == "https://api.crossref.org/works?rows=20&filter=prefix%3A10.5555%2Ctype%3Ajournal-article"
+    )
+    query = {"member": "31795", "has-references": "true", "rows": 100}
+    response = crossref_api_query_url(query)
+    assert (
+        response
+        == "https://api.crossref.org/works?rows=100&filter=member%3A31795%2Chas-references%3Atrue"
+    )

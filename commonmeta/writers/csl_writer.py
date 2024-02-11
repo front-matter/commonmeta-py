@@ -1,5 +1,6 @@
 """CSL-JSON writer for commonmeta-py"""
 import json
+from typing import Optional
 
 from ..utils import pages_as_string, to_csl
 from ..base_utils import wrap, presence, parse_attributes, compact
@@ -8,11 +9,18 @@ from ..doi_utils import doi_from_url
 from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 
 
-def write_csl(metadata: Commonmeta) -> str:
+def write_csl(metadata: Commonmeta) -> Optional[str]:
     """Write CSL-JSON"""
-    if metadata.write_errors is not None:
+    item = write_csl_item(metadata)
+    if item is None:
         return None
-    
+    return json.dumps(item, indent=4)
+
+
+def write_csl_item(metadata) -> Optional[dict]:
+    """Write CSL-JSON item"""
+    if metadata is None or metadata.write_errors is not None:
+        return None
     if len(wrap(metadata.contributors)) == 0:
         author = None
     else:
@@ -24,7 +32,7 @@ def write_csl(metadata: Commonmeta) -> str:
         _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
-    data = compact(
+    return compact(
         {
             "type": _type,
             "id": metadata.id,
@@ -53,6 +61,12 @@ def write_csl(metadata: Commonmeta) -> str:
             "title": parse_attributes(metadata.titles, content="title", first=True),
             "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
-        }
-    )
-    return json.dumps(data, indent=4)
+        })
+    
+
+def write_csl_list(metalist):
+    """Write CSL-JSON list"""
+    if metalist is None:
+        return None
+    items = [write_csl_item(item) for item in metalist.items]
+    return json.dumps(items, indent=4)

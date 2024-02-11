@@ -1,62 +1,94 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - zenodo.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://zenodo.org/api/records/8120771
   response:
-    body:
-      string: !!binary |
-        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
+    content: '{"created": "2023-07-06T14:48:55.501554+00:00", "modified": "2023-07-07T02:26:44.337259+00:00",
+      "id": 8120771, "conceptrecid": "8120770", "doi": "10.5281/zenodo.8120771", "conceptdoi":
+      "10.5281/zenodo.8120770", "doi_url": "https://doi.org/10.5281/zenodo.8120771",
+      "metadata": {"title": "A SYSTEMATIC REVIEW OF AUTOPSY FINDINGS IN DEATHS AFTER
+      COVID-19 VACCINATION", "doi": "10.5281/zenodo.8120771", "publication_date":
+      "2023-07-06", "description": "<p><strong>ABSTRACT</strong></p>\n\n<p><strong>Background:</strong>
+      The rapid development and widespread deployment of COVID-19 vaccines, combined
+      with a high number of adverse event reports, have led to concerns over possible
+      mechanisms of injury including systemic lipid nanoparticle (LNP) and mRNA distribution,
+      spike protein-associated tissue damage, thrombogenicity, immune system dysfunction,
+      and carcinogenicity. The aim of this systematic review is to investigate possible
+      causal links between COVID-19 vaccine administration and death using autopsies
+      and post-mortem analysis.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Methods:</strong>
+      We searched for all published autopsy and necropsy reports relating to COVID-19
+      vaccination up until May 18<sup>th</sup>, 2023. We initially identified 678
+      studies and, after screening for our inclusion criteria, included 44 papers
+      that contained 325 autopsy cases and one necropsy case. Three physicians independently
+      reviewed all deaths and determined whether COVID-19 vaccination was the direct
+      cause or contributed significantly to death.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Findings:</strong>
+      The most implicated organ system in COVID-19 vaccine-associated death was the
+      cardiovascular system (53%), followed by the hematological system (17%), the
+      respiratory system (8%), and multiple organ systems (7%). Three or more organ
+      systems were affected in 21 cases. The mean time from vaccination to death was
+      14.3 days. Most deaths occurred within a week from last vaccine administration.
+      A total of 240 deaths (73.9%) were independently adjudicated as directly due
+      to or significantly contributed to by COVID-19 vaccination.</p>\n\n<p>&nbsp;</p>\n\n<p><strong>Interpretation:</strong>
+      The consistency seen among cases in this review with known COVID-19 vaccine
+      adverse events, their mechanisms, and related excess death, coupled with autopsy
+      confirmation and physician-led death adjudication, suggests there is a high
+      likelihood of a causal link between COVID-19 vaccines and death in most cases.
+      Further urgent investigation is required for the purpose of clarifying our findings.&nbsp;</p>",
+      "access_right": "open", "creators": [{"name": "Nicolas Hulscher, BS", "affiliation":
+      "University of Michigan School of Public Health"}, {"name": "Paul E. Alexander,
+      PhD", "affiliation": "The Wellness Company"}, {"name": "Richard Amerling, MD",
+      "affiliation": "The Wellness Company"}, {"name": "Heather Gessling, MD", "affiliation":
+      "The Wellness Company"}, {"name": "Roger Hodkinson, MD", "affiliation": "The
+      Wellness Company"}, {"name": "William Makis, MD", "affiliation": "Cross Cancer
+      Institute"}, {"name": "Harvey A. Risch, MD, PhD", "affiliation": "Yale University
+      School of Public Health"}, {"name": "Mark Trozzi, MD", "affiliation": "The Wellness
+      Company"}, {"name": "Peter A. McCullough, MD, MPH", "affiliation": "Truth for
+      Health Foundation"}], "keywords": ["autopsy", "necropsy", "COVID-19", "COVID-19
+      vaccines", "mRNA", "SARS-CoV-2 vaccination", "death", "excess mortality", "spike
+      protein", "organ system"], "language": "eng", "resource_type": {"title": "Preprint",
+      "type": "publication", "subtype": "preprint"}, "license": {"id": "cc-by-4.0"},
+      "relations": {"version": [{"index": 0, "is_last": true, "parent": {"pid_type":
+      "recid", "pid_value": "8120770"}}]}}, "title": "A SYSTEMATIC REVIEW OF AUTOPSY
+      FINDINGS IN DEATHS AFTER COVID-19 VACCINATION", "links": {"self": "https://zenodo.org/api/records/8120771",
+      "self_html": "https://zenodo.org/records/8120771", "self_doi": "https://zenodo.org/doi/10.5281/zenodo.8120771",
+      "doi": "https://doi.org/10.5281/zenodo.8120771", "parent": "https://zenodo.org/api/records/8120770",
+      "parent_html": "https://zenodo.org/records/8120770", "parent_doi": "https://zenodo.org/doi/10.5281/zenodo.8120770",
+      "self_iiif_manifest": "https://zenodo.org/api/iiif/record:8120771/manifest",
+      "self_iiif_sequence": "https://zenodo.org/api/iiif/record:8120771/sequence/default",
+      "files": "https://zenodo.org/api/records/8120771/files", "media_files": "https://zenodo.org/api/records/8120771/media-files",
+      "archive": "https://zenodo.org/api/records/8120771/files-archive", "archive_media":
+      "https://zenodo.org/api/records/8120771/media-files-archive", "latest": "https://zenodo.org/api/records/8120771/versions/latest",
+      "latest_html": "https://zenodo.org/records/8120771/latest", "draft": "https://zenodo.org/api/records/8120771/draft",
+      "versions": "https://zenodo.org/api/records/8120771/versions", "access_links":
+      "https://zenodo.org/api/records/8120771/access/links", "access_users": "https://zenodo.org/api/records/8120771/access/users",
+      "access_request": "https://zenodo.org/api/records/8120771/access/request", "access":
+      "https://zenodo.org/api/records/8120771/access", "reserve_doi": "https://zenodo.org/api/records/8120771/draft/pids/doi",
+      "communities": "https://zenodo.org/api/records/8120771/communities", "communities-suggestions":
+      "https://zenodo.org/api/records/8120771/communities-suggestions", "requests":
+      "https://zenodo.org/api/records/8120771/requests"}, "updated": "2023-07-07T02:26:44.337259+00:00",
+      "recid": "8120771", "revision": 2, "files": [{"id": "5c3fd06a-7586-4299-b8a6-73c7e12fb5bf",
+      "key": "(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf", "size": 832057, "checksum":
+      "md5:896b89af09c544d9e43197936e31c4a6", "links": {"self": "https://zenodo.org/api/records/8120771/files/(Zenodo)
+      AUTOPSY REVIEW MANUSCRIPT.pdf/content"}}, {"id": "ab35a68c-e3cb-4d40-9961-577d5e5218d9",
+      "key": "AUTOPSY REVIEW SUPPLEMENTAL TABLE 1.pdf", "size": 904297, "checksum":
+      "md5:bacd63be97a7f3c58c95cc512c10ddf2", "links": {"self": "https://zenodo.org/api/records/8120771/files/AUTOPSY
+      REVIEW SUPPLEMENTAL TABLE 1.pdf/content"}}], "owners": [{"id": 579652}], "status":
+      "published", "stats": {"downloads": 139095, "unique_downloads": 116243, "views":
+      196322, "unique_views": 146431, "version_downloads": 137807, "version_unique_downloads":
+      115126, "version_unique_views": 144626, "version_views": 193863}, "state": "done",
+      "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -73,7 +105,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 21 Jan 2024 09:12:16 GMT
+      - Sat, 10 Feb 2024 09:59:10 GMT
       etag:
       - W/"2"
       permissions-policy:
@@ -81,11 +113,11 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '59'
       server:
       - nginx
       set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
+      - 5569e5a730cade8ff2b54f1e815f3670=28d04e9f4f9688d580b4486c14cfb425; path=/;
         HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
@@ -103,348 +135,11 @@ interactions:
       x-ratelimit-remaining:
       - '129'
       x-ratelimit-reset:
-      - '1705828397'
+      - '1707559210'
       x-request-id:
-      - 9076df096848161a62c47172cc37e507
+      - acf31b794bd990ca6767fffcff01ced8
       x-xss-protection:
       - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://zenodo.org/api/records/8120771
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:57:30 GMT
-      etag:
-      - W/"2"
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '133'
-      x-ratelimit-remaining:
-      - '129'
-      x-ratelimit-reset:
-      - '1705960711'
-      x-request-id:
-      - 50b61be8354647778a542d9bb06722c6
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://zenodo.org/api/records/8120771
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:07:16 GMT
-      etag:
-      - W/"2"
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=4572b3eb0df2eab70944c8f1f7befca1; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '133'
-      x-ratelimit-remaining:
-      - '129'
-      x-ratelimit-reset:
-      - '1705961297'
-      x-request-id:
-      - f8bf32ca60f2c864a3304bd658eb7221
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://zenodo.org/api/records/8120771
-  response:
-    body:
-      string: !!binary |
-        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
-    headers:
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      cache-control:
-      - private
-      content-encoding:
-      - gzip
-      content-security-policy:
-      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
-        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
-        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:11:47 GMT
-      etag:
-      - W/"2"
-      permissions-policy:
-      - interest-cohort=()
-      referrer-policy:
-      - strict-origin-when-cross-origin
-      retry-after:
-      - '60'
-      server:
-      - nginx
-      set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=dc01bcfa25ecc0357605ade40758bc0d; path=/;
-        HttpOnly; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=31556926; includeSubDomains
-      - max-age=15768000
-      transfer-encoding:
-      - chunked
-      vary:
-      - Accept-Encoding
-      x-content-type-options:
-      - nosniff
-      x-frame-options:
-      - sameorigin
-      x-ratelimit-limit:
-      - '133'
-      x-ratelimit-remaining:
-      - '129'
-      x-ratelimit-reset:
-      - '1705961568'
-      x-request-id:
-      - 58cd7a3181a91653360d1f24b3777213
-      x-xss-protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

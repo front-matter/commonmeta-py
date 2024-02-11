@@ -1,7 +1,7 @@
 """crossref_xml reader for commonmeta-py"""
 from typing import Optional
 from collections import defaultdict
-import requests
+import httpx
 from pydash import py_
 
 from ..utils import (
@@ -41,8 +41,8 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_xml_api_url(doi)
-    response = requests.get(
-        url, kwargs, headers={"Accept": "text/xml;charset=utf-8"}, timeout=10
+    response = httpx.get(
+        url, headers={"Accept": "text/xml;charset=utf-8"}, timeout=10, **kwargs
     )
     if response.status_code != 200:
         return {"state": "not_found"}
@@ -231,7 +231,6 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     provider = bibmeta.get("reg-agency").capitalize() if bibmeta.get("reg-agency", None) else None
     if provider is None:
         provider = get_doi_ra(_id)
-    print(provider)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -328,10 +327,10 @@ def crossref_description(bibmeta):
 def crossref_people(bibmeta):
     """Person information from Crossref metadata."""
 
-    person = py_.get(bibmeta, "contributors.0.person_name") or bibmeta.get(
+    person = py_.get(bibmeta, "contributors.person_name") or bibmeta.get(
         "person_name", None
     )
-    organization = wrap(py_.get(bibmeta, "contributors.0.organization"))
+    organization = wrap(py_.get(bibmeta, "contributors.organization"))
 
     return get_authors(from_crossref_xml(wrap(person) + wrap(organization)))
 

@@ -1,1326 +1,354 @@
 interactions:
 - request:
-    body: null
+    body: ''
     headers:
-      Accept:
+      accept:
       - '*/*'
-      Accept-Encoding:
+      accept-encoding:
       - gzip, deflate
-      Connection:
+      connection:
       - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.26.0
     method: GET
     uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
   response:
-    body:
-      string: !!binary |
-        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
-        C3ScCmjSk6rnYdZyAQAqiejGvVMAAA==
+    content: '{"abstract":"Brian Curtice and Colin Boisvert are presenting our talk
+      on this project at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic
+      Terrestrial Ecosystems and Biota (MTE14) in Salt Lake City, and the related
+      paper is in the MTE14 volume in The Anatomical Record.","archive_url":"https://wayback.archive-it.org/22153/20231105213934/https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa","authors":[{"name":"Matt
+      Wedel"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22153/20231105213934/","authors":null,"backlog":1550,"canonical_url":null,"category":"earthAndRelatedEnvironmentalSciences","created_at":1675209600,"current_feed_url":null,"description":"SV-POW!  ...  All
+      sauropod vertebrae, except when we''re talking about Open Access","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://svpow.com/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://svpow.com","id":"c6cbbd2e-4675-4680-8a3f-784388009821","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"svpow","status":"active","title":"Sauropod
+      Vertebra Picture of the Week","updated_at":1707468860,"use_api":true,"use_mastodon":false,"user_id":"04d03585-c8bb-40f2-9619-5076a5e0aed2","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Sauropod
+      Vertebra Picture of the Week","blog_slug":"svpow","content_text":"::: {#attachment_21038
+      .wp-caption .aligncenter shortcode=\"caption\" style=\"width: 1034px\"}\n[![](https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480){.wp-image-21038\n.size-large
+      aria-describedby=\"caption-attachment-21038\" loading=\"lazy\"\nattachment-id=\"21038\"\npermalink=\"http://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1/\"\norig-file=\"https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg\"\norig-size=\"1822,757\"
+      comments-opened=\"1\"\nimage-meta=\"{\\\"aperture\\\":\\\"0\\\",\\\"credit\\\":\\\"\\\",\\\"camera\\\":\\\"\\\",\\\"caption\\\":\\\"\\\",\\\"created_timestamp\\\":\\\"0\\\",\\\"copyright\\\":\\\"\\\",\\\"focal_length\\\":\\\"0\\\",\\\"iso\\\":\\\"0\\\",\\\"shutter_speed\\\":\\\"0\\\",\\\"title\\\":\\\"\\\",\\\"orientation\\\":\\\"0\\\"}\"\nimage-title=\"Haplocanthosaurus
+      from across the Morrison \u2013 Curtice et al 2023 fig 1\"\nimage-description=\"\"
+      image-caption=\"\"\nmedium-file=\"https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300\"\nlarge-file=\"https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=1024\"\nwidth=\"480\"
+      height=\"199\"\nsrcset=\"https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480
+      480w, https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=958
+      958w, https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=150
+      150w, https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300
+      300w, https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=768
+      768w\"\nsizes=\"(max-width: 480px) 100vw, 480px\"}](https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg)\n\n*Haplocanthosaurus*
+      tibiae and dorsal vertebrae. Curtice et al. (2023:\nfig. 1).\n:::\n\nBrian Curtice
+      and Colin Boisvert are presenting our talk on this project\nat 2:00 pm MDT this
+      afternoon, at the 14th Symposium on Mesozoic\nTerrestrial Ecosystems and Biota
+      (MTE14) in Salt Lake City, and the\nrelated paper is in the MTE14 volume in
+      The Anatomical Record. Here''s\nthe citation and a direct link to the paper:\n\n[Curtice,
+      B., Wedel, M.J., Wilhite, D.R., and Boisvert, C. 2023. New\nmaterial of *Haplocanthosaurus*
+      (Hatcher 1903) from the Dry Mesa\nDinosaur Quarry and a comment on sauropod
+      diversity. In Hunt-Foster,\nR.K., Kirkland, J.I., and Loewen, M.A. (eds), 14th
+      Symposium on Mesozoic\nTerrestrial Ecosystems and Biota. The Anatomical Record\n306(S1):79-81.](https://sauroposeidon.files.wordpress.com/2010/04/curtice-et-al-2023-haplocanthosaurus-from-dry-mesa.pdf)\n\nThis
+      one is exciting to me for several reasons, both personal and\nscientific. I''ve
+      been friends with Brian Curtice and Ray Wilhite since\nthe late 90s, but I''ve
+      never published with them before now. It''s nice\nto have Colin Boisvert on
+      board as well --- he''s working on his Master''s\nat BYU, just like Brian and
+      Ray did back when, and he''s a keen observer\nof the sauropod scene.\n\nTurning
+      to the science, the number of known *Haplo* individuals in the\nentire Morrison
+      is small, probably fewer than a dozen, so any new\n*Haplo* material is nice
+      to get. Also, Dry Mesa is a big, famous,\nproductive, diverse quarry, and having
+      *Haplo* in that quarry is\ninteresting and important.\u00a0\n\nBut to me the
+      most exciting thing about this is that Dry Mesa now has\nthe highest diversity
+      of sauropod genera of any locality in the world.\nAt least six valid, impossible-to-confuse
+      sauropod genera are known from\nDry Mesa (listed alphabetically here; we provide
+      specimen numbers of\ndiagnostic elements for each genus in the paper):\n\n1.  *Apatosaurus*\n2.  *Brachiosaurus*\n3.  *Camarasaurus*\n4.  *Diplodocus*\n5.  *Haplocanthosaurus*\n6.  *Supersaurus*\n\n:::
+      {#attachment_8007 .wp-caption .aligncenter shortcode=\"caption\" style=\"width:
+      1034px\"}\n[![](https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480){.size-large\n.wp-image-8007
+      aria-describedby=\"caption-attachment-8007\" loading=\"lazy\"\nattachment-id=\"8007\"\npermalink=\"http://svpow.com/papers-by-sv-powsketeers/wedel-and-taylor-2013-on-sauropod-neural-spine-bifurcation/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical-2/\"\norig-file=\"https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg\"\norig-size=\"2220,2089\"
+      comments-opened=\"1\"\nimage-meta=\"{\\\"aperture\\\":\\\"0\\\",\\\"credit\\\":\\\"\\\",\\\"camera\\\":\\\"\\\",\\\"caption\\\":\\\"\\\",\\\"created_timestamp\\\":\\\"0\\\",\\\"copyright\\\":\\\"\\\",\\\"focal_length\\\":\\\"0\\\",\\\"iso\\\":\\\"0\\\",\\\"shutter_speed\\\":\\\"0\\\",\\\"title\\\":\\\"\\\"}\"\nimage-title=\"Wedel
+      and Taylor 2013 bifurcation Figure 7 \u2013 small Diplodocus cervical\"\nimage-description=\"\"\nimage-caption=\"<p>Wedel
+      and Taylor (2013), Figure 7. BYU 12613, a posterior cervical of Diplodocus,
+      in dorsal (top), left lateral (left), and posterior (right) views. It compares
+      most favourably with C14 of D. carnegii CM 84/94 (Hatcher, 1901: plate 3) despite
+      being only 42% as large, with a centrum length of 270 mm compared to 642 mm
+      for C14 of D. carnegii.</p>\n\"\nmedium-file=\"https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300\"\nlarge-file=\"https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=1024\"\nwidth=\"480\"
+      height=\"452\"\nsrcset=\"https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480
+      480w, https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=960
+      960w, https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=150
+      150w, https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300
+      300w, https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=768
+      768w\"\nsizes=\"(max-width: 480px) 100vw, 480px\"}](https://svpow.files.wordpress.com/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg)\n\nBYU
+      12613, a posterior cervical of a diplodocid, in dorsal (top), left\nlateral
+      (left), and posterior (right) views. The centrum length is 270\nmm, compared
+      to 642 mm for C14 of *D. carnegii*. Wedel and Taylor\n(2013), Figure 7.\n:::\n\nAlert
+      readers may also recall BYU 12613, a posterior cervical that Mike\nand I called
+      *Diplodocus* in our 2013 neural spine bifurcation paper,\nbut which may actually
+      pertain to *Kaatedocus*. All the *Diplodocus*\nmaterial from Dry Mesa is small,
+      and I''m not at all confident that I\ncould tell small *Diplodocus* vertebrae
+      from *Kaatedocus*, so out of an\nabundance of caution we''re calling it all
+      *Diplodocus* for the purposes\nof counting genera.\n\n::: {#attachment_13451
+      .wp-caption .aligncenter shortcode=\"caption\" style=\"width: 1034px\"}\n[![](https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480){.wp-image-13451\n.size-large
+      aria-describedby=\"caption-attachment-13451\" loading=\"lazy\"\nattachment-id=\"13451\"\npermalink=\"http://svpow.com/2016/05/17/whats-up-with-your-irregular-ventral-ridges-diplodocines/2005-07-29-byu-11617-barosaurus-right-lateral/\"\norig-file=\"https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg\"\norig-size=\"2272,1704\"
+      comments-opened=\"1\"\nimage-meta=\"{\\\"aperture\\\":\\\"2.6\\\",\\\"credit\\\":\\\"\\\",\\\"camera\\\":\\\"E4500\\\",\\\"caption\\\":\\\"\\\",\\\"created_timestamp\\\":\\\"1122636630\\\",\\\"copyright\\\":\\\"\\\",\\\"focal_length\\\":\\\"7.85\\\",\\\"iso\\\":\\\"100\\\",\\\"shutter_speed\\\":\\\"0.045871559633028\\\",\\\"title\\\":\\\"\\\",\\\"orientation\\\":\\\"1\\\"}\"\nimage-title=\"2005-07-29
+      BYU 11617 Barosaurus right lateral\"\nimage-description=\"\" image-caption=\"\"\nmedium-file=\"https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300\"\nlarge-file=\"https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=1024\"\nwidth=\"480\"
+      height=\"360\"\nsrcset=\"https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480
+      480w, https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=960
+      960w, https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=150
+      150w, https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300
+      300w, https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=768
+      768w\"\nsizes=\"(max-width: 480px) 100vw, 480px\"}](https://svpow.files.wordpress.com/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg)\n\nBYU
+      11617, which sure as heck looks like *Barosaurus* to me, with a\nloooong swoopy
+      centrum, big posterolateral flanges, and prezygs that\noverhang the condyle.\n:::\n\nThere
+      are also vertebrae in the quarry that I''ve always considered to\nbelong to
+      *Barosaurus*, like BYU 11617 from [this\npost](https://svpow.com/2016/05/17/whats-up-with-your-irregular-ventral-ridges-diplodocines/).\nIf
+      Brian Curtice is right about BYU 9024 ([this\nmonster](https://svpow.com/2016/09/16/how-horrifying-was-the-neck-of-barosaurus/))\nbelonging
+      to *Supersaurus* rather than *Barosaurus*, then I''m no longer\ncertain that
+      we can distinguish *Supes* and *Baro* based on cervical\nvertebrae. So maybe
+      those *Baro* verts actually belong to *Supersaurus*.\nBut if they don''t ---
+      or if BYU 9024 itself belong to *Barosaurus*, as\nMike and I have argued (in
+      [our 2016 SVPCA\ntalk](http://www.miketaylor.org.uk/dino/pubs/svpca2016/TaylorWedel2016-how-big-did-barosaurus-get.pdf),\nand
+      [this\npost](https://svpow.com/2019/06/15/supersaurus-ultrasaurus-and-dystylosaurus-in-2019-part-2-what-we-found-in-utah/)\nand
+      [this\npost](https://svpow.com/2019/06/16/supersaurus-ultrasaurus-and-dystylosaurus-in-2019-part-2b-the-size-of-the-byu-9024-animal/))\n---
+      then *Barosaurus* is a seventh sauropod genus from Dry Mesa.\n\nThe high sauropod
+      diversity at Dry Mesa is exciting for a couple of\nreasons. One, it emphasizes
+      the ridiculous productivity of the Morrison\npaleoenvironment. Yes, there were
+      droughts and fires and landslides and\nwhatnot --- at least periodically, even
+      at Dry Mesa (Richmond and Morris\n1998). But there was also an environment ---
+      or rather, a series of\nenvironments --- fecund enough to support many coexisting
+      genera of\nwhale-sized herbivores. That''s part of the Morrison story, too.\n\nAnd
+      two, this is relevant to the \"problem\" of Morrison sauropod\ndiversity ---
+      the idea that there are just too darned many sauropods in\nthe Morrison, no
+      environment could have supported so many, and therefore\nMorrison sauropod taxonomy
+      has to be messed up, buncha dumb\npaleontologists oversplitting genera and species
+      because they don''t know\nany better. (For more on this idea, see Darren''s
+      brilliant series of\nposts at Tetrapod Zoology; the concluding post, with links
+      to all the\nrest, is\n[here](https://tetzoo.com/blog/2020/5/20/stop-saying-that-there-are-too-many-sauropod-dinosaurs-part-8-the-last-part).)\n\nI
+      put \"problem\" in scare quotes because I think it''s illusory. In\naddition
+      to Dry Mesa with its six or seven sauropod genera, there are a\nhandful of Morrison
+      localities with five sauropod genera, more with\nfour, and gobs with three.
+      Not surprisingly, the diverse localities tend\nto be the big ones, which at
+      least hints that more quarries would have\nmore sauropods if they were bigger
+      --- maybe only the biggest quarries\ndid a decent job of capturing the diversity
+      of sauropods on the\nlandscape.\n\n::: {#attachment_21047 .wp-caption .aligncenter
+      shortcode=\"caption\" style=\"width: 1034px\"}\n[![](https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=480){.wp-image-21047\n.size-large
+      aria-describedby=\"caption-attachment-21047\" loading=\"lazy\"\nattachment-id=\"21047\"\npermalink=\"http://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/engh-brushy-basin-dinos/\"\norig-file=\"https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg\"\norig-size=\"2357,693\"
+      comments-opened=\"1\"\nimage-meta=\"{\\\"aperture\\\":\\\"0\\\",\\\"credit\\\":\\\"\\\",\\\"camera\\\":\\\"\\\",\\\"caption\\\":\\\"\\\",\\\"created_timestamp\\\":\\\"0\\\",\\\"copyright\\\":\\\"\\\",\\\"focal_length\\\":\\\"0\\\",\\\"iso\\\":\\\"0\\\",\\\"shutter_speed\\\":\\\"0\\\",\\\"title\\\":\\\"\\\",\\\"orientation\\\":\\\"0\\\"}\"\nimage-title=\"Engh
+      \u2013 Brushy Basin dinos\" image-description=\"\"\nimage-caption=\"\"\nmedium-file=\"https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=300\"\nlarge-file=\"https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=1024\"\nwidth=\"480\"
+      height=\"141\"\nsrcset=\"https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=480
+      480w, https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=960
+      960w, https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=150
+      150w, https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=300
+      300w, https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg?w=768
+      768w\"\nsizes=\"(max-width: 480px) 100vw, 480px\"}](https://svpow.files.wordpress.com/2023/06/engh-brushy-basin-dinos.jpg)\n\n[Brian
+      Engh''s](https://dontmesswithdinosaurs.com/?p=2397) assemblage of\nlarge-bodied
+      Brushy Basin dinos for [Jurassic Reimagined Part\n1](https://www.youtube.com/watch?v=JC3aCs5f4-I).
+      Coincidentally, though,\nif you swap in *Supersaurus* for *Barosaurus* --- or
+      maybe just add\n*Supersaurus* alongside *Barosaurus* --- you''ll have the known
+      sauropod\ndiversity of the Dry Mesa Dinosaur Quarry.\n:::\n\nOne you have five
+      or six sauropod genera coexisting closely enough to\nget buried in the same
+      hole, I think the \"problem\" of Morrison sauropod\ndiversity goes away. The
+      Morrison Formation outcrops from New Mexico to\nCanada, from the Oklahoma panhandle
+      and the Black Hills of South Dakota\nto central Utah, and spans probably 7 or
+      8 million years. Even four or\nfive distinct habitats or communities across
+      all that space and time\n(which might be unrealistically conservative --- it
+      could easily be\nseveral communities at a time, turning over every 2 or 3 million\nyears\\*),
+      each with four to six sauropod species, gets the species count\nwaaay up there.\n\n\\*But
+      wait --- doesn''t our figure up top show that *Haplocanthosaurus*\npersisted
+      from the lower part of the [Salt\nWash](https://svpow.com/2020/01/29/a-haplocanthosaurus-in-the-salt-wash/)\nto
+      the upper part of the Brushy Basin? Sure, but not as the same species\nright
+      the way through. There were probably something like half a dozen\nspecies of
+      haplocanthosaurs in the Morrison --- *H. priscus*, *H.\ndelfsi*, the as-yet-unnamed-but-definitely-distinct
+      Bilbey *Haplo*\n(Bilbey et al. 2000), the as-yet-unnamed-but-definitely-distinct\nSnowmass
+      *Haplo* (Foster and Wedel 2014, Wedel et al. 2021), plus I\nassume a couple
+      more when and if we get better material of the more\nfragmentary specimens.
+      That would be consistent with the multiple known\nspecies of *Apatosaurus*,
+      *Brontosaurus*, *Camarasaurus*, *Diplodocus*,\netc. So sequential communities
+      of Morrison sauropods probably had a lot\nof the same genera --- there''s nearly
+      always a *Cam* of some kind, some\napatosaurine lurking around, etc. --- but
+      with different species across\ntime, space, and paleoenvironmental conditions.\n\nI
+      think a big part of the problem is that it''s (maybe too) easy to think\nof
+      the Morrison Formation as a single thing --- like most formations ---\nand to
+      think that we can hold all of it in our heads at once. But the\nMorrison is
+      a monster, more comparable to a group than to other\nformations, and not really
+      comparable to any other dinosaur-bearing\nformation in terms of extent, productivity,
+      and likely diversity of\nenvironments and habitats. (For an overview of Morrison
+      environments\nthrough time, see [Jurassic Reimagined Part\n1](https://www.youtube.com/watch?v=JC3aCs5f4-I).)\n\nSo,
+      yeah. Morrison sauropod diversity was high, and we just have to deal\nwith that.
+      Plus, hey, now we have more *Haplo* to play with. Happy days\nall around!\n\n##
+      References\n\n- Bilbey, S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results
+      on\n  a new haplocanthosaurid sauropod dinosaur from the lower Morrison\n  Formation
+      of northeastern Utah. Journal of Vertebrate Paleontology\n  20(supp. to no.
+      3): 30A.\n- [Foster, J.R., and Wedel, M.J. 2014.\u00a0*Haplocanthosaurus\u00a0*(Saurischia:\n  Sauropoda)
+      from the lower Morrison Formation (Upper Jurassic) near\n  Snowmass, Colorado.\u00a0Volumina
+      Jurassica 12(2): 197--210.\u00a0DOI:\n  10.5604/17313708\n  .1130144](https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf)\n-
+      Richmond, D.R., and Morris, T.H. 1998. Stratigraphy and cataclysmic\n  deposition
+      of the Dry Mesa Dinosaur Quarry, Mesa County, Colorado.\n  Modern Geology 22:121-143.\n-
+      [Wedel, Mathew J., and Michael P. Taylor. 2013. Neural spine\n  bifurcation
+      in sauropod dinosaurs of the Morrison Formation:\n  ontogenetic and phylogenetic
+      implications.\u00a0*Palarch''s Journal of\n  Vertebrate Palaeontology*\u00a0**10(1)**:1-34.
+      ISSN\n  1567-2158.](https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf)\n-
+      [Wedel, Mathew; Atterholt, Jessie; Dooley, Jr., Alton C.; Farooq,\n  Saad; Macalino,
+      Jeff; Nalley, Thierra K.; Wisser, Gary; and Yasmer,\n  John. 2021. Expanded
+      neural canals in the caudal vertebrae of a\n  specimen of\u00a0*Haplocanthosaurus*.
+      Academia Letters, Article 911, 10pp.\n  DOI:\n  10.20935/AL911](https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf)\n","doi":"https://doi.org/10.59350/hke8v-d1e66","guid":"https://svpow.com/?p=20992","id":"4e4bf150-751f-4245-b4ca-fe69e3c3bb24","image":"https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480","indexed_at":1705723541,"language":"en","published_at":1686340463,"reference":[{"key":"ref1","url":"https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf"},{"key":"ref2","url":"https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf"},{"key":"ref3","url":"https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf"}],"relationships":[],"summary":"<em>\n
+      Haplocanthosaurus\n</em>\ntibiae and dorsal vertebrae. Curtice et al. (2023:
+      fig. 1).  Brian Curtice and Colin Boisvert are presenting our talk on this project
+      at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic Terrestrial
+      Ecosystems and Biota (MTE14) in Salt Lake City, and the related paper is in
+      the MTE14 volume in The Anatomical Record.","tags":["MTE14","Barosaurus","Cervical","Conferences","Diplodocids"],"title":"New
+      paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry
+      Mesa","updated_at":1686340463,"url":"https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa"}
+
+      '
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Mon, 22 Jan 2024 10:57:21 GMT
+      - Sat, 10 Feb 2024 10:01:03 GMT
       fly-request-id:
-      - 01HMRD2MNKW415D5VN8EA2FG63-fra
+      - 01HP97D7HB781DZTD2T0Q1FVBP-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '10'
       ratelimit-reset:
-      - '3'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2204946'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 10:57:21 GMT
-      Expires:
-      - Thu, 15 Feb 2024 15:55:23 GMT
-      Last-Modified:
-      - Mon, 16 Mar 2015 08:57:22 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 26 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '162'
-      Content-Type:
-      - text/html
-      Date:
-      - Mon, 22 Jan 2024 10:57:21 GMT
-      Server:
-      - nginx
-    status:
-      code: 429
-      message: Too Many Requests
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2729453'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 10:57:21 GMT
-      Expires:
-      - Thu, 22 Feb 2024 20:42:23 GMT
-      Last-Modified:
-      - Tue, 29 Mar 2022 07:37:54 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 17 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
-  response:
-    body:
-      string: !!binary |
-        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
-        C3ScCmjSk6rnYdZyAQAqiejGvVMAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 21:59:02 GMT
-      fly-request-id:
-      - 01HMSJY7E15HP8FEVV43DGK2SZ-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '13'
-      ratelimit-reset:
-      - '6'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2204946'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 21:59:02 GMT
-      Expires:
-      - Thu, 15 Feb 2024 15:55:23 GMT
-      Last-Modified:
-      - Mon, 16 Mar 2015 08:57:22 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 26 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '162'
-      Content-Type:
-      - text/html
-      Date:
-      - Mon, 22 Jan 2024 21:59:02 GMT
-      Server:
-      - nginx
-    status:
-      code: 429
-      message: Too Many Requests
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2729453'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 21:59:03 GMT
-      Expires:
-      - Thu, 22 Feb 2024 20:42:23 GMT
-      Last-Modified:
-      - Tue, 29 Mar 2022 07:37:54 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 16 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
-  response:
-    body:
-      string: !!binary |
-        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
-        C3ScCmjSk6rnYdZyAQAqiejGvVMAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:08:45 GMT
-      fly-request-id:
-      - 01HMSKG0YMW8XXF3C7A56GD8YK-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '13'
-      ratelimit-reset:
-      - '6'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2204946'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 22:08:45 GMT
-      Expires:
-      - Thu, 15 Feb 2024 15:55:23 GMT
-      Last-Modified:
-      - Mon, 16 Mar 2015 08:57:22 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 26 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '162'
-      Content-Type:
-      - text/html
-      Date:
-      - Mon, 22 Jan 2024 22:08:45 GMT
-      Server:
-      - nginx
-    status:
-      code: 429
-      message: Too Many Requests
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2729453'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 22:08:46 GMT
-      Expires:
-      - Thu, 22 Feb 2024 20:42:23 GMT
-      Last-Modified:
-      - Tue, 29 Mar 2022 07:37:54 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 16 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
-  response:
-    body:
-      string: !!binary |
-        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
-        C3ScCmjSk6rnYdZyAQAqiejGvVMAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 22 Jan 2024 22:13:14 GMT
-      fly-request-id:
-      - 01HMSKR7FGBGFR8C7DC99FVWBM-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '12'
-      ratelimit-reset:
-      - '8'
-      server:
-      - Fly/f9c163a6 (2024-01-16)
-      transfer-encoding:
-      - chunked
-      via:
-      - 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2204946'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 22:13:14 GMT
-      Expires:
-      - Thu, 15 Feb 2024 15:55:23 GMT
-      Last-Modified:
-      - Mon, 16 Mar 2015 08:57:22 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 26 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '162'
-      Content-Type:
-      - text/html
-      Date:
-      - Mon, 22 Jan 2024 22:13:14 GMT
-      Server:
-      - nginx
-    status:
-      code: 429
-      message: Too Many Requests
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: HEAD
-    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
-  response:
-    body:
-      string: ''
-    headers:
-      Accept-Ranges:
-      - bytes
-      Alt-Svc:
-      - h3=":443"; ma=86400
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '2729453'
-      Content-Type:
-      - application/pdf
-      Date:
-      - Mon, 22 Jan 2024 22:13:14 GMT
-      Expires:
-      - Thu, 22 Feb 2024 20:42:23 GMT
-      Last-Modified:
-      - Tue, 29 Mar 2022 07:37:54 GMT
-      Server:
-      - nginx
-      X-Content-Type-Options:
-      - nosniff
-      X-Orig-Src:
-      - 01_mogdir
-      X-nc:
-      - HIT ams 17 np
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.31.0
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiYGJgp++SUKbvml
-        eSk2+hBBLpsMQzsk0QxDOy6bAruQjFSFotTC0tTiktQUhdAgH4XyxGKFvPwShTSQboX8PIWSjFSF
-        4tSistQiPQXPNIXK/FKF1LyS1KLUFLAUSE9uYl5pYk5OpUJBTmpicapCckZqcjZIZZFCcUFqTk5m
-        XrpCYl6KQklRpUJiemJmnp6NfoEdFwCJiwL3zwAAAA==
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - text/html; charset=utf-8
-      date:
-      - Sun, 04 Feb 2024 09:42:47 GMT
-      fly-request-id:
-      - 01HNSQZENGHCG17STVFMJQSRQF-fra
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '15'
-      ratelimit-reset:
-      - '0'
+      - '19'
       server:
       - Fly/ba9e227a (2024-01-26)
       transfer-encoding:
       - chunked
+      vary:
+      - Origin
       via:
       - 1.1 fly.io
-    status:
-      code: 404
-      message: ''
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - sauroposeidon.files.wordpress.com
+      user-agent:
+      - python-httpx/0.26.0
+    method: HEAD
+    uri: https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf
+  response:
+    content: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2204946'
+      Content-Type:
+      - application/pdf
+      Date:
+      - Sat, 10 Feb 2024 10:01:04 GMT
+      Expires:
+      - Wed, 06 Mar 2024 02:05:23 GMT
+      Last-Modified:
+      - Mon, 16 Mar 2015 08:57:22 GMT
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Orig-Src:
+      - 01_mogdir
+      X-nc:
+      - MISS ams 27 np
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - sauroposeidon.files.wordpress.com
+      user-agent:
+      - python-httpx/0.26.0
+    method: HEAD
+    uri: https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf
+  response:
+    content: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2199692'
+      Content-Type:
+      - application/pdf
+      Date:
+      - Sat, 10 Feb 2024 10:01:04 GMT
+      Expires:
+      - Sat, 09 Mar 2024 18:07:29 GMT
+      Last-Modified:
+      - Mon, 16 Sep 2013 07:34:33 GMT
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Orig-Src:
+      - 01_mogdir
+      X-nc:
+      - MISS ams 27 np
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - svpow.files.wordpress.com
+      user-agent:
+      - python-httpx/0.26.0
+    method: HEAD
+    uri: https://svpow.files.wordpress.com/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf
+  response:
+    content: ''
+    headers:
+      Accept-Ranges:
+      - bytes
+      Alt-Svc:
+      - h3=":443"; ma=86400
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2729453'
+      Content-Type:
+      - application/pdf
+      Date:
+      - Sat, 10 Feb 2024 10:01:04 GMT
+      Expires:
+      - Mon, 18 Mar 2024 22:51:52 GMT
+      Last-Modified:
+      - Tue, 29 Mar 2022 07:37:54 GMT
+      Server:
+      - nginx
+      X-Content-Type-Options:
+      - nosniff
+      X-Orig-Src:
+      - 01_mogdir
+      X-nc:
+      - MISS ams 17 np
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1
