@@ -121,9 +121,9 @@ def test_write_citation_list():
     assert len(subject_list.items) == 20
     citation_list = subject_list.write(to="citation")
     lines = citation_list.splitlines()
-    assert len(lines) == 20
+    assert len(lines) == 39 # 20 items, 19 separators
     assert lines[0] == "Newell P. Campbell. (1987). Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT. <i>AAPG Bulletin</i>, <i>71</i>. https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
-    assert lines[2] == "Hasbenli, A., &amp; Zaitzev, V. F. (2000). Two new species ofBombylius Linnaeus, 1758 (Diptera, Bombyliidae) from Turkey. <i>Deutsche Entomologische Zeitschrift</i>, <i>47</i>(1), 105–108. https://doi.org/10.1002/mmnd.4800470110"
+    assert lines[2] == "David G. Morse. (1996). Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT. <i>AAPG Bulletin</i>, <i>80</i>. https://doi.org/10.1306/64ed9fd8-1724-11d7-8645000102c1865d"
 
 @pytest.mark.vcr
 def test_write_citation_list_ieee_style_german():
@@ -133,7 +133,6 @@ def test_write_citation_list_ieee_style_german():
     assert len(subject_list.items) == 20
     citation_list = subject_list.write(to="citation", style="ieee", locale="de")
     lines = citation_list.splitlines()
-    assert len(lines) == 20
+    assert len(lines) == 39 # 20 items, 19 separators
     assert lines[0] == "[1]Newell P. Campbell, „Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 71, 1987, doi: 10.1306/703c7c64-1707-11d7-8645000102c1865d."
-    assert lines[2] == "[1]A. Hasbenli und V. F. Zaitzev, „Two new species ofBombylius Linnaeus, 1758 (Diptera, Bombyliidae) from Turkey“, <i>Deutsche Entomologische Zeitschrift</i>, Bd. 47, Nr. 1, S. 105–108, Juni 2000, doi: 10.1002/mmnd.4800470110."
-    
+    assert lines[2] == "[1]David G. Morse, „Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 80, 1996, doi: 10.1306/64ed9fd8-1724-11d7-8645000102c1865d."

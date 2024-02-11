@@ -111,6 +111,8 @@ def crossref_api_query_url(query: dict) -> str:
     rows = min(int(query.get("rows", 20)), 1000)
     queries = []
     filters = []
+    if query.get("query", None) is not None:
+        queries += [query.get("query")]
     for key, value in query.items():
         if key in [
             "query.bibliographic",

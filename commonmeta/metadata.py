@@ -285,7 +285,7 @@ class MetadataList:
                 with open(lst, encoding="utf-8") as file:
                     lst = file.read()
             self.via = kwargs.get("via", None) or find_from_format(string=lst)
-            data = self.get_metadata_list(lst, **kwargs)
+            data = self.get_metadata_list(lst)
         items = self.read_metadata_list(data, **kwargs)
 
         self.via = kwargs.get("via", None)
@@ -295,7 +295,7 @@ class MetadataList:
         self.description = kwargs.get("description", None)
         self.items = items
 
-    def get_metadata_list(self, string, **kwargs) -> list:
+    def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
         if self.via in ["commonmeta", "crossref", "datacite", "schema_org", "csl"]:
@@ -320,5 +320,11 @@ class MetadataList:
             return write_citation_list(self, **kwargs)
         elif to == "ris":
             return write_ris_list(self)
+        elif to == "schema_org":
+            raise ValueError("Schema.org not supported for metadata lists")
+        elif to == "datacite":
+            raise ValueError("Datacite not supported for metadata lists")
+        elif to == "crossref_xml":
+            raise ValueError("Crossref XML not supported for metadata lists")
         else:
             raise ValueError("No output format found")

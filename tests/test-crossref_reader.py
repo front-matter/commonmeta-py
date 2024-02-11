@@ -1277,7 +1277,7 @@ def test_read_crossref():
 @pytest.mark.vcr
 def test_get_crossref_list():
     """get_crossref_list"""
-    query = query = {"prefix": "10.5555", "type": "journal-article"}
+    query = {"prefix": "10.5555", "type": "journal-article"}
     data = get_crossref_list(query)
     assert isinstance(data, list)
     assert len(data) == 20

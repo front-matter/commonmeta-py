@@ -1,6 +1,6 @@
 """CSL-JSON reader for commonmeta-py"""
 from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos
-from ..base_utils import wrap, compact, sanitize
+from ..base_utils import wrap, compact, sanitize, presence
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
 from ..doi_utils import get_doi_ra
@@ -33,6 +33,9 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": meta.get("copyright")})
 
     pages = meta.get("page", "").split("-")
+    publisher = meta.get("publisher", None)
+    if isinstance(publisher, str):
+        publisher = {"name": publisher}
     container = compact(
         {
             "type": "Periodical",
@@ -67,7 +70,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
         "contributors": contributors,
-        "publisher": meta.get("publisher", None),
+        "publisher": presence(publisher),
         "date": compact(date),
         "container": container,
         "references": None,

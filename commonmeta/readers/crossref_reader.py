@@ -31,7 +31,7 @@ from ..constants import (
 )
 
 
-def get_crossref_list(query: dict, **kwargs) -> list[dict_to_spdx]:
+def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
     response = httpx.get(url, timeout=30, **kwargs)

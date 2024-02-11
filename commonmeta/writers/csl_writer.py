@@ -32,6 +32,7 @@ def write_csl_item(metadata) -> Optional[dict]:
         _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
+    publisher = metadata.publisher or {}
     return compact(
         {
             "type": _type,
@@ -57,7 +58,7 @@ def write_csl_item(metadata) -> Optional[dict]:
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "page": pages_as_string(container),
-            "publisher": metadata.publisher.get("name", None),
+            "publisher": publisher.get("name", None),
             "title": parse_attributes(metadata.titles, content="title", first=True),
             "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,

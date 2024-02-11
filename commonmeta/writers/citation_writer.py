@@ -59,7 +59,7 @@ def write_citation_list(metalist, **kwargs):
     
     citations = [write_citation_item(item) for item in metalist.items]
     bibliographies = [format_citation(index, item) for index, item in enumerate(citations)]
-    return "\n".join(bibliographies)
+    return "\n\n".join(bibliographies)
 
 
 def _clean_result(text):
