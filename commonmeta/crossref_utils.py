@@ -36,23 +36,6 @@ def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     )
 
 
-def crossref_errors(xml: None):
-    """Crossref errors"""
-    if xml is None:
-        return None
-
-
-#       filepath = File.expand_path("../../resources/crossref/crossref5.3.1.xsd", __dir__)
-#       File.open(filepath, "r") do |f|
-#         schema = Nokogiri::XML::Schema(f)
-#       end
-
-#       schema.validate(Nokogiri::XML(xml, nil, "UTF-8")).map(&:to_s).unwrap
-#     rescue Nokogiri::XML::SyntaxError => e
-#       e.message
-#     end
-
-
 def insert_crossref_work(metadata, xml):
     """Insert crossref work"""
     if doi_from_url(metadata.id) is None:
@@ -530,3 +513,25 @@ def crossref_root():
     """Crossref root with namespaces"""
     doi_batch = """<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1"></doi_batch>"""
     return etree.fromstring(doi_batch)
+
+def generate_crossref_xml_list(metalist) -> Optional[str]:
+    """Generate Crossref XML list."""
+    xml = crossref_root()
+    head = etree.SubElement(xml, "head")
+    # we use a uuid as batch_id
+    etree.SubElement(head, "doi_batch_id").text = str(uuid.uuid4())
+    etree.SubElement(head, "timestamp").text = datetime.now().strftime("%Y%m%d%H%M%S")
+    depositor = etree.SubElement(head, "depositor")
+    etree.SubElement(depositor, "depositor_name").text = metalist.depositor or "test"
+    etree.SubElement(depositor, "email_address").text = (
+        metalist.email or "info@example.org"
+    )
+    etree.SubElement(head, "registrant").text = metalist.registrant or "test"
+
+    body = etree.SubElement(xml, "body")
+    body = [insert_crossref_work(item, body) for item in metalist.items]
+    return etree.tostring(
+        xml,
+        doctype='<?xml version="1.0" encoding="UTF-8"?>',
+        pretty_print=True,
+    )

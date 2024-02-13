@@ -161,31 +161,47 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
 def get_titles(meta):
     """Title information from Crossref metadata."""
-    title = parse_attributes(meta.get("title", None))
-    subtitle = parse_attributes(meta.get("subtitle", None))
-    original_language_title = meta.get("original_language_title", None)
+    titles = parse_attributes(meta.get("title", None))
+    subtitles = parse_attributes(meta.get("subtitle", None))
+    original_language_titles = meta.get("original_language_title", None)
+    combined_titles = []
     language = None
-    if title is None and original_language_title is None and subtitle is None:
-        return None
-    if title is not None and subtitle is None:
-        return [{"title": sanitize(title)}]
-    if original_language_title:
-        return [
+    if isinstance(titles, str):
+        titles = [titles]
+    if isinstance(subtitles, str):
+        subtitles = [subtitles]
+    if isinstance(original_language_titles, str):
+        original_language_titles = [original_language_titles]
+    if isinstance(titles, list):
+        titles = [{"title": sanitize(i)} for i in titles]
+    if isinstance(subtitles, list):
+        subtitles = [
             compact(
                 {
-                    "title": sanitize(original_language_title),
+                    "title": sanitize(i),
+                    "titleType": "Subtitle",
+                }
+            )
+            for i in subtitles
+        ]
+    if isinstance(original_language_titles, list):
+        original_language_titles = [
+            compact(
+                {
+                    "title": sanitize(i),
+                    "titleType": "TranslatedTitle",
                     "lang": language,
                 }
             )
+            for i in original_language_titles
         ]
-    if subtitle:
-        return [
-            compact({"title": sanitize(title)}),
-            {
-                "title": sanitize(subtitle),
-                "titleType": "Subtitle",
-            },
-        ]
+    if titles is not None:
+        combined_titles += titles
+    if subtitles is not None:
+        combined_titles += subtitles
+    if original_language_titles is not None:
+        combined_titles += original_language_titles
+    return combined_titles
 
 
 def get_reference(reference: Optional[dict]) -> Optional[dict]:

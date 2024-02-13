@@ -1,0 +1,201 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1007
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 854cb5ea1942785a-LIS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 13 Feb 2024 11:25:25 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2FofrQRdY16aXea0b7v%2Fe7sQseWtIA6bT3aCWFsiRkb8tZPPST9%2B%2FewsBYbPaVAw8ohXKCbE5Oc5I9tHrNEAcFnAMYpQC8AuBrdb3aXzDwWR6NFYj00hXprc%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://api.crossref.org/works/10.1007/s00120-007-1345-2
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2023,9,13]],"date-time":"2023-09-13T18:21:04Z","timestamp":1694629264401},"reference-count":20,"publisher":"Springer
+      Science and Business Media LLC","issue":"7","license":[{"start":{"date-parts":[[2007,7,1]],"date-time":"2007-07-01T00:00:00Z","timestamp":1183248000000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.springer.com\/tdm"},{"start":{"date-parts":[[2007,7,1]],"date-time":"2007-07-01T00:00:00Z","timestamp":1183248000000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/www.springer.com\/tdm"}],"content-domain":{"domain":["link.springer.com"],"crossmark-restriction":false},"short-container-title":["Urologe"],"published-print":{"date-parts":[[2007,7]]},"DOI":"10.1007\/s00120-007-1345-2","type":"journal-article","created":{"date-parts":[[2007,4,13]],"date-time":"2007-04-13T09:57:50Z","timestamp":1176458270000},"page":"776-779","update-policy":"http:\/\/dx.doi.org\/10.1007\/springer_crossmark_policy","source":"Crossref","is-referenced-by-count":1,"title":["Penile
+      injury caused by a Moulinette","Penisverletzung durch eine Moulinette"],"prefix":"10.1007","volume":"46","author":[{"given":"M.","family":"Lehsnau","sequence":"first","affiliation":[]}],"member":"297","published-online":{"date-parts":[[2007,7,8]]},"reference":[{"key":"1345_CR1","doi-asserted-by":"crossref","first-page":"1143","DOI":"10.1016\/S0022-5347(17)35709-9","volume":"150","author":"Aboseif","year":"1993","unstructured":"Aboseif
+      S, Gomez R, Mc Aninch JW (1993) Genital self-mutilation. J Urol 150: 1143","journal-title":"J
+      Urol"},{"key":"1345_CR2","first-page":"717","volume":"16","author":"A Bigot","year":"1938","unstructured":"Bigot
+      A (1938) Recherches sur le penis des Tonkinois, suivies d\u00f9ne note sur les
+      automutilations genitals. Rev Med Franc d\u201aExtreme-Orient 16: 717","journal-title":"Rev
+      Med Franc d\u201aExtreme-Orient"},{"key":"1345_CR3","doi-asserted-by":"crossref","first-page":"35","DOI":"10.1080\/00926239608405304","volume":"22","author":"Catalona","year":"1996","unstructured":"Catalona
+      G, Morejon M, Alberts VA, Catalona MC (1996) Report of a case of male self-mutilation
+      and review of literature, with special emphasis on the effects of media. J Sex
+      Marital Ther 22: 35\u201346","journal-title":"J Sex Marital Ther"},{"key":"1345_CR4","first-page":"243","volume":"42","author":"Clark","year":"1981","unstructured":"Clark
+      RA (1981) Self-mutilation accompanying religious delusions: a case report and
+      review. J Clin Psychiatry 42: 243\u2013245","journal-title":"J Clin Psychiatry"},{"key":"1345_CR5","first-page":"682","volume":"36","author":"Conacher","year":"1991","unstructured":"Conacher
+      GN, Villeneuve D, Kane G (1991) Penile self mutilation presenting as rational
+      attempted suicide. Can J Psychiatry 36: 682\u2013685","journal-title":"Can J
+      Psychiatry"},{"key":"1345_CR6","doi-asserted-by":"publisher","first-page":"295","DOI":"10.1046\/j.1464-410x.2000.00438.x","volume":"85","author":"Eke","year":"2000","unstructured":"Eke
+      N (2000) Genital self-mutilation: there is no method in this madness. BJU 85:
+      295\u2013298","journal-title":"BJU"},{"key":"1345_CR7","doi-asserted-by":"crossref","first-page":"775","DOI":"10.1016\/S0022-5347(17)58190-2","volume":"118","author":"Evins","year":"1977","unstructured":"Evins
+      SC, Whittle T, Rous SN (1977) Self-emaskulation: review of literature, report
+      of a case and outline of the objectives of management. J Urol 118: 775\u2013776","journal-title":"J
+      Urol"},{"key":"1345_CR8","doi-asserted-by":"crossref","first-page":"441","DOI":"10.1001\/archpsyc.1979.01780040083009","volume":"36","author":"Greilsheimer","year":"1979","unstructured":"Greilsheimer
+      H, Groves JE (1979) Male genital self-mutilation. Arch Gen Psychiatry 36: 441\u2013446","journal-title":"Arch
+      Gen Psychiatry"},{"key":"1345_CR9","first-page":"322","volume":"42","author":"Hall","year":"1981","unstructured":"Hall
+      DC, Lawson BZ, Wilson LG (1981) Command Hallucinations and self-amputation of
+      penis and hand a first psychotic break. J Clin Psychiatry 42: 322\u2013324","journal-title":"J
+      Clin Psychiatry"},{"key":"1345_CR10","doi-asserted-by":"crossref","first-page":"111","DOI":"10.3109\/00365598009181201","volume":"14","author":"Henriksson","year":"1980","unstructured":"Henriksson
+      TG, Hahne B, Hakelius L et al. (1980) Microsurgical replantation of en amputated
+      penis. Scand J Urol Nephrol 14: 111\u2013114","journal-title":"Scand J Urol
+      Nephrol"},{"key":"1345_CR11","doi-asserted-by":"crossref","first-page":"23","DOI":"10.1055\/s-2007-1006448","volume":"12","author":"Ishida","year":"1996","unstructured":"Ishida
+      O, Ikuta Y, Shirane T, Nkahara M (1996) Penile replantation after self-inflicted
+      complete amputation: case report. J Reconstr Microsurg 12: 23\u201326","journal-title":"J
+      Reconstr Microsurg"},{"key":"1345_CR12","doi-asserted-by":"crossref","first-page":"179","DOI":"10.1111\/j.2044-8341.1995.tb01824.x","volume":"68","author":"Krasucki","year":"1995","unstructured":"Krasucki
+      C, Kemp R, David A (1995) A case of female genital self-mutilation in schizophrenia.
+      Br J Med Psychol 68: 179\u2013186","journal-title":"Br J Med Psychol"},{"key":"1345_CR13","doi-asserted-by":"crossref","first-page":"208","DOI":"10.1016\/S0022-5347(17)55375-6","volume":"124","author":"Mora","year":"1980","unstructured":"Mora
+      W, Drach GW (1980) Self-emaskulation and self-castration: immediate surgical
+      management and ultimate psychological adjustment. J Urol 124: 208\u2013209","journal-title":"J
+      Urol"},{"key":"1345_CR14","doi-asserted-by":"publisher","first-page":"242","DOI":"10.1159\/000285000","volume":"29","author":"Nakaya","year":"1996","unstructured":"Nakaya
+      M (1996) On background factors of male genital self-mutilation. Psychopathology
+      29: 242\u2013248","journal-title":"Psychopathology"},{"key":"1345_CR15","first-page":"427","volume":"55","author":"Romilly","year":"1996","unstructured":"Romilly
+      CS, Isaac MT (1996) Male genital self-mutilation. Br J Hosp Med 55: 427\u2013431","journal-title":"Br
+      J Hosp Med"},{"key":"1345_CR16","doi-asserted-by":"crossref","first-page":"187","DOI":"10.1111\/j.2044-8341.1995.tb01825.x","volume":"68","author":"Shimizu","year":"1995","unstructured":"Shimizu
+      A, Mizuta I (1995) Male genital self-mutilation: a case report. Br J Med Psychol
+      68: 187\u2013189","journal-title":"Br J Med Psychol"},{"key":"1345_CR17","doi-asserted-by":"crossref","first-page":"143","DOI":"10.1177\/070674378002500208","volume":"25","author":"Stewart","year":"1980","unstructured":"Stewart
+      DE, Lowrey MR (1980) Replantation surgery following self-inflicted amputation.
+      Can J Psychiatry 25: 143\u2013150","journal-title":"Can J Psychiatry"},{"key":"1345_CR18","doi-asserted-by":"crossref","first-page":"270","DOI":"10.1001\/jama.1901.02470040048018","volume":"36","author":"Stroch","year":"1901","unstructured":"Stroch
+      D (1901) Self-castration. JAMA 36: 270","journal-title":"JAMA"},{"key":"1345_CR19","doi-asserted-by":"publisher","first-page":"287","DOI":"10.1097\/00006534-197708000-00028","volume":"60","author":"Tamai","year":"1977","unstructured":"Tamai
+      S, Nakamura Y, Motomiya Y (1977) Microsurgical replantation of a completely
+      amputated penis and scrotum: case report. Plast Reconstr Surg 60: 287\u2013291","journal-title":"Plast
+      Reconstr Surg"},{"key":"1345_CR20","doi-asserted-by":"crossref","first-page":"177","DOI":"10.1159\/000281702","volume":"45","author":"Wandschneider","year":"1990","unstructured":"Wandschneider
+      G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally
+      amputated penis by using microvascular techniques. Urol Int 45: 177\u2013180","journal-title":"Urol
+      Int"}],"container-title":["Der Urologe"],"original-title":[],"language":"de","link":[{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/link.springer.com\/article\/10.1007\/s00120-007-1345-2\/fulltext.html","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"http:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"},{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2022,5,15]],"date-time":"2022-05-15T07:17:13Z","timestamp":1652599033000},"score":1,"resource":{"primary":{"URL":"https:\/\/link.springer.com\/10.1007\/s00120-007-1345-2"}},"subtitle":["Folge
+      einer autoerotischen Selbstverst\u00fcmmelung","Result of autoerotic self-mutilation"],"short-title":[],"issued":{"date-parts":[[2007,7]]},"references-count":20,"journal-issue":{"issue":"7","published-print":{"date-parts":[[2007,7]]}},"alternative-id":["1345"],"URL":"http:\/\/dx.doi.org\/10.1007\/s00120-007-1345-2","relation":{},"ISSN":["0340-2592","1433-0563"],"issn-type":[{"value":"0340-2592","type":"print"},{"value":"1433-0563","type":"electronic"}],"subject":["Urology"],"published":{"date-parts":[[2007,7]]},"assertion":[{"value":"8
+      July 2007","order":1,"name":"first_online","label":"First Online","group":{"name":"ArticleHistory","label":"Article
+      History"}}]}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '3161'
+      content-type:
+      - application/json
+      date:
+      - Tue, 13 Feb 2024 11:25:25 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.26.0
+    method: GET
+    uri: https://doi.org/ra/10.1007
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 854e08f4b8ac7859-LIS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 13 Feb 2024 15:16:52 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jLluO1VtOpg8m3rHLsFSdVfuGAC9WJS%2Fc9CEy3n0vi6CxJeACR45sJr%2BSy%2FZc9bNiT9FEz9gM1MMYlpv14o2HYiju%2BjA0FARriKZfHNttDVufFOTgI5eFwI%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

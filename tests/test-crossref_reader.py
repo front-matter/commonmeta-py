@@ -368,7 +368,7 @@ def test_book_chapter_with_rdf_for_container():
     }
     assert subject.license is None
     assert subject.date == {"published": "2012", "updated": "2020-11-24T03:11:32Z"}
-    assert subject.publisher == {'name': 'Springer Berlin Heidelberg'}
+    assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
     assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
@@ -1241,6 +1241,67 @@ def test_proceedings_article():
     assert len(subject.files) == 1
     assert subject.files[0] == {
         "url": "https://dl.acm.org/doi/pdf/10.1145/3448016.3452841",
+        "mimeType": "application/pdf",
+    }
+
+
+@pytest.mark.vcr
+def test_multipe_titles():
+    "multiple titles"
+    string = "10.1007/s00120-007-1345-2"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.1007/s00120-007-1345-2"
+    assert subject.type == "JournalArticle"
+    assert subject.url == "https://link.springer.com/10.1007/s00120-007-1345-2"
+    assert subject.titles == [
+        {"title": "Penile injury caused by a Moulinette"},
+        {"title": "Penisverletzung durch eine Moulinette"},
+        {
+            "title": "Folge einer autoerotischen Selbstverstümmelung",
+            "titleType": "Subtitle",
+        },
+        {"title": "Result of autoerotic self-mutilation", "titleType": "Subtitle"},
+    ]
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "M.",
+        "familyName": "Lehsnau",
+    }
+    assert subject.license == {"url": "https://www.springer.com/tdm"}
+    assert subject.date == {"published": "2007-07", "updated": "2022-05-15T07:17:13Z"}
+    assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
+    assert len(subject.references) == 20
+    assert subject.references[-1] == {
+        "key": "1345_CR20",
+        "doi": "https://doi.org/10.1159/000281702",
+        "contributor": "Wandschneider",
+        "publicationYear": "1990",
+        "volume": "45",
+        "firstPage": "177",
+        "containerTitle": "Urol Int",
+    }
+    assert subject.funding_references is None
+    assert subject.container == {
+        "type": "Journal",
+        "identifier": "1433-0563",
+        "identifierType": "ISSN",
+        "title": "Der Urologe",
+        "volume": "46",
+        "issue": "7",
+        "firstPage": "776",
+        "lastPage": "779",
+    }
+    assert subject.subjects == [{"subject": "Urology"}]
+    assert subject.language == "de"
+    assert subject.descriptions is None
+    assert subject.version is None
+    assert subject.provider == "Crossref"
+    assert len(subject.files) == 3
+    assert subject.files[0] == {
+        "url": "https://link.springer.com/content/pdf/10.1007/s00120-007-1345-2.pdf",
         "mimeType": "application/pdf",
     }
 

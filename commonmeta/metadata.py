@@ -39,7 +39,7 @@ from .readers.ris_reader import read_ris
 from .writers.datacite_writer import write_datacite
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
-from .writers.crossref_xml_writer import write_crossref_xml
+from .writers.crossref_xml_writer import write_crossref_xml, write_crossref_xml_list
 from .writers.csl_writer import write_csl, write_csl_list
 from .writers.ris_writer import write_ris, write_ris_list
 from .writers.schema_org_writer import write_schema_org
@@ -293,6 +293,12 @@ class MetadataList:
         self.type = kwargs.get("type", None)
         self.title = kwargs.get("title", None)
         self.description = kwargs.get("description", None)
+        
+        # options needed for Crossref DOI registration
+        self.depositor = kwargs.get("depositor", None)
+        self.email = kwargs.get("email", None)
+        self.registrant = kwargs.get("registrant", None)
+        
         self.items = items
 
     def get_metadata_list(self, string) -> list:
@@ -325,6 +331,6 @@ class MetadataList:
         elif to == "datacite":
             raise ValueError("Datacite not supported for metadata lists")
         elif to == "crossref_xml":
-            raise ValueError("Crossref XML not supported for metadata lists")
+            return write_crossref_xml_list(self)
         else:
             raise ValueError("No output format found")

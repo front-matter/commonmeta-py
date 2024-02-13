@@ -96,7 +96,6 @@ def sample(provider, prefix, type, number, to, style, locale, show_errors):
         style=style,
         locale=locale,
     )
-    # with click.progressbar(lst.items) as items:
     for item in lst.items:
         output = item.write(to=to)
         if show_errors and not item.is_valid:

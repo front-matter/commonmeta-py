@@ -38,8 +38,8 @@ def test_wordpress_with_references():
     }
 
     assert subject.date == {
-        "published": "2023-06-09T21:54:23",
-        "updated": "2023-06-09T21:54:23",
+        "published": "2023-06-09T20:54:23",
+        "updated": "2023-06-09T20:54:23",
     }
     assert subject.publisher == {
         "name": "Sauropod Vertebra Picture of the Week",
@@ -124,8 +124,8 @@ def test_ghost_with_institutional_author():
     }
 
     assert subject.date == {
-        "published": "2023-01-24T12:11:47",
-        "updated": "2023-10-01T17:34:13",
+        "published": "2023-01-24T11:11:47",
+        "updated": "2023-10-01T16:34:13",
     }
     assert subject.publisher == {
         "name": "OA.Works Blog",
@@ -203,8 +203,8 @@ def test_ghost_with_personal_name_parsing():
     }
 
     assert subject.date == {
-        "published": "2023-04-08T21:32:34",
-        "updated": "2023-04-08T21:32:34",
+        "published": "2023-04-08T20:32:34",
+        "updated": "2023-04-08T20:32:34",
     }
     assert subject.publisher == {
         "name": "I.D.E.A.S.",

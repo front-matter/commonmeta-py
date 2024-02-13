@@ -5,7 +5,7 @@ import json
 import pytest
 
 from commonmeta import Metadata, MetadataList
-
+from commonmeta.readers.crossref_reader import get_random_crossref_id
 
 @pytest.mark.vcr
 def test_journal_article():
@@ -118,6 +118,21 @@ def test_datacite_schema_45():
 @pytest.mark.vcr
 def test_write_commonmeta_list():
     """write_commonmeta_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string)
+    assert len(subject_list.items) == 20
+    commonmeta_list = json.loads(subject_list.write())
+    assert len(commonmeta_list) == 20
+    commonmeta = commonmeta_list[0]
+    assert commonmeta["id"] == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert commonmeta["type"] == "JournalArticle"
+    assert commonmeta["titles"] == [{'title': 'Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT'}]
+
+
+@pytest.mark.vcr
+def test_write_commonmeta_list_crossref_sample():
+    """write_commonmeta_list"""
+    # ids = get_random_crossref_id(number=20, prefix=prefix, _type=type)
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 20
