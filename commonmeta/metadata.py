@@ -304,7 +304,7 @@ class MetadataList:
     def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
-        if self.via in ["commonmeta", "crossref", "datacite", "schema_org", "csl"]:
+        if self.via in ["commonmeta", "crossref", "datacite", "schema_org", "csl", "json_feed_item"]:
             return json.loads(string)
         else:
             raise ValueError("No input format found")

@@ -130,16 +130,16 @@ def test_write_commonmeta_list():
 
 
 @pytest.mark.vcr
-def test_write_commonmeta_list_crossref_sample():
-    """write_commonmeta_list"""
+def test_write_commonmeta_list_json_feed():
+    """write_commonmeta_list json feed"""
     # ids = get_random_crossref_id(number=20, prefix=prefix, _type=type)
-    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
     subject_list = MetadataList(string)
-    assert len(subject_list.items) == 20
+    assert len(subject_list.items) == 15
     commonmeta_list = json.loads(subject_list.write())
-    assert len(commonmeta_list) == 20
+    assert len(commonmeta_list) == 15
     commonmeta = commonmeta_list[0]
-    assert commonmeta["id"] == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
-    assert commonmeta["type"] == "JournalArticle"
-    assert commonmeta["titles"] == [{'title': 'Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT'}]
+    assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
+    assert commonmeta["type"] == "Article"
+    assert commonmeta["titles"] == [{'title': 'Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren'}]
     

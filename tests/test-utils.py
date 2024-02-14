@@ -402,6 +402,16 @@ def test_find_from_format_by_ext():
 
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
+    # commonmeta
+    filepath = path.join(path.dirname(__file__), "fixtures", "commonmeta.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "commonmeta" == find_from_format_by_string(string)
+    # json_feed_item
+    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed_item.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "json_feed_item" == find_from_format_by_string(string)
     # datacite
     filepath = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     with open(filepath, encoding="utf-8") as file:

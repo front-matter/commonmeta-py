@@ -1,9 +1,10 @@
 """Test crossref_xml_writer module for commonmeta-py"""
 import pytest
 from os import path
+import json
 import pydash as py_
 
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import parse_xml
 
 
@@ -38,6 +39,33 @@ def test_write_metadata_as_crossref_xml():
         "cYear": "2003",
         "article_title": "APL regulates vascular tissue identity in Arabidopsis",
         "doi": "10.1038/nature02100",
+    }
+
+
+@pytest.mark.vcr
+def test_write_commonmeta_list_as_crossref_xml():
+    """write_commonmeta_list crossref_xml"""
+    # ids = get_random_crossref_id(number=20, prefix=prefix, _type=type)
+    string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
+    subject_list = MetadataList(string)
+    assert len(subject_list.items) == 15
+    crossref_xml_list = parse_xml(
+        subject_list.write(to="crossref_xml"), dialect="crossref"
+    )
+    crossref_xml_list = py_.get(crossref_xml_list, "doi_batch.body.posted_content", [])
+    assert len(crossref_xml_list) == 15
+    crossref_xml = crossref_xml_list[0]
+    assert py_.get(crossref_xml, "doi_data.doi") == "10.59350/26ft6-dmv65"
+    assert (
+        py_.get(crossref_xml, "titles.0.title")
+        == "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
+    )
+    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
+    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "given_name": "Maatje Sophia",
+        "sequence": "first",
+        "surname": "Duine",
     }
 
 
