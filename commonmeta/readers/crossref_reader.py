@@ -2,6 +2,8 @@
 from typing import Optional
 import httpx
 from pydash import py_
+import random
+import time
 
 from ..utils import (
     dict_to_spdx,
@@ -29,6 +31,19 @@ from ..constants import (
     CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
+
+
+def timer_func(func):
+    def function_timer(*args, **kwargs):
+        start = time.time()
+        value = func(*args, **kwargs)
+        end = time.time()
+        runtime = end - start
+        msg = "{func} took {time} seconds to complete its execution."
+        print(msg.format(func=func.__name__, time=runtime))
+        return value
+
+    return function_timer
 
 
 def get_crossref_list(query: dict, **kwargs) -> list[dict]:
