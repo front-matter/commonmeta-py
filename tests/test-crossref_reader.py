@@ -463,7 +463,7 @@ def test_peer_review():
     assert subject.publisher == {
         "name": "eLife Sciences Publications, Ltd",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -498,7 +498,7 @@ def test_dissertation():
     assert subject.publisher == {
         "name": "University of Queensland Library",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -793,7 +793,7 @@ def test_dataset():
     assert subject.license is None
     assert subject.date == {"published": "1984-07-17"}
     assert subject.publisher == {"name": "Worldwide Protein Data Bank"}
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -817,7 +817,7 @@ def test_component():
     assert subject.license is None
     assert subject.date == {"published": "2015-10-20T20:01:19Z"}
     assert subject.publisher == {"name": "Public Library of Science (PLoS)"}
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None

@@ -96,11 +96,12 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
 
-    date: dict = {}
-    date["published"] = (
-        py_.get(meta, "issued.date-time")
-        or get_date_from_date_parts(meta.get("issued", None))
-        or py_.get(meta, "created.date-time")
+    date = compact(
+        {
+            "published": py_.get(meta, "issued.date-time")
+            or get_date_from_date_parts(meta.get("issued", None))
+            or py_.get(meta, "created.date-time")
+        }
     )
 
     license_ = meta.get("license", None)
@@ -136,8 +137,8 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "url": url,
         "contributors": presence(contributors),
         "titles": presence(titles),
-        "publisher": publisher,
-        "date": compact(date),
+        "publisher": presence(publisher),
+        "date": presence(date),
         # recommended and optional properties
         "subjects": presence(subjects),
         "language": meta.get("language", None),
@@ -149,7 +150,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "descriptions": descriptions,
         "geo_locations": None,
         "funding_references": presence(funding_references),
-        "references": references,
+        "references": presence(references),
         # other properties
         "files": presence(files),
         "container": presence(container),
