@@ -164,6 +164,21 @@ files = [
 typing-extensions = {version = ">=4.0.0", markers = "python_version < \"3.11\""}
 
 [[package]]
+name = "asyncclick"
+version = "8.1.7.1"
+description = "Composable command line interface toolkit, async version"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "asyncclick-8.1.7.1-py3-none-any.whl", hash = "sha256:e0fea5f0223ac45cfc26153cc80a58cc65fc077ac8de79be49248c918e8c3422"},
+    {file = "asyncclick-8.1.7.1.tar.gz", hash = "sha256:a47b61258a689212cf9463fbf3b4cc52d05bfd03185f6ead2315fc03fd17ef75"},
+]
+
+[package.dependencies]
+anyio = "*"
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[[package]]
 name = "asyncio"
 version = "3.4.3"
 description = "reference implementation of PEP 3156"
@@ -3859,4 +3874,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<4.0.0"
-content-hash = "1f5fd27500682e09eebe6797473c7612677a392580774d874dfd90f3e03c4fb7"
+content-hash = "fafe79175bedad5dc062a60daa9d832fb11a54f4fe972c5554923d32d939e7e8"

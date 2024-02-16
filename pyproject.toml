@@ -49,6 +49,8 @@ python-dateutil = "^2.8.2"
 nh3 = "^0.2.14"
 pyjwt = "^2.8.0"
 asyncio = "^3.4.3"
+asyncclick = "^8.1.7.1"
+anyio = "^4.2.0"
 
 [tool.poetry.scripts]
 commonmeta = "commonmeta.cli:cli"
