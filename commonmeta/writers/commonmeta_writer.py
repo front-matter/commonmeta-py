@@ -1,6 +1,5 @@
 """Commonmeta writer for commonmeta-py"""
 import json
-from pydash import py_
 from ..base_utils import compact
 
 
@@ -45,7 +44,7 @@ def write_commonmeta_list(metalist):
     """Write commonmeta list"""
     if metalist is None:
         return None
-    
+
     # def format_commonmeta(item):
     #     item = py_.omit(item, ["via", "style", "locale", "doi", "depositor", "email", "registrant"])
     #     return vars(item)

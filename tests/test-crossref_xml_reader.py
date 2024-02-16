@@ -534,7 +534,11 @@ def test_doi_with_sici():
         "familyName": "Fenton",
     }
     assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
-    assert subject.date == {'created': '2007-06-04', 'published': '2006-11', 'updated': '2024-02-14'}
+    assert subject.date == {
+        "created": "2007-06-04",
+        "published": "2006-11",
+        "updated": "2024-02-14",
+    }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/311",
         "name": "Wiley",

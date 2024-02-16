@@ -83,9 +83,7 @@ def test_wordpress_with_references():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae."
-        )
+        .startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae.")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
@@ -314,7 +312,10 @@ def test_post_without_doi():
     string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert (
+        subject.id
+        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    )
     assert subject.type == "Article"
     assert (
         subject.url
@@ -324,8 +325,13 @@ def test_post_without_doi():
         "title": "Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)"
     }
     assert len(subject.contributors) == 1
-    assert subject.contributors[0] == {'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Mathias', 'familyName': 'Hong'}
-    
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Mathias",
+        "familyName": "Hong",
+    }
+
 
 def test_get_json_feed_item():
     """Test get_json_feed_item_id"""

@@ -441,6 +441,7 @@ def from_kbase(elements: list) -> list:
 
 def from_csl(elements: list) -> list:
     """Convert from csl elements"""
+
     def format_element(element):
         """format element"""
         if element.get("literal", None) is not None:
@@ -483,6 +484,7 @@ def to_ris(elements: Optional[list]) -> list:
     """Convert element to RIS"""
     if elements is None:
         return []
+
     def format_element(i):
         """format element"""
         if i.get("familyName", None) and i.get("givenName", None):
@@ -491,7 +493,11 @@ def to_ris(elements: Optional[list]) -> list:
             element = i.get("name", None)
         return element
 
-    return [format_element(i) for i in elements if i.get("name", None) or i.get("familyName", None)]
+    return [
+        format_element(i)
+        for i in elements
+        if i.get("name", None) or i.get("familyName", None)
+    ]
 
 
 def to_schema_org(element: Optional[dict]) -> Optional[dict]:

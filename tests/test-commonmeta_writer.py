@@ -5,7 +5,7 @@ import json
 import pytest
 
 from commonmeta import Metadata, MetadataList
-from commonmeta.readers.crossref_reader import get_random_crossref_id
+
 
 @pytest.mark.vcr
 def test_journal_article():
@@ -124,9 +124,14 @@ def test_write_commonmeta_list():
     commonmeta_list = json.loads(subject_list.write())
     assert len(commonmeta_list) == 20
     commonmeta = commonmeta_list[0]
-    assert commonmeta["id"] == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert (
+        commonmeta["id"]
+        == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    )
     assert commonmeta["type"] == "JournalArticle"
-    assert commonmeta["titles"] == [{'title': 'Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT'}]
+    assert commonmeta["titles"] == [
+        {"title": "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"}
+    ]
 
 
 @pytest.mark.vcr
@@ -141,5 +146,8 @@ def test_write_commonmeta_list_json_feed():
     commonmeta = commonmeta_list[0]
     assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
     assert commonmeta["type"] == "Article"
-    assert commonmeta["titles"] == [{'title': 'Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren'}]
-    
+    assert commonmeta["titles"] == [
+        {
+            "title": "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
+        }
+    ]

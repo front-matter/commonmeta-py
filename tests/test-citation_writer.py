@@ -28,8 +28,8 @@ def test_journal_article_vancouver_style():
         subject.write(to="citation", style="vancouver", locale="en-US")
         == "1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567"
     )
-    
-    
+
+
 def test_journal_article_german_locale():
     "journal article german locale"
     subject = Metadata("10.7554/elife.01567", style="vancouver", locale="de")
@@ -89,20 +89,23 @@ def test_kbase_gulf_of_mexico():
         subject.write(to="citation")
         == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
     )
-    
-    
+
+
 @pytest.mark.vcr
 def test_post_without_doi():
     """blog post without doi"""
     string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    assert (
+        subject.id
+        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
+    )
     assert subject.type == "Article"
     assert (
         subject.write(to="citation")
         == "Hong, M. (2024). Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III). In <i>Verfassungsblog</i>. Verfassungsblog. https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
-    )    
+    )
 
 
 @pytest.mark.vcr
@@ -113,9 +116,16 @@ def test_write_citation_list():
     assert len(subject_list.items) == 20
     citation_list = subject_list.write(to="citation")
     lines = citation_list.splitlines()
-    assert len(lines) == 39 # 20 items, 19 separators
-    assert lines[0] == "Newell P. Campbell. (1987). Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT. <i>AAPG Bulletin</i>, <i>71</i>. https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
-    assert lines[2] == "David G. Morse. (1996). Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT. <i>AAPG Bulletin</i>, <i>80</i>. https://doi.org/10.1306/64ed9fd8-1724-11d7-8645000102c1865d"
+    assert len(lines) == 39  # 20 items, 19 separators
+    assert (
+        lines[0]
+        == "Newell P. Campbell. (1987). Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT. <i>AAPG Bulletin</i>, <i>71</i>. https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    )
+    assert (
+        lines[2]
+        == "David G. Morse. (1996). Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT. <i>AAPG Bulletin</i>, <i>80</i>. https://doi.org/10.1306/64ed9fd8-1724-11d7-8645000102c1865d"
+    )
+
 
 @pytest.mark.vcr
 def test_write_citation_list_ieee_style_german():
@@ -125,6 +135,12 @@ def test_write_citation_list_ieee_style_german():
     assert len(subject_list.items) == 20
     citation_list = subject_list.write(to="citation", style="ieee", locale="de")
     lines = citation_list.splitlines()
-    assert len(lines) == 39 # 20 items, 19 separators
-    assert lines[0] == "[1]Newell P. Campbell, „Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 71, 1987, doi: 10.1306/703c7c64-1707-11d7-8645000102c1865d."
-    assert lines[2] == "[1]David G. Morse, „Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 80, 1996, doi: 10.1306/64ed9fd8-1724-11d7-8645000102c1865d."
+    assert len(lines) == 39  # 20 items, 19 separators
+    assert (
+        lines[0]
+        == "[1]Newell P. Campbell, „Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 71, 1987, doi: 10.1306/703c7c64-1707-11d7-8645000102c1865d."
+    )
+    assert (
+        lines[2]
+        == "[1]David G. Morse, „Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 80, 1996, doi: 10.1306/64ed9fd8-1724-11d7-8645000102c1865d."
+    )

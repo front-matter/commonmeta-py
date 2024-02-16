@@ -310,9 +310,7 @@ class MetadataList:
     def read_metadata_list(self, data: list, **kwargs) -> list:
         """read_metadata_list"""
         kwargs["via"] = kwargs.get("via", None) or self.via
-        return [
-            Metadata(i, **kwargs) for i in data
-        ]
+        return [Metadata(i, **kwargs) for i in data]
 
     def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata list into different formats"""

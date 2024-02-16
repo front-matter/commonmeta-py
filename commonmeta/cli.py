@@ -10,7 +10,7 @@ from commonmeta.readers.json_feed_reader import (
     get_json_feed_updated,
     get_json_feed_item_uuid,
 )
-from commonmeta.readers.crossref_reader import get_random_crossref_id, get_crossref_list
+from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
 
 

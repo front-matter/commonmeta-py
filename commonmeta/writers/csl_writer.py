@@ -62,8 +62,9 @@ def write_csl_item(metadata) -> Optional[dict]:
             "title": parse_attributes(metadata.titles, content="title", first=True),
             "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
-        })
-    
+        }
+    )
+
 
 def write_csl_list(metalist):
     """Write CSL-JSON list"""

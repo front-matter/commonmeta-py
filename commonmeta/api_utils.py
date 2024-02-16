@@ -9,10 +9,11 @@ import jwt
 from .doi_utils import validate_doi, doi_as_url
 from .readers.json_feed_reader import get_json_feed_item_uuid
 
+
 def generate_ghost_token(key: str) -> str:
     """Generate a short-lived JWT for the Ghost Admin API.
     From https://ghost.org/docs/admin-api/#token-authentication"""
-    
+
     # Split the key into ID and SECRET
     _id, secret = key.split(":")
 
@@ -26,7 +27,9 @@ def generate_ghost_token(key: str) -> str:
     return jwt.encode(payload, bytes.fromhex(secret), algorithm="HS256", headers=header)
 
 
-def update_ghost_post_via_api(_id: str, api_key: Optional[str]=None, api_url: Optional[str]=None) -> dict[str, str]:
+def update_ghost_post_via_api(
+    _id: str, api_key: Optional[str] = None, api_url: Optional[str] = None
+) -> dict[str, str]:
     """Update Ghost post via API"""
     # get post doi and url from Rogue Scholar API
     # post url is needed to find post via Ghost API
@@ -38,7 +41,7 @@ def update_ghost_post_via_api(_id: str, api_key: Optional[str]=None, api_url: Op
     url = post.get("url", None)
     if not doi or not url:
         return {"error": "DOI or URL not found"}
- 
+
     # get post_id and updated_at from ghost api
     token = generate_ghost_token(api_key)
     headers = {
@@ -57,12 +60,12 @@ def update_ghost_post_via_api(_id: str, api_key: Optional[str]=None, api_url: Op
     updated_at = ghost_post.get("updated_at")
     if not guid or not updated_at:
         return {"error": "guid or updated_at not found"}
-    
+
     # update post canonical_url using doi. This requires sending
-    # the updated_at timestamp to avoid conflicts, and must use guid 
+    # the updated_at timestamp to avoid conflicts, and must use guid
     # rather than url for put requests
     ghost_url = f"{api_url}/ghost/api/admin/posts/{guid}/"
-    
+
     json = {"posts": [{"canonical_url": doi, "updated_at": updated_at}]}
     response = httpx.put(
         ghost_url,

@@ -14,9 +14,15 @@ from ..utils import (
 from ..base_utils import compact, wrap, presence
 from ..author_utils import get_authors
 from ..date_utils import normalize_date_dict
-from ..doi_utils import doi_as_url, doi_from_url, datacite_api_url, datacite_api_sample_url
+from ..doi_utils import (
+    doi_as_url,
+    doi_from_url,
+    datacite_api_url,
+    datacite_api_sample_url,
+)
 from ..constants import (
-    DC_TO_CM_TRANSLATIONS, DC_TO_CM_CONTAINER_TRANSLATIONS,
+    DC_TO_CM_TRANSLATIONS,
+    DC_TO_CM_CONTAINER_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -125,13 +131,17 @@ def get_references(references: list) -> list:
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
-        return compact({
-            "key": f"ref{index + 1}",
-            "doi": normalize_doi(identifier) if identifier_type == "DOI" else None,
-            "url": normalize_url(identifier) if identifier_type == "URL" else None,
-        })
+        return compact(
+            {
+                "key": f"ref{index + 1}",
+                "doi": normalize_doi(identifier) if identifier_type == "DOI" else None,
+                "url": normalize_url(identifier) if identifier_type == "URL" else None,
+            }
+        )
 
-    return [map_reference(i, index) for index, i in enumerate(references) if is_reference(i)]
+    return [
+        map_reference(i, index) for index, i in enumerate(references) if is_reference(i)
+    ]
 
 
 def get_file(file: str) -> dict:
@@ -196,47 +206,65 @@ def get_publisher(publisher: dict) -> dict:
     return compact(
         {"id": format_name_identifier(publisher), "name": publisher.get("name", None)}
     )
-    
-    
+
+
 def get_geolocation(geolocations: list) -> list:
     """get_geolocation"""
-    
+
     def geo_location_point(point: dict):
         """geo_location_point, convert lat and long to int"""
         return {
-                "pointLatitude": float(point.get("pointLatitude")) if point.get("pointLatitude", None) else None,
-                "pointLongitude": float(point.get("pointLongitude")) if point.get("pointLongitude", None) else None,
-            }
-    
-    
+            "pointLatitude": float(point.get("pointLatitude"))
+            if point.get("pointLatitude", None)
+            else None,
+            "pointLongitude": float(point.get("pointLongitude"))
+            if point.get("pointLongitude", None)
+            else None,
+        }
+
     def geo_location_box(box: dict):
         """geo_location_box, convert lat and long to int"""
         return {
-                "eastBoundLongitude": float(box.get("eastBoundLongitude")) if box.get("eastBoundLongitude", None) else None,
-                "northBoundLatitude": float(box.get("northBoundLatitude")) if box.get("northBoundLatitude", None) else None,
-                "southBoundLatitude": float(box.get("southBoundLatitude")) if box.get("southBoundLatitude", None) else None,
-                "westBoundLongitude": float(box.get("westBoundLongitude")) if box.get("westBoundLongitude", None) else None,
-            }
+            "eastBoundLongitude": float(box.get("eastBoundLongitude"))
+            if box.get("eastBoundLongitude", None)
+            else None,
+            "northBoundLatitude": float(box.get("northBoundLatitude"))
+            if box.get("northBoundLatitude", None)
+            else None,
+            "southBoundLatitude": float(box.get("southBoundLatitude"))
+            if box.get("southBoundLatitude", None)
+            else None,
+            "westBoundLongitude": float(box.get("westBoundLongitude"))
+            if box.get("westBoundLongitude", None)
+            else None,
+        }
 
-    
     return [
         compact(
             {
-                "geoLocationPoint": geo_location_point(location.get("geoLocationPoint")) if location.get("geoLocationPoint", None) else None,
-                "geoLocationBox": geo_location_box(location.get("geoLocationBox")) if location.get("geoLocationBox", None) else None,
+                "geoLocationPoint": geo_location_point(location.get("geoLocationPoint"))
+                if location.get("geoLocationPoint", None)
+                else None,
+                "geoLocationBox": geo_location_box(location.get("geoLocationBox"))
+                if location.get("geoLocationBox", None)
+                else None,
                 "geoLocationPlace": location.get("geoLocationPlace", None),
             }
         )
         for location in geolocations
     ]
-    
-    
+
+
 def get_container(container: Optional[dict]) -> dict or None:
     """get_container"""
     if container is None:
         return None
-    _type = DC_TO_CM_CONTAINER_TRANSLATIONS.get(container.get("type"), None) if container.get("type", None) else None
-    
+    _type = (
+        DC_TO_CM_CONTAINER_TRANSLATIONS.get(container.get("type"), None)
+        if container.get("type", None)
+        else None
+    )
+
     return compact(
         {
             "id": container.get("identifier", None),
@@ -246,7 +274,7 @@ def get_container(container: Optional[dict]) -> dict or None:
     )
 
 
-def get_random_datacite_id(number: int=1) -> list:
+def get_random_datacite_id(number: int = 1) -> list:
     """Get random DOI from DataCite"""
     number = 20 if number > 20 else number
     url = datacite_api_sample_url(number)
@@ -254,7 +282,7 @@ def get_random_datacite_id(number: int=1) -> list:
         response = httpx.get(url, timeout=60)
         if response.status_code != 200:
             return []
-        
+
         items = py_.get(response.json(), "data")
         return [i.get("id") for i in items]
     except httpx.exceptions.ReadTimeout:

@@ -13,5 +13,5 @@ def write_crossref_xml_list(metalist):
     """Write crossref_xml list"""
     if metalist is None:
         return None
-    
+
     return generate_crossref_xml_list(metalist)

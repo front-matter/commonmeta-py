@@ -267,7 +267,10 @@ def test_another_blog_with_dois():
     string = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.errors == "{'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Andreas'} is not valid under any of the given schemas"
+    assert (
+        subject.errors
+        == "{'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Andreas'} is not valid under any of the given schemas"
+    )
     assert (
         subject.id
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"

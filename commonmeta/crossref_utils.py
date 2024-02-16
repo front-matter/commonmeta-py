@@ -514,6 +514,7 @@ def crossref_root():
     doi_batch = """<doi_batch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.crossref.org/schema/5.3.1" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 https://www.crossref.org/schemas/crossref5.3.1.xsd" version="5.3.1"></doi_batch>"""
     return etree.fromstring(doi_batch)
 
+
 def generate_crossref_xml_list(metalist) -> Optional[str]:
     """Generate Crossref XML list."""
     xml = crossref_root()

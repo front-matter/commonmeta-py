@@ -33,7 +33,7 @@ def write_citation_item(metadata):
     if metadata.write_errors is not None:
         return None
     csl = json.loads(metadata.csl())
-    
+
     # Remove keys that are not supported by citeproc-py.
     csl = py_.omit(csl, "copyright", "categories")
 
@@ -44,21 +44,23 @@ def write_citation_list(metalist, **kwargs):
     """Write citation list"""
     if metalist is None:
         return None
-    
+
     style = kwargs.get("style", "apa")
     locale = kwargs.get("locale", "en-US")
     style_path = get_style_filepath(style)
-    style = CitationStylesStyle(style_path, locale=locale)#
-    
+    style = CitationStylesStyle(style_path, locale=locale)  #
+
     def format_citation(index, item):
         bib = CitationStylesBibliography(style, item, formatter.html)
         _id = metalist.items[index].id
         citation = Citation([CitationItem(_id)])
         bib.register(citation)
         return _clean_result(str(bib.bibliography()[0]))
-    
+
     citations = [write_citation_item(item) for item in metalist.items]
-    bibliographies = [format_citation(index, item) for index, item in enumerate(citations)]
+    bibliographies = [
+        format_citation(index, item) for index, item in enumerate(citations)
+    ]
     return "\n\n".join(bibliographies)
 
 

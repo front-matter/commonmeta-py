@@ -134,7 +134,7 @@ def write_bibtex_list(metalist):
 
     bib_database = BibDatabase()
     bib_database.entries = [write_bibtex_item(item) for item in metalist.items]
-    
+
     # TODO: Fix page_double_hyphen in write_bibtex_item
     bib_database.entries = [page_double_hyphen(entry) for entry in bib_database.entries]
     writer = BibTexWriter()

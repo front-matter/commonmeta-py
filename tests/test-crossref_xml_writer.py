@@ -1,7 +1,6 @@
 """Test crossref_xml_writer module for commonmeta-py"""
 import pytest
 from os import path
-import json
 import pydash as py_
 
 from commonmeta import Metadata, MetadataList

@@ -2,6 +2,7 @@
 import pytest
 from commonmeta import Metadata, MetadataList
 
+
 @pytest.mark.vcr
 def test_crossref_doi():
     """crossref doi"""
@@ -10,8 +11,8 @@ def test_crossref_doi():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    
-    
+
+
 @pytest.mark.vcr
 def test_crossref_doi_as_url():
     """crossref doi as url"""
@@ -35,9 +36,9 @@ def test_random_string():
     """random string"""
     string = "abc"
     with pytest.raises(ValueError):
-        Metadata(string) 
-        
-        
+        Metadata(string)
+
+
 @pytest.mark.vcr
 def test_list_of_pids():
     """list of pids"""
@@ -49,4 +50,3 @@ def test_list_of_pids():
     subject = subject_lst.items[0]
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    

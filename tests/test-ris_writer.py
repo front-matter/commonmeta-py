@@ -233,4 +233,6 @@ def test_write_ris_list():
     assert len(subject_list.items) == 20
     ris_list = subject_list.write(to="ris").splitlines()
     assert ris_list[0].startswith("TY  - JOUR")
-    assert ris_list[1].startswith("T1  - Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT")
+    assert ris_list[1].startswith(
+        "T1  - Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
+    )

@@ -2,13 +2,11 @@
 from typing import Optional
 import httpx
 from pydash import py_
-import random
 import time
 
 from ..utils import (
     dict_to_spdx,
     normalize_cc_url,
-    from_csl,
     normalize_url,
     normalize_doi,
     normalize_issn,

@@ -228,7 +228,11 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     language = py_.get(meta, "journal.journal_metadata.language")
 
     files = presence(meta.get("contentUrl", None))
-    provider = bibmeta.get("reg-agency").capitalize() if bibmeta.get("reg-agency", None) else None
+    provider = (
+        bibmeta.get("reg-agency").capitalize()
+        if bibmeta.get("reg-agency", None)
+        else None
+    )
     if provider is None:
         provider = get_doi_ra(_id)
     state = "findable" if meta or read_options else "not_found"

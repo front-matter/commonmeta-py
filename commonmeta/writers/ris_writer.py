@@ -42,10 +42,10 @@ def write_ris(metadata):
     )
     string = []
     for key, val in ris.items():
-        if isinstance(val, list) and val not in [[],[None]]:
+        if isinstance(val, list) and val not in [[], [None]]:
             for vai in val:
                 string.append(f"{key}  - {vai}")
-        elif val not in [[],[None]]:
+        elif val not in [[], [None]]:
             string.append(f"{key}  - {val}")
     return "\r\n".join(string)
 

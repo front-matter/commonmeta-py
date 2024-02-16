@@ -189,14 +189,14 @@ def cleanup_author(author):
 
 
 def get_authors(authors):
-    """transform 
+    """transform
     array of author dicts into commonmeta format"""
     return presence(py_.uniq(list(map(lambda author: get_one_author(author), authors))))
 
 
 def authors_as_string(authors: List[dict]) -> str:
     """convert authors list to string, e.g. for bibtex"""
-    
+
     def format_author(author):
         if author.get("familyName", None) and author.get("givenName", None):
             return f"{author['familyName']}, {author['givenName']}"

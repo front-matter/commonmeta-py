@@ -18,7 +18,7 @@ from ..constants import (
 def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
-        return '{}'
+        return "{}"
 
     creators = [
         to_datacite_creator(i)
@@ -30,7 +30,11 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
         for i in wrap(metadata.contributors)
         if i.get("contributorRoles", None) != ["Author"]
     ]
-    related_identifiers = [to_datacite_related_identifier(i) for i in wrap(metadata.references) if i.get("doi", None) or i.get("url", None)]
+    related_identifiers = [
+        to_datacite_related_identifier(i)
+        for i in wrap(metadata.references)
+        if i.get("doi", None) or i.get("url", None)
+    ]
 
     resource__typegeneral = CM_TO_DC_TRANSLATIONS.get(metadata.type, "Other")
     resource_type = CM_TO_CR_TRANSLATIONS.get(metadata.type, "Other")
@@ -143,8 +147,8 @@ def to_datacite_creator(creator: dict) -> dict:
             "affiliation": creator.get("affiliation", None),
         }
     )
-    
-    
+
+
 def to_datacite_titles(titles: list) -> list:
     """Convert titles to datacite titles"""
     return [

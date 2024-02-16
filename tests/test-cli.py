@@ -143,4 +143,3 @@ def test_encode_by_id():
     result = runner.invoke(encode_by_id, [string])
     assert result.exit_code == 0
     assert "https://doi.org/10.53731/" in result.output
-

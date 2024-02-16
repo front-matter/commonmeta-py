@@ -137,7 +137,7 @@ def crossref_api_query_url(query: dict) -> str:
             filters += [f"{key}:{value}"]
         _filter = ",".join(filters) if len(filters) > 0 else None
     f.args = compact({"rows": rows, "query": _query, "filter": _filter})
-    
+
     return f.url
 
 
