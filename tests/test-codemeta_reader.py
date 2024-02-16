@@ -38,7 +38,6 @@ def test_rdataone():
         "url": "http://www.apache.org/licenses/LICENSE-2.0",
     }
     assert subject.version == "2.0.0"
-    assert subject.state == "findable"
 
 
 def test_metadata_reports():
@@ -73,4 +72,3 @@ def test_metadata_reports():
         "url": "https://opensource.org/licenses/MIT",
     }
     assert subject.version is None
-    assert subject.state == "findable"

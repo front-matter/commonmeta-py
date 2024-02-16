@@ -50,7 +50,6 @@ def test_ruby_cff():
     assert subject.references is None
     assert subject.publisher == {"name": "GitHub"}
     assert subject.provider == "DataCite"
-    assert subject.state == "findable"
 
 
 def test_cff_converter_python():
@@ -98,7 +97,6 @@ def test_cff_converter_python():
     assert subject.references is None
     assert subject.publisher == {"name": "GitHub"}
     assert subject.provider == "GitHub"
-    assert subject.state == "findable"
 
 
 def test_github_repo():
@@ -127,4 +125,3 @@ def test_github_repo():
     assert subject.references is None
     assert subject.publisher == {"name": "GitHub"}
     assert subject.provider == "DataCite"
-    assert subject.state == "findable"

@@ -51,4 +51,4 @@ def write_commonmeta_list(metalist):
     #     return vars(item)
 
     items = [vars(item) for item in metalist.items]
-    return json.dumps(items, indent=4)
+    return json.dumps(compact(items), indent=4)

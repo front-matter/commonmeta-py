@@ -43,10 +43,7 @@ def test_doi_with_data_citation():
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2014-02-11",
-        "updated": "2023-10-12T00:43:13Z",
-    }
+    assert subject.date == {"published": "2014-02-11"}
     assert subject.publisher == {
         "name": "eLife Sciences Publications, Ltd",
     }
@@ -144,10 +141,7 @@ def test_journal_article():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "published": "2006-12-20",
-        "updated": "2021-08-06T23:49:55Z",
-    }
+    assert subject.date == {"published": "2006-12-20"}
     assert subject.publisher == {
         "name": "Public Library of Science (PLoS)",
     }
@@ -207,7 +201,6 @@ def test_journal_article_with_funding():
     }
     assert subject.date == {
         "published": "2019-07-02",
-        "updated": "2019-09-22T02:40:23Z",
     }
     assert subject.publisher == {
         "name": "Frontiers Media SA",
@@ -260,7 +253,7 @@ def test_journal_article_original_language():
     assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {"published": "2007", "updated": "2021-05-20T22:32:01Z"}
+    assert subject.date == {"published": "2007"}
     assert subject.publisher == {
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
@@ -313,10 +306,7 @@ def test_journal_article_with_rdf_for_container():
         "familyName": "Escrivà",
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2012-01-01",
-        "updated": "2019-07-05T16:53:10Z",
-    }
+    assert subject.date == {"published": "2012-01-01"}
     assert subject.publisher == {
         "name": "Oxford University Press (OUP)",
     }
@@ -367,7 +357,7 @@ def test_book_chapter_with_rdf_for_container():
         "familyName": "Chen",
     }
     assert subject.license is None
-    assert subject.date == {"published": "2012", "updated": "2020-11-24T03:11:32Z"}
+    assert subject.date == {"published": "2012"}
     assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
     assert len(subject.references) == 11
     assert subject.references[-1] == {
@@ -469,10 +459,7 @@ def test_peer_review():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "published": "2020-04-29",
-        "updated": "2020-05-19T20:33:37Z",
-    }
+    assert subject.date == {"published": "2020-04-29"}
     assert subject.publisher == {
         "name": "eLife Sciences Publications, Ltd",
     }
@@ -507,10 +494,7 @@ def test_dissertation():
         "contributorRoles": ["Author"],
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2020-06-08T05:08:58Z",
-        "updated": "2020-06-08T05:08:59Z",
-    }
+    assert subject.date == {"published": "2020-06-08T05:08:58Z"}
     assert subject.publisher == {
         "name": "University of Queensland Library",
     }
@@ -549,7 +533,7 @@ def test_doi_with_sici():
         "familyName": "Fenton",
     }
     assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
-    assert subject.date == {"published": "2006-11", "updated": "2019-04-28T13:51:50Z"}
+    assert subject.date == {"published": "2006-11"}
     assert subject.publisher == {"name": "Wiley"}
     assert len(subject.references) == 39
     assert subject.references[-1] == {
@@ -608,7 +592,7 @@ def test_doi_with_orcid():
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date == {"published": "2012", "updated": "2016-08-02T18:42:41Z"}
+    assert subject.date == {"published": "2012"}
     assert subject.publisher == {"name": "Hindawi Limited"}
     assert len(subject.references) == 27
     assert subject.references[-1] == {
@@ -666,7 +650,7 @@ def test_date_in_future():
         "familyName": "Beck",
     }
     assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
-    assert subject.date == {"published": "2015-07", "updated": "2023-08-09T06:50:30Z"}
+    assert subject.date == {"published": "2015-07"}
     assert subject.publisher == {"name": "Elsevier BV"}
     assert len(subject.references) == 98
     assert subject.references[-1] == {
@@ -751,10 +735,7 @@ def test_vor_with_url():
         "familyName": "Gross",
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {
-        "published": "2013-04-10",
-        "updated": "2023-05-18T16:57:05Z",
-    }
+    assert subject.date == {"published": "2013-04-10"}
     assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
     assert len(subject.references) == 41
     assert subject.references[-1] == {
@@ -810,10 +791,7 @@ def test_dataset():
         "familyName": "Fermi",
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "1984-07-17",
-        "updated": "2023-03-14T17:26:34Z",
-    }
+    assert subject.date == {"published": "1984-07-17"}
     assert subject.publisher == {"name": "Worldwide Protein Data Bank"}
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -837,10 +815,7 @@ def test_component():
     assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {
-        "published": "2015-10-20T20:01:19Z",
-        "updated": "2018-10-19T21:13:42Z",
-    }
+    assert subject.date == {"published": "2015-10-20T20:01:19Z"}
     assert subject.publisher == {"name": "Public Library of Science (PLoS)"}
     assert len(subject.references) == 0
     assert subject.funding_references is None
@@ -871,10 +846,7 @@ def test_dataset_usda():
         "affiliation": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2017-08-09T19:44:20Z",
-        "updated": "2021-07-01T22:10:21Z",
-    }
+    assert subject.date == {"published": "2017-08-09T19:44:20Z"}
     assert subject.publisher == {"name": "Forest Service Research Data Archive"}
     assert len(subject.references) == 6
     assert subject.references[-1] == {
@@ -930,7 +902,7 @@ def test_book_chapter():
     assert subject.license == {
         "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
     }
-    assert subject.date == {"published": "2015", "updated": "2023-02-10T08:59:39Z"}
+    assert subject.date == {"published": "2015"}
     assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
     assert len(subject.references) == 22
     assert subject.references[0] == {
@@ -978,7 +950,7 @@ def test_another_book_chapter():
         "familyName": "Jones",
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {"published": "2018", "updated": "2019-10-16T02:02:05Z"}
+    assert subject.date == {"published": "2018"}
     assert subject.publisher == {"name": "Springer International Publishing"}
     assert len(subject.references) == 44
     assert subject.references[0] == {
@@ -1026,10 +998,7 @@ def test_yet_another_book_chapter():
         "familyName": "Bichot",
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2012-08-08T16:54:07Z",
-        "updated": "2019-07-02T13:17:21Z",
-    }
+    assert subject.date == {"published": "2012-08-08T16:54:07Z"}
     assert subject.publisher == {"name": "IGI Global"}
     assert len(subject.references) == 33
     assert subject.funding_references is None
@@ -1074,10 +1043,7 @@ def test_missing_contributor():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "published": "2018-04-09",
-        "updated": "2021-07-22T10:05:05Z",
-    }
+    assert subject.date == {"published": "2018-04-09"}
     assert subject.publisher == {"name": "MDPI AG"}
     assert len(subject.references) == 23
     assert subject.references[-1] == {
@@ -1149,7 +1115,6 @@ def test_book():
         "familyName": "Leung",
     }
     assert subject.license == {"url": "https://www.cambridge.org/core/terms"}
-    assert subject.date["updated"] > "2022-09-22"
     assert subject.publisher == {"name": "Cambridge University Press"}
     assert len(subject.references) == 273
     assert subject.references[0] == {
@@ -1205,10 +1170,7 @@ def test_proceedings_article():
     assert subject.license == {
         "url": "https://www.acm.org/publications/policies/copyright_policy#Background"
     }
-    assert subject.date == {
-        "published": "2021-06-09",
-        "updated": "2023-07-02T06:00:46Z",
-    }
+    assert subject.date == {"published": "2021-06-09"}
     assert subject.publisher == {"name": "ACM"}
     assert len(subject.references) == 56
     assert subject.references[-1] == {
@@ -1271,7 +1233,7 @@ def test_multipe_titles():
         "familyName": "Lehsnau",
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {"published": "2007-07", "updated": "2022-05-15T07:17:13Z"}
+    assert subject.date == {"published": "2007-07"}
     assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
     assert len(subject.references) == 20
     assert subject.references[-1] == {

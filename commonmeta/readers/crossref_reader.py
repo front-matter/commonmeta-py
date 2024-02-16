@@ -79,11 +79,10 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     doi = meta.get("DOI", None)
     _id = doi_as_url(doi)
-    resource_type = meta.get("type", {}).title().replace("-", "")
-    _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None))
 
     if meta.get("author", None):
-        contributors = get_authors(from_csl(wrap(meta.get("author"))))
+        contributors = get_authors(wrap(meta.get("author")))
     else:
         contributors = []
 
@@ -93,28 +92,17 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     editors = [editor_type(i) for i in wrap(meta.get("editor", None))]
     if editors:
-        contributors += get_authors(from_csl(editors))
+        contributors += get_authors(editors)
 
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
     titles = get_titles(meta)
-
-    # member_id = meta.get("member", None)
-    # # TODO: get publisher from member_id almost always return publisher name, but sometimes does not
-
-    # if member_id is not None:
-    #     publisher = get_crossref_member(member_id)
-    # else:
     publisher = compact({"name": meta.get("publisher", None)})
+
     date: dict = {}
-    date["submitted"] = None
-    date["accepted"] = py_.get(meta, "accepted.date-time")
     date["published"] = (
         py_.get(meta, "issued.date-time")
         or get_date_from_date_parts(meta.get("issued", None))
         or py_.get(meta, "created.date-time")
-    )
-    date["updated"] = py_.get(meta, "updated.date-time") or py_.get(
-        meta, "deposited.date-time"
     )
 
     license_ = meta.get("license", None)
@@ -122,8 +110,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = normalize_cc_url(license_[0].get("URL", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
-    container = get_container(meta, resource_type=resource_type)
-
+    container = get_container(meta)
     references = [get_reference(i) for i in wrap(meta.get("reference", None))]
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
@@ -176,21 +163,15 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
 def get_titles(meta):
     """Title information from Crossref metadata."""
-    titles = parse_attributes(meta.get("title", None))
-    subtitles = parse_attributes(meta.get("subtitle", None))
-    original_language_titles = meta.get("original_language_title", None)
-    combined_titles = []
+    titles = wrap(parse_attributes(meta.get("title", None)))
+    subtitles = wrap(parse_attributes(meta.get("subtitle", None)))
+    original_language_titles = wrap(
+        parse_attributes(meta.get("original_language_title", None))
+    )
     language = None
-    if isinstance(titles, str):
-        titles = [titles]
-    if isinstance(subtitles, str):
-        subtitles = [subtitles]
-    if isinstance(original_language_titles, str):
-        original_language_titles = [original_language_titles]
-    if isinstance(titles, list):
-        titles = [{"title": sanitize(i)} for i in titles]
-    if isinstance(subtitles, list):
-        subtitles = [
+    return (
+        [{"title": sanitize(i)} for i in titles]
+        + [
             compact(
                 {
                     "title": sanitize(i),
@@ -199,8 +180,7 @@ def get_titles(meta):
             )
             for i in subtitles
         ]
-    if isinstance(original_language_titles, list):
-        original_language_titles = [
+        + [
             compact(
                 {
                     "title": sanitize(i),
@@ -210,13 +190,7 @@ def get_titles(meta):
             )
             for i in original_language_titles
         ]
-    if titles is not None:
-        combined_titles += titles
-    if subtitles is not None:
-        combined_titles += subtitles
-    if original_language_titles is not None:
-        combined_titles += original_language_titles
-    return combined_titles
+    )
 
 
 def get_reference(reference: Optional[dict]) -> Optional[dict]:
@@ -252,9 +226,9 @@ def get_file(file: dict) -> dict:
     )
 
 
-def get_container(meta: dict, resource_type: str = "JournalArticle") -> dict:
+def get_container(meta: dict) -> dict:
     """Get container from Crossref"""
-    container_type = CROSSREF_CONTAINER_TYPES.get(resource_type, None)
+    container_type = CROSSREF_CONTAINER_TYPES.get(meta.get("type", None))
     container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
     issn = (
         next(

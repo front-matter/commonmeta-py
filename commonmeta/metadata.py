@@ -106,27 +106,15 @@ class Metadata:
         self.files = meta.get("files")
         self.container = meta.get("container")
         self.provider = meta.get("provider")
-        self.state = meta.get("state")
         self.schema_version = meta.get("schema_version")
         self.archive_locations = meta.get("archive_locations", None)
-        # citation style language options
-        self.style = kwargs.get("style", "apa")
-        self.locale = kwargs.get("locale", "en-US")
-
-        # options needed for Crossref DOI registration
-        self.depositor = kwargs.get("depositor", None)
-        self.email = kwargs.get("email", None)
-        self.registrant = kwargs.get("registrant", None)
-
-        # not found
-        self.exists = meta.get("state", None) != "not_found"
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
         self.errors = meta.get("errors", None) or json_schema_errors(
             json.loads(self.write())
         )
         self.write_errors = None
-        self.is_valid = self.exists and self.errors is None
+        self.is_valid = meta.get("state", None) != "not_found" and self.errors is None
 
     def get_metadata(self, pid, string) -> dict:
         via = self.via
@@ -207,7 +195,7 @@ class Metadata:
         else:
             raise ValueError("No input format found")
 
-    def write(self, to: str = "commonmeta") -> str:
+    def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata into different formats"""
         if to == "commonmeta":
             return write_commonmeta(self)
@@ -218,6 +206,8 @@ class Metadata:
             self.errors = json_schema_errors(instance, schema="csl")
             return write_csl(self)
         elif to == "citation":
+            self.style = kwargs.get("style", "apa")
+            self.locale = kwargs.get("locale", "en-US")
             return write_citation(self)
         elif to == "ris":
             return write_ris(self)
@@ -231,6 +221,9 @@ class Metadata:
             doi = doi_from_url(self.id) or self.id
             _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
             instance = {"doi": doi, "type": _type}
+            self.depositor = kwargs.get("depositor", None)
+            self.email = kwargs.get("email", None)
+            self.registrant = kwargs.get("registrant", None)
             self.write_errors = json_schema_errors(instance, schema="crossref")
             return write_crossref_xml(self)
         else:
@@ -286,25 +279,30 @@ class MetadataList:
                     lst = file.read()
             self.via = kwargs.get("via", None) or find_from_format(string=lst)
             data = self.get_metadata_list(lst)
-        items = self.read_metadata_list(data, **kwargs)
 
-        self.via = kwargs.get("via", None)
         self.id = kwargs.get("id", None)
         self.type = kwargs.get("type", None)
         self.title = kwargs.get("title", None)
         self.description = kwargs.get("description", None)
-        
+
         # options needed for Crossref DOI registration
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
-        
-        self.items = items
+
+        self.items = self.read_metadata_list(data, **kwargs)
 
     def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, str):
             raise ValueError("No input found")
-        if self.via in ["commonmeta", "crossref", "datacite", "schema_org", "csl", "json_feed_item"]:
+        if self.via in [
+            "commonmeta",
+            "crossref",
+            "datacite",
+            "schema_org",
+            "csl",
+            "json_feed_item",
+        ]:
             return json.loads(string)
         else:
             raise ValueError("No input format found")
@@ -312,7 +310,9 @@ class MetadataList:
     def read_metadata_list(self, data: list, **kwargs) -> list:
         """read_metadata_list"""
         kwargs["via"] = kwargs.get("via", None) or self.via
-        return [Metadata(i, **kwargs) for i in data]
+        return [
+            Metadata(i, **kwargs) for i in data
+        ]
 
     def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata list into different formats"""

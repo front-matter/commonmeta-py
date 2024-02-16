@@ -1,5 +1,4 @@
-import anyio
-import asyncclick as click
+import click
 import pydash as py_
 
 from commonmeta import Metadata, MetadataList  # __version__
@@ -17,7 +16,7 @@ from commonmeta.readers.datacite_reader import get_random_datacite_id
 
 @click.group()
 @click.option("--show-errors", default=False)
-async def cli(show_errors):
+def cli(show_errors):
     if show_errors:
         click.echo("Show errors mode is on")
 
@@ -36,19 +35,19 @@ async def cli(show_errors):
 def convert(
     input, via, to, style, locale, doi, depositor, email, registrant, show_errors
 ):
-    metadata = Metadata(
-        input,
-        via=via,
-        style=style,
-        locale=locale,
-        doi=doi,
-        depositor=depositor,
-        email=email,
-        registrant=registrant,
-    )
+    metadata = Metadata(input, via=via, doi=doi)
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors))
-    click.echo(metadata.write(to=to))
+    click.echo(
+        metadata.write(
+            to=to,
+            style=style,
+            locale=locale,
+            depositor=depositor,
+            email=email,
+            registrant=registrant,
+        )
+    )
 
 
 @cli.command()
@@ -62,7 +61,9 @@ def convert(
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
-async def list(string, via, to, style, locale, doi, depositor, email, registrant, show_errors):
+def list(
+    string, via, to, style, locale, doi, depositor, email, registrant, show_errors
+):
     metadata_list = MetadataList(
         string,
         via=via,
@@ -158,4 +159,4 @@ def update_ghost_post(id, api_key, api_url):
 
 
 if __name__ == "__main__":
-    anyio.run(cli())
+    cli()

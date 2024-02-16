@@ -12,10 +12,8 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    assert subject.style == "apa"
-    assert subject.locale == "en-US"
     assert (
-        subject.write(to="citation")
+        subject.write(to="citation", style="apa", locale="en-US")
         == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>Elife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
     )
 
@@ -26,10 +24,8 @@ def test_journal_article_vancouver_style():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    assert subject.style == "vancouver"
-    assert subject.locale == "en-US"
     assert (
-        subject.write(to="citation")
+        subject.write(to="citation", style="vancouver", locale="en-US")
         == "1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567"
     )
     
@@ -40,10 +36,8 @@ def test_journal_article_german_locale():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    assert subject.style == "vancouver"
-    assert subject.locale == "de"
     assert (
-        subject.write(to="citation")
+        subject.write(to="citation", style="vancouver", locale="de")
         == "Error: citation not available for style vancouver and locale de."
     )
 
@@ -63,10 +57,8 @@ def test_missing_author():
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
 
-    assert subject.style == "apa"
-    assert subject.locale == "en-US"
     assert (
-        subject.write(to="citation")
+        subject.write(to="citation", style="apa", locale="en-US")
         == "Kohls, A., &amp; Mele, S. (2018). Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics. <i>Publications</i>, <i>6</i>(2), 15. https://doi.org/10.3390/publications6020015"
     )
 

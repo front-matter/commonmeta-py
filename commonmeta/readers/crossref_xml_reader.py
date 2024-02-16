@@ -94,48 +94,48 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     # fetch metadata depending of Crossref type
     if py_.get(meta, "journal.journal_article", None):
         bibmeta = py_.get(meta, "journal.journal_article", {})
-        resource_type = "JournalArticle"
+        resource_type = "journal-article"
     elif py_.get(meta, "journal.journal_issue", None):
         bibmeta = py_.get(meta, "journal.journal_issue", {})
-        resource_type = "JournalIssue"
+        resource_type = "journal-issue"
     elif py_.get(meta, "journal", None):
         bibmeta = py_.get(meta, "journal", {})
-        resource_type = "Journal"
+        resource_type = "journal"
     elif py_.get(meta, "posted_content", None):
         bibmeta = meta.get("posted_content", {})
         if publisher.get("name", None) is None:
             publisher = {"name": py_.get(bibmeta, "institution.institution_name", None)}
-        resource_type = "PostedContent"
+        resource_type = "posted-content"
     elif py_.get(meta, "book.content_item"):
         bibmeta = py_.get(meta, "book.content_item")
-        resource_type = "BookChapter"
+        resource_type = "book-chapter"
     elif py_.get(meta, "book.book_series_metadata"):
         bibmeta = py_.get(meta, "book.book_series_metadata")
-        resource_type = "BookSeries"
+        resource_type = "book-series"
     elif py_.get(meta, "book.book_set_metadata"):
         bibmeta = py_.get(meta, "book.book_set_metadata")
-        resource_type = "BookSet"
+        resource_type = "book-set"
     elif py_.get(meta, "book.book_metadata"):
         bibmeta = py_.get(meta, "book.book_metadata")
-        resource_type = "Book"
+        resource_type = "book"
     elif py_.get(meta, "conference", None):
         bibmeta = py_.get(meta, "conference.conference_paper", {})
-        resource_type = "ProceedingsArticle"
+        resource_type = "proceedings-article"
     elif py_.get(meta, "sa_component", None):
         bibmeta = py_.get(meta, "sa_component.component_list.component", {})
-        resource_type = "Component"
+        resource_type = "component"
     elif py_.get(meta, "database", None):
         bibmeta = py_.get(meta, "database.dataset", {})
-        resource_type = "Dataset"
+        resource_type = "dataset"
     elif py_.get(meta, "report_paper", None):
         bibmeta = py_.get(meta, "report_paper.report_paper_metadata", {})
-        resource_type = "Report"
+        resource_type = "report"
     elif py_.get(meta, "peer_review", None):
         bibmeta = py_.get(meta, "peer_review", {})
-        resource_type = "PeerReview"
+        resource_type = "peer-review"
     elif py_.get(meta, "dissertation", None):
         bibmeta = py_.get(meta, "dissertation", {})
-        resource_type = "Dissertation"
+        resource_type = "dissertation"
     else:
         bibmeta = {}
         resource_type = ""
