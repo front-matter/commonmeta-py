@@ -1311,9 +1311,7 @@ def test_get_crossref_list():
 def test_read_crossref_list():
     """read_crossref_list"""
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
-    title = "Crossref"
-    subject_list = MetadataList(string, title=title)
-    assert subject_list.title == "Crossref"
+    subject_list = MetadataList(string)
     assert len(subject_list.items) == 20
     subject = subject_list.items[0]
     assert subject.id == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"

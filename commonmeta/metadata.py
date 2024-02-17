@@ -45,7 +45,7 @@ from .writers.ris_writer import write_ris, write_ris_list
 from .writers.schema_org_writer import write_schema_org
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .utils import normalize_id, find_from_format
-from .base_utils import parse_xml
+from .base_utils import parse_xml, wrap
 from .doi_utils import doi_from_url
 from .schema_utils import json_schema_errors
 from .constants import CM_TO_CR_TRANSLATIONS
@@ -280,30 +280,30 @@ class MetadataList:
     """MetadataList"""
 
     def __init__(
-        self, lst: Optional[Union[str, list]] = None, **kwargs
-    ) -> Optional[list]:
-        if lst is None or not isinstance(lst, (str, list)):
+        self, dct: Optional[Union[str, dict]] = None, **kwargs
+    ) -> Optional[dict]:
+        if dct is None or not isinstance(dct, (str, dict)):
             raise ValueError("No input found")
-        if isinstance(lst, list):
-            data = lst
-        elif isinstance(lst, str):
-            if path.exists(lst):
-                with open(lst, encoding="utf-8") as file:
-                    lst = file.read()
-            self.via = kwargs.get("via", None) or find_from_format(string=lst)
-            data = self.get_metadata_list(lst)
+        if isinstance(dct, dict):
+            meta = dct
+        elif isinstance(dct, str):
+            if path.exists(dct):
+                with open(dct, encoding="utf-8") as file:
+                    dct = file.read()
+            self.via = kwargs.get("via", None) or find_from_format(string=dct)
+            meta = self.get_metadata_list(dct)
 
-        self.id = kwargs.get("id", None)
-        self.type = kwargs.get("type", None)
-        self.title = kwargs.get("title", None)
-        self.description = kwargs.get("description", None)
+        self.id = meta.get("id", None)
+        self.type = meta.get("type", None)
+        self.title = meta.get("title", None)
+        self.description = meta.get("description", None)
 
         # options needed for Crossref DOI registration
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
 
-        self.items = self.read_metadata_list(data, **kwargs)
+        self.items = self.read_metadata_list(wrap(meta.get("items", None)), **kwargs)
         self.errors = [i.errors for i in self.items if i.errors is not None]
         self.write_errors = [
             i.write_errors for i in self.items if i.write_errors is not None
