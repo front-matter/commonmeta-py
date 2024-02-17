@@ -1,7 +1,7 @@
 # pylint: disable=invalid-name
 """Test schema.org writer"""
 from os import path
-import json
+import orjson as json
 import pytest
 
 from commonmeta import Metadata

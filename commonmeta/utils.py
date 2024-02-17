@@ -1,6 +1,6 @@
 """Utils module for commonmeta-py"""
 import os
-import json
+import orjson as json
 import re
 from typing import Optional
 from urllib.parse import urlparse
@@ -314,8 +314,9 @@ def dict_to_spdx(dct: dict) -> dict:
     file_path = os.path.join(
         os.path.dirname(__file__), "resources", "spdx", "licenses.json"
     )
-    with open(file_path, encoding="utf-8") as json_file:
-        spdx = json.load(json_file).get("licenses")
+    with open(file_path, encoding="utf-8") as file:
+        string = file.read()
+        spdx = json.loads(string).get("licenses")
     license_ = next(
         (
             lic

@@ -1,6 +1,6 @@
 """Metadata"""
 from os import path
-import json
+import orjson as json
 from typing import Optional, Union
 import yaml
 from pydash import py_

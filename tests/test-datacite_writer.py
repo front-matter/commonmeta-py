@@ -1,7 +1,7 @@
 # pylint: disable=invalid-name
 """Test DataCite Writer"""
 from os import path
-import json
+import orjson as json
 import pytest
 
 from commonmeta import Metadata

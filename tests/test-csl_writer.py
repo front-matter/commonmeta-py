@@ -1,6 +1,6 @@
 # pylint: disable=invalid-name
 """Citeproc writer tests"""
-import json
+import orjson as json
 import pytest
 from os import path
 

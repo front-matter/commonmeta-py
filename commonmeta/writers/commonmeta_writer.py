@@ -1,5 +1,5 @@
 """Commonmeta writer for commonmeta-py"""
-import json
+import orjson as json
 from ..base_utils import compact
 
 
@@ -37,7 +37,7 @@ def write_commonmeta(metadata):
             "provider": metadata.provider,
         }
     )
-    return json.dumps(data, indent=4)
+    return json.dumps(data)
 
 
 def write_commonmeta_list(metalist):
@@ -50,4 +50,4 @@ def write_commonmeta_list(metalist):
     #     return vars(item)
 
     items = [vars(item) for item in metalist.items]
-    return json.dumps(compact(items), indent=4)
+    return json.dumps(compact(items))

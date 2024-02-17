@@ -1,6 +1,6 @@
 """schema_org reader for commonmeta-py"""
 from typing import Optional
-import json
+import orjson as json
 from collections import defaultdict
 import httpx
 from pydash import py_

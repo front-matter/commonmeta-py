@@ -1,5 +1,5 @@
 """Schema.org writer for commonmeta-py"""
-import json
+import orjson as json
 from ..utils import to_schema_org_creators, github_as_repo_url
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..constants import CM_TO_SO_TRANSLATIONS
@@ -143,4 +143,4 @@ def write_schema_org(metadata):
             else None,
         }
     )
-    return json.dumps(data, indent=4)
+    return json.dumps(data)

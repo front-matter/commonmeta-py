@@ -1,5 +1,5 @@
 """CSL-JSON writer for commonmeta-py"""
-import json
+import orjson as json
 from typing import Optional
 
 from ..utils import pages_as_string, to_csl
@@ -14,7 +14,7 @@ def write_csl(metadata: Commonmeta) -> Optional[str]:
     item = write_csl_item(metadata)
     if item is None:
         return None
-    return json.dumps(item, indent=4)
+    return json.dumps(item)
 
 
 def write_csl_item(metadata) -> Optional[dict]:
@@ -71,4 +71,4 @@ def write_csl_list(metalist):
     if metalist is None:
         return None
     items = [write_csl_item(item) for item in metalist.items]
-    return json.dumps(items, indent=4)
+    return json.dumps(items)

@@ -1,5 +1,5 @@
 """DataCite writer for commonmeta-py"""
-import json
+import orjson as json
 from typing import Optional, Union
 
 from ..base_utils import wrap, compact
@@ -116,7 +116,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
             "schemaVersion": "http://datacite.org/schema/kernel-4",
         }
     )
-    return json.dumps(data, indent=4)
+    return json.dumps(data)
 
 
 def to_datacite_creator(creator: dict) -> dict:

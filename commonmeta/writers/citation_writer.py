@@ -1,5 +1,5 @@
 """Citation writer for commonmeta-py"""
-import json
+import orjson as json
 import re
 from pydash import py_
 from citeproc import CitationStylesStyle, CitationStylesBibliography

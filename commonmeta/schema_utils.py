@@ -1,6 +1,6 @@
 """Schema utils for commonmeta-py"""
 from os import path
-import json
+import orjson as json
 from jsonschema import Draft202012Validator, ValidationError
 
 
@@ -20,7 +20,8 @@ def json_schema_errors(instance, schema: str = "commonmeta"):
             path.dirname(__file__), f"resources/{schema_map[schema]}.json"
         )
         with open(file_path, encoding="utf-8") as file:
-            schema = json.load(file)
+            string = file.read()
+            schema = json.loads(string)
         return Draft202012Validator(schema).validate(instance)
     except ValidationError as error:
         return error.message
