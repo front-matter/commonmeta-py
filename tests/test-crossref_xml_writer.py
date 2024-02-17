@@ -42,9 +42,48 @@ def test_write_metadata_as_crossref_xml():
 
 
 @pytest.mark.vcr
+def test_write_crossref_xml_list():
+    """write_crossref_xml_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    crossref_xml_list = parse_xml(
+        subject_list.write(to="crossref_xml"), dialect="crossref"
+    )
+    crossref_xml_list = py_.get(crossref_xml_list, "doi_batch.body.journal", [])
+    assert len(crossref_xml_list) == 20
+    crossref_xml = crossref_xml_list[0]
+    print(crossref_xml)
+    assert (
+        py_.get(crossref_xml, "journal_article.doi_data.doi")
+        == "10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    )
+    assert (
+        py_.get(crossref_xml, "journal_article.titles.0.title")
+        == "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
+    )
+    assert len(py_.get(crossref_xml, "journal_article.contributors.person_name")) == 1
+    assert py_.get(crossref_xml, "journal_article.contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "surname": "Newell P. Campbell",
+    }
+    
+    
+@pytest.mark.vcr
+def test_write_crossref_xml_list_missing_doi():
+    """write_crossref_xml_list_missing_doi"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list_missing_doi.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    assert subject_list.write(to="crossref_xml") is None
+    assert subject_list.is_valid is False
+    assert subject_list.errors == ["'id' is a required property"]
+
+
+@pytest.mark.vcr
 def test_write_commonmeta_list_as_crossref_xml():
     """write_commonmeta_list crossref_xml"""
-    # ids = get_random_crossref_id(number=20, prefix=prefix, _type=type)
     string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 15
@@ -577,7 +616,7 @@ def test_software():
     assert subject.url == "https://github.com/citation-file-format/ruby-cff"
     assert subject.type == "Software"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
-    assert crossref_xml is None
+    assert py_.get(crossref_xml, "doi_batch.body") is None
     assert (
         subject.write_errors
         == "None is not one of ['BookChapter', 'BookPart', 'BookSection', 'BookSeries', 'BookSet', 'BookTrack', 'Book', 'Component', 'Database', 'Dataset', 'Dissertation', 'EditedBook', 'Entry', 'Grant', 'JournalArticle', 'JournalIssue', 'JournalVolume', 'Journal', 'Monograph', 'Other', 'PeerReview', 'PostedContent', 'ProceedingsArticle', 'ProceedingsSeries', 'Proceedings', 'ReferenceBook', 'ReferenceEntry', 'ReportComponent', 'ReportSeries', 'Report', 'Standard']"

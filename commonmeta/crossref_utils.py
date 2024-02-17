@@ -13,8 +13,6 @@ from .doi_utils import doi_from_url, validate_doi
 
 def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     """Generate Crossref XML. First checks for write errors (JSON schema validation)"""
-    if metadata.write_errors is not None:
-        return None
     xml = crossref_root()
     head = etree.SubElement(xml, "head")
     # we use a uuid as batch_id
@@ -38,7 +36,7 @@ def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
 
 def insert_crossref_work(metadata, xml):
     """Insert crossref work"""
-    if doi_from_url(metadata.id) is None:
+    if doi_from_url(metadata.id) is None or metadata.type is None:
         return xml
     if metadata.type == "JournalArticle":
         xml = insert_journal(metadata, xml)
@@ -59,9 +57,9 @@ def insert_journal(metadata, xml):
         metadata.container is not None
         and metadata.container.get("title", None) is not None
     ):
-        etree.SubElement(journal_metadata, "full_title").text = metadata.container[
+        etree.SubElement(journal_metadata, "full_title").text = metadata.container.get(
             "title"
-        ]
+        )
     journal_metadata = insert_group_title(metadata, journal_metadata)
     journal_article = etree.SubElement(
         journal, "journal_article", {"publication_type": "full_text"}
@@ -125,24 +123,24 @@ def insert_crossref_contributors(metadata, xml):
     contributors = etree.SubElement(xml, "contributors")
     con = [
         c
-        for c in wrap(metadata.contributors)
+        for c in metadata.contributors
         if c.get("contributorRoles", None) == ["Author"]
         or c.get("contributorRoles", None) == ["Editor"]
     ]
     for num, contributor in enumerate(con):
         contributor_role = (
-            "author" if contributor["contributorRoles"] == ["Author"] else "editor"
+            "author" if contributor.get("contributorRoles") == ["Author"] else "editor"
         )
         sequence = "first" if num == 0 else "additional"
         if (
-            contributor["type"] == "Organization"
+            contributor.get("type", None) == "Organization"
             and contributor.get("name", None) is not None
         ):
             etree.SubElement(
                 contributors,
                 "organization",
                 {"contributor_role": contributor_role, "sequence": sequence},
-            ).text = contributor["name"]
+            ).text = contributor.get("name")
         elif (
             contributor.get("givenName", None) is not None
             or contributor.get("familyName", None) is not None
@@ -172,9 +170,9 @@ def insert_crossref_contributors(metadata, xml):
 def insert_crossref_person(contributor, xml):
     """Insert crossref person"""
     if contributor.get("givenName", None) is not None:
-        etree.SubElement(xml, "given_name").text = contributor["givenName"]
+        etree.SubElement(xml, "given_name").text = contributor.get("givenName")
     if contributor.get("familyName", None) is not None:
-        etree.SubElement(xml, "surname").text = contributor["familyName"]
+        etree.SubElement(xml, "surname").text = contributor.get("familyName")
 
     orcid = normalize_orcid(contributor.get("id", None))
     if orcid is not None:
@@ -214,7 +212,7 @@ def insert_crossref_titles(metadata, xml):
     titles = etree.SubElement(xml, "titles")
     for title in wrap(metadata.titles):
         if isinstance(title, dict):
-            etree.SubElement(titles, "title").text = title["title"]
+            etree.SubElement(titles, "title").text = title.get("title", None)
         else:
             etree.SubElement(titles, "title").text = title
     return xml
@@ -227,23 +225,27 @@ def insert_citation_list(metadata, xml):
 
     citation_list = etree.SubElement(xml, "citation_list")
     for ref in metadata.references:
-        citation = etree.SubElement(citation_list, "citation", {"key": ref["key"]})
+        citation = etree.SubElement(
+            citation_list, "citation", {"key": ref.get("key", None)}
+        )
         if ref.get("journal_title", None) is not None:
-            etree.SubElement(citation, "journal_article").text = ref["journal_title"]
+            etree.SubElement(citation, "journal_article").text = ref.get(
+                "journal_title"
+            )
         if ref.get("author", None) is not None:
-            etree.SubElement(citation, "author").text = ref["author"]
+            etree.SubElement(citation, "author").text = ref.get("author")
         if ref.get("volume", None) is not None:
-            etree.SubElement(citation, "volume").text = ref["volume"]
+            etree.SubElement(citation, "volume").text = ref.get("volume")
         if ref.get("first_page", None) is not None:
-            etree.SubElement(citation, "first_page").text = ref["first_page"]
+            etree.SubElement(citation, "first_page").text = ref.get("first_page")
         if ref.get("publicationYear", None) is not None:
-            etree.SubElement(citation, "cYear").text = ref["publicationYear"]
+            etree.SubElement(citation, "cYear").text = ref.get("publicationYear")
         if ref.get("title", None) is not None:
-            etree.SubElement(citation, "article_title").text = ref["title"]
+            etree.SubElement(citation, "article_title").text = ref.get("title")
         if ref.get("doi", None) is not None:
-            etree.SubElement(citation, "doi").text = doi_from_url(ref["doi"])
+            etree.SubElement(citation, "doi").text = doi_from_url(ref.get("doi"))
         if ref.get("url", None) is not None:
-            etree.SubElement(citation, "unstructured_citation").text = ref["url"]
+            etree.SubElement(citation, "unstructured_citation").text = ref.get("url")
     return xml
 
 
@@ -285,15 +287,15 @@ def insert_crossref_relations(metadata, xml):
             "doi" if validate_doi(related_identifier.get("id", None)) else "uri"
         )
         _id = (
-            doi_from_url(related_identifier["id"])
+            doi_from_url(related_identifier.get("id", None))
             if identifier_type == "doi"
-            else related_identifier["id"]
+            else related_identifier.get("id", None)
         )
         etree.SubElement(
             related_item,
             "intra_work_relation",
             {
-                "relationship-type": related_identifier["type"],
+                "relationship-type": related_identifier.get("type", None),
                 "identifier-type": identifier_type,
             },
         ).text = _id
@@ -325,14 +327,14 @@ def insert_funding_references(metadata, xml):
                 funder_name,
                 "assertion",
                 {"name": "funder_identifier"},
-            ).text = funding_reference["funderIdentifier"]
+            ).text = funding_reference.get("funderIdentifier", None)
         if funding_reference.get("awardNumber", None) is not None:
             etree.SubElement(
                 assertion,
                 "assertion",
                 {"name": "award_number"},
-            ).text = funding_reference["awardNumber"]
-        funder_name.text = funding_reference["funderName"]
+            ).text = funding_reference.get("awardNumber", None)
+        funder_name.text = funding_reference.get("funderName", None)
     return xml
 
 
@@ -343,7 +345,7 @@ def insert_crossref_subjects(metadata, xml):
     subjects = etree.SubElement(xml, "subjects")
     for subject in metadata.subjects:
         if isinstance(subject, dict):
-            etree.SubElement(subjects, "subject").text = subject["subject"]
+            etree.SubElement(subjects, "subject").text = subject.get("subject", None)
         else:
             etree.SubElement(subjects, "subject").text = subject
     return xml
@@ -406,22 +408,22 @@ def insert_item_number(metadata, xml):
         if alternate_identifier.get("alternateIdentifierType", None) is not None:
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
             if alternate_identifier.get("alternateIdentifierType", None) == "UUID":
-                alternate_identifier["alternateIdentifier"] = alternate_identifier[
-                    "alternateIdentifier"
-                ].replace("-", "")
+                alternate_identifier["alternateIdentifier"] = alternate_identifier.get(
+                    "alternateIdentifier", ""
+                ).replace("-", "")
             etree.SubElement(
                 xml,
                 "item_number",
                 {
-                    "item_number_type": alternate_identifier[
-                        "alternateIdentifierType"
-                    ].lower()
+                    "item_number_type": alternate_identifier.get(
+                        "alternateIdentifierType", ""
+                    ).lower()
                 },
-            ).text = alternate_identifier["alternateIdentifier"]
+            ).text = alternate_identifier.get("alternateIdentifier", None)
         else:
-            etree.SubElement(xml, "item_number").text = alternate_identifier[
-                "alternateIdentifier"
-            ]
+            etree.SubElement(xml, "item_number").text = alternate_identifier.get(
+                "alternateIdentifier", None
+            )
     return xml
 
 
@@ -449,12 +451,10 @@ def insert_doi_data(metadata, xml):
         return xml
     for file in metadata.files:
         # Crossref schema currently doesn't support text/markdown
-        if file["mimeType"] == "text/markdown":
+        if file.get("mimeType", None) == "text/markdown":
             file["mimeType"] = "text/plain"
         item = etree.SubElement(collection, "item")
-        etree.SubElement(item, "resource", {"mime_type": file["mimeType"]}).text = file[
-            "url"
-        ]
+        etree.SubElement(item, "resource", {"mime_type": file.get("mimeType", "")}).text = file.get("url", None)
     return xml
 
 
@@ -471,14 +471,14 @@ def insert_crossref_license(metadata, xml):
         r["rightsUri"] = normalize_id(metadata.license)
     attributes = compact(
         {
-            "rightsURI": r["rightsUri"],
-            "rightsIdentifier": r["rightsIdentifier"],
-            "rightsIdentifierScheme": r["rightsIdentifierScheme"],
-            "schemeURI": r["schemeUri"],
-            "xml:lang": r["lang"],
+            "rightsURI": r.get("rightsUri", None),
+            "rightsIdentifier": r.get("rightsIdentifier", None),
+            "rightsIdentifierScheme": r.get("rightsIdentifierScheme"),
+            "schemeURI": r.get("schemeUri", None),
+            "xml:lang": r.get("lang", None),
         }
     )
-    etree.SubElement(license_, "rights", attributes).text = r["rights"]
+    etree.SubElement(license_, "rights", attributes).text = r.get("rights", None)
     return xml
 
 
@@ -489,7 +489,7 @@ def insert_crossref_issn(metadata, xml):
         or metadata.container.get("identifierType", None) != "ISSN"
     ):
         return xml
-    etree.SubElement(xml, "issn").text = metadata.container["identifier"]
+    etree.SubElement(xml, "issn").text = metadata.container.get("identifier", None)
     return xml
 
 
@@ -505,7 +505,7 @@ def insert_crossref_abstract(metadata, xml):
     abstract = etree.SubElement(
         xml, "abstract", {"xmlns": "http://www.ncbi.nlm.nih.gov/JATS1"}
     )
-    etree.SubElement(abstract, "p").text = d["description"]
+    etree.SubElement(abstract, "p").text = d.get("description", None)
     return xml
 
 
@@ -517,6 +517,8 @@ def crossref_root():
 
 def generate_crossref_xml_list(metalist) -> Optional[str]:
     """Generate Crossref XML list."""
+    if not metalist.is_valid:
+        return None
     xml = crossref_root()
     head = etree.SubElement(xml, "head")
     # we use a uuid as batch_id

@@ -37,7 +37,7 @@ def convert(
 ):
     metadata = Metadata(input, via=via, doi=doi)
     if show_errors and not metadata.is_valid:
-        raise click.ClickException(str(metadata.errors))
+        raise click.ClickException(str(metadata.errors) + str(metadata.write_errors))
     click.echo(
         metadata.write(
             to=to,
@@ -72,6 +72,8 @@ def list(
         email=email,
         registrant=registrant,
     )
+    if show_errors and not metadata_list.is_valid:
+        raise click.ClickException(str(metadata_list.errors) + str(metadata_list.write_errors))
     click.echo(metadata_list.write(to=to, style=style, locale=locale))
 
 

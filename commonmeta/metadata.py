@@ -114,7 +114,11 @@ class Metadata:
             json.loads(self.write())
         )
         self.write_errors = None
-        self.is_valid = meta.get("state", None) != "not_found" and self.errors is None
+        self.is_valid = (
+            meta.get("state", None) != "not_found"
+            and self.errors is None
+            and self.write_errors is None
+        )
 
     def get_metadata(self, pid, string) -> dict:
         via = self.via
@@ -229,7 +233,7 @@ class Metadata:
         else:
             raise ValueError("No output format found")
 
-    # legacy methods, to be removed in version 0.14.0
+    # legacy methods, to be removed in version 0.15
     def commonmeta(self):
         """Commonmeta"""
         return write_commonmeta(self)
@@ -291,6 +295,9 @@ class MetadataList:
         self.registrant = kwargs.get("registrant", None)
 
         self.items = self.read_metadata_list(data, **kwargs)
+        self.errors = [i.errors for i in self.items if i.errors is not None]
+        self.write_errors = [i.write_errors for i in self.items if i.write_errors is not None]
+        self.is_valid = all([i.is_valid for i in self.items])
 
     def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, str):
