@@ -110,9 +110,12 @@ class Metadata:
         self.archive_locations = meta.get("archive_locations", None)
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
-        self.errors = meta.get("errors", None) or json_schema_errors(
-            json.loads(self.write())
-        )
+        try:
+            self.errors = meta.get("errors", None) or json_schema_errors(
+                json.loads(self.write())
+            )
+        except json.JSONDecodeError:
+            self.errors = "Invalid JSON"
         self.write_errors = None
         self.is_valid = (
             meta.get("state", None) != "not_found"
@@ -140,30 +143,33 @@ class Metadata:
             elif via == "inveniordm":
                 return get_inveniordm(pid)
         elif string is not None:
-            if via == "datacite_xml":
-                return parse_xml(string)
-            elif via == "crossref_xml":
-                return parse_xml(string, dialect="crossref")
-            elif via == "cff":
-                return yaml.safe_load(string)
-            elif via == "bibtex":
-                raise ValueError("Bibtex not supported")
-            elif via == "ris":
-                return string
-            elif via in [
-                "commonmeta",
-                "crossref",
-                "datacite",
-                "schema_org",
-                "csl",
-                "json_feed",
-                "codemeta",
-                "kbase",
-                "inveniordm",
-            ]:
-                return json.loads(string)
-            else:
-                raise ValueError("No input format found")
+            try:
+                if via == "datacite_xml":
+                    return parse_xml(string)
+                elif via == "crossref_xml":
+                    return parse_xml(string, dialect="crossref")
+                elif via == "cff":
+                    return yaml.safe_load(string)
+                elif via == "bibtex":
+                    raise ValueError("Bibtex not supported")
+                elif via == "ris":
+                    return string
+                elif via in [
+                    "commonmeta",
+                    "crossref",
+                    "datacite",
+                    "schema_org",
+                    "csl",
+                    "json_feed",
+                    "codemeta",
+                    "kbase",
+                    "inveniordm",
+                ]:
+                    return json.loads(string)
+                else:
+                    raise ValueError("No input format found")
+            except json.JSONDecodeError:
+                raise ValueError("Invalid JSON")
         else:
             raise ValueError("No metadata found")
 
@@ -201,37 +207,40 @@ class Metadata:
 
     def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata into different formats"""
-        if to == "commonmeta":
-            return write_commonmeta(self)
-        elif to == "bibtex":
-            return write_bibtex(self)
-        elif to == "csl":
-            instance = py_.omit(json.loads(write_csl(self)), [])
-            self.errors = json_schema_errors(instance, schema="csl")
-            return write_csl(self)
-        elif to == "citation":
-            self.style = kwargs.get("style", "apa")
-            self.locale = kwargs.get("locale", "en-US")
-            return write_citation(self)
-        elif to == "ris":
-            return write_ris(self)
-        elif to == "schema_org":
-            return write_schema_org(self)
-        elif to == "datacite":
-            instance = json.loads(write_datacite(self))
-            self.write_errors = json_schema_errors(instance, schema="datacite")
-            return write_datacite(self)
-        elif to == "crossref_xml":
-            doi = doi_from_url(self.id) or self.id
-            _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
-            instance = {"doi": doi, "type": _type}
-            self.depositor = kwargs.get("depositor", None)
-            self.email = kwargs.get("email", None)
-            self.registrant = kwargs.get("registrant", None)
-            self.write_errors = json_schema_errors(instance, schema="crossref")
-            return write_crossref_xml(self)
-        else:
-            raise ValueError("No output format found")
+        try:
+            if to == "commonmeta":
+                return write_commonmeta(self)
+            elif to == "bibtex":
+                return write_bibtex(self)
+            elif to == "csl":
+                instance = py_.omit(json.loads(write_csl(self)), [])
+                self.errors = json_schema_errors(instance, schema="csl")
+                return write_csl(self)
+            elif to == "citation":
+                self.style = kwargs.get("style", "apa")
+                self.locale = kwargs.get("locale", "en-US")
+                return write_citation(self)
+            elif to == "ris":
+                return write_ris(self)
+            elif to == "schema_org":
+                return write_schema_org(self)
+            elif to == "datacite":
+                instance = json.loads(write_datacite(self))
+                self.write_errors = json_schema_errors(instance, schema="datacite")
+                return write_datacite(self)
+            elif to == "crossref_xml":
+                doi = doi_from_url(self.id) or self.id
+                _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
+                instance = {"doi": doi, "type": _type}
+                self.depositor = kwargs.get("depositor", None)
+                self.email = kwargs.get("email", None)
+                self.registrant = kwargs.get("registrant", None)
+                self.write_errors = json_schema_errors(instance, schema="crossref")
+                return write_crossref_xml(self)
+            else:
+                raise ValueError("No output format found")
+        except json.JSONDecodeError:
+            raise ValueError("Invalid JSON")
 
     # legacy methods, to be removed in version 0.15
     def commonmeta(self):
@@ -296,7 +305,9 @@ class MetadataList:
 
         self.items = self.read_metadata_list(data, **kwargs)
         self.errors = [i.errors for i in self.items if i.errors is not None]
-        self.write_errors = [i.write_errors for i in self.items if i.write_errors is not None]
+        self.write_errors = [
+            i.write_errors for i in self.items if i.write_errors is not None
+        ]
         self.is_valid = all([i.is_valid for i in self.items])
 
     def get_metadata_list(self, string) -> list:
@@ -310,7 +321,10 @@ class MetadataList:
             "csl",
             "json_feed_item",
         ]:
-            return json.loads(string)
+            try:
+                return json.loads(string)
+            except json.JSONDecodeError:
+                raise ValueError("Invalid JSON")
         else:
             raise ValueError("No input format found")
 
