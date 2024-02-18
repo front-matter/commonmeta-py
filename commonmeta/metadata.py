@@ -110,12 +110,9 @@ class Metadata:
         self.archive_locations = meta.get("archive_locations", None)
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
-        try:
-            self.errors = meta.get("errors", None) or json_schema_errors(
-                json.loads(self.write())
-            )
-        except json.JSONDecodeError:
-            self.errors = "Invalid JSON"
+        self.errors = meta.get("errors", None) or json_schema_errors(
+            json.loads(self.write())
+        )
         self.write_errors = None
         self.is_valid = (
             meta.get("state", None) != "not_found"
@@ -143,33 +140,30 @@ class Metadata:
             elif via == "inveniordm":
                 return get_inveniordm(pid)
         elif string is not None:
-            try:
-                if via == "datacite_xml":
-                    return parse_xml(string)
-                elif via == "crossref_xml":
-                    return parse_xml(string, dialect="crossref")
-                elif via == "cff":
-                    return yaml.safe_load(string)
-                elif via == "bibtex":
-                    raise ValueError("Bibtex not supported")
-                elif via == "ris":
-                    return string
-                elif via in [
-                    "commonmeta",
-                    "crossref",
-                    "datacite",
-                    "schema_org",
-                    "csl",
-                    "json_feed",
-                    "codemeta",
-                    "kbase",
-                    "inveniordm",
-                ]:
-                    return json.loads(string)
-                else:
-                    raise ValueError("No input format found")
-            except json.JSONDecodeError:
-                raise ValueError("Invalid JSON")
+            if via == "datacite_xml":
+                return parse_xml(string)
+            elif via == "crossref_xml":
+                return parse_xml(string, dialect="crossref")
+            elif via == "cff":
+                return yaml.safe_load(string)
+            elif via == "bibtex":
+                raise ValueError("Bibtex not supported")
+            elif via == "ris":
+                return string
+            elif via in [
+                "commonmeta",
+                "crossref",
+                "datacite",
+                "schema_org",
+                "csl",
+                "json_feed",
+                "codemeta",
+                "kbase",
+                "inveniordm",
+            ]:
+                return json.loads(string)
+            else:
+                raise ValueError("No input format found")
         else:
             raise ValueError("No metadata found")
 
@@ -321,10 +315,7 @@ class MetadataList:
             "csl",
             "json_feed_item",
         ]:
-            try:
-                return json.loads(string)
-            except json.JSONDecodeError:
-                raise ValueError("Invalid JSON")
+            return json.loads(string)
         else:
             raise ValueError("No input format found")
 

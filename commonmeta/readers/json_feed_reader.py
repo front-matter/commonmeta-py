@@ -143,23 +143,11 @@ def get_references(references: list) -> list:
         try:
             if reference.get("doi", None) and validate_doi(reference.get("doi")):
                 doi = normalize_doi(reference.get("doi"))
-                response = httpx.get(
-                    doi,
-                    headers={"Accept": "application/vnd.citationstyles.csl+json"},
-                    timeout=10,
-                )
-                if response.status_code not in [200, 301, 302]:
-                    return None
-                csl = response.json()
-                title = py_.get(csl, "title", None)
-                publication_year = py_.get(csl, "issued.date-parts.0.0", None)
                 return compact(
                     {
                         "doi": doi,
-                        "title": str(title) if title else None,
-                        "publicationYear": str(publication_year)
-                        if publication_year
-                        else None,
+                        "title": reference.get("title", None),
+                        "publicationYear": reference.get("publicationYear", None),
                         "url": reference.get("url", None),
                     }
                 )

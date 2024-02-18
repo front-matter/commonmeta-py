@@ -599,7 +599,7 @@ def test_json_feed_item_with_references():
         "given_name": "Mark",
         "surname": "Dingemanse",
     }
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 4
+    assert len(py_.get(crossref_xml, "citation_list.citation")) == 7
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "unstructured_citation": "https://ling.auf.net/lingbuzz/006031",
