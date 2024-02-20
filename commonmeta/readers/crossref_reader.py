@@ -336,5 +336,5 @@ def get_random_crossref_id(number: int = 1, **kwargs) -> list:
 
         items = py_.get(response.json(), "message.items")
         return [i.get("DOI") for i in items]
-    except (httpx.exceptions.ReadTimeout, httpx.exceptions.ConnectionError):
+    except (httpx.ReadTimeout, httpx.ConnectError):
         return []

@@ -38,7 +38,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
         if response.status_code != 200:
             return {"state": "not_found"}
         return py_.get(response.json(), "data.attributes", {})
-    except httpx.exceptions.ReadTimeout:
+    except httpx.ReadTimeout:
         return {"state": "timeout"}
 
 
@@ -285,5 +285,5 @@ def get_random_datacite_id(number: int = 1) -> list:
 
         items = py_.get(response.json(), "data")
         return [i.get("id") for i in items]
-    except httpx.exceptions.ReadTimeout:
+    except httpx.ReadTimeout:
         return []
