@@ -276,11 +276,11 @@ class MetadataList:
     def __init__(
         self, dct: Optional[Union[str, dict]] = None, **kwargs
     ) -> Optional[dict]:
-        if dct is None or not isinstance(dct, (str, dict)):
+        if dct is None or not isinstance(dct, (str, bytes, dict)):
             raise ValueError("No input found")
         if isinstance(dct, dict):
             meta = dct
-        elif isinstance(dct, str):
+        elif isinstance(dct, (str, bytes)):
             if path.exists(dct):
                 with open(dct, encoding="utf-8") as file:
                     dct = file.read()
@@ -305,7 +305,7 @@ class MetadataList:
         self.is_valid = all([i.is_valid for i in self.items])
 
     def get_metadata_list(self, string) -> list:
-        if string is None or not isinstance(string, str):
+        if string is None or not isinstance(string, (str, bytes)):
             raise ValueError("No input found")
         if self.via in [
             "commonmeta",

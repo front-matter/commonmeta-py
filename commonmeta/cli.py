@@ -1,5 +1,6 @@
 import click
 import pydash as py_
+import orjson as json
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
@@ -73,7 +74,9 @@ def list(
         registrant=registrant,
     )
     if show_errors and not metadata_list.is_valid:
-        raise click.ClickException(str(metadata_list.errors) + str(metadata_list.write_errors))
+        raise click.ClickException(
+            str(metadata_list.errors) + str(metadata_list.write_errors)
+        )
     click.echo(metadata_list.write(to=to, style=style, locale=locale))
 
 
@@ -88,14 +91,16 @@ def list(
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def sample(provider, prefix, type, number, to, style, locale, show_errors):
     if provider == "crossref":
-        ids = get_random_crossref_id(number, prefix=prefix, _type=type)
+        string = json.dumps(
+            {"items": get_random_crossref_id(number, prefix=prefix, _type=type)}
+        )
     elif provider == "datacite":
-        ids = get_random_datacite_id(number)
+        string = json.dumps({"items": get_random_datacite_id(number)})
     else:
         output = "Provider not supported. Use 'crossref' or 'datacite' instead."
         click.echo(output)
     lst = MetadataList(
-        ids,
+        string,
         via=provider,
         style=style,
         locale=locale,

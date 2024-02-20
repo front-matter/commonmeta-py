@@ -1,0 +1,80 @@
+---
+title: CLI
+toc: true
+toc-expand: true
+---
+
+The commonmeta-py command line interface (CLI) supports the following commands:
+
+### convert
+Given a PID, string or file path, fetch metadata, and convert into one of the supported formats (defaults to `commonmeta`).
+
+```
+poetry run commonmeta convert 10.7554/elife.01567
+
+{"id":"https://doi.org/10.7554/elife.01567","type":"JournalArticle","url":"https://elifesciences.org/articles/01567", ...
+```
+
+```
+poetry run commonmeta convert 10.7554/elife.01567 --to citation --style vancouver
+
+1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567
+```
+
+### list
+Given a string or file path, fetch metadata, and convert into one of the supported formats (defaults to `commonmeta`).
+
+```
+poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}'
+
+[{"via":"crossref","id":"https://doi.org/10.7554/elife.01567","type":"JournalArticle","url":"https://elifesciences.org/articles/01567", ...
+```
+
+```
+poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to citation --style vancouver
+
+1. Sankar M, Nieminen K, Ragni L, Xenarios I, Hardtke CS. Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. eLife [Internet]. 2014Feb11;3. Available from: https://elifesciences.org/articles/01567
+
+1. Asko O, Blenkmann AO, Leske SL, Foldal MD, LLorens A, Funderud I, et al. Altered hierarchical auditory predictive processing after lesions to the orbitofrontal cortex. eLife [Internet]. 2024Feb9;13. Available from: https://elifesciences.org/articles/86386
+```
+
+```
+poetry run commonmeta list '{"items": ["10.7554/elife.01567", "10.7554/eLife.86386"]}' --to bibtex
+
+@article{10.7554/elife.01567,
+    abstract = {Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model
+```
+
+### sample
+Given a number, generate a random list of Crossref metadata.
+
+```
+poetry run commonmeta sample -n 10 --to bibtex
+```
+
+### encode
+Given a DOI prefix, generate a random DOI string.
+
+```
+poetry run commonmeta encode 10.5555
+
+https://doi.org/10.5555/cc10k-bk515
+```
+
+### decode
+Given a DOI generated with commonmeta, show the random number used to generate it.
+
+```
+poetry run commonmeta decode 10.5555/cc10k-bk515
+
+435441614033957
+```
+
+### help
+Show help.
+
+```
+poetry run commonmeta --help
+
+```
+
