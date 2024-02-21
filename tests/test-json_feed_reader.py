@@ -5,8 +5,6 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
-    get_json_feed_unregistered,
-    get_json_feed_updated,
 )
 
 
@@ -342,15 +340,3 @@ def test_get_json_feed_item():
 def test_get_json_feed_item_not_found():
     """Test get_json_feed_item_id not found"""
     assert {"error": "An error occured."} == get_json_feed_item_uuid("notfound")
-
-
-@pytest.mark.vcr
-def test_get_json_feed_unregistered():
-    """Test get_json_feed_unregistered"""
-    assert None == get_json_feed_unregistered()
-
-
-@pytest.mark.vcr
-def test_get_json_feed_updated():
-    """Test get_json_feed_updated"""
-    assert "4e392758-67a9-4c6f-817e-c65838887d4b" == get_json_feed_updated()

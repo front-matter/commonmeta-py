@@ -262,26 +262,6 @@ def get_files(pid: str) -> Optional[list]:
     ]
 
 
-def get_json_feed_unregistered():
-    """get JSON Feed items not registered as DOIs"""
-    url = "https://api.rogue-scholar.org/posts/unregistered"
-    response = httpx.get(url, timeout=10)
-    if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
-    posts = response.json()
-    return posts[0].get("id") if posts else None
-
-
-def get_json_feed_updated():
-    """get JSON Feed items that have been updated"""
-    url = "https://api.rogue-scholar.org/posts/updated"
-    response = httpx.get(url, timeout=10)
-    if response.status_code != 200:
-        return {"string": None, "state": "not_found"}
-    posts = response.json()
-    return posts[0].get("id") if posts else None
-
-
 def get_json_feed_item_uuid(id: str):
     """get JSON Feed item by uuid"""
     if id is None:

@@ -7,8 +7,6 @@ from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.doi_utils import validate_prefix
 from commonmeta.utils import encode_doi, decode_doi
 from commonmeta.readers.json_feed_reader import (
-    get_json_feed_unregistered,
-    get_json_feed_updated,
     get_json_feed_item_uuid,
 )
 from commonmeta.readers.crossref_reader import get_random_crossref_id
@@ -144,11 +142,7 @@ def encode_by_id(id):
 @click.argument("filter", type=str, required=True, default="unregistered")
 @click.option("--id", type=str)
 def json_feed(filter, id=None):
-    if filter == "unregistered":
-        output = get_json_feed_unregistered()
-    elif filter == "updated":
-        output = get_json_feed_updated()
-    elif filter == "blog_slug" and id is not None:
+    if filter == "blog_slug" and id is not None:
         post = get_json_feed_item_uuid(id)
         output = py_.get(post, "blog.slug", "no slug found")
     else:

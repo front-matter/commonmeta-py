@@ -86,26 +86,6 @@ def test_convert_datacite_from_json_feed():
 
 
 @pytest.mark.vcr
-def test_json_feed_unregistered():
-    """Test json_feed unregistered"""
-    runner = CliRunner()
-    string = "unregistered"
-    result = runner.invoke(json_feed, [string])
-    assert result.exit_code == 0
-    assert "" in result.output
-
-
-@pytest.mark.vcr
-def test_json_feed_updated():
-    """Test json_feed updated"""
-    runner = CliRunner()
-    string = "updated"
-    result = runner.invoke(json_feed, [string])
-    assert result.exit_code == 0
-    assert "4e392758-67a9-4c6f-817e-c65838887d4b" in result.output
-
-
-@pytest.mark.vcr
 def test_json_feed_blog_slug():
     """Test json_feed blog_slug"""
     runner = CliRunner()
