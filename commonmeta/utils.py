@@ -2,6 +2,7 @@
 import os
 import orjson as json
 import re
+import time
 from typing import Optional
 from urllib.parse import urlparse
 import yaml
@@ -1047,3 +1048,16 @@ def start_case(content: str) -> str:
     words = content.split(" ")
     content = " ".join([word[0].upper() + word[1:] for word in words])
     return content
+
+
+def timer_func(func):
+    def function_timer(*args, **kwargs):
+        start = time.time()
+        value = func(*args, **kwargs)
+        end = time.time()
+        runtime = end - start
+        msg = "{func} took {time} seconds to complete its execution."
+        print(msg.format(func=func.__name__, time=runtime))
+        return value
+
+    return function_timer

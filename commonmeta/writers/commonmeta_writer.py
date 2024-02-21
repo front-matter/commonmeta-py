@@ -1,5 +1,6 @@
 """Commonmeta writer for commonmeta-py"""
 import orjson as json
+import orjsonl
 from ..base_utils import compact
 
 
@@ -41,13 +42,20 @@ def write_commonmeta(metadata):
 
 
 def write_commonmeta_list(metalist):
-    """Write commonmeta list"""
+    """Write commonmeta list. If filename is provided,
+    write to file. Optionally, use JSON Lines format."""
     if metalist is None:
         return None
 
-    # def format_commonmeta(item):
-    #     item = py_.omit(item, ["via", "style", "locale", "doi", "depositor", "email", "registrant"])
-    #     return vars(item)
-
     items = [vars(item) for item in metalist.items]
-    return json.dumps(compact(items))
+
+    if metalist.filename and metalist.filename.endswith(".json"):
+        if metalist.jsonlines:
+            orjsonl.save(metalist.filename, items)
+        else:
+            json_items = json.dumps(items).decode("utf-8")
+            with open(metalist.filename, "w") as file:
+                file.write(json_items)
+        return metalist.filename
+    else:
+        return json.dumps(items)

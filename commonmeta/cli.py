@@ -1,4 +1,5 @@
 import click
+import time
 import pydash as py_
 import orjson as json
 
@@ -59,10 +60,13 @@ def convert(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
+@click.option("--filename", type=str)
+@click.option("--jsonlines/--no-jsonlines", type=bool, show_default=True, default=False)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def list(
-    string, via, to, style, locale, doi, depositor, email, registrant, show_errors
+    string, via, to, style, locale, doi, depositor, email, registrant, filename, jsonlines, show_errors
 ):
+    start = time.time()
     metadata_list = MetadataList(
         string,
         via=via,
@@ -70,12 +74,17 @@ def list(
         depositor=depositor,
         email=email,
         registrant=registrant,
+        filename=filename,
+        jsonlines=jsonlines,
     )
+    end = time.time()
+    runtime = end - start
     if show_errors and not metadata_list.is_valid:
         raise click.ClickException(
             str(metadata_list.errors) + str(metadata_list.write_errors)
         )
-    click.echo(metadata_list.write(to=to, style=style, locale=locale))
+    click.echo(metadata_list.write(to=to, style=style, locale=locale), err=True)
+    click.echo(f"Runtime: {runtime:.2f} seconds")
 
 
 @cli.command()

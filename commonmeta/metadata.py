@@ -3,6 +3,7 @@ from os import path
 import orjson as json
 from typing import Optional, Union
 import yaml
+import threading
 from pydash import py_
 
 from .readers.crossref_reader import (
@@ -303,6 +304,10 @@ class MetadataList:
             i.write_errors for i in self.items if i.write_errors is not None
         ]
         self.is_valid = all([i.is_valid for i in self.items])
+        
+        # other options
+        self.jsonlines = kwargs.get("jsonlines", False)
+        self.filename = kwargs.get("filename", None)
 
     def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, (str, bytes)):

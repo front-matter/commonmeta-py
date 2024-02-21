@@ -2,7 +2,6 @@
 from typing import Optional
 import httpx
 from pydash import py_
-import time
 
 from ..utils import (
     dict_to_spdx,
@@ -17,7 +16,7 @@ from ..date_utils import get_date_from_date_parts
 from ..doi_utils import (
     doi_as_url,
     doi_from_url,
-    get_doi_ra,
+    # get_doi_ra,
     # get_crossref_member,
     crossref_api_url,
     crossref_api_query_url,
@@ -29,19 +28,6 @@ from ..constants import (
     CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
-
-
-def timer_func(func):
-    def function_timer(*args, **kwargs):
-        start = time.time()
-        value = func(*args, **kwargs)
-        end = time.time()
-        runtime = end - start
-        msg = "{func} took {time} seconds to complete its execution."
-        print(msg.format(func=func.__name__, time=runtime))
-        return value
-
-    return function_timer
 
 
 def get_crossref_list(query: dict, **kwargs) -> list[dict]:
@@ -154,7 +140,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         # other properties
         "files": presence(files),
         "container": presence(container),
-        "provider": get_doi_ra(_id),
+        "provider": "Crossref", # get_doi_ra(_id),
         "state": state,
         "schema_version": None,
     } | read_options
