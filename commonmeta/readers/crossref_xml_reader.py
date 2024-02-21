@@ -26,6 +26,7 @@ from ..doi_utils import (
     get_doi_ra,
     crossref_xml_api_url,
     normalize_doi,
+    validate_prefix,
 )
 from ..constants import (
     Commonmeta,
@@ -146,6 +147,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         or py_.get(bibmeta, "doi_data.doi")
     )
     _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    prefix = validate_prefix(_id)
     url = parse_attributes(py_.get(bibmeta, "doi_data.resource"))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
@@ -266,6 +268,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "content_url": presence(files),
         "container": presence(container),
         "provider": provider,
+        "prefix": prefix,
         "state": state,
         "schema_version": None,
     } | read_options

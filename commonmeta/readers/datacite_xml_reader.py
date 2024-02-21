@@ -6,7 +6,13 @@ from pydash import py_
 from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds, normalize_date_dict
-from ..doi_utils import doi_from_url, doi_as_url, datacite_api_url, normalize_doi
+from ..doi_utils import (
+    doi_from_url,
+    doi_as_url,
+    datacite_api_url,
+    normalize_doi,
+    validate_prefix,
+)
 from ..utils import normalize_url, normalize_cc_url, dict_to_spdx
 from ..constants import DC_TO_CM_TRANSLATIONS, Commonmeta
 
@@ -34,6 +40,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     doi = parse_attributes(meta.get("identifier", None))
     _id = doi_as_url(doi) if doi else None
+    prefix = validate_prefix(doi)
     #         identifiers = Array.wrap(meta.dig('alternateIdentifiers', 'alternateIdentifier')).map do |r|
     #           if r['__content__'].present?
     #             { 'identifierType' => get_identifier_type(r['alternateIdentifierType']),
@@ -243,6 +250,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "files": presence(files),
         "container": presence(meta.get("container", None)),
         "provider": "DataCite",
+        "prefix": prefix,
         "state": state,
         "schema_version": meta.get("xmlns", None),
     } | read_options

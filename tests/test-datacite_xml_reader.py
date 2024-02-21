@@ -13,6 +13,7 @@ def test_missing_resource_type_general():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5072/00013641"
     assert subject.type == "Other"
+    assert subject.prefix == "10.5072"
     assert subject.publisher == {"name": "Vivli"}
     assert subject.url is None
     assert subject.titles[0] == {
@@ -46,6 +47,7 @@ def test_geo_location_empty():
     assert subject.errors == "None is not of type 'string'"
     assert subject.id == "https://doi.org/10.1594/ieda/111185"
     assert subject.type == "Dataset"
+    assert subject.prefix == "10.1594"
     assert subject.publisher == {"name": "EarthChem"}
     assert subject.titles[0] == {
         "title": "Geochemical and grain-size analyses of atmospheric dusts from Pennsylvanian carbonates of the Copacabana Formation (Madre de Dios Basin, Bolivia)"
@@ -84,6 +86,7 @@ def test_blog_posting():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.type == "Article"
+    assert subject.prefix == "10.5438"
     assert subject.contributors == [
         {
             "id": "https://orcid.org/0000-0003-1419-2405",

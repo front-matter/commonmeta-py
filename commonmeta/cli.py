@@ -64,7 +64,18 @@ def convert(
 @click.option("--jsonlines/--no-jsonlines", type=bool, show_default=True, default=False)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def list(
-    string, via, to, style, locale, doi, depositor, email, registrant, filename, jsonlines, show_errors
+    string,
+    via,
+    to,
+    style,
+    locale,
+    doi,
+    depositor,
+    email,
+    registrant,
+    filename,
+    jsonlines,
+    show_errors,
 ):
     start = time.time()
     metadata_list = MetadataList(

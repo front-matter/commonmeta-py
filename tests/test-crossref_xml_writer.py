@@ -2,6 +2,7 @@
 import pytest
 from os import path
 import pydash as py_
+import re
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import parse_xml
@@ -68,12 +69,14 @@ def test_write_crossref_xml_list():
         "sequence": "first",
         "surname": "Newell P. Campbell",
     }
-    
-    
+
+
 @pytest.mark.vcr
 def test_write_crossref_xml_list_missing_doi():
     """write_crossref_xml_list_missing_doi"""
-    string = path.join(path.dirname(__file__), "fixtures", "crossref-list_missing_doi.json")
+    string = path.join(
+        path.dirname(__file__), "fixtures", "crossref-list_missing_doi.json"
+    )
     subject_list = MetadataList(string, via="crossref")
     assert len(subject_list.items) == 20
     assert subject_list.write(to="crossref_xml") is None
@@ -229,6 +232,38 @@ def test_write_crossref_embedded_schema_org_front_matter():
 
 
 @pytest.mark.vcr
+def test_write_crossref_xml_missing_doi():
+    """Write crossref_xml missing doi"""
+    string = path.join(path.dirname(__file__), "fixtures", "json_feed_item_no_id.json")
+    subject = Metadata(string, via="json_feed_item")
+    assert subject.is_valid
+    assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    assert re.match(r"\A(10\.59350/.+)\Z", py_.get(crossref_xml, "doi_data.doi"))
+    assert (
+        py_.get(crossref_xml, "doi_data.resource")
+        == "https://www.ideasurg.pub/residency-visual-abstract"
+    )
+    assert py_.get(crossref_xml, "titles.0.title") == "The Residency Visual Abstract"
+
+
+@pytest.mark.vcr
+def test_write_crossref_xml_missing_doi_no_prefix():
+    """Write crossref_xml missing doi no prefix"""
+    string = path.join(
+        path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
+    )
+    subject = Metadata(string, via="json_feed_item")
+    assert subject.is_valid
+    assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.write_errors == "None is not of type 'string'"
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    assert py_.get(crossref_xml, "doi_batch.body") is None
+
+
+@pytest.mark.vcr
 def test_write_crossref_schema_org_from_another_science_blog():
     """Write crossref_xml schema_org from another science blog"""
     string = "https://donnywinston.com/posts/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services/"
@@ -378,9 +413,9 @@ def test_json_feed_item_with_doi():
 def test_json_feed_item_without_doi():
     """JSON Feed item without DOI"""
     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
-    subject = Metadata(string, doi="10.5555/test")
+    subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://doi.org/10.5555/test"
+    assert subject.id == "https://doi.org/10.59350/qc0px-76778"
     assert subject.contributors == [
         {
             "type": "Person",
@@ -397,12 +432,11 @@ def test_json_feed_item_without_doi():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.5555/test"
+    assert py_.get(crossref_xml, "doi_data.doi") == "10.59350/qc0px-76778"
     assert (
         py_.get(crossref_xml, "doi_data.resource")
         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
     )
-    print(crossref_xml)
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
     assert py_.get(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",

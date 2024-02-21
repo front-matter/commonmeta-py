@@ -7,7 +7,7 @@ import uuid
 import pydash as py_
 
 from .constants import Commonmeta
-from .utils import wrap, compact, normalize_orcid, normalize_id
+from .utils import wrap, compact, normalize_orcid, normalize_id, encode_doi
 from .doi_utils import doi_from_url, validate_doi
 
 
@@ -36,8 +36,15 @@ def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
 
 def insert_crossref_work(metadata, xml):
     """Insert crossref work"""
-    if doi_from_url(metadata.id) is None or metadata.type is None:
+    if metadata.type not in ["JournalArticle", "Article"]:
         return xml
+    if metadata.url is None:
+        return xml
+    if doi_from_url(metadata.id) is None:
+        if metadata.prefix is not None:
+            metadata.id = encode_doi(metadata.prefix)
+        else:
+            return xml
     if metadata.type == "JournalArticle":
         xml = insert_journal(metadata, xml)
     elif metadata.type == "Article":

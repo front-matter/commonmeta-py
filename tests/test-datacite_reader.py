@@ -14,6 +14,7 @@ def test_dataset():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
+    assert subject.prefix == "10.5061"
     assert subject.publisher == {"name": "Dryad"}
     assert subject.url == "https://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
@@ -74,6 +75,7 @@ def test_blog_posting():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
+    assert subject.prefix == "10.5438"
     assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022"
     assert subject.titles[0] == {
         "language": "en",
@@ -120,6 +122,7 @@ def test_date():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.type == "ProceedingsArticle"
+    assert subject.prefix == "10.4230"
     assert (
         subject.url
         == "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93"
@@ -265,6 +268,7 @@ def test_multiple_identifiers():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.48440"
     assert subject.type == "Software"
+    assert subject.prefix == "10.5281"
     assert subject.url == "https://zenodo.org/record/48440"
     assert subject.titles[0] == {
         "title": "Analysis Tools for Crossover Experiment of UI using Choice Architecture"
@@ -307,6 +311,7 @@ def test_missing_description():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
     assert subject.type == "JournalArticle"
+    assert subject.prefix == "10.2312"
     assert (
         subject.url
         == "https://www.tib.eu/suchen/id/awi:7058a56c5e43afd705af945d01536b9aaeeee491"
@@ -326,6 +331,7 @@ def test_is_identical():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.type == "Dataset"
+    assert subject.prefix == "10.6084"
     assert subject.url == "https://figshare.com/articles/dataset/RAIN_v1/4234751/1"
     assert subject.titles[0] == {"title": "RAIN v1"}
     assert len(subject.contributors) == 11
@@ -390,6 +396,7 @@ def test_subject_scheme_for():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1449060"
     assert subject.type == "Dataset"
+    assert subject.prefix == "10.6084"
     assert (
         subject.url
         == "https://figshare.com/articles/dataset/Drosophila_melanogaster_African_Wings/1449060/4"
@@ -448,6 +455,7 @@ def test_more_subject_scheme_for():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a6931f57c654"
     assert subject.type == "Dissertation"
+    assert subject.prefix == "10.4225"
     assert subject.subjects == [
         {"subject": "90301 Biomaterials", "subjectScheme": "FOR"},
         {
@@ -469,6 +477,7 @@ def test_even_more_subject_scheme_for():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a31ec65634ef"
     assert subject.type == "Presentation"
+    assert subject.prefix == "10.4225"
     assert subject.subjects == [
         {"subject": "130103 Higher Education", "subjectScheme": "FOR"},
         {

@@ -101,6 +101,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
     ]
     files = get_files(_id)
+    prefix = py_.get(meta, "blog.prefix", None)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -128,6 +129,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "files": files,
         # other properties
         "container": presence(container),
+        "prefix": prefix,
         # "provider": get_doi_ra(_id),
         "state": state,
         "schema_version": None,

@@ -3,7 +3,6 @@ from os import path
 import orjson as json
 from typing import Optional, Union
 import yaml
-import threading
 from pydash import py_
 
 from .readers.crossref_reader import (
@@ -100,6 +99,7 @@ class Metadata:
         self.funding_references = meta.get("funding_references")
         self.references = meta.get("references")
         # other properties
+        self.prefix = meta.get("prefix")
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")
         self.date_published = meta.get("date_published")
@@ -157,7 +157,7 @@ class Metadata:
                 "datacite",
                 "schema_org",
                 "csl",
-                "json_feed",
+                "json_feed_item",
                 "codemeta",
                 "kbase",
                 "inveniordm",
@@ -224,7 +224,7 @@ class Metadata:
                 self.write_errors = json_schema_errors(instance, schema="datacite")
                 return write_datacite(self)
             elif to == "crossref_xml":
-                doi = doi_from_url(self.id) or self.id
+                doi = doi_from_url(self.id)
                 _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
                 instance = {"doi": doi, "type": _type}
                 self.depositor = kwargs.get("depositor", None)
@@ -304,7 +304,7 @@ class MetadataList:
             i.write_errors for i in self.items if i.write_errors is not None
         ]
         self.is_valid = all([i.is_valid for i in self.items])
-        
+
         # other options
         self.jsonlines = kwargs.get("jsonlines", False)
         self.filename = kwargs.get("filename", None)

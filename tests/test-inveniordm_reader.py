@@ -14,6 +14,7 @@ def test_software():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
+    assert subject.prefix == "10.5281"
     assert subject.url == "https://zenodo.org/records/7752775"
     assert subject.titles[0] == {"title": "commonmeta-ruby"}
     assert len(subject.contributors) == 1
@@ -83,6 +84,7 @@ def test_presentation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
     assert subject.type == "Presentation"
+    assert subject.prefix == "10.5281"
     assert subject.url == "https://zenodo.org/records/8173303"
     assert subject.titles[0] == {
         "title": "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
@@ -142,6 +144,7 @@ def test_publication():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
+    assert subject.prefix == "10.5281"
     assert subject.url == "https://zenodo.org/records/5244404"
     assert subject.titles[0] == {
         "title": "The Origins of SARS-CoV-2: A Critical Review"
@@ -214,6 +217,7 @@ def test_dataset():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
+    assert subject.prefix == "10.5281"
     assert subject.url == "https://zenodo.org/records/7834392"
     assert subject.titles[0] == {
         "title": "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"

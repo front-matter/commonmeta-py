@@ -21,6 +21,7 @@ from ..doi_utils import (
     crossref_api_url,
     crossref_api_query_url,
     crossref_api_sample_url,
+    validate_prefix,
 )
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
@@ -62,6 +63,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     doi = meta.get("DOI", None)
+    prefix = validate_prefix(doi)
     _id = doi_as_url(doi)
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None))
 
@@ -140,7 +142,8 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         # other properties
         "files": presence(files),
         "container": presence(container),
-        "provider": "Crossref", # get_doi_ra(_id),
+        "provider": "Crossref",  # get_doi_ra(_id),
+        "prefix": prefix,
         "state": state,
         "schema_version": None,
     } | read_options
