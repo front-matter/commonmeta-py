@@ -12,7 +12,7 @@ from ..utils import (
 from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds
-from ..doi_utils import doi_as_url, doi_from_url, validate_prefix
+from ..doi_utils import doi_as_url, doi_from_url
 from ..constants import (
     INVENIORDM_TO_CM_TRANSLATIONS,
     COMMONMETA_RELATION_TYPES,
@@ -37,7 +37,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = doi_as_url(meta.get("doi", None))
-    prefix = validate_prefix(meta.get("doi", None))
     resource_type = py_.get(meta, "metadata.resource_type.type")
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
     contributors = get_authors(
@@ -118,7 +117,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "files": files,
         "container": container,
         "provider": "InvenioRDM",
-        "prefix": prefix,
         "state": state,
         # "schema_version": meta.get("schemaVersion", None),
     } | read_options

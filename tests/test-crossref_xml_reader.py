@@ -13,7 +13,6 @@ def test_doi_with_data_citation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.7554"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {
         "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
@@ -90,7 +89,6 @@ def test_journal_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1371"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
     assert subject.titles[0] == {
         "title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
@@ -156,7 +154,6 @@ def test_journal_article_with_funding():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.3389"
     assert (
         subject.url
         == "https://www.frontiersin.org/article/10.3389/fpls.2019.00816/full"
@@ -223,7 +220,6 @@ def test_journal_article_original_language():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.7600"
     assert (
         subject.url
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
@@ -274,7 +270,6 @@ def test_journal_article_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1163"
     assert (
         subject.url
         == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
@@ -335,7 +330,6 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.type == "BookChapter"
-    assert subject.prefix == "10.1007"
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
     assert subject.titles[0] == {
         "title": "Human Body Orientation Estimation in Multiview Scenarios"

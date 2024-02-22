@@ -1,9 +1,9 @@
 """CSL-JSON reader for commonmeta-py"""
-from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos
+from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos, encode_doi
 from ..base_utils import wrap, compact, sanitize, presence
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import get_doi_ra
+from ..doi_utils import get_doi_ra, doi_from_url
 from ..constants import (
     CSL_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -20,6 +20,11 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
 
     _id = normalize_id(meta.get("id", None) or meta.get("DOI", None))
     _type = CSL_TO_CM_TRANSLATIONS.get(meta.get("type", None), "Other")
+
+    # optionally generate a DOI if missing but a DOI prefix is provided
+    prefix = read_options.get("prefix", None)
+    if doi_from_url(_id) is None and prefix is not None:
+        _id = encode_doi(prefix)
 
     contributors = get_authors(from_csl(wrap(meta.get("author", None))))
     contrib = get_authors(from_csl(wrap(meta.get("editor", None))))

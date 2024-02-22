@@ -28,16 +28,28 @@ def cli(show_errors):
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
 @click.option("--doi", type=str)
+@click.option("--prefix", type=str)
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def convert(
-    input, via, to, style, locale, doi, depositor, email, registrant, show_errors
+    input,
+    via,
+    to,
+    style,
+    locale,
+    doi,
+    prefix,
+    depositor,
+    email,
+    registrant,
+    show_errors,
 ):
-    metadata = Metadata(input, via=via, doi=doi)
+    metadata = Metadata(input, via=via, doi=doi, prefix=prefix)
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors) + str(metadata.write_errors))
+
     click.echo(
         metadata.write(
             to=to,
@@ -48,15 +60,17 @@ def convert(
             registrant=registrant,
         )
     )
+    if show_errors and metadata.write_errors:
+        raise click.ClickException(str(metadata.write_errors))
 
 
 @cli.command()
 @click.argument("string", type=str, required=True)
-@click.option("--via", "-f", type=str, default="crossref")
+@click.option("--via", "-f", type=str)
 @click.option("--to", "-t", type=str, default="commonmeta")
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
-@click.option("--doi", type=str)
+@click.option("--prefix", type=str)
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
@@ -69,7 +83,7 @@ def list(
     to,
     style,
     locale,
-    doi,
+    prefix,
     depositor,
     email,
     registrant,
@@ -81,20 +95,20 @@ def list(
     metadata_list = MetadataList(
         string,
         via=via,
-        doi=doi,
         depositor=depositor,
         email=email,
         registrant=registrant,
+        prefix=prefix,
         filename=filename,
         jsonlines=jsonlines,
     )
     end = time.time()
     runtime = end - start
     if show_errors and not metadata_list.is_valid:
-        raise click.ClickException(
-            str(metadata_list.errors) + str(metadata_list.write_errors)
-        )
-    click.echo(metadata_list.write(to=to, style=style, locale=locale), err=True)
+        raise click.ClickException(str(metadata_list.errors))
+    click.echo(metadata_list.write(to=to, style=style, locale=locale))
+    if show_errors and len(metadata_list.write_errors) > 0:
+        raise click.ClickException(str(metadata_list.write_errors))
     click.echo(f"Runtime: {runtime:.2f} seconds")
 
 

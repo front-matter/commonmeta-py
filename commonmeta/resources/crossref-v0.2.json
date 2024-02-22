@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://data.crossref.org/schemas/crossref_v0.1.json",
-  "title": "Crossref v0.1",
+  "$id": "https://data.crossref.org/schemas/crossref_v0.2.json",
+  "title": "Crossref v0.2",
   "description": "Unofficial JSON representation of the Crossref content registration schema.",
   "additionalProperties": true,
   "type": "object",
@@ -45,10 +45,16 @@
         "Report",
         "Standard"
       ]
+    },
+    "url": {
+      "description": "The URL for the content.",
+      "type": "string",
+      "format": "uri"
     }
   },
   "required": [
     "doi",
-    "type"
+    "type",
+    "url"
   ]
 }

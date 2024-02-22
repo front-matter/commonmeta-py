@@ -16,7 +16,6 @@ def test_wordpress_with_references():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
     assert subject.type == "Article"
-    assert subject.prefix == "10.59350"
     assert (
         subject.url
         == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa"
@@ -102,7 +101,6 @@ def test_ghost_with_institutional_author():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/tfahc-rp566"
     assert subject.type == "Article"
-    assert subject.prefix == "10.59350"
     assert (
         subject.url
         == "https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice"
@@ -184,7 +182,6 @@ def test_ghost_with_personal_name_parsing():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/kj95y-gp867"
-    assert subject.prefix == "10.59350"
     assert subject.type == "Article"
     assert subject.url == "https://www.ideasurg.pub/residency-visual-abstract"
     assert subject.titles[0] == {"title": "The Residency Visual Abstract"}
@@ -291,7 +288,6 @@ def test_medium_post_with_institutional_author():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
-    assert subject.prefix == "10.59350"
     assert subject.type == "Article"
     assert (
         subject.url
@@ -319,7 +315,6 @@ def test_post_without_doi():
         == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
     )
     assert subject.type == "Article"
-    assert subject.prefix is None
     assert (
         subject.url
         == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"

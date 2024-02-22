@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 """Test DataCite Writer"""
 from os import path
+import re
 import orjson as json
 import pytest
 
@@ -121,6 +122,38 @@ def test_blogposting_citeproc_json():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
     datacite = json.loads(subject.write(to="datacite"))
+    assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
+    assert datacite["types"] == {
+        "bibtex": "article",
+        "citeproc": "article",
+        "resourceTypeGeneral": "Preprint",
+        "ris": "JOUR",
+        "schemaOrg": "Article",
+    }
+    assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
+    assert datacite["descriptions"][0]["description"].startswith(
+        "Eating your own dog food"
+    )
+    assert datacite["creators"] == [
+        {
+            "name": "Fenner, Martin",
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "nameType": "Personal",
+        }
+    ]
+
+
+def test_blogposting_citeproc_json_no_doi():
+    """BlogPosting Citeproc JSON"""
+    string = path.join(path.dirname(__file__), "fixtures", "citeproc_missing_doi.json")
+    subject = Metadata(string, prefix="10.5438")
+    assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", subject.id)
+    assert subject.type == "Article"
+    assert subject.is_valid
+
+    datacite = json.loads(subject.write(to="datacite"))
+    assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", datacite["id"])
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",

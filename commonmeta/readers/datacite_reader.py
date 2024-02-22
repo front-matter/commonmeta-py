@@ -19,7 +19,6 @@ from ..doi_utils import (
     doi_from_url,
     datacite_api_url,
     datacite_api_sample_url,
-    validate_prefix,
 )
 from ..constants import (
     DC_TO_CM_TRANSLATIONS,
@@ -52,7 +51,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = doi_as_url(meta.get("doi", None))
-    prefix = validate_prefix(meta.get("doi", None))
     resource__typegeneral = py_.get(meta, "types.resourceTypeGeneral")
     resource_type = py_.get(meta, "types.resourceType")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
@@ -117,7 +115,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "files": presence(files),
         "container": presence(container),
         "provider": "DataCite",
-        "prefix": prefix,
         "state": "findable",
         "schema_version": meta.get("schemaVersion", None),
     } | read_options

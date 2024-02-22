@@ -78,7 +78,7 @@ class Metadata:
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
         self.type = meta.get("type")
-        self.doi = meta.get("doi")
+        # self.doi = meta.get("doi")
         self.url = meta.get("url")
         self.contributors = meta.get("contributors")
         self.titles = meta.get("titles")
@@ -99,7 +99,6 @@ class Metadata:
         self.funding_references = meta.get("funding_references")
         self.references = meta.get("references")
         # other properties
-        self.prefix = meta.get("prefix")
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")
         self.date_published = meta.get("date_published")
@@ -172,7 +171,7 @@ class Metadata:
         """get_metadata"""
         via = self.via
         if via == "commonmeta":
-            return read_commonmeta(data)
+            return read_commonmeta(data, **kwargs)
         elif via == "schema_org":
             return read_schema_org(data)
         elif via == "datacite":
@@ -184,7 +183,7 @@ class Metadata:
         elif via == "crossref_xml":
             return read_crossref_xml(data)
         elif via == "csl":
-            return read_csl(data)
+            return read_csl(data, **kwargs)
         elif via == "codemeta":
             return read_codemeta(data)
         elif via == "cff":
@@ -226,7 +225,8 @@ class Metadata:
             elif to == "crossref_xml":
                 doi = doi_from_url(self.id)
                 _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
-                instance = {"doi": doi, "type": _type}
+                url = self.url
+                instance = {"doi": doi, "type": _type, "url": url}
                 self.depositor = kwargs.get("depositor", None)
                 self.email = kwargs.get("email", None)
                 self.registrant = kwargs.get("registrant", None)

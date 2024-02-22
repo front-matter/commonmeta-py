@@ -231,24 +231,26 @@ def test_write_crossref_embedded_schema_org_front_matter():
     )
 
 
-@pytest.mark.vcr
 def test_write_crossref_xml_missing_doi():
     """Write crossref_xml missing doi"""
     string = path.join(path.dirname(__file__), "fixtures", "json_feed_item_no_id.json")
     subject = Metadata(string, via="json_feed_item")
     assert subject.is_valid
-    assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert re.match(r"\A(10\.59350/.+)\Z", py_.get(crossref_xml, "doi_data.doi"))
-    assert (
-        py_.get(crossref_xml, "doi_data.resource")
-        == "https://www.ideasurg.pub/residency-visual-abstract"
-    )
+    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
+    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "ORCID": "https://orcid.org/0000-0003-0449-4469",
+        "sequence": "first",
+        "given_name": "Tejas S.",
+        "surname": "Sathe",
+    }
     assert py_.get(crossref_xml, "titles.0.title") == "The Residency Visual Abstract"
 
 
-@pytest.mark.vcr
 def test_write_crossref_xml_missing_doi_no_prefix():
     """Write crossref_xml missing doi no prefix"""
     string = path.join(

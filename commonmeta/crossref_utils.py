@@ -7,7 +7,7 @@ import uuid
 import pydash as py_
 
 from .constants import Commonmeta
-from .utils import wrap, compact, normalize_orcid, normalize_id, encode_doi
+from .utils import wrap, compact, normalize_orcid, normalize_id
 from .doi_utils import doi_from_url, validate_doi
 
 
@@ -19,11 +19,9 @@ def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     etree.SubElement(head, "doi_batch_id").text = str(uuid.uuid4())
     etree.SubElement(head, "timestamp").text = datetime.now().strftime("%Y%m%d%H%M%S")
     depositor = etree.SubElement(head, "depositor")
-    etree.SubElement(depositor, "depositor_name").text = metadata.depositor or "test"
-    etree.SubElement(depositor, "email_address").text = (
-        metadata.email or "info@example.org"
-    )
-    etree.SubElement(head, "registrant").text = metadata.registrant or "test"
+    etree.SubElement(depositor, "depositor_name").text = metadata.depositor
+    etree.SubElement(depositor, "email_address").text = metadata.email
+    etree.SubElement(head, "registrant").text = metadata.registrant
 
     body = etree.SubElement(xml, "body")
     body = insert_crossref_work(metadata, body)
@@ -38,13 +36,8 @@ def insert_crossref_work(metadata, xml):
     """Insert crossref work"""
     if metadata.type not in ["JournalArticle", "Article"]:
         return xml
-    if metadata.url is None:
+    if doi_from_url(metadata.id) is None or metadata.url is None:
         return xml
-    if doi_from_url(metadata.id) is None:
-        if metadata.prefix is not None:
-            metadata.id = encode_doi(metadata.prefix)
-        else:
-            return xml
     if metadata.type == "JournalArticle":
         xml = insert_journal(metadata, xml)
     elif metadata.type == "Article":
@@ -461,7 +454,9 @@ def insert_doi_data(metadata, xml):
         if file.get("mimeType", None) == "text/markdown":
             file["mimeType"] = "text/plain"
         item = etree.SubElement(collection, "item")
-        etree.SubElement(item, "resource", {"mime_type": file.get("mimeType", "")}).text = file.get("url", None)
+        etree.SubElement(
+            item, "resource", {"mime_type": file.get("mimeType", "")}
+        ).text = file.get("url", None)
     return xml
 
 

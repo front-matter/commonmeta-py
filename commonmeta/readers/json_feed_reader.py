@@ -11,6 +11,7 @@ from ..utils import (
     dict_to_spdx,
     name_to_fos,
     validate_url,
+    encode_doi,
 )
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
@@ -46,6 +47,11 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     url = normalize_url(meta.get("url", None))
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
     _type = "Article"
+
+    # optionally generate a DOI if missing but a DOI prefix is provided
+    prefix = read_options.get("prefix", None) or py_.get(meta, "blog.prefix", None)
+    if doi_from_url(_id) is None and prefix is not None:
+        _id = encode_doi(prefix)
 
     if meta.get("authors", None):
         contributors = get_authors(from_json_feed(wrap(meta.get("authors"))))
@@ -101,7 +107,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
     ]
     files = get_files(_id)
-    prefix = py_.get(meta, "blog.prefix", None)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -129,7 +134,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "files": files,
         # other properties
         "container": presence(container),
-        "prefix": prefix,
         # "provider": get_doi_ra(_id),
         "state": state,
         "schema_version": None,

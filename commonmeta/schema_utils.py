@@ -9,7 +9,7 @@ def json_schema_errors(instance, schema: str = "commonmeta"):
     schema_map = {
         "commonmeta": "commonmeta_v0.11",
         "datacite": "datacite-v4.5",
-        "crossref": "crossref-v0.1",
+        "crossref": "crossref-v0.2",
         "csl": "csl-data",
         "cff": "cff_v1.2.0",
     }

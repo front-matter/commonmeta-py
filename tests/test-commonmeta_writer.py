@@ -1,6 +1,7 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
 from os import path
+import re
 import orjson as json
 import pytest
 
@@ -137,7 +138,6 @@ def test_write_commonmeta_list():
 @pytest.mark.vcr
 def test_write_commonmeta_list_json_feed():
     """write_commonmeta_list json feed"""
-    # ids = get_random_crossref_id(number=20, prefix=prefix, _type=type)
     string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 15
@@ -151,3 +151,43 @@ def test_write_commonmeta_list_json_feed():
             "title": "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
         }
     ]
+
+
+def test_write_commonmeta_missing_doi():
+    """Write commonmeta missing doi"""
+    string = path.join(path.dirname(__file__), "fixtures", "json_feed_item_no_id.json")
+    subject = Metadata(string, via="json_feed_item")
+    assert subject.is_valid
+    assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
+    commonmeta = json.loads(subject.write())
+    assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", commonmeta["id"])
+    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert commonmeta["type"] == "Article"
+
+
+def test_write_commonmeta_missing_doi_no_prefix():
+    """Write commonmeta missing doi no prefix"""
+    string = path.join(
+        path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
+    )
+    subject = Metadata(string, via="json_feed_item")
+    assert subject.is_valid
+    assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
+    commonmeta = json.loads(subject.write())
+    assert commonmeta["id"] == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert commonmeta["type"] == "Article"
+
+
+def test_write_commonmeta_missing_doi_prefix():
+    """Write commonmeta missing doi prefix"""
+    string = path.join(
+        path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
+    )
+    subject = Metadata(string, via="json_feed_item", prefix="10.5555")
+    assert subject.is_valid
+    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", subject.id)
+    commonmeta = json.loads(subject.write())
+    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", commonmeta["id"])
+    assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
+    assert commonmeta["type"] == "Article"

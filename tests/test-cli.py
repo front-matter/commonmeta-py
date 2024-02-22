@@ -86,6 +86,28 @@ def test_convert_datacite_from_json_feed():
 
 
 @pytest.mark.vcr
+def test_convert_commonmeta_from_json_feed_no_doi():
+    """Test commonmeta generation from json_feed no doi"""
+    runner = CliRunner()
+    string = "https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0"
+    result = runner.invoke(convert, [string, "--prefix", "10.5555"])
+    assert result.exit_code == 0
+    assert "https://doi.org/10.5555/" in result.output
+
+
+@pytest.mark.vcr
+def test_convert_crossref_xml_from_json_feed_no_doi():
+    """Test crossref_xml generation from json_feed no doi"""
+    runner = CliRunner()
+    string = "https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0"
+    result = runner.invoke(
+        convert, [string, "--to", "crossref_xml", "--prefix", "10.5555"]
+    )
+    assert result.exit_code == 0
+    assert "<doi>10.5555/" in result.output
+
+
+@pytest.mark.vcr
 def test_json_feed_blog_slug():
     """Test json_feed blog_slug"""
     runner = CliRunner()

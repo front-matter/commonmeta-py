@@ -22,7 +22,6 @@ def test_doi_with_data_citation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.7554"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {
         "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
@@ -120,7 +119,6 @@ def test_journal_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1371"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
     assert subject.titles[0] == {
         "title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
@@ -183,7 +181,6 @@ def test_journal_article_with_funding():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.3389"
     assert (
         subject.url
         == "https://www.frontiersin.org/article/10.3389/fpls.2019.00816/full"
@@ -249,7 +246,6 @@ def test_journal_article_original_language():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.7600"
     assert (
         subject.url
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
@@ -295,7 +291,6 @@ def test_journal_article_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1163"
     assert (
         subject.url
         == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
@@ -350,7 +345,6 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.type == "BookChapter"
-    assert subject.prefix == "10.1007"
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
     assert subject.titles[0] == {
         "title": "Human Body Orientation Estimation in Multiview Scenarios"
@@ -394,7 +388,6 @@ def test_posted_content():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
     assert subject.type == "Article"
-    assert subject.prefix == "10.1101"
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
     assert subject.titles[0] == {
         "title": "A Data Citation Roadmap for Scholarly Data Repositories"
@@ -445,7 +438,6 @@ def test_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
-    assert subject.prefix == "10.7554"
     assert subject.url == "https://elifesciences.org/articles/55167#sa2"
     assert subject.titles[0] == {
         "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
@@ -489,7 +481,6 @@ def test_dissertation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.14264/uql.2020.791"
     assert subject.type == "Dissertation"
-    assert subject.prefix == "10.14264"
     assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
     assert subject.titles[0] == {
         "title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
@@ -527,7 +518,6 @@ def test_doi_with_sici():
         subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1890"
     assert (
         subject.url
         == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
@@ -578,7 +568,6 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    assert subject.prefix == "10.1155"
     assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
     assert subject.titles[0] == {
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
