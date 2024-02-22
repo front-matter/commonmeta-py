@@ -100,7 +100,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
         "url": normalize_id(meta.get("codeRepository", None)),
         "identifiers": None,
         "titles": titles,
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "publisher": publisher,
         "date": compact(date),
         "descriptions": descriptions,

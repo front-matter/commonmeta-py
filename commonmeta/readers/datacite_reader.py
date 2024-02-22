@@ -94,7 +94,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "type": _type,
         "doi": doi_from_url(_id),
         "url": normalize_url(meta.get("url", None)),
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "titles": titles,
         "publisher": publisher,
         "date": compact(date),

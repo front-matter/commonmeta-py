@@ -218,6 +218,7 @@ def test_cleanup_author():
     assert "John Smith" == cleanup_author("John Smith")
     assert "Smith, John" == cleanup_author("Smith, John")
     assert "Smith, J." == cleanup_author("Smith, J.")
+    assert None == cleanup_author(",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon")
 
 
 def test_authors_as_string():

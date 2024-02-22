@@ -95,7 +95,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "type": _type,
         "doi": doi_from_url(_id),
         "url": normalize_url(py_.get(meta, "links.self_html")),
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "titles": titles,
         "publisher": publisher,
         "date": compact(date),

@@ -102,7 +102,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         # 'identifiers' => identifiers,
         "url": url,
         "titles": titles,
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "publisher": publisher,
         "references": presence(references),
         "date": date,

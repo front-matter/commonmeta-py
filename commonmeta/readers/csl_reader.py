@@ -74,7 +74,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         "type": _type,
         "url": normalize_id(meta.get("URL", None)),
         "titles": [{"title": meta.get("title", None)}],
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "publisher": presence(publisher),
         "date": compact(date),
         "container": container,

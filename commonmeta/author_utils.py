@@ -44,6 +44,10 @@ def get_one_author(author):
 
     name = cleanup_author(name)
 
+    # make sure we have a name
+    if not name and not given_name and not family_name:
+        return None
+
     # parse contributor roles, checking for roles supported by commonmeta
     contributor_roles = wrap(
         parse_attributes(author.get("contributorType", None))
@@ -175,6 +179,9 @@ def cleanup_author(author):
     """clean up author string"""
     if author is None:
         return None
+    
+    if author.startswith(","):
+        return None
 
     # detect pattern "Smith J.", but not "Smith, John K."
     if "," not in author:
@@ -191,7 +198,7 @@ def cleanup_author(author):
 def get_authors(authors):
     """transform
     array of author dicts into commonmeta format"""
-    return presence(py_.uniq(list(map(lambda author: get_one_author(author), authors))))
+    return py_.uniq(py_.compact([get_one_author(i) for i in authors]))
 
 
 def authors_as_string(authors: List[dict]) -> str:

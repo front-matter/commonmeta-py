@@ -1096,6 +1096,60 @@ def test_missing_contributor():
     assert subject.files is None
 
 
+def test_missing_contributor_name():
+    "missing contributor name"
+    string = "https://doi.org/10.14264/3e10f66"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.14264/3e10f66"
+    assert subject.type == "Dissertation"
+    assert subject.url == "https://espace.library.uq.edu.au/view/UQ:3e10f66"
+    assert subject.titles[0] == {
+        "title": "A computational impact analysis approach leveraging non-conforming spatial, temporal and methodological discretisations"
+    }
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0001-5777-3141",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Peter",
+        "familyName": "Wilson",
+    }
+    assert subject.license is None
+    assert subject.date == {"published": "2022-12-21T04:12:27Z"}
+    assert subject.publisher == {"name": "University of Queensland Library"}
+
+
+def test_too_many_contributor_names():
+    "too many contributor names"
+    string = "https://doi.org/10.3934/nhm.2009.4.249"
+    subject = Metadata(string)
+    # assert subject.is_valid
+    assert subject.id == "https://doi.org/10.3934/nhm.2009.4.249"
+    assert subject.type == "JournalArticle"
+    assert subject.url == "http://aimsciences.org//article/doi/10.3934/nhm.2009.4.249"
+    assert subject.titles[0] == {
+        "title": "A Hamiltonian perspective to the stabilization of systems of two conservation laws"
+    }
+    assert len(subject.contributors) == 3
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Valérie",
+        "familyName": "Dos Santos",
+    }
+    assert subject.contributors[2] == {
+        "contributorRoles": ["Author"],
+        "familyName": "Le Gorrec",
+        "givenName": "Yann",
+        "type": "Person",
+    }
+    assert subject.license is None
+    assert subject.date == {"published": "2009"}
+    assert subject.publisher == {
+        "name": "American Institute of Mathematical Sciences (AIMS)"
+    }
+
+
 def test_book():
     "book"
     string = "https://doi.org/10.1017/9781108348843"

@@ -63,7 +63,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     doi = meta.get("DOI", None)
     _id = doi_as_url(doi)
-    _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None))
+    _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
 
     if meta.get("author", None):
         contributors = get_authors(wrap(meta.get("author")))
@@ -96,7 +96,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     container = get_container(meta)
-    references = [get_reference(i) for i in wrap(meta.get("reference", None))]
+    references =py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)

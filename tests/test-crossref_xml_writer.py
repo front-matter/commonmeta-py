@@ -54,7 +54,6 @@ def test_write_crossref_xml_list():
     crossref_xml_list = py_.get(crossref_xml_list, "doi_batch.body.journal", [])
     assert len(crossref_xml_list) == 20
     crossref_xml = crossref_xml_list[0]
-    print(crossref_xml)
     assert (
         py_.get(crossref_xml, "journal_article.doi_data.doi")
         == "10.1306/703c7c64-1707-11d7-8645000102c1865d"

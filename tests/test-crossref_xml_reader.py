@@ -646,8 +646,6 @@ def test_date_in_future():
     "date_in_future"
     string = "10.1016/j.ejphar.2015.03.018"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.type == "JournalArticle"
@@ -722,8 +720,6 @@ def test_vor_with_url():
     "vor_with_url"
     string = "10.1038/hdy.2013.26"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
@@ -789,8 +785,6 @@ def test_dataset():
     "dataset"
     string = "10.2210/pdb4hhb/pdb"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Component"
@@ -826,8 +820,6 @@ def test_component():
     "component"
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
@@ -917,8 +909,6 @@ def test_book_chapter():
     "book chapter"
     string = "10.1007/978-3-662-46370-3_13"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.type == "BookChapter"
@@ -969,8 +959,6 @@ def test_another_book_chapter():
     "another book chapter"
     string = "10.1007/978-3-319-75889-3_1"
     subject = Metadata(string, via="crossref_xml")
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.type == "BookChapter"

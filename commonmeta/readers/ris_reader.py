@@ -27,6 +27,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
         return {"creatorName": author}
 
     authors = [get_author(i) for i in wrap(meta.get("AU", None))]
+    contributors = get_authors(authors)
     date = {}
     if meta.get("PY", None) is not None:
         date["published"] = get_date_from_parts(*str(meta.get("PY", None)).split("/"))
@@ -71,7 +72,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
         "url": normalize_url(meta.get("UR", None)),
         "titles": [{"title": meta.get("T1", None)}],
         "descriptions": descriptions,
-        "contributors": get_authors(authors),
+        "contributors": presence(contributors),
         "publisher": presence(publisher),
         "container": container,
         # 'related_identifiers': related_identifiers,

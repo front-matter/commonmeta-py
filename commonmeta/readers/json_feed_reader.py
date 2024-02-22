@@ -114,7 +114,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         "url": url,
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "titles": presence(titles),
         "publisher": publisher,
         "date": compact(date),

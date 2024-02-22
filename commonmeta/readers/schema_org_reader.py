@@ -199,7 +199,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         "url": normalize_url(meta.get("url", None)),
-        "contributors": contributors,
+        "contributors": presence(contributors),
         "titles": titles,
         "publisher": publisher,
         "date": compact(date),
