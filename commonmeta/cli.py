@@ -77,6 +77,7 @@ def convert(
 @click.option("--filename", type=str)
 @click.option("--jsonlines/--no-jsonlines", type=bool, show_default=True, default=False)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
+@click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
 def list(
     string,
     via,
@@ -90,6 +91,7 @@ def list(
     filename,
     jsonlines,
     show_errors,
+    show_timer,
 ):
     start = time.time()
     metadata_list = MetadataList(
@@ -109,7 +111,8 @@ def list(
     click.echo(metadata_list.write(to=to, style=style, locale=locale))
     if show_errors and len(metadata_list.write_errors) > 0:
         raise click.ClickException(str(metadata_list.write_errors))
-    click.echo(f"Runtime: {runtime:.2f} seconds")
+    if show_timer:
+        click.echo(f"Runtime: {runtime:.2f} seconds")
 
 
 @cli.command()
