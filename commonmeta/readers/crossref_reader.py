@@ -66,7 +66,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
 
     if meta.get("author", None):
-        contributors = get_authors(wrap(meta.get("author")))
+        contributors = get_authors(wrap(meta.get("author")), via="crossref")
     else:
         contributors = []
 

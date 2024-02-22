@@ -20,7 +20,7 @@ from .constants import (
 )
 
 
-def get_one_author(author):
+def get_one_author(author, **kwargs):
     """parse one author string into commonmeta format"""
     # if author is a string
     if isinstance(author, str):
@@ -88,6 +88,8 @@ def get_one_author(author):
         _type = "Person"
     elif not _type and (given_name or family_name):
         _type = "Person"
+    elif not _type and name and kwargs.get("via", None) == "crossref":
+        _type = "Organization"
     elif not _type and is_personal_name(name):
         _type = "Person"
     elif not _type and name:
@@ -159,6 +161,8 @@ def is_personal_name(name):
             "Research",
             "Science",
             "Team",
+            "Ministry",
+            "Government",
         ]
     ):
         return False
@@ -195,10 +199,9 @@ def cleanup_author(author):
     return author
 
 
-def get_authors(authors):
-    """transform
-    array of author dicts into commonmeta format"""
-    return py_.uniq(py_.compact([get_one_author(i) for i in authors]))
+def get_authors(authors, **kwargs):
+    """transform array of author dicts into commonmeta format"""
+    return py_.uniq(py_.compact([get_one_author(i, **kwargs) for i in authors]))
 
 
 def authors_as_string(authors: List[dict]) -> str:
@@ -248,4 +251,4 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
             }
         )
 
-    return py_.uniq([format_element(i) for i in affiliations])
+    return py_.uniq(py_.compact([format_element(i) for i in affiliations]))

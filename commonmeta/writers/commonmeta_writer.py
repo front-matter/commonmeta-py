@@ -47,9 +47,9 @@ def write_commonmeta_list(metalist):
     if metalist is None:
         return None
 
-    items = [vars(item) for item in metalist.items]
+    items = [compact(vars(item)) for item in metalist.items]
 
-    if metalist.filename and metalist.filename.endswith(".json"):
+    if metalist.filename and metalist.filename.rsplit('.', 1)[1] in ["jsonl", "json"]:
         if metalist.jsonlines:
             orjsonl.save(metalist.filename, items)
         else:

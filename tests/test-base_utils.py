@@ -42,6 +42,7 @@ def test_presence():
     assert None is presence("")
     assert None is presence([])
     assert None is presence({})
+    assert None is presence([{}])
     assert "test" == presence("test")
     assert [1] == presence([1])
     assert {"test": 1} == presence({"test": 1})

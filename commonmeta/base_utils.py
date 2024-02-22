@@ -29,7 +29,7 @@ def presence(
     item: Optional[Union[dict, list, str]],
 ) -> Optional[Union[dict, list, str]]:
     """Turn empty list, dict or str into None"""
-    return None if item is None or len(item) == 0 else item
+    return None if item is None or len(item) == 0 or item == [{}] else item
 
 
 def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
