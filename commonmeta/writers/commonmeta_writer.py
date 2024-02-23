@@ -48,15 +48,20 @@ def write_commonmeta_list(metalist):
     write to file. Optionally, use JSON Lines format."""
     if metalist is None:
         return None
+    
+    def format_item(item):
+        """Format item for commonmeta list"""
+        item = py_.omit(vars(item), ["via", "is_valid"])
+        return compact(item)
 
-    items = [compact(vars(item)) for item in metalist.items]
+    items = [format_item(item) for item in metalist.items]
     output = compact(
         {
             "id": metalist.id,
             "title": metalist.title,
             "description": metalist.description,
             "schema_version": "https://commonmeta.org/commonmeta_v0.11",
-            "items": items # py_.omit(items, ["via", "is_valid"]),
+            "items": items,
         }
     )
 
