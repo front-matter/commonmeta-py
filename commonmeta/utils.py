@@ -645,7 +645,7 @@ def find_from_format_by_dict(dct: dict) -> Optional[str]:
         "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
     ]:
         return "codemeta"
-    if py_.get(dct, "blog.version", None) == "https://jsonfeed.org/version/1.1":
+    if dct.get("guid", None) is not None:
         return "json_feed_item"
     if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
         return "datacite"
@@ -678,7 +678,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
         ]:
             return "codemeta"
-        if py_.get(data, "blog.version", None) == "https://jsonfeed.org/version/1.1":
+        if data.get("guid", None) is not None:
             return "json_feed_item"
         if data.get("schemaVersion", "").startswith(
             "http://datacite.org/schema/kernel"
