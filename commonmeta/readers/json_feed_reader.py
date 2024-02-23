@@ -80,13 +80,18 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     license_ = py_.get(meta, "blog.license", None)
     if license_ is not None:
         license_ = dict_to_spdx({"url": license_})
-
+    issn = py_.get(meta, "blog.issn", None)
+    blog_url = (
+        f"https://rogue-scholar.org/blogs/{meta.get('blog_slug')}"
+        if meta.get("blog_slug", None)
+        else None
+    )
     container = compact(
         {
             "type": "Periodical",
             "title": py_.get(meta, "blog.title", None),
-            "identifier": py_.get(meta, "blog.issn", None),
-            "identifierType": "ISSN" if py_.get(meta, "blog.issn", None) else None,
+            "identifier": issn or blog_url,
+            "identifierType": "ISSN" if issn else "URL",
         }
     )
 
