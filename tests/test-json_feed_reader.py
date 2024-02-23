@@ -75,8 +75,10 @@ def test_wordpress_with_references():
     #     },
     # ]
     assert subject.container == {
-        "title": "Sauropod Vertebra Picture of the Week",
         "type": "Periodical",
+        "title": "Sauropod Vertebra Picture of the Week",
+        "identifier": "https://rogue-scholar.org/blogs/svpow",
+        "identifierType": "URL",
     }
     assert (
         subject.descriptions[0]
@@ -155,8 +157,10 @@ def test_ghost_with_institutional_author():
     #     },
     # ]
     assert subject.container == {
-        "title": "OA.Works Blog",
         "type": "Periodical",
+        "title": "OA.Works Blog",
+        "identifier": "https://rogue-scholar.org/blogs/oa_works",
+        "identifierType": "URL",
     }
     assert (
         subject.descriptions[0]
