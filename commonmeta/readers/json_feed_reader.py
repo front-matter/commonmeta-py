@@ -100,6 +100,8 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     category = py_.get(meta, "blog.category", None)
     if category is not None:
         subjects = [name_to_fos(py_.human_case(category))]
+    else:
+        subjects = None
     references = get_references(wrap(meta.get("reference", None)))
     funding_references = get_funding_references(meta)
     related_identifiers = get_related_identifiers(wrap(meta.get("relationships", None)))

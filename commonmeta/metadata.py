@@ -78,7 +78,6 @@ class Metadata:
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
         self.type = meta.get("type")
-        # self.doi = meta.get("doi")
         self.url = meta.get("url")
         self.contributors = meta.get("contributors")
         self.titles = meta.get("titles")

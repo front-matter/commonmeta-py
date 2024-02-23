@@ -1,6 +1,7 @@
 """Commonmeta writer for commonmeta-py"""
 import orjson as json
 import orjsonl
+import pydash as py_
 from ..base_utils import compact
 
 
@@ -36,6 +37,7 @@ def write_commonmeta(metadata):
             # other properties
             "files": metadata.files,
             "provider": metadata.provider,
+            "schema_version": "https://commonmeta.org/commonmeta_v0.11",
         }
     )
     return json.dumps(data)
@@ -48,14 +50,23 @@ def write_commonmeta_list(metalist):
         return None
 
     items = [compact(vars(item)) for item in metalist.items]
+    output = compact(
+        {
+            "id": metalist.id,
+            "title": metalist.title,
+            "description": metalist.description,
+            "schema_version": "https://commonmeta.org/commonmeta_v0.11",
+            "items": items # py_.omit(items, ["via", "is_valid"]),
+        }
+    )
 
-    if metalist.filename and metalist.filename.rsplit('.', 1)[1] in ["jsonl", "json"]:
+    if metalist.filename and metalist.filename.rsplit(".", 1)[1] in ["jsonl", "json"]:
         if metalist.jsonlines:
             orjsonl.save(metalist.filename, items)
         else:
-            json_items = json.dumps(items).decode("utf-8")
+            json_output = json.dumps(output).decode("utf-8")
             with open(metalist.filename, "w") as file:
-                file.write(json_items)
+                file.write(json_output)
         return metalist.filename
     else:
-        return json.dumps(items)
+        return json.dumps(output).decode("utf-8")
