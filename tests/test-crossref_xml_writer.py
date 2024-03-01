@@ -457,10 +457,10 @@ def test_json_feed_item_without_doi():
 @pytest.mark.vcr
 def test_ghost_with_affiliations():
     "ghost with affiliations"
-    string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
+    string = "https://api.rogue-scholar.org/posts/57ed3097-a397-491e-90c0843d1e0102ac"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
+    assert subject.id == "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3"
     assert subject.type == "Article"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
@@ -472,8 +472,8 @@ def test_ghost_with_affiliations():
         "surname": "Fenner",
         "affiliations": {
             "institution": {
-                "institution_name": "Public Library of Science",
-                "institution_id": {"type": "ror", "#text": "https://ror.org/008zgvp64"},
+                "institution_name": "DataCite",
+                "institution_id": {"type": "ror", "#text": "https://ror.org/04wxnsj81"},
             }
         },
         "ORCID": "https://orcid.org/0000-0003-1419-2405",

@@ -1,4 +1,5 @@
 """Crossref utils module for commonmeta-py"""
+
 from lxml import etree
 from typing import Optional
 from datetime import datetime
@@ -182,10 +183,10 @@ def insert_crossref_person(contributor, xml):
                 contributor, "affiliation.0.name"
             )
         if py_.get(contributor, "affiliation.0.id") is not None:
-            etree.SubElement(institution, "institution_id", {"type": "ror"}).text = py_.get(
-                contributor, "affiliation.0.id"
-            )
-        
+            etree.SubElement(
+                institution, "institution_id", {"type": "ror"}
+            ).text = py_.get(contributor, "affiliation.0.id")
+
     orcid = normalize_orcid(contributor.get("id", None))
     if orcid is not None:
         etree.SubElement(xml, "ORCID").text = orcid
@@ -293,7 +294,9 @@ def insert_crossref_relations(metadata, xml):
             related_item,
             "intra_work_relation",
             {
-                "relationship-type": related_identifier.get("type", None),
+                "relationship-type": py_.lower_first(related_identifier.get("type"))
+                if related_identifier.get("type", None) is not None
+                else None,
                 "identifier-type": identifier_type,
             },
         ).text = _id

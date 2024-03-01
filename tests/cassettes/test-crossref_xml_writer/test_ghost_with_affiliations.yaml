@@ -108,4 +108,138 @@ interactions:
       - 1.1 fly.io
     http_version: HTTP/1.1
     status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/57ed3097-a397-491e-90c0843d1e0102ac
+  response:
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/auto-update-has-arrived","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+      Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Personal","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1708949311,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
+      Matter","blog_slug":"front_matter","content_text":"*We will follow up with a
+      blog post later this week explaining the\nDataCite auto-update implementation.*\n\nSince
+      ORCID''s inception, our key goal has been to unambiguously identify\nresearchers
+      and provide tools to automate the connection between\nresearchers and their
+      creative works. We are taking a big step towards\nachieving this goal today,
+      with the launch of\n[Auto-Update](http://orcid.org/blog/2014/11/21/new-functionality-friday-auto-update-your-orcid-record)\nfunctionality
+      in collaboration with [Crossref](http://www.crossref.org/)\nand [DataCite](https://www.datacite.org/).\n\nThere''s
+      already been a lot of excitement about Auto-Update: [Crossref''s\nrecent\nannouncement](https://www.crossref.org/blog/crossref-to-auto-update-orcid-records/)\nabout
+      the imminent launch generated a flurry of discussion and\ncelebration on social
+      media. Our own\n[tweet](https://twitter.com/ORCID_Org/status/647020600192581633)
+      on the\ntopic was viewed over 10,500 times and retweeted by 60 other accounts.\n\nSo
+      why all the fuss? We think Auto-Update will transform the way\nresearchers manage
+      their scholarly record. Until now, researchers have\nhad to manually maintain
+      their record, connecting new activities as they\nare made public. In ORCID,
+      that meant using [Search &\nLink](https://support.orcid.org/hc/en-us/articles/360006973653-Add-works-by-direct-import-from-other-systems)\ntools
+      developed by our member organizations to claim works manually.\nResearchers
+      frequently ask, \"Why, if I include my ORCID iD when I submit\na manuscript
+      or dataset, isn''t my ORCID record \"automagically\" updated\nwhen the work
+      is published?\"\n\nWith the launch of Auto-Update, that is just what will happen.\n\n**It
+      might seem like magic but there are a few steps to make it work**:\n\n- **Researchers**.
+      You need to do two things: (1) use your ORCID iD when\n  submitting a paper
+      or dataset, and (2) authorize Crossref and DataCite\n  to update your ORCID
+      record. In keeping with our commitment to\n  ensuring that researchers maintain
+      full control of their ORCID record,\n  you may revoke this permission at any
+      time, and may also choose\n  privacy settings for the information posted on
+      your record.\n- **Publishers and data centers**. These organizations also have
+      two\n  things to do: (1) collect ORCID identifiers during the submission\n  workflow,
+      using a process that involves authentication (not a type-in\n  field!), and
+      (2) embed the iD in the published paper and include the\n  iD when submitting
+      information to Crossref or DataCite.\n- **Crossref and DataCite**. Upon receipt
+      of data from a publisher or\n  data center with a valid identifier, Crossref
+      or DataCite can\n  automatically push that information to the researcher''s
+      ORCID record.\n  More information about how to opt out of this service can be
+      found\n  here: [the ORCID\n  Inbox](https://support.orcid.org/hc/en-us/articles/360006972953).\n\n###
+      Why is this so revolutionary?\n\nA bit of background, first. Crossref and DataCite,
+      both non-profit\norganizations, are leaders in minting DOIs (Digital Object
+      Identifiers)\nfor research publications and datasets. A\n[DOI](http://www.crossref.org/01company/16fastfacts.html#sthash.o7NGwOnP.dpuf)\nis
+      a unique alphanumeric string assigned to a digital object -- in this\ncase,
+      an electronic journal article, book chapter, or a dataset. Each\nDOI is associated
+      with a set of basic metadata and a URL pointer to the\nfull text, so that it
+      uniquely identifies the content item and provides\na persistent link to its
+      location on the internet.\n\nCrossref, working with over a thousand scholarly
+      publishers, has\ngenerated well over 75 million DOIs for journal articles and
+      book\nchapters. DataCite works with nearly 600 data centers worldwide and has\ngenerated
+      over 6.5 million DOIs to date. Between them, Crossref and\nDataCite have already
+      received almost half a million works from\npublishers and data centers that
+      include an ORCID iD validated by the\nauthor/contributor. With Auto-Update functionality
+      in place, information\nabout these articles can transit (with the author''s
+      permission) to the\nauthor''s ORCID record.\n\nAuto-Update doesn''t stop at
+      a researcher''s ORCID record. Systems that\nhave integrated ORCID APIs and have
+      a researcher''s ORCID record\nconnected to that system \\-- their faculty profile
+      system, library\nrepository, webpage, funder reporting system \\-- can receive
+      alerts from\nORCID. Information can move easily and unambiguously across systems.\n\nThis
+      is the beginning of the end for the endless rekeying of information\nthat plagues
+      researchers \\-- and anyone involved in research reporting.\nSurely something
+      to celebrate!\n\n**Questions you may have**:\n\n#### Q. What do I need to do
+      to sign up for auto-update?\n\nYou need to grant permission to Crossref and
+      DataCite to post\ninformation to your ORCID record. You can do this today by
+      using the\nSearch and Link wizard for DataCite available through the ORCID Registry\nor
+      the [DataCite Search](https://search.datacite.org/) page. We also\nhave added
+      a new ORCID Inbox, so that you can receive a message from\nCrossref or DataCite
+      if they receive a datafile with your iD, and you\ncan grant permission directly.
+      See [more on the ORCID\nInbox](https://support.orcid.org/hc/en-us/articles/360006972953).\n\n####
+      Q. Will Crossref and DataCite be able to update my ORCID record with already
+      published works for which I did not use my ORCID iD?\n\nNo. The auto-update
+      process only applies to those works that these\norganizations receive that include
+      your ORCID iD. For previous works\nthat did not include your ORCID iD, you will
+      need to use the DataCite\nand Crossref Search and Link wizards to connect information
+      with your\niD.\n\n#### Q. What information will be posted to my record?\n\nWith
+      your permission, basic information about the article (such as\ntitle, list of
+      contributors, journal, or publisher) or dataset (such as\ndata center name and
+      date of publication) will be posted, along with a\nDOI that allows users to
+      navigate to the source paper or dataset landing\npage.\n\n#### Q. What if my
+      journal or data center doesn''t collect ORCID iDs? {#q-what-if-my-journal-or-data-center-doesn%E2%80%99t-collect-orcid-ids}\n\nAsk
+      them too! This simple step can be accomplished using either the\nPublic or Member
+      ORCID APIs. Information about integrating ORCID iDs in\n[publishing](http://members.orcid.org/publisher-workflow)
+      and\n[repository](http://members.orcid.org/repository-systems) workflows is\npublicly
+      available.\n\n### Acknowledgments\n\nThis blog post was [originally\npublished](https://doi.org/10.5438/ferw-cwhq)
+      on the DataCite blog and\nhas been cross-posted from the [ORCID\nblog](https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/){rel=\"noreferrer\"}.\n","doi":"https://doi.org/10.53731/r796hz1-97aq74v-ag4f3","guid":"62d42bbd41e317003df48ed9","id":"57ed3097-a397-491e-90c0-843d1e0102ac","image":"https://blog.front-matter.io/content/images/2022/08/graph.png","indexed_at":1709297857,"language":"en","published_at":1445817600,"reference":[],"relationships":[{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/ferw-cwhq"}],"summary":"<em>\n
+      We will follow up with a blog post later this week explaining the DataCite auto-update
+      implementation.\n</em>\nSince ORCID\u2019s inception, our key goal has been
+      to unambiguously identify researchers and provide tools to automate the connection
+      between researchers and their creative works. We are taking a big step towards
+      achieving this goal today, with the launch of Auto-Update functionality in collaboration
+      with Crossref and DataCite.","tags":["News"],"title":"Auto-Update Has Arrived!","updated_at":1695197353,"url":"https://blog.front-matter.io/posts/auto-update-has-arrived"}
+
+      '
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Fri, 01 Mar 2024 14:31:41 GMT
+      fly-request-id:
+      - 01HQX6V4V3E0QXBADPFSWPMF2G-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '14'
+      ratelimit-reset:
+      - '3'
+      server:
+      - Fly/8f449382 (2024-03-01)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1
