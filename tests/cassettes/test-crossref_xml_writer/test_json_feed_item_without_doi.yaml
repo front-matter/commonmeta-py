@@ -11,15 +11,15 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa
   response:
     content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Nees Jan van
-      Eck"},{"name":"Ludo Waltman"}],"blog":{"api":false,"archive_prefix":null,"authors":[{"name":"Leiden
-      Madtrics","url":null}],"backlog":134,"canonical_url":null,"category":"socialSciences","created_at":1682899200,"current_feed_url":null,"description":"Leiden
+      Eck","url":"https://orcid.org/0000-0001-8448-4521"},{"name":"Ludo Waltman"}],"blog":{"archive_prefix":null,"authors":[{"name":"Leiden
+      Madtrics","url":null}],"canonical_url":null,"category":"socialSciences","created_at":1682899200,"current_feed_url":null,"description":"Leiden
       Madtrics","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://www.leidenmadtrics.nl/atom/","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://www.leidenmadtrics.nl/","id":"a0920819-e194-4514-bca4-5f0837e10c51","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Starter","prefix":"10.59350","relative_url":null,"ror":"https://ror.org/027bh9e22","secure":true,"slug":"leidenmadtrics","status":"active","title":"Leiden
-      Madtrics","updated_at":1707513717,"use_api":null,"use_mastodon":false,"user_id":"ae88df6b-e1cf-4743-86a8-c032659cf5d2","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Leiden
+      Madtrics","updated_at":1709211883,"use_api":null,"use_mastodon":false,"user_id":"ae88df6b-e1cf-4743-86a8-c032659cf5d2"},"blog_name":"Leiden
       Madtrics","blog_slug":"leidenmadtrics","content_text":"Classifying research
       publications into research topics or research areas\nis crucial for many bibliometric
       analyses. While there are lots of\napproaches for classifying publications,
@@ -165,11 +165,11 @@ interactions:
       the Open Edition of the [Leiden\nRanking](https://www.leidenranking.com/){target=\"_blank\"}
       that CWTS is\ngoing to release on January 30. The classification is also used
       by the\nOpenAlex team as a foundation for a [new topic classification for\nOpenAlex](https://groups.google.com/g/openalex-users/c/2yE1jie_D3s){target=\"_blank\"}.\nWe
-      hope our work will help to advance the transition to open approaches\nto bibliometrics!  \n","doi":"https://doi.org/10.59350/qc0px-76778","guid":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications","id":"e2ecec16-405d-42da-8b4d-c746840398fa","image":"https://www.leidenmadtrics.nl/images/community/An-open-approach-for-classifying-research-publications_1.png","indexed_at":1707242608,"language":"en","published_at":1706108400,"reference":[],"relationships":[],"summary":"Classifying
+      hope our work will help to advance the transition to open approaches\nto bibliometrics!  \n","doi":"https://doi.org/10.59350/qc0px-76778","guid":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications","id":"e2ecec16-405d-42da-8b4d-c746840398fa","image":"https://www.leidenmadtrics.nl/images/community/An-open-approach-for-classifying-research-publications_1.png","indexed_at":1709212984,"language":"en","published_at":1706108400,"reference":[],"relationships":[],"summary":"Classifying
       research publications into research topics or research areas is crucial for
       many bibliometric analyses. While there are lots of approaches for classifying
       publications, most of these approaches lack transparency.","tags":[],"title":"An
-      open approach for classifying research publications","updated_at":1707241375,"url":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"}
+      open approach for classifying research publications","updated_at":1709211827,"url":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"}
 
       '
     headers:
@@ -178,17 +178,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:53 GMT
+      - Fri, 01 Mar 2024 11:26:46 GMT
       fly-request-id:
-      - 01HP997GMRMPZ12C2YF4JF4X77-fra
+      - 01HQWW8J056M7GAS1T6FA3QXVB-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
       - '13'
+      ratelimit-reset:
+      - '7'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

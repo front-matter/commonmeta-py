@@ -11,14 +11,14 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d
   response:
     content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22124/20231105103706/https://upstream.force11.org/attempts-at-automating-journal-subject-classification","authors":[{"name":"Esha
-      Datta","url":"https://orcid.org/0000-0001-9165-2757"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22124/20231105103706/","authors":null,"backlog":0,"canonical_url":null,"category":"humanities","created_at":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
+      Datta","url":"https://orcid.org/0000-0001-9165-2757"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22124/20231105103706/","authors":null,"canonical_url":null,"category":"humanities","created_at":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
       community blog for all things Open Research.","favicon":"https://upstream.force11.org/favicon.png","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-      5.25","home_page_url":"https://upstream.force11.org","id":"e3952730-ffb7-4ef9-b4a5-6433d86b2819","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scicomm.xyz/@upstream","plan":"Team","prefix":"10.54900","relative_url":null,"ror":null,"secure":true,"slug":"upstream","status":"active","title":"Upstream","updated_at":1705865031,"use_api":true,"use_mastodon":false,"user_id":"08014cf6-3335-4588-96f4-c77ac1e535b2","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Upstream","blog_slug":"upstream","content_text":"Traditionally,
+      5.25","home_page_url":"https://upstream.force11.org","id":"e3952730-ffb7-4ef9-b4a5-6433d86b2819","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scicomm.xyz/@upstream","plan":"Team","prefix":"10.54900","relative_url":null,"ror":null,"secure":true,"slug":"upstream","status":"active","title":"Upstream","updated_at":1707821638,"use_api":true,"use_mastodon":false,"user_id":"08014cf6-3335-4588-96f4-c77ac1e535b2"},"blog_name":"Upstream","blog_slug":"upstream","content_text":"Traditionally,
       journal subject classification was done manually at\nvarying levels of granularity,
       depending on the use case for the\ninstitution. Subject classification is done
       to help collate resources by\nsubject enabling the user to discover publications
@@ -210,7 +210,7 @@ interactions:
       journal subject classification was done manually at varying levels of granularity,
       depending on the use case for the institution. Subject classification is done
       to help collate resources by subject enabling the user to discover publications
-      based on different levels of subject specificity.\n","tags":["Original Research"],"title":"Attempts
+      based on different levels of subject specificity.","tags":["Original Research"],"title":"Attempts
       at automating journal subject classification","updated_at":1705661262,"url":"https://upstream.force11.org/attempts-at-automating-journal-subject-classification"}
 
       '
@@ -220,9 +220,9 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:51 GMT
+      - Fri, 01 Mar 2024 11:26:43 GMT
       fly-request-id:
-      - 01HP997EA0T7P89NCG1P3AD5ZE-fra
+      - 01HQWW8F2D0R4RKQHPV7ZNCBAE-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
@@ -230,7 +230,7 @@ interactions:
       ratelimit-reset:
       - '3'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

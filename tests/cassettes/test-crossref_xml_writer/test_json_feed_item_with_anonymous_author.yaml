@@ -11,14 +11,14 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/a163e340-5b3c-4736-9ab0-8c54fdff6a3c
   response:
     content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22139/20231105110053/https://lab.sub.uni-goettingen.de/welcome.html","authors":[{"name":"Mathias
-      G\u00f6bel"}],"blog":{"api":false,"archive_prefix":"https://wayback.archive-it.org/22139/20231105110053/","authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1682294400,"current_feed_url":null,"description":"Better
+      G\u00f6bel"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22139/20231105110053/","authors":null,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1682294400,"current_feed_url":null,"description":"Better
       sit thus, and observe thy strange things","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://lab.sub.uni-goettingen.de/atom.xml","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll","home_page_url":"https://lab.sub.uni-goettingen.de/","id":"88818791-dea6-44c7-8065-02a1cfd050dc","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"lab_sub","status":"active","title":"lab.sub
-      - Articles","updated_at":1706572801,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"lab.sub
+      - Articles","updated_at":1706572801,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"lab.sub
       - Articles","blog_slug":"lab_sub","content_text":"Welcome everyone!\n\nThis
       is the place to read about projects, resources and all the things\nwe deal with
       at our work on digital collections, databases, APIs, tools\nand esoteric programming
@@ -39,17 +39,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:55 GMT
+      - Fri, 01 Mar 2024 11:26:48 GMT
       fly-request-id:
-      - 01HP997JPV0NW50QF11K3C739P-fra
+      - 01HQWW8K6Y2JWGJ2B2CX5AJY6T-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '7'
+      - '12'
       ratelimit-reset:
-      - '31'
+      - '11'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

@@ -11,7 +11,7 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://blog.front-matter.io/posts/dryad-interview-jen-gibson
   response:
@@ -20,7 +20,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '1932'
+      - '234086'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -30,7 +30,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -50,15 +50,15 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Request-ID:
-      - 70b74694-7e06-4a19-85da-86cda6ec752d
+      - d095d795-3804-4c30-b7c0-9118cc0d9376
       X-Served-By:
-      - cache-ams21066-AMS
+      - cache-ams21021-AMS
       X-Timer:
-      - S1707561169.217028,VS0,VE1
+      - S1709292401.103145,VS0,VE1
       location:
       - /posts/dryad-interview-jen-gibson/
       x-request-id:
-      - 70b74694-7e06-4a19-85da-86cda6ec752d
+      - d095d795-3804-4c30-b7c0-9118cc0d9376
     http_version: HTTP/1.1
     status_code: 301
 - request:
@@ -73,14 +73,14 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://blog.front-matter.io/posts/dryad-interview-jen-gibson/
   response:
     content: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"utf-8\">\n
       \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
       \   <title>Dryad: Interview with Jen Gibson</title>\n    <link rel=\"stylesheet\"
-      href=\"https://blog.front-matter.io/assets/built/screen.css?v=7078de6b54\">\n\n
+      href=\"https://blog.front-matter.io/assets/built/screen.css?v=adfb4b14fb\">\n\n
       \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n
       \   <meta name=\"citation_title\" content=\"Dryad: Interview with Jen Gibson\">\n
       \   <meta name=\"citation_abstract\" content=\"In October Jen Gibson started
@@ -182,9 +182,9 @@ interactions:
       data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
       data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
       \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
-      \   <script defer src=\"/public/cards.min.js?v=7078de6b54\"></script>\n    <link
-      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=7078de6b54\">\n
-      \   <script defer src=\"/public/comment-counts.min.js?v=7078de6b54\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
+      \   <script defer src=\"/public/cards.min.js?v=adfb4b14fb\"></script>\n    <link
+      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=adfb4b14fb\">\n
+      \   <script defer src=\"/public/comment-counts.min.js?v=adfb4b14fb\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
       \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
       feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
       defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
@@ -477,12 +477,12 @@ interactions:
       title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
       pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
       class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
-      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=7078de6b54\"></script>\n\n\n\n</body>\n\n</html>\n"
+      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=adfb4b14fb\"></script>\n\n\n\n</body>\n\n</html>\n"
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '0'
+      - '254115'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -492,15 +492,15 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '9074'
+      - '9058'
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       Ghost-Age:
-      - '9200'
+      - '0'
       Ghost-Cache:
-      - HIT
+      - MISS
       Ghost-Fastly:
       - 'true'
       Server:
@@ -512,19 +512,19 @@ interactions:
       Via:
       - 1.1 varnish
       X-Cache:
-      - MISS
+      - HIT
       X-Cache-Hits:
-      - '0'
+      - '1'
       X-Request-ID:
-      - f49dc296-77c9-4484-83bb-a73c27470f1f
+      - 974f325f-219f-4988-813c-1862de9825fc
       X-Served-By:
-      - cache-ams21066-AMS
+      - cache-ams21021-AMS
       X-Timer:
-      - S1707561169.247968,VS0,VE6
+      - S1709292401.131152,VS0,VE1
       etag:
-      - W/"85d1-sEXzVT6sLXzTpgM5aVrqPNV8gGY"
+      - W/"85d1-U8lfkG4nG4z1D7Zk0ktaDQcPkU4"
       x-request-id:
-      - ab6a9c91-cc31-4d2b-95b9-ef0d761d0381
+      - 974f325f-219f-4988-813c-1862de9825fc
     http_version: HTTP/1.1
     status_code: 200
 - request:
@@ -539,7 +539,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
@@ -548,7 +548,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0bd3d5a0eb1-AMS
+      - 85d8cb23ed010b5c-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -556,11 +556,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fQWJQjCq1B7W9KHsap9LrpYF7GWTidTKwEPmuXWvynL5yC60aXUekJdN0vQRltItCF0vBzEeslnz%2FG%2BJ4Ba0OYnZvXVq1CHsGnpAjmypyYR5P5ofv48H5QAyD5vCzhpTTwVGUi0%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kZBTveS2xO%2FZlnjdtIB3geRR3HfZlOVrMYe89ATKMFWPFenPwOtRvpAqERjnYLDpBxMPzHHrNNVDfG%2FDiPyX%2BxJPdv2yS3QiGp5hTxgHIMXnHkKedqAi5Dq8BD8ThlqbmDwAMys%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:

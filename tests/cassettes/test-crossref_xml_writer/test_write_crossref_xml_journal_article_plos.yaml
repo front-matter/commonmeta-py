@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.1371
   response:
@@ -20,7 +20,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0a549e7b93c-AMS
+      - 85d8cb173cf36684-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,11 +28,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:45 GMT
+      - Fri, 01 Mar 2024 11:26:39 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=cToZ4ojrnKxmSXe2LkBRW%2FZ7R9Ghe7u71iuLQuOnrs7u2KomiEutalk3BAng1hkeaSKdrIZpjq8VBhejnru6Yo%2FoAMTQ8PJLWfXwiiZwp2UEsi2YCivZ59C4PhwMd40YyD1Okag%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=lCbT9Qeb4Y6bYkhIz128WhVJsY0z7fP9MQIREMoSP1GQdOyVFC%2B%2BooVjowrRzAmThL8B0AyUegMcVOZCNe8Q94aOAcfmA33GWAcc4nD6mO8xt9l%2B2WQZAStOChYVyeeToSN4E%2Fw%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -57,7 +57,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.crossref.org/works/10.1371/journal.pone.0000030
   response:
@@ -271,7 +271,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:46 GMT
+      - Fri, 01 Mar 2024 11:26:39 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -288,109 +288,6 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - api.crossref.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://api.crossref.org/members/340
-  response:
-    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521520969,"primary-name":"Public
-      Library of Science (PLoS)","counts":{"current-dois":42329,"backfile-dois":310955,"total-dois":353284},"breakdowns":{"dois-by-issued-year":[[2013,36496],[2014,35458],[2015,33566],[2012,27111],[2016,26725],[2017,24569],[2018,22183],[2021,20842],[2022,20632],[2020,20426],[2023,19682],[2019,19633],[2011,16685],[2010,9366],[2009,6717],[2008,4608],[2007,2671],[2024,2015],[2005,1643],[2006,1613],[2004,540],[2003,103]]},"prefixes":["10.24196","10.1371"],"coverage":{"affiliations-current":0.0,"similarity-checking-current":1.0,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.2566737952436848,"licenses-backfile":0.9884484893312537,"funders-current":0.6799593659193461,"affiliations-backfile":6.78554774806644E-4,"resource-links-backfile":0.0,"orcids-backfile":0.3262015404158158,"update-policies-current":1.0,"ror-ids-backfile":0.0,"orcids-current":0.957759455692315,"similarity-checking-backfile":0.9178369860590762,"references-backfile":0.9249537714460292,"descriptions-backfile":0.0,"award-numbers-backfile":0.2221961377048126,"update-policies-backfile":0.9948159701564535,"licenses-current":0.9999763755345035,"award-numbers-current":0.5779252994401002,"abstracts-backfile":0.07576015822225081,"resource-links-current":0.0,"abstracts-current":0.953625174230433,"references-current":0.999740130879539},"prefix":[{"name":"Public
-      Library of Science (PLoS)","value":"10.24196"},{"name":"Public Library of Science","value":"10.1371"}],"id":340,"tokens":["public","library","of","science","plos"],"counts-type":{"all":{"journal-article":353284,"journal":1,"component":3723315,"dataset":7},"backfile":{"journal-article":310955},"current":{"journal-article":42329}},"coverage-type":{"all":{"journal-article":{"last-status-check-time":1707521520969,"affiliations":5.972532013903828E-4,"abstracts":0.1809422447662504,"orcids":0.401872148186728,"licenses":0.9898297120730064,"references":0.9339143578537381,"funders":0.3073900884274408,"similarity-checking":0.9276814121216925,"award-numbers":0.2648181066790458,"ror-ids":0.0,"update-policies":0.9954370987647332,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521520969,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521520969,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":4.619539308385135E-5},"dataset":{"last-status-check-time":1707521520969,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"journal-article":{"last-status-check-time":1707521520969,"affiliations":6.78554774806644E-4,"abstracts":0.07576015822225081,"orcids":0.3262015404158158,"licenses":0.9884484893312537,"references":0.9249537714460292,"funders":0.2566737952436848,"similarity-checking":0.9178369860590762,"award-numbers":0.2221961377048126,"ror-ids":0.0,"update-policies":0.9948159701564535,"resource-links":0.0,"descriptions":0.0}},"current":{"journal-article":{"last-status-check-time":1707521520969,"affiliations":0.0,"abstracts":0.953625174230433,"orcids":0.957759455692315,"licenses":0.9999763755345035,"references":0.999740130879539,"funders":0.6799593659193461,"similarity-checking":1.0,"award-numbers":0.5779252994401002,"ror-ids":0.0,"update-policies":1.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":false,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":false,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":false,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"San
-      Francisco, CA, United States","names":["Public Library of Science (PLoS)","Public
-      Library of Science"]}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '1338'
-      content-type:
-      - application/json
-      date:
-      - Sat, 10 Feb 2024 10:32:46 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/ra/10.1371
-  response:
-    content: "[\n  {\n    \"DOI\": \"10.1371\",\n    \"RA\": \"Crossref\"\n  }\n]"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8533b0ad185a66cc-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 10 Feb 2024 10:32:46 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=497yecKaiInWz0%2FK6S17PVYuQH8ZpcbCgKGKvXpJN3EjGJFU4p88e8BdJPu6NvGarg%2BhSdHoTO4iQQcKYN5InqtVNfXO38KU8OBcTdsDIJUamLUDP1XKv44%2FU0Nx4EnXX3xvDH0%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
     http_version: HTTP/1.1
     status_code: 200
 version: 1

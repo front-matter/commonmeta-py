@@ -11,7 +11,7 @@ interactions:
       host:
       - raw.githubusercontent.com
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
   response:
@@ -69,11 +69,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Sat, 10 Feb 2024 10:32:56 GMT
+      - Fri, 01 Mar 2024 11:26:48 GMT
       ETag:
       - W/"25628247775bc8498b72a76a149cdd57347f26043a4fbfd023e38d87e6753fdb"
       Expires:
-      - Sat, 10 Feb 2024 10:37:56 GMT
+      - Fri, 01 Mar 2024 11:31:48 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -83,21 +83,21 @@ interactions:
       Via:
       - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS
       X-Cache-Hits:
-      - '1'
+      - '0'
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 6ea60e7e6e1fb980a2fde0c1d7456b23d81e1a6b
+      - dac5def325d6a39f405ce2dcd31a4a2dd2990f18
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 4734:FD73B:332C170:352AEC4:65C748EF
+      - BF50:0E7D:358A0D3:37EB428:65E1BB74
       X-Served-By:
-      - cache-ams21033-AMS
+      - cache-ams21044-AMS
       X-Timer:
-      - S1707561176.983625,VS0,VE140
+      - S1709292408.238869,VS0,VE153
       X-XSS-Protection:
       - 1; mode=block
     http_version: HTTP/1.1

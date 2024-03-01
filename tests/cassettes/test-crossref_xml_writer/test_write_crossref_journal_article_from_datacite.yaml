@@ -11,7 +11,7 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.datacite.org/dois/10.2312/geowissenschaften.1989.7.181?include=media,client
   response:
@@ -49,9 +49,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:32:48 GMT
+      - Fri, 01 Mar 2024 11:26:40 GMT
       ETag:
-      - W/"2d7fb9b9719fbb376007c153d13cf44e"
+      - W/"9065dee977aceaf343990fad214d02c8"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -75,9 +75,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.20
       X-Request-Id:
-      - 26018ce4-edb1-4753-b0ee-e8a836027820
+      - d61cfd05-7c2a-41b7-be3b-8b78cfd476c2
       X-Runtime:
-      - '0.029856'
+      - '0.032286'
       X-XSS-Protection:
       - 1; mode=block
     http_version: HTTP/1.1

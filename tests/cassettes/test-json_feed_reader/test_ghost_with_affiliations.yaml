@@ -1,0 +1,111 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
+  response:
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
+      Library of Science"}],"name":"Martin Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+      Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Personal","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1708949311,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
+      Matter","blog_slug":"front_matter","content_text":"A few weeks ago Kafkas et
+      al. (2013) published a paper looking at\ncurrent patterns of how datasets o
+      biological databases are cited in\nresearch articles, based on an analysis of
+      the full text Open Access\narticles available from Europe PMC. They identified
+      data citations by:\n\n1.  Accession numbers available in articles as publisher-supplied,\n    structured
+      content;\n2.  Accession numbers identified in articles by text mining;\n3.  References
+      to articles from the ENA, UniProt and PDBe records.\n\nThey could show that
+      text mining doubles the number of structured\nannotations available in journal
+      articles (from 2.26% to 5.15%), and\nthat these structured annotations should
+      be extended beyond the ENA,\nUniProt and PDB identifiers that their analysis
+      focused on. ENA\nidentifiers (for nucleotide sequences in GenBank, EMBL or DDBJ)
+      make up\nthe largest group, with 160,112 identifiers found in the 410,364\narticles
+      that were analyzed.\n\nAnother result in the paper is that references to articles
+      in these\ndatabases show little overlap with database links found in articles.
+      One\nof the conclusions drawn by the author is that\n\n> Text-mining can be
+      used to extend structured data citation, and could\n> be a basis for the development
+      of services to help authors or editors\n> to add structured content at the beginning
+      of the publication process,\n> rather than after the fact.\n\nAdding structured
+      data citations during the authoring phase of a\nmanuscript requires tools that
+      make this process easier, providing\nauto-linking and verification without requiring
+      extra input from the\nauthor. Scholarly Markdown is an ideal platform for these
+      tools, as it\nis easier to extend than traditional word processors such as Microsoft\nWord.
+      During a small workshop around persistent identifiers for data\n([DataCite](http://datacite.org/)),
+      people ([ORCID](http://orcid.org/))\nand geological samples ([IGSN](http://www.geosamples.org/igsnabout))\nthat
+      took place yesterday and today at the [GFZ\nPotsdam](http://www.gfz-potsdam.de/portal/gfz/cegit)
+      I worked on a tool\nthat does auto-linking for these identifiers:\n\n- IGSN.
+      [International Geosample\n  Number](http://www.geosamples.org/igsnabout)\n-
+      MGI identifiers for genetically modified mouse strains in the\n  [Internal Mouse
+      Strain Resource](http://www.findmice.org/about)\n- ENA. [Genbank / ENA / DDBJ
+      nucleotide\n  sequences](http://www.ebi.ac.uk/ena/about/about)\n- UniProt protein
+      sequences from the [UniProt\n  database](http://www.uniprot.org/help/about)\n-
+      PDB. [Protein Data Bank protein structure\n  information](http://www.rcsb.org/pdb/static.do?p=home/faq.html)\n\nThe
+      list includes the IGSN, the database identifiers studied by Kafkas\net al (2013),
+      and the MGI identifier for genetically altered mice. In\nthe life sciences there
+      is a long tradition - and requirement by\njournals - to use database identifiers
+      for data, but identifiers for\nresources such as genetically modified mice are
+      unfortunately not in\ncommon use.\n\nThis blog uses the Pandoc markdown processor
+      and the Jekyll static\nwebsite generator. The easiest way to implement this
+      functionality was\nby writing a filter for the liquid templating engine used
+      by Jekyll, and\nprovide this filter as a Jekyll plugin. The Jekyll plugin can
+      be found\nat [mfenner/jekyll-scholmd](https://github.com/mfenner/jekyll-scholmd).\nThe
+      plugin expects the name of the identifier, followed by a colon and\noptional
+      space, followed by the identifier:\n\n    GenBank:  M10090\n    IGSN:  JRH964436\n    MGI:  96922\n    UniProt:  P02144\n    PDB:  1mbn\n\nThis
+      input is automatically translated into\n[GenBank:M10090](http://www.ebi.ac.uk/ena/data/view/M10090),\n[IGSN:JRH964436](http://hdl.handle.net/10273/JRH964436),\n[MGI:96922](http://www.findmice.org/summary?gaccid/96922),
+      and\ninformation about the human myoglobin protein\n([UniProt:P02144](http://www.uniprot.org/uniprot/P02144),\n[PDB:1mbn](http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn))\nis
+      generated in a similar fashion.\n\nThe plugin was written in a few hours today,
+      and is my first Jekyll\nplugin. There is room for improvement, e.g. support
+      for more\nidentifiers, better regex matching, validation of the resulting links,\nand
+      automated tag generation if an identifier is found. Ideally the\nauto-linking
+      should happen in the markdown and not the HTML output, so\nthat these structured
+      database links are also available in other\nmarkdown outputs such as PDF. But
+      this is another example how Scholarly\nMarkdown can make it easier for researchers
+      to author documents without\nrequiring a fancy web-based user interface.\n\n##
+      References\n\nKafkas, \u015e., Kim, J.-H., & McEntyre, J. R. (2013). Database
+      Citation in\nFull Text Biomedical Articles. *PLoS ONE*.\n[doi:10.1371/journal.pone.0063184](http://doi.org/10.1371/journal.pone.0063184)\n","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","guid":"62d42bbd41e317003df48d81","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.io/content/images/2022/08/journal.pone.0063184.g003.png","indexed_at":1708335085,"language":"en","published_at":1372784280,"reference":[{"doi":"https://doi.org/10.1371/journal.pone.0063184","key":"ref1","publicationYear":"2013","title":"Database
+      Citation in Full Text Biomedical Articles"}],"relationships":[],"summary":"A
+      few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
+      of how datasets o biological databases are cited in research articles, based
+      on an analysis of the full text Open Access articles available from Europe PMC.","tags":["Feature"],"title":"Auto
+      generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources"}
+
+      '
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Fri, 01 Mar 2024 11:38:04 GMT
+      fly-request-id:
+      - 01HQWWX814G4ATJ9QMCE9Q0H8T-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '14'
+      ratelimit-reset:
+      - '3'
+      server:
+      - Fly/38ec6ca9 (2024-02-29)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

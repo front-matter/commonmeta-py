@@ -11,7 +11,7 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
   response:
@@ -20,7 +20,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '136977'
+      - '5955'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -30,7 +30,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Sat, 10 Feb 2024 10:32:48 GMT
+      - Fri, 01 Mar 2024 11:26:40 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -50,15 +50,15 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Request-ID:
-      - 1e3cbfc7-1c6a-41a9-bb60-f312520cd6f2
+      - fe989826-c801-4638-8574-2728c8c81987
       X-Served-By:
-      - cache-ams21078-AMS
+      - cache-ams21060-AMS
       X-Timer:
-      - S1707561169.711993,VS0,VE1
+      - S1709292401.726107,VS0,VE1
       location:
       - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
       x-request-id:
-      - 1e3cbfc7-1c6a-41a9-bb60-f312520cd6f2
+      - fe989826-c801-4638-8574-2728c8c81987
     http_version: HTTP/1.1
     status_code: 301
 - request:
@@ -73,7 +73,7 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
   response:
@@ -81,7 +81,7 @@ interactions:
       \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
       \   <title>Editorial by more than 200 health journals: Call for emergency action
       to limit global temperature increases, restore biodiversity, and protect health</title>\n
-      \   <link rel=\"stylesheet\" href=\"https://blog.front-matter.io/assets/built/screen.css?v=52cb4b923e\">\n\n
+      \   <link rel=\"stylesheet\" href=\"https://blog.front-matter.io/assets/built/screen.css?v=adfb4b14fb\">\n\n
       \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
       \   <meta name=\"citation_title\" content=\"Editorial by more than 200 health
       journals: Call for emergency action to limit global temperature increases, restore
@@ -187,9 +187,9 @@ interactions:
       data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
       data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
       \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
-      \   <script defer src=\"/public/cards.min.js?v=52cb4b923e\"></script>\n    <link
-      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=52cb4b923e\">\n
-      \   <script defer src=\"/public/comment-counts.min.js?v=52cb4b923e\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
+      \   <script defer src=\"/public/cards.min.js?v=adfb4b14fb\"></script>\n    <link
+      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=adfb4b14fb\">\n
+      \   <script defer src=\"/public/comment-counts.min.js?v=adfb4b14fb\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
       \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
       feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
       defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
@@ -285,77 +285,75 @@ interactions:
       \                   <h4 class=\"gh-pagehead-title\">Read next</h4>\n                </section>\n\n
       \               <div class=\"gh-topic gh-topic-grid\">\n                    <div
       class=\"gh-topic-content\">\n                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-has-an-advisory-board/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
-      300w,\n                            /content/images/size/w720/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
-      720w,\n                            /content/images/size/w960/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
-      960w,\n                            /content/images/size/w1200/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
-      1200w,\n                            /content/images/size/w2000/2024/02/photo-1579052511406-ebe4c90f299f.jpeg
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/02/photo-1579052511406-ebe4c90f299f.jpeg\"\n
-      \                   alt=\"Introducing the Rogue Scholar Advisory Board\"\n                >\n
+      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-launches-a-free-personal-plan/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
+      300w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
+      720w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
+      960w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
+      1200w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
+      \                   alt=\"Rogue Scholar launches a free personal plan\"\n                >\n
       \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Introducing
-      the Rogue Scholar Advisory Board</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">In January 2024 the new Rogue Scholar Advisory Board
-      had its first meeting. It consists of six people with diverse expertise in scholarly
-      blogging. Advisory Board members come from different scholarly disciplines and
-      geographic regions, write in several languages besides English, and have different
-      levels of technical expertise.\n\nThe Advisory</div>\n\n            <footer
-      class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
-      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2024-02-08\">Feb
-      8, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65c4809686e93a00017b47f7\"\n
+      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Rogue
+      Scholar launches a free personal plan</h3>\n            </header>\n\n                    <div
+      class=\"gh-card-excerpt\">The Rogue Scholar science blog archive today has launched
+      a new free Personal Plan: similar to the Starter Plan launched last year, but
+      only for personal (single-author) blogs, and with no limitations on the number
+      of blog posts that can be archived and registered with a DOI per year.\n\nIn</div>\n\n
+      \           <footer class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
+      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2024-02-26\">Feb
+      26, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65dc70251677b70001215800\"\n
       \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
       \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
       \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
       \           </footer>\n        </div>\n    </a>\n</article>                            <article
-      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/an-update-on-the-rogue-scholar-fediverse/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/01/51387246685_0c704e4647_c.jpg
-      300w,\n                            /content/images/size/w720/2024/01/51387246685_0c704e4647_c.jpg
-      720w,\n                            /content/images/size/w960/2024/01/51387246685_0c704e4647_c.jpg
-      960w,\n                            /content/images/size/w1200/2024/01/51387246685_0c704e4647_c.jpg
-      1200w,\n                            /content/images/size/w2000/2024/01/51387246685_0c704e4647_c.jpg
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/01/51387246685_0c704e4647_c.jpg\"\n
-      \                   alt=\"An update on Rogue Scholar in the fediverse\"\n                >\n
+      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/commonmeta-py-now-supports-metadata-lists/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
+      300w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
+      720w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
+      960w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
+      1200w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
+      \                   alt=\"commonmeta-py now supports metadata lists\"\n                >\n
       \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">An update
-      on Rogue Scholar in the fediverse</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">The Rogue Scholar science blogging archive joined
-      the fediverse in August of last year. This week I want to report on an updated
-      strategy for Rogue Scholar, and what it means for science blogs participating
-      in Rogue Scholar.\n\nThe fediverse is a collection of community-owned, ad-free,
-      decentralised, and privacy-centric social</div>\n\n            <footer class=\"gh-card-footer\">\n
-      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
-      class=\"gh-card-date\" datetime=\"2024-01-29\">Jan 29, 2024</time>\n                    <script\n
-      \   data-ghost-comment-count=\"65b794cec28c930001fa98f8\"\n    data-ghost-comment-count-empty=\"\"\n
-      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
-      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
-      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
-      \       </div>\n    </a>\n</article>                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-updates-documentation-and-comments/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
-      300w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
-      720w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
-      960w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
-      1200w,\n                            https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1445560302902-faf947ee9413?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDl8fG1vdW50YWl8ZW58MHx8fHwxNzAwODM1MDU3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
-      \                   alt=\"Rogue Scholar updates: documentation and comments\"\n
-      \               >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
-      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Rogue
-      Scholar updates: documentation and comments</h3>\n            </header>\n\n
-      \                   <div class=\"gh-card-excerpt\">Shortly following an update
-      earlier this week, the Rogue Scholar science blog archive has updated or added
-      two features today: better documentation and new comments.\n\n\nDocumentation\n\nThe
-      Rogue Scholar documentation site was launched with the service but hasn&#39;t
-      seen any updates in several months. Today I updated the</div>\n\n            <footer
-      class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
-      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2023-11-24\">Nov
-      24, 2023</time>\n                    <script\n    data-ghost-comment-count=\"6560a5078567500001d4ff1d\"\n
+      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">commonmeta-py
+      now supports metadata lists</h3>\n            </header>\n\n                    <div
+      class=\"gh-card-excerpt\">This week the commonmeta-py Python library adds an
+      important new feature: metadata lists. With this feature commonmeta-py no longer
+      only operates on metadata for a single scholarly work (e.g. a journal article,
+      book, dataset, software, or blog post), but can handle lists of scholarly works.\n\nMost
+      of the metadata</div>\n\n            <footer class=\"gh-card-footer\">\n                <span
+      class=\"gh-card-author\">Martin Fenner</span>\n                <time class=\"gh-card-date\"
+      datetime=\"2024-02-20\">Feb 20, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65d4d00d1677b7000121571b\"\n
       \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
       \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
       \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                    </div>\n
-      \               </div>\n            </div>\n\n                <div class=\"gh-comments
-      gh-read-next gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
+      \           </footer>\n        </div>\n    </a>\n</article>                            <article
+      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/announcing-rogue-scholar-preview/\">\n
+      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
+      300w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
+      720w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
+      960w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
+      1200w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
+      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
+      \                   alt=\"Announcing Rogue Scholar Preview\"\n                >\n
+      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
+      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Announcing
+      Rogue Scholar Preview</h3>\n            </header>\n\n                    <div
+      class=\"gh-card-excerpt\">Today the Rogue Scholar science blog archive launched
+      a new feature: Rogue Scholar Preview. This new functionality enables the import
+      of new science blogs into the preview version of the production service, located
+      at https://preview.rogue-scholar.org. This allows users to see how their blog
+      posts will look like</div>\n\n            <footer class=\"gh-card-footer\">\n
+      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
+      class=\"gh-card-date\" datetime=\"2024-02-12\">Feb 12, 2024</time>\n                    <script\n
+      \   data-ghost-comment-count=\"65ca01e618422c0001e4a609\"\n    data-ghost-comment-count-empty=\"\"\n
+      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
+      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
+      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
+      \       </div>\n    </a>\n</article>                    </div>\n                </div>\n
+      \           </div>\n\n                <div class=\"gh-comments gh-read-next
+      gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
       class=\"gh-pagehead-title\">Comments (<script\n    data-ghost-comment-count=\"62d42bbd41e317003df48f15\"\n
       \   data-ghost-comment-count-empty=\"0\"\n    data-ghost-comment-count-singular=\"\"\n
       \   data-ghost-comment-count-plural=\"\"\n    data-ghost-comment-count-tag=\"span\"\n
@@ -408,12 +406,12 @@ interactions:
       title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
       pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
       class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
-      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=52cb4b923e\"></script>\n\n\n\n</body>\n\n</html>\n"
+      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=adfb4b14fb\"></script>\n\n\n\n</body>\n\n</html>\n"
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '136977'
+      - '5955'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -423,11 +421,11 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '6802'
+      - '6842'
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:32:48 GMT
+      - Fri, 01 Mar 2024 11:26:40 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -447,15 +445,15 @@ interactions:
       X-Cache-Hits:
       - '1'
       X-Request-ID:
-      - 7e2beb7e-7c40-440e-ac5c-d4683f56a1b0
+      - cbaf9d0f-c03c-4492-87d4-516a57c1cbfb
       X-Served-By:
-      - cache-ams21078-AMS
+      - cache-ams21060-AMS
       X-Timer:
-      - S1707561169.742876,VS0,VE5
+      - S1709292401.753498,VS0,VE1
       etag:
-      - W/"78bf-ETp1fRnHOkiQ4yrPT4ags4akCzA"
+      - W/"81f4-YZ86LocMcp4W4VH1vT5NJMyhbP8"
       x-request-id:
-      - 7e2beb7e-7c40-440e-ac5c-d4683f56a1b0
+      - cbaf9d0f-c03c-4492-87d4-516a57c1cbfb
     http_version: HTTP/1.1
     status_code: 200
 - request:
@@ -470,7 +468,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
@@ -479,7 +477,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0ba1c596640-AMS
+      - 85d8cb217e9d06d2-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -487,11 +485,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2FEbZB8aL%2FKcMMzsX3d6U5DC9HrVhH6mdGldA4aE2yYXx8suBH0KSSjTHy5irbF17S%2Bx9fR5Lmee9l%2FwcjsTN1GdkRcJ7509ungn4jIutoEbbnWxRXfp4qHYB2eALotasotL7maU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KvldISkp%2BR5o0C3WFvCMGtj3tS8wuzt9Ln55z%2FR8jfTrC5iquMCAIePdcKz%2BixMH26lqAekWwH7uBkHqN%2F54hU6ssBs1HiAUE%2Brvc7I3xUscY%2B2dlyHhNHKvhVeqTEK7EXfGcds%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:

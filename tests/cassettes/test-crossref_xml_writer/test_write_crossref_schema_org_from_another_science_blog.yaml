@@ -11,7 +11,7 @@ interactions:
       host:
       - donnywinston.com
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://donnywinston.com/posts/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services
   response:
@@ -39,17 +39,15 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '1931'
+      - '0'
       Cache-Control:
       - public,max-age=0,must-revalidate
       Cache-Status:
-      - '"Netlify Edge"; hit'
-      Content-Length:
-      - '4924'
+      - '"Netlify Edge"; fwd=miss'
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       Etag:
       - '"e85fd730b29b17c6a959fef98bac056d-ssl-df"'
       Location:
@@ -58,8 +56,10 @@ interactions:
       - Netlify
       Strict-Transport-Security:
       - max-age=31536000
+      Transfer-Encoding:
+      - chunked
       X-Nf-Request-Id:
-      - 01HP997CX5VKSX7GVVWH8NFXA1
+      - 01HQWW8CYQE5RE10D5R0X5CX56
     http_version: HTTP/1.1
     status_code: 301
 - request:
@@ -74,7 +74,7 @@ interactions:
       host:
       - donnywinston.com
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://donnywinston.com/posts/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services/
   response:
@@ -255,7 +255,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '2'
+      - '0'
       Cache-Control:
       - public,max-age=0,must-revalidate
       Cache-Status:
@@ -265,7 +265,7 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:50 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       Etag:
       - '"e85fd730b29b17c6a959fef98bac056d-ssl-df"'
       Server:
@@ -277,7 +277,7 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Nf-Request-Id:
-      - 01HP997CY3NCSH2ASRPFTPP254
+      - 01HQWW8D5FVN7A3G7YQ3WJVC2Z
     http_version: HTTP/1.1
     status_code: 200
 - request:
@@ -292,7 +292,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.57099
   response:
@@ -301,7 +301,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0c19f080df6-AMS
+      - 85d8cb28fa35b902-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -309,11 +309,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:50 GMT
+      - Fri, 01 Mar 2024 11:26:42 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KrqPgW5mkb7buMVjZUMWe0A2KOvMN4xQUd1TX9x0jAzGVsrZQiwzG0J37%2FxHtMwxhQ%2Bkh9GoeTSp3a%2FDHWb44NzuYjZd2wB9m5QF6gdowy0fNwgHa4e7RnE8qMkgSxHNfq7t98c%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4qZXG%2FLVYfGhIBZt0zpZYoOokueAbxlEjoFCjM0%2BNC6LopcXIDMAGF7c%2BLWPAz7nea1mx%2FDXCtq5ZCTdtVk9YhCkDwrKr69bCJbL1Jc7YMvq%2BeYljKwMNnEMmEiYXL5ZA8c6ssE%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:

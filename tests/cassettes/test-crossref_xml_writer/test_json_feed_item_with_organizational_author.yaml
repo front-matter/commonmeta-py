@@ -11,15 +11,15 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/5561f8e4-2ff1-4186-a8d5-8dacb3afe414
   response:
     content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22140/20231105111127/https://libscie.org/ku-leuven-supports-researchequals","authors":[{"name":"Liberate
-      Science","url":"https://ror.org/0342dzm54"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22140/20231105111127/","authors":null,"backlog":0,"canonical_url":null,"category":"socialSciences","created_at":1672790400,"current_feed_url":null,"description":"Research
-      as a commons","favicon":"https://libscie.org/favicon.png","feed_format":"application/rss+xml","feed_url":"https://libscie.org/rss/","filter":"visibility:public","funding":null,"generator":"Ghost","generator_raw":"Ghost
+      Science","url":"https://ror.org/0342dzm54"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22140/20231105111127/","authors":null,"canonical_url":null,"category":"socialSciences","created_at":1672790400,"current_feed_url":null,"description":"Supporting
+      research as a common good.","favicon":"https://libscie.org/favicon.png","feed_format":"application/rss+xml","feed_url":"https://libscie.org/rss/","filter":"visibility:public","funding":null,"generator":"Ghost","generator_raw":"Ghost
       5.49","home_page_url":"https://libscie.org","id":"5e58d0d0-1aba-4d40-a946-3e4a08a9f095","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":"https://ror.org/0342dzm54","secure":true,"slug":"libscie","status":"active","title":"Liberate
-      Science","updated_at":1704371515,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Liberate
+      Science","updated_at":1709069579,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Liberate
       Science","blog_slug":"libscie","content_text":"KU Leuven is now an inaugural
       supporting member of ResearchEquals,\nsustaining and governing the development
       of modular publishing.\n\nAs part of their commitment to Open Science, KU Leuven
@@ -66,17 +66,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:53 GMT
+      - Fri, 01 Mar 2024 11:26:47 GMT
       fly-request-id:
-      - 01HP997GTRR5FESD0T0KT5AD54-fra
+      - 01HQWW8J8N3Z2B30AQ4DECYDMJ-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '10'
+      - '12'
       ratelimit-reset:
-      - '17'
+      - '8'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

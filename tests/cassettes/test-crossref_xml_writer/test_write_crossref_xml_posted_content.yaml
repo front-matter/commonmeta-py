@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.1101
   response:
@@ -20,7 +20,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0ae1c000e74-AMS
+      - 85d8cb1b3a2966da-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,11 +28,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:47 GMT
+      - Fri, 01 Mar 2024 11:26:39 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NeovcVycOu47%2BJuCTzi6FsGooWy71B7wvxc9Ol9rweny7wMbs4z9eTVfJbmW3p9qguqMmxTQvZXPIMRnCqijq2DPTO1y87RRLEbWtQnva6CW0TkrwQ%2BH6mcmVtWEr0srk5xx9uQ%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=sGoDUb4LjXMgaCLFQ82a47L4TkBpQGISYMkXoKkUu%2FdZ0nqnO%2FnhwnMKPg%2Fjvsxq9KM3sXlCSF7kWIM%2B0OmU6ol%2FTb2mfY3b5ccuNSKJ09CmwbiLyxfkE8qhC6x2iHvTGmD01Dc%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -57,7 +57,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.crossref.org/works/10.1101/2020.12.01.406702
   response:
@@ -144,7 +144,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:47 GMT
+      - Fri, 01 Mar 2024 11:26:40 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -161,111 +161,6 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - api.crossref.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://api.crossref.org/members/246
-  response:
-    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521447042,"primary-name":"Cold
-      Spring Harbor Laboratory","counts":{"current-dois":103267,"backfile-dois":210693,"total-dois":313960},"breakdowns":{"dois-by-issued-year":[[2020,53638],[2023,50980],[2021,50445],[2022,46951],[2019,31261],[2018,22041],[2017,12746],[2016,6114],[2024,5336],[2006,3608],[2015,3299],[2014,2295],[2009,1926],[2007,1796],[2010,1754],[2008,1646],[2013,1453],[2011,1419],[2012,1356],[2004,951],[2003,872],[2005,861],[2001,801],[2002,781],[2000,774],[1999,714],[1998,707],[1997,515],[1996,504],[1995,448],[1994,441],[1993,389],[1992,364],[1991,336],[1990,304],[1989,304],[1988,283],[1974,235],[1983,228],[1987,227],[1979,154],[1980,143],[1986,129],[1978,122],[1981,117],[1985,107],[1970,101],[1977,98],[1968,97],[1984,95],[1982,95],[1969,94],[1966,94],[1973,84],[1963,79],[1972,74],[1967,72],[1950,63],[1976,62],[1965,60],[1960,53],[1964,50],[1962,49],[1961,48],[1937,43],[1953,42],[1957,39],[1958,38],[1951,37],[1938,37],[1935,37],[1936,36],[1955,34],[1941,34],[1939,34],[1934,32],[1956,31],[1954,29],[1946,29],[1933,29],[1959,28],[1952,28],[1940,28],[1948,27],[1947,27],[1942,18]]},"prefixes":["10.1261","10.1110","10.1101","10.14224"],"coverage":{"affiliations-current":0.0,"similarity-checking-current":1.0,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.01877138775374597,"licenses-backfile":5.220866379044392E-5,"funders-current":0.007010952191890924,"affiliations-backfile":4.746242162767629E-6,"resource-links-backfile":4.746242162767629E-6,"orcids-backfile":0.5705078004489945,"update-policies-current":0.0,"ror-ids-backfile":0.0,"orcids-current":0.8080412910223014,"similarity-checking-backfile":0.9923110876963164,"references-backfile":0.8988528332692591,"descriptions-backfile":0.0,"award-numbers-backfile":0.01720512784003265,"update-policies-backfile":0.0,"licenses-current":0.0,"award-numbers-current":0.006546137681931304,"abstracts-backfile":0.9154741733232713,"resource-links-current":0.0,"abstracts-current":0.9949064076616925,"references-current":0.9849806811469298},"prefix":[{"name":"Cold
-      Spring Harbor Laboratory","value":"10.1261"},{"name":"","value":"10.1110"},{"name":"Cold
-      Spring Harbor Laboratory","value":"10.1101"},{"name":"Cold Spring Harbor Laboratory
-      - CSHL Library & Archives","value":"10.14224"}],"id":246,"tokens":["cold","spring","harbor","laboratory"],"counts-type":{"all":{"report":20,"journal-article":40228,"journal":8,"posted-content":273710,"journal-issue":2},"backfile":{"report":20,"journal-article":38602,"posted-content":172069,"journal-issue":2},"current":{"journal-article":1626,"posted-content":101641}},"coverage-type":{"all":{"report":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.0,"orcids":0.35,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.1,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521447042,"affiliations":2.485830764641543E-5,"abstracts":0.549666898677538,"orcids":0.06771403002883564,"licenses":2.734413841105698E-4,"references":0.6153425474793676,"funders":0.1163120214775778,"similarity-checking":0.9602267077657353,"award-numbers":0.1069155811872328,"ror-ids":0.0,"update-policies":0.0,"resource-links":2.485830764641543E-5,"descriptions":0.0},"journal":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.999280260129334,"orcids":0.7340433305323152,"licenses":0.0,"references":0.9730883051404771,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"report":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.0,"orcids":0.35,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.1,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-article":{"last-status-check-time":1707521447042,"affiliations":2.590539350292731E-5,"abstracts":0.5441427905289881,"orcids":0.04813222112843894,"licenses":2.849593285322004E-4,"references":0.6106937464380084,"funders":0.1024558313040775,"similarity-checking":0.9585513703953163,"award-numbers":0.0939070514481115,"ror-ids":0.0,"update-policies":0.0,"resource-links":2.590539350292731E-5,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.9988957918044505,"orcids":0.6877299222986129,"licenses":0.0,"references":0.9636134341456044,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"journal-article":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.6808118081180812,"orcids":0.5325953259532595,"licenses":0.0,"references":0.7257072570725707,"funders":0.4452644526445264,"similarity-checking":1.0,"award-numbers":0.4157441574415744,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521447042,"affiliations":0.0,"abstracts":0.9999311301541701,"orcids":0.8124477327062898,"licenses":0.0,"references":0.9891284029082752,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":false,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":false,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":false,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":false,"deposits-similarity-checking-current":true,"deposits-licenses-current":false},"location":"Woodbury,
-      NY, United States","names":["Cold Spring Harbor Laboratory","","Cold Spring
-      Harbor Laboratory - CSHL Library & Archives"]}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '1818'
-      content-type:
-      - application/json
-      date:
-      - Sat, 10 Feb 2024 10:32:48 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/ra/10.1101
-  response:
-    content: "[\n  {\n    \"DOI\": \"10.1101\",\n    \"RA\": \"Crossref\"\n  }\n]"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8533b0b59a8865f0-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 10 Feb 2024 10:32:48 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=faRxfsr0%2B4HsW%2BfL5AZZhbWqfEhR9WzWWKS9bgWe%2F35ffZ3Lg54fbJake8g6MG8ubI%2FOMnCXI2iJ5CVxEQhwDruQhetPEYsNRpC0U9me5UZqjUFnv%2B9d5bcoYABiQro8LQWqnFE%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
     http_version: HTTP/1.1
     status_code: 200
 version: 1

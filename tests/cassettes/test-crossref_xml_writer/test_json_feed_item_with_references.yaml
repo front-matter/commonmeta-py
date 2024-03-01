@@ -11,7 +11,7 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647
   response:
@@ -21,10 +21,10 @@ interactions:
       attention in theories of language, with direct relevance to computational models.
       The only way to give any content to the claim is by giving the notion \u201ctheoretical
       linguistics\u201d the narrowest conceivable reading.","archive_url":null,"authors":[{"name":"Mark
-      Dingemanse"}],"blog":{"api":false,"archive_prefix":null,"authors":null,"backlog":0,"canonical_url":null,"category":"languagesAndLiterature","created_at":1706627953,"current_feed_url":null,"description":"Sounding
+      Dingemanse"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"languagesAndLiterature","created_at":1706627953,"current_feed_url":null,"description":"Sounding
       out ideas on language, interaction, and iconicity","favicon":"https://ideophone.org/files/cropped-android-chrome-512x512-1-32x32.png","feed_format":"application/atom+xml","feed_url":"https://ideophone.org/feed/atom/","filter":"category:98","funding":null,"generator":"WordPress","generator_raw":"WordPress
-      6.4.3","home_page_url":"https://ideophone.org/","id":"191184bc-efcf-4f0f-a1ee-09436542d408","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scholar.social/@dingemansemark","plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"ideophone","status":"active","title":"The
-      Ideophone","updated_at":1707385988,"use_api":true,"use_mastodon":false,"user_id":"e1f022f2-7d98-4b1e-81cc-81d8e8416403","version":"https://jsonfeed.org/version/1.1"},"blog_name":"The
+      6.4.3","home_page_url":"https://ideophone.org/","id":"191184bc-efcf-4f0f-a1ee-09436542d408","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scholar.social/@dingemansemark","plan":"Personal","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"ideophone","status":"active","title":"The
+      Ideophone","updated_at":1707592686,"use_api":true,"use_mastodon":false,"user_id":"e1f022f2-7d98-4b1e-81cc-81d8e8416403"},"blog_name":"The
       Ideophone","blog_slug":"ideophone","content_text":"This [Lingbuzz preprint by\nBaroni](https://ling.auf.net/lingbuzz/006031){rel=\"noreferrer
       noopener\"\ntarget=\"_blank\"} is a nice read if you''re interested in linguistically\noriented
       deep net analysis. I did feel it''s a bit hampered by the\nnear-exclusive equation
@@ -94,9 +94,9 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:51 GMT
+      - Fri, 01 Mar 2024 11:26:44 GMT
       fly-request-id:
-      - 01HP997EMZ2RK4XJ7AY8SY1BYR-fra
+      - 01HQWW8FC46RGS2TN0EWYT29MM-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
@@ -104,7 +104,7 @@ interactions:
       ratelimit-reset:
       - '7'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:
@@ -125,7 +125,7 @@ interactions:
       host:
       - ling.auf.net
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: HEAD
     uri: https://ling.auf.net/lingbuzz/006031
   response:
@@ -138,167 +138,11 @@ interactions:
       Content-Type:
       - text/plain
       Date:
-      - Sat, 10 Feb 2024 10:32:51 GMT
+      - Fri, 01 Mar 2024 11:26:45 GMT
       Server:
       - nginx
     http_version: HTTP/1.1
     status_code: 501
-- request:
-    body: ''
-    headers:
-      accept:
-      - application/vnd.citationstyles.csl+json
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/10.1038/s41562-017-0163
-  response:
-    content: '<html><head><title>Handle Redirect</title></head>
-
-      <body><a href="https://api.crossref.org/v1/works/10.1038%2Fs41562-017-0163/transform">https://api.crossref.org/v1/works/10.1038%2Fs41562-017-0163/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8533b0cd6ef3b97e-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '223'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Sat, 10 Feb 2024 10:32:52 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2Bzt2NfSOsAJQxAHv78Y2YpQrS5j%2Fwf9szuWIP%2BuJYX8MtYQMNlUagh1MQYgEbTFoV4Zyo2SFjEMA%2FeDEFFgLXFNvI8qjU9XnnSu7RkORUgMBXiC51Wyn7ZpvTMSav0AZbS6Wibk%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400
-      expires:
-      - Sat, 10 Feb 2024 10:52:37 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1038%2Fs41562-017-0163/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    http_version: HTTP/1.1
-    status_code: 302
-- request:
-    body: ''
-    headers:
-      accept:
-      - application/vnd.citationstyles.csl+json
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/10.1023/a:1022699029236
-  response:
-    content: '<html><head><title>Handle Redirect</title></head>
-
-      <body><a href="https://api.crossref.org/v1/works/10.1023%2Fa%3A1022699029236/transform">https://api.crossref.org/v1/works/10.1023%2Fa%3A1022699029236/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8533b0ce3f0466f6-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '227'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Sat, 10 Feb 2024 10:32:52 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ICip7MIc2aZcsGAyPEwTht%2FOig5QCX3Y3LH0c8b0bcGXNIhE678Y2ZtZ%2FKHZi1czCMhZfWpJOj4NOkX6ctNFYXQCHuwHx%2BKLjy%2B0lq8gk8fIAhWDZcYiCozl6aWEG6hnnU1lguE%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400
-      expires:
-      - Sat, 10 Feb 2024 10:50:15 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1023%2Fa%3A1022699029236/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    http_version: HTTP/1.1
-    status_code: 302
-- request:
-    body: ''
-    headers:
-      accept:
-      - application/vnd.citationstyles.csl+json
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/10.1037/0033-295x.109.1.35
-  response:
-    content: '<html><head><title>Handle Redirect</title></head>
-
-      <body><a href="https://api.crossref.org/v1/works/10.1037%2F0033-295x.109.1.35/transform">https://api.crossref.org/v1/works/10.1037%2F0033-295x.109.1.35/transform</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8533b0cf1a01661f-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '229'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Sat, 10 Feb 2024 10:32:52 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=85rBoFlj2k96kdynbBY5NkR3nZuJyJEfKFBj8w7%2Fs4BPWlKZsEEzyGAUWT%2Fs7ff4%2Fw%2FNoAH3HqoA%2B8JMXQHQ71GAcAIyYE8aVUvzetMGz%2FsVon6ei0pGlKgdnc5KcLlOzIxO9oM%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400
-      expires:
-      - Sat, 10 Feb 2024 10:50:15 GMT
-      location:
-      - https://api.crossref.org/v1/works/10.1037%2F0033-295x.109.1.35/transform
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    http_version: HTTP/1.1
-    status_code: 302
 - request:
     body: ''
     headers:
@@ -311,7 +155,7 @@ interactions:
       host:
       - scholar.social
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: HEAD
     uri: https://scholar.social/@dingemansemark
   response:
@@ -326,7 +170,7 @@ interactions:
       Content-Security-Policy:
       - 'base-uri ''none''; default-src ''none''; frame-ancestors ''none''; font-src
         ''self'' https://scholar.social; img-src ''self'' https: data: blob: https://scholar.social;
-        style-src ''self'' https://scholar.social ''nonce-hlX0peCNvYaNKkF65LeDpg=='';
+        style-src ''self'' https://scholar.social ''nonce-U1SWPBqqOIv7/NL3Aq/Y/A=='';
         media-src ''self'' https: data: https://scholar.social; frame-src ''self''
         https:; manifest-src ''self'' https://scholar.social; form-action ''self'';
         child-src ''self'' blob: https://scholar.social; worker-src ''self'' blob:
@@ -336,9 +180,9 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:32:52 GMT
+      - Fri, 01 Mar 2024 11:26:45 GMT
       ETag:
-      - W/"902e769429893619932a69e9faa9c796"
+      - W/"0b70421f1163323bc7240ce6273de32a"
       Link:
       - </packs/js/locale/en-json-f5510c22fd7d55be6ad5.chunk.js>; rel=preload; as=script;
         type=text/javascript; integrity=sha256-SplOegOXiFZpzYhklmglSpSNDKjU9dqJdQ2hIA2uWks=
@@ -354,9 +198,9 @@ interactions:
       X-Frame-Options:
       - DENY
       X-Request-Id:
-      - 732840f1-797c-4bf9-9eef-80e86ed857ec
+      - 34cd2165-4074-4ab0-9cb0-51a6c95a044f
       X-Runtime:
-      - '0.020008'
+      - '0.023660'
       X-XSS-Protection:
       - '0'
       vary:
@@ -375,7 +219,7 @@ interactions:
       host:
       - twitter.com
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: HEAD
     uri: https://twitter.com/dingemansemark
   response:
@@ -384,26 +228,26 @@ interactions:
       cache-control:
       - no-cache, no-store, max-age=0
       date:
-      - Sat, 10 Feb 2024 10:32:52 GMT
+      - Fri, 01 Mar 2024 11:26:45 GMT
       perf:
       - '7469935968'
       server:
       - tsa_o
       set-cookie:
-      - guest_id=v1%3A170756117292892711; Max-Age=34214400; Expires=Wed, 12 Mar 2025
-        10:32:52 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      - guest_id=v1%3A170929240593555932; Max-Age=34214400; Expires=Tue, 01 Apr 2025
+        11:26:45 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
       strict-transport-security:
       - max-age=631138519
       transfer-encoding:
       - chunked
       x-connection-hash:
-      - eb3eeff37a77cd0d5bbf0053bac9c953264805744ab4685f7a4a9a718e09f08d
+      - 33c31f6c0ae6a31182c30fcd83fdb8b7f7203cfb5faecddc64de9fb2f0284ed8
       x-powered-by:
       - Express
       x-response-time:
-      - '105'
+      - '106'
       x-transaction-id:
-      - e4b03ac4835d3074
+      - fc8160dc3fa55ef3
     http_version: HTTP/1.1
     status_code: 403
 - request:
@@ -418,7 +262,7 @@ interactions:
       host:
       - twitter.com
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: HEAD
     uri: https://twitter.com/dingemansemark/status/1405488247057391616
   response:
@@ -427,26 +271,26 @@ interactions:
       cache-control:
       - no-cache, no-store, max-age=0
       date:
-      - Sat, 10 Feb 2024 10:32:53 GMT
+      - Fri, 01 Mar 2024 11:26:46 GMT
       perf:
       - '7469935968'
       server:
       - tsa_o
       set-cookie:
-      - guest_id=v1%3A170756117320817962; Max-Age=34214400; Expires=Wed, 12 Mar 2025
-        10:32:53 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
+      - guest_id=v1%3A170929240615360999; Max-Age=34214400; Expires=Tue, 01 Apr 2025
+        11:26:46 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
       strict-transport-security:
       - max-age=631138519
       transfer-encoding:
       - chunked
       x-connection-hash:
-      - ccdfae2c64a0895496c4f30e505b3c4f840ff22ae4571130a7124b43a3d1b566
+      - bd19bf223c057756648d350bde4bc70776c5c40cc7927cfa65e4c41372af75f2
       x-powered-by:
       - Express
       x-response-time:
-      - '106'
+      - '120'
       x-transaction-id:
-      - 8f35172d02ad24a1
+      - 7ab918cfe4c48471
     http_version: HTTP/1.1
     status_code: 403
 version: 1

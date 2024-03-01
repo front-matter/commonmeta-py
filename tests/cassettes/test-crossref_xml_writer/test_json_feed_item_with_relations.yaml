@@ -11,15 +11,16 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/8a4de443-3347-4b82-b57d-e3c82b6485fc
   response:
-    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/differences-between-orcid-and-datacite-metadata","authors":[{"name":"Martin
-      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/differences-between-orcid-and-datacite-metadata","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
       Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Team","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
-      Matter","updated_at":1707416598,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Front
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Personal","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1708949311,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
       Matter","blog_slug":"front_matter","content_text":"One of the first tasks for
       DataCite in the European Commission-funded\n[THOR project](http://project-thor.eu/),
       which started in June, was to\ncontribute to a comparison of the ORCID and DataCite
@@ -106,11 +107,12 @@ interactions:
       the DataCite Blog. This\nwork was funded by the European Union''s Horizon 2020
       research and\ninnovation programme under [grant agreement\nNo.\u00a0654039](https://doi.org/10.3030/654039){rel=\"noreferrer\"}.\n\n##
       References\n\nFenner M, Demeranville T, Kotarski R, et al. *D2.1: Artefact,\nContributor,
-      And Organisation Relationship Data Schema*. Zenodo; 2015.\ndoi:[10.5281/ZENODO.30799](https://doi.org/10.5281/ZENODO.30799)\n","doi":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","guid":"62d42bbd41e317003df48efb","id":"8a4de443-3347-4b82-b57d-e3c82b6485fc","image":"https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png","indexed_at":1705637892,"language":"en","published_at":1442534400,"reference":[{"doi":"https://doi.org/10.5281/ZENODO.30799","key":"ref1"}],"relationships":[{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/bc11-cqw1"},{"type":"HasAward","url":"https://doi.org/10.3030/654039"}],"summary":"One
+      And Organisation Relationship Data Schema*. Zenodo; 2015.\ndoi:[10.5281/ZENODO.30799](https://doi.org/10.5281/ZENODO.30799)\n","doi":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","guid":"62d42bbd41e317003df48efb","id":"8a4de443-3347-4b82-b57d-e3c82b6485fc","image":"https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png","indexed_at":1708333897,"language":"en","published_at":1442534400,"reference":[{"doi":"https://doi.org/10.5281/zenodo.30799","key":"ref1","publicationYear":"2015","title":"D2.1:
+      Artefact, Contributor, And Organisation Relationship Data Schema"}],"relationships":[{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/bc11-cqw1"},{"type":"HasAward","url":"https://doi.org/10.3030/654039"}],"summary":"One
       of the first tasks for DataCite in the European Commission-funded THOR project,
       which started in June, was to contribute to a comparison of the ORCID and DataCite
-      metadata standards.\n","tags":["Feature"],"title":"Differences between ORCID
-      and DataCite Metadata","updated_at":1694074485,"url":"https://blog.front-matter.io/posts/differences-between-orcid-and-datacite-metadata"}
+      metadata standards.","tags":["Feature"],"title":"Differences between ORCID and
+      DataCite Metadata","updated_at":1694074485,"url":"https://blog.front-matter.io/posts/differences-between-orcid-and-datacite-metadata"}
 
       '
     headers:
@@ -119,17 +121,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sun, 11 Feb 2024 18:00:11 GMT
+      - Fri, 01 Mar 2024 11:26:47 GMT
       fly-request-id:
-      - 01HPCN77Z0RR6P5SRWFVJP7C5E-fra
+      - 01HQWW8JT6D527JB4TFTQKRTM4-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '11'
       ratelimit-reset:
-      - '3'
+      - '14'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:
@@ -138,56 +140,4 @@ interactions:
       - 1.1 fly.io
     http_version: HTTP/1.1
     status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - application/vnd.citationstyles.csl+json
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/10.5281/zenodo.30799
-  response:
-    content: '<html><head><title>Handle Redirect</title></head>
-
-      <body><a href="https://data.crosscite.org/10.5281%2Fzenodo.30799">https://data.crosscite.org/10.5281%2Fzenodo.30799</a></body></html>'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 853e7d6e5c8c1c84-AMS
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '183'
-      Content-Type:
-      - text/html;charset=utf-8
-      Date:
-      - Sun, 11 Feb 2024 18:00:11 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mgRH6iRymlcY5uvW%2FBxPKQhX0WkXZ%2BEnoViaq24qVogf7d7BiAl3PmHczWsTjySeAy5fRWVQ%2B9Ty3XqcPhiSfKKDWHHItZ7o7ajDa475yHOcQMnPZ0TeAxWMFTuBYkywBH%2BptH0%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      alt-svc:
-      - h3=":443"; ma=86400
-      expires:
-      - Sun, 11 Feb 2024 18:50:58 GMT
-      location:
-      - https://data.crosscite.org/10.5281%2Fzenodo.30799
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      vary:
-      - Accept
-    http_version: HTTP/1.1
-    status_code: 302
 version: 1

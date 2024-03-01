@@ -1,4 +1,5 @@
 """Test crossref_xml_writer module for commonmeta-py"""
+
 import pytest
 from os import path
 import pydash as py_
@@ -420,6 +421,7 @@ def test_json_feed_item_without_doi():
     assert subject.contributors == [
         {
             "type": "Person",
+            "id": "https://orcid.org/0000-0001-8448-4521",
             "contributorRoles": ["Author"],
             "givenName": "Nees Jan",
             "familyName": "van Eck",
@@ -440,6 +442,7 @@ def test_json_feed_item_without_doi():
     )
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
     assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0001-8448-4521",
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Nees Jan",
@@ -449,6 +452,32 @@ def test_json_feed_item_without_doi():
         py_.get(crossref_xml, "titles.0.title")
         == "An open approach for classifying research publications"
     )
+
+
+@pytest.mark.vcr
+def test_ghost_with_affiliations():
+    "ghost with affiliations"
+    string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
+    assert subject.type == "Article"
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
+    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Martin",
+        "surname": "Fenner",
+        "affiliations": {
+            "institution": {
+                "institution_name": "Public Library of Science",
+                "institution_id": {"type": "ror", "#text": "https://ror.org/008zgvp64"},
+            }
+        },
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
+    }
 
 
 @pytest.mark.vcr

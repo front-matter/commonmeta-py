@@ -174,23 +174,21 @@ def insert_crossref_person(contributor, xml):
     if contributor.get("familyName", None) is not None:
         etree.SubElement(xml, "surname").text = contributor.get("familyName")
 
+    if contributor.get("affiliation", None) is not None:
+        affiliations = etree.SubElement(xml, "affiliations")
+        institution = etree.SubElement(affiliations, "institution")
+        if py_.get(contributor, "affiliation.0.name") is not None:
+            etree.SubElement(institution, "institution_name").text = py_.get(
+                contributor, "affiliation.0.name"
+            )
+        if py_.get(contributor, "affiliation.0.id") is not None:
+            etree.SubElement(institution, "institution_id", {"type": "ror"}).text = py_.get(
+                contributor, "affiliation.0.id"
+            )
+        
     orcid = normalize_orcid(contributor.get("id", None))
     if orcid is not None:
         etree.SubElement(xml, "ORCID").text = orcid
-
-    if contributor.get("affiliation", None) is None:
-        return xml
-
-    affiliations = etree.SubElement(xml, "affiliations")
-    institution = etree.SubElement(affiliations, "institution")
-    if py_.get(contributor, "affiliation.0.name") is not None:
-        etree.SubElement(institution, "institution_name").text = py_.get(
-            contributor, "affiliation.0.name"
-        )
-    if py_.get(contributor, "affiliation.0.id") is not None:
-        etree.SubElement(institution, "institution_id", {"type": "ror"}).text = py_.get(
-            contributor, "affiliation.0.id"
-        )
     return xml
 
 

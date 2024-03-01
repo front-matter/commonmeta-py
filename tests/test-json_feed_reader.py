@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name,too-many-lines
 """JSON Feed reader tests"""
+
 import pytest
 
 from commonmeta import Metadata
@@ -180,6 +181,72 @@ def test_ghost_with_institutional_author():
 
 
 @pytest.mark.vcr
+def test_ghost_with_affiliations():
+    "ghost with affiliations"
+    string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources"
+    )
+    assert subject.titles[0] == {"title": "Auto generating links to data and resources"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [
+            {"id": "https://ror.org/008zgvp64", "name": "Public Library of Science"}
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2013-07-02T18:58:00",
+        "updated": "2022-08-15T16:14:53",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert len(subject.references) == 1
+    assert subject.references[0] == {
+        "doi": "https://doi.org/10.1371/journal.pone.0063184",
+        "title": "Database Citation in Full Text Biomedical Articles",
+        "publicationYear": "2013",
+        "key": "ref1",
+    }
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "A few weeks ago Kafkas et al. (2013) published a paper"
+        )
+    )
+    assert len(subject.files) == 4
+    assert subject.files[0] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16.md",
+    }
+    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.language == "en"
+    assert subject.version is None
+
+
+@pytest.mark.vcr
 def test_ghost_with_personal_name_parsing():
     "ghost with with personal name parsing"
     string = "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
@@ -256,33 +323,6 @@ def test_ghost_with_personal_name_parsing():
     assert subject.subjects == [{"subject": "Clinical medicine"}]
     assert subject.language == "en"
     assert subject.version is None
-
-
-# @pytest.mark.vcr
-# def test_blog_post_without_doi():
-#     "blog post without DOI"
-#     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
-#     subject = Metadata(string)
-#     assert subject.is_valid
-#     assert (
-#         subject.id
-#         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
-#     )
-#     assert subject.type == "Article"
-#     assert (
-#         subject.url
-#         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
-#     )
-#     assert subject.titles[0] == {
-#         "title": "An open approach for classifying research publications"
-#     }
-#     assert len(subject.contributors) == 1
-#     assert subject.contributors[0] == {
-#         "id": "https://ror.org/027bh9e22",
-#         "type": "Organization",
-#         "contributorRoles": ["Author"],
-#         "name": "Leiden Madtrics",
-#     }
 
 
 @pytest.mark.vcr

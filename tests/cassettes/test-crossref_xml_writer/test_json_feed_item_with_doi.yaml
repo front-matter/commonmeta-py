@@ -11,12 +11,12 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/1c578558-1324-4493-b8af-84c49eabc52f
   response:
-    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Heinz Pampel","url":"https://orcid.org/0000-0003-3334-2771"}],"blog":{"api":true,"archive_prefix":null,"authors":null,"backlog":0,"canonical_url":null,"category":"socialSciences","created_at":1673827200,"current_feed_url":null,"description":"Gemeinschaftsblog
-      zu wissenschaftlicher Kommunikation im Netz.","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://wisspub.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://wisspub.net","id":"9cb1a7b3-1791-42e5-9f2d-153038fe34e3","indexed":false,"issn":null,"language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://rogue-scholar.social/@wisspub","plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"wisspub","status":"active","title":"wisspub.net","updated_at":1689236362,"use_api":true,"use_mastodon":true,"user_id":"dbffda7d-f391-48fb-a6d2-d4a284c59c8d","version":"https://jsonfeed.org/version/1.1"},"blog_name":"wisspub.net","blog_slug":"wisspub","content_text":"Die
+    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Heinz Pampel","url":"https://orcid.org/0000-0003-3334-2771"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"socialSciences","created_at":1673827200,"current_feed_url":null,"description":"Gemeinschaftsblog
+      zu wissenschaftlicher Kommunikation im Netz.","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://wisspub.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://wisspub.net","id":"9cb1a7b3-1791-42e5-9f2d-153038fe34e3","indexed":false,"issn":null,"language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://rogue-scholar.social/@wisspub","plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"wisspub","status":"active","title":"wisspub.net","updated_at":1689236362,"use_api":true,"use_mastodon":true,"user_id":"dbffda7d-f391-48fb-a6d2-d4a284c59c8d"},"blog_name":"wisspub.net","blog_slug":"wisspub","content_text":"Die
       EU-Wissenschaftsministerien haben sich auf ihrer [heutigen\nSitzung](https://www.consilium.europa.eu/en/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/)\nin
       Br\u00fcssel unter dem Titel \"Council conclusions on high-quality,\ntransparent,
       open, trustworthy and equitable scholarly publishing\" ([PDF\nder englischen\nVersion](https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/en/pdf),\n[PDF
@@ -131,17 +131,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:53 GMT
+      - Fri, 01 Mar 2024 11:26:46 GMT
       fly-request-id:
-      - 01HP997GC0QE09FQR5E3YB88BQ-fra
+      - 01HQWW8HHDMJJ1TMG1TJCYYQ2V-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '12'
+      - '14'
       ratelimit-reset:
-      - '9'
+      - '3'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

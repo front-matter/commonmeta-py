@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
@@ -20,7 +20,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533b0be9cf8286b-AMS
+      - 85d8cb254d3e0a47-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,11 +28,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:32:49 GMT
+      - Fri, 01 Mar 2024 11:26:41 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rVFK3TgDzkAzSSmglgig0NgZoM5g58%2FmL70lxVHdrkcGyH8x%2BMkXTCtjJlP92bQoFkO0yFX%2Bh%2FGd3A2dJ376tW0O%2F5otc%2FgeaxQV9wP%2F17%2BMFLgDdaT2kRvLjVdnYIPnzPEfm9E%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tXnuF%2F3felL53%2BZlJqtzjqPflBqmmlkJTeLZrG5YPU3iLmPp8n1xPaVdYBlLrXKLkNcWiFYIhSupV0B36Okjx7R6yiwOEiysk7xLzmfqd3kSehqrTooNasrDiXGQYrv3S8WW9Ns%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:

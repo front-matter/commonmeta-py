@@ -11,15 +11,15 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
   response:
     content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea","authors":[{"name":"Markus
-      Stocker","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22143/20231103191454/","authors":null,"backlog":0,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1695254400,"current_feed_url":null,"description":"Technical
+      Stocker","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22143/20231103191454/","authors":null,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1695254400,"current_feed_url":null,"description":"Technical
       and Human infrastructure for Open Research.","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"funding":{"award_number":"654039","award_uri":"https://doi.org/10.3030/654039","funder_id":"https://doi.org/10.13039/501100007601","funder_name":"European
-      Union\u2019s Horizon 2020 research and innovation programme"},"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://project-thor.eu","id":"2a309edc-7a90-4735-807c-a81a7e5eb890","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"thor","status":"archived","title":"Project
-      THOR","updated_at":1511522178,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"Project
+      Union\u2019s Horizon 2020 research and innovation programme"},"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://project-thor.eu","id":"2a309edc-7a90-4735-807c-a81a7e5eb890","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Project","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"thor","status":"archived","title":"Project
+      THOR","updated_at":1511522178,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Project
       THOR","blog_slug":"thor","content_text":"[This is the first in a [series of\nposts](http://wp.me/p5O69U-aF)]{style=\"font-weight:400;\"}[\u00a0describing\nhow
       THOR partners have recently integrated [ORCID](http://orcid.org/) in\ntheir
       disciplinary data repositories. This post describes ORCID\nintegration in [PANGAEA](https://www.pangaea.de/),
@@ -89,17 +89,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:32:54 GMT
+      - Fri, 01 Mar 2024 11:26:47 GMT
       fly-request-id:
-      - 01HP997H579H40RSS6F9YTD291-fra
+      - 01HQWW8JG15259KM0PZN2FFP0Y-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '9'
+      - '12'
       ratelimit-reset:
-      - '21'
+      - '10'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:
