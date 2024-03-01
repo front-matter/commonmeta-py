@@ -1,4 +1,5 @@
 """Test author utils"""
+
 from commonmeta.author_utils import (
     cleanup_author,
     authors_as_string,
@@ -218,7 +219,9 @@ def test_cleanup_author():
     assert "John Smith" == cleanup_author("John Smith")
     assert "Smith, John" == cleanup_author("Smith, John")
     assert "Smith, J." == cleanup_author("Smith, J.")
-    assert None == cleanup_author(",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon")
+    assert None == cleanup_author(
+        ",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon"
+    )
 
 
 def test_authors_as_string():
@@ -285,6 +288,33 @@ def test_get_authors():
             "contributorRoles": ["Author"],
         },
     ] == get_authors(authors)
+    authors = [
+        {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "name": "Matt Jones",
+            "affiliation": [
+                {
+                    "name": "University of California, Santa Barbara",
+                    "id": "https://ror.org/02t274463",
+                }
+            ],
+        }
+    ]
+    assert [
+        {
+            "affiliation": [
+                {
+                    "name": "University of California, Santa Barbara",
+                    "id": "https://ror.org/02t274463",
+                }
+            ],
+            "contributorRoles": ["Author"],
+            "familyName": "Jones",
+            "givenName": "Matt",
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "type": "Person",
+        }
+    ] == get_authors(authors)
 
 
 def test_get_affiliations():
@@ -308,6 +338,19 @@ def test_get_affiliations():
                 "affiliationIdentifier": "02t274463",
                 "affiliationIdentifierScheme": "ROR",
                 "schemeURI": "https://ror.org/",
+            }
+        ]
+    )
+    assert [
+        {
+            "name": "University of California, Santa Barbara",
+            "id": "https://ror.org/02t274463",
+        }
+    ] == get_affiliations(
+        [
+            {
+                "name": "University of California, Santa Barbara",
+                "id": "https://ror.org/02t274463",
             }
         ]
     )

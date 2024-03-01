@@ -3,6 +3,7 @@ import re
 from typing import List
 from nameparser import HumanName
 from pydash import py_
+from furl import furl
 
 from .utils import (
     normalize_orcid,
@@ -243,6 +244,10 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
                     )
                     else normalize_id(affiliation_identifier)
                 )
+            elif i.get("id", None) is not None:
+                f = furl(i.get("id"))
+                if f.scheme in ["http", "https"]:
+                    affiliation_identifier = i.get("id")
             name = i.get("name", None) or i.get("#text", None)
         return compact(
             {

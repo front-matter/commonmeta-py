@@ -11,14 +11,14 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2
   response:
     content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22134/20231101173144/https://www.ideasurg.pub/residency-visual-abstract","authors":[{"name":"Tejas
-      S. Sathe","url":"https://orcid.org/0000-0003-0449-4469"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22134/20231101173144/","authors":null,"backlog":0,"canonical_url":null,"category":"clinicalMedicine","created_at":1672790400,"current_feed_url":null,"description":"Innovation
+      S. Sathe","url":"https://orcid.org/0000-0003-0449-4469"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22134/20231101173144/","authors":null,"canonical_url":null,"category":"clinicalMedicine","created_at":1672790400,"current_feed_url":null,"description":"Innovation
       and Design Experiments in Academic Surgery (I.D.E.A.S.)","favicon":"https://www.ideasurg.pub/favicon.png","feed_format":"application/rss+xml","feed_url":"https://www.ideasurg.pub/rss/","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-      5.79","home_page_url":"https://www.ideasurg.pub/","id":"515d191e-f627-44cc-bec6-9fdf276803b2","indexed":null,"issn":"2993-1150","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"ideas","status":"active","title":"I.D.E.A.S.","updated_at":1703189944,"use_api":null,"use_mastodon":false,"user_id":"4cecb4b8-58b5-49fe-9edb-6af638294ef5","version":"https://jsonfeed.org/version/1.1"},"blog_name":"I.D.E.A.S.","blog_slug":"ideas","content_text":"<figure
+      5.79","home_page_url":"https://www.ideasurg.pub/","id":"515d191e-f627-44cc-bec6-9fdf276803b2","indexed":null,"issn":"2993-1150","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"ideas","status":"active","title":"I.D.E.A.S.","updated_at":1703189944,"use_api":null,"use_mastodon":false,"user_id":"4cecb4b8-58b5-49fe-9edb-6af638294ef5"},"blog_name":"I.D.E.A.S.","blog_slug":"ideas","content_text":"<figure
       class=\"kg-card kg-image-card kg-width-wide kg-card-hascaption\">\n<img\nsrc=\"https://www.ideasurg.pub/content/images/2023/04/Residency-Scorecard-Light-Mode--7-.png\"\nclass=\"kg-image\"
       loading=\"lazy\"\nsrcset=\"https://www.ideasurg.pub/content/images/size/w600/2023/04/Residency-Scorecard-Light-Mode--7-.png
       600w, https://www.ideasurg.pub/content/images/size/w1000/2023/04/Residency-Scorecard-Light-Mode--7-.png
@@ -161,17 +161,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:01:05 GMT
+      - Fri, 01 Mar 2024 09:24:54 GMT
       fly-request-id:
-      - 01HP97D8PWCFQ5KSGD6QRKYFEP-fra
+      - 01HQWN9DAGRECEAMHHJK6A6BVT-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '8'
+      - '12'
       ratelimit-reset:
-      - '25'
+      - '10'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:

@@ -56,7 +56,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if meta.get("authors", None):
         contributors = get_authors(from_json_feed(wrap(meta.get("authors"))))
     else:
-        contributors = [{"type": "Organization", "name": ":(unav)"}]
+        contributors = None
 
     title = parse_attributes(meta.get("title", None))
     titles = [{"title": sanitize(title)}] if title else None

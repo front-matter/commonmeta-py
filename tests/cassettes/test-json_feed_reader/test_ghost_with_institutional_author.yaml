@@ -11,14 +11,14 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.25.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
   response:
-    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22105/20231101173119/https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice","authors":[{"name":"OA.Works"}],"blog":{"api":true,"archive_prefix":"https://wayback.archive-it.org/22105/20231101173119/","authors":null,"backlog":0,"canonical_url":true,"category":"computerAndInformationSciences","created_at":1672790400,"current_feed_url":null,"description":"OA.Works
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22105/20231101173119/https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice","authors":[{"name":"OA.Works"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22105/20231101173119/","authors":null,"canonical_url":true,"category":"computerAndInformationSciences","created_at":1672790400,"current_feed_url":null,"description":"OA.Works
       Blog","favicon":"https://blog.oa.works/favicon.png","feed_format":"application/rss+xml","feed_url":"https://blog.oa.works/rss/","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
       5.79","home_page_url":"https://blog.oa.works/","id":"e70b452d-1b21-43f1-8726-07f4192f32ef","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"oa_works","status":"active","title":"OA.Works
-      Blog","updated_at":1703027736,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77","version":"https://jsonfeed.org/version/1.1"},"blog_name":"OA.Works
+      Blog","updated_at":1703027736,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"OA.Works
       Blog","blog_slug":"oa_works","content_text":"After a couple of years of working
       to support institutions implementing\ntheir OA policies, we\\''re so proud to
       see\n[OA.Report](https://oa.report/?ref=blog.oa.works), [our development\npartner](https://blog.oa.works/grant-to-bolster-oa-policies-from-bmgf/),\nand
@@ -53,17 +53,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:01:04 GMT
+      - Fri, 01 Mar 2024 09:24:54 GMT
       fly-request-id:
-      - 01HP97D8HBN43EC8P7HYQZC0YW-fra
+      - 01HQWN9D4J4TC96TRE826ZK72P-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '9'
+      - '13'
       ratelimit-reset:
-      - '22'
+      - '6'
       server:
-      - Fly/ba9e227a (2024-01-26)
+      - Fly/38ec6ca9 (2024-02-29)
       transfer-encoding:
       - chunked
       vary:
