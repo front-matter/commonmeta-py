@@ -97,6 +97,170 @@ def test_wordpress_with_references():
 
 
 @pytest.mark.vcr
+def test_post_with_relationships():
+    "post with isIdenticalTo relationships"
+    string = "https://api.rogue-scholar.org/posts/9e24e4be-1915-48cc-a6b0-c23da5bc2857"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
+    assert subject.type == "Article"
+    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert subject.titles[0] == {"title": "Introducing the PID Graph"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2019-03-28T01:00:00",
+        "updated": "2023-09-07T13:48:44",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert len(subject.references) == 0
+    assert subject.funding_references == [
+        {
+            "funderName": "European Commission",
+            "funderIdentifier": "https://doi.org/10.13039/501100000780",
+            "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://doi.org/10.3030/777523",
+            "awardNumber": "777523",
+        }
+    ]
+    assert subject.related_identifiers == [
+        {
+            "id": "https://www.project-freya.eu/en/blogs/blogs/the-pid-graph",
+            "type": "IsIdenticalTo",
+        },
+        {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
+    ]
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
+    }
+
+
+@pytest.mark.vcr
+def test_post_with_funding():
+    "post with funding"
+    string = "https://api.rogue-scholar.org/posts/5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9"
+    subject = Metadata(string)
+    print(subject.errors)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
+    assert subject.type == "Article"
+    assert subject.url == "https://upstream.force11.org/informate-where-are-the-data"
+    assert subject.titles[0] == {"title": "INFORMATE: Where Are the Data?"}
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-3585-6733",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Ted",
+        "familyName": "Habermann",
+        "affiliation": [
+            {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2023-12-05T10:00:43",
+        "updated": "2023-12-07T19:29:37",
+    }
+    assert subject.publisher == {
+        "name": "Upstream",
+    }
+    assert len(subject.references) == 0
+    assert subject.funding_references == [
+        {
+            "funderName": "National Science Foundation",
+            "funderIdentifier": "https://doi.org/10.13039/100000001",
+            "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
+            "awardNumber": "2134956",
+        }
+    ]
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Upstream",
+        "identifier": "https://rogue-scholar.org/blogs/upstream",
+        "identifierType": "URL",
+    }
+
+
+@pytest.mark.vcr
+def test_post_with_funding_ror():
+    "post with funding ROR ID"
+    string = "https://api.rogue-scholar.org/posts/24251b1a-c09c-4341-a65c-30cf92a47d73"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/86jd5-wpv70"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://metadatagamechangers.com/blog/2022/3/7/ivfrlw6naf7am3bvord8pldtuyqn4r"
+    )
+    assert subject.titles[0] == {
+        "title": "Metadata Life Cycle: Mountain or Superhighway?"
+    }
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-3585-6733",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Ted",
+        "familyName": "Habermann",
+        "affiliation": [
+            {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2022-03-08T00:39:39",
+        "updated": "2022-04-14T20:16:52",
+    }
+    assert subject.publisher == {
+        "name": "Blog - Metadata Game Changers",
+    }
+    assert len(subject.references) == 0
+    assert subject.funding_references == [
+        {
+            "funderName": "National Science Foundation",
+            "funderIdentifier": "https://doi.org/10.13039/100000001",
+            "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
+            "awardNumber": "2135874",
+        }
+    ]
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Blog - Metadata Game Changers",
+        "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
+        "identifierType": "URL",
+    }
+
+
+@pytest.mark.vcr
 def test_ghost_with_institutional_author():
     "ghost with institutional author"
     string = "https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2"
@@ -232,9 +396,7 @@ def test_ghost_with_affiliations():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "A few weeks ago Kafkas et al. (2013) published a paper"
-        )
+        .startswith("A few weeks ago Kafkas et al. (2013) published a paper")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {

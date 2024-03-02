@@ -1,0 +1,302 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/5e49c75b-f239-4c8c-8c16-7c3cced90865
+  response:
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/using-jupyter-notebooks-with-graphql-and-the-pid-graph","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+      Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Personal","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1708949311,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
+      Matter","blog_slug":"front_matter","content_text":"Two weeks ago DataCite announced
+      the pre-release version of a GraphQL\nAPI \\[Fenner\n([2019](https://blog.datacite.org/using-jupyter-notebooks-with-graphql-and-the-pid-graph/#ref-https://doi.org/10.5438/qab1-n315))\\].\nGraphQL
+      simplifies complex queries that for example want to retrieve\ninformation about
+      the authors, funding and data citations for a dataset\nwith a DataCite DOI.
+      These connections together form the PID Graph\n\\[Fenner & Aryani\n([2019](https://blog.datacite.org/using-jupyter-notebooks-with-graphql-and-the-pid-graph/#ref-https://doi.org/10.5438/jwvf-8a66))\\],\nand
+      DataCite is working with the other partners in the EC-funded [FREYA\nproject](https://www.project-freya.eu/)
+      on making it easier to\ncontribute to the PID Graph, and consume information
+      in the PID Graph.\n\n[Jupyter notebooks](https://jupyter.org/) are a very popular
+      web-based\ninteractive computational environment and are the perfect platform
+      to\nexplore the PID Graph via GraphQL APIs. Since interactions with GraphQL\nAPIs
+      are standardized and GraphQL libraries exist for many programming\nlanguages
+      supported by Jupyter notebooks, all the user has to do is come\nup with interesting
+      queries and process the information returned from\nthe API as JSON, following
+      exactly the format of the query.\n\nAn example notebook can best explain this.
+      We have created a GitHub\nrepository for notebooks using the GraphQL API at\n<https://github.com/datacite/notebooks>,
+      and you find [this\nnotebook](https://github.com/datacite/notebooks/blob/master/pid-graph/r-person-publications/r-person-publications.ipynb)\nin
+      there. Open the notebook in your favorite Jupyter client (e.g.\n[nteract](https://nteract.io/))
+      or look at it directly in GitHub.\n\nThe GraphQL query in the notebook is as
+      follows:\n\n    {\n      researcher(id: \"https://orcid.org/0000-0003-1419-2405\")
+      {\n        id\n        name\n        publications(first: 50) {\n          totalCount\n          nodes
+      {\n            id\n            relatedIdentifiers {\n              relatedIdentifier\n            }\n          }\n        }\n      }\n    }\n\nThis
+      query will return the first 50 publications with DataCite DOIs\nlinked to my
+      ORCID ID, together with information about content\nreferenced by these publications.
+      The Jupyter notebook is then\nprocessing the JSON API response with two major
+      outputs:\n\n- two reference lists of all publications, and of all their references,\n  using
+      the APA citation style and the [DOI citation formatter\n  service](https://citation.crosscite.org/).\n-
+      a network graph of all publications and their references (blue\n  circles),
+      with a node (green circle) representing the author of these\n  publications
+      (me).\n\nEven with only 50 publications the graph already is rather complicated.\nMany
+      of my publications with DataCite DOIs are for the DataCite Blog,\nand you see
+      them connected to a blue node in the top part of the graph.\nIn the lower left
+      corner you see a blog post with an unusually high\nnumber of references (Fenner,\n[2016](https://blog.datacite.org/using-jupyter-notebooks-with-graphql-and-the-pid-graph/#ref-https://doi.org/10.5438/ct8b-x1ce)).\nA
+      number of publications appear as pairs linked to each other,\nreflecting the
+      figshare approach to versioning.\n\nThis is only the starting point of what
+      can be done with Jupyter\nnotebooks and GraphQL, but it is clear that the possibilities
+      are almost\nendless. You can use the above notebook as a starting point, e.g.
+      to\ngenerate the graph of publications (with DataCite DOIs) using your ORCID\nID.
+      Or you do something very different, or use Python instead of R as\nprogramming
+      language. You can of course contribute interesting notebooks\nto the above GitHub
+      repository using a pull request.\n\n## Acknowledgments\n\nThis blog post was
+      [originally\npublished](https://doi.org/10.5438/hwaw-xe52) on the DataCite Blog.
+      This\nwork was funded by the European Union''s Horizon 2020 research and\ninnovation
+      programme under [grant agreement\nNo.\u00a0777523](https://doi.org/10.3030/777523){rel=\"noreferrer\"}.\n\n##
+      References\n\nFenner M. Mysteries in Reference Lists. Published online December
+      23,\n2016.\ndoi:[10.53731/r79z0kh-97aq74v-ag5hb](https://doi.org/10.53731/r79z0kh-97aq74v-ag5hb)\n\nFenner
+      M. The DataCite GraphQL API is now open for (pre-release)\nbusiness. Published
+      online May 15, 2019.\ndoi:[10.53731/r79sa71-97aq74v-ag4vc](https://doi.org/10.53731/r79sa71-97aq74v-ag4vc)\n\nFenner
+      M, Aryani A. Introducing the PID Graph. Published online 2019.\ndoi:[10.5438/JWVF-8A66](https://doi.org/10.5438/JWVF-8A66)\n","doi":"https://doi.org/10.53731/r79s7a1-97aq74v-ag4tq","guid":"62d42bbd41e317003df48eea","id":"5e49c75b-f239-4c8c-8c16-7c3cced90865","image":"https://blog.front-matter.io/content/images/2022/08/download-3-.jpeg","indexed_at":1709305557,"language":"en","published_at":1558915200,"reference":[],"relationships":[{"type":"IsIdenticalTo","urls":["https://doi.org/10.5438/hwaw-xe52"]},{"type":"HasAward","urls":["https://doi.org/10.3030/777523"]}],"summary":"Two
+      weeks ago DataCite announced the pre-release version of a GraphQL API [Fenner
+      (2019)]. GraphQL simplifies complex queries that for example want to retrieve
+      information about the authors, funding and data citations for a dataset with
+      a DataCite DOI. These connections together form the PID Graph [Fenner &amp;","tags":["Feature"],"title":"Using
+      Jupyter Notebooks with GraphQL and the PID Graph","updated_at":1694087383,"url":"https://blog.front-matter.io/posts/using-jupyter-notebooks-with-graphql-and-the-pid-graph"}
+
+      '
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 02 Mar 2024 09:00:47 GMT
+      fly-request-id:
+      - 01HQZ69XRJJWF85WCT4W1VVYQC-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '14'
+      ratelimit-reset:
+      - '3'
+      server:
+      - Fly/8f449382 (2024-03-01)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/9e24e4be-1915-48cc-a6b0-c23da5bc2857
+  response:
+    content: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22096/20231101172748/https://blog.front-matter.io/posts/introducing-the-pid-graph","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","authors":[{"name":"Martin
+      Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","created_at":1672561153,"current_feed_url":"https://blog.front-matter.io/atom/","description":"The
+      Front Matter Blog covers the intersection of science and technology since 2007.","favicon":"https://blog.front-matter.io/favicon.png","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.io/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
+      5.52","home_page_url":"https://blog.front-matter.io","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://mozilla.social/@martin","plan":"Personal","prefix":"10.53731","relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","title":"Front
+      Matter","updated_at":1708949311,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
+      Matter","blog_slug":"front_matter","content_text":"Persistent identifiers (PIDs)
+      are not only important to uniquely\nidentify a publication, dataset, or person,
+      but the metadata for these\npersistent identifiers can provide unambiguous linking
+      between\npersistent identifiers of the same type, e.g. journal articles citing\nother
+      journal articles, or of different types, e.g. linking a researcher\nand the
+      datasets they produced.\n\nWork is needed to connect existing persistent identifiers
+      to each other\nin standardized ways, e.g. to the outputs associated with a particular\nresearcher,
+      repository, institution or funder, for discovery and impact\nassessment. Some
+      of the more complex but still important use cases can''t\nbe addressed by simply
+      collecting and aggregating links between two\npersistent identifiers, including\n\n1.  Aggregate
+      the citations for all versions of a dataset or software\n    source code\n2.  Aggregate
+      the citations for all datasets hosted in a particular\n    repository, funded
+      by a particular funder, or created by a\n    particular researcher\n3.  Aggregate
+      all citations for a [research\n    object](http://www.researchobject.org/):
+      a publication, the data\n    underlying the findings in the paper, and the software,
+      samples, and\n    reagents used to create those datasets.\n\nTo address these
+      use cases we need a more complex model to describe the\nresources that are identified
+      by PIDs, and the connections between them:\na graph. In graph theory, the resources
+      identified by PIDs correspond to\nthe nodes in this graph, and the connections
+      between PIDs correspond to\nthe edges.\n\nUsing a graph makes it easier to describe
+      these more complex use cases\nand relationships, and this approach has been
+      frequently applied to\nsimilar questions in the past. FREYA builds on the expertise
+      and close\ncollaboration with the [Research Graph](http://researchgraph.org/)
+      team\nand adopts the outputs of the [Research Data Alliance DDRI Working\ngroup](https://www.rd-alliance.org/groups/data-description-registry-interoperability.html)\nto
+      transform PID connections into an improved graph of research objects.\nThis
+      project takes advantage of the best practices of graph modelling\nand distributed
+      network analysis techniques. We call this the **PID\nGraph**.\n\n### PID Graph
+      Use Cases\n\nBefore starting work on implementing the PID Graph, the FREYA partners\ncollected
+      user stories from their communities relevant to the PID Graph\nwork. We used
+      GitHub issues in a public repository for this activity and\nthen met in person
+      in August 2018 to clarify, group and prioritize these\nuser stories. In total,
+      we identified 48 user stories, described\n[here](https://github.com/datacite/freya/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22PID+Graph%22++label%3A%22user+story%22+).\nThe
+      main outcomes of the August 2018 workshop were:\n\n1.  There is a significant
+      number of relevant user stories that can only\n    be addressed by implementing
+      a PID Graph.\n2.  While there is a diverse number of stakeholder groups and
+      persistent\n    identifier types in these user stories, a number of common themes\n    and
+      major use cases emerged in the workshop.\n3.  We didn''t identify any uses cases
+      that require more than two\n    connections between PIDs, simplifying the required
+      implementation\n    work needed.\n\nAfter identifying and describing the most
+      relevant use cases, summarized\nabove, we started the implementation work for
+      the FREYA PID Graph. Our\ngoal was to implement the PID Graph as standard production
+      service\nrather than a research activity or pilot service, so scalability and\nmaintainability
+      are of utmost importance. We learned a lot from the\nextensive experience gained
+      in the [Research\nGraph](http://researchgraph.org/) initiative and decided to
+      build PID\nGraph using a set of federated RESTful JSON APIs. PID Graph will
+      not be\na single service but federated between FREYA PID providers, FREYA\ndisciplinary
+      partners, and organizations outside of FREYA. PID Graph\nwill be provided by
+      [RESTful JSON APIs](https://restfulapi.net/) that\ndescribe the resources (nodes)
+      and connections (edges) in this graph.\nAll FREYA PID providers use RESTful
+      JSON APIs to provide PID metadata so\nthat this approach aligns with the extensive
+      existing infrastructure.\n\n### Initial PID Graph Implementation\n\nThe first
+      working PID Graph implementation is provided by DataCite,\nextending the existing
+      Event Data Service (Dasler & Cousijn,\n[2018](https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5438/s6d3-k860)),\na
+      collaboration between Crossref and DataCite. Event Data is a service\nthat provides
+      connections (here called events) between PIDs and other\nresources, with an
+      initial focus on social media mentions and data\ncitations. The initial PID
+      Graph work done by DataCite since the August\n2018 workshop has added these
+      functionalities to [DataCite Event\nData](https://datacite.org/eventdata.html):\n\n####
+      Include metadata about resources\n\nInclude not only metadata about connections
+      but also metadata about the\nresources identified by PIDs. This dramatically
+      simplifies the API calls\nneeded to construct a PID Graph. We do this by optionally
+      including the\nmetadata for the **subj** and **obj** (the resources linked via
+      the\nevent) in Event Data via an extra query parameter:\n<https://api.datacite.org/events?include=subj,obj>\n\nIncluding
+      the metadata for subj and obj also enables queries based on\nresource metadata,
+      e.g. query by type of content that is connected:\n<https://api.datacite.org/events?include=subj,obj&citationType=ScholarlyArticle-SoftwareSourceCode>\n\nThis
+      query today returns 1,078 events connecting scholarly articles and\nsoftware,
+      including 834 from journal articles referencing software via\nCrossref metadata
+      and 210 from software referencing journal articles via\nDataCite metadata.\n\n####
+      Include implicit relations in metadata about resources\n\nMetadata for resources
+      contain a lot of information about connected\nPIDs. We can take advantage of
+      this by including the information in\nDataCite Event Data, allowing queries
+      that in effect connect two PIDs\nvia an intermediary resource and two connections.
+      Specifically, we\ninclude these relations and associated PIDs:\n\n1.  Version,
+      e.g. dataset A **isVersionOf** dataset B (using DataCite\n    **relatedIdentifier**
+      metadata)\n2.  Granularity, e.g. dataset A **isPartOf** dataset B or dataset
+      A\n    **isSupplementTo** article B (using DataCite **relatedIdentifier**\n    metadata)\n3.  Funding,
+      e.g. dataset A **isFundedBy** funder B (using DataCite\n    **fundingReferences**
+      metadata)\n4.  Author, e.g. dataset A **isAuthoredBy** author B (using DataCite\n    **nameIdentifier**
+      metadata)\n\nThese connected PIDs can then act as a **proxy** in PID Graph queries,\nas
+      demonstrated in this example:\n\n<https://api.datacite.org/events?include=subj,obj&doi=10.5061/dryad.k5k9074>\n\nThe
+      query today returns one data citation of the dataset identified by\nthe DOI,
+      and eight data files that are part of this dataset. If someone\ndecides to cite
+      one of these data files instead of the dataset\n(following principle 8 Specificity
+      and Verifiability of the Joint\nDeclaration of Data Citation Principles (Data
+      Citation Synthesis Group,\n[2014](https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.25490/a97f-egyk))),\nthat
+      data citation would also be included in the DataCite Event Data\nresponse.\n\nSimilarly,
+      the citation of a specific version of a dataset would be\nincluded if querying
+      for the parent version of the dataset. Examples for\nfunding and authorship
+      are given in the next paragraph.\n\n#### Include more types of events\n\nThe
+      initial focus in Event Data was on social media mentions and data\ncitations.
+      DataCite has added author-resource links and funder-resource\nlinks, using ORCID
+      and Crossref Funder ID as PIDs, respectively.\nDataCite also include dataset
+      usage statistics, as part of the work in\nthe Make Data Count (Lowenberg, Budden,
+      & Cruse,\n[2018](https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5438/pre3-2f25))\nproject.
+      This enables the following two use cases:\n\n1.  Show all datasets created by
+      a particular researcher and their usage\n    stats\n    <https://api.datacite.org/events?include=subj,obj&orcid=0000-0002-1194-1055>.\n    The
+      query today returns four datasets created by a researcher\n    identified via
+      her ORCID ID, plus a combined 21 unique views of\n    these datasets in February
+      and March 2019.\n2.  Show all datasets funded by the European Commission that
+      have been\n    cited by a journal article\n    <https://api.datacite.org/events?include=subj,obj&doi=10.13039/501100000780&citation-type=Dataset-ScholarlyArticle>.\n    The
+      query today returns 69 datasets cited by 37 journal articles.\n\n### Collaborating
+      on Research Data Graph Initiatives\n\nThe aim is for any interested parties
+      within and beyond FREYA to\nimplement PID Graph services, meaning that we have
+      to figure out how\nbest to coordinate and enable this federated PID Graph. And
+      of course,\nthere are initiatives outside of FREYA taking similar approaches
+      and\naddressing similar use cases. These include:\n\n1.  The already mentioned
+      Research Graph Foundation\n2.  [Scholix](http://www.scholix.org/): a framework
+      for Scholarly Link\n    Exchange coordinated by a Research Data Alliance (RDA)
+      Working Group\n3.  The OpenAIRE Research Graph (Manghi & Bardi,\n    [2019](https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5281/zenodo.2600275)),\n    an
+      open metadata research graph of interlinked scientific products,\n    with access
+      rights information, linked to funding information and\n    research communities.\n4.  Asclepias
+      (Ioannidis & Gonzalez Lopez,\n    [2019](https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5281/zenodo.2548643)),\n    a
+      broker service initially developed to track software citations in\n    astronomy.\n\nTo
+      coordinate these activities we have organized a Birds of a Feather\nsession
+      at the RDA Plenary in Philadelphia next week (Wednesday at 2:30\nPM): [Research
+      Data\nGraph](https://rd-alliance.org/bof-Research-Data-Graph-RDA-13th-Plenary-meeting).\n\nThe
+      initial implementation of the PID Graph in DataCite Event Data\ncontains 5.38
+      million events as of today and more work is needed to\nconvert existing events
+      to the new format (we expect a total of 25\nmillion events with the current
+      data source), improve documentation, and\nbuild visualizations and other frontend
+      services to make it easier to\nshow the PID Graph information we already have.
+      But if you can''t wait\nand are not afraid working with JSON REST APIs, feel
+      free to explore\nDataCite Event Data, which is a free service with no registration\nrequired,
+      by starting with the\n[documentation](https://support.datacite.org/docs/eventdata-guide).\n\nAnd
+      please reach out to us via the [PID\nForum](https://www.pidforum.org/) if you
+      are interested to learn more\nabout PID Graph, want to see your data in PID
+      Graph, or are working on a\nrelated project and want to coordinate. And of course,
+      join us for the\nRDA Plenary session next week in Philadelphia if you plan to
+      attend the\nconference.\n\n## Acknowledgments\n\nThis post has been cross-posted
+      from the\n[FREYA](https://www.project-freya.eu/en/blogs/blogs/the-pid-graph)
+      and\n[DataCite](https://doi.org/10.5438/jwvf-8a66) blogs. This work was\nfunded
+      by the European Union''s Horizon 2020 research and innovation\nprogramme under
+      [grant agreement\nNo.\u00a0777523](https://doi.org/10.3030/777523){rel=\"noreferrer\"}.\n\n##
+      References\n\nDasler R, Cousijn H. Are your data being used? Event Data has
+      the\nanswer! In: DataCite; 2018.\ndoi:[10.5438/S6D3-K860](https://doi.org/10.5438/S6D3-K860)\n\nData
+      Citation Synthesis Group. *Joint Declaration of Data Citation\nPrinciples*.
+      Force11; 2014.\ndoi:[10.25490/A97F-EGYK](https://doi.org/10.25490/A97F-EGYK)\n\nIoannidis
+      A, Gonzalez Lopez JB. Asclepias: Flower Power for Software\nCitation. Published
+      online January 24, 2019.\ndoi:[10.5281/ZENODO.2548643](https://doi.org/10.5281/ZENODO.2548643)\n\nLowenberg
+      D, Budden A, Cruse P. It''s Time to Make Your Data Count!\nPublished online
+      June 5, 2018.\ndoi:[10.5438/PRE3-2F25](https://doi.org/10.5438/PRE3-2F25)\n\nManghi
+      P, Bardi A. The OpenAIRE Research Graph - Opportunities and\nchallenges for
+      science. Published online March 20, 2019.\ndoi:[10.5281/ZENODO.2600275](https://doi.org/10.5281/ZENODO.2600275)\n","doi":"https://doi.org/10.53731/ewrv712-2k7rx6d","guid":"62d42bbd41e317003df48eed","id":"9e24e4be-1915-48cc-a6b0-c23da5bc2857","image":"https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp","indexed_at":1709305557,"language":"en","published_at":1553731200,"reference":[],"relationships":[{"type":"IsIdenticalTo","urls":["https://www.project-freya.eu/en/blogs/blogs/the-pid-graph","https://doi.org/10.5438/jwvf-8a66"]},{"type":"HasAward","urls":["https://doi.org/10.3030/777523"]}],"summary":"Persistent
+      identifiers (PIDs) are not only important to uniquely identify a publication,
+      dataset, or person, but the metadata for these persistent identifiers can provide
+      unambiguous linking between persistent identifiers of the same type, e.g. journal
+      articles citing other journal articles, or of different types, e.g. linking
+      a researcher and the datasets they produced.","tags":["Feature"],"title":"Introducing
+      the PID Graph","updated_at":1694087324,"url":"https://blog.front-matter.io/posts/introducing-the-pid-graph"}
+
+      '
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 02 Mar 2024 09:07:13 GMT
+      fly-request-id:
+      - 01HQZ6NQSAM7EWBM8CX0JCBB82-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '14'
+      ratelimit-reset:
+      - '3'
+      server:
+      - Fly/8f449382 (2024-03-01)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

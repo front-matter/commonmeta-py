@@ -1,7 +1,9 @@
 """JSON Feed reader for commonmeta-py"""
+
 from typing import Optional
 import httpx
 from pydash import py_
+from furl import furl
 
 from ..utils import (
     compact,
@@ -11,6 +13,7 @@ from ..utils import (
     dict_to_spdx,
     name_to_fos,
     validate_url,
+    validate_ror,
     encode_doi,
 )
 from ..author_utils import get_authors
@@ -202,21 +205,82 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
     if meta is None or not isinstance(meta, dict):
         return None
 
-    def format_funding(url: str) -> dict:
-        """format funding. Prefix 10.3030 means funder is European Commission"""
-        return {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
-            "awardNumber": url.split("/")[-1],
-        }
+    def format_funding(urls: list) -> list:
+        """format funding. URLs can either be a list of grant IDs or a funder identifier
+        (Open Funder Registry ID or ROR), followed by a grant URL"""
 
-    awards = [
-        format_funding(i.get("url"))
-        for i in wrap(meta.get("relationships", None))
-        if i.get("type", None) == "HasAward"
-        and validate_prefix(i.get("url", None)) == "10.3030"
-    ]
+        # Prefix 10.3030 means grant ID from funder is European Commission.
+        if len(urls) == 1 and validate_prefix(urls[0]) == "10.3030":
+            return [
+                {
+                    "funderName": "European Commission",
+                    "funderIdentifier": "https://doi.org/10.13039/501100000780",
+                    "funderIdentifierType": "Crossref Funder ID",
+                    "award_uri": urls[0],
+                    "awardNumber": urls[0].split("/")[-1],
+                }
+            ]
+        # Prefix 10.13039 means funder ID from Open Funder registry.
+        elif len(urls) == 2 and validate_prefix(urls[0]) == "10.13039":
+            if urls[0] == "https://doi.org/10.13039/100000001":
+                funder_name = "National Science Foundation"
+            else:
+                funder_name = None
+            f = furl(urls[1])
+            # url is for NSF grant
+            if f.args["awd_id"] is not None:
+                award_number = f.args["awd_id"]
+            else:
+                award_number = f.path.segments[-1]
+            return [
+                {
+                    "funderName": funder_name,
+                    "funderIdentifier": urls[0],
+                    "funderIdentifierType": "Crossref Funder ID",
+                    "award_uri": urls[1],
+                    "awardNumber": award_number,
+                }
+            ]
+        # URL is ROR ID for funder. Need to transform to Crossref Funder ID
+        # until Crossref production service supports ROR IDs.
+        elif len(urls) == 2 and validate_ror(urls[0]):
+            f = furl(urls[0])
+            _id = f.path.segments[-1]
+            response = httpx.get(f"https://api.ror.org/organizations/{_id}", timeout=10)
+            ror = response.json()
+            funder_name = ror.get("name", None)
+            funder_identifier = py_.get(ror, "external_ids.FUNDREF.all.0")
+            if funder_identifier is not None:
+                funder_identifier = f"https://doi.org/{funder_identifier}"
+                funder_identifier_type = "Crossref Funder ID"
+            else:
+                funder_identifier = urls[0]
+                funder_identifier_type = "ROR"
+            f = furl(urls[1])
+            # url is for NSF grant
+            if f.args["awd_id"] is not None:
+                award_number = f.args["awd_id"]
+            else:
+                award_number = f.path.segments[-1]
+            return [
+                compact(
+                    {
+                        "funderName": funder_name,
+                        "funderIdentifier": funder_identifier,
+                        "funderIdentifierType": funder_identifier_type,
+                        "award_uri": urls[1],
+                        "awardNumber": award_number,
+                    }
+                )
+            ]
+
+    awards = py_.flatten(
+        [
+            format_funding(i.get("urls"))
+            for i in wrap(meta.get("relationships", None))
+            if i.get("type", None) == "HasAward"
+        ]
+    )
     funding = py_.get(meta, "blog.funding", None)
     if funding is not None:
         awards += [
@@ -238,16 +302,26 @@ def get_related_identifiers(relationships: Optional[list]) -> Optional[list]:
 
     def format_relationship(relationship: dict) -> dict:
         """format relationship"""
+        _id = relationship.get("url", None) or relationship.get("urls", None)
+        if isinstance(_id, list):
+            relationships = []
+            for url in _id:
+                relationships.append(
+                    {"id": url, "type": relationship.get("type", None)}
+                )
+            return relationships
         return {
-            "id": relationship.get("url", None),
+            "id": _id,
             "type": relationship.get("type", None),
         }
 
-    return [
-        format_relationship(i)
-        for i in relationships
-        if i.get("type", None) in supported_types
-    ]
+    return py_.flatten(
+        [
+            format_relationship(i)
+            for i in relationships
+            if i.get("type", None) in supported_types
+        ]
+    )
 
 
 def get_files(pid: str) -> Optional[list]:

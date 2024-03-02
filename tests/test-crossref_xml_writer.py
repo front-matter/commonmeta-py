@@ -595,6 +595,7 @@ def test_json_feed_item_with_relations_and_funding():
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",
             "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
     ]
