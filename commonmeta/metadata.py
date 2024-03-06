@@ -88,7 +88,7 @@ class Metadata:
         self.subjects = meta.get("subjects")
         self.language = meta.get("language")
         self.alternate_identifiers = meta.get("alternate_identifiers")
-        self.related_identifiers = meta.get("related_identifiers")
+        self.relations = meta.get("relations")
         self.sizes = meta.get("sizes")
         self.formats = meta.get("formats")
         self.version = meta.get("version")

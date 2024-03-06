@@ -80,6 +80,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
             "http://www.crossref.org/xschema/1.0": None,
             "http://www.crossref.org/xschema/1.1": None,
             "http://www.crossref.org/AccessIndicators.xsd": None,
+            "http://www.crossref.org/relations.xsd": None,
             "http://www.crossref.org/fundref.xsd": None,
             "http://www.ncbi.nlm.nih.gov/JATS1": None,
         }
@@ -92,6 +93,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
             "titles",
             "item",
             "citation",
+            "program",
         }
 
     kwargs["attr_prefix"] = ""

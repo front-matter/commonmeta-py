@@ -1,4 +1,5 @@
 """datacite reader for Commonmeta"""
+
 from collections import defaultdict
 from typing import Optional
 import httpx
@@ -84,6 +85,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
+    relations = get_relations(wrap(meta.get("relatedIdentifiers", None)))
     descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
     geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
     formats = py_.uniq(meta.get("formats", None))
@@ -111,6 +113,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "geo_locations": presence(geo_locations),
         "funding_references": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
+        "relations": presence(relations),
         # other properties
         "files": presence(files),
         "container": presence(container),
@@ -141,6 +144,45 @@ def get_references(references: list) -> list:
 
     return [
         map_reference(i, index) for index, i in enumerate(references) if is_reference(i)
+    ]
+
+
+def get_relations(relations: list) -> list:
+    """get_relations"""
+
+    def is_relation(relation):
+        """relation"""
+        return relation.get("relationType", None) in [
+            "IsNewVersionOf",
+            "IsPreviousVersionOf",
+            "IsVersionOf",
+            "HasVersion",
+            "IsPartOf",
+            "HasPart",
+            "IsVariantFormOf",
+            "IsOriginalFormOf",
+            "IsIdenticalTo",
+            "IsTranslationOf",
+            "IsReviewedBy",
+            "Reviews",
+            "IsPreprintOf",
+            "HasPreprint",
+            "IsSupplementTo",
+        ]
+
+    def map_relation(relation):
+        """map_relation"""
+        identifier = relation.get("relatedIdentifier", None)
+        relation_type = relation.get("relationType", None)
+        return compact(
+            {
+                "id": identifier,
+                "type": relation_type,
+            }
+        )
+
+    return [
+        map_relation(i) for i in relations if is_relation(i)
     ]
 
 

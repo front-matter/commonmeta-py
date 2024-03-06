@@ -27,7 +27,7 @@ def test_metatranscriptome():
     }
     assert subject.license is None
     assert subject.date == {"submitted": "2020-11-05"}
-    assert subject.related_identifiers is None
+    assert subject.relations is None
     assert subject.publisher == {
         "id": "https://ror.org/04xm1d337",
         "name": "Joint Genome Institute",
@@ -90,8 +90,8 @@ def test_gulf_of_mexico():
     assert subject.date == {
         "published": "2021",
     }
-    assert len(subject.related_identifiers) == 8
-    assert subject.related_identifiers[1] == {
+    assert len(subject.relations) == 8
+    assert subject.relations[1] == {
         "id": "https://doi.org/10.6084/m9.figshare.12644018.v3",
         "type": "IsIdenticalTo",
     }

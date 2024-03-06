@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://commonmeta.org/commonmeta_v0.11.json",
-  "title": "Commonmeta v0.11",
+  "$id": "https://commonmeta.org/commonmeta_v0.12.json",
+  "title": "Commonmeta v0.12",
   "description": "JSON representation of the Commonmeta schema.",
   "additionalProperties": false,
   "definitions": {
@@ -157,7 +157,8 @@
         "properties": {
           "id": {
             "description": "The unique identifier for the contributor.",
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "type": {
             "description": "The type of the contributor.",
@@ -205,7 +206,8 @@
       "properties": {
         "id": {
           "description": "The identifier for the publisher.",
-          "type": "string"
+          "type": "string",
+          "format": "uri"
         },
         "name": {
           "description": "The name of the publisher.",
@@ -387,14 +389,15 @@
       },
       "uniqueItems": true
     },
-    "related_identifiers": {
+    "relations": {
       "description": "Other resolvable persistent unique IDs related to the resource.",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "string"
+            "type": "string",
+            "format": "uri"
           },
           "type": {
             "type": "string",
@@ -409,11 +412,14 @@
               "IsOriginalFormOf",
               "IsIdenticalTo",
               "IsTranslationOf",
+              "HasTranslation",
               "IsReviewedBy",
               "Reviews",
+              "HasReview",
               "IsPreprintOf",
               "HasPreprint",
-              "IsSupplementTo"
+              "IsSupplementTo",
+              "IsSupplementedBy"
             ]
           }
         },
@@ -559,6 +565,7 @@
       "enum": [
         "https://commonmeta.org/commonmeta_v0.10",
         "https://commonmeta.org/commonmeta_v0.11",
+        "https://commonmeta.org/commonmeta_v0.12",
         "http://datacite.org/schema/kernel-3",
         "http://datacite.org/schema/kernel-4"
       ]

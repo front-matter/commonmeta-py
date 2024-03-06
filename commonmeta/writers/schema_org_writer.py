@@ -87,7 +87,7 @@ def write_schema_org(metadata):
         rel = next(
             (
                 relation
-                for relation in metadata.related_identifiers
+                for relation in metadata.relations
                 if relation["type"] == "IsSupplementTo"
             ),
             None,

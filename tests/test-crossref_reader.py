@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref reader tests"""
+
 from os import path
 import re
 import pytest
@@ -19,6 +20,7 @@ def test_doi_with_data_citation():
     "DOI with data citation"
     string = "10.7554/elife.01567"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
@@ -58,6 +60,12 @@ def test_doi_with_data_citation():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
+    assert subject.relations == [
+        {"type": "IsSupplementedBy", "id": "https://doi.org/10.5061/dryad.b835k"},
+        {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.017"},
+        {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.016"},
+        {"type": "IsPartOf", "id": "https://portal.issn.org/resource/ISSN/2050-084X"},
+    ]
     assert subject.funding_references == [
         {"funderName": "SystemsX"},
         {"funderName": "EMBO longterm post-doctoral fellowships"},
@@ -415,6 +423,9 @@ def test_posted_content():
         "firstPage": "43",
         "containerTitle": "Bulletin of the American \\ldots",
     }
+    assert subject.relations == [
+        {"id": "https://doi.org/10.1038/s41597-019-0031-8", "type": "IsPreprintOf"}
+    ]
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -464,6 +475,7 @@ def test_peer_review():
         "name": "eLife Sciences Publications, Ltd",
     }
     assert subject.references is None
+    assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -663,6 +675,10 @@ def test_date_in_future():
         "firstPage": "449",
         "containerTitle": "HIV Med.",
     }
+    assert subject.relations == [
+        {"type": "HasReview", "id": "https://doi.org/10.3410/f.725411277.793529613"},
+        {"id": "https://portal.issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
+    ]
     assert subject.funding_references == [
         {
             "awardNumber": "R01 NS089482",
@@ -875,6 +891,7 @@ def test_crossref_json():
     """crossref.json"""
     string = path.join(path.dirname(__file__), "fixtures", "crossref.json")
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert len(subject.files) == 2

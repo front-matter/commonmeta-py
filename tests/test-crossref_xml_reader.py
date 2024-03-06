@@ -460,6 +460,7 @@ def test_peer_review():
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 0
+    assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -922,7 +923,7 @@ def test_book_chapter():
     }
     assert subject.license is None
     assert subject.date == {
-        "created": "2015-04-14",
+        "created": "2015-04-13",
         "published": "2015",
         "updated": "2023-02-10",
     }

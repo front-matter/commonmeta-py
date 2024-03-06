@@ -14,6 +14,7 @@ def test_wordpress_with_references():
     "Wordpress with references"
     string = "https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
     assert subject.type == "Article"
@@ -26,10 +27,17 @@ def test_wordpress_with_references():
     }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "contributorRoles": ["Author"],
+        "id": "https://orcid.org/0000-0001-6082-3103",
         "type": "Person",
-        "familyName": "Wedel",
+        "contributorRoles": ["Author"],
         "givenName": "Matt",
+        "familyName": "Wedel",
+        "affiliation": [
+            {
+                "id": "https://ror.org/05167c961",
+                "name": "Western University of Health Sciences",
+            }
+        ],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -48,6 +56,7 @@ def test_wordpress_with_references():
         "key": "ref1",
         "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
     }
+    assert subject.relations is None
 
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
@@ -101,6 +110,7 @@ def test_post_with_relationships():
     "post with isIdenticalTo relationships"
     string = "https://api.rogue-scholar.org/posts/9e24e4be-1915-48cc-a6b0-c23da5bc2857"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "Article"
@@ -137,12 +147,13 @@ def test_post_with_relationships():
             "awardNumber": "777523",
         }
     ]
-    assert subject.related_identifiers == [
+    assert subject.relations == [
         {
             "id": "https://www.project-freya.eu/en/blogs/blogs/the-pid-graph",
             "type": "IsIdenticalTo",
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.container == {
         "type": "Periodical",
@@ -187,6 +198,7 @@ def test_post_with_funding():
         "name": "Upstream",
     }
     assert len(subject.references) == 0
+    assert subject.relations is None
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
@@ -243,11 +255,12 @@ def test_post_with_funding_ror():
         "name": "Blog - Metadata Game Changers",
     }
     assert len(subject.references) == 0
+    assert subject.relations is None
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
             "award_uri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
             "awardNumber": "2135874",
         }
@@ -294,7 +307,7 @@ def test_ghost_with_institutional_author():
         "name": "OA.Works Blog",
     }
     assert len(subject.references) == 0
-
+    assert subject.relations is None
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
     #     {"funderName": "EMBO longterm post-doctoral fellowships"},
@@ -349,6 +362,7 @@ def test_ghost_with_affiliations():
     "ghost with affiliations"
     string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
     assert subject.type == "Article"
@@ -387,6 +401,9 @@ def test_ghost_with_affiliations():
         "publicationYear": "2013",
         "key": "ref1",
     }
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Front Matter",
@@ -439,33 +456,9 @@ def test_ghost_with_personal_name_parsing():
         "name": "I.D.E.A.S.",
     }
     assert len(subject.references) == 0
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
+    ]
     assert subject.container == {
         "identifier": "2993-1150",
         "identifierType": "ISSN",

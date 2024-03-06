@@ -62,7 +62,7 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
 
     version = meta.get("version", None)
     references = get_references(wrap(meta.get("related_identifiers")))
-    related_identifiers = get_related_identifiers(wrap(meta.get("related_identifiers")))
+    relations = get_relations(wrap(meta.get("related_identifiers")))
     funding_references = get_funding_references(wrap(meta.get("funding", None)))
     files = [get_file(i) for i in wrap(meta.get("content_url"))]
 
@@ -91,7 +91,7 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
         "geo_locations": None,
         "funding_references": presence(funding_references),
         "references": presence(references),
-        "related_identifiers": presence(related_identifiers),
+        "relations": presence(relations),
         # other properties
         "files": presence(files),
         "container": container,
@@ -150,13 +150,13 @@ def get_file(file: str) -> dict:
     return compact({"url": file})
 
 
-def get_related_identifiers(related_identifiers: list) -> list:
-    """get_related_identifiers"""
+def get_relations(relations: list) -> list:
+    """get_relations"""
 
-    def map_related_identifier(related_identifier: dict) -> dict:
-        """get_related_identifier"""
-        identifier = from_curie(related_identifier.get("id", None))
-        _type = related_identifier.get("relationship_type", None)
+    def map_relation(relation: dict) -> dict:
+        """map_relation"""
+        identifier = from_curie(relation.get("id", None))
+        _type = relation.get("relationship_type", None)
         # remove DataCite: and Crossref: prefixes
         _type = _type.split(":")[1] if _type else None
         if normalize_url(identifier):
@@ -169,7 +169,7 @@ def get_related_identifiers(related_identifiers: list) -> list:
             "type": _type,
         }
 
-    identifiers = [map_related_identifier(i) for i in related_identifiers]
+    identifiers = [map_relation(i) for i in relations]
     return [i for i in identifiers if i["type"] in COMMONMETA_RELATION_TYPES]
 
 

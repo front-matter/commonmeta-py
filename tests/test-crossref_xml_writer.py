@@ -4,6 +4,7 @@ import pytest
 from os import path
 import pydash as py_
 import re
+from collections import OrderedDict
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import parse_xml
@@ -237,6 +238,10 @@ def test_write_crossref_xml_missing_doi():
     subject = Metadata(string, via="json_feed_item")
     assert subject.is_valid
     assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
+    ]
+    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert re.match(r"\A(10\.59350/.+)\Z", py_.get(crossref_xml, "doi_data.doi"))
@@ -249,6 +254,17 @@ def test_write_crossref_xml_missing_doi():
         "surname": "Sathe",
     }
     assert py_.get(crossref_xml, "titles.0.title") == "The Residency Visual Abstract"
+    assert py_.get(crossref_xml, "program.1") == {
+        "name": "relations",
+        "xmlns": OrderedDict([("", "http://www.crossref.org/relations.xsd")]),
+        "related_item": {
+            "inter_work_relation": {
+                "relationship-type": "isPartOf",
+                "identifier-type": "issn",
+                "#text": "2993-1150",
+            }
+        },
+    }
 
 
 def test_write_crossref_xml_missing_doi_no_prefix():
@@ -552,8 +568,9 @@ def test_json_feed_item_with_relations():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
-    assert subject.related_identifiers == [
-        {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"}
+    assert subject.relations == [
+        {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     # assert len(subject.references) == 1
     # assert subject.references[0] == {
@@ -587,8 +604,9 @@ def test_json_feed_item_with_relations_and_funding():
     #     "title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
     #     "publicationYear": "2015",
     # }
-    assert subject.related_identifiers == [
-        {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"}
+    assert subject.relations == [
+        {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
         {
@@ -599,6 +617,7 @@ def test_json_feed_item_with_relations_and_funding():
             "awardNumber": "777523",
         }
     ]
+    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     # assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
@@ -625,6 +644,26 @@ def test_json_feed_item_with_relations_and_funding():
                 {"name": "award_number", "#text": "777523"},
             ],
         },
+    }
+    assert py_.get(crossref_xml, "program.2") == {
+        "name": "relations",
+        "xmlns": OrderedDict([("", "http://www.crossref.org/relations.xsd")]),
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "relationship-type": "isIdenticalTo",
+                    "identifier-type": "doi",
+                    "#text": "10.5438/bv9z-dc66",
+                }
+            },
+            {
+                "inter_work_relation": {
+                    "relationship-type": "isPartOf",
+                    "identifier-type": "issn",
+                    "#text": "2749-9952",
+                }
+            },
+        ],
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
 
@@ -655,6 +694,7 @@ def test_json_feed_item_with_references():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
+    assert subject.relations is None
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1

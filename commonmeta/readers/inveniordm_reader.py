@@ -75,11 +75,11 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
-    related_identifiers = get_related_identifiers(
+    relations = get_relations(
         wrap(py_.get(meta, "metadata.related_identifiers"))
     )
     if meta.get("conceptdoi", None):
-        related_identifiers.append(
+        relations.append(
             {
                 "id": doi_as_url(meta.get("conceptdoi")),
                 "type": "IsVersionOf",
@@ -112,7 +112,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "geo_locations": None,
         # "funding_references": presence(meta.get("fundingReferences", None)),
         # "references": presence(references),
-        "related_identifiers": presence(related_identifiers),
+        "relations": presence(relations),
         # other properties
         "files": files,
         "container": container,
@@ -169,14 +169,14 @@ def get_file(file: dict) -> str:
     )
 
 
-def get_related_identifiers(related_identifiers: list) -> list:
-    """get_related_identifiers"""
+def get_relations(relations: list) -> list:
+    """get_relations"""
 
-    def map_related_identifier(related_identifier: dict) -> dict:
-        """get_related_identifier"""
-        identifier = related_identifier.get("identifier", None)
-        scheme = related_identifier.get("scheme", None)
-        relation_type = related_identifier.get("relation", None)
+    def map_relation(relation: dict) -> dict:
+        """map_relation"""
+        identifier = relation.get("identifier", None)
+        scheme = relation.get("scheme", None)
+        relation_type = relation.get("relation", None)
         if scheme == "doi":
             identifier = doi_as_url(identifier)
         else:
@@ -186,7 +186,7 @@ def get_related_identifiers(related_identifiers: list) -> list:
             "type": py_.capitalize(relation_type, False) if relation_type else None,
         }
 
-    identifiers = [map_related_identifier(i) for i in related_identifiers]
+    identifiers = [map_relation(i) for i in relations]
     return [
         i
         for i in identifiers

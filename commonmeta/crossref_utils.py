@@ -6,9 +6,10 @@ from datetime import datetime
 from dateutil.parser import parse
 import uuid
 import pydash as py_
+from furl import furl
 
 from .constants import Commonmeta
-from .utils import wrap, compact, normalize_orcid, normalize_id
+from .utils import wrap, compact, normalize_orcid, normalize_id, validate_url
 from .doi_utils import doi_from_url, validate_doi
 
 
@@ -270,7 +271,7 @@ def insert_crossref_access_indicators(metadata, xml):
 
 def insert_crossref_relations(metadata, xml):
     """Insert crossref relations"""
-    if metadata.related_identifiers is None or len(metadata.related_identifiers) == 0:
+    if metadata.relations is None or len(metadata.relations) == 0:
         return xml
     program = etree.SubElement(
         xml,
@@ -280,22 +281,50 @@ def insert_crossref_relations(metadata, xml):
             "name": "relations",
         },
     )
-    for related_identifier in metadata.related_identifiers:
+    for relation in metadata.relations:
+        if relation.get("type", None) in [
+            "IsPartOf",
+            "HasPart",
+            "IsReviewOf",
+            "HasReview",
+            "IsRelatedMaterial",
+            "HasRelatedMaterial",
+        ]:
+            group = "inter_work_relation"
+        elif relation.get("type", None) in [
+            "IsIdenticalTo",
+            "IsPreprintOf",
+            "HasPreprint",
+            "IsTranslationOf",
+            "HasTranslation",
+            "IsVersionOf",
+            "HasVersion",
+        ]:
+            group = "intra_work_relation"
+        else:
+            continue
+
         related_item = etree.SubElement(program, "related_item")
-        identifier_type = (
-            "doi" if validate_doi(related_identifier.get("id", None)) else "uri"
-        )
-        _id = (
-            doi_from_url(related_identifier.get("id", None))
-            if identifier_type == "doi"
-            else related_identifier.get("id", None)
-        )
+        f = furl(relation.get("id", None))
+        if validate_doi(relation.get("id", None)):
+            identifier_type = "doi"
+            _id = doi_from_url(relation.get("id", None))
+        elif f.host == "portal.issn.org":
+            identifier_type = "issn"
+            _id = f.path.segments[-1]
+        elif validate_url(relation.get("id", None)) == "URL":
+            identifier_type = "url"
+            _id = relation.get("id", None)
+        else:
+            identifier_type = "other"
+            _id = relation.get("id", None)
+
         etree.SubElement(
             related_item,
-            "intra_work_relation",
+            group,
             {
-                "relationship-type": py_.lower_first(related_identifier.get("type"))
-                if related_identifier.get("type", None) is not None
+                "relationship-type": py_.lower_first(relation.get("type"))
+                if relation.get("type", None) is not None
                 else None,
                 "identifier-type": identifier_type,
             },

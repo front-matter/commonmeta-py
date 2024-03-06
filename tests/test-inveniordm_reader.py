@@ -34,7 +34,7 @@ def test_software():
         "published": "2023-03-20",
         "updated": "2023-03-20T14:26:48Z",
     }
-    assert subject.related_identifiers == [
+    assert subject.relations == [
         {
             "id": "https://github.com/front-matter/commonmeta-ruby/tree/v3.0.1",
             "type": "IsSupplementTo",
@@ -104,7 +104,7 @@ def test_presentation():
         "published": "2023-07-21",
         "updated": "2023-07-24T20:18:05Z",
     }
-    assert subject.related_identifiers == [
+    assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {
@@ -167,7 +167,7 @@ def test_publication():
         "published": "2021-08-18",
         "updated": "2022-07-01T11:30:53Z",
     }
-    assert subject.related_identifiers == [
+    assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {
@@ -232,7 +232,7 @@ def test_dataset():
         "published": "2023-04-16",
         "updated": "2023-04-17T14:26:45Z",
     }
-    assert subject.related_identifiers == [
+    assert subject.relations == [
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]

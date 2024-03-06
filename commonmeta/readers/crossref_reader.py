@@ -1,4 +1,5 @@
 """crossref reader for commonmeta-py"""
+
 from typing import Optional
 import httpx
 from pydash import py_
@@ -9,6 +10,7 @@ from ..utils import (
     normalize_url,
     normalize_doi,
     normalize_issn,
+    issn_as_url,
 )
 from ..base_utils import wrap, compact, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
@@ -96,7 +98,19 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     container = get_container(meta)
-    references =py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
+    relations = get_relations(meta.get("relation", None))
+    if container.get("identifier", None) is not None:
+        if container.get("identifierType", None) == "ISSN":
+            container_id = issn_as_url(container.get("identifier"))
+        else:
+            container_id = container.get("identifier")
+        relations.append(
+            {
+                "id": container_id,
+                "type": "IsPartOf",
+            }
+        )
+    references = py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)
@@ -137,6 +151,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "geo_locations": None,
         "funding_references": presence(funding_references),
         "references": presence(references),
+        "relations": presence(relations),
         # other properties
         "files": presence(files),
         "container": presence(container),
@@ -199,6 +214,50 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
         "unstructured": reference.get("unstructured", None) if doi is None else None,
     }
     return compact(metadata)
+
+
+def get_relations(relations: list) -> list:
+    """Get relations from Crossref"""
+    supported_types = [
+        "IsNewVersionOf",
+        "IsPreviousVersionOf",
+        "IsVersionOf",
+        "HasVersion",
+        "IsPartOf",
+        "HasPart",
+        "IsVariantFormOf",
+        "IsOriginalFormOf",
+        "IsIdenticalTo",
+        "IsTranslationOf",
+        "IsReviewedBy",
+        "Reviews",
+        "HasReview",
+        "IsPreprintOf",
+        "HasPreprint",
+        "IsSupplementTo",
+        "IsSupplementedBy",
+    ]
+
+    if not relations:
+        return []
+
+    def format_relation(key, values):
+        print(key, values)
+        _type = py_.pascal_case(key)
+        if _type not in supported_types:
+            return None
+        rs = []
+        for value in values:
+            if value.get("id-type", None) == "doi":
+                _id = doi_as_url(value.get("id", None))
+            else:
+                _id = value.get("id", None)
+
+            rs.append({"type": _type, "id": _id})
+
+        return rs
+
+    return py_.compact(py_.flatten([format_relation(k,v) for k, v in relations.items()]))
 
 
 def get_file(file: dict) -> dict:

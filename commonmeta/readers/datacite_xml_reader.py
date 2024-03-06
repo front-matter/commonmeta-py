@@ -196,6 +196,9 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     references = get_xml_references(
         wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
     )
+    relations = get_xml_relations(
+        wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
+    )
 
     def map_funding_reference(funding_reference):
         """map_funding_reference"""
@@ -235,6 +238,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "geo_locations": presence(geo_locations),
         "funding_references": presence(funding_references),
         "references": presence(references),
+        "relations": presence(relations),
         # other properties
         "date_created": strip_milliseconds(meta.get("created", None)),
         "date_registered": strip_milliseconds(meta.get("registered", None)),
@@ -282,6 +286,43 @@ def get_xml_references(references: list) -> list:
 
     return [map_reference(i) for i in references if is_reference(i)]
 
+def get_xml_relations(relations: list) -> list:
+    """get_xml_relations"""
+
+    def is_relation(relation):
+        """is_relation"""
+        return relation.get("relationType", None) in [
+            "IsNewVersionOf",
+            "IsPreviousVersionOf",
+            "IsVersionOf",
+            "HasVersion",
+            "IsPartOf",
+            "HasPart",
+            "IsVariantFormOf",
+            "IsOriginalFormOf",
+            "IsIdenticalTo",
+            "IsTranslationOf",
+            "IsReviewedBy",
+            "Reviews",
+            "IsPreprintOf",
+            "HasPreprint",
+            "IsSupplementTo",
+        ]
+
+    def map_relation(relation):
+        """map_relation"""
+        identifier = relation.get("relatedIdentifier", None)
+        identifier_type = relation.get("relatedIdentifierType", None)
+        if identifier and identifier_type == "DOI":
+            relation["doi"] = normalize_doi(identifier)
+        elif identifier and identifier_type == "URL":
+            relation["url"] = normalize_url(identifier)
+        return {
+            "id": identifier,
+            "type": identifier_type,
+        }
+
+    return [map_relation(i) for i in relations if is_relation(i)]
 
 def get_dates(dates: list, publication_year) -> dict:
     """convert date list to dict, rename and/or remove some keys"""

@@ -32,12 +32,12 @@ def write_commonmeta(metadata):
             "descriptions": metadata.descriptions,
             "geo_locations": metadata.geo_locations,
             "alternate_identifiers": metadata.alternate_identifiers,
-            "related_identifiers": metadata.related_identifiers,
+            "relations": metadata.relations,
             "funding_references": metadata.funding_references,
             # other properties
             "files": metadata.files,
             "provider": metadata.provider,
-            "schema_version": "https://commonmeta.org/commonmeta_v0.11",
+            "schema_version": "https://commonmeta.org/commonmeta_v0.12",
         }
     )
     return json.dumps(data)
@@ -60,7 +60,7 @@ def write_commonmeta_list(metalist):
             "id": metalist.id,
             "title": metalist.title,
             "description": metalist.description,
-            "schema_version": "https://commonmeta.org/commonmeta_v0.11",
+            "schema_version": "https://commonmeta.org/commonmeta_v0.12",
             "items": items,
         }
     )

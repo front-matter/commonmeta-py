@@ -175,20 +175,19 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
     descriptions = crossref_description(bibmeta)
     funding = (
-        py_.get(bibmeta, "program")
+        py_.get(bibmeta, "program.0")
         or py_.get(bibmeta, "program.0.assertion")
-        or py_.get(bibmeta, "crossmark.custom_metadata.program.assertion")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.0.assertion")
     )
     funding_references = crossref_funding(wrap(funding))
 
     license_ = (
-        py_.get(bibmeta, "program.license_ref")
-        or py_.get(bibmeta, "crossmark.custom_metadata.program.license_ref")
+        py_.get(bibmeta, "program.0.license_ref")
+        or py_.get(bibmeta, "crossmark.custom_metadata.program.0.license_ref")
         or py_.get(bibmeta, "crossmark.custom_metadata.program.1.license_ref")
     )
     license_ = crossref_license(wrap(license_))
-
+    
     # By using book_metadata, we can account for where resource_type is `BookChapter` and not assume its a whole book
     # if book_metadata:
     #     #   identifiers = crossref_alternate_identifiers(book_metadata)
@@ -254,6 +253,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         "geo_locations": None,
         "funding_references": presence(funding_references),
         "references": references,
+        "relations": None,
         # other properties
         "date_created": None,
         "date_registered": None,

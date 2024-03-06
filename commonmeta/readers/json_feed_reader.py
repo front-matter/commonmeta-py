@@ -15,6 +15,7 @@ from ..utils import (
     validate_url,
     validate_ror,
     encode_doi,
+    issn_as_url,
 )
 from ..author_utils import get_authors
 from ..base_utils import presence, sanitize, parse_attributes
@@ -112,7 +113,14 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         subjects = None
     references = get_references(wrap(meta.get("reference", None)))
     funding_references = get_funding_references(meta)
-    related_identifiers = get_related_identifiers(wrap(meta.get("relationships", None)))
+    relations = get_relations(wrap(meta.get("relationships", None)))
+    if issn is not None:
+        relations.append(
+            {
+                "id": issn_as_url(issn),
+                "type": "IsPartOf",
+            }
+        )
     alternate_identifiers = [
         {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
     ]
@@ -140,7 +148,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "geo_locations": None,
         "funding_references": presence(funding_references),
         "references": references,
-        "related_identifiers": presence(related_identifiers),
+        "relations": presence(relations),
         "files": files,
         # other properties
         "container": presence(container),
@@ -295,30 +303,44 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
     return awards
 
 
-def get_related_identifiers(relationships: Optional[list]) -> Optional[list]:
-    """get json feed related identifiers.
-    Check that relationships resolve and has a supported type"""
-    supported_types = ["IsIdenticalTo", "IsPreprintOf", "IsTranslationOf"]
+def get_relations(relations: Optional[list]) -> Optional[list]:
+    """get json feed related relations.
+    Check that relations resolve and have a supported type"""
+    supported_types = [
+        "IsNewVersionOf",
+        "IsPreviousVersionOf",
+        "IsVersionOf",
+        "HasVersion",
+        "IsPartOf",
+        "HasPart",
+        "IsVariantFormOf",
+        "IsOriginalFormOf",
+        "IsIdenticalTo",
+        "IsTranslationOf",
+        "IsReviewedBy",
+        "Reviews",
+        "IsPreprintOf",
+        "HasPreprint",
+        "IsSupplementTo",
+    ]
 
-    def format_relationship(relationship: dict) -> dict:
+    def format_relationship(relation: dict) -> dict:
         """format relationship"""
-        _id = relationship.get("url", None) or relationship.get("urls", None)
+        _id = relation.get("url", None) or relation.get("urls", None)
         if isinstance(_id, list):
-            relationships = []
+            relations = []
             for url in _id:
-                relationships.append(
-                    {"id": url, "type": relationship.get("type", None)}
-                )
-            return relationships
+                relations.append({"id": url, "type": relation.get("type", None)})
+            return relations
         return {
             "id": _id,
-            "type": relationship.get("type", None),
+            "type": relation.get("type", None),
         }
 
     return py_.flatten(
         [
             format_relationship(i)
-            for i in relationships
+            for i in relations
             if i.get("type", None) in supported_types
         ]
     )

@@ -1028,6 +1028,13 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     return None
 
 
+def issn_as_url(issn: str) -> Optional[str]:
+    """ISSN as URL"""
+    if issn is None:
+        return None
+    return f"https://portal.issn.org/resource/ISSN/{issn}"
+
+
 def get_language(lang: str) -> Optional[dict]:
     """Provide a language object based on ISO 639, with either a name in English,
     ISO 639-1, or ISO 639-3 code as input.
