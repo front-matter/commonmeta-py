@@ -313,7 +313,7 @@ def insert_crossref_relations(metadata, xml):
             identifier_type = "issn"
             _id = f.path.segments[-1]
         elif validate_url(relation.get("id", None)) == "URL":
-            identifier_type = "url"
+            identifier_type = "uri"
             _id = relation.get("id", None)
         else:
             identifier_type = "other"
