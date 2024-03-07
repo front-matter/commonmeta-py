@@ -41,11 +41,20 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
     publisher = meta.get("publisher", None)
     if isinstance(publisher, str):
         publisher = {"name": publisher}
+    relations = []
+    issn = meta.get("ISSN", None)
+    if issn is not None:
+        relations.append(
+            {
+                "id": issn_as_url(issn),
+                "type": "IsPartOf",
+            }
+        )
     container = compact(
         {
             "type": "Periodical",
             "title": meta.get("container-title", None),
-            "identifier": meta.get("ISSN", None),
+            "identifier": issn,
             "identifierType": "ISSN" if meta.get("ISSN", None) else None,
             "volume": meta.get("volume", None),
             "issue": meta.get("issue", None),
@@ -56,7 +65,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
 
     state = "findable" if _id or read_options else "not_found"
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
-
+    
     if meta.get("abstract", None):
         descriptions = [
             {
@@ -79,6 +88,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         "date": compact(date),
         "container": container,
         "references": None,
+        "relations": presence(relations),
         "descriptions": descriptions,
         "license": license_,
         "version": meta.get("version", None),

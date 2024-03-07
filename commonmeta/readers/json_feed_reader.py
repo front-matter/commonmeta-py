@@ -216,9 +216,10 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
     def format_funding(urls: list) -> list:
         """format funding. URLs can either be a list of grant IDs or a funder identifier
         (Open Funder Registry ID or ROR), followed by a grant URL"""
-
+        print(urls)
         # Prefix 10.3030 means grant ID from funder is European Commission.
-        if len(urls) == 1 and validate_prefix(urls[0]) == "10.3030":
+        # CORDIS is the grants portal of the European Commission.
+        if len(urls) == 1 and (validate_prefix(urls[0]) == "10.3030" or furl(urls[0]).host == "cordis.europa.eu"):
             return [
                 {
                     "funderName": "European Commission",

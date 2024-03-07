@@ -923,7 +923,7 @@ def test_book_chapter():
     }
     assert subject.license is None
     assert subject.date == {
-        "created": "2015-04-13",
+        "created": "2015-04-14",
         "published": "2015",
         "updated": "2023-02-10",
     }

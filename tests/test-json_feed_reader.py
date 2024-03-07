@@ -14,7 +14,6 @@ def test_wordpress_with_references():
     "Wordpress with references"
     string = "https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
     assert subject.type == "Article"
@@ -110,7 +109,6 @@ def test_post_with_relationships():
     "post with isIdenticalTo relationships"
     string = "https://api.rogue-scholar.org/posts/9e24e4be-1915-48cc-a6b0-c23da5bc2857"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "Article"
@@ -168,7 +166,6 @@ def test_post_with_funding():
     "post with funding"
     string = "https://api.rogue-scholar.org/posts/5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
     assert subject.type == "Article"
@@ -213,6 +210,39 @@ def test_post_with_funding():
         "title": "Upstream",
         "identifier": "https://rogue-scholar.org/blogs/upstream",
         "identifierType": "URL",
+    }
+
+
+@pytest.mark.vcr
+def test_post_with_more_funding():
+    "post with more funding"
+    string = "https://api.rogue-scholar.org/posts/44690ae5-2ece-403d-8e34-a05668277a29"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw1y"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool"
+    )
+    assert len(subject.references) == 0
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+    ]
+    assert subject.funding_references == [
+        {
+            "funderName": "European Commission",
+            "funderIdentifier": "https://doi.org/10.13039/501100000780",
+            "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://cordis.europa.eu/project/id/312788",
+            "awardNumber": "312788",
+        }
+    ]
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
     }
 
 
@@ -362,7 +392,6 @@ def test_ghost_with_affiliations():
     "ghost with affiliations"
     string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
     assert subject.type == "Article"
