@@ -242,7 +242,6 @@ def get_relations(relations: list) -> list:
         return []
 
     def format_relation(key, values):
-        print(key, values)
         _type = py_.pascal_case(key)
         if _type not in supported_types:
             return None
@@ -257,7 +256,7 @@ def get_relations(relations: list) -> list:
 
         return rs
 
-    return py_.compact(py_.flatten([format_relation(k,v) for k, v in relations.items()]))
+    return py_.uniq(py_.compact(py_.flatten([format_relation(k,v) for k, v in relations.items()])))
 
 
 def get_file(file: dict) -> dict:
