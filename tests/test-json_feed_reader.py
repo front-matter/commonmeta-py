@@ -162,6 +162,63 @@ def test_post_with_relationships():
 
 
 @pytest.mark.vcr
+def test_post_with_relationships_as_doi():
+    "post with isIdenticalTo relationships"
+    string = "https://api.rogue-scholar.org/posts/10.53731/ewrv712-2k7rx6d"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
+    assert subject.type == "Article"
+    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert subject.titles[0] == {"title": "Introducing the PID Graph"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2019-03-28T01:00:00",
+        "updated": "2023-09-07T13:48:44",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert subject.references is None
+    assert subject.funding_references == [
+        {
+            "funderName": "European Commission",
+            "funderIdentifier": "https://doi.org/10.13039/501100000780",
+            "funderIdentifierType": "Crossref Funder ID",
+            "award_uri": "https://doi.org/10.3030/777523",
+            "awardNumber": "777523",
+        }
+    ]
+    assert subject.relations == [
+        {
+            "id": "https://www.project-freya.eu/en/blogs/blogs/the-pid-graph",
+            "type": "IsIdenticalTo",
+        },
+        {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+    ]
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
+    }
+
+
+@pytest.mark.vcr
 def test_post_with_funding():
     "post with funding"
     string = "https://api.rogue-scholar.org/posts/5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9"
