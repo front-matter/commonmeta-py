@@ -10,8 +10,6 @@ def test_blog_posting():
     "blog posting"
     string = "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     subject = Metadata(string)
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.type == "Article"
@@ -55,8 +53,6 @@ def test_zenodo():
     "zenodo"
     string = "https://www.zenodo.org/records/1196821"
     subject = Metadata(string)
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1196821"
     assert subject.type == "Other"
@@ -112,8 +108,6 @@ def test_pangaea():
     "pangaea"
     string = "https://doi.pangaea.de/10.1594/PANGAEA.836178"
     subject = Metadata(string)
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1594/pangaea.836178"
     assert subject.type == "Dataset"
@@ -362,8 +356,6 @@ def test_with_blog_with_datacite_dois():
     "with blog with datacite dois"
     string = "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     subject = Metadata(string)
-    if not subject.is_valid:
-        print(subject.errors)
     assert subject.is_valid
     assert (
         subject.id

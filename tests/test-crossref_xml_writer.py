@@ -617,7 +617,6 @@ def test_json_feed_item_with_relations_and_funding():
             "awardNumber": "777523",
         }
     ]
-    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     # assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
