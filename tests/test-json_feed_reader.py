@@ -216,6 +216,8 @@ def test_post_with_relationships_as_doi():
         "identifier": "2749-9952",
         "identifierType": "ISSN",
     }
+    assert subject.provider == "Crossref"
+    assert subject.state == "findable"
 
 
 @pytest.mark.vcr

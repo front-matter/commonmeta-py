@@ -153,7 +153,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "files": files,
         # other properties
         "container": presence(container),
-        # "provider": get_doi_ra(_id),
+        "provider": "Crossref" if is_rogue_scholar_doi(_id) else None,
         "state": state,
         "schema_version": None,
     } | read_options

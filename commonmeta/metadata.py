@@ -107,6 +107,7 @@ class Metadata:
         self.provider = meta.get("provider")
         self.schema_version = meta.get("schema_version")
         self.archive_locations = meta.get("archive_locations")
+        self.state = meta.get("state")
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
         self.errors = meta.get("errors", None) or json_schema_errors(

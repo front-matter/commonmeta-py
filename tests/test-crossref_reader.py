@@ -179,6 +179,7 @@ def test_journal_article():
     assert subject.version is None
     assert subject.provider == "Crossref"
     assert subject.files is None
+    assert subject.state == "findable"
 
 
 def test_journal_article_with_funding():
