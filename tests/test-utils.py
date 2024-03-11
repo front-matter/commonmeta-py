@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test utils"""
+
 from os import path
 import re
 import pytest  # noqa: F401
@@ -16,6 +17,7 @@ from commonmeta.utils import (
     normalize_ids,
     normalize_cc_url,
     normalize_issn,
+    issn_as_url,
     from_csl,
     find_from_format_by_id,
     find_from_format_by_string,
@@ -280,6 +282,12 @@ def test_normalize_issn():
     # from string
     string = "2146-8427"
     assert "2146-8427" == normalize_issn(string)
+
+
+def test_issn_as_url():
+    """issn as url"""
+    assert "https://portal.issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
+    assert None is issn_as_url(None)
 
 
 def test_from_csl():

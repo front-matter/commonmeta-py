@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref XML reader tests"""
+
 from os import path
 import pytest
 from commonmeta import Metadata
@@ -408,9 +409,9 @@ def test_posted_content():
         "containerTitle": "Bulletin of the American \\ldots",
     }
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {"type": "Periodical"}
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert (
         subject.descriptions[0]
         .get("description")
@@ -892,7 +893,7 @@ def test_dataset_usda():
         "type": "DataRepository",
     }
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
@@ -950,7 +951,7 @@ def test_book_chapter():
         "lastPage": "158",
     }
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"

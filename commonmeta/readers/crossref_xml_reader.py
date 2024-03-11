@@ -91,50 +91,65 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     if py_.get(meta, "journal.journal_article", None):
         bibmeta = py_.get(meta, "journal.journal_article", {})
         resource_type = "journal-article"
+        language = py_.get(meta, "journal.journal_metadata.language")
     elif py_.get(meta, "journal.journal_issue", None):
         bibmeta = py_.get(meta, "journal.journal_issue", {})
         resource_type = "journal-issue"
+        language = py_.get(meta, "journal.journal_metadata.language")
     elif py_.get(meta, "journal", None):
         bibmeta = py_.get(meta, "journal", {})
         resource_type = "journal"
+        language = py_.get(meta, "journal.journal_metadata.language")
     elif py_.get(meta, "posted_content", None):
         bibmeta = meta.get("posted_content", {})
         if publisher.get("name", None) is None:
             publisher = {"name": py_.get(bibmeta, "institution.institution_name", None)}
         resource_type = "posted-content"
+        language = py_.get(meta, "posted_content.language")
     elif py_.get(meta, "book.content_item"):
         bibmeta = py_.get(meta, "book.content_item")
         resource_type = "book-chapter"
+        language = py_.get(meta, "book.book_metadata.language")
     elif py_.get(meta, "book.book_series_metadata"):
         bibmeta = py_.get(meta, "book.book_series_metadata")
         resource_type = "book-series"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "book.book_set_metadata"):
         bibmeta = py_.get(meta, "book.book_set_metadata")
         resource_type = "book-set"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "book.book_metadata"):
         bibmeta = py_.get(meta, "book.book_metadata")
         resource_type = "book"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "conference", None):
         bibmeta = py_.get(meta, "conference.conference_paper", {})
         resource_type = "proceedings-article"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "sa_component", None):
         bibmeta = py_.get(meta, "sa_component.component_list.component", {})
         resource_type = "component"
+        language = None
     elif py_.get(meta, "database", None):
         bibmeta = py_.get(meta, "database.dataset", {})
         resource_type = "dataset"
+        language = py_.get(meta, "database.database_metadata.language")
     elif py_.get(meta, "report_paper", None):
         bibmeta = py_.get(meta, "report_paper.report_paper_metadata", {})
         resource_type = "report"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "peer_review", None):
         bibmeta = py_.get(meta, "peer_review", {})
         resource_type = "peer-review"
+        language = bibmeta.get("language", None)
     elif py_.get(meta, "dissertation", None):
         bibmeta = py_.get(meta, "dissertation", {})
         resource_type = "dissertation"
+        language = bibmeta.get("language", None)
     else:
         bibmeta = {}
         resource_type = ""
+        language = None
 
     _id = normalize_doi(
         kwargs.get("doi", None)
@@ -220,8 +235,6 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     references = [
         crossref_reference(i) for i in wrap(py_.get(bibmeta, "citation_list.citation"))
     ]
-    language = py_.get(meta, "journal.journal_metadata.language")
-
     files = presence(meta.get("contentUrl", None))
     provider = (
         bibmeta.get("reg-agency").capitalize()

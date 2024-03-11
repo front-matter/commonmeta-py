@@ -1,4 +1,5 @@
 """Commonmeta writer for commonmeta-py"""
+
 import orjson as json
 import orjsonl
 import pydash as py_
@@ -10,37 +11,19 @@ def write_commonmeta(metadata):
     if metadata is None:
         return None
 
-    data = compact(
-        {
-            # required properties
-            "id": metadata.id,
-            "type": metadata.type,
-            "url": metadata.url,
-            "contributors": metadata.contributors,
-            "titles": metadata.titles,
-            "publisher": metadata.publisher,
-            "date": metadata.date,
-            # recommended and optional properties
-            "container": metadata.container,
-            "subjects": metadata.subjects,
-            "language": metadata.language,
-            "references": metadata.references,
-            "sizes": metadata.sizes,
-            "formats": metadata.formats,
-            "version": metadata.version,
-            "license": metadata.license,
-            "descriptions": metadata.descriptions,
-            "geo_locations": metadata.geo_locations,
-            "alternate_identifiers": metadata.alternate_identifiers,
-            "relations": metadata.relations,
-            "funding_references": metadata.funding_references,
-            # other properties
-            "files": metadata.files,
-            "provider": metadata.provider,
-            "schema_version": "https://commonmeta.org/commonmeta_v0.12",
-        }
+    data = py_.omit(
+        vars(metadata),
+        [
+            "via",
+            "is_valid",
+            "date_created",
+            "date_published",
+            "date_registered",
+            "date_updated",
+        ],
     )
-    return json.dumps(data)
+    data["schema_version"] = "https://commonmeta.org/commonmeta_v0.12"
+    return json.dumps(compact(data))
 
 
 def write_commonmeta_list(metalist):
@@ -48,7 +31,7 @@ def write_commonmeta_list(metalist):
     write to file. Optionally, use JSON Lines format."""
     if metalist is None:
         return None
-    
+
     def format_item(item):
         """Format item for commonmeta list"""
         item = py_.omit(vars(item), ["via", "is_valid"])

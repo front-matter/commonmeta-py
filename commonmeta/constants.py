@@ -449,16 +449,20 @@ CROSSREF_CONTAINER_TYPES = {
     "journal-issue": "journal",
     "monograph": "book-series",
     "proceedings-article": "proceedings",
+    "posted-content": "periodical",
 }
 
 COMMONMETA_CONTAINER_TYPES = {
     "Article": "Periodical",
     "BookChapter": "Book",
+    "Book": "BookSeries",
     "Dataset": "Repository",
     "JournalArticle": "Journal",
     "JournalIssue": "Journal",
     "Monograph": "Book",
     "ProceedingsArticle": "Proceedings",
+    "Proceedings": "ProceedingsSeries",
+    "PostedContent": "Periodical",
 }
 
 CR_TO_CM_CONTAINER_TRANSLATIONS = {
@@ -467,6 +471,7 @@ CR_TO_CM_CONTAINER_TRANSLATIONS = {
     "database": "DataRepository",
     "journal": "Journal",
     "proceedings": "Proceedings",
+    "periodical": "Periodical",
 }
 
 DC_TO_CM_CONTAINER_TRANSLATIONS = {

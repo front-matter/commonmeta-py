@@ -20,7 +20,6 @@ def test_doi_with_data_citation():
     "DOI with data citation"
     string = "10.7554/elife.01567"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
@@ -427,8 +426,8 @@ def test_posted_content():
         {"id": "https://doi.org/10.1038/s41597-019-0031-8", "type": "IsPreprintOf"}
     ]
     assert subject.funding_references is None
-    assert subject.container is None
-    assert subject.subjects is None
+    assert subject.container == {"type": "Periodical"}
+    assert subject.subjects == [{"subject": "Scientific Communication and Education"}]
     assert subject.language is None
     assert (
         subject.descriptions[0]
@@ -440,6 +439,85 @@ def test_posted_content():
     assert subject.version is None
     assert subject.provider == "Crossref"
     assert subject.files is None
+
+
+@pytest.mark.vcr
+def test_blog_post():
+    "blog post"
+    string = "https://doi.org/10.53731/ybhah-9jy85"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/ybhah-9jy85"
+    assert subject.type == "Article"
+    assert (
+        subject.url
+        == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter"
+    )
+    assert subject.titles[0] == {"title": "The rise of the (science) newsletter"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [{"name": "Front Matter"}],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {"published": "2023-10-04"}
+    assert subject.publisher == {"name": "Front Matter"}
+    assert len(subject.references) == 3
+    assert subject.references[0] == {
+        "key": "ref1",
+        "doi": "https://doi.org/10.1038/d41586-023-02554-0",
+        "title": "Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty",
+        "publicationYear": "2023",
+    }
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+    ]
+    assert subject.funding_references is None
+    assert subject.container == {
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
+        "type": "Periodical",
+    }
+    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.language is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "Newsletters have been around forever, but their popularity has significantly increased in the past few years"
+        )
+    )
+    assert subject.version is None
+    assert subject.provider == "Crossref"
+    assert subject.files == [
+        {
+            "mimeType": "text/html",
+            "url": "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter",
+        },
+        {
+            "mimeType": "text/plain",
+            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
+        },
+        {
+            "mimeType": "application/pdf",
+            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.pdf",
+        },
+        {
+            "mimeType": "application/epub+zip",
+            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.epub",
+        },
+        {
+            "mimeType": "application/xml",
+            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.xml",
+        },
+    ]
 
 
 def test_peer_review():
@@ -891,7 +969,6 @@ def test_crossref_json():
     """crossref.json"""
     string = path.join(path.dirname(__file__), "fixtures", "crossref.json")
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert len(subject.files) == 2
@@ -1420,7 +1497,3 @@ def test_get_reference():
         "containerTitle": "IBM Technical Disclosure Bulletin",
     } == get_reference(unstructured_metadata)
     assert None is get_reference(None)
-
-
-# 10.15376/frc.1961.1.249 non-unique contributors
-# 10.21474/ijar01/10232 non-unique contributors

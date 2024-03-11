@@ -137,6 +137,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
+        "additional_type": None,
         "subjects": presence(subjects),
         "language": meta.get("language", None),
         "alternate_identifiers": alternate_identifiers,
@@ -147,7 +148,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "descriptions": descriptions,
         "geo_locations": None,
         "funding_references": presence(funding_references),
-        "references": references,
+        "references": presence(references),
         "relations": presence(relations),
         "files": files,
         # other properties

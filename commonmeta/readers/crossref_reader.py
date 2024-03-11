@@ -96,20 +96,17 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
-
-    container = get_container(meta)
+    issn = get_issn(meta)
+    container = get_container(meta, issn=issn)
     relations = get_relations(meta.get("relation", None))
-    if container.get("identifier", None) is not None:
-        if container.get("identifierType", None) == "ISSN":
-            container_id = issn_as_url(container.get("identifier"))
-        else:
-            container_id = container.get("identifier")
+    if issn is not None:
         relations.append(
             {
-                "id": container_id,
+                "id": issn_as_url(issn),
                 "type": "IsPartOf",
             }
         )
+        relations = py_.uniq(relations)
     references = py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
@@ -121,7 +118,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    subjects = py_.uniq([{"subject": i} for i in wrap(meta.get("subject", []))])
+    subjects = py_.uniq([{"subject": i} for i in wrap(meta.get("subject", None) or meta.get("group-title", None))])
     files = [
         get_file(i)
         for i in wrap(meta.get("link", None))
@@ -140,6 +137,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "publisher": presence(publisher),
         "date": presence(date),
         # recommended and optional properties
+        "additional_type": None,
         "subjects": presence(subjects),
         "language": meta.get("language", None),
         "alternate_identifiers": None,
@@ -249,6 +247,8 @@ def get_relations(relations: list) -> list:
         for value in values:
             if value.get("id-type", None) == "doi":
                 _id = doi_as_url(value.get("id", None))
+            elif value.get("id-type", None) == "issn":
+                _id = issn_as_url(value.get("id", None))
             else:
                 _id = value.get("id", None)
 
@@ -256,7 +256,9 @@ def get_relations(relations: list) -> list:
 
         return rs
 
-    return py_.uniq(py_.compact(py_.flatten([format_relation(k,v) for k, v in relations.items()])))
+    return py_.uniq(
+        py_.compact(py_.flatten([format_relation(k, v) for k, v in relations.items()]))
+    )
 
 
 def get_file(file: dict) -> dict:
@@ -269,10 +271,8 @@ def get_file(file: dict) -> dict:
     )
 
 
-def get_container(meta: dict) -> dict:
-    """Get container from Crossref"""
-    container_type = CROSSREF_CONTAINER_TYPES.get(meta.get("type", None))
-    container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
+def get_issn(meta: dict) -> Optional[str]:
+    """Get ISSN from Crossref"""
     issn = (
         next(
             (
@@ -290,9 +290,27 @@ def get_container(meta: dict) -> dict:
             ),
             None,
         )
+        or next(
+            (
+                item
+                for item in py_.get(meta, "relation.is-part-of", [])
+                if item["id-type"] == "issn"
+            ),
+            None,
+        )
         or {}
     )
-    issn = normalize_issn(issn["value"]) if issn else None
+    return (
+        normalize_issn(issn.get("value", None) or issn.get("id", None))
+        if issn
+        else None
+    )
+
+
+def get_container(meta: dict, issn: str) -> dict:
+    """Get container from Crossref"""
+    container_type = CROSSREF_CONTAINER_TYPES.get(meta.get("type", None))
+    container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
     isbn = (
         next(
             (

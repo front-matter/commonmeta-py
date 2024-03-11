@@ -135,7 +135,7 @@ def test_post_with_relationships():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
@@ -194,7 +194,7 @@ def test_post_with_funding():
     assert subject.publisher == {
         "name": "Upstream",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.relations is None
     assert subject.funding_references == [
         {
@@ -225,7 +225,7 @@ def test_post_with_more_funding():
         subject.url
         == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool"
     )
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
     ]
@@ -284,7 +284,7 @@ def test_post_with_funding_ror():
     assert subject.publisher == {
         "name": "Blog - Metadata Game Changers",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.relations is None
     assert subject.funding_references == [
         {
@@ -336,7 +336,7 @@ def test_ghost_with_institutional_author():
     assert subject.publisher == {
         "name": "OA.Works Blog",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.relations is None
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
@@ -484,7 +484,7 @@ def test_ghost_with_personal_name_parsing():
     assert subject.publisher == {
         "name": "I.D.E.A.S.",
     }
-    assert len(subject.references) == 0
+    assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]
