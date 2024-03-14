@@ -751,6 +751,8 @@ def from_schema_org_creators(elements: list) -> list:
     def format_element(i):
         """format element"""
         element = {}
+        if isinstance(i, str):
+            return {"name": i}
         if urlparse(i.get("@id", None)).hostname == "orcid.org":
             element["id"] = i.get("@id")
             element["type"] = "Person"

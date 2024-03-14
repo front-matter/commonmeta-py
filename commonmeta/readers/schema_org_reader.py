@@ -65,19 +65,15 @@ def get_schema_org(pid: str, **kwargs) -> dict:
             return get_crossref(data.get("@id", None))
         elif ra == "DataCite":
             return get_datacite(data.get("@id", None))
-
-    # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
-    auth = soup.select("meta[name='citation_author']")
-
-    def format_author(author):
-        return {"name": author["content"]}
-
-    authors = [format_author(i) for i in auth]
-
+    
+    # if @id is None, use url
+    elif data.get("@id", None) is None:
+        data["@id"] = url
+    
+    # author and creator are synonyms
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
-    if len(authors) > len(wrap(data.get("author", None))):
-        data["author"] = authors
+
     return data
 
 
@@ -95,12 +91,10 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     _id = normalize_id(_id)
     _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "WebPage")
     additional_type = meta.get("additionalType", None)
-    authors = meta.get("author", None) or meta.get("creator", None)
-    # Authors should be an object, if it's just a plain string don't try and parse it.
-    if not isinstance(authors, str):
-        contributors = get_authors(from_schema_org_creators(wrap(authors)))
-    else:
-        contributors = authors
+
+    # Authors should be list of objects or strings
+    authors = wrap(meta.get("author", None))
+    contributors = get_authors(from_schema_org_creators(authors))
     contrib = presence(
         get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     )
@@ -329,13 +323,16 @@ def get_html_meta(soup):
     pid = (
         soup.select_one("meta[name='citation_doi']")
         or soup.select_one("meta[name='dc.identifier']")
+        or soup.select_one("meta[name='DC.identifier']")
         or soup.select_one('[rel="canonical"]')
     )
     if pid is not None:
         pid = pid.get("content", None) or pid.get("href", None)
         data["@id"] = normalize_id(pid)
 
-    _type = soup.select_one("meta[property='og:type']")
+    _type = soup.select_one("meta[property='og:type']") or soup.select_one(
+        "meta[name='dc.type']"
+    ) or soup.select_one("meta[name='DC.type']")
     data["@type"] = _type["content"].capitalize() if _type else None
 
     url = soup.select_one("meta[property='og:url']") or soup.select_one(
@@ -344,14 +341,19 @@ def get_html_meta(soup):
     data["url"] = url["content"] if url else None
     if pid is None and url is not None:
         data["@id"] = url["content"]
+
     title = (
         soup.select_one("meta[name='citation_title']")
         or soup.select_one("meta[name='dc.title']")
+        or soup.select_one("meta[name='DC.title']")
         or soup.select_one("meta[property='og:title']")
         or soup.select_one("meta[name='twitter:title']")
     )
     data["name"] = title["content"] if title else None
 
+    author = soup.select("meta[name='citation_author']")
+    data["author"] = [i["content"] for i in author] if author else None
+    
     description = soup.select_one("meta[name='citation_abstract']") or soup.select_one(
         "meta[name='dc.description']"
         or soup.select_one("meta[property='og:description']")
@@ -385,9 +387,11 @@ def get_html_meta(soup):
     if lang is not None:
         data["inLanguage"] = lang["content"]
     else:
-        lang = soup.select_one("html")["lang"]
-        if lang is not None:
-            data["inLanguage"] = lang
+        html = soup.select_one("html")
+        if html is not None:
+            lang = html.get("lang", None)
+            if lang is not None:
+                data["inLanguage"] = lang
 
     publisher = soup.select_one("meta[property='og:site_name']")
     data["publisher"] = {"name": publisher["content"]} if publisher else None

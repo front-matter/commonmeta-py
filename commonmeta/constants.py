@@ -398,6 +398,7 @@ SO_TO_CM_TRANSLATIONS = {
     "Instrument": "Instrument",
     "NewsArticle": "Article",
     "Legislation": "LegalDocument",
+    "Report": "Report",
     "ScholarlyArticle": "JournalArticle",
     "SoftwareSourceCode": "Software",
 }
