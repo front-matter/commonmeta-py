@@ -417,3 +417,66 @@ def test_yet_another_ghost_post():
     assert subject.version is None
     assert subject.geo_locations is None
     assert subject.provider is None
+
+
+@pytest.mark.vcr
+def test_arxiv():
+    "arxiv"
+    string = "https://arxiv.org/abs/1902.02534"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.48550/arxiv.1902.02534"
+    assert subject.type == "Article"
+    assert subject.url == "https://arxiv.org/abs/1902.02534"
+    assert subject.titles[0] == {
+        "title": "Crowdsourcing open citations with CROCI -- An analysis of the current status of open citations, and a proposal"
+    }
+    assert len(subject.contributors) == 3
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Ivan",
+        "familyName": "Heibi",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "submitted": "2019-06-21T06:21:52Z",
+        "published": "2019",
+        "available": "2019-02",
+        "updated": "2019-06-24T00:08:45Z",
+    }
+    assert subject.publisher == {"name": "arXiv"}
+    assert subject.references is None
+    assert subject.container is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "In this paper, we analyse the current availability of open citations data in one particular dataset"
+        )
+    )
+    assert subject.subjects == [
+        {
+            "lang": "en",
+            "subject": "Digital Libraries (cs.DL)",
+            "subjectScheme": "arXiv",
+        },
+        {
+            "subject": "FOS: Computer and information sciences",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+        {
+            "subject": "FOS: Computer and information sciences",
+            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
+            "subjectScheme": "Fields of Science and Technology (FOS)",
+        },
+    ]
+    assert subject.language is None
+    assert subject.version == "2"
+    assert subject.alternate_identifiers == [
+        {"alternateIdentifier": "1902.02534", "alternateIdentifierType": "arXiv"}
+    ]
+    assert subject.provider == "DataCite"

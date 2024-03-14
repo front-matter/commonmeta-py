@@ -24,6 +24,7 @@ from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
 from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
+from ..translators import web_translator
 from ..constants import (
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
@@ -45,6 +46,9 @@ def get_schema_org(pid: str, **kwargs) -> dict:
 
     # load html meta tags
     data = get_html_meta(soup)
+    
+    # load site-specific metadata
+    data |= web_translator(soup, url)
 
     # load schema.org metadata. If there are multiple schema.org blocks, load them all,
     # and pick the first one with a supported type
