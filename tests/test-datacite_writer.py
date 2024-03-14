@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test DataCite Writer"""
+
 from os import path
 import re
 import orjson as json
@@ -235,6 +236,14 @@ def test_from_schema_org():
             "givenName": "Martin",
             "familyName": "Fenner",
             "nameType": "Personal",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+            "affiliation": [{"name": "DataCite"}],
         }
     ]
     assert datacite["descriptions"][0]["description"].startswith(

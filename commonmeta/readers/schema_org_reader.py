@@ -1,6 +1,8 @@
 """schema_org reader for commonmeta-py"""
+
 from typing import Optional
 import orjson as json
+from datetime import datetime
 from collections import defaultdict
 import httpx
 from pydash import py_
@@ -16,10 +18,12 @@ from ..utils import (
     normalize_url,
     name_to_fos,
 )
+from ..readers.crossref_reader import get_crossref
+from ..readers.datacite_reader import get_datacite
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
 from ..date_utils import get_iso8601_date, strip_milliseconds
-from ..doi_utils import doi_from_url, get_doi_ra
+from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
 from ..constants import (
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
@@ -38,12 +42,29 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
 
     soup = BeautifulSoup(response.text, "html.parser")
-    # workaround for metadata not included with schema.org but in html meta tags
+
+    # load html meta tags
     data = get_html_meta(soup)
-    # load schema.org metadata
-    json_ld = soup.find("script", type="application/ld+json")
+
+    # load schema.org metadata. If there are multiple schema.org blocks, load them all,
+    # and pick the first one with a supported type
+    list = [
+        json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
+    ]
+    json_ld = next(
+            (i for i in list if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
+            None,
+        )
     if json_ld is not None:
-        data |= json.loads(json_ld.text)
+        data |= json_ld
+
+    # if @id is a DOI, get metadata from Crossref or DataCite
+    if validate_doi(data.get("@id", None)):
+        ra = get_doi_ra(data.get("@id", None))
+        if ra == "Crossref":
+            return get_crossref(data.get("@id", None))
+        elif ra == "DataCite":
+            return get_datacite(data.get("@id", None))
 
     # workaround if not all authors are included with schema.org (e.g. in Ghost metadata)
     auth = soup.select("meta[name='citation_author']")
@@ -57,7 +78,6 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         data["author"] = data["creator"]
     if len(authors) > len(wrap(data.get("author", None))):
         data["author"] = authors
-
     return data
 
 
@@ -73,7 +93,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     if _id is None:
         _id = meta.get("identifier", None)
     _id = normalize_id(_id)
-    _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "Other")
+    _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "WebPage")
     additional_type = meta.get("additionalType", None)
     authors = meta.get("author", None) or meta.get("creator", None)
     # Authors should be an object, if it's just a plain string don't try and parse it.
@@ -97,6 +117,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     date: dict = defaultdict(list)
     date["published"] = strip_milliseconds(meta.get("datePublished", None))
     date["updated"] = strip_milliseconds(meta.get("dateModified", None))
+    # if no date is found, use today's date
+    if date == {"published": None, "updated": None}: 
+        date["accessed"] = read_options.get("dateAccessed", None) or datetime.now().isoformat("T", "seconds")
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
@@ -309,23 +332,30 @@ def get_html_meta(soup):
         or soup.select_one('[rel="canonical"]')
     )
     if pid is not None:
-        data["@id"] = pid.get("content", None) or pid.get("href", None)
+        pid = pid.get("content", None) or pid.get("href", None)
+        data["@id"] = normalize_id(pid)
 
     _type = soup.select_one("meta[property='og:type']")
     data["@type"] = _type["content"].capitalize() if _type else None
 
-    url = soup.select_one("meta[property='og:url']")
+    url = soup.select_one("meta[property='og:url']") or soup.select_one(
+        "meta[name='twitter:url']"
+    ) 
     data["url"] = url["content"] if url else None
-
+    if pid is None and url is not None:
+        data["@id"] = url["content"]
     title = (
         soup.select_one("meta[name='citation_title']")
         or soup.select_one("meta[name='dc.title']")
         or soup.select_one("meta[property='og:title']")
+        or soup.select_one("meta[name='twitter:title']")
     )
     data["name"] = title["content"] if title else None
 
     description = soup.select_one("meta[name='citation_abstract']") or soup.select_one(
         "meta[name='dc.description']"
+        or soup.select_one("meta[property='og:description']")
+        or soup.select_one("meta[name='twitter:description']")
     )
     data["description"] = description["content"] if description else None
 
@@ -334,13 +364,18 @@ def get_html_meta(soup):
         str(keywords["content"]).replace(";", ",").rstrip(", ") if keywords else None
     )
 
-    date_published = soup.select_one(
-        "meta[name='citation_publication_date']"
-    ) or soup.select_one("meta[name='dc.date']")
+    date_published = (
+        soup.select_one("meta[name='citation_publication_date']")
+        or soup.select_one("meta[name='dc.date']")
+        or soup.select_one("meta[property='article:published_time']")
+    )
     data["datePublished"] = (
         get_iso8601_date(date_published["content"]) if date_published else None
     )
-
+    date_modified = soup.select_one("meta[property='article:modified_time']")
+    data["dateModified"] = (
+        get_iso8601_date(date_modified["content"]) if date_modified else None
+    )
     license_ = soup.select_one("meta[name='dc.rights']")
     data["license"] = license_["content"] if license_ else None
 

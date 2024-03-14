@@ -326,4 +326,63 @@ interactions:
       - interest-cohort=(),browsing-topics=()
     http_version: HTTP/1.1
     status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.crossref.org/works/10.57099/11h5yt3819
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Polyneme
+      LLC"}],"indexed":{"date-parts":[[2022,11,4]],"date-time":"2022-11-04T04:40:34Z","timestamp":1667536834423},"posted":{"date-parts":[[2022,10,21]]},"reference-count":0,"publisher":"Front
+      Matter","license":[{"start":{"date-parts":[[2022,10,21]],"date-time":"2022-10-21T00:00:00Z","timestamp":1666310400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2022,10,21]],"date-time":"2022-10-21T00:00:00Z","timestamp":1666310400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>How
+      does a Research Software Engineer (RSE) ??? often responsible for developing
+      infrastructure to manage and share digital research objects (data, models, code,
+      notebooks, workflows, etc.<\/p>","DOI":"10.57099\/11h5yt3819","type":"posted-content","created":{"date-parts":[[2022,11,3]],"date-time":"2022-11-03T22:21:45Z","timestamp":1667514105000},"source":"Crossref","is-referenced-by-count":0,"title":["Implementing
+      the FAIR Principles Through FAIR-Enabling Artifacts and Services"],"prefix":"10.57099","author":[{"ORCID":"http:\/\/orcid.org\/0000-0002-8424-0604","authenticated-orcid":false,"given":"Donny","family":"Winston","sequence":"first","affiliation":[]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/donnywinston.com\/posts\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2022,11,3]],"date-time":"2022-11-03T22:21:46Z","timestamp":1667514106000},"score":1,"resource":{"primary":{"URL":"https:\/\/donnywinston.com\/posts\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2022,10,21]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.57099\/11h5yt3819","relation":{},"published":{"date-parts":[[2022,10,21]]},"subtype":"other"}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '968'
+      content-type:
+      - application/json
+      date:
+      - Wed, 13 Mar 2024 23:13:22 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

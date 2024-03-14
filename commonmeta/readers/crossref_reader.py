@@ -50,7 +50,7 @@ def get_crossref(pid: str, **kwargs) -> dict:
     response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json().get("message", {})
+    return response.json().get("message", {}) | {"via": "crossref"}
 
 
 def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
@@ -118,7 +118,12 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    subjects = py_.uniq([{"subject": i} for i in wrap(meta.get("subject", None) or meta.get("group-title", None))])
+    subjects = py_.uniq(
+        [
+            {"subject": i}
+            for i in wrap(meta.get("subject", None) or meta.get("group-title", None))
+        ]
+    )
     files = [
         get_file(i)
         for i in wrap(meta.get("link", None))

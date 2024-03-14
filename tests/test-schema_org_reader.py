@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test schema.org reader"""
+
 import pytest
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import schema_org_geolocation
@@ -17,10 +18,12 @@ def test_blog_posting():
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "familyName": "Fenner",
-        "givenName": "Martin",
+        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
         "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliation": [{"name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -28,48 +31,58 @@ def test_blog_posting():
     }
     assert subject.date == {
         "published": "2016-12-20",
-        "updated": "2023-09-07T08:34:41Z",
     }
     assert subject.publisher == {"name": "Front Matter"}
-    assert subject.references is None
+    assert subject.references == [
+        {
+            "doi": "https://doi.org/10.5438/0012",
+            "key": "ref1",
+            "publicationYear": "2016",
+            "title": "DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0",
+        },
+        {
+            "doi": "https://doi.org/10.5438/55e5-t5c0",
+            "key": "ref2",
+            "publicationYear": "2016",
+            "title": "Cool DOI's",
+        },
+    ]
     assert subject.container == {
-        "identifier": "https://blog.front-matter.io/",
-        "identifierType": "URL",
-        "title": "Front Matter",
         "type": "Periodical",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
     }
     assert (
         subject.descriptions[0]
         .get("description")
         .startswith("Eating your own dog food is a slang term to describe")
     )
-    assert subject.subjects == [{"subject": "feature"}]
-    assert subject.language == "en"
+    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.language is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
 
+@pytest.mark.vcr
 def test_zenodo():
     "zenodo"
     string = "https://www.zenodo.org/records/1196821"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1196821"
-    assert subject.type == "Other"
-    assert subject.url == "https://zenodo.org/records/1196821"
+    assert subject.type == "Dataset"
+    assert subject.url == "https://zenodo.org/record/1196821"
     assert subject.titles[0] == {
-        "title": (
-            "PsPM-SC4B: SCR, ECG, EMG, PSR and respiration measurements in a "
-            "delay fear conditioning task with auditory CS and electrical US"
-        )
+        "title": "Pspm-Sc4B: Scr, Ecg, Emg, Psr And Respiration Measurements In A Delay Fear Conditioning Task With Auditory Cs And Electrical Us"
     }
-    assert len(subject.contributors) == 8
+    assert len(subject.contributors) == 6
     assert subject.contributors[0] == {
         "type": "Person",
         "id": "https://orcid.org/0000-0001-9688-838X",
         "contributorRoles": ["Author"],
         "givenName": "Matthias",
         "familyName": "Staib",
+        "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
     }
     assert subject.license == {
         "id": "CC-BY-SA-4.0",
@@ -78,7 +91,7 @@ def test_zenodo():
     assert subject.date["published"] == "2018-03-14"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
-    assert subject.container == {}
+    assert subject.container is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -86,24 +99,25 @@ def test_zenodo():
         .startswith("This dataset includes pupil size response")
     )
     assert subject.subjects == [
-        {"subject": "pupil size response"},
-        {"subject": "skin conductance response"},
-        {"subject": "electrocardiogram"},
-        {"subject": "electromyogram"},
-        {"subject": "electrodermal activity"},
-        {"subject": "galvanic skin response"},
-        {"subject": "psr"},
-        {"subject": "scr"},
-        {"subject": "ecg"},
-        {"subject": "emg"},
-        {"subject": "eda"},
-        {"subject": "gsr"},
+        {"subject": "Pupil Size Response"},
+        {"subject": "Skin Conductance Response"},
+        {"subject": "Electrocardiogram"},
+        {"subject": "Electromyogram"},
+        {"subject": "Electrodermal Activity"},
+        {"subject": "Galvanic Skin Response"},
+        {"subject": "PSR"},
+        {"subject": "SCR"},
+        {"subject": "ECG"},
+        {"subject": "EMG"},
+        {"subject": "EDA"},
+        {"subject": "GSR"},
     ]
-    assert subject.language == "eng"
-    assert subject.version == "1.0.2"
+    assert subject.language == "en"
+    assert subject.version is None
     assert subject.provider == "DataCite"
 
 
+@pytest.mark.vcr
 def test_pangaea():
     "pangaea"
     string = "https://doi.pangaea.de/10.1594/PANGAEA.836178"
@@ -126,73 +140,59 @@ def test_pangaea():
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date == {"published": "2014-09-25"}
+    assert subject.date == {"published": "2014"}
     assert subject.publisher == {"name": "PANGAEA"}
     assert subject.references is None
-    assert subject.container == {
-        "identifier": "https://www.pangaea.de/",
-        "identifierType": "URL",
-        "title": "PANGAEA",
-        "type": "DataRepository",
-    }
+    assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
         .startswith("Few hydrological studies have been made in Greenland")
     )
-    assert subject.subjects is None
+    assert subject.subjects == [
+        {
+            "subject": "GReenland Analogue Surface Project (GRASP)",
+            "subjectScheme": "Project",
+        }
+    ]
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations == [
-        {"geoLocationPoint": {"pointLongitude": -50.18037, "pointLatitude": 67.12594}}
+        {"geoLocationPoint": {"pointLongitude": -50.18037, "pointLatitude": 67.12594}},
+        {"geoLocationPlace": "Two Boat Lake, Kangerlussuaq, Greenland"},
     ]
     assert subject.provider == "DataCite"
 
 
+@pytest.mark.vcr
 def test_dataverse():
     "dataverse"
     string = "https://doi.org/10.7910/dvn/nj7xso"
-    subject = Metadata(string, via="schema_org")
+    subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7910/dvn/nj7xso"
     assert subject.type == "Dataset"
     assert (
         subject.url
-        == "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NJ7XSO"
+        == "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
     assert subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Organization",
         "contributorRoles": ["Author"],
-        "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)",
+        "name": "International Genetics Of Ankylosing Spondylitis Consortium (IGAS)",
     }
-    assert subject.license == {
-        "id": "CC0-1.0",
-        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
-    }
-    assert subject.date == {"published": "2017-09-30", "updated": "2017-09-30"}
+    assert subject.license is None
+    assert subject.date == {"published": "2017"}
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
-    assert subject.container == {
-        "identifier": "https://dataverse.harvard.edu",
-        "identifierType": "URL",
-        "title": "Harvard Dataverse",
-        "type": "DataRepository",
-    }
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("Summary of association tests for Nature Genetics publication")
-    )
-    assert subject.subjects == [
-        {"subject": "Medicine, Health and Life Sciences"},
-        {"subject": "Genome-Wide Association Studies"},
-        {"subject": "Ankylosing spondylitis"},
-    ]
-    assert subject.language == "en"
-    assert subject.version == "1"
-    # assert subject.geo_locations is None
+    assert subject.container is None
+    assert subject.descriptions == []
+    assert subject.subjects is None
+    assert subject.language is None
+    assert subject.version is None
+    assert subject.geo_locations is None
     assert subject.provider == "DataCite"
 
 
@@ -317,36 +317,32 @@ def test_with_upstream_blog_post():
     }
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
-        "familyName": "Chodacki",
-        "givenName": "John",
+        "id": "https://orcid.org/0000-0002-7378-2408",
         "type": "Person",
         "contributorRoles": ["Author"],
+        "givenName": "John",
+        "familyName": "Chodacki",
+        "affiliation": [{"name": "University of California Office of the President"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date == {
-        "published": "2021-11-22T05:06:00Z",
-        "updated": "2024-01-21T18:45:49Z",
+        "published": "2021-11-22",
     }
-    assert subject.publisher == {"name": "Upstream"}
+    assert subject.publisher == {"name": "Front Matter"}
     assert subject.references is None
     assert subject.container == {
-        "identifier": "https://upstream.force11.org/",
-        "identifierType": "URL",
-        "title": "Upstream",
         "type": "Periodical",
     }
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "Today we are announcing Upstream. And if you’re reading this, you’re already a part of it"
-        )
+        .startswith("Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; .")
     )
-    assert subject.subjects == [{"subject": "news"}]
-    assert subject.language == "en"
+    assert subject.subjects == [{"subject": "Humanities"}]
+    assert subject.language is None
     assert subject.version is None
     assert subject.geo_locations is None
     assert subject.provider == "Crossref"
@@ -361,7 +357,7 @@ def test_with_blog_with_datacite_dois():
         subject.id
         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
     )
-    assert subject.type == "Other"
+    assert subject.type == "WebPage"
     assert subject.url is None
 
 

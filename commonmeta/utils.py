@@ -1,4 +1,5 @@
 """Utils module for commonmeta-py"""
+
 import os
 import orjson as json
 import re
@@ -703,6 +704,16 @@ def find_from_format_by_string(string: str) -> Optional[str]:
     except ValueError:
         pass
     try:
+        data = BeautifulSoup(string, "html.parser")
+        if (
+            data.find("script", type="application/ld+json")
+            or data.find("meta", {"name": "citation_doi"})
+            or data.find("meta", {"name": "dc.identifier"})
+        ):
+            return "schema_org"
+    except ValueError:
+        pass
+    try:
         data = yaml.safe_load(string)
         if data.get("cff-version", None):
             return "cff"
@@ -716,14 +727,6 @@ def find_from_format_by_string(string: str) -> Optional[str]:
 
     # no format found
     return None
-
-    # if Maremma.from_xml(string).to_h.dig('crossref_result', 'query_result', 'body', 'query',
-    #                                        'doi_record', 'crossref').present?
-    #     'crossref_xml'
-    #   elsif Nokogiri::XML(string, None, 'UTF-8', &:noblanks).collect_namespaces.find do |_k, v|
-    #           v.start_with?('http://datacite.org/schema/kernel')
-    # #         end
-    #     'datacite_xml'
 
 
 def find_from_format_by_filename(filename):

@@ -292,6 +292,7 @@ def test_write_crossref_schema_org_from_another_science_blog():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
     assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0002-8424-0604",
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Donny",
@@ -318,6 +319,7 @@ def test_write_crossref_schema_org_upstream_blog():
         "sequence": "first",
         "given_name": "Mohammad",
         "surname": "Hosseini",
+        "ORCID": "https://orcid.org/0000-0002-2385-985X",
     }
     assert (
         py_.get(crossref_xml, "titles.0.title")

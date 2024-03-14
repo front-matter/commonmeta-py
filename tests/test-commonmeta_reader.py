@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Citeproc JSON reader tests"""
+
 from os import path
 from commonmeta import Metadata, MetadataList
 
@@ -607,15 +608,17 @@ def test_string():
         "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
         "mimeType": "application/pdf",
     }
-    
-    
+
+
 def test_commonmeta_list():
     "commonmeta list"
     string = path.join(path.dirname(__file__), "fixtures", "commonmeta-list.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 15
     subject = subject_list.items[0]
-    assert subject.id == "https://doi.org/10.59350/2s0nn-a6d90"
+    assert (
+        subject.id
+        == "https://blogs.fu-berlin.de/open-access-berlin/2022/05/12/das-bua-open-science-dashboard-projekt-die-entwicklung-disziplinspezifischer-open-science-indikatoren"
+    )
     assert subject.type == "Article"
     assert subject.is_valid
-   

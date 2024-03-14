@@ -1,0 +1,123 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://doi.org/ra/10.7910
+  response:
+    content: "[\n  {\n    \"DOI\": \"10.7910\",\n    \"RA\": \"DataCite\"\n  }\n]"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 863f1fd50cfd71e2-FRA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 13 Mar 2024 21:30:17 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yHVZZfjesmGwP6AyHg5zW03Ly6sLWf2MhHq71NrCZUP3vVR6MjM2lDp1xC9%2FB7EvN%2FhC31trpJKhj0C59hss9ypBykcBryX6pU2I%2FXUQLrTl0dc%2BnnWy3Xc%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+    http_version: HTTP/1.1
+    status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.datacite.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.datacite.org/dois/10.7910/dvn/nj7xso?include=media,client
+  response:
+    content: '{"data":{"id":"10.7910/dvn/nj7xso","type":"dois","attributes":{"doi":"10.7910/dvn/nj7xso","prefix":"10.7910","suffix":"dvn/nj7xso","identifiers":[],"alternateIdentifiers":[],"creators":[{"name":"International
+      Genetics Of Ankylosing Spondylitis Consortium (IGAS)","affiliation":[],"nameIdentifiers":[]}],"titles":[{"title":"Summary
+      data ankylosing spondylitis GWAS"}],"publisher":"Harvard Dataverse","container":{},"publicationYear":2017,"subjects":[],"contributors":[],"dates":[{"date":"2017","dateType":"Issued"}],"language":null,"types":{"ris":"DATA","bibtex":"misc","citeproc":"dataset","schemaOrg":"Dataset","resourceTypeGeneral":"Dataset"},"relatedIdentifiers":[],"relatedItems":[],"sizes":[],"formats":[],"version":null,"rightsList":[],"descriptions":[],"geoLocations":[],"fundingReferences":[],"xml":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIKICB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIgogIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL2RhdGFjaXRlLm9yZy9zY2hlbWEva2VybmVsLTQKICAgIGh0dHA6Ly9zY2hlbWEuZGF0YWNpdGUub3JnL21ldGEva2VybmVsLTQvbWV0YWRhdGEueHNkIj4KICA8aWRlbnRpZmllciBpZGVudGlmaWVyVHlwZT0iRE9JIj4xMC43OTEwL0RWTi9OSjdYU088L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZT5JbnRlcm5hdGlvbmFsIEdlbmV0aWNzIG9mIEFua3lsb3NpbmcgU3BvbmR5bGl0aXMgQ29uc29ydGl1bSAoSUdBUyk8L2NyZWF0b3JOYW1lPgogICAgPC9jcmVhdG9yPgogIDwvY3JlYXRvcnM+CiAgPHRpdGxlcz4KICAgIDx0aXRsZT5TdW1tYXJ5IGRhdGEgYW5reWxvc2luZyBzcG9uZHlsaXRpcyBHV0FTPC90aXRsZT4KICA8L3RpdGxlcz4KICA8cHVibGlzaGVyPkhhcnZhcmQgRGF0YXZlcnNlPC9wdWJsaXNoZXI+CiAgPHB1YmxpY2F0aW9uWWVhcj4yMDE3PC9wdWJsaWNhdGlvblllYXI+CiAgPHJlc291cmNlVHlwZSByZXNvdXJjZVR5cGVHZW5lcmFsPSJEYXRhc2V0Ii8+CjwvcmVzb3VyY2U+Cg==","url":"https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO","contentUrl":null,"metadataVersion":0,"schemaVersion":"http://datacite.org/schema/kernel-4","source":null,"isActive":true,"state":"findable","reason":null,"viewCount":0,"viewsOverTime":[],"downloadCount":0,"downloadsOverTime":[],"referenceCount":0,"citationCount":0,"citationsOverTime":[],"partCount":0,"partOfCount":0,"versionCount":0,"versionOfCount":0,"created":"2017-10-01T01:14:37.000Z","registered":"2017-10-01T01:14:38.000Z","published":"2017","updated":"2020-09-19T01:07:43.000Z"},"relationships":{"client":{"data":{"id":"gdcc.harvard-dv","type":"clients"}},"provider":{"data":{"id":"harvardu","type":"providers"}},"media":{"data":{"id":"10.7910/dvn/nj7xso","type":"media"}},"references":{"data":[]},"citations":{"data":[]},"parts":{"data":[]},"partOf":{"data":[]},"versions":{"data":[]},"versionOf":{"data":[]}}},"included":[{"id":"gdcc.harvard-dv","type":"clients","attributes":{"name":"Harvard
+      Dataverse","symbol":"GDCC.HARVARD-DV","year":2018,"alternateName":null,"description":"The
+      Harvard Dataverse is open to all scientific data from all disciplines worldwide.
+      It includes the world''s largest collection of social science research data.
+      It is hosting data for projects, archives, researchers, journals, organizations,
+      and institutions.","language":null,"clientType":"repository","domains":"*","re3data":"https://doi.org/10.17616/R3C880","opendoar":null,"issn":{},"url":"https://dataverse.harvard.edu/","created":"2018-05-31T22:08:15.000Z","updated":"2020-09-17T07:18:56.000Z","isActive":true},"relationships":{"provider":{"data":{"id":"harvardu","type":"providers"}},"consortium":{"data":{"id":"GDCCCO","type":"providers"}},"prefixes":{"data":[{"id":"10.7910","type":"prefixes"}]}}}]}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Access-Control-Allow-Methods,Access-Control-Allow-Headers,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, PATCH, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - Authorization
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Wed, 13 Mar 2024 21:30:18 GMT
+      ETag:
+      - W/"db73335662ff3797433475861d451f8a"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.20
+      Status:
+      - 200 OK
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept,Accept-Encoding
+      X-Anonymous-Consumer:
+      - 'true'
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Powered-By:
+      - Phusion Passenger(R) 6.0.20
+      X-Request-Id:
+      - 37f478b8-31ee-4e1d-8675-c8fe51765d86
+      X-Runtime:
+      - '0.026822'
+      X-XSS-Protection:
+      - 1; mode=block
+    http_version: HTTP/1.1
+    status_code: 200
+version: 1

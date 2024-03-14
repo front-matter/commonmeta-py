@@ -38,7 +38,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
         response = httpx.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
-        return py_.get(response.json(), "data.attributes", {})
+        return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite"}
     except httpx.ReadTimeout:
         return {"state": "timeout"}
 

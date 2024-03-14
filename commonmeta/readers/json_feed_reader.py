@@ -38,7 +38,7 @@ def get_json_feed_item(pid: str, **kwargs) -> dict:
     response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json()
+    return response.json() | {"via": "json_feed_item"}
 
 
 def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:

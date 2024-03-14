@@ -1,4 +1,5 @@
 """Metadata"""
+
 from os import path
 import orjson as json
 from typing import Optional, Union
@@ -169,7 +170,7 @@ class Metadata:
 
     def read_metadata(self, data: dict, **kwargs) -> dict:
         """get_metadata"""
-        via = self.via
+        via = isinstance(data, dict) and data.get("via", None) or self.via
         if via == "commonmeta":
             return read_commonmeta(data, **kwargs)
         elif via == "schema_org":
@@ -236,39 +237,6 @@ class Metadata:
                 raise ValueError("No output format found")
         except json.JSONDecodeError:
             raise ValueError("Invalid JSON")
-
-    # legacy methods, to be removed in version 0.15
-    def commonmeta(self):
-        """Commonmeta"""
-        return write_commonmeta(self)
-
-    def bibtex(self):
-        """Bibtex"""
-        return write_bibtex(self)
-
-    def csl(self):
-        """CSL-JSON"""
-        return write_csl(self)
-
-    def citation(self):
-        """Citation"""
-        return write_citation(self)
-
-    def ris(self):
-        """RIS"""
-        return write_ris(self)
-
-    def schema_org(self):
-        """Schema.org"""
-        return write_schema_org(self)
-
-    def datacite(self):
-        """Datacite"""
-        return write_datacite(self)
-
-    def crossref_xml(self):
-        """Crossref XML"""
-        return write_crossref_xml(self)
 
 
 class MetadataList:

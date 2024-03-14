@@ -47,10 +47,14 @@ def write_csl_item(metadata) -> Optional[dict]:
             "language": metadata.language,
             "author": author,
             # "contributor": to_csl(wrap(metadata.contributors)),
-            "issued": get_date_parts(metadata.date.get("published", None)),
+            "issued": get_date_parts(metadata.date.get("published"))
+            if metadata.date.get("published", None)
+            else None,
             "submitted": get_date_parts(metadata.date.get("submitted"))
             if metadata.date.get("submitted", None)
             else None,
+            "accessed": get_date_parts(metadata.date.get("accessed"))
+            if metadata.date.get("accessed", None) else None,
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),

@@ -1,4 +1,5 @@
 """Bibtex writer tests"""
+
 from os import path
 import pytest
 from commonmeta import Metadata, MetadataList
@@ -71,12 +72,10 @@ def test_blog_post():
     assert (
         bibtex
         == """@article{10.54900/rckn8ey-1fm76va-qsrnf,
-    abstract = {Today we are announcing Upstream. And if you’re reading this, you’re already a part of it! Upstream is a community blogging platform designed for Open enthusiasts to discuss… you guessed it: all things Open. It’s a space for the whole community to voice opinions, discuss open approaches to scholarly communication, and showcase research. A central place to exchange in writing ideas about open research and all that it encompasses Supported by FORCE11, this is a global and inclusive blog, bringi},
+    abstract = {Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; . And if you’re reading this, you’re already a part of it! Upstream is a community blogging platform designed for Open enthusiasts to discuss… you guessed it: all things Open. It’s a space for the whole community to voice opinions, discuss open approaches to scholarly communication, and showcase research.},
     author = {Chodacki, John and Hendricks, Ginny and Ferguson, Christine and Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.54900/rckn8ey-1fm76va-qsrnf},
-    journal = {Upstream},
-    language = {en},
     month = nov,
     title = {Welcome to Upstream: the new space for scholarly community discussion on all things open},
     url = {https://upstream.force11.org/welcome-to-upstream},

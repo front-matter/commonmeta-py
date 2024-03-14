@@ -1,4 +1,5 @@
 """crossref_xml reader for commonmeta-py"""
+
 from typing import Optional
 from collections import defaultdict
 import httpx
@@ -43,7 +44,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if response.status_code != 200:
         return {"state": "not_found"}
 
-    return parse_xml(response.text, dialect="crossref")
+    return parse_xml(response.text, dialect="crossref") | {"via": "crossref_xml"}
 
 
 def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
@@ -202,7 +203,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         or py_.get(bibmeta, "crossmark.custom_metadata.program.1.license_ref")
     )
     license_ = crossref_license(wrap(license_))
-    
+
     # By using book_metadata, we can account for where resource_type is `BookChapter` and not assume its a whole book
     # if book_metadata:
     #     #   identifiers = crossref_alternate_identifiers(book_metadata)

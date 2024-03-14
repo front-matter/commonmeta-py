@@ -1,4 +1,5 @@
 """datacite_xml reader for Commonmeta"""
+
 from collections import defaultdict
 import httpx
 from pydash import py_
@@ -20,7 +21,7 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return py_.get(response.json(), "data.attributes", {})
+    return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite_xml"}
 
 
 def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
@@ -286,6 +287,7 @@ def get_xml_references(references: list) -> list:
 
     return [map_reference(i) for i in references if is_reference(i)]
 
+
 def get_xml_relations(relations: list) -> list:
     """get_xml_relations"""
 
@@ -323,6 +325,7 @@ def get_xml_relations(relations: list) -> list:
         }
 
     return [map_relation(i) for i in relations if is_relation(i)]
+
 
 def get_dates(dates: list, publication_year) -> dict:
     """convert date list to dict, rename and/or remove some keys"""

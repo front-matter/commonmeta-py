@@ -1071,4 +1071,63 @@ interactions:
       - interest-cohort=(),browsing-topics=()
     http_version: HTTP/1.1
     status_code: 200
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://api.crossref.org/works/10.54900/rf84ag3-98f00rt-0phta
+  response:
+    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Upstream"}],"indexed":{"date-parts":[[2024,3,2]],"date-time":"2024-03-02T11:40:19Z","timestamp":1709379619790},"posted":{"date-parts":[[2022,1,20]]},"group-title":"Humanities","reference-count":0,"publisher":"Front
+      Matter","license":[{"start":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T00:00:00Z","timestamp":1642636800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T00:00:00Z","timestamp":1642636800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>The
+      FORCE11 attribution working group held a workshop during the 2021 FORCE conference
+      to explore some ethical aspects of using Contributor Roles (CRs). This workshop
+      provided an overview of various CRs and their practical values in terms of providing
+      a better recognition of the wide range of scholarly contributions.<\/p>","DOI":"10.54900\/rf84ag3-98f00rt-0phta","type":"posted-content","created":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T09:18:58Z","timestamp":1642670338000},"source":"Crossref","is-referenced-by-count":0,"title":["Deep
+      dive into ethics of Contributor Roles: report of a FORCE11 workshop"],"prefix":"10.59350","author":[{"ORCID":"http:\/\/orcid.org\/0000-0002-2385-985X","authenticated-orcid":false,"given":"Mohammad","family":"Hosseini","sequence":"first","affiliation":[]},{"ORCID":"http:\/\/orcid.org\/0000-0003-2588-3084","authenticated-orcid":false,"given":"Violeta","family":"Ilik","sequence":"additional","affiliation":[]},{"ORCID":"http:\/\/orcid.org\/0000-0001-5208-3432","authenticated-orcid":false,"given":"Nicole","family":"Vasilevsky","sequence":"additional","affiliation":[]},{"ORCID":"http:\/\/orcid.org\/0000-0001-8420-5254","authenticated-orcid":false,"given":"Kristi","family":"Holmes","sequence":"additional","affiliation":[]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/upstream.force11.org\/deep-dive-into-ethics-of-contributor-roles","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,3,2]],"date-time":"2024-03-02T11:25:30Z","timestamp":1709378730000},"score":1,"resource":{"primary":{"URL":"https:\/\/upstream.force11.org\/deep-dive-into-ethics-of-contributor-roles"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2022,1,20]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.54900\/rf84ag3-98f00rt-0phta","relation":{},"published":{"date-parts":[[2022,1,20]]},"subtype":"other"}}'
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1195'
+      content-type:
+      - application/json
+      date:
+      - Wed, 13 Mar 2024 23:13:23 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    http_version: HTTP/1.1
+    status_code: 200
 version: 1

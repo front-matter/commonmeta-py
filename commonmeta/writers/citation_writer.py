@@ -32,11 +32,11 @@ def write_citation_item(metadata):
     """Write citation item"""
     if metadata.write_errors is not None:
         return None
-    csl = json.loads(metadata.csl())
+    csl = json.loads(metadata.write(to="csl"))
 
     # Remove keys that are not supported by citeproc-py.
     csl = py_.omit(csl, "copyright", "categories")
-
+    print(csl)
     return CiteProcJSON([csl])
 
 
