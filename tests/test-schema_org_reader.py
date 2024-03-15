@@ -5,6 +5,8 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import schema_org_geolocation
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_blog_posting():
@@ -358,7 +360,7 @@ def test_with_blog_with_datacite_dois():
         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
     )
     assert subject.type == "WebPage"
-    assert subject.url is None
+    assert subject.url == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
 
 
 def test_schema_org_geolocation():
@@ -480,3 +482,14 @@ def test_arxiv():
         {"alternateIdentifier": "1902.02534", "alternateIdentifierType": "arXiv"}
     ]
     assert subject.provider == "DataCite"
+
+
+@pytest.mark.vcr
+def test_orcid_blog():
+    "orcid blog"
+    string = "https://info.orcid.org/orcid-2023-annual-report/"
+    subject = Metadata(string)
+    assert subject.is_valid is False
+    assert subject.id == "https://info.orcid.org/orcid-2023-annual-report"
+    assert subject.type == "WebPage"
+    assert subject.state == "forbidden"

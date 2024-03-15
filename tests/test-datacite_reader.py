@@ -5,6 +5,8 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.datacite_reader import get_datacite, read_datacite
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_dataset():

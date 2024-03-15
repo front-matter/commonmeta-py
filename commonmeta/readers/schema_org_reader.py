@@ -39,8 +39,14 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = pid
     response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
-    if response.status_code != 200:
-        return {"state": "not_found"}
+    if response.status_code >= 400:
+        if response.status_code in [404, 410]:
+            state = "not_found"
+        elif response.status_code in [401, 403]:
+            state = "forbidden"
+        else:
+            state = "bad_request"
+        return {"@id": url, "@type": "WebPage", "state": state, "via": "schema_org"}
 
     soup = BeautifulSoup(response.text, "html.parser")
 
@@ -73,18 +79,22 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     # if @id is None, use url
     elif data.get("@id", None) is None:
         data["@id"] = url
+        
+    # if @type is None, use WebSite
+    elif data.get("@type", None) is None:
+        data["@type"] = "WebSite"
     
     # author and creator are synonyms
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
 
-    return data
+    return data | {"via": "schema_org", "state": "findable"}
 
 
 def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     """read_schema_org"""
-    if data is None:
-        return {"meta": None, "state": "not_found"}
+    if data is None or isinstance(data, dict) and data.get("state", None) in ["not_found", "forbidden", "bad_request"]:
+        return from_schema_org(data)
     meta = data
 
     read_options = kwargs or {}
@@ -95,6 +105,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     _id = normalize_id(_id)
     _type = SO_TO_CM_TRANSLATIONS.get(meta.get("@type", None), "WebPage")
     additional_type = meta.get("additionalType", None)
+    url = normalize_url(meta.get("url", None)) or _id
 
     # Authors should be list of objects or strings
     authors = wrap(meta.get("author", None))
@@ -131,7 +142,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     if _type == "Dataset":
-        url = parse_attributes(
+        container_url = parse_attributes(
             from_schema_org(meta.get("includedInDataCatalog", None)),
             content="url",
             first=True,
@@ -144,8 +155,8 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
                     content="name",
                     first=True,
                 ),
-                "identifier": url,
-                "identifierType": "URL" if url is not None else None,
+                "identifier": container_url,
+                "identifierType": "URL" if container_url is not None else None,
                 "volume": meta.get("volumeNumber", None),
                 "issue": meta.get("issueNumber", None),
                 "firstPage": meta.get("pageStart", None),
@@ -154,20 +165,20 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         )
     elif _type == "Article":
         issn = py_.get(meta, "isPartOf.issn")
-        url = py_.get(meta, "publisher.url")
+        container_url = py_.get(meta, "publisher.url")
         container = compact(
             {
                 "type": "Periodical",
                 "title": py_.get(meta, "isPartOf.name"),
                 "identifier": issn
                 if issn is not None
-                else url
-                if url is not None
+                else container_url
+                if container_url is not None
                 else None,
                 "identifierType": "ISSN"
                 if issn is not None
                 else "URL"
-                if url is not None
+                if container_url is not None
                 else None,
             }
         )
@@ -213,13 +224,13 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         if doi_from_url(_id)
         else parse_attributes(meta.get("provider", None), content="name", first=True)
     )
-    state = None
+    state = "findable"
 
     return {
         # required attributes
         "id": _id,
         "type": _type,
-        "url": normalize_url(meta.get("url", None)),
+        "url": url,
         "contributors": presence(contributors),
         "titles": titles,
         "publisher": publisher,
@@ -242,7 +253,6 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "provider": provider,
         "state": state,
     } | read_options
-
 
 def schema_org_related_item(meta, relation_type=None):
     """Related items"""
@@ -378,7 +388,10 @@ def get_html_meta(soup):
     data["datePublished"] = (
         get_iso8601_date(date_published["content"]) if date_published else None
     )
-    date_modified = soup.select_one("meta[property='article:modified_time']")
+    date_modified = soup.select_one(
+        "meta[property='og:updated_time']"
+        or soup.select_one("meta[property='article:modified_time']")
+    )
     data["dateModified"] = (
         get_iso8601_date(date_modified["content"]) if date_modified else None
     )

@@ -4,6 +4,8 @@ from os import path
 import pytest
 from commonmeta import Metadata, MetadataList
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_journal_article():

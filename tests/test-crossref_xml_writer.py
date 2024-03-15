@@ -184,7 +184,7 @@ def test_write_crossref_journal_article_from_datacite():
 def test_write_crossref_schema_org_front_matter():
     """Write crossref_xml schema_org front_matter"""
     string = "https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health"
-    subject = Metadata(string, via="schema_org")
+    subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
@@ -199,7 +199,7 @@ def test_write_crossref_schema_org_front_matter():
 def test_write_crossref_another_schema_org_front_matter():
     """Write crossref_xml another schema_org front_matter"""
     string = "https://blog.front-matter.io/posts/dryad-interview-jen-gibson"
-    subject = Metadata(string, via="schema_org")
+    subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
@@ -241,7 +241,6 @@ def test_write_crossref_xml_missing_doi():
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]
-    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert re.match(r"\A(10\.59350/.+)\Z", py_.get(crossref_xml, "doi_data.doi"))
@@ -285,7 +284,7 @@ def test_write_crossref_xml_missing_doi_no_prefix():
 def test_write_crossref_schema_org_from_another_science_blog():
     """Write crossref_xml schema_org from another science blog"""
     string = "https://donnywinston.com/posts/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services/"
-    subject = Metadata(string, via="schema_org")
+    subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.57099/11h5yt3819"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
@@ -308,7 +307,7 @@ def test_write_crossref_schema_org_from_another_science_blog():
 def test_write_crossref_schema_org_upstream_blog():
     """Write crossref_xml schema_org upstream blog"""
     string = "https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/"
-    subject = Metadata(string, via="schema_org")
+    subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/rf84ag3-98f00rt-0phta"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")

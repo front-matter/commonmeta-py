@@ -36,7 +36,6 @@ def write_citation_item(metadata):
 
     # Remove keys that are not supported by citeproc-py.
     csl = py_.omit(csl, "copyright", "categories")
-    print(csl)
     return CiteProcJSON([csl])
 
 

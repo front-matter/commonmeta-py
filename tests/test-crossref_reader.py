@@ -14,6 +14,8 @@ from commonmeta.readers.crossref_reader import (
     get_random_crossref_id,
 )
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_doi_with_data_citation():

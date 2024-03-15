@@ -2,6 +2,8 @@
 import pytest
 from commonmeta import Metadata
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_ruby_cff():

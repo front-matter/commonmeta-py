@@ -578,7 +578,7 @@
     "state": {
       "description": "The state of the resource.",
       "type": "string",
-      "enum": ["findable", "not_found"]
+      "enum": ["findable", "not_found", "forbidden", "bad_request"]
     },
     "archive_locations": {
       "description": "The location where content is archived.",

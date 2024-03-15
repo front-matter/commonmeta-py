@@ -116,7 +116,7 @@ class Metadata:
         )
         self.write_errors = None
         self.is_valid = (
-            meta.get("state", None) != "not_found"
+            meta.get("state", None) not in ["not_found", "forbidden", "bad_request"]
             and self.errors is None
             and self.write_errors is None
         )

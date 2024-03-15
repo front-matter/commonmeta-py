@@ -8,6 +8,8 @@ from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
 )
 
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 @pytest.mark.vcr
 def test_wordpress_with_references():

@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - info.orcid.org
+      user-agent:
+      - python-httpx/0.25.2
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report
+  response:
+    content: "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403
+      Forbidden</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 864ad780c9616adf-FRA
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Fri, 15 Mar 2024 07:38:04 GMT
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cf_bm=cOMTiKj42he5589MB9I2.qlvkeZNiIDIsPx4iu4syAY-1710488284-1.0.1.1-RS32_0jmQ8IJjjE.GD51ReDqATzm6oTl0ndoKq7BDA0muQvutOktlTqPtjwSqu416JcF48x_p8xtqJgLDAA0LQ;
+        path=/; expires=Fri, 15-Mar-24 08:08:04 GMT; domain=.info.orcid.org; HttpOnly;
+        Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      alt-svc:
+      - h3=":443"; ma=86400
+    http_version: HTTP/1.1
+    status_code: 403
+version: 1
