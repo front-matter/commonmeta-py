@@ -158,6 +158,16 @@ def get_datetime_from_time(time: str) -> Optional[str]:
         return None
 
 
+def get_datetime_from_pdf_time(time: str) -> Optional[str]:
+    """iso8601 datetime in slightly different format, used in PDF metadata"""
+    try:
+        time = str(time).replace("D:", "").replace("'", "")
+        return dt.strptime(time, "%Y%m%d%H%M%S%z").strftime("%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as e:
+        print(e)
+        return None
+
+
 def normalize_date_dict(data: dict) -> dict:
     """Normalize date dict
 

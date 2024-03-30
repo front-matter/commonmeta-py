@@ -5,8 +5,10 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import schema_org_geolocation
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_blog_posting():
@@ -360,7 +362,10 @@ def test_with_blog_with_datacite_dois():
         == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
     )
     assert subject.type == "WebPage"
-    assert subject.url == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
+    assert (
+        subject.url
+        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
+    )
 
 
 def test_schema_org_geolocation():
@@ -496,24 +501,58 @@ def test_orcid_blog():
 
 
 @pytest.mark.vcr
-def test_pdf_file():
-    "PDF file"
-    string = "https://sauroposeidon.files.wordpress.com/2010/04/wedel-2003-evolution-of-pneumaticity.pdf"
+def test_journal_page():
+    "journal page"
+    string = "https://app.pan.pl/article/item/app011052023.html"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://sauroposeidon.files.wordpress.com/2010/04/wedel-2003-evolution-of-pneumaticity.pdf"
-    assert subject.type == "WebPage"
-    assert subject.state == "findable"
-    assert subject.date["accessed"] > '2024-03-30'
+    assert subject.id == "https://doi.org/10.4202/app.01105.2023"
+    assert subject.type == "JournalArticle"
+    assert subject.titles == [
+        {"title": "Novel pneumatic features in the ribs of Brachiosaurus altithorax"}
+    ]
+    assert subject.date == {"published": "2023"}
+    assert subject.publisher == {
+        "name": "Polska Akademia Nauk Instytut Paleobiologii (Institute of Paleobiology, Polish Academy of Sciences)"
+    }
+    assert subject.references is None
+    assert subject.container == {
+        "identifier": "0567-7920",
+        "identifierType": "ISSN",
+        "title": "Acta Palaeontologica Polonica",
+        "type": "Journal",
+        "volume": "68",
+    }
+    assert subject.provider == "Crossref"
 
 
 @pytest.mark.vcr
 def test_pdf_file():
+    "PDF file"
+    string = "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert (
+        subject.id
+        == "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
+    )
+    assert subject.type == "Document"
+    assert subject.state == "findable"
+    assert subject.titles == [{"title": "VOSviewer Manual"}]
+    assert subject.date == {"published": "2018-04-27T08:22:57Z"}
+
+
+@pytest.mark.vcr
+def test_ssl_error():
     "SSL certificate error"
     string = "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
     subject = Metadata(string)
-    assert subject.errors == ["[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.miketaylor.org.uk'. (_ssl.c:1123)"]
+    assert subject.errors == [
+        "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.miketaylor.org.uk'. (_ssl.c:1123)"
+    ]
     assert subject.is_valid is False
-    assert subject.id == "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
+    assert (
+        subject.id == "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
+    )
     assert subject.type == "WebPage"
     assert subject.state == "not_found"

@@ -1,12 +1,14 @@
 """schema_org reader for commonmeta-py"""
 
 from typing import Optional
+import io
 import orjson as json
 from datetime import datetime
 from collections import defaultdict
 import httpx
 from pydash import py_
 from bs4 import BeautifulSoup
+import pikepdf
 
 from ..utils import (
     dict_to_spdx,
@@ -22,7 +24,7 @@ from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
-from ..date_utils import get_iso8601_date, strip_milliseconds
+from ..date_utils import get_iso8601_date, strip_milliseconds, get_datetime_from_pdf_time
 from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
 from ..translators import web_translator
 from ..constants import (
@@ -62,13 +64,20 @@ def get_schema_org(pid: str, **kwargs) -> dict:
             state = "bad_request"
         return {"@id": url, "@type": "WebPage", "state": state, "via": "schema_org"}
     elif response.headers.get("content-type") == "application/pdf":
-        return {
+        pdf = pikepdf.Pdf.open(io.BytesIO(response.content))
+        meta = pdf.docinfo if pdf.docinfo else {}
+        if meta.get("/doi", None) is not None:
+            return get_doi_meta(meta.get("/doi"))
+        date_modified = get_datetime_from_pdf_time(meta.get("/ModDate")) if meta.get("/ModDate", None) else None
+        name = meta.get("/Title", None)
+        return compact({
             "@id": url,
-            "@type": "WebPage",
-            "state": "findable",
+            "@type": "DigitalDocument",
             "via": "schema_org",
-            "date": {"accessed": datetime.now().isoformat("T", "seconds")},
-        }
+            "name": str(name),
+            "datePublished": date_modified,
+            "dateAccessed": datetime.now().isoformat("T", "seconds") if date_modified is None else None,
+        })
 
     soup = BeautifulSoup(response.text, "html.parser")
 

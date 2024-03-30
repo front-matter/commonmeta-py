@@ -394,6 +394,7 @@ SO_TO_CM_TRANSLATIONS = {
     "BookChapter": "BookChapter",
     "CreativeWork": "Other",
     "Dataset": "Dataset",
+    "DigitalDocument": "Document",
     "Dissertation": "Dissertation",
     "Instrument": "Instrument",
     "NewsArticle": "Article",
