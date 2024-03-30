@@ -1,4 +1,5 @@
 """Test doi_utils module for commonmeta-py"""
+
 from commonmeta.doi_utils import (
     doi_as_url,
     doi_from_url,
@@ -11,6 +12,7 @@ from commonmeta.doi_utils import (
     crossref_api_query_url,
     datacite_api_url,
     is_rogue_scholar_doi,
+    short_doi_as_doi,
 )
 
 
@@ -37,6 +39,24 @@ def test_doi_from_url():
     assert "10.5438/55e5-t5c0" == doi_from_url(
         "https://handle.stage.datacite.org/10.5438/55e5-t5c0"
     )
+    assert "10.1002/ar.24923" == doi_from_url(
+        "https://anatomypubs.onlinelibrary.wiley.com/doi/10.1002/ar.24923"
+    )
+    assert "10.1111/j.1469-185x.2011.00190.x" == doi_from_url(
+        "https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1469-185x.2011.00190.x?casa_token=nmwsv4fd8awaaaaa%3afdas8pvfdobidbfbunhjmgyo6gombapj9ynq_oshepczbgdfptph33yz2zssg2_a79fejpinye4mkjp1"
+    )
+    assert "10.1111/j.1469-185x.2010.00137.x" == doi_from_url(
+        "https://onlinelibrary.wiley.com/doi/10.1111/j.1469-185x.2010.00137.x/epdf"
+    )
+    assert "10.1371/journal.pone.0072187" == doi_from_url(
+        "https://www.plosone.org/article/fetchobject.action?uri=info%3adoi%2f10.1371%2fjournal.pone.0072187&representation=pdf"
+    )
+    assert "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I" == doi_from_url("https://doi.org/d8g2nw")
+
+
+def test_short_doi_as_doi():
+    """Short DOI as DOI"""
+    assert "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I" == short_doi_as_doi("https://doi.org/d8g2nw")
 
 
 def test_validate_doi():

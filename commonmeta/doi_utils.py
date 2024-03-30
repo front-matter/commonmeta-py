@@ -1,4 +1,5 @@
 """Doi utils for commonmeta-py"""
+
 import re
 from typing import Optional
 import httpx
@@ -37,19 +38,52 @@ def doi_from_url(url: Optional[str]) -> Optional[str]:
     """Return a DOI from a URL"""
     if url is None:
         return None
+
+    f = furl(url)
+    # check for allowed scheme if string is a URL
+    if f.host is not None and f.scheme not in ["http", "https", "ftp"]:
+        return None
+
+    # url is for a short DOI
+    if f.host == "doi.org" and not f.path.segments[0].startswith("10."):
+        return short_doi_as_doi(url)
+
+    # special rules for specific hosts
+    if f.host == "onlinelibrary.wiley.com":
+        if f.path.segments[-1] in ["epdf"]:
+            f.path.segments.pop()
+    elif f.host == "www.plosone.org":
+        if (
+            f.path.segments[-1] in ["fetchobject.action"]
+            and f.args.get("uri", None) is not None
+        ):
+            f.path = f.args.get("uri")
+    path = str(f.path)
     match = re.search(
-        r"\A(?:(http|https)://(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5}/.+)\Z",
-        url,
+        r"(10\.\d{4,5}/.+)\Z",
+        path,
     )
     if match is None:
         return None
-    return match.group(5).lower()
+    return match.group(0).lower()
+
+
+def short_doi_as_doi(doi: Optional[str]) -> Optional[str]:
+    """Resolve a short DOI"""
+    if doi is None:
+        return None
+    response = httpx.head(doi_as_url(doi), timeout=10)
+    if response.status_code != 301:
+        return doi_as_url(doi)
+    return response.headers.get("Location")
 
 
 def doi_as_url(doi: Optional[str]) -> Optional[str]:
     """Return a DOI as a URL"""
     if doi is None:
         return None
+    if furl(doi).host == "doi.org":
+        return doi.lower()
     return "https://doi.org/" + doi.lower()
 
 

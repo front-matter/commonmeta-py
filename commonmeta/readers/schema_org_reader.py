@@ -38,6 +38,11 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = pid
+
+    # if pid represents a DOI, get metadata from Crossref or DataCite
+    if doi_from_url(pid):
+        return get_doi_meta(doi_from_url(pid))
+
     response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code >= 400:
         if response.status_code in [404, 410]:
@@ -52,7 +57,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
 
     # load html meta tags
     data = get_html_meta(soup)
-    
+
     # load site-specific metadata
     data |= web_translator(soup, url)
 
@@ -62,28 +67,24 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         json.loads(x.text) for x in soup.find_all("script", type="application/ld+json")
     ]
     json_ld = next(
-            (i for i in list if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
-            None,
-        )
+        (i for i in list if i.get("@type", None) in SO_TO_CM_TRANSLATIONS),
+        None,
+    )
     if json_ld is not None:
         data |= json_ld
 
     # if @id is a DOI, get metadata from Crossref or DataCite
     if validate_doi(data.get("@id", None)):
-        ra = get_doi_ra(data.get("@id", None))
-        if ra == "Crossref":
-            return get_crossref(data.get("@id", None))
-        elif ra == "DataCite":
-            return get_datacite(data.get("@id", None))
-    
+        return get_doi_meta(data.get("@id", None))
+
     # if @id is None, use url
     elif data.get("@id", None) is None:
         data["@id"] = url
-        
+
     # if @type is None, use WebSite
     elif data.get("@type", None) is None:
         data["@type"] = "WebSite"
-    
+
     # author and creator are synonyms
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
@@ -93,7 +94,11 @@ def get_schema_org(pid: str, **kwargs) -> dict:
 
 def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     """read_schema_org"""
-    if data is None or isinstance(data, dict) and data.get("state", None) in ["not_found", "forbidden", "bad_request"]:
+    if (
+        data is None
+        or isinstance(data, dict)
+        and data.get("state", None) in ["not_found", "forbidden", "bad_request"]
+    ):
         return from_schema_org(data)
     meta = data
 
@@ -127,8 +132,10 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     date["published"] = strip_milliseconds(meta.get("datePublished", None))
     date["updated"] = strip_milliseconds(meta.get("dateModified", None))
     # if no date is found, use today's date
-    if date == {"published": None, "updated": None}: 
-        date["accessed"] = read_options.get("dateAccessed", None) or datetime.now().isoformat("T", "seconds")
+    if date == {"published": None, "updated": None}:
+        date["accessed"] = read_options.get(
+            "dateAccessed", None
+        ) or datetime.now().isoformat("T", "seconds")
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
@@ -254,6 +261,17 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "state": state,
     } | read_options
 
+
+def get_doi_meta(doi: str) -> Optional[dict]:
+    """get_doi_meta"""
+    ra = get_doi_ra(doi)
+    if ra == "Crossref":
+        return get_crossref(doi)
+    elif ra == "DataCite":
+        return get_datacite(doi)
+    return None
+
+
 def schema_org_related_item(meta, relation_type=None):
     """Related items"""
     normalize_ids(
@@ -338,20 +356,23 @@ def get_html_meta(soup):
         soup.select_one("meta[name='citation_doi']")
         or soup.select_one("meta[name='dc.identifier']")
         or soup.select_one("meta[name='DC.identifier']")
+        or soup.select_one("meta[name='bepress_citation_doi']")
         or soup.select_one('[rel="canonical"]')
     )
     if pid is not None:
         pid = pid.get("content", None) or pid.get("href", None)
         data["@id"] = normalize_id(pid)
 
-    _type = soup.select_one("meta[property='og:type']") or soup.select_one(
-        "meta[name='dc.type']"
-    ) or soup.select_one("meta[name='DC.type']")
+    _type = (
+        soup.select_one("meta[property='og:type']")
+        or soup.select_one("meta[name='dc.type']")
+        or soup.select_one("meta[name='DC.type']")
+    )
     data["@type"] = _type["content"].capitalize() if _type else None
 
     url = soup.select_one("meta[property='og:url']") or soup.select_one(
         "meta[name='twitter:url']"
-    ) 
+    )
     data["url"] = url["content"] if url else None
     if pid is None and url is not None:
         data["@id"] = url["content"]
@@ -367,7 +388,7 @@ def get_html_meta(soup):
 
     author = soup.select("meta[name='citation_author']")
     data["author"] = [i["content"] for i in author] if author else None
-    
+
     description = soup.select_one("meta[name='citation_abstract']") or soup.select_one(
         "meta[name='dc.description']"
         or soup.select_one("meta[property='og:description']")
