@@ -493,3 +493,27 @@ def test_orcid_blog():
     assert subject.id == "https://info.orcid.org/orcid-2023-annual-report"
     assert subject.type == "WebPage"
     assert subject.state == "forbidden"
+
+
+@pytest.mark.vcr
+def test_pdf_file():
+    "PDF file"
+    string = "https://sauroposeidon.files.wordpress.com/2010/04/wedel-2003-evolution-of-pneumaticity.pdf"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://sauroposeidon.files.wordpress.com/2010/04/wedel-2003-evolution-of-pneumaticity.pdf"
+    assert subject.type == "WebPage"
+    assert subject.state == "findable"
+    assert subject.date["accessed"] > '2024-03-30'
+
+
+@pytest.mark.vcr
+def test_pdf_file():
+    "SSL certificate error"
+    string = "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
+    subject = Metadata(string)
+    assert subject.errors == ["[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.miketaylor.org.uk'. (_ssl.c:1123)"]
+    assert subject.is_valid is False
+    assert subject.id == "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
+    assert subject.type == "WebPage"
+    assert subject.state == "not_found"

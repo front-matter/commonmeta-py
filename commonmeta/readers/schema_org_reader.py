@@ -42,8 +42,17 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     # if pid represents a DOI, get metadata from Crossref or DataCite
     if doi_from_url(pid):
         return get_doi_meta(doi_from_url(pid))
+    try:
+        response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
+    except httpx.ConnectError as error:
+        return {
+            "@id": url,
+            "@type": "WebPage",
+            "state": "not_found",
+            "via": "schema_org",
+            "errors": [str(error)],
+        }
 
-    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
     if response.status_code >= 400:
         if response.status_code in [404, 410]:
             state = "not_found"
@@ -52,6 +61,14 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         else:
             state = "bad_request"
         return {"@id": url, "@type": "WebPage", "state": state, "via": "schema_org"}
+    elif response.headers.get("content-type") == "application/pdf":
+        return {
+            "@id": url,
+            "@type": "WebPage",
+            "state": "findable",
+            "via": "schema_org",
+            "date": {"accessed": datetime.now().isoformat("T", "seconds")},
+        }
 
     soup = BeautifulSoup(response.text, "html.parser")
 
