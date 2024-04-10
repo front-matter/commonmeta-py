@@ -64,20 +64,29 @@ def get_schema_org(pid: str, **kwargs) -> dict:
             state = "bad_request"
         return {"@id": url, "@type": "WebPage", "state": state, "via": "schema_org"}
     elif response.headers.get("content-type") == "application/pdf":
-        pdf = pikepdf.Pdf.open(io.BytesIO(response.content))
-        meta = pdf.docinfo if pdf.docinfo else {}
-        if meta.get("/doi", None) is not None:
-            return get_doi_meta(meta.get("/doi"))
-        date_modified = get_datetime_from_pdf_time(meta.get("/ModDate")) if meta.get("/ModDate", None) else None
-        name = meta.get("/Title", None)
-        return compact({
-            "@id": url,
-            "@type": "DigitalDocument",
-            "via": "schema_org",
-            "name": str(name),
-            "datePublished": date_modified,
-            "dateAccessed": datetime.now().isoformat("T", "seconds") if date_modified is None else None,
-        })
+        try:
+            pdf = pikepdf.Pdf.open(io.BytesIO(response.content))
+            meta = pdf.docinfo if pdf.docinfo else {}
+            if meta.get("/doi", None) is not None:
+                return get_doi_meta(meta.get("/doi"))
+            date_modified = get_datetime_from_pdf_time(meta.get("/ModDate")) if meta.get("/ModDate", None) else None
+            name = meta.get("/Title", None)
+            return compact({
+                "@id": url,
+                "@type": "DigitalDocument",
+                "via": "schema_org",
+                "name": str(name),
+                "datePublished": date_modified,
+                "dateAccessed": datetime.now().isoformat("T", "seconds") if date_modified is None else None,
+            })
+        except Exception as error:
+            print(error)
+            return {
+                "@id": url,
+                "@type": "WebPage",
+                "state": "bad_request",
+                "via": "schema_org",
+            }
 
     soup = BeautifulSoup(response.text, "html.parser")
 

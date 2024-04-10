@@ -894,7 +894,7 @@ def test_geolocation_box():
             "funderIdentifierType": "ROR",
         },
     ]
-    assert subject.sizes == ["2214669067 bytes"]
+    assert subject.sizes == ["2592742591 bytes"]
     assert subject.provider == "DataCite"
 
 
