@@ -121,8 +121,8 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-    alternate_identifiers = [
-        {"alternateIdentifier": meta.get("id"), "alternateIdentifierType": "UUID"}
+    identifiers = [
+        {"identifier": meta.get("id"), "identifierType": "UUID"}
     ]
     files = get_files(_id)
     state = "findable" if meta or read_options else "not_found"
@@ -140,14 +140,12 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "additional_type": None,
         "subjects": presence(subjects),
         "language": meta.get("language", None),
-        "alternate_identifiers": alternate_identifiers,
-        "sizes": None,
-        "formats": None,
+        "identifiers": identifiers,
         "version": None,
         "license": license_,
         "descriptions": descriptions,
-        "geo_locations": None,
-        "funding_references": presence(funding_references),
+        "geoLocations": None,
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
         "files": files,

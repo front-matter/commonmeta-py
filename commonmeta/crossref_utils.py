@@ -430,29 +430,29 @@ def insert_institution(metadata, xml):
 
 def insert_item_number(metadata, xml):
     """Insert item number"""
-    if metadata.alternate_identifiers is None:
+    if metadata.identifiers is None:
         return xml
-    for alternate_identifier in metadata.alternate_identifiers:
-        if alternate_identifier.get("alternateIdentifier", None) is None:
+    for identifier in metadata.identifiers:
+        if identifier.get("identifier", None) is None:
             continue
-        if alternate_identifier.get("alternateIdentifierType", None) is not None:
+        if identifier.get("identifierType", None) is not None:
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
-            if alternate_identifier.get("alternateIdentifierType", None) == "UUID":
-                alternate_identifier["alternateIdentifier"] = alternate_identifier.get(
-                    "alternateIdentifier", ""
+            if identifier.get("identifierType", None) == "UUID":
+                identifier["identifier"] = identifier.get(
+                    "identifier", ""
                 ).replace("-", "")
             etree.SubElement(
                 xml,
                 "item_number",
                 {
-                    "item_number_type": alternate_identifier.get(
-                        "alternateIdentifierType", ""
+                    "item_number_type": identifier.get(
+                        "identifierType", ""
                     ).lower()
                 },
-            ).text = alternate_identifier.get("alternateIdentifier", None)
+            ).text = identifier.get("identifier", None)
         else:
-            etree.SubElement(xml, "item_number").text = alternate_identifier.get(
-                "alternateIdentifier", None
+            etree.SubElement(xml, "item_number").text = identifier.get(
+                "identifier", None
             )
     return xml
 

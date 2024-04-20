@@ -235,7 +235,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     descriptions = [
         {
             "description": sanitize(i),
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
         for i in wrap(meta.get("description"))
     ]
@@ -260,7 +260,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     geo_locations = [
         schema_org_geolocation(i) for i in wrap(meta.get("spatialCoverage", None))
     ]
-    alternate_identifiers = None
+    identifiers = None
     provider = (
         get_doi_ra(_id)
         if doi_from_url(_id)
@@ -281,7 +281,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         "additional_type": additional_type,
         "subjects": presence(subjects),
         "language": language,
-        "alternate_identifiers": alternate_identifiers,
+        "identifiers": identifiers,
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),

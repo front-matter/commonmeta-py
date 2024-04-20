@@ -44,7 +44,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     #                           end
     descriptions = None
     if meta.get("AB", None) is not None:
-        descriptions = [{"description": meta.get("AB"), "descriptionType": "Abstract"}]
+        descriptions = [{"description": meta.get("AB"), "type": "Abstract"}]
     if meta.get("T2", None) is not None:
         container = compact(
             {

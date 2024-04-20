@@ -11,7 +11,6 @@ def test_default():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {
@@ -45,7 +44,7 @@ def test_default():
     assert len(subject.references) == 27
     assert subject.references[0] == {
         "key": "bib1",
-        "doi": "https://doi.org/10.1038/nature02100",
+        "id": "https://doi.org/10.1038/nature02100",
         "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
@@ -458,15 +457,15 @@ def test_string():
   "descriptions": [
     {
       "description": "Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale. For instance, secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly specialized tissues that comprises several thousand cells starting from a few dozen. This dynamic process is difficult to follow because of its scale and because it can only be investigated invasively, precluding comprehensive understanding of the cell proliferation, differentiation, and patterning events involved. To overcome such limitation, we established an automated quantitative histology approach. We acquired hypocotyl cross-sections from tiled high-resolution images and extracted their information content using custom high-throughput image processing and segmentation. Coupled with automated cell type recognition through machine learning, we could establish a cellular resolution atlas that reveals vascular morphodynamics during secondary growth, for example equidistant phloem pole formation.",
-      "descriptionType": "Abstract"
+      "type": "Abstract"
     }
   ],
   "license": {
     "id": "CC-BY-3.0",
     "url": "https://creativecommons.org/licenses/by/3.0/legalcode"
   },
-  "alternate_identifiers": [],
-  "funding_references": [
+  "identifiers": [],
+  "fundingReferences": [
     {
       "funderName": "SystemsX"
     },
@@ -519,7 +518,6 @@ def test_string():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.schema_version == "https://commonmeta.org/commonmeta_v0.10"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {

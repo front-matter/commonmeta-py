@@ -91,6 +91,15 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
         else None
     )
 
+    descriptions = [
+        compact({
+            "description": i.get("description", None),
+            "descriptionType": i.get("type", None),
+            "lang": i.get("language", None),
+        })
+        for i in wrap(metadata.descriptions)
+    ]
+
     data = compact(
         {
             "id": metadata.id,
@@ -106,11 +115,9 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
             "language": metadata.language,
             "types": types,
             "relatedIdentifiers": related_identifiers,
-            "sizes": metadata.sizes,
-            "formats": metadata.formats,
             "version": metadata.version,
             "rightsList": license_,
-            "descriptions": metadata.descriptions,
+            "descriptions": descriptions,
             "geoLocations": metadata.geo_locations,
             "fundingReferences": metadata.funding_references,
             "schemaVersion": "http://datacite.org/schema/kernel-4",

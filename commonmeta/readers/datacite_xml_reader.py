@@ -72,13 +72,13 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     def format_description(description):
         """format_description"""
         if isinstance(description, str):
-            return {"description": description, "descriptionType": "Abstract"}
+            return {"description": description, "type": "Abstract"}
         if isinstance(description, dict):
             return compact(
                 {
                     "description": sanitize(description.get("#text", None)),
-                    "descriptionType": description.get("descriptionType", "Abstract"),
-                    "lang": description.get("xml:lang", None),
+                    "type": description.get("descriptionType", "Abstract"),
+                    "language": description.get("xml:lang", None),
                 }
             )
         return None
@@ -167,18 +167,6 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     geo_locations = []  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
 
-    def map_size(size):
-        """map_size"""
-        return size.get("#text")
-
-    sizes = [map_size(i) for i in wrap(meta.get("sizes", None))]
-
-    def map_format(format_):
-        """map_format"""
-        return format_.get("#text")
-
-    formats = [map_format(i) for i in wrap(meta.get("formats", None))]
-
     def map_rights(rights):
         """map_rights"""
         return compact(
@@ -227,17 +215,15 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": date,
         # recommended and optional properties
-        "additional_type": presence(additional_type),
+        "additionalType": presence(additional_type),
         "subjects": presence(subjects),
         "language": meta.get("language", None),
-        "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
-        "sizes": presence(sizes),
-        "formats": presence(formats),
+        "identifiers": presence(meta.get("alternateIdentifiers", None)),
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": presence(descriptions),
-        "geo_locations": presence(geo_locations),
-        "funding_references": presence(funding_references),
+        "geoLocations": presence(geo_locations),
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
         # other properties

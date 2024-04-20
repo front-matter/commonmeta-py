@@ -575,6 +575,7 @@ def test_medium_post_with_institutional_author():
     """blog post with institutional author"""
     string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
     assert subject.type == "Article"

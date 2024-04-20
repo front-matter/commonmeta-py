@@ -82,13 +82,23 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     files = [get_file(i) for i in wrap(meta.get("content_url"))]
+    
+    identifiers = get_identifiers(wrap(meta.get("alternateIdentifiers", None)))
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
     relations = get_relations(wrap(meta.get("relatedIdentifiers", None)))
     descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
     geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
-    formats = py_.uniq(meta.get("formats", None))
+
+    def format_subject(subject):
+        """format_subject"""
+        return compact({
+            "subject": subject.get("subject", None),
+            "language": subject.get("lang", None),
+        })
+
+    subjects = py_.uniq([format_subject(i) for i in wrap(meta.get("subjects", None))])
 
     return {
         # required properties
@@ -101,28 +111,60 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         "publisher": publisher,
         "date": compact(date),
         # recommended and optional properties
-        "additional_type": additional_type,
-        "subjects": presence(meta.get("subjects", None)),
+        "additionalType": additional_type,
+        "subjects": presence(subjects),
         "language": meta.get("language", None),
-        "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
-        "sizes": presence(meta.get("sizes", None)),
-        "formats": presence(formats),
+        "identifiers": presence(identifiers),
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": descriptions,
-        "geo_locations": presence(geo_locations),
-        "funding_references": presence(meta.get("fundingReferences", None)),
+        "geoLocations": presence(geo_locations),
+        "fundingReferences": presence(meta.get("fundingReferences", None)),
         "references": presence(references),
         "relations": presence(relations),
         # other properties
         "files": presence(files),
         "container": presence(container),
         "provider": "DataCite",
-        "state": "findable",
-        "schema_version": meta.get("schemaVersion", None),
     } | read_options
 
 
+def get_identifiers(identifiers: list) -> list:
+    """get_identifiers"""
+    
+    def is_identifier(identifier):
+        """supported identifier types"""
+        return identifier.get("identifierType", None) in [
+                "ARK",
+                "arXiv",
+                "Bibcode",
+                "DOI",
+                "Handle",
+                "ISBN",
+                "ISSN",
+                "PMID",
+                "PMCID",
+                "PURL",
+                "URL",
+                "URN",
+                "Other"
+            ]
+        
+    def format_identifier(identifier):
+        """format_identifier"""
+        if is_identifier(identifier):
+            type_ = identifier.get("identifierType")
+        else:
+            type_ = "Other"
+            
+        return compact(
+            {
+                "identifier": identifier.get("alternateIdentifier", None),
+                "identifierType": type_,
+            }
+        )
+    return [format_identifier(i) for i in wrap(identifiers)]
+    
 def get_references(references: list) -> list:
     """get_references"""
 
@@ -181,9 +223,7 @@ def get_relations(relations: list) -> list:
             }
         )
 
-    return [
-        map_relation(i) for i in relations if is_relation(i)
-    ]
+    return [map_relation(i) for i in relations if is_relation(i)]
 
 
 def get_file(file: str) -> dict:

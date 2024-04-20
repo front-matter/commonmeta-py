@@ -123,6 +123,7 @@ def test_blogposting_citeproc_json():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
     datacite = json.loads(subject.write(to="datacite"))
+    print(datacite)
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",

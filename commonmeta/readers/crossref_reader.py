@@ -18,8 +18,6 @@ from ..date_utils import get_date_from_date_parts
 from ..doi_utils import (
     doi_as_url,
     doi_from_url,
-    # get_doi_ra,
-    # get_crossref_member,
     crossref_api_url,
     crossref_api_query_url,
     crossref_api_sample_url,
@@ -102,19 +100,18 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     if issn is not None:
         relations.append(
             {
-                "type": "IsPartOf",
                 "id": issn_as_url(issn),
+                "type": "IsPartOf",
             }
         )
         relations = py_.uniq(relations)
-    relations = py_.sort(relations, key=lambda x: x["type"])
     references = py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
 
     description = meta.get("abstract", None)
     if description is not None:
         descriptions = [
-            {"description": sanitize(description), "descriptionType": "Abstract"}
+            {"description": sanitize(description), "type": "Abstract"}
         ]
     else:
         descriptions = None
@@ -125,43 +122,38 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             for i in wrap(meta.get("subject", None) or meta.get("group-title", None))
         ]
     )
-    files = [
+    files = py_.uniq([
         get_file(i)
         for i in wrap(meta.get("link", None))
         if i["content-type"] != "unspecified"
-    ]
-
-    state = "findable" if meta or read_options else "not_found"
+    ])
 
     return {
         # required properties
         "id": _id,
         "type": _type,
+        # recommended and optional properties
         "url": url,
         "contributors": presence(contributors),
         "titles": presence(titles),
         "publisher": presence(publisher),
         "date": presence(date),
-        # recommended and optional properties
-        "additional_type": None,
+        "additionalType": None,
         "subjects": presence(subjects),
         "language": meta.get("language", None),
-        "alternate_identifiers": None,
+        "identifiers": None,
         "sizes": None,
         "formats": None,
         "version": meta.get("version", None),
         "license": license_,
         "descriptions": descriptions,
-        "geo_locations": None,
-        "funding_references": presence(funding_references),
+        "geoLocations": None,
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
-        # other properties
         "files": presence(files),
         "container": presence(container),
-        "provider": "Crossref",  # get_doi_ra(_id),
-        "state": state,
-        "schema_version": None,
+        "provider": "Crossref",
     } | read_options
 
 
@@ -215,7 +207,7 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
         "lastPage": reference.get("last-page", None),
         "containerTitle": reference.get("journal-title", None),
         "edition": None,
-        "unstructured": reference.get("unstructured", None),
+        "unstructured": reference.get("unstructured", None) if doi is None else None,
     }
     return compact(metadata)
 
@@ -368,7 +360,7 @@ def from_crossref_funding(funding_references: list) -> list:
     """Get funding references from Crossref"""
     formatted_funding_references = []
     for funding in funding_references:
-        funding_reference = compact(
+        f = compact(
             {
                 "funderName": funding.get("name", None),
                 "funderIdentifier": doi_as_url(funding["DOI"])
@@ -379,18 +371,18 @@ def from_crossref_funding(funding_references: list) -> list:
                 else None,
             }
         )
-        funding_reference = py_.omit(funding_reference, "DOI", "doi-asserted-by")
+        f = py_.omit(f, "DOI", "doi-asserted-by")
         if (
             funding.get("name", None) is not None
             and funding.get("award", None) is not None
         ):
             for award in wrap(funding["award"]):
-                fund_ref = funding_reference.copy()
+                fund_ref = f.copy()
                 fund_ref["awardNumber"] = award
                 formatted_funding_references.append(fund_ref)
-        elif funding_reference != {}:
-            formatted_funding_references.append(funding_reference)
-    return py_.uniq(formatted_funding_references)
+        elif f != {}:
+            formatted_funding_references.append(f)
+    return formatted_funding_references
 
 
 def get_random_crossref_id(number: int = 1, **kwargs) -> list:

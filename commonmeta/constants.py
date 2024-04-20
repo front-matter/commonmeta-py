@@ -16,7 +16,7 @@ class Commonmeta(TypedDict):
     subjects: Optional[List[dict]]
     contributors: Optional[List[dict]]
     language: Optional[str]
-    alternate_identifiers: Optional[List[dict]]
+    identifiers: Optional[List[dict]]
     relations: Optional[List[dict]]
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]
@@ -30,7 +30,6 @@ class Commonmeta(TypedDict):
     files: Optional[List[dict]]
     agency: Optional[str]
     state: str
-    schema_version: Optional[str]
 
 
 # source: https://www.bibtex.com/e/entry-types/

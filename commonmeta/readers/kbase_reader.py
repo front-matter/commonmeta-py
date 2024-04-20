@@ -82,22 +82,18 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
         "additional_type": None,
         "subjects": None,
         "language": language,
-        "alternate_identifiers": None,
-        "sizes": None,
-        "formats": None,
+        "identifiers": None,
         "version": py_.get(meta, "metadata.version"),
         "license": presence(license_),
         "descriptions": descriptions,
         "geo_locations": None,
-        "funding_references": presence(funding_references),
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
         # other properties
         "files": presence(files),
         "container": container,
-        "provider": "KBase",
-        "state": state,
-        "schema_version": py_.get(data, "credit_metadata_schema_version"),
+        "provider": "DataCite",
     } | read_options
 
 
@@ -202,7 +198,7 @@ def format_descriptions(descriptions: list) -> list:
     return [
         {
             "description": sanitize(i),
-            "descriptionType": "Abstract" if index == 0 else "Other",
+            "type": "Abstract" if index == 0 else "Other",
         }
         for index, i in enumerate(descriptions)
         if i
