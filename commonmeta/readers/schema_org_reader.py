@@ -235,7 +235,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     descriptions = [
         {
             "description": sanitize(i),
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
         for i in wrap(meta.get("description"))
     ]

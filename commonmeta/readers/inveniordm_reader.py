@@ -192,7 +192,7 @@ def format_descriptions(descriptions: list) -> list:
     return [
         {
             "description": sanitize(i),
-            "descriptionType": "Abstract" if index == 0 else "Other",
+            "type": "Abstract" if index == 0 else "Other",
         }
         for index, i in enumerate(descriptions)
         if i

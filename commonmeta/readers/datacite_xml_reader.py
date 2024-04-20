@@ -72,7 +72,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     def format_description(description):
         """format_description"""
         if isinstance(description, str):
-            return {"description": description, "descriptionType": "Abstract"}
+            return {"description": description, "type": "Abstract"}
         if isinstance(description, dict):
             return compact(
                 {
