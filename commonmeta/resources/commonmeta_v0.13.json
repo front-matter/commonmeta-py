@@ -533,7 +533,11 @@
       "items": {
         "type": "object",
         "properties": {
-          "subject": { "type": "string" }
+          "subject": { "type": "string" },
+          "language": {
+            "description": "The language of the subject. Use one of the language codes from the IETF BCP 47 standard.",
+            "type": "string"
+          }
         },
         "required": ["subject"]
       },
