@@ -76,6 +76,7 @@ def test_datacite_schema_45():
     """datacite schema 4.5"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/b09z-4k37"
 

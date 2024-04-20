@@ -24,7 +24,12 @@ def write_commonmeta(metadata):
         ],
     )
     data = py_.rename_keys(
-        data, {"additional_type": "additionalType", "geo_locations": "geoLocations"}
+        data,
+        {
+            "additional_type": "additionalType",
+            "geo_locations": "geoLocations",
+            "funding_references": "fundingReferences",
+        },
     )
     return json.dumps(compact(data))
 
