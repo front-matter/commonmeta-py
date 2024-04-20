@@ -9,7 +9,6 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["organization"],
         "properties": {
           "organization": { "$ref": "#/definitions/organization" }
         }
@@ -240,14 +239,6 @@
       "type": "array",
       "items": {
         "type": "object",
-        "anyOf": [
-          {
-            "required": ["organization"]
-          },
-          {
-            "required": ["person"]
-          }
-        ],
         "properties": {
           "organization": { "$ref": "#/definitions/organization" },
           "person": { "$ref": "#/definitions/person" },
