@@ -103,7 +103,7 @@ class Metadata:
         self.date_registered = meta.get("date_registered")
         self.date_published = meta.get("date_published")
         self.date_updated = meta.get("date_updated")
-        self.files = meta.get("files")
+        self.files = meta.get("files") or []
         self.container = meta.get("container")
         self.provider = meta.get("provider")
         self.schema_version = meta.get("schema_version")

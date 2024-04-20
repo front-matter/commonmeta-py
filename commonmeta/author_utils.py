@@ -119,8 +119,7 @@ def get_one_author(author, **kwargs):
             "name": name if _type == "Organization" else None,
             "givenName": given_name if _type == "Person" else None,
             "familyName": family_name if _type == "Person" else None,
-            "affiliation": presence(
-                get_affiliations(wrap(author.get("affiliation", None)))
+            "affiliation": get_affiliations(wrap(author.get("affiliation", None))
             ),
         }
     )
