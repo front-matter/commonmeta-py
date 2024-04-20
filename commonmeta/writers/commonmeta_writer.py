@@ -20,9 +20,12 @@ def write_commonmeta(metadata):
             "date_published",
             "date_registered",
             "date_updated",
+            "state",
         ],
     )
-    data["schema_version"] = "https://commonmeta.org/commonmeta_v0.12"
+    data = py_.rename_keys(
+        data, {"additional_type": "additionalType", "geo_locations": "geoLocations"}
+    )
     return json.dumps(compact(data))
 
 
@@ -43,7 +46,6 @@ def write_commonmeta_list(metalist):
             "id": metalist.id,
             "title": metalist.title,
             "description": metalist.description,
-            "schema_version": "https://commonmeta.org/commonmeta_v0.12",
             "items": items,
         }
     )
