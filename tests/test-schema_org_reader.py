@@ -39,13 +39,13 @@ def test_blog_posting():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.references == [
         {
-            "doi": "https://doi.org/10.5438/0012",
+            "id": "https://doi.org/10.5438/0012",
             "key": "ref1",
             "publicationYear": "2016",
             "title": "DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0",
         },
         {
-            "doi": "https://doi.org/10.5438/55e5-t5c0",
+            "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
             "publicationYear": "2016",
             "title": "Cool DOI's",

@@ -94,7 +94,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     descriptions = [
         compact({
             "description": i.get("description", None),
-            "descriptionType": i.get("type", None),
+            "descriptionType": i.get("type", None) or "Other",
             "lang": i.get("language", None),
         })
         for i in wrap(metadata.descriptions)
@@ -170,12 +170,12 @@ def to_datacite_titles(titles: list) -> list:
 
 def to_datacite_related_identifier(reference: dict) -> dict:
     """Convert reference to datacite related_identifier"""
-    doi = reference.get("doi", None)
+    _id = reference.get("id", None)
     url = reference.get("url", None)
     return compact(
         {
-            "relatedIdentifier": doi if doi else url,
-            "relatedIdentifierType": "DOI" if doi else "URL",
+            "relatedIdentifier": _id if _id else url,
+            "relatedIdentifierType": "DOI" if _id else "URL",
             "relationType": "References",
         }
     )

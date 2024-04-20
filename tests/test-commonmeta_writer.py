@@ -25,7 +25,7 @@ def test_journal_article():
     assert len(commonmeta["references"]) == 27
     assert commonmeta["references"][0] == {
         "key": "bib1",
-        "doi": "https://doi.org/10.1038/nature02100",
+        "id": "https://doi.org/10.1038/nature02100",
         "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",

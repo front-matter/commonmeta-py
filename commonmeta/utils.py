@@ -669,7 +669,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         data = json.loads(string)
         if not isinstance(data, dict):
             raise TypeError
-        if data.get("schema_version", "").startswith("https://commonmeta.org"):
+        if data.get("schema", "").startswith("https://commonmeta.org"):
             return "commonmeta"
         if data.get("items", None) is not None:
             data = data["items"][0]

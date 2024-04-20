@@ -196,7 +196,7 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
     doi = reference.get("DOI", None)
     metadata = {
         "key": reference.get("key", None),
-        "doi": normalize_doi(doi) if doi else None,
+        "id": normalize_doi(doi) if doi else None,
         "contributor": reference.get("author", None),
         "title": reference.get("article-title", None),
         "publisher": reference.get("publisher", None),
@@ -207,7 +207,7 @@ def get_reference(reference: Optional[dict]) -> Optional[dict]:
         "lastPage": reference.get("last-page", None),
         "containerTitle": reference.get("journal-title", None),
         "edition": None,
-        "unstructured": reference.get("unstructured", None) if doi is None else None,
+        "unstructured": reference.get("unstructured", None),
     }
     return compact(metadata)
 
@@ -382,7 +382,7 @@ def from_crossref_funding(funding_references: list) -> list:
                 formatted_funding_references.append(fund_ref)
         elif f != {}:
             formatted_funding_references.append(f)
-    return formatted_funding_references
+    return py_.uniq(formatted_funding_references)
 
 
 def get_random_crossref_id(number: int = 1, **kwargs) -> list:

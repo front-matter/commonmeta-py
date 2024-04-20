@@ -24,4 +24,4 @@ def json_schema_errors(instance, schema: str = "commonmeta"):
             schema = json.loads(string)
         return Draft202012Validator(schema).validate(instance)
     except ValidationError as error:
-        return error
+        return error.message

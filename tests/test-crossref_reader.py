@@ -14,8 +14,10 @@ from commonmeta.readers.crossref_reader import (
     get_random_crossref_id,
 )
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_doi_with_data_citation():
@@ -53,7 +55,7 @@ def test_doi_with_data_citation():
     assert len(subject.references) == 27
     assert subject.references[0] == {
         "key": "bib1",
-        "doi": "https://doi.org/10.1038/nature02100",
+        "id": "https://doi.org/10.1038/nature02100",
         "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
@@ -76,7 +78,6 @@ def test_doi_with_data_citation():
             "funderIdentifier": "https://doi.org/10.13039/501100006390",
             "funderIdentifierType": "Crossref Funder ID",
         },
-        {"funderName": "SystemsX"},
         {
             "funderIdentifier": "https://doi.org/10.13039/501100003043",
             "funderIdentifierType": "Crossref Funder ID",
@@ -86,12 +87,7 @@ def test_doi_with_data_citation():
             "funderIdentifier": "https://doi.org/10.13039/501100001711",
             "funderIdentifierType": "Crossref Funder ID",
             "funderName": "Swiss National Science Foundation",
-        },
-        {
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "University of Lausanne",
-        },
+        }
     ]
     assert subject.container == {
         "identifier": "2050-084X",
@@ -157,7 +153,7 @@ def test_journal_article():
     assert len(subject.references) == 73
     assert subject.references[-1] == {
         "key": "ref73",
-        "doi": "https://doi.org/10.1056/nejm199109123251104",
+        "id": "https://doi.org/10.1056/nejm199109123251104",
         "contributor": "KB Hammond",
         "title": "Efficacy of statewide neonatal screening for cystic fibrosis by assay of trypsinogen concentrations.",
         "publicationYear": "1991",
@@ -217,7 +213,7 @@ def test_journal_article_with_funding():
     assert len(subject.references) == 70
     assert subject.references[-1] == {
         "key": "ref70",
-        "doi": "https://doi.org/10.17660/actahortic.2004.632.41",
+        "id": "https://doi.org/10.17660/actahortic.2004.632.41",
         "contributor": "Zheng",
         "title": "Effects of polyamines and salicylic acid on postharvest storage of “Ponkan” mandarin",
         "publicationYear": "2004",
@@ -269,7 +265,8 @@ def test_journal_article_original_language():
     assert len(subject.references) == 7
     assert subject.references[-1] == {
         "key": "7",
-        "doi": "https://doi.org/10.1161/01.cir.95.6.1686",
+        "id": "https://doi.org/10.1161/01.cir.95.6.1686",
+        "unstructured": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -474,7 +471,7 @@ def test_blog_post():
     assert len(subject.references) == 3
     assert subject.references[0] == {
         "key": "ref1",
-        "doi": "https://doi.org/10.1038/d41586-023-02554-0",
+        "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "title": "Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty",
         "publicationYear": "2023",
     }
@@ -689,7 +686,7 @@ def test_doi_with_orcid():
     assert len(subject.references) == 27
     assert subject.references[-1] == {
         "key": "30",
-        "doi": "https://doi.org/10.1378/chest.12-0045",
+        "id": "https://doi.org/10.1378/chest.12-0045",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -747,7 +744,7 @@ def test_date_in_future():
     assert len(subject.references) == 98
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
-        "doi": "https://doi.org/10.1111/hiv.12134",
+        "id": "https://doi.org/10.1111/hiv.12134",
         "contributor": "Zoufaly",
         "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
         "publicationYear": "2014",
@@ -836,12 +833,16 @@ def test_vor_with_url():
     assert len(subject.references) == 41
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
-        "doi": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
+        "id": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
         "contributor": "H Wilkens",
         "publicationYear": "2003",
         "volume": "80",
         "firstPage": "545",
         "containerTitle": "Biol J Linn Soc",
+        "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
+        "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
+        "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
+        "545–554.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -947,7 +948,7 @@ def test_dataset_usda():
     assert len(subject.references) == 6
     assert subject.references[-1] == {
         "key": "ref6",
-        "doi": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "id": "https://doi.org/10.1674/0003-0031-178.1.47",
     }
     assert subject.funding_references == [
         {
@@ -1003,13 +1004,17 @@ def test_book_chapter():
     assert len(subject.references) == 22
     assert subject.references[0] == {
         "key": "13_CR1",
-        "doi": "https://doi.org/10.1007/s00256-012-1391-8",
+        "id": "https://doi.org/10.1007/s00256-012-1391-8",
         "contributor": "KS Ahn",
         "publicationYear": "2012",
         "volume": "41",
         "issue": "10",
         "firstPage": "1301",
         "containerTitle": "Skeletal Radiol",
+        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between "
+        "magnetic resonance imaging and clinical impairment in "
+        "patients with adhesive capsulitis. Skeletal Radiol. "
+        "2012;41(10):1301–8.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1325,7 +1330,7 @@ def test_proceedings_article():
     assert len(subject.references) == 56
     assert subject.references[-1] == {
         "key": "e_1_3_2_2_56_1",
-        "doi": "https://doi.org/10.5555/1364813.1364831",
+        "id": "https://doi.org/10.5555/1364813.1364831",
     }
     assert subject.funding_references == [
         {
@@ -1388,12 +1393,13 @@ def test_multipe_titles():
     assert len(subject.references) == 20
     assert subject.references[-1] == {
         "key": "1345_CR20",
-        "doi": "https://doi.org/10.1159/000281702",
+        "id": "https://doi.org/10.1159/000281702",
         "contributor": "Wandschneider",
         "publicationYear": "1990",
         "volume": "45",
         "firstPage": "177",
         "containerTitle": "Urol Int",
+        "unstructured": "Wandschneider G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally amputated penis by using microvascular techniques. Urol Int 45: 177–180",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1485,7 +1491,8 @@ def test_get_reference():
     }
     assert {
         "key": "978-1-4666-1891-6.ch004.-31",
-        "doi": "https://doi.org/10.1109/iccv.2007.4408927",
+        "id": "https://doi.org/10.1109/iccv.2007.4408927",
+        "unstructured": "Sinop, A. K., & Grady, L. (2007). A seeded image segmentation framework unifying graph cuts and random walker which yields a new algorithm. Proceedings of the 2007 International Conference on Computer Vision, (pp. 1-8).",
     } == get_reference(doi_metadata)
     assert {
         "key": "978-1-4666-1891-6.ch004.-14",
