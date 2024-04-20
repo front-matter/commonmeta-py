@@ -30,7 +30,6 @@ class Commonmeta(TypedDict):
     files: Optional[List[dict]]
     agency: Optional[str]
     state: str
-    schema_version: Optional[str]
 
 
 # source: https://www.bibtex.com/e/entry-types/
