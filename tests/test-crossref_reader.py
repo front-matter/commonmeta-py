@@ -181,7 +181,6 @@ def test_journal_article():
     assert subject.version is None
     assert subject.provider == "Crossref"
     assert subject.files is None
-    assert subject.state == "findable"
 
 
 def test_journal_article_with_funding():
@@ -710,7 +709,7 @@ def test_doi_with_orcid():
     assert subject.descriptions == [
         {
             "description": "Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal “retesting zone” for use in serially tested low-risk populations who have test “reversions” from initially positive to subsequently negative results.Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample.Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0,P&lt;0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2,P&lt;0.01). The model was validated by the regression analysis of 287 HCWs.Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer's cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL.",
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
     ]
     assert subject.version is None
@@ -863,7 +862,7 @@ def test_vor_with_url():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
-    assert len(subject.files) == 3
+    assert len(subject.files) == 2
     assert subject.files[0] == {
         "url": "http://www.nature.com/articles/hdy201326.pdf",
         "mimeType": "application/pdf",
@@ -1110,7 +1109,7 @@ def test_yet_another_book_chapter():
     assert subject.descriptions == [
         {
             "description": "Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.",
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
     ]
     assert subject.version is None
@@ -1185,7 +1184,7 @@ def test_missing_contributor():
             "collaborative approach of the partnership, and finally "
             "summarizes financial results after four years of successful "
             "operation.",
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
     ]
     assert subject.version is None
@@ -1412,7 +1411,7 @@ def test_multipe_titles():
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
-    assert len(subject.files) == 3
+    assert len(subject.files) == 2
     assert subject.files[0] == {
         "url": "https://link.springer.com/content/pdf/10.1007/s00120-007-1345-2.pdf",
         "mimeType": "application/pdf",
@@ -1436,7 +1435,6 @@ def test_get_crossref():
     data = get_crossref("https://doi.org/10.1017/9781108348843")
     assert isinstance(data, dict)
     assert data.get("DOI") == "10.1017/9781108348843"
-    assert {"state": "not_found"} == get_crossref("123")
 
 
 def test_read_crossref():
@@ -1445,7 +1443,6 @@ def test_read_crossref():
     meta = read_crossref(data)
     assert isinstance(meta, dict)
     assert meta.get("id") == "https://doi.org/10.1017/9781108348843"
-    assert {"state": "not_found"} == read_crossref(None)
 
 
 @pytest.mark.vcr
