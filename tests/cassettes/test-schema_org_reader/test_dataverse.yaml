@@ -11,16 +11,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.24.1
     method: GET
     uri: https://doi.org/ra/10.7910
   response:
-    content: "[\n  {\n    \"DOI\": \"10.7910\",\n    \"RA\": \"DataCite\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c0tDAyUdiGiQI0jQJbEk0TmzJFUJKFjLFQsA
+        nkT4NTYAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 863f1fd50cfd71e2-FRA
+      - 87773c52b90c9f96-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,11 +31,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 13 Mar 2024 21:30:17 GMT
+      - Sat, 20 Apr 2024 18:35:41 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yHVZZfjesmGwP6AyHg5zW03Ly6sLWf2MhHq71NrCZUP3vVR6MjM2lDp1xC9%2FB7EvN%2FhC31trpJKhj0C59hss9ypBykcBryX6pU2I%2FXUQLrTl0dc%2BnnWy3Xc%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=2F6KMbyx6tkFXT4eyGY%2FtOuOY%2BV9mXSmbcFqb3pl%2FnAYuwCq3CUC4rP2KWZ4SNcXMOlTg0dRdDiNv4KImNi0Mh5OxkjzlkCg0RyZQ3Jtr7aZMDFo1gE6hLL8GG4lPHSkWn23IQ8%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -43,8 +46,9 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -57,18 +61,44 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.24.1
     method: GET
     uri: https://api.datacite.org/dois/10.7910/dvn/nj7xso?include=media,client
   response:
-    content: '{"data":{"id":"10.7910/dvn/nj7xso","type":"dois","attributes":{"doi":"10.7910/dvn/nj7xso","prefix":"10.7910","suffix":"dvn/nj7xso","identifiers":[],"alternateIdentifiers":[],"creators":[{"name":"International
-      Genetics Of Ankylosing Spondylitis Consortium (IGAS)","affiliation":[],"nameIdentifiers":[]}],"titles":[{"title":"Summary
-      data ankylosing spondylitis GWAS"}],"publisher":"Harvard Dataverse","container":{},"publicationYear":2017,"subjects":[],"contributors":[],"dates":[{"date":"2017","dateType":"Issued"}],"language":null,"types":{"ris":"DATA","bibtex":"misc","citeproc":"dataset","schemaOrg":"Dataset","resourceTypeGeneral":"Dataset"},"relatedIdentifiers":[],"relatedItems":[],"sizes":[],"formats":[],"version":null,"rightsList":[],"descriptions":[],"geoLocations":[],"fundingReferences":[],"xml":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIKICB4bWxuczp4c2k9Imh0dHA6Ly93d3cudzMub3JnLzIwMDEvWE1MU2NoZW1hLWluc3RhbmNlIgogIHhzaTpzY2hlbWFMb2NhdGlvbj0iaHR0cDovL2RhdGFjaXRlLm9yZy9zY2hlbWEva2VybmVsLTQKICAgIGh0dHA6Ly9zY2hlbWEuZGF0YWNpdGUub3JnL21ldGEva2VybmVsLTQvbWV0YWRhdGEueHNkIj4KICA8aWRlbnRpZmllciBpZGVudGlmaWVyVHlwZT0iRE9JIj4xMC43OTEwL0RWTi9OSjdYU088L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZT5JbnRlcm5hdGlvbmFsIEdlbmV0aWNzIG9mIEFua3lsb3NpbmcgU3BvbmR5bGl0aXMgQ29uc29ydGl1bSAoSUdBUyk8L2NyZWF0b3JOYW1lPgogICAgPC9jcmVhdG9yPgogIDwvY3JlYXRvcnM+CiAgPHRpdGxlcz4KICAgIDx0aXRsZT5TdW1tYXJ5IGRhdGEgYW5reWxvc2luZyBzcG9uZHlsaXRpcyBHV0FTPC90aXRsZT4KICA8L3RpdGxlcz4KICA8cHVibGlzaGVyPkhhcnZhcmQgRGF0YXZlcnNlPC9wdWJsaXNoZXI+CiAgPHB1YmxpY2F0aW9uWWVhcj4yMDE3PC9wdWJsaWNhdGlvblllYXI+CiAgPHJlc291cmNlVHlwZSByZXNvdXJjZVR5cGVHZW5lcmFsPSJEYXRhc2V0Ii8+CjwvcmVzb3VyY2U+Cg==","url":"https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO","contentUrl":null,"metadataVersion":0,"schemaVersion":"http://datacite.org/schema/kernel-4","source":null,"isActive":true,"state":"findable","reason":null,"viewCount":0,"viewsOverTime":[],"downloadCount":0,"downloadsOverTime":[],"referenceCount":0,"citationCount":0,"citationsOverTime":[],"partCount":0,"partOfCount":0,"versionCount":0,"versionOfCount":0,"created":"2017-10-01T01:14:37.000Z","registered":"2017-10-01T01:14:38.000Z","published":"2017","updated":"2020-09-19T01:07:43.000Z"},"relationships":{"client":{"data":{"id":"gdcc.harvard-dv","type":"clients"}},"provider":{"data":{"id":"harvardu","type":"providers"}},"media":{"data":{"id":"10.7910/dvn/nj7xso","type":"media"}},"references":{"data":[]},"citations":{"data":[]},"parts":{"data":[]},"partOf":{"data":[]},"versions":{"data":[]},"versionOf":{"data":[]}}},"included":[{"id":"gdcc.harvard-dv","type":"clients","attributes":{"name":"Harvard
-      Dataverse","symbol":"GDCC.HARVARD-DV","year":2018,"alternateName":null,"description":"The
-      Harvard Dataverse is open to all scientific data from all disciplines worldwide.
-      It includes the world''s largest collection of social science research data.
-      It is hosting data for projects, archives, researchers, journals, organizations,
-      and institutions.","language":null,"clientType":"repository","domains":"*","re3data":"https://doi.org/10.17616/R3C880","opendoar":null,"issn":{},"url":"https://dataverse.harvard.edu/","created":"2018-05-31T22:08:15.000Z","updated":"2020-09-17T07:18:56.000Z","isActive":true},"relationships":{"provider":{"data":{"id":"harvardu","type":"providers"}},"consortium":{"data":{"id":"GDCCCO","type":"providers"}},"prefixes":{"data":[{"id":"10.7910","type":"prefixes"}]}}}]}'
+    body:
+      string: !!binary |
+        H4sIAP4KJGYAA5xXXXPiOhL9Ky5edu/OkNgGJkDV1BaBBMwQyBhig2/dB1sStoj8UZYMMan89235
+        A0gyc+vWvuFWn+6jbql1eG1gV7iN/muD4ka/oalXNz1Nvcb76Dra3bzwuPG1IfKEwBqOKYcvV4iU
+        epkgXKLA+DtYkpItfTmvgoln29L0zpFiEgm6pSSFkH/+BSmYIGnkCmJ8XEEpcUVcfL02IjeUvIyo
+        9KZx5DJlTCIiKOLKYqsMouecxZxGvrJM4gjnjArKlWEc8TgVNAuVfxvjwfIPuSsgxmgRpMwkg39I
+        /wZmQQUjZfriJ+RfZmHoprkiC6m455T8IuXYHiwbEp9kHqM8ICkAJ266d1OsjAC4hxwEeKA4Ei6N
+        5PrrW+WOClob4oJRV7UbWUdvR5CoiwKYoiVxXSagUpGUvyCVhDVK+6rspsF5RnDBibmRn7k+WKOM
+        sbLfRXNTaHi/MRqsBoD1qCeI7F1IOZJMqSBJGiPZTdgAJ0I2GAUkdBepL3Ena0p4nKWoSC37k7rs
+        Yv1NOjBghj+1u7YLElYWTo+k+rmN09CtayDrV/Su3EJK/UDwGeWiKgjhKKWJrGMF8Ek8i8vK1vGy
+        CEPfTLIlKYlQneYllGQfR722Zx98HFo50tne26n0Ydk+GPSWeeF874xZ5hxValnmeLby6eOx/eNx
+        MmVI72konDNjEghv3Dk+LqcxnpiHBe0C5l7d2PMEj58yrzWNZq35zh1bYrPspc56mjn2QcyHxg9j
+        eAu5XzJ0TNpIf+4ZYaDiyeDbLO+1cAtl+PhQ4o/G4WF0t7fvtIcnfR47thbMbJahlhl4koMf+8Dj
+        6K6S40YPmGffP3j6PMDjcj/uxFTRKN7PdBNs9zt3bbJZ2MudvFf53+1d3cq90OKz1U/gNfCN8YlL
+        7ZN92peuMTx+h917tgU+Ms9dRibzZ2PXlvG6rm0yLzITJ2QM0dvEGVsZ8Atd28qtCTs4K5Wad70p
+        +L88DNutxeruMFNNe0V7i+UOb57Ubnems2fH7qiu7STO2vgypAP/cTzPHfteBT7HR1mH4aWt9Cn2
+        M3rZodACXr18Fd4LZ9WZAh+Gwk5Zp/CeG3cYem5B/PnRGPdC4+4+c1uMe6154oXIf2rdgp/Z8cZM
+        ddcP/k+9l8E5yAGvectBvHzCt0/5M/A8cVpsbI2deA17Jw6FbXTYb1pTtlmbexQ9lPuZmFDfF4aO
+        7R8Vb8hlcuC7wrYmNutpxxgX9fU3dicl9ssezm3m5LdHNO5lzoRx8E9Qfjux1PsV5KzwZR9mrXfx
+        u2hiUdjPEc5n/vgcBChyAhT+9E3Z67XDUDRnEOOA7SnEhbNX131yq23Cl2Sj30O9epltWwHatXM4
+        p62Tv12dQcZgjzXufHeKvi9vc2c93+P1dOdYZgeNrQn0GPpyz+FO3UFtAqRbqkG7X4a7wx7qd/Ra
+        Vr7Rn74M/e/fYQplqbzIgRAJ719f43roXgXlGL4iOLuGoVaMhP8mcp5wAfPIwN/hkevXT9zIml/P
+        pzfr5aKa1uDyJCOXgyckwpWhrXoeqfVQPFkKChUDOUSv4tS/Ln2un+ElI6zZlqO0GJl1XMoHSNA9
+        fIs0I7AqysG+pRF2PUaKKevy8wTcU3IYxlkkCgryiy9gvysq38xiJMaHiMUuPjvVlg+OaT0Qz551
+        mT5bPmATNxVnJ/m12F6wKkvyyXDpU7z4BFdvWFNTm6q2UrW+1u63bq5UVXWKrfuyWelv/Lq1X/36
+        4vOTmCX4FF8HUK+p9SROvem3WyWufqDk9gKaFE8jYpRIhq/v9ZOPEaoPVBPvz+Kp9OeNN/mop/Ee
+        NE/6CV0BszOsdi2BIcHU/YT6O81WIt7eLrrIzwFA0lx07oNdNutXtsX2g7Fq2kffUy/f2SUVGiGW
+        YVnzP/9p2T7Kzkr6/UpB8Tz0YnnTx6Ph8GoyMK2BOWqOLFjKawnVvdCY8yJUeWkuZAIEWAVE+ZRB
+        ATUXJyRSRKy4jCkc0VK0oFIAbtM4LBYwyCSaMNByXDnEKcMHaOSVYgil2j9XBCQolv7FFeamPuFC
+        QTFjIO2AgRJvFR4j6lZJEFFASMEWUFCkKmNxJYi5kHqzTB+nChyaQh1+VaQvDA34VSNhC1+VHYwW
+        0MrwC0aPG9FjeQDAP8LADsKJrLBcNS7VYaE1i4ZUGjIlCUhdkJ251JZxCMJVCsb/FDeyVfb8PHBj
+        Wkw6OK7azTft27XZGna78l+BLCeOZWvqWcejUv7+k5Hd+DAjuk2102xpK13vq92+1qnv/ruL3m6q
+        rabeWelw0cHv5PR+zP7q4v/flxed/nV8gsqTOlz8Dlj+j3p3b9/f/Etg5fomb9pfb/8DAAD//wMA
+        xbebA94NAAA=
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -87,9 +117,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Wed, 13 Mar 2024 21:30:18 GMT
+      - Sat, 20 Apr 2024 18:35:42 GMT
       ETag:
-      - W/"db73335662ff3797433475861d451f8a"
+      - W/"ea2e1bc450002e42c7aaf21a4a781313"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -104,8 +134,6 @@ interactions:
       - 'true'
       X-Content-Type-Options:
       - nosniff
-      X-Download-Options:
-      - noopen
       X-Frame-Options:
       - SAMEORIGIN
       X-Permitted-Cross-Domain-Policies:
@@ -113,11 +141,12 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.20
       X-Request-Id:
-      - 37f478b8-31ee-4e1d-8675-c8fe51765d86
+      - 2fa36b47-a4b2-41c3-b754-25a47aa4916d
       X-Runtime:
-      - '0.026822'
+      - '0.034196'
       X-XSS-Protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1

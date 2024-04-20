@@ -11,16 +11,17 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.24.1
     method: GET
     uri: https://blog.front-matter.io/posts/eating-your-own-dog-food
   response:
-    content: ''
+    body:
+      string: ''
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '2268'
+      - '17639'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -30,7 +31,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Sat, 10 Feb 2024 10:28:24 GMT
+      - Sat, 20 Apr 2024 18:35:38 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -48,19 +49,18 @@ interactions:
       X-Cache:
       - HIT
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - a16c3704-26a4-412a-9ed6-a8adffbb3008
+      - '0'
       X-Served-By:
-      - cache-ams21035-AMS
+      - cache-ams21047-AMS
       X-Timer:
-      - S1707560904.239989,VS0,VE0
+      - S1713638139.627658,VS0,VE1
       location:
       - /posts/eating-your-own-dog-food/
       x-request-id:
-      - a16c3704-26a4-412a-9ed6-a8adffbb3008
-    http_version: HTTP/1.1
-    status_code: 301
+      - 61d169d5-2092-4281-952d-3f943d800696
+    status:
+      code: 301
+      message: Moved Permanently
 - request:
     body: ''
     headers:
@@ -73,400 +73,172 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.24.1
     method: GET
     uri: https://blog.front-matter.io/posts/eating-your-own-dog-food/
   response:
-    content: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"utf-8\">\n
-      \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
-      \   <title>Eating your own Dog Food</title>\n    <link rel=\"stylesheet\" href=\"https://blog.front-matter.io/assets/built/screen.css?v=52cb4b923e\">\n\n
-      \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">\n
-      \   <meta name=\"citation_title\" content=\"Eating your own Dog Food\">\n    <meta
-      name=\"citation_abstract\" content=\"Eating your own dog food is a slang term
-      to describe that an organization should itself use the products and services
-      it provides. For DataCite this means that we should use DOIs with appropriate
-      metadata and strategies for long-term preservation for the scholarly outputs
-      we produce. For the most part\">\n    <meta name=\"citation_author\" content=\"Martin
-      Fenner\">\n    <meta name=\"citation_date\" content=\"2016-12-20\"/>\n    <meta
-      name=\"citation_keywords\" content=\"Feature\"/>\n    <meta name=\"citation_journal_title\"
-      content=\"Front Matter\"/>\n    <meta name=\"citation_language\" content=\"en\">\n\n\n
-      \   <meta name=\"dc.identifier\" content=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">\n
-      \   <meta name=\"dc.creator\" content=\"Martin Fenner\" />\n    <meta name=\"dc.title\"
-      content=\"Eating your own Dog Food\" />\n    <meta name=\"dc.description\" content=\"Eating
-      your own dog food is a slang term to describe that an organization should itself
-      use the products and services it provides. For DataCite this means that we should
-      use DOIs with appropriate metadata and strategies for long-term preservation
-      for the scholarly outputs we produce. For the most part\" />\n    <meta name=\"dc.date\"
-      content=\"2016-12-20\" />\n    <meta name=\"dc.subject\" content=\"Feature\"
-      />\n    <meta name=\"dc.language\" content=\"en\" />   \n    <meta name=\"dc.format\"
-      content=\"text/html\" /> \n    <meta name=\"dc.source\" content=\"Front Matter\"
-      />\n    <meta name=\"dc.type\" content=\"article\" />\n    \n    <meta name=\"dc.rights\"
-      content=\"https://creativecommons.org/licenses/by/4.0/legalcode\" />\n\n    <link
-      rel=\"icon\" href=\"https://blog.front-matter.io/content/images/size/w256h256/2023/04/front-matter.png\"
-      type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">\n
-      \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    <link
-      rel=\"amphtml\" href=\"https://blog.front-matter.io/posts/eating-your-own-dog-food/amp/\">\n
-      \   \n    <meta property=\"og:site_name\" content=\"Front Matter\">\n    <meta
-      property=\"og:type\" content=\"article\">\n    <meta property=\"og:title\" content=\"Eating
-      your own Dog Food\">\n    <meta property=\"og:description\" content=\"Eating
-      your own dog food is a slang term to describe that an organization should itself
-      use the products and services it provides. For DataCite this means that we should
-      use DOIs with appropriate metadata and strategies for long-term preservation
-      for the scholarly outputs we produce. For the most part\">\n    <meta property=\"og:url\"
-      content=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">\n    <meta property=\"og:image\"
-      content=\"https://blog.front-matter.io/content/images/size/w1200/2022/08/230785.jpeg\">\n
-      \   <meta property=\"article:published_time\" content=\"2016-12-20T00:00:00.000Z\">\n
-      \   <meta property=\"article:modified_time\" content=\"2023-09-07T08:34:41.000Z\">\n
-      \   <meta property=\"article:tag\" content=\"Feature\">\n    \n    <meta name=\"twitter:card\"
-      content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Eating
-      your own Dog Food\">\n    <meta name=\"twitter:description\" content=\"Eating
-      your own dog food is a slang term to describe that an organization should itself
-      use the products and services it provides. For DataCite this means that we should
-      use DOIs with appropriate metadata and strategies for long-term preservation
-      for the scholarly outputs we produce. For the most part\">\n    <meta name=\"twitter:url\"
-      content=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">\n    <meta name=\"twitter:image\"
-      content=\"https://blog.front-matter.io/content/images/size/w1200/2022/08/230785.jpeg\">\n
-      \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
-      content=\"Martin Fenner\">\n    <meta name=\"twitter:label2\" content=\"Filed
-      under\">\n    <meta name=\"twitter:data2\" content=\"Feature\">\n    <meta property=\"og:image:width\"
-      content=\"1200\">\n    <meta property=\"og:image:height\" content=\"823\">\n
-      \   \n    <script type=\"application/ld+json\">\n{\n    \"@context\": \"https://schema.org\",\n
-      \   \"@type\": \"Article\",\n    \"publisher\": {\n        \"@type\": \"Organization\",\n
-      \       \"name\": \"Front Matter\",\n        \"url\": \"https://blog.front-matter.io/\",\n
-      \       \"logo\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
-      \"https://blog.front-matter.io/content/images/2022/12/logo.png\",\n            \"width\":
-      200,\n            \"height\": 31\n        }\n    },\n    \"author\": {\n        \"@type\":
-      \"Person\",\n        \"name\": \"Martin Fenner\",\n        \"image\": {\n            \"@type\":
-      \"ImageObject\",\n            \"url\": \"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s=250&r=x&d=mp\",\n
-      \           \"width\": 250,\n            \"height\": 250\n        },\n        \"url\":
-      \"https://blog.front-matter.io/author/martin/\",\n        \"sameAs\": [\n            \"https://orcid.org/0000-0003-1419-2405\"\n
-      \       ]\n    },\n    \"headline\": \"Eating your own Dog Food\",\n    \"url\":
-      \"https://blog.front-matter.io/posts/eating-your-own-dog-food/\",\n    \"datePublished\":
-      \"2016-12-20T00:00:00.000Z\",\n    \"dateModified\": \"2023-09-07T08:34:41.000Z\",\n
-      \   \"image\": {\n        \"@type\": \"ImageObject\",\n        \"url\": \"https://blog.front-matter.io/content/images/size/w1200/2022/08/230785.jpeg\",\n
-      \       \"width\": 1200,\n        \"height\": 823\n    },\n    \"keywords\":
-      \"Feature\",\n    \"description\": \"Eating your own dog food is a slang term
-      to describe that an organization should itself use the products and services
-      it provides. For DataCite this means that we should use DOIs with appropriate
-      metadata and strategies for long-term preservation for the scholarly outputs
-      we produce. For the most part this is not research data, but rather technical
-      documents such as the DataCite Schema and its documentation (2016).\\n\\n\\nThese
-      outputs also include the posts on this blog, where we discuss topics rele\",\n
-      \   \"mainEntityOfPage\": \"https://blog.front-matter.io/posts/eating-your-own-dog-food/\"\n}\n
-      \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 5.79\">\n    <link
-      rel=\"alternate\" type=\"application/rss+xml\" title=\"Front Matter\" href=\"https://blog.front-matter.io/rss/\">\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.37/umd/portal.min.js\"
-      data-i18n=\"true\" data-ghost=\"https://blog.front-matter.io/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-api=\"https://front-matter.ghost.io/ghost/api/content/\" crossorigin=\"anonymous\"></script><style
-      id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
-      {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
-      \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
-      center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
-      {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
-      h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
-      \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
-      20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
-      16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
-      #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
-      \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
-      #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
-      a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
-      none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
-      \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
-      {\n    opacity: 0.92;\n}</style><script async src=\"https://js.stripe.com/v3/\"></script>\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js\"
-      data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
-      data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
-      \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
-      \   <script defer src=\"/public/cards.min.js?v=52cb4b923e\"></script>\n    <link
-      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=52cb4b923e\">\n
-      \   <script defer src=\"/public/comment-counts.min.js?v=52cb4b923e\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
-      \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
-      feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
-      defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
-      {--ghost-accent-color: #059669;}</style>\n</head>\n\n<body class=\"post-template
-      tag-feature is-head-stacked has-serif-body\">\n<div class=\"gh-site\">\n\n    <header
-      id=\"gh-head\" class=\"gh-head gh-outer\">\n        <div class=\"gh-head-inner
-      gh-inner\">\n            <div class=\"gh-head-brand\">\n                <div
-      class=\"gh-head-brand-wrapper\">\n                    \n                    <a
-      class=\"gh-head-logo\" href=\"https://blog.front-matter.io\">\n                            <img
-      src=\"https://blog.front-matter.io/content/images/2022/12/logo.png\" alt=\"Front
-      Matter\">\n                    </a>\n                    \n                </div>\n
-      \               <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                <button
-      class=\"gh-burger\"></button>\n            </div>\n\n            <nav class=\"gh-head-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-feature\"><a href=\"https://blog.front-matter.io/tag/feature/\">Feature</a></li>\n
-      \   <li class=\"nav-news\"><a href=\"https://blog.front-matter.io/tag/news/\">News</a></li>\n
-      \   <li class=\"nav-meeting-report\"><a href=\"https://blog.front-matter.io/tag/meeting-report/\">Meeting
-      Report</a></li>\n    <li class=\"nav-interview\"><a href=\"https://blog.front-matter.io/tag/interview/\">Interview</a></li>\n
-      \   <li class=\"nav-chart\"><a href=\"https://blog.front-matter.io/tag/chart/\">Chart</a></li>\n
-      \   <li class=\"nav-science-hack\"><a href=\"https://blog.front-matter.io/tag/science-hack/\">Science
-      Hack</a></li>\n    <li class=\"nav-book-review\"><a href=\"https://blog.front-matter.io/tag/book-review/\">Book
-      Review</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-head-actions\">\n
-      \                   <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                    <div
-      class=\"gh-head-members\">\n                                <a class=\"gh-head-link\"
-      href=\"#/portal/signin\" data-portal=\"signin\">Sign in</a>\n                                <a
-      class=\"gh-head-btn gh-btn gh-primary-btn\" href=\"#/portal/signup\" data-portal=\"signup\">Subscribe</a>\n
-      \                   </div>\n            </div>\n        </div>\n    </header>\n\n
-      \   \n<main class=\"gh-main\">\n        <article class=\"gh-article post tag-feature\">\n\n
-      \           <header class=\"gh-article-header gh-canvas\">\n                    <a
-      class=\"gh-article-tag\" href=\"https://blog.front-matter.io/tag/feature/\">Feature</a>\n\n
-      \               <h1 class=\"gh-article-title\">Eating your own Dog Food</h1>\n\n
-      \                   <aside class=\"gh-article-sidebar\">\n\n        <div class=\"gh-author-image-list\">\n
-      \               <a class=\"gh-author-image\" href=\"/author/martin/\">\n                        <img
-      src=\"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp\"
-      alt=\"Martin Fenner\">\n                </a>\n        </div>\n\n        <div
-      class=\"gh-author-name-list\">\n                <h4 class=\"gh-author-name\">\n
-      \                   <a href=\"/author/martin/\">Martin Fenner</a>\n                </h4>\n
-      \               \n        </div>\n\n        <div class=\"gh-article-meta\">\n
-      \           <div class=\"gh-article-meta-inner\">\n                <time class=\"gh-article-date\"
-      datetime=\"2016-12-20\">Dec 20, 2016</time>\n                    <span class=\"gh-article-meta-sep\"></span>\n
-      \                   <span class=\"gh-article-length\">4 min</span>\n            </div>\n
-      \               <a class=\"gh-card-link\" href=\"https://doi.org/10.53731/r79vxn1-97aq74v-ag58n\">https://doi.org/10.53731/r79vxn1-97aq74v-ag58n</a>\n
-      \       </div>\n\n    </aside>\n\n\n                    <figure class=\"gh-article-image\">\n
-      \       <img\n            srcset=\"/content/images/size/w300/2022/08/230785.jpeg
-      300w,\n                    /content/images/size/w720/2022/08/230785.jpeg 720w,\n
-      \                   /content/images/size/w960/2022/08/230785.jpeg 960w,\n                    /content/images/size/w1200/2022/08/230785.jpeg
-      1200w,\n                    /content/images/size/w2000/2022/08/230785.jpeg 2000w\"\n
-      \           sizes=\"(max-width: 1200px) 100vw, 1200px\"\n            src=\"/content/images/size/w1200/2022/08/230785.jpeg\"\n
-      \           alt=\"Eating your own Dog Food\"\n        >\n            <figcaption>Photo
-      by <a href=\"https://www.pexels.com/photo/black-and-tan-yorkshire-terrier-puppy-230785/\">Bill
-      Emrich</a>. <a href=\"https://creativecommons.org/publicdomain/zero/1.0/\">CC
-      Zero</a>.</figcaption>\n    </figure>\n            </header>\n\n            <section
-      class=\"gh-content gh-canvas\">\n                <p><a href=\"https://newrepublic.com/article/115349/dogfooding-tech-slang-working-out-glitches\">Eating
-      your own dog food</a> is a slang term to describe that an organization should
-      itself use the products and services it provides. For DataCite this means that
-      we should use DOIs with appropriate metadata and strategies for long-term preservation
-      for the scholarly outputs we produce. For the most part this is not research
-      data, but rather technical documents such as the DataCite Schema and its documentation
-      (<a href=\"https://blog.datacite.org/eating-your-own-dog-food/#ref-https://doi.org/10.5438/0012\">2016</a>).</p>\n<p>These
-      outputs also include the posts on this blog, where we discuss topics relevant
-      for the DataCite community, but also of broader interest to anyone who cares
-      about research data, persistent identifiers, and scholarly infrastructure. And
-      starting today all blog posts on this blog will have a DOI, metadata and use
-      a persistent storage mechanism.</p>\n<h3 id=\"technical-implementation\">Technical
-      Implementation</h3>\n<p>This blog is powered by the static site generator <a
-      href=\"https://middlemanapp.com/\">Middleman</a>, with blog posts written in
-      <a href=\"http://commonmark.org/\">Markdown</a> and converted to HTML using
-      <a href=\"http://pandoc.org/\">Pandoc</a> and the <a href=\"https://travis-ci.org/\">Travis
-      CI</a> continuous integration service. Static site generator means that there
-      is no database or application server powering the site, making website adminstration
-      simpler, cheaper and safer. In addition to the blog, the <a href=\"https://www.datacite.org/\">DataCite
-      homepage</a> and <a href=\"https://schema.datacite.org/\">Metadata Schema subsite</a>
-      are also generated using Middleman.</p>\n<p>The simplicity is particularly important
-      here, as registering the DOIs and metadata can be accomplished using a command
-      line utility written by DataCite staff that doesn't need to know much about
-      the internals of Middleman, and thus can be easily adapted to other static site
-      generators such as <a href=\"http://jekyllrb.com/\">Jekyll</a>, <a href=\"http://gohugo.io/\">Hugo</a>
-      or <a href=\"https://hexo.io/\">Hexo</a>. The command line utility is <a href=\"https://github.com/datacite/cirneco\">Cirneco</a>,
-      generating the metadata XML according to the DataCite Metadata Schema, and registering
-      DOI and metadata with the DataCite MDS. Like all tools mentioned in this post
-      Cirneco is open source software, please reach out to us if you are interested
-      in implementing similar functionality for your blog.</p>\n<h3 id=\"generating-dois\">Generating
-      DOIs</h3>\n<p>The DOIs for this blog are generated automatically, using a modified
-      base32 encoding algorithm that is provided by Cirneco, as discussed last week
-      (Fenner, <a href=\"https://blog.datacite.org/eating-your-own-dog-food/#ref-https://doi.org/10.5438/55E5-T5C0\">2016</a>).
-      The DOI is generated and minted when a new post is pushed to <a href=\"https://blog.datacite.org/\">https://blog.datacite.org</a>.
-      This avoids two problems: a) DOI-like strings in the wild before publication
-      and b) the randomly generated DOI exists already (we can simply generate a new
-      one). All DOIs are short, without semantic infomation that might change over
-      time, and with a checksum to minimize transcription errors, for example <strong>https://doi.org/10.5438/XCBJ-G7ZY</strong>.
-      Going forward we encourage users to link to the DataCite Blog using the DOI,
-      as these links will continue to work even if we ever move the blog to a different
-      location.</p>\n<h3 id=\"generating-metadata\">Generating Metadata</h3>\n<p>For
-      the generation of metadata, we need to strike a balance between simple author
-      provided metadata, but rich enough to aid discovery. We are doing this via three
-      mechanisms:</p>\n<ul><li>metadata provided by the author</li><li>default metadata
-      for the blog</li><li>metadata automatically extracted from content</li></ul>\n<p>The
-      metadata provided by the author are the typical metadata for blog posts, provided
-      via <a href=\"https://gohugo.io/content/front-matter/\">YAML front matter</a>
-      at the beginning of each post:</p>\n<pre><code>---\nlayout: post\ntitle: Eating
-      your own Dog Food\nauthor: mfenner\ndate: 2016-12-19\ntags:\n- datacite\n- doi\n-
-      metadata\n---</code></pre>\n<p>We can reuse all these metadata when generating
-      DataCite metadata, using the tags as <code>subjects</code>.</p>\n<p>The default
-      metadata are metadata that always stay the same for the blog, such as <code>publisher</code>,
-      <code>HostingInstitution</code> and <code>rights</code>. We can store them in
-      a site-wide configuration file. We can also assume reasonable defaults that
-      can be overridden in the YAML front matter, e.g. <code>resourceType</code> (we
-      use <a href=\"https://schema.org/BlogPosting\">BlogPosting</a> with <code>resourceTypeGeneral</code>
-      Text) and <code>version</code>. We store more information about authors outside
-      the blog post, including <code>givenName</code>, <code>familyName</code> and
-      <code>nameIdentifier</code> (we now show the ORCID ID of every blog author at
-      the bottom of the post).</p>\n<p>Finally, there are metadata that we can automatically
-      extract from the blog post, and we are currently doing this for the <code>description</code>
-      and <code>relatedIdentifier</code>. This blog uses Pandoc and BibTex to generate
-      the references section at the end, and we can fetch this information and convert
-      it into the format needed for <code>relatedIdentifier</code>.</p>\n<p>Taken
-      together we can provide all metadata that are <em>required</em> or <em>recommended</em>
-      in the Metadata Schema documentation (<a href=\"https://blog.datacite.org/eating-your-own-dog-food/#ref-https://doi.org/10.5438/0012\">2016</a>),
-      and we can do this without any extra effort for the author. The full XML is
-      avalailable <a href=\"https://data.crosscite.org/application/vnd.datacite.datacite+xml/10.5438/4K3M-NYVG\">here</a>.</p>\n<p>Not
-      all blog posts need to be cited formally with metadata in a <em>references</em>
-      list formatted according to a specific citation style. But these metadata greatly
-      help with discovery, a search in DataCite Search for <a href=\"http://search.datacite.org/works?query=eating+dog+food\">eating
-      dog food</a> will for example bring up this blog post as the first hit.</p>\n<h3
-      id=\"persistent-storage\">Persistent storage</h3>\n<p>Using DOIs means that
-      readers not only expect rich metadata that help with citation and discovery,
-      but also that DataCite takes extra care to preserve the blog posts, thinking
-      beyond the particular technical implementation or even the contiuing existence
-      of this blog. This is an area where we do need to do more work, starting with
-      a decision about the best archival format for a blog post (HTML, PDF, <a href=\"https://jats.nlm.nih.gov/\">JATS</a>?).
-      For now blog posts are hosted in multiple Git repositories (<a href=\"https://github.com/datacite/blog\">one
-      of them on Github</a>), and in two independent Amazon S3 buckets that each use
-      <a href=\"http://docs.aws.amazon.com/AmazonS3/latest/dev/Versioning.html\">versioning</a>.
-      Multiple locations with versioning are a good start, but more work is clearly
-      needed.</p>\n<h2 id=\"acknowledgments\">Acknowledgments</h2>\n<p>This blog post
-      was <a href=\"https://doi.org/10.5438/4k3m-nyvg\">originally published</a> on
-      the DataCite Blog.</p>\n<h2 id=\"references\">References</h2>\n<p>DataCite Metadata
-      Working Group. DataCite Metadata Schema Documentation for the Publication and
-      Citation of Research Data v4.0. Published online 2016:45 pages. doi:<a href=\"https://doi.org/10.5438/0012\">10.5438/0012</a></p>\n<p>Fenner
-      M. Cool DOI\u2019s. Published online December 15, 2016. doi:<a href=\"https://doi.org/10.5438/55E5-T5C0\">10.5438/55E5-T5C0</a></p>\n
-      \                       <div class=\"gh-license\">\n                            Copyright
-      \xA9 2016 Martin Fenner. Distributed under the terms of the\n                            <a\n
-      \                               class=\"gh-license-link\"\n                                href=\"https://creativecommons.org/licenses/by/4.0/legalcode\"\n
-      \                           >\n                                Creative Commons
-      Attribution 4.0 License.\n                            </a>\n                        </div>\n
-      \           </section> \n            </section>\n\n        </article>\n\n                <div
-      class=\"gh-read-next gh-canvas\">\n                <section class=\"gh-pagehead\">\n
-      \                   <h4 class=\"gh-pagehead-title\">Read next</h4>\n                </section>\n\n
-      \               <div class=\"gh-topic gh-topic-grid\">\n                    <div
-      class=\"gh-topic-content\">\n                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/adding-automated-end-to-end-testing/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png
-      300w,\n                            /content/images/size/w720/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png
-      720w,\n                            /content/images/size/w960/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png
-      960w,\n                            /content/images/size/w1200/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png
-      1200w,\n                            /content/images/size/w2000/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/01/Bildschirmfoto-2024-01-25-um-16.41.03.png\"\n
-      \                   alt=\"Adding automated end-to-end testing to Rogue Scholar\"\n
-      \               >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
-      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Adding
-      automated end-to-end testing to Rogue Scholar</h3>\n            </header>\n\n
-      \                   <div class=\"gh-card-excerpt\">Last week I reported a small
-      change to the Rogue Scholar science blog submission form. By asking for the
-      homepage URL of the blog instead of the feed URL, I hope to make it easier for
-      users to register their blog. At the same time, I fixed a bug in</div>\n\n            <footer
-      class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
-      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2024-01-25\">Jan
-      25, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65b281434b1a620001bdcd4e\"\n
-      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
-      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                            <article
-      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/making-it-easier-to-register/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
-      300w,\n                            https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
-      720w,\n                            https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
-      960w,\n                            https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
-      1200w,\n                            https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1522709553816-36115b3cc2ef?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDcyfHxyZWdpc3RlcnxlbnwwfHx8fDE3MDU0OTc2NTF8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
-      \                   alt=\"Making it easier to register a science blog with Rogue
-      Scholar\"\n                >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
-      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Making
-      it easier to register a science blog with Rogue Scholar</h3>\n            </header>\n\n
-      \                   <div class=\"gh-card-excerpt\">Yesterday I had to fix a
-      bug in the Rogue Scholar registration form (a software regression that happened
-      over the holidays related to database row level security). This was a reminder
-      that registering a science blog with the Rogue Scholar science blog archive
-      should be quick and painless.\n\nToday I</div>\n\n            <footer class=\"gh-card-footer\">\n
-      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
-      class=\"gh-card-date\" datetime=\"2024-01-17\">Jan 17, 2024</time>\n                    <script\n
-      \   data-ghost-comment-count=\"65a7d37e3ab8810001a95c8b\"\n    data-ghost-comment-count-empty=\"\"\n
-      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
-      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
-      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
-      \       </div>\n    </a>\n</article>                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/improving-rogue-scholar-metadata-conversions/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2024/01/winter-1.png
-      300w,\n                            /content/images/size/w720/2024/01/winter-1.png
-      720w,\n                            /content/images/size/w960/2024/01/winter-1.png
-      960w,\n                            /content/images/size/w1200/2024/01/winter-1.png
-      1200w,\n                            /content/images/size/w2000/2024/01/winter-1.png
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2024/01/winter-1.png\"\n
-      \                   alt=\"Improving Rogue Scholar metadata conversions\"\n                >\n
-      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Improving
-      Rogue Scholar metadata conversions</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">Last week the Rogue Scholar science blog archive added
-      export of blog post content in various formats (Markdown, ePub, PDF, JATS XML).
-      This week Rogue Scholar is improving the existing metadata export, and adding
-      metadata export in Schema.org JSON-LD format.\n\nUntil now Rogue Scholar metadata
-      export depended on DOI</div>\n\n            <footer class=\"gh-card-footer\">\n
-      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
-      class=\"gh-card-date\" datetime=\"2024-01-16\">Jan 16, 2024</time>\n                    <script\n
-      \   data-ghost-comment-count=\"65a63ea93ab8810001a95bb0\"\n    data-ghost-comment-count-empty=\"\"\n
-      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
-      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
-      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
-      \       </div>\n    </a>\n</article>                    </div>\n                </div>\n
-      \           </div>\n\n                <div class=\"gh-comments gh-read-next
-      gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
-      class=\"gh-pagehead-title\">Comments (<script\n    data-ghost-comment-count=\"62d42bbd41e317003df48efd\"\n
-      \   data-ghost-comment-count-empty=\"0\"\n    data-ghost-comment-count-singular=\"\"\n
-      \   data-ghost-comment-count-plural=\"\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>)</h3>\n
-      \           </section>\n            \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js\"
-      data-locale=\"en\" data-ghost-comments=\"https://blog.front-matter.io/\" data-api=\"https://front-matter.ghost.io/ghost/api/content/\"
-      data-admin=\"https://front-matter.ghost.io/ghost/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-title=\"\" data-count=\"false\" data-post-id=\"62d42bbd41e317003df48efd\"
-      data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#059669\"
-      data-comments-enabled=\"all\" data-publication=\"Front Matter\" crossorigin=\"anonymous\"></script>\n
-      \   \n        </div>\n</main>\n\n    <footer class=\"gh-foot gh-outer\">\n        <div
-      class=\"gh-foot-inner gh-inner\">\n                <section class=\"gh-subscribe\">\n
-      \                   <h3 class=\"gh-subscribe-title\">Subscribe to Front Matter</h3>\n
-      \                       <div class=\"gh-subscribe-description\">Subscribe to
-      the Front Matter Blog to automatically receive blog posts via email newsletter.</div>\n
-      \                   <button class=\"gh-subscribe-btn gh-btn\" data-portal=\"signup\"><svg
-      width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\"
-      xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M3.33332 3.33334H16.6667C17.5833
-      3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667
-      16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334
-      2.41666 3.33334 3.33332 3.33334Z\" stroke-width=\"1.5\" stroke-linecap=\"round\"
-      stroke-linejoin=\"round\"/>\n    <path d=\"M18.3333 5L9.99999 10.8333L1.66666
-      5\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>
-      Subscribe now</button>\n                </section>\n\n            <nav class=\"gh-foot-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-front-matter\"><a href=\"https://front-matter.io\">Front
-      Matter</a></li>\n    <li class=\"nav-about\"><a href=\"https://blog.front-matter.io/about/\">About</a></li>\n
-      \   <li class=\"nav-privacy-policy\"><a href=\"https://blog.front-matter.io/privacy-policy/\">Privacy
-      Policy</a></li>\n    <li class=\"nav-rss\"><a href=\"https://blog.front-matter.io/atom/\">RSS</a></li>\n
-      \   <li class=\"nav-usage-stats\"><a href=\"https://plausible.io/blog.front-matter.io\">Usage
-      Stats</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-copyright\">\n
-      \                   Front Matter \xA9 2024. Powered by <a href=\"https://ghost.org/\"
-      target=\"_blank\" rel=\"noopener\">Ghost</a>\n            </div>\n        </div>\n
-      \   </footer>\n\n</div>\n\n    <div class=\"pswp\" tabindex=\"-1\" role=\"dialog\"
-      aria-hidden=\"true\">\n    <div class=\"pswp__bg\"></div>\n\n    <div class=\"pswp__scroll-wrap\">\n
-      \       <div class=\"pswp__container\">\n            <div class=\"pswp__item\"></div>\n
-      \           <div class=\"pswp__item\"></div>\n            <div class=\"pswp__item\"></div>\n
-      \       </div>\n\n        <div class=\"pswp__ui pswp__ui--hidden\">\n            <div
-      class=\"pswp__top-bar\">\n                <div class=\"pswp__counter\"></div>\n\n
-      \               <button class=\"pswp__button pswp__button--close\" title=\"Close
-      (Esc)\"></button>\n                <button class=\"pswp__button pswp__button--share\"
-      title=\"Share\"></button>\n                <button class=\"pswp__button pswp__button--fs\"
-      title=\"Toggle fullscreen\"></button>\n                <button class=\"pswp__button
-      pswp__button--zoom\" title=\"Zoom in/out\"></button>\n\n                <div
-      class=\"pswp__preloader\">\n                    <div class=\"pswp__preloader__icn\">\n
-      \                       <div class=\"pswp__preloader__cut\">\n                            <div
-      class=\"pswp__preloader__donut\"></div>\n                        </div>\n                    </div>\n
-      \               </div>\n            </div>\n\n            <div class=\"pswp__share-modal
-      pswp__share-modal--hidden pswp__single-tap\">\n                <div class=\"pswp__share-tooltip\"></div>\n
-      \           </div>\n\n            <button class=\"pswp__button pswp__button--arrow--left\"
-      title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
-      pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
-      class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
-      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=52cb4b923e\"></script>\n\n\n\n</body>\n\n</html>\n"
+    body:
+      string: !!binary |
+        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
+        AA==
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '84666'
+      - '291184'
       Alt-Svc:
       - clear
       Cache-Control:
@@ -476,11 +248,11 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '8707'
+      - '8779'
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:28:24 GMT
+      - Sat, 20 Apr 2024 18:35:38 GMT
       Ghost-Age:
       - '0'
       Ghost-Cache:
@@ -498,19 +270,18 @@ interactions:
       X-Cache:
       - HIT
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 23bd9348-9217-4f0f-a36f-673c0d358074
+      - '0'
       X-Served-By:
-      - cache-ams21035-AMS
+      - cache-ams21047-AMS
       X-Timer:
-      - S1707560904.272115,VS0,VE1
+      - S1713638139.657153,VS0,VE2
       etag:
-      - W/"88e6-o7WXSxr3Hp8crH6zeew3isXdJdM"
+      - W/"8de3-Iiu4broXyUXsZss2YSmEln4VepE"
       x-request-id:
-      - 23bd9348-9217-4f0f-a36f-673c0d358074
-    http_version: HTTP/1.1
-    status_code: 200
+      - 81d6eb40-0e0b-4217-9171-922c57b17490
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -523,16 +294,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.24.1
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
-    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8533aa448bcf0a58-AMS
+      - 87773c3f9d7228af-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -540,11 +314,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:28:24 GMT
+      - Sat, 20 Apr 2024 18:35:38 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Cn5bxcksL%2FfvrGFeDx5zkPdiz95vhU4n8TsPLN3XZZU6%2ByUiE8s3YCV2nKbItMmUxNETGHDhsI%2FxzBwH7GUPjmuUodxqKCMKHVkTayyDw6XbXePd5R4a1%2B%2FieoZHcfCgLPIpvrc%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ruwQzsy3eOMBzy%2FxBXTNVXljutDcNtLJw8hCl47qHZ6XfXlBW6IAHRfywHJeLnSoAFEYzYj55EjKCIjcNNRr1GX3XaW4UQAHG0GqHfdPBbRVhnWoMIDOsZ5eJNZ8DQTVRzho%2Btw%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -555,8 +329,9 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -569,21 +344,35 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.24.1
     method: GET
     uri: https://api.crossref.org/works/10.53731/r79vxn1-97aq74v-ag58n
   response:
-    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-      Matter"}],"indexed":{"date-parts":[[2024,3,8]],"date-time":"2024-03-08T00:11:10Z","timestamp":1709856670904},"posted":{"date-parts":[[2016,12,20]]},"group-title":"Computer
-      and information sciences","reference-count":2,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2016,12,20]],"date-time":"2016-12-20T00:00:00Z","timestamp":1482192000000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2016,12,20]],"date-time":"2016-12-20T00:00:00Z","timestamp":1482192000000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>Eating
-      your own dog food is a slang term to describe that an organization should itself
-      use the products and services it provides. For DataCite this means that we should
-      use DOIs with appropriate metadata and strategies for long-term preservation
-      for the scholarly outputs we produce.<\/p>","DOI":"10.53731\/r79vxn1-97aq74v-ag58n","type":"posted-content","created":{"date-parts":[[2021,10,17]],"date-time":"2021-10-17T15:25:06Z","timestamp":1634484306000},"source":"Crossref","is-referenced-by-count":2,"title":["Eating
-      your own Dog Food"],"prefix":"10.59350","author":[{"ORCID":"http:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[{"id":[{"id":"https:\/\/ror.org\/04wxnsj81","id-type":"ROR","asserted-by":"publisher"}],"name":"DataCite"}]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","article-title":"DataCite
-      Metadata Schema Documentation for the Publication and Citation of Research Data
-      v4.0","year":"2016","DOI":"10.5438\/0012"},{"key":"ref2","doi-asserted-by":"publisher","article-title":"Cool
-      DOI''s","year":"2016","DOI":"10.5438\/55e5-t5c0"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.io\/posts\/eating-your-own-dog-food","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r79vxn1-97aq74v-ag58n.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r79vxn1-97aq74v-ag58n.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r79vxn1-97aq74v-ag58n.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r79vxn1-97aq74v-ag58n.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,3,7]],"date-time":"2024-03-07T14:19:50Z","timestamp":1709821190000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.io\/posts\/eating-your-own-dog-food"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2016,12,20]]},"references-count":2,"URL":"http:\/\/dx.doi.org\/10.53731\/r79vxn1-97aq74v-ag58n","relation":{"is-part-of":[{"id-type":"issn","id":"2749-9952","asserted-by":"subject"}],"is-identical-to":[{"id-type":"doi","id":"10.5438\/4k3m-nyvg","asserted-by":"subject"}]},"published":{"date-parts":[[2016,12,20]]},"subtype":"other"}}'
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/81X227jNhD9FUEvfagoi7r4hsW+JA2wQIMtsulL4zzQEiVzI5FaknLsDfzvnaFk
+        x3GSTYu2aIIESXiZOTNz5gz94BvLbGf8ua/u/MBvuDGs4sRuWw5r90ofr665NkJJ2KBhFEaPO/78
+        wRfSWGE76w7cPPiSNWjiQitpvUtmLdf+7jaAcwXf8AKvFMxy0jJtwf/NTRzFaZAESXQLp9yWFc4E
+        bpAoIUl0HSfzaDKnsz/AN+4C+qb153RC6TSNomQW0/Eu8Ftl7Msu6DigcRCDDzhWadW14MXW6OZM
+        NW0HKD0mC0/IUumGYTSeyQWXOTfgU/OSa/yH5KqT1p/H4Kxb1sKsILyTaAO/FjmXhrt8AFRtfwzp
+        NGw6JjQmcXQdRXP3fRp2Oo3pLI7cF8STg3Mu7VGd1gphFLxmWyIkKdgWnEaB//vVr7C7srY188Vo
+        Mco1h1jXPFdNo6QJla4WowG9WYyW28UoDSNY4hWrc1Vwfxf8TyHZovmvQrp99FeohgnpYhv+usFd
+        rYxpmL4jGgBrkfdsL1ltOIA1K6UtQRNwg+s9s/AmW8J5lkO2/A/tx18Amay8req0p+6lV6jKK5UC
+        2hmPeaZmsAkMajyrvIKbXIsl9+yKWeCmB4EwKb4P3FyproZ71vC69DqDx7jXalV0uTWOyobrNYRt
+        4BBurAVYDL0Lpb1zZtmZsHgHHDecSdN7ued7w2jx/PMn490Lu/JYCwZaLaCkcNwyqC3rfUBwllcC
+        vEDfeLWSFXEBtJAo8N+DxS2EZ/KVqpmut57qLPScQYc9Zh5+WIzaj1Bh8IpCE4VZMknoYqQns/VG
+        UjKbsG+TdE1YlU0lkqeXqr7lyVA/H2sF9X9FZ2hAo4BOXhAaSmhE6OSaZvM4m0fjU3qOkzSdpkk0
+        7ulpoIK5Ew9kBqgDHBeGHGSiIMvtkVTsCeGfEuAcCHABBPABEaSsFJuj2MEm6yxwy+nI56uzT+cD
+        0x3Rlc5F0dMbm4bAT0JoSmckTqNsuAw5ETnmg7jjA2dBAqFDsKsuITsC01myRtRblDIupRMxw791
+        GAuslUIbzC0rS1ELdtB6NDj8OupArfQAK73fSPN1ipGIYj9crj5foSkD/LAuUVjFg5ZiMw4jZE9T
+        WMPVhjdLJ7YJncyyY1F2IO44GoI19FYoQV7zAL4h5rzmhwlw6IfLPbe/5CveMChP3jWQwqc0/g1N
+        5f0aNgFc7f9RpXcFtGc6X7ke89apm5ZbWBpU8AnB02SKtaOxU9VDAPHfDuBMqRrb9Sfzlrcs4xmx
+        WR4dVO+ZZCktKiFZfbxWC3nnsnyqtstaVWGJ0480bvqFQkEjQ1OC1nLHdoJsJ8B2ENeKoNz5j3o7
+        cMLyjV2MVrap/dfHmcDlAvIBcrQvwHCXNEKCK5fHU4isFaFWVcfJoD89OQeMbwhN2LyKtq2Z65x3
+        Bbctyud4jwCAoScn3gVoDtx+AzUe+fm7aN8b9M0Txr6EfPOPOY3TigMe8dpYe/v5TOdZMs+mLz2f
+        k2ycTIeplisNNylK637CPcBcEvD02eKf/07379BVtzySl/4BdbQgjOn+wkP+MAHM0bB9BOkwFpsQ
+        xLQv6tuvCg3vy74GDzjQ0TFR5TDl9vUFdNKNNMzyJJ2R2SyLn800CPErh5ef+/BjCDy/3CwGXVUn
+        9gDf3txBqNO7pCFyu65+YHf3+CHk7Vxhxnt3yrpBu/sTR558EQUOAAA=
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -597,11 +386,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1302'
+      - '1295'
       content-type:
       - application/json
       date:
-      - Wed, 13 Mar 2024 23:13:42 GMT
+      - Sat, 20 Apr 2024 18:35:39 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -618,6 +407,7 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

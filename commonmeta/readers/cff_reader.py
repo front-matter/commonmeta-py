@@ -80,7 +80,7 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
         descriptions = [
             {
                 "description": sanitize(meta.get("abstract")),
-                "descriptionType": "Abstract",
+                "type": "Abstract",
             }
         ]
     else:

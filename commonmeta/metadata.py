@@ -79,35 +79,32 @@ class Metadata:
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
         self.type = meta.get("type")
+        # recommended and optional properties
         self.url = meta.get("url")
         self.contributors = meta.get("contributors")
         self.titles = meta.get("titles")
         self.publisher = meta.get("publisher")
         self.date = meta.get("date")
-        # recommended and optional properties
-        self.additional_type = meta.get("additional_type")
+        self.additional_type = meta.get("additionalType")
         self.subjects = meta.get("subjects")
         self.language = meta.get("language")
-        self.alternate_identifiers = meta.get("alternate_identifiers")
+        self.identifiers = meta.get("identifiers")
         self.relations = meta.get("relations")
-        self.sizes = meta.get("sizes")
-        self.formats = meta.get("formats")
         self.version = meta.get("version")
         self.license = meta.get("license")
         self.descriptions = meta.get("descriptions")
-        self.geo_locations = meta.get("geo_locations")
-        self.funding_references = meta.get("funding_references")
+        self.geo_locations = meta.get("geoLocations")
+        self.funding_references = meta.get("fundingReferences")
         self.references = meta.get("references")
+        self.files = meta.get("files")
+        self.container = meta.get("container")
+        self.provider = meta.get("provider")
+        self.archive_locations = meta.get("archiveLocations")
         # other properties
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")
         self.date_published = meta.get("date_published")
         self.date_updated = meta.get("date_updated")
-        self.files = meta.get("files")
-        self.container = meta.get("container")
-        self.provider = meta.get("provider")
-        self.schema_version = meta.get("schema_version")
-        self.archive_locations = meta.get("archive_locations")
         self.state = meta.get("state")
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
@@ -222,6 +219,7 @@ class Metadata:
             elif to == "datacite":
                 instance = json.loads(write_datacite(self))
                 self.write_errors = json_schema_errors(instance, schema="datacite")
+                print(self.write_errors)
                 return write_datacite(self)
             elif to == "crossref_xml":
                 doi = doi_from_url(self.id)

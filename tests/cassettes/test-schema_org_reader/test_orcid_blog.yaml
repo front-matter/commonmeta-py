@@ -11,17 +11,20 @@ interactions:
       host:
       - info.orcid.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.24.1
     method: GET
     uri: https://info.orcid.org/orcid-2023-annual-report
   response:
-    content: "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403
-      Forbidden</h1></center>\r\n<hr><center>nginx</center>\r\n</body>\r\n</html>\r\n"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA7LJKMnNsePlsslITUyxsynJLMlJtTMxMFZwyy9KykxJSc2z0YcI2uiDlfBy2STl
+        p1SC6OTUvJLUIjubDEN0HRmGdjb6UGmQ2UV2MMV56Zl5Fchy+jDT9KEuAQAAAP//AwBteJWOkgAA
+        AA==
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 864ad780c9616adf-FRA
+      - 87773c692a70162c-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,12 +32,12 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Fri, 15 Mar 2024 07:38:04 GMT
+      - Sat, 20 Apr 2024 18:35:46 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=cOMTiKj42he5589MB9I2.qlvkeZNiIDIsPx4iu4syAY-1710488284-1.0.1.1-RS32_0jmQ8IJjjE.GD51ReDqATzm6oTl0ndoKq7BDA0muQvutOktlTqPtjwSqu416JcF48x_p8xtqJgLDAA0LQ;
-        path=/; expires=Fri, 15-Mar-24 08:08:04 GMT; domain=.info.orcid.org; HttpOnly;
+      - __cf_bm=MV_Ev_oAENaTxrZq9lRfdLwZ.pVSe7YWDYHdnPzhaxw-1713638146-1.0.1.1-9FjbsvDXs6z2UgzVNXQYn.fU5bHgz4F.5W_h8NNIieV3Azjbzn_p2cTq_7mYAce4tIaVvvpQfbSl3mJ4vJGi0Q;
+        path=/; expires=Sat, 20-Apr-24 19:05:46 GMT; domain=.info.orcid.org; HttpOnly;
         Secure; SameSite=None
       Transfer-Encoding:
       - chunked
@@ -42,6 +45,7 @@ interactions:
       - Accept-Encoding
       alt-svc:
       - h3=":443"; ma=86400
-    http_version: HTTP/1.1
-    status_code: 403
+    status:
+      code: 403
+      message: Forbidden
 version: 1

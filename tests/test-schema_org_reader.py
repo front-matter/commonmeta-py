@@ -156,7 +156,6 @@ def test_pangaea():
     assert subject.subjects == [
         {
             "subject": "GReenland Analogue Surface Project (GRASP)",
-            "subjectScheme": "Project",
         }
     ]
     assert subject.language == "en"
@@ -264,11 +263,7 @@ def test_another_blog_with_dois():
     "another blog with dois"
     string = "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert (
-        subject.errors
-        == "{'type': 'Person', 'contributorRoles': ['Author'], 'givenName': 'Andreas'} is not valid under any of the given schemas"
-    )
+    assert subject.is_valid
     assert (
         subject.id
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
@@ -467,24 +462,17 @@ def test_arxiv():
     )
     assert subject.subjects == [
         {
-            "lang": "en",
+            "language": "en",
             "subject": "Digital Libraries (cs.DL)",
-            "subjectScheme": "arXiv",
         },
         {
             "subject": "FOS: Computer and information sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Computer and information sciences",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
         },
     ]
     assert subject.language is None
     assert subject.version == "2"
-    assert subject.alternate_identifiers == [
-        {"alternateIdentifier": "1902.02534", "alternateIdentifierType": "arXiv"}
+    assert subject.identifiers == [
+        {"identifier": "1902.02534", "identifierType": "Other"}
     ]
     assert subject.provider == "DataCite"
 

@@ -16,7 +16,7 @@ class Commonmeta(TypedDict):
     subjects: Optional[List[dict]]
     contributors: Optional[List[dict]]
     language: Optional[str]
-    alternate_identifiers: Optional[List[dict]]
+    identifiers: Optional[List[dict]]
     relations: Optional[List[dict]]
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]

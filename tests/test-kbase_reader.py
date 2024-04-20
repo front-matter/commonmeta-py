@@ -11,7 +11,6 @@ def test_metatranscriptome():
     )
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.errors == "'5fa4fb4647675a20c852c60b' does not match '^https?://'"
     assert subject.id == "5fa4fb4647675a20c852c60b"
     assert subject.type == "Dataset"
     assert subject.url is None
@@ -57,7 +56,6 @@ def test_metatranscriptome():
     assert subject.language is None
     assert subject.version is None
     assert subject.files is None
-    assert subject.schema_version == "0.0.1-commonmeta"
 
 
 def test_gulf_of_mexico():
@@ -67,7 +65,6 @@ def test_gulf_of_mexico():
     )
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.errors == "'key' is a required property"
     assert subject.id == "https://doi.org/10.25982/86723.65/1778009"
     assert subject.type == "Dataset"
     assert subject.url is None
@@ -123,4 +120,3 @@ def test_gulf_of_mexico():
     assert subject.language == "en-US"
     assert subject.version is None
     assert subject.files is None
-    assert subject.schema_version == "0.0.1-commonmeta"

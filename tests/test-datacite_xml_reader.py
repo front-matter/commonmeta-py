@@ -32,7 +32,6 @@ def test_missing_resource_type_general():
     assert subject.subjects is None
     assert subject.language is None
     assert subject.version is None
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
@@ -73,7 +72,6 @@ def test_geo_location_empty():
     assert subject.geo_locations is None
     assert subject.language == "en"
     assert subject.version == "1.0"
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
@@ -106,7 +104,6 @@ def test_blog_posting():
         {"subject": "metadata"},
         {
             "subject": "FOS: Computer and information sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
         },
     ]
     assert subject.license == {
@@ -119,4 +116,3 @@ def test_blog_posting():
     )
     assert subject.descriptions[0]["type"] == "Abstract"
     assert subject.provider == "DataCite"
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"

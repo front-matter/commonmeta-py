@@ -87,8 +87,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         )
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
-    state = "findable" if meta or read_options else "not_found"
-
     return {
         # required properties
         "id": _id,
@@ -103,22 +101,17 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         # "additional_type": additional_type,
         "subjects": presence(subjects),
         "language": language,
-        # "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
-        "sizes": None,
-        "formats": None,
         "version": py_.get(meta, "metadata.version"),
         "license": presence(license_),
         "descriptions": descriptions,
-        "geo_locations": None,
+        "geoLocations": None,
         # "funding_references": presence(meta.get("fundingReferences", None)),
-        # "references": presence(references),
+        "references": presence(references),
         "relations": presence(relations),
         # other properties
         "files": files,
         "container": container,
-        "provider": "InvenioRDM",
-        "state": state,
-        # "schema_version": meta.get("schemaVersion", None),
+        "provider": "DataCite",
     } | read_options
 
 

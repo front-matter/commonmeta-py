@@ -136,6 +136,7 @@ def get_identifiers(identifiers: list) -> list:
         """supported identifier types"""
         return identifier.get("identifierType", None) in [
                 "ARK",
+                "arXiv",
                 "Bibcode",
                 "DOI",
                 "Handle",

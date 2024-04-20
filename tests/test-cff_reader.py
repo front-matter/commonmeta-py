@@ -76,7 +76,7 @@ def test_cff_converter_python():
     assert subject.descriptions == [
         {
             "description": "Command line program to validate and convert CITATION.cff files.",
-            "descriptionType": "Abstract",
+            "type": "Abstract",
         }
     ]
     assert subject.subjects == [
