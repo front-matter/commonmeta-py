@@ -82,7 +82,7 @@ def test_write_crossref_xml_list_missing_doi():
     assert len(subject_list.items) == 20
     assert subject_list.write(to="crossref_xml") is None
     assert subject_list.is_valid is False
-    assert subject_list.errors == ["'id' is a required property"]
+    assert subject_list.errors == ["'identifier' is a required property"]
 
 
 @pytest.mark.vcr

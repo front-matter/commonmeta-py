@@ -41,8 +41,7 @@ def test_geo_location_empty():
         path.dirname(__file__), "fixtures", "datacite-geolocation-empty.xml"
     )
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "None is not of type 'string'"
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1594/ieda/111185"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "EarthChem"}
@@ -56,6 +55,7 @@ def test_geo_location_empty():
         "givenName": "Carlos",
         "familyName": "Carvajal",
     }
+    assert subject.identifiers == [{'identifier': 'http://www.earthchem.org/library/browse/view?id=1185', 'identifierType': 'URL'}]
     assert subject.license == {
         "id": "CC-BY-NC-SA-3.0",
         "url": "https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode",

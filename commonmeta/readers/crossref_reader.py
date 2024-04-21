@@ -65,6 +65,8 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     _id = doi_as_url(doi)
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
 
+    archive_locations = wrap(meta.get("archive", None))
+    
     if meta.get("author", None):
         contributors = get_authors(wrap(meta.get("author")), via="crossref")
     else:
@@ -89,7 +91,15 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             or py_.get(meta, "created.date-time")
         }
     )
-
+    identifiers = []
+    identifiers.append(
+        compact(
+            {
+                "identifier": normalize_doi(_id),
+                "identifierType": "DOI",
+            }
+        )
+    )
     license_ = meta.get("license", None)
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
@@ -133,27 +143,26 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "url": url,
-        "contributors": presence(contributors),
-        "titles": presence(titles),
-        "publisher": presence(publisher),
-        "date": presence(date),
         "additionalType": None,
-        "subjects": presence(subjects),
-        "language": meta.get("language", None),
-        "identifiers": None,
-        "sizes": None,
-        "formats": None,
-        "version": meta.get("version", None),
-        "license": license_,
+        "archiveLocations": archive_locations,
+        "container": presence(container),
+        "contributors": presence(contributors),
+        "date": presence(date),
         "descriptions": descriptions,
-        "geoLocations": None,
+        "files": presence(files),
         "fundingReferences": presence(funding_references),
+        "geoLocations": None,
+        "identifiers": identifiers,
+        "language": meta.get("language", None),
+        "license": license_,
+        "provider": "Crossref",
+        "publisher": presence(publisher),
         "references": presence(references),
         "relations": presence(relations),
-        "files": presence(files),
-        "container": presence(container),
-        "provider": "Crossref",
+        "subjects": presence(subjects),
+        "titles": presence(titles),
+        "url": url,
+        "version": meta.get("version", None),
     } | read_options
 
 

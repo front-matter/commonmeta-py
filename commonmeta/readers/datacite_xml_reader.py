@@ -35,16 +35,13 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     doi = parse_attributes(meta.get("identifier", None))
     _id = doi_as_url(doi) if doi else None
-    #         identifiers = Array.wrap(meta.dig('alternateIdentifiers', 'alternateIdentifier')).map do |r|
-    #           if r['__content__'].present?
-    #             { 'identifierType' => get_identifier_type(r['alternateIdentifierType']),
-    #               'identifier' => r['__content__'] }
-    #           end
-    #         end.compact
 
     resource__typegeneral = py_.get(meta, "resourceType.resourceTypeGeneral")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = py_.get(meta, "resourceType.#text")
+    
+    identifiers = wrap(py_.get(meta, "alternateIdentifiers.alternateIdentifier"))
+    identifiers = get_xml_identifiers(identifiers)
 
     def format_title(title):
         """format_title"""
@@ -218,7 +215,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         "additionalType": presence(additional_type),
         "subjects": presence(subjects),
         "language": meta.get("language", None),
-        "identifiers": presence(meta.get("alternateIdentifiers", None)),
+        "identifiers": identifiers,
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": presence(descriptions),
@@ -239,6 +236,43 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     } | read_options
 
 
+def get_xml_identifiers(identifiers: list) -> list:
+    """get_identifiers"""
+    
+    def is_identifier(identifier):
+        """supported identifier types"""
+        return identifier.get("alternateIdentifierType", None) in [
+                "ARK",
+                "arXiv",
+                "Bibcode",
+                "DOI",
+                "Handle",
+                "ISBN",
+                "ISSN",
+                "PMID",
+                "PMCID",
+                "PURL",
+                "URL",
+                "URN",
+                "Other"
+            ]
+        
+    def format_identifier(identifier):
+        """format_identifier"""
+
+        if is_identifier(identifier):
+            type_ = identifier.get("alternateIdentifierType")
+        else:
+            type_ = "Other"
+            
+        return compact(
+            {
+                "identifier": identifier.get("#text", None),
+                "identifierType": type_,
+            }
+        )
+    return [format_identifier(i) for i in identifiers]
+    
 def get_xml_references(references: list) -> list:
     """get_xml_references"""
 

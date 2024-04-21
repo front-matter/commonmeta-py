@@ -71,6 +71,7 @@ def test_with_data_citation():
     """with data citation"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert len(subject.references) == 27
     datacite = json.loads(subject.write(to="datacite"))
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
@@ -123,7 +124,6 @@ def test_blogposting_citeproc_json():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
     datacite = json.loads(subject.write(to="datacite"))
-    print(datacite)
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -224,7 +224,6 @@ def test_from_schema_org():
     """Schema.org"""
     subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
-
     datacite = json.loads(subject.write(to="datacite"))
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (

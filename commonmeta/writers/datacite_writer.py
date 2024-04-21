@@ -3,7 +3,7 @@ import orjson as json
 from typing import Optional, Union
 
 from ..base_utils import wrap, compact
-from ..doi_utils import doi_from_url
+from ..doi_utils import doi_from_url, normalize_doi
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
     CM_TO_CSL_TRANSLATIONS,
@@ -19,6 +19,14 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
         return "{}"
+    
+    alternate_identifiers = [
+        {
+            "alternateIdentifier": i.get("identifier", None),
+            "alternateIdentifierType": i.get("identifierType", None),
+        }
+        for i in wrap(metadata.identifiers) if i.get("id", None) != metadata.id
+    ]
 
     creators = [
         to_datacite_creator(i)
@@ -33,7 +41,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     related_identifiers = [
         to_datacite_related_identifier(i)
         for i in wrap(metadata.references)
-        if i.get("doi", None) or i.get("url", None)
+        if i.get("id", None)
     ]
 
     resource__typegeneral = CM_TO_DC_TRANSLATIONS.get(metadata.type, "Other")
@@ -114,6 +122,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
             "dates": dates,
             "language": metadata.language,
             "types": types,
+            "alternateIdentifiers": alternate_identifiers,
             "relatedIdentifiers": related_identifiers,
             "version": metadata.version,
             "rightsList": license_,
@@ -170,8 +179,8 @@ def to_datacite_titles(titles: list) -> list:
 
 def to_datacite_related_identifier(reference: dict) -> dict:
     """Convert reference to datacite related_identifier"""
-    _id = reference.get("id", None)
-    url = reference.get("url", None)
+    _id = normalize_doi(reference.get("id", None))
+    url = reference.get("id", None)
     return compact(
         {
             "relatedIdentifier": _id if _id else url,

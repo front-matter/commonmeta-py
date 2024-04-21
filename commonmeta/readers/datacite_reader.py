@@ -84,6 +84,15 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     files = [get_file(i) for i in wrap(meta.get("content_url"))]
     
     identifiers = get_identifiers(wrap(meta.get("alternateIdentifiers", None)))
+    identifiers.append(
+        compact(
+            {
+                "identifier": normalize_doi(_id),
+                "identifierType": "DOI",
+            }
+        )
+    )
+    
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
@@ -176,11 +185,16 @@ def get_references(references: list) -> list:
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
+        if identifier_type == "DOI":
+            id_ = normalize_doi(identifier)
+        elif identifier_type == "URL":
+            id_ = normalize_url(identifier)
+        else:
+            id_ = identifier
         return compact(
             {
                 "key": f"ref{index + 1}",
-                "doi": normalize_doi(identifier) if identifier_type == "DOI" else None,
-                "url": normalize_url(identifier) if identifier_type == "URL" else None,
+                "id": id_,
             }
         )
 
@@ -214,7 +228,8 @@ def get_relations(relations: list) -> list:
 
     def map_relation(relation):
         """map_relation"""
-        identifier = relation.get("relatedIdentifier", None)
+        
+        identifier = normalize_doi(relation.get("relatedIdentifier", None)) or relation.get("relatedIdentifier", None)
         relation_type = relation.get("relationType", None)
         return compact(
             {

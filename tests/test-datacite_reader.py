@@ -94,7 +94,7 @@ def test_blog_posting():
     assert len(subject.references) == 8
     assert subject.references[0] == {
         "key": "ref1",
-        "doi": "https://doi.org/10.5438/k1gw-y723",
+        "id": "https://doi.org/10.5438/k1gw-y723",
     }
     assert subject.container is None
     assert (

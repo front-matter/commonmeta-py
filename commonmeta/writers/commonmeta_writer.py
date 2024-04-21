@@ -27,6 +27,7 @@ def write_commonmeta(metadata):
         data,
         {
             "additional_type": "additionalType",
+            "archive_locations": "archiveLocations",
             "geo_locations": "geoLocations",
             "funding_references": "fundingReferences",
         },
