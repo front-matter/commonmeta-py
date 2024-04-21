@@ -242,7 +242,6 @@
         "properties": {
           "organization": { "$ref": "#/definitions/organization" },
           "person": { "$ref": "#/definitions/person" },
-          "affiliation": { "$ref": "#/definitions/affiliations" },
           "contributorRoles": {
             "description": "List of roles assumed by the contributor when working on the resource.",
             "items": {
@@ -455,17 +454,8 @@
       "description": "The publisher of the resource.",
       "type": "object",
       "properties": {
-        "id": {
-          "description": "The identifier for the publisher.",
-          "type": "string",
-          "format": "uri"
-        },
-        "name": {
-          "description": "The name of the publisher.",
-          "type": "string"
-        }
-      },
-      "required": ["name"]
+        "organization": { "$ref": "#/definitions/organization" }
+      }
     },
     "relations": {
       "description": "Other resolvable persistent unique IDs related to the resource.",
