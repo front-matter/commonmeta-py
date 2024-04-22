@@ -108,6 +108,9 @@ def get_one_author(author, **kwargs):
         else:
             given_name = None
             family_name = None
+  
+    # support various keys for affiliations
+    affiliations = author.get("affiliation", None) or author.get("affiliations", None)
 
     # return author in commonmeta format, using name vs. given/family name
     # depending on type
@@ -119,7 +122,7 @@ def get_one_author(author, **kwargs):
             "name": name if _type == "Organization" else None,
             "givenName": given_name if _type == "Person" else None,
             "familyName": family_name if _type == "Person" else None,
-            "affiliation": presence(get_affiliations(wrap(author.get("affiliation", None)))
+            "affiliations": presence(get_affiliations(wrap(affiliations))
             ),
         }
     )

@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test schema.org writer"""
+
 from os import path
 import orjson as json
 import pytest
@@ -26,7 +27,7 @@ def test_journal_article():
         "givenName": "Martial",
         "familyName": "Sankar",
         "name": "Martial Sankar",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
             }
@@ -78,7 +79,7 @@ def test_inveniordm_software():
         "id": "https://orcid.org/0000-0003-1419-2405",
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliation": [{"name": "Front Matter"}],
+        "affiliations": [{"name": "Front Matter"}],
         "@type": "Person",
         "name": "Martin Fenner",
     }
@@ -175,7 +176,7 @@ def test_inveniordm_publication():
     assert schema_org.get("author")[0] == {
         "givenName": "Edward C",
         "familyName": "Holmes",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
             }
@@ -226,7 +227,7 @@ def test_inveniordm_report():
         "id": "https://orcid.org/0000-0001-5524-0325",
         "givenName": "James Watson on the behalf of 201",
         "familyName": "signatories",
-        "affiliation": [{"name": "Mahidol Oxford Tropical Medicine Research Unit"}],
+        "affiliations": [{"name": "Mahidol Oxford Tropical Medicine Research Unit"}],
         "@type": "Person",
         "name": "James Watson on the behalf of 201 signatories",
     }
@@ -275,7 +276,7 @@ def test_inveniordm_preprint():
     assert schema_org.get("author")[0] == {
         "givenName": "BS",
         "familyName": "Nicolas Hulscher",
-        "affiliation": [{"name": "University of Michigan School of Public Health"}],
+        "affiliations": [{"name": "University of Michigan School of Public Health"}],
         "@type": "Person",
         "name": "BS Nicolas Hulscher",
     }
@@ -325,7 +326,7 @@ def test_inveniordm_dataset():
         "id": "https://orcid.org/0000-0001-8499-824X",
         "givenName": "Juan M.",
         "familyName": "Banda",
-        "affiliation": [{"name": "Georgia State University"}],
+        "affiliations": [{"name": "Georgia State University"}],
         "@type": "Person",
         "name": "Juan M. Banda",
     }

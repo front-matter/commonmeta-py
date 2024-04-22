@@ -11,16 +11,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.24.1
     method: GET
     uri: https://doi.org/ra/10.5061
   response:
-    content: "[\n  {\n    \"DOI\": \"10.5061\",\n    \"RA\": \"DataCite\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9UwMzQyUdiGiQI0jQJbEk0TmzJFUJKFjLFQsA
+        uS0EXjYAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 853381e409240e58-AMS
+      - 8783a626c9776630-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,11 +31,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:00:50 GMT
+      - Mon, 22 Apr 2024 06:45:05 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rw%2BLHsGSxqIlT3ZTwEjV27YXaGaZ8iC5ptTxHlGyYhjl0cpR8yyhbf9d2BHhAEMpjh6yHicmJqzSGlw4DZ60wjE3aDG30tRs3HGbU88wO%2BPkIcWaffnIJBT7UOW8zEMeQOHmO2A%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=LvFfRrqn9AqB2NwoD0pfqLHzTIu5SXv6XFGDbniDzOuB9rQ8cp3Po1p4jHESuLksnKk5mI%2Bj1CeW%2FK6O1CnwQMCOAiHPPi380sO0W3kOUlrHjAlPEpRrgHn0TuMP6TF3ybq72lI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -43,8 +46,9 @@ interactions:
       - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -57,60 +61,123 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.24.1
     method: GET
     uri: https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client
   response:
-    content: "{\"data\":{\"id\":\"10.5061/dryad.8515\",\"type\":\"dois\",\"attributes\":{\"doi\":\"10.5061/dryad.8515\",\"prefix\":\"10.5061\",\"suffix\":\"dryad.8515\",\"identifiers\":[],\"alternateIdentifiers\":[],\"creators\":[{\"name\":\"Ollomo,
-      Benjamin\",\"nameType\":\"Personal\",\"givenName\":\"Benjamin\",\"familyName\":\"Ollomo\",\"affiliation\":[\"Centre
-      International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Durand,
-      Patrick\",\"nameType\":\"Personal\",\"givenName\":\"Patrick\",\"familyName\":\"Durand\",\"affiliation\":[\"French
-      National Centre for Scientific Research\"],\"nameIdentifiers\":[]},{\"name\":\"Prugnolle,
-      Franck\",\"nameType\":\"Personal\",\"givenName\":\"Franck\",\"familyName\":\"Prugnolle\",\"affiliation\":[\"French
-      National Centre for Scientific Research\"],\"nameIdentifiers\":[]},{\"name\":\"Douzery,
-      Emmanuel J. P.\",\"nameType\":\"Personal\",\"givenName\":\"Emmanuel J. P.\",\"familyName\":\"Douzery\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Arnathau,
-      C\xE9line\",\"nameType\":\"Personal\",\"givenName\":\"C\xE9line\",\"familyName\":\"Arnathau\",\"affiliation\":[\"French
-      National Centre for Scientific Research\"],\"nameIdentifiers\":[]},{\"name\":\"Nkoghe,
-      Dieudonn\xE9\",\"nameType\":\"Personal\",\"givenName\":\"Dieudonn\xE9\",\"familyName\":\"Nkoghe\",\"affiliation\":[\"Centre
-      International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Leroy,
-      Eric\",\"nameType\":\"Personal\",\"givenName\":\"Eric\",\"familyName\":\"Leroy\",\"affiliation\":[\"Centre
-      International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Renaud,
-      Fran\xE7ois\",\"nameType\":\"Personal\",\"givenName\":\"Fran\xE7ois\",\"familyName\":\"Renaud\",\"affiliation\":[\"French
-      National Centre for Scientific Research\"],\"nameIdentifiers\":[]}],\"titles\":[{\"title\":\"Data
-      from: A new malaria agent in African hominids.\"}],\"publisher\":\"Dryad\",\"container\":{},\"publicationYear\":2011,\"subjects\":[{\"subject\":\"Plasmodium\",\"schemeUri\":\"https://github.com/PLOS/plos-thesaurus\",\"subjectScheme\":\"PLOS
-      Subject Area Thesaurus\"},{\"subject\":\"Malaria\",\"schemeUri\":\"https://github.com/PLOS/plos-thesaurus\",\"subjectScheme\":\"PLOS
-      Subject Area Thesaurus\"},{\"subject\":\"mitochondrial genome\"},{\"subject\":\"Parasites\"}],\"contributors\":[],\"dates\":[{\"date\":\"2011-02-01T17:22:41Z\",\"dateType\":\"Issued\"},{\"date\":\"2011-02-01T17:22:41Z\",\"dateType\":\"Available\"}],\"language\":\"en\",\"types\":{\"ris\":\"DATA\",\"bibtex\":\"misc\",\"citeproc\":\"dataset\",\"schemaOrg\":\"Dataset\",\"resourceType\":\"dataset\",\"resourceTypeGeneral\":\"Dataset\"},\"relatedIdentifiers\":[{\"relationType\":\"IsCitedBy\",\"relatedIdentifier\":\"10.1371/journal.ppat.1000446\",\"relatedIdentifierType\":\"DOI\"}],\"relatedItems\":[],\"sizes\":[\"107328
-      bytes\"],\"formats\":[],\"version\":\"1\",\"rightsList\":[{\"rights\":\"Creative
-      Commons Zero v1.0 Universal\",\"rightsUri\":\"https://creativecommons.org/publicdomain/zero/1.0/legalcode\",\"schemeUri\":\"https://spdx.org/licenses/\",\"rightsIdentifier\":\"cc0-1.0\",\"rightsIdentifierScheme\":\"SPDX\"}],\"descriptions\":[{\"description\":\"Plasmodium
-      falciparum is the major human malaria agent responsible for 200 to 300 million
-      infections and one to three million deaths annually, mainly among African infants.
-      The origin and evolution of this pathogen within the human lineage is still
-      unresolved. A single species, P. reichenowi, which infects chimpanzees, is known
-      to be a close sister lineage of P. falciparum. Here we report the discovery
-      of a new Plasmodium species infecting Hominids. This new species has been isolated
-      in two chimpanzees (Pan troglodytes) kept as pets by villagers in Gabon (Africa).
-      Analysis of its complete mitochondrial genome (5529 nucleotides including Cyt
-      b, Cox I and Cox III genes) reveals an older divergence of this lineage from
-      the clade that includes P. falciparum and P. reichenowi (approximately 21+/-9
-      Myrs ago using Bayesian methods and considering that the divergence between
-      P. falciparum and P. reichenowi occurred 4 to 7 million years ago as generally
-      considered in the literature). This time frame would be congruent with the radiation
-      of hominoids, suggesting that this Plasmodium lineage might have been present
-      in early hominoids and that they may both have experienced a simultaneous diversification.
-      Investigation of the nuclear genome of this new species will further the understanding
-      of the genetic adaptations of P. falciparum to humans. The risk of transfer
-      and emergence of this new species in humans must be now seriously considered
-      given that it was found in two chimpanzees living in contact with humans and
-      its close relatedness to the most virulent agent of malaria.\",\"descriptionType\":\"Abstract\"},{\"description\":\"Ollomo_PLoSPathog_2009Nucleotide
-      alignment concatenation of 4 mitochondrial genes for 17 Plasmodium species and
-      one outgroup.Ollomo_PLoSPathog_2009_PHYMLMaximum likelihood tree inferred from
-      the 4-gene concatenation using PHYML.\",\"descriptionType\":\"Other\"}],\"geoLocations\":[{\"geoLocationPlace\":\"Africa\"}],\"fundingReferences\":[],\"xml\":\"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNTA2MS9EUllBRC44NTE1PC9pZGVudGlmaWVyPgogIDxjcmVhdG9ycz4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+T2xsb21vLCBCZW5qYW1pbjwvY3JlYXRvck5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMXd5cWI5OTciIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZyI+Q2VudHJlIEludGVybmF0aW9uYWwgZGUgUmVjaGVyY2hlcyBNw6lkaWNhbGVzIGRlIEZyYW5jZXZpbGxlPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+RHVyYW5kLCBQYXRyaWNrPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAyZmVhaHc3MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5GcmVuY2ggTmF0aW9uYWwgQ2VudHJlIGZvciBTY2llbnRpZmljIFJlc2VhcmNoPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+UHJ1Z25vbGxlLCBGcmFuY2s8L2NyZWF0b3JOYW1lPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDJmZWFodzczIiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmciPkZyZW5jaCBOYXRpb25hbCBDZW50cmUgZm9yIFNjaWVudGlmaWMgUmVzZWFyY2g8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZT5Eb3V6ZXJ5LCBFbW1hbnVlbCBKLiBQLjwvY3JlYXRvck5hbWU+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lPkFybmF0aGF1LCBDw6lsaW5lPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAyZmVhaHc3MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5GcmVuY2ggTmF0aW9uYWwgQ2VudHJlIGZvciBTY2llbnRpZmljIFJlc2VhcmNoPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+TmtvZ2hlLCBEaWV1ZG9ubsOpPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAxd3lxYjk5NyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgSW50ZXJuYXRpb25hbCBkZSBSZWNoZXJjaGVzIE3DqWRpY2FsZXMgZGUgRnJhbmNldmlsbGU8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZT5MZXJveSwgRXJpYzwvY3JlYXRvck5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMXd5cWI5OTciIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZyI+Q2VudHJlIEludGVybmF0aW9uYWwgZGUgUmVjaGVyY2hlcyBNw6lkaWNhbGVzIGRlIEZyYW5jZXZpbGxlPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+UmVuYXVkLCBGcmFuw6dvaXM8L2NyZWF0b3JOYW1lPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDJmZWFodzczIiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmciPkZyZW5jaCBOYXRpb25hbCBDZW50cmUgZm9yIFNjaWVudGlmaWMgUmVzZWFyY2g8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogIDwvY3JlYXRvcnM+CiAgPHRpdGxlcz4KICAgIDx0aXRsZT5EYXRhIGZyb206IEEgbmV3IG1hbGFyaWEgYWdlbnQgaW4gQWZyaWNhbiBob21pbmlkcy48L3RpdGxlPgogIDwvdGl0bGVzPgogIDxwdWJsaXNoZXI+RHJ5YWQ8L3B1Ymxpc2hlcj4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IkRhdGFzZXQiPmRhdGFzZXQ8L3Jlc291cmNlVHlwZT4KICA8cHVibGljYXRpb25ZZWFyPjIwMTE8L3B1YmxpY2F0aW9uWWVhcj4KICA8c3ViamVjdHM+CiAgICA8c3ViamVjdCBzdWJqZWN0U2NoZW1lPSJQTE9TIFN1YmplY3QgQXJlYSBUaGVzYXVydXMiIHNjaGVtZVVSST0iaHR0cHM6Ly9naXRodWIuY29tL1BMT1MvcGxvcy10aGVzYXVydXMiPlBsYXNtb2RpdW08L3N1YmplY3Q+CiAgICA8c3ViamVjdCBzdWJqZWN0U2NoZW1lPSJQTE9TIFN1YmplY3QgQXJlYSBUaGVzYXVydXMiIHNjaGVtZVVSST0iaHR0cHM6Ly9naXRodWIuY29tL1BMT1MvcGxvcy10aGVzYXVydXMiPk1hbGFyaWE8L3N1YmplY3Q+CiAgICA8c3ViamVjdD5taXRvY2hvbmRyaWFsIGdlbm9tZTwvc3ViamVjdD4KICAgIDxzdWJqZWN0PlBhcmFzaXRlczwvc3ViamVjdD4KICA8L3N1YmplY3RzPgogIDxkYXRlcz4KICAgIDxkYXRlIGRhdGVUeXBlPSJJc3N1ZWQiPjIwMTEtMDItMDFUMTc6MjI6NDFaPC9kYXRlPgogICAgPGRhdGUgZGF0ZVR5cGU9IkF2YWlsYWJsZSI+MjAxMS0wMi0wMVQxNzoyMjo0MVo8L2RhdGU+CiAgPC9kYXRlcz4KICA8bGFuZ3VhZ2U+ZW48L2xhbmd1YWdlPgogIDxyZWxhdGVkSWRlbnRpZmllcnM+CiAgICA8cmVsYXRlZElkZW50aWZpZXIgcmVsYXRpb25UeXBlPSJJc0NpdGVkQnkiIHJlbGF0ZWRJZGVudGlmaWVyVHlwZT0iRE9JIj5odHRwczovL2RvaS5vcmcvMTAuMTM3MS9qb3VybmFsLnBwYXQuMTAwMDQ0NjwvcmVsYXRlZElkZW50aWZpZXI+CiAgPC9yZWxhdGVkSWRlbnRpZmllcnM+CiAgPHNpemVzPgogICAgPHNpemU+MTA3MzI4IGJ5dGVzPC9zaXplPgogIDwvc2l6ZXM+CiAgPHZlcnNpb24+MTwvdmVyc2lvbj4KICA8cmlnaHRzTGlzdD4KICAgIDxyaWdodHMgcmlnaHRzVVJJPSJodHRwczovL2NyZWF0aXZlY29tbW9ucy5vcmcvcHVibGljZG9tYWluL3plcm8vMS4wLyI+Q0MwIDEuMCBVbml2ZXJzYWwgKENDMCAxLjApIFB1YmxpYyBEb21haW4gRGVkaWNhdGlvbjwvcmlnaHRzPgogIDwvcmlnaHRzTGlzdD4KICA8ZGVzY3JpcHRpb25zPgogICAgPGRlc2NyaXB0aW9uIGRlc2NyaXB0aW9uVHlwZT0iQWJzdHJhY3QiPgogICAgICBQbGFzbW9kaXVtIGZhbGNpcGFydW0gaXMgdGhlIG1ham9yIGh1bWFuIG1hbGFyaWEgYWdlbnQgcmVzcG9uc2libGUgZm9yIDIwMAogICAgICB0byAzMDAgbWlsbGlvbiBpbmZlY3Rpb25zIGFuZCBvbmUgdG8gdGhyZWUgbWlsbGlvbiBkZWF0aHMgYW5udWFsbHksIG1haW5seQogICAgICBhbW9uZyBBZnJpY2FuIGluZmFudHMuIFRoZSBvcmlnaW4gYW5kIGV2b2x1dGlvbiBvZiB0aGlzIHBhdGhvZ2VuIHdpdGhpbgogICAgICB0aGUgaHVtYW4gbGluZWFnZSBpcyBzdGlsbCB1bnJlc29sdmVkLiBBIHNpbmdsZSBzcGVjaWVzLCBQLiByZWljaGVub3dpLAogICAgICB3aGljaCBpbmZlY3RzIGNoaW1wYW56ZWVzLCBpcyBrbm93biB0byBiZSBhIGNsb3NlIHNpc3RlciBsaW5lYWdlIG9mIFAuCiAgICAgIGZhbGNpcGFydW0uIEhlcmUgd2UgcmVwb3J0IHRoZSBkaXNjb3Zlcnkgb2YgYSBuZXcgUGxhc21vZGl1bSBzcGVjaWVzCiAgICAgIGluZmVjdGluZyBIb21pbmlkcy4gVGhpcyBuZXcgc3BlY2llcyBoYXMgYmVlbiBpc29sYXRlZCBpbiB0d28gY2hpbXBhbnplZXMKICAgICAgKFBhbiB0cm9nbG9keXRlcykga2VwdCBhcyBwZXRzIGJ5IHZpbGxhZ2VycyBpbiBHYWJvbiAoQWZyaWNhKS4gQW5hbHlzaXMgb2YKICAgICAgaXRzIGNvbXBsZXRlIG1pdG9jaG9uZHJpYWwgZ2Vub21lICg1NTI5IG51Y2xlb3RpZGVzIGluY2x1ZGluZyBDeXQgYiwgQ294IEkKICAgICAgYW5kIENveCBJSUkgZ2VuZXMpIHJldmVhbHMgYW4gb2xkZXIgZGl2ZXJnZW5jZSBvZiB0aGlzIGxpbmVhZ2UgZnJvbSB0aGUKICAgICAgY2xhZGUgdGhhdCBpbmNsdWRlcyBQLiBmYWxjaXBhcnVtIGFuZCBQLiByZWljaGVub3dpIChhcHByb3hpbWF0ZWx5IDIxKy8tOQogICAgICBNeXJzIGFnbyB1c2luZyBCYXllc2lhbiBtZXRob2RzIGFuZCBjb25zaWRlcmluZyB0aGF0IHRoZSBkaXZlcmdlbmNlCiAgICAgIGJldHdlZW4gUC4gZmFsY2lwYXJ1bSBhbmQgUC4gcmVpY2hlbm93aSBvY2N1cnJlZCA0IHRvIDcgbWlsbGlvbiB5ZWFycyBhZ28KICAgICAgYXMgZ2VuZXJhbGx5IGNvbnNpZGVyZWQgaW4gdGhlIGxpdGVyYXR1cmUpLiBUaGlzIHRpbWUgZnJhbWUgd291bGQgYmUKICAgICAgY29uZ3J1ZW50IHdpdGggdGhlIHJhZGlhdGlvbiBvZiBob21pbm9pZHMsIHN1Z2dlc3RpbmcgdGhhdCB0aGlzIFBsYXNtb2RpdW0KICAgICAgbGluZWFnZSBtaWdodCBoYXZlIGJlZW4gcHJlc2VudCBpbiBlYXJseSBob21pbm9pZHMgYW5kIHRoYXQgdGhleSBtYXkgYm90aAogICAgICBoYXZlIGV4cGVyaWVuY2VkIGEgc2ltdWx0YW5lb3VzIGRpdmVyc2lmaWNhdGlvbi4gSW52ZXN0aWdhdGlvbiBvZiB0aGUKICAgICAgbnVjbGVhciBnZW5vbWUgb2YgdGhpcyBuZXcgc3BlY2llcyB3aWxsIGZ1cnRoZXIgdGhlIHVuZGVyc3RhbmRpbmcgb2YgdGhlCiAgICAgIGdlbmV0aWMgYWRhcHRhdGlvbnMgb2YgUC4gZmFsY2lwYXJ1bSB0byBodW1hbnMuIFRoZSByaXNrIG9mIHRyYW5zZmVyIGFuZAogICAgICBlbWVyZ2VuY2Ugb2YgdGhpcyBuZXcgc3BlY2llcyBpbiBodW1hbnMgbXVzdCBiZSBub3cgc2VyaW91c2x5IGNvbnNpZGVyZWQKICAgICAgZ2l2ZW4gdGhhdCBpdCB3YXMgZm91bmQgaW4gdHdvIGNoaW1wYW56ZWVzIGxpdmluZyBpbiBjb250YWN0IHdpdGggaHVtYW5zCiAgICAgIGFuZCBpdHMgY2xvc2UgcmVsYXRlZG5lc3MgdG8gdGhlIG1vc3QgdmlydWxlbnQgYWdlbnQgb2YgbWFsYXJpYS4KICAgIDwvZGVzY3JpcHRpb24+CiAgICA8ZGVzY3JpcHRpb24gZGVzY3JpcHRpb25UeXBlPSJPdGhlciI+CiAgICAgIE9sbG9tb19QTG9TUGF0aG9nXzIwMDlOdWNsZW90aWRlIGFsaWdubWVudCBjb25jYXRlbmF0aW9uIG9mIDQKICAgICAgbWl0b2Nob25kcmlhbCBnZW5lcyBmb3IgMTcgUGxhc21vZGl1bSBzcGVjaWVzIGFuZCBvbmUKICAgICAgb3V0Z3JvdXAuT2xsb21vX1BMb1NQYXRob2dfMjAwOV9QSFlNTE1heGltdW0gbGlrZWxpaG9vZCB0cmVlIGluZmVycmVkIGZyb20KICAgICAgdGhlIDQtZ2VuZSBjb25jYXRlbmF0aW9uIHVzaW5nIFBIWU1MLgogICAgPC9kZXNjcmlwdGlvbj4KICA8L2Rlc2NyaXB0aW9ucz4KICA8Z2VvTG9jYXRpb25zPgogICAgPGdlb0xvY2F0aW9uPgogICAgICA8Z2VvTG9jYXRpb25QbGFjZT5BZnJpY2E8L2dlb0xvY2F0aW9uUGxhY2U+CiAgICA8L2dlb0xvY2F0aW9uPgogIDwvZ2VvTG9jYXRpb25zPgo8L3Jlc291cmNlPg==\",\"url\":\"https://datadryad.org/stash/dataset/doi:10.5061/dryad.8515\",\"contentUrl\":null,\"metadataVersion\":22,\"schemaVersion\":\"http://datacite.org/schema/kernel-4\",\"source\":\"mds\",\"isActive\":true,\"state\":\"findable\",\"reason\":null,\"viewCount\":391,\"viewsOverTime\":[{\"yearMonth\":\"2014-11\",\"total\":1},{\"yearMonth\":\"2015-03\",\"total\":4},{\"yearMonth\":\"2015-04\",\"total\":4},{\"yearMonth\":\"2015-05\",\"total\":3},{\"yearMonth\":\"2015-08\",\"total\":8},{\"yearMonth\":\"2015-09\",\"total\":4},{\"yearMonth\":\"2015-11\",\"total\":1},{\"yearMonth\":\"2016-01\",\"total\":2},{\"yearMonth\":\"2016-04\",\"total\":2},{\"yearMonth\":\"2016-08\",\"total\":1},{\"yearMonth\":\"2017-01\",\"total\":19},{\"yearMonth\":\"2017-02\",\"total\":26},{\"yearMonth\":\"2017-03\",\"total\":13},{\"yearMonth\":\"2017-04\",\"total\":8},{\"yearMonth\":\"2017-05\",\"total\":8},{\"yearMonth\":\"2017-06\",\"total\":5},{\"yearMonth\":\"2017-08\",\"total\":2},{\"yearMonth\":\"2017-09\",\"total\":5},{\"yearMonth\":\"2018-01\",\"total\":4},{\"yearMonth\":\"2018-02\",\"total\":1},{\"yearMonth\":\"2018-04\",\"total\":1},{\"yearMonth\":\"2018-10\",\"total\":2},{\"yearMonth\":\"2018-12\",\"total\":1},{\"yearMonth\":\"2019-01\",\"total\":2},{\"yearMonth\":\"2019-02\",\"total\":1},{\"yearMonth\":\"2019-04\",\"total\":5},{\"yearMonth\":\"2019-05\",\"total\":1},{\"yearMonth\":\"2019-06\",\"total\":2},{\"yearMonth\":\"2019-07\",\"total\":2},{\"yearMonth\":\"2019-08\",\"total\":1},{\"yearMonth\":\"2019-10\",\"total\":4},{\"yearMonth\":\"2019-12\",\"total\":3},{\"yearMonth\":\"2020-01\",\"total\":3},{\"yearMonth\":\"2020-02\",\"total\":4},{\"yearMonth\":\"2020-03\",\"total\":1},{\"yearMonth\":\"2020-04\",\"total\":4},{\"yearMonth\":\"2020-05\",\"total\":6},{\"yearMonth\":\"2020-07\",\"total\":6},{\"yearMonth\":\"2020-08\",\"total\":1},{\"yearMonth\":\"2020-09\",\"total\":2},{\"yearMonth\":\"2020-10\",\"total\":4},{\"yearMonth\":\"2020-11\",\"total\":4},{\"yearMonth\":\"2020-12\",\"total\":2},{\"yearMonth\":\"2021-01\",\"total\":11},{\"yearMonth\":\"2021-02\",\"total\":1},{\"yearMonth\":\"2021-03\",\"total\":2},{\"yearMonth\":\"2021-04\",\"total\":6},{\"yearMonth\":\"2021-06\",\"total\":6},{\"yearMonth\":\"2021-07\",\"total\":3},{\"yearMonth\":\"2021-08\",\"total\":3},{\"yearMonth\":\"2021-09\",\"total\":1},{\"yearMonth\":\"2021-10\",\"total\":7},{\"yearMonth\":\"2021-11\",\"total\":3},{\"yearMonth\":\"2022-01\",\"total\":1},{\"yearMonth\":\"2022-02\",\"total\":4},{\"yearMonth\":\"2022-03\",\"total\":8},{\"yearMonth\":\"2022-04\",\"total\":2},{\"yearMonth\":\"2022-07\",\"total\":1},{\"yearMonth\":\"2022-09\",\"total\":2},{\"yearMonth\":\"2022-10\",\"total\":3},{\"yearMonth\":\"2022-11\",\"total\":3},{\"yearMonth\":\"2022-12\",\"total\":8},{\"yearMonth\":\"2023-01\",\"total\":11},{\"yearMonth\":\"2023-03\",\"total\":1},{\"yearMonth\":\"2023-04\",\"total\":2},{\"yearMonth\":\"2023-05\",\"total\":5},{\"yearMonth\":\"2023-06\",\"total\":2},{\"yearMonth\":\"2023-07\",\"total\":3},{\"yearMonth\":\"2023-08\",\"total\":42},{\"yearMonth\":\"2023-09\",\"total\":48},{\"yearMonth\":\"2023-10\",\"total\":9},{\"yearMonth\":\"2023-11\",\"total\":5},{\"yearMonth\":\"2023-12\",\"total\":5}],\"downloadCount\":31,\"downloadsOverTime\":[{\"yearMonth\":\"2014-11\",\"total\":1},{\"yearMonth\":\"2015-03\",\"total\":1},{\"yearMonth\":\"2015-04\",\"total\":2},{\"yearMonth\":\"2015-08\",\"total\":2},{\"yearMonth\":\"2015-09\",\"total\":2},{\"yearMonth\":\"2017-02\",\"total\":2},{\"yearMonth\":\"2017-04\",\"total\":2},{\"yearMonth\":\"2017-05\",\"total\":2},{\"yearMonth\":\"2017-06\",\"total\":1},{\"yearMonth\":\"2019-10\",\"total\":1},{\"yearMonth\":\"2020-02\",\"total\":1},{\"yearMonth\":\"2020-05\",\"total\":1},{\"yearMonth\":\"2020-11\",\"total\":1},{\"yearMonth\":\"2021-01\",\"total\":5},{\"yearMonth\":\"2021-02\",\"total\":1},{\"yearMonth\":\"2022-10\",\"total\":1},{\"yearMonth\":\"2022-12\",\"total\":1},{\"yearMonth\":\"2023-01\",\"total\":1},{\"yearMonth\":\"2023-03\",\"total\":1},{\"yearMonth\":\"2023-11\",\"total\":1},{\"yearMonth\":\"2023-12\",\"total\":1}],\"referenceCount\":1,\"citationCount\":1,\"citationsOverTime\":[{\"year\":\"2019\",\"total\":1}],\"partCount\":2,\"partOfCount\":0,\"versionCount\":0,\"versionOfCount\":0,\"created\":\"2011-11-22T18:34:51.000Z\",\"registered\":\"2011-02-01T17:32:02.000Z\",\"published\":\"2011\",\"updated\":\"2023-12-22T05:56:43.000Z\"},\"relationships\":{\"client\":{\"data\":{\"id\":\"dryad.dryad\",\"type\":\"clients\"}},\"provider\":{\"data\":{\"id\":\"dryad\",\"type\":\"providers\"}},\"media\":{\"data\":{\"id\":\"10.5061/dryad.8515\",\"type\":\"media\"}},\"references\":{\"data\":[{\"id\":\"10.1371/journal.ppat.1000446\",\"type\":\"dois\"}]},\"citations\":{\"data\":[{\"id\":\"10.1371/journal.ppat.1000446\",\"type\":\"dois\"}]},\"parts\":{\"data\":[{\"id\":\"10.5061/dryad.8515/1\",\"type\":\"dois\"},{\"id\":\"10.5061/dryad.8515/2\",\"type\":\"dois\"}]},\"partOf\":{\"data\":[]},\"versions\":{\"data\":[]},\"versionOf\":{\"data\":[]}}},\"included\":[{\"id\":\"dryad.dryad\",\"type\":\"clients\",\"attributes\":{\"name\":\"DRYAD\",\"symbol\":\"DRYAD.DRYAD\",\"year\":2018,\"alternateName\":null,\"description\":\"DataDryad.org
-      is a curated general-purpose repository that makes the data underlying scientific
-      publications discoverable, freely reusable, and citable.\\r\\nDryad is an international
-      repository of data underlying peer-reviewed scientific and medical literature,
-      particularly data for which no specialized repository exists. The content is
-      considered to be integral to the published research. All material in Dryad is
-      associated with a scholarly publication\",\"language\":[],\"clientType\":\"repository\",\"domains\":\"*\",\"re3data\":\"https://doi.org/10.17616/R34S33\",\"opendoar\":null,\"issn\":{},\"url\":\"https://datadryad.org\",\"created\":\"2018-04-24T20:59:15.000Z\",\"updated\":\"2023-03-16T09:26:32.000Z\",\"isActive\":true},\"relationships\":{\"provider\":{\"data\":{\"id\":\"dryad\",\"type\":\"providers\"}},\"prefixes\":{\"data\":[{\"id\":\"10.5061\",\"type\":\"prefixes\"},{\"id\":\"10.15146\",\"type\":\"prefixes\"}]}}}]}"
+    body:
+      string: !!binary |
+        H4sIAHIHJmYAA+xc2W7rVrL9FcJP6ZtzbJGSbMtAP1iyLVGxZFuz2AkanExR2hzCQVNwvqfR35Ef
+        u6s2B5G2bJ3u2wnuQwM5iEUVa9ewalVtmtu/nRlqpJ7d/HZmG2c3Z2LlvF65FC+MYKca59d1sX72
+        5Sza+Sa+Mzw7xCc1igJbiyMzpLtw8aPb/MB8tbeHb3EpjF+TSyVB2zDdyH61zQAq//YLlmCRGbhq
+        ZMpvv9EDU408/um3M1d1yK4nxjzH+yI0TXepOrYLjfTNKLH6Gfd6rspw1bLXpttPbioIv+L/bNcv
+        KiM3YSmz1cj2XCx21oIhgSnIbmKZTSoFwxQGpr4wA/wLhd7v/zRsXWX4EV88BKqrm2ubMfPsl8Si
+        N958+5K7cBdD2vgiPKuIrb76Lg8OsiUHElXvHXgITFdfCP3M9tShVy8QhrqdGKbDndBU4c5pk5+D
+        2HI9ePclcfX7jM5FSzbnuv54s++8eG8Guy/CveOobmwyoXsuPJ9/l/HvbikHPtH8zoWTJt0SoBZq
+        /EVo/f5PZrvmdxlzkC1ZkSn74yPZX3nWAtm/s83Y8Fz3939+l90l8ZLpicI/u/QezcAjOKCWvg8E
+        iWDJcq7jzzZ8YLpqbCTV9/s/Em7+vgLMpEs+JOr+KNjgcmRHzEyIm/9IWEDrEV4Dz7kRbgXX3AiO
+        ytTAVgXVwu2C7Qq3rwi36goLD1xtG+H5GanyY43ZIWJIOqiTwGzdcyMVBYFrv31LRXRu9ByWnd1I
+        FVGkBqQtTT1KzEg/ULCYGjqeYccONSlkxjHHATW2RRT54c3FhWVHi1g71z3n4vnxaXjhMy/8GiGD
+        ahzE4VmueMjvJY2QEobJReEWXUsY5dKUxMPavcTnP39hx448feG5BlZnAiLuQUFZ5FkN1NCmVk9h
+        pxDz1u9l7RizQ5pS+gk3UJS/VqSvFXEkXt1I0k1NVM4SuRSXchjGpsHX+e57bteqzVQNmCEzmOpa
+        MRCCL0w3HU/4LBIA1QDE7egWVzVbi8wtdzOkgtXhhh94Og0fgF1oRlnE1afASsGYXA3M0IsDPVvd
+        OPpF2wTWUF6HG7+RAIPVRhn9vyWXgcQ8BC0YYzR3Z0fuSOYlsXolXiyxGEru3PfV6FysVCq12uWx
+        W1K1d08yj0/2fWQ6aZpCe8/TdCZK11filaDtKG34AlXsqFEqtYa5vOjPaFQLbGsRhY92GCUu8I/U
+        d2gCA6EILc9xPDcUFJCfsBbPK8LYtUkH55xEvoxlPb1VT+489wLrIqlTw3NQuxfon94FNF0w01KZ
+        7hnmB1UR+saW3457TTc0w4t8yVIkdb3yFfqOfJnXy/D5bsbDZpihHtg+5SmF9OFCiSKEV9hm+2qA
+        H+1QQDGCt5bgw0WM+eANhwEyPhTaAC/nTKlS+dkVIk+oVioC6JdBO4juFfVGCwuY3QTPNUkiWgSm
+        mcsYiN2CvndjlTF0LIoY20GZimBaOVNCl+pG4TmVveDBbbAoKTXXHotpDcF7hWoYDlQtPBgpbMAx
+        tktm4ZbECRot4AD5F0awQIhdAj9bm8Y5uDq0XQsOhb6JFhBibj2HozZC6nob+ws0bRb4lPoVCvrC
+        dnzV3ZskC5UriPEgaKagCjooDbqANDPIF4aRz+dQdIj1udAx0Xg2JpbyvSDi1hoobg+g29ENKu8h
+        hUSl9v2cRxhx6mSdBAGCKXRHKiYs1BAWISA2PKUSog4Ubbyi/dD1wzMCFAWexTyDCukvwsr0IwE3
+        +yac1XYCdXA4EYSkoK1qCPoPSX7+guihpHfwFhaTYRQez/GZGVGu3zOy8EO9LjUEN9aZ6UXYKpFS
+        ncUGOdPaRYKGudHbCvLPSZ75z7JMd5Npgbk2VUa4ETxmIMAG1Si+1M0cCFnMqRNTVKFJZyrmEQyS
+        UboalkWSC8intUppF35QfRDs1gajmGwnSOKPF18b0NXbIRCq5QkxwUZoqjsztKlQTODPSCCvU43A
+        PBLgqybJzUyFFs2MNpSbU1Z4uh4HAXJXI4Bd5fWzwxTAzaA4hTw8ARVSvnSabqzLwM6BGsWB+ZcU
+        JZHtUHgw2AgbL2YGrKEgoe6CmKqcKojfGqhGMjpRcPnQ4gFrX4QwtiwzjAruQesBqT8fKs4hogIU
+        wbAci9hFh+kwBA9gb66VO58Fawc+2AmaFy2gi99tbn3Ek6JnoDJC24lZpLqmF4dJYEMa3Lit5xhR
+        12SdpR4IghzkoFODDIkZXoo1syFyeI0D3BDwCMQuYhliJQ7QXBXFO8KgqBqqH6kJ1/EaL2YTCeP0
+        k7IX+vmKa8DMGr5CP5RCFXj7DYCLBiFOiQ7BicOIGAawEEKEAp6X0k1W0WScwhxZBC5ePThwpO6R
+        nzU5ZPO0R6qeJj1ZK609XsyczdIejBIMEypHYj2Ys7aDmFE6k+4AB9J2QdvJQsPJBh8thPN6lIxL
+        pX6UPKj4+/OjN3zmRP53tJZGP6cJQWW25Tq0CgxGok03z24N9r7jGjPkDQrjwXsGzdoS7vPiyAq8
+        2D8/bsDfnzvz3mNPBQ3gdmavTGYvPA9ApWZGNMyLk6gmbTi1r7T4GyMTquC6jkfmiQDH+7Zleo9e
+        AuSkbxcuwBOdx5GTLxd/jTkyByYsIRClw8/WoVHu+a5R06Yby3AmO11ia21ZsXvD2ka2m0xz+mul
+        zWJlX7Enk0H7cWTZz/vaT8+dLtOlhqg7fSZ3FpHWru+f3MVeHVVstTOo6Hfe+rFqVI1dvdrb1de6
+        o697y9tNb9iYj8bb0VxaMG16H6nT+t5oP8RzaWxnep6HXc/oDDZP9jXWfqjMp33faI9jrdp1H6v9
+        pdqeRPNhI1Bm3ViZbqJ+S7bMTt9/ctPvxtv1XHqoqNNG/K/raubyutT3lKm4eHQGC9i4VGcD9ug0
+        dsquESmzweJRipju1JnWqlQeJZFBZjWn64iD0pJ/bNm31nObrZRpHbYovjKTLXU6YJo78BWHMZ0N
+        6np73JBXg+fhUP6xN7qN+6NbCTG6HzPWHLRqtf7oXnxuNXylPYmNNnPU6WT3bHmWfLdd6s4EdjV2
+        OvIht25L17gMXWvdXs+rXQa71vqqvtCm4x9H0jbUJHH92Gq2YNuv86noa8vN+q0c2Z/qXSiO4mtt
+        Bt3Ah90sf16VfGzIzqJidJp7HkPEK4nZ9aY3M+r6VK4/jXRbbj84iEGoTpM8DUtxSfKiAEvjVWMI
+        HO4TvEwm49XqA/3yjy8SYgRcyvdo3e3JTnMS3XNgW2mPrbEzIb070qXvmv3NJVup0/5Ca0/2cnuA
+        +5TdfFpfKjPybcsQ97KfyyzOhVgt/7XYDzoTWmOF2L/g+g7rB1gnv3fkPMDvVGeL8FOO06dxW6a1
+        1+ldPu4aO60qJzjf3+4U6Fc7OmpRtuZTBTja+ljf16R6t4itcYJ5hroZjkQZNZnmYjIZDkfH9cvL
+        ehv2o4Yta1SIeZ6PtrLW7SZqnmW2LuUH4o/JAvzh/RFxHne6oiLV15RHxBr2EceE149Sf6cgdrD7
+        aU5+FnWU4lL7NE4Zr+h74rku/Es57q7rQL9n7PW9/GmddFMORP2z7jPYz0r5hk0m3e4H+u3nlQL7
+        60u11XxK7VporeYd6dWdsaWgFuQH5Gya2doj3O9hE3Bvwf8yfjL/ixjMr7WzWMlFLniD1fq9Vp1c
+        wp864vyggS81dwJObP70aDdfHj/mlUIucv3X7/JdsiPN2eohqe32g4g171DH8KfO/ltH//k6GjnR
+        WgFOEed7+CUq7UashU/+nxDrrVFl2/lyVe//MbHOa2aI/1P/L9TTShk2h8oUemdd0rWX76t3v04H
+        PuaKUJn1eD8ZuN0F5iNmwDetPf4jaquH9dfmcGMNZl1/vv9vj/4zevSYanA2WWV9Y3NprNVZ77+9
+        43vxXYy920vm4M4Ac/eWFWbVCubpkPoHzczgtp0mVS7l+3tLcyZVuY0+0n7AfHSPWBrA3Qtm55r1
+        MlV2HA9208MM62sOW+m72vVjNdGfrQ/7K4SZdFbeGNNuqM6onmXMYN36fPqCe5ri3Nn6OmEtwcg1
+        /Nijn8HfydicNbG3OexzJh22UcawxaEZbkNzO+0L9srsxX528p+h9809o1R3Z2Ijn8s09grF9Xkp
+        b3qj+9yWbN8ynYLTM5uqE1tFXRidXt4n82ut5h6+/QquqhR48GV03xghl9Dps3n1xXqZIR/D5pi4
+        DNjeGbPeZzzpIjeeMZXRixrRo9jsjcTeWm9v1/pOrBR1PLNmOJ/1I01C/KcV+JGv+f/P1lWOqc/t
+        vKtH0Ik95GKtOTSjP4Rym/KOfd9osz7I5VjO/UI80Isf9rRX1PfvZAvrDjJs0p6xWBf8M7gOeEow
+        iBh1ddynTIGzBC9R707Gv4dxb6Rf9pbyZf/uQUUd8nsPPYZ0oK6x71Um2V7zQZpPWThHPSi051ze
+        bnvDyqZn49/kZdvfe7ve0qv0Jh7qnd+f1G+qO7XzGnGMlepkoUjjH5Up6k/aohcaItVq6he4Zks+
+        rEp9wy1g2JmEpFO5L++R0+tUIwf/K7Rvn6xe3JVNNamRT9NBiVeTWqvYg/tGF/39wIHSYK0OU47F
+        Hrs36lWxx/6V6hz9J3x0m5v57AXXbze9u5dKHzPrB7ZlsfjUt+dO3zedlHta2ecx9vdyrb+/B7d1
+        6wZxU6sBnPg5Z+kSwxyd6VCgr0+9BPeBz/JnMxlPMRc1sB+12b6AQ2DVgN89K/v+XT9Ie5g6UxjV
+        iwau0dPnMxk/YcaLgJH4seoz3ble07OgR+rdld5GvruPe63mBLwroQ/tqW//dN+/67Vut4/LW19+
+        SHls17wHPy+IsweIE3F20p8ptoltud/vfblWqG6rXV/vcBzsC5gGt/Z36qyZzpblzxkGXqbdPeaM
+        BerbPvTp5gtws4fPK3U2idBzwAd9XwcngLss9HjLaC8Y9R6VemF7IWrTh/hYL6I+oWMWRk4Qs7R3
+        3qE2b/O1Ktrudt+7u7W0Kc2HfCZDv1Ko9rlPMtVQqwmOGWPda1obuRkX5Vc8V8gnZp7YAA9pnVXI
+        7ZvWQ/MlX2tBeVR2zabidqmHwGYWK5hdgIVYfhh4mGeTOE9pNqmv5PZE0qStmM6Ka8VG/BB/udNE
+        nhaY+Sex3DFQcwtfO8QPMmNL7UyAj5ql0RrTBxe6fcxqe+gKMU+Imsv7XwjMrrAHbIK74bcBvmki
+        ZhOaL/b0/APfwV9GvI6Z3PAfD7GrwhaaU7J4IVZ9T52KG9h+qST305oBOLkK+xHrpg39mCP6oVal
+        Z5LIaxXYsJt8b0h5k9sNR364jfOZuZz/WL7HHEC5kMaU3w3mvIrc4bEDXvpLrUo1ubI0aW6hP8XK
+        TLfG7e1Cl0R6RipqBf8Oa1AewP/0/11TLsws1gSxhQ9cj15tMtrX4bM3Bw7nDvbQwAvFkfMQxQJ+
+        GtK1hb7kazPk3PUZ+CLfd/300KS5CLNcw9XajZVJfL1bWao02aD3LqB7o8wolt263OHzM/gbvLLj
+        ujvoCcDCrZfNWD8Nad7CjNhhe6oN+J2vpXI9/TXswH6I+pUIrDSQS+CwAwzSPA8MwV8mtyyxP5Lr
+        crsuzqUt04B/hc/zDD17KypJbO7M2Ys1t2m/26jJ96t8LY7X+/7abDW7w/GK64XfPvUBYAz2UX0A
+        j9J2Rf0D+oibXJp1Cfc5tttbxJ73LAt1ska+CM+HddDDaA8CzC8Mjr1+aEwphhyrzny6XYJnFrpL
+        3MFr9x2G5dZioXea2GciR1PqUds6eGH70+46ejrUa98Ed0KHC9yK4BDyvzWfIf8SoxzS82XMt4OM
+        I5bEF/TsGDVMsvTso4BN4NKh+aTPDrhDbDoGQ2+2xq0a+OkhBL7Q57qEU/TqF34dOPf5XgJ1pCJW
+        c6kv6qhfpXVL+tfynV7kozrNrIgHYnh9iBvth3lOsB9uw1/CBXoXcozYJHN7wqtb6uE74Bmz8dhH
+        7MYJ54APpzwntP9C/TVErQ0sOMXcAFfVrki9OOElK9EJjlcOe17KdbovaPhKpxeCB0RFMphOnOvo
+        WW4TPDyUZtd8rQKvRbyftqgmFUYxpXjqfE+AuSOpSexzuqE5LK2bYBb5wVzB7cT30Xy2gk+Ninrg
+        uVTvpAbe2NG+C/sOcPM99nMsMqbbCvSgXvje109nACfvpXaNnl0A6330PmNR5vJD7DR3ssReaAEu
+        pJpYU4yJw4zj/FPFvhU9RgEOBrRfSuOM/MJGxBHYSWKZ6ihgju+NKrRvnE8HqINBYpPLueMYDom3
+        MbvTM8O8T6GX9wPO1Z0B7fX34M8dr4ND3Og5w44wN5c+9YXyk+m3tNlkj5xRn0CtQk6imGOfJr3D
+        bB47RQKXJPjlnIB/VY53Bxh1Umx3jPXb/sSxntQq2UD1S797yrGb9NB6oU/wOvdpdgMPYRYcW/kM
+        2q4Dv71sRiCuxb4CuHIY+taWzyPZXEKxAO/gPnDw8PAspDxP1fIZ/M11683clc3fz7SubheeVd03
+        wAmYH8XGy6jdGI3b9Dy24c72mIHu2JMx7YfKFFifUm94QA82Ym3Ka4ZiQXtglj374bm+O8QcfFPR
+        sD+E3Ap8R88oCLeUT0eryhb2PB/23cJMddBXnVTAHWtjdhtnv/uaYZ+oiX36HQzWMV7pd5NPk8bL
+        8IHRr9wWZpvqr0JcEIDDffi2hl701glLe/oOP6/S5xb5Wjw/dy8R58PhEV87E/B43QX3yNOx2Hs8
+        PENB7+ov4e+m8ByL9mCl+Tbbf0H/GnHPniUU5mPgoFL4/WfhGdWbe2gWXiqjejozYk8sle+lGKO+
+        Cs/rj+gmbL23pfQM5Nn661/PvpzFASu8zEbvFybnIeiNtjBSw8VF+s7hheHZN0cPV9BLCKYbjUmT
+        GzP25cwxoQa3TbLX+KRa9oJjfomvmS5JL0QmK3KZi5UZuCb7WqNX7vhbjvTupEGvmNrhrU7v7Z3d
+        REFs4usoeXHz1XYN/lYmvXOohrRAYsraNjctL3ajs5tqQ0w+h09rMxjZ9M7d3347o7dxenBhkbz/
+        Wfsq0juHkRfRG5Uive3wRqL+tVI9SNSOS9ROStQPEtXjEtcHievjEo1Tq5zy5fJrpSAhHZeonZS4
+        /nyVq9IqYuO4iFRY5vK4SCHu4rGgXZWMPRa0q1LgP5C4PEjUj0tcfx6Sq1Jqjum4LoXkWPKuSxE5
+        FtbrkrfHJcTK55ZC4sQqjZMQaZy0tFGy9Fg8GqW8fKDj8qQdVyclTkC1UYrYsbw0ShE7gkKpUorY
+        BxLSp6uQRPVTS0nic5IhiUJMj5QUSVydlPg8YiTR+DTqkDgRU5L4vBpIQvp8FbFMMsdMFU8BlSSq
+        J5epfR4ysQTUDySuPgeIWAr7BxKNU74Uw351XOIEUKVyUI9LnICyVIrpEcolic97DElcnbTjBAyl
+        UjyOe3s6HkUYHvOlehqG1ZO1XT0ZkGqpto8wKkl8zpckcQKG1RIMax8oKU4hx0NSDPyR7k8S4ilv
+        ioGv81MS3sZlnmpk4514uPQfnfA+kDgxFdVPDgn1U4h9OxSdHHg+kKiflLj83NtyU/ygCZxg1sqp
+        Bv+mCXzAzidgcprhpZO+SKdGorc1/m+W+Clvq2/s4Oep0leFU8yL/DAZf7/4/ZX3RZBm841SXw2i
+        9G4p+fT0mn6u5Eex3l0oyvDTVKaRHaDDf5I0Eq9vqrWbunheqVQUvi+z+Lmag1x+0K4q3VSkTC47
+        UZmJ0SbVN3L9Ug2QR+WMpCr2ADe1WnJfduKN/F7YPj+EpzM6FMr/NEDxDwskm1cjPayZ/kWBRDY8
+        +0YHNgNvTe/lH7/zcE8ml9zlmIatvrvls79ikNzx7Vshr+FBwd8OGj47glf8iwjffvlWSP//XRVh
+        4biaNz5diG9v//KxrPTRUk+vhbXoYgq18PjlN+IUx/SAkHGw9dNkv/0LEtnB/MH89o6ePewczWPZ
+        hfPs8i47xHtd+PMQydHl5JlD+XQEncm8y56p0JEzVdDjgJ/pSk/+fPXjwE+OauB/duQFu+QgiKOu
+        zORUH3mZnGdhOzqOEB7OOxeOF4f5ITR6FvJFeA1MOv4UmHGYXODnm4APfDj/OfjZ5XZxm+hcWvFs
+        eMEU7/Xd8r5pBl8Dkx6mwI2CMbQAwVqHisPZpS8CpdfWY8aPDXFtdMAjOZrnesnZDpXZe2grrGxu
+        wRjpCZz0KRMZWzgmlRzcI9MtBDI735JTCJ155IfBz4VbxgQ6DsbPmNiucHA9DD0sTvngx2hU+LPw
+        EksLsT0rnvblf/+Dgyg9A3Iwmo6I8COkdEL1fzjvVROMHp6yeTZ/2kXleHUpXl4MqrVhlfqF55uu
+        4RG8EiTZYegmh8g/eU539oaA6bHAV6k2kio39caNWM+ItcSi1KC+ipejSuNGugQBZ0LlB2zHWPXf
+        Y8fkL7B8wG/pn2TJb0xFiyQi1sUiRx1kqPB/+fa/AAAA//8DAJQY7/c8RgAA
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -129,9 +196,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sat, 10 Feb 2024 10:00:50 GMT
+      - Mon, 22 Apr 2024 06:45:06 GMT
       ETag:
-      - W/"63b2c73cc2f110fb10cca8869fd7a339"
+      - W/"107ed10be0acbdaccb6bb7f15e10d1f2"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -146,8 +213,6 @@ interactions:
       - 'true'
       X-Content-Type-Options:
       - nosniff
-      X-Download-Options:
-      - noopen
       X-Frame-Options:
       - SAMEORIGIN
       X-Permitted-Cross-Domain-Policies:
@@ -155,57 +220,12 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.20
       X-Request-Id:
-      - 58351116-e6b0-45ae-a9f0-5907187e87bf
+      - 27ff9acb-0438-4f95-b4cb-6a6c537afc0d
       X-Runtime:
-      - '0.036981'
+      - '0.044284'
       X-XSS-Protection:
-      - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/ra/10.5061
-  response:
-    content: "[\n  {\n    \"DOI\": \"10.5061\",\n    \"RA\": \"DataCite\"\n  }\n]"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 8535f3f44db106c2-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 10 Feb 2024 17:08:14 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=k6AOye6HQ%2FUicAk93kBaiICO7OmJuVY8O2hfAZ3L0Pee2Rv2ZwHrqr4a670zMVS8ojnA5r2mMoJShhXn2Ibb3bI9zI%2BnwqGP3YBeuydFelredtpB7IlTdXuz8WCbgCAZJWxKi44%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      - '0'
+    status:
+      code: 200
+      message: OK
 version: 1

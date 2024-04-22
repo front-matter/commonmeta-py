@@ -21,7 +21,7 @@ def test_software():
         "contributorRoles": ["Author"],
         "type": "Person",
         "id": "https://orcid.org/0000-0003-1419-2405",
-        "affiliation": [{"name": "Front Matter"}],
+        "affiliations": [{"name": "Front Matter"}],
         "familyName": "Fenner",
         "givenName": "Martin",
     }
@@ -152,7 +152,7 @@ def test_publication():
         "contributorRoles": ["Author"],
         "givenName": "Edward C",
         "familyName": "Holmes",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
             }
@@ -225,7 +225,7 @@ def test_dataset():
         "contributorRoles": ["Author"],
         "givenName": "Juan M.",
         "familyName": "Banda",
-        "affiliation": [{"name": "Georgia State University"}],
+        "affiliations": [{"name": "Georgia State University"}],
     }
     assert subject.license == {"id": "other-pd"}
     assert subject.date == {

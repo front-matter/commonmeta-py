@@ -27,7 +27,7 @@ def test_blog_posting():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliation": [{"name": "DataCite"}],
+        "affiliations": [{"name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -86,7 +86,7 @@ def test_zenodo():
         "contributorRoles": ["Author"],
         "givenName": "Matthias",
         "familyName": "Staib",
-        "affiliation": [{"name": "University of Zurich, Zurich, Switzerland"}],
+        "affiliations": [{"name": "University of Zurich, Zurich, Switzerland"}],
     }
     assert subject.license == {
         "id": "CC-BY-SA-4.0",
@@ -191,7 +191,7 @@ def test_dataverse():
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container is None
-    assert subject.descriptions == []
+    assert subject.descriptions is None
     assert subject.subjects is None
     assert subject.language is None
     assert subject.version is None
@@ -321,7 +321,7 @@ def test_with_upstream_blog_post():
         "contributorRoles": ["Author"],
         "givenName": "John",
         "familyName": "Chodacki",
-        "affiliation": [{"name": "University of California Office of the President"}],
+        "affiliations": [{"name": "University of California Office of the President"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",

@@ -19,7 +19,7 @@ def test_rdataone():
         "contributorRoles": ["Author"],
         "givenName": "Matt",
         "familyName": "Jones",
-        "affiliation": [{"name": "NCEAS"}],
+        "affiliations": [{"name": "NCEAS"}],
     }
     assert subject.titles == [{"title": "R Interface to the DataONE REST API"}]
     assert subject.descriptions[0]["description"].startswith(

@@ -95,7 +95,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     identifiers.append(
         compact(
             {
-                "identifier": normalize_doi(_id),
+                "identifier": _id,
                 "identifierType": "DOI",
             }
         )
@@ -144,11 +144,11 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "type": _type,
         # recommended and optional properties
         "additionalType": None,
-        "archiveLocations": archive_locations,
+        "archiveLocations": presence(archive_locations),
         "container": presence(container),
         "contributors": presence(contributors),
         "date": presence(date),
-        "descriptions": descriptions,
+        "descriptions": presence(descriptions),
         "files": presence(files),
         "fundingReferences": presence(funding_references),
         "geoLocations": None,

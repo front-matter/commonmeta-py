@@ -70,7 +70,7 @@ def test_one_author():
         "contributorRoles": ["Author"],
         "givenName": "Benjamin",
         "familyName": "Ollomo",
-        "affiliation": [
+        "affiliations": [
             {
                 "id": "https://ror.org/01wyqb997",
                 "name": "Centre International de Recherches Médicales de Franceville",
@@ -81,7 +81,7 @@ def test_one_author():
             "name": "Ollomo, Benjamin",
             "givenName": "Benjamin",
             "familyName": "Ollomo",
-            "affiliation": [
+            "affiliations": [
                 {
                     "name": "Centre International de Recherches Médicales de Franceville",
                     "affiliationIdentifier": "01wyqb997",
@@ -100,7 +100,7 @@ def test_one_author():
             "type": "Person",
         }
     ) == get_one_author(
-        {"name": "กัญจนา แซ่เตียว", "affiliation": [], "nameIdentifiers": []}
+        {"name": "กัญจนา แซ่เตียว", "affiliations": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
@@ -110,7 +110,7 @@ def test_one_author():
     } == get_one_author(
         {
             "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
-            "affiliation": [],
+            "affiliations": [],
             "nameIdentifiers": [],
         }
     )
@@ -122,7 +122,7 @@ def test_one_author():
     } == get_one_author(
         {
             "name": "ALICE Collaboration",
-            "affiliation": [],
+            "affiliations": [],
             "id": None,
         }
     )
@@ -144,7 +144,7 @@ def test_one_author():
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
             }
@@ -159,7 +159,7 @@ def test_one_author():
             "family": "Sankar",
             "sequence": "first",
             "contributorRoles": ["Author"],
-            "affiliation": [
+            "affiliations": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
                 }
@@ -172,7 +172,7 @@ def test_one_author():
         "contributorRoles": ["Author"],
         "givenName": "Thomas",
         "familyName": "Dubos",
-        "affiliation": [
+        "affiliations": [
             {"name": "École Polytechnique\nLaboratoire de Météorologie Dynamique"}
         ],
         "id": "https://isni.org/isni/0000000357526882",
@@ -183,7 +183,7 @@ def test_one_author():
             "contributorRoles": ["Author"],
             "givenName": "Thomas",
             "familyName": "Dubos",
-            "affiliation": [
+            "affiliations": [
                 "École Polytechnique\nLaboratoire de Météorologie Dynamique"
             ],
             "nameIdentifiers": [
@@ -208,7 +208,7 @@ def test_one_author():
         {
             "givenName": "Emma",
             "familyName": "Johansson",
-            "affiliation": [],
+            "affiliations": [],
             "nameIdentifiers": [],
         }
     )
@@ -292,7 +292,7 @@ def test_get_authors():
         {
             "id": "https://orcid.org/0000-0003-0077-4738",
             "name": "Matt Jones",
-            "affiliation": [
+            "affiliations": [
                 {
                     "name": "University of California, Santa Barbara",
                     "id": "https://ror.org/02t274463",
@@ -302,7 +302,7 @@ def test_get_authors():
     ]
     assert [
         {
-            "affiliation": [
+            "affiliations": [
                 {
                     "name": "University of California, Santa Barbara",
                     "id": "https://ror.org/02t274463",

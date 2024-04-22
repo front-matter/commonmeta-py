@@ -33,7 +33,7 @@ def test_wordpress_with_references():
         "contributorRoles": ["Author"],
         "givenName": "Matt",
         "familyName": "Wedel",
-        "affiliation": [
+        "affiliations": [
             {
                 "id": "https://ror.org/05167c961",
                 "name": "Western University of Health Sciences",
@@ -123,7 +123,7 @@ def test_post_with_relationships():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliation": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+        "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -180,7 +180,7 @@ def test_post_with_relationships_as_doi():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliation": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+        "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -239,7 +239,7 @@ def test_post_with_funding():
         "contributorRoles": ["Author"],
         "givenName": "Ted",
         "familyName": "Habermann",
-        "affiliation": [
+        "affiliations": [
             {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
         ],
     }
@@ -329,7 +329,7 @@ def test_post_with_funding_ror():
         "contributorRoles": ["Author"],
         "givenName": "Ted",
         "familyName": "Habermann",
-        "affiliation": [
+        "affiliations": [
             {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
         ],
     }
@@ -468,7 +468,7 @@ def test_ghost_with_affiliations():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliation": [
+        "affiliations": [
             {"id": "https://ror.org/008zgvp64", "name": "Public Library of Science"}
         ],
     }

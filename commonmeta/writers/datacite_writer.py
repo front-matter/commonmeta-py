@@ -160,7 +160,7 @@ def to_datacite_creator(creator: dict) -> dict:
             "familyName": creator.get("familyName", None),
             "nameType": _type + "al" if _type else None,
             "nameIdentifiers": name_identifiers,
-            "affiliation": creator.get("affiliation", None),
+            "affiliation": creator.get("affiliations", None),
         }
     )
 

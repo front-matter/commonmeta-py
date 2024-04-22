@@ -479,6 +479,7 @@ def test_ghost_with_affiliations():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3"
     assert subject.type == "Article"
+    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1

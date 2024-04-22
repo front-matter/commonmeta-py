@@ -26,7 +26,7 @@ def test_doi_with_data_citation():
         "contributorRoles": ["Author"],
         "givenName": "Martial",
         "familyName": "Sankar",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
             }
@@ -443,7 +443,7 @@ def test_peer_review():
         "contributorRoles": ["Author"],
         "givenName": "Jeremy",
         "familyName": "Magland",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
             }
@@ -592,7 +592,7 @@ def test_doi_with_orcid():
         "contributorRoles": ["Author"],
         "givenName": "Beatriz",
         "familyName": "Hernandez",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA"
             },
@@ -865,7 +865,7 @@ def test_dataset_usda():
         "contributorRoles": ["Author"],
         "givenName": "Christine A.",
         "familyName": "Ribic",
-        "affiliation": [{"name": "U.S. Geological Survey"}],
+        "affiliations": [{"name": "U.S. Geological Survey"}],
     }
     assert subject.license is None
     assert subject.date == {
@@ -1014,7 +1014,7 @@ def test_yet_another_book_chapter():
         "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
     }
     assert subject.contributors[0] == {
-        "affiliation": [{"name": "Université de Lyon, France"}],
+        "affiliations": [{"name": "Université de Lyon, France"}],
         "type": "Person",
         "contributorRoles": ["Author"],
         "givenName": "Charles-Edmond",
@@ -1172,7 +1172,7 @@ def test_proceedings_article():
     ]
     assert len(subject.contributors) == 6
     assert subject.contributors[0] == {
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA"
             }

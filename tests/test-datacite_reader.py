@@ -31,7 +31,7 @@ def test_dataset():
         "contributorRoles": ["Author"],
         "givenName": "Benjamin",
         "familyName": "Ollomo",
-        "affiliation": [
+        "affiliations": [
             {"name": "Centre International de Recherches Médicales de Franceville"}
         ],
     }
@@ -83,7 +83,7 @@ def test_blog_posting():
         "contributorRoles": ["Author"],
         "givenName": "Rorie",
         "familyName": "Edmunds",
-        "affiliation": [{"name": "DataCite"}],
+        "affiliations": [{"name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -472,7 +472,7 @@ def test_funding_schema_version_3():
         "contributorRoles": ["Author"],
         "givenName": "Najko",
         "familyName": "Jahn",
-        "affiliation": [{"name": "Bielefeld University Library"}],
+        "affiliations": [{"name": "Bielefeld University Library"}],
     }
     assert subject.titles == [
         {"title": "Publication Fp7 Funding Acknowledgment - Plos Openaire"}
@@ -746,7 +746,7 @@ def test_geolocation_box():
         "type": "Person",
         "contributorRoles": ["Author"],
         "id": "https://orcid.org/0000-0002-0811-8535",
-        "affiliation": [{"name": "University of California, Merced"}],
+        "affiliations": [{"name": "University of California, Merced"}],
     }
     assert subject.titles == [
         {
@@ -2014,4 +2014,4 @@ def test_read_datacite():
     """test_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
-    assert meta.get("doi", None) == "10.6084/m9.figshare.1449060"
+    assert meta.get("id", None) == "https://doi.org/10.6084/m9.figshare.1449060"
