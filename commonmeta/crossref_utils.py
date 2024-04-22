@@ -131,8 +131,12 @@ def insert_crossref_contributors(metadata, xml):
     ]
     for num, contributor in enumerate(con):
         contributor_role = (
-            "author" if contributor.get("contributorRoles") == ["Author"] else "editor"
+            "author" if "Author" in contributor.get("contributorRoles") else None
         )
+        if contributor_role is None:
+            contributor_role = (
+                "editor" if "Editor" in contributor.get("contributorRoles") else None
+            )
         sequence = "first" if num == 0 else "additional"
         if (
             contributor.get("type", None) == "Organization"
@@ -153,7 +157,7 @@ def insert_crossref_contributors(metadata, xml):
                 {"contributor_role": contributor_role, "sequence": sequence},
             )
             person_name = insert_crossref_person(contributor, person_name)
-        elif contributor.get("affiliation", None) is not None:
+        elif contributor.get("affiliations", None) is not None:
             anonymous = etree.SubElement(
                 contributors,
                 "anonymous",
@@ -176,18 +180,17 @@ def insert_crossref_person(contributor, xml):
     if contributor.get("familyName", None) is not None:
         etree.SubElement(xml, "surname").text = contributor.get("familyName")
 
-    if contributor.get("affiliation", None) is not None:
+    if contributor.get("affiliations", None) is not None:
         affiliations = etree.SubElement(xml, "affiliations")
         institution = etree.SubElement(affiliations, "institution")
-        if py_.get(contributor, "affiliation.0.name") is not None:
+        if py_.get(contributor, "affiliations.0.name") is not None:
             etree.SubElement(institution, "institution_name").text = py_.get(
-                contributor, "affiliation.0.name"
+                contributor, "affiliations.0.name"
             )
-        if py_.get(contributor, "affiliation.0.id") is not None:
+        if py_.get(contributor, "affiliations.0.id") is not None:
             etree.SubElement(
                 institution, "institution_id", {"type": "ror"}
-            ).text = py_.get(contributor, "affiliation.0.id")
-
+            ).text = py_.get(contributor, "affiliations.0.id")
     orcid = normalize_orcid(contributor.get("id", None))
     if orcid is not None:
         etree.SubElement(xml, "ORCID").text = orcid
@@ -196,13 +199,13 @@ def insert_crossref_person(contributor, xml):
 
 def insert_crossref_anonymous(contributor, xml):
     """Insert crossref anonymous"""
-    if contributor.get("affiliation", None) is None:
+    if contributor.get("affiliations", None) is None:
         return xml
     affiliations = etree.SubElement(xml, "affiliations")
     institution = etree.SubElement(affiliations, "institution")
-    if py_.get(contributor, "affiliation.0.name") is not None:
+    if py_.get(contributor, "affiliations.0.name") is not None:
         etree.SubElement(institution, "institution_name").text = py_.get(
-            contributor, "affiliation.0.name"
+            contributor, "affiliations.0.name"
         )
     return xml
 
