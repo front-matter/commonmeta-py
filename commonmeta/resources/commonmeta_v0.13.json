@@ -248,7 +248,6 @@
               "$ref": "#/definitions/contributorRole"
             },
             "type": "array",
-            "minItems": 1,
             "uniqueItems": true
           }
         }
@@ -333,7 +332,6 @@
         },
         "required": ["url"]
       },
-      "minItems": 1,
       "uniqueItems": true
     },
     "fundingReferences": {
