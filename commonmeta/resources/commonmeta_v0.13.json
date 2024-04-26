@@ -12,8 +12,7 @@
         "properties": {
           "organization": { "$ref": "#/definitions/organization" }
         }
-      },
-      "uniqueItems": true
+      }
     },
     "contributorRole": {
       "description": "The type of contribution made by a contributor",
@@ -63,13 +62,21 @@
       ],
       "type": "string"
     },
+    "geoLocationBox": {
+      "type": "object",
+      "properties": {
+        "westBoundLongitude": { "$ref": "#/definitions/longitude" },
+        "eastBoundLongitude": { "$ref": "#/definitions/longitude" },
+        "southBoundLatitude": { "$ref": "#/definitions/latitude" },
+        "northBoundLatitude": { "$ref": "#/definitions/latitude" }
+      }
+    },
     "geoLocationPoint": {
       "type": "object",
       "properties": {
         "pointLongitude": { "$ref": "#/definitions/longitude" },
         "pointLatitude": { "$ref": "#/definitions/latitude" }
-      },
-      "required": ["pointLongitude", "pointLatitude"]
+      }
     },
     "id": {
       "description": "The unique identifier for the resource.",
@@ -137,9 +144,11 @@
         "Dissertation",
         "Document",
         "Entry",
+        "Event",
         "Grant",
         "Image",
         "Instrument",
+        "InteractiveResource",
         "JournalArticle",
         "JournalIssue",
         "JournalVolume",
@@ -182,8 +191,7 @@
           "Internet Archive",
           "DWT"
         ]
-      },
-      "uniqueItems": true
+      }
     },
     "container": {
       "description": "The container of the resource.",
@@ -247,13 +255,11 @@
             "items": {
               "$ref": "#/definitions/contributorRole"
             },
-            "type": "array",
-            "uniqueItems": true
+            "type": "array"
           }
         }
       },
-      "minItems": 1,
-      "uniqueItems": true
+      "minItems": 1
     },
     "date": {
       "description": "The dates for the resource.",
@@ -332,7 +338,7 @@
         },
         "required": ["url"]
       },
-      "uniqueItems": true
+      "minItems": 1
     },
     "fundingReferences": {
       "description": "The funding references for the resource.",
@@ -366,21 +372,7 @@
         "properties": {
           "geoLocationPlace": { "type": "string" },
           "geoLocationPoint": { "$ref": "#/definitions/geoLocationPoint" },
-          "geoLocationBox": {
-            "type": "object",
-            "properties": {
-              "westBoundLongitude": { "$ref": "#/definitions/longitude" },
-              "eastBoundLongitude": { "$ref": "#/definitions/longitude" },
-              "southBoundLatitude": { "$ref": "#/definitions/latitude" },
-              "northBoundLatitude": { "$ref": "#/definitions/latitude" }
-            },
-            "required": [
-              "westBoundLongitude",
-              "eastBoundLongitude",
-              "southBoundLatitude",
-              "northBoundLatitude"
-            ]
-          },
+          "geoLocationBox": { "$ref": "#/definitions/geoLocationBox" },
           "geoLocationPolygons": {
             "type": "array",
             "items": {
@@ -491,8 +483,7 @@
         },
         "required": ["id", "type"]
       },
-      "minItems": 1,
-      "uniqueItems": true
+      "minItems": 1
     },
     "references": {
       "type": "array",
@@ -515,8 +506,7 @@
           "unstructured": { "type": "string" }
         },
         "required": ["key"]
-      },
-      "uniqueItems": true
+      }
     },
     "subjects": {
       "type": "array",
@@ -530,8 +520,7 @@
           }
         },
         "required": ["subject"]
-      },
-      "uniqueItems": true
+      }
     },
     "titles": {
       "description": "The titles of the resource.",
@@ -554,8 +543,7 @@
           }
         },
         "required": ["title"]
-      },
-      "uniqueItems": true
+      }
     },
     "url": {
       "description": "The URL of the resource.",
