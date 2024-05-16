@@ -228,6 +228,8 @@ def insert_citation_list(metadata, xml):
 
     citation_list = etree.SubElement(xml, "citation_list")
     for ref in metadata.references:
+        if ref.get("id", None) is None:
+            continue
         citation = etree.SubElement(
             citation_list, "citation", {"key": ref.get("key", None)}
         )
@@ -245,10 +247,10 @@ def insert_citation_list(metadata, xml):
             etree.SubElement(citation, "cYear").text = ref.get("publicationYear")
         if ref.get("title", None) is not None:
             etree.SubElement(citation, "article_title").text = ref.get("title")
-        if ref.get("doi", None) is not None:
-            etree.SubElement(citation, "doi").text = doi_from_url(ref.get("doi"))
-        if ref.get("url", None) is not None:
-            etree.SubElement(citation, "unstructured_citation").text = ref.get("url")
+        if ref.get("id", None) is not None:
+            etree.SubElement(citation, "doi").text = doi_from_url(ref.get("id"))
+        if ref.get("unstructured", None) is not None:
+            etree.SubElement(citation, "unstructured_citation").text = ref.get("unstructured")
     return xml
 
 

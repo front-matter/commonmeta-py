@@ -70,7 +70,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
         descriptions = [
             {
                 "description": sanitize(str(meta.get("abstract"))),
-                "descriptionType": "Abstract",
+                "type": "Abstract",
             }
         ]
     else:

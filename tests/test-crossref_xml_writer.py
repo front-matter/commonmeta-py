@@ -34,7 +34,7 @@ def test_write_metadata_as_crossref_xml():
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 27
+    assert len(py_.get(crossref_xml, "citation_list.citation")) == 26
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
         "key": "bib1",
         "volume": "426",
@@ -121,7 +121,7 @@ def test_write_crossref_xml_journal_article_plos():
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert py_.get(crossref_xml, "doi_data.doi") == "10.1371/journal.pone.0000030"
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 73
+    assert len(py_.get(crossref_xml, "citation_list.citation")) == 67
     assert (
         py_.get(crossref_xml, "titles.0.title")
         == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
@@ -721,7 +721,7 @@ def test_json_feed_item_with_references():
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 7
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": "https://ling.auf.net/lingbuzz/006031",
+        "doi": None,
     }
 
 

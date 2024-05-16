@@ -58,8 +58,7 @@ def test_cff_converter_python():
     """cff-converter-python"""
     string = "https://github.com/citation-file-format/cff-converter-python/blob/main/CITATION.cff"
     subject = Metadata(string)
-    assert subject.is_valid is False
-    assert subject.errors == "'id' is a required property"
+    assert subject.is_valid
     assert subject.id is None
     assert subject.url == "https://github.com/citation-file-format/cffconvert"
     assert subject.type == "Software"

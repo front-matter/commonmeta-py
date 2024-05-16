@@ -127,9 +127,9 @@ def get_references(references: list) -> list:
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
         if identifier and identifier_type == "DOI":
-            reference["doi"] = normalize_doi(identifier)
+            reference["id"] = normalize_doi(identifier)
         elif identifier and identifier_type == "URL":
-            reference["url"] = normalize_url(identifier)
+            reference["id"] = normalize_url(identifier)
         reference = py_.omit(
             reference,
             [

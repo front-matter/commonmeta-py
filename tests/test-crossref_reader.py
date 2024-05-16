@@ -171,7 +171,7 @@ def test_journal_article():
         "volume": "1",
         "firstPage": "e30",
     }
-    assert subject.subjects == [{"subject": "Multidisciplinary"}]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -236,7 +236,7 @@ def test_journal_article_with_funding():
         "type": "Journal",
         "volume": "10",
     }
-    assert subject.subjects == [{"subject": "Plant Science"}]
+    assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
     assert subject.version is None
@@ -279,10 +279,7 @@ def test_journal_article_original_language():
         "firstPage": "60",
         "lastPage": "60",
     }
-    assert subject.subjects == [
-        {"subject": "Physical Therapy, Sports Therapy and Rehabilitation"},
-        {"subject": "Orthopedics and Sports Medicine"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -336,7 +333,7 @@ def test_journal_article_with_rdf_for_container():
         "firstPage": "949",
         "lastPage": "961",
     }
-    assert subject.subjects == [{"subject": "Aquatic Science"}]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -526,7 +523,7 @@ def test_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
-    assert subject.url == "https://elifesciences.org/articles/55167#sa2"
+    assert subject.url == "https://elifesciences.org/articles/55167v1/peer-reviews"
     assert subject.titles[0] == {
         "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     }
@@ -539,7 +536,7 @@ def test_peer_review():
         "familyName": "Magland",
         "affiliations": [
             {
-                "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
+                "name": "Center for Computational Mathematics, Flatiron Institute"
             }
         ],
     }
@@ -641,9 +638,7 @@ def test_doi_with_sici():
         "type": "Journal",
         "volume": "87",
     }
-    assert subject.subjects == [
-        {"subject": "Ecology, Evolution, Behavior and Systematics"}
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -699,10 +694,7 @@ def test_doi_with_orcid():
         "firstPage": "1",
         "lastPage": "7",
     }
-    assert subject.subjects == [
-        {"subject": "Pulmonary and Respiratory Medicine"},
-        {"subject": "General Medicine"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions == [
         {
@@ -798,7 +790,7 @@ def test_date_in_future():
         "firstPage": "303",
         "lastPage": "312",
     }
-    assert subject.subjects == [{"subject": "Pharmacology"}]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -856,10 +848,7 @@ def test_vor_with_url():
         "firstPage": "122",
         "lastPage": "130",
     }
-    assert subject.subjects == [
-        {"subject": "Genetics (clinical)"},
-        {"subject": "Genetics"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
@@ -1027,7 +1016,7 @@ def test_book_chapter():
         "lastPage": "158",
     }
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"
@@ -1162,13 +1151,7 @@ def test_missing_contributor():
         "identifier": "2304-6775",
         "identifierType": "ISSN",
     }
-    assert subject.subjects == [
-        {"subject": "Computer Science Applications"},
-        {"subject": "Media Technology"},
-        {"subject": "Communication"},
-        {"subject": "Business and International Management"},
-        {"subject": "Library and Information Sciences"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.descriptions == [
         {

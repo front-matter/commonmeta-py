@@ -392,15 +392,12 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
     doi = parse_attributes(reference.get("doi", None))
     unstructured = reference.get("unstructured_citation", None)
     if isinstance(unstructured, dict):
-        url = unstructured.get("u", None)
         text = unstructured.get("font", None) or unstructured.get("#text", None)
     else:
-        url = reference.get("url", None)
         text = reference.get("unstructured_citation", None)
     metadata = {
         "key": reference.get("key", None),
-        "doi": normalize_doi(doi) if doi else None,
-        "url": normalize_url(url) if url else None,
+        "id": normalize_doi(doi) if doi else None,
         "contributor": reference.get("author", None),
         "title": reference.get("article_title", None),
         "publisher": reference.get("publisher", None),
@@ -411,7 +408,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
         "lastPage": reference.get("last_page", None),
         "containerTitle": reference.get("journal_title", None),
         "edition": None,
-        "unstructured": sanitize(text) if text and doi is None else None,
+        "unstructured": sanitize(text) if text else None,
     }
     return compact(metadata)
 

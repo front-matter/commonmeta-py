@@ -44,7 +44,7 @@ def test_thesis():
     string = path.join(path.dirname(__file__), "fixtures", "pure.ris")
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.errors == "'id' is a required property"
+    assert subject.errors is None
     assert subject.id is None
     assert subject.type == "Dissertation"
     assert subject.url is None

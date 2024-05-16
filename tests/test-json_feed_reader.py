@@ -55,7 +55,7 @@ def test_wordpress_with_references():
     assert len(subject.references) > 1
     assert subject.references[0] == {
         "key": "ref1",
-        "url": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
+        "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
     }
     assert subject.relations is None
 
@@ -486,7 +486,7 @@ def test_ghost_with_affiliations():
     }
     assert len(subject.references) == 1
     assert subject.references[0] == {
-        "doi": "https://doi.org/10.1371/journal.pone.0063184",
+        "id": "https://doi.org/10.1371/journal.pone.0063184",
         "title": "Database Citation in Full Text Biomedical Articles",
         "publicationYear": "2013",
         "key": "ref1",

@@ -102,7 +102,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     description = meta.get("summary", None)
     if description is not None:
         descriptions = [
-            {"description": sanitize(description), "descriptionType": "Abstract"}
+            {"description": sanitize(description), "type": "Abstract"}
         ]
     else:
         descriptions = None
@@ -165,13 +165,12 @@ def get_references(references: list) -> list:
             return None
         try:
             if reference.get("doi", None) and validate_doi(reference.get("doi")):
-                doi = normalize_doi(reference.get("doi"))
+                id_ = normalize_doi(reference.get("doi"))
                 return compact(
                     {
-                        "doi": doi,
+                        "id": id_,
                         "title": reference.get("title", None),
                         "publicationYear": reference.get("publicationYear", None),
-                        "url": reference.get("url", None),
                     }
                 )
 
@@ -185,7 +184,7 @@ def get_references(references: list) -> list:
                 if response.status_code in [404]:
                     return None
                 return {
-                    "url": reference.get("url"),
+                    "id": reference.get("url"),
                 }
         except Exception as error:
             print(error)

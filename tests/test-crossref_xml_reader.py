@@ -48,7 +48,7 @@ def test_doi_with_data_citation():
     assert len(subject.references) == 27
     assert subject.references[0] == {
         "key": "bib1",
-        "doi": "https://doi.org/10.1038/nature02100",
+        "id": "https://doi.org/10.1038/nature02100",
         "contributor": "Bonke",
         "title": "APL regulates vascular tissue identity in Arabidopsis",
         "publicationYear": "2003",
@@ -125,7 +125,7 @@ def test_journal_article():
     assert len(subject.references) == 73
     assert subject.references[0] == {
         "key": "ref1",
-        "doi": "https://doi.org/10.1056/nejm196502042720503",
+        "id": "https://doi.org/10.1056/nejm196502042720503",
         "contributor": "AS Schneider",
         "title": "Hereditary Hemolytic Anemia with Triosephosphate Isomerase Deficiency.",
         "publicationYear": "1965",
@@ -187,7 +187,7 @@ def test_journal_article_with_funding():
     assert len(subject.references) == 70
     assert subject.references[0] == {
         "key": "ref1",
-        "doi": "https://doi.org/10.1016/j.plaphy.2013.11.002",
+        "id": "https://doi.org/10.1016/j.plaphy.2013.11.002",
         "contributor": "Agudelo-Romero",
         "title": "Perturbation of polyamine catabolism affects grape ripening of Vitis vinifera cv. Trincadeira",
         "publicationYear": "2014",
@@ -242,11 +242,13 @@ def test_journal_article_original_language():
     assert len(subject.references) == 7
     assert subject.references[0] == {
         "key": "1",
-        "doi": "https://doi.org/10.1111/j.1469-7793.2000.00407.x",
+        "id": "https://doi.org/10.1111/j.1469-7793.2000.00407.x",
+        'unstructured': 'Seals DR Esler MD J Physiol. 528 : 407-417, 2000'
     }
     assert subject.references[-1] == {
         "key": "7",
-        "doi": "https://doi.org/10.1161/01.cir.95.6.1686",
+        "id": "https://doi.org/10.1161/01.cir.95.6.1686",
+        'unstructured': 'Cheitlin MD et al. Circulation 95 : 1686-1744, 1997',
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -291,7 +293,7 @@ def test_journal_article_with_rdf_for_container():
     assert subject.date == {
         "created": "2012-11-20",
         "published": "2012-01-01",
-        "updated": "2019-07-05",
+        "updated": "2024-05-01",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/286",
@@ -432,7 +434,7 @@ def test_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
-    assert subject.url == "https://elifesciences.org/articles/55167#sa2"
+    assert subject.url == "https://elifesciences.org/articles/55167v1/peer-reviews"
     assert subject.titles[0] == {
         "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     }
@@ -443,11 +445,6 @@ def test_peer_review():
         "contributorRoles": ["Author"],
         "givenName": "Jeremy",
         "familyName": "Magland",
-        "affiliations": [
-            {
-                "name": "Center for Computational Mathematics, Flatiron Institute, New York, United States"
-            }
-        ],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -550,7 +547,7 @@ def test_doi_with_sici():
     assert len(subject.references) == 39
     assert subject.references[0] == {
         "key": "i0012-9658-87-11-2832-anderson1",
-        "doi": "https://doi.org/10.2307/3933",
+        "id": "https://doi.org/10.2307/3933",
     }
     assert subject.references[-1] == {
         "key": "i0012-9658-87-11-2832-ydenberg1",
@@ -623,7 +620,7 @@ def test_doi_with_orcid():
     }
     assert subject.references[-1] == {
         "key": "30",
-        "doi": "https://doi.org/10.1378/chest.12-0045",
+        "id": "https://doi.org/10.1378/chest.12-0045",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -680,7 +677,7 @@ def test_date_in_future():
     assert subject.references[0] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib1",
         "contributor": "Allen",
-        "doi": "https://doi.org/10.4049/jimmunol.160.12.6062",
+        "id": "https://doi.org/10.4049/jimmunol.160.12.6062",
         "title": "Characterization of the peptide binding motif of a rhesus MHC class I molecule (Mamu-A*01) that binds an immunodominant CTL epitope from simianimmunodeficiency virus.",
         "publicationYear": "1998",
         "volume": "160",
@@ -689,7 +686,7 @@ def test_date_in_future():
     }
     assert subject.references[-1] == {
         "key": "10.1016/j.ejphar.2015.03.018_bib94",
-        "doi": "https://doi.org/10.1111/hiv.12134",
+        "id": "https://doi.org/10.1111/hiv.12134",
         "contributor": "Zoufaly",
         "title": "Immune activation despite suppressive highly active antiretroviral therapy is associated with higher risk of viral blips in HIV-1-infected individuals",
         "publicationYear": "2014",
@@ -760,12 +757,16 @@ def test_vor_with_url():
     }
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
-        "doi": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
+        "id": "https://doi.org/10.1111/j.1095-8312.2003.00230.x",
         "contributor": "H Wilkens",
         "publicationYear": "2003",
         "volume": "80",
         "firstPage": "545",
         "containerTitle": "Biol J Linn Soc",
+        "unstructured": 'Wilkens H, Strecker U . (2003). Convergent evolution of the '
+                  'cavefish Astyanax (Characidae: Teleostei): Genetic evidence '
+                  'from reduced eye-size and pigmentation. Biol J Linn Soc 80: '
+                  '545–554.'
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -880,7 +881,7 @@ def test_dataset_usda():
     assert len(subject.references) == 6
     assert subject.references[-1] == {
         "key": "ref6",
-        "doi": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "id": "https://doi.org/10.1674/0003-0031-178.1.47",
     }
     assert subject.funding_references is None
     # assert subject.funding_references == [
@@ -937,13 +938,14 @@ def test_book_chapter():
     assert len(subject.references) == 22
     assert subject.references[0] == {
         "key": "13_CR1",
-        "doi": "https://doi.org/10.1007/s00256-012-1391-8",
+        "id": "https://doi.org/10.1007/s00256-012-1391-8",
         "contributor": "KS Ahn",
         "publicationYear": "2012",
         "volume": "41",
         "issue": "10",
         "firstPage": "1301",
         "containerTitle": "Skeletal Radiol",
+        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8."
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1083,12 +1085,10 @@ def test_missing_contributor():
     assert len(subject.references) == 23
     assert subject.references[0] == {
         "key": "ref1",
-        "url": "https://council.web.cern.ch/en/content/convention-establishment-european-organization-nuclear-research",
         "unstructured": "CERN Convention for the Establishment of a European Organization for Nuclear Research",
     }
     assert subject.references[-1] == {
         "key": "ref23",
-        "url": "http://www.webcitation.org/6xNFQb5iD",
         "unstructured": "SCOAP3 News: APS Joins SCOAP3",
     }
     assert subject.funding_references is None
@@ -1197,7 +1197,7 @@ def test_proceedings_article():
     assert len(subject.references) == 56
     assert subject.references[-1] == {
         "key": "e_1_3_2_2_56_1",
-        "doi": "https://doi.org/10.5555/1364813.1364831",
+        "id": "https://doi.org/10.5555/1364813.1364831",
     }
     assert subject.funding_references == None
     # assert subject.funding_references[0] == {

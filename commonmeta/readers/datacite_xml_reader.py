@@ -93,7 +93,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
                 {
                     "subject": subject.get("#text", None),
                     "subjectScheme": subject.get("subjectScheme", None),
-                    "lang": subject.get("xml:lang", None),
+                    "language": subject.get("xml:lang", None),
                 }
             )
         return None
