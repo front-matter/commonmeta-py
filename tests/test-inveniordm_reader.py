@@ -264,7 +264,7 @@ def test_dataset():
         "type": "DataRepository",
         "title": "Zenodo",
     }
-    assert subject.language == "eng"
+    assert subject.language == "en"
     assert subject.version == "162"
     assert len(subject.files) == 24
     assert subject.files[0] == {
@@ -281,68 +281,33 @@ def test_rogue_scholar():
     string = "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
-    assert subject.type == "WebPage"
-    assert subject.url == "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
-    # assert subject.titles[0] == {
-    #     "title": "The Origins of SARS-CoV-2: A Critical Review"
-    # }
-    print(subject)
-    assert len(subject.contributors) == 21
+    assert subject.id == "https://demo.front-matter.io/records/kqfsz-qzd05"
+    assert subject.type == "Image"
+    assert subject.url == "https://demo.front-matter.io/records/kqfsz-qzd05"
+    assert subject.titles[0] == {
+        "title": "Elliott Group's gallery"
+    }
+    assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
         "contributorRoles": ["Author"],
-        "givenName": "Edward C",
-        "familyName": "Holmes",
-        "affiliations": [
-            {
-                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
-            }
-        ],
+        "givenName": "Phillip",
+        "familyName": "Burton",
     }
-    assert subject.license == {
-        "id": "CC-BY-NC-ND-4.0",
-        "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
-    }
-
-    assert subject.date == {
-        "published": "2021-08-18",
-        "updated": "2022-07-01T11:30:53Z",
-    }
-    assert subject.relations == [
-        {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
-    ]
+    assert subject.license is None
+    assert subject.date["published"] == "1994-02"
     assert subject.publisher == {
-        "name": "Zenodo",
+        "name": "InvenioRDM",
     }
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("The Origins of SARS-CoV-2: A Critical Review Holmes et al.")
+        .startswith("One state discussion green sit if.")
     )
-    assert (
-        subject.descriptions[1]
-        .get("description")
-        .startswith("Authors' final peer-reviewed version.")
-    )
-    assert subject.subjects == [
-        {"subject": "sars-cov-2"},
-        {"subject": "covid-19"},
-        {"subject": "origins"},
-        {"subject": "zoonosis"},
-    ]
     assert subject.container == {
-        "id": "https://www.re3data.org/repository/r3d100010468",
         "type": "Repository",
-        "title": "Zenodo",
+        "title": "Rogue Scholar",
     }
-    assert subject.language is None
-    assert subject.version == "Authors' final version"
-    assert len(subject.files) == 3
-    assert subject.files[0] == {
-        "key": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
-        "checksum": "md5:bdb88fc94708d8fd7d87854031faa8ab",
-        "url": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
-        "size": 197003,
-    }
+    assert subject.language == "en"
+    assert subject.version == "v0.0.1"

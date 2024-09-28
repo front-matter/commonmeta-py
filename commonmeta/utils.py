@@ -373,6 +373,9 @@ def from_inveniordm(elements: list) -> list:
     """Convert from inveniordm elements"""
 
     def format_element(element):
+        if "person_or_org" in element.keys():
+            element = element["person_or_org"]
+
         """format element"""
         if not isinstance(element, dict):
             return None
@@ -620,7 +623,7 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         return "cff"
     if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
         return "json_feed_item"
-    if re.match(r"\Ahttps:/(/)?zenodo\.org/api/records/(.+)\Z", pid) is not None:
+    if re.match(r"\Ahttps:/(/)(.+)/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
     return "schema_org"
 

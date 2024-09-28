@@ -1,6 +1,7 @@
 """InvenioRDM reader for Commonmeta"""
 import httpx
 from pydash import py_
+from furl import furl
 
 from ..utils import (
     normalize_url,
@@ -8,6 +9,7 @@ from ..utils import (
     dict_to_spdx,
     name_to_fos,
     from_inveniordm,
+    get_language,
 )
 from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
@@ -33,36 +35,53 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
 
 def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     """read_inveniordm"""
+    print(data)
     meta = data
     read_options = kwargs or {}
 
-    _id = doi_as_url(meta.get("doi", None))
-    resource_type = py_.get(meta, "metadata.resource_type.type")
+    url = normalize_url(py_.get(meta, "links.self_html"))
+    _id = doi_as_url(meta.get("doi", None)) or url
+    resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(meta, "metadata.resource_type.id")
+    resource_type = resource_type.split("-")[0]
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    
+    contributors = py_.get(meta, "metadata.creators")
+    print(contributors)
+    
     contributors = get_authors(
-        from_inveniordm(wrap(py_.get(meta, "metadata.creators")))
+        from_inveniordm(wrap(contributors)),
     )
-
-    publisher = {"name": meta.get("publisher", None) or "Zenodo"}
+    publisher = {"name": meta.get("publisher", None) or py_.get(meta, "metadata.publisher") or "Zenodo"}
 
     title = py_.get(meta, "metadata.title")
-    print(title)
     titles = [{"title": sanitize(title)}] if title else None
     additional_titles = py_.get(meta, "metadata.additional_titles")
-    print(additional_titles)
     # if additional_titles:
     #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
 
     date: dict = {}
     date["published"] = py_.get(meta, ("metadata.publication_date"))
+    if date["published"]:
+        date["published"] = date["published"].split("/")[0]
     date["updated"] = strip_milliseconds(meta.get("updated", None))
-    container = compact(
-        {
-            "id": "https://www.re3data.org/repository/r3d100010468",
-            "type": "DataRepository" if _type == "Dataset" else "Repository",
-            "title": "Zenodo",
-        }
-    )
+    f = furl(url)
+    if f.host == "zenodo.org":
+        container = compact(
+            {
+                "id": "https://www.re3data.org/repository/r3d100010468",
+                "type": "DataRepository" if _type == "Dataset" else "Repository",
+                "title": "Zenodo",
+            }
+        )
+    elif f.host in ["rogue-scholar.org", "beta.rogue-scholar.org", "demo.front-matter.io"]:
+        container = compact(
+            {
+                "type": "Repository",
+                "title": "Rogue Scholar",
+            }
+        )
+    else:
+        container = None
     license_ = py_.get(meta, "metadata.license.id")
     if license_:
         license_ = dict_to_spdx({"id": license_})
@@ -73,7 +92,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             py_.get(meta, "metadata.notes"),
         ]
     )
-    language = py_.get(meta, "metadata.language")
+    language = py_.get(meta, "metadata.language") or py_.get(meta, "metadata.languages[0].id")
+    if language:
+        language = get_language(language).alpha_2
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
@@ -92,7 +113,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         "doi": doi_from_url(_id),
-        "url": normalize_url(py_.get(meta, "links.self_html")),
+        "url": url,
         "contributors": presence(contributors),
         "titles": titles,
         "publisher": publisher,
@@ -169,7 +190,7 @@ def get_relations(relations: list) -> list:
         """map_relation"""
         identifier = relation.get("identifier", None)
         scheme = relation.get("scheme", None)
-        relation_type = relation.get("relation", None)
+        relation_type = relation.get("relation", None) or relation.get("relation_type", None)
         if scheme == "doi":
             identifier = doi_as_url(identifier)
         else:
