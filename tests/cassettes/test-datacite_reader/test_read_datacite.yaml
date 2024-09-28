@@ -11,13 +11,13 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.datacite.org/dois/10.6084/m9.figshare.1449060?include=media,client
   response:
     body:
       string: !!binary |
-        H4sIAHcHJmYAA6xZaXPiyLL9Kwo+zdy2sRDgNv7GYkA0yDY7mjcxoaUsFZSWq5IA0eH3298pSWx2
+        H4sIAG/Z9mYAA6xZaXPiyLL9Kwo+zdy2sRDgNv7GYkA0yDY7mjcxoaUsFZSWq5IA0eH3298pSWx2
         d9yeuW9iuhulMrNyPSmlvpdsIzZKj99L1C49lipy+V5+qN15jfIbdbhrRKRcqdUa8r1cuinFaUjA
         ZAeU48qI44iaSUy4EAfxP8qHEXmj+zMbSDx5y0k/lqA28WP6RkmEQ/74E4eymES+ERP14x0rIkYc
         ZFffS77hCUs7uyDaUP9GUg0f2gR1mvvwArnANxioDt0SX8sFcr43w6Ms1a50CIdhKqNGTAM/P1Lo
@@ -101,13 +101,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 22 Apr 2024 06:45:11 GMT
+      - Fri, 27 Sep 2024 16:12:31 GMT
       ETag:
-      - W/"1146a4e556fa40b621bff43b970c9502"
+      - W/"14592888aa2062c27623837eeb4dad63"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.0.20
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.23
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -123,11 +123,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.0.20
+      - Phusion Passenger(R) 6.0.23
       X-Request-Id:
-      - 926aa0fc-b604-4ea4-856d-39a3f6560997
+      - 415abbcd-6309-4db8-9ed0-c7952b15b019
       X-Runtime:
-      - '0.030356'
+      - '0.026267'
       X-XSS-Protection:
       - '0'
     status:

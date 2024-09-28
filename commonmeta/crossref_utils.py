@@ -250,7 +250,9 @@ def insert_citation_list(metadata, xml):
         if ref.get("id", None) is not None:
             etree.SubElement(citation, "doi").text = doi_from_url(ref.get("id"))
         if ref.get("unstructured", None) is not None:
-            etree.SubElement(citation, "unstructured_citation").text = ref.get("unstructured")
+            etree.SubElement(citation, "unstructured_citation").text = ref.get(
+                "unstructured"
+            )
     return xml
 
 
@@ -443,17 +445,13 @@ def insert_item_number(metadata, xml):
         if identifier.get("identifierType", None) is not None:
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
             if identifier.get("identifierType", None) == "UUID":
-                identifier["identifier"] = identifier.get(
-                    "identifier", ""
-                ).replace("-", "")
+                identifier["identifier"] = identifier.get("identifier", "").replace(
+                    "-", ""
+                )
             etree.SubElement(
                 xml,
                 "item_number",
-                {
-                    "item_number_type": identifier.get(
-                        "identifierType", ""
-                    ).lower()
-                },
+                {"item_number_type": identifier.get("identifierType", "").lower()},
             ).text = identifier.get("identifier", None)
         else:
             etree.SubElement(xml, "item_number").text = identifier.get(

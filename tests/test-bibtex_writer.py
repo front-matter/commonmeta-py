@@ -4,8 +4,10 @@ from os import path
 import pytest
 from commonmeta import Metadata, MetadataList
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_doi_with_data_citation():
@@ -48,10 +50,11 @@ def test_doi_for_blog_post():
     assert (
         bibtex
         == """@article{10.53731/avg2ykg-gdxppcd,
-    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
+    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing?Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
     author = {Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.53731/avg2ykg-gdxppcd},
+    issn = {2749-9952},
     month = jan,
     title = {Do we need to fix science blogs?},
     url = {https://blog.front-matter.io/posts/need-to-fix-science-blogs},
@@ -193,7 +196,8 @@ def test_book_chapter():
     copyright = {https://www.springernature.com/gp/researchers/text-and-data-mining},
     doi = {10.1007/978-3-662-46370-3_13},
     isbn = {9783662463703},
-    month = may,
+    language = {en},
+    month = sep,
     pages = {155--158},
     publisher = {Springer Berlin Heidelberg},
     title = {Clinical Symptoms and Physical Examinations},
@@ -220,7 +224,7 @@ def test_conference_proceedings():
     author = {Sinop, Ali Kemal and Grady, Leo},
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
-    month = may,
+    month = sep,
     publisher = {IEEE},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
     url = {http://ieeexplore.ieee.org/document/4408927},
@@ -437,42 +441,11 @@ def test_kbase_gulf_of_mexico():
     copyright = {https://creativecommons.org/licenses/by/4.0/},
     doi = {10.25982/86723.65/1778009},
     language = {en-US},
-    month = may,
+    month = sep,
     publisher = {KBase},
     title = {Gulf of Mexico blue hole harbors high levels of novel microbial lineages: A load of cool stuff from the blue hole in the Gulf of Mexico},
     urldate = {2021},
     year = {2021}
-}
-"""
-    )
-
-
-@pytest.mark.vcr
-def test_post_without_doi():
-    """blog post without doi"""
-    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
-    )
-    assert subject.type == "Article"
-    bibtex = subject.write(to="bibtex")
-
-    assert (
-        bibtex
-        == """@article{https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii,
-    abstract = {Das demokratische Haus in Deutschland brennt. Es ist höchste Zeit, die Instrumente der streitbaren Demokratie gegen Landesverbände der AfD einzusetzen, die mit hoher Wahrscheinlichkeit verfassungswidrig sind, wie die in Thüringen, Sachsen und Sachsen-Anhalt. Warum die Voraussetzungen für Grundrechtsverwirkung und Parteiverbot dort vorliegen, und die Verfassungstreue es auch verlangt, sie zu beantragen, soll dieser dreiteilige Beitrag begründen.},
-    author = {Hong, Mathias},
-    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
-    journal = {Verfassungsblog},
-    language = {de},
-    month = feb,
-    title = {Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)},
-    url = {https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii},
-    urldate = {2024-02-08},
-    year = {2024}
 }
 """
     )

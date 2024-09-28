@@ -473,7 +473,10 @@ def test_arxiv():
     assert subject.version == "2"
     assert subject.identifiers == [
         {"identifier": "1902.02534", "identifierType": "Other"},
-        {'identifier': 'https://doi.org/10.48550/arxiv.1902.02534','identifierType': 'DOI'},
+        {
+            "identifier": "https://doi.org/10.48550/arxiv.1902.02534",
+            "identifierType": "DOI",
+        },
     ]
     assert subject.provider == "DataCite"
 

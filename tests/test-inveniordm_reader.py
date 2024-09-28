@@ -102,7 +102,7 @@ def test_presentation():
 
     assert subject.date == {
         "published": "2023-07-21",
-        "updated": "2023-07-24T20:18:05Z",
+        "updated": "2024-07-11T16:29:41Z",
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
@@ -165,7 +165,7 @@ def test_publication():
 
     assert subject.date == {
         "published": "2021-08-18",
-        "updated": "2022-07-01T11:30:53Z",
+        "updated": "2024-07-18T18:54:12Z",
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
@@ -272,4 +272,77 @@ def test_dataset():
         "checksum": "md5:b1f7edcfd008053c53659131f654f17d",
         "url": "https://zenodo.org/api/records/7834392/files/frequent_trigrams.csv/content",
         "size": 24991,
+    }
+
+
+@pytest.mark.vcr
+def test_rogue_scholar():
+    """Rogue Scholar"""
+    string = "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
+    assert subject.type == "WebPage"
+    assert subject.url == "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
+    # assert subject.titles[0] == {
+    #     "title": "The Origins of SARS-CoV-2: A Critical Review"
+    # }
+    print(subject)
+    assert len(subject.contributors) == 21
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Edward C",
+        "familyName": "Holmes",
+        "affiliations": [
+            {
+                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
+            }
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-NC-ND-4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2021-08-18",
+        "updated": "2022-07-01T11:30:53Z",
+    }
+    assert subject.relations == [
+        {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
+    ]
+    assert subject.publisher == {
+        "name": "Zenodo",
+    }
+    assert subject.funding_references is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("The Origins of SARS-CoV-2: A Critical Review Holmes et al.")
+    )
+    assert (
+        subject.descriptions[1]
+        .get("description")
+        .startswith("Authors' final peer-reviewed version.")
+    )
+    assert subject.subjects == [
+        {"subject": "sars-cov-2"},
+        {"subject": "covid-19"},
+        {"subject": "origins"},
+        {"subject": "zoonosis"},
+    ]
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "Repository",
+        "title": "Zenodo",
+    }
+    assert subject.language is None
+    assert subject.version == "Authors' final version"
+    assert len(subject.files) == 3
+    assert subject.files[0] == {
+        "key": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "checksum": "md5:bdb88fc94708d8fd7d87854031faa8ab",
+        "url": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
+        "size": 197003,
     }

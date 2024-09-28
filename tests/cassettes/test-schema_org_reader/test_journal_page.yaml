@@ -11,7 +11,7 @@ interactions:
       host:
       - app.pan.pl
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://app.pan.pl/article/item/app011052023.html
   response:
@@ -138,19 +138,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sat, 20 Apr 2024 18:35:46 GMT
+      - Fri, 27 Sep 2024 16:12:51 GMT
       Expires:
       - Wed, 28 Jan 1976 11:52:00 GMT
       Keep-Alive:
       - timeout=5, max=100
       Last-Modified:
-      - Sat, 20 Apr 2024 18:35:46 GMT
+      - Fri, 27 Sep 2024 16:12:51 GMT
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=l4hacbfh6uor8t4nadv6k0qhe5; path=/
+      - PHPSESSID=04jgjo7fgo8crnokf5cuoia7h3; path=/
       Transfer-Encoding:
       - chunked
     status:
@@ -168,7 +168,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.4202
   response:
@@ -180,7 +180,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 87773c70c9e1b903-AMS
+      - 8c9cc7168ee3c801-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -188,21 +188,21 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 20 Apr 2024 18:35:46 GMT
+      - Fri, 27 Sep 2024 16:12:51 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=yDWnvbHLQ56p0f8vbDFpPMfWdML%2BTJPhAF7oVISNJ3MBLxX39BmM03cDHMzzEFD6TQZbexEjVM7ZCj4%2BjolagB%2BjBeILVG69VniKQ8RMvgcs3HVwtEnni3mXIpECo9Dkg57Vg6U%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=FrVsEUu8JyfLr9K0MCebGtW09Hht%2BAwSVZA7MX%2Fn4%2Fx2MfBtQgsDfM5OfGWp%2BokHfBJH3kmS71UfzRkdx%2BlQsSd9ZpKqqv5PL6f3R5NOKBGfbfjeeWEVRxBBWEgaURholDsVU3I%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
     status:
       code: 200
       message: OK
@@ -218,27 +218,27 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.4202/app.01105.2023
   response:
     body:
       string: !!binary |
-        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
+        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
+        sIKAYMltROlfdRGOhZ7NdbPWw+EbTopw3aEGAAA=
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -252,11 +252,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '838'
+      - '827'
       content-type:
       - application/json
       date:
-      - Sat, 20 Apr 2024 18:35:47 GMT
+      - Fri, 27 Sep 2024 16:12:52 GMT
       permissions-policy:
       - interest-cohort=()
       server:

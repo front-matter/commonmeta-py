@@ -19,13 +19,14 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
         return "{}"
-    
+
     alternate_identifiers = [
         {
             "alternateIdentifier": i.get("identifier", None),
             "alternateIdentifierType": i.get("identifierType", None),
         }
-        for i in wrap(metadata.identifiers) if i.get("id", None) != metadata.id
+        for i in wrap(metadata.identifiers)
+        if i.get("id", None) != metadata.id
     ]
 
     creators = [
@@ -100,11 +101,13 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
     )
 
     descriptions = [
-        compact({
-            "description": i.get("description", None),
-            "descriptionType": i.get("type", None) or "Other",
-            "lang": i.get("language", None),
-        })
+        compact(
+            {
+                "description": i.get("description", None),
+                "descriptionType": i.get("type", None) or "Other",
+                "lang": i.get("language", None),
+            }
+        )
         for i in wrap(metadata.descriptions)
     ]
 

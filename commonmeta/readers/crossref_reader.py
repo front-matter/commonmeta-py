@@ -66,7 +66,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
 
     archive_locations = wrap(meta.get("archive", None))
-    
+
     if meta.get("author", None):
         contributors = get_authors(wrap(meta.get("author")), via="crossref")
     else:
@@ -120,9 +120,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
 
     description = meta.get("abstract", None)
     if description is not None:
-        descriptions = [
-            {"description": sanitize(description), "type": "Abstract"}
-        ]
+        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
     else:
         descriptions = None
 
@@ -132,11 +130,13 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             for i in wrap(meta.get("subject", None) or meta.get("group-title", None))
         ]
     )
-    files = py_.uniq([
-        get_file(i)
-        for i in wrap(meta.get("link", None))
-        if i["content-type"] != "unspecified"
-    ])
+    files = py_.uniq(
+        [
+            get_file(i)
+            for i in wrap(meta.get("link", None))
+            if i["content-type"] != "unspecified"
+        ]
+    )
 
     return {
         # required properties

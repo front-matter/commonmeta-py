@@ -24,7 +24,11 @@ from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
 from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
 from ..author_utils import get_authors
-from ..date_utils import get_iso8601_date, strip_milliseconds, get_datetime_from_pdf_time
+from ..date_utils import (
+    get_iso8601_date,
+    strip_milliseconds,
+    get_datetime_from_pdf_time,
+)
 from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
 from ..translators import web_translator
 from ..constants import (
@@ -69,16 +73,24 @@ def get_schema_org(pid: str, **kwargs) -> dict:
             meta = pdf.docinfo if pdf.docinfo else {}
             if meta.get("/doi", None) is not None:
                 return get_doi_meta(meta.get("/doi"))
-            date_modified = get_datetime_from_pdf_time(meta.get("/ModDate")) if meta.get("/ModDate", None) else None
+            date_modified = (
+                get_datetime_from_pdf_time(meta.get("/ModDate"))
+                if meta.get("/ModDate", None)
+                else None
+            )
             name = meta.get("/Title", None)
-            return compact({
-                "@id": url,
-                "@type": "DigitalDocument",
-                "via": "schema_org",
-                "name": str(name),
-                "datePublished": date_modified,
-                "dateAccessed": datetime.now().isoformat("T", "seconds") if date_modified is None else None,
-            })
+            return compact(
+                {
+                    "@id": url,
+                    "@type": "DigitalDocument",
+                    "via": "schema_org",
+                    "name": str(name),
+                    "datePublished": date_modified,
+                    "dateAccessed": datetime.now().isoformat("T", "seconds")
+                    if date_modified is None
+                    else None,
+                }
+            )
         except Exception as error:
             print(error)
             return {

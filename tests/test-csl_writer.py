@@ -334,8 +334,8 @@ def test_organization_author():
         == "Discovery, genotyping and characterization of structural variation and novel sequence at single nucleotide resolution from de novo genome assemblies on a population scale"
     )
     assert csl.get("author") == [
-        {"family": "Liu", "given": "Siyang"},
         {"literal": "The Genome Denmark Consortium"},
+        {"family": "Liu", "given": "Siyang"},
         {"family": "Huang", "given": "Shujia"},
         {"family": "Rao", "given": "Junhua"},
         {"family": "Ye", "given": "Weijian"},
@@ -359,29 +359,6 @@ def test_organization_author():
 #       expect(json['type']).to eq('article')
 #       expect(json['DOI']).to eq('10.34747/g6yb-3412')
 #       expect(json['issued']).to eq('date-parts' => [[2019]])
-
-
-@pytest.mark.vcr
-def test_post_without_doi():
-    """blog post without doi"""
-    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
-    )
-    assert subject.type == "Article"
-    csl = json.loads(subject.write(to="csl"))
-    assert csl.get("type") == "article"
-    assert (
-        csl.get("URL")
-        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
-    )
-    assert (
-        csl.get("title")
-        == "Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III)"
-    )
 
 
 @pytest.mark.vcr

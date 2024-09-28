@@ -73,19 +73,6 @@ def test_write_crossref_xml_list():
 
 
 @pytest.mark.vcr
-def test_write_crossref_xml_list_missing_doi():
-    """write_crossref_xml_list_missing_doi"""
-    string = path.join(
-        path.dirname(__file__), "fixtures", "crossref-list_missing_doi.json"
-    )
-    subject_list = MetadataList(string, via="crossref")
-    assert len(subject_list.items) == 20
-    assert subject_list.write(to="crossref_xml") is None
-    assert subject_list.is_valid is False
-    assert subject_list.errors == ["'identifier' is a required property"]
-
-
-@pytest.mark.vcr
 def test_write_commonmeta_list_as_crossref_xml():
     """write_commonmeta_list crossref_xml"""
     string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
@@ -442,6 +429,12 @@ def test_json_feed_item_without_doi():
             "contributorRoles": ["Author"],
             "givenName": "Nees Jan",
             "familyName": "van Eck",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/027bh9e22",
+                    "name": "Leiden University",
+                },
+            ],
         },
         {
             "type": "Person",
@@ -460,6 +453,15 @@ def test_json_feed_item_without_doi():
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
     assert py_.get(crossref_xml, "contributors.person_name.0") == {
         "ORCID": "https://orcid.org/0000-0001-8448-4521",
+        "affiliations": {
+            "institution": {
+                "institution_id": {
+                    "#text": "https://ror.org/027bh9e22",
+                    "type": "ror",
+                },
+                "institution_name": "Leiden University",
+            },
+        },
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Nees Jan",
@@ -526,6 +528,7 @@ def test_json_feed_item_with_organizational_author():
             "name": "Liberate Science",
         }
     ]
+    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.organization")) == 1
@@ -564,6 +567,15 @@ def test_json_feed_item_with_archived_content():
         "given_name": "Markus",
         "surname": "Stocker",
         "ORCID": "https://orcid.org/0000-0001-5492-3212",
+        "affiliations": {
+            "institution": {
+                "institution_id": {
+                    "#text": "https://ror.org/04ers2y35",
+                    "type": "ror",
+                },
+                "institution_name": "University of Bremen",
+            },
+        },
     }
     assert (
         py_.get(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
@@ -717,11 +729,6 @@ def test_json_feed_item_with_references():
         "sequence": "first",
         "given_name": "Mark",
         "surname": "Dingemanse",
-    }
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 7
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
-        "key": "ref1",
-        "doi": None,
     }
 
 

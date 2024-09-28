@@ -55,7 +55,12 @@ def test_geo_location_empty():
         "givenName": "Carlos",
         "familyName": "Carvajal",
     }
-    assert subject.identifiers == [{'identifier': 'http://www.earthchem.org/library/browse/view?id=1185', 'identifierType': 'URL'}]
+    assert subject.identifiers == [
+        {
+            "identifier": "http://www.earthchem.org/library/browse/view?id=1185",
+            "identifierType": "URL",
+        }
+    ]
     assert subject.license == {
         "id": "CC-BY-NC-SA-3.0",
         "url": "https://creativecommons.org/licenses/by-nc-sa/3.0/legalcode",

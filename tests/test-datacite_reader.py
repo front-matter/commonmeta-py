@@ -311,7 +311,9 @@ def test_missing_description():
     assert subject.titles[0] == {
         "title": "An Overview of the Geology of Canadian Gold Occurrences"
     }
-    assert subject.descriptions == [{"description": "Die Geowissenschaften", "type": "Other"}]
+    assert subject.descriptions == [
+        {"description": "Die Geowissenschaften", "type": "Other"}
+    ]
 
 
 def test_is_identical():
@@ -436,7 +438,9 @@ def test_even_more_subject_scheme_for():
     assert subject.subjects == [
         {"subject": "130103 Higher Education"},
         {"subject": "FOS: Educational sciences"},
-        {"subject": "130313 Teacher Education and Professional Development of Educators"},
+        {
+            "subject": "130313 Teacher Education and Professional Development of Educators"
+        },
         {"subject": "80799 Library and Information Studies not elsewhere classified"},
         {"subject": "FOS: Media and communications"},
         {"subject": "Library and Information Studies"},

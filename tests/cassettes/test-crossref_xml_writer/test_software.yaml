@@ -11,44 +11,32 @@ interactions:
       host:
       - raw.githubusercontent.com
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
   response:
-    content: "# This CITATION.cff file was created by ruby-cff (v 1.2.0).\n# Gem:
-      https://rubygems.org/gems/cff\n# CFF: https://citation-file-format.github.io/\n\ncff-version:
-      1.2.0\nmessage: If you use ruby-cff in your work, please cite it using the following
-      metadata\ntitle: Ruby CFF Library\nabstract: This library provides a Ruby interface
-      to manipulate Citation File Format files\nauthors:\n- family-names: Haines\n
-      \ given-names: Robert\n  orcid: https://orcid.org/0000-0002-9538-7919\n  affiliation:
-      The University of Manchester, UK\n- name: The Ruby Citation File Format Developers\nkeywords:\n-
-      ruby\n- credit\n- software citation\n- research software\n- software sustainability\n-
-      metadata\n- citation file format\n- CFF\nversion: 1.2.0\ndoi: 10.5281/zenodo.1184077\ndate-released:
-      2024-01-19\nlicense: Apache-2.0\nrepository-artifact: https://rubygems.org/gems/cff\nrepository-code:
-      https://github.com/citation-file-format/ruby-cff\nreferences:\n- type: software\n
-      \ title: Citation File Format\n  authors:\n  - family-names: Druskat\n    given-names:
-      Stephan\n    orcid: https://orcid.org/0000-0003-4925-7248\n  - family-names:
-      Spaaks\n    given-names: Jurriaan H.\n    orcid: https://orcid.org/0000-0002-7064-4069\n
-      \ - family-names: Chue Hong\n    given-names: Neil\n    orcid: https://orcid.org/0000-0002-8876-7606\n
-      \ - family-names: Haines\n    given-names: Robert\n    orcid: https://orcid.org/0000-0002-9538-7919\n
-      \ - family-names: Baker\n    given-names: James\n    orcid: https://orcid.org/0000-0002-2682-6922\n
-      \ - family-names: Bliven\n    given-names: Spencer\n    orcid: https://orcid.org/0000-0002-1200-1698\n
-      \   email: spencer.bliven@gmail.com\n  - family-names: Willighagen\n    given-names:
-      Egon\n    orcid: https://orcid.org/0000-0001-7542-0286\n  - family-names: P\xE9rez-Su\xE1rez\n
-      \   given-names: David\n    orcid: https://orcid.org/0000-0003-0784-6909\n    website:
-      https://dpshelio.github.io\n  - family-names: Konovalov\n    given-names: Alexander\n
-      \   orcid: https://orcid.org/0000-0001-5299-3292\n  identifiers:\n  - type:
-      doi\n    value: 10.5281/zenodo.1003149\n    description: The concept DOI for
-      the collection containing all versions of the Citation File Format.\n  - type:
-      doi\n    value: 10.5281/zenodo.5171937\n    description: The versioned DOI for
-      the version 1.2.0 of the Citation File Format.\n  keywords:\n  - citation file
-      format\n  - CFF\n  - citation files\n  - software citation\n  - file format\n
-      \ - YAML\n  - software sustainability\n  - research software\n  - credit\n  abstract:
-      CITATION.cff files are plain text files with human- and machine-readable citation
-      information for software. Code developers can include them in their repositories
-      to let others know how to correctly cite their software. This is the specification
-      for the Citation File Format.\n  date-released: 2021-08-09\n  license: CC-BY-4.0\n
-      \ version: 1.2.0\n"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
+        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBwm
+        YfRzGLyA33A9g9ra1sxGIyeyxLUJlV6O3MuI5Elofn9/EiqE5VaohjkjrFJ6zW24FLbuFqFQoyCg
+        M2yD2pDMrLcUrNEYvsQZPFSwUx10Bk/+iMatadgqvXoJrUROu2QFQViSFM0SbI1QKSnV1v1bo+Ul
+        tzywwkpS+pE0OR/hrVhorncBXxireWFnfWpkvwytVhtRogHeHxGNRV3xAsEqWPNGtJ2kbMF8HyHc
+        uzTe+wh9Sk3AO1srbWYBg4qvhdyxhlNwM3jNRUP7AEuxweaw+lEtUFtaVboQ5SmH/q/PckQfRr+E
+        5ZObjKV5nJM4r8ic8E64GBA+NcKn1O5AVfCON0WNhrx/CZ/ekC/OXC/Y52IogDvcoFQtaQlWuKNk
+        lz4MVwZ6EFBKYenFqMpuufYV8EqcDBrkuqiPm8/lTGcsBc8X5LF1qo7lYUcdPSB7rNAy1So4Q0ip
+        BL1G4STJ4tFXbFSpwjjOxlGaBqQMmUYPDEpiEiVjFsWMMiVFgY2h0G9bThlhTpPGVlGilN4xrq2o
+        PA6+j/BnRwpV4kl8D+tCrQdhPzpgmDRUqLEp0OfU7lpSckwWwB6oQ3Vx1T6ACuAcVne6MysvdIas
+        R4ttzRu/8UNw3bBxnkxYmoyzARuPLecrc2ni905rwXkDr8PrzCQsjaZjNo6m+YCZed0hvFbN8tLS
+        exTyWhNZlk5ZOo2mAyaOl/C/ruH/vojnFl7xFeqBVLnHtfqTaZawaZ4kQ/qlUztQ7taBS19rIk7o
+        LZ7mmT+Aay4k4bHXES68jV+WbtVBe8CNP4WUYllTyx7w5deluhJ3MUsn44RFSTZUrT++/a3xK3vs
+        vv1Fz0s7d5y69bUAj9JsTEmNcn9giwu6z88uctmaGqVQJ6IacOiNatSGS7W59OVW4hfelNdWIGaT
+        JM/ZTZK7IhPnNNSIBB7ueN8fqOV5bWSyw8vmR1HF4z4c4qxCi/ZEB4WiSrbU0z88uK7q+bEgfsTC
+        txfadi3ZcSWXEvat1jjqcJJDbSi82rFJnMb5TTrs2N4UTRzPXduv9q3+R16cyMl5NMggbsNxyIWA
+        8UuXFOZrfabg8+27t/8WP2Myt3fJfN5mT5bUuY+DxsX4RVMGqWwlKQSLX/YDBGwJf1B3NG0wIEDR
+        2FHU1LSI3ogzF/LkM00nvbM+NkrkwYMQ5sRRlPoDnUPBnXQhO1qmzK7dREVPoeFIbIJM05Aj0YKi
+        LTq0atQWavrRcqG0JujIXT929WdP9vwQRV9XNWoiBUG5OPn1vVpeMnfMooz5W3rk7vmcvfrMxkTd
+        AGdTwT9NkM8x3AoAAA==
     headers:
       Accept-Ranges:
       - bytes
@@ -69,13 +57,13 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Fri, 01 Mar 2024 11:26:48 GMT
+      - Fri, 27 Sep 2024 16:12:23 GMT
       ETag:
       - W/"25628247775bc8498b72a76a149cdd57347f26043a4fbfd023e38d87e6753fdb"
       Expires:
-      - Fri, 01 Mar 2024 11:31:48 GMT
+      - Fri, 27 Sep 2024 16:17:23 GMT
       Source-Age:
-      - '0'
+      - '50'
       Strict-Transport-Security:
       - max-age=31536000
       Vary:
@@ -83,23 +71,24 @@ interactions:
       Via:
       - 1.1 varnish
       X-Cache:
-      - MISS
+      - HIT
       X-Cache-Hits:
-      - '0'
+      - '1'
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - dac5def325d6a39f405ce2dcd31a4a2dd2990f18
+      - 664d0fe2323485611a50a6c6f457bd8d568039d8
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - BF50:0E7D:358A0D3:37EB428:65E1BB74
+      - F9F7:1F07C5:70F00B:7665AE:66F6D934
       X-Served-By:
-      - cache-ams21044-AMS
+      - cache-fra-etou8220066-FRA
       X-Timer:
-      - S1709292408.238869,VS0,VE153
+      - S1727453543.130244,VS0,VE1
       X-XSS-Protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

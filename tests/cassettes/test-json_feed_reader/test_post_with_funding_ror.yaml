@@ -11,305 +11,215 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/24251b1a-c09c-4341-a65c-30cf92a47d73
   response:
-    content: '{"abstract":"The idea that DataCite exists only to provide DOIs is deeply
-      embedded in repository thought processes and this idea needs to evolve. The
-      research community needs to think about DataCite (and other elements of the
-      global research infrastructure) as powerful resources for describing and connecting
-      the myriad of resources that make up the modern research world.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/05bp8ka05","name":"Metadata
-      Game Changers"}],"name":"Ted Habermann","url":"https://orcid.org/0000-0003-3585-6733"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"earthAndRelatedEnvironmentalSciences","created_at":1709154984,"current_feed_url":null,"description":"<p>Exploring
-      metadata, communities, and new ideas. </p>","favicon":null,"feed_format":"application/rss+xml","feed_url":"https://metadatagamechangers.com/blog?format=rss","filter":null,"funding":null,"generator":"Squarespace","generator_raw":"Squarespace
-      6.0.0","home_page_url":"https://metadatagamechangers.com/blog","id":"6ac6b508-37c9-4dca-9f49-c36bbe19458a","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"","plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"metadatagamechangers","status":"active","title":"Blog
-      - Metadata Game Changers","updated_at":1707852638,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Blog
-      - Metadata Game Changers","blog_slug":"metadatagamechangers","content_text":":::
-      {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label=\"Post
-      Body\" data-type=\"item\" updated-on=\"1646694120644\"}\n::: {.row .sqs-row}\n:::
-      {.col .sqs-col-12 .span-12}\n::: {#block-32d1112510c14182c2b5 .sqs-block .html-block
-      .sqs-block-html block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\nThis work could not have been
-      done without Lisa Johnson, the Director of\nthe Data Repository for the University
-      of Minnesota (DRUM). Thanks Lisa!\n\n## Introduction {#introduction style=\"white-space:pre-wrap;\"}\n\nDuring
-      the early days, repositories had metadata collections in one\ndialect that served,
-      to some degree, all needs: discovery,\nidentification, access, interoperability,
-      and reuse. Native metadata\nwere either hidden from users or were served in
-      the native\nrepresentation, typically XML or JSON. Over the last several years,
-      with\nthe emergence of the global research infrastructure\n([DataCite](https://datacite.org/),
-      [ORCID](https://orcid.org/),\n[ROR](https://ror.org/), [Crossref](https://www.crossref.org/)
-      /\n[FundRef](https://www.crossref.org/services/funder-registry/), ...) and\nthe
-      increase in special-purpose metadata dialects (e.g.\n[schema.org](https://schema.org/),
-      [STAC](https://stacspec.org/),\n[IGSN](https://igsn.github.io/metadata/), ...),
-      the landscape has\nchanged considerably. In this landscape, metadata can follow
-      many\ncomplex pathways, ending up in multiple services and repositories.\nMetadata
-      can be gained along these paths, but, more typically, they are\nlost.\n\nFigure
-      1 illustrates one of metadata''s journeys through the layers of\n\"Metadata
-      Mountain\" in the [DRUM Repository at the University of\nMinnesota](https://conservancy.umn.edu/drum).
-      Metadata and documentation\nare created through active partnerships between
-      researchers and the\nrepository during the submission process. Some of the information
-      is\nstructured, i.e. the metadata, and some is unstructured, i.e. the\ndocumentation,
-      and together they make up the first layer of Metadata\nMountain, providing the
-      most complete basis for understanding the data\nand reproducing scientific results
-      based on it.\n:::\n:::\n:::\n\n::: {#block-yui_3_17_2_1_1646693405120_19298
-      .sqs-block .image-block .sqs-block-image block-type=\"5\"}\n::: {.sqs-block-content}\n:::
-      {.image-block-outer-wrapper .layout-caption-below .design-layout-inline .combination-animation-none
-      .individual-animation-none .individual-text-animation-none test=\"image-block-inline-outer-wrapper\"}\n<figure
-      class=\"sqs-block-image-figure intrinsic\"\nstyle=\"max-width:960px;\">\n<div
-      class=\"image-block-wrapper\" data-animation-role=\"image\">\n<div class=\"sqs-image-shape-container-element
-      has-aspect-ratio\" style=\"\n                position: relative;\n                \n                  padding-bottom:56.25%;\n                \n                overflow:
-      hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);\n              \">\n<img\nsrc=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png\"\nstyle=\"display:block;object-fit:
-      cover; width: 100%; height: 100%; object-position: 50% 50%\"\ndata-stretch=\"false\"\ndata-src=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png\"\ndata-image=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png\"\ndata-image-dimensions=\"960x540\"
-      data-image-focal-point=\"0.5,0.5\"\ndata-load=\"false\" data-elementtiming=\"system-image-block\"\nsizes=\"(max-width:
-      640px) 100vw, (max-width: 767px) 100vw, 100vw\"\nonload=\"this.classList.add(&quot;loaded&quot;)\"\nsrcset=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=100w
-      100w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=300w
-      300w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=500w
-      500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=750w
-      750w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=1000w
-      1000w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=1500w
-      1500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/55d351b3-3ad7-4b56-8aa4-e1bb0c21a229/figure1.png?format=2500w
-      2500w\"\nloading=\"lazy\" decoding=\"async\" data-loader=\"sqs\" width=\"960\"\nheight=\"540\"
-      />\n</div>\n</div>\n<figcaption><div class=\"image-caption\">\n<p>Figure 1.
-      Layers of documentation and metadata in the DRUM\nrepository.</p>\n</div></figcaption>\n</figure>\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646693405120_20213 .sqs-block .html-block .sqs-block-html
-      block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\nThe next step on the path up
-      Metadata Mountain is extracting the\nstructured metadata. In the DRUM case,
-      these metadata are represented\nusing [Dublin Core](https://www.dublincore.org/)
-      and they become the\nmost complete metadata (structured information) for the
-      resource. A\nsubset of these metadata are made available through an\n[OAI-PMH](https://www.openarchives.org/pmh/)
-      feed (in Dublin Core). In\nthe final step up Metadata Mountain, a smaller metadata
-      subset is\ntransferred to DataCite to receive a DOI for the dataset. This final\nsubset
-      includes only the mandatory DataCite elements for most datasets,\nthose required
-      for citation: Identifier, Creator, Title, Publisher,\nPublication Year, Resource
-      Type and simple access: Landing page URL.\nThis minimal package is not unique
-      to DRUM, it is ubiquitous across most\nrepositories in DataCite ([Habermann,\n2020](https://metadatagamechangers.com/blog/2020/12/23/minimum-metadata)).\u00a0\n\nMost
-      of the metadata created in the second layer is no longer included\nat this point
-      along the path to the top of Metadata Mountain. It remains\nin the original
-      repository, but it is not available to the global\nresearch infrastructure of
-      connections.\n\nThis metadata attrition on the climb up Metadata Mountain is
-      not unique\nto DRUM. Figure 2 compares [FAIR completeness scores in four\ncategories](https://metadatagamechangers.com/blog/2021/2/2/a-pid-feast-for-research-pidapalooza-2021)\nfrom
-      two sets of DataCite records: 1) those created and managed by five\ndifferent
-      Institutional Repositories (dashed lines) and 2) those created\nby researchers
-      from the same institutions as part of the submission\nprocess into other repositories
-      like Zenodo, Dryad, DataVerse and others\n(solid lines). The data show that
-      the metadata entered by researchers\ninto other repositories is considerably
-      more complete with respect to\nthese FAIR recommendations than those entered
-      by the Institutional\nRepositories. Those metadata are from the lower layers
-      of the Metadata\nMountain. They exist in the Institutional Repositories, but
-      they don''t\nmake it to the global infrastructure.\n:::\n:::\n:::\n\n::: {#block-yui_3_17_2_1_1646693405120_20617
-      .sqs-block .image-block .sqs-block-image block-type=\"5\"}\n::: {.sqs-block-content}\n:::
-      {.image-block-outer-wrapper .layout-caption-below .design-layout-inline .combination-animation-none
-      .individual-animation-none .individual-text-animation-none test=\"image-block-inline-outer-wrapper\"}\n<figure
-      class=\"sqs-block-image-figure intrinsic\"\nstyle=\"max-width:960px;\">\n<div
-      class=\"image-block-wrapper\" data-animation-role=\"image\">\n<div class=\"sqs-image-shape-container-element
-      has-aspect-ratio\" style=\"\n                position: relative;\n                \n                  padding-bottom:56.25%;\n                \n                overflow:
-      hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);\n              \">\n<img\nsrc=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png\"\nstyle=\"display:block;object-fit:
-      cover; width: 100%; height: 100%; object-position: 50% 50%\"\ndata-stretch=\"false\"\ndata-src=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png\"\ndata-image=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png\"\ndata-image-dimensions=\"960x540\"
-      data-image-focal-point=\"0.5,0.5\"\ndata-load=\"false\" data-elementtiming=\"system-image-block\"\nsizes=\"(max-width:
-      640px) 100vw, (max-width: 767px) 100vw, 100vw\"\nonload=\"this.classList.add(&quot;loaded&quot;)\"\nsrcset=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=100w
-      100w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=300w
-      300w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=500w
-      500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=750w
-      750w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=1000w
-      1000w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=1500w
-      1500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0cf27d3e-698c-4f94-b9eb-f0d479f9957c/FAIRnessComparison.png?format=2500w
-      2500w\"\nloading=\"lazy\" decoding=\"async\" data-loader=\"sqs\" width=\"960\"\nheight=\"540\"
-      />\n</div>\n</div>\n<figcaption><div class=\"image-caption\">\n<p>Figure 2.
-      Comparison of FAIRness for DataCite metadata from\ninstitutional repositories
-      (dashed lines) and from datasets submitted by\ninstitutional researchers to
-      other repositories (solid lines).</p>\n</div></figcaption>\n</figure>\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646693405120_21562 .sqs-block .html-block .sqs-block-html
-      block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\nThe schematic depiction of metadata
-      layers in Figure 1 and the data in\nFigure 2 clearly indicate that differences
-      between metadata content in\nMetadata Mountain are related to transfer processes
-      rather than to\ncreation processes. When these transfers are improved, attrition
-      along\nthe metadata pathway can be decreased or eliminated, metadata content
-      is\nmaintained and Metadata Mountain becomes the Metadata Superhighway shown\nin
-      Figure 3, increasing the content and the potential benefits of the\nglobal research
-      infrastructure.\n:::\n:::\n:::\n\n::: {#block-yui_3_17_2_1_1646693405120_21938
-      .sqs-block .image-block .sqs-block-image block-type=\"5\"}\n::: {.sqs-block-content}\n:::
-      {.image-block-outer-wrapper .layout-caption-below .design-layout-inline .combination-animation-none
-      .individual-animation-none .individual-text-animation-none test=\"image-block-inline-outer-wrapper\"}\n<figure
-      class=\"sqs-block-image-figure intrinsic\"\nstyle=\"max-width:844px;\">\n<div
-      class=\"image-block-wrapper\" data-animation-role=\"image\">\n<div class=\"sqs-image-shape-container-element
-      has-aspect-ratio\" style=\"\n                position: relative;\n                \n                  padding-bottom:56.279624938964844%;\n                \n                overflow:
-      hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);\n              \">\n<img\nsrc=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg\"\nstyle=\"display:block;object-fit:
-      cover; width: 100%; height: 100%; object-position: 50% 50%\"\ndata-stretch=\"false\"\ndata-src=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg\"\ndata-image=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg\"\ndata-image-dimensions=\"844x475\"
-      data-image-focal-point=\"0.5,0.5\"\ndata-load=\"false\" data-elementtiming=\"system-image-block\"\nsizes=\"(max-width:
-      640px) 100vw, (max-width: 767px) 100vw, 100vw\"\nonload=\"this.classList.add(&quot;loaded&quot;)\"\nsrcset=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=100w
-      100w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=300w
-      300w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=500w
-      500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=750w
-      750w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=1000w
-      1000w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=1500w
-      1500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/50aec59e-ac3a-42d2-a02f-3806b995bd14/MountainVsSuperhighway.jpg?format=2500w
-      2500w\"\nloading=\"lazy\" decoding=\"async\" data-loader=\"sqs\" width=\"844\"\nheight=\"475\"
-      />\n</div>\n</div>\n<figcaption><div class=\"image-caption\">\n<p>Figure 3.
-      Valuable metadata collected by institutional repositories\nneeds to be included
-      in the global research infrastructure to achieve\ntheir potential. The full
-      content needs to be included through the\nentire life cycle.</p>\n</div></figcaption>\n</figure>\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646693405120_22806 .sqs-block .html-block .sqs-block-html
-      block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\n## Improving Completeness of
-      DRUM Metadata in the Global Infrastructure {#improving-completeness-of-drum-metadata-in-the-global-infrastructure
-      style=\"white-space:pre-wrap;\"}\n\n*\"Measurement is the first step that leads
-      to control and, eventually,\nto improvement. If you can''t measure something,
-      you can''t understand it.\nIf you can''t understand it, ... you can''t improve
-      it.\" H. James\nHarrington*\n\nAs Harrington and others have noted, measuring
-      something is the first\nstep towards understanding and improving it. Tools for
-      measuring\n\"FAIRness\" of DataCite metadata were [described and\ndemonstrated](https://metadatagamechangers.com/blog/2021/2/2/a-pid-feast-for-research-pidapalooza-2021)\nfor
-      metadata from \\~150 DataCite repositories managed by the German\nTechnical
-      Information Library (TIB). The same approach can be used to\nquantify FAIRness
-      in DRUM and, more importantly, to measure improvements\nas new metadata are
-      transferred to DataCite.\n\nFigure 4 shows results of evaluating FAIRness of
-      DRUM metadata in\nDataCite, i.e. associated with DataCite DOIs. The elements
-      included in\nthe evaluation are shown in four groups: FAIR Findable Essential,
-      FAIR\nFindable Support, FAIR AIR Essential, and FAIR AIR Support, the same\ngroups
-      shown in Figure 2. The pattern seen here is very similar to that\nseen across
-      all DataCite repositories: the mandatory elements are\nincluded in all records,
-      and other elements (recommended and optional)\nare rare. This reflects the limited
-      \"get a DOI\" use case that DataCite\naddresses for most of its members.\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646694121820_11581 .sqs-block .image-block .sqs-block-image
-      block-type=\"5\"}\n::: {.sqs-block-content}\n::: {.image-block-outer-wrapper
-      .layout-caption-below .design-layout-inline .combination-animation-none .individual-animation-none
-      .individual-text-animation-none test=\"image-block-inline-outer-wrapper\"}\n<figure
-      class=\"sqs-block-image-figure intrinsic\"\nstyle=\"max-width:4027px;\">\n<div
-      class=\"image-block-wrapper\" data-animation-role=\"image\">\n<div class=\"sqs-image-shape-container-element
-      has-aspect-ratio\" style=\"\n                position: relative;\n                \n                  padding-bottom:66.67494201660156%;\n                \n                overflow:
-      hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);\n              \">\n<img\nsrc=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png\"\nstyle=\"display:block;object-fit:
-      cover; width: 100%; height: 100%; object-position: 50% 50%\"\ndata-stretch=\"false\"\ndata-src=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png\"\ndata-image=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png\"\ndata-image-dimensions=\"4027x2685\"
-      data-image-focal-point=\"0.5,0.5\"\ndata-load=\"false\" data-elementtiming=\"system-image-block\"\nsizes=\"(max-width:
-      640px) 100vw, (max-width: 767px) 100vw, 100vw\"\nonload=\"this.classList.add(&quot;loaded&quot;)\"\nsrcset=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=100w
-      100w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=300w
-      300w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=500w
-      500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=750w
-      750w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=1000w
-      1000w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=1500w
-      1500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/22c905c3-a33f-40c6-8b9e-3dee305af023/original__20220221_15.radarPlots.png?format=2500w
-      2500w\"\nloading=\"lazy\" decoding=\"async\" data-loader=\"sqs\" width=\"4027\"\nheight=\"2685\"
-      />\n</div>\n</div>\n<figcaption><div class=\"image-caption\">\n<p>Figure 4.
-      Completeness of fifty-seven DataCite metadata elements\nrelated to Findability
-      and Access, Interoperability, and Reusability\n(AIR) in the DRUM repository.</p>\n</div></figcaption>\n</figure>\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646694121820_12540 .sqs-block .html-block .sqs-block-html
-      block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\nExamining metadata in layer 2
-      of DRUM, we identified a number of\nelements populated across many DRUM records
-      but not populated in the\nDataCite schema. These include elements in all four
-      categories, shown in\nTable 1. In particular, findability in full-text searches
-      is improved by\nadding abstracts and keywords to the records; funder search
-      results are\nimproved with funder names, identifiers, and award numbers; connections\nto
-      papers and other resources are made with ReferencedBy; and re-use is\nsupported
-      with license information and full-text technical information.\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646694121820_12910 .sqs-block .code-block .sqs-block-code
-      block-type=\"23\"}\n::: {.sqs-block-content}\n|                    |                                                                                     |\n|--------------------|-------------------------------------------------------------------------------------|\n|
-      **Category**       | **Metadata Concepts**                                                               |\n|
-      Findable Essential | Abstract, Funder, Funder Project Identifier (Award Number),
-      Re-source Type, Subject |\n| Findable Support   | Dates, Funder Identifier,
-      Funder Identifier Type                                    |\n| AIR Essential      |
-      Dates, ReferencedBy, TechnicalInfo, Rights                                          |\n|
-      AIR Support        | Rights URI                                                                          |\n\n*Table
-      1. Metadata concepts added to DataCite from DRUM.*\n:::\n:::\n\n::: {#block-yui_3_17_2_1_1646694121820_13231
-      .sqs-block .html-block .sqs-block-html block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\nThe content of these elements
-      was extracted from the DRUM records,\ntranslated into the DataCite metadata
-      schema, and used to update the\nDataCite metadata. Figure 5 shows the evaluation
-      results for the updated\nrecords using the same criteria used with the original
-      records. The\ncompleteness over all categories improved from 15% to 32%. The
-      Figure\nshows visually striking improvements for many elements related to\nFindability
-      in the upper left, but the size of the increases in the\nother categories, from
-      \\< 10% to \\> 20% in two cases, are also\nsignificant, particularly because
-      these are categories that are\ngenerally more difficult to populate. \u00a0\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646694121820_13602 .sqs-block .image-block .sqs-block-image
-      block-type=\"5\"}\n::: {.sqs-block-content}\n::: {.image-block-outer-wrapper
-      .layout-caption-below .design-layout-inline .combination-animation-none .individual-animation-none
-      .individual-text-animation-none test=\"image-block-inline-outer-wrapper\"}\n<figure
-      class=\"sqs-block-image-figure intrinsic\"\nstyle=\"max-width:4058px;\">\n<div
-      class=\"image-block-wrapper\" data-animation-role=\"image\">\n<div class=\"sqs-image-shape-container-element
-      has-aspect-ratio\" style=\"\n                position: relative;\n                \n                  padding-bottom:66.16559600830078%;\n                \n                overflow:
-      hidden;-webkit-mask-image: -webkit-radial-gradient(white, black);\n              \">\n<img\nsrc=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png\"\nstyle=\"display:block;object-fit:
-      cover; width: 100%; height: 100%; object-position: 50% 50%\"\ndata-stretch=\"false\"\ndata-src=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png\"\ndata-image=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png\"\ndata-image-dimensions=\"4058x2685\"
-      data-image-focal-point=\"0.5,0.5\"\ndata-load=\"false\" data-elementtiming=\"system-image-block\"\nsizes=\"(max-width:
-      640px) 100vw, (max-width: 767px) 100vw, 100vw\"\nonload=\"this.classList.add(&quot;loaded&quot;)\"\nsrcset=\"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=100w
-      100w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=300w
-      300w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=500w
-      500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=750w
-      750w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=1000w
-      1000w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=1500w
-      1500w, https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/0a3ba566-8279-4447-959a-7c2757329cf1/updated__20220221_15.radarPlots.png?format=2500w
-      2500w\"\nloading=\"lazy\" decoding=\"async\" data-loader=\"sqs\" width=\"4058\"\nheight=\"2685\"
-      />\n</div>\n</div>\n<figcaption><div class=\"image-caption\">\n<p>Figure 5.
-      Completeness of fifty-seven DataCite metadata elements\nrelated to Findability
-      and Access, Interoperability, and Reusability\n(AIR) in the DataCite metadata.</p>\n</div></figcaption>\n</figure>\n:::\n:::\n:::\n\n:::
-      {#block-yui_3_17_2_1_1646694121820_14502 .sqs-block .html-block .sqs-block-html
-      block-type=\"2\" border-radii=\"{\\\"topLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"topRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomLeft\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0},\\\"bottomRight\\\":{\\\"unit\\\":\\\"px\\\",\\\"value\\\":0.0}}\"}\n:::
-      {.sqs-block-content}\n::: {.sqs-html-content}\n## Conclusion {#conclusion style=\"white-space:pre-wrap;\"}\n\nThe
-      most challenging steps along the path up Metadata Mountain occur\nduring metadata
-      creation in partnerships between researchers, data\nmanagers and curators who
-      many times have different goals on different\ntime-scales: short-term goals
-      of getting identifiers so results can be\npublished and long-term goals related
-      to trustworthy data that can be\nre-used. The metadata created during this phase
-      enables all elements of\nFAIR and is, therefore, the most valuable asset in
-      the system.\nHistorically the principle role of the global research infrastructure\nhas
-      been to provide persistent identifiers for resources and only\nminimum metadata,
-      i.e. the six elements that are complete in Figure 4,\nare required to get those
-      identifiers. Other valuable metadata are\ncreated, but they don''t make it to
-      the summit of metadata mountain.\n\nThe data in Figure 2 demonstrate the impact
-      that this common practice\nhas on the completeness and FAIRness of metadata
-      in the global research\ninfrastructure, and they demonstrate that the process
-      of metadata\ntransfer to DataCite is an important choke point in populating
-      and\nincreasing the value of the global infrastructure. The impact of\nimproving
-      the transfer process is demonstrated in Figure 4 and Figure 5\n-- significant
-      increases in metadata completeness and in support for all\nFAIR principles.\n\nClayton
-      Christensen described the [Resources -- Processes -- Values\n(RPV)](https://hbr.org/2000/03/meeting-the-challenge-of-disruptive-change)\nframework
-      for organizational capabilities and the challenges that these\nelements pose
-      for organizational change. All three of these elements\ncontribute to an organizations
-      capability for innovation and the\ndifficulty of changing them increases from
-      resources to values. The\nmetadata transfer problem described here is a good
-      example of the\nprocess part of this change equation and changing that process
-      is an\nimportant step towards change.\n\nValues are the way that people in organizations
-      think and make decisions\nand small choices about what they do at work. The
-      idea that DataCite\nexists only to provide DOIs is deeply embedded in repository
-      thought\nprocesses and this idea, i.e. this value, needs to evolve. The research\ncommunity
-      needs to think about DataCite (and other elements of the\nglobal research infrastructure)
-      as powerful resources for describing and\nconnecting the myriad of resources
-      that make up the connected research\nworld. We need to maximize the information
-      that we add into this system\nto maximize the benefits we can get out of it.\n\n##
-      Acknowledgments {#acknowledgments style=\"white-space:pre-wrap;\"}\n\nThis work
-      was funded by the National Science Foundation\n([[https://ror.org/021nxhr62]{style=\"text-decoration:underline\"}](https://ror.org/021nxhr62)[)\nAward\n]{style=\"text-decoration:underline\"}[2135874](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2135874).\n:::\n:::\n:::\n:::\n:::\n:::\n","doi":"https://doi.org/10.59350/86jd5-wpv70","guid":"62268c301674dc074d971710","id":"24251b1a-c09c-4341-a65c-30cf92a47d73","image":"https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png","indexed_at":1709378708,"language":"en","published_at":1646696379,"reference":[],"relationships":[{"type":"HasAward","urls":["https://ror.org/021nxhr62","https://www.nsf.gov/awardsearch/showaward?awd_id=2135874"]}],"summary":"This
-      work could not have been done without Lisa Johnson, the Director of the Data
-      Repository for the University of Minnesota (DRUM). Thanks Lisa!Introduction
-      During the early days, repositories had metadata collections in one dialect
-      that served, to some degree, all needs: discovery, identification, access, interoperability,
-      and reuse.","tags":[],"title":"Metadata Life Cycle: Mountain or Superhighway?","updated_at":1649960212,"url":"https://metadatagamechangers.com/blog/2022/3/7/ivfrlw6naf7am3bvord8pldtuyqn4r"}
-
-      '
+    body:
+      string: !!binary |
+        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
+        KVKq5QIABR3ER6CAAAA=
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Wed, 06 Mar 2024 10:35:01 GMT
+      - Fri, 27 Sep 2024 16:12:39 GMT
       fly-request-id:
-      - 01HR9N9BXAFB0QKWNN2B628Z40-fra
+      - 01J8T42Z0ZB5Q9Z7QDGDJZZF7A-cdg
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '11'
+      - '2'
       ratelimit-reset:
-      - '14'
+      - '49'
       server:
-      - Fly/089de441 (2024-03-05)
+      - Fly/0c45e4378 (2024-09-20)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
       - 1.1 fly.io
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: ''
 - request:
     body: ''
     headers:
@@ -322,48 +232,49 @@ interactions:
       host:
       - api.ror.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.ror.org/organizations/021nxhr62
   response:
-    content: "{\"id\":\"https://ror.org/021nxhr62\",\"name\":\"National Science Foundation\",\"email_address\":null,\"ip_addresses\":[],\"established\":1950,\"types\":[\"Government\"],\"relationships\":[{\"label\":\"Center
-      for Hierarchical Manufacturing\",\"type\":\"Related\",\"id\":\"https://ror.org/043trmd87\"},{\"label\":\"Government
-      of the United States of America\",\"type\":\"Parent\",\"id\":\"https://ror.org/02rcrvv70\"},{\"label\":\"American
-      Institute of Mathematics\",\"type\":\"Child\",\"id\":\"https://ror.org/02a0fwv66\"},{\"label\":\"Center
-      for Discrete Mathematics and Theoretical Computer Science\",\"type\":\"Child\",\"id\":\"https://ror.org/00k551w06\"},{\"label\":\"Directorate
-      for Biological Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/001xhss06\"},{\"label\":\"Directorate
-      for Computer & Information Science & Engineering\",\"type\":\"Child\",\"id\":\"https://ror.org/025kzpk63\"},{\"label\":\"Directorate
-      for STEM Education (EDU)\",\"type\":\"Child\",\"id\":\"https://ror.org/014bj5w56\"},{\"label\":\"Directorate
-      for Engineering\",\"type\":\"Child\",\"id\":\"https://ror.org/00b6sbb32\"},{\"label\":\"Directorate
-      for Geosciences\",\"type\":\"Child\",\"id\":\"https://ror.org/05p847d66\"},{\"label\":\"Directorate
-      for Mathematical & Physical Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/029b7h395\"},{\"label\":\"Directorate
-      for Social, Behavioral & Economic Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/03h7mcc28\"},{\"label\":\"Emergent
-      Behaviors of Integrated Cellular Systems\",\"type\":\"Child\",\"id\":\"https://ror.org/00nxxkd60\"},{\"label\":\"Integrative
-      Graduate Education and Research Traineeship\",\"type\":\"Child\",\"id\":\"https://ror.org/03w1s3j27\"},{\"label\":\"Materials
-      Research Science and Engineering Centers\",\"type\":\"Child\",\"id\":\"https://ror.org/01qa5ep47\"},{\"label\":\"NSF\u2019s
-      NOIRLab\",\"type\":\"Child\",\"id\":\"https://ror.org/03zmsge54\"},{\"label\":\"National
-      Institute for Mathematical and Biological Synthesis\",\"type\":\"Child\",\"id\":\"https://ror.org/04vj69e88\"},{\"label\":\"National
-      Science Board\",\"type\":\"Child\",\"id\":\"https://ror.org/00apvva27\"},{\"label\":\"National
-      Superconducting Cyclotron Laboratory\",\"type\":\"Child\",\"id\":\"https://ror.org/00qerpb33\"},{\"label\":\"Network
-      for Earthquake Engineering Simulation\",\"type\":\"Child\",\"id\":\"https://ror.org/01hh6s351\"},{\"label\":\"Office
-      of Budget, Finance and Award Management\",\"type\":\"Child\",\"id\":\"https://ror.org/01rcfpa16\"},{\"label\":\"Office
-      of Information and Resource Management\",\"type\":\"Child\",\"id\":\"https://ror.org/01gmp5538\"},{\"label\":\"Office
-      of Inspector General\",\"type\":\"Child\",\"id\":\"https://ror.org/02ch5q898\"},{\"label\":\"Office
-      of Legislative & Public Affairs\",\"type\":\"Child\",\"id\":\"https://ror.org/04h67aa53\"},{\"label\":\"Office
-      of the Director\",\"type\":\"Child\",\"id\":\"https://ror.org/04nseet23\"},{\"label\":\"Research
-      Experiences for Undergraduates\",\"type\":\"Child\",\"id\":\"https://ror.org/020fhsn68\"},{\"label\":\"Statistical
-      and Applied Mathematical Sciences Institute\",\"type\":\"Child\",\"id\":\"https://ror.org/01shctp43\"},{\"label\":\"National
-      Science Foundation Ice Core Facility\",\"type\":\"Child\",\"id\":\"https://ror.org/05sk14837\"},{\"label\":\"Advanced
-      Cyberinfrastructure Coordination Ecosystem: Services & Support\",\"type\":\"Child\",\"id\":\"https://ror.org/01v6d0b34\"},{\"label\":\"Community
-      Coordinated Modeling Center\",\"type\":\"Child\",\"id\":\"https://ror.org/01dy3j343\"},{\"label\":\"Directorate
-      for Technology, Innovation and Partnerships\",\"type\":\"Child\",\"id\":\"https://ror.org/01ghfgz70\"},{\"label\":\"Center
-      for Unmanned Aircraft Systems\",\"type\":\"Child\",\"id\":\"https://ror.org/02shwmm76\"},{\"label\":\"PARADIM\",\"type\":\"Child\",\"id\":\"https://ror.org/04pw1zg89\"}],\"addresses\":[{\"lat\":38.80484,\"lng\":-77.04692,\"state\":null,\"state_code\":null,\"city\":\"Alexandria\",\"geonames_city\":{\"id\":4744091,\"city\":\"Alexandria\",\"geonames_admin1\":{\"name\":\"Virginia\",\"id\":6254928,\"ascii_name\":\"Virginia\",\"code\":\"US.VA\"},\"geonames_admin2\":{\"name\":\"Alexandria\",\"id\":4744106,\"ascii_name\":\"Alexandria\",\"code\":\"US.VA.510\"},\"license\":{\"attribution\":\"Data
-      from geonames.org under a CC-BY 3.0 license\",\"license\":\"http://creativecommons.org/licenses/by/3.0/\"},\"nuts_level1\":{\"name\":null,\"code\":null},\"nuts_level2\":{\"name\":null,\"code\":null},\"nuts_level3\":{\"name\":null,\"code\":null}},\"postcode\":null,\"primary\":false,\"line\":null,\"country_geonames_id\":6252001}],\"links\":[\"https://www.nsf.gov\"],\"aliases\":[],\"acronyms\":[\"NSF\"],\"status\":\"active\",\"wikipedia_url\":\"https://en.wikipedia.org/wiki/National_Science_Foundation\",\"labels\":[],\"country\":{\"country_name\":\"United
-      States\",\"country_code\":\"US\"},\"external_ids\":{\"ISNI\":{\"preferred\":null,\"all\":[\"0000
-      0001 1958 7073\"]},\"FundRef\":{\"preferred\":null,\"all\":[\"100000001\",\"100015388\"]},\"OrgRef\":{\"preferred\":null,\"all\":[\"157427\"]},\"Wikidata\":{\"preferred\":null,\"all\":[\"Q304878\"]},\"GRID\":{\"preferred\":\"grid.431093.c\",\"all\":\"grid.431093.c\"}}}"
+    body:
+      string: "{\"id\":\"https://ror.org/021nxhr62\",\"name\":\"National Science Foundation\",\"email_address\":null,\"ip_addresses\":[],\"established\":1950,\"types\":[\"Government\"],\"relationships\":[{\"label\":\"Center
+        for Hierarchical Manufacturing\",\"type\":\"Related\",\"id\":\"https://ror.org/043trmd87\"},{\"label\":\"Government
+        of the United States of America\",\"type\":\"Parent\",\"id\":\"https://ror.org/02rcrvv70\"},{\"label\":\"American
+        Institute of Mathematics\",\"type\":\"Child\",\"id\":\"https://ror.org/02a0fwv66\"},{\"label\":\"Center
+        for Discrete Mathematics and Theoretical Computer Science\",\"type\":\"Child\",\"id\":\"https://ror.org/00k551w06\"},{\"label\":\"Directorate
+        for Biological Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/001xhss06\"},{\"label\":\"Directorate
+        for Computer & Information Science & Engineering\",\"type\":\"Child\",\"id\":\"https://ror.org/025kzpk63\"},{\"label\":\"Directorate
+        for STEM Education (EDU)\",\"type\":\"Child\",\"id\":\"https://ror.org/014bj5w56\"},{\"label\":\"Directorate
+        for Engineering\",\"type\":\"Child\",\"id\":\"https://ror.org/00b6sbb32\"},{\"label\":\"Directorate
+        for Geosciences\",\"type\":\"Child\",\"id\":\"https://ror.org/05p847d66\"},{\"label\":\"Directorate
+        for Mathematical & Physical Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/029b7h395\"},{\"label\":\"Directorate
+        for Social, Behavioral & Economic Sciences\",\"type\":\"Child\",\"id\":\"https://ror.org/03h7mcc28\"},{\"label\":\"Emergent
+        Behaviors of Integrated Cellular Systems\",\"type\":\"Child\",\"id\":\"https://ror.org/00nxxkd60\"},{\"label\":\"Integrative
+        Graduate Education and Research Traineeship\",\"type\":\"Child\",\"id\":\"https://ror.org/03w1s3j27\"},{\"label\":\"Materials
+        Research Science and Engineering Centers\",\"type\":\"Child\",\"id\":\"https://ror.org/01qa5ep47\"},{\"label\":\"NSF\u2019s
+        NOIRLab\",\"type\":\"Child\",\"id\":\"https://ror.org/03zmsge54\"},{\"label\":\"National
+        Institute for Mathematical and Biological Synthesis\",\"type\":\"Child\",\"id\":\"https://ror.org/04vj69e88\"},{\"label\":\"National
+        Science Board\",\"type\":\"Child\",\"id\":\"https://ror.org/00apvva27\"},{\"label\":\"National
+        Superconducting Cyclotron Laboratory\",\"type\":\"Child\",\"id\":\"https://ror.org/00qerpb33\"},{\"label\":\"Network
+        for Earthquake Engineering Simulation\",\"type\":\"Child\",\"id\":\"https://ror.org/01hh6s351\"},{\"label\":\"Office
+        of Budget, Finance and Award Management\",\"type\":\"Child\",\"id\":\"https://ror.org/01rcfpa16\"},{\"label\":\"Office
+        of Information and Resource Management\",\"type\":\"Child\",\"id\":\"https://ror.org/01gmp5538\"},{\"label\":\"Office
+        of Inspector General\",\"type\":\"Child\",\"id\":\"https://ror.org/02ch5q898\"},{\"label\":\"Office
+        of Legislative & Public Affairs\",\"type\":\"Child\",\"id\":\"https://ror.org/04h67aa53\"},{\"label\":\"Office
+        of the Director\",\"type\":\"Child\",\"id\":\"https://ror.org/04nseet23\"},{\"label\":\"Research
+        Experiences for Undergraduates\",\"type\":\"Child\",\"id\":\"https://ror.org/020fhsn68\"},{\"label\":\"Statistical
+        and Applied Mathematical Sciences Institute\",\"type\":\"Child\",\"id\":\"https://ror.org/01shctp43\"},{\"label\":\"National
+        Science Foundation Ice Core Facility\",\"type\":\"Child\",\"id\":\"https://ror.org/05sk14837\"},{\"label\":\"Advanced
+        Cyberinfrastructure Coordination Ecosystem: Services & Support\",\"type\":\"Child\",\"id\":\"https://ror.org/01v6d0b34\"},{\"label\":\"Community
+        Coordinated Modeling Center\",\"type\":\"Child\",\"id\":\"https://ror.org/01dy3j343\"},{\"label\":\"Directorate
+        for Technology, Innovation and Partnerships\",\"type\":\"Child\",\"id\":\"https://ror.org/01ghfgz70\"},{\"label\":\"Center
+        for Unmanned Aircraft Systems\",\"type\":\"Child\",\"id\":\"https://ror.org/02shwmm76\"},{\"label\":\"PARADIM\",\"type\":\"Child\",\"id\":\"https://ror.org/04pw1zg89\"}],\"addresses\":[{\"lat\":38.80484,\"lng\":-77.04692,\"state\":null,\"state_code\":null,\"city\":\"Alexandria\",\"geonames_city\":{\"id\":4744091,\"city\":\"Alexandria\",\"geonames_admin1\":{\"name\":\"Virginia\",\"id\":6254928,\"ascii_name\":\"Virginia\",\"code\":\"US.VA\"},\"geonames_admin2\":{\"name\":\"Alexandria\",\"id\":4744106,\"ascii_name\":\"Alexandria\",\"code\":\"US.VA.510\"},\"license\":{\"attribution\":\"Data
+        from geonames.org under a CC-BY 3.0 license\",\"license\":\"http://creativecommons.org/licenses/by/3.0/\"},\"nuts_level1\":{\"name\":null,\"code\":null},\"nuts_level2\":{\"name\":null,\"code\":null},\"nuts_level3\":{\"name\":null,\"code\":null}},\"postcode\":null,\"primary\":false,\"line\":null,\"country_geonames_id\":6252001}],\"links\":[\"https://www.nsf.gov\"],\"aliases\":[],\"acronyms\":[\"NSF\"],\"status\":\"active\",\"wikipedia_url\":\"https://en.wikipedia.org/wiki/National_Science_Foundation\",\"labels\":[],\"country\":{\"country_name\":\"United
+        States\",\"country_code\":\"US\"},\"external_ids\":{\"ISNI\":{\"preferred\":null,\"all\":[\"0000
+        0001 1958 7073\"]},\"FundRef\":{\"preferred\":null,\"all\":[\"100000001\",\"100015388\"]},\"OrgRef\":{\"preferred\":null,\"all\":[\"157427\"]},\"Wikidata\":{\"preferred\":null,\"all\":[\"Q304878\"]},\"GRID\":{\"preferred\":\"grid.431093.c\",\"all\":\"grid.431093.c\"}}}"
     headers:
       Allow:
-      - GET, HEAD, OPTIONS
+      - GET, PUT, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
@@ -371,7 +282,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 06 Mar 2024 10:35:01 GMT
+      - Fri, 27 Sep 2024 16:12:40 GMT
       Server:
       - nginx/1.18.0 + Phusion Passenger 6.0.7
       Status:
@@ -382,6 +293,7 @@ interactions:
       - SAMEORIGIN
       X-Powered-By:
       - Phusion Passenger 6.0.7
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

@@ -3,8 +3,10 @@ import pytest
 from click.testing import CliRunner
 from commonmeta.cli import convert, encode, decode, json_feed, encode_by_id
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_convert():

@@ -11,16 +11,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.1109
   response:
-    content: "[\n  {\n    \"DOI\": \"10.1109\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q0MDSyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        XRsdmjYAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 85339a2dee2a0be4-AMS
+      - 8c9cc517dcd2cb11-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,23 +31,24 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:17:25 GMT
+      - Fri, 27 Sep 2024 16:11:29 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=hOX8b5NtGIjxdVB7cRFFTXn3xXA4r6DHdpCg3dU5hMb3L%2Fwr3XfrWaUgEb%2F8gE61qKVEg2PTJAcweWwOceGn7jA0D4nOBMp%2BtTSi0DBHIcVpn%2BOLNTKJzuFRPz%2FjVNiDpuGaykI%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=OsIdS3owXZDqLSkzLS7srw29ked49vTTuqB9SLkXYtl1Bl1DXwV%2F7FAaSQwS8vtLGHfPXk1EFspOFNPd12FdMqHc%2FcZATW7yl%2BLJDsdMBGrUohmlJ%2FW2M%2FGS3NsEe95hKmvvkRk%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -57,21 +61,35 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.1109/iccv.2007.4408927
   response:
-    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2024,1,12]],"date-time":"2024-01-12T00:42:25Z","timestamp":1705020145634},"reference-count":14,"publisher":"IEEE","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2007]]},"DOI":"10.1109\/iccv.2007.4408927","type":"proceedings-article","created":{"date-parts":[[2008,1,4]],"date-time":"2008-01-04T20:34:53Z","timestamp":1199478893000},"source":"Crossref","is-referenced-by-count":164,"title":["A
-      Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which
-      Yields A New Algorithm"],"prefix":"10.1109","author":[{"given":"Ali Kemal","family":"Sinop","sequence":"first","affiliation":[]},{"given":"Leo","family":"Grady","sequence":"additional","affiliation":[]}],"member":"263","reference":[{"key":"ref10","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0480"},{"key":"ref11","doi-asserted-by":"publisher","DOI":"10.1007\/b98874"},{"key":"ref12","article-title":"Combinatorial
-      Optimization: Algorithms and Complexity","author":"papadimitriou","year":"1998"},{"key":"ref13","article-title":"Level
-      Set Methods and Fast Marching Methods","author":"sethian","year":"1999"},{"key":"ref14","doi-asserted-by":"crossref","first-page":"888","DOI":"10.1109\/34.868688","article-title":"Normalized
-      cuts and image segmentation","volume":"22","author":"shi","year":"2000","journal-title":"IEEE
-      Trans on PAMI"},{"key":"ref4","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0475"},{"key":"ref3","doi-asserted-by":"publisher","DOI":"10.1007\/s11263-006-7934-5"},{"key":"ref6","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.233"},{"key":"ref5","doi-asserted-by":"publisher","DOI":"10.1109\/CVPR.2005.239"},{"key":"ref8","doi-asserted-by":"publisher","DOI":"10.1007\/BF00133570"},{"key":"ref7","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.57"},{"key":"ref2","doi-asserted-by":"publisher","DOI":"10.1090\/S0273-0979-04-01035-3"},{"key":"ref1","article-title":"Network
-      Flows: Theory, Algorithms, and Applications","author":"ahuja","year":"1993"},{"key":"ref9","doi-asserted-by":"publisher","DOI":"10.1016\/S1076-5670(00)80012-9"}],"event":{"name":"2007
-      IEEE 11th International Conference on Computer Vision","location":"Rio de Janeiro,
-      Brazil","start":{"date-parts":[[2007,10,14]]},"end":{"date-parts":[[2007,10,21]]}},"container-title":["2007
-      IEEE 11th International Conference on Computer Vision"],"original-title":[],"link":[{"URL":"http:\/\/xplorestaging.ieee.org\/ielx5\/4408818\/4408819\/04408927.pdf?arnumber=4408927","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2017,6,18]],"date-time":"2017-06-18T02:39:45Z","timestamp":1497753585000},"score":1,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/document\/4408927\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2007]]},"references-count":14,"URL":"http:\/\/dx.doi.org\/10.1109\/iccv.2007.4408927","relation":{},"published":{"date-parts":[[2007]]}}}'
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VW227jNhD9FUJPLSDZpC6mZKAosummSJu9IMnuoo3zwEi0xY0kqqSUjTfIv3dG
+        cmJZcYoai7w4Q/HMzJkLz4NjG9G01pk7+tZxnVJaK1bSa9a1BNs3bYbWO2ms0hUcsAmd0O2JM39w
+        VJXJe5nhz0w00quFaQD36sqnfugmbnB97fYnjSoRHO0eTTwaXLJwHiXzYPY3QOIpBFXWzpxxPwp4
+        FPEZ5/zRdYxcSiOrVHqpbqsGPghdp25vCmVzaQDy9O3btwCR6qqRVeNluhSq6iLa/LqCGFKjrS2F
+        ufUMODIqbbqclqKwEpzYXJvGQwi4IQ1E2xSyv/nkKvNqo9D/y1Qpv74GkN8+nCJLdMIYTRZTlaZ3
+        EzychCGNE59jnj3FtdGplJmqVtYDGJWCM4xRAvBeMmnsMjd8SSaNPco8Gl76dB4An8GYTJYkIY/j
+        JKCUYp66NSlePUY+gFr4XFnvmePMu1k/88wZYvVEOEfkAiKWGTktofbwz6oEtgXSSE6MKCW2DflU
+        qeUa0iK/G1Hn5LhtLDmqMnIuKqgG+SKKW2nIl1ylOflLySKDY/JefiNHxUob1eSlg5RDPOp+yyUE
+        KdoGSgSBPDgrdSexHY8KRf6UpSjgeClKVazBeKEqXYPByn9aTAhMS2VsgxDLpSqU6At/BQXbQp1J
+        PQSB4LP1LojIMoU3O29jpGucifKm60Z/FjiDpu0ivpWICjaG45Np5QlrpWk6urEdnrt52ESUzhbT
+        VanqCRQxntAwpg4GvUVjB6HxxfQmiWMejlB8zKhvwqe+d451eaMq0UBNREE+1NBS6nuX8HxbKkug
+        qgQ+rQt5r5r1oExOLWqRwSUYNd3CwVoKNGMmI/fBHvdn8k4W0GMNeScBMOs9nQgLBmHSHDtsczJ0
+        asGkRLXjLhm5C/dylm7HoWsXmD1ccE4cx86LwQ7CSTyDv3hP5O+1gY5U32FQUmx+jFt1E2MHEwMX
+        73TR9kPs76SQq234MN/YMF9haKHxnn3gwiOXRlSWwPB9PHp3upvj/hT/Z5PxaBcsOLTHLGMwAx4A
+        ezwJQm+ENzsAr2P7EhPEPTqb+EGwCxYdCnb8+eM5YkWANeqM+NBE35xQyoIg4qOx5D+QYcR3sfxD
+        gkroYnpBfQ7kJxyeWHhoGQ0ib0Qa29e2sun290mhv9k5ucylNmt3MOpu18lHdV2otGvhncETeftV
+        7IzdyGdySB4MWvKCUT7zohmnP1H6cwxM+x4UDDYtrIb+Fa7E0yPISTcSjDU5OQUVANPS72pYTtVm
+        EeOo4Kpq4Zh8VrafwkKnmzXunCtNMkn+EJVURrvkjRHfFW57eErNK8++y6jLwu7xl9X+h7v7xmfw
+        zWOvUXYFxo+ED2RAdVZqsBtQsBSquu2enU/nZ5BX3jT1fDFdTO/rQqP4EXBjNVFSyok2K9ApsriP
+        FlMUKTGLn35AX9KNbpnU2fJXYaoWn7hftmLmSXFtRE1b2VqmaqlAwmwPt/LxTmOdFZpBR3hi20u4
+        9+CtKAT0GsiPXKa3EGJX7UzW2qpXVBHj7sxl8UtZxLgH64fFl9SfB8k8jMayKEw4j4IojjayKAVm
+        wIwP95NEegAZApvbrPHniEokr6dzwGOm0xY3fM8gULSYOlh0294MqtMrzYFBWdu+Ivp6WfmsJexQ
+        AY8iyu4nMF99IP+pQI0sNpw/9LF9lWkzUrqvBvP4+C9YI1s5PAwAAA==
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -85,11 +103,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1288'
+      - '1294'
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:17:25 GMT
+      - Fri, 27 Sep 2024 16:11:30 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -106,119 +124,7 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - api.crossref.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://api.crossref.org/members/263
-  response:
-    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521457282,"primary-name":"Institute
-      of Electrical and Electronics Engineers (IEEE)","counts":{"current-dois":658774,"backfile-dois":4366479,"total-dois":5025253},"breakdowns":{"dois-by-issued-year":[[2023,320070],[2022,313601],[2021,294384],[2019,282517],[2018,264292],[2020,257320],[2017,254195],[2016,240058],[2010,233538],[2015,230979],[2011,225389],[2014,219301],[2009,210436],[2012,204758],[2013,201864],[2008,188092],[2007,169194],[2006,137168],[2005,70101],[2004,51437],[2003,33053],[1999,27612],[2002,25520],[2024,25103],[2001,23099],[2000,22172],[1997,19950],[1998,19745],[1992,19369],[1996,18989],[1994,18058],[1987,17195],[1993,17189],[1991,16661],[1995,16193],[1985,16125],[1986,15986],[1990,15892],[1983,14460],[1984,14034],[1989,14030],[1981,13325],[1982,12955],[1988,12702],[1979,10848],[1980,10008],[1977,9362],[1978,9339],[1975,8726],[1976,8397],[1973,8357],[1974,8087],[1972,7657],[1971,7378],[1969,6784],[1970,6660],[1968,6581],[1966,6065],[1967,6008],[1965,5523],[1963,5074],[1964,4608],[1962,4145],[1959,3610],[1960,3535],[1961,3505],[1958,3081],[1957,3027],[1956,2792],[1955,2280],[1954,2157],[1953,1792],[1951,1569],[1952,1534],[1930,1354],[1950,1289],[1948,1288],[1929,1262],[1949,1246],[1944,1201],[1947,1181],[1945,1134],[1936,1127],[1941,1103],[1940,1103],[1934,1100],[1935,1099],[1927,1098],[1946,1093],[1937,1083],[1931,1039],[1943,1020],[1932,1008],[1939,1005],[1933,991],[1942,982],[1925,976],[1924,958],[1938,956],[1928,860],[1926,857],[1923,723],[1920,614],[1922,560],[1912,496],[1915,458],[1913,451],[1916,438],[1921,424],[1911,417],[1907,413],[1910,412],[1914,401],[1908,379],[1918,370],[1919,360],[1909,342],[1917,336],[1905,281],[1906,258],[1903,159],[1902,150],[1904,75],[1895,74],[1899,66],[1894,59],[1901,58],[1897,56],[1898,51],[1900,42],[1892,42],[1893,39],[1891,37],[1886,37],[1896,36],[1890,35],[1889,34],[1884,18],[1888,16],[1885,12],[1887,11]]},"prefixes":["10.1109","10.30941","10.21629","10.47962","10.23919","10.15325","10.36227"],"coverage":{"affiliations-current":0.8836459848142155,"similarity-checking-current":0.9933087826781263,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.07761241952612162,"licenses-backfile":0.4130666837055669,"funders-current":0.3750041744209699,"affiliations-backfile":0.03091713025529265,"resource-links-backfile":7.882781527175557E-4,"orcids-backfile":0.05822609017471514,"update-policies-current":2.034081490769217E-4,"ror-ids-backfile":0.0,"orcids-current":0.2860465045675755,"similarity-checking-backfile":0.9854459393941892,"references-backfile":0.8277119848738537,"descriptions-backfile":0.0,"award-numbers-backfile":0.05769820489231713,"update-policies-backfile":1.309979963261016E-4,"licenses-current":0.9885028856633686,"award-numbers-current":0.2532310018306733,"abstracts-backfile":0.001458841322722496,"resource-links-current":3.202919362330632E-4,"abstracts-current":0.01972148263289079,"references-current":0.8233734178944524},"prefix":[{"name":"Institute
-      of Electrical and Electronics Engineers","value":"10.1109"},{"name":"Electrical
-      Engineering Press Co. Ltd.","value":"10.30941"},{"name":"Journal of Systems
-      Engineering and Electronics","value":"10.21629"},{"name":"Institute of Electrical
-      and Electronics Engineers (IEEE) StandardDocs","value":"10.47962"},{"name":"Institute
-      of Electrical and Electronics Engineers","value":"10.23919"},{"name":"Institute
-      of Electrical and Electronics Engineers - Bell Labs","value":"10.15325"},{"name":"Institute
-      of Electrical and Electronics Engineers (IEEE) preprint","value":"10.36227"}],"id":263,"tokens":["institute","of","electrical","and","electronics","engineers","ieee"],"counts-type":{"all":{"journal-article":1480171,"other":1,"book":237,"proceedings-article":4227159,"journal":425,"component":19300,"book-chapter":5546,"proceedings":30983,"standard":4563,"posted-content":19393,"journal-issue":94,"dataset":1,"edited-book":7},"backfile":{"journal-article":1274370,"other":1,"book":237,"proceedings-article":3052609,"book-chapter":5543,"proceedings":27282,"standard":159,"posted-content":6182,"journal-issue":89,"edited-book":7},"current":{"journal-article":205801,"proceedings-article":436056,"proceedings":3701,"posted-content":13211,"journal-issue":5}},"coverage-type":{"all":{"journal-article":{"last-status-check-time":1707521457282,"affiliations":0.1320725781007735,"abstracts":2.047060778788397E-4,"orcids":0.2891213244956157,"licenses":0.9580906530394123,"references":0.7268579103360355,"funders":0.2722023333790488,"similarity-checking":0.9924670865731055,"award-numbers":0.2384798783383812,"ror-ids":0.0,"update-policies":4.769719174338641E-4,"resource-links":0.002092325819111441,"descriptions":0.0},"other":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":1.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":1.0,"descriptions":0.0},"book":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521457282,"affiliations":0.1233336621593841,"abstracts":0.0,"orcids":0.001712970815623448,"licenses":0.2406618724301594,"references":0.8889372271069056,"funders":0.04329858422642725,"similarity-checking":0.9934495011898062,"award-numbers":0.01555867664310711,"ror-ids":0.0,"update-policies":0.0,"resource-links":1.312938548088681E-4,"descriptions":0.0},"journal":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.002352941176470588,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"component":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.8530569948186528},"book-chapter":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"standard":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.1860618014464168,"references":0.3721236028928337,"funders":0.0,"similarity-checking":0.6655708963401271,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521457282,"affiliations":0.0144897643479606,"abstracts":0.9827772907750219,"orcids":0.3863765276130563,"licenses":0.9999484350023204,"references":0.0,"funders":0.0,"similarity-checking":0.9622028567008714,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"dataset":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"journal-article":{"last-status-check-time":1707521457282,"affiliations":0.02040930028170782,"abstracts":1.483085760022599E-4,"orcids":0.1960090083727646,"licenses":0.9541035962867928,"references":0.7206133226613936,"funders":0.2036292442540236,"similarity-checking":0.991250578717327,"award-numbers":0.1744862167188493,"ror-ids":0.0,"update-policies":4.488492353084269E-4,"resource-links":0.002264648414510699,"descriptions":0.0},"other":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":1.0,"references":1.0,"funders":0.0,"similarity-checking":1.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":1.0,"descriptions":0.0},"book":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521457282,"affiliations":0.03570388477528567,"abstracts":0.0,"orcids":7.724539893579558E-4,"licenses":0.1905203057450201,"references":0.8831170320208058,"funders":0.02600857168409056,"similarity-checking":0.9937142293690414,"award-numbers":0.009689416495856496,"ror-ids":0.0,"update-policies":0.0,"resource-links":1.818116896071524E-4,"descriptions":0.0},"book-chapter":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"standard":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.2955974842767296,"funders":0.0,"similarity-checking":0.8553459119496855,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.9998382400517632,"orcids":0.3392106114526043,"licenses":0.9998382400517632,"references":0.0,"funders":0.0,"similarity-checking":0.9949854416046587,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"edited-book":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{"journal-article":{"last-status-check-time":1707521457282,"affiliations":0.8235188361572587,"abstracts":5.53933168449133E-4,"orcids":0.8656955019654909,"licenses":0.9827794811492656,"references":0.7655259206709394,"funders":0.6968236305946035,"similarity-checking":1.0,"award-numbers":0.6347442432252516,"ror-ids":0.0,"update-policies":6.511144260717878E-4,"resource-links":0.001025262267919009,"descriptions":0.0},"proceedings-article":{"last-status-check-time":1707521457282,"affiliations":0.9456606490909424,"abstracts":0.0,"orcids":0.01119810299594547,"licenses":0.9992569761681986,"references":0.882618287559396,"funders":0.237666721705469,"similarity-checking":1.0,"award-numbers":0.08299622066890491,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"proceedings":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"posted-content":{"last-status-check-time":1707521457282,"affiliations":0.02127015365982893,"abstracts":0.9747937324956476,"orcids":0.4084475058663235,"licenses":1.0,"references":0.0,"funders":0.0,"similarity-checking":0.9468624630989327,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521457282,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}}},"flags":{"deposits-abstracts-current":true,"deposits-orcids-current":true,"deposits":true,"deposits-affiliations-backfile":true,"deposits-update-policies-backfile":true,"deposits-similarity-checking-backfile":true,"deposits-award-numbers-current":true,"deposits-resource-links-current":true,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":true,"deposits-funders-current":true,"deposits-references-backfile":true,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":true,"deposits-licenses-backfile":true,"deposits-award-numbers-backfile":true,"deposits-descriptions-current":false,"deposits-references-current":true,"deposits-resource-links-backfile":true,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":true,"deposits-funders-backfile":true,"deposits-update-policies-current":true,"deposits-similarity-checking-current":true,"deposits-licenses-current":true},"location":"Piscataway,
-      NJ, United States","names":["Institute of Electrical and Electronics Engineers
-      (IEEE)","Institute of Electrical and Electronics Engineers","Electrical Engineering
-      Press Co. Ltd.","Journal of Systems Engineering and Electronics","Institute
-      of Electrical and Electronics Engineers (IEEE) StandardDocs","Institute of Electrical
-      and Electronics Engineers - Bell Labs","Institute of Electrical and Electronics
-      Engineers (IEEE) preprint"]}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '3121'
-      content-type:
-      - application/json
-      date:
-      - Sat, 10 Feb 2024 10:17:26 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/ra/10.1109
-  response:
-    content: "[\n  {\n    \"DOI\": \"10.1109\",\n    \"RA\": \"Crossref\"\n  }\n]"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 85339a34f8ed0b3a-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 10 Feb 2024 10:17:26 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=d5YIcejUzUiNRxRpn%2B0%2FPqm7C%2Fzsrh9x5sU5x8ohFlJ0CQkI8HcAUitxXXEyJYW0q6BxvgaDQE43K%2BHFTFiIcwMmAL4YodtoepAr9KLIEAyTpcnti%2FgkKznELOADBBpE8fuS8U8%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

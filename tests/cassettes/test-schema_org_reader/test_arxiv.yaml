@@ -11,7 +11,7 @@ interactions:
       host:
       - arxiv.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://arxiv.org/abs/1902.02534
   response:
@@ -29,7 +29,7 @@ interactions:
         \ <link rel=\"mask-icon\" href=\"/static/browse/0.3.4/images/icons/safari-pinned-tab.svg\"
         color=\"#5bbad5\">\n  <meta name=\"msapplication-TileColor\" content=\"#da532c\">\n
         \ <meta name=\"theme-color\" content=\"#ffffff\">\n  <link rel=\"stylesheet\"
-        type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/arXiv.css?v=20230622\"
+        type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/arXiv.css?v=20240822\"
         />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/static/browse/0.3.4/css/arXiv-print.css?v=20200611\"
         />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/browse_search.css\"
         />\n  <script language=\"javascript\" src=\"/static/browse/0.3.4/js/accordion.js\"
@@ -90,11 +90,12 @@ interactions:
         alt=\"Cornell University\" /></a>\n        </div><div class=\"column\" id=\"support-ack\">\n
         \         <span id=\"support-ack-url\">We gratefully acknowledge support from
         the Simons Foundation, <a href=\"https://info.arxiv.org/about/ourmembers.html\">member
-        institutions</a>, and all contributors. <a href=\"https://info.arxiv.org/about/donate.html\">Donate</a></span>\n
-        \       </div>\n      </div>\n\n      <div id=\"header\" class=\"is-hidden-mobile\">\n<a
-        aria-hidden=\"true\" href=\"{url_path('ignore_me')}\"></a>\n  <div class=\"header-breadcrumbs
-        is-hidden-mobile\">\n    <a href=\"/\"><img src=\"/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg\"
-        alt=\"arxiv logo\" style=\"height:40px;\"/></a> <span>&gt;</span> <a href=\"/list/cs/recent\">cs</a>
+        institutions</a>, and all contributors.</span>\n          <a href=\"https://info.arxiv.org/about/donate.html\"
+        class=\"btn-header-donate\">Donate</a>\n        </div>\n      </div>\n\n      <div
+        id=\"header\" class=\"is-hidden-mobile\">\n<a aria-hidden=\"true\" href=\"{url_path('ignore_me')}\"></a>\n
+        \ <div class=\"header-breadcrumbs is-hidden-mobile\">\n    <a href=\"/\"><img
+        src=\"/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg\" alt=\"arxiv
+        logo\" style=\"height:40px;\"/></a> <span>&gt;</span> <a href=\"/list/cs/recent\">cs</a>
         <span>&gt;</span> arXiv:1902.02534\n  </div>\n          <div class=\"search-block
         level-right\">\n    <form class=\"level-item mini-search\" method=\"GET\"
         action=\"https://arxiv.org/search\">\n      <div class=\"field has-addons\">\n
@@ -200,35 +201,35 @@ interactions:
         [cs.DL]</span></td>\n        </tr>\n        <tr>\n          <td class=\"tablecell
         label\">&nbsp;</td>\n          <td class=\"tablecell arxividv\">(or <span
         class=\"arxivid\">\n              <a href=\"https://arxiv.org/abs/1902.02534v2\">arXiv:1902.02534v2</a>
-        [cs.DL]</span> for this version)\n          </td>\n        </tr>        <tr>\n
+        [cs.DL]</span> for this version)\n          </td>\n        </tr>\n        <tr>\n
         \         <td class=\"tablecell label\">&nbsp;</td>\n          <td class=\"tablecell
-        arxivdoi\">\n            <a href=\"https://doi.org/10.48550/arXiv.1902.02534\">https://doi.org/10.48550/arXiv.1902.02534</a>\n
-        \           <div class=\"button-and-tooltip\">\n              <button class=\"more-info\"
-        aria-describedby=\"more-info-desc-1\">\n                <svg height=\"15\"
-        role=\"presentation\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512
-        512\"><path fill=\"currentColor\" d=\"M256 8C119.043 8 8 119.083 8 256c0 136.997
-        111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 110c23.196
-        0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42 18.804-42 42-42zm56 254c0
-        6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h12v-64h-12c-6.627
-        0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627 0 12 5.373 12 12v100h12c6.627
-        0 12 5.373 12 12v24z\" class=\"\"></path></svg>\n                <span class=\"visually-hidden\">Focus
-        to learn more</span>\n              </button>\n              <!-- tooltip
-        description -->\n              <div role=\"tooltip\" id=\"more-info-desc-1\">\n
-        \               <span class=\"left-corner\"></span>\n                arXiv-issued
-        DOI via DataCite\n              </div>\n            </div>\n          </td>\n
-        \       </tr></table>\n    </div>\n  </div>\n</div>\n    <div class=\"submission-history\">\n
-        \     <h2>Submission history</h2> From: Silvio Peroni [<a href=\"/show-email/8ded0b0f/1902.02534\">view
-        email</a>]      <br/>            <strong><a href=\"/abs/1902.02534v1\">[v1]</a></strong>\n
-        \       Thu, 7 Feb 2019 09:22:51 UTC (475 KB)<br/>\n    <strong>[v2]</strong>\n
-        \       Fri, 21 Jun 2019 06:21:52 UTC (1,329 KB)<br/>\n</div>\n  </div>\n
-        \ <!--end leftcolumn-->\n<div class=\"extra-services\">    <div class=\"full-text\">\n
-        \     <a name=\"other\"></a>\n      <span class=\"descriptor\">Full-text links:</span>\n
-        \     <h2>Access Paper:</h2>\n      <ul>\n  <div id=\"download-button-info\"
-        hidden>\nView a PDF of the paper titled Crowdsourcing open citations with
-        CROCI -- An analysis of the current status of open citations, and a proposal,
-        by Ivan Heibi and 2 other authors</div><li><a href=\"/pdf/1902.02534\" aria-describedby=\"download-button-info\"
+        arxivdoi\">              <a href=\"https://doi.org/10.48550/arXiv.1902.02534\"
+        \ id=\"arxiv-doi-link\">https://doi.org/10.48550/arXiv.1902.02534</a><div
+        class=\"button-and-tooltip\">\n              <button class=\"more-info\" aria-describedby=\"more-info-desc-1\">\n
+        \               <svg height=\"15\" role=\"presentation\" xmlns=\"http://www.w3.org/2000/svg\"
+        viewBox=\"0 0 512 512\"><path fill=\"currentColor\" d=\"M256 8C119.043 8 8
+        119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083
+        392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42
+        18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627
+        5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627
+        0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z\" class=\"\"></path></svg>\n
+        \               <span class=\"visually-hidden\">Focus to learn more</span>\n
+        \             </button>\n              <!-- tooltip description -->\n              <div
+        role=\"tooltip\" id=\"more-info-desc-1\">\n                <span class=\"left-corner\"></span>
+        \                 arXiv-issued DOI via DataCite</div>\n            </div>\n
+        \         </td>\n        </tr></table>\n    </div>\n  </div>\n</div>\n    <div
+        class=\"submission-history\">\n      <h2>Submission history</h2> From: Silvio
+        Peroni [<a href=\"/show-email/8ded0b0f/1902.02534\">view email</a>]      <br/>
+        \           <strong><a href=\"/abs/1902.02534v1\">[v1]</a></strong>\n        Thu,
+        7 Feb 2019 09:22:51 UTC (475 KB)<br/>\n    <strong>[v2]</strong>\n        Fri,
+        21 Jun 2019 06:21:52 UTC (1,329 KB)<br/>\n</div>\n  </div>\n  <!--end leftcolumn-->\n<div
+        class=\"extra-services\">    <div class=\"full-text\">\n      <a name=\"other\"></a>\n
+        \     <span class=\"descriptor\">Full-text links:</span>\n      <h2>Access
+        Paper:</h2>\n      <ul>\n  <div id=\"download-button-info\" hidden>\nView
+        a PDF of the paper titled Crowdsourcing open citations with CROCI -- An analysis
+        of the current status of open citations, and a proposal, by Ivan Heibi and
+        2 other authors</div><li><a href=\"/pdf/1902.02534\" aria-describedby=\"download-button-info\"
         accesskey=\"f\" class=\"abs-button download-pdf\">View PDF</a></li><li><a
-        href=\"/src/1902.02534\" class=\"abs-button download-eprint\">TeX Source</a></li><li><a
         href=\"/format/1902.02534\" class=\"abs-button download-format\">Other Formats</a></li></ul>\n
         \     <div class=\"abs-license\"><a href=\"http://creativecommons.org/licenses/by/4.0/\"
         title=\"Rights to this article\" class=\"has_license\">\n          <img alt=\"license
@@ -245,8 +246,8 @@ interactions:
         abs-button-grey abs-button-small context-new\" href=\"/list/cs.DL/new\">new</a>\n
         \   <span class=\"is-hidden-mobile\"> | </span>\n    <a class=\"abs-button
         abs-button-grey abs-button-small context-recent\" href=\"/list/cs.DL/recent\">recent</a>\n
-        \   <span class=\"is-hidden-mobile\"> | </span>\n<a class=\"abs-button abs-button-grey
-        abs-button-small context-id\" href=\"/list/cs.DL/1902\">1902</a>\n  </div><div
+        \   <span class=\"is-hidden-mobile\"> | </span><a class=\"abs-button abs-button-grey
+        abs-button-small context-id\" href=\"/list/cs.DL/2019-02\">2019-02</a>\n  </div><div
         class=\"abs-switch-cat\">\n    Change to browse by:\n    <div class=\"switch
         context-change\">\n        <a href=\"/abs/1902.02534?context=cs\">cs</a><br
         class=\"is-hidden-mobile\">\n    </div>\n  </div>\n\n    </div>\n\n    <div
@@ -568,15 +569,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '45334'
+      - '45287'
       Date:
-      - Sat, 20 Apr 2024 18:35:44 GMT
+      - Fri, 27 Sep 2024 16:12:50 GMT
       X-Cache:
       - MISS, MISS
       X-Served-By:
-      - cache-lga21952-LGA, cache-ams21042-AMS
+      - cache-lga21969-LGA, cache-fra-etou8220025-FRA
       X-Timer:
-      - S1713638144.462523,VS0,VE356
+      - S1727453570.607760,VS0,VE520
       cache-control:
       - max-age=3600
       content-security-policy:
@@ -588,9 +589,9 @@ interactions:
       server:
       - Google Frontend
       via:
-      - 1.1 google, 1.1 google, 1.1 varnish, 1.1 varnish
+      - 1.1 google, 1.1 varnish, 1.1 varnish
       x-cloud-trace-context:
-      - da876c15a1800d89ad1b1f5179b49258
+      - 70996ce163e93a14aabf2d2281dd1f0b
       x-frame-options:
       - SAMEORIGIN
     status:
@@ -608,7 +609,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.48550
   response:
@@ -620,7 +621,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 87773c666f7e66d2-AMS
+      - 8c9cc70e4bbac7ed-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -628,21 +629,21 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 20 Apr 2024 18:35:45 GMT
+      - Fri, 27 Sep 2024 16:12:50 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=g9vB4aC3dbF9SFYgfkqqEZutpXnZVaLB8tuZl5lfG7YbaBEENrdvlexYzZ8coffZlbdiHmeI0ZXrJmQ3bYDOGOkOxBvM1Qf1S%2B4qFnr1VlDOvfe5KdgIJZea1J4j6LwIjxpDpv8%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=M86uOkY%2BHmKkgERQ8fMD6xKIOolzZO7rwHTlrKNdDl3VbkkVWaA%2BAjDbk4hMH4vr6CuewH8WLobEBEl5NeuLZO0RQXuF7lg32XvHtzf%2B3ZZeMV9Av3nokGMpqrLfLcAkldhhRVA%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
     status:
       code: 200
       message: OK
@@ -658,13 +659,13 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.datacite.org/dois/10.48550/arxiv.1902.02534?include=media,client
   response:
     body:
       string: !!binary |
-        H4sIAAELJGYAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
+        H4sIAILZ9mYAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
         7syZhz5lhSJjjy+CVP+4M7VIu3v5cUfNu5c7SXysPtdq4pMWHGnyKNVF+VGUa5Xq3f1dlPoELKZH
         QzxpURRQPY5IyA6D+D+c9gPyTo9XTKCF8TunfcBPTeJG9J2SAAr+9ePqmcn4mHPOLdSCNU3ufn6H
         kXZEAleLiHIj7YMXpcMfHi0rZvKNgGiRl8t0NYcJ6BOq03tBSTQXYhgxl/wK5Z6r2aBaNCHumPPn
@@ -748,13 +749,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sat, 20 Apr 2024 18:35:45 GMT
+      - Fri, 27 Sep 2024 16:12:50 GMT
       ETag:
-      - W/"d822f9194c85e7cf59630dac8be1342e"
+      - W/"2e8303d763630376f4748e71ec92d1f1"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.0.20
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.23
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -770,11 +771,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.0.20
+      - Phusion Passenger(R) 6.0.23
       X-Request-Id:
-      - c2bea7fe-3a7f-4de9-81f1-3fecac0f978b
+      - 07b0e136-abc9-459c-85be-52d8c912e335
       X-Runtime:
-      - '0.033441'
+      - '0.035136'
       X-XSS-Protection:
       - '0'
     status:

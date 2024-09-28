@@ -11,56 +11,56 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health
   response:
-    content: ''
+    body:
+      string: ''
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '5955'
+      - '0'
       Alt-Svc:
       - clear
-      Cache-Control:
-      - public, max-age=31536000
       Connection:
       - keep-alive
       Content-Length:
       - '0'
       Date:
-      - Fri, 01 Mar 2024 11:26:40 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
+      - Fri, 27 Sep 2024 16:12:17 GMT
       Ghost-Fastly:
       - 'true'
-      Server:
-      - openresty
-      Status:
-      - 301 Moved Permanently
       Vary:
       - Cookie
-      Via:
-      - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS, MISS, MISS
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - fe989826-c801-4638-8574-2728c8c81987
+      - 0, 0, 0
       X-Served-By:
-      - cache-ams21060-AMS
+      - cache-ams2100097-AMS, cache-ams21049-AMS, cache-fra-eddf8230022-FRA
       X-Timer:
-      - S1709292401.726107,VS0,VE1
+      - S1727453537.996416,VS0,VE56
+      cache-control:
+      - public, max-age=31536000
+      ghost-age:
+      - '0'
+      ghost-cache:
+      - MISS
       location:
       - /posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
+      server:
+      - openresty
+      status:
+      - 301 Moved Permanently
+      via:
+      - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - fe989826-c801-4638-8574-2728c8c81987
-    http_version: HTTP/1.1
-    status_code: 301
+      - b902cd3f-f72f-4a2b-a192-9fbc1ef16240
+    status:
+      code: 301
+      message: Moved Permanently
 - request:
     body: ''
     headers:
@@ -73,389 +73,180 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/
   response:
-    content: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"utf-8\">\n
-      \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
-      \   <title>Editorial by more than 200 health journals: Call for emergency action
-      to limit global temperature increases, restore biodiversity, and protect health</title>\n
-      \   <link rel=\"stylesheet\" href=\"https://blog.front-matter.io/assets/built/screen.css?v=adfb4b14fb\">\n\n
-      \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
-      \   <meta name=\"citation_title\" content=\"Editorial by more than 200 health
-      journals: Call for emergency action to limit global temperature increases, restore
-      biodiversity, and protect health\">\n    <meta name=\"citation_abstract\" content=\"More
-      than 200 health journals today published an editorial calling for urgent action
-      to keep average global temperature increases below 1.5\xB0C, halt the destruction
-      of nature, and protect health. The editorial can be read for example here (published
-      under a CC-BY Open Access license), and the full list\">\n    <meta name=\"citation_author\"
-      content=\"Martin Fenner\">\n    <meta name=\"citation_date\" content=\"2021-09-06\"/>\n
-      \   <meta name=\"citation_keywords\" content=\"News\"/>\n    <meta name=\"citation_journal_title\"
-      content=\"Front Matter\"/>\n    <meta name=\"citation_language\" content=\"en\">\n\n\n
-      \   <meta name=\"dc.identifier\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
-      \   <meta name=\"dc.creator\" content=\"Martin Fenner\" />\n    <meta name=\"dc.title\"
-      content=\"Editorial by more than 200 health journals: Call for emergency action
-      to limit global temperature increases, restore biodiversity, and protect health\"
-      />\n    <meta name=\"dc.description\" content=\"More than 200 health journals
-      today published an editorial calling for urgent action to keep average global
-      temperature increases below 1.5\xB0C, halt the destruction of nature, and protect
-      health. The editorial can be read for example here (published under a CC-BY
-      Open Access license), and the full list\" />\n    <meta name=\"dc.date\" content=\"2021-09-06\"
-      />\n    <meta name=\"dc.subject\" content=\"News\" />\n    <meta name=\"dc.language\"
-      content=\"en\" />   \n    <meta name=\"dc.format\" content=\"text/html\" />
-      \n    <meta name=\"dc.source\" content=\"Front Matter\" />\n    <meta name=\"dc.type\"
-      content=\"article\" />\n    \n    <meta name=\"dc.rights\" content=\"https://creativecommons.org/licenses/by/4.0/legalcode\"
-      />\n\n    <link rel=\"icon\" href=\"https://blog.front-matter.io/content/images/size/w256h256/2023/04/front-matter.png\"
-      type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
-      \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    <link
-      rel=\"amphtml\" href=\"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/amp/\">\n
-      \   \n    <meta property=\"og:site_name\" content=\"Front Matter\">\n    <meta
-      property=\"og:type\" content=\"article\">\n    <meta property=\"og:title\" content=\"Editorial
-      by more than 200 health journals: Call for emergency action to limit global
-      temperature increases, restore biodiversity, and protect health\">\n    <meta
-      property=\"og:description\" content=\"More than 200 health journals today published
-      an editorial calling for urgent action to keep average global temperature increases
-      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
-      can be read for example here (published under a CC-BY Open Access license),
-      and the full list\">\n    <meta property=\"og:url\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
-      \   <meta property=\"og:image\" content=\"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\">\n
-      \   <meta property=\"article:published_time\" content=\"2021-09-06T07:50:05.000Z\">\n
-      \   <meta property=\"article:modified_time\" content=\"2022-08-15T19:04:52.000Z\">\n
-      \   <meta property=\"article:tag\" content=\"News\">\n    \n    <meta name=\"twitter:card\"
-      content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Editorial
-      by more than 200 health journals: Call for emergency action to limit global
-      temperature increases, restore biodiversity, and protect health\">\n    <meta
-      name=\"twitter:description\" content=\"More than 200 health journals today published
-      an editorial calling for urgent action to keep average global temperature increases
-      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
-      can be read for example here (published under a CC-BY Open Access license),
-      and the full list\">\n    <meta name=\"twitter:url\" content=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">\n
-      \   <meta name=\"twitter:image\" content=\"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\">\n
-      \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
-      content=\"Martin Fenner\">\n    <meta name=\"twitter:label2\" content=\"Filed
-      under\">\n    <meta name=\"twitter:data2\" content=\"News\">\n    <meta property=\"og:image:width\"
-      content=\"1200\">\n    <meta property=\"og:image:height\" content=\"1186\">\n
-      \   \n    <script type=\"application/ld+json\">\n{\n    \"@context\": \"https://schema.org\",\n
-      \   \"@type\": \"Article\",\n    \"publisher\": {\n        \"@type\": \"Organization\",\n
-      \       \"name\": \"Front Matter\",\n        \"url\": \"https://blog.front-matter.io/\",\n
-      \       \"logo\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
-      \"https://blog.front-matter.io/content/images/2022/12/logo.png\",\n            \"width\":
-      200,\n            \"height\": 31\n        }\n    },\n    \"author\": {\n        \"@type\":
-      \"Person\",\n        \"name\": \"Martin Fenner\",\n        \"image\": {\n            \"@type\":
-      \"ImageObject\",\n            \"url\": \"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s=250&r=x&d=mp\",\n
-      \           \"width\": 250,\n            \"height\": 250\n        },\n        \"url\":
-      \"https://blog.front-matter.io/author/martin/\",\n        \"sameAs\": [\n            \"https://orcid.org/0000-0003-1419-2405\"\n
-      \       ]\n    },\n    \"headline\": \"Editorial by more than 200 health journals:
-      Call for emergency action to limit global temperature increases, restore biodiversity,
-      and protect health\",\n    \"url\": \"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/\",\n
-      \   \"datePublished\": \"2021-09-06T07:50:05.000Z\",\n    \"dateModified\":
-      \"2022-08-15T19:04:52.000Z\",\n    \"image\": {\n        \"@type\": \"ImageObject\",\n
-      \       \"url\": \"https://blog.front-matter.io/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\",\n
-      \       \"width\": 1200,\n        \"height\": 1186\n    },\n    \"keywords\":
-      \"News\",\n    \"description\": \"More than 200 health journals today published
-      an editorial calling for urgent action to keep average global temperature increases
-      below 1.5\xB0C, halt the destruction of nature, and protect health. The editorial
-      can be read for example here (published under a CC-BY Open Access license),
-      and the full list of participating journals can be found here.\\n\\nThe greatest
-      threat to global public health is the continued failure of world leaders to
-      keep the global temperature rise below 1.5\xB0C and to restore na\",\n    \"mainEntityOfPage\":
-      \"https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health/\"\n}\n
-      \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 5.79\">\n    <link
-      rel=\"alternate\" type=\"application/rss+xml\" title=\"Front Matter\" href=\"https://blog.front-matter.io/rss/\">\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.37/umd/portal.min.js\"
-      data-i18n=\"true\" data-ghost=\"https://blog.front-matter.io/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-api=\"https://front-matter.ghost.io/ghost/api/content/\" crossorigin=\"anonymous\"></script><style
-      id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
-      {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
-      \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
-      center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
-      {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
-      h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
-      \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
-      20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
-      16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
-      #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
-      \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
-      #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
-      a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
-      none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
-      \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
-      {\n    opacity: 0.92;\n}</style><script async src=\"https://js.stripe.com/v3/\"></script>\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js\"
-      data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
-      data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
-      \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
-      \   <script defer src=\"/public/cards.min.js?v=adfb4b14fb\"></script>\n    <link
-      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=adfb4b14fb\">\n
-      \   <script defer src=\"/public/comment-counts.min.js?v=adfb4b14fb\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
-      \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
-      feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
-      defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
-      {--ghost-accent-color: #059669;}</style>\n</head>\n\n<body class=\"post-template
-      tag-news is-head-stacked has-serif-body\">\n<div class=\"gh-site\">\n\n    <header
-      id=\"gh-head\" class=\"gh-head gh-outer\">\n        <div class=\"gh-head-inner
-      gh-inner\">\n            <div class=\"gh-head-brand\">\n                <div
-      class=\"gh-head-brand-wrapper\">\n                    \n                    <a
-      class=\"gh-head-logo\" href=\"https://blog.front-matter.io\">\n                            <img
-      src=\"https://blog.front-matter.io/content/images/2022/12/logo.png\" alt=\"Front
-      Matter\">\n                    </a>\n                    \n                </div>\n
-      \               <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                <button
-      class=\"gh-burger\"></button>\n            </div>\n\n            <nav class=\"gh-head-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-feature\"><a href=\"https://blog.front-matter.io/tag/feature/\">Feature</a></li>\n
-      \   <li class=\"nav-news\"><a href=\"https://blog.front-matter.io/tag/news/\">News</a></li>\n
-      \   <li class=\"nav-meeting-report\"><a href=\"https://blog.front-matter.io/tag/meeting-report/\">Meeting
-      Report</a></li>\n    <li class=\"nav-interview\"><a href=\"https://blog.front-matter.io/tag/interview/\">Interview</a></li>\n
-      \   <li class=\"nav-chart\"><a href=\"https://blog.front-matter.io/tag/chart/\">Chart</a></li>\n
-      \   <li class=\"nav-science-hack\"><a href=\"https://blog.front-matter.io/tag/science-hack/\">Science
-      Hack</a></li>\n    <li class=\"nav-book-review\"><a href=\"https://blog.front-matter.io/tag/book-review/\">Book
-      Review</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-head-actions\">\n
-      \                   <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                    <div
-      class=\"gh-head-members\">\n                                <a class=\"gh-head-link\"
-      href=\"#/portal/signin\" data-portal=\"signin\">Sign in</a>\n                                <a
-      class=\"gh-head-btn gh-btn gh-primary-btn\" href=\"#/portal/signup\" data-portal=\"signup\">Subscribe</a>\n
-      \                   </div>\n            </div>\n        </div>\n    </header>\n\n
-      \   \n<main class=\"gh-main\">\n        <article class=\"gh-article post tag-news\">\n\n
-      \           <header class=\"gh-article-header gh-canvas\">\n                    <a
-      class=\"gh-article-tag\" href=\"https://blog.front-matter.io/tag/news/\">News</a>\n\n
-      \               <h1 class=\"gh-article-title\">Editorial by more than 200 health
-      journals: Call for emergency action to limit global temperature increases, restore
-      biodiversity, and protect health</h1>\n\n                    <aside class=\"gh-article-sidebar\">\n\n
-      \       <div class=\"gh-author-image-list\">\n                <a class=\"gh-author-image\"
-      href=\"/author/martin/\">\n                        <img src=\"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp\"
-      alt=\"Martin Fenner\">\n                </a>\n        </div>\n\n        <div
-      class=\"gh-author-name-list\">\n                <h4 class=\"gh-author-name\">\n
-      \                   <a href=\"/author/martin/\">Martin Fenner</a>\n                </h4>\n
-      \               \n        </div>\n\n        <div class=\"gh-article-meta\">\n
-      \           <div class=\"gh-article-meta-inner\">\n                <time class=\"gh-article-date\"
-      datetime=\"2021-09-06\">Sep 6, 2021</time>\n                    <span class=\"gh-article-meta-sep\"></span>\n
-      \                   <span class=\"gh-article-length\">1 min</span>\n            </div>\n
-      \               <a class=\"gh-card-link\" href=\"https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw\">https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw</a>\n
-      \       </div>\n\n    </aside>\n\n\n                    <figure class=\"gh-article-image\">\n
-      \       <img\n            srcset=\"/content/images/size/w300/2022/07/photo-1578403881967-084f9885be74.jpeg
-      300w,\n                    /content/images/size/w720/2022/07/photo-1578403881967-084f9885be74.jpeg
-      720w,\n                    /content/images/size/w960/2022/07/photo-1578403881967-084f9885be74.jpeg
-      960w,\n                    /content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg
-      1200w,\n                    /content/images/size/w2000/2022/07/photo-1578403881967-084f9885be74.jpeg
-      2000w\"\n            sizes=\"(max-width: 1200px) 100vw, 1200px\"\n            src=\"/content/images/size/w1200/2022/07/photo-1578403881967-084f9885be74.jpeg\"\n
-      \           alt=\"Editorial by more than 200 health journals: Call for emergency
-      action to limit global temperature increases, restore biodiversity, and protect
-      health\"\n        >\n    </figure>\n            </header>\n\n            <section
-      class=\"gh-content gh-canvas\">\n                <p>More than 200 health journals
-      today published an editorial calling for urgent action to keep average global
-      temperature increases below 1.5\xB0C, halt the destruction of nature, and protect
-      health. The editorial can be read for example <a href=\"https://doi.org/10.1136/bmj.n1734\">here</a>
-      (published under a CC-BY Open Access license), and the full list of participating
-      journals can be found <a href=\"https://www.bmj.com/content/full-list-authors-and-signatories-climate-emergency-editorial-september-2021\">here</a>.</p><blockquote>The
-      greatest threat to global public health is the continued failure of world leaders
-      to keep the global temperature rise below 1.5\xB0C and to restore nature. Urgent,
-      society-wide changes must be made and will lead to a fairer and healthier world.
-      We, as editors of health journals, call for governments and other leaders to
-      act, marking 2021 as the year that the world finally changes course.</blockquote><p>The
-      COVID Pandemic is currently taking up all our attention. But we should not loose
-      time addressing the environmental crisis triggered by climate change, and having
-      a significant negative impact on global health, both via direct effects of global
-      heating and extreme weather events, and indirectly via reduced food production.</p><p>This
-      joint editorial by more than 200 health journals worldwide is yet another clear
-      sign of the urgency of the situation, and the need for action. And we should
-      not forget that health is just one aspect of how the climate crisis is seriously
-      affecting all our lives, in particular those most vulnerable.</p><p>The editorial
-      makes a strong point that the time for action is now, and that wealthy nations
-      must do much more, and much faster. It is also an opportunity to think about
-      what we as individuals can do, whether it is about re-evaluating our individual
-      carbon footprint, thinking about what political parties we support (Germany
-      where I live for example has a federal election in three weeks), and whether
-      the organizations we work for can do more to slow down global warming.</p>\n
-      \                       <div class=\"gh-license\">\n                            Copyright
-      \xA9 2021 Martin Fenner. Distributed under the terms of the\n                            <a\n
-      \                               class=\"gh-license-link\"\n                                href=\"https://creativecommons.org/licenses/by/4.0/legalcode\"\n
-      \                           >\n                                Creative Commons
-      Attribution 4.0 License.\n                            </a>\n                        </div>\n
-      \           </section> \n            </section>\n\n        </article>\n\n                <div
-      class=\"gh-read-next gh-canvas\">\n                <section class=\"gh-pagehead\">\n
-      \                   <h4 class=\"gh-pagehead-title\">Read next</h4>\n                </section>\n\n
-      \               <div class=\"gh-topic gh-topic-grid\">\n                    <div
-      class=\"gh-topic-content\">\n                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/rogue-scholar-launches-a-free-personal-plan/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
-      300w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
-      720w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
-      960w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
-      1200w,\n                            https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1504805572947-34fad45aed93?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDI5fHxwZXJzb25hbHxlbnwwfHx8fDE3MDg5NDU0NTB8MA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
-      \                   alt=\"Rogue Scholar launches a free personal plan\"\n                >\n
-      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Rogue
-      Scholar launches a free personal plan</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">The Rogue Scholar science blog archive today has launched
-      a new free Personal Plan: similar to the Starter Plan launched last year, but
-      only for personal (single-author) blogs, and with no limitations on the number
-      of blog posts that can be archived and registered with a DOI per year.\n\nIn</div>\n\n
-      \           <footer class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
-      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2024-02-26\">Feb
-      26, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65dc70251677b70001215800\"\n
-      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
-      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                            <article
-      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/commonmeta-py-now-supports-metadata-lists/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
-      300w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
-      720w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
-      960w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
-      1200w,\n                            https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1532208248246-ade38054bef6?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDMyfHxyb3d8ZW58MHx8fHwxNzA4NDQ1NzQ3fDA&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
-      \                   alt=\"commonmeta-py now supports metadata lists\"\n                >\n
-      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">commonmeta-py
-      now supports metadata lists</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">This week the commonmeta-py Python library adds an
-      important new feature: metadata lists. With this feature commonmeta-py no longer
-      only operates on metadata for a single scholarly work (e.g. a journal article,
-      book, dataset, software, or blog post), but can handle lists of scholarly works.\n\nMost
-      of the metadata</div>\n\n            <footer class=\"gh-card-footer\">\n                <span
-      class=\"gh-card-author\">Martin Fenner</span>\n                <time class=\"gh-card-date\"
-      datetime=\"2024-02-20\">Feb 20, 2024</time>\n                    <script\n    data-ghost-comment-count=\"65d4d00d1677b7000121571b\"\n
-      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
-      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                            <article
-      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/announcing-rogue-scholar-preview/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;300
-      300w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720
-      720w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;960
-      960w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1200
-      1200w,\n                            https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;2000
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIyfHxwcmV2aWV3JTIwbmF0dXJlfGVufDB8fHx8MTcwNzczNzY3Mnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;720\"\n
-      \                   alt=\"Announcing Rogue Scholar Preview\"\n                >\n
-      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Announcing
-      Rogue Scholar Preview</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">Today the Rogue Scholar science blog archive launched
-      a new feature: Rogue Scholar Preview. This new functionality enables the import
-      of new science blogs into the preview version of the production service, located
-      at https://preview.rogue-scholar.org. This allows users to see how their blog
-      posts will look like</div>\n\n            <footer class=\"gh-card-footer\">\n
-      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
-      class=\"gh-card-date\" datetime=\"2024-02-12\">Feb 12, 2024</time>\n                    <script\n
-      \   data-ghost-comment-count=\"65ca01e618422c0001e4a609\"\n    data-ghost-comment-count-empty=\"\"\n
-      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
-      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
-      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
-      \       </div>\n    </a>\n</article>                    </div>\n                </div>\n
-      \           </div>\n\n                <div class=\"gh-comments gh-read-next
-      gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
-      class=\"gh-pagehead-title\">Comments (<script\n    data-ghost-comment-count=\"62d42bbd41e317003df48f15\"\n
-      \   data-ghost-comment-count-empty=\"0\"\n    data-ghost-comment-count-singular=\"\"\n
-      \   data-ghost-comment-count-plural=\"\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>)</h3>\n
-      \           </section>\n            \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js\"
-      data-locale=\"en\" data-ghost-comments=\"https://blog.front-matter.io/\" data-api=\"https://front-matter.ghost.io/ghost/api/content/\"
-      data-admin=\"https://front-matter.ghost.io/ghost/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-title=\"\" data-count=\"false\" data-post-id=\"62d42bbd41e317003df48f15\"
-      data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#059669\"
-      data-comments-enabled=\"all\" data-publication=\"Front Matter\" crossorigin=\"anonymous\"></script>\n
-      \   \n        </div>\n</main>\n\n    <footer class=\"gh-foot gh-outer\">\n        <div
-      class=\"gh-foot-inner gh-inner\">\n                <section class=\"gh-subscribe\">\n
-      \                   <h3 class=\"gh-subscribe-title\">Subscribe to Front Matter</h3>\n
-      \                       <div class=\"gh-subscribe-description\">Subscribe to
-      the Front Matter Blog to automatically receive blog posts via email newsletter.</div>\n
-      \                   <button class=\"gh-subscribe-btn gh-btn\" data-portal=\"signup\"><svg
-      width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\"
-      xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M3.33332 3.33334H16.6667C17.5833
-      3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667
-      16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334
-      2.41666 3.33334 3.33332 3.33334Z\" stroke-width=\"1.5\" stroke-linecap=\"round\"
-      stroke-linejoin=\"round\"/>\n    <path d=\"M18.3333 5L9.99999 10.8333L1.66666
-      5\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>
-      Subscribe now</button>\n                </section>\n\n            <nav class=\"gh-foot-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-front-matter\"><a href=\"https://front-matter.io\">Front
-      Matter</a></li>\n    <li class=\"nav-about\"><a href=\"https://blog.front-matter.io/about/\">About</a></li>\n
-      \   <li class=\"nav-privacy-policy\"><a href=\"https://blog.front-matter.io/privacy-policy/\">Privacy
-      Policy</a></li>\n    <li class=\"nav-rss\"><a href=\"https://blog.front-matter.io/atom/\">RSS</a></li>\n
-      \   <li class=\"nav-usage-stats\"><a href=\"https://plausible.io/blog.front-matter.io\">Usage
-      Stats</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-copyright\">\n
-      \                   Front Matter \xA9 2024. Powered by <a href=\"https://ghost.org/\"
-      target=\"_blank\" rel=\"noopener\">Ghost</a>\n            </div>\n        </div>\n
-      \   </footer>\n\n</div>\n\n    <div class=\"pswp\" tabindex=\"-1\" role=\"dialog\"
-      aria-hidden=\"true\">\n    <div class=\"pswp__bg\"></div>\n\n    <div class=\"pswp__scroll-wrap\">\n
-      \       <div class=\"pswp__container\">\n            <div class=\"pswp__item\"></div>\n
-      \           <div class=\"pswp__item\"></div>\n            <div class=\"pswp__item\"></div>\n
-      \       </div>\n\n        <div class=\"pswp__ui pswp__ui--hidden\">\n            <div
-      class=\"pswp__top-bar\">\n                <div class=\"pswp__counter\"></div>\n\n
-      \               <button class=\"pswp__button pswp__button--close\" title=\"Close
-      (Esc)\"></button>\n                <button class=\"pswp__button pswp__button--share\"
-      title=\"Share\"></button>\n                <button class=\"pswp__button pswp__button--fs\"
-      title=\"Toggle fullscreen\"></button>\n                <button class=\"pswp__button
-      pswp__button--zoom\" title=\"Zoom in/out\"></button>\n\n                <div
-      class=\"pswp__preloader\">\n                    <div class=\"pswp__preloader__icn\">\n
-      \                       <div class=\"pswp__preloader__cut\">\n                            <div
-      class=\"pswp__preloader__donut\"></div>\n                        </div>\n                    </div>\n
-      \               </div>\n            </div>\n\n            <div class=\"pswp__share-modal
-      pswp__share-modal--hidden pswp__single-tap\">\n                <div class=\"pswp__share-tooltip\"></div>\n
-      \           </div>\n\n            <button class=\"pswp__button pswp__button--arrow--left\"
-      title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
-      pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
-      class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
-      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=adfb4b14fb\"></script>\n\n\n\n</body>\n\n</html>\n"
+    body:
+      string: !!binary |
+        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
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '5955'
+      - '180822'
       Alt-Svc:
       - clear
-      Cache-Control:
-      - public, max-age=0
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '6842'
-      Content-Type:
-      - text/html; charset=utf-8
+      - '6831'
       Date:
-      - Fri, 01 Mar 2024 11:26:40 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
+      - Fri, 27 Sep 2024 16:12:17 GMT
       Ghost-Fastly:
       - 'true'
-      Server:
-      - openresty
-      Status:
-      - 200 OK
       Vary:
       - Cookie, Accept-Encoding
-      Via:
-      - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS, HIT, MISS
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - cbaf9d0f-c03c-4492-87d4-516a57c1cbfb
+      - 0, 3, 0
       X-Served-By:
-      - cache-ams21060-AMS
+      - cache-ams21039-AMS, cache-ams21039-AMS, cache-fra-eddf8230022-FRA
       X-Timer:
-      - S1709292401.753498,VS0,VE1
+      - S1727453537.078113,VS0,VE10
+      cache-control:
+      - public, max-age=0
+      content-encoding:
+      - gzip
+      content-type:
+      - text/html; charset=utf-8
       etag:
-      - W/"81f4-YZ86LocMcp4W4VH1vT5NJMyhbP8"
+      - W/"781f-nRjWXD+f8ijXVN8tM3G6eWlI7pc"
+      ghost-age:
+      - '0'
+      ghost-cache:
+      - MISS
+      server:
+      - openresty
+      status:
+      - 200 OK
+      via:
+      - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - cbaf9d0f-c03c-4492-87d4-516a57c1cbfb
-    http_version: HTTP/1.1
-    status_code: 200
+      - faad4783-8b32-44cf-85c3-d24de09d5ef1
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -468,16 +259,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
-    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 85d8cb217e9d06d2-AMS
+      - 8c9cc63f5c5b7a40-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -485,23 +279,24 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 01 Mar 2024 11:26:41 GMT
+      - Fri, 27 Sep 2024 16:12:17 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=KvldISkp%2BR5o0C3WFvCMGtj3tS8wuzt9Ln55z%2FR8jfTrC5iquMCAIePdcKz%2BixMH26lqAekWwH7uBkHqN%2F54hU6ssBs1HiAUE%2Brvc7I3xUscY%2B2dlyHhNHKvhVeqTEK7EXfGcds%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ZBneuSuyvPbrqvDSwFRuZvJKRZ%2BeoreON3%2FSWlMbblUDl5dBn29rqgYzKBWmp5Jy9mPrTM4tLqyJkNGhIHvaYhafTPGxMX%2FC1YuhXWgI4ztPEm6j5RcKScRM3B1hebneXtSx%2B4k%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -514,21 +309,35 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.53731/r9nqx6h-97aq74v-ag7bw
   response:
-    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-      Matter"}],"indexed":{"date-parts":[[2024,3,8]],"date-time":"2024-03-08T00:15:44Z","timestamp":1709856944687},"posted":{"date-parts":[[2021,9,6]]},"group-title":"Computer
-      and information sciences","reference-count":0,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2021,9,6]],"date-time":"2021-09-06T00:00:00Z","timestamp":1630886400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2021,9,6]],"date-time":"2021-09-06T00:00:00Z","timestamp":1630886400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>More
-      than 200 health journals today published an editorial calling for urgent action
-      to keep average global temperature increases below 1.5\u00b0C, halt the destruction
-      of nature, and protect health. The editorial can be read for example here (published
-      under a CC-BY Open Access license), and the full list of participating journals
-      can be found here. The COVID Pandemic is currently taking up all our attention.<\/p>","DOI":"10.53731\/r9nqx6h-97aq74v-ag7bw","type":"posted-content","created":{"date-parts":[[2021,10,13]],"date-time":"2021-10-13T06:05:41Z","timestamp":1634105141000},"source":"Crossref","is-referenced-by-count":0,"title":["Editorial
-      by more than 200 health journals: Call for emergency action to limit global
-      temperature increases, restore biodiversity, and protect health"],"prefix":"10.53731","author":[{"ORCID":"http:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[{"name":"Front
-      Matter"}]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.io\/posts\/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r9nqx6h-97aq74v-ag7bw.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r9nqx6h-97aq74v-ag7bw.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r9nqx6h-97aq74v-ag7bw.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/r9nqx6h-97aq74v-ag7bw.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,3,7]],"date-time":"2024-03-07T14:31:02Z","timestamp":1709821862000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.io\/posts\/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2021,9,6]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.53731\/r9nqx6h-97aq74v-ag7bw","relation":{"is-part-of":[{"id-type":"issn","id":"2749-9952","asserted-by":"subject"}]},"published":{"date-parts":[[2021,9,6]]},"subtype":"other"}}'
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/9VX4U/rNhD/V6x82rQ4ddqkfamenrSVTUIa4umJTdooH5zEaf1I7GA70A71f9+d
+        E0ofFPgwTWMIULHPvt/d7+535j6wjrvOBvNAXwdh0Ahr+UpQt20FrN1pc7h6K4yVWsFGHLGIPe4E
+        8/tAKuuk65w3uLwPFG/wil+MVo6cceeECXZXIdiVYiNKPFJyJ2jLjQP/l5djNk7CNIyTK7DyW076
+        K3CDspTGyQVj8zibp8mf4Bt3AX3TBvN4FqfTJM2yJMniXRi02roXXMRhFk6vrsBoZXTXgg9Xo5OF
+        btoOMBKuSiJVpU3DMRZiCylUISx4NKISBv+ghe6UC+YMXHV5Le0agnsSaxjUshDKCp8NAGrca4Ce
+        hRxTllE2xZD999OQpxP24cM0YfgF0RTgWih3wNGtRhClqPmWSkVLvrUe8W9ffoXdtXOtnS9Hy1Fh
+        BER6KwrdNFrZSJvVcjRgt8tRvl2OkojBkljxutClCHbhfxKQK5t/K6CrR3+lbrhUPrLh0yXuGm1t
+        w801NQDYyKKv84rXVgBYu9bGUbwCTgjzUFV4kudgzwvIVfCx/XSmjSBuzRUZM0bWgtduTb7qzii4
+        iTgNQZGHkiqhFokopdNG8poUvK6lWhEoTdKZFWAl3MOAY+RaiJZwyBV0I1nVOocDTjQtLLgOXEqF
+        WYH4SS5qfUfiKF12jOVsEZI1gABMgpQYWtffqSui/NHQd0RrtBOFGxBH5ALMD6EpuJeAh9LDExug
+        tBZgDa6/e4yng96HDiOLBf3pD3LeCkV+LKC3LBno+b73hmCqrq5h2TqEgvUlC9kCr5CBfb4GvxV0
+        Y+md9cAW57+fnpDPcJNoZEEkGHYGGtfVW+L4NV7RQbbgfriIYLsqjDn6uBy1n6DETs5PUeNYlE5m
+        k3g5Mpm62UzXNJvxm1lyS/lqlt9h9fYq2asNHQoowGKBAnxRf2IWxpOj/REzGk8u2HTO0nkSP++P
+        JGZpDL98f1jAXnjlwtIEaQJzaeleo0qabw906qEig5/3rOVb0rxWjnOywBx5QhuBFVdsD0qulo10
+        r9ZaSLBZ0EUudSl9J7vtsYIKIB0tQJebIfHZJMX5wjsHneUV9PzL4vRk6HPf5toUsuybGyWDws8E
+        ZkSc0XHC0uEwMlsgGdSbDx0L4g9oUFPOsLAUGFe8kfUWRVwo5eXbipsOEwlrlTQWieVVJWvJ35hx
+        qCaNaHI/EybxLEMwR7UBeFhJSPXhGvT4tb/8qazltV5FFbqijXcVSQ0FC8UHorbvRWQdWaXIKgVW
+        KeoGBRLpnkTak0idpp5E2pNID0ikexLpwCE95JAChXSgkA4UPkro0BdObNxytHZNHbw8nyQul8AP
+        b9saqRq0Hs7SRiroVT9uniaDtzIyetUJaou1rrnpC2HIxhutGzXlS2jbmvtyeFdw27J6jvcAAFz0
+        jcW7AC1A9t9AjSY//CXb9wZ9803FHkO++cc1jfovAI98aVD4t/CxOdG/hWFOpHOWzMeTI2/hdDad
+        wnOqnxMFNC8s4/P1YWbcg9hKeM1s8eP/TWd2GFSXH0hm//o6WJDWdm++//eT0h6Mycdk+FyUm6jU
+        si+et98DBp6mPdf3OIrRLdWVF3NZPtQRYEOBwVkUjGdJRrMsHeNssVYY58c27ECAXyFmnCbh/g8f
+        2/419UZ4mKLeo3b478lu9zf910Gd7Q0AAA==
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -542,11 +351,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1269'
+      - '1279'
       content-type:
       - application/json
       date:
-      - Wed, 13 Mar 2024 23:13:21 GMT
+      - Fri, 27 Sep 2024 16:12:17 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -563,6 +372,7 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

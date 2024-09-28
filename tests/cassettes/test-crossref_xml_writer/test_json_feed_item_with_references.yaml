@@ -11,92 +11,100 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647
   response:
-    content: '{"abstract":"A preprint claims that \u201cideas from theoretical linguistics
-      have played no role in [NLP]\u201d. Outside the confines of Chomskyan linguistics
-      folks have long been working on  incorporating storage, retrieval, gating and
-      attention in theories of language, with direct relevance to computational models.
-      The only way to give any content to the claim is by giving the notion \u201ctheoretical
-      linguistics\u201d the narrowest conceivable reading.","archive_url":null,"authors":[{"name":"Mark
-      Dingemanse"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"languagesAndLiterature","created_at":1706627953,"current_feed_url":null,"description":"Sounding
-      out ideas on language, interaction, and iconicity","favicon":"https://ideophone.org/files/cropped-android-chrome-512x512-1-32x32.png","feed_format":"application/atom+xml","feed_url":"https://ideophone.org/feed/atom/","filter":"category:98","funding":null,"generator":"WordPress","generator_raw":"WordPress
-      6.4.3","home_page_url":"https://ideophone.org/","id":"191184bc-efcf-4f0f-a1ee-09436542d408","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scholar.social/@dingemansemark","plan":"Personal","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"ideophone","status":"active","title":"The
-      Ideophone","updated_at":1707592686,"use_api":true,"use_mastodon":false,"user_id":"e1f022f2-7d98-4b1e-81cc-81d8e8416403"},"blog_name":"The
-      Ideophone","blog_slug":"ideophone","content_text":"This [Lingbuzz preprint by\nBaroni](https://ling.auf.net/lingbuzz/006031){rel=\"noreferrer
-      noopener\"\ntarget=\"_blank\"} is a nice read if you''re interested in linguistically\noriented
-      deep net analysis. I did feel it''s a bit hampered by the\nnear-exclusive equation
-      of linguistic theory with generative/Chomskyan\naps. (I know it makes a point
-      of claiming a \"very broad notion of\ntheoretical linguistics\", but it doesn''t
-      really demonstrate this, and\nthroughout the implicit notion of theory is near-exclusively
-      aligned\nwith GG and its associated concerns of competence, poverty of the\nstimulus,
-      et cetera).\n\n<figure class=\"wp-block-image\">\n<img src=\"https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png\"\ndecoding=\"async\"
-      />\n</figure>\n\nFor instance, it notes (citing Lappin) that theoretical linguistics\n\"played
-      no role\" in deep learning for NLP, but while this may hold for\ngenerative
-      grammar (GG), linguistic theorizing was much broader than\nthat right at the
-      start of connectionism and RNNs, e.g. in [Elman\n1991](http://doi.org/10.1023/A:1022699029236){target=\"_blank\"\nrel=\"noreferrer
-      noopener\"}.\n\nIn fact, just look at the bibliography of Elman''s classic RNN
-      work and\ntell us again how exactly theoretical linguistics \"played no role\"
-      ---\nBates & Macwhinney, Chomsky, Fillmore, Fodor, Givon, Hopper & Thompson,\nLakoff,
-      Langacker, they''re all there. Elman''s bibliography is a virtual\n*Who is Who*
-      of big tent linguistics at the start of the 1990s. The only\nway to give any
-      content to Lappin''s claim (and by extension, Baroni''s\ngeneralization) is
-      to give the notion of \"theoretical linguistics\" the\nnarrowest conceivable
-      reading.\n\n<figure\nclass=\"wp-block-gallery has-nested-images columns-default
-      is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure
-      class=\"wp-block-image size-large\">\n<a href=\"https://ideophone.org/files/E4FEkLuWUAI6IwO.png\"><img\nsrc=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png\"\nclass=\"wp-image-5640\"
-      loading=\"lazy\" decoding=\"async\" data-id=\"5640\"\nsrcset=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png
-      696w, https://ideophone.org/files/E4FEkLuWUAI6IwO-204x300.png 204w, https://ideophone.org/files/E4FEkLuWUAI6IwO.png
-      754w\"\nsizes=\"(max-width: 696px) 100vw, 696px\" width=\"696\" height=\"1024\"
-      /></a>\n</figure>\n</figure>\n\nHowever, Baroni''s point may generalize: perhaps
-      modern-day usage-based,\nfunctional, and cognitive approaches to ling theory
-      aren''t drawing as\nheavily on current NLP/ML/DL work as they could either.
-      Might a lack of\nreciprocity play a role? After all, the well known ahistoricism
-      and lack\nof interdisciplinary engagement of NLP today does not exactly invite\nproductive
-      exchange. (Though some of us try.)\n\nThe theory=Chomsky equation also makes
-      it appearance at the end, where\nBaroni muses about incorporating storage, retrieval,
-      gating and\nattention in theories of language. Outside the confines of Chomskyan\nlinguistics
-      folks have long been working on precisely such things. One\nmight think work
-      by Joan Bybee, Maryellen MacDonald, Morten\nChristiansen, and others might merit
-      a mention!\n\n<figure class=\"wp-block-image\">\n<img src=\"https://pbs.twimg.com/media/E4FH0LUXwAY9NfF.png\"\ndecoding=\"async\"
-      />\n</figure>\n\nIn sum, Baroni''s piece provides an informative if partial
-      review of\nrecent work and includes bold proposals (e.g., deep nets as algorithmic\nlinguistic
-      theories), worth reading if you''re interested in a particular\nkind of linguistics.
-      Consider pairing it with this [well-aged bottle of\nElman 1991](http://doi.org/10.1023/A:1022699029236){target=\"_blank\"\nrel=\"noreferrer
-      noopener\"}!\n\n## References {#references .wp-block-heading}\n\n- Baroni, M.
-      (2021, June). *On the proper role of\n  linguistically-oriented deep net analysis
-      in linguistic theorizing*.\n  LingBuzz. Retrieved from <https://ling.auf.net/lingbuzz/006031>\n-
-      Bybee, J. L. (2010). *Language, Usage, and Cognition*. Cambridge:\n  Cambridge
-      University Press.\n- Christiansen, M. H., & Chater, N. (2017). Towards an integrated\n  science
-      of language. *Nature Human Behaviour*, *1*,\n  s41562-017-0163--017. doi:\n  [10.1038/s41562-017-0163](https://doi.org/10.1038/s41562-017-0163)\n-
-      Elman, J. L. (1991). Distributed Representations, Simple Recurrent\n  Networks,
-      And Grammatical Structure. *Machine Learning*, *7*,\n  195--225. doi:\n  [10.1023/A:1022699029236](https://doi.org/10.1023/A:1022699029236)\n-
-      Lappin, S. (2021). *Deep learning and linguistic representation*. Boca\n  Raton:
-      CRC Press.\n- MacDonald, M. C., & Christiansen, M. H. (2002). Reassessing working\n  memory:
-      Comment on Just and Carpenter (1992) and Waters and Caplan\n  (1996). *Psychological
-      Review*, *109*(1), 35--54. doi:\n  [10.1037/0033-295X.109.1.35](https://doi.org/10.1037/0033-295X.109.1.35)\n\n*Originally
-      tweeted by\n[@dingemansemark](https://scholar.social/@dingemansemark){.u-url\n.mention
-      rel=\"mention\"}\n([@DingemanseMark](https://twitter.com/DingemanseMark)) on
-      [June 17,\n2021](https://twitter.com/DingemanseMark/status/1405488247057391616).*\n","doi":"https://doi.org/10.59350/dn2mm-m9q51","guid":"https://ideophone.org/?p=5639","id":"525a7d13-fe07-4cab-ac54-75d7b7005647","image":"https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png","indexed_at":1707122675,"language":"en","published_at":1626939547,"reference":[{"key":"ref1","url":"https://ling.auf.net/lingbuzz/006031"},{"doi":"https://doi.org/10.1038/s41562-017-0163","key":"ref2","publicationYear":"2017","title":"Towards
-      an integrated science of language"},{"doi":"https://doi.org/10.1023/a:1022699029236","key":"ref3","publicationYear":"1991"},{"doi":"https://doi.org/10.1037/0033-295x.109.1.35","key":"ref4","publicationYear":"2002","title":"Reassessing
-      working memory: Comment on Just and Carpenter (1992) and Waters and Caplan (1996)."},{"key":"ref5","url":"https://scholar.social/@dingemansemark"},{"key":"ref6","url":"https://twitter.com/dingemansemark"},{"key":"ref7","url":"https://twitter.com/dingemansemark/status/1405488247057391616"}],"relationships":[],"summary":"This
-      Lingbuzz preprint by Baroni is a nice read if you\u2019re interested in linguistically
-      oriented deep net analysis. I did feel it\u2019s a bit hampered by the near-exclusive
-      equation of linguistic theory with generative/Chomskyan aps.","tags":["Linguistics","Threads"],"title":"Linguistic
-      roots of connectionism","updated_at":1707080736,"url":"https://ideophone.org/linguistic-roots-of-connectionism"}
-
-      '
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RslJyVCgoSi0oyswrUUjOSczMLVYoyUgsUYgpNTIwTM5MSU0s
+        Vkgrys9VKMlIzS9KLclMTsxRyMnMSy/NLC7JTC5WyEgsS1UoyEmsTE1RyMtXKMrPSVXIzFOI9vMJ
+        iAUbkqKn4F9aUpyZkgoyQyE5Py8tMy+1WCE/TcE5Iz+3OLsyMQ/FxLT8nGyouTn5eekKSampeQrl
+        +UXZmXnpCvl5CgqZecn5RQX5RYklIJHikvyixPRUHYWi1JKizNSyxBwdhXSIVGJeikJiSUlqXklm
+        fh7IVWBPZEIsz0nMSy8FayzPLMlQSMksSk0uUShKzUktS8xLTlUoyVdIzs8tKC1JBOlOzFHIzU9J
+        zSnWUwjJSFXIz8upVChPrASpSs8sS1VIzKsEeQ1kF0isJCMVEpwKmcUKSZUK6ZllILeChPPyQeZB
+        AxjsIMxQhQQcOLzyEouK8stTi0tAxienZpYlJuWkKhSlJqZk5qXrKekoJRYlZ2SWpcaXFuUoWeWV
+        5uToKCWWlmTkFxUrWUVXK+Ul5qYqWSn5JhZlK7hk5qWn5ibmFacq1cbqKCXl5KcrWVXDTSgoSk3L
+        rMAwBGJmcmJefh4o9pEtSk4sSU3PL6pUslKCBWexY16KT2ZJalFiSWlRqpKOUnJRamJJakp8YomS
+        laG5gZmZkbmlqbGOUnJpUVFqXkl8WmpqCrKZKanFyUWZBaBAUrJSCs4vzQP5VCG/tEQBkhzz8xRg
+        lukoZOaBrEoGqdZRAMV3ZjLImZkllUo6SmmJZSCukpVSRklJQbGVvn5mSmp+QUZ+XqpeflG6flpm
+        TmqxfnJRfkFBaopuYl5KUX5mim5yRlF+bqquqaFRhamhka6hrrFRhbGRXkFeOshIkGvT8otyQd5R
+        SiwoyMlMBicQ/cSS/FztitwcmCJwfOCyODU1BaxBH6Q6M6cktUjJSgkWmlaWFiBhiMdh0ZGemgcK
+        03yQwvD8opSAotTiYiUdJbh4fFFiuZKVElxOwUzPTM9ISUcpIz83Nb4gMR2aRHA4SUlHKTNFyUrJ
+        0NLQ0MIkKVk3NS05TdckzSBNN9EwNVXXwNLE2MzUxCjFxADkusy8lNSK1BQlq5Ki0lQdpczi4jyY
+        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
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Fri, 01 Mar 2024 11:26:44 GMT
+      - Fri, 27 Sep 2024 16:12:21 GMT
       fly-request-id:
-      - 01HQWW8FC46RGS2TN0EWYT29MM-fra
+      - 01J8T42CSN4SEK3SSE7SN5BRD6-cdg
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
@@ -104,193 +112,14 @@ interactions:
       ratelimit-reset:
       - '7'
       server:
-      - Fly/38ec6ca9 (2024-02-29)
+      - Fly/0c45e4378 (2024-09-20)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
       - 1.1 fly.io
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - ling.auf.net
-      user-agent:
-      - python-httpx/0.25.2
-    method: HEAD
-    uri: https://ling.auf.net/lingbuzz/006031
-  response:
-    content: ''
-    headers:
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '512'
-      Content-Type:
-      - text/plain
-      Date:
-      - Fri, 01 Mar 2024 11:26:45 GMT
-      Server:
-      - nginx
-    http_version: HTTP/1.1
-    status_code: 501
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - scholar.social
-      user-agent:
-      - python-httpx/0.25.2
-    method: HEAD
-    uri: https://scholar.social/@dingemansemark
-  response:
-    content: ''
-    headers:
-      Cache-Control:
-      - max-age=15, public, stale-while-revalidate=30, stale-if-error=3600
-      Connection:
-      - keep-alive
-      Content-Length:
-      - '0'
-      Content-Security-Policy:
-      - 'base-uri ''none''; default-src ''none''; frame-ancestors ''none''; font-src
-        ''self'' https://scholar.social; img-src ''self'' https: data: blob: https://scholar.social;
-        style-src ''self'' https://scholar.social ''nonce-U1SWPBqqOIv7/NL3Aq/Y/A=='';
-        media-src ''self'' https: data: https://scholar.social; frame-src ''self''
-        https:; manifest-src ''self'' https://scholar.social; form-action ''self'';
-        child-src ''self'' blob: https://scholar.social; worker-src ''self'' blob:
-        https://scholar.social; connect-src ''self'' data: blob: https://scholar.social
-        https://cdn.masto.host wss://scholar.social; script-src ''self'' https://scholar.social
-        ''wasm-unsafe-eval'''
-      Content-Type:
-      - text/html; charset=utf-8
-      Date:
-      - Fri, 01 Mar 2024 11:26:45 GMT
-      ETag:
-      - W/"0b70421f1163323bc7240ce6273de32a"
-      Link:
-      - </packs/js/locale/en-json-f5510c22fd7d55be6ad5.chunk.js>; rel=preload; as=script;
-        type=text/javascript; integrity=sha256-SplOegOXiFZpzYhklmglSpSNDKjU9dqJdQ2hIA2uWks=
-      Referrer-Policy:
-      - same-origin
-      Server:
-      - Mastodon
-      Strict-Transport-Security:
-      - max-age=63072000; includeSubDomains
-      - max-age=31536000
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - DENY
-      X-Request-Id:
-      - 34cd2165-4074-4ab0-9cb0-51a6c95a044f
-      X-Runtime:
-      - '0.023660'
-      X-XSS-Protection:
-      - '0'
-      vary:
-      - Accept, Accept-Language, Cookie, Signature, Origin
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - twitter.com
-      user-agent:
-      - python-httpx/0.25.2
-    method: HEAD
-    uri: https://twitter.com/dingemansemark
-  response:
-    content: ''
-    headers:
-      cache-control:
-      - no-cache, no-store, max-age=0
-      date:
-      - Fri, 01 Mar 2024 11:26:45 GMT
-      perf:
-      - '7469935968'
-      server:
-      - tsa_o
-      set-cookie:
-      - guest_id=v1%3A170929240593555932; Max-Age=34214400; Expires=Tue, 01 Apr 2025
-        11:26:45 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=631138519
-      transfer-encoding:
-      - chunked
-      x-connection-hash:
-      - 33c31f6c0ae6a31182c30fcd83fdb8b7f7203cfb5faecddc64de9fb2f0284ed8
-      x-powered-by:
-      - Express
-      x-response-time:
-      - '106'
-      x-transaction-id:
-      - fc8160dc3fa55ef3
-    http_version: HTTP/1.1
-    status_code: 403
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - twitter.com
-      user-agent:
-      - python-httpx/0.25.2
-    method: HEAD
-    uri: https://twitter.com/dingemansemark/status/1405488247057391616
-  response:
-    content: ''
-    headers:
-      cache-control:
-      - no-cache, no-store, max-age=0
-      date:
-      - Fri, 01 Mar 2024 11:26:46 GMT
-      perf:
-      - '7469935968'
-      server:
-      - tsa_o
-      set-cookie:
-      - guest_id=v1%3A170929240615360999; Max-Age=34214400; Expires=Tue, 01 Apr 2025
-        11:26:46 GMT; Path=/; Domain=.twitter.com; Secure; SameSite=None
-      strict-transport-security:
-      - max-age=631138519
-      transfer-encoding:
-      - chunked
-      x-connection-hash:
-      - bd19bf223c057756648d350bde4bc70776c5c40cc7927cfa65e4c41372af75f2
-      x-powered-by:
-      - Express
-      x-response-time:
-      - '120'
-      x-transaction-id:
-      - 7ab918cfe4c48471
-    http_version: HTTP/1.1
-    status_code: 403
+    status:
+      code: 200
+      message: ''
 version: 1

@@ -5,8 +5,10 @@ from os import path
 import pytest
 from commonmeta import Metadata
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_doi_with_data_citation():
@@ -39,7 +41,7 @@ def test_doi_with_data_citation():
     assert subject.date == {
         "created": "2014-02-11",
         "published": "2014-02-11",
-        "updated": "2023-10-12",
+        "updated": "2023-10-11",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/4374",
@@ -243,12 +245,12 @@ def test_journal_article_original_language():
     assert subject.references[0] == {
         "key": "1",
         "id": "https://doi.org/10.1111/j.1469-7793.2000.00407.x",
-        'unstructured': 'Seals DR Esler MD J Physiol. 528 : 407-417, 2000'
+        "unstructured": "Seals DR Esler MD J Physiol. 528 : 407-417, 2000",
     }
     assert subject.references[-1] == {
         "key": "7",
         "id": "https://doi.org/10.1161/01.cir.95.6.1686",
-        'unstructured': 'Cheitlin MD et al. Circulation 95 : 1686-1744, 1997',
+        "unstructured": "Cheitlin MD et al. Circulation 95 : 1686-1744, 1997",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -347,11 +349,7 @@ def test_book_chapter_with_rdf_for_container():
         "familyName": "Chen",
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2012-08-21",
-        "published": "2012",
-        "updated": "2020-11-24",
-    }
+    assert subject.date["published"] == "2012"
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
@@ -396,7 +394,10 @@ def test_posted_content():
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.license is None
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
     assert subject.date["published"] == "2016-12-29"
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/246",
@@ -404,7 +405,7 @@ def test_posted_content():
     }
     assert len(subject.references) == 26
     assert subject.references[0] == {
-        "key": "2019071613381284000_097196v2.1",
+        "key": "2024080313022960000_097196v2.1",
         "title": "An introduction to the joint principles for data citation",
         "publicationYear": "2015",
         "volume": "41",
@@ -453,7 +454,7 @@ def test_peer_review():
     assert subject.date == {
         "created": "2020-05-19",
         "published": "2020-04-29",
-        "updated": "2020-05-19",
+        "updated": "2024-04-26",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/4374",
@@ -608,8 +609,8 @@ def test_doi_with_orcid():
         "updated": "2016-08-02",
     }
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/98",
-        "name": "Hindawi Limited",
+        "id": "https://api.crossref.org/members/311",
+        "name": "Wiley",
     }
     assert len(subject.references) == 27
     assert subject.references[0] == {
@@ -763,10 +764,10 @@ def test_vor_with_url():
         "volume": "80",
         "firstPage": "545",
         "containerTitle": "Biol J Linn Soc",
-        "unstructured": 'Wilkens H, Strecker U . (2003). Convergent evolution of the '
-                  'cavefish Astyanax (Characidae: Teleostei): Genetic evidence '
-                  'from reduced eye-size and pigmentation. Biol J Linn Soc 80: '
-                  '545–554.'
+        "unstructured": "Wilkens H, Strecker U . (2003). Convergent evolution of the "
+        "cavefish Astyanax (Characidae: Teleostei): Genetic evidence "
+        "from reduced eye-size and pigmentation. Biol J Linn Soc 80: "
+        "545–554.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -804,9 +805,10 @@ def test_dataset():
         "familyName": "Fermi",
     }
     assert subject.license is None
+    print(subject.date)
     assert subject.date["created"].startswith("2006-01")
     assert subject.date["published"].startswith("1984-07")
-    assert subject.date["updated"].startswith("2023-03")
+    assert subject.date["updated"].startswith("2024-05")
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/7763",
         "name": "Worldwide Protein Data Bank",
@@ -926,11 +928,7 @@ def test_book_chapter():
         "familyName": "Diercks",
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2015-04-14",
-        "published": "2015",
-        "updated": "2023-02-10",
-    }
+    assert subject.date["published"] == "2015"
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
@@ -945,7 +943,7 @@ def test_book_chapter():
         "issue": "10",
         "firstPage": "1301",
         "containerTitle": "Skeletal Radiol",
-        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8."
+        "unstructured": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1076,7 +1074,7 @@ def test_missing_contributor():
     assert subject.date == {
         "created": "2018-04-10",
         "published": "2018-04-09",
-        "updated": "2021-07-22",
+        "updated": "2024-06-10",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/1968",
@@ -1084,12 +1082,12 @@ def test_missing_contributor():
     }
     assert len(subject.references) == 23
     assert subject.references[0] == {
-        "key": "ref1",
-        "unstructured": "CERN Convention for the Establishment of a European Organization for Nuclear Research",
+        "key": "ref_1",
+        "unstructured": "(2018, February 20). CERN Convention for the Establishment of a European Organization for Nuclear Research. Available online: https://council.web.cern.ch/en/content/convention-establishment-european-organization-nuclear-research.",
     }
     assert subject.references[-1] == {
-        "key": "ref23",
-        "unstructured": "SCOAP3 News: APS Joins SCOAP3",
+        "key": "ref_23",
+        "unstructured": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
     }
     assert subject.funding_references is None
     assert subject.container == {

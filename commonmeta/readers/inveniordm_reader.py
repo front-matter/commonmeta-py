@@ -42,14 +42,16 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     contributors = get_authors(
         from_inveniordm(wrap(py_.get(meta, "metadata.creators")))
     )
-    # contrib = get_authors(wrap(meta.get("metadata.contributors", None)))
-    # if contrib:
-    #     contributors = contributors + contrib
 
     publisher = {"name": meta.get("publisher", None) or "Zenodo"}
 
     title = py_.get(meta, "metadata.title")
+    print(title)
     titles = [{"title": sanitize(title)}] if title else None
+    additional_titles = py_.get(meta, "metadata.additional_titles")
+    print(additional_titles)
+    # if additional_titles:
+    #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
 
     date: dict = {}
     date["published"] = py_.get(meta, ("metadata.publication_date"))
@@ -75,9 +77,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
-    relations = get_relations(
-        wrap(py_.get(meta, "metadata.related_identifiers"))
-    )
+    relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
     if meta.get("conceptdoi", None):
         relations.append(
             {

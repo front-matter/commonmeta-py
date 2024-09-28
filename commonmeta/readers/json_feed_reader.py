@@ -101,9 +101,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
 
     description = meta.get("summary", None)
     if description is not None:
-        descriptions = [
-            {"description": sanitize(description), "type": "Abstract"}
-        ]
+        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
     else:
         descriptions = None
     category = py_.get(meta, "blog.category", None)
@@ -121,9 +119,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-    identifiers = [
-        {"identifier": meta.get("id"), "identifierType": "UUID"}
-    ]
+    identifiers = [{"identifier": meta.get("id"), "identifierType": "UUID"}]
     files = get_files(_id)
     state = "findable" if meta or read_options else "not_found"
 
@@ -216,7 +212,10 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         (Open Funder Registry ID or ROR), followed by a grant URL"""
         # Prefix 10.3030 means grant ID from funder is European Commission.
         # CORDIS is the grants portal of the European Commission.
-        if len(urls) == 1 and (validate_prefix(urls[0]) == "10.3030" or furl(urls[0]).host == "cordis.europa.eu"):
+        if len(urls) == 1 and (
+            validate_prefix(urls[0]) == "10.3030"
+            or furl(urls[0]).host == "cordis.europa.eu"
+        ):
             return [
                 {
                     "funderName": "European Commission",

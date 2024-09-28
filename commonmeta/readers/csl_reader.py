@@ -65,7 +65,7 @@ def read_csl(data: dict, **kwargs) -> Commonmeta:
 
     state = "findable" if _id or read_options else "not_found"
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
-    
+
     if meta.get("abstract", None):
         descriptions = [
             {

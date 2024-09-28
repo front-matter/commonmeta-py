@@ -11,143 +11,158 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/1c578558-1324-4493-b8af-84c49eabc52f
   response:
-    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Heinz Pampel","url":"https://orcid.org/0000-0003-3334-2771"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"socialSciences","created_at":1673827200,"current_feed_url":null,"description":"Gemeinschaftsblog
-      zu wissenschaftlicher Kommunikation im Netz.","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://wisspub.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://wisspub.net","id":"9cb1a7b3-1791-42e5-9f2d-153038fe34e3","indexed":false,"issn":null,"language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://rogue-scholar.social/@wisspub","plan":"Team","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"wisspub","status":"active","title":"wisspub.net","updated_at":1689236362,"use_api":true,"use_mastodon":true,"user_id":"dbffda7d-f391-48fb-a6d2-d4a284c59c8d"},"blog_name":"wisspub.net","blog_slug":"wisspub","content_text":"Die
-      EU-Wissenschaftsministerien haben sich auf ihrer [heutigen\nSitzung](https://www.consilium.europa.eu/en/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/)\nin
-      Br\u00fcssel unter dem Titel \"Council conclusions on high-quality,\ntransparent,
-      open, trustworthy and equitable scholarly publishing\" ([PDF\nder englischen\nVersion](https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/en/pdf),\n[PDF
-      der deutschen\nVersion](https://data.consilium.europa.eu/doc/document/ST-8827-2023-INIT/de/pdf))\u00a0mit\nden
-      aktuellen Herausforderungen des wissenschaftlichen\nPublikationswesens befasst.\n\nBereits
-      im Vorfeld der Sitzung der Wissenschaftsministerien wurden\nverschiedene Versionen
-      der Erkl\u00e4rung \u00f6ffentlich diskutiert (siehe z.B.\n[Science\nBusiness](https://sciencebusiness.net/news/Universities/leaked-eu-member-states-set-out-reform-scientific-publishing)\nund
-      [Times Higher\nEducation](https://www.timeshighereducation.com/news/can-eu-make-parallel-publishing-system-work)).\nIm
-      Kern stand die Frage, inwiefern das EU-Papier den Fokus auf\nFinanzierungs-
-      und Gesch\u00e4ftsmodelle abseits von Publikationsgeb\u00fchren\n(Article Processing
-      Charges, APCs) legt und ob sogar eine Abkehr von der\nUnterst\u00fctzung dieses
-      Modells durch die \u00f6ffentliche Hand in Europa betont\nwird.\n\nSchweden
-      hatte das Thema im Rahmen seiner EU-Ratspr\u00e4sidentschaft\naugegriffen und
-      bereits im\n[Februar](https://wisspub.net/2023/02/10/eu-wissenschaftsministerien-erortern-open-science/)\nin
-      einem Hintergrund-Papier adressiert. Schon in diesem Briefing Paper\nwurde die
-      Problematik steigender Preise f\u00fcr die wissenschaftlichen\nFachinformation
-      betont.\u00a0\n\nIn der jetzt verabschiedeten Version der Schlussfolgerungen
-      die\nForderung nach sofortigem Open Access f\u00fcr wissenschaftliche\nPublikationen,
-      die im Rahmen der \u00f6ffentlich gef\u00f6rderten Forschung\nentstehen, nochmals
-      betont. Dieses Ziel wurde [bereits\n2016](https://wisspub.net/2016/05/27/eu-und-g7-staaten-setzen-auf-open-science/)\nvon
-      den EU-Wissenschaftsministerien erhoben. Die\nWissenschaftsminister:innen hatten
-      damals einen Open-Access-Anteil von\n100 % bis 2020 gefordert. Dieser Wert wurde
-      bisher jedoch nicht\nerreicht. In Deutschland liegt der Open-Access-Anteil zum
-      Beispiel bei\n[63](https://open-access-monitor.de/) Prozent, w\u00e4hrend die
-      Niederlande\nim Publikationsjahr 2021 einen Anteil von\n[82](https://www.openaccess.nl/en/in-the-netherlands/monitor)\u00a0Prozent\nerreichten.\n\n:::
-      {.wp-block-image}\n<figure class=\"alignleft size-large is-resized\">\n<a\nhref=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png\"><img\nsrc=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=723\"\nclass=\"wp-image-20457\"
-      loading=\"lazy\" data-attachment-id=\"20457\"\ndata-permalink=\"http://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/bildschirmc2adfoto-2023-05-23-um-11-05-39/\"\ndata-orig-file=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png\"\ndata-orig-size=\"1512,2142\"
-      data-comments-opened=\"1\"\ndata-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"\ndata-image-title=\"bildschirmc2adfoto-2023-05-23-um-11.05.39\"\ndata-image-description=\"\"
-      data-image-caption=\"\"\ndata-medium-file=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=212\"\ndata-large-file=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=723\"\nsrcset=\"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=353
-      353w, https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=706
-      706w, https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=106
-      106w, https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=212
-      212w\"\nsizes=\"(max-width: 353px) 100vw, 353px\" width=\"353\" height=\"500\"
-      /></a>\n<figcaption><em>\u201cCouncil conclusions on high-quality, transparent,
-      open,\ntrustworthy and equitable scholarly publishing\u201d</em></figcaption>\n</figure>\n:::\n\nAngesichts
-      steigender Abonnementkosten und \u00e4hnlicher Entwicklungen im\nBereich der
-      Publikationsgeb\u00fchren f\u00fcr Open Access und hybride Optionen\nbetont
-      das EU-Papier das Potenzial von Gesch\u00e4fts- und\nFinanzierungsmodellen,
-      die weder die Leser:innen noch die Autor:innen\nfinanziell belasten und sich
-      durch angemessene und transparente Preise\nauszeichnen (Punkt 6). Es wird beklagt,
-      dass die steigenden Preise f\u00fcr\nwissenschaftliche Fachinformationen zu
-      Ungleichheiten f\u00fchren und die\n\u00f6ffentliche Hand in Europa zum Nachteil
-      der Forschung belasten (Punkt\n5).\n\nAufgrund dieser Kritik am kommerziellen
-      Verlagswesen wird in zwei\nbemerkenswerten Punkten (6 und 7) die Bedeutung von
-      nicht\ngewinnorientierten Open-Access-Modellen betont. Wortlaut:\n\n\"The Council
-      of the European Union \\[...\\] highlights the importance of\nnot-for-profit,
-      scholarly open access publishing models that do not\ncharge fees to authors
-      or readers and where authors can publish their\nwork without funding/institutional
-      eligibility criteria; notes the\nvariety of models that do not depend on article
-      processing charges or\nsimilar per-unit charges and stresses the importance
-      of supporting the\ndevelopment of such models led by public research organisations;
-      \\[...\\]\nstresses that it is essential to avoid situations where researchers
-      are\nlimited in their choice of publication channels due to financial\ncapacities
-      rather than quality criteria, and where access to research\npublications is
-      restricted by paywalls\"\n\nZwar sind diese Unterstreichung und Betonung sicherlich
-      nur ein kleiner\nSchritt auf dem Weg zur Gestaltung eines pluralistischen, transparenten\nund
-      nachhaltigen Systems der digtialen Wissenschaftskommunikation. Sie\nkommen jedoch
-      zu einem Zeitpunkt, zu dem die Kritik an dem Modell der\nPublikationsgeb\u00fchren
-      w\u00e4chst.\n\nErst k\u00fcrzlich hat die Ivy Plus Libraries Confederation
-      (IPLC) in den\nUSA, als Zusammenschluss von Bibliotheken forschungsstarker\nEinrichtungen,
-      das APC-Modell [deutlich\nkritisiert](https://ivpluslibraries.org/2023/03/iplc-letter-to-the-office-of-science-technology-policy/).\nDie
-      Bibliothekar:innen sehen die Gefahr, dass Publikationsgeb\u00fchren\nUngleichheit
-      f\u00f6rdern und Forschende aus finanziell weniger gut\nausgestatteten Regionen
-      beim Open-Access-Publizieren benachteiligt\nwerden. Sie charakterisieren APCs
-      als eine H\u00fcrde bei der Publikation.\n\nAuch hat der \u00f6ffentlichkeitswirksame\n[R\u00fccktritt](https://www.nature.com/articles/d41586-023-01391-5)
-      des\nEditorial Boards der Elsevier-Zeitschrift NeuroImage aufgrund steigender\nAPCs
-      den kritischen Blick auf das Gesch\u00e4ftsmodell gelenkt. Die\nzur\u00fcckgetretenen
-      Herausgebenden haben nun bei MIT Press ein neues\nJournal\n[gegr\u00fcndet](https://mitpress.mit.edu/the-mit-press-to-launch-open-access-journal-imaging-neuroscience/),\ndas
-      niedrige APCs erhebt. Dieser Schritt zeigt, dass nicht APCs das\nProblem sein
-      m\u00fcssen, sondern vielmehr deren Preisgestaltung.\n\nUm die im obrigen Zitat
-      formulierten Anliegen der EU-Staaten zu\nadressieren, soll die Koordinierung
-      innerhalb der EU und mit globalen\nPartnern zur Unterst\u00fctzung von Chancengleichheit
-      im wissenschaftlichen\nPublizieren gef\u00f6rdert werden (Absatz 7). Hierzu
-      sollen auch abgestimmte\nFinanzierungsstrategien entwickelt werden, um die Anzahl
-      von\nnot-for-profit open access multi-format scholarly publishing models in\nEurope
-      with no costs for authors or readers\" signifikant zu erh\u00f6hen\n(Absatz
-      11).\n\nAuch soll das Anliegen durch eine m\u00f6gliche Beteiligung der\nEU-Mitgliedstaaten
-      an Open Research Europe (ORE), der von der\nEU-Kommission finanzierten Publikationsplattform
-      f\u00fcr Autor:innen aus den\nEU-Rahmenprogrammen, vorangetrieben werden (Absatz
-      15).\u00a0\n\nIn der\n[Pressemitteilung](https://www.consilium.europa.eu/de/press/press-releases/2023/05/23/council-calls-for-transparent-equitable-and-open-access-to-scholarly-publications/)\nwerden
-      weitere Themen der verabschiedeten Schlussfolgerungen\naugegriffen:\u00a0\n\n\"Some
-      Member States have introduced secondary publication rights into\ntheir national
-      copyright legislation, enabling open access to scholarly\npublications which
-      involve public funds. The Council encourages national\nopen access policies
-      and guidelines to make scholarly publications\nimmediately openly accessible
-      under open licences. The conclusions\nacknowledge positive developments in terms
-      of monitoring progress, like\nwithin the framework of the European Open Science
-      Cloud (EOSC), and\nsuggest including open science monitoring in the European
-      Research Area\nmonitoring mechanism.\"\n\nDie Schlussfolgerungen k\u00f6nnen
-      zweifellos als St\u00e4rkung des\nwissenschaftsgeleiteten Open-Access-Publizierens
-      in akademischer\nTr\u00e4gerschaft\u00a0 interpretiert werden. Der eingeschlagene
-      Kurs ist zu\nbegr\u00fc\u00dfen. Um die bereits vielf\u00e4ltigen Open-Access-Publikationsangebote\nund
-      -Verlage, die von wissenschaftlichen Einrichtungen betrieben oder\ngemeinsam
-      (mit angemessenen und ohne APCs) finanziert werden, nachhaltig\nzu st\u00e4rken,
-      ist es erforderlich, kooperative Finanzierungsmodelle auf\ninternationaler Ebene
-      zu entwickeln und umzusetzen. Daf\u00fcr sind, wie das\nPapier richtig betont,
-      abgestimmte F\u00f6rderaktivit\u00e4ten erforderlich, die\nbeispielsweise in
-      Deutschland, komplement\u00e4r zu DEAL, dem\nwissenschaftsgeleiteten Open-Access-Publizieren
-      einen deutlichen\nAufschwung geben.\n","doi":"https://doi.org/10.59350/kz04m-s8z58","guid":"https://wisspub.net/?p=20455","id":"1c578558-1324-4493-b8af-84c49eabc52f","image":"https://wisspub.files.wordpress.com/2023/05/bildschirmc2adfoto-2023-05-23-um-11.05.39.png?w=723","indexed_at":1689006804,"language":"de","published_at":1684833413,"reference":[],"relationships":[],"summary":"Die
-      EU-Wissenschaftsministerien haben sich auf ihrer heutigen Sitzung in Br\u00fcssel
-      unter dem Titel \u201cCouncil conclusions on high-quality, transparent, open,
-      trustworthy and equitable scholarly publishing\u201d (PDF der englischen Version,
-      PDF der deutschen Version)\u00a0mit den aktuellen Herausforderungen des wissenschaftlichen
-      Publikationswesens befasst.","tags":["Open Access","Open Access Transformation","Open
-      Science"],"title":"EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten
-      Open-Access-Modellen jenseits von APCs","updated_at":1684833413,"url":"https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs"}
-
-      '
+    body:
+      string: !!binary |
+        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
+        QDAAAA==
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Fri, 01 Mar 2024 11:26:46 GMT
+      - Fri, 27 Sep 2024 16:12:21 GMT
       fly-request-id:
-      - 01HQWW8HHDMJJ1TMG1TJCYYQ2V-fra
+      - 01J8T42D219S851GPY01YYACAN-cdg
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '14'
+      - '12'
       ratelimit-reset:
-      - '3'
+      - '11'
       server:
-      - Fly/38ec6ca9 (2024-02-29)
+      - Fly/0c45e4378 (2024-09-20)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
       - 1.1 fly.io
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: ''
 version: 1

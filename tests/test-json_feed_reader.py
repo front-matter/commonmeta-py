@@ -8,8 +8,10 @@ from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
 )
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_wordpress_with_references():
@@ -57,44 +59,19 @@ def test_wordpress_with_references():
         "key": "ref1",
         "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
     }
-    assert subject.relations is None
-
-    # assert subject.funding_references == [
-    #     {"funderName": "SystemsX"},
-    #     {"funderName": "EMBO longterm post-doctoral fellowships"},
-    #     {"funderName": "Marie Heim-Voegtlin"},
-    #     {
-    #         "funderName": "University of Lausanne",
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #     },
-    #     {"funderName": "SystemsX"},
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100003043",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "EMBO",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100001711",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "Swiss National Science Foundation",
-    #     },
-    #     {
-    #         "funderIdentifier": "https://doi.org/10.13039/501100006390",
-    #         "funderIdentifierType": "Crossref Funder ID",
-    #         "funderName": "University of Lausanne",
-    #     },
-    # ]
+    assert subject.relations == [
+        {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"}
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Sauropod Vertebra Picture of the Week",
-        "identifier": "https://rogue-scholar.org/blogs/svpow",
-        "identifierType": "URL",
+        "identifier": "3033-3695",
+        "identifierType": "ISSN",
     }
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae.")
+        .startswith("{.wp-image-21038 .size-large aria-describedby=“caption-attachment-21038”")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
@@ -340,7 +317,7 @@ def test_post_with_funding_ror():
 
     assert subject.date == {
         "published": "2022-03-08T00:39:39",
-        "updated": "2022-04-14T20:16:52",
+        "updated": "2024-04-28T18:31:57",
     }
     assert subject.publisher == {
         "name": "Blog - Metadata Game Changers",
@@ -518,13 +495,13 @@ def test_ghost_with_affiliations():
 @pytest.mark.vcr
 def test_ghost_with_personal_name_parsing():
     "ghost with with personal name parsing"
-    string = "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
+    string = "https://api.rogue-scholar.org/posts/4262e4b7-c2db-467b-b8b0-5b6ec32870a7"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://doi.org/10.59350/kj95y-gp867"
+    assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
     assert subject.type == "Article"
-    assert subject.url == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert subject.titles[0] == {"title": "The Residency Visual Abstract"}
+    assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout"
+    assert subject.titles[0] == {"title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0003-0449-4469",
@@ -539,13 +516,19 @@ def test_ghost_with_personal_name_parsing():
     }
 
     assert subject.date == {
-        "published": "2023-04-08T21:32:34",
-        "updated": "2023-04-08T21:32:34",
+        "published": "2024-05-08T19:10:39",
+        "updated": "2024-05-08T19:10:39",
     }
     assert subject.publisher == {
         "name": "I.D.E.A.S.",
     }
-    assert subject.references is None
+    assert len(subject.references) == 2
+    assert subject.references[0] ==  {
+       'id': 'https://doi.org/10.1001/jamanetworkopen.2021.42527',
+       'key': 'ref1',
+       'publicationYear': '2022',
+       'title': 'Analysis of Reported Voting Behaviors of US Physicians, 2000-2020',
+   }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]
@@ -558,12 +541,12 @@ def test_ghost_with_personal_name_parsing():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("My prototype for a Residency Visual Abstract")
+        .startswith("As residents within the healthcare profession,")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
         "mimeType": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.59350/kj95y-gp867.md",
+        "url": "https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45.md",
     }
     assert subject.subjects == [{"subject": "Clinical medicine"}]
     assert subject.language == "en"
@@ -571,8 +554,8 @@ def test_ghost_with_personal_name_parsing():
 
 
 @pytest.mark.vcr
-def test_medium_post_with_institutional_author():
-    """blog post with institutional author"""
+def test_medium_post_with_multiple_authors():
+    """blog post with multiple authors"""
     string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
     subject = Metadata(string)
     print(subject.errors)
@@ -586,11 +569,19 @@ def test_medium_post_with_institutional_author():
     assert subject.titles[0] == {
         "title": "Unveiling the Synergy: Retrieval Augmented Generation (RAG) Meets Knowledge Graphs"
     }
-    assert len(subject.contributors) == 1
+    assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
-        "type": "Organization",
+        "affiliations": [
+            {
+                "id": "https://ror.org/031rekg67",
+                "name": "Swinburne University of Technology",
+            },
+        ],
         "contributorRoles": ["Author"],
-        "name": "Research Graph",
+        "familyName": "Astudillo",
+        "givenName": "Aland",
+        "id": "https://orcid.org/0009-0008-8672-3168",
+        "type": "Person",
     }
 
 

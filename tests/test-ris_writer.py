@@ -24,15 +24,11 @@ def test_journal_article():
     assert ris[8] == "DO  - 10.7554/elife.01567"
     assert ris[9] == "UR  - https://elifesciences.org/articles/01567"
     assert ris[10].startswith("AB  - Among various advantages")
-    assert ris[11] == "KW  - General Immunology and Microbiology"
-    assert ris[12] == "KW  - General Biochemistry, Genetics and Molecular Biology"
-    assert ris[13] == "KW  - General Medicine"
-    assert ris[14] == "KW  - General Neuroscience"
-    assert ris[15] == "PY  - 2014"
-    assert ris[16] == "PB  - eLife Sciences Publications, Ltd"
-    assert ris[17] == "LA  - en"
-    assert ris[18] == "VL  - 3"
-    assert ris[19] == "ER  - "
+    assert ris[11] == "PY  - 2014"
+    assert ris[12] == "PB  - eLife Sciences Publications, Ltd"
+    assert ris[13] == "LA  - en"
+    assert ris[14] == "VL  - 3"
+    assert ris[15] == "ER  - "
 
 
 def test_with_pages():

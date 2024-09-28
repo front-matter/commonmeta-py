@@ -82,7 +82,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     files = [get_file(i) for i in wrap(meta.get("content_url"))]
-    
+
     identifiers = get_identifiers(wrap(meta.get("alternateIdentifiers", None)))
     identifiers.append(
         compact(
@@ -92,7 +92,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             }
         )
     )
-    
+
     references = get_references(
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
@@ -102,10 +102,12 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
     def format_subject(subject):
         """format_subject"""
-        return compact({
-            "subject": subject.get("subject", None),
-            "language": subject.get("lang", None),
-        })
+        return compact(
+            {
+                "subject": subject.get("subject", None),
+                "language": subject.get("lang", None),
+            }
+        )
 
     subjects = py_.uniq([format_subject(i) for i in wrap(meta.get("subjects", None))])
 
@@ -138,40 +140,42 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 
 def get_identifiers(identifiers: list) -> list:
     """get_identifiers"""
-    
+
     def is_identifier(identifier):
         """supported identifier types"""
         return identifier.get("identifierType", None) in [
-                "ARK",
-                "arXiv",
-                "Bibcode",
-                "DOI",
-                "Handle",
-                "ISBN",
-                "ISSN",
-                "PMID",
-                "PMCID",
-                "PURL",
-                "URL",
-                "URN",
-                "Other"
-            ]
-        
+            "ARK",
+            "arXiv",
+            "Bibcode",
+            "DOI",
+            "Handle",
+            "ISBN",
+            "ISSN",
+            "PMID",
+            "PMCID",
+            "PURL",
+            "URL",
+            "URN",
+            "Other",
+        ]
+
     def format_identifier(identifier):
         """format_identifier"""
         if is_identifier(identifier):
             type_ = identifier.get("identifierType")
         else:
             type_ = "Other"
-            
+
         return compact(
             {
                 "identifier": identifier.get("alternateIdentifier", None),
                 "identifierType": type_,
             }
         )
+
     return [format_identifier(i) for i in wrap(identifiers)]
-    
+
+
 def get_references(references: list) -> list:
     """get_references"""
 
@@ -226,8 +230,10 @@ def get_relations(relations: list) -> list:
 
     def map_relation(relation):
         """map_relation"""
-        
-        identifier = normalize_doi(relation.get("relatedIdentifier", None)) or relation.get("relatedIdentifier", None)
+
+        identifier = normalize_doi(
+            relation.get("relatedIdentifier", None)
+        ) or relation.get("relatedIdentifier", None)
         relation_type = relation.get("relationType", None)
         return compact(
             {

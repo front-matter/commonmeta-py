@@ -11,490 +11,161 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.7554/elife.01567/transform/application/vnd.crossref.unixsd+xml
   response:
-    content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<crossref_result xmlns=\"http://www.crossref.org/qrschema/3.0\"
-      version=\"3.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.crossref.org/qrschema/3.0
-      http://www.crossref.org/schemas/crossref_query_output3.0.xsd\">\r\n  <query_result>\r\n
-      \   <head>\r\n      <doi_batch_id>none</doi_batch_id>\r\n    </head>\r\n    <body>\r\n
-      \     <query status=\"resolved\">\r\n        <doi type=\"journal_article\">10.7554/eLife.01567</doi>\r\n
-      \       <crm-item name=\"publisher-name\" type=\"string\">eLife Sciences Publications,
-      Ltd</crm-item>\r\n        <crm-item name=\"prefix-name\" type=\"string\">eLife
-      Sciences Publications, Ltd.</crm-item>\r\n        <crm-item name=\"member-id\"
-      type=\"number\">4374</crm-item>\r\n        <crm-item name=\"citation-id\" type=\"number\">67124617</crm-item>\r\n
-      \       <crm-item name=\"journal-id\" type=\"number\">189365</crm-item>\r\n
-      \       <crm-item name=\"deposit-timestamp\" type=\"number\">20180823133646</crm-item>\r\n
-      \       <crm-item name=\"owner-prefix\" type=\"string\">10.7554</crm-item>\r\n
-      \       <crm-item name=\"last-update\" type=\"date\">2023-10-12T00:43:13Z</crm-item>\r\n
-      \       <crm-item name=\"created\" type=\"date\">2014-02-11T16:29:04Z</crm-item>\r\n
-      \       <crm-item name=\"citedby-count\" type=\"number\">31</crm-item>\r\n        <crm-item
-      name=\"relation\" type=\"doi\" claim=\"isReviewOf\">10.7554/eLife.01567.017</crm-item>\r\n
-      \       <crm-item name=\"relation\" type=\"doi\" claim=\"isReviewOf\">10.7554/eLife.01567.016</crm-item>\r\n
-      \       <doi_record>\r\n          <crossref xmlns=\"http://www.crossref.org/xschema/1.1\"
-      xsi:schemaLocation=\"http://www.crossref.org/xschema/1.1 http://doi.crossref.org/schemas/unixref1.1.xsd\">\r\n
-      \           <journal>\r\n              <journal_metadata language=\"en\">\r\n
-      \               <full_title>eLife</full_title>\r\n                <issn media_type=\"electronic\">2050-084X</issn>\r\n
-      \             </journal_metadata>\r\n              <journal_issue>\r\n                <publication_date
-      media_type=\"online\">\r\n                  <month>02</month>\r\n                  <day>11</day>\r\n
-      \                 <year>2014</year>\r\n                </publication_date>\r\n
-      \               <journal_volume>\r\n                  <volume>3</volume>\r\n
-      \               </journal_volume>\r\n              </journal_issue>\r\n              <journal_article
-      publication_type=\"full_text\" reference_distribution_opts=\"any\">\r\n                <titles>\r\n
-      \                 <title>Automated quantitative histology reveals vascular morphodynamics
-      during Arabidopsis hypocotyl secondary growth</title>\r\n                </titles>\r\n
-      \               <contributors>\r\n                  <person_name contributor_role=\"author\"
-      sequence=\"first\">\r\n                    <given_name>Martial</given_name>\r\n
-      \                   <surname>Sankar</surname>\r\n                    <affiliation>Department
-      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland</affiliation>\r\n
-      \                 </person_name>\r\n                  <person_name contributor_role=\"author\"
-      sequence=\"additional\">\r\n                    <given_name>Kaisa</given_name>\r\n
-      \                   <surname>Nieminen</surname>\r\n                    <affiliation>Department
-      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland</affiliation>\r\n
-      \                 </person_name>\r\n                  <person_name contributor_role=\"author\"
-      sequence=\"additional\">\r\n                    <given_name>Laura</given_name>\r\n
-      \                   <surname>Ragni</surname>\r\n                    <affiliation>Department
-      of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland</affiliation>\r\n
-      \                 </person_name>\r\n                  <person_name contributor_role=\"author\"
-      sequence=\"additional\">\r\n                    <given_name>Ioannis</given_name>\r\n
-      \                   <surname>Xenarios</surname>\r\n                    <affiliation>Vital-IT,
-      Swiss Institute of Bioinformatics, Lausanne, Switzerland</affiliation>\r\n                  </person_name>\r\n
-      \                 <person_name contributor_role=\"author\" sequence=\"additional\">\r\n
-      \                   <given_name>Christian S</given_name>\r\n                    <surname>Hardtke</surname>\r\n
-      \                   <affiliation>Department of Plant Molecular Biology, University
-      of Lausanne, Lausanne, Switzerland</affiliation>\r\n                  </person_name>\r\n
-      \               </contributors>\r\n                <jats:abstract xmlns:jats=\"http://www.ncbi.nlm.nih.gov/JATS1\">\r\n
-      \                 <jats:p>Among various advantages, their small size makes model
-      organisms preferred subjects of investigation. Yet, even in model systems detailed
-      analysis of numerous developmental processes at cellular level is severely hampered
-      by their scale. For instance, secondary growth of Arabidopsis hypocotyls creates
-      a radial pattern of highly specialized tissues that comprises several thousand
-      cells starting from a few dozen. This dynamic process is difficult to follow
-      because of its scale and because it can only be investigated invasively, precluding
-      comprehensive understanding of the cell proliferation, differentiation, and
-      patterning events involved. To overcome such limitation, we established an automated
-      quantitative histology approach. We acquired hypocotyl cross-sections from tiled
-      high-resolution images and extracted their information content using custom
-      high-throughput image processing and segmentation. Coupled with automated cell
-      type recognition through machine learning, we could establish a cellular resolution
-      atlas that reveals vascular morphodynamics during secondary growth, for example
-      equidistant phloem pole formation.</jats:p>\r\n                </jats:abstract>\r\n
-      \               <jats:abstract xmlns:jats=\"http://www.ncbi.nlm.nih.gov/JATS1\"
-      abstract-type=\"executive-summary\">\r\n                  <jats:p>Our understanding
-      of the living world has been advanced greatly by studies of \u2018model organisms\u2019,
-      such as mice, zebrafish, and fruit flies. Studying these creatures has been
-      crucial to uncovering the genes that control how our bodies develop and grow,
-      and also to discover the genetic basis of diseases such as cancer.</jats:p>\r\n
-      \                 <jats:p>Thale cress\u2014or Arabidopsis thaliana to give its
-      formal name\u2014is the model organism of choice for many plant biologists.
-      This tiny weed has been widely studied because it can complete its lifecycle,
-      from seed to seed, in about 6 weeks, and because its relatively small genome
-      simplifies the search for genes that control specific traits. However, as with
-      other much-studied model systems, understanding the changes that underpin the
-      development of some of the more complex tissues in Arabidopsis has been severely
-      hampered by the shear number of cells involved.</jats:p>\r\n                  <jats:p>After
-      it has emerged from the seed, the plant\u2019s first stem will develop from
-      a few dozen cells in width to several thousand cells with highly specialized
-      tissues arranged in a complex pattern of concentric circles. Although this stem
-      thickening process represents a major developmental change in many plants\u2014from
-      Arabidopsis to oak trees\u2014it has been under-researched. This is partly because
-      it involves so many different cells, and also because it can only be observed
-      in thin sections cut out of the plant\u2019s stem.</jats:p>\r\n                  <jats:p>Now
-      Sankar, Nieminen, Ragni et al. have developed a novel approach, termed \u2018automated
-      quantitative histology\u2019, to overcome these problems. This strategy involves
-      \u2018teaching\u2019 a computer to automatically recognize different plant cells
-      and to measure their important features in high-resolution images of tissue
-      sections. The resulting \u2018map\u2019 of the developing stem\u2014which required
-      over 800 hr of computing time to complete\u2014reveals the changes to cells
-      and tissues as they develop that allow the transport of water, sugars and nutrients
-      between the above- and below-ground organs. Sankar, Nieminen, Ragni et al. suggest
-      that their novel approach could, in the future, also be applied to study the
-      development of other tissues and organisms, including animals.</jats:p>\r\n
-      \               </jats:abstract>\r\n                <publication_date media_type=\"online\">\r\n
-      \                 <month>02</month>\r\n                  <day>11</day>\r\n                  <year>2014</year>\r\n
-      \               </publication_date>\r\n                <publisher_item>\r\n
-      \                 <item_number item_number_type=\"article_number\">e01567</item_number>\r\n
-      \                 <identifier id_type=\"doi\">10.7554/eLife.01567</identifier>\r\n
-      \               </publisher_item>\r\n                <fr:program xmlns:fr=\"http://www.crossref.org/fundref.xsd\"
-      name=\"fundref\">\r\n                  <fr:assertion name=\"fundgroup\">\r\n
-      \                   <fr:assertion name=\"funder_name\">SystemsX</fr:assertion>\r\n
-      \                 </fr:assertion>\r\n                  <fr:assertion name=\"fundgroup\">\r\n
-      \                   <fr:assertion name=\"funder_name\">EMBO longterm post-doctoral
-      fellowships</fr:assertion>\r\n                  </fr:assertion>\r\n                  <fr:assertion
-      name=\"fundgroup\">\r\n                    <fr:assertion name=\"funder_name\">Marie
-      Heim-Voegtlin</fr:assertion>\r\n                  </fr:assertion>\r\n                  <fr:assertion
-      name=\"fundgroup\">\r\n                    <fr:assertion name=\"funder_name\">\r\n
-      \                     University of Lausanne\r\n                      <fr:assertion
-      name=\"funder_identifier\" provider=\"crossref\">501100006390</fr:assertion>\r\n
-      \                   </fr:assertion>\r\n                  </fr:assertion>\r\n
-      \               </fr:program>\r\n                <ai:program xmlns:ai=\"http://www.crossref.org/AccessIndicators.xsd\"
-      name=\"AccessIndicators\">\r\n                  <ai:license_ref applies_to=\"vor\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \                 <ai:license_ref applies_to=\"am\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \                 <ai:license_ref applies_to=\"tdm\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \               </ai:program>\r\n                <crossmark>\r\n                  <crossmark_version>1</crossmark_version>\r\n
-      \                 <crossmark_policy>eLifesciences</crossmark_policy>\r\n                  <crossmark_domains>\r\n
-      \                   <crossmark_domain>\r\n                      <domain>www.elifesciences.org</domain>\r\n
-      \                   </crossmark_domain>\r\n                  </crossmark_domains>\r\n
-      \                 <crossmark_domain_exclusive>false</crossmark_domain_exclusive>\r\n
-      \                 <custom_metadata>\r\n                    <assertion name=\"received\"
-      label=\"Received\" group_name=\"publication_history\" group_label=\"Publication
-      History\" order=\"0\">2013-09-20</assertion>\r\n                    <assertion
-      name=\"accepted\" label=\"Accepted\" group_name=\"publication_history\" group_label=\"Publication
-      History\" order=\"1\">2013-12-24</assertion>\r\n                    <assertion
-      name=\"published\" label=\"Published\" group_name=\"publication_history\" group_label=\"Publication
-      History\" order=\"2\">2014-02-11</assertion>\r\n                    <fr:program
-      xmlns:fr=\"http://www.crossref.org/fundref.xsd\" name=\"fundref\">\r\n                      <fr:assertion
-      name=\"fundgroup\">\r\n                        <fr:assertion name=\"funder_name\">SystemsX</fr:assertion>\r\n
-      \                     </fr:assertion>\r\n                      <fr:assertion
-      name=\"fundgroup\">\r\n                        <fr:assertion name=\"funder_name\">\r\n
-      \                         EMBO\r\n                          <fr:assertion name=\"funder_identifier\">http://dx.doi.org/10.13039/501100003043</fr:assertion>\r\n
-      \                       </fr:assertion>\r\n                      </fr:assertion>\r\n
-      \                     <fr:assertion name=\"fundgroup\">\r\n                        <fr:assertion
-      name=\"funder_name\">\r\n                          Swiss National Science Foundation\r\n
-      \                         <fr:assertion name=\"funder_identifier\">http://dx.doi.org/10.13039/501100001711</fr:assertion>\r\n
-      \                       </fr:assertion>\r\n                      </fr:assertion>\r\n
-      \                     <fr:assertion name=\"fundgroup\">\r\n                        <fr:assertion
-      name=\"funder_name\">\r\n                          University of Lausanne\r\n
-      \                         <fr:assertion name=\"funder_identifier\" provider=\"crossref\">http://dx.doi.org/10.13039/501100006390</fr:assertion>\r\n
-      \                       </fr:assertion>\r\n                      </fr:assertion>\r\n
-      \                   </fr:program>\r\n                    <ai:program xmlns:ai=\"http://www.crossref.org/AccessIndicators.xsd\"
-      name=\"AccessIndicators\">\r\n                      <ai:license_ref applies_to=\"vor\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \                     <ai:license_ref applies_to=\"am\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \                     <ai:license_ref applies_to=\"tdm\">http://creativecommons.org/licenses/by/3.0/</ai:license_ref>\r\n
-      \                   </ai:program>\r\n                  </custom_metadata>\r\n
-      \               </crossmark>\r\n                <rel:program xmlns:rel=\"http://www.crossref.org/relations.xsd\">\r\n
-      \                 <rel:related_item>\r\n                    <rel:description>Data
-      from: Automated quantitative histology reveals vascular morphodynamics during
-      Arabidopsis hypocotyl secondary growth</rel:description>\r\n                    <rel:inter_work_relation
-      identifier-type=\"doi\" relationship-type=\"isSupplementedBy\">10.5061/dryad.b835k</rel:inter_work_relation>\r\n
-      \                 </rel:related_item>\r\n                </rel:program>\r\n
-      \               <archive_locations>\r\n                  <archive name=\"CLOCKSS\"
-      />\r\n                </archive_locations>\r\n                <doi_data>\r\n
-      \                 <doi>10.7554/eLife.01567</doi>\r\n                  <resource>https://elifesciences.org/articles/01567</resource>\r\n
-      \                 <collection property=\"crawler-based\">\r\n                    <item
-      crawler=\"iParadigms\">\r\n                      <resource>https://elifesciences.org/articles/01567</resource>\r\n
-      \                   </item>\r\n                  </collection>\r\n                  <collection
-      property=\"text-mining\">\r\n                    <item>\r\n                      <resource
-      mime_type=\"application/pdf\">https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf</resource>\r\n
-      \                   </item>\r\n                    <item>\r\n                      <resource
-      mime_type=\"application/xml\">https://cdn.elifesciences.org/articles/01567/elife-01567-v1.xml</resource>\r\n
-      \                   </item>\r\n                  </collection>\r\n                </doi_data>\r\n
-      \               <citation_list>\r\n                  <citation key=\"bib1\">\r\n
-      \                   <journal_title>Nature</journal_title>\r\n                    <author>Bonke</author>\r\n
-      \                   <volume>426</volume>\r\n                    <first_page>181</first_page>\r\n
-      \                   <cYear>2003</cYear>\r\n                    <article_title>APL
-      regulates vascular tissue identity in Arabidopsis</article_title>\r\n                    <doi>10.1038/nature02100</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib2\">\r\n
-      \                   <journal_title>Genetics</journal_title>\r\n                    <author>Brenner</author>\r\n
-      \                   <volume>182</volume>\r\n                    <first_page>413</first_page>\r\n
-      \                   <cYear>2009</cYear>\r\n                    <article_title>In
-      the beginning was the worm</article_title>\r\n                    <doi>10.1534/genetics.109.104976</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib3\">\r\n
-      \                   <journal_title>Physiologia Plantarum</journal_title>\r\n
-      \                   <author>Chaffey</author>\r\n                    <volume>114</volume>\r\n
-      \                   <first_page>594</first_page>\r\n                    <cYear>2002</cYear>\r\n
-      \                   <article_title>Secondary xylem development in Arabidopsis:
-      a model for wood formation</article_title>\r\n                    <doi>10.1034/j.1399-3054.2002.1140413.x</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib4\">\r\n
-      \                   <journal_title>Neural computation</journal_title>\r\n                    <author>Chang</author>\r\n
-      \                   <volume>13</volume>\r\n                    <first_page>2119</first_page>\r\n
-      \                   <cYear>2001</cYear>\r\n                    <article_title>Training
-      nu-support vector classifiers: theory and algorithms</article_title>\r\n                    <doi>10.1162/089976601750399335</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib5\">\r\n
-      \                   <journal_title>Machine Learning</journal_title>\r\n                    <author>Cortes</author>\r\n
-      \                   <volume>20</volume>\r\n                    <first_page>273</first_page>\r\n
-      \                   <cYear>1995</cYear>\r\n                    <doi provider=\"crossref\">10.1007/BF00994018</doi>\r\n
-      \                   <article_title>Support-vector Networks</article_title>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib6\">\r\n
-      \                   <journal_title>Development</journal_title>\r\n                    <author>Dolan</author>\r\n
-      \                   <volume>119</volume>\r\n                    <first_page>71</first_page>\r\n
-      \                   <cYear>1993</cYear>\r\n                    <doi provider=\"crossref\">10.1242/dev.119.1.71</doi>\r\n
-      \                   <article_title>Cellular organisation of the Arabidopsis
-      thaliana root</article_title>\r\n                  </citation>\r\n                  <citation
-      key=\"bib7\">\r\n                    <journal_title>Seminars in Cell &amp; Developmental
-      Biology</journal_title>\r\n                    <author>Elo</author>\r\n                    <volume>20</volume>\r\n
-      \                   <first_page>1097</first_page>\r\n                    <cYear>2009</cYear>\r\n
-      \                   <article_title>Stem cell function during plant vascular
-      development</article_title>\r\n                    <doi>10.1016/j.semcdb.2009.09.009</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib8\">\r\n
-      \                   <journal_title>Development</journal_title>\r\n                    <author>Etchells</author>\r\n
-      \                   <volume>140</volume>\r\n                    <first_page>2224</first_page>\r\n
-      \                   <cYear>2013</cYear>\r\n                    <article_title>WOX4
-      and WOX14 act downstream of the PXY receptor kinase to regulate plant vascular
-      proliferation independently of any role in vascular organisation</article_title>\r\n
-      \                   <doi>10.1242/dev.091314</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib9\">\r\n                    <journal_title>PLOS
-      Genetics</journal_title>\r\n                    <author>Etchells</author>\r\n
-      \                   <volume>8</volume>\r\n                    <first_page>e1002997</first_page>\r\n
-      \                   <cYear>2012</cYear>\r\n                    <article_title>Plant
-      vascular cell division is maintained by an interaction between PXY and ethylene
-      signalling</article_title>\r\n                    <doi>10.1371/journal.pgen.1002997</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib10\">\r\n
-      \                   <journal_title>Molecular Systems Biology</journal_title>\r\n
-      \                   <author>Fuchs</author>\r\n                    <volume>6</volume>\r\n
-      \                   <first_page>370</first_page>\r\n                    <cYear>2010</cYear>\r\n
-      \                   <article_title>Clustering phenotype populations by genome-wide
-      RNAi and multiparametric imaging</article_title>\r\n                    <doi>10.1038/msb.2010.25</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib11\">\r\n
-      \                   <journal_title>Bio Systems</journal_title>\r\n                    <author>Granqvist</author>\r\n
-      \                   <volume>110</volume>\r\n                    <first_page>60</first_page>\r\n
-      \                   <cYear>2012</cYear>\r\n                    <article_title>BaSAR-A
-      tool in R for frequency detection</article_title>\r\n                    <doi>10.1016/j.biosystems.2012.07.004</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib12\">\r\n
-      \                   <journal_title>Current Opinion in Plant Biology</journal_title>\r\n
-      \                   <author>Groover</author>\r\n                    <volume>9</volume>\r\n
-      \                   <first_page>55</first_page>\r\n                    <cYear>2006</cYear>\r\n
-      \                   <article_title>Developmental mechanisms regulating secondary
-      growth in woody plants</article_title>\r\n                    <doi>10.1016/j.pbi.2005.11.013</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib13\">\r\n
-      \                   <journal_title>Plant Cell</journal_title>\r\n                    <author>Hirakawa</author>\r\n
-      \                   <volume>22</volume>\r\n                    <first_page>2618</first_page>\r\n
-      \                   <cYear>2010</cYear>\r\n                    <article_title>TDIF
-      peptide signaling regulates vascular stem cell proliferation via the WOX4 homeobox
-      gene in Arabidopsis</article_title>\r\n                    <doi>10.1105/tpc.110.076083</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib14\">\r\n
-      \                   <journal_title>Proceedings of the National Academy of Sciences
-      of the United States of America</journal_title>\r\n                    <author>Hirakawa</author>\r\n
-      \                   <volume>105</volume>\r\n                    <first_page>15208</first_page>\r\n
-      \                   <cYear>2008</cYear>\r\n                    <article_title>Non-cell-autonomous
-      control of vascular stem cell fate by a CLE peptide/receptor system</article_title>\r\n
-      \                   <doi>10.1073/pnas.0808444105</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib15\">\r\n                    <journal_title>Cell</journal_title>\r\n
-      \                   <author>Meyerowitz</author>\r\n                    <volume>56</volume>\r\n
-      \                   <first_page>263</first_page>\r\n                    <cYear>1989</cYear>\r\n
-      \                   <article_title>Arabidopsis, a useful weed</article_title>\r\n
-      \                   <doi>10.1016/0092-8674(89)90900-8</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib16\">\r\n                    <journal_title>Science</journal_title>\r\n
-      \                   <author>Meyerowitz</author>\r\n                    <volume>295</volume>\r\n
-      \                   <first_page>1482</first_page>\r\n                    <cYear>2002</cYear>\r\n
-      \                   <article_title>Plants compared to animals: the broadest
-      comparative study of development</article_title>\r\n                    <doi>10.1126/science.1066609</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib17\">\r\n
-      \                   <journal_title>Plant Physiol</journal_title>\r\n                    <author>Nieminen</author>\r\n
-      \                   <volume>135</volume>\r\n                    <first_page>653</first_page>\r\n
-      \                   <cYear>2004</cYear>\r\n                    <article_title>A
-      weed for wood? Arabidopsis as a genetic model for xylem development</article_title>\r\n
-      \                   <doi>10.1104/pp.104.040212</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib18\">\r\n                    <journal_title>Nature
-      Biotechnology</journal_title>\r\n                    <author>Noble</author>\r\n
-      \                   <volume>24</volume>\r\n                    <first_page>1565</first_page>\r\n
-      \                   <cYear>2006</cYear>\r\n                    <article_title>What
-      is a support vector machine?</article_title>\r\n                    <doi>10.1038/nbt1206-1565</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib19\">\r\n
-      \                   <journal_title>Proceedings of the National Academy of Sciences
-      of the United States of America</journal_title>\r\n                    <author>Olson</author>\r\n
-      \                   <volume>77</volume>\r\n                    <first_page>1516</first_page>\r\n
-      \                   <cYear>1980</cYear>\r\n                    <article_title>Classification
-      of cultured mammalian cells by shape analysis and pattern recognition</article_title>\r\n
-      \                   <doi>10.1073/pnas.77.3.1516</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib20\">\r\n                    <journal_title>Bioinformatics</journal_title>\r\n
-      \                   <author>Pau</author>\r\n                    <volume>26</volume>\r\n
-      \                   <first_page>979</first_page>\r\n                    <cYear>2010</cYear>\r\n
-      \                   <article_title>EBImage\u2013an R package for image processing
-      with applications to cellular phenotypes</article_title>\r\n                    <doi>10.1093/bioinformatics/btq046</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib21\">\r\n
-      \                   <journal_title>Plant Cell</journal_title>\r\n                    <author>Ragni</author>\r\n
-      \                   <volume>23</volume>\r\n                    <first_page>1322</first_page>\r\n
-      \                   <cYear>2011</cYear>\r\n                    <article_title>Mobile
-      gibberellin directly stimulates Arabidopsis hypocotyl xylem expansion</article_title>\r\n
-      \                   <doi>10.1105/tpc.111.084020</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib22\">\r\n                    <journal_title>Dryad
-      Digital Repository</journal_title>\r\n                    <author>Sankar</author>\r\n
-      \                   <cYear>2014</cYear>\r\n                    <article_title>Data
-      from: Automated quantitative histology reveals vascular morphodynamics during
-      Arabidopsis hypocotyl secondary growth</article_title>\r\n                    <doi>10.5061/dryad.b835k</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib23\">\r\n
-      \                   <journal_title>Current Biology</journal_title>\r\n                    <author>Sibout</author>\r\n
-      \                   <volume>18</volume>\r\n                    <first_page>458</first_page>\r\n
-      \                   <cYear>2008</cYear>\r\n                    <article_title>Flowering
-      as a condition for xylem expansion in Arabidopsis hypocotyl and root</article_title>\r\n
-      \                   <doi>10.1016/j.cub.2008.02.070</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib24\">\r\n                    <journal_title>The
-      New Phytologist</journal_title>\r\n                    <author>Spicer</author>\r\n
-      \                   <volume>186</volume>\r\n                    <first_page>577</first_page>\r\n
-      \                   <cYear>2010</cYear>\r\n                    <article_title>Evolution
-      of development of vascular cambia and secondary growth</article_title>\r\n                    <doi>10.1111/j.1469-8137.2010.03236.x</doi>\r\n
-      \                 </citation>\r\n                  <citation key=\"bib25\">\r\n
-      \                   <journal_title>Machine Vision and Applications</journal_title>\r\n
-      \                   <author>Theriault</author>\r\n                    <volume>23</volume>\r\n
-      \                   <first_page>659</first_page>\r\n                    <cYear>2012</cYear>\r\n
-      \                   <article_title>Cell morphology classification and clutter
-      mitigation in phase-contrast microscopy images using machine learning</article_title>\r\n
-      \                   <doi>10.1007/s00138-011-0345-9</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib26\">\r\n                    <journal_title>Cell</journal_title>\r\n
-      \                   <author>Uyttewaal</author>\r\n                    <volume>149</volume>\r\n
-      \                   <first_page>439</first_page>\r\n                    <cYear>2012</cYear>\r\n
-      \                   <article_title>Mechanical stress acts via katanin to amplify
-      differences in growth rate between adjacent cells in Arabidopsis</article_title>\r\n
-      \                   <doi>10.1016/j.cell.2012.02.048</doi>\r\n                  </citation>\r\n
-      \                 <citation key=\"bib27\">\r\n                    <journal_title>Nature
-      Cell Biology</journal_title>\r\n                    <author>Yin</author>\r\n
-      \                   <volume>15</volume>\r\n                    <first_page>860</first_page>\r\n
-      \                   <cYear>2013</cYear>\r\n                    <article_title>A
-      screen for morphological complexity identifies regulators of switch-like transitions
-      between discrete cell shapes</article_title>\r\n                    <doi>10.1038/ncb2764</doi>\r\n
-      \                 </citation>\r\n                </citation_list>\r\n                <component_list>\r\n
-      \                 <component parent_relation=\"isPartOf\">\r\n                    <titles>\r\n
-      \                     <title>Abstract</title>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"text/plain\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.001</doi>\r\n                      <resource>https://elifesciences.org/articles/01567#abstract</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>eLife
-      digest</title>\r\n                    </titles>\r\n                    <format
-      mime_type=\"text/plain\" />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.002</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567#digest</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      1. Cellular level analysis of Arabidopsis hypocotyl secondary growth.</title>\r\n
-      \                     <subtitle>(A) Light microscopy of cross sections obtained
-      from Arabidopsis hypocotyls (organ position illustrated for a 9-day-old seedling,
-      lower left) at 9 dag (upper left) and 35 dag (right). Size bars are 100 \u03BCm.
-      Blue GUS staining due to the presence of an APL::GUS reporter gene in this Col-0
-      background line marks phloem bundles. (B) Overview of the developmental series
-      (time points and distinct samples per genotype) analyzed in this study. (C)
-      Example of a high-resolution hypocotyl section image assembled from 11 \xD7
-      11 tiles. (D) The same image after pre-processing and binarization, and (E)
-      subsequent segmentation using a watershed algorithm. (F) Number of mis-segmented
-      cells as determined by careful visual inspection in 12 sections, plotted against
-      the total number of cells per section (log scale).</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"image/tiff\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.003</doi>\r\n                      <resource>https://elifesciences.org/articles/01567#fig1</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      2. The \u2018Quantitative Histology\u2019 approach.</title>\r\n                      <subtitle>(A)
-      Overview of the computational pipeline from image acquisition to analysis. (B)
-      \u2018Phenoprints\u2019 for the different genotypes and developmental stages.</subtitle>\r\n
-      \                   </titles>\r\n                    <format mime_type=\"image/tiff\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.004</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567#fig2</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      2\u2014figure supplement 1. An example of classifier selection through V-fold
-      cross validation.</title>\r\n                      <subtitle>The green arrow
-      points out the selected feature combination according to the criteria of minimum
-      number of features with the highest performance and the lowest variation (the
-      radiusV feature was excluded due to its putative variation in tissue location).</subtitle>\r\n
-      \                   </titles>\r\n                    <format mime_type=\"image/tiff\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.005</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#fig2s1</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      3. Progression of tissue proliferation.</title>\r\n                      <subtitle>(A)
-      Principal component analysis (PCA) of the phenoprints shown in Figure 2B, performed
-      with normalized values (Supplementary file 4). The inlay screeplot displays
-      the proportion of total variation explained by each principal component. (B\u2013E)
-      Comparative plots of parameter progression in the two genotypes. In (D), xylem
-      represents combined vessel, parenchyma, and fiber cells, phloem represents combined
-      phloem parenchyma and bundle cells. Error bars indicate standard error.</subtitle>\r\n
-      \                   </titles>\r\n                    <format mime_type=\"image/tiff\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.006</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567#fig3</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      4. Bimodal distribution of incline angle according to position.</title>\r\n
-      \                     <subtitle>(A and B) Spatial distribution of cell incline
-      angle illustrates the vascular organization in Ler (B) as compared to Col-0
-      (A) at later stages of development, for example 30 dag. The size of the disc
-      increases with the area of the cell. Blue color indicates radial cell orientation,
-      red orthoradial. (C and D) Violin plots of incline angle distribution, illustrating
-      increasingly bimodal distribution coincident with refined vascular organization
-      and different dynamics of the process in the two genotypes.</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"image/tiff\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.007</doi>\r\n                      <resource>https://elifesciences.org/articles/01567#fig4</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      4\u2014figure supplement 1. An illustration of the incline angle.</title>\r\n
-      \                     <subtitle>The incline is the angle between the section
-      radius through the center of an ellipse fit to a cell and the major axis of
-      that ellipse extended towards the x axis.</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"image/tiff\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.008</doi>\r\n                      <resource>https://elifesciences.org/articles/01567/figures#fig4s1</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      5. Distinct local organization of incline angle during hypocotyl secondary growth
-      progression.</title>\r\n                      <subtitle>(A\u2013J) Density plots
-      of cell incline angle vs radial position for the two genotypes at the indicated
-      developmental stages, representing all cells across all sections for a given
-      time point. The red lines represent the fit of these cloud distributions with
-      locally weighted linear regression (i.e., lowess), revealing the essential data
-      trends. All sections were normalized from 0.0 (the manually defined center)
-      to 1.0 (the average radius in a set of sections as determined by the average
-      distance of the outermost cells from the center for individual sections). Box
-      plots indicate the quartiles of the radian distribution for each cell-type class
-      and are placed at the average position of the cell type with respect to the
-      y axis. Outliers are shown as circles.</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"image/tiff\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.009</doi>\r\n                      <resource>https://elifesciences.org/articles/01567#fig5</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      5\u2014figure supplement 1. Analysis of cell number in defined xylem regions
-      of different size.</title>\r\n                      <subtitle>Cell number in
-      a circle of 200\u2013500 pixels around the section centers for Col-0. Cell count
-      in a constant area of xylem over time across all averaged across all sections.</subtitle>\r\n
-      \                   </titles>\r\n                    <format mime_type=\"image/tiff\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.010</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#fig5s1</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Figure
-      6. Mapping of phloem pole patterning.</title>\r\n                      <subtitle>(A)
-      Example of Gaussian kernel density estimate of the location of predicted phloem
-      bundles cells in a 30 dag Col-0 section. High density represents phloem poles.
-      (B) Example of an analysis of emerging phloem pole position in a 30 dag Col-0
-      section. The plot represents a pixel intensity map after noise reduction along
-      a circular region of interest across the emerging phloem poles. Intensity peaks
-      are due to GUS staining conferred to phloem bundles by an APL::GUS reporter
-      construct. (C) Probability density function of the data shown in (B) obtained
-      from an automated Bayesian model. The dominant single peak indicates a constant
-      arc distance of ca. 62 pixel between the phloem poles.</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"image/tiff\" />\r\n                    <doi_data>\r\n
-      \                     <doi>10.7554/eLife.01567.011</doi>\r\n                      <resource>https://elifesciences.org/articles/01567#fig6</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Supplementary
-      file 1.</title>\r\n                      <subtitle>(A) An explanation of the
-      extracted parameters that describe the cellular features. (B) Summary information
-      of the hand-labeled training set for supervised machine learning. (C) Definition
-      of the classifiers selected for analysis. (D) Summary of the classifier parameters
-      for supervised machine learning. (E) Overview of the cell type classes recognized
-      by the supervised machine learning approach and their assignment codes used
-      in Data Files 3 and 4.</subtitle>\r\n                    </titles>\r\n                    <format
-      mime_type=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.012</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#SD1-data</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Supplementary
-      file 2.</title>\r\n                      <subtitle>Quality control files for
-      the Col-0 sections.</subtitle>\r\n                    </titles>\r\n                    <format
-      mime_type=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.013</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#SD2-data</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Supplementary
-      file 3.</title>\r\n                      <subtitle>Quality control files for
-      the Ler sections.</subtitle>\r\n                    </titles>\r\n                    <format
-      mime_type=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.014</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#SD3-data</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Supplementary
-      file 4.</title>\r\n                      <subtitle>The normalized values of
-      the phenoprints (Figure 2B) used for PCA.</subtitle>\r\n                    </titles>\r\n
-      \                   <format mime_type=\"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet\"
-      />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.015</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567/figures#SD4-data</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Decision
-      letter</title>\r\n                    </titles>\r\n                    <format
-      mime_type=\"text/plain\" />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.016</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567#SA1</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                  <component
-      parent_relation=\"isPartOf\">\r\n                    <titles>\r\n                      <title>Author
-      response</title>\r\n                    </titles>\r\n                    <format
-      mime_type=\"text/plain\" />\r\n                    <doi_data>\r\n                      <doi>10.7554/eLife.01567.017</doi>\r\n
-      \                     <resource>https://elifesciences.org/articles/01567#SA2</resource>\r\n
-      \                   </doi_data>\r\n                  </component>\r\n                </component_list>\r\n
-      \             </journal_article>\r\n            </journal>\r\n          </crossref>\r\n
-      \       </doi_record>\r\n      </query>\r\n    </body>\r\n  </query_result>\r\n</crossref_result>"
+    body:
+      string: !!binary |
+        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
+        Z6x884f9AcrrLMBxlW3m3/0fK4WO0l+mAAA=
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -508,20 +179,9 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '8464'
+      - '8462'
       date:
-      - Sat, 10 Feb 2024 10:00:08 GMT
-      link:
-      - <http://dx.doi.org/10.7554/elife.01567>; rel="canonical", <https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf>;
-        version="vor"; type="application/pdf"; rel="item", <https://cdn.elifesciences.org/articles/01567/elife-01567-v1.xml>;
-        version="vor"; type="application/xml"; rel="item", <https://elifesciences.org/articles/01567>;
-        version="vor"; rel="item", <http://creativecommons.org/licenses/by/3.0/>;
-        version="vor"; rel="license", <http://creativecommons.org/licenses/by/3.0/>;
-        version="am"; rel="license", <http://creativecommons.org/licenses/by/3.0/>;
-        version="tdm"; rel="license", <http://creativecommons.org/licenses/by/3.0/>;
-        version="vor"; rel="license", <http://creativecommons.org/licenses/by/3.0/>;
-        version="am"; rel="license", <http://creativecommons.org/licenses/by/3.0/>;
-        version="tdm"; rel="license"
+      - Fri, 27 Sep 2024 16:11:59 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -538,8 +198,9 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -552,16 +213,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
-    content: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9c1NTEyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        4VlVnTYAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 853380db9c061c92-AMS
+      - 8c9cc5d48c246a85-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -569,21 +233,22 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:00:08 GMT
+      - Fri, 27 Sep 2024 16:12:00 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wLXmG4DheRtFRcVbsCXKXrX6adWcjDFSX7PPB%2FtcSPsBQD8p2efxzbWYyX6pHHD5%2BXeHxnaGvT543kZUjvVVxEbVZ64%2Bs1xugEVXxVIMTalTnfOtzC4fLN2SrucZ7A2hu9tSjCM%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=60YUeqnLPCJzpOoC11zpd%2BLNAgaXCSKRdjVfxajj7nZame5DZLSYZo8EMD1o%2Bb6J1MOL%2F47nrczC36hO6fiFSZt5j7Q9aJMhUH%2BycwLSknfMUOBUbP5MwMXmQeLH5V6f2h8eaTw%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
 version: 1

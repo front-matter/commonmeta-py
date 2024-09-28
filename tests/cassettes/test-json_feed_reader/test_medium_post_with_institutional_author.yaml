@@ -11,301 +11,41 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f
   response:
-    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Research Graph"}],"blog":{"archive_prefix":null,"authors":null,"canonical_url":null,"category":"computerAndInformationSciences","created_at":1706685423,"current_feed_url":null,"description":"Stories
-      by Research Graph on Medium","favicon":"https://cdn-images-1.medium.com/fit/c/150/150/1*laJi0jBkVoGhXid7gD_DmQ.png","feed_format":"application/rss+xml","feed_url":"https://medium.com/@researchgraph/feed","filter":null,"funding":null,"generator":"Medium","generator_raw":"Medium","home_page_url":"https://medium.com/@researchgraph","id":"30da2ca9-8258-4ab5-acca-3919d9a5d98d","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"","plan":"Starter","prefix":"10.59350","relative_url":null,"ror":null,"secure":true,"slug":"researchgraph","status":"active","title":"Stories
-      by Research Graph on Medium","updated_at":1709610612,"use_api":null,"use_mastodon":false,"user_id":"a7e16958-1175-437c-b839-d4b8a47ec811"},"blog_name":"Research
-      Graph","blog_slug":"researchgraph","content_text":"**Tools and Platform for
-      Integration of Knowledge Graph with RAG\npipelines.**\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png\"\nalt=\"Complex
-      network connected to books and showing information from magespace\" />\n<figcaption>Image
-      Created in <a\nhref=\"https://www.mage.space/\">https://www.mage.space/</a></figcaption>\n</figure>\n\nAuthors:
-      [Aland\nAstudillo](https://www.linkedin.com/in/aland-astudillo/), [Aishwarya\nNambissan](https://www.linkedin.com/in/aishwarya-nambissan-127229200/)\n\nMany
-      users of chatbots such as ChatGPT, have encountered the problem of\nreceiving
-      inappropriate or incompatible responses. There are several\nreasons why this
-      might\u00a0happen.\n\nOne reason is the lack of appropriate training data, as
-      chatbots are\nusually trained on large amounts of text and code. If the data
-      is\ninsufficient or of poor quality, the chatbot may misunderstand queries\nand
-      provide inaccurate responses. Another reason is that some chatbots\nare designed
-      for specific tasks or domains, which limits their ability\nto handle broader
-      queries or understand subtle nuances in conversation.\nAdditionally, chatbots
-      may struggle with natural language, which is\ncomplex and often ambiguous. This
-      can cause them to misunderstand a\nuser''s query and provide irrelevant or off-topic
-      responses. Finally,\nthere are technical limitations, such as the chatbot''s
-      inability to\nreason or make inferences.\n\nThis article explores a potential
-      solution by combining two influential\napproaches in the field of Natural Language
-      Processing\u200a---\u200aRetrieval\nAugmented Generation (**RAG**) and Knowledge
-      Graphs(**KGs**). We will\ndelve into the partnership between these two entities,
-      discuss the\nnotable technologies and software used in their processes, and
-      highlight\nvarious options for utilizing their combined potential.\n\n### **RAG**\n\nRetrieval-Augmented
-      Generation is the process of optimizing the output\nof a large language model
-      using a knowledge base outside of its training\ndata sources before generating
-      a response. It takes an input and\nretrieves a set of relevant/supporting documents
-      given a source (e.g.,\nWikipedia). This can be thought of as a Large Language
-      Model (LLM) not\njust putting words together, but carefully selecting relevant\ninformation
-      from external sources and Knowledge Graphs to create\nwell-informed and detailed
-      responses.\n\n### RAG Retrieval Techniques\n\nThe following are some crucial
-      technologies that enable RAG''s impressive\nability to retrieve and incorporate
-      relevant information:\n\n**Vector Search**: It transforms text into numerical
-      vectors, capturing\ntheir meaning and nuances in a mathematical space, creating
-      a map of\nrelationships. Similar texts, like those discussing shared topics
-      or\nusing similar language, end up positioned close together in this space,\nallowing
-      vector search to quickly identify them as related. This allows\nlightning-fast
-      comparisons, finding similar texts based on meaning, not\njust keywords.\n\nAlgorithms
-      like [**Faiss**](https://github.com/facebookresearch/faiss)\nand [**Annoy**](https://github.com/spotify/annoy)
-      map text into dense\nvectors, enabling fast comparisons and retrieval of relevant
-      passages\nbased on semantic similarity.\n\n**Passage Ranking**: It is an internal
-      algorithm that scores candidate\ntext passages based on their relevance to a
-      query. It considers factors\nlike keyword frequency, keyword overlap, and document
-      structure to act\nlike a judge, sifting through information to select the most
-      fitting and\ninformative passages.\n\nKeyword overlap measures how often the
-      same keywords appear in **both**\nthe query and the candidate passage, emphasizing
-      shared vocabulary and\npotential relevance. It differs from keyword frequency,
-      which simply\ncounts how often individual keywords appear within a passage,
-      regardless\nof their presence in the\u00a0query.\n\nTechniques like [**BM25**](https://github.com/getalp/wikIR)
-      and\n[**TF-IDF**](https://github.com/marcocor/wikipedia-idf) score candidate\npassages
-      based on keyword overlap and frequency, ensuring retrieved\ninformation truly
-      fits the\u00a0context.\n\n**Graph Neural Networks** (**GNNs**): They are neural
-      networks designed\nto explore and learn from interconnected data like maps,
-      social\nnetworks, and other complex relationships. Unlike traditional processing\nmethods
-      that go through data in a linear fashion, GNNs are capable of\nrecognizing hidden
-      patterns and understanding relationships like \"who\nknows who\" and \"what
-      connects to what\" by \"hopping\" across connections\nin\u00a0data.\n\nConsider
-      a graph as a network of dots(nodes) connected by lines (edges).\nEach dot represents
-      some information, like a person, object, or concept.\nThe lines tell you how
-      these things relate to each\u00a0other.\n\nGNNs work in rounds. In each\u00a0round:\n\n1.  Message
-      Passing: Each node \"talks\" to its neighbors, sending\n    messages along the
-      edges. These messages contain information about\n    the node itself and its
-      features.\n2.  Node Update: Each node receives messages from all its neighbors
-      and\n    combines them with its own information. This update can involve\n    calculations
-      and applying a special function.\n3.  Output Calculation: Based on the updated
-      information, the network\n    calculates an output for each node. This output
-      could be a\n    prediction about the node''s category, its relationship to another\n    node,
-      or some other relevant information.\n\nThis process repeats for multiple rounds,
-      allowing nodes to incorporate\ninformation from their entire neighborhood, not
-      just their direct\nneighbors. As the rounds progress, the network learns to
-      understand the\nrelationships between nodes and the overall structure of the\u00a0graph.\n\nWhen
-      dealing with Knowledge Graphs, frameworks like\n[**PyTorch-Geometric**](https://readthedocs.org/projects/pytorch-geometric/)\nand
-      [**DeepMind''s\nGNN**](https://github.com/deepmind/deepmind-research/blob/master/learning_to_simulate/graph_network.py)\nlibrary
-      come into play. These frameworks allow GNNs to traverse\ninterconnected entities
-      and relationships within the graph, retrieve\nrelevant knowledge fragments,
-      and understand complex connections.\n\n### **Knowledge Graphs: The Structured
-      Wisdom\u00a0Library**\n\nA knowledge graph, also referred to as a semantic network,
-      is a\nstructure that represents a network of real-world entities such as\nobjects,
-      events, situations, or concepts. It helps to illustrate the\nconstantly changing
-      representations of the world, connecting entities\n(such as \"Marie Curie\")
-      and relationships (such as \"won Nobel Prize\") to\nform a complex network of
-      information. This information is typically\nstored in a graph database and visualized
-      as a graph structure, thus the\nterm knowledge \"graph\".\n\nKGs go beyond simply
-      finding relevant facts and delve deeper into\nunderstanding the relationships
-      and insights hidden within using these\nprocesses:\n\n**Entity Linking**: Imagine
-      a vast network of information, like a big\npuzzle of dots. Now imagine trying
-      to connect specific names, places,\nand concepts to their corresponding dots
-      in the puzzle. That is what\nentity linking does with text and knowledge graphs,
-      connecting the\nspecific components of the text to the corresponding nodes in
-      the graph.\nThey help systems understand the exact meaning of entities, and
-      find\nrelevant information from the\u00a0graph.\n\nLibraries like [**DGL-KeLP**](https://github.com/awslabs/dgl-ke)\nleverage
-      GNNs to identify and link named entities (like \"Marie Curie\")\nto their respective
-      nodes within the Knowledge Graphs, enabling RAG to\nretrieve information that
-      is directly relevant to the core subject of a\nsearch\u00a0query\n\n**Path Mining**:
-      Path mining is a process of uncovering hidden\nrelationships and patterns that
-      are not easily noticeable. It involves\nexploring complicated networks of information
-      and identifying and\ntracing connections between entities that may seem unrelated.
-      By doing\nso, path mining reveals surprising insights and useful knowledge,\nimproving
-      our understanding of the complex structures within knowledge\ngraphs.\n\nTools
-      like [**Neo4j**](https://neo4j.com/) and\n[**Stanza**](https://github.com/stanfordnlp/stanza)
-      allow traversing\npaths between entities, uncovering hidden relationships, and
-      generating\ninsightful responses based on this deeper understanding.\n\n**Reasoning
-      and Inference**: In the context of knowledge graphs,\nreasoning and inference
-      are not just limited to discovering facts; they\nare also concerned with utilizing
-      them effectively. This involves\nintegrating data, drawing meaningful connections,
-      and using logical\nreasoning to resolve issues, foresee future occurrences,
-      or even\nconstruct narratives leveraging the insights provided by the knowledge\ngraph.\n\nConsider
-      the scenario of trying to find an organization that works in\nspecific sectors
-      with the help of a knowledge graph. This analogy\neffectively highlights the
-      active role of reasoning and inference in\nknowledge graphs:\n\n1.  Gathering
-      Facts: Knowledge graphs collect and organize information\n    from various sources,
-      such as websites, databases, academic papers,\n    and social media platforms.
-      These facts are represented as\n    structured data, with entities (e.g., organizations)
-      and their\n    attributes (e.g., sectors in which they operate) forming nodes
-      and\n    edges in the graph. By combining data about organizations and\n    sectors,
-      knowledge graphs enable the gathering of relevant facts for\n    analysis.\n2.  Integrating
-      information: By connecting an organization''s\n    relationships with specific
-      sectors, such as partnerships,\n    investments, or certifications, knowledge
-      graphs reveal the scope\n    and relevance of their work within those sectors.
-      Links to related\n    entities like employees, board members, or projects can
-      further\n    contribute to understanding an organization''s involvement in\n    specific\u00a0sectors.\n3.  Predicting
-      and Creating: Knowledge graphs can leverage machine\n    learning and predictive
-      models to infer missing or hidden\n    information. By analyzing the available
-      facts and connections within\n    the graph, these models can predict an organization''s
-      potential\n    involvement in sectors that have common attributes with their
-      known\n    areas of operation. For example, if an organization has expertise
-      in\n    renewable energy, predictive models could suggest their likely\n    involvement
-      in related sectors like clean transportation or\n    sustainable infrastructure.
-      Additionally, knowledge graphs\n    facilitate the creation of new information
-      and insights by combining\n    existing facts with external data sources. For
-      instance, by\n    integrating real-time data on industry trends, market analysis,
-      or\n    news articles, knowledge graphs enable the discovery of emerging\n    sectors
-      or upcoming organizations that might align with the given\n    parameters.\n\nA
-      framework like [**Atomspace**](https://github.com/opencog/atomspace)\nfrom [**OpenCog**](https://opencog.org/)
-      empowers RAG to reason and\ninfer new knowledge. By traversing paths and combining
-      information from\ninterconnected entities, the system can generate informed
-      predictions or\nanswer hypothetical questions.\n\n### Purpose\n\nThe combination
-      of Retrieval-Augmented Generation (RAG) and Knowledge\nGraphs (KG) is beneficial
-      for several\u00a0reasons:\n\n1.  **Enhanced information retrieval**: Knowledge
-      graphs provide\n    structured and interconnected information that can significantly\n    improve
-      the effectiveness of information retrieval. By using KGs,\n    RAG models can
-      retrieve more accurate and relevant information,\n    leading to better generation
-      and response\u00a0quality.\n2.  **Reliable and diverse information:** KGs are
-      constructed from\n    authoritative sources, making them reliable and trustworthy
-      sources\n    of information. RAG models can leverage this reliable information
-      to\n    generate more accurate responses. Additionally, KGs help in\n    diversifying
-      the generated responses by providing a broader pool of\n    related facts and
-      entities.\n3.  **Context-aware understanding**: KGs enable RAG models to understand\n    and
-      reason over the contextual information. By leveraging the\n    relationships
-      and semantic connections encoded in KGs, RAG models\n    can better grasp the
-      context of user queries or conversations,\n    resulting in more coherent and
-      appropriate responses.\n4.  **Handling complex queries**: KGs allow RAG models
-      to tackle complex\n    queries by breaking them down into smaller sub-queries,
-      retrieving\n    relevant pieces of information from the KG, and then generating
-      a\n    response based on the retrieved knowledge. This enables RAG models\n    to
-      handle a wide range of user queries effectively.\n5.  **Explainability and transparency**:
-      KGs provide a transparent and\n    interpretable representation of knowledge.
-      By integrating KG-based\n    retrieval into RAG models, the reasoning behind
-      the generated\n    responses becomes more explainable. Users can have a clear\n    understanding
-      of the knowledge sources and connections used to\n    produce the response.\n6.  **Scalability**:
-      Knowledge graphs act as large-scale repositories of\n    information. RAG models
-      can leverage KGs to generate responses to\n    various queries or conversations
-      without requiring additional\n    supervised training data. This makes the RAG+KG
-      approach scalable to\n    handle an extensive range of knowledge domains and
-      user\u00a0queries.\n\n### **Pipeline Possibilities: Orchestrating RAG and\u00a0KGs:**\n\nLet''s
-      explore some exciting pipeline options for harnessing the combined\npower of
-      RAG and Knowledge Graphs. There are two options in which either\nthe LLM is
-      prioritized or the Knowledge Graph is prioritized:\n\n**Option 1: LLM-Centric
-      Pipeline:**\n\nThe LLM-Centric pipeline is a RAG and Knowledge Graph combination
-      that\nempowers LLMs to craft well-informed responses. Here''s how it\u00a0works:\n\n1.  Start
-      with the user''s question or statement\n2.  The LLM (like GPT-3) generates an
-      initial draft response based on\n    its internal knowledge. This draft may
-      lack specific factual details\n    or nuances that a knowledge graph can\u00a0provide.\n3.  RAG
-      kicks in, searching the text corpus or the Knowledge Graph for\n    relevant
-      passages that enrich the draft. During the retrieval\n    process, RAG retrieval
-      techniques are used to search not only text\n    corpora but also knowledge
-      graphs to find relevant information. This\n    means that RAG can directly tap
-      into the structured knowledge within\n    the graph to retrieve facts, relationships,
-      and entities that align\n    with the user''s query and the LLM''s generated
-      draft.\n4.  The retrieved information is carefully fused with the LLM''s output,\n    creating
-      a more factually accurate and insightful response\n5.  A final polishing step
-      ensures the response is fluent, grammatically\n    correct, and ready to\u00a0show.\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/0*3pd9MOIflkbS07wI\"
-      />\n<figcaption>RAG LLM-centric generic\u00a0scheme.</figcaption>\n</figure>\n\nThe
-      basic steps to perform this\u00a0are:\n\n1.  **Pre-processing**: Clean and tokenize
-      user input to prepare for\n    processing.\n2.  **LLM Generation**: Generate
-      an initial draft response using an LLM\n    like [**GPT-3**](https://openai.com/product)
-      or [**Jurassic-1\n    Jumbo**](https://www.livescience.com/google-sentient-ai-lamda-lemoine).\n3.  **Retrieval**:
-      Employ RAG techniques to retrieve relevant passages\n    from a text corpus
-      or Knowledge Graphs.\n4.  **Fusion**: Integrate retrieved information into the
-      LLM-generated\n    draft, creating a more informed and factually-grounded response.\n5.  **Post-processing**:
-      Refine the final response for fluency,\n    grammatical correctness, and overall
-      coherence.\n\n**Option 2: Knowledge Graphs-Centric Pipeline:**\n\nIn this approach,
-      knowledge graphs take center stage. In essence, this\npipeline prioritizes the
-      structured knowledge within knowledge graphs,\nusing RAG retrieval techniques
-      to translate those insights into\ncompelling and informative language. Here''s
-      how it\u00a0unfolds:\n\n1.  User input: The process begins with the user''s
-      question or statement\n2.  Graph exploration: The knowledge graph is meticulously
-      explored to\n    identify relevant entities, relationships, and paths that align
-      with\n    the user''s input. This stage involves techniques like entity\n    linking,
-      path mining, and reasoning to uncover valuable information\n    within the\u00a0graph\n3.  Response
-      planning: The insights extracted from the graph are used to\n    create a structured
-      response plan. This plan outlines the key\n    points, facts, and logical flow
-      that the final response\n    should\u00a0embody\n4.  Language generation: This
-      is where RAG steps in. Its purpose is to\n    create human-like text that follows
-      the response plan. It uses LLMs\n    to produce well-written sentences and paragraphs,
-      combining the\n    relevant information from the knowledge graph while maintaining\n    cohesiveness
-      and readability.\n5.  Post-processing: The generated response undergoes a final
-      refinement\n    process to ensure grammatical correctness, clarity, and\n    overall\u00a0quality\n\n<figure>\n<img\nsrc=\"https://cdn-images-1.medium.com/max/1024/0*mZ83esKBjbPmCq_C\"
-      />\n<figcaption>RAG Knowledge Graph-centric generic\u00a0scheme.</figcaption>\n</figure>\n\nThe
-      basic steps\u00a0are:\n\n1.  **Query Formulation**: Transform the user input
-      into a query\n    suitable for Knowledge Graph''s exploration.\n2.  **Knowledge
-      Graphs:** You can use either Neo4j or\n    [NebulaGraph](https://www.nebula-graph.io/)
-      to implement a retrieval\n    enhancement technique. This technique involves
-      utilizing a knowledge\n    graph to illustrate the connections between entities
-      and\n    relationships. Additionally, it incorporates a powerful language\n    model
-      to improve the retrieval process.\n3.  **Fact Selection**: Employ entity linking
-      and reasoning algorithms\n    to select and prioritize the most relevant facts
-      based on the query\n    and\u00a0context.\n4.  **Natural Language Generation**
-      (**NLG**): Utilise specialized NLG\n    models like\n    [BART](https://research.facebook.com/publications/controllable-abstractive-summarization/)\n    to
-      translate the extracted facts into a natural language response.\n5.  **Refinement**:
-      Enhance the generated response for clarity and\n    coherence.\n\n### **Unveiling
-      a Future of Intelligent Interaction**\n\nThe combination of RAG and Knowledge
-      Graphs goes beyond just being a\ntechnological fusion. It paves the way for
-      a future where the\ninteraction between humans and computers goes beyond simple
-      words and\nbecomes a more informed and refined form of communication. As these\ntechnologies
-      continue to develop, we can expect to witness a significant\ntransformation
-      in:\n\n- AI-powered assistants that answer your questions with the confidence\n  of
-      a well-read friend, seamlessly combining relevant facts and\n  insights gleaned
-      from Knowledge Graphs.\n- Next-generation search engines that go beyond keyword
-      matching,\n  understanding the deeper meaning behind your queries and delivering\n  comprehensive,
-      contextual results enriched with information from\n  Knowledge Graphs.\n- Creative
-      writing tools that utilize RAG and Knowledge Graphs to\n  generate stories that
-      are both factually accurate and full of\n  unexpected plot twists and character
-      development, moving beyond\n  clich\u00e9d patterns.\n\n### **Conclusion**\n\nThe
-      convergence of Retrieval Augmented Generation (RAG) and Knowledge\nGraphs (KGs)
-      brings about an exciting synergy in the world of Natural\nLanguage Processing
-      (NLP). RAG enhances the output of large language\nmodels by carefully selecting
-      relevant information from external sources\nand KGs, allowing for well-informed
-      and detailed responses. KGs, on the\nother hand, provide a structured representation
-      of real-world entities\nand their relationships, enabling the exploration of
-      hidden insights and\nthe discovery of complex connections.\n\nThe integration
-      of RAG and KGs opens up two pipeline possibilities. The\nLLM-centric pipeline
-      prioritizes the language model''s output, which is\nthen enriched with information
-      retrieved from KGs. The Knowledge\nGraphs-centric pipeline, on the other hand,
-      places KGs at the center,\nutilizing RAG techniques to translate the structured
-      insights into\ncompelling and informative language.\n\nWhile integrating LLMs
-      and a knowledge graph for content retrieval\nrequires careful planning, the
-      reward is significant. You can gain\naccess to hidden relationships within information,
-      ultimately leading to\nhigher-quality output information.\n\nTools like **OpenAI**,
-      **Langchain**, and **LlamaIndex** provide\nready-made pipelines to integrate
-      knowledge graphs (like **Neo4j**)\neasily. Meanwhile, open-source LLMs like
-      **Mistral**, **Llama**, and\n**Dolphin** are catching up to proprietary models
-      in performance, making\nthem attractive choices for building custom architectures.
-      This\nopen-source scenario allows for the exploration and examination of\nvarious
-      methods before fully committing to a particular technological\nframework. So,
-      it is crucial to evaluate your needs and choose the\napproach that best fits
-      your use\u00a0case.\n\n![](https://medium.com/_/stat?event=post.clientViewed&referrerSource=full_rss&postId=fc0a6900f7eb){width=\"1\"\nheight=\"1\"}\n","doi":"https://doi.org/10.59350/jhrs4-22440","guid":"https://medium.com/p/fc0a6900f7eb","id":"05f01f68-ef81-47d7-a3c1-40aba91d358f","image":"https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png","indexed_at":1708673534,"language":"en","published_at":1705557796,"reference":[],"relationships":[],"summary":"<strong>\n
-      Tools and Platform for Integration of Knowledge Graph with RAG pipelines.\n</strong>\nAuthors:
-      Aland Astudillo, Aishwarya Nambissan Many users of chatbots such as ChatGPT,
-      have encountered the problem of receiving inappropriate or incompatible responses.
-      There are several reasons why this might\u00a0happen. One reason is the lack
-      of appropriate training data, as chatbots are usually trained on large amounts
-      of text and code.","tags":["Artificial Intelligence","Machine Learning","Retrieval
-      Augmented","Knowledge Graph"],"title":"Unveiling the Synergy: Retrieval Augmented
-      Generation (RAG) Meets Knowledge Graphs","updated_at":1705557796,"url":"https://medium.com/@researchgraph/unveiling-the-synergy-retrieval-augmented-generation-rag-meets-knowledge-graphs-fc0a6900f7eb"}
-
-      '
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiZGlgoh+fkKvol5
+        lQpBqYWlqcUlxTb6EEkumwxDOyyyGYZ2XDYFdiEZmcUKpcWpRQoZicUKqRXJqakpqSkKiXkKiTk5
+        +SUlqSkKRRATFZLzS/NK9BRCiioVEtMTM/MUchJLUov0bPQL7LgA8Xu8D6kAAAA=
     headers:
       content-encoding:
       - gzip
       content-type:
-      - application/json
+      - text/html; charset=utf-8
       date:
-      - Wed, 06 Mar 2024 10:35:02 GMT
+      - Fri, 27 Sep 2024 16:12:40 GMT
       fly-request-id:
-      - 01HR9N9D0RGF4KPY03ZPAAP7SM-fra
+      - 01J8T430168Q37VKQWRK77Q12B-cdg
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '7'
+      - '0'
       ratelimit-reset:
-      - '29'
+      - '56'
+      retry-after:
+      - '0'
       server:
-      - Fly/089de441 (2024-03-05)
+      - Fly/0c45e4378 (2024-09-20)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
       - 1.1 fly.io
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 429
+      message: ''
 version: 1

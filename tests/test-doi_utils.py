@@ -51,12 +51,18 @@ def test_doi_from_url():
     assert "10.1371/journal.pone.0072187" == doi_from_url(
         "https://www.plosone.org/article/fetchobject.action?uri=info%3adoi%2f10.1371%2fjournal.pone.0072187&representation=pdf"
     )
-    assert "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I" == doi_from_url("https://doi.org/d8g2nw")
+    assert (
+        "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I"
+        == doi_from_url("https://doi.org/d8g2nw")
+    )
 
 
 def test_short_doi_as_doi():
     """Short DOI as DOI"""
-    assert "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I" == short_doi_as_doi("https://doi.org/d8g2nw")
+    assert (
+        "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I"
+        == short_doi_as_doi("https://doi.org/d8g2nw")
+    )
 
 
 def test_validate_doi():
@@ -79,6 +85,9 @@ def test_normalize_doi():
     )
     assert "https://doi.org/10.1371/journal.pone.0042793" == normalize_doi(
         "doi:10.1371/journal.pone.0042793"
+    )
+    assert "https://doi.org/10.1021/jacs.4c02637" == normalize_doi(
+        "http://dx.doi.org/10.1021/jacs.4c02637"
     )
 
 

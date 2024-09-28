@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.5281
   response:
@@ -23,7 +23,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8783a62f5cd4b992-AMS
+      - 8c9cc681dbc8c7b3-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -31,21 +31,21 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 22 Apr 2024 06:45:07 GMT
+      - Fri, 27 Sep 2024 16:12:27 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=iFiWDc7H%2BXRVxftL5Va0O55V0BO5Qr4AembsVhE8Ypsiw1qofMphEmPDy1%2BKDKSSUlp6G2weGUlGiohOIxUww2Zo4BiVatxssZ%2BX3nREmrDfYhrKVuc%2BexcMbtZdOzfMTk08CJc%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=jCSufbBdrztEZQ%2BIEfchrMsPkJbi2ORFYVmWMWvUBx1V0RYOtPsmxBFKoHHus0kdKb2bc8FoyzgYI07uLwtIPDFvIl8OoUy9Lb4S%2B8n5zs9VcsvsnmKf44yau9KdJaBAUvRmiOI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
     status:
       code: 200
       message: OK
@@ -61,13 +61,13 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.24.1
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.datacite.org/dois/10.5281/zenodo.48440?include=media,client
   response:
     body:
       string: !!binary |
-        H4sIAHMHJmYAA6RaW3fiuLL+Kz7ZDzOzOiHGQDpkrXkIhGuDQ7jjmVnTsqzYAt/GlgHTq//7rpJt
+        H4sIAGzZ9mYAA6RaW3fiuLL+Kz7ZDzOzOiHGQDpkrXkIhGuDQ7jjmVnTsqzYAt/GlgHTq//7rpJt
         AiTdZ+9zHnoFSaVSqS5fyVX97coiglw9fLvi1tXDVVkt1bT78u2B+YEVlKr31ap6dX0l0pDBqhXw
         GEZEiIibiWAx7oPJH28MI/bK92/rMBUnr9nUBSm3mC/4K2cRsP3jLzjGFSzyiWC9yxUaMSICOfp2
         5RMPZeuQ6ECulS8RjwUnPjDEhWkm+Ai2Bj5xYdbmW+br2Z4T4lficTfVT3jhRUFSlxPBAz87GFle
@@ -156,13 +156,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 22 Apr 2024 06:45:07 GMT
+      - Fri, 27 Sep 2024 16:12:28 GMT
       ETag:
-      - W/"96366bb3d61604f9dd84d2bf141afba7"
+      - W/"fcd5fc48c1035cd2dae450a2f9e09a1b"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.0.20
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.23
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -178,11 +178,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.0.20
+      - Phusion Passenger(R) 6.0.23
       X-Request-Id:
-      - 3b629d79-d2c5-466e-9755-19a1600c6198
+      - 7c68b12c-1d2d-47e7-937d-27b858ba34ec
       X-Runtime:
-      - '0.030689'
+      - '0.035065'
       X-XSS-Protection:
       - '0'
     status:

@@ -11,56 +11,56 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://blog.front-matter.io/posts/dryad-interview-jen-gibson
   response:
-    content: ''
+    body:
+      string: ''
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '234086'
+      - '0'
       Alt-Svc:
       - clear
-      Cache-Control:
-      - public, max-age=31536000
       Connection:
       - keep-alive
       Content-Length:
       - '0'
       Date:
-      - Fri, 01 Mar 2024 11:26:41 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
+      - Fri, 27 Sep 2024 16:12:17 GMT
       Ghost-Fastly:
       - 'true'
-      Server:
-      - openresty
-      Status:
-      - 301 Moved Permanently
       Vary:
       - Cookie
-      Via:
-      - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS, MISS, MISS
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - d095d795-3804-4c30-b7c0-9118cc0d9376
+      - 0, 0, 0
       X-Served-By:
-      - cache-ams21021-AMS
+      - cache-ams2100105-AMS, cache-ams2100105-AMS, cache-fra-eddf8230070-FRA
       X-Timer:
-      - S1709292401.103145,VS0,VE1
+      - S1727453538.741609,VS0,VE42
+      cache-control:
+      - public, max-age=31536000
+      ghost-age:
+      - '0'
+      ghost-cache:
+      - MISS
       location:
       - /posts/dryad-interview-jen-gibson/
+      server:
+      - openresty
+      status:
+      - 301 Moved Permanently
+      via:
+      - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - d095d795-3804-4c30-b7c0-9118cc0d9376
-    http_version: HTTP/1.1
-    status_code: 301
+      - 6de1a2c3-a858-4566-a807-d22426014703
+    status:
+      code: 301
+      message: Moved Permanently
 - request:
     body: ''
     headers:
@@ -73,460 +73,220 @@ interactions:
       host:
       - blog.front-matter.io
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://blog.front-matter.io/posts/dryad-interview-jen-gibson/
   response:
-    content: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"utf-8\">\n
-      \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
-      \   <title>Dryad: Interview with Jen Gibson</title>\n    <link rel=\"stylesheet\"
-      href=\"https://blog.front-matter.io/assets/built/screen.css?v=adfb4b14fb\">\n\n
-      \   <meta name=\"citation_doi\" content=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n
-      \   <meta name=\"citation_title\" content=\"Dryad: Interview with Jen Gibson\">\n
-      \   <meta name=\"citation_abstract\" content=\"In October Jen Gibson started
-      as the new Executive Director for the Dryad Data Repository. I used the opportunity
-      to ask Jen a few questions about Dryad, challenges with data sharing, and ideas
-      about moving Dryad forward. I was particularly interested in the interview as
-      I served on the Dryad\">\n    <meta name=\"citation_author\" content=\"Martin
-      Fenner\">\n    <meta name=\"citation_date\" content=\"2021-11-15\"/>\n    <meta
-      name=\"citation_keywords\" content=\"Interview\"/>\n    <meta name=\"citation_journal_title\"
-      content=\"Front Matter\"/>\n    <meta name=\"citation_language\" content=\"en\">\n\n\n
-      \   <meta name=\"dc.identifier\" content=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n
-      \   <meta name=\"dc.creator\" content=\"Martin Fenner\" />\n    <meta name=\"dc.title\"
-      content=\"Dryad: Interview with Jen Gibson\" />\n    <meta name=\"dc.description\"
-      content=\"In October Jen Gibson started as the new Executive Director for the
-      Dryad Data Repository. I used the opportunity to ask Jen a few questions about
-      Dryad, challenges with data sharing, and ideas about moving Dryad forward. I
-      was particularly interested in the interview as I served on the Dryad\" />\n
-      \   <meta name=\"dc.date\" content=\"2021-11-15\" />\n    <meta name=\"dc.subject\"
-      content=\"Interview\" />\n    <meta name=\"dc.language\" content=\"en\" />   \n
-      \   <meta name=\"dc.format\" content=\"text/html\" /> \n    <meta name=\"dc.source\"
-      content=\"Front Matter\" />\n    <meta name=\"dc.type\" content=\"article\"
-      />\n    \n    <meta name=\"dc.rights\" content=\"https://creativecommons.org/licenses/by/4.0/legalcode\"
-      />\n\n    <link rel=\"icon\" href=\"https://blog.front-matter.io/content/images/size/w256h256/2023/04/front-matter.png\"
-      type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n
-      \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    <link
-      rel=\"amphtml\" href=\"https://blog.front-matter.io/posts/dryad-interview-jen-gibson/amp/\">\n
-      \   \n    <meta property=\"og:site_name\" content=\"Front Matter\">\n    <meta
-      property=\"og:type\" content=\"article\">\n    <meta property=\"og:title\" content=\"Dryad:
-      Interview with Jen Gibson\">\n    <meta property=\"og:description\" content=\"In
-      October Jen Gibson started as the new Executive Director for the Dryad Data
-      Repository. I used the opportunity to ask Jen a few questions about Dryad, challenges
-      with data sharing, and ideas about moving Dryad forward. I was particularly
-      interested in the interview as I served on the Dryad\">\n    <meta property=\"og:url\"
-      content=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n    <meta property=\"og:image\"
-      content=\"https://blog.front-matter.io/content/images/2022/07/jgibson.png\">\n
-      \   <meta property=\"article:published_time\" content=\"2021-11-15T10:52:02.000Z\">\n
-      \   <meta property=\"article:modified_time\" content=\"2022-08-15T18:56:27.000Z\">\n
-      \   <meta property=\"article:tag\" content=\"Interview\">\n    \n    <meta name=\"twitter:card\"
-      content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Dryad:
-      Interview with Jen Gibson\">\n    <meta name=\"twitter:description\" content=\"In
-      October Jen Gibson started as the new Executive Director for the Dryad Data
-      Repository. I used the opportunity to ask Jen a few questions about Dryad, challenges
-      with data sharing, and ideas about moving Dryad forward. I was particularly
-      interested in the interview as I served on the Dryad\">\n    <meta name=\"twitter:url\"
-      content=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">\n    <meta name=\"twitter:image\"
-      content=\"https://blog.front-matter.io/content/images/2022/07/jgibson.png\">\n
-      \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
-      content=\"Martin Fenner\">\n    <meta name=\"twitter:label2\" content=\"Filed
-      under\">\n    <meta name=\"twitter:data2\" content=\"Interview\">\n    <meta
-      property=\"og:image:width\" content=\"640\">\n    <meta property=\"og:image:height\"
-      content=\"480\">\n    \n    <script type=\"application/ld+json\">\n{\n    \"@context\":
-      \"https://schema.org\",\n    \"@type\": \"Article\",\n    \"publisher\": {\n
-      \       \"@type\": \"Organization\",\n        \"name\": \"Front Matter\",\n
-      \       \"url\": \"https://blog.front-matter.io/\",\n        \"logo\": {\n            \"@type\":
-      \"ImageObject\",\n            \"url\": \"https://blog.front-matter.io/content/images/2022/12/logo.png\",\n
-      \           \"width\": 200,\n            \"height\": 31\n        }\n    },\n
-      \   \"author\": {\n        \"@type\": \"Person\",\n        \"name\": \"Martin
-      Fenner\",\n        \"image\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
-      \"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s=250&r=x&d=mp\",\n
-      \           \"width\": 250,\n            \"height\": 250\n        },\n        \"url\":
-      \"https://blog.front-matter.io/author/martin/\",\n        \"sameAs\": [\n            \"https://orcid.org/0000-0003-1419-2405\"\n
-      \       ]\n    },\n    \"headline\": \"Dryad: Interview with Jen Gibson\",\n
-      \   \"url\": \"https://blog.front-matter.io/posts/dryad-interview-jen-gibson/\",\n
-      \   \"datePublished\": \"2021-11-15T10:52:02.000Z\",\n    \"dateModified\":
-      \"2022-08-15T18:56:27.000Z\",\n    \"image\": {\n        \"@type\": \"ImageObject\",\n
-      \       \"url\": \"https://blog.front-matter.io/content/images/2022/07/jgibson.png\",\n
-      \       \"width\": 640,\n        \"height\": 480\n    },\n    \"keywords\":
-      \"Interview\",\n    \"description\": \"In October Jen Gibson started as the
-      new Executive Director for the Dryad Data Repository. I used the opportunity
-      to ask Jen a few questions about Dryad, challenges with data sharing, and ideas
-      about moving Dryad forward. I was particularly interested in the interview as
-      I served on the Dryad Board of Directors from 2013 to 2016. In fact, one post
-      on this blog is about a presentation I gave in 2013 (Metrics and attribution:
-      my thoughts for the panel at the ORCID-Dryad symposium on research attri\",\n
-      \   \"mainEntityOfPage\": \"https://blog.front-matter.io/posts/dryad-interview-jen-gibson/\"\n}\n
-      \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 5.79\">\n    <link
-      rel=\"alternate\" type=\"application/rss+xml\" title=\"Front Matter\" href=\"https://blog.front-matter.io/rss/\">\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.37/umd/portal.min.js\"
-      data-i18n=\"true\" data-ghost=\"https://blog.front-matter.io/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-api=\"https://front-matter.ghost.io/ghost/api/content/\" crossorigin=\"anonymous\"></script><style
-      id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
-      {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
-      \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
-      center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
-      {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
-      h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
-      \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
-      20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
-      16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
-      #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
-      \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
-      #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
-      a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
-      none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
-      \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
-      {\n    opacity: 0.92;\n}</style><script async src=\"https://js.stripe.com/v3/\"></script>\n
-      \   <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/sodo-search.min.js\"
-      data-key=\"d0d5aabcc0f96718307d5944b6\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.1/umd/main.css\"
-      data-sodo-search=\"https://front-matter.ghost.io/\" crossorigin=\"anonymous\"></script>\n
-      \   \n    <link href=\"https://blog.front-matter.io/webmentions/receive/\" rel=\"webmention\">\n
-      \   <script defer src=\"/public/cards.min.js?v=adfb4b14fb\"></script>\n    <link
-      rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=adfb4b14fb\">\n
-      \   <script defer src=\"/public/comment-counts.min.js?v=adfb4b14fb\" data-ghost-comments-counts-api=\"https://blog.front-matter.io/members/api/comments/counts/\"></script>\n
-      \   <link href=\"/atom/\" type=\"application/atom+xml\" rel=\"alternate\" title=\"Atom
-      feed\" />\n<link rel=\"me\" href=\"https://hachyderm.io/@mfenner\">\n<script
-      defer data-domain=\"blog.front-matter.io\" src=\"https://plausible.io/js/plausible.js\"></script><style>:root
-      {--ghost-accent-color: #059669;}</style>\n</head>\n\n<body class=\"post-template
-      tag-interview is-head-stacked has-serif-body\">\n<div class=\"gh-site\">\n\n
-      \   <header id=\"gh-head\" class=\"gh-head gh-outer\">\n        <div class=\"gh-head-inner
-      gh-inner\">\n            <div class=\"gh-head-brand\">\n                <div
-      class=\"gh-head-brand-wrapper\">\n                    \n                    <a
-      class=\"gh-head-logo\" href=\"https://blog.front-matter.io\">\n                            <img
-      src=\"https://blog.front-matter.io/content/images/2022/12/logo.png\" alt=\"Front
-      Matter\">\n                    </a>\n                    \n                </div>\n
-      \               <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                <button
-      class=\"gh-burger\"></button>\n            </div>\n\n            <nav class=\"gh-head-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-feature\"><a href=\"https://blog.front-matter.io/tag/feature/\">Feature</a></li>\n
-      \   <li class=\"nav-news\"><a href=\"https://blog.front-matter.io/tag/news/\">News</a></li>\n
-      \   <li class=\"nav-meeting-report\"><a href=\"https://blog.front-matter.io/tag/meeting-report/\">Meeting
-      Report</a></li>\n    <li class=\"nav-interview\"><a href=\"https://blog.front-matter.io/tag/interview/\">Interview</a></li>\n
-      \   <li class=\"nav-chart\"><a href=\"https://blog.front-matter.io/tag/chart/\">Chart</a></li>\n
-      \   <li class=\"nav-science-hack\"><a href=\"https://blog.front-matter.io/tag/science-hack/\">Science
-      Hack</a></li>\n    <li class=\"nav-book-review\"><a href=\"https://blog.front-matter.io/tag/book-review/\">Book
-      Review</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-head-actions\">\n
-      \                   <button class=\"gh-search gh-icon-btn\" aria-label=\"Search
-      this site\" data-ghost-search><svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\"
-      viewBox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\" width=\"20\"
-      height=\"20\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21
-      21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z\"></path></svg></button>\n                    <div
-      class=\"gh-head-members\">\n                                <a class=\"gh-head-link\"
-      href=\"#/portal/signin\" data-portal=\"signin\">Sign in</a>\n                                <a
-      class=\"gh-head-btn gh-btn gh-primary-btn\" href=\"#/portal/signup\" data-portal=\"signup\">Subscribe</a>\n
-      \                   </div>\n            </div>\n        </div>\n    </header>\n\n
-      \   \n<main class=\"gh-main\">\n        <article class=\"gh-article post tag-interview\">\n\n
-      \           <header class=\"gh-article-header gh-canvas\">\n                    <a
-      class=\"gh-article-tag\" href=\"https://blog.front-matter.io/tag/interview/\">Interview</a>\n\n
-      \               <h1 class=\"gh-article-title\">Dryad: Interview with Jen Gibson</h1>\n\n
-      \                   <aside class=\"gh-article-sidebar\">\n\n        <div class=\"gh-author-image-list\">\n
-      \               <a class=\"gh-author-image\" href=\"/author/martin/\">\n                        <img
-      src=\"https://www.gravatar.com/avatar/8adea77ad740876f5cb832f92d49f08d?s&#x3D;250&amp;r&#x3D;x&amp;d&#x3D;mp\"
-      alt=\"Martin Fenner\">\n                </a>\n        </div>\n\n        <div
-      class=\"gh-author-name-list\">\n                <h4 class=\"gh-author-name\">\n
-      \                   <a href=\"/author/martin/\">Martin Fenner</a>\n                </h4>\n
-      \               \n        </div>\n\n        <div class=\"gh-article-meta\">\n
-      \           <div class=\"gh-article-meta-inner\">\n                <time class=\"gh-article-date\"
-      datetime=\"2021-11-15\">Nov 15, 2021</time>\n                    <span class=\"gh-article-meta-sep\"></span>\n
-      \                   <span class=\"gh-article-length\">4 min</span>\n            </div>\n
-      \               <a class=\"gh-card-link\" href=\"https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63\">https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63</a>\n
-      \       </div>\n\n    </aside>\n\n\n                    <figure class=\"gh-article-image\">\n
-      \       <img\n            srcset=\"/content/images/size/w300/2022/07/jgibson.png
-      300w,\n                    /content/images/size/w720/2022/07/jgibson.png 720w,\n
-      \                   /content/images/size/w960/2022/07/jgibson.png 960w,\n                    /content/images/size/w1200/2022/07/jgibson.png
-      1200w,\n                    /content/images/size/w2000/2022/07/jgibson.png 2000w\"\n
-      \           sizes=\"(max-width: 1200px) 100vw, 1200px\"\n            src=\"/content/images/size/w1200/2022/07/jgibson.png\"\n
-      \           alt=\"Dryad: Interview with Jen Gibson\"\n        >\n            <figcaption>Jennifer
-      Gibson</figcaption>\n    </figure>\n            </header>\n\n            <section
-      class=\"gh-content gh-canvas\">\n                <p>In October Jen Gibson started
-      as the new Executive Director for the Dryad Data Repository. I used the opportunity
-      to ask Jen a few questions about Dryad, challenges with data sharing, and ideas
-      about moving Dryad forward. I was particularly interested in the interview as
-      I served on the Dryad Board of Directors from 2013 to 2016. In fact, one post
-      on this blog is about a presentation I gave in 2013 (<a href=\"https://doi.org/10.53731/r294649-6f79289-8cw1x\">Metrics
-      and attribution: my thoughts for the panel at the ORCID-Dryad symposium on research
-      attribution</a>).</p><h3 id=\"1-can-you-describe-what-dryad-is\">1. Can you
-      describe what Dryad is?</h3><p>Dryad is an open data publishing platform and
-      community committed to the open availability and routine re-use of all research
-      data. We\u2019re a generalist, curated data repository \u2013 working with researchers
-      across disciplines to assemble details about their work and their data to increase
-      its discoverability and use by others. We\u2019re a non-profit initiative working
-      in partnership with other systems and communities working to advance open research.</p><h3
-      id=\"2-are-there-data-that-should-not-be-submitted-to-dryad\">2. Are there data
-      that should not be submitted to Dryad?</h3><p>Dryad is designed to support openly
-      accessible and fully re-usable data, and publishes under a Creative Commons
-      Public Domain License (CC0). So, we\u2019re not able to publish data with incompatible
-      licensing terms. We also don\u2019t accept datasets that contain personally
-      identifiable human subject information or specific locations for endangered
-      species \u2013 but our team of curators will work with researchers to see if
-      the data can be made appropriate for sharing. </p><h3 id=\"3-are-there-limits-in-the-number-or-size-of-files-in-a-data-submission\">3.
-      Are there limits in the number or size of files in a data submission?</h3><p>We
-      can accept up to 300GB per dataset and thousands of files, but curators are
-      looking for the most accessible file types and downloads to support re-use.
-      So, we ask that files be small and zipped when possible. Users with files larger
-      than 300GB are asked simply to contact us to coordinate. </p><h3 id=\"4-does-dryad-also-accept-software-submissions\">4.
-      Does Dryad also accept software submissions?</h3><p>No, Dryad only publishes
-      data. So, we\u2019ve partnered with <a href=\"https://zenodo.org\">Zenodo</a>
-      so that users can load software and other supplementary information at the same
-      time that they load data to Dryad. Software can then be made available under
-      a different, more appropriate license and be given its own citation, but is
-      also linked from the data publication at Dryad.</p><h3 id=\"5-does-a-data-submission-to-dryad-cost-money\">5.
-      Does a data submission to Dryad cost money?</h3><p>Yes. Often the cost to researchers
-      is covered or discounted through an arrangement with their institution, publisher,
-      or funder. Where there is not yet an arrangement in place, the submitting researcher
-      is asked to pay $120 \u2013 with overage fees if the data is larger than 300GB.
-      Waivers are, of course, available. Publication fees, memberships, and partnerships
-      with institutions, publishers and funders help cover our costs for data curation
-      and long-term preservation.</p><h3 id=\"6-what-are-the-main-challenges-for-authors\">6.
-      What are the main challenges for authors?</h3><p>There are so many challenges
-      for researchers with respect to open sharing of data \u2013 and they\u2019re
-      different in every discipline. There are behaviour changes, and workflow changes
-      and culture changes to overcome \u2013 although several disciplines have carved
-      a path, including astronomy and ecology. I hope that the open data-sharing around
-      COVID will help inspire more people to follow suit.</p><p>Dryad helps to overcome
-      these challenges, of course. We help first of all by helping to make it <em>possible</em>
-      to share data properly \u2013 openly, with a CC0 license, and second by making
-      it <em>easy</em> to share data through our friendly user interface and our integrations
-      with publishers and partners such as Zenodo. (With the terms \u2018possible,
-      easy, rewarding and normative,\u2019 I\u2019m invoking Brian Nosek\u2019s <a
-      href=\"https://www.cos.io/blog/strategy-for-culture-change\">Strategy for Culture
-      Change</a>).</p><p>We\u2019re helping to make data sharing <em>rewarding</em>
-      by standardising usage metrics (through <a href=\"https://makedatacount.org/\">Make
-      Data Count</a> \u2013 an important, community-led initiative to develop metrics
-      for open research data assessment) and encouraging citation, though these are
-      just a couple of the pieces needed to put data and data sharing at the centre
-      of research assessment.</p><p>Finally, what I\u2019m very much looking forward
-      to doing with Dryad is supporting and building communities that share and re-use
-      data to make this practice <em>normative</em>. Connecting people with people
-      \u2013 and people with data \u2013 is key in nurturing and normalising the regular
-      exchange and re-use of data. </p><h3 id=\"7-why-should-authors-submit-their-data-to-dryad\">7.
-      Why should authors submit their data to Dryad?</h3><p>Authors whose communities
-      don\u2019t already rely on a domain repository for data, such as WormBase or
-      the Protein Data Bank, should publish their data with Dryad because:</p><ul><li>Our
-      curation service increases the quality and discoverability of new data, by ensuring
-      key descriptive information (metadata) is available alongside the data itself</li><li>Our
-      curation service increases the integrity of new data, by ensuring it\u2019s
-      readable and usable by other users</li><li>We put data in context, with links
-      to publications, software, institutions, funders and more</li><li>Data published
-      in Dryad is citable and accessible via a persistent DOI</li><li>As a non-profit
-      and open-source initiative, our values are closely aligned with the research
-      community</li><li>It\u2019s easy, and affordable </li></ul><h3 id=\"8-how-can-authors-give-feedback-eg-to-report-problems-or-request-features\">8.
-      How can authors give feedback, e.g. to report problems or request features?</h3><p>We
-      are an open source project and our work is driven by researchers' needs. Get
-      in touch with the help desk to discuss feature needs with our product team or
-      leave a ticket on our public <a href=\"https://github.com/CDL-Dryad/dryad-product-roadmap/projects/1\">Github
-      product board</a>.</p><h3 id=\"9-what-did-you-do-before-starting-to-work-for-dryad\">9.
-      What did you do before starting to work for Dryad?</h3><p>I\u2019ve worked in
-      open research since 2005, when I joined <a href=\"https://sparcopen.org/\">SPARC</a>
-      \u2013 the Scholarly Publishing and Academic Resources Coalition \u2013 to work
-      on open-access advocacy and policy efforts. Immediately before Dryad I was a
-      founding member of the team for eLife \u2013 the open-access journal for biology
-      and medicine and initiative from three of the largest, most prestigious, private
-      biomedical research funders to put science publishing back in the hands of science.
-      I\u2019d say my main contributions so far have been in building communities
-      (among librarians, open science advocates, students, early-career or late-stage
-      researchers, and others), advocacy (for open research practice at different
-      levels of practice and policy), and adoption strategies (for researchers in
-      particular). </p><h3 id=\"10-do-you-want-to-talk-about-future-plans-for-dryad\">10.
-      Do you want to talk about future plans for Dryad?</h3><p>Absolutely. Beyond
-      my near-term objectives for optimising operations, I expect us to be:</p><ul><li>Leveraging
-      support from institutions and expanding our membership program.</li><li>Working
-      with our publisher partners to attract as much data as possible.</li><li>More
-      actively diversifying our profile \u2013 specifically reaching out to different
-      geographic and disciplinary communities.</li><li>Expanding our roadmap for modeling
-      data publishing into the future, building on our progress over the last couple
-      of years.</li></ul><p>Longer term, I\u2019m enthusiastic about the potential
-      for pushing data to the forefront of discovery, and taking steps to facilitate
-      re-use and extend credit. Like Make Data Count, Dryad is committed to making
-      data a first-class citizen in research and research assessment, and I'll be
-      really pleased if we\u2019re able to help properly reward researchers for their
-      data publications. We\u2019re going to need to, to really accelerate discovery
-      and build that open, global network for the exchange of research objects.</p>\n
-      \                       <div class=\"gh-license\">\n                            Copyright
-      \xA9 2021 Martin Fenner. Distributed under the terms of the\n                            <a\n
-      \                               class=\"gh-license-link\"\n                                href=\"https://creativecommons.org/licenses/by/4.0/legalcode\"\n
-      \                           >\n                                Creative Commons
-      Attribution 4.0 License.\n                            </a>\n                        </div>\n
-      \           </section> \n            </section>\n\n        </article>\n\n                <div
-      class=\"gh-read-next gh-canvas\">\n                <section class=\"gh-pagehead\">\n
-      \                   <h4 class=\"gh-pagehead-title\">Read next</h4>\n                </section>\n\n
-      \               <div class=\"gh-topic gh-topic-grid\">\n                    <div
-      class=\"gh-topic-content\">\n                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/conference-blogging-interview-with-alex-knoll/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2022/08/knoll.jpeg
-      300w,\n                            /content/images/size/w720/2022/08/knoll.jpeg
-      720w,\n                            /content/images/size/w960/2022/08/knoll.jpeg
-      960w,\n                            /content/images/size/w1200/2022/08/knoll.jpeg
-      1200w,\n                            /content/images/size/w2000/2022/08/knoll.jpeg
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2022/08/knoll.jpeg\"\n
-      \                   alt=\"Conference Blogging: Interview with Alex Knoll\"\n
-      \               >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
-      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Conference
-      Blogging: Interview with Alex Knoll</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">Blogging is a great way to report from a scientific
-      conference. This could be done either with regular blog posts written in the
-      evening or after the conference, and/or live-blogging using tools such as Friendfeed
-      or Twitter. One or more blogging scientists can not only add a unique perspective</div>\n\n
-      \           <footer class=\"gh-card-footer\">\n                <span class=\"gh-card-author\">Martin
-      Fenner</span>\n                <time class=\"gh-card-date\" datetime=\"2009-10-01\">Oct
-      1, 2009</time>\n                    <script\n    data-ghost-comment-count=\"62d42bbd41e317003df48dc4\"\n
-      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
-      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                            <article
-      class=\"gh-card post\">\n    <a class=\"gh-card-link\" href=\"/posts/plos-article-level-metrics-interview-with-martin-fenner/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2022/08/429781913_9524791cff_c-1.jpg
-      300w,\n                            /content/images/size/w720/2022/08/429781913_9524791cff_c-1.jpg
-      720w,\n                            /content/images/size/w960/2022/08/429781913_9524791cff_c-1.jpg
-      960w,\n                            /content/images/size/w1200/2022/08/429781913_9524791cff_c-1.jpg
-      1200w,\n                            /content/images/size/w2000/2022/08/429781913_9524791cff_c-1.jpg
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2022/08/429781913_9524791cff_c-1.jpg\"\n
-      \                   alt=\"PLoS Article-Level Metrics: Interview with Martin
-      Fenner\"\n                >\n            </figure>\n\n        <div class=\"gh-card-wrapper\">\n
-      \           <header class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">PLoS
-      Article-Level Metrics: Interview with Martin Fenner</h3>\n            </header>\n\n
-      \                   <div class=\"gh-card-excerpt\">This blog occasionally does
-      interviews with people providing interesting tools for scholars. These interviews
-      have always been among my favorite blog posts. This now is obviously an interview
-      with myself, but I felt this is the best format to explain some important news.\n\nStarting
-      May 16 I will be working</div>\n\n            <footer class=\"gh-card-footer\">\n
-      \               <span class=\"gh-card-author\">Martin Fenner</span>\n                <time
-      class=\"gh-card-date\" datetime=\"2012-04-23\">Apr 23, 2012</time>\n                    <script\n
-      \   data-ghost-comment-count=\"62d42bbd41e317003df48dad\"\n    data-ghost-comment-count-empty=\"\"\n
-      \   data-ghost-comment-count-singular=\"comment\"\n    data-ghost-comment-count-plural=\"comments\"\n
-      \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"gh-card-comments\"\n
-      \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n            </footer>\n
-      \       </div>\n    </a>\n</article>                            <article class=\"gh-card
-      post\">\n    <a class=\"gh-card-link\" href=\"/posts/figshare-interview-with-mark-hahnel/\">\n
-      \           <figure class=\"gh-card-image\">\n                <img\n                    srcset=\"/content/images/size/w300/2022/08/me1.png
-      300w,\n                            /content/images/size/w720/2022/08/me1.png
-      720w,\n                            /content/images/size/w960/2022/08/me1.png
-      960w,\n                            /content/images/size/w1200/2022/08/me1.png
-      1200w,\n                            /content/images/size/w2000/2022/08/me1.png
-      2000w\"\n                    sizes=\"(max-width: 1200px) 100vw, 1200px\"\n                    src=\"/content/images/size/w720/2022/08/me1.png\"\n
-      \                   alt=\"Figshare: Interview with Mark Hahnel\"\n                >\n
-      \           </figure>\n\n        <div class=\"gh-card-wrapper\">\n            <header
-      class=\"gh-card-header\">\n                <h3 class=\"gh-card-title\">Figshare:
-      Interview with Mark Hahnel</h3>\n            </header>\n\n                    <div
-      class=\"gh-card-excerpt\">figshare allows researchers to publish all of their
-      research outputs in seconds in an easily citable, sharable and discoverable
-      manner. The service was started by Mark Hahnel last year while still a PhD student.
-      Mark joined Digital Science to work on figshare in September and last month
-      relaunched a much</div>\n\n            <footer class=\"gh-card-footer\">\n                <span
-      class=\"gh-card-author\">Martin Fenner</span>\n                <time class=\"gh-card-date\"
-      datetime=\"2012-02-16\">Feb 16, 2012</time>\n                    <script\n    data-ghost-comment-count=\"62d42bbd41e317003df48db3\"\n
-      \   data-ghost-comment-count-empty=\"\"\n    data-ghost-comment-count-singular=\"comment\"\n
-      \   data-ghost-comment-count-plural=\"comments\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"gh-card-comments\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>\n
-      \           </footer>\n        </div>\n    </a>\n</article>                    </div>\n
-      \               </div>\n            </div>\n\n                <div class=\"gh-comments
-      gh-read-next gh-canvas\">\n            <section class=\"gh-pagehead\">\n                <h4
-      class=\"gh-pagehead-title\">Comments (<script\n    data-ghost-comment-count=\"62d42bbd41e317003df48f1c\"\n
-      \   data-ghost-comment-count-empty=\"0\"\n    data-ghost-comment-count-singular=\"\"\n
-      \   data-ghost-comment-count-plural=\"\"\n    data-ghost-comment-count-tag=\"span\"\n
-      \   data-ghost-comment-count-class-name=\"\"\n    data-ghost-comment-count-autowrap=\"true\"\n>\n</script>)</h3>\n
-      \           </section>\n            \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~0.13/umd/comments-ui.min.js\"
-      data-locale=\"en\" data-ghost-comments=\"https://blog.front-matter.io/\" data-api=\"https://front-matter.ghost.io/ghost/api/content/\"
-      data-admin=\"https://front-matter.ghost.io/ghost/\" data-key=\"d0d5aabcc0f96718307d5944b6\"
-      data-title=\"\" data-count=\"false\" data-post-id=\"62d42bbd41e317003df48f1c\"
-      data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#059669\"
-      data-comments-enabled=\"all\" data-publication=\"Front Matter\" crossorigin=\"anonymous\"></script>\n
-      \   \n        </div>\n</main>\n\n    <footer class=\"gh-foot gh-outer\">\n        <div
-      class=\"gh-foot-inner gh-inner\">\n                <section class=\"gh-subscribe\">\n
-      \                   <h3 class=\"gh-subscribe-title\">Subscribe to Front Matter</h3>\n
-      \                       <div class=\"gh-subscribe-description\">Subscribe to
-      the Front Matter Blog to automatically receive blog posts via email newsletter.</div>\n
-      \                   <button class=\"gh-subscribe-btn gh-btn\" data-portal=\"signup\"><svg
-      width=\"20\" height=\"20\" viewBox=\"0 0 20 20\" fill=\"none\" stroke=\"currentColor\"
-      xmlns=\"http://www.w3.org/2000/svg\">\n    <path d=\"M3.33332 3.33334H16.6667C17.5833
-      3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667
-      16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334
-      2.41666 3.33334 3.33332 3.33334Z\" stroke-width=\"1.5\" stroke-linecap=\"round\"
-      stroke-linejoin=\"round\"/>\n    <path d=\"M18.3333 5L9.99999 10.8333L1.66666
-      5\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/>\n</svg>
-      Subscribe now</button>\n                </section>\n\n            <nav class=\"gh-foot-menu\">\n
-      \               <ul class=\"nav\">\n    <li class=\"nav-front-matter\"><a href=\"https://front-matter.io\">Front
-      Matter</a></li>\n    <li class=\"nav-about\"><a href=\"https://blog.front-matter.io/about/\">About</a></li>\n
-      \   <li class=\"nav-privacy-policy\"><a href=\"https://blog.front-matter.io/privacy-policy/\">Privacy
-      Policy</a></li>\n    <li class=\"nav-rss\"><a href=\"https://blog.front-matter.io/atom/\">RSS</a></li>\n
-      \   <li class=\"nav-usage-stats\"><a href=\"https://plausible.io/blog.front-matter.io\">Usage
-      Stats</a></li>\n</ul>\n\n            </nav>\n\n            <div class=\"gh-copyright\">\n
-      \                   Front Matter \xA9 2024. Powered by <a href=\"https://ghost.org/\"
-      target=\"_blank\" rel=\"noopener\">Ghost</a>\n            </div>\n        </div>\n
-      \   </footer>\n\n</div>\n\n    <div class=\"pswp\" tabindex=\"-1\" role=\"dialog\"
-      aria-hidden=\"true\">\n    <div class=\"pswp__bg\"></div>\n\n    <div class=\"pswp__scroll-wrap\">\n
-      \       <div class=\"pswp__container\">\n            <div class=\"pswp__item\"></div>\n
-      \           <div class=\"pswp__item\"></div>\n            <div class=\"pswp__item\"></div>\n
-      \       </div>\n\n        <div class=\"pswp__ui pswp__ui--hidden\">\n            <div
-      class=\"pswp__top-bar\">\n                <div class=\"pswp__counter\"></div>\n\n
-      \               <button class=\"pswp__button pswp__button--close\" title=\"Close
-      (Esc)\"></button>\n                <button class=\"pswp__button pswp__button--share\"
-      title=\"Share\"></button>\n                <button class=\"pswp__button pswp__button--fs\"
-      title=\"Toggle fullscreen\"></button>\n                <button class=\"pswp__button
-      pswp__button--zoom\" title=\"Zoom in/out\"></button>\n\n                <div
-      class=\"pswp__preloader\">\n                    <div class=\"pswp__preloader__icn\">\n
-      \                       <div class=\"pswp__preloader__cut\">\n                            <div
-      class=\"pswp__preloader__donut\"></div>\n                        </div>\n                    </div>\n
-      \               </div>\n            </div>\n\n            <div class=\"pswp__share-modal
-      pswp__share-modal--hidden pswp__single-tap\">\n                <div class=\"pswp__share-tooltip\"></div>\n
-      \           </div>\n\n            <button class=\"pswp__button pswp__button--arrow--left\"
-      title=\"Previous (arrow left)\"></button>\n            <button class=\"pswp__button
-      pswp__button--arrow--right\" title=\"Next (arrow right)\"></button>\n\n            <div
-      class=\"pswp__caption\">\n                <div class=\"pswp__caption__center\"></div>\n
-      \           </div>\n        </div>\n    </div>\n</div>\n<script src=\"https://blog.front-matter.io/assets/built/main.min.js?v=adfb4b14fb\"></script>\n\n\n\n</body>\n\n</html>\n"
+    body:
+      string: !!binary |
+        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
+        dA4/uD4EXSFtxwUAAAD//wMA5rgo52KDAAA=
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '254115'
+      - '281171'
       Alt-Svc:
       - clear
-      Cache-Control:
-      - public, max-age=0
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '9058'
-      Content-Type:
-      - text/html; charset=utf-8
+      - '9089'
       Date:
-      - Fri, 01 Mar 2024 11:26:41 GMT
-      Ghost-Age:
-      - '0'
-      Ghost-Cache:
-      - MISS
+      - Fri, 27 Sep 2024 16:12:17 GMT
       Ghost-Fastly:
       - 'true'
-      Server:
-      - openresty
-      Status:
-      - 200 OK
       Vary:
       - Cookie, Accept-Encoding
-      Via:
-      - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS, HIT, MISS
       X-Cache-Hits:
-      - '1'
-      X-Request-ID:
-      - 974f325f-219f-4988-813c-1862de9825fc
+      - 0, 6, 0
       X-Served-By:
-      - cache-ams21021-AMS
+      - cache-ams2100147-AMS, cache-ams2100123-AMS, cache-fra-eddf8230070-FRA
       X-Timer:
-      - S1709292401.131152,VS0,VE1
+      - S1727453538.808892,VS0,VE10
+      cache-control:
+      - public, max-age=0
+      content-encoding:
+      - gzip
+      content-type:
+      - text/html; charset=utf-8
       etag:
-      - W/"85d1-U8lfkG4nG4z1D7Zk0ktaDQcPkU4"
+      - W/"8362-sNYxe+r8qCVqlGo1Jt4pUALK5ss"
+      ghost-age:
+      - '0'
+      ghost-cache:
+      - MISS
+      server:
+      - openresty
+      status:
+      - 200 OK
+      via:
+      - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - 974f325f-219f-4988-813c-1862de9825fc
-    http_version: HTTP/1.1
-    status_code: 200
+      - f1976623-f548-40b4-ba0b-0102a82108b7
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -539,16 +299,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
-    content: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 85d8cb23ed010b5c-AMS
+      - 8c9cc6440b99c7e4-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -556,23 +319,24 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 01 Mar 2024 11:26:41 GMT
+      - Fri, 27 Sep 2024 16:12:17 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=kZBTveS2xO%2FZlnjdtIB3geRR3HfZlOVrMYe89ATKMFWPFenPwOtRvpAqERjnYLDpBxMPzHHrNNVDfG%2FDiPyX%2BxJPdv2yS3QiGp5hTxgHIMXnHkKedqAi5Dq8BD8ThlqbmDwAMys%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=0ih3e1aI6f0zFW%2FcxvK%2B0%2BgjTv054yWpn%2BkZ%2FISmoNtySXvRTQvoW8ElQ9KSbAm53Ub9SC5FQAxbgOVZTNAhza4vdA6FynwfuCeTGL3IiWLmXhUc6gY98MfFkLC9ZYZ8DgOjswI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -585,20 +349,33 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.53731/rceh7pn-tzg61kj-7zv63
   response:
-    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-      Matter"}],"indexed":{"date-parts":[[2024,3,8]],"date-time":"2024-03-08T00:16:17Z","timestamp":1709856977018},"posted":{"date-parts":[[2021,11,15]]},"group-title":"Computer
-      and information sciences","reference-count":0,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2021,11,15]],"date-time":"2021-11-15T00:00:00Z","timestamp":1636934400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2021,11,15]],"date-time":"2021-11-15T00:00:00Z","timestamp":1636934400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>In
-      October Jen Gibson started as the new Executive Director for the Dryad Data
-      Repository. I used the opportunity to ask Jen a few questions about Dryad, challenges
-      with data sharing, and ideas about moving Dryad forward. I was particularly
-      interested in the interview as I served on the Dryad Board of Directors from
-      2013 to 2016.<\/p>","DOI":"10.53731\/rceh7pn-tzg61kj-7zv63","type":"posted-content","created":{"date-parts":[[2021,11,15]],"date-time":"2021-11-15T12:11:15Z","timestamp":1636978275000},"source":"Crossref","is-referenced-by-count":0,"title":["Dryad:
-      Interview with Jen Gibson"],"prefix":"10.53731","author":[{"ORCID":"http:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[{"name":"Front
-      Matter"}]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.io\/posts\/dryad-interview-jen-gibson","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/rceh7pn-tzg61kj-7zv63.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/rceh7pn-tzg61kj-7zv63.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/rceh7pn-tzg61kj-7zv63.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/rceh7pn-tzg61kj-7zv63.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2024,3,7]],"date-time":"2024-03-07T14:31:04Z","timestamp":1709821864000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.io\/posts\/dryad-interview-jen-gibson"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2021,11,15]]},"references-count":0,"URL":"http:\/\/dx.doi.org\/10.53731\/rceh7pn-tzg61kj-7zv63","relation":{"is-part-of":[{"id-type":"issn","id":"2749-9952","asserted-by":"subject"}]},"published":{"date-parts":[[2021,11,15]]},"subtype":"other"}}'
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/81W227jNhD9FUKvNWVd7VpY7EM3beGiiwDB9qVxHmiRkplIpEpSjp3A/74zlO14
+        c1kXaIsmUGCJHM6cGZ455GNgHXO9DYpA3wWjoBXWslpQt+0EjN1rczq6FsZKrWAiDqMwepoJisdA
+        Kuuk6503uH4MFGvRxS9GK0c+M+eECXY3I7DjYiM4LuHMCdox4yD+9XUSJdkoH8XZDVj5KSe9C5yg
+        UU7j7EsUFUlUZMmfEBtnAX3bBUU8jfNJNomyJJvlu1HQaeveCBGPYnjymxswq43uO4jiGgzzSbdd
+        DygJU5xIVWnTMsyG2FIKVQoLMY2ohMEPWupeuaCIIFi/bKRdQXrPsh0FjSyFssLXA6Aa931IL9KO
+        aQxPjmn753nak3QyS7Mswj/Ip4TgQrmTfVprhMFFw7ZUKsrZ1nrMf1z9DrMr5zpbLMaLcWkE5LoW
+        pW5brWyoTb0Y79HbxXi5XYyzMIIhUbOm1FwEu9H/lJLj7X+V0s1TPK5bJpXPbf92jbNGW9syc0cN
+        ADayHNhescYKAGtX2jiKLmCFMAdm4Uq2BHtWQrWCD93HuSKXpdNLINtvQpFf5dIiz7CcghNmiVsJ
+        osQ9+Xkjyh6zIBfSCFhiCPDST1+YLePkgjlGrgQQXsLkNiRz0lvwgRa66wBPr6TbEqfB7Z2PxkgF
+        nv/qIQNAbwlb6t4N7kakXLGmEaoWltxLtyIc/dsVM1LVo6EzuGCHRa1ew/geCgC7Z4YjhHuwQDrI
+        sm+YabbQTtAQApsSXj04P7KWgARs58TCB0xqdZLbTxrcEV0dc7ekMrolSRSnmBD8TsIPi3H3EQhx
+        cTlHXYrCPJ2m8WJsSrGadoq6h3oS393S6cN6kiLXBmUbFILutzvArQW6nNOMN9kcJ0UcF3H+Gpun
+        PybTfGCz1T3gQq1BIoGYgLm09KgqnC63J8py4E/g61GQ+bFmfm+eqBMAsg68yM2+BrM0R3lmvQNK
+        evm5vPo0v9g3iO8PbUrJh67AXqPwn4LExjOaZFG+Xwy1kSXWhXrzPdVBOYGS2IyfcZMVGFeslc0W
+        FVAo5bXPCqCY8tlW0lisMasq2Uh25ojANmxFu/SCmsbTGYJ5tam0kbVUrDkda6S6886f68Gy0XVY
+        YSja+lCh1MAd4AGoAccC0yMn6a1QtB5K+6QJe+o4sXGL8cq1TfC25KIrOOg4ZV3XYAn34gVraSsV
+        dI1X0OcgWSdDo+teUFuuNPTOsEF7lGfYHbb8LbRdw6R6b3A7Xr3EewIAHH1j8S5ACzjuz6BGkx8e
+        ZPfeoG++YexryDf/mNMokcNp9L0rXvrmFS/9EuVFlBXJCymFK14+nUwmBykttYGVMd7JDrL6CCIo
+        4Xje4uu/1f87DNYvTyRmOOZPBqS1/d+4bh5l3p5o/BNMj5JvQq7lsK3nDzMDt6BhFx7xHMHAVFde
+        /iQ/7DCgw9ZH9Q6SaTajs1meoBpbOHSdP3NgBlK8hUMW9Xd0/PDZHe635xPEMg0xtcP78G73FSsJ
+        HQZgDAAA
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -612,11 +389,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '1138'
+      - '1146'
       content-type:
       - application/json
       date:
-      - Wed, 13 Mar 2024 23:13:21 GMT
+      - Fri, 27 Sep 2024 16:12:18 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -633,6 +410,7 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

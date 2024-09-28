@@ -54,7 +54,8 @@ def write_csl_item(metadata) -> Optional[dict]:
             if metadata.date.get("submitted", None)
             else None,
             "accessed": get_date_parts(metadata.date.get("accessed"))
-            if metadata.date.get("accessed", None) else None,
+            if metadata.date.get("accessed", None)
+            else None,
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),

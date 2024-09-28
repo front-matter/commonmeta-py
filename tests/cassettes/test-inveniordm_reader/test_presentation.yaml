@@ -11,50 +11,37 @@ interactions:
       host:
       - zenodo.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://zenodo.org/api/records/8173303
   response:
-    content: '{"created": "2023-07-21T22:00:21.474631+00:00", "modified": "2023-07-24T20:18:05.444215+00:00",
-      "id": 8173303, "conceptrecid": "8173302", "doi": "10.5281/zenodo.8173303", "conceptdoi":
-      "10.5281/zenodo.8173302", "doi_url": "https://doi.org/10.5281/zenodo.8173303",
-      "metadata": {"title": "11 July 2023 (Day 2) CERN \u2013 NASA Open Science Summit
-      Sketch Notes", "doi": "10.5281/zenodo.8173303", "publication_date": "2023-07-21",
-      "description": "<p>CERN/NASA &ldquo;Accelerating the Adoption of Open Science&rdquo;,
-      from July 10th-14th at CERN in Geneva, Switzerland</p>\n\n<p><a href=\"https://indico.cern.ch/event/1254282/\">https://indico.cern.ch/event/1254282/</a></p>\n\n<p>11&nbsp;July
-      2023 (Day 2)&nbsp;Open Data Sharing</p>", "access_right": "open", "creators":
-      [{"name": "Seibold, Heidi", "affiliation": null, "orcid": "0000-0002-8960-9642"}],
-      "resource_type": {"title": "Presentation", "type": "presentation"}, "meeting":
-      {"title": "CERN/NASA Accelerating the Adoption of Open Science Summit", "dates":
-      "10-14 July 2023", "place": "Geneva, Switzerland", "url": "https://home.cern/news/announcement/knowledge-sharing/cernnasa-summit-accelerating-adoption-open-science"},
-      "license": {"id": "cc-by-4.0"}, "communities": [{"id": "tops"}, {"id": "cern-nasa-open-science-summit-july-2023"}],
-      "relations": {"version": [{"index": 0, "is_last": true, "parent": {"pid_type":
-      "recid", "pid_value": "8173302"}}]}}, "title": "11 July 2023 (Day 2) CERN \u2013
-      NASA Open Science Summit Sketch Notes", "links": {"self": "https://zenodo.org/api/records/8173303",
-      "self_html": "https://zenodo.org/records/8173303", "self_doi": "https://zenodo.org/doi/10.5281/zenodo.8173303",
-      "doi": "https://doi.org/10.5281/zenodo.8173303", "parent": "https://zenodo.org/api/records/8173302",
-      "parent_html": "https://zenodo.org/records/8173302", "parent_doi": "https://zenodo.org/doi/10.5281/zenodo.8173302",
-      "self_iiif_manifest": "https://zenodo.org/api/iiif/record:8173303/manifest",
-      "self_iiif_sequence": "https://zenodo.org/api/iiif/record:8173303/sequence/default",
-      "files": "https://zenodo.org/api/records/8173303/files", "media_files": "https://zenodo.org/api/records/8173303/media-files",
-      "archive": "https://zenodo.org/api/records/8173303/files-archive", "archive_media":
-      "https://zenodo.org/api/records/8173303/media-files-archive", "latest": "https://zenodo.org/api/records/8173303/versions/latest",
-      "latest_html": "https://zenodo.org/records/8173303/latest", "draft": "https://zenodo.org/api/records/8173303/draft",
-      "versions": "https://zenodo.org/api/records/8173303/versions", "access_links":
-      "https://zenodo.org/api/records/8173303/access/links", "access_users": "https://zenodo.org/api/records/8173303/access/users",
-      "access_request": "https://zenodo.org/api/records/8173303/access/request", "access":
-      "https://zenodo.org/api/records/8173303/access", "reserve_doi": "https://zenodo.org/api/records/8173303/draft/pids/doi",
-      "communities": "https://zenodo.org/api/records/8173303/communities", "communities-suggestions":
-      "https://zenodo.org/api/records/8173303/communities-suggestions", "requests":
-      "https://zenodo.org/api/records/8173303/requests"}, "updated": "2023-07-24T20:18:05.444215+00:00",
-      "recid": "8173303", "revision": 3, "files": [{"id": "a3d52e85-858a-4ceb-88bd-34e636c74e08",
-      "key": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf", "size":
-      13994803, "checksum": "md5:45d8b11d4ef0da78b9db5397d8e0e8d9", "links": {"self":
-      "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content"}}],
-      "owners": [{"id": 363883}], "status": "published", "stats": {"downloads": 63,
-      "unique_downloads": 57, "views": 61, "unique_views": 44, "version_downloads":
-      63, "version_unique_downloads": 57, "version_unique_views": 44, "version_views":
-      61}, "state": "done", "submitted": true}'
+    body:
+      string: !!binary |
+        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
+        AAA=
     headers:
       access-control-allow-origin:
       - '*'
@@ -71,9 +58,11 @@ interactions:
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:01:02 GMT
+      - Fri, 27 Sep 2024 16:12:35 GMT
       etag:
-      - W/"3"
+      - W/"6"
+      link:
+      - <https://zenodo.org/api/records/8173303> ; rel="linkset" ; type="application/linkset+json"
       permissions-policy:
       - interest-cohort=()
       referrer-policy:
@@ -83,7 +72,7 @@ interactions:
       server:
       - nginx
       set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=28d04e9f4f9688d580b4486c14cfb425; path=/;
+      - 5569e5a730cade8ff2b54f1e815f3670=6ec22f4f70143073103af3bce013923f; path=/;
         HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
@@ -101,11 +90,12 @@ interactions:
       x-ratelimit-remaining:
       - '132'
       x-ratelimit-reset:
-      - '1707559323'
+      - '1727453616'
       x-request-id:
-      - ec4eb6cc4c7a96e1196848bc602bc5c1
+      - 7822a78cd5966c3e9b996422d4c5ab56
       x-xss-protection:
       - 1; mode=block
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

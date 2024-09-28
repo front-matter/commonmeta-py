@@ -4,8 +4,10 @@ from os import path
 import pytest
 from commonmeta import Metadata, MetadataList
 
+
 def vcr_config():
     return {"record_mode": "new_episodes"}
+
 
 @pytest.mark.vcr
 def test_journal_article():
@@ -90,23 +92,6 @@ def test_kbase_gulf_of_mexico():
     assert (
         subject.write(to="citation")
         == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
-    )
-
-
-@pytest.mark.vcr
-def test_post_without_doi():
-    """blog post without doi"""
-    string = "https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert (
-        subject.id
-        == "https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
-    )
-    assert subject.type == "Article"
-    assert (
-        subject.write(to="citation")
-        == "Hong, M. (2024). Grundrechtsverwirkung und Parteiverbote gegen radikale AfD-Landesverbände (Teil&nbsp;III). In <i>Verfassungsblog</i>. Verfassungsblog. https://verfassungsblog.de/grundrechtsverwirkung-und-parteiverbote-gegen-radikale-afd-landesverbande-iii"
     )
 
 

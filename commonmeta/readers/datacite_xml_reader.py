@@ -39,7 +39,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     resource__typegeneral = py_.get(meta, "resourceType.resourceTypeGeneral")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = py_.get(meta, "resourceType.#text")
-    
+
     identifiers = wrap(py_.get(meta, "alternateIdentifiers.alternateIdentifier"))
     identifiers = get_xml_identifiers(identifiers)
 
@@ -238,25 +238,25 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
 def get_xml_identifiers(identifiers: list) -> list:
     """get_identifiers"""
-    
+
     def is_identifier(identifier):
         """supported identifier types"""
         return identifier.get("alternateIdentifierType", None) in [
-                "ARK",
-                "arXiv",
-                "Bibcode",
-                "DOI",
-                "Handle",
-                "ISBN",
-                "ISSN",
-                "PMID",
-                "PMCID",
-                "PURL",
-                "URL",
-                "URN",
-                "Other"
-            ]
-        
+            "ARK",
+            "arXiv",
+            "Bibcode",
+            "DOI",
+            "Handle",
+            "ISBN",
+            "ISSN",
+            "PMID",
+            "PMCID",
+            "PURL",
+            "URL",
+            "URN",
+            "Other",
+        ]
+
     def format_identifier(identifier):
         """format_identifier"""
 
@@ -264,15 +264,17 @@ def get_xml_identifiers(identifiers: list) -> list:
             type_ = identifier.get("alternateIdentifierType")
         else:
             type_ = "Other"
-            
+
         return compact(
             {
                 "identifier": identifier.get("#text", None),
                 "identifierType": type_,
             }
         )
+
     return [format_identifier(i) for i in identifiers]
-    
+
+
 def get_xml_references(references: list) -> list:
     """get_xml_references"""
 

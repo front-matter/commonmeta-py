@@ -11,190 +11,172 @@ interactions:
       host:
       - api.rogue-scholar.org
       user-agent:
-      - python-httpx/0.25.2
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa
   response:
-    content: '{"abstract":null,"archive_url":null,"authors":[{"name":"Nees Jan van
-      Eck","url":"https://orcid.org/0000-0001-8448-4521"},{"name":"Ludo Waltman"}],"blog":{"archive_prefix":null,"authors":[{"name":"Leiden
-      Madtrics","url":null}],"canonical_url":null,"category":"socialSciences","created_at":1682899200,"current_feed_url":null,"description":"Leiden
-      Madtrics","favicon":null,"feed_format":"application/atom+xml","feed_url":"https://www.leidenmadtrics.nl/atom/","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://www.leidenmadtrics.nl/","id":"a0920819-e194-4514-bca4-5f0837e10c51","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"plan":"Starter","prefix":"10.59350","relative_url":null,"ror":"https://ror.org/027bh9e22","secure":true,"slug":"leidenmadtrics","status":"active","title":"Leiden
-      Madtrics","updated_at":1709211883,"use_api":null,"use_mastodon":false,"user_id":"ae88df6b-e1cf-4743-86a8-c032659cf5d2"},"blog_name":"Leiden
-      Madtrics","blog_slug":"leidenmadtrics","content_text":"Classifying research
-      publications into research topics or research areas\nis crucial for many bibliometric
-      analyses. While there are lots of\napproaches for classifying publications,
-      most of these approaches lack\ntransparency. Although there are exceptions (see\n[here](https://doi.org/10.1038/s41597-020-00749-y){target=\"_blank\"}
-      and\n[here](https://www.leidenmadtrics.nl/articles/make-maps-of-research-interactive-detailed-and-open){target=\"_blank\"}),\nthese
-      approaches are typically based on data from proprietary sources or\nthey rely
-      on non-transparent algorithms.\n\nWe introduce an open approach to the algorithmic
-      classification of\nresearch publications. This approach builds on a [methodology
-      we\ndeveloped more than a decade\nago](https://arxiv.org/abs/1203.0532v1){target=\"_blank\"}.
-      While this\nmethodology was originally applied to closed data from proprietary\nsources,
-      we now apply it to open data from\n[OpenAlex](https://openalex.org/){target=\"_blank\"}.
-      We make available a\nfully open classification of publications. The research
-      areas in this\nclassification are labeled using a new labeling approach, and
-      the\nclassification is presented visually using the [VOSviewer Online\nsoftware](https://www.leidenmadtrics.nl/articles/vosviewer-goes-online-part-1){target=\"_blank\"}.\nWe
-      also release open source software that enables anyone to reproduce\nand extend
-      our work.  \n\n### Building the classification\n\nWe built [our\nclassification](https://doi.org/10.5281/zenodo.10560276){target=\"_blank\"}\nbased
-      on OpenAlex data, using the\n[snapshot](https://docs.openalex.org/download-all-data/openalex-snapshot){target=\"_blank\"}\nreleased
-      on November 21, 2023. Over the past years, our methodology has\nbeen used to
-      create classifications based on Web of Science and Scopus\ndata. These classifications
-      are available in\n[InCites](https://clarivate.com/blog/introducing-citation-topics/){target=\"_blank\"}\nand\n[SciVal](https://www.elsevier.com/products/scival/overview/topic-prominence){target=\"_blank\"},\nrespectively.
-      Compared to Web of Science and Scopus, OpenAlex has the\nbenefit that its data
-      is fully open and that it offers a broader\ncoverage of the scholarly literature.\n\nTo
-      build our classification, we used the so-called [extended direct\ncitation approach](https://doi.org/10.1162/qss_a_00035){target=\"_blank\"}\nin
-      combination with the [Leiden\nalgorithm](https://doi.org/10.1038/s41598-019-41695-z){target=\"_blank\"}.\nThe
-      source code of the software we used is available\n[here](https://github.com/CWTSLeiden/publicationclassification){target=\"_blank\"}.\nOur
-      classification covers the 71 million journal articles, proceedings\npapers,
-      preprints, and book chapters in OpenAlex that were published\nbetween 2000 and
-      2023 and that are connected to each other by citation\nlinks. Based on 1715
-      million citation links, we built a three-level\nhierarchical classification.
-      Each publication was assigned to a research\narea at each of the three levels
-      of the classification. Research areas\nconsist of publications that are relatively
-      strongly connected by\ncitation links and that can therefore be expected to
-      be topically\nrelated. At each level of the classification, a publication was
-      assigned\nto only one research area, which means research areas do not overlap.\n\nUsing
-      the parameter values reported in Table 1, we obtained a\nclassification that
-      consists of 4521 research areas at the lowest (most\ngranular) level, 917 research
-      areas at the middle level, and 20 research\nareas at the highest (least granular)
-      level. We also algorithmically\nlinked each research area in our classification
-      to one or more of the\nfollowing five broad main fields: biomedical and health
-      sciences, life\nand earth sciences, mathematics and computer science, physical
-      sciences\nand engineering, and social sciences and humanities.\n\n|                        |         |\n|:----------------------:|:-------:|\n|       Parameter        |  Value  |\n|
-      resolution_micro_level | 2.2e-6  |\n| resolution_meso_level  | 4.9e-7  |\n|
-      resolution_macro_level | 2.2e-8  |\n| threshold_micro_level  |  1,000  |\n|  threshold_meso_level  |
-      10,000  |\n| threshold_macro_level  | 500,000 |\n|      n_iterations      |   100   |\n\n[Table
-      1. Parameter values used to build the classification. ]{.caption}\n\nGiven the
-      huge size of the citation network based on which we built the\nclassification,
-      the process of building the classification was\ncomputationally demanding. We
-      used a computer with 200 GB internal\nmemory. The process took about 70 hours
-      on this computer.\n\nLabeling the research areas in an algorithmically built
-      publication\nclassification is a challenging problem. The labeling approach\nintroduced
-      in our original methodology yields a list of five\ncharacteristic terms for
-      each research area. While these terms usually\ngive a reasonably good impression
-      of the topics covered by a research\narea, our experience is that users often
-      want to have a single term that\nsummarizes what a research area is about.\n\nLarge
-      language models (LLMs) offer important new opportunities to label\nresearch
-      areas. We therefore used the [Updated GPT 3.5 Turbo\nLLM](https://platform.openai.com/docs/models/gpt-3-5){target=\"_blank\"},\ndeveloped
-      by OpenAI, to label the 4521 research areas at the lowest\nlevel in our classification.
-      The source code of our software can be\nfound\n[here](https://github.com/CWTSLeiden/publicationclassificationlabeling){target=\"_blank\"}.\n\nFor
-      each research area, we provided the LLM with the titles of the 250\nmost cited
-      publications in the area, along with the prompt shown in\nBox 1. Using this
-      prompt, we asked the LLM to return a label for each\nresearch area, both a short
-      one (max. three words) and a longer one\n(max. eight words). We also requested
-      the LLM to provide a few sentences\nthat summarize what the research area is
-      about.\n\n::: {style=\"padding:10px; background-color:#F5F5F5;\"}\nYou will
-      be provided with the titles of a representative sample of\npapers from a larger
-      cluster of related scientific papers.\n\nYour task is to identify the topic
-      of the entire cluster based on the\ntitles of the representative papers.\n\nOutput
-      the following items (in English) that describe the topic of the\ncluster: \\''short
-      label\\'' (at most 3 words and format in Title Case),\n\\''long label\\'' (at
-      most 8 words and format in Title Case), list of 10\n\\''keywords\\'' (ordered
-      by relevance and format in Title Case),\n\\''summary\\'' (few sentences), and
-      \\''wikipedia page\\'' (URL).  \nDo not start short and long labels with the
-      word \\\"The\\\".  \nStart each summary with \\\"This cluster of papers\\\".  \nFormat
-      the output in JSON.\n:::\n\n[Box 1. Prompt provided to the LLM. ]{.caption}\n\nTable
-      2 presents the results provided by the LLM for one of the 4521\nresearch areas.
-      The results show that this research area is about\nbibliometrics. Although we
-      did not perform a systematic evaluation of\nthe quality of the LLM results,
-      our impression is that the results are a\nsubstantial improvement over the results
-      obtained using our original\nmethodology, or variants of that methodology. We
-      also tried to use the\nLLM to label the research areas at the middle level and
-      the highest\nlevel in our classification, but this did not yield satisfactory\nresults.\n\n|             |                                                                                                                                                                                                                                                                                                                 |\n|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|\n|
-      Short label | Bibliometric Analysis                                                                                                                                                                                                                                                                                           |\n|
-      Long label  | Bibliometric Analysis and Research Evaluation                                                                                                                                                                                                                                                                   |\n|
-      Keywords    | Bibliometric Analysis; Research Evaluation; Scientific Impact;
-      Citation Networks; Collaboration Patterns; Open Access Publishing; Social Impact
-      Assessment; Altmetrics; Co-authorship Networks; Interdisciplinary Research                                                                                      |\n|
-      Summary     | This cluster of papers focuses on bibliometric analysis, research
-      evaluation, and the assessment of scientific impact. It covers topics such as
-      citation networks, collaboration patterns, open access publishing, social impact
-      assessment, altmetrics, co-authorship networks, and interdisciplinary research
-      |\n| Wikipedia   | [https://en.wikipedia.org/wiki/Bibliometrics](https://en.wikipedia.org/wiki/Bibliometrics){target=\"_blank\"}                                                                                                                                                                                                     |\n\n[Table
-      2. Output provided by the LLM for a selected research area.\n]{.caption}\n\nWhile
-      the LLM results are promising, we stress that the use of LLMs such\nas GPT 3.5
-      raises complex legal and ethical questions that require\nfurther consideration.
-      Also, the use of GPT 3.5 requires a payment. We\npaid slightly less than USD
-      50 to label 4521 research areas. We also\nconsidered the use of GPT 4, but this
-      LLM is more expensive and did not\nseem to yield better results.\n\n### Visualizing
-      the classification\n\nA powerful way to use our publication classification is
-      to create\ninteractive landscapes of science. Figure 1 presents an example of
-      such\na landscape. It was created using the [VOSviewer Online\nsoftware](https://www.leidenmadtrics.nl/articles/vosviewer-goes-online-part-1).\nWe
-      used the software to visualize the 4521 research areas at the lowest\nlevel
-      in our classification. Each bubble represents a research area. The\nlarger the
-      bubble, the larger the number of publications in the research\narea. The distance
-      between bubbles approximately indicates the\nrelatedness of research areas in
-      terms of citation links. In general,\nthe smaller the distance between two bubbles,
-      the stronger the citation\nlinks between the two research areas. The color of
-      a bubble shows the\nprimary main field to which a research area belongs. For
-      instance,\nresearch areas in the physical sciences and engineering (blue) are\nlocated
-      on the left side of the landscape, while research areas in the\nsocial sciences
-      and humanities (red) are located on the right side.\nFinally, for some bubbles,
-      the landscape also shows the label obtained\nusing our LLM-based labeling approach.\n\n<figure>\n<img\nsrc=\"https://www.leidenmadtrics.nl/images/community/An-open-approach-for-classifying-research-publications_1.png\"\nstyle=\"opacity:
-      1;\" data-image=\"39511\" />\n</figure>\n\n[Figure 1. Landscape of science showing
-      the 4521 research areas at the\nlowest level in the classification. Colors show
-      the primary main field\nto which a research area belongs. ([interactive\nversion](http://tinyurl.com/ytb688e5){target=\"_blank\"})]{.caption\ndir=\"ltr\"}\n\nThe
-      landscape of science presented in Figure 1 can be explored in more\ndetail in
-      [this interactive\nwebtool](http://tinyurl.com/ytb688e5){target=\"_blank\"}.
-      The webtool\nenables zooming in on specific parts of the landscape. It is also\npossible
-      to see the list of publications included in each research area.\n\nTo illustrate
-      the power of landscapes of science, we use our landscape\nto show the publication
-      activity of our own institution, Leiden\nUniversity. The landscape presented
-      in Figure 2 is identical to the one\nin Figure 1, except that the color of a
-      bubble now indicates the\nproportion of publications in a research area with
-      authors affiliated\nwith Leiden University. Purple bubbles represent research
-      areas in which\nLeiden University has a strong publication activity. For each
-      research\narea, the list of publications authored by Leiden University can be\nexplored
-      in [our interactive\nwebtool](http://tinyurl.com/yqkgkt2x){target=\"_blank\"}.
-      The webtool for\ninstance reveals that Leiden University has 570 publications
-      in the\nperiod 2000-2023 in the research area labeled ''Bibliometric Analysis''.\nThis
-      is one of the research areas in the social sciences and humanities\nin which
-      Leiden University has its strongest publication activity.\n\n<figure>\n<img\nsrc=\"https://www.leidenmadtrics.nl/images/community/An-open-approach-for-classifying-research-publications_2.png\"\nstyle=\"opacity:
-      1;\" data-image=\"39523\" />\n</figure>\n\n[Figure 2. Landscape of science showing
-      the 4521 research areas at the\nlowest level in the classification. Colors show
-      the proportion of\npublications in a research area with authors from Leiden
-      University.\n([interactive\nversion](http://tinyurl.com/yqkgkt2x){target=\"_blank\"})]{.caption\ndir=\"ltr\"}\n\n###
-      Opening up bibliometrics\n\nWe have introduced an open approach for classifying
-      research\npublications into research areas: Our approach relies on open data
-      from\nOpenAlex, our software is open source, and our publication\nclassification
-      is [openly\navailable](https://doi.org/10.5281/zenodo.10560276){target=\"_blank\"}.\nThe
-      work presented in this blog post is part of an [ambitious\nagenda](https://www.leidenmadtrics.nl/articles/toward-open-research-information-introducing-the-information-openness-focal-area-at-cwts){target=\"_blank\"}\nwe
-      have at CWTS to move to fully open approaches to bibliometrics, and\nto openness
-      of research information and research analytics more\ngenerally.\n\nThe publication
-      classification discussed in this blog post is a crucial\nbuilding block for
-      the Open Edition of the [Leiden\nRanking](https://www.leidenranking.com/){target=\"_blank\"}
-      that CWTS is\ngoing to release on January 30. The classification is also used
-      by the\nOpenAlex team as a foundation for a [new topic classification for\nOpenAlex](https://groups.google.com/g/openalex-users/c/2yE1jie_D3s){target=\"_blank\"}.\nWe
-      hope our work will help to advance the transition to open approaches\nto bibliometrics!  \n","doi":"https://doi.org/10.59350/qc0px-76778","guid":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications","id":"e2ecec16-405d-42da-8b4d-c746840398fa","image":"https://www.leidenmadtrics.nl/images/community/An-open-approach-for-classifying-research-publications_1.png","indexed_at":1709212984,"language":"en","published_at":1706108400,"reference":[],"relationships":[],"summary":"Classifying
-      research publications into research topics or research areas is crucial for
-      many bibliometric analyses. While there are lots of approaches for classifying
-      publications, most of these approaches lack transparency.","tags":[],"title":"An
-      open approach for classifying research publications","updated_at":1709211827,"url":"https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"}
-
-      '
+    body:
+      string: !!binary |
+        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
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Fri, 01 Mar 2024 11:26:46 GMT
+      - Fri, 27 Sep 2024 16:12:21 GMT
       fly-request-id:
-      - 01HQWW8J056M7GAS1T6FA3QXVB-fra
+      - 01J8T42D8QB8GV5Z51RCZ6SMYD-cdg
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '13'
+      - '11'
       ratelimit-reset:
-      - '7'
+      - '15'
       server:
-      - Fly/38ec6ca9 (2024-02-29)
+      - Fly/0c45e4378 (2024-09-20)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
       - 1.1 fly.io
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: ''
 version: 1

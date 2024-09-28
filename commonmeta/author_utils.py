@@ -108,7 +108,7 @@ def get_one_author(author, **kwargs):
         else:
             given_name = None
             family_name = None
-  
+
     # support various keys for affiliations
     affiliations = author.get("affiliation", None) or author.get("affiliations", None)
 
@@ -122,8 +122,7 @@ def get_one_author(author, **kwargs):
             "name": name if _type == "Organization" else None,
             "givenName": given_name if _type == "Person" else None,
             "familyName": family_name if _type == "Person" else None,
-            "affiliations": presence(get_affiliations(wrap(affiliations))
-            ),
+            "affiliations": presence(get_affiliations(wrap(affiliations))),
         }
     )
 
@@ -186,7 +185,7 @@ def cleanup_author(author):
     """clean up author string"""
     if author is None:
         return None
-    
+
     if author.startswith(","):
         return None
 

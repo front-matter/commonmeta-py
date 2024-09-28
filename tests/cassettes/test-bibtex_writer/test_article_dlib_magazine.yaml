@@ -11,16 +11,19 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://doi.org/ra/10.1045
   response:
-    content: "[\n  {\n    \"DOI\": \"10.1045\",\n    \"RA\": \"Crossref\"\n  }\n]"
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QwMTUyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        ki+tmTYAAAA=
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 85339a10ac3e65f2-AMS
+      - 8c9cc50bdb4d1627-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -28,23 +31,24 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sat, 10 Feb 2024 10:17:20 GMT
+      - Fri, 27 Sep 2024 16:11:28 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xnhrPHIVqwyPSMqKaWZlxGXOmqvlo%2BWkCLZQ0%2Fwvcr90%2B%2F%2F4qi9gob7gpTJfL3LDzsaS1SpaSX8NGPckCsDSKJb7yVsVkdyntqEbWgy8LWq1%2BG0hNYb%2FinM1llpZKfhxP3kCvjI%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=AgYLDjjAnDHFImezY9sJ3wFO4EFrYnRuMZd5PRr8U9zj80M0GFDHz6LkHMJswBcCYTCnqZSRoeWrQ7NZo3jJfNKfjLSaXZS66TRfEFanRRyjiLfoyO%2BA6euryK9Nd8dGzYSboDA%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
 - request:
     body: ''
     headers:
@@ -57,17 +61,27 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.26.0
+      - python-httpx/0.27.2
     method: GET
     uri: https://api.crossref.org/works/10.1045/january2017-burton
   response:
-    content: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2023,11,8]],"date-time":"2023-11-08T23:28:21Z","timestamp":1699486101493},"reference-count":0,"publisher":"CNRI
-      Acct","issue":"1\/2","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["D-Lib
-      Magazine"],"DOI":"10.1045\/january2017-burton","type":"journal-article","created":{"date-parts":[[2017,1,12]],"date-time":"2017-01-12T18:57:58Z","timestamp":1484247478000},"source":"Crossref","is-referenced-by-count":35,"title":["The
-      Scholix Framework for Interoperability in Data-Literature Information Exchange"],"prefix":"10.1045","volume":"23","author":[{"given":"Adrian","family":"Burton","sequence":"first","affiliation":[]},{"given":"Amir","family":"Aryani","sequence":"additional","affiliation":[]},{"given":"Hylke","family":"Koers","sequence":"additional","affiliation":[]},{"given":"Paolo","family":"Manghi","sequence":"additional","affiliation":[]},{"given":"Sandro","family":"La
-      Bruzzo","sequence":"additional","affiliation":[]},{"given":"Markus","family":"Stocker","sequence":"additional","affiliation":[]},{"given":"Michael","family":"Diepenbroek","sequence":"additional","affiliation":[]},{"given":"Uwe","family":"Schindler","sequence":"additional","affiliation":[]},{"given":"Martin","family":"Fenner","sequence":"additional","affiliation":[]}],"member":"72","published-online":{"date-parts":[[2017,1]]},"container-title":["D-Lib
-      Magazine"],"original-title":[],"language":"en","deposited":{"date-parts":[[2017,1,12]],"date-time":"2017-01-12T18:58:00Z","timestamp":1484247480000},"score":1,"resource":{"primary":{"URL":"http:\/\/www.dlib.org\/dlib\/january17\/burton\/01burton.html"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2017,1]]},"references-count":0,"journal-issue":{"issue":"1\/2","published-online":{"date-parts":[[2017,1]]}},"URL":"http:\/\/dx.doi.org\/10.1045\/january2017-burton","relation":{},"ISSN":["1082-9873"],"issn-type":[{"value":"1082-9873","type":"electronic"}],"subject":["Library
-      and Information Sciences"],"published":{"date-parts":[[2017,1]]}}}'
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VVwXLTMBD9FY/OdiK5DnZ9KxSGDi0wpFxIcpDtTaJGlowsN0kz/XdWdhJcoB0I
+        N1krv933tHq7I7XltqlJSvSK+KSEuuYLCOy2Atxba9PfvQdTC60wwAZ0QH9GSLojQhWwgcItC24h
+        qLixiDuZhDSM/MQPo9nM70JWlA7dBQKaBGF0y+KUnqc0+YaYLopVlRVJWRxGI3Z+FiWv4ujRJwbm
+        YEDlEOS6UZak1CdVk0lRL8Eg4puPX668izy3CCPqunFZ2HQY4meulQVlg0KXXKi2yv1qgmXlRtd1
+        yc0qMJjbiNy2POdc1oB566U2NnAQ+AcYJGAlYk/IZXAtMu+GL/gDBggiXX66cknpgNFoNB3ecdVw
+        sw0pi4OsMRZRkWGn7p1ujOIyQKFEjniuDEB9/qghi33ms/B3DRGYsoCFtyxJR3E6+k3DKInCKI7i
+        hFLquGDW3P36xnFGRVutgqO0RZBtD/KejRzUnuvtErxxvtRSbLx3hpfgusOba+NdobRGV2B4JqSw
+        W08o75JbjuJgAPvLAJ7BkyV3unpvN/mSq0WrV4WJxeanZFjNvZZNR+4Mv3hjUX0sYEcW4h5c910U
+        RnAn5JyXQm5x5/VB2hq+N44F7s2FqV0j8Pkcq+LdjU5mj34PqBSmD3NhtlyJpzC8KIT7l8uXsd5v
+        5Qr6YB80PpfTsD5zLXUf6wblWp5Y2JirwjxBu+bea9M8POjTAG/wnTR1H3Bsdb4CcyKcwG4A2ce7
+        FFCByoyG1WmYX9dPrgLbFu1Jnlyhe6FP+u0dKPVPaDPnlWXWulTs/OhgW0WglXTe8cybn2El5K+c
+        RxuxEM5PDmdwT2LfNK1BE3AECqh0Lf7LYpKU0mcsxjlMazG5Nvgnc4Z9sJsdvnSBDrt1y69frhF4
+        aW2VTofT4Xq9HhRSZANtFtOhWx2Nk8XTYeeb0yFl3WqwtKUkjy5Rk/XIdi7d22hHwLNUW2WPtlf3
+        RsrBmPcjZPfrLPmHu8MUv5AtNoNCi47qy2PCgNw30A5hrsbjj+7iGU3C4DyJz0jHUO2HNfrjPZdd
+        mccjx1kDEnJrtBI5cb2Iwt3hRifTkc5LPB5/AABVxG4rCAAA
     headers:
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
@@ -81,11 +95,11 @@ interactions:
       content-encoding:
       - gzip
       content-length:
-      - '852'
+      - '834'
       content-type:
       - application/json
       date:
-      - Sat, 10 Feb 2024 10:17:21 GMT
+      - Fri, 27 Sep 2024 16:11:28 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -102,108 +116,7 @@ interactions:
       - 1s
       x-ratelimit-limit:
       - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - api.crossref.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://api.crossref.org/members/72
-  response:
-    content: '{"status":"ok","message-type":"member","message-version":"1.0.0","message":{"last-status-check-time":1707521351674,"primary-name":"CNRI
-      Acct","counts":{"current-dois":0,"backfile-dois":1128,"total-dois":1128},"breakdowns":{"dois-by-issued-year":[[2006,83],[2005,63],[2009,62],[2015,57],[2014,55],[1997,54],[2008,51],[1998,50],[1996,50],[2003,49],[2002,49],[1999,49],[2007,48],[2000,47],[2013,46],[2011,46],[2012,45],[2010,45],[2001,44],[2016,41],[2017,40],[2004,35],[1995,19]]},"prefixes":["10.1045"],"coverage":{"affiliations-current":0.0,"similarity-checking-current":0.0,"descriptions-current":0.0,"ror-ids-current":0.0,"funders-backfile":0.0,"licenses-backfile":0.0,"funders-current":0.0,"affiliations-backfile":0.0,"resource-links-backfile":0.0,"orcids-backfile":0.0,"update-policies-current":0.0,"ror-ids-backfile":0.0,"orcids-current":0.0,"similarity-checking-backfile":0.0,"references-backfile":0.0,"descriptions-backfile":0.0,"award-numbers-backfile":0.0,"update-policies-backfile":0.0,"licenses-current":0.0,"award-numbers-current":0.0,"abstracts-backfile":0.0,"resource-links-current":0.0,"abstracts-current":0.0,"references-current":0.0},"prefix":[{"name":"Corporation
-      for National Research Initiatives","value":"10.1045"}],"id":72,"tokens":["cnri","acct"],"counts-type":{"all":{"journal-article":1056,"journal":1,"journal-issue":72},"backfile":{"journal-article":1056,"journal-issue":72},"current":{}},"coverage-type":{"all":{"journal-article":{"last-status-check-time":1707521351674,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal":{"last-status-check-time":1707521351674,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521351674,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"backfile":{"journal-article":{"last-status-check-time":1707521351674,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0},"journal-issue":{"last-status-check-time":1707521351674,"affiliations":0.0,"abstracts":0.0,"orcids":0.0,"licenses":0.0,"references":0.0,"funders":0.0,"similarity-checking":0.0,"award-numbers":0.0,"ror-ids":0.0,"update-policies":0.0,"resource-links":0.0,"descriptions":0.0}},"current":{}},"flags":{"deposits-abstracts-current":false,"deposits-orcids-current":false,"deposits":true,"deposits-affiliations-backfile":false,"deposits-update-policies-backfile":false,"deposits-similarity-checking-backfile":false,"deposits-award-numbers-current":false,"deposits-resource-links-current":false,"deposits-ror-ids-current":false,"deposits-articles":true,"deposits-affiliations-current":false,"deposits-funders-current":false,"deposits-references-backfile":false,"deposits-ror-ids-backfile":false,"deposits-abstracts-backfile":false,"deposits-licenses-backfile":false,"deposits-award-numbers-backfile":false,"deposits-descriptions-current":false,"deposits-references-current":false,"deposits-resource-links-backfile":false,"deposits-descriptions-backfile":false,"deposits-orcids-backfile":false,"deposits-funders-backfile":false,"deposits-update-policies-current":false,"deposits-similarity-checking-current":false,"deposits-licenses-current":false},"location":"United
-      States","names":["CNRI Acct","Corporation for National Research Initiatives"]}}'
-    headers:
-      access-control-allow-headers:
-      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
-        Accept-Ranges, Cache-Control
-      access-control-allow-origin:
-      - '*'
-      access-control-expose-headers:
-      - Link
-      connection:
-      - close
-      content-encoding:
-      - gzip
-      content-length:
-      - '802'
-      content-type:
-      - application/json
-      date:
-      - Sat, 10 Feb 2024 10:17:21 GMT
-      permissions-policy:
-      - interest-cohort=()
-      server:
-      - Jetty(9.4.40.v20210413)
-      vary:
-      - Accept-Encoding
-      x-api-pool:
-      - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
-      x-ratelimit-interval:
-      - 1s
-      x-ratelimit-limit:
-      - '50'
-    http_version: HTTP/1.1
-    status_code: 200
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.26.0
-    method: GET
-    uri: https://doi.org/ra/10.1045
-  response:
-    content: "[\n  {\n    \"DOI\": \"10.1045\",\n    \"RA\": \"Crossref\"\n  }\n]"
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 85339a177dca0bae-AMS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 10 Feb 2024 10:17:21 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=HtxcEJO94e6An%2BhJ4Y9LNM%2FOdRt4hQGoi6zhAhd1bJDTMkjKeHymZXTHH0NkZnb%2F3vr90XrOgqAN6NWAAwyFiw2NHFo0%2B%2BbbppAALF%2F3RMPfreQX57piT2tNagzOlgdgymX22vE%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-    http_version: HTTP/1.1
-    status_code: 200
+    status:
+      code: 200
+      message: OK
 version: 1

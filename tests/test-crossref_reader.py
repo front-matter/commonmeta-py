@@ -87,7 +87,7 @@ def test_doi_with_data_citation():
             "funderIdentifier": "https://doi.org/10.13039/501100001711",
             "funderIdentifierType": "Crossref Funder ID",
             "funderName": "Swiss National Science Foundation",
-        }
+        },
     ]
     assert subject.container == {
         "identifier": "2050-084X",
@@ -101,12 +101,7 @@ def test_doi_with_data_citation():
         .get("description")
         .startswith("Among various advantages, their small size makes")
     )
-    assert subject.subjects == [
-        {"subject": "General Immunology and Microbiology"},
-        {"subject": "General Biochemistry, Genetics and Molecular Biology"},
-        {"subject": "General Medicine"},
-        {"subject": "General Neuroscience"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.version is None
     assert subject.provider == "Crossref"
@@ -371,7 +366,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.container == {
         "identifier": "1611-3349",
         "identifierType": "ISSN",
-        "title": "Advances in Visual Computing",
+        "title": "Lecture Notes in Computer Science",
         "type": "Book",
         "firstPage": "499",
         "lastPage": "508",
@@ -403,14 +398,14 @@ def test_posted_content():
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.license is None
+    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
     assert subject.date["published"] == "2016-12-28"
     assert subject.publisher == {
         "name": "Cold Spring Harbor Laboratory",
     }
     assert len(subject.references) == 26
     assert subject.references[0] == {
-        "key": "2019071613381284000_097196v2.1",
+        "key": "2024080313022960000_097196v2.1",
         "title": "An introduction to the joint principles for data citation",
         "publicationYear": "2015",
         "volume": "41",
@@ -418,9 +413,7 @@ def test_posted_content():
         "firstPage": "43",
         "containerTitle": "Bulletin of the American \\ldots",
     }
-    assert subject.relations == [
-        {"id": "https://doi.org/10.1038/s41597-019-0031-8", "type": "IsPreprintOf"}
-    ]
+    assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container == {"type": "Periodical"}
     assert subject.subjects == [{"subject": "Scientific Communication and Education"}]
@@ -465,7 +458,7 @@ def test_blog_post():
     }
     assert subject.date == {"published": "2023-10-04"}
     assert subject.publisher == {"name": "Front Matter"}
-    assert len(subject.references) == 3
+    assert len(subject.references) == 2
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
@@ -535,12 +528,15 @@ def test_peer_review():
         "givenName": "Jeremy",
         "familyName": "Magland",
         "affiliations": [
-            {
-                "name": "Center for Computational Mathematics, Flatiron Institute"
-            }
+            {"name": "Center for Computational Mathematics, Flatiron Institute"}
         ],
     }
-    assert subject.identifiers == [{'identifier': 'https://doi.org/10.7554/elife.55167.sa2', 'identifierType': 'DOI'}]
+    assert subject.identifiers == [
+        {
+            "identifier": "https://doi.org/10.7554/elife.55167.sa2",
+            "identifierType": "DOI",
+        }
+    ]
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -1126,6 +1122,11 @@ def test_missing_contributor():
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0002-3836-8885",
         "type": "Person",
+        "affiliations": [
+            {
+                "name": "CERN, CH-1211 Geneva 23, Switzerland",
+            },
+        ],
         "contributorRoles": ["Author"],
         "givenName": "Alexander",
         "familyName": "Kohls",
@@ -1138,8 +1139,8 @@ def test_missing_contributor():
     assert subject.publisher == {"name": "MDPI AG"}
     assert len(subject.references) == 23
     assert subject.references[-1] == {
-        "key": "ref23",
-        "unstructured": "SCOAP3 News: APS Joins SCOAP3http://www.webcitation.org/6xNFQb5iD",
+        "key": "ref_23",
+        "unstructured": "(2018, February 20). SCOAP3 News: APS Joins SCOAP3. Available online: http://www.webcitation.org/6xNFQb5iD.",
     }
     assert subject.funding_references is None
     assert subject.container == {
@@ -1356,8 +1357,8 @@ def test_multipe_titles():
     assert subject.type == "JournalArticle"
     assert subject.url == "https://link.springer.com/10.1007/s00120-007-1345-2"
     assert subject.titles == [
-        {"title": "Penile injury caused by a Moulinette"},
         {"title": "Penisverletzung durch eine Moulinette"},
+        {"title": "Penile injury caused by a Moulinette"},
         {
             "title": "Folge einer autoerotischen Selbstverstümmelung",
             "titleType": "Subtitle",
@@ -1396,7 +1397,7 @@ def test_multipe_titles():
         "firstPage": "776",
         "lastPage": "779",
     }
-    assert subject.subjects == [{"subject": "Urology"}]
+    assert subject.subjects is None
     assert subject.language == "de"
     assert subject.descriptions is None
     assert subject.version is None
