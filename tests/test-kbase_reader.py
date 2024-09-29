@@ -117,6 +117,6 @@ def test_gulf_of_mexico():
         "type": "DataRepository",
         "title": "KBase",
     }
-    assert subject.language == "en-US"
+    assert subject.language == "en"
     assert subject.version is None
     assert subject.files is None

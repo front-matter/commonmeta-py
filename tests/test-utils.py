@@ -809,11 +809,13 @@ def test_from_curie():
 
 def test_get_language():
     """Get language from string"""
-    assert "English" == get_language("en").name
-    assert "Danish" == get_language("dan").name
-    assert "en" == get_language("English").alpha_2
+    assert "English" == get_language("en", format="name")
+    assert "Danish" == get_language("dan", format="name")
+    assert "eng" == get_language("English", format="alpha_3")
+    assert "en" == get_language("English", format="alpha_2")
+    assert "en" == get_language("English")
     assert None is get_language("xyz")
-    assert "tlh" == get_language("Klingon").alpha_3
+    assert "tlh" == get_language("Klingon", format="alpha_3")
 
 
 def test_validate_url():

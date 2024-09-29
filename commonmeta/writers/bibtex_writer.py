@@ -3,7 +3,7 @@ from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 from bibtexparser.customization import page_double_hyphen
 
-from ..utils import pages_as_string
+from ..utils import pages_as_string, get_language
 from ..base_utils import compact
 from ..author_utils import authors_as_string
 from ..date_utils import get_month_from_date, get_iso8601_date, MONTH_SHORT_NAMES
@@ -82,7 +82,7 @@ def write_bibtex_item(metadata: Commonmeta) -> dict:
     booktitle = (
         container.get("title", None) if _type in ["inbook", "inproceedings"] else None
     )
-    language = metadata.language
+    language = get_language(metadata.language)
     location = (
         container.get("location", None)
         if _type not in ["article", "phdthesis"]

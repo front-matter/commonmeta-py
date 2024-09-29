@@ -1043,9 +1043,10 @@ def issn_as_url(issn: str) -> Optional[str]:
     return f"https://portal.issn.org/resource/ISSN/{issn}"
 
 
-def get_language(lang: str) -> Optional[dict]:
-    """Provide a language object based on ISO 639, with either a name in English,
-    ISO 639-1, or ISO 639-3 code as input.
+def get_language(lang: str, format: str="alpha_2") -> Optional[str]:
+    """Provide a language string based on ISO 639, with either a name in English,
+    ISO 639-1, or ISO 639-3 code as input. Optionally format as alpha_2 (defaul), 
+    alpha_3, or name.
     """
     if not lang:
         return None
@@ -1055,7 +1056,16 @@ def get_language(lang: str) -> Optional[dict]:
         language = pycountry.languages.get(alpha_3=lang)
     else:
         language = pycountry.languages.get(name=lang)
-    return language
+        
+    if language is None:
+        return None
+    elif format == "name":
+        return language.name
+    elif format == "alpha_3":
+        return language.alpha_3
+
+    else:
+        return language.alpha_2
 
 
 def start_case(content: str) -> str:

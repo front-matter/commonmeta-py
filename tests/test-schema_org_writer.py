@@ -50,7 +50,7 @@ def test_journal_article():
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "en"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/3.0/legalcode"
@@ -243,7 +243,7 @@ def test_inveniordm_report():
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "eng"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
@@ -292,7 +292,7 @@ def test_inveniordm_preprint():
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "eng"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
@@ -339,7 +339,7 @@ def test_inveniordm_dataset():
     assert schema_org.get("inDataCatalog") is None
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "eng"
+    assert schema_org.get("inLanguage") == "English"
     assert schema_org.get("license") is None
     assert len(schema_org.get("distribution")) == 24
     assert schema_org.get("distribution")[0] == {
@@ -393,7 +393,7 @@ def test_article_with_pages():
     }
     assert schema_org.get("pageStart") == "e1008184"
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "en"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"

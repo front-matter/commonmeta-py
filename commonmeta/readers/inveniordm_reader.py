@@ -93,8 +93,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         ]
     )
     language = py_.get(meta, "metadata.language") or py_.get(meta, "metadata.languages[0].id")
-    if language:
-        language = get_language(language).alpha_2
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
@@ -121,7 +119,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         # recommended and optional properties
         # "additional_type": additional_type,
         "subjects": presence(subjects),
-        "language": language,
+        "language": get_language(language),
         "version": py_.get(meta, "metadata.version"),
         "license": presence(license_),
         "descriptions": descriptions,

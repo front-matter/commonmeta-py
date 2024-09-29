@@ -1,6 +1,6 @@
 """Schema.org writer for commonmeta-py"""
 import orjson as json
-from ..utils import to_schema_org_creators, github_as_repo_url
+from ..utils import to_schema_org_creators, github_as_repo_url, get_language
 from ..base_utils import compact, wrap, presence, parse_attributes
 from ..constants import CM_TO_SO_TRANSLATIONS
 
@@ -117,7 +117,7 @@ def write_schema_org(metadata):
                     wrap(metadata.subjects), content="subject", first=False
                 )
             ),
-            "inLanguage": metadata.language,
+            "inLanguage": get_language(metadata.language, format="name"),
             "dateCreated": metadata.date.get("created", None),
             "datePublished": metadata.date.get("published", None),
             "dateModified": metadata.date.get("updated", None),

@@ -19,6 +19,7 @@ from ..utils import (
     normalize_ids,
     normalize_url,
     name_to_fos,
+    get_language,
 )
 from ..readers.crossref_reader import get_crossref
 from ..readers.datacite_reader import get_datacite
@@ -292,7 +293,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         # recommended and optional attributes
         "additional_type": additional_type,
         "subjects": presence(subjects),
-        "language": language,
+        "language": get_language(language),
         "identifiers": identifiers,
         "sizes": None,
         "formats": None,

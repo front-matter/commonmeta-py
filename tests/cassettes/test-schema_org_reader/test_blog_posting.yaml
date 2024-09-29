@@ -21,7 +21,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '285128'
+      - '431042'
       Alt-Svc:
       - clear
       Connection:
@@ -29,7 +29,7 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Fri, 27 Sep 2024 16:12:44 GMT
+      - Sun, 29 Sep 2024 08:44:38 GMT
       Ghost-Fastly:
       - 'true'
       Vary:
@@ -39,9 +39,9 @@ interactions:
       X-Cache-Hits:
       - 0, 3, 1
       X-Served-By:
-      - cache-ams2100143-AMS, cache-ams2100143-AMS, cache-fra-eddf8230051-FRA
+      - cache-ams2100143-AMS, cache-ams2100143-AMS, cache-fra-eddf8230070-FRA
       X-Timer:
-      - S1727453565.865111,VS0,VE2
+      - S1727599479.935885,VS0,VE2
       cache-control:
       - public, max-age=31536000
       ghost-age:
@@ -57,7 +57,7 @@ interactions:
       via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - 63d87d30-4cca-4c1b-b9ca-ec18e096d97f
+      - df93d0ff-f07f-46f2-84fe-89538141dd67
     status:
       code: 301
       message: Moved Permanently
@@ -237,7 +237,7 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '73779'
+      - '219693'
       Alt-Svc:
       - clear
       Connection:
@@ -245,7 +245,7 @@ interactions:
       Content-Length:
       - '8733'
       Date:
-      - Fri, 27 Sep 2024 16:12:44 GMT
+      - Sun, 29 Sep 2024 08:44:38 GMT
       Ghost-Fastly:
       - 'true'
       Vary:
@@ -253,11 +253,11 @@ interactions:
       X-Cache:
       - MISS, HIT, HIT
       X-Cache-Hits:
-      - 0, 1, 1
+      - 0, 1, 0
       X-Served-By:
-      - cache-ams21021-AMS, cache-ams21021-AMS, cache-fra-eddf8230051-FRA
+      - cache-ams21021-AMS, cache-ams21021-AMS, cache-fra-eddf8230070-FRA
       X-Timer:
-      - S1727453565.882696,VS0,VE2
+      - S1727599479.956337,VS0,VE1
       cache-control:
       - public, max-age=0
       content-encoding:
@@ -277,7 +277,7 @@ interactions:
       via:
       - 1.1 varnish, 1.1 varnish, 1.1 varnish
       x-request-id:
-      - 1abc9be4-6a48-45a2-87e6-4f663b52aabe
+      - d7f2445e-c3bc-44b0-8881-93c69f1f8dee
     status:
       code: 200
       message: OK
@@ -305,7 +305,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8c9cc6ecfda41619-DUS
+      - 8caab1484a7ec7e4-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -313,19 +313,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 27 Sep 2024 16:12:44 GMT
+      - Sun, 29 Sep 2024 08:44:39 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=hVehXeHwTwCLua6GHpmjRsOFKzSaRxyZ4%2Bt%2F4meOA9AzsdVPZjpcdSRRCKa0sM%2FlgeV0spfKCSSSR7Hvs2jzKEkwwI7VDHxWorj%2FcHVOvbgwgRYaJBfiyTY1YY0y3Ll7TxPiOPg%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=g0i7GSsud%2B%2F7oKI5ItkMzYrs633gTRtHpKCzRUh0bSazP48S8SqbSBiHYqgtQBOgI4UjDkq5Ac8GTfJE9km6sbCm1MCHRhcNeIjGDzcBM8d%2F1eacRDow7QCXvuQVi7aaBLNIa50%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       vary:
@@ -391,7 +389,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Fri, 27 Sep 2024 16:12:45 GMT
+      - Sun, 29 Sep 2024 08:44:39 GMT
       permissions-policy:
       - interest-cohort=()
       server:
