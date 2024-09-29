@@ -34,6 +34,19 @@ def validate_prefix(doi: Optional[str]) -> Optional[str]:
     return match.group(6)
 
 
+def validate_suffix(doi: Optional[str]) -> Optional[str]:
+    """Validate a DOI suffix for a given DOI"""
+    if doi is None:
+        return None
+    match = re.search(
+        r"\A(?:(http|https):/(/)?(dx\.)?(doi\.org|handle\.stage\.datacite\.org|handle\.test\.datacite\.org)/)?(doi:)?(10\.\d{4,5})/(.+)\Z",  # noqa: E501
+        doi,
+    )
+    if match is None:
+        return None
+    return match.group(7)
+
+
 def doi_from_url(url: Optional[str]) -> Optional[str]:
     """Return a DOI from a URL"""
     if url is None:

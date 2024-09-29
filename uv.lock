@@ -3,7 +3,8 @@ requires-python = ">=3.9"
 resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation == 'PyPy'",
     "python_full_version < '3.10' and platform_python_implementation != 'PyPy'",
-    "python_full_version < '3.13'",
+    "python_full_version < '3.10'",
+    "python_full_version >= '3.10' and python_full_version < '3.13'",
     "python_full_version >= '3.13'",
 ]
 
@@ -421,7 +422,7 @@ wheels = [
 
 [[package]]
 name = "commonmeta-py"
-version = "0.20"
+version = "0.21"
 source = { editable = "." }
 dependencies = [
     { name = "anyio" },
@@ -1337,7 +1338,7 @@ name = "markdown-it-py"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "mdurl" },
+    { name = "mdurl", marker = "python_full_version >= '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/38/71/3b932df36c1a044d397a1f92d1cf91ee0a503d91e470cbd670aa66b07ed0/markdown-it-py-3.0.0.tar.gz", hash = "sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb", size = 74596 }
 wheels = [
@@ -1913,6 +1914,7 @@ source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation == 'PyPy'",
     "python_full_version < '3.10' and platform_python_implementation != 'PyPy'",
+    "python_full_version < '3.10'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/39/4e/f4d6b2bd80a9880989d37773f0f2e3a91a2d5352732e4ebb68b5606bca83/plum-dispatch-1.7.4.tar.gz", hash = "sha256:1c1d15b2842b5fa98405fd3dff6fad4887bdc77b60bd200e209d76ebfe9990fe", size = 56429 }
 wheels = [
@@ -1924,13 +1926,13 @@ name = "plum-dispatch"
 version = "2.5.2"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
-    "python_full_version < '3.13'",
+    "python_full_version >= '3.10' and python_full_version < '3.13'",
     "python_full_version >= '3.13'",
 ]
 dependencies = [
-    { name = "beartype" },
-    { name = "rich" },
-    { name = "typing-extensions" },
+    { name = "beartype", marker = "python_full_version >= '3.10'" },
+    { name = "rich", marker = "python_full_version >= '3.10'" },
+    { name = "typing-extensions", marker = "python_full_version >= '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1b/ee/397257908dbbe9dcb77019a4da8500f1e38ee1b5c3f1fe54e7f9cc93ef48/plum_dispatch-2.5.2.tar.gz", hash = "sha256:1abfccc5a9c751f20dcdb1020c645968dfbc1c33ad3a9a47780834ec332cfe9e", size = 35083 }
 wheels = [
@@ -2419,7 +2421,7 @@ dependencies = [
     { name = "importlib-metadata" },
     { name = "importlib-resources" },
     { name = "plum-dispatch", version = "1.7.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10'" },
-    { name = "plum-dispatch", version = "2.5.2", source = { registry = "https://pypi.org/simple" } },
+    { name = "plum-dispatch", version = "2.5.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.10'" },
     { name = "pydantic" },
     { name = "pyyaml" },
     { name = "requests" },
@@ -2539,8 +2541,8 @@ dependencies = [
     { name = "certifi" },
     { name = "charset-normalizer" },
     { name = "idna" },
-    { name = "urllib3", version = "1.26.20", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.10' and platform_python_implementation != 'PyPy'" },
-    { name = "urllib3", version = "2.2.3", source = { registry = "https://pypi.org/simple" } },
+    { name = "urllib3", version = "1.26.20", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.13'" },
+    { name = "urllib3", version = "2.2.3", source = { registry = "https://pypi.org/simple" }, marker = "(python_full_version < '3.10' and platform_python_implementation == 'PyPy') or python_full_version >= '3.13'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz", hash = "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760", size = 131218 }
 wheels = [
@@ -2573,8 +2575,8 @@ name = "rich"
 version = "13.8.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "markdown-it-py" },
-    { name = "pygments" },
+    { name = "markdown-it-py", marker = "python_full_version >= '3.10'" },
+    { name = "pygments", marker = "python_full_version >= '3.10'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/92/76/40f084cb7db51c9d1fa29a7120717892aeda9a7711f6225692c957a93535/rich-13.8.1.tar.gz", hash = "sha256:8260cda28e3db6bf04d2d1ef4dbc03ba80a824c88b0e7668a0f23126a424844a", size = 222080 }
 wheels = [
@@ -3137,6 +3139,8 @@ version = "1.26.20"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation != 'PyPy'",
+    "python_full_version < '3.10'",
+    "python_full_version >= '3.10' and python_full_version < '3.13'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/e4/e8/6ff5e6bc22095cfc59b6ea711b687e2b7ed4bdb373f7eeec370a97d7392f/urllib3-1.26.20.tar.gz", hash = "sha256:40c2dc0c681e47eb8f90e7e27bf6ff7df2e677421fd46756da1161c39ca70d32", size = 307380 }
 wheels = [
@@ -3149,7 +3153,6 @@ version = "2.2.3"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation == 'PyPy'",
-    "python_full_version < '3.13'",
     "python_full_version >= '3.13'",
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/ed/63/22ba4ebfe7430b76388e7cd448d5478814d3032121827c12a2cc287e2260/urllib3-2.2.3.tar.gz", hash = "sha256:e7d814a81dad81e6caf2ec9fdedb284ecc9c73076b62654547cc64ccdcae26e9", size = 300677 }
@@ -3163,7 +3166,8 @@ version = "4.3.0"
 source = { registry = "https://pypi.org/simple" }
 resolution-markers = [
     "python_full_version < '3.10' and platform_python_implementation == 'PyPy'",
-    "python_full_version < '3.13'",
+    "python_full_version < '3.10'",
+    "python_full_version >= '3.10' and python_full_version < '3.13'",
     "python_full_version >= '3.13'",
 ]
 dependencies = [

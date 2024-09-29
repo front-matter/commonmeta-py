@@ -290,6 +290,7 @@ def test_rogue_scholar():
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
+        "id": "https://orcid.org/0000-0002-1825-0097",
         "contributorRoles": ["Author"],
         "givenName": "Phillip",
         "familyName": "Burton",

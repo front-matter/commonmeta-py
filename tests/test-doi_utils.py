@@ -6,6 +6,7 @@ from commonmeta.doi_utils import (
     validate_doi,
     normalize_doi,
     validate_prefix,
+    validate_suffix,
     get_doi_ra,
     doi_resolver,
     crossref_api_url,
@@ -99,6 +100,14 @@ def test_validate_prefix():
     assert "10.1371" == validate_prefix("10.1371")
 
 
+def test_validate_suffix():
+    "validate_suffix"
+    assert "journal.pone.0042793" == validate_suffix("10.1371/journal.pone.0042793")
+    assert "journal.pone.0042793" == validate_suffix("doi:10.1371/journal.pone.0042793")
+    assert "journal.pone.0042793" == validate_suffix("http://doi.org/10.1371/journal.pone.0042793")
+    assert None is validate_suffix("10.1371")
+    
+    
 def test_get_doi_ra():
     "get_doi_ra"
     assert "Crossref" == get_doi_ra("10.1371/journal.pone.0042793")

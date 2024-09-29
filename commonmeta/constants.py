@@ -266,6 +266,17 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
     "other": "Other",
 }
 
+CM_TO_INVENIORDM_TRANSLATIONS = {
+    "Article": "publication-preprint",
+    "Book": "book",
+    "Dataset": "dataset",
+    "Image": "image-other",
+    "JournalArticle": "publication-article",
+    "Presentation": "presentation",
+    "Software": "software",
+    "Other": "other",
+}
+
 CM_TO_DC_TRANSLATIONS = {
     "Article": "Preprint",
     "Audiovisual": "Audiovisual",

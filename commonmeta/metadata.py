@@ -45,6 +45,7 @@ from .writers.csl_writer import write_csl, write_csl_list
 from .writers.ris_writer import write_ris, write_ris_list
 from .writers.schema_org_writer import write_schema_org
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
+from .writers.inveniordm_writer import write_inveniordm
 from .utils import normalize_id, find_from_format
 from .base_utils import parse_xml, wrap
 from .doi_utils import doi_from_url
@@ -216,6 +217,8 @@ class Metadata:
                 return write_ris(self)
             elif to == "schema_org":
                 return write_schema_org(self)
+            elif to == "inveniordm":
+                return write_inveniordm(self)
             elif to == "datacite":
                 instance = json.loads(write_datacite(self))
                 self.write_errors = json_schema_errors(instance, schema="datacite")

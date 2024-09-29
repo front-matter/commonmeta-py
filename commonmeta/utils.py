@@ -264,16 +264,20 @@ def format_name_identifier(ni):
         return None
     elif isinstance(ni, str):
         return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
-    name_identifier = ni.get("nameIdentifier", None) or ni.get(
-        "publisherIdentifier", None
+    name_identifier = (
+        ni.get("nameIdentifier", None)
+        or ni.get("identifier", None)
+        or ni.get("publisherIdentifier", None)
     )
-    name_identifier_scheme = ni.get("nameIdentifierScheme", None) or ni.get(
-        "publisherIdentifierScheme", None
+    name_identifier_scheme = (
+        ni.get("nameIdentifierScheme", None)
+        or ni.get("scheme", None)
+        or ni.get("publisherIdentifierScheme", None)
     )
     scheme_uri = ni.get("schemeURI", None) or ni.get("schemeUri", None)
     if name_identifier is None:
         return None
-    elif name_identifier_scheme == "ORCID":
+    elif name_identifier_scheme in ["ORCID", "orcid"]:
         return normalize_orcid(name_identifier)
     elif name_identifier_scheme == "ISNI":
         return normalize_isni(name_identifier)
@@ -384,6 +388,22 @@ def from_inveniordm(elements: list) -> list:
             if element.get(key, None) is not None:
                 element[value] = element.pop(key)
         return element
+
+    return [format_element(i) for i in elements]
+
+
+def to_inveniordm(elements: list) -> list:
+    """Convert elements to InvenioRDM"""
+
+    def format_element(i):
+        """format element"""
+        element = {}
+        element["familyName"] = i.get("familyName", None)
+        element["givenName"] = i.get("givenName", None)
+        element["name"] = i.get("name", None)
+        element["type"] = i.get("type", None)
+        element["ORCID"] = i.get("ORCID", None)
+        return compact(element)
 
     return [format_element(i) for i in elements]
 
@@ -1043,9 +1063,9 @@ def issn_as_url(issn: str) -> Optional[str]:
     return f"https://portal.issn.org/resource/ISSN/{issn}"
 
 
-def get_language(lang: str, format: str="alpha_2") -> Optional[str]:
+def get_language(lang: str, format: str = "alpha_2") -> Optional[str]:
     """Provide a language string based on ISO 639, with either a name in English,
-    ISO 639-1, or ISO 639-3 code as input. Optionally format as alpha_2 (defaul), 
+    ISO 639-1, or ISO 639-3 code as input. Optionally format as alpha_2 (defaul),
     alpha_3, or name.
     """
     if not lang:
@@ -1056,7 +1076,7 @@ def get_language(lang: str, format: str="alpha_2") -> Optional[str]:
         language = pycountry.languages.get(alpha_3=lang)
     else:
         language = pycountry.languages.get(name=lang)
-        
+
     if language is None:
         return None
     elif format == "name":
