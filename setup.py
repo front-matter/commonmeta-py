@@ -27,9 +27,8 @@ setup(
     url="https://github.com/front-matter/commonmeta-py",
     license="MIT",
     packages=find_packages(exclude=["test*"]),
-    install_requires=["requests>=2.7.0", "tqdm"],
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 3 - Beta",
         "Intended Audience :: Science/Research",
         "Intended Audience :: Developers",
         "Topic :: Scientific/Engineering :: Bio-Informatics",
@@ -40,5 +39,6 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
 )
