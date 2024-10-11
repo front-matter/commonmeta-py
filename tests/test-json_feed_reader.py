@@ -52,7 +52,7 @@ def test_wordpress_with_references():
         "updated": "2023-06-09T21:54:23",
     }
     assert subject.publisher == {
-        "name": "Sauropod Vertebra Picture of the Week",
+        "name": "Front Matter",
     }
     assert len(subject.references) > 1
     assert subject.references[0] == {
@@ -230,7 +230,7 @@ def test_post_with_funding():
         "updated": "2023-12-07T19:29:37",
     }
     assert subject.publisher == {
-        "name": "Upstream",
+        "name": "Front Matter",
     }
     assert subject.references is None
     assert subject.relations is None
@@ -320,7 +320,7 @@ def test_post_with_funding_ror():
         "updated": "2024-04-28T18:31:57",
     }
     assert subject.publisher == {
-        "name": "Blog - Metadata Game Changers",
+        "name": "Front Matter",
     }
     assert subject.references is None
     assert subject.relations is None
@@ -372,7 +372,7 @@ def test_ghost_with_institutional_author():
         "updated": "2023-10-01T17:34:13",
     }
     assert subject.publisher == {
-        "name": "OA.Works Blog",
+        "name": "Front Matter",
     }
     assert subject.references is None
     assert subject.relations is None
@@ -520,7 +520,7 @@ def test_ghost_with_personal_name_parsing():
         "updated": "2024-05-08T19:10:39",
     }
     assert subject.publisher == {
-        "name": "I.D.E.A.S.",
+        "name": "Front Matter",
     }
     assert len(subject.references) == 2
     assert subject.references[0] ==  {

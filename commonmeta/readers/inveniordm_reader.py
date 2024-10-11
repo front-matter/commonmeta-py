@@ -79,6 +79,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "title": "Zenodo",
             }
         )
+        publisher = {"name": "Zenodo"}
     else:
         container = py_.get(meta, "custom_fields.journal:journal")
         if container:
@@ -96,7 +97,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     )
     if license_:
         license_ = dict_to_spdx({"id": license_})
-    print(license_)
     descriptions = format_descriptions(
         [
             py_.get(meta, "metadata.description"),

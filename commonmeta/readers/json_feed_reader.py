@@ -46,6 +46,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
+    print(meta)
     read_options = kwargs or {}
 
     url = normalize_url(meta.get("url", None))
@@ -64,10 +65,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
 
     title = parse_attributes(meta.get("title", None))
     titles = [{"title": sanitize(title)}] if title else None
-
-    publisher = py_.get(meta, "blog.title", None)
-    if publisher is not None:
-        publisher = {"name": publisher}
 
     date: dict = {}
     date["published"] = (
@@ -97,6 +94,15 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
             "identifier": issn or blog_url,
             "identifierType": "ISSN" if issn else "URL",
         }
+    )
+    publisher = (
+        {"name": "Front Matter"}
+        if is_rogue_scholar_doi(_id)
+        or (
+            container.get("identifierType", None) == "URL"
+            and furl(container.get("identifier", None)).host == "rogue-scholar.org"
+        )
+        else None
     )
 
     description = meta.get("summary", None)

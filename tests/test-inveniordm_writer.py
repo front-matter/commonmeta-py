@@ -37,7 +37,7 @@ def test_publication():
         py_.get(inveniordm, "metadata.title")
         == "The Origins of SARS-CoV-2: A Critical Review"
     )
-    assert py_.get(inveniordm, "metadata.publisher") is None
+    assert py_.get(inveniordm, "metadata.publisher") == "Zenodo"
     assert py_.get(inveniordm, "metadata.publication_date") == "2021-08-18"
     assert py_.get(inveniordm, "metadata.languages.0.id") is None
     assert py_.get(inveniordm, "metadata.version") == "Authors' final version"

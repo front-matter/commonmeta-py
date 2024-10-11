@@ -42,7 +42,7 @@ def test_software():
         },
         {"id": "https://doi.org/10.5281/zenodo.5785518", "type": "IsVersionOf"},
     ]
-    assert subject.publisher is None
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -106,7 +106,7 @@ def test_presentation():
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
     ]
-    assert subject.publisher is None
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -167,7 +167,7 @@ def test_publication():
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
-    assert subject.publisher is None
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -231,7 +231,7 @@ def test_dataset():
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]
-    assert subject.publisher is None
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
