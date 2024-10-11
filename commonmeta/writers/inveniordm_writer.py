@@ -1,13 +1,12 @@
 """InvenioRDM writer for commonmeta-py"""
 
 import orjson as json
-import pydash as py_
 
-from ..utils import to_inveniordm
-from ..base_utils import compact, wrap, presence, parse_attributes
-from ..doi_utils import doi_from_url, validate_suffix
+from ..base_utils import compact, wrap, parse_attributes
+from ..date_utils import get_iso8601_date
+from ..doi_utils import doi_from_url
 from ..constants import CM_TO_INVENIORDM_TRANSLATIONS
-from ..utils import pages_as_string, get_language, validate_orcid
+from ..utils import get_language, validate_orcid
 
 
 def write_inveniordm(metadata):
@@ -40,6 +39,8 @@ def write_inveniordm(metadata):
         if container.get("identifierType", None) == "ISSN"
         else None
     )
+
+    subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
     data = compact(
         {
             "pids": {
@@ -60,15 +61,16 @@ def write_inveniordm(metadata):
                     "publisher": metadata.publisher.get("name", None)
                     if metadata.publisher
                     else None,
-                    "publication_date": metadata.date.get("published")
+                    "publication_date": get_iso8601_date(metadata.date.get("published"))
                     if metadata.date.get("published", None)
                     else None,
                     "dates": [
-                        {"date": metadata.date.get("updated"), "type": "updated"}
+                        {
+                            "date": metadata.date.get("updated"),
+                            "type": {"id": "updated"},
+                        }
                     ],
-                    "subjects": parse_attributes(
-                        wrap(metadata.subjects), content="subject", first=False
-                    ),
+                    "subjects": subjects,
                     "description": parse_attributes(
                         metadata.descriptions, content="description", first=True
                     ),
@@ -124,3 +126,13 @@ def to_inveniordm_creator(creator: dict) -> dict:
             }
         )
     }
+
+
+def to_inveniordm_subject(subject: dict) -> dict:
+    """Convert subjects to inveniordm subjects"""
+    return compact(
+        {
+            "id": subject.get("id", None),
+            "subject": subject.get("subject", None),
+        }
+    )

@@ -119,7 +119,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert py_.get(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-08T11:51:22Z", "type": "updated"}
+        {"date": "2024-10-08T11:51:22Z", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
@@ -160,9 +160,9 @@ def test_from_json_feed():
         }
     }
     assert py_.get(inveniordm, "metadata.title") == "Introducing the PID Graph"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2019-03-28T01:00:00"
+    assert py_.get(inveniordm, "metadata.publication_date") == "2019-03-28"
     assert py_.get(inveniordm, "metadata.dates") == [
-        {"date": "2023-09-07T13:48:44", "type": "updated"}
+        {"date": "2023-09-07T13:48:44", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
