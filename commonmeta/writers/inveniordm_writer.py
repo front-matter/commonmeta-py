@@ -1,6 +1,7 @@
 """InvenioRDM writer for commonmeta-py"""
 
 import orjson as json
+import pydash as py_
 
 from ..utils import to_inveniordm
 from ..base_utils import compact, wrap, presence, parse_attributes
@@ -27,26 +28,44 @@ def write_inveniordm(metadata):
         for i in wrap(metadata.identifiers)
         if i.get("id", None) != metadata.id
     ]
-    publisher = metadata.publisher or {}
+    container = metadata.container if metadata.container else {}
+    journal = (
+        container.get("title", None)
+        if _type not in ["inbook", "inproceedings"]
+        and container.get("type") in ["Journal", "Periodical"]
+        else None
+    )
+    issn = (
+        container.get("identifier", None)
+        if container.get("identifierType", None) == "ISSN"
+        else None
+    )
     data = compact(
         {
+            "pids": {
+                "doi": {
+                    "identifier": doi_from_url(metadata.id),
+                    "provider": "external",
+                },
+            },
+            "access": {"record": "public", "files": "public"},
+            "files": {"enabled": True},
             "metadata": {
                 "resource_type": {"id": _type},
-                "doi": doi_from_url(metadata.id),
                 "creators": creators,
                 "title": parse_attributes(metadata.titles, content="title", first=True),
-                "publisher": publisher.get("name", None),
+                "publisher": metadata.publisher.get("name", None) if metadata.publisher else None,
                 "publication_date": metadata.date.get("published")
                 if metadata.date.get("published", None)
                 else None,
+                "dates": [{"date": metadata.date.get("updated"), "type": "updated"}],
                 "subjects": parse_attributes(
                     wrap(metadata.subjects), content="subject", first=False
                 ),
-                "contributors": to_inveniordm(wrap(metadata.contributors)),
                 "description": parse_attributes(
                     metadata.descriptions, content="description", first=True
                 ),
-                "license": metadata.license.get("id", None)
+                "rights": [{"id": metadata.license.get("id", None)}]
                 if metadata.license
                 else None,
                 "languages": [{"id": get_language(metadata.language, format="alpha_3")}]
@@ -54,6 +73,9 @@ def write_inveniordm(metadata):
                 else None,
                 "identifiers": identifiers,
                 "version": metadata.version,
+            },
+            "custom_fields": {
+                "journal:journal": compact({"title": journal, "issn": issn}),
             },
         }
     )

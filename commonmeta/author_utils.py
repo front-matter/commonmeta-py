@@ -63,7 +63,6 @@ def get_one_author(author, **kwargs):
     ) or parse_attributes(
         author.get("contributorName", None), content="type", first=True
     )
-    print(author)
     # also handle Crossref, JSON Feed, or DataCite metadata
     _id = (
         author.get("id", None)

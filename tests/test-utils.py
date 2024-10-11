@@ -54,6 +54,10 @@ def test_dict_to_spdx_id():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     } == dict_to_spdx({"id": "CC-BY-4.0"})
     assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"id": "cc-by-4.0"})
+    assert {
         "id": "Apache-2.0",
         "url": "http://www.apache.org/licenses/LICENSE-2.0",
     } == dict_to_spdx({"id": "Apache-2.0"})

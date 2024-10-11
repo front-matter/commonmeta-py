@@ -1,4 +1,5 @@
 """InvenioRDM reader for Commonmeta"""
+
 import httpx
 from pydash import py_
 from furl import furl
@@ -40,19 +41,24 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     url = normalize_url(py_.get(meta, "links.self_html"))
-    _id = doi_as_url(meta.get("doi", None)) or url
-    resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(meta, "metadata.resource_type.id")
-    resource_type = resource_type.split("-")[0]
+    _id = (
+        doi_as_url(meta.get("doi", None))
+        or doi_as_url(py_.get(meta, "pids.doi.identifier"))
+        or url
+    )
+    resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(
+        meta, "metadata.resource_type.id"
+    )
+    print(resource_type)
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
-    
+
     contributors = py_.get(meta, "metadata.creators")
-    print(contributors)
-    
     contributors = get_authors(
         from_inveniordm(wrap(contributors)),
     )
-    publisher = {"name": meta.get("publisher", None) or py_.get(meta, "metadata.publisher") or "Zenodo"}
-
+    publisher = meta.get("publisher", None) or py_.get(meta, "metadata.publisher")
+    if publisher:
+        publisher = {"name": publisher}
     title = py_.get(meta, "metadata.title")
     titles = [{"title": sanitize(title)}] if title else None
     additional_titles = py_.get(meta, "metadata.additional_titles")
@@ -73,26 +79,33 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "title": "Zenodo",
             }
         )
-    elif f.host in ["rogue-scholar.org", "beta.rogue-scholar.org", "demo.front-matter.io"]:
-        container = compact(
-            {
-                "type": "Repository",
-                "title": "Rogue Scholar",
-            }
-        )
     else:
-        container = None
-    license_ = py_.get(meta, "metadata.license.id")
+        container = py_.get(meta, "custom_fields.journal:journal")
+        if container:
+            issn = py_.get(meta, "custom_fields.journal:journal.issn")
+            container = compact(
+                {
+                    "type": "Periodical",
+                    "title": container.get("title", None),
+                    "identifier": issn,
+                    "identifierType": "ISSN" if issn else None,
+                }
+            )
+    license_ = py_.get(meta, "metadata.rights[0].id") or py_.get(
+        meta, "metadata.license.id"
+    )
     if license_:
         license_ = dict_to_spdx({"id": license_})
-
+    print(license_)
     descriptions = format_descriptions(
         [
             py_.get(meta, "metadata.description"),
             py_.get(meta, "metadata.notes"),
         ]
     )
-    language = py_.get(meta, "metadata.language") or py_.get(meta, "metadata.languages[0].id")
+    language = py_.get(meta, "metadata.language") or py_.get(
+        meta, "metadata.languages[0].id"
+    )
     subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
@@ -188,7 +201,9 @@ def get_relations(relations: list) -> list:
         """map_relation"""
         identifier = relation.get("identifier", None)
         scheme = relation.get("scheme", None)
-        relation_type = relation.get("relation", None) or relation.get("relation_type", None)
+        relation_type = relation.get("relation", None) or relation.get(
+            "relation_type", None
+        )
         if scheme == "doi":
             identifier = doi_as_url(identifier)
         else:

@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name,too-many-lines
 """InvenioRDM reader tests"""
+
 from os import path
 import pytest
 
@@ -41,9 +42,7 @@ def test_software():
         },
         {"id": "https://doi.org/10.5281/zenodo.5785518", "type": "IsVersionOf"},
     ]
-    assert subject.publisher == {
-        "name": "Zenodo",
-    }
+    assert subject.publisher is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -107,9 +106,7 @@ def test_presentation():
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
     ]
-    assert subject.publisher == {
-        "name": "Zenodo",
-    }
+    assert subject.publisher is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -170,9 +167,7 @@ def test_publication():
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
-    assert subject.publisher == {
-        "name": "Zenodo",
-    }
+    assert subject.publisher is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -236,9 +231,7 @@ def test_dataset():
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]
-    assert subject.publisher == {
-        "name": "Zenodo",
-    }
+    assert subject.publisher is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -278,37 +271,40 @@ def test_dataset():
 @pytest.mark.vcr
 def test_rogue_scholar():
     """Rogue Scholar"""
-    string = "https://beta.rogue-scholar.org/api/records/kqfsz-qzd05"
+    string = "https://beta.rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://demo.front-matter.io/records/kqfsz-qzd05"
-    assert subject.type == "Image"
-    assert subject.url == "https://demo.front-matter.io/records/kqfsz-qzd05"
-    assert subject.titles[0] == {
-        "title": "Elliott Group's gallery"
-    }
-    assert len(subject.contributors) == 4
+    assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
+    assert subject.type == "Article"
+    assert subject.url == "https://beta.rogue-scholar.org/records/1xr7q-9fp18"
+    assert subject.titles[0] == {"title": "Rogue Scholar learns about communities"}
+    assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "id": "https://orcid.org/0000-0002-1825-0097",
+        "id": "https://orcid.org/0000-0003-1419-2405",
         "contributorRoles": ["Author"],
-        "givenName": "Phillip",
-        "familyName": "Burton",
+        "givenName": "Martin",
+        "familyName": "Fenner",
     }
-    assert subject.license is None
-    assert subject.date["published"] == "1994-02"
-    assert subject.publisher == {
-        "name": "InvenioRDM",
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
+    assert subject.date["published"] == "2024-10-07"
+    assert subject.publisher is None
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("One state discussion green sit if.")
+        .startswith(
+            "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
+        )
     )
     assert subject.container == {
-        "type": "Repository",
-        "title": "Rogue Scholar",
+        "type": "Periodical",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
     }
     assert subject.language == "en"
-    assert subject.version == "v0.0.1"
+    assert subject.version is None
