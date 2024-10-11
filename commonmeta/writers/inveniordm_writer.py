@@ -50,32 +50,40 @@ def write_inveniordm(metadata):
             },
             "access": {"record": "public", "files": "public"},
             "files": {"enabled": True},
-            "metadata": {
-                "resource_type": {"id": _type},
-                "creators": creators,
-                "title": parse_attributes(metadata.titles, content="title", first=True),
-                "publisher": metadata.publisher.get("name", None)
-                if metadata.publisher
-                else None,
-                "publication_date": metadata.date.get("published")
-                if metadata.date.get("published", None)
-                else None,
-                "dates": [{"date": metadata.date.get("updated"), "type": "updated"}],
-                "subjects": parse_attributes(
-                    wrap(metadata.subjects), content="subject", first=False
-                ),
-                "description": parse_attributes(
-                    metadata.descriptions, content="description", first=True
-                ),
-                "rights": [{"id": metadata.license.get("id").lower()}]
-                if metadata.license.get("id", None)
-                else None,
-                "languages": [{"id": get_language(metadata.language, format="alpha_3")}]
-                if metadata.language
-                else None,
-                "identifiers": identifiers,
-                "version": metadata.version,
-            },
+            "metadata": compact(
+                {
+                    "resource_type": {"id": _type},
+                    "creators": creators,
+                    "title": parse_attributes(
+                        metadata.titles, content="title", first=True
+                    ),
+                    "publisher": metadata.publisher.get("name", None)
+                    if metadata.publisher
+                    else None,
+                    "publication_date": metadata.date.get("published")
+                    if metadata.date.get("published", None)
+                    else None,
+                    "dates": [
+                        {"date": metadata.date.get("updated"), "type": "updated"}
+                    ],
+                    "subjects": parse_attributes(
+                        wrap(metadata.subjects), content="subject", first=False
+                    ),
+                    "description": parse_attributes(
+                        metadata.descriptions, content="description", first=True
+                    ),
+                    "rights": [{"id": metadata.license.get("id").lower()}]
+                    if metadata.license.get("id", None)
+                    else None,
+                    "languages": [
+                        {"id": get_language(metadata.language, format="alpha_3")}
+                    ]
+                    if metadata.language
+                    else None,
+                    "identifiers": identifiers,
+                    "version": metadata.version,
+                }
+            ),
             "custom_fields": {
                 "journal:journal": compact({"title": journal, "issn": issn}),
             },
