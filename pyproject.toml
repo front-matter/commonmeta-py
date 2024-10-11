@@ -1,6 +1,6 @@
 [tool.poetry]
 name="commonmeta-py"
-version="0.24"
+version="0.25"
 repository = "https://github.com/front-matter/commonmeta-py"
 homepage = "https://python.commonmeta.org"
 documentation = "https://python.commonmeta.org"
@@ -14,7 +14,7 @@ packages = [{include = "commonmeta"}]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0.0"
 docutils = "^0.19"
-setuptools = "^69.0"
+setuptools = "^70.0"
 sphinxcontrib-issuetracker = "^0.11"
 sphinx-autodoc-typehints = "^1.19"
 httpx = "^0.27"
