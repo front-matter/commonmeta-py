@@ -54,7 +54,9 @@ def write_inveniordm(metadata):
                 "resource_type": {"id": _type},
                 "creators": creators,
                 "title": parse_attributes(metadata.titles, content="title", first=True),
-                "publisher": metadata.publisher.get("name", None) if metadata.publisher else None,
+                "publisher": metadata.publisher.get("name", None)
+                if metadata.publisher
+                else None,
                 "publication_date": metadata.date.get("published")
                 if metadata.date.get("published", None)
                 else None,
@@ -65,8 +67,8 @@ def write_inveniordm(metadata):
                 "description": parse_attributes(
                     metadata.descriptions, content="description", first=True
                 ),
-                "rights": [{"id": metadata.license.get("id", None)}]
-                if metadata.license
+                "rights": [{"id": metadata.license.get("id").lower()}]
+                if metadata.license.get("id", None)
                 else None,
                 "languages": [{"id": get_language(metadata.language, format="alpha_3")}]
                 if metadata.language

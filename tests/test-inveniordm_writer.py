@@ -44,6 +44,7 @@ def test_publication():
     assert py_.get(inveniordm, "metadata.description").startswith(
         "The Origins of SARS-CoV-2: A Critical Review"
     )
+    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
     assert py_.get(inveniordm, "files.enabled") == True
 
 
@@ -85,6 +86,7 @@ def test_journal_article():
     assert py_.get(inveniordm, "metadata.description").startswith(
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
+    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
     assert py_.get(inveniordm, "files.enabled") == True
 
 
@@ -109,16 +111,22 @@ def test_rogue_scholar():
             "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
         }
     }
-    assert py_.get(inveniordm, "metadata.title") == "Rogue Scholar learns about communities"
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "Rogue Scholar learns about communities"
+    )
     assert py_.get(inveniordm, "metadata.publisher") is None
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
-    assert py_.get(inveniordm, "metadata.dates") == [{'date': '2024-10-08T11:51:22Z', 'type': 'updated'}]
+    assert py_.get(inveniordm, "metadata.dates") == [
+        {"date": "2024-10-08T11:51:22Z", "type": "updated"}
+    ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(
         "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
     )
+    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "files.enabled") == True
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
