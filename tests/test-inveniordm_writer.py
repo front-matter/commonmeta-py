@@ -22,16 +22,16 @@ def test_publication():
     assert len(py_.get(inveniordm, "metadata.creators")) == 21
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
-            "affiliation": [
-                {
-                    "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
-                }
-            ],
             "family_name": "Holmes",
             "given_name": "Edward C",
             "name": "Holmes, Edward C",
             "type": "personal",
-        }
+        },
+        "affiliations": [
+            {
+                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
+            }
+        ],
     }
     assert (
         py_.get(inveniordm, "metadata.title")
@@ -61,16 +61,17 @@ def test_journal_article():
     assert len(py_.get(inveniordm, "metadata.creators")) == 5
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
-            "affiliation": [
-                {
-                    "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-                }
-            ],
             "family_name": "Sankar",
             "given_name": "Martial",
             "name": "Sankar, Martial",
             "type": "personal",
-        }
+        },
+        "affiliations": [
+            {
+                "name": "Department of Plant Molecular Biology, University of Lausanne, "
+                "Lausanne, Switzerland",
+            },
+        ],
     }
 
     assert (
@@ -146,18 +147,18 @@ def test_from_json_feed():
     assert len(py_.get(inveniordm, "metadata.creators")) == 1
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
-            "affiliation": [
-                {
-                    "id": "https://ror.org/04wxnsj81",
-                    "name": "DataCite",
-                },
-            ],
             "family_name": "Fenner",
             "given_name": "Martin",
             "name": "Fenner, Martin",
             "type": "personal",
             "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
-        }
+        },
+        "affiliations": [
+            {
+                "id": "04wxnsj81",
+                "name": "DataCite",
+            },
+        ],
     }
     assert py_.get(inveniordm, "metadata.title") == "Introducing the PID Graph"
     assert py_.get(inveniordm, "metadata.publication_date") == "2019-03-28"
@@ -166,7 +167,7 @@ def test_from_json_feed():
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
-        {"identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857", "scheme": "UUID"}
+        {"identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857", "scheme": "other"}
     ]
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(

@@ -1,12 +1,13 @@
 """InvenioRDM writer for commonmeta-py"""
 
 import orjson as json
+from typing import Optional
 
 from ..base_utils import compact, wrap, parse_attributes
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url
-from ..constants import CM_TO_INVENIORDM_TRANSLATIONS
-from ..utils import get_language, validate_orcid
+from ..constants import CM_TO_INVENIORDM_TRANSLATIONS, INVENIORDM_IDENTIFIER_TYPES
+from ..utils import get_language, validate_orcid, id_from_url
 
 
 def write_inveniordm(metadata):
@@ -22,7 +23,9 @@ def write_inveniordm(metadata):
     identifiers = [
         {
             "identifier": i.get("identifier", None),
-            "scheme": i.get("identifierType", None),
+            "scheme": INVENIORDM_IDENTIFIER_TYPES.get(
+                i.get("identifierType", None), "other"
+            ),
         }
         for i in wrap(metadata.identifiers)
         if i.get("id", None) != metadata.id
@@ -114,18 +117,20 @@ def to_inveniordm_creator(creator: dict) -> dict:
     elif creator.get("name", None):
         name = creator.get("name", None)
 
-    return {
-        "person_or_org": compact(
-            {
-                "name": name,
-                "given_name": creator.get("givenName", None),
-                "family_name": creator.get("familyName", None),
-                "type": _type.lower() + "al" if _type else None,
-                "identifiers": format_identifier(creator.get("id", None)),
-                "affiliation": creator.get("affiliations", None),
-            }
-        )
-    }
+    return compact(
+        {
+            "person_or_org": compact(
+                {
+                    "name": name,
+                    "given_name": creator.get("givenName", None),
+                    "family_name": creator.get("familyName", None),
+                    "type": _type.lower() + "al" if _type else None,
+                    "identifiers": format_identifier(creator.get("id", None)),
+                }
+            ),
+            "affiliations": to_inveniordm_affiliations(creator),
+        }
+    )
 
 
 def to_inveniordm_subject(subject: dict) -> dict:
@@ -135,4 +140,24 @@ def to_inveniordm_subject(subject: dict) -> dict:
             "id": subject.get("id", None),
             "subject": subject.get("subject", None),
         }
+    )
+
+
+def to_inveniordm_affiliations(creator: dict) -> Optional[list]:
+    """Convert affiliations to inveniordm affiliations.
+    Returns None if creator is not a person."""
+
+    def format_affiliation(affiliation):
+        return compact(
+            {
+                "id": id_from_url(affiliation.get("id", None)),
+                "name": affiliation.get("name", None),
+            }
+        )
+
+    if creator.get("type", None) != "Person":
+        return None
+
+    return compact(
+        [format_affiliation(i) for i in wrap(creator.get("affiliations", None))]
     )

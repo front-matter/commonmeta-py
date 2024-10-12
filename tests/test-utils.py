@@ -43,6 +43,7 @@ from commonmeta.utils import (
     get_language,
     validate_url,
     format_name_identifier,
+    id_from_url,
 )
 from commonmeta.base_utils import wrap
 
@@ -809,6 +810,15 @@ def test_from_curie():
     assert "https://isni.org/isni/0000000121099845" == from_curie(
         "ISNI:0000000121099845"
     )
+
+
+def test_id_from_url():
+    """test_id_from_url"""
+    assert "10.6084/m9.figshare.12644018.v3" == id_from_url(
+        "https://doi.org/10.6084/m9.figshare.12644018.v3"
+    )
+    assert "01znn6x10" == id_from_url("https://ror.org/01znn6x10")
+    assert "0000-0001-8522-7682" == id_from_url("https://orcid.org/0000-0001-8522-7682")
 
 
 def test_get_language():

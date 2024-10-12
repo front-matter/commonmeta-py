@@ -1,4 +1,5 @@
 """Constants for commonmeta-py"""
+
 from typing import Optional, TypedDict, List
 
 
@@ -585,3 +586,29 @@ COMMONMETA_CONTRIBUTOR_ROLES = [
     "Maintainer",
     "Other",
 ]
+
+INVENIORDM_IDENTIFIER_TYPES = {
+    "Ark": "ark",
+    "ArXiv": "arxiv",
+    "Bibcode": "ads",
+    "CrossrefFunderID": "crossreffunderid",
+    "DOI": "doi",
+    "EAN13": "ean13",
+    "EISSN": "eissn",
+    "GRID": "grid",
+    "Handle": "handle",
+    "IGSN": "igsn",
+    "ISBN": "isbn",
+    "ISNI": "isni",
+    "ISSN": "issn",
+    "ISTC": "istc",
+    "LISSN": "lissn",
+    "LSID": "lsid",
+    "PMID": "pmid",
+    "PURL": "purl",
+    "UPC": "upc",
+    "URL": "url",
+    "URN": "urn",
+    "W3ID": "w3id",
+    "Other": "other",
+}

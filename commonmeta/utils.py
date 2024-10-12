@@ -1106,3 +1106,16 @@ def timer_func(func):
         return value
 
     return function_timer
+
+
+def id_from_url(url: Optional[str]) -> Optional[str]:
+    """Return a ID from a URL"""
+    if url is None:
+        return None
+    
+    f = furl(url)
+    # check for allowed scheme if string is a URL
+    if f.host is not None and f.scheme not in ["http", "https", "ftp"]:
+        return None
+    
+    return str(f.path).strip("/")
