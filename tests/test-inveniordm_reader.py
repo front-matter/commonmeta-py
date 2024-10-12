@@ -306,5 +306,6 @@ def test_rogue_scholar():
         "identifier": "2749-9952",
         "identifierType": "ISSN",
     }
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.version is None

@@ -3,11 +3,11 @@
 import orjson as json
 from typing import Optional
 
-from ..base_utils import compact, wrap, parse_attributes
+from ..base_utils import compact, wrap, parse_attributes, presence
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url
 from ..constants import CM_TO_INVENIORDM_TRANSLATIONS, INVENIORDM_IDENTIFIER_TYPES
-from ..utils import get_language, validate_orcid, id_from_url
+from ..utils import get_language, validate_orcid, id_from_url, FOS_MAPPINGS
 
 
 def write_inveniordm(metadata):
@@ -73,7 +73,7 @@ def write_inveniordm(metadata):
                             "type": {"id": "updated"},
                         }
                     ],
-                    "subjects": subjects,
+                    "subjects": presence(subjects),
                     "description": parse_attributes(
                         metadata.descriptions, content="description", first=True
                     ),
@@ -133,12 +133,22 @@ def to_inveniordm_creator(creator: dict) -> dict:
     )
 
 
-def to_inveniordm_subject(subject: dict) -> dict:
-    """Convert subjects to inveniordm subjects"""
+def to_inveniordm_subject(sub: dict) -> Optional[dict]:
+    """Convert subject to inveniordm subject"""
+    if sub.get("subject", None) is None:
+        return None
+    if sub.get("subject").startswith("FOS: "):
+        subject = sub.get("subject")[5:]
+        id_ = FOS_MAPPINGS.get(subject, None)
+        return compact(
+            {
+                "id": id_,
+                "subject": subject,
+            }
+        )
     return compact(
         {
-            "id": subject.get("id", None),
-            "subject": subject.get("subject", None),
+            "subject": sub.get("subject"),
         }
     )
 

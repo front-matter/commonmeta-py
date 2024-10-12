@@ -388,7 +388,12 @@ def test_json_feed_item_with_doi():
     subject = Metadata(string, doi="10.59350/9ry27-7cz42")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/9ry27-7cz42"
-    assert subject.subjects == [{"subject": "Social sciences"}]
+    assert subject.subjects == [
+        {"subject": "FOS: Social science"},
+        {"subject": "Open Access"},
+        {"subject": "Open Access Transformation"},
+        {"subject": "Open Science"},
+    ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
@@ -398,6 +403,15 @@ def test_json_feed_item_with_doi():
         "given_name": "Heinz",
         "surname": "Pampel",
         "ORCID": "https://orcid.org/0000-0003-3334-2771",
+        "affiliations": {
+            "institution": {
+                "institution_id": {
+                    "#text": "https://ror.org/01hcx6992",
+                    "type": "ror",
+                },
+                "institution_name": "Humboldt-Universität zu Berlin",
+            },
+        },
     }
     assert (
         py_.get(crossref_xml, "titles.0.title")
@@ -412,7 +426,7 @@ def test_json_feed_item_with_doi():
         "#text": "https://api.rogue-scholar.org/posts/10.59350/9ry27-7cz42.md",
         "mime_type": "text/plain",
     }
-    assert crossref_xml.get("group_title") == "Social sciences"
+    assert crossref_xml.get("group_title") == "Social science"
 
 
 @pytest.mark.vcr

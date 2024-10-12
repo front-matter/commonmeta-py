@@ -112,9 +112,11 @@ def insert_group_title(metadata, xml):
     """Insert group title"""
     if metadata.subjects is None or len(metadata.subjects) == 0:
         return xml
-    etree.SubElement(xml, "group_title").text = metadata.subjects[0].get(
-        "subject", None
-    )
+    group_title = metadata.subjects[0].get("subject", None)
+    # strip optional FOS (Field of Science) prefix
+    if group_title.startswith("FOS: "):
+        group_title = group_title[5:]
+    etree.SubElement(xml, "group_title").text = group_title
     return xml
 
 

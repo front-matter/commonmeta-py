@@ -71,14 +71,23 @@ def test_wordpress_with_references():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("{.wp-image-21038 .size-large aria-describedby=“caption-attachment-21038”")
+        .startswith(
+            "{.wp-image-21038 .size-large aria-describedby=“caption-attachment-21038”"
+        )
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
         "mimeType": "text/markdown",
         "url": "https://api.rogue-scholar.org/posts/10.59350/hke8v-d1e66.md",
     }
-    assert subject.subjects == [{"subject": "Earth and related environmental sciences"}]
+    assert subject.subjects == [
+        {"subject": "FOS: Earth and related environmental sciences"},
+        {"subject": "MTE14"},
+        {"subject": "Barosaurus"},
+        {"subject": "Cervical"},
+        {"subject": "Conferences"},
+        {"subject": "Diplodocids"},
+    ]
     assert subject.language == "en"
     assert subject.version is None
 
@@ -420,7 +429,12 @@ def test_ghost_with_institutional_author():
         "mimeType": "text/markdown",
         "url": "https://api.rogue-scholar.org/posts/10.59350/tfahc-rp566.md",
     }
-    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.subjects == [
+        {"subject": "FOS: Computer and information sciences"},
+        {"subject": "Nofeature"},
+        {"subject": "Noexcerpt"},
+        {"subject": "OA.Report"},
+    ]
     assert subject.language == "en"
     assert subject.version is None
 
@@ -487,7 +501,10 @@ def test_ghost_with_affiliations():
         "mimeType": "text/markdown",
         "url": "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16.md",
     }
-    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.subjects == [
+        {"subject": "FOS: Computer and information sciences"},
+        {"subject": "Feature"},
+    ]
     assert subject.language == "en"
     assert subject.version is None
 
@@ -501,7 +518,9 @@ def test_ghost_with_personal_name_parsing():
     assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
     assert subject.type == "Article"
     assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout"
-    assert subject.titles[0] == {"title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"}
+    assert subject.titles[0] == {
+        "title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"
+    }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0003-0449-4469",
@@ -523,12 +542,12 @@ def test_ghost_with_personal_name_parsing():
         "name": "Front Matter",
     }
     assert len(subject.references) == 2
-    assert subject.references[0] ==  {
-       'id': 'https://doi.org/10.1001/jamanetworkopen.2021.42527',
-       'key': 'ref1',
-       'publicationYear': '2022',
-       'title': 'Analysis of Reported Voting Behaviors of US Physicians, 2000-2020',
-   }
+    assert subject.references[0] == {
+        "id": "https://doi.org/10.1001/jamanetworkopen.2021.42527",
+        "key": "ref1",
+        "publicationYear": "2022",
+        "title": "Analysis of Reported Voting Behaviors of US Physicians, 2000-2020",
+    }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]
@@ -548,7 +567,10 @@ def test_ghost_with_personal_name_parsing():
         "mimeType": "text/markdown",
         "url": "https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45.md",
     }
-    assert subject.subjects == [{"subject": "Clinical medicine"}]
+    assert subject.subjects == [
+        {"subject": "FOS: Clinical medicine"},
+        {"subject": "Preprint"},
+    ]
     assert subject.language == "en"
     assert subject.version is None
 

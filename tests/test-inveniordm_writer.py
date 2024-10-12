@@ -127,6 +127,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.description").startswith(
         "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
     )
+    assert py_.get(inveniordm, "metadata.subjects") is None
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "files.enabled") == True
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
@@ -173,5 +174,7 @@ def test_from_json_feed():
     assert py_.get(inveniordm, "metadata.description").startswith(
         "Persistent identifiers (PIDs) are not only important"
     )
+    assert py_.get(inveniordm, "metadata.subjects") == [{'id': 'http://www.oecd.org/science/inno/38235147.pdf?1.2', 'subject': 'Computer and information sciences'}, {'subject': 'Feature'}]
+    assert py_.get(inveniordm, "metadata.rights") == [{'id': 'cc-by-4.0'}]
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"

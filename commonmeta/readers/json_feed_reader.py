@@ -114,7 +114,10 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if category is not None:
         subjects = [name_to_fos(py_.human_case(category))]
     else:
-        subjects = None
+        subjects = []
+    tags = wrap(py_.get(meta, "tags", None))
+    if tags is not None:
+        subjects += wrap([format_subject(i) for i in tags])
     references = get_references(wrap(meta.get("reference", None)))
     funding_references = get_funding_references(meta)
     relations = get_relations(wrap(meta.get("relationships", None)))
@@ -414,13 +417,10 @@ def get_json_feed_blog_slug(id: str):
     return py_.get(post, "blog.slug", None)
 
 
-def get_json_feed_blog_slug(id: str):
-    """get JSON Feed item by id and return blog slug"""
-    if id is None:
+def format_subject(subject: str) -> Optional[dict]:
+    """format subject"""
+    if subject is None or not isinstance(subject, str):
         return None
-    url = f"https://api.rogue-scholar.org/posts/#{id}"
-    response = httpx.get(url, timeout=10)
-    if response.status_code != 200:
-        return None
-    post = response.json()
-    return py_.get(post, "blog.slug", None)
+    return {
+        "subject": subject,
+    }

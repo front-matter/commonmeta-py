@@ -77,6 +77,57 @@ UNKNOWN_INFORMATION = {
 HTTP_SCHEME = "http://"
 HTTPS_SCHEME = "https://"
 
+FOS_MAPPINGS = {
+    "Natural sciences": "http://www.oecd.org/science/inno/38235147.pdf?1",
+    "Mathematics": "http://www.oecd.org/science/inno/38235147.pdf?1.1",
+    "Computer and information sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+    "Physical sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.3",
+    "Chemical sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.4",
+    "Earth and related environmental sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.5",
+    "Biological sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.6",
+    "Other natural sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.7",
+    "Engineering and technology": "http://www.oecd.org/science/inno/38235147.pdf?2",
+    "Civil engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.1",
+    "Electrical engineering, electronic engineering, information engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.2",
+    "Mechanical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.3",
+    "Chemical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.4",
+    "Materials engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.5",
+    "Medical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.6",
+    "Environmental engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.7",
+    "Environmental biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?2.8",
+    "Industrial biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?2.9",
+    "Nano technology": "http://www.oecd.org/science/inno/38235147.pdf?2.10",
+    "Other engineering and technologies": "http://www.oecd.org/science/inno/38235147.pdf?2.11",
+    "Medical and health sciences": "http://www.oecd.org/science/inno/38235147.pdf?3",
+    "Basic medicine": "http://www.oecd.org/science/inno/38235147.pdf?3.1",
+    "Clinical medicine": "http://www.oecd.org/science/inno/38235147.pdf?3.2",
+    "Health sciences": "http://www.oecd.org/science/inno/38235147.pdf?3.3",
+    "Health biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?3.4",
+    "Other medical sciences": "http://www.oecd.org/science/inno/38235147.pdf?3.5",
+    "Agricultural sciences": "http://www.oecd.org/science/inno/38235147.pdf?4",
+    "Agriculture, forestry, and fisheries": "http://www.oecd.org/science/inno/38235147.pdf?4.1",
+    "Animal and dairy science": "http://www.oecd.org/science/inno/38235147",
+    "Veterinary science": "http://www.oecd.org/science/inno/38235147",
+    "Agricultural biotechnology": "http://www.oecd.org/science/inno/38235147",
+    "Other agricultural sciences": "http://www.oecd.org/science/inno/38235147",
+    "Social science": "http://www.oecd.org/science/inno/38235147.pdf?5",
+    "Psychology": "http://www.oecd.org/science/inno/38235147.pdf?5.1",
+    "Economics and business": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
+    "Educational sciences": "http://www.oecd.org/science/inno/38235147.pdf?5.3",
+    "Sociology": "http://www.oecd.org/science/inno/38235147.pdf?5.4",
+    "Law": "http://www.oecd.org/science/inno/38235147.pdf?5.5",
+    "Political science": "http://www.oecd.org/science/inno/38235147.pdf?5.6",
+    "Social and economic geography": "http://www.oecd.org/science/inno/38235147.pdf?5.7",
+    "Media and communications": "http://www.oecd.org/science/inno/38235147.pdf?5.8",
+    "Other social sciences": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
+    "Humanities": "http://www.oecd.org/science/inno/38235147.pdf?6",
+    "History and archaeology": "http://www.oecd.org/science/inno/38235147.pdf?6.1",
+    "Languages and literature": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
+    "Philosophy, ethics and religion": "http://www.oecd.org/science/inno/38235147.pdf?6.3",
+    "Arts (arts, history of arts, performing arts, music)": "http://www.oecd.org/science/inno/38235147.pdf?6.4",
+    "Other humanities": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
+}
+
 
 def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     """Check for valid DOI or HTTP(S) URL"""
@@ -982,45 +1033,12 @@ def subjects_as_string(subjects):
 
 def name_to_fos(name: str) -> Optional[dict]:
     """Convert name to Fields of Science (OECD) subject"""
-    #   # first find subject in Fields of Science (OECD)
-    #   fos = JSON.load(File.read(File.expand_path('../../resources/oecd/fos-mappings.json',
-    #                                              __dir__))).fetch('fosFields')
 
-    #   subject = fos.find { |l| l['fosLabel'] == name || 'FOS: ' + l['fosLabel'] == name }
-
-    #   if subject
-    #     return [{
-    #       'subject': sanitize(name).downcase
-    #     },
-    #             {
-    #               'subject': 'FOS: ' + subject['fosLabel'],
-    #               'subjectScheme': 'Fields of Science and Technology (FOS)',
-    #               'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
-    #             }]
-    #   end
-
-    #   # if not found, look in Fields of Research (Australian and New Zealand Standard Research Classification)
-    #   # and map to Fields of Science. Add an extra entry for the latter
-    #   fores = JSON.load(File.read(File.expand_path('../../resources/oecd/for-mappings.json',
-    #                                                __dir__)))
-    #   for_fields = fores.fetch('forFields')
-    #   for_disciplines = fores.fetch('forDisciplines')
-
-    #   subject = for_fields.find { |l| l['forLabel'] == name } ||
-    #             for_disciplines.find { |l| l['forLabel'] == name }
-
-    #   if subject
-    #     [{
-    #       'subject': sanitize(name).downcase
-    #     },
-    #      {
-    #        'subject': 'FOS: ' + subject['fosLabel'],
-    #        'subjectScheme': 'Fields of Science and Technology (FOS)',
-    #        'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
-    #      }]
-    #   else
-
-    return {"subject": name.strip()}
+    subject = name.strip()
+    fos_subject = FOS_MAPPINGS.get(name, None)
+    if fos_subject is not None:
+        return {"subject": f"FOS: {subject}"}
+    return {"subject": subject}
 
 
 def encode_doi(prefix):
@@ -1112,10 +1130,10 @@ def id_from_url(url: Optional[str]) -> Optional[str]:
     """Return a ID from a URL"""
     if url is None:
         return None
-    
+
     f = furl(url)
     # check for allowed scheme if string is a URL
     if f.host is not None and f.scheme not in ["http", "https", "ftp"]:
         return None
-    
+
     return str(f.path).strip("/")
