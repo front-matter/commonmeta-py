@@ -174,7 +174,13 @@ def test_from_json_feed():
     assert py_.get(inveniordm, "metadata.description").startswith(
         "Persistent identifiers (PIDs) are not only important"
     )
-    assert py_.get(inveniordm, "metadata.subjects") == [{'id': 'http://www.oecd.org/science/inno/38235147.pdf?1.2', 'subject': 'Computer and information sciences'}, {'subject': 'Feature'}]
-    assert py_.get(inveniordm, "metadata.rights") == [{'id': 'cc-by-4.0'}]
+    assert py_.get(inveniordm, "metadata.subjects") == [
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+            "subject": "Computer and information sciences",
+        },
+        {"subject": "Feature"},
+    ]
+    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
