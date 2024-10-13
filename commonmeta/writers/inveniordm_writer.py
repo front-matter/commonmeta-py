@@ -67,12 +67,12 @@ def write_inveniordm(metadata):
                     "publication_date": get_iso8601_date(metadata.date.get("published"))
                     if metadata.date.get("published", None)
                     else None,
-                    "dates": [
+                    "dates": compact([
                         {
                             "date": metadata.date.get("updated"),
                             "type": {"id": "updated"},
                         }
-                    ],
+                    ]),
                     "subjects": presence(subjects),
                     "description": parse_attributes(
                         metadata.descriptions, content="description", first=True
