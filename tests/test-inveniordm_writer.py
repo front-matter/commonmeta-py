@@ -45,7 +45,7 @@ def test_publication():
         "The Origins of SARS-CoV-2: A Critical Review"
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
-    assert py_.get(inveniordm, "files.enabled") == True
+    assert py_.get(inveniordm, "files.enabled") == False
 
 
 @pytest.mark.vcr
@@ -88,7 +88,7 @@ def test_journal_article():
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
-    assert py_.get(inveniordm, "files.enabled") == True
+    assert py_.get(inveniordm, "files.enabled") == False
 
 
 @pytest.mark.vcr
@@ -129,7 +129,7 @@ def test_rogue_scholar():
     )
     assert py_.get(inveniordm, "metadata.subjects") is None
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    assert py_.get(inveniordm, "files.enabled") == True
+    assert py_.get(inveniordm, "files.enabled") == False
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
 
@@ -182,5 +182,6 @@ def test_from_json_feed():
         {"subject": "Feature"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    assert py_.get(inveniordm, "files.enabled") == False
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"

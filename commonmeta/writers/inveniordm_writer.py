@@ -53,7 +53,7 @@ def write_inveniordm(metadata):
                 },
             },
             "access": {"record": "public", "files": "public"},
-            "files": {"enabled": True},
+            "files": {"enabled": False},
             "metadata": compact(
                 {
                     "resource_type": {"id": _type},
