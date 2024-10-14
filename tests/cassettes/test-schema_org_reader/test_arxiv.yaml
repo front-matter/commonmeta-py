@@ -1,0 +1,784 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - arxiv.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://arxiv.org/abs/1902.02534
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<!DOCTYPE html PUBLIC \"-//W3C//DTD
+        XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html
+        xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\" xml:lang=\"en\">\n\n<head>
+        \ <title>[1902.02534] Crowdsourcing open citations with CROCI -- An analysis
+        of the current status of open citations, and a proposal</title>\n  <meta name=\"viewport\"
+        content=\"width=device-width, initial-scale=1\">\n  <link rel=\"apple-touch-icon\"
+        sizes=\"180x180\" href=\"/static/browse/0.3.4/images/icons/apple-touch-icon.png\">\n
+        \ <link rel=\"icon\" type=\"image/png\" sizes=\"32x32\" href=\"/static/browse/0.3.4/images/icons/favicon-32x32.png\">\n
+        \ <link rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"/static/browse/0.3.4/images/icons/favicon-16x16.png\">\n
+        \ <link rel=\"manifest\" href=\"/static/browse/0.3.4/images/icons/site.webmanifest\">\n
+        \ <link rel=\"mask-icon\" href=\"/static/browse/0.3.4/images/icons/safari-pinned-tab.svg\"
+        color=\"#5bbad5\">\n  <meta name=\"msapplication-TileColor\" content=\"#da532c\">\n
+        \ <meta name=\"theme-color\" content=\"#ffffff\">\n  <link rel=\"stylesheet\"
+        type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/arXiv.css?v=20240822\"
+        />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/static/browse/0.3.4/css/arXiv-print.css?v=20200611\"
+        />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/browse_search.css\"
+        />\n  <script language=\"javascript\" src=\"/static/browse/0.3.4/js/accordion.js\"
+        /></script>\n  <link rel=\"canonical\" href=\"/abs/1902.02534\"/><meta property=\"og:type\"
+        content=\"website\" />\n<meta property=\"og:site_name\" content=\"arXiv.org\"
+        />\n<meta property=\"og:title\" content=\"Crowdsourcing open citations with
+        CROCI -- An analysis of the current status of open citations, and a proposal\"
+        />\n<meta property=\"og:url\" content=\"https://arxiv.org/abs/1902.02534v2\"
+        />\n<meta property=\"og:image\" content=\"/static/browse/0.3.4/images/arxiv-logo-fb.png\"
+        />\n<meta property=\"og:image:secure_url\" content=\"/static/browse/0.3.4/images/arxiv-logo-fb.png\"
+        />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\"
+        content=\"700\" />\n<meta property=\"og:image:alt\" content=\"arXiv logo\"/>\n<meta
+        property=\"og:description\" content=\"In this paper, we analyse the current
+        availability of open citations data in one particular dataset, namely COCI
+        (the OpenCitations Index of Crossref open DOI-to-DOI citations; http://opencitations.net/index/coci)
+        provided by OpenCitations. The results of these analyses show a persistent
+        gap in the coverage of the currently available open citation data. In order
+        to address this specific issue, we propose a strategy whereby the community
+        (e.g. scholars and publishers) can directly involve themselves in crowdsourcing
+        open citations, by uploading their citation data via the OpenCitations infrastructure
+        into our new index, CROCI, the Crowdsourced Open Citations Index.\"/>\n<meta
+        name=\"twitter:site\" content=\"@arxiv\"/>\n<meta name=\"twitter:card\" content=\"summary\"/>\n<meta
+        name=\"twitter:title\" content=\"Crowdsourcing open citations with CROCI --
+        An analysis of the...\"/>\n<meta name=\"twitter:description\" content=\"In
+        this paper, we analyse the current availability of open citations data in
+        one particular dataset, namely COCI (the OpenCitations Index of Crossref open
+        DOI-to-DOI citations;...\"/>\n<meta name=\"twitter:image\" content=\"https://static.arxiv.org/icons/twitter/arxiv-logo-twitter-square.png\"/>\n<meta
+        name=\"twitter:image:alt\" content=\"arXiv logo\"/>\n  <link rel=\"stylesheet\"
+        media=\"screen\" type=\"text/css\" href=\"/static/browse/0.3.4/css/tooltip.css\"/><link
+        rel=\"stylesheet\" media=\"screen\" type=\"text/css\" href=\"https://static.arxiv.org/js/bibex-dev/bibex.css?20200709\"/>
+        \ <script src=\"/static/browse/0.3.4/js/mathjaxToggle.min.js\" type=\"text/javascript\"></script>
+        \ <script src=\"//code.jquery.com/jquery-latest.min.js\" type=\"text/javascript\"></script>\n
+        \ <script src=\"//cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js\"
+        type=\"text/javascript\"></script>\n  <script src=\"//cdn.jsdelivr.net/npm/dompurify@2.3.5/dist/purify.min.js\"></script>\n
+        \ <script src=\"/static/browse/0.3.4/js/toggle-labs.js?20230622\" type=\"text/javascript\"></script>\n
+        \ <script src=\"/static/browse/0.3.4/js/cite.js\" type=\"text/javascript\"></script><meta
+        name=\"citation_title\" content=\"Crowdsourcing open citations with CROCI
+        -- An analysis of the current status of open citations, and a proposal\" /><meta
+        name=\"citation_author\" content=\"Heibi, Ivan\" /><meta name=\"citation_author\"
+        content=\"Peroni, Silvio\" /><meta name=\"citation_author\" content=\"Shotton,
+        David\" /><meta name=\"citation_date\" content=\"2019/02/07\" /><meta name=\"citation_online_date\"
+        content=\"2019/06/21\" /><meta name=\"citation_pdf_url\" content=\"http://arxiv.org/pdf/1902.02534\"
+        /><meta name=\"citation_arxiv_id\" content=\"1902.02534\" /><meta name=\"citation_abstract\"
+        content=\"In this paper, we analyse the current availability of open citations
+        data in one particular dataset, namely COCI (the OpenCitations Index of Crossref
+        open DOI-to-DOI citations; http://opencitations.net/index/coci) provided by
+        OpenCitations. The results of these analyses show a persistent gap in the
+        coverage of the currently available open citation data. In order to address
+        this specific issue, we propose a strategy whereby the community (e.g. scholars
+        and publishers) can directly involve themselves in crowdsourcing open citations,
+        by uploading their citation data via the OpenCitations infrastructure into
+        our new index, CROCI, the Crowdsourced Open Citations Index.\" />\n</head>\n\n<body
+        \ class=\"with-cu-identity\">\n  \n  <div class=\"flex-wrap-footer\">\n    <header>\n
+        \     <a href=\"#content\" class=\"is-sr-only\">Skip to main content</a>\n
+        \     <!-- start desktop header -->\n      <div class=\"columns is-vcentered
+        is-hidden-mobile\" id=\"cu-identity\">\n        <div class=\"column\" id=\"cu-logo\">\n
+        \         <a href=\"https://www.cornell.edu/\"><img src=\"/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg\"
+        alt=\"Cornell University\" /></a>\n        </div><div class=\"column\" id=\"support-ack\">\n
+        \         <span id=\"support-ack-url\">We gratefully acknowledge support from
+        the Simons Foundation, <a href=\"https://info.arxiv.org/about/ourmembers.html\">member
+        institutions</a>, and all contributors.</span>\n          <a href=\"https://info.arxiv.org/about/donate.html\"
+        class=\"btn-header-donate\">Donate</a>\n        </div>\n      </div>\n\n      <div
+        id=\"header\" class=\"is-hidden-mobile\">\n<a aria-hidden=\"true\" href=\"{url_path('ignore_me')}\"></a>\n
+        \ <div class=\"header-breadcrumbs is-hidden-mobile\">\n    <a href=\"/\"><img
+        src=\"/static/browse/0.3.4/images/arxiv-logo-one-color-white.svg\" alt=\"arxiv
+        logo\" style=\"height:40px;\"/></a> <span>&gt;</span> <a href=\"/list/cs/recent\">cs</a>
+        <span>&gt;</span> arXiv:1902.02534\n  </div>\n          <div class=\"search-block
+        level-right\">\n    <form class=\"level-item mini-search\" method=\"GET\"
+        action=\"https://arxiv.org/search\">\n      <div class=\"field has-addons\">\n
+        \       <div class=\"control\">\n          <input class=\"input is-small\"
+        type=\"text\" name=\"query\" placeholder=\"Search...\" aria-label=\"Search
+        term or terms\" />\n          <p class=\"help\"><a href=\"https://info.arxiv.org/help\">Help</a>
+        | <a href=\"https://arxiv.org/search/advanced\">Advanced Search</a></p>\n
+        \       </div>\n        <div class=\"control\">\n          <div class=\"select
+        is-small\">\n            <select name=\"searchtype\" aria-label=\"Field to
+        search\">\n              <option value=\"all\" selected=\"selected\">All fields</option>\n
+        \             <option value=\"title\">Title</option>\n              <option
+        value=\"author\">Author</option>\n              <option value=\"abstract\">Abstract</option>\n
+        \             <option value=\"comments\">Comments</option>\n              <option
+        value=\"journal_ref\">Journal reference</option>\n              <option value=\"acm_class\">ACM
+        classification</option>\n              <option value=\"msc_class\">MSC classification</option>\n
+        \             <option value=\"report_num\">Report number</option>\n              <option
+        value=\"paper_id\">arXiv identifier</option>\n              <option value=\"doi\">DOI</option>\n
+        \             <option value=\"orcid\">ORCID</option>\n              <option
+        value=\"author_id\">arXiv author ID</option>\n              <option value=\"help\">Help
+        pages</option>\n              <option value=\"full_text\">Full text</option>\n
+        \           </select>\n          </div>\n        </div>\n        <input type=\"hidden\"
+        name=\"source\" value=\"header\">\n        <button class=\"button is-small
+        is-cul-darker\">Search</button>\n      </div>\n    </form>\n  </div>\n     </div><!--
+        /end desktop header -->\n\n      <div class=\"mobile-header\">\n        <div
+        class=\"columns is-mobile\">\n          <div class=\"column logo-arxiv\"><a
+        href=\"https://arxiv.org/\"><img src=\"/static/browse/0.3.4/images/arxiv-logomark-small-white.svg\"
+        alt=\"arXiv logo\" style=\"height:60px;\" /></a></div>\n          <div class=\"column
+        logo-cornell\"><a href=\"https://www.cornell.edu/\">\n            <picture>\n
+        \             <source media=\"(min-width: 501px)\"\n                srcset=\"/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg
+        \ 400w\"\n                sizes=\"400w\" />\n              <source srcset=\"/static/browse/0.3.4/images/icons/cu/cornell_seal_simple_black.svg
+        2x\" />\n              <img src=\"/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg\"
+        alt=\"Cornell University Logo\" />\n            </picture>\n          </a></div>\n
+        \         <div class=\"column nav\" id=\"toggle-container\" role=\"menubar\">\n
+        \           <button class=\"toggle-control\"><svg xmlns=\"http://www.w3.org/2000/svg\"
+        viewBox=\"0 0 512 512\" class=\"icon filter-white\"><title>open search</title><path
+        d=\"M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416
+        93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0
+        6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208
+        336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128
+        0 70.7-57.2 128-128 128z\"/></svg></button>\n            <div class=\"mobile-toggle-block
+        toggle-target\">\n              <form class=\"mobile-search-form\" method=\"GET\"
+        action=\"https://arxiv.org/search\">\n                <div class=\"field has-addons\">\n
+        \                 <input class=\"input\" type=\"text\" name=\"query\" placeholder=\"Search...\"
+        aria-label=\"Search term or terms\" />\n                  <input type=\"hidden\"
+        name=\"source\" value=\"header\">\n                  <input type=\"hidden\"
+        name=\"searchtype\" value=\"all\">\n                  <button class=\"button\">GO</button>\n
+        \               </div>\n              </form>\n            </div>\n\n            <button
+        class=\"toggle-control\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0
+        0 448 512\" class=\"icon filter-white\" role=\"menu\"><title>open navigation
+        menu</title><path d=\"M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163
+        60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837
+        0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837
+        0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z\"/ ></svg></button>\n            <div
+        class=\"mobile-toggle-block toggle-target\">\n              <nav class=\"mobile-menu\"
+        aria-labelledby=\"mobilemenulabel\">\n                <h2 id=\"mobilemenulabel\">quick
+        links</h2>\n                <ul>\n                    <li><a href=\"https://arxiv.org/login\">Login</a></li>\n
+        \                   <li><a href=\"https://info.arxiv.org/help\">Help Pages</a></li>\n
+        \                   <li><a href=\"https://info.arxiv.org/about\">About</a></li>\n
+        \               </ul>\n              </nav>\n            </div>\n          </div>\n
+        \       </div>\n      </div><!-- /end mobile-header -->\n    </header>\n\n
+        \   <main>\n      <div id=\"content\">\n<!--\nrdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"\n
+        \        xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n         xmlns:trackback=\"http://madskills.com/public/xml/rss/module/trackback/\">\n
+        \   <rdf:Description\n        rdf:about=\"/abs/1902.02534\"\n        dc:identifier=\"/abs/1902.02534\"\n
+        \       dc:title=\"Crowdsourcing open citations with CROCI -- An analysis
+        of the current status of open citations, and a proposal\"\n        trackback:ping=\"/trackback/1902.02534\"
+        />\n    </rdf:RDF>\n--><div id=\"abs-outer\">\n\n  <div class=\"leftcolumn\">\n
+        \   <div class=\"subheader\">\n      <h1>Computer Science > Digital Libraries</h1>\n
+        \   </div>\n\n    <div class=\"header-breadcrumbs-mobile\">\n      <strong>arXiv:1902.02534</strong>
+        (cs)\n    </div>\n<link rel=\"stylesheet\" type=\"text/css\" href=\"/static/base/1.0.1/css/abs.css\">\n<div
+        id=\"content-inner\">\n  <div id=\"abs\">\n    <div class=\"dateline\">\n
+        \ [Submitted on 7 Feb 2019 (<a href=\"https://arxiv.org/abs/1902.02534v1\">v1</a>),
+        last revised 21 Jun 2019 (this version, v2)]</div>\n    <h1 class=\"title
+        mathjax\"><span class=\"descriptor\">Title:</span>Crowdsourcing open citations
+        with CROCI -- An analysis of the current status of open citations, and a proposal</h1>\n
+        \   <div class=\"authors\"><span class=\"descriptor\">Authors:</span><a href=\"https://arxiv.org/search/cs?searchtype=author&amp;query=Heibi,+I\">Ivan
+        Heibi</a>, <a href=\"https://arxiv.org/search/cs?searchtype=author&amp;query=Peroni,+S\">Silvio
+        Peroni</a>, <a href=\"https://arxiv.org/search/cs?searchtype=author&amp;query=Shotton,+D\">David
+        Shotton</a></div>            <div id=\"download-button-info\" hidden>View
+        a PDF of the paper titled Crowdsourcing open citations with CROCI -- An analysis
+        of the current status of open citations, and a proposal, by Ivan Heibi and
+        2 other authors</div>\n    <a class=\"mobile-submission-download\" href=\"/pdf/1902.02534\">View
+        PDF</a>\n\n\n\n    <blockquote class=\"abstract mathjax\">\n            <span
+        class=\"descriptor\">Abstract:</span>In this paper, we analyse the current
+        availability of open citations data in one particular dataset, namely COCI
+        (the OpenCitations Index of Crossref open DOI-to-DOI citations; <a href=\"http://opencitations.net/index/coci\"
+        rel=\"external noopener nofollow\" class=\"link-external link-http\">this
+        http URL</a>) provided by OpenCitations. The results of these analyses show
+        a persistent gap in the coverage of the currently available open citation
+        data. In order to address this specific issue, we propose a strategy whereby
+        the community (e.g. scholars and publishers) can directly involve themselves
+        in crowdsourcing open citations, by uploading their citation data via the
+        OpenCitations infrastructure into our new index, CROCI, the Crowdsourced Open
+        Citations Index.\n    </blockquote>\n\n    <!--CONTEXT-->\n    <div class=\"metatable\">\n
+        \     <table summary=\"Additional metadata\">        <tr>\n          <td class=\"tablecell
+        label\">Comments:</td>\n          <td class=\"tablecell comments mathjax\">7
+        pages, 3 figures, accepted to ISSI 2019 (<a href=\"https://www.issi2019.org/\"
+        rel=\"external noopener nofollow\" class=\"link-external link-https\">this
+        https URL</a>)</td>\n        </tr>\n<tr>\n          <td class=\"tablecell
+        label\">Subjects:</td>\n          <td class=\"tablecell subjects\">\n            <span
+        class=\"primary-subject\">Digital Libraries (cs.DL)</span></td>\n        </tr><tr>\n
+        \         <td class=\"tablecell label\">Cite as:</td>\n          <td class=\"tablecell
+        arxivid\"><span class=\"arxivid\"><a href=\"https://arxiv.org/abs/1902.02534\">arXiv:1902.02534</a>
+        [cs.DL]</span></td>\n        </tr>\n        <tr>\n          <td class=\"tablecell
+        label\">&nbsp;</td>\n          <td class=\"tablecell arxividv\">(or <span
+        class=\"arxivid\">\n              <a href=\"https://arxiv.org/abs/1902.02534v2\">arXiv:1902.02534v2</a>
+        [cs.DL]</span> for this version)\n          </td>\n        </tr>\n        <tr>\n
+        \         <td class=\"tablecell label\">&nbsp;</td>\n          <td class=\"tablecell
+        arxivdoi\">              <a href=\"https://doi.org/10.48550/arXiv.1902.02534\"
+        \ id=\"arxiv-doi-link\">https://doi.org/10.48550/arXiv.1902.02534</a><div
+        class=\"button-and-tooltip\">\n              <button class=\"more-info\" aria-describedby=\"more-info-desc-1\">\n
+        \               <svg height=\"15\" role=\"presentation\" xmlns=\"http://www.w3.org/2000/svg\"
+        viewBox=\"0 0 512 512\"><path fill=\"currentColor\" d=\"M256 8C119.043 8 8
+        119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083
+        392.957 8 256 8zm0 110c23.196 0 42 18.804 42 42s-18.804 42-42 42-42-18.804-42-42
+        18.804-42 42-42zm56 254c0 6.627-5.373 12-12 12h-88c-6.627 0-12-5.373-12-12v-24c0-6.627
+        5.373-12 12-12h12v-64h-12c-6.627 0-12-5.373-12-12v-24c0-6.627 5.373-12 12-12h64c6.627
+        0 12 5.373 12 12v100h12c6.627 0 12 5.373 12 12v24z\" class=\"\"></path></svg>\n
+        \               <span class=\"visually-hidden\">Focus to learn more</span>\n
+        \             </button>\n              <!-- tooltip description -->\n              <div
+        role=\"tooltip\" id=\"more-info-desc-1\">\n                <span class=\"left-corner\"></span>
+        \                 arXiv-issued DOI via DataCite</div>\n            </div>\n
+        \         </td>\n        </tr></table>\n    </div>\n  </div>\n</div>\n    <div
+        class=\"submission-history\">\n      <h2>Submission history</h2> From: Silvio
+        Peroni [<a href=\"/show-email/8ded0b0f/1902.02534\">view email</a>]      <br/>
+        \           <strong><a href=\"/abs/1902.02534v1\">[v1]</a></strong>\n        Thu,
+        7 Feb 2019 09:22:51 UTC (475 KB)<br/>\n    <strong>[v2]</strong>\n        Fri,
+        21 Jun 2019 06:21:52 UTC (1,329 KB)<br/>\n</div>\n  </div>\n  <!--end leftcolumn-->\n<div
+        class=\"extra-services\">    <div class=\"full-text\">\n      <a name=\"other\"></a>\n
+        \     <span class=\"descriptor\">Full-text links:</span>\n      <h2>Access
+        Paper:</h2>\n      <ul>\n  <div id=\"download-button-info\" hidden>\nView
+        a PDF of the paper titled Crowdsourcing open citations with CROCI -- An analysis
+        of the current status of open citations, and a proposal, by Ivan Heibi and
+        2 other authors</div><li><a href=\"/pdf/1902.02534\" aria-describedby=\"download-button-info\"
+        accesskey=\"f\" class=\"abs-button download-pdf\">View PDF</a></li><li><a
+        href=\"/format/1902.02534\" class=\"abs-button download-format\">Other Formats</a></li></ul>\n
+        \     <div class=\"abs-license\"><a href=\"http://creativecommons.org/licenses/by/4.0/\"
+        title=\"Rights to this article\" class=\"has_license\">\n          <img alt=\"license
+        icon\" role=\"presentation\" src=\"https://arxiv.org/icons/licenses/by-4.0.png\"/>\n
+        \         <span>view license</span>\n        </a></div>\n    </div>\n    <!--end
+        full-text-->    <div class=\"browse\">\n    Current browse context: <div class=\"current\">cs.DL</div>\n\n
+        \ <div class=\"prevnext\">\n<span class=\"arrow\">\n      <a class=\"abs-button
+        prev-url\" href=\"/prevnext?id=1902.02534&amp;function=prev&amp;context=cs.DL\"\n
+        \        accesskey=\"p\" title=\"previous in cs.DL (accesskey p)\">&lt;&nbsp;prev</a>\n
+        \   </span>\n    <span class=\"is-hidden-mobile\">&nbsp; | &nbsp;</span>    <span
+        class=\"arrow\">\n      <a class=\"abs-button next-url\" href=\"/prevnext?id=1902.02534&amp;function=next&amp;context=cs.DL\"
+        accesskey=\"n\"\n         title=\"next in cs.DL (accesskey n)\">next&nbsp;&gt;</a>\n
+        \   </span><br/>\n  </div><div class=\"list\">\n    <a class=\"abs-button
+        abs-button-grey abs-button-small context-new\" href=\"/list/cs.DL/new\">new</a>\n
+        \   <span class=\"is-hidden-mobile\"> | </span>\n    <a class=\"abs-button
+        abs-button-grey abs-button-small context-recent\" href=\"/list/cs.DL/recent\">recent</a>\n
+        \   <span class=\"is-hidden-mobile\"> | </span><a class=\"abs-button abs-button-grey
+        abs-button-small context-id\" href=\"/list/cs.DL/2019-02\">2019-02</a>\n  </div><div
+        class=\"abs-switch-cat\">\n    Change to browse by:\n    <div class=\"switch
+        context-change\">\n        <a href=\"/abs/1902.02534?context=cs\">cs</a><br
+        class=\"is-hidden-mobile\">\n    </div>\n  </div>\n\n    </div>\n\n    <div
+        class=\"extra-ref-cite\">\n      <h3>References &amp; Citations</h3>\n      <ul>\n
+        \       <li><a  class=\"abs-button abs-button-small cite-ads\" href=\"https://ui.adsabs.harvard.edu/abs/arXiv:1902.02534\">NASA
+        ADS</a></li><li><a  class=\"abs-button abs-button-small cite-google-scholar\"
+        href=\"https://scholar.google.com/scholar_lookup?arxiv_id=1902.02534\" target=\"_blank\"
+        rel=\"noopener\">Google Scholar</a></li>\n        <li><a  class=\"abs-button
+        abs-button-small cite-semantic-scholar\" href=\"https://api.semanticscholar.org/arXiv:1902.02534\"
+        target=\"_blank\" rel=\"noopener\">Semantic Scholar</a></li>\n      </ul>\n
+        \     <div style=\"clear:both;\"></div>\n    </div>\n\n<div class=\"dblp\">\n
+        \   <h3><a href=\"https://dblp.uni-trier.de\">DBLP</a> - CS Bibliography</h3>\n
+        \   <div class=\"list\">\n      <a href=\"https://dblp.uni-trier.de/db/journals/corr/corr1902.html#abs-1902-02534\"
+        title=\"listing on DBLP\">listing</a> | <a href=\"https://dblp.uni-trier.de/rec/bibtex/journals/corr/abs-1902-02534\"
+        title=\"DBLP bibtex record\">bibtex</a>    </div>\n    <div class=\"list\">\n<a
+        href=\"https://dblp.uni-trier.de/search/author?author=Ivan%20Heibi\" title=\"DBLP
+        author search\">Ivan Heibi</a><br/><a href=\"https://dblp.uni-trier.de/search/author?author=Silvio%20Peroni\"
+        title=\"DBLP author search\">Silvio Peroni</a><br/><a href=\"https://dblp.uni-trier.de/search/author?author=David%20M.%20Shotton\"
+        title=\"DBLP author search\">David M. Shotton</a>    </div>\n  </div><div
+        class='extra-ref-cite'>\n    <a id='bib-cite-css' hidden='true' href='/static/browse/0.3.4/css/cite.css'>a</a>\n\n
+        \   <span id='bib-cite-trigger' class=\"bib-cite-button abs-button\">export
+        BibTeX citation</span>\n    <span id='bib-cite-loading' hidden='true'>Loading...</span>\n</div>\n\n<div
+        id='bib-cite-modal' class='bib-modal' hidden='true'>\n    <div class='bib-modal-content'>\n
+        \       <div class='bib-modal-title'>\n            <h2>BibTeX formatted citation</h2>\n
+        \           <span class='bib-modal-close' >&times;</span>\n        </div>\n
+        \       <div>\n            <textarea id='bib-cite-target' class=\"bib-citation-content\"
+        aria-label=\"loading the citation\">loading...</textarea>\n        </div>\n
+        \       <div>\n            <span>Data provided by: </span>\n            <a
+        id='bib-cite-source-api'></a>\n        </div>\n    </div>\n</div><div class=\"bookmarks\">\n
+        \ <div><h3>Bookmark</h3></div><a class=\"abs-button abs-button-grey abs-button-small\"
+        href=\"http://www.bibsonomy.org/BibtexHandler?requTask=upload&amp;url=https://arxiv.org/abs/1902.02534&amp;description=Crowdsourcing
+        open citations with CROCI -- An analysis of the current status of open citations,
+        and a proposal\"\n     title=\"Bookmark on BibSonomy\">\n    <img src=\"/static/browse/0.3.4/images/icons/social/bibsonomy.png\"\n
+        \        alt=\"BibSonomy logo\"/>\n  </a>\n  <a class=\"abs-button abs-button-grey
+        abs-button-small\" href=\"https://reddit.com/submit?url=https://arxiv.org/abs/1902.02534&amp;title=Crowdsourcing
+        open citations with CROCI -- An analysis of the current status of open citations,
+        and a proposal\"\n     title=\"Bookmark on Reddit\">\n    <img src=\"/static/browse/0.3.4/images/icons/social/reddit.png\"\n
+        \        alt=\"Reddit logo\"/>\n  </a>\n</div>  </div>\n  <!--end extra-services-->\n<!--
+        LABS AREA -->\n<div id=\"labstabs\">\n  <div class=\"labstabs\"><input type=\"radio\"
+        name=\"tabs\" id=\"tabone\"checked=\"checked\">\n    <label for=\"tabone\">Bibliographic
+        Tools</label>\n    <div class=\"tab labs-display-bib\">\n      <h1>Bibliographic
+        and Citation Tools</h1>\n      <div class=\"toggle\">\n        <div class=\"columns
+        is-mobile lab-row\">\n          <div class=\"column lab-switch\">\n            <label
+        class=\"switch\">\n              <input id=\"bibex-toggle\" type=\"checkbox\"
+        class=\"lab-toggle\">\n              <span class=\"slider\"></span>\n              <span
+        class=\"is-sr-only\">Bibliographic Explorer Toggle</span>\n            </label>\n
+        \         </div>\n          <div class=\"column lab-name\">\n            <span
+        id=\"label-for-bibex\">Bibliographic Explorer</span> <em>(<a href=\"https://info.arxiv.org/labs/showcase.html#arxiv-bibliographic-explorer\">What
+        is the Explorer?</a>)</em>\n          </div>\n        </div>\n<div class=\"columns
+        is-mobile lab-row\">\n          <div class=\"column lab-switch\">\n            <label
+        class=\"switch\">\n              <input\n                id=\"litmaps-toggle\"\n
+        \               type=\"checkbox\"\n                class=\"lab-toggle\"\n
+        \               data-script-url=\"/static/browse/0.3.4/js/litmaps.js?20210617\"\n
+        \               aria-labelledby=\"label-for-litmaps\">\n              <span
+        class=\"slider\"></span>\n              <span class=\"is-sr-only\">Litmaps
+        Toggle</span>\n            </label>\n          </div>\n          <div class=\"column
+        lab-name\">\n            <span id=\"label-for-litmaps\">Litmaps</span> <em>(<a
+        href=\"https://www.litmaps.co/\" target=\"_blank\">What is Litmaps?</a>)</em>\n
+        \         </div>\n        </div>\n        <div class=\"columns is-mobile lab-row\">\n
+        \         <div class=\"column lab-switch\">\n            <label class=\"switch\">\n
+        \             <input\n                id=\"scite-toggle\"\n                type=\"checkbox\"\n
+        \               class=\"lab-toggle\"\n                data-script-url=\"/static/browse/0.3.4/js/scite.js?20210617\"\n
+        \               aria-labelledby=\"label-for-scite\">\n              <span
+        class=\"slider\"></span>\n              <span class=\"is-sr-only\">scite.ai
+        Toggle</span>\n            </label>\n          </div>\n          <div class=\"column
+        lab-name\">\n            <span id=\"label-for-scite\">scite Smart Citations</span>
+        <em>(<a href=\"https://www.scite.ai/\" target=\"_blank\">What are Smart Citations?</a>)</em>\n
+        \         </div>\n        </div>\n      </div>\n        <div class=\"labs-content-placeholder
+        labs-display\" style=\"display: none;\"></div>\n        <div style=\"min-height:
+        15px\" id=\"litmaps-open-in\"></div>\n        <div style=\"min-height: 15px\"
+        id=\"scite-open-in\"></div>\n    </div>\n\n\n    <input type=\"radio\" name=\"tabs\"
+        id=\"tabtwo\">\n    <label for=\"tabtwo\">Code, Data, Media</label>\n    <div
+        class=\"tab\">\n      <h1>Code, Data and Media Associated with this Article</h1>\n
+        \     <div class=\"toggle\">\n        <div class=\"columns is-mobile lab-row\">\n
+        \         <div class=\"column lab-switch\">\n            <label class=\"switch\">\n
+        \             <input        \n                id=\"catalyzex-toggle\"\n                data-script-url=\"/static/browse/0.3.4/js/catalyzex.js\"\n
+        \               type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-cx\">\n
+        \             <span class=\"slider\"></span>\n              <span class=\"is-sr-only\">Links
+        to Code Toggle</span>\n            </label>\n          </div>\n          <div
+        class=\"column lab-name\">\n            <span id=\"label-for-cx\">CatalyzeX
+        Code Finder for Papers</span> <em>(<a href=\"https://www.catalyzex.com\" target=\"_blank\">What
+        is CatalyzeX?</a>)</em>\n          </div>\n        </div>\n\n        <div
+        class=\"columns is-mobile lab-row\">\n          <div class=\"column lab-switch\">\n
+        \           <label class=\"switch\">\n              <input\n                id=\"dagshub-toggle\"\n
+        \               data-script-url=\"/static/browse/0.3.4/js/dagshub.js\"\n                type=\"checkbox\"
+        class=\"lab-toggle\" aria-labelledby=\"label-for-dagshub\">\n              <span
+        class=\"slider\"></span>\n              <span class=\"is-sr-only\">DagsHub
+        Toggle</span>\n            </label>\n          </div>\n          <div class=\"column
+        lab-name\">\n            <span id=\"label-for-dagshub\">DagsHub</span> <em>(<a
+        href=\"https://dagshub.com/\" target=\"_blank\">What is DagsHub?</a>)</em>\n
+        \         </div>\n        </div>\n  \n        <div class=\"columns is-mobile
+        lab-row\">\n          <div class=\"column lab-switch\">\n            <label
+        class=\"switch\">\n              <input\n                id=\"gotitpub-toggle\"\n
+        \               data-script-url=\"/static/browse/0.3.4/js/gotitpub.js\"\n
+        \               type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-gotitpub\">\n
+        \             <span class=\"slider\"></span>\n              <span class=\"is-sr-only\">GotitPub
+        Toggle</span>\n            </label>\n          </div>\n          <div class=\"column
+        lab-name\">\n            <span id=\"label-for-gotitpub\">Gotit.pub</span>
+        <em>(<a href=\"http://gotit.pub/faq\" target=\"_blank\">What is GotitPub?</a>)</em>\n
+        \         </div>\n        </div>\n\n        <div class=\"columns is-mobile
+        lab-row\">\n          <div class=\"column lab-switch\">\n            <label
+        class=\"switch\">\n              <input\n                id=\"paperwithcode-toggle\"\n
+        \               data-script-url=\"/static/browse/0.3.4/js/paperswithcode.js\"\n
+        \               type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-pwc\">\n
+        \             <span class=\"slider\"></span>\n              <span class=\"is-sr-only\">Links
+        to Code Toggle</span>\n            </label>\n          </div>\n          <div
+        class=\"column lab-name\">\n            <span id=\"label-for-pwc\">Papers
+        with Code</span> <em>(<a href=\"https://paperswithcode.com/\" target=\"_blank\">What
+        is Papers with Code?</a>)</em>\n          </div>\n        </div>\n\n\n        <div
+        class=\"columns is-mobile lab-row\">\n          <div class=\"column lab-switch\">\n
+        \           <label class=\"switch\">\n              <input\n                id=\"sciencecast-toggle\"\n
+        \               data-script-url=\"/static/browse/0.3.4/js/sciencecast.js\"\n
+        \               type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-sciencecast\">\n
+        \             <span class=\"slider\"></span>\n              <span class=\"is-sr-only\">ScienceCast
+        Toggle</span>\n            </label>\n          </div>\n          <div class=\"column
+        lab-name\">\n            <span id=\"label-for-sciencecast\">ScienceCast</span>
+        <em>(<a href=\"https://sciencecast.org/welcome\" target=\"_blank\">What is
+        ScienceCast?</a>)</em>\n          </div>\n        </div>\n      </div>\n\n
+        \     <div id=\"catalyzex-output\" style=\"display:none\"></div>\n      <div
+        id=\"dagshub-output\" style=\"display:none\"></div>\n      <div id=\"gotitpub-output\"
+        style=\"display:none\"></div>\n      <div id=\"pwc-output\" style=\"display:none\"></div>\n
+        \     <div id=\"pwc-data-output\" style=\"display:none\"></div>\n      <div
+        id=\"sciencecast-output\" style=\"display:none\"></div>\n    </div>\n\n\n
+        \     <input type=\"radio\" name=\"tabs\" id=\"labstabs-demos-input\">\n      <label
+        for=\"labstabs-demos-input\" id=\"labstabs-demos-label\">Demos</label>\n      <div
+        class=\"tab\">\n        <h1>Demos</h1>\n        <div class=\"toggle\">\n          <div
+        class=\"columns is-mobile lab-row\">\n            <div class=\"column lab-switch\">\n
+        \             <label class=\"switch\">\n                <input\n                  id=\"replicate-toggle\"\n
+        \                 data-script-url=\"/static/browse/0.3.4/js/replicate.js\"\n
+        \                 type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-replicate\">\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Replicate
+        Toggle</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-replicate\">Replicate</span>
+        <em>(<a href=\"https://replicate.com/docs/arxiv/about\" target=\"_blank\">What
+        is Replicate?</a>)</em>\n            </div>\n          </div>\n          <div
+        class=\"columns is-mobile lab-row\">\n            <div class=\"column lab-switch\">\n
+        \             <label class=\"switch\">\n                <input\n                  id=\"spaces-toggle\"\n
+        \                 data-script-url=\"/static/browse/0.3.4/js/spaces.js\"\n
+        \                 type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-spaces\">\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Spaces
+        Toggle</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-spaces\">Hugging
+        Face Spaces</span> <em>(<a href=\"https://huggingface.co/docs/hub/spaces\"
+        target=\"_blank\">What is Spaces?</a>)</em>\n            </div>\n          </div>\n
+        \         <div class=\"columns is-mobile lab-row\">\n            <div class=\"column
+        lab-switch\">\n              <label class=\"switch\">\n                <input\n
+        \                 id=\"txyz-toggle\"\n                  data-script-url=\"/static/browse/0.3.4/js/txyz.js\"\n
+        \                 type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-txyz\">\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Spaces
+        Toggle</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-txyz\">TXYZ.AI</span>
+        <em>(<a href=\"https://txyz.ai\" target=\"_blank\">What is TXYZ.AI?</a>)</em>\n
+        \           </div>\n          </div>\n        </div>\n        <div id=\"replicate-output\"></div>\n
+        \       <div id=\"spaces-output\"></div>\n        <div id=\"txyz-output\"></div>\n
+        \     </div>\n      <input type=\"radio\" name=\"tabs\" id=\"tabfour\">\n
+        \     <label for=\"tabfour\">Related Papers</label>\n      <div class=\"tab\">\n
+        \       <h1>Recommenders and Search Tools</h1>\n        <div class=\"toggle\">\n
+        \         <div class=\"columns is-mobile lab-row\">\n            <div class=\"column
+        lab-switch\">\n              <label class=\"switch\">\n                <input
+        id=\"influenceflower-toggle\"\n                data-script-url=\"/static/browse/0.3.4/js/influenceflower.js\"\n
+        \               type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-influenceflower\">\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Link
+        to Influence Flower</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-influenceflower\">Influence
+        Flower</span> <em>(<a href=\"https://influencemap.cmlab.dev/\" target=\"_blank\">What
+        are Influence Flowers?</a>)</em>\n            </div>\n          </div>\n          <div
+        class=\"columns is-mobile lab-row\">\n            <div class=\"column lab-switch\">\n
+        \             <label class=\"switch\">\n                <input id=\"connectedpapers-toggle\"
+        type=\"checkbox\" class=\"lab-toggle\"\n                       data-script-url=\"/static/browse/0.3.4/js/connectedpapers.js\"\n
+        \                      aria-labelledby=\"label-for-connected-papers\" >\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Connected
+        Papers Toggle</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-connected-papers\">Connected
+        Papers</span> <em>(<a href=\"https://www.connectedpapers.com/about\" target=\"_blank\">What
+        is Connected Papers?</a>)</em>\n            </div>\n          </div>\n          <div
+        class=\"columns is-mobile lab-row\">\n            <div class=\"column lab-switch\">\n
+        \             <label class=\"switch\">\n                <input id=\"core-recommender-toggle\"
+        type=\"checkbox\" class=\"lab-toggle\" aria-labelledby=\"label-for-core\">\n
+        \               <span class=\"slider\"></span>\n                <span class=\"is-sr-only\">Core
+        recommender toggle</span>\n              </label>\n            </div>\n            <div
+        class=\"column lab-name\">\n              <span id=\"label-for-core\">CORE
+        Recommender</span> <em>(<a href=\"https://core.ac.uk/services/recommender\">What
+        is CORE?</a>)</em>\n            </div>\n          </div></div>\n        <div
+        id=\"influenceflower-output\"></div>\n        <div id=\"influenceflower-output-graph\"
+        style=\"display:none\">\n          <ul class=\"flower-tabs\">\n            <li
+        class=\"active\"><a class=\"btn tab-btn\" onclick=\"openTab(event, 'tab-author')\">Author</a></li>\n
+        \           <li><a class=\"btn tab-btn\" onclick=\"openTab(event, 'tab-venue')\">Venue</a></li>\n
+        \           <li><a class=\"btn tab-btn\" onclick=\"openTab(event, 'tab-inst')\">Institution</a></li>\n
+        \           <li><a class=\"btn tab-btn\" onclick=\"openTab(event, 'tab-topic')\">Topic</a></li>\n
+        \         </ul>\n          <div class=\"flower-tab-content\">\n            <div
+        class=\"tab-flower active\" id=\"tab-author\"><svg id=\"flower-graph-author\"></svg></div>\n
+        \           <div class=\"tab-flower\" id=\"tab-venue\"><svg id=\"flower-graph-venue\"></svg></div>\n
+        \           <div class=\"tab-flower\" id=\"tab-inst\"><svg id=\"flower-graph-inst\"></svg></div>\n
+        \           <div class=\"tab-flower\" id=\"tab-topic\"><svg id=\"flower-graph-topic\"></svg></div>\n
+        \         </div>\n        </div>\n        <div style=\"min-height: 15px\"
+        id=\"connectedpapers-output\"></div>\n        <div id=\"coreRecommenderOutput\"></div>\n
+        \       <div id=\"iarxivOutput\"></div>\n      </div>\n\n      <input type=\"radio\"
+        name=\"tabs\" id=\"tabfive\">\n      <label for=\"tabfive\">\n        About
+        arXivLabs\n      </label>\n      <div class=\"tab\">\n        <div class=\"columns\">\n
+        \         <div class=\"column\">\n            <h1>arXivLabs: experimental
+        projects with community collaborators</h1>\n            <p>arXivLabs is a
+        framework that allows collaborators to develop and share new arXiv features
+        directly on our website.</p>\n            <p>Both individuals and organizations
+        that work with arXivLabs have embraced and accepted our values of openness,
+        community, excellence, and user data privacy. arXiv is committed to these
+        values and only works with partners that adhere to them.</p>\n            <p>Have
+        an idea for a project that will add value for arXiv's community? <a href=\"https://info.arxiv.org/labs/index.html\"><strong>Learn
+        more about arXivLabs</strong></a>.</p>\n          </div>\n          <div class=\"column
+        is-narrow is-full-mobile\">\n            <p class=\"icon-labs\"><svg xmlns=\"http://www.w3.org/2000/svg\"
+        role=\"presentation\" viewBox=\"0 0 635.572 811\"><path d=\"M175.6 676v27h-27v-27zm-54
+        27v27h27v-27zm-27 27v27h27v-27zm396-54v27h-27v-27zm0 27v27h27v-27zm27 27v27h27v-27zm-27-414h27v27h-27zm27
+        0h27v-27h-27zm27-27h27v-27h-27zm-396 45h-27v-27h27zm-27-54h-27v27h27zm-27-27h-27v27h27z\"/><path
+        d=\"M94.6 730v27h-27v-27zm477 0v27h-27v-27zm-27-495h27v27h-27zm-450 18h-27v-27h27zm477
+        9h27v27h-27zm-54 495h27v27h-27zm-423 0h27v27h-27zm-54-504h27v27h-27z\" fill=\"#666\"/><path
+        d=\"M67.6 730v27h-27v-27zm54 54v27h-27v-27zm0-108v27h27v-27zm-27 27v27h27v-27zm-81
+        0v27h27v-27zm585 27v27h-27v-27zm-108-54v27h27v-27zm27 27v27h27v-27zm81 0v27h27v-27zm-54-495h27v27h-27zm-54
+        108h27v-27h-27zm27-27h27v-27h-27zm0-81h27v-27h-27zm-423 18h-27v-27h27zm54
+        54h-27v27h27zm-27-27h-27v27h27zm0-81h-27v27h27zm423 612v27h-27v-27zm81-522v27h-27v-27zm-585-9v27h-27v-27z\"
+        fill=\"#999\"/><path d=\"M94.6 784v27h-27v-27zm-27-27v27h27v-27zm-27-54v27h27v-27zm27
+        0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm0-27v27h27v-27zm27 0v27h27v-27zm-108
+        81v27h27v-27zm558 54v27h-27v-27zm-27-27v27h27v-27zm27-54v27h27v-27zm-27 0v27h27v-27zm0-27v27h27v-27zm-27
+        0v27h27v-27zm0-27v27h27v-27zm-27 0v27h27v-27zm108 81v27h27v-27zm0-495h27v27h-27zm-27
+        27h27v-27h-27zm-54-27h27v-27h-27zm0 27h27v-27h-27zm-27 0h27v-27h-27zm0 27h27v-27h-27zm-27
+        0h27v-27h-27zm0 27h27v-27h-27zm81-108h27v-27h-27zm-504 45h-27v-27h27zm27-27h-27v27h27zm54-27h-27v27h27zm0
+        27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm27 0h-27v27h27zm0 27h-27v27h27zm-81-108h-27v27h27z\"
+        fill=\"#ccc\"/><path d=\"M598.6 665.1H41.5C-76.5 667 176 280.2 176 280.2h53a46.5
+        46.5 0 0162.8-56.3 29.2 29.2 0 1128.5 35.9h-1a46.5 46.5 0 01-1.5 20.3l142.5-.1s255.3
+        387 138.3 385.1zM291 181a29.3 29.3 0 10-29.2-29.3A29.3 29.3 0 00291 181zm65.4-66.8a22.4
+        22.4 0 10-22.5-22.4 22.4 22.4 0 0022.5 22.4z\" fill=\"#fc0\"/><path d=\"M245.5
+        172V10h153v162s324 495 198 495h-558c-126 0 207-495 207-495zm126 54h56m-13
+        72h56m-9 72h56m-20 72h56m-22 72h56m-29 72h56m-457-45c20.8 41.7 87.3 81 160.7
+        81 72.1 0 142.1-38.2 163.4-81\" fill=\"none\" stroke=\"#000\" stroke-miterlimit=\"10\"
+        stroke-width=\"20\"/><path d=\"M273.3 421.7c0 31-9.8 56.3-21.9 56.3s-21.8-25.2-21.8-56.3
+        9.8-56.3 21.8-56.3 21.9 25.2 21.9 56.3zm114.4-56.3c-12 0-21.8 25.2-21.8 56.3s9.7
+        56.3 21.8 56.3 21.9-25.2 21.9-56.3-9.8-56.3-21.9-56.3zM150.1 526.6c-18.2 6.7-27.5
+        22.9-23.2 30.2s14.8-5.5 33-12.2 37.4-4.9 33-12.2-24.5-12.6-42.8-5.8zm296 5.8c-4.2
+        7.3 14.9 5.5 33.1 12.2s28.7 19.5 33 12.2-5-23.5-23.2-30.2-38.5-1.5-42.8 5.8z\"/></svg></p>\n
+        \         </div>\n        </div>\n      </div>\n\n    </div>\n</div>\n<!--
+        END LABS AREA -->\n  <div class=\"endorsers\">\n    <a href=\"/auth/show-endorsers/1902.02534\"
+        class=\"endorser-who\">Which authors of this paper are endorsers?</a> |\n
+        \   <a id=\"mathjax_toggle\" href=\"javascript:setMathjaxCookie()\">Disable
+        MathJax</a> (<a href=\"https://info.arxiv.org/help/mathjax.html\">What is
+        MathJax?</a>)\n    <span class=\"help\" style=\"font-style: normal; float:
+        right; margin-top: 0; margin-right: 1em;\"></span>\n  </div>\n  <script type=\"text/javascript\"
+        language=\"javascript\">mathjaxToggle();</script>\n</div>\n      </div>\n
+        \   </main>\n\n    <footer style=\"clear: both;\">\n      <div class=\"columns
+        is-desktop\" role=\"navigation\" aria-label=\"Secondary\" style=\"margin:
+        -0.75em -0.75em 0.75em -0.75em\">\n        <!-- Macro-Column 1 -->\n        <div
+        class=\"column\" style=\"padding: 0;\">\n          <div class=\"columns\">\n
+        \           <div class=\"column\">\n              <ul style=\"list-style:
+        none; line-height: 2;\">\n                <li><a href=\"https://info.arxiv.org/about\">About</a></li>\n
+        \               <li><a href=\"https://info.arxiv.org/help\">Help</a></li>\n
+        \             </ul>\n            </div>\n            <div class=\"column\">\n
+        \             <ul style=\"list-style: none; line-height: 2;\">\n                <li>\n
+        \                 <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0
+        512 512\" class=\"icon filter-black\" role=\"presentation\"><title>contact
+        arXiv</title><desc>Click here to contact arXiv</desc><path d=\"M502.3 190.8c3.9-3.1
+        9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5
+        5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6
+        35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2
+        73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5
+        64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7
+        16.8 12.2 50.2 41.8 73.4 41.4z\"/></svg>\n                  <a href=\"https://info.arxiv.org/help/contact.html\">
+        Contact</a>\n                </li>\n                <li>\n                  <svg
+        xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 512 512\" class=\"icon
+        filter-black\" role=\"presentation\"><title>subscribe to arXiv mailings</title><desc>Click
+        here to subscribe</desc><path d=\"M476 3.2L12.5 270.6c-18.1 10.4-15.8 35.6
+        2.2 43.2L121 358.4l287.3-253.2c5.5-4.9 13.3 2.6 8.6 8.3L176 407v80.5c0 23.6
+        28.5 32.9 42.5 15.8L282 426l124.6 52.2c14.2 6 30.4-2.9 33-18.2l72-432C515
+        7.8 493.3-6.8 476 3.2z\"/></svg>\n                  <a href=\"https://info.arxiv.org/help/subscribe\">
+        Subscribe</a>\n                </li>\n              </ul>\n            </div>\n
+        \         </div>\n        </div>\n        <!-- End Macro-Column 1 -->\n        <!--
+        Macro-Column 2 -->\n        <div class=\"column\" style=\"padding: 0;\">\n
+        \         <div class=\"columns\">\n            <div class=\"column\">\n              <ul
+        style=\"list-style: none; line-height: 2;\">\n                <li><a href=\"https://info.arxiv.org/help/license/index.html\">Copyright</a></li>\n
+        \               <li><a href=\"https://info.arxiv.org/help/policies/privacy_policy.html\">Privacy
+        Policy</a></li>\n              </ul>\n            </div>\n            <div
+        class=\"column sorry-app-links\">\n              <ul style=\"list-style: none;
+        line-height: 2;\">\n                <li><a href=\"https://info.arxiv.org/help/web_accessibility.html\">Web
+        Accessibility Assistance</a></li>\n                <li>\n                  <p
+        class=\"help\">\n                    <a class=\"a11y-main-link\" href=\"https://status.arxiv.org\"
+        target=\"_blank\">arXiv Operational Status <svg xmlns=\"http://www.w3.org/2000/svg\"
+        viewBox=\"0 0 256 512\" class=\"icon filter-dark_grey\" role=\"presentation\"><path
+        d=\"M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6
+        0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4
+        33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z\"/></svg></a><br>\n                    Get
+        status notifications via\n                    <a class=\"is-link\" href=\"https://subscribe.sorryapp.com/24846f03/email/new\"
+        target=\"_blank\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0
+        512 512\" class=\"icon filter-black\" role=\"presentation\"><path d=\"M502.3
+        190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5
+        5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6
+        35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2
+        73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5
+        64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7
+        16.8 12.2 50.2 41.8 73.4 41.4z\"/></svg>email</a>\n                    or
+        <a class=\"is-link\" href=\"https://subscribe.sorryapp.com/24846f03/slack/new\"
+        target=\"_blank\"><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0
+        448 512\" class=\"icon filter-black\" role=\"presentation\"><path d=\"M94.12
+        315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72
+        0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16
+        47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139
+        32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16
+        47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06
+        47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06
+        21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16
+        47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06
+        47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06
+        21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9
+        0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06
+        21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z\"/></svg>slack</a>\n
+        \                 </p>\n                </li>\n              </ul>\n            </div>\n
+        \         </div>\n        </div> <!-- end MetaColumn 2 -->\n        <!-- End
+        Macro-Column 2 -->\n      </div>\n    </footer>\n  </div>\n\n  <script src=\"/static/base/1.0.1/js/member_acknowledgement.js\"></script>\n\n</body>\n\n</html>"
+    headers:
+      Accept-Ranges:
+      - bytes
+      Age:
+      - '0'
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '45287'
+      Date:
+      - Sun, 29 Sep 2024 08:44:43 GMT
+      X-Cache:
+      - HIT, MISS
+      X-Served-By:
+      - cache-lga21969-LGA, cache-fra-etou8220148-FRA
+      X-Timer:
+      - S1727599483.468512,VS0,VE242
+      cache-control:
+      - max-age=3600
+      content-security-policy:
+      - frame-ancestors 'none'
+      content-type:
+      - text/html; charset=utf-8
+      last-modified:
+      - Mon, 24 Jun 2019 00:08:45 GMT
+      server:
+      - Google Frontend
+      via:
+      - 1.1 google, 1.1 varnish, 1.1 varnish
+      x-cloud-trace-context:
+      - e33c0a667e8f81f037b820dada490d93
+      x-frame-options:
+      - SAMEORIGIN
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://doi.org/ra/10.48550
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9EwtTUwMlHYhwkCNI1CWxJNE5syRVCShYyxUL
+        AJ19Ras3AAAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8caab1660939c7c7-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sun, 29 Sep 2024 08:44:43 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=kku5xi6i%2Bc6dW2J%2FBAPkqOS334XTsyPig7NsjqCKrx5a1sXehfLWOIJZkORBFHpcyEHoFL1%2BibmBuQ9zpjoU0T6wOjJMbtFYpe%2BbIBcr%2FiBzPJ5BEstT8EUnS8TKe5vUebqdSgQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.datacite.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.datacite.org/dois/10.48550/arxiv.1902.02534?include=media,client
+  response:
+    body:
+      string: !!binary |
+        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
+        AP//AwDwikfdaSEAAA==
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Accept,Access-Control-Allow-Origin,Access-Control-Expose-Headers,Access-Control-Allow-Methods,Access-Control-Allow-Headers,Authorization,Cache-Control,Content-Type,DNT,If-Modified-Since,Keep-Alive,Origin,User-Agent,X-Mx-ReqToken,X-Requested-With
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, PATCH, DELETE, OPTIONS
+      Access-Control-Expose-Headers:
+      - Authorization
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 29 Sep 2024 08:44:44 GMT
+      ETag:
+      - W/"b0031bc1da359a74e851ba83fb66bf91"
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Server:
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.23
+      Status:
+      - 200 OK
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept,Accept-Encoding
+      X-Anonymous-Consumer:
+      - 'true'
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Powered-By:
+      - Phusion Passenger(R) 6.0.23
+      X-Request-Id:
+      - 446a22b2-942e-43de-b566-ad85bc482022
+      X-Runtime:
+      - '0.037905'
+      X-XSS-Protection:
+      - '0'
+    status:
+      code: 200
+      message: OK
+version: 1

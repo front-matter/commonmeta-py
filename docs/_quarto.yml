@@ -1,0 +1,45 @@
+project:
+  type: website
+  output-dir: _site
+  preview:
+    port: 4300
+execute:
+  freeze: true
+website:
+  title: "commonmeta-py"
+  favicon: favicon.ico
+  bread-crumbs: false
+  navbar:
+    background: light
+    logo: "/images/icon.png"
+    logo-alt: "commonmeta-py"
+    right:
+      - icon: github
+        href: https://github.com/front-matter/commonmeta-py
+  sidebar:
+    contents:
+      - index.qmd
+      - section: "Readers"
+        contents: "readers/*.ipynb"
+      - section: "Writers"
+        contents: "writers/*.ipynb"
+      - cli.qmd
+  page-footer:
+    left: "Copyright &copy;2023-2024 Front Matter."
+    right:
+      - icon: envelope
+        href: mailto:info@front-matter.io
+      - icon: mastodon 
+        href: https://rogue-scholar.social/@admin
+
+format:
+  html:
+    theme:
+      light: [flatly, theme.scss]
+      dark: [darkly, theme.scss]
+    code-fold: false
+    code-block-bg: true
+    code-block-border-left: "#38a169"
+    highlight-style: github
+    toc: true
+    toc-location: right

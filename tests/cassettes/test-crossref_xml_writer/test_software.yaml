@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - raw.githubusercontent.com
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
+        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBwm
+        YfRzGLyA33A9g9ra1sxGIyeyxLUJlV6O3MuI5Elofn9/EiqE5VaohjkjrFJ6zW24FLbuFqFQoyCg
+        M2yD2pDMrLcUrNEYvsQZPFSwUx10Bk/+iMatadgqvXoJrUROu2QFQViSFM0SbI1QKSnV1v1bo+Ul
+        tzywwkpS+pE0OR/hrVhorncBXxireWFnfWpkvwytVhtRogHeHxGNRV3xAsEqWPNGtJ2kbMF8HyHc
+        uzTe+wh9Sk3AO1srbWYBg4qvhdyxhlNwM3jNRUP7AEuxweaw+lEtUFtaVboQ5SmH/q/PckQfRr+E
+        5ZObjKV5nJM4r8ic8E64GBA+NcKn1O5AVfCON0WNhrx/CZ/ekC/OXC/Y52IogDvcoFQtaQlWuKNk
+        lz4MVwZ6EFBKYenFqMpuufYV8EqcDBrkuqiPm8/lTGcsBc8X5LF1qo7lYUcdPSB7rNAy1So4Q0ip
+        BL1G4STJ4tFXbFSpwjjOxlGaBqQMmUYPDEpiEiVjFsWMMiVFgY2h0G9bThlhTpPGVlGilN4xrq2o
+        PA6+j/BnRwpV4kl8D+tCrQdhPzpgmDRUqLEp0OfU7lpSckwWwB6oQ3Vx1T6ACuAcVne6MysvdIas
+        R4ttzRu/8UNw3bBxnkxYmoyzARuPLecrc2ni905rwXkDr8PrzCQsjaZjNo6m+YCZed0hvFbN8tLS
+        exTyWhNZlk5ZOo2mAyaOl/C/ruH/vojnFl7xFeqBVLnHtfqTaZawaZ4kQ/qlUztQ7taBS19rIk7o
+        LZ7mmT+Aay4k4bHXES68jV+WbtVBe8CNP4WUYllTyx7w5deluhJ3MUsn44RFSTZUrT++/a3xK3vs
+        vv1Fz0s7d5y69bUAj9JsTEmNcn9giwu6z88uctmaGqVQJ6IacOiNatSGS7W59OVW4hfelNdWIGaT
+        JM/ZTZK7IhPnNNSIBB7ueN8fqOV5bWSyw8vmR1HF4z4c4qxCi/ZEB4WiSrbU0z88uK7q+bEgfsTC
+        txfadi3ZcSWXEvat1jjqcJJDbSi82rFJnMb5TTrs2N4UTRzPXduv9q3+R16cyMl5NMggbsNxyIWA
+        8UuXFOZrfabg8+27t/8WP2Myt3fJfN5mT5bUuY+DxsX4RVMGqWwlKQSLX/YDBGwJf1B3NG0wIEDR
+        2FHU1LSI3ogzF/LkM00nvbM+NkrkwYMQ5sRRlPoDnUPBnXQhO1qmzK7dREVPoeFIbIJM05Aj0YKi
+        LTq0atQWavrRcqG0JujIXT929WdP9vwQRV9XNWoiBUG5OPn1vVpeMnfMooz5W3rk7vmcvfrMxkTd
+        AGdTwT9NkM8x3AoAAA==
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - max-age=300
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1096'
+      Content-Security-Policy:
+      - default-src 'none'; style-src 'unsafe-inline'; sandbox
+      Content-Type:
+      - text/plain; charset=utf-8
+      Cross-Origin-Resource-Policy:
+      - cross-origin
+      Date:
+      - Fri, 27 Sep 2024 16:12:23 GMT
+      ETag:
+      - W/"25628247775bc8498b72a76a149cdd57347f26043a4fbfd023e38d87e6753fdb"
+      Expires:
+      - Fri, 27 Sep 2024 16:17:23 GMT
+      Source-Age:
+      - '50'
+      Strict-Transport-Security:
+      - max-age=31536000
+      Vary:
+      - Authorization,Accept-Encoding,Origin
+      Via:
+      - 1.1 varnish
+      X-Cache:
+      - HIT
+      X-Cache-Hits:
+      - '1'
+      X-Content-Type-Options:
+      - nosniff
+      X-Fastly-Request-ID:
+      - 664d0fe2323485611a50a6c6f457bd8d568039d8
+      X-Frame-Options:
+      - deny
+      X-GitHub-Request-Id:
+      - F9F7:1F07C5:70F00B:7665AE:66F6D934
+      X-Served-By:
+      - cache-fra-etou8220066-FRA
+      X-Timer:
+      - S1727453543.130244,VS0,VE1
+      X-XSS-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

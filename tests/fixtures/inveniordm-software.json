@@ -1,0 +1,83 @@
+{
+  "conceptdoi": "10.5281/zenodo.5785518",
+  "conceptrecid": "5785518",
+  "created": "2023-03-20T13:29:10.060299+00:00",
+  "doi": "10.5281/zenodo.7752775",
+  "files": [
+    {
+      "bucket": "7cd6cc32-96a6-405d-b0ff-1811b378cc69",
+      "checksum": "md5:3a1f043dffdd529035b7269449f17448",
+      "key": "front-matter/commonmeta-ruby-v3.0.1.zip",
+      "links": {
+        "self": "https://zenodo.org/api/files/7cd6cc32-96a6-405d-b0ff-1811b378cc69/front-matter/commonmeta-ruby-v3.0.1.zip"
+      },
+      "size": 5061453,
+      "type": "zip"
+    }
+  ],
+  "id": 7752775,
+  "links": {
+    "badge": "https://zenodo.org/badge/doi/10.5281/zenodo.7752775.svg",
+    "bucket": "https://zenodo.org/api/files/7cd6cc32-96a6-405d-b0ff-1811b378cc69",
+    "conceptbadge": "https://zenodo.org/badge/doi/10.5281/zenodo.5785518.svg",
+    "conceptdoi": "https://doi.org/10.5281/zenodo.5785518",
+    "doi": "https://doi.org/10.5281/zenodo.7752775",
+    "self_html": "https://zenodo.org/records/7752775",
+    "latest": "https://zenodo.org/api/records/7752775",
+    "latest_html": "https://zenodo.org/records/7752775",
+    "self": "https://zenodo.org/api/records/7752775"
+  },
+  "metadata": {
+    "access_right": "open",
+    "access_right_category": "success",
+    "creators": [
+      {
+        "affiliation": "Front Matter",
+        "name": "Fenner, Martin",
+        "orcid": "0000-0003-1419-2405"
+      }
+    ],
+    "description": "Ruby gem and command-line utility for conversion of DOI metadata from and to different metadata formats, including schema.org. Fork of version 1.19.12 of the bolognese gem.",
+    "doi": "10.5281/zenodo.7752775",
+    "keywords": ["ruby", "metadata", "software citation", "research software"],
+    "license": { "id": "MIT" },
+    "notes": "If you use ruby-cff in your work, please cite it using the following metadata",
+    "publication_date": "2023-03-20",
+    "related_identifiers": [
+      {
+        "identifier": "https://github.com/front-matter/commonmeta-ruby/tree/v3.0.1",
+        "relation": "isSupplementTo",
+        "scheme": "url"
+      }
+    ],
+    "relations": {
+      "version": [
+        {
+          "count": 18,
+          "index": 17,
+          "is_last": "True",
+          "last_child": { "pid_type": "recid", "pid_value": "7752775" },
+          "parent": { "pid_type": "recid", "pid_value": "5785518" }
+        }
+      ]
+    },
+    "resource_type": { "title": "Software", "type": "software" },
+    "title": "commonmeta-ruby",
+    "version": "v3.0.1"
+  },
+  "owners": [2681],
+  "revision": 3,
+  "stats": {
+    "downloads": 0.0,
+    "unique_downloads": 0.0,
+    "unique_views": 9.0,
+    "version_downloads": 6.0,
+    "version_unique_downloads": 6.0,
+    "version_unique_views": 125.0,
+    "version_views": 140.0,
+    "version_volume": 20936492.0,
+    "views": 9.0,
+    "volume": 0.0
+  },
+  "updated": "2023-03-20T14:26:48.758853+00:00"
+}

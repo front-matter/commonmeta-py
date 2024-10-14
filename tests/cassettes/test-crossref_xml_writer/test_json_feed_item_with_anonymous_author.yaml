@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a163e340-5b3c-4736-9ab0-8c54fdff6a3c
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KUbJSyigpKSi20tcvT6xMSkzO
+        1oPK6maW6OUXpesbGRkaW+obGRgZGxoamBoaGhiYGuvD9OQkJukVlybpleZl6qbnp5aUZOalp+bp
+        paTql6fmJOfnpupllOTmKOkoJZaWZOQXFStZRVcr5SXmpipZKfkmlmRkJhYruMeUGhikmSWl5ijV
+        xuooJeXkpytZVcMdWVCUmpZZQaY7kW2G+D05MS8/LzM5MQfie5hgSWp6flGlkpVScn5uQWlJapFj
+        XopnXlp+UW5iSWZ+XnByZmpecmqxko5SclFqYklqSnxiiZKVoZmFkZGliYmBgY5ScmlRUWpeSXxa
+        amoKstkpqcXJRZkFIFOUrJScUktKUosUijNLFEoySot1FBLzUhTyk4pTi8pSFUoyKhVAMZWXDmJn
+        5qWD7EtLLMtMzs+DxR3YeIi7lKyUEgsKcjKTwU7UTyzJz9WuAIc2WBFq7OKOKZA+Pai+zJyS1CK4
+        VaV5KZl56TBuempealFiSX6RkpWSV2p2ZQ4oXuGC8UWJ5cgSGfm5qfEFienoqQy3O5R0lDJTlKyU
+        LCwsDC3MLQ11U1ITzXRNTJLNdS0MzEx1DYwSDZPTUgxMDVKSQWrzUlIrUlOUrNISc4pTdZQyi4vh
+        gZSTmJdempgOSmWpeUo6SjmZyal5xSAuLOGCYzGzLDU5Pzc3P68YnNKhqor1kyr1TfQM9HNS0xNz
+        kvNTUpV0lHITi0vyUxDRUJCTmKdkpRRcklgECjEdJXgyNTTQM7U0NjVQ0lEqSs1JLIFnNEhSKwKF
+        H4RZnJpcWpSqZFVSVJqqo1ScU5quZKWUk5gUX1yapKSjVFySWFJaDIrkZJAhSjpKJZklOSBPQMNQ
+        QVfBsagkMzkHnC5LC1IQ6dLc0MDC3MLEwFBHqbQ4NT6xIBMWiyAuwjPQsCstTi2KBwd+SmpiioVh
+        krGuRaJFkq6JabKlroVpWqpumoFhUpKxpYlFsrm5Ui0kl8ZDMzJW54CycTyGn5Lz80pAmaQktaJE
+        yUopHFJIKKSWpRZV5uelKsbkxeSFZGQWK2QWK5RkpCoU5CQmpyqU5CsUpSamKCQm5ZeWKBQU5Wel
+        JpcU6ygUpRbnlxYlpxaDc1FiTg5YT0kGKOfE5JWnKqSkJuYolGeWZCgklijklxYplOcXZSvk5ymk
+        ZKZnliTmKCTn5+SkJoPyZrGOQkpiSWJSYnFqsY6CY4BnsY5CSX5+TnFMHiiLphbnl6QWZSaDbE8v
+        SszNzcxLV4Als2KF8lQFUAJILQK5tbwosyRVITNPT8GzBOQRrbz8Eq2YvNzUxLwShbT8IoVEheLM
+        vPScVIXi0iSQV3QUkkpLFJLzy1KLihXA3sgvyEwGmxpTmmJhnBJTmpJsaaanEJyv4KmQkV+QqlCZ
+        XxqTl5Kfp16ikJuZl6KQmQb2e15qRYlCQX4x2F5IcOXnpSrkpynkViokpuQXJSblpCokl5akKhQl
+        JiVllhTrxYAySEp+JlIJm5KfCc4QsKSsb2ycWmyum1ZYZWyopKOUXgpOKrCsBI1+wnUAWFeioZlx
+        qrGJga5pknGyrom5sZmuZWKSga5FsqlJWkpamlmiMTh354KzLySjZEKyOqzItTQwMLMwMNFRgoW/
+        kpUSOJsXlCblZBZnwApnEwtjIyMLC1AmKEpNSy0CleBKVtGxsIyZn1eckVkAqpNidZSKS3NzE8E1
+        AEaiVFCgTpIEpRJqpEhwaqcgQcbk2aTm2sXkKeTll8Tk2eiDOdROnYAppOTnxZQaGRhaUpxCQSVf
+        YjoonpR8U0sSlWIRJSEsrkrywcnfJxFUcKKUhEiJgNgKEaXpUssFAPsiX4lACQAA
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Fri, 27 Sep 2024 16:12:23 GMT
+      fly-request-id:
+      - 01J8T42EHA37MZPXT0PDVYWWGP-cdg
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '5'
+      ratelimit-reset:
+      - '37'
+      server:
+      - Fly/0c45e4378 (2024-09-20)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+version: 1

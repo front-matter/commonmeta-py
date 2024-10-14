@@ -10,9 +10,9 @@ from commonmeta.date_utils import (
     get_date_parts,
     get_month_from_date,
     get_date_from_crossref_parts,
-    get_datetime_from_time
+    get_datetime_from_time,
+    get_datetime_from_pdf_time,
 )
-from commonmeta.base_utils import wrap
 
 
 def test_get_iso8601_date():
@@ -99,3 +99,11 @@ def test_get_datetime_from_time():
     time = "20201587168864794"
     response = get_datetime_from_time(time)
     assert None is response
+
+
+def test_get_datetime_from_pdf_time():
+    """get datetime from pdf time"""
+    # present
+    time = "D:20180427082257+02'00'"
+    response = get_datetime_from_pdf_time(time)
+    assert "2018-04-27T08:22:57Z" == response

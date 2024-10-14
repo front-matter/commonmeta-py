@@ -1,9 +1,10 @@
 """datacite_xml reader for Commonmeta"""
+
 from collections import defaultdict
-import requests
+import httpx
 from pydash import py_
 
-from ..base_utils import compact, wrap, presence, sanitize, parse_xmldict
+from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
 from ..date_utils import strip_milliseconds, normalize_date_dict
 from ..doi_utils import doi_from_url, doi_as_url, datacite_api_url, normalize_doi
@@ -17,10 +18,10 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
-    response = requests.get(url, kwargs, timeout=10)
+    response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return py_.get(response.json(), "data.attributes", {})
+    return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite_xml"}
 
 
 def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
@@ -32,18 +33,15 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     meta = data.get("resource", {})
 
-    doi = parse_xmldict(meta.get("identifier"), ignored_attributes="@identifierType")
-    id_ = doi_as_url(doi) if doi else None
-    #         identifiers = Array.wrap(meta.dig('alternateIdentifiers', 'alternateIdentifier')).map do |r|
-    #           if r['__content__'].present?
-    #             { 'identifierType' => get_identifier_type(r['alternateIdentifierType']),
-    #               'identifier' => r['__content__'] }
-    #           end
-    #         end.compact
+    doi = parse_attributes(meta.get("identifier", None))
+    _id = doi_as_url(doi) if doi else None
 
-    resource_type_general = py_.get(meta, "resourceType.@resourceTypeGeneral")
-    type_ = DC_TO_CM_TRANSLATIONS.get(resource_type_general, "Other")
+    resource__typegeneral = py_.get(meta, "resourceType.resourceTypeGeneral")
+    _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = py_.get(meta, "resourceType.#text")
+
+    identifiers = wrap(py_.get(meta, "alternateIdentifiers.alternateIdentifier"))
+    identifiers = get_xml_identifiers(identifiers)
 
     def format_title(title):
         """format_title"""
@@ -52,33 +50,32 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         if isinstance(title, dict):
             return {
                 "title": title.get("#text", None),
-                "titleType": title.get("@titleType", None),
-                "lang": title.get("@xml:lang", None),
+                "titleType": title.get("titleType", None),
+                "lang": title.get("xml:lang", None),
             }
         return None
 
     titles = [format_title(i) for i in wrap(py_.get(meta, "titles.title"))]
 
-    creators = get_authors(wrap(py_.get(meta, "creators.creator")))
+    contributors = get_authors(wrap(py_.get(meta, "creators.creator")))
+    contrib = get_authors(wrap(meta.get("contributors", None)))
+    if contrib:
+        contributors = contributors + contrib
     publisher = {"name": py_.get(meta, "publisher")}
-
-    date: dict = defaultdict(list)
-    date['published'] = str(meta.get("publicationYear")) if meta.get("publicationYear", None) else None
-    # convert date list to dict, rename some keys
-    for sub in wrap(py_.get(meta, "dates.date")):
-        date[sub.get('@dateType', None)] = sub.get('#text', None)
-    date = normalize_date_dict(date)
+    date = get_dates(
+        wrap(py_.get(meta, "dates.date")), meta.get("publicationYear", None)
+    )
 
     def format_description(description):
         """format_description"""
         if isinstance(description, str):
-            return {"description": description, "descriptionType": "Abstract"}
+            return {"description": description, "type": "Abstract"}
         if isinstance(description, dict):
             return compact(
                 {
                     "description": sanitize(description.get("#text", None)),
-                    "descriptionType": description.get("@descriptionType", "Abstract"),
-                    "lang": description.get("@xml:lang", None),
+                    "type": description.get("descriptionType", "Abstract"),
+                    "language": description.get("xml:lang", None),
                 }
             )
         return None
@@ -95,8 +92,8 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             return compact(
                 {
                     "subject": subject.get("#text", None),
-                    "subjectScheme": subject.get("@subjectScheme", None),
-                    "lang": subject.get("@xml:lang", None),
+                    "subjectScheme": subject.get("subjectScheme", None),
+                    "language": subject.get("xml:lang", None),
                 }
             )
         return None
@@ -165,38 +162,27 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             )
         return None
 
-    geo_locations = (
-        []
-    )  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
-
-    def map_size(size):
-        """map_size"""
-        return size.get("#text")
-
-    sizes = [map_size(i) for i in wrap(meta.get("sizes", None))]
-
-    def map_format(format_):
-        """map_format"""
-        return format_.get("#text")
-
-    formats = [map_format(i) for i in wrap(meta.get("formats", None))]
+    geo_locations = []  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
 
     def map_rights(rights):
         """map_rights"""
         return compact(
             {
                 "rights": rights.get("#text", None),
-                "url": rights.get("@rightsURI", None),
-                "lang": rights.get("@xml:lang", None),
+                "url": rights.get("rightsURI", None),
+                "lang": rights.get("xml:lang", None),
             }
         )
 
     license_ = wrap(py_.get(meta, "rightsList.rights"))
     if len(license_) > 0:
-        license_ = normalize_cc_url(license_[0].get("@rightsURI", None))
+        license_ = normalize_cc_url(license_[0].get("rightsURI", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     references = get_xml_references(
+        wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
+    )
+    relations = get_xml_relations(
         wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
     )
 
@@ -210,47 +196,83 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "awardTitle": funding_reference.get("awardTitle", None),
         }
 
-    funding_references = (
-        []
-    )  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
+    funding_references = []  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
 
-    state = "findable" if id_ or read_options else "not_found"
+    files = meta.get("contentUrl", None)
+    state = "findable" if _id or read_options else "not_found"
 
     return {
         # required properties
-        "id": id_,
-        "type": type_,
-        "doi": doi_from_url(id_) if id_ else None,
+        "id": _id,
+        "type": _type,
+        "doi": doi_from_url(_id),
         "url": normalize_url(meta.get("url", None)),
-        "creators": creators,
+        "contributors": presence(contributors),
         "titles": compact(titles),
         "publisher": publisher,
         "date": date,
         # recommended and optional properties
-        "additional_type": presence(additional_type),
+        "additionalType": presence(additional_type),
         "subjects": presence(subjects),
-        "contributors": get_authors(wrap(meta.get("contributors", None))),
         "language": meta.get("language", None),
-        "alternate_identifiers": presence(meta.get("alternateIdentifiers", None)),
-        "sizes": presence(sizes),
-        "formats": presence(formats),
+        "identifiers": identifiers,
         "version": meta.get("version", None),
         "license": presence(license_),
         "descriptions": presence(descriptions),
-        "geo_locations": presence(geo_locations),
-        "funding_references": presence(funding_references),
+        "geoLocations": presence(geo_locations),
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
+        "relations": presence(relations),
         # other properties
         "date_created": strip_milliseconds(meta.get("created", None)),
         "date_registered": strip_milliseconds(meta.get("registered", None)),
         "date_published": strip_milliseconds(meta.get("published", None)),
         "date_updated": strip_milliseconds(meta.get("updated", None)),
-        "content_url": presence(meta.get("contentUrl", None)),
+        "files": presence(files),
         "container": presence(meta.get("container", None)),
         "provider": "DataCite",
         "state": state,
-        "schema_version": meta.get("@xmlns", None),
+        "schema_version": meta.get("xmlns", None),
     } | read_options
+
+
+def get_xml_identifiers(identifiers: list) -> list:
+    """get_identifiers"""
+
+    def is_identifier(identifier):
+        """supported identifier types"""
+        return identifier.get("alternateIdentifierType", None) in [
+            "ARK",
+            "arXiv",
+            "Bibcode",
+            "DOI",
+            "Handle",
+            "ISBN",
+            "ISSN",
+            "PMID",
+            "PMCID",
+            "PURL",
+            "URL",
+            "URN",
+            "Other",
+        ]
+
+    def format_identifier(identifier):
+        """format_identifier"""
+
+        if is_identifier(identifier):
+            type_ = identifier.get("alternateIdentifierType")
+        else:
+            type_ = "Other"
+
+        return compact(
+            {
+                "identifier": identifier.get("#text", None),
+                "identifierType": type_,
+            }
+        )
+
+    return [format_identifier(i) for i in identifiers]
 
 
 def get_xml_references(references: list) -> list:
@@ -258,7 +280,10 @@ def get_xml_references(references: list) -> list:
 
     def is_reference(reference):
         """is_reference"""
-        return reference.get("relationType", None) in ["Cites", "References"]
+        return reference.get("relationType", None) in [
+            "Cites",
+            "References",
+        ] and reference.get("relatedIdentifierType", None) in ["DOI", "URL"]
 
     def map_reference(reference):
         """map_reference"""
@@ -283,3 +308,52 @@ def get_xml_references(references: list) -> list:
         return reference
 
     return [map_reference(i) for i in references if is_reference(i)]
+
+
+def get_xml_relations(relations: list) -> list:
+    """get_xml_relations"""
+
+    def is_relation(relation):
+        """is_relation"""
+        return relation.get("relationType", None) in [
+            "IsNewVersionOf",
+            "IsPreviousVersionOf",
+            "IsVersionOf",
+            "HasVersion",
+            "IsPartOf",
+            "HasPart",
+            "IsVariantFormOf",
+            "IsOriginalFormOf",
+            "IsIdenticalTo",
+            "IsTranslationOf",
+            "IsReviewedBy",
+            "Reviews",
+            "IsPreprintOf",
+            "HasPreprint",
+            "IsSupplementTo",
+        ]
+
+    def map_relation(relation):
+        """map_relation"""
+        identifier = relation.get("relatedIdentifier", None)
+        identifier_type = relation.get("relatedIdentifierType", None)
+        if identifier and identifier_type == "DOI":
+            relation["doi"] = normalize_doi(identifier)
+        elif identifier and identifier_type == "URL":
+            relation["url"] = normalize_url(identifier)
+        return {
+            "id": identifier,
+            "type": identifier_type,
+        }
+
+    return [map_relation(i) for i in relations if is_relation(i)]
+
+
+def get_dates(dates: list, publication_year) -> dict:
+    """convert date list to dict, rename and/or remove some keys"""
+    date: dict = defaultdict(list)
+    for sub in dates:
+        date[sub.get("dateType", None)] = sub.get("#text", None)
+    if date.get("Issued", None) is None and publication_year is not None:
+        date["Issued"] = str(publication_year)
+    return normalize_date_dict(date)

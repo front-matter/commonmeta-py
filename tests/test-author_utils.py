@@ -1,11 +1,12 @@
 """Test author utils"""
-import pytest
+
 from commonmeta.author_utils import (
     cleanup_author,
     authors_as_string,
     get_one_author,
     get_authors,
     get_affiliations,
+    is_personal_name,
 )
 from commonmeta.base_utils import wrap
 
@@ -23,6 +24,21 @@ def test_one_author():
     assert {
         "id": "https://orcid.org/0000-0003-0077-4738",
         "type": "Person",
+        "contributorRoles": ["Author"],
+        "familyName": "Jones",
+        "givenName": "Matt",
+    } == get_one_author(authors[0])
+    # JSON Feed author with url
+    authors = [
+        {
+            "url": "http://orcid.org/0000-0003-0077-4738",
+            "name": "Matt Jones",
+        }
+    ]
+    assert {
+        "id": "https://orcid.org/0000-0003-0077-4738",
+        "type": "Person",
+        "contributorRoles": ["Author"],
         "familyName": "Jones",
         "givenName": "Matt",
     } == get_one_author(authors[0])
@@ -30,6 +46,7 @@ def test_one_author():
     assert {
         "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
     } == get_one_author(
@@ -37,6 +54,7 @@ def test_one_author():
             "name": "Fenner, Martin",
             "givenName": "Martin",
             "familyName": "Fenner",
+            "contributorRoles": ["Author"],
             "nameIdentifiers": [
                 {
                     "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
@@ -49,9 +67,10 @@ def test_one_author():
     # has name in sort-order' do
     assert {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Benjamin",
         "familyName": "Ollomo",
-        "affiliation": [
+        "affiliations": [
             {
                 "id": "https://ror.org/01wyqb997",
                 "name": "Centre International de Recherches Médicales de Franceville",
@@ -62,7 +81,7 @@ def test_one_author():
             "name": "Ollomo, Benjamin",
             "givenName": "Benjamin",
             "familyName": "Ollomo",
-            "affiliation": [
+            "affiliations": [
                 {
                     "name": "Centre International de Recherches Médicales de Franceville",
                     "affiliationIdentifier": "01wyqb997",
@@ -73,25 +92,37 @@ def test_one_author():
         }
     )
     # has name in Thai
-    assert ({"name": "กัญจนา แซ่เตียว"}) == get_one_author(
-        {"name": "กัญจนา แซ่เตียว", "affiliation": [], "nameIdentifiers": []}
+    assert (
+        {
+            "givenName": "กัญจนา",
+            "familyName": "แซ่เตียว",
+            "contributorRoles": ["Author"],
+            "type": "Person",
+        }
+    ) == get_one_author(
+        {"name": "กัญจนา แซ่เตียว", "affiliations": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
-        "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)"
+        "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
+        "type": "Organization",
+        "contributorRoles": ["Author"],
     } == get_one_author(
         {
             "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
-            "affiliation": [],
+            "affiliations": [],
             "nameIdentifiers": [],
         }
     )
     # 'hyper-authorship'
-    assert {"name": "ALICE Collaboration"} == get_one_author(
+    assert {
+        "contributorRoles": ["Author"],
+        "type": "Organization",
+        "name": "ALICE Collaboration",
+    } == get_one_author(
         {
             "name": "ALICE Collaboration",
-            "type": "Organization",
-            "affiliation": [],
+            "affiliations": [],
             "id": None,
         }
     )
@@ -100,7 +131,6 @@ def test_one_author():
         "email": "info@ucop.edu",
         "creatorName": {
             "#text": "University of California, Santa Barbara",
-            "type": "Organization",
         },
         "role": {
             "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
@@ -110,10 +140,11 @@ def test_one_author():
     assert {
         "name": "University of California, Santa Barbara",
         "type": "Organization",
+        "contributorRoles": ["Author"],
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
             }
@@ -121,12 +152,14 @@ def test_one_author():
         "familyName": "Sankar",
         "givenName": "Martial",
         "type": "Person",
+        "contributorRoles": ["Author"],
     } == get_one_author(
         {
             "given": "Martial",
             "family": "Sankar",
             "sequence": "first",
-            "affiliation": [
+            "contributorRoles": ["Author"],
+            "affiliations": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
                 }
@@ -136,19 +169,21 @@ def test_one_author():
     # multiple name_identifier
     assert {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Thomas",
         "familyName": "Dubos",
-        "affiliation": [
+        "affiliations": [
             {"name": "École Polytechnique\nLaboratoire de Météorologie Dynamique"}
         ],
-        "id": "http://isni.org/isni/0000 0003 5752 6882",
+        "id": "https://isni.org/isni/0000000357526882",
     } == get_one_author(
         {
             "name": "Dubos, Thomas",
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Thomas",
             "familyName": "Dubos",
-            "affiliation": [
+            "affiliations": [
                 "École Polytechnique\nLaboratoire de Météorologie Dynamique"
             ],
             "nameIdentifiers": [
@@ -166,13 +201,14 @@ def test_one_author():
     # only familyName and givenName
     assert {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Emma",
         "familyName": "Johansson",
     } == get_one_author(
         {
             "givenName": "Emma",
             "familyName": "Johansson",
-            "affiliation": [],
+            "affiliations": [],
             "nameIdentifiers": [],
         }
     )
@@ -183,6 +219,9 @@ def test_cleanup_author():
     assert "John Smith" == cleanup_author("John Smith")
     assert "Smith, John" == cleanup_author("Smith, John")
     assert "Smith, J." == cleanup_author("Smith, J.")
+    assert None == cleanup_author(
+        ",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon"
+    )
 
 
 def test_authors_as_string():
@@ -190,12 +229,14 @@ def test_authors_as_string():
     authors = [
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "id": "http://orcid.org/0000-0003-0077-4738",
             "givenName": "Matt",
             "familyName": "Jones",
         },
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "id": "http://orcid.org/0000-0002-2192-403X",
             "givenName": "Peter",
             "familyName": "Slaughter",
@@ -223,21 +264,56 @@ def test_get_authors():
             "family": "Jones",
         },
         {"given": "Peter", "family": "Slaughter"},
-        {"name": "University of California, Santa Barbara"},
+        {
+            "name": "University of California, Santa Barbara",
+        },
     ]
     assert [
         {
             "id": "https://orcid.org/0000-0003-0077-4738",
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Matt",
             "familyName": "Jones",
         },
         {
             "type": "Person",
+            "contributorRoles": ["Author"],
             "givenName": "Peter",
             "familyName": "Slaughter",
         },
-        {"name": "University of California, Santa Barbara"},
+        {
+            "name": "University of California, Santa Barbara",
+            "type": "Organization",
+            "contributorRoles": ["Author"],
+        },
+    ] == get_authors(authors)
+    authors = [
+        {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "name": "Matt Jones",
+            "affiliations": [
+                {
+                    "name": "University of California, Santa Barbara",
+                    "id": "https://ror.org/02t274463",
+                }
+            ],
+        }
+    ]
+    assert [
+        {
+            "affiliations": [
+                {
+                    "name": "University of California, Santa Barbara",
+                    "id": "https://ror.org/02t274463",
+                }
+            ],
+            "contributorRoles": ["Author"],
+            "familyName": "Jones",
+            "givenName": "Matt",
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "type": "Person",
+        }
     ] == get_authors(authors)
 
 
@@ -265,3 +341,28 @@ def test_get_affiliations():
             }
         ]
     )
+    assert [
+        {
+            "name": "University of California, Santa Barbara",
+            "id": "https://ror.org/02t274463",
+        }
+    ] == get_affiliations(
+        [
+            {
+                "name": "University of California, Santa Barbara",
+                "id": "https://ror.org/02t274463",
+            }
+        ]
+    )
+
+
+def test_is_personal_name():
+    """is personal name"""
+    assert True is is_personal_name("Fenner, Martin")
+    assert False is is_personal_name("University of California, Santa Barbara")
+    assert False is is_personal_name("ALICE Collaboration")
+    assert True is is_personal_name("กัญจนา แซ่เตียว")
+    assert False is is_personal_name(
+        "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
+    )
+    assert False is is_personal_name("Research Graph")

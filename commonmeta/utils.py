@@ -1,17 +1,23 @@
 """Utils module for commonmeta-py"""
+
 import os
-import json
+import orjson as json
 import re
+import time
 from typing import Optional
 from urllib.parse import urlparse
 import yaml
+from furl import furl
 import bibtexparser
 from bs4 import BeautifulSoup
-
 from pydash import py_
+import base32_lib as base32
+import pycountry
 
-from .base_utils import wrap, compact
-from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi
+from .base_utils import wrap, compact, parse_attributes
+from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
+from .constants import DATACITE_CONTRIBUTOR_TYPES
+
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -71,6 +77,57 @@ UNKNOWN_INFORMATION = {
 HTTP_SCHEME = "http://"
 HTTPS_SCHEME = "https://"
 
+FOS_MAPPINGS = {
+    "Natural sciences": "http://www.oecd.org/science/inno/38235147.pdf?1",
+    "Mathematics": "http://www.oecd.org/science/inno/38235147.pdf?1.1",
+    "Computer and information sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+    "Physical sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.3",
+    "Chemical sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.4",
+    "Earth and related environmental sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.5",
+    "Biological sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.6",
+    "Other natural sciences": "http://www.oecd.org/science/inno/38235147.pdf?1.7",
+    "Engineering and technology": "http://www.oecd.org/science/inno/38235147.pdf?2",
+    "Civil engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.1",
+    "Electrical engineering, electronic engineering, information engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.2",
+    "Mechanical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.3",
+    "Chemical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.4",
+    "Materials engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.5",
+    "Medical engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.6",
+    "Environmental engineering": "http://www.oecd.org/science/inno/38235147.pdf?2.7",
+    "Environmental biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?2.8",
+    "Industrial biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?2.9",
+    "Nano technology": "http://www.oecd.org/science/inno/38235147.pdf?2.10",
+    "Other engineering and technologies": "http://www.oecd.org/science/inno/38235147.pdf?2.11",
+    "Medical and health sciences": "http://www.oecd.org/science/inno/38235147.pdf?3",
+    "Basic medicine": "http://www.oecd.org/science/inno/38235147.pdf?3.1",
+    "Clinical medicine": "http://www.oecd.org/science/inno/38235147.pdf?3.2",
+    "Health sciences": "http://www.oecd.org/science/inno/38235147.pdf?3.3",
+    "Health biotechnology": "http://www.oecd.org/science/inno/38235147.pdf?3.4",
+    "Other medical sciences": "http://www.oecd.org/science/inno/38235147.pdf?3.5",
+    "Agricultural sciences": "http://www.oecd.org/science/inno/38235147.pdf?4",
+    "Agriculture, forestry, and fisheries": "http://www.oecd.org/science/inno/38235147.pdf?4.1",
+    "Animal and dairy science": "http://www.oecd.org/science/inno/38235147",
+    "Veterinary science": "http://www.oecd.org/science/inno/38235147",
+    "Agricultural biotechnology": "http://www.oecd.org/science/inno/38235147",
+    "Other agricultural sciences": "http://www.oecd.org/science/inno/38235147",
+    "Social science": "http://www.oecd.org/science/inno/38235147.pdf?5",
+    "Psychology": "http://www.oecd.org/science/inno/38235147.pdf?5.1",
+    "Economics and business": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
+    "Educational sciences": "http://www.oecd.org/science/inno/38235147.pdf?5.3",
+    "Sociology": "http://www.oecd.org/science/inno/38235147.pdf?5.4",
+    "Law": "http://www.oecd.org/science/inno/38235147.pdf?5.5",
+    "Political science": "http://www.oecd.org/science/inno/38235147.pdf?5.6",
+    "Social and economic geography": "http://www.oecd.org/science/inno/38235147.pdf?5.7",
+    "Media and communications": "http://www.oecd.org/science/inno/38235147.pdf?5.8",
+    "Other social sciences": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
+    "Humanities": "http://www.oecd.org/science/inno/38235147.pdf?6",
+    "History and archaeology": "http://www.oecd.org/science/inno/38235147.pdf?6.1",
+    "Languages and literature": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
+    "Philosophy, ethics and religion": "http://www.oecd.org/science/inno/38235147.pdf?6.3",
+    "Arts (arts, history of arts, performing arts, music)": "http://www.oecd.org/science/inno/38235147.pdf?6.4",
+    "Other humanities": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
+}
+
 
 def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     """Check for valid DOI or HTTP(S) URL"""
@@ -104,15 +161,15 @@ def normalize_ids(ids: list, relation_type=None) -> list:
     """Normalize identifiers"""
 
     def format_id(i):
-        if i.get("@id", None):
-            idn = normalize_id(i["@id"])
+        if i.get("id", None):
+            idn = normalize_id(i["id"])
             doi = doi_from_url(idn)
             related_identifier_type = "DOI" if doi is not None else "URL"
             idn = doi or idn
-            type_ = (
-                i.get("@type")
-                if isinstance(i.get("@type", None), str)
-                else wrap(i.get("@type", None))[0]
+            _type = (
+                i.get("type")
+                if isinstance(i.get("type", None), str)
+                else wrap(i.get("type", None))[0]
             )
             return compact(
                 {
@@ -147,6 +204,47 @@ def normalize_cc_url(url: Optional[str]):
     return NORMALIZED_LICENSES.get(url, url)
 
 
+def normalize_ror(ror: Optional[str]) -> Optional[str]:
+    """Normalize ROR ID"""
+    ror = validate_ror(ror)
+    if ror is None:
+        return None
+
+    # turn ROR ID into URL
+    return "https://ror.org/" + ror
+
+
+def validate_ror(ror: Optional[str]) -> Optional[str]:
+    """Validate ROR"""
+    if ror is None or not isinstance(ror, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://ror\.org/)?([0-9a-z]{7}\d{2})\Z",
+        ror,
+    )
+    if match is None:
+        return None
+    ror = match.group(1).replace(" ", "-")
+    return ror
+
+
+def validate_url(url: str) -> Optional[str]:
+    if url is None:
+        return None
+    elif validate_doi(url):
+        return "DOI"
+    f = furl(url)
+    if f and f.scheme in ["http", "https"]:
+        return "URL"
+    match = re.search(
+        r"\A(ISSN|eISSN) (\d{4}-\d{3}[0-9X]+)\Z",
+        url,
+    )
+    if match is not None:
+        return "ISSN"
+    return None
+
+
 def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     """Normalize ORCID"""
     if orcid is None or not isinstance(orcid, str):
@@ -169,6 +267,78 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
         return None
     orcid = match.group(1).replace(" ", "-")
     return orcid
+
+
+def validate_isni(isni: Optional[str]) -> Optional[str]:
+    """Validate ISNI"""
+    if isni is None or not isinstance(isni, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://isni\.org/isni/)?(\d{4}([ -])?\d{4}([ -])?\d{4}([ -])?\d{3}[0-9X]+)\Z",
+        isni,
+    )
+    if match is None:
+        return None
+    isni = match.group(1).replace(" ", "")
+    return isni
+
+
+def normalize_isni(isni: Optional[str]) -> Optional[str]:
+    """Normalize ISNI"""
+    if isni is None or not isinstance(isni, str):
+        return None
+    isni = validate_isni(isni)
+    if isni is None:
+        return None
+    return "https://isni.org/isni/" + isni
+
+
+def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
+    """Normalize name identifier"""
+    if ni is None:
+        return None
+    if isinstance(ni, str):
+        return
+    if isinstance(ni, dict):
+        return format_name_identifier(ni)
+    if isinstance(ni, list):
+        return next(
+            (format_name_identifier(i) for i in wrap(ni.get("nameIdentifiers", None))),
+            None,
+        )
+    return None
+
+
+def format_name_identifier(ni):
+    """format_name_identifier"""
+    if ni is None:
+        return None
+    elif isinstance(ni, str):
+        return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
+    name_identifier = (
+        ni.get("nameIdentifier", None)
+        or ni.get("identifier", None)
+        or ni.get("publisherIdentifier", None)
+    )
+    name_identifier_scheme = (
+        ni.get("nameIdentifierScheme", None)
+        or ni.get("scheme", None)
+        or ni.get("publisherIdentifierScheme", None)
+    )
+    scheme_uri = ni.get("schemeURI", None) or ni.get("schemeUri", None)
+    if name_identifier is None:
+        return None
+    elif name_identifier_scheme in ["ORCID", "orcid"]:
+        return normalize_orcid(name_identifier)
+    elif name_identifier_scheme == "ISNI":
+        return normalize_isni(name_identifier)
+    elif name_identifier_scheme == "ROR":
+        return normalize_ror(name_identifier)
+    elif validate_url(name_identifier) == "URL":
+        return name_identifier
+    elif isinstance(name_identifier, str) and scheme_uri is not None:
+        return scheme_uri + name_identifier
+    return None
 
 
 def normalize_issn(string, **kwargs):
@@ -201,8 +371,9 @@ def dict_to_spdx(dct: dict) -> dict:
     file_path = os.path.join(
         os.path.dirname(__file__), "resources", "spdx", "licenses.json"
     )
-    with open(file_path, encoding="utf-8") as json_file:
-        spdx = json.load(json_file).get("licenses")
+    with open(file_path, encoding="utf-8") as file:
+        string = file.read()
+        spdx = json.loads(string).get("licenses")
     license_ = next(
         (
             lic
@@ -213,7 +384,7 @@ def dict_to_spdx(dct: dict) -> dict:
         None,
     )
     if license_ is None:
-        return dct
+        return compact(dct)
     #   license = spdx.find do |l|
     #     l['licenseId'].casecmp?(hsh['rightsIdentifier']) || l['seeAlso'].first == normalize_cc_url(hsh['rightsUri']) || l['name'] == hsh['rights'] || l['seeAlso'].first == normalize_cc_url(hsh['rights'])
     #   end
@@ -237,21 +408,129 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
+def from_json_feed(elements: list) -> list:
+    """Convert from JSON Feed elements"""
+
+    def format_element(element):
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        mapping = {"url": "id"}
+        for key, value in mapping.items():
+            if element.get(key, None) is not None:
+                element[value] = element.pop(key)
+        return element
+
+    return [format_element(i) for i in elements]
+
+
+def from_inveniordm(elements: list) -> list:
+    """Convert from inveniordm elements"""
+
+    def format_element(element):
+        if "person_or_org" in element.keys():
+            element = element["person_or_org"]
+
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        mapping = {"orcid": "ORCID"}
+        for key, value in mapping.items():
+            if element.get(key, None) is not None:
+                element[value] = element.pop(key)
+        return element
+
+    return [format_element(i) for i in elements]
+
+
+def to_inveniordm(elements: list) -> list:
+    """Convert elements to InvenioRDM"""
+
+    def format_element(i):
+        """format element"""
+        element = {}
+        element["familyName"] = i.get("familyName", None)
+        element["givenName"] = i.get("givenName", None)
+        element["name"] = i.get("name", None)
+        element["type"] = i.get("type", None)
+        element["ORCID"] = i.get("ORCID", None)
+        return compact(element)
+
+    return [format_element(i) for i in elements]
+
+
+def from_crossref_xml(elements: list) -> list:
+    """Convert from crossref_xml elements"""
+
+    def format_affiliation(element):
+        """Format affiliation"""
+        return {"name": element}
+
+    def format_element(element):
+        """format element"""
+        if element.get("name", None) is not None:
+            element["type"] = "Organization"
+            element["name"] = element.get("name")
+        else:
+            element["type"] = "Person"
+        element["givenName"] = element.get("given_name", None)
+        element["familyName"] = element.get("surname", None)
+        element["contributorType"] = element.get(
+            "contributor_role", "author"
+        ).capitalize()
+        if element.get("ORCID", None) is not None:
+            orcid = parse_attributes(element.get("ORCID"))
+            element["ORCID"] = normalize_orcid(orcid)
+        element = py_.omit(
+            element, "given_name", "surname", "sequence", "contributor_role"
+        )
+        return compact(element)
+
+    return [format_element(i) for i in elements]
+
+
+def from_kbase(elements: list) -> list:
+    """Convert from kbase elements"""
+
+    def map_contributor_role(role):
+        if role.split(":")[0] == "CRediT":
+            return py_.pascal_case(role.split(":")[1])
+        elif role.split(":")[0] == "DataCite":
+            return DATACITE_CONTRIBUTOR_TYPES.get(role.split(":")[1], "Other")
+        else:
+            return role.split(":")[1]
+
+    def format_element(element):
+        """format element"""
+        if not isinstance(element, dict):
+            return None
+        if element.get("contributor_id", None) is not None:
+            element["ORCID"] = from_curie(element["contributor_id"])
+        element["contributor_roles"] = [
+            map_contributor_role(i)
+            for i in wrap(element.get("contributor_roles", None))
+        ]
+        element = py_.omit(element, "contributor_id")
+        return compact(element)
+
+    return [format_element(i) for i in elements]
+
+
 def from_csl(elements: list) -> list:
     """Convert from csl elements"""
 
     def format_element(element):
         """format element"""
         if element.get("literal", None) is not None:
-            element["@type"] = "Organization"
+            element["type"] = "Organization"
             element["name"] = element["literal"]
         elif element.get("name", None) is not None:
-            element["@type"] = "Organization"
+            element["type"] = "Organization"
             element["name"] = element.get("name")
         else:
-            element["@type"] = "Person"
+            element["type"] = "Person"
             element["name"] = " ".join(
-                [element.get("given", None), element.get("family", None)]
+                [element.get("given", ""), element.get("family", "")]
             )
         element["givenName"] = element.get("given", None)
         element["familyName"] = element.get("family", None)
@@ -278,18 +557,24 @@ def to_csl(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def to_ris(elements: list) -> list:
+def to_ris(elements: Optional[list]) -> list:
     """Convert element to RIS"""
+    if elements is None:
+        return []
 
     def format_element(i):
         """format element"""
-        if i.get("familyName", None):
+        if i.get("familyName", None) and i.get("givenName", None):
             element = ", ".join([i["familyName"], i.get("givenName", None)])
         else:
             element = i.get("name", None)
         return element
 
-    return [format_element(i) for i in elements]
+    return [
+        format_element(i)
+        for i in elements
+        if i.get("name", None) or i.get("familyName", None)
+    ]
 
 
 def to_schema_org(element: Optional[dict]) -> Optional[dict]:
@@ -316,7 +601,7 @@ def to_schema_org_creators(elements: list) -> list():
             element["@type"] = "Person"
         else:
             element["@type"] = "Organization"
-        element = py_.omit(element, "type")
+        element = py_.omit(element, "type", "contributorRoles")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -375,12 +660,14 @@ def to_schema_org_relations(related_items: list, relation_type=None):
     return [format_element(i) for i in related_items]
 
 
-def find_from_format(pid=None, string=None, ext=None, filename=None):
+def find_from_format(pid=None, string=None, ext=None, dct=None, filename=None):
     """Find reader from format"""
     if pid is not None:
         return find_from_format_by_id(pid)
     if string is not None and ext is not None:
         return find_from_format_by_ext(ext)
+    if dct is not None:
+        return find_from_format_by_dict(dct)
     if string is not None:
         return find_from_format_by_string(string)
     if filename is not None:
@@ -405,6 +692,10 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         return "codemeta"
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
+    if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
+        return "json_feed_item"
+    if re.match(r"\Ahttps:/(/)(.+)/api/records/(.+)\Z", pid) is not None:
+        return "inveniordm"
     return "schema_org"
 
 
@@ -417,18 +708,53 @@ def find_from_format_by_ext(ext: str) -> Optional[str]:
     return None
 
 
+def find_from_format_by_dict(dct: dict) -> Optional[str]:
+    if dct is None or not isinstance(dct, dict):
+        return None
+    """Find reader from format by dict"""
+    if dct.get("schema_version", "").startswith("https://commonmeta.org"):
+        return "commonmeta"
+    if dct.get("@context", None) == "http://schema.org":
+        return "schema_org"
+    if dct.get("@context", None) in [
+        "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
+    ]:
+        return "codemeta"
+    if dct.get("guid", None) is not None:
+        return "json_feed_item"
+    if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
+        return "datacite"
+    if dct.get("source", None) == "Crossref":
+        return "crossref"
+    if py_.get(dct, "issued.date-parts") is not None:
+        return "csl"
+    if py_.get(dct, "conceptdoi") is not None:
+        return "inveniordm"
+    if py_.get(dct, "credit_metadata") is not None:
+        return "kbase"
+    return None
+
+
 def find_from_format_by_string(string: str) -> Optional[str]:
     """Find reader from format by string"""
     if string is None:
         return None
     try:
         data = json.loads(string)
+        if not isinstance(data, dict):
+            raise TypeError
+        if data.get("schema", "").startswith("https://commonmeta.org"):
+            return "commonmeta"
+        if data.get("items", None) is not None:
+            data = data["items"][0]
         if data.get("@context", None) == "http://schema.org":
             return "schema_org"
         if data.get("@context", None) in [
             "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
         ]:
             return "codemeta"
+        if data.get("guid", None) is not None:
+            return "json_feed_item"
         if data.get("schemaVersion", "").startswith(
             "http://datacite.org/schema/kernel"
         ):
@@ -437,7 +763,11 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "crossref"
         if py_.get(data, "issued.date-parts") is not None:
             return "csl"
-    except json.JSONDecodeError:
+        if py_.get(data, "conceptdoi") is not None:
+            return "inveniordm"
+        if py_.get(data, "credit_metadata") is not None:
+            return "kbase"
+    except (TypeError, json.JSONDecodeError):
         pass
     try:
         data = BeautifulSoup(string, "xml")
@@ -445,6 +775,16 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "crossref_xml"
         if data.find("resource"):
             return "datacite_xml"
+    except ValueError:
+        pass
+    try:
+        data = BeautifulSoup(string, "html.parser")
+        if (
+            data.find("script", type="application/ld+json")
+            or data.find("meta", {"name": "citation_doi"})
+            or data.find("meta", {"name": "dc.identifier"})
+        ):
+            return "schema_org"
     except ValueError:
         pass
     try:
@@ -461,14 +801,6 @@ def find_from_format_by_string(string: str) -> Optional[str]:
 
     # no format found
     return None
-
-    # if Maremma.from_xml(string).to_h.dig('crossref_result', 'query_result', 'body', 'query',
-    #                                        'doi_record', 'crossref').present?
-    #     'crossref_xml'
-    #   elsif Nokogiri::XML(string, None, 'UTF-8', &:noblanks).collect_namespaces.find do |_k, v|
-    #           v.start_with?('http://datacite.org/schema/kernel')
-    # #         end
-    #     'datacite_xml'
 
 
 def find_from_format_by_filename(filename):
@@ -493,6 +825,8 @@ def from_schema_org_creators(elements: list) -> list:
     def format_element(i):
         """format element"""
         element = {}
+        if isinstance(i, str):
+            return {"name": i}
         if urlparse(i.get("@id", None)).hostname == "orcid.org":
             element["id"] = i.get("@id")
             element["type"] = "Person"
@@ -538,7 +872,9 @@ def from_schema_org_creators(elements: list) -> list:
             element["familyName"] = i.get("familyName", None)
             element["type"] = "Person"
         # parentheses around the last word indicate an organization
-        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith("("):
+        elif length > 1 and not str(i["name"]).rsplit(" ", maxsplit=1)[-1].startswith(
+            "("
+        ):
             element["givenName"] = " ".join(str(i["name"]).split(" ")[0 : length - 1])
             element["familyName"] = str(i["name"]).rsplit(" ", maxsplit=1)[1:]
         if not element.get("familyName", None):
@@ -551,7 +887,10 @@ def from_schema_org_creators(elements: list) -> list:
 
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in ["ror.org", "isni.org"]:
+        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in [
+            "ror.org",
+            "isni.org",
+        ]:
             element["affiliation"] = {
                 "id": i["affiliation"]["@id"],
                 "type": "Organization",
@@ -694,42 +1033,107 @@ def subjects_as_string(subjects):
 
 def name_to_fos(name: str) -> Optional[dict]:
     """Convert name to Fields of Science (OECD) subject"""
-    #   # first find subject in Fields of Science (OECD)
-    #   fos = JSON.load(File.read(File.expand_path('../../resources/oecd/fos-mappings.json',
-    #                                              __dir__))).fetch('fosFields')
 
-    #   subject = fos.find { |l| l['fosLabel'] == name || 'FOS: ' + l['fosLabel'] == name }
+    subject = name.strip()
+    fos_subject = FOS_MAPPINGS.get(name, None)
+    if fos_subject is not None:
+        return {"subject": f"FOS: {subject}"}
+    return {"subject": subject}
 
-    #   if subject
-    #     return [{
-    #       'subject': sanitize(name).downcase
-    #     },
-    #             {
-    #               'subject': 'FOS: ' + subject['fosLabel'],
-    #               'subjectScheme': 'Fields of Science and Technology (FOS)',
-    #               'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
-    #             }]
-    #   end
 
-    #   # if not found, look in Fields of Research (Australian and New Zealand Standard Research Classification)
-    #   # and map to Fields of Science. Add an extra entry for the latter
-    #   fores = JSON.load(File.read(File.expand_path('../../resources/oecd/for-mappings.json',
-    #                                                __dir__)))
-    #   for_fields = fores.fetch('forFields')
-    #   for_disciplines = fores.fetch('forDisciplines')
+def encode_doi(prefix):
+    """Generate a DOI using the DOI prefix and a random base32 suffix"""
+    suffix = base32.generate(length=10, split_every=5, checksum=True)
+    return f"https://doi.org/{prefix}/{suffix}"
 
-    #   subject = for_fields.find { |l| l['forLabel'] == name } ||
-    #             for_disciplines.find { |l| l['forLabel'] == name }
 
-    #   if subject
-    #     [{
-    #       'subject': sanitize(name).downcase
-    #     },
-    #      {
-    #        'subject': 'FOS: ' + subject['fosLabel'],
-    #        'subjectScheme': 'Fields of Science and Technology (FOS)',
-    #        'schemeUri': 'http://www.oecd.org/science/inno/38235147.pdf'
-    #      }]
-    #   else
+def decode_doi(doi: str) -> int:
+    """Decode a DOI to a number"""
+    suffix = doi.split("/", maxsplit=5)[-1]
+    return base32.decode(suffix)
 
-    return {"subject": name.lower()}
+
+def from_curie(id: Optional[str]) -> Optional[str]:
+    """from CURIE"""
+    if id is None:
+        return None
+    _type = id.split(":")[0]
+    if _type == "DOI":
+        return doi_as_url(id.split(":")[1])
+    elif _type == "ROR":
+        return "https://ror.org/" + id.split(":")[1]
+    elif _type == "ISNI":
+        return "https://isni.org/isni/" + id.split(":")[1]
+    elif _type == "ORCID":
+        return normalize_orcid(id.split(":")[1])
+    elif _type == "URL":
+        return normalize_url(id.split(":")[1])
+    elif _type == "JDP":
+        return id.split(":")[1]
+    # TODO: resolvable url for other identifier types
+    return None
+
+
+def issn_as_url(issn: str) -> Optional[str]:
+    """ISSN as URL"""
+    if issn is None:
+        return None
+    return f"https://portal.issn.org/resource/ISSN/{issn}"
+
+
+def get_language(lang: str, format: str = "alpha_2") -> Optional[str]:
+    """Provide a language string based on ISO 639, with either a name in English,
+    ISO 639-1, or ISO 639-3 code as input. Optionally format as alpha_2 (defaul),
+    alpha_3, or name.
+    """
+    if not lang:
+        return None
+    if len(lang) == 2:
+        language = pycountry.languages.get(alpha_2=lang)
+    elif len(lang) == 3:
+        language = pycountry.languages.get(alpha_3=lang)
+    else:
+        language = pycountry.languages.get(name=lang)
+
+    if language is None:
+        return None
+    elif format == "name":
+        return language.name
+    elif format == "alpha_3":
+        return language.alpha_3
+
+    else:
+        return language.alpha_2
+
+
+def start_case(content: str) -> str:
+    """Capitalize first letter of each word without lowercasing the rest"""
+    words = content.split(" ")
+    content = " ".join([word[0].upper() + word[1:] for word in words])
+    return content
+
+
+def timer_func(func):
+    def function_timer(*args, **kwargs):
+        start = time.time()
+        value = func(*args, **kwargs)
+        end = time.time()
+        runtime = end - start
+        msg = "{func} took {time} seconds to complete its execution."
+        print(msg.format(func=func.__name__, time=runtime))
+        return value
+
+    return function_timer
+
+
+def id_from_url(url: Optional[str]) -> Optional[str]:
+    """Return a ID from a URL"""
+    if url is None:
+        return None
+
+    f = furl(url)
+    # check for allowed scheme if string is a URL
+    if f.host is not None and f.scheme not in ["http", "https", "ftp"]:
+        return None
+
+    return str(f.path).strip("/")

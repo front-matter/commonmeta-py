@@ -1,0 +1,101 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - zenodo.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://zenodo.org/api/records/3871094
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      cache-control:
+      - private
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - application/json
+      date:
+      - Fri, 27 Sep 2024 16:12:55 GMT
+      etag:
+      - W/"5"
+      link:
+      - <https://zenodo.org/api/records/3871094> ; rel="linkset" ; type="application/linkset+json"
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '40'
+      server:
+      - nginx
+      set-cookie:
+      - 5569e5a730cade8ff2b54f1e815f3670=6ac7f53bbcbbff45401f2b5fe4729e28; path=/;
+        HttpOnly; Secure; SameSite=None
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      - max-age=15768000
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '133'
+      x-ratelimit-remaining:
+      - '126'
+      x-ratelimit-reset:
+      - '1727453616'
+      x-request-id:
+      - 2e1f1ea4c2e895557222c8c9ad1c96da
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

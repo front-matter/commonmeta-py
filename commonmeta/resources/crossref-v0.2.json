@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://data.crossref.org/schemas/crossref_v0.2.json",
+  "title": "Crossref v0.2",
+  "description": "Unofficial JSON representation of the Crossref content registration schema.",
+  "additionalProperties": true,
+  "type": "object",
+  "properties": {
+    "doi": {
+      "description": "The digital object identifier (DOI) of the content.",
+      "type": "string"
+    },
+    "type": {
+      "description": "Content Type describes the type of content registered with Crossref",
+      "enum": [
+        "BookChapter",
+        "BookPart",
+        "BookSection",
+        "BookSeries",
+        "BookSet",
+        "BookTrack",
+        "Book",
+        "Component",
+        "Database",
+        "Dataset",
+        "Dissertation",
+        "EditedBook",
+        "Entry",
+        "Grant",
+        "JournalArticle",
+        "JournalIssue",
+        "JournalVolume",
+        "Journal",
+        "Monograph",
+        "Other",
+        "PeerReview",
+        "PostedContent",
+        "ProceedingsArticle",
+        "ProceedingsSeries",
+        "Proceedings",
+        "ReferenceBook",
+        "ReferenceEntry",
+        "ReportComponent",
+        "ReportSeries",
+        "Report",
+        "Standard"
+      ]
+    },
+    "url": {
+      "description": "The URL for the content.",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "doi",
+    "type",
+    "url"
+  ]
+}

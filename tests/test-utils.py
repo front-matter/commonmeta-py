@@ -1,16 +1,23 @@
 # pylint: disable=invalid-name
 """Test utils"""
+
 from os import path
+import re
 import pytest  # noqa: F401
 
 from commonmeta.utils import (
     dict_to_spdx,
     normalize_orcid,
     validate_orcid,
+    normalize_ror,
+    validate_isni,
+    normalize_isni,
+    validate_ror,
     normalize_id,
     normalize_ids,
     normalize_cc_url,
     normalize_issn,
+    issn_as_url,
     from_csl,
     find_from_format_by_id,
     find_from_format_by_string,
@@ -30,21 +37,39 @@ from commonmeta.utils import (
     github_as_codemeta_url,
     github_as_cff_url,
     github_as_repo_url,
+    encode_doi,
+    decode_doi,
+    from_curie,
+    get_language,
+    validate_url,
+    format_name_identifier,
+    id_from_url,
 )
 from commonmeta.base_utils import wrap
 
 
 def test_dict_to_spdx_id():
     "dict_to_spdx id"
-    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}== dict_to_spdx({"id": "CC-BY-4.0"})
-    assert {'id': 'Apache-2.0', 'url': 'http://www.apache.org/licenses/LICENSE-2.0'} == dict_to_spdx({"id": "Apache-2.0"})
+    assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"id": "CC-BY-4.0"})
+    assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"id": "cc-by-4.0"})
+    assert {
+        "id": "Apache-2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+    } == dict_to_spdx({"id": "Apache-2.0"})
 
 
 def test_dict_to_spdx_url():
     "dict_to_spdx url"
-    assert {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'} == dict_to_spdx(
-        {"url": "https://creativecommons.org/licenses/by/4.0/legalcode"}
-    )
+    assert {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    } == dict_to_spdx({"url": "https://creativecommons.org/licenses/by/4.0/legalcode"})
 
 
 def test_dict_to_spdx_not_found():
@@ -85,6 +110,24 @@ def test_validate_orcid():
     assert None is validate_orcid(None)
 
 
+def test_validate_ror():
+    "validate_ror"
+    assert "0342dzm54" == validate_ror("https://ror.org/0342dzm54")
+    # None
+    assert None is validate_ror(None)
+
+
+def test_validate_isni():
+    "validate_isni"
+    assert "0000000357526882" == validate_isni("https://isni.org/isni/0000000357526882")
+    # http
+    assert "0000000357526882" == validate_isni("http://isni.org/isni/0000000357526882")
+    # only isni id
+    assert "0000000357526882" == validate_isni("0000000357526882")
+    # None
+    assert None is validate_isni(None)
+
+
 def test_normalize_orcid():
     "normalize_orcid"
     assert "https://orcid.org/0000-0002-2590-225X" == normalize_orcid(
@@ -102,6 +145,18 @@ def test_normalize_orcid():
     assert None is normalize_orcid("0002-2590-225X")
     # None
     assert None is normalize_orcid(None)
+
+
+def test_normalize_ror():
+    "normalize_ror"
+    assert "https://ror.org/0342dzm54" == normalize_ror("http://ror.org/0342dzm54")
+
+
+def test_normalize_isni():
+    "normalize_isni"
+    assert "https://isni.org/isni/0000000357526882" == normalize_isni(
+        "http://isni.org/isni/0000 0003 5752 6882"
+    )
 
 
 def test_normalize_id():
@@ -165,8 +220,8 @@ def test_normalize_ids():
     "normalize_ids"
     # doi
     ids = [
-        {"@type": "CreativeWork", "@id": "https://doi.org/10.5438/0012"},
-        {"@type": "CreativeWork", "@id": "https://doi.org/10.5438/55E5-T5C0"},
+        {"type": "CreativeWork", "id": "https://doi.org/10.5438/0012"},
+        {"type": "CreativeWork", "id": "https://doi.org/10.5438/55E5-T5C0"},
     ]
     response = [
         {
@@ -182,8 +237,8 @@ def test_normalize_ids():
     # url
     ids = [
         {
-            "@type": "CreativeWork",
-            "@id": "https://blog.datacite.org/eating-your-own-dog-food/",
+            "type": "CreativeWork",
+            "id": "https://blog.datacite.org/eating-your-own-dog-food/",
         }
     ]
     response = [
@@ -234,11 +289,17 @@ def test_normalize_issn():
     assert "2146-8427" == normalize_issn(string)
 
 
+def test_issn_as_url():
+    """issn as url"""
+    assert "https://portal.issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
+    assert None is issn_as_url(None)
+
+
 def test_from_csl():
     "from_csl"
     assert [
         {
-            "@type": "Person",
+            "type": "Person",
             "affiliation": [
                 {
                     "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
@@ -264,7 +325,7 @@ def test_from_csl():
     )
     assert [
         {
-            "@type": "Organization",
+            "type": "Organization",
             "name": "University of Lausanne",
         }
     ] == from_csl(
@@ -277,7 +338,7 @@ def test_from_csl():
     )
     assert [
         {
-            "@type": "Organization",
+            "type": "Organization",
             "name": "University of Lausanne",
         }
     ] == from_csl(
@@ -285,6 +346,23 @@ def test_from_csl():
             {
                 "name": "University of Lausanne",
                 "sequence": "first",
+            }
+        ]
+    )
+    assert [
+        {
+            "affiliation": [],
+            "familyName": "Dana Gertrud Schabo",
+            "name": " Dana Gertrud Schabo",
+            "type": "Person",
+        }
+    ] == from_csl(
+        [
+            {
+                "family": "Dana Gertrud Schabo",
+                "sequence": "first",
+                "affiliation": [],
+                "type": "Person",
             }
         ]
     )
@@ -316,6 +394,10 @@ def test_find_from_format_by_id():
     assert "schema_org" == find_from_format_by_id(
         "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     )
+    # json_feed
+    assert "json_feed_item" == find_from_format_by_id(
+        "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
+    )  # noqa: E501
 
 
 def test_find_from_format_by_filename():
@@ -333,6 +415,16 @@ def test_find_from_format_by_ext():
 
 def test_find_from_format_by_string():
     """find_from_format_by_string"""
+    # commonmeta
+    filepath = path.join(path.dirname(__file__), "fixtures", "commonmeta.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "commonmeta" == find_from_format_by_string(string)
+    # json_feed_item
+    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed_item.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "json_feed_item" == find_from_format_by_string(string)
     # datacite
     filepath = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     with open(filepath, encoding="utf-8") as file:
@@ -383,6 +475,10 @@ def test_find_from_format_by_string():
     with open(filepath, encoding="utf-8") as file:
         string = file.read()
     assert "csl" == find_from_format_by_string(string)
+    filepath = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
+    with open(filepath, encoding="utf-8") as file:
+        string = file.read()
+    assert "json_feed_item" == find_from_format_by_string(string)
     assert None is find_from_format_by_string('{"foo": "bar"}')
     assert None is find_from_format_by_string(None)
 
@@ -428,7 +524,11 @@ def test_from_schema_org_creators():
             "type": "Person",
             "givenName": "Martin",
             "familyName": "Fenner",
-            "affiliation": {"id": "https://ror.org/04wxnsj81", "type": "Organization", "name": "DataCite"},
+            "affiliation": {
+                "id": "https://ror.org/04wxnsj81",
+                "type": "Organization",
+                "name": "DataCite",
+            },
         }
     ]
     # without affiliation
@@ -516,6 +616,7 @@ def test_to_ris():
     organization_authors = [{"name": "University of California, Berkeley"}]
     assert ["Jones, Matt"] == to_ris(authors)
     assert ["University of California, Berkeley"] == to_ris(organization_authors)
+    assert [] == to_ris(None)
 
 
 def test_to_schema_org():
@@ -682,3 +783,107 @@ def test_github_as_repo_url():
     url = "https://github.com/datacite/metadata-reports"
     response = github_as_repo_url(url)
     assert response == "https://github.com/datacite/metadata-reports"
+
+
+def test_encode_doi():
+    """Generate a random DOI"""
+    response = encode_doi("10.5555")
+    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
+
+
+def test_decode_doi():
+    """Extract number from random DOI"""
+    doi = "10.5555/f9zqn-sf065"
+    response = decode_doi(doi)
+    assert response == 538751765283013
+
+
+def test_from_curie():
+    """test_from_curie"""
+    assert "https://doi.org/10.6084/m9.figshare.12644018.v3" == from_curie(
+        "DOI:10.6084/m9.figshare.12644018.v3"
+    )
+    assert "https://ror.org/01znn6x10" == from_curie("ROR:01znn6x10")
+    assert "https://orcid.org/0000-0001-8522-7682" == from_curie(
+        "ORCID:0000-0001-8522-7682"
+    )
+    assert "https://isni.org/isni/0000000121099845" == from_curie(
+        "ISNI:0000000121099845"
+    )
+
+
+def test_id_from_url():
+    """test_id_from_url"""
+    assert "10.6084/m9.figshare.12644018.v3" == id_from_url(
+        "https://doi.org/10.6084/m9.figshare.12644018.v3"
+    )
+    assert "01znn6x10" == id_from_url("https://ror.org/01znn6x10")
+    assert "0000-0001-8522-7682" == id_from_url("https://orcid.org/0000-0001-8522-7682")
+
+
+def test_get_language():
+    """Get language from string"""
+    assert "English" == get_language("en", format="name")
+    assert "Danish" == get_language("dan", format="name")
+    assert "eng" == get_language("English", format="alpha_3")
+    assert "en" == get_language("English", format="alpha_2")
+    assert "en" == get_language("English")
+    assert None is get_language("xyz")
+    assert "tlh" == get_language("Klingon", format="alpha_3")
+
+
+def test_validate_url():
+    """Check whether URL is DOI, URL or ISSN"""
+    assert "DOI" == validate_url("https://doi.org/10.5438/0000-00ss")
+    assert "URL" == validate_url("https://blog.datacite.org/eating-your-own-dog-food")
+    assert "ISSN" == validate_url("ISSN 2050-084X")
+    assert None is validate_url("eating-your-own-dog-food")
+
+
+def test_format_name_identifier():
+    """Format name identifier"""
+    assert "https://orcid.org/0000-0003-0077-4738" == format_name_identifier(
+        {
+            "nameIdentifier": "0000-0003-0077-4738",
+            "nameIdentifierScheme": "ORCID",
+        }
+    )
+    assert "https://ror.org/02t274463" == format_name_identifier(
+        {
+            "nameIdentifier": "02t274463",
+            "nameIdentifierScheme": "ROR",
+            "schemeURI": "https://ror.org/",
+        }
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        {
+            "nameIdentifier": "0000000110230567",
+            "nameIdentifierScheme": "ISNI",
+        }
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        "0000000110230567"
+    )
+    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+        {
+            "nameIdentifier": "0000000110230567",
+            "nameIdentifierScheme": "ISNI",
+            "schemeURI": "http://isni.org/isni/",
+        }
+    )
+    assert "https://www.wikidata.org/wiki/Q107529885" == format_name_identifier(
+        {
+            "schemeUri": "https://www.wikidata.org/wiki/",
+            "nameIdentifier": "Q107529885",
+            "nameIdentifierScheme": "Wikidata",
+        }
+    )
+    assert "https://ror.org/04z8jg394" == format_name_identifier(
+        {
+            "lang": "en",
+            "name": "Example Publisher",
+            "schemeUri": "https://ror.org/",
+            "publisherIdentifier": "https://ror.org/04z8jg394",
+            "publisherIdentifierScheme": "ROR",
+        }
+    )

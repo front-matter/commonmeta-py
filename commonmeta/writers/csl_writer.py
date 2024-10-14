@@ -1,5 +1,6 @@
 """CSL-JSON writer for commonmeta-py"""
-import json
+import orjson as json
+from typing import Optional
 
 from ..utils import pages_as_string, to_csl
 from ..base_utils import wrap, presence, parse_attributes, compact
@@ -8,27 +9,35 @@ from ..doi_utils import doi_from_url
 from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 
 
-def write_csl(metadata: Commonmeta) -> str:
+def write_csl(metadata: Commonmeta) -> Optional[str]:
     """Write CSL-JSON"""
-    if len(wrap(metadata.creators)) == 0:
+    item = write_csl_item(metadata)
+    if item is None:
+        return None
+    return json.dumps(item)
+
+
+def write_csl_item(metadata) -> Optional[dict]:
+    """Write CSL-JSON item"""
+    if metadata is None or metadata.write_errors is not None:
+        return None
+    if len(wrap(metadata.contributors)) == 0:
         author = None
     else:
-        author = to_csl(wrap(metadata.creators))
+        author = to_csl(wrap(metadata.contributors))
 
-    if (
-        metadata.type == "Software"
-        and metadata.version is not None
-    ):
-        type_ = "book"
+    if metadata.type == "Software" and metadata.version is not None:
+        _type = "book"
     else:
-        type_ = CM_TO_CSL_TRANSLATIONS.get(metadata.type, 'Document')
+        _type = CM_TO_CSL_TRANSLATIONS.get(metadata.type, "Document")
 
     container = metadata.container or {}
-    data = compact(
+    publisher = metadata.publisher or {}
+    return compact(
         {
-            "type": type_,
+            "type": _type,
             "id": metadata.id,
-            "DOI": doi_from_url(metadata.id) if metadata.id else None,
+            "DOI": doi_from_url(metadata.id),
             "URL": metadata.url,
             "categories": presence(
                 parse_attributes(
@@ -37,9 +46,16 @@ def write_csl(metadata: Commonmeta) -> str:
             ),
             "language": metadata.language,
             "author": author,
-            "contributor": to_csl(wrap(metadata.contributors)),
-            "issued": get_date_parts(metadata.date.get('published', None)),
-            "submitted": get_date_parts(metadata.date.get('submitted')) if metadata.date.get('submitted', None) else None,
+            # "contributor": to_csl(wrap(metadata.contributors)),
+            "issued": get_date_parts(metadata.date.get("published"))
+            if metadata.date.get("published", None)
+            else None,
+            "submitted": get_date_parts(metadata.date.get("submitted"))
+            if metadata.date.get("submitted", None)
+            else None,
+            "accessed": get_date_parts(metadata.date.get("accessed"))
+            if metadata.date.get("accessed", None)
+            else None,
             "abstract": parse_attributes(
                 metadata.descriptions, content="description", first=True
             ),
@@ -47,12 +63,17 @@ def write_csl(metadata: Commonmeta) -> str:
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "page": pages_as_string(container),
-            "publisher": metadata.publisher.get("name", None),
+            "publisher": publisher.get("name", None),
             "title": parse_attributes(metadata.titles, content="title", first=True),
-            "copyright": metadata.license.get("id", None)
-            if metadata.license
-            else None,
+            "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
         }
     )
-    return json.dumps(data, indent=4)
+
+
+def write_csl_list(metalist):
+    """Write CSL-JSON list"""
+    if metalist is None:
+        return None
+    items = [write_csl_item(item) for item in metalist.items]
+    return json.dumps(items)

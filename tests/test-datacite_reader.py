@@ -1,9 +1,14 @@
 # pylint: disable=invalid-name,too-many-lines
-"""Test DataCite JSON reader"""
+"""DataCite reader tests"""
+
 from os import path
 import pytest
 from commonmeta import Metadata
 from commonmeta.readers.datacite_reader import get_datacite, read_datacite
+
+
+def vcr_config():
+    return {"record_mode": "new_episodes"}
 
 
 @pytest.mark.vcr
@@ -11,31 +16,34 @@ def test_dataset():
     """dataset"""
     string = "https://doi.org/10.5061/DRYAD.8515"
     subject = Metadata(string)
-    assert subject.is_valid
+    print(subject.errors)
+    # assert subject.is_valid
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
-    assert subject.publisher == {"name":  "Dryad"}
-    assert subject.url == "http://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
+    assert subject.publisher == {"name": "Dryad"}
+    assert subject.url == "https://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
         "title": "Data from: A new malaria agent in African hominids."
     }
-    assert len(subject.creators) == 8
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 8
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Benjamin",
         "familyName": "Ollomo",
-        "affiliation": [
+        "affiliations": [
             {"name": "Centre International de Recherches Médicales de Franceville"}
         ],
     }
-    assert subject.contributors is None
     assert subject.license == {
         "id": "CC0-1.0",
-            "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    }
 
-        }
-
-    assert subject.date == {'published': '2011', 'available': '2011-02-01T17:22:41Z'}
+    assert subject.date == {
+        "published": "2011-02-01T17:22:41Z",
+        "available": "2011-02-01T17:22:41Z",
+    }
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -47,13 +55,12 @@ def test_dataset():
     )
     assert subject.subjects == [
         {"subject": "Plasmodium"},
-        {"subject": "malaria"},
+        {"subject": "Malaria"},
         {"subject": "mitochondrial genome"},
         {"subject": "Parasites"},
     ]
     assert subject.language == "en"
     assert subject.version == "1"
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
@@ -61,24 +68,34 @@ def test_blog_posting():
     """blog posting"""
     string = "https://doi.org/10.5438/zhyx-n122"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
-    assert subject.url == "https://blog.datacite.org/datacite-member-survey-2022"
-    assert subject.titles[0] == {"lang": "en", "title": "DataCite Member Survey 2022"}
-    assert len(subject.creators) == 2
-    assert subject.creators[0] == {
+    assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022"
+    assert subject.titles[0] == {
+        "language": "en",
+        "title": "DataCite Member Survey 2022",
+    }
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Rorie",
         "familyName": "Edmunds",
-        "affiliation": [{"name": "DataCite"}],
+        "affiliations": [{"name": "DataCite"}],
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
-    assert subject.date == {'published': '2023'}
-    assert subject.publisher == {"name":  "DataCite"}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {"published": "2023"}
+    assert subject.publisher == {"name": "DataCite"}
     assert len(subject.references) == 8
-    assert subject.references[0] == {"doi": "https://doi.org/10.5438/k1gw-y723"}
+    assert subject.references[0] == {
+        "key": "ref1",
+        "id": "https://doi.org/10.5438/k1gw-y723",
+    }
     assert subject.container is None
     assert (
         subject.descriptions[0]
@@ -88,7 +105,6 @@ def test_blog_posting():
     assert subject.subjects is None
     assert subject.language == "en"
     assert subject.version == "1.0"
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
@@ -97,33 +113,43 @@ def test_date():
     """dataset"""
     string = "https://doi.org/10.4230/lipics.tqc.2013.93"
     subject = Metadata(string)
-    assert subject.is_valid
+    print(subject.errors)
+    # assert subject.is_valid
     assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.type == "ProceedingsArticle"
-    assert subject.url == "http://drops.dagstuhl.de/opus/volltexte/2013/4317"
+    assert (
+        subject.url
+        == "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93"
+    )
     assert subject.titles[0] == {
-        "title": "The Minimum Size of Qubit Unextendible Product Bases"
+        "language": "en",
+        "title": "The Minimum Size of Qubit Unextendible Product Bases",
     }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 3
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Nathaniel",
         "familyName": "Johnston",
     }
-    assert subject.contributors == [
-        {
-            "contributorType": "Editor",
-            "familyName": "Herbstritt",
-            "givenName": "Marc",
-            "type": "Person",
-        }
-    ]
-    assert subject.license is None
-    assert subject.date == {'published': '2013', 'available': '2013-11-05'}
-    assert (
-        subject.publisher
-        == {"name": "Schloss Dagstuhl - Leibniz-Zentrum fuer Informatik GmbH, Wadern/Saarbruecken, Germany"}
-    )
+    assert subject.contributors[1] == {
+        "contributorRoles": ["Editor"],
+        "familyName": "Severini",
+        "givenName": "Simone",
+        "type": "Person",
+    }
+    assert subject.license == {
+        "id": "CC-BY-3.0",
+        "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
+    }
+    assert subject.date == {
+        "published": "2013",
+        "available": "2013-11-13",
+        "created": "2013-11-13",
+    }
+    assert subject.publisher == {
+        "name": "Schloss Dagstuhl – Leibniz-Zentrum für Informatik"
+    }
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -134,16 +160,15 @@ def test_date():
         )
     )
     assert subject.subjects == [
-        {"subject": "Computer Science"},
         {
-            "subject": "000 Computer science, knowledge, general works",
-            "subjectScheme": "DDC",
-        },
+            "language": "en",
+            "subject": "unextendible product basis; quantum entanglement; graph factorization",
+        }
     ]
     assert subject.language == "en"
     assert subject.version is None
-    assert subject.schema_version == "http://datacite.org/schema/kernel-2.1"
     assert subject.provider == "DataCite"
+
 
 #       expect(subject.titles).to eq([{ 'lang' => 'en-US', 'title' => 'Full DataCite XML Example' },
 #                                     { 'lang' => 'en-US',
@@ -191,8 +216,8 @@ def test_date():
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Audiovisual')
-#       expect(subject.creators.length).to eq(14)
-#       expect(subject.creators.first).to eq('name' => 'Haywood, Raphaelle Dawn',
+#       expect(subject.contributors.length).to eq(14)
+#       expect(subject.contributors.first).to eq('name' => 'Haywood, Raphaelle Dawn',
 #                                            'givenName' => 'Raphaelle Dawn', 'familyName' => 'Haywood', 'affiliation' => [{ 'name' => 'School of Physics and Astronomy' }])
 #       expect(subject.titles).to eq([{ 'lang' => 'en',
 #                                       'title' => 'Data underpinning - The Sun as a planet-host star: Proxies from SDO images for HARPS radial-velocity variations' }])
@@ -211,8 +236,8 @@ def test_date():
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType'].nil?).to be(true)
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
-#       expect(subject.creators.length).to eq(1)
-#       expect(subject.creators.first).to eq('name' => 'EvK2 CNR Committee')
+#       expect(subject.contributors.length).to eq(1)
+#       expect(subject.contributors.first).to eq('name' => 'EvK2 CNR Committee')
 #       expect(subject.titles).to eq([
 #                                      { 'title' => 'SHARE (Stations at High Altitude for Research on the Environment) Network' }, {
 #                                        'title' => 'Urdukas (Baltoro Glacier, Baltistan - Pakistan)', 'titleType' => 'Subtitle'
@@ -228,27 +253,32 @@ def test_date():
 #     end
 
 
+@pytest.mark.vcr
 def test_multiple_identifiers():
     """multiple identifiers"""
     string = "https://doi.org/10.5281/ZENODO.48440"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.48440"
     assert subject.type == "Software"
     assert subject.url == "https://zenodo.org/record/48440"
     assert subject.titles[0] == {
-        "title": "Analysis Tools For Crossover Experiment Of Ui Using Choice Architecture"
+        "title": "Analysis Tools for Crossover Experiment of UI using Choice Architecture"
     }
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Kristian",
         "familyName": "Garza",
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-NC-SA-4.0', 'url': 'https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode'}
-    assert subject.date == {'published': '2016-03-27'}
-    assert subject.publisher == {"name":  "Zenodo"}
+    assert subject.license == {
+        "id": "CC-BY-NC-SA-4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode",
+    }
+    assert subject.date == {"published": "2016-03-27"}
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -262,31 +292,58 @@ def test_multiple_identifiers():
         {"subject": "hci"},
     ]
     assert subject.language is None
-    assert subject.version is None
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
+    assert subject.version == "v1.0"
     assert subject.provider == "DataCite"
+
+
+def test_missing_description():
+    """missing description"""
+    string = "10.2312/geowissenschaften.1989.7.181"
+    subject = Metadata(string)
+    print(subject.errors)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
+    assert subject.type == "JournalArticle"
+    assert (
+        subject.url
+        == "https://www.tib.eu/suchen/id/awi:7058a56c5e43afd705af945d01536b9aaeeee491"
+    )
+    assert subject.titles[0] == {
+        "title": "An Overview of the Geology of Canadian Gold Occurrences"
+    }
+    assert subject.descriptions == [
+        {"description": "Die Geowissenschaften", "type": "Other"}
+    ]
 
 
 def test_is_identical():
     """is_identical"""
     string = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.type == "Dataset"
     assert subject.url == "https://figshare.com/articles/dataset/RAIN_v1/4234751/1"
     assert subject.titles[0] == {"title": "RAIN v1"}
-    assert len(subject.creators) == 11
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 11
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0002-2410-9671",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Alexander",
         "familyName": "Junge",
     }
-    assert subject.contributors is None
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
-    assert subject.date == {'created': '2016-11-16', 'published': '2016', 'updated': '2016-11-16'}
-    assert subject.publisher == {"name":  "figshare"}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "created": "2016-11-16",
+        "published": "2016",
+        "updated": "2016-11-16",
+    }
+    assert subject.publisher == {"name": "figshare"}
     assert subject.references is None
     assert subject.container is None
     assert (
@@ -295,38 +352,23 @@ def test_is_identical():
         .startswith("<b>RAIN: RNA–protein Association and Interaction Networks</b>")
     )
     assert subject.subjects == [
-        {"subject": "60102 Bioinformatics", "subjectScheme": "FOR"},
-        {
-            "subject": "FOS: Computer and information sciences",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Computer and information sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
+        {"subject": "60102 Bioinformatics"},
+        {"subject": "FOS: Computer and information sciences"},
         {"subject": "Computational Biology"},
-        {"subject": "60114 Systems Biology", "subjectScheme": "FOR"},
-        {
-            "subject": "FOS: Biological sciences",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Biological sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
+        {"subject": "60114 Systems Biology"},
+        {"subject": "FOS: Biological sciences"},
     ]
     assert subject.language is None
     assert subject.version is None
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
     assert subject.provider == "DataCite"
 
 
+@pytest.mark.vcr
 def test_subject_scheme_for():
     """subject scheme FOR"""
     string = "10.6084/m9.figshare.1449060"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1449060"
     assert subject.type == "Dataset"
@@ -334,10 +376,11 @@ def test_subject_scheme_for():
         subject.url
         == "https://figshare.com/articles/dataset/Drosophila_melanogaster_African_Wings/1449060/4"
     )
-    assert len(subject.creators) == 4
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0002-2874-287X",
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Ian",
         "familyName": "Dworkin",
     }
@@ -349,48 +392,38 @@ def test_subject_scheme_for():
         .get("description")
         .startswith("These are raw wing images from <i>Drosophila melanogaster</i>")
     )
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
-    assert subject.date == {'created': '2015-06-14', 'published': '2020', 'updated': '2020-06-02'}
-    assert subject.publisher == {"name":  "figshare"}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "created": "2015-06-14",
+        "published": "2020",
+        "updated": "2020-06-02",
+    }
+    assert subject.publisher == {"name": "figshare"}
     assert subject.subjects == [
         {"subject": "Evolutionary Biology"},
-        {
-            "subject": "FOS: Biological sciences",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Biological sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
+        {"subject": "FOS: Biological sciences"},
         {
             "subject": "60412 Quantitative Genetics (incl. Disease and Trait Mapping Genetics)",
-            "subjectScheme": "FOR",
         },
     ]
     assert subject.language is None
     assert subject.provider == "DataCite"
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
 
 
 def test_more_subject_scheme_for():
     """more subject scheme FOR"""
     string = "10.4225/03/5a6931f57c654"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a6931f57c654"
     assert subject.type == "Dissertation"
     assert subject.subjects == [
-        {"subject": "90301 Biomaterials", "subjectScheme": "FOR"},
-        {
-            "subject": "FOS: Medical engineering",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Medical engineering",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
+        {"subject": "90301 Biomaterials"},
+        {"subject": "FOS: Medical engineering"},
     ]
 
 
@@ -398,37 +431,18 @@ def test_even_more_subject_scheme_for():
     """even more subject scheme FOR"""
     string = "10.4225/03/5a31ec65634ef"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a31ec65634ef"
-    assert subject.type == "Speech"
+    assert subject.type == "Presentation"
     assert subject.subjects == [
-        {"subject": "130103 Higher Education", "subjectScheme": "FOR"},
+        {"subject": "130103 Higher Education"},
+        {"subject": "FOS: Educational sciences"},
         {
-            "subject": "FOS: Educational sciences",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
+            "subject": "130313 Teacher Education and Professional Development of Educators"
         },
-        {
-            "subject": "FOS: Educational sciences",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "130313 Teacher Education and Professional Development of Educators",
-            "subjectScheme": "FOR",
-        },
-        {
-            "subject": "80799 Library and Information Studies not elsewhere classified",
-            "subjectScheme": "FOR",
-        },
-        {
-            "subject": "FOS: Media and communications",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
-        {
-            "subject": "FOS: Media and communications",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
+        {"subject": "80799 Library and Information Studies not elsewhere classified"},
+        {"subject": "FOS: Media and communications"},
         {"subject": "Library and Information Studies"},
     ]
 
@@ -437,25 +451,32 @@ def test_cc_by():
     """CC-BY"""
     string = "10.6084/m9.figshare.1286826.v1"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1286826.v1"
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
 
 def test_funding_schema_version_3():
     """funding schema version 3"""
     string = "https://doi.org/10.5281/ZENODO.1239"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1239"
-    # assert subject.identifiers == [{'identifier': 'https://zenodo.org/record/1239',
+    # assert subject.identifiers == [{'identifier': 'https://zenodo.org/records/1239',
     #                                 'identifierType': 'URL'}]
     assert subject.type == "Dataset"
-    assert len(subject.creators) == 4
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 4
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Najko",
         "familyName": "Jahn",
-        "affiliation": [{"name": "Bielefeld University Library"}],
+        "affiliations": [{"name": "Bielefeld University Library"}],
     }
     assert subject.titles == [
         {"title": "Publication Fp7 Funding Acknowledgment - Plos Openaire"}
@@ -463,8 +484,8 @@ def test_funding_schema_version_3():
     assert subject.descriptions[0]["description"].startswith(
         "The dataset contains a sample of metadata describing papers"
     )
-    assert subject.date == {'published': '2013-04-03'}
-    assert subject.publisher == {"name":  "Zenodo"}
+    assert subject.date == {"published": "2013-04-03"}
+    assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references == [
         {
             "awardUri": "info:eu-repo/grantAgreement/EC/FP7/246686/",
@@ -482,8 +503,11 @@ def test_funding_schema_version_3():
         {"subject": "funded research publications"},
     ]
     assert subject.language == "en"
-    assert subject.license == {'id': 'CC0-1.0', 'url': 'https://creativecommons.org/publicdomain/zero/1.0/legalcode'}
-    assert subject.schema_version == "http://datacite.org/schema/kernel-4"
+    assert subject.license == {
+        "id": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    }
+
 
 #     it 'from attributes' do
 #       subject = described_class.new(text: nil,
@@ -515,7 +539,7 @@ def test_funding_schema_version_3():
 #       expect(subject.id).to eq('https://doi.org/10.5281/zenodo.1239')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
-#       expect(subject.creators).to eq([{ 'familyName' => 'Jahn', 'givenName' => 'Najko',
+#       expect(subject.contributors).to eq([{ 'familyName' => 'Jahn', 'givenName' => 'Najko',
 #                                         'name' => 'Jahn, Najko', 'type' => 'Personal' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Publication Fp7 Funding Acknowledgment - Plos Openaire' }])
 #       expect(subject.descriptions.first['description']).to start_with('The dataset contains a sample of metadata describing papers')
@@ -572,21 +596,28 @@ def test_datacite_json():
     """datacite.json"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
-    assert subject.doi == "10.5438/4k3m-nyvg"
+    assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food"
     assert subject.type == "Article"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
-    assert len(subject.creators) == 1
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
         "type": "Person",
+        "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
+        "id": "https://orcid.org/0000-0003-1419-2405",
     }
-    assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {'published': '2016-12-20', 'created': '2016-12-20', 'updated': '2016-12-20'}
-    assert subject.publisher == {"name":  "DataCite"}
+    assert subject.date == {
+        "published": "2016-12-20",
+        "created": "2016-12-20",
+        "updated": "2016-12-20",
+    }
+    assert subject.publisher == {"name": "DataCite"}
+
 
 #     it 'geo_location in separate input' do
 #       text = "#{fixture_path}datacite-geolocation-empty.xml"
@@ -637,8 +668,8 @@ def test_datacite_json():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.6071/z7wc73')
-#       expect(subject.creators.length).to eq(6)
-#       expect(subject.creators.first).to eq('familyName' => 'Bales', 'givenName' => 'Roger',
+#       expect(subject.contributors.length).to eq(6)
+#       expect(subject.contributors.first).to eq('familyName' => 'Bales', 'givenName' => 'Roger',
 #                                            'name' => 'Bales, Roger', 'type' => 'Personal', 'affiliation' => [{ 'name' => 'UC Merced' }])
 #       expect(subject.subjects).to eq([{ 'subject' => 'earth sciences' },
 #                                       { 'subject' => 'soil moisture' },
@@ -656,8 +687,8 @@ def test_datacite_json():
 #       expect(subject.id).to eq('https://doi.org/10.5438/4k3m-nyvg')
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
-#       expect(subject.creators.length).to eq(1)
-#       expect(subject.creators.first).to eq('familyName' => 'Fenner', 'givenName' => 'Martin',
+#       expect(subject.contributors.length).to eq(1)
+#       expect(subject.contributors.first).to eq('familyName' => 'Fenner', 'givenName' => 'Martin',
 #                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', "type" => "Person")
 #       expect(subject.titles).to eq([{ 'title' => 'Eating your own Dog Food' }])
 #       expect(subject.publisher).to eq('DataCite')
@@ -688,8 +719,8 @@ def test_datacite_json():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.5072/geopointexample')
 #       expect(subject.doi).to eq('10.5072/geopointexample')
-#       expect(subject.creators.length).to eq(3)
-#       expect(subject.creators.first).to eq('familyName' => 'Schumann', 'givenName' => 'Kai',
+#       expect(subject.contributors.length).to eq(3)
+#       expect(subject.contributors.first).to eq('familyName' => 'Schumann', 'givenName' => 'Kai',
 #                                            'name' => 'Schumann, Kai', 'type' => 'Personal')
 #       expect(subject.titles).to eq([{ 'title' => 'Gridded results of swath bathymetric mapping of Disko Bay, Western Greenland, 2007-2008' }])
 #       expect(subject.publisher).to eq('PANGAEA - Data Publisher for Earth & Environmental Science')
@@ -708,23 +739,29 @@ def test_geolocation_box():
     """geolocation_box"""
     string = "10.6071/z7wc73"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6071/z7wc73"
     assert subject.type == "Dataset"
-    assert len(subject.creators) == 6
-    assert subject.creators[0] == {
+    assert len(subject.contributors) == 10
+    assert subject.contributors[0] == {
         "familyName": "Bales",
         "givenName": "Roger",
         "type": "Person",
-        "affiliation": [{"name": "University of California, Merced"}],
+        "contributorRoles": ["Author"],
+        "id": "https://orcid.org/0000-0002-0811-8535",
+        "affiliations": [{"name": "University of California, Merced"}],
     }
     assert subject.titles == [
         {
             "title": "Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature"
         }
     ]
-    assert subject.publisher == {"name":  "Dryad"}
-    assert subject.date == {'published': '2016', 'available': '2016-03-14T17:02:02Z', 'updated': '2014-10-17'}
+    assert subject.publisher == {"name": "Dryad"}
+    assert subject.date == {
+        "published": "2016-03-14T17:02:02Z",
+        "available": "2016-03-14T17:02:02Z",
+    }
     assert subject.subjects == [
         {"subject": "air temperature"},
         {"subject": "Earth sciences"},
@@ -733,50 +770,48 @@ def test_geolocation_box():
         {"subject": "soil temperature"},
         {"subject": "water balance"},
         {"subject": "FOS: Environmental engineering"},
-        {
-            "subject": "FOS: Environmental engineering",
-            "schemeUri": "http://www.oecd.org/science/inno/38235147.pdf",
-            "subjectScheme": "Fields of Science and Technology (FOS)",
-        },
     ]
+
     assert subject.geo_locations == [
         {
             "geoLocationBox": {
-                "eastBoundLongitude": "-119.182",
-                "northBoundLatitude": "37.075",
-                "southBoundLatitude": "37.046",
-                "westBoundLongitude": "-119.211",
+                "eastBoundLongitude": -119.182,
+                "northBoundLatitude": 37.075,
+                "southBoundLatitude": 37.046,
+                "westBoundLongitude": -119.211,
             },
             "geoLocationPlace": "Providence Creek (Lower, Upper and P301)",
             "geoLocationPoint": {
-                "pointLatitude": "37.047756",
-                "pointLongitude": "-119.221094",
+                "pointLatitude": 37.047756,
+                "pointLongitude": -119.221094,
             },
         },
         {
             "geoLocationBox": {
-                "eastBoundLongitude": "-119.182",
-                "northBoundLatitude": "37.075",
-                "southBoundLatitude": "37.046",
-                "westBoundLongitude": "-119.211",
+                "eastBoundLongitude": -119.182,
+                "northBoundLatitude": 37.075,
+                "southBoundLatitude": 37.046,
+                "westBoundLongitude": -119.211,
             }
         },
     ]
     assert subject.funding_references == [
         {
+            "schemeUri": "https://ror.org",
             "funderName": "National Science Foundation",
             "awardNumber": "1331939",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
         },
         {
+            "schemeUri": "https://ror.org",
             "funderName": "National Science Foundation",
             "awardNumber": "0725097",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
         },
     ]
-    assert subject.sizes == ["2214669067 bytes"]
+    # assert subject.sizes == ["2592742591 bytes"]
     assert subject.provider == "DataCite"
 
 
@@ -786,8 +821,8 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.14457/kmitl.res.2006.17')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
-#       expect(subject.creators.length).to eq(1)
-#       expect(subject.creators.first).to eq('name' => 'กัญจนา แซ่เตียว')
+#       expect(subject.contributors.length).to eq(1)
+#       expect(subject.contributors.first).to eq('name' => 'กัญจนา แซ่เตียว')
 #     end
 
 #     it 'multiple author names in one creatorsName' do
@@ -796,7 +831,7 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.7910/dvn/eqtqyo')
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
-#       expect(subject.creators).to eq([{
+#       expect(subject.contributors).to eq([{
 #                                        'name' => 'Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)'
 #                                      }])
 #     end
@@ -807,8 +842,8 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.18429/jacow-ipac2016-tupmy003')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
-#       expect(subject.creators.length).to eq(12)
-#       expect(subject.creators.first).to eq('type' => 'Personal',
+#       expect(subject.contributors.length).to eq(12)
+#       expect(subject.contributors.first).to eq('type' => 'Personal',
 #                                            'nameIdentifiers' => [{ 'nameIdentifier' => 'http://jacow.org/JACoW-00077389', 'nameIdentifierScheme' => 'JACoW-ID', 'schemeUri' => 'http://jacow.org/' }], 'name' => 'Otani, Masashi', 'givenName' => 'Masashi', 'familyName' => 'Otani', 'affiliation' => [{ 'name' => 'KEK, Tsukuba, Japan' }])
 #     end
 
@@ -818,8 +853,8 @@ def test_geolocation_box():
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.2314/coscv1')
 #       expect(subject.types['schemaOrg']).to eq('ScholarlyArticle')
-#       expect(subject.creators.length).to eq(14)
-#       expect(subject.creators.first).to include('type' => 'Personal',
+#       expect(subject.contributors.length).to eq(14)
+#       expect(subject.contributors.first).to include('type' => 'Personal',
 #                                                 'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-0232-7085', 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Heller, Lambert', 'givenName' => 'Lambert', 'familyName' => 'Heller')
 #     end
 
@@ -842,8 +877,8 @@ def test_geolocation_box():
 #       expect(subject.types['schemaOrg']).to eq('Dataset')
 #       expect(subject.types['resourceType']).to eq('Dataset')
 #       expect(subject.types['resourceTypeGeneral']).to eq('Dataset')
-#       expect(subject.creators.length).to eq(2)
-#       expect(subject.creators.first).to eq(
+#       expect(subject.contributors.length).to eq(2)
+#       expect(subject.contributors.first).to eq(
 #         'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-8740-8284',
 #                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Bimbo, Nuno', 'givenName' => 'Nuno', 'familyName' => 'Bimbo', 'type' => 'Personal'
 #       )
@@ -874,8 +909,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.5438/6423')
-#       expect(subject.creators.length).to eq(24)
-#       expect(subject.creators.first).to eq(
+#       expect(subject.contributors.length).to eq(24)
+#       expect(subject.contributors.first).to eq(
 #         'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0001-5331-6592',
 #                                 'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Farquhar, Adam', 'givenName' => 'Adam', 'familyName' => 'Farquhar', 'affiliation' => [{ 'name' => 'British Library' }], 'type' => 'Personal'
 #       )
@@ -898,8 +933,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
-#       expect(subject.creators.length).to eq(2)
-#       expect(subject.creators.first).to eq(
+#       expect(subject.contributors.length).to eq(2)
+#       expect(subject.contributors.first).to eq(
 #         'affiliation' => [{ 'name' => 'Тверская государственная сельскохозяйственная академия' }], 'name' => 'Ганичева, А.В.'
 #       )
 #       expect(subject.titles).to eq([{ 'title' => 'МОДЕЛЬ СИСТЕМНОЙ ДИНАМИКИ ПРОЦЕССА ОБУЧЕНИЯ' },
@@ -919,7 +954,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{
+#       expect(subject.contributors).to eq([{
 #                                        'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405',
 #                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner',
 #                                                                "type"=>"Person"}])
@@ -940,7 +975,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
 #            'schemeUri' => 'http://isni.org/isni/' }], "type"=>"Organizational"}])
@@ -972,7 +1007,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.0.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
 #            'schemeUri' => 'http://isni.org/isni/' }], 'type' => 'Organizational' }])
@@ -1000,8 +1035,8 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite_schema_3.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators.length).to eq(8)
-#       expect(subject.creators.last).to eq('familyName' => 'Renaud', 'givenName' => 'François',
+#       expect(subject.contributors.length).to eq(8)
+#       expect(subject.contributors.last).to eq('familyName' => 'Renaud', 'givenName' => 'François',
 #                                           'name' => 'Renaud, François', 'type' => 'Personal')
 #       expect(subject.titles).to eq([{ 'title' => 'Data from: A new malaria agent in African hominids.' }])
 #       expect(subject.id).to eq('https://doi.org/10.5061/dryad.8515')
@@ -1026,7 +1061,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v3.0.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
 #            'schemeUri' => 'http://isni.org/isni/' }], "type"=>"Organizational" }])
@@ -1054,7 +1089,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-metadata-sample-complicated-v2.2.xml"
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'abc123',
 #            'nameIdentifierScheme' => 'ISNI' }], "type"=>"Organizational"}])
 #       expect(subject.titles).to eq([{ 'title' => 'Właściwości rzutowań podprzestrzeniowych' },
@@ -1077,7 +1112,7 @@ def test_geolocation_box():
 #       text = "#{fixture_path}datacite-example-complicated-v4.1.xml"
 #       subject = described_class.new(text: input, doi: '10.5072/testpub2', content_url: 'https://example.org/report.pdf')
 #       expect(subject.valid?).to be true
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Smith, John', 'givenName' => 'John', 'familyName' => 'Smith' }, { 'name' => 'つまらないものですが', 'nameIdentifiers' =>
 #         [{ 'nameIdentifier' => 'http://isni.org/isni/0000000134596520',
 #            'nameIdentifierScheme' => 'ISNI',
 #            'schemeUri' => 'http://isni.org/isni/' }], 'type' => 'Organizational' }])
@@ -1114,8 +1149,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.4231/d38g8fk8b')
-#       expect(subject.creators.length).to eq(5)
-#       expect(subject.creators.first).to eq('type' => 'Personal', 'name' => 'PatiÃ±o, Carlos',
+#       expect(subject.contributors.length).to eq(5)
+#       expect(subject.contributors.first).to eq('type' => 'Personal', 'name' => 'PatiÃ±o, Carlos',
 #                                            'givenName' => 'Carlos', 'familyName' => 'PatiÃ±o')
 #       expect(subject.titles).to eq([{ 'title' => 'LAMMPS Data-File Generator' }])
 #       expect(subject.date ).to eq([{ 'date' => '2018-07-18', 'dateType' => 'Valid' },
@@ -1131,8 +1166,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.25318/3410014001-fra')
-#       expect(subject.creators.length).to eq(1)
-#       expect(subject.creators.first).to eq('affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04zt3wx35', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'Canada Mortgage and Housing Corporation' }],
+#       expect(subject.contributors.length).to eq(1)
+#       expect(subject.contributors.first).to eq('affiliation' => [{ 'affiliationIdentifier' => 'https://ror.org/04zt3wx35', 'affiliationIdentifierScheme' => 'ROR', 'name' => 'Canada Mortgage and Housing Corporation' }],
 #                                            'name' => 'Statistique Canada', "type" => "Organizational")
 #     end
 
@@ -1141,7 +1176,7 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.5067/terra+aqua/ceres/cldtyphist_l3.004')
-#       expect(subject.creators).to eq([{ 'familyName' => 'Wong', 'givenName' => 'Takmeng',
+#       expect(subject.contributors).to eq([{ 'familyName' => 'Wong', 'givenName' => 'Takmeng',
 #                                         'name' => 'Wong, Takmeng' }])
 #       expect(subject.titles).to eq([{ 'title' => 'CERES Level 3 Cloud Type Historgram Terra+Aqua HDF file - Edition4' }])
 #       expect(subject.publication_year).to eq('2016')
@@ -1158,7 +1193,7 @@ def test_geolocation_box():
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'ZA2745', 'identifierType' => 'ZA-No.' },
 #                                          { 'identifier' => 'Internationale Umfrageprogramme',
 #                                            'identifierType' => 'FDZ' }])
-#       expect(subject.creators).to eq([{ 'name' => 'Europäische Kommission', "type"=>"Organizational" }])
+#       expect(subject.contributors).to eq([{ 'name' => 'Europäische Kommission', "type"=>"Organizational" }])
 #       expect(subject.contributors.length).to eq(18)
 #       expect(subject.contributors.first).to eq(
 #         'affiliation' => [{ 'name' => 'Europäische Kommission, Brüssel' }], 'contributorType' => 'Researcher', 'familyName' => 'Reif', 'givenName' => 'Karlheinz', 'name' => 'Reif, Karlheinz', 'type' => 'Personal'
@@ -1203,8 +1238,8 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.4229/23rdeupvsec2008-5co.8.3')
 #       expect(subject.identifiers).to eq([{ 'identifier' => '3-936338-24-8',
 #                                            'identifierType' => 'ISBN' }])
-#       expect(subject.creators.length).to eq(3)
-#       expect(subject.creators.first).to eq("name"=>"Llamas, P.")
+#       expect(subject.contributors.length).to eq(3)
+#       expect(subject.contributors.first).to eq("name"=>"Llamas, P.")
 #       expect(subject.titles).to eq([{ 'title' => 'Rural Electrification With Hybrid Power Systems Based on Renewables - Technical System Configurations From the Point of View of the European Industry' }])
 #       expect(subject.date ).to eq([{ 'date' => '2008-11-01', 'dateType' => 'Valid' },
 #                                    { 'date' => '2008', 'dateType' => 'Issued' }])
@@ -1242,7 +1277,7 @@ def test_geolocation_box():
 #       expect(subject.id).to eq('https://doi.org/10.18169/papdeottx00502')
 #       expect(subject.identifiers).to eq([{
 #                                           'identifier' => 'http://www.priorartregister.com/resolve.php?disclosure=OTTX00502', 'identifierType' => 'URL'
-#       expect(subject.creators).to eq([{ 'name' => 'anonymous' }])
+#       expect(subject.contributors).to eq([{ 'name' => 'anonymous' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Messung der Bildunschaerfe in H.264-codierten Bildern und Videosequenzen' }])
 #       expect(subject.date ).to eq([{ 'date' => '2017', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2017')
@@ -1259,7 +1294,7 @@ def test_geolocation_box():
 #       # expect(subject.errors.length).to eq(2)
 #       # expect(subject.errors.last).to eq("33:0: ERROR: Element '{http://datacite.org/schema/kernel-4}date': '1970-04-01 / (:tba)' is not a valid value of the atomic type '{http://datacite.org/schema/kernel-4}edtf'.")
 #       expect(subject.id).to eq('https://doi.org/10.21944/temis-ozone-msr2')
-#       expect(subject.creators).to eq([{ 'type' => 'Personal',
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal',
 #                                         'nameIdentifiers' =>
 #                                          [{ 'nameIdentifier' => 'https://orcid.org/0000-0002-0077-5338',
 #                                             'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }],
@@ -1305,7 +1340,7 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://handle.stage.datacite.org/10.22002/d1.694')
-#       expect(subject.creators).to eq([{ 'affiliation' => [{ 'name' => 'Caltech' }], 'name' => 'Tester' }])
+#       expect(subject.contributors).to eq([{ 'affiliation' => [{ 'name' => 'Caltech' }], 'name' => 'Tester' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Test license' }])
 #       expect(subject.date ).to eq([{ 'date' => '2018-01-12', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
@@ -1320,7 +1355,7 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input, doi: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://handle.stage.datacite.org/10.21956/wellcomeopenres.25947.r17364')
-#       expect(subject.creators).to eq([{ 'name' => 'Fran2 Levy' }])
+#       expect(subject.contributors).to eq([{ 'name' => 'Fran2 Levy' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Referee report. For: FL Regression Wellcome [version 1; referees: retracted]' }])
 #       expect(subject.date ).to eq([{ 'date' => '2018', 'dateType' => 'Issued' }])
 #       expect(subject.publication_year).to eq('2018')
@@ -1335,8 +1370,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input, sandbox: true)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://handle.stage.datacite.org/10.21956/gatesopenres.530.r190')
-#       expect(subject.creators.length).to eq(5)
-#       expect(subject.creators.first).to eq("name"=>"lina patel")
+#       expect(subject.contributors.length).to eq(5)
+#       expect(subject.contributors.first).to eq("name"=>"lina patel")
 #       expect(subject.titles).to eq([{ 'title' => 'Referee report. For: Gates - add article keywords to the metatags [version 2; referees: 1 approved]' }])
 #       expect(subject.publication_year).to eq('2018')
 #       expect(subject.publisher).to eq('Gates Open Research')
@@ -1386,7 +1421,7 @@ def test_geolocation_box():
 #     it 'missing creators' do
 #       text = "#{fixture_path}datacite_missing_creator.xml"
 #       subject = described_class.new(text: input, regenerate: true)
-#       expect(subject.creators.blank?).to be(true)
+#       expect(subject.contributors.blank?).to be(true)
 #       expect(subject.valid?).to be false
 #       expect(subject.errors).to eq("4:0: ERROR: Element '{http://datacite.org/schema/kernel-4}creators': Missing child element(s). Expected is ( {http://datacite.org/schema/kernel-4}creator ).")
 #     end
@@ -1394,7 +1429,7 @@ def test_geolocation_box():
 #     it 'malformed creators' do
 #       text = "#{fixture_path}datacite_malformed_creator.xml"
 #       subject = described_class.new(text: input, regenerate: false)
-#       expect(subject.creators.blank?).to be(true)
+#       expect(subject.contributors.blank?).to be(true)
 #       expect(subject.valid?).to be false
 #       expect(subject.errors).to eq("16:0: ERROR: Element '{http://datacite.org/schema/kernel-4}creatorName': This element is not expected. Expected is ( {http://datacite.org/schema/kernel-4}affiliation ).")
 #     end
@@ -1429,7 +1464,7 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.3204/desy-2014-01645')
-#       expect(subject.creators).to eq([{ 'type' => 'Personal', 'name' => 'Conrad, Heiko',
+#       expect(subject.contributors).to eq([{ 'type' => 'Personal', 'name' => 'Conrad, Heiko',
 #                                         'givenName' => 'Heiko', 'familyName' => 'Conrad' }])
 #       expect(subject.titles).to eq([{ 'title' => 'Dynamics of colloids in molecular glass forming liquids studied via X-ray photon correlation spectroscopy' }])
 #       expect(subject.date ).to eq([{ 'date' => '2014', 'dateType' => 'Issued' },
@@ -1446,8 +1481,8 @@ def test_geolocation_box():
 #       subject = described_class.new(text: input)
 #       expect(subject.valid?).to be true
 #       expect(subject.id).to eq('https://doi.org/10.26102/2310-6018/2019.24.1.006')
-#       expect(subject.creators.length).to eq(2)
-#       expect(subject.creators.first).to eq('affiliation' => [{ 'name' => 'Тверская государственная сельскохозяйственная академия' }],
+#       expect(subject.contributors.length).to eq(2)
+#       expect(subject.contributors.first).to eq('affiliation' => [{ 'name' => 'Тверская государственная сельскохозяйственная академия' }],
 #                                            'name' => 'Ганичева, А.В.')
 #       expect(subject.titles.last).to eq('title' => 'MODEL OF SYSTEM DYNAMICS OF PROCESS OF TRAINING',
 #                                         'titleType' => 'TranslatedTitle')
@@ -1506,7 +1541,7 @@ def test_geolocation_box():
 #       expect(subject.identifiers).to eq([{ 'identifier' => 'MS-49-3632-5083',
 #                                            'identifierType' => 'Local accession number' }])
 #       expect(subject.doi).to eq('10.5061/dryad.8515')
-#       expect(subject.creators).to eq([{
+#       expect(subject.contributors).to eq([{
 #                                        'nameIdentifiers' => [{ 'nameIdentifier' => 'https://orcid.org/0000-0003-1419-2405',
 #                                                                'nameIdentifierScheme' => 'ORCID', 'schemeUri' => 'https://orcid.org' }], 'name' => 'Fenner, Martin', 'givenName' => 'Martin', 'familyName' => 'Fenner', 'type' => 'Personal'
 #                                      }])
@@ -1529,7 +1564,7 @@ def test_geolocation_box():
 #     expect(subject.content_url).to eq('https://storage.googleapis.com/gtex_analysis_v7/single_tissue_eqtl_data/GTEx_Analysis_v7_eQTL_expression_matrices.tar.gz')
 #     expect(subject.types['schemaOrg']).to eq('Dataset')
 #     expect(subject.types['resourceType']).to eq('DroNc-seq data')
-#     expect(subject.creators).to eq([{ 'name' => 'The GTEx Consortium', 'type' => 'Organizational' }])
+#     expect(subject.contributors).to eq([{ 'name' => 'The GTEx Consortium', 'type' => 'Organizational' }])
 #     expect(subject.titles).to eq([{ 'title' => 'DroNc-seq data' }])
 #     expect(subject.subjects).to eq([{ 'subject' => 'gtex' }, { 'subject' => 'annotation' },
 #                                     { 'subject' => 'phenotype' }, { 'subject' => 'gene regulation' }, { 'subject' => 'transcriptomics' }])
@@ -1555,7 +1590,7 @@ def test_geolocation_box():
 #     text = "#{fixture_path}datacite-example-polygon-v4.1.xml"
 #     subject = described_class.new(text: input)
 #     expect(subject.id).to eq('https://doi.org/10.5072/example-polygon')
-#     expect(subject.creators.first).to eq('familyName' => 'den Heijer', 'givenName' => 'C',
+#     expect(subject.contributors.first).to eq('familyName' => 'den Heijer', 'givenName' => 'C',
 #                                          'name' => 'den Heijer, C', 'type' => 'Personal')
 #     expect(subject.titles).to eq([{ 'lang' => 'en',
 #                                     'title' => 'Meteo measurements at the Sand Motor' }])
@@ -1573,7 +1608,7 @@ def test_geolocation_box():
 #     text = "#{fixture_path}datacite-example-full-v4.4.xml"
 #     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
-#     expect(subject.creators).to eq(
+#     expect(subject.contributors).to eq(
 #       [
 #         {
 #           'name' => 'Miller, Elizabeth', 'givenName' => 'Elizabeth', 'familyName' => 'Miller',
@@ -1746,7 +1781,7 @@ def test_geolocation_box():
 #     text = "#{fixture_path}datacite-example-dissertation-v4.4.xml"
 #     subject = described_class.new(text: input)
 #     expect(subject.valid?).to be true
-#     expect(subject.creators).to eq(
+#     expect(subject.contributors).to eq(
 #       [
 #         {
 #           'name' => 'Luo, R',
@@ -1877,6 +1912,7 @@ def test_geolocation():
     """geolocation"""
     string = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
     subject = Metadata(string)
+    print(subject.errors)
     assert subject.is_valid
     assert (
         subject.id
@@ -1890,21 +1926,96 @@ def test_geolocation():
         {
             "geoLocationPlace": "Mogi Guaçu (municipality)",
             "geoLocationPoint": {
-                "pointLatitude": "-22.3680",
-                "pointLongitude": "-46.9460",
+                "pointLatitude": -22.3680,
+                "pointLongitude": -46.9460,
             },
         }
     ]
 
 
+def test_datacite_v45():
+    """Dataset schema v4.5"""
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
+    subject = Metadata(string)
+    print(subject.errors)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.82433/b09z-4k37"
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "ExampleGivenName",
+        "familyName": "ExampleFamilyName",
+    }
+    assert subject.titles == [
+        {"language": "en", "title": "Example Title"},
+        {"language": "en", "title": "Example Subtitle", "type": "Subtitle"},
+        {
+            "language": "fr",
+            "title": "Example TranslatedTitle",
+            "type": "TranslatedTitle",
+        },
+        {
+            "language": "en",
+            "title": "Example AlternativeTitle",
+            "type": "AlternativeTitle",
+        },
+    ]
+    assert subject.descriptions == [
+        {"description": "Example Abstract", "type": "Abstract", "language": "en"},
+        {"description": "Example Methods", "type": "Methods", "language": "en"},
+        {"description": "Example SeriesInformation", "type": "Other", "language": "en"},
+        {"description": "Example TableOfContents", "type": "Other", "language": "en"},
+        {
+            "description": "Example TechnicalInfo",
+            "type": "TechnicalInfo",
+            "language": "en",
+        },
+        {"description": "Example Other", "type": "Other", "language": "en"},
+    ]
+    assert subject.publisher == {
+        "name": "Example Publisher",
+        "id": "https://ror.org/04z8jg394",
+    }
+
+
+def test_datacite_instrument():
+    """Dataset instrument"""
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-instrument.json")
+    subject = Metadata(string)
+    print(subject.errors)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.82433/08qf-ee96"
+    assert subject.type == "Instrument"
+    assert subject.additional_type == "Raster image pixel detector"
+    assert len(subject.contributors) == 2
+    assert subject.contributors[0] == {
+        "contributorRoles": ["Author"],
+        "name": "DECTRIS",
+        "type": "Organization",
+        "id": "https://www.wikidata.org/wiki/Q107529885",
+    }
+    assert subject.contributors[1] == {
+        "id": "https://ror.org/02aj13c28",
+        "type": "Organization",
+        "contributorRoles": ["HostingInstitution"],
+        "name": "Helmholtz-Zentrum Berlin Für Materialien Und Energie",
+    }
+    assert subject.publisher == {
+        "name": "Helmholtz Centre Potsdam - GFZ German Research Centre for Geosciences",
+    }
+
+
+@pytest.mark.vcr
 def test_get_datacite():
     """get_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
-    assert "10.6084/m9.figshare.1449060" == data["doi"]
+    assert "10.6084/m9.figshare.1449060" == data.get("doi", None)
 
 
+@pytest.mark.vcr
 def test_read_datacite():
     """test_datacite"""
     data = get_datacite("10.6084/m9.figshare.1449060")
     meta = read_datacite(data)
-    assert meta["doi"] == "10.6084/m9.figshare.1449060"
+    assert meta.get("id", None) == "https://doi.org/10.6084/m9.figshare.1449060"

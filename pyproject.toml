@@ -1,54 +1,79 @@
 [tool.poetry]
 name="commonmeta-py"
-version="0.7.1"
+version="0.37"
+repository = "https://github.com/front-matter/commonmeta-py"
+homepage = "https://python.commonmeta.org"
+documentation = "https://python.commonmeta.org"
 description="Library for conversions to/from the Commonmeta scholarly metadata format"
+keywords = ["science", "metadata", "commonmeta", "bibtex", "csl", "crossref", "datacite"]
 authors=["Martin Fenner <martin@front-matter.io>"]
 readme = "README.md"
+license = "MIT"
 packages = [{include = "commonmeta"}]
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<4.0.0"
+python = ">=3.9,<4.0.0"
 docutils = "^0.19"
+setuptools = "^70.0"
 sphinxcontrib-issuetracker = "^0.11"
 sphinx-autodoc-typehints = "^1.19"
-tqdm = "^4.64"
-requests = "^2.28"
-types-requests = "^2.28"
+httpx = "^0.27"
 dateparser = "^1.1.7"
 types-dateparser = "^1.1"
 PyYAML = "^6.0"
 types-PyYAML = "^6.0"
-pydash = "^6.0"
+pydash = "^7.0"
 beautifulsoup4 = "^4.11"
 types-beautifulsoup4 = "^4.11"
-bleach = "^6.0"
-types-bleach = "^6.0"
 simplejson = "^3.18"
 bibtexparser = "^1.4"
 citeproc-py-styles = ">0.1"
 citeproc-py = "^0.6"
-jsonschema-rs = "^0.16.3"
-mkdocs = "^1.4"
-mkdocs-material = "^8.0"
-mkdocs-material-extensions = "^1.1"
-mkdocs-jupyter = "^0.22"
+jsonschema = "^4.21"
+base32_lib = "^1.0"
 nbstripout = "^0.6"
 datacite = "^1.1"
-xmltodict = "^0.13"
+xmltodict = "^0.12"
 types-xmltodict = "^0.13"
+nameparser = "^1.1.2"
+pycountry = "^23.12.11"
+click = "^8.1.7"
+quartodoc = "^0.7.1"
+jupyterlab = "^4.0.9"
+jupyterlab-quarto = "^0.2.8"
+furl = "^2.1.3"
+lxml = ">=4.8"
+python-dateutil = "^2.8.2"
+nh3 = "^0.2.14"
+pyjwt = "^2.8.0"
+asyncio = "^3.4.3"
+asyncclick = "^8.1.7.1"
+anyio = "^4.2.0"
+orjson = "^3.9.14"
+orjsonl = "^1.0.0"
+pikepdf = "^8.14.0"
+
+[tool.poetry.scripts]
+commonmeta = "commonmeta.cli:cli"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.1.0"
-flake8 = "^6.0.0"
-pytest = "^7.2.1"
-pytest-cov = "^4.0.0"
-pytest-recording = "^0.12.2"
-vcrpy = "^4.2.1"
-codecov = "^2.1.12"
+coverage = "*"
+ruff = "^0.3.0"
+pytest = "^8.3"
+pytest-cov = "^4.1.0"
+pytest-recording = "^0.13.1"
+vcrpy = ">=5.1.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+select = [
+    "F401",
+    "F403",
+]
 
 [tool.tox]
 legacy_tox_ini = """

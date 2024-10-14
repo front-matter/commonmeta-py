@@ -1,7 +1,9 @@
 # pylint: disable=invalid-name
 """Test DataCite Writer"""
+
 from os import path
-import json
+import re
+import orjson as json
 import pytest
 
 from commonmeta import Metadata
@@ -12,8 +14,7 @@ def test_write_metadata_as_datacite_json():
     """Write metadata as datacite json"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-
-    datacite = json.loads(subject.datacite())
+    datacite = json.loads(subject.write(to="datacite"))
     assert datacite["id"] == "https://doi.org/10.7554/elife.01567"
     assert datacite["doi"] == "10.7554/elife.01567"
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
@@ -29,8 +30,8 @@ def test_write_metadata_as_datacite_json():
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
         }
     ]
-    assert len(datacite["relatedItems"]) == 27
-    assert datacite["relatedItems"][0] == {
+    assert len(datacite["relatedIdentifiers"]) == 27
+    assert datacite["relatedIdentifiers"][0] == {
         "relatedIdentifier": "https://doi.org/10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -49,8 +50,9 @@ def test_with_orcid_id():
     """With ORCID ID"""
     subject = Metadata("https://doi.org/10.1155/2012/291294")
     assert subject.id == "https://doi.org/10.1155/2012/291294"
-
-    datacite = json.loads(subject.datacite())
+    assert subject.type == "JournalArticle"
+    datacite = json.loads(subject.write(to="datacite"))
+    assert subject.write_errors == None
     assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
     assert (
         datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"]
@@ -69,8 +71,8 @@ def test_with_data_citation():
     """with data citation"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-
-    datacite = json.loads(subject.datacite())
+    assert len(subject.references) == 27
+    datacite = json.loads(subject.write(to="datacite"))
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -84,8 +86,8 @@ def test_with_data_citation():
             "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
         }
     ]
-    assert len(datacite["relatedItems"]) == 27
-    assert datacite["relatedItems"][0] == {
+    assert len(datacite["relatedIdentifiers"]) == 27
+    assert datacite["relatedIdentifiers"][0] == {
         "relatedIdentifier": "https://doi.org/10.1038/nature02100",
         "relatedIdentifierType": "DOI",
         "relationType": "References",
@@ -121,7 +123,39 @@ def test_blogposting_citeproc_json():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
-    datacite = json.loads(subject.datacite())
+    datacite = json.loads(subject.write(to="datacite"))
+    assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
+    assert datacite["types"] == {
+        "bibtex": "article",
+        "citeproc": "article",
+        "resourceTypeGeneral": "Preprint",
+        "ris": "JOUR",
+        "schemaOrg": "Article",
+    }
+    assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
+    assert datacite["descriptions"][0]["description"].startswith(
+        "Eating your own dog food"
+    )
+    assert datacite["creators"] == [
+        {
+            "name": "Fenner, Martin",
+            "givenName": "Martin",
+            "familyName": "Fenner",
+            "nameType": "Personal",
+        }
+    ]
+
+
+def test_blogposting_citeproc_json_no_doi():
+    """BlogPosting Citeproc JSON"""
+    string = path.join(path.dirname(__file__), "fixtures", "citeproc_missing_doi.json")
+    subject = Metadata(string, prefix="10.5438")
+    assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", subject.id)
+    assert subject.type == "Article"
+    assert subject.is_valid
+
+    datacite = json.loads(subject.write(to="datacite"))
+    assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", datacite["id"])
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -150,7 +184,7 @@ def test_rdataone():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5063/f1m61h5x"
 
-    datacite = json.loads(subject.datacite())
+    datacite = json.loads(subject.write(to="datacite"))
     assert datacite["titles"] == [{"title": "R Interface to the DataONE REST API"}]
     assert len(datacite["creators"]) == 3
     assert datacite["creators"][0] == {
@@ -158,6 +192,13 @@ def test_rdataone():
         "givenName": "Matt",
         "familyName": "Jones",
         "nameType": "Personal",
+        "nameIdentifiers": [
+            {
+                "nameIdentifier": "https://orcid.org/0000-0003-0077-4738",
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+        ],
         "affiliation": [{"name": "NCEAS"}],
     }
     assert datacite["version"] == "2.0.0"
@@ -183,8 +224,7 @@ def test_from_schema_org():
     """Schema.org"""
     subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
-
-    datacite = json.loads(subject.datacite())
+    datacite = json.loads(subject.write(to="datacite"))
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (
         datacite["url"] == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
@@ -196,6 +236,14 @@ def test_from_schema_org():
             "givenName": "Martin",
             "familyName": "Fenner",
             "nameType": "Personal",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://orcid.org/0000-0003-1419-2405",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+            "affiliation": [{"name": "DataCite"}],
         }
     ]
     assert datacite["descriptions"][0]["description"].startswith(

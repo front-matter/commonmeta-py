@@ -1,6 +1,8 @@
 # pylint: disable=invalid-name
 """Test schema.org writer"""
-import json
+
+from os import path
+import orjson as json
 import pytest
 
 from commonmeta import Metadata
@@ -13,7 +15,7 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.schema_org())
+    schema_org = json.loads(subject.write(to="schema_org"))
     assert schema_org.get("@id") == "https://doi.org/10.7554/elife.01567"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert (
@@ -25,7 +27,7 @@ def test_journal_article():
         "givenName": "Martial",
         "familyName": "Sankar",
         "name": "Martial Sankar",
-        "affiliation": [
+        "affiliations": [
             {
                 "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
             }
@@ -42,34 +44,310 @@ def test_journal_article():
     assert schema_org.get("datePublished") == "2014-02-11"
     assert schema_org.get("url") == "https://elifesciences.org/articles/01567"
     assert schema_org.get("periodical") == {
-        "identifier": "2050-084X",
-        "identifierType": "ISSN",
-        "volume": "3",
+        "issn": "2050-084X",
         "@type": "Journal",
         "name": "eLife",
     }
     assert schema_org.get("pageStart") is None
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "en"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/3.0/legalcode"
     )
+    assert len(schema_org.get("encoding")) == 2
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
+        "encodingFormat": "application/pdf",
+    }
 
 
-#       expect(json['citation'].length).to eq(27)
-#       expect(json['citation'].first).to eq('@id' => 'https://doi.org/10.1038/nature02100',
-#                                            '@type' => 'CreativeWork')
-#       expect(json['funder']).to eq([{ 'name' => 'SystemsX', '@type' => 'Organization' },
-#                                     { 'name' => 'EMBO',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100003043' },
-#                                     { 'name' => 'Swiss National Science Foundation',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100001711' },
-#                                     { 'name' => 'University of Lausanne',
-#                                       '@type' => 'Organization',
-#                                       '@id' => 'https://doi.org/10.13039/501100006390' }])
+def test_inveniordm_software():
+    "inveniordm software"
+    string = path.join(path.dirname(__file__), "fixtures", "inveniordm-software.json")
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
+    assert subject.type == "Software"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7752775"
+    assert schema_org.get("@type") == "SoftwareSourceCode"
+    assert schema_org.get("name") == "commonmeta-ruby"
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "givenName": "Martin",
+        "familyName": "Fenner",
+        "affiliations": [{"name": "Front Matter"}],
+        "@type": "Person",
+        "name": "Martin Fenner",
+    }
+    assert schema_org.get("description").startswith(
+        "Ruby gem and command-line utility for conversion"
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2023-03-20"
+    assert schema_org.get("url") == "https://zenodo.org/records/7752775"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert schema_org.get("license") == "https://opensource.org/licenses/MIT"
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/files/7cd6cc32-96a6-405d-b0ff-1811b378cc69/front-matter/commonmeta-ruby-v3.0.1.zip",
+        "encodingFormat": "application/zip",
+        "name": "front-matter/commonmeta-ruby-v3.0.1.zip",
+        "size": 5061453,
+    }
+    assert (
+        schema_org.get("codeRepository")
+        == "https://github.com/front-matter/commonmeta-ruby"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_presentation():
+    "inveniordm presentation"
+    string = "https://zenodo.org/api/records/8173303"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
+    assert subject.type == "Presentation"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8173303"
+    assert schema_org.get("@type") == "PresentationDigitalDocument"
+    assert (
+        schema_org.get("name")
+        == "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+    )
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0002-8960-9642",
+        "givenName": "Heidi",
+        "familyName": "Seibold",
+        "@type": "Person",
+        "name": "Heidi Seibold",
+    }
+    assert schema_org.get("description").startswith(
+        "CERN/NASA “Accelerating the Adoption of Open Science”"
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2023-07-21"
+    assert schema_org.get("url") == "https://zenodo.org/records/8173303"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content",
+        "name": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
+        "size": 13994803,
+    }
+
+
+@pytest.mark.vcr
+def test_inveniordm_publication():
+    "inveniordm publication"
+    string = "https://zenodo.org/api/records/5244404"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.5244404"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert schema_org.get("name") == "The Origins of SARS-CoV-2: A Critical Review"
+    assert len(schema_org.get("author")) == 21
+    assert schema_org.get("author")[0] == {
+        "givenName": "Edward C",
+        "familyName": "Holmes",
+        "affiliations": [
+            {
+                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
+            }
+        ],
+        "@type": "Person",
+        "name": "Edward C Holmes",
+    }
+    assert schema_org.get("description").startswith(
+        "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2021-08-18"
+    assert schema_org.get("url") == "https://zenodo.org/records/5244404"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") is None
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode"
+    )
+    assert len(schema_org.get("encoding")) == 3
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
+        "name": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "size": 197003,
+    }
+
+
+@pytest.mark.vcr
+def test_inveniordm_report():
+    "inveniordm report"
+    string = "https://zenodo.org/api/records/3871094"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.3871094"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.3871094"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert schema_org.get("name") == "An open letter to Mehra et al and The Lancet"
+    assert len(schema_org.get("author")) == 1
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0001-5524-0325",
+        "givenName": "James Watson on the behalf of 201",
+        "familyName": "signatories",
+        "affiliations": [{"name": "Mahidol Oxford Tropical Medicine Research Unit"}],
+        "@type": "Person",
+        "name": "James Watson on the behalf of 201 signatories",
+    }
+    assert schema_org.get("description").startswith(
+        "Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel"
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2020-05-28"
+    assert schema_org.get("url") == "https://zenodo.org/records/3871094"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "English"
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/records/3871094/files/Open Letter V4.pdf/content",
+        "name": "Open Letter V4.pdf",
+        "size": 130482,
+    }
+
+
+@pytest.mark.vcr
+def test_inveniordm_preprint():
+    "inveniordm preprint"
+    string = "https://zenodo.org/api/records/8120771"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.8120771"
+    assert subject.type == "JournalArticle"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8120771"
+    assert schema_org.get("@type") == "ScholarlyArticle"
+    assert (
+        schema_org.get("name")
+        == "A SYSTEMATIC REVIEW OF AUTOPSY FINDINGS IN DEATHS AFTER COVID-19 VACCINATION"
+    )
+    assert len(schema_org.get("author")) == 9
+    assert schema_org.get("author")[0] == {
+        "givenName": "BS",
+        "familyName": "Nicolas Hulscher",
+        "affiliations": [{"name": "University of Michigan School of Public Health"}],
+        "@type": "Person",
+        "name": "BS Nicolas Hulscher",
+    }
+    assert schema_org.get("description").startswith(
+        "<strong>ABSTRACT</strong> <strong>Background:</strong>"
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2023-07-06"
+    assert schema_org.get("url") == "https://zenodo.org/records/8120771"
+    assert schema_org.get("periodical") == {
+        "additionalType": "Repository",
+        "name": "Zenodo",
+    }
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "English"
+    assert (
+        schema_org.get("license")
+        == "https://creativecommons.org/licenses/by/4.0/legalcode"
+    )
+    assert len(schema_org.get("encoding")) == 2
+    assert schema_org.get("encoding")[0] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://zenodo.org/api/records/8120771/files/(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf/content",
+        "name": "(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf",
+        "size": 832057,
+    }
+
+
+@pytest.mark.vcr
+def test_inveniordm_dataset():
+    "inveniordm dataset"
+    string = "https://zenodo.org/api/records/7834392"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
+    assert subject.type == "Dataset"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7834392"
+    assert schema_org.get("@type") == "Dataset"
+    assert (
+        schema_org.get("name")
+        == "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"
+    )
+    assert len(schema_org.get("author")) == 9
+    assert schema_org.get("author")[0] == {
+        "id": "https://orcid.org/0000-0001-8499-824X",
+        "givenName": "Juan M.",
+        "familyName": "Banda",
+        "affiliations": [{"name": "Georgia State University"}],
+        "@type": "Person",
+        "name": "Juan M. Banda",
+    }
+    assert schema_org.get("description").startswith(
+        "<em><strong>Version 162&nbsp;of the dataset."
+    )
+    assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
+    assert schema_org.get("datePublished") == "2023-04-16"
+    assert schema_org.get("url") == "https://zenodo.org/records/7834392"
+    assert schema_org.get("inDataCatalog") is None
+    assert schema_org.get("pageStart") is None
+    assert schema_org.get("pageEnd") is None
+    assert schema_org.get("inLanguage") == "English"
+    assert schema_org.get("license") is None
+    assert len(schema_org.get("distribution")) == 24
+    assert schema_org.get("distribution")[0] == {
+        "@type": "DataDownload",
+        "contentUrl": "https://zenodo.org/api/records/7834392/files/frequent_trigrams.csv/content",
+        "name": "frequent_trigrams.csv",
+        "size": 24991,
+    }
 
 
 def test_article_with_pages():
@@ -79,7 +357,7 @@ def test_article_with_pages():
     assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.schema_org())
+    schema_org = json.loads(subject.write(to="schema_org"))
     assert schema_org.get("@id") == "https://doi.org/10.1371/journal.ppat.1008184"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert (
@@ -93,6 +371,14 @@ def test_article_with_pages():
         "givenName": "Christian",
         "name": "Christian Twittenhoff",
     }
+    assert schema_org.get("editor") == [
+        {
+            "givenName": "Guy",
+            "familyName": "Tran Van Nhieu",
+            "@type": "Person",
+            "name": "Guy Tran Van Nhieu",
+        }
+    ]
     assert schema_org.get("description") is None
     assert schema_org.get("publisher") == {
         "@type": "Organization",
@@ -101,21 +387,31 @@ def test_article_with_pages():
     assert schema_org.get("datePublished") == "2020-01-17"
     assert schema_org.get("url") == "https://dx.plos.org/10.1371/journal.ppat.1008184"
     assert schema_org.get("periodical") == {
-        "identifier": "1553-7374",
-        "identifierType": "ISSN",
-        "volume": "16",
-        "issue": "1",
-        "firstPage": "e1008184",
+        "issn": "1553-7374",
         "@type": "Journal",
         "name": "PLOS Pathogens",
     }
     assert schema_org.get("pageStart") == "e1008184"
     assert schema_org.get("pageEnd") is None
-    assert schema_org.get("inLanguage") == "en"
+    assert schema_org.get("inLanguage") == "English"
     assert (
         schema_org.get("license")
         == "https://creativecommons.org/licenses/by/4.0/legalcode"
     )
+    assert schema_org.get("encoding") is None
+
+
+def test_instrument():
+    "instrument"
+    string = path.join(path.dirname(__file__), "fixtures", "datacite-instrument.json")
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.82433/08qf-ee96"
+    assert subject.type == "Instrument"
+
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.82433/08qf-ee96"
+    assert schema_org.get("@type") == "Instrument"
+    assert schema_org.get("name") == "Pilatus detector at MX station 14.1"
 
 
 #     it 'maremma schema.org JSON' do
@@ -489,3 +785,26 @@ def test_article_with_pages():
 #     end
 #   end
 # end
+
+
+@pytest.mark.vcr
+def test_json_feed_item_upstream_blog():
+    """json_feed_item upstream blog"""
+    string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
+    assert subject.type == "Article"
+    schema_org = json.loads(subject.write(to="schema_org"))
+    assert schema_org.get("@id") == "https://doi.org/10.54900/n6dnt-xpq48"
+    assert schema_org.get("@type") == "Article"
+    assert (
+        schema_org.get("name")
+        == "Attempts at automating journal subject classification"
+    )
+    assert len(schema_org.get("encoding")) == 4
+    assert schema_org.get("encoding")[1] == {
+        "@type": "MediaObject",
+        "contentUrl": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.pdf",
+        "encodingFormat": "application/pdf",
+    }

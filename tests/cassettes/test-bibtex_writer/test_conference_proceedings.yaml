@@ -1,0 +1,130 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://doi.org/ra/10.1109
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q0MDSyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        XRsdmjYAAAA=
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 8c9cc517dcd2cb11-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 27 Sep 2024 16:11:29 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=OsIdS3owXZDqLSkzLS7srw29ked49vTTuqB9SLkXYtl1Bl1DXwV%2F7FAaSQwS8vtLGHfPXk1EFspOFNPd12FdMqHc%2FcZATW7yl%2BLJDsdMBGrUohmlJ%2FW2M%2FGS3NsEe95hKmvvkRk%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.crossref.org/works/10.1109/iccv.2007.4408927
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VW227jNhD9FUJPLSDZpC6mZKAosummSJu9IMnuoo3zwEi0xY0kqqSUjTfIv3dG
+        cmJZcYoai7w4Q/HMzJkLz4NjG9G01pk7+tZxnVJaK1bSa9a1BNs3bYbWO2ms0hUcsAmd0O2JM39w
+        VJXJe5nhz0w00quFaQD36sqnfugmbnB97fYnjSoRHO0eTTwaXLJwHiXzYPY3QOIpBFXWzpxxPwp4
+        FPEZ5/zRdYxcSiOrVHqpbqsGPghdp25vCmVzaQDy9O3btwCR6qqRVeNluhSq6iLa/LqCGFKjrS2F
+        ufUMODIqbbqclqKwEpzYXJvGQwi4IQ1E2xSyv/nkKvNqo9D/y1Qpv74GkN8+nCJLdMIYTRZTlaZ3
+        EzychCGNE59jnj3FtdGplJmqVtYDGJWCM4xRAvBeMmnsMjd8SSaNPco8Gl76dB4An8GYTJYkIY/j
+        JKCUYp66NSlePUY+gFr4XFnvmePMu1k/88wZYvVEOEfkAiKWGTktofbwz6oEtgXSSE6MKCW2DflU
+        qeUa0iK/G1Hn5LhtLDmqMnIuKqgG+SKKW2nIl1ylOflLySKDY/JefiNHxUob1eSlg5RDPOp+yyUE
+        KdoGSgSBPDgrdSexHY8KRf6UpSjgeClKVazBeKEqXYPByn9aTAhMS2VsgxDLpSqU6At/BQXbQp1J
+        PQSB4LP1LojIMoU3O29jpGucifKm60Z/FjiDpu0ivpWICjaG45Np5QlrpWk6urEdnrt52ESUzhbT
+        VanqCRQxntAwpg4GvUVjB6HxxfQmiWMejlB8zKhvwqe+d451eaMq0UBNREE+1NBS6nuX8HxbKkug
+        qgQ+rQt5r5r1oExOLWqRwSUYNd3CwVoKNGMmI/fBHvdn8k4W0GMNeScBMOs9nQgLBmHSHDtsczJ0
+        asGkRLXjLhm5C/dylm7HoWsXmD1ccE4cx86LwQ7CSTyDv3hP5O+1gY5U32FQUmx+jFt1E2MHEwMX
+        73TR9kPs76SQq234MN/YMF9haKHxnn3gwiOXRlSWwPB9PHp3upvj/hT/Z5PxaBcsOLTHLGMwAx4A
+        ezwJQm+ENzsAr2P7EhPEPTqb+EGwCxYdCnb8+eM5YkWANeqM+NBE35xQyoIg4qOx5D+QYcR3sfxD
+        gkroYnpBfQ7kJxyeWHhoGQ0ib0Qa29e2sun290mhv9k5ucylNmt3MOpu18lHdV2otGvhncETeftV
+        7IzdyGdySB4MWvKCUT7zohmnP1H6cwxM+x4UDDYtrIb+Fa7E0yPISTcSjDU5OQUVANPS72pYTtVm
+        EeOo4Kpq4Zh8VrafwkKnmzXunCtNMkn+EJVURrvkjRHfFW57eErNK8++y6jLwu7xl9X+h7v7xmfw
+        zWOvUXYFxo+ED2RAdVZqsBtQsBSquu2enU/nZ5BX3jT1fDFdTO/rQqP4EXBjNVFSyok2K9ApsriP
+        FlMUKTGLn35AX9KNbpnU2fJXYaoWn7hftmLmSXFtRE1b2VqmaqlAwmwPt/LxTmOdFZpBR3hi20u4
+        9+CtKAT0GsiPXKa3EGJX7UzW2qpXVBHj7sxl8UtZxLgH64fFl9SfB8k8jMayKEw4j4IojjayKAVm
+        wIwP95NEegAZApvbrPHniEokr6dzwGOm0xY3fM8gULSYOlh0294MqtMrzYFBWdu+Ivp6WfmsJexQ
+        AY8iyu4nMF99IP+pQI0sNpw/9LF9lWkzUrqvBvP4+C9YI1s5PAwAAA==
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1294'
+      content-type:
+      - application/json
+      date:
+      - Fri, 27 Sep 2024 16:11:30 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+version: 1

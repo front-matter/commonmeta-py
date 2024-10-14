@@ -1,9 +1,10 @@
 # pylint: disable=invalid-name
 """Citeproc writer tests"""
-import json
+import orjson as json
 import pytest
+from os import path
 
-from commonmeta import Metadata
+from commonmeta import Metadata, MetadataList
 
 
 @pytest.mark.vcr
@@ -95,7 +96,7 @@ def test_doi_with_data_citation():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.7554/elife.01567"
     assert (
@@ -109,6 +110,7 @@ def test_doi_with_data_citation():
         {"family": "Xenarios", "given": "Ioannis"},
         {"family": "Hardtke", "given": "Christian S"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "eLife Sciences Publications, Ltd"
 
     assert csl.get("issued") == {"date-parts": [[2014, 2, 11]]}
@@ -117,8 +119,7 @@ def test_doi_with_data_citation():
     assert csl.get("volume") == "3"
     assert csl.get("page") is None
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-3.0"
+    assert csl.get("copyright") == "CC-BY-3.0"
 
 
 #     it 'software' do
@@ -167,11 +168,10 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1155/2012/291294"
-    assert csl.get(
-        "URL") == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294"
     assert (
         csl.get("title")
         == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
@@ -185,14 +185,14 @@ def test_with_pages():
         {"family": "Marder", "given": "David"},
         {"family": "Yesavage", "given": "Jerome A."},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Hindawi Limited"
     assert csl.get("issued") == {"date-parts": [[2012]]}
     assert csl.get("container-title") == "Pulmonary Medicine"
     assert csl.get("volume") == "2012"
     assert csl.get("page") == "1-7"
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-3.0"
+    assert csl.get("copyright") == "CC-BY-3.0"
 
 
 def test_only_first_page():
@@ -201,17 +201,17 @@ def test_only_first_page():
     assert subject.id == "https://doi.org/10.1371/journal.pone.0214986"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1371/journal.pone.0214986"
-    assert csl.get(
-        "URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
-    assert csl.get(
-        "title") == "River metrics by the public, for the public"
+    assert csl.get("URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
+    assert csl.get("title") == "River metrics by the public, for the public"
     assert csl.get("author") == [
         {"family": "Weber", "given": "Matthew A."},
         {"family": "Ringold", "given": "Paul L."},
+        {"family": "Cañedo-Argüelles Iglesias", "given": "Miguel"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Public Library of Science (PLoS)"
     assert csl.get("issued") == {"date-parts": [[2019, 5, 8]]}
     assert csl.get("container-title") == "PLOS ONE"
@@ -227,7 +227,7 @@ def test_missing_creator():
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.3390/publications6020015"
     assert csl.get("URL") == "https://www.mdpi.com/2304-6775/6/2/15"
@@ -239,14 +239,14 @@ def test_missing_creator():
         {"family": "Kohls", "given": "Alexander"},
         {"family": "Mele", "given": "Salvatore"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "MDPI AG"
     assert csl.get("issued") == {"date-parts": [[2018, 4, 9]]}
     assert csl.get("container-title") == "Publications"
     assert csl.get("volume") == "6"
     assert csl.get("page") == "15"
     assert csl.get("language") == "en"
-    assert csl.get(
-        "copyright") == "CC-BY-4.0"
+    assert csl.get("copyright") == "CC-BY-4.0"
 
 
 #     it 'container title' do
@@ -322,7 +322,7 @@ def test_organization_author():
     assert subject.id == "https://doi.org/10.1186/s13742-015-0103-4"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.csl())
+    csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1186/s13742-015-0103-4"
     assert (
@@ -334,14 +334,15 @@ def test_organization_author():
         == "Discovery, genotyping and characterization of structural variation and novel sequence at single nucleotide resolution from de novo genome assemblies on a population scale"
     )
     assert csl.get("author") == [
-        {"family": "Liu", "given": "Siyang"},
         {"literal": "The Genome Denmark Consortium"},
+        {"family": "Liu", "given": "Siyang"},
         {"family": "Huang", "given": "Shujia"},
         {"family": "Rao", "given": "Junhua"},
         {"family": "Ye", "given": "Weijian"},
         {"family": "Krogh", "given": "Anders"},
         {"family": "Wang", "given": "Jun"},
     ]
+    assert csl.get("contributor") is None
     assert csl.get("publisher") == "Oxford University Press (OUP)"
     assert csl.get("issued") == {"date-parts": [[2015, 12]]}
     assert csl.get("container-title") == "GigaScience"
@@ -358,3 +359,18 @@ def test_organization_author():
 #       expect(json['type']).to eq('article')
 #       expect(json['DOI']).to eq('10.34747/g6yb-3412')
 #       expect(json['issued']).to eq('date-parts' => [[2019]])
+
+
+@pytest.mark.vcr
+def test_write_csl_list():
+    """write_csl_list"""
+    string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
+    subject_list = MetadataList(string, via="crossref")
+    assert len(subject_list.items) == 20
+    csl_list = json.loads(subject_list.write(to="csl"))
+    assert len(csl_list) == 20
+    csl = csl_list[0]
+    assert (
+        csl.get("id") == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    )
+    assert csl.get("type") == "article-journal"

@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.rogue-scholar.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/c314bfea-2151-4ccc-8fa8-dd0d1000dfbe
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslIKyC8uUcjLL1FIyy/NS1Gq5QIAvvo61RsAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Fri, 27 Sep 2024 16:12:26 GMT
+      fly-request-id:
+      - 01J8T42J27XH2ZJFWDS36V4VRF-cdg
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '5'
+      ratelimit-reset:
+      - '38'
+      server:
+      - Fly/0c45e4378 (2024-09-20)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
+version: 1

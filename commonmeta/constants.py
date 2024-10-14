@@ -1,4 +1,5 @@
 """Constants for commonmeta-py"""
+
 from typing import Optional, TypedDict, List
 
 
@@ -16,7 +17,8 @@ class Commonmeta(TypedDict):
     subjects: Optional[List[dict]]
     contributors: Optional[List[dict]]
     language: Optional[str]
-    alternate_identifiers: Optional[List[dict]]
+    identifiers: Optional[List[dict]]
+    relations: Optional[List[dict]]
     sizes: Optional[List[dict]]
     formats: Optional[List[dict]]
     version: Optional[str]
@@ -26,10 +28,9 @@ class Commonmeta(TypedDict):
     funding_references: Optional[List[dict]]
     references: Optional[List[dict]]
     container: Optional[dict]
-    content_url: Optional[List[dict]]
+    files: Optional[List[dict]]
     agency: Optional[str]
     state: str
-    schema_version: Optional[str]
 
 
 # source: https://www.bibtex.com/e/entry-types/
@@ -103,7 +104,7 @@ CSL_TO_CM_TRANSLATIONS = {
     "review-book": "Review",
     "software": "Software",
     "song": "Audiovisual",
-    "speech": "Speech",
+    "speech": "Presentation",
     "standard": "Standard",
     "thesis": "Dissertation",
     "treaty": "LegalDocument",
@@ -130,11 +131,10 @@ CM_TO_CSL_TRANSLATIONS = {
     "Performance": "performance",
     "Journal": "periodical",
     "PersonalCommunication": "personal_communication",
-    "Post": "post",
     "Report": "report",
     "Review": "review",
     "Software": "software",
-    "Speech": "speech",
+    "Presentation": "speech",
     "Standard": "standard",
     "Dissertation": "thesis",
     "WebPage": "webpage",
@@ -142,36 +142,36 @@ CM_TO_CSL_TRANSLATIONS = {
 
 # source: http://api.crossref.org/types
 CR_TO_CM_TRANSLATIONS = {
-    "BookChapter": "BookChapter",
-    "BookPart": "BookPart",
-    "BookSection": "BookSection",
-    "BookSeries": "BookSeries",
-    "BookSet": "BookSet",
-    "BookTrack": "BookTrack",
-    "Book": "Book",
-    "Component": "Component",
-    "Database": "Database",
-    "Dataset": "Dataset",
-    "Dissertation": "Dissertation",
-    "EditedBook": "EditedBook",
-    "Grant": "Grant",
-    "JournalArticle": "JournalArticle",
-    "JournalIssue": "JournalIssue",
-    "JournalVolume": "JournalVolume",
-    "Journal": "Journal",
-    "Monograph": "Book",
-    "Other": "Other",
-    "PeerReview": "Review",
-    "PostedContent": "Article",
-    "ProceedingsArticle": "ProceedingsArticle",
-    "ProceedingsSeries": "ProceedingsSeries",
-    "Proceedings": "Proceedings",
-    "ReferenceBook": "ReferenceBook",
-    "ReferenceEntry": "Entry",
-    "ReportComponent": "ReportComponent",
-    "ReportSeries": "ReportSeries",
-    "Report": "Report",
-    "Standard": "Standard",
+    "book-chapter": "BookChapter",
+    "book-part": "BookPart",
+    "book-section": "BookSection",
+    "book-series": "BookSeries",
+    "book-set": "BookSet",
+    "book-track": "BookTrack",
+    "book": "Book",
+    "component": "Component",
+    "database": "Database",
+    "dataset": "Dataset",
+    "dissertation": "Dissertation",
+    "edited-book": "Book",
+    "grant": "Grant",
+    "journal-article": "JournalArticle",
+    "journal-issue": "JournalIssue",
+    "journal-volume": "JournalVolume",
+    "journal": "Journal",
+    "monograph": "Book",
+    "other": "Other",
+    "peer-review": "PeerReview",
+    "posted-content": "Article",
+    "proceedings-article": "ProceedingsArticle",
+    "proceedings-series": "ProceedingsSeries",
+    "proceedings": "Proceedings",
+    "reference-book": "Book",
+    "reference-entry": "Entry",
+    "report-component": "ReportComponent",
+    "report-series": "ReportSeries",
+    "report": "Report",
+    "standard": "Standard",
 }
 
 CM_TO_CR_TRANSLATIONS = {
@@ -212,6 +212,7 @@ DC_TO_CM_TRANSLATIONS = {
     "Dissertation": "Dissertation",
     "Event": "Event",
     "Image": "Image",
+    "Instrument": "Instrument",
     "InteractiveResource": "InteractiveResource",
     "Journal": "Journal",
     "JournalArticle": "JournalArticle",
@@ -219,17 +220,62 @@ DC_TO_CM_TRANSLATIONS = {
     "OutputManagementPlan": "OutputManagementPlan",
     "PeerReview": "PeerReview",
     "PhysicalObject": "PhysicalObject",
-    "Poster": "Speech",
+    "Poster": "Presentation",
     "Preprint": "Article",
     "Report": "Report",
     "Service": "Service",
     "Software": "Software",
     "Sound": "Sound",
     "Standard": "Standard",
+    "StudyRegistration": "StudyRegistration",
     "Text": "Document",
     "Thesis": "Dissertation",
     "Workflow": "Workflow",
     "Other": "Other",
+}
+
+# https://github.com/zenodo/zenodo/blob/master/zenodo/modules/records/data/objecttypes.json
+INVENIORDM_TO_CM_TRANSLATIONS = {
+    "book": "Book",
+    "section": "BookChapter",
+    "conferencepaper": "ProceedingsArticle",
+    "patent": "Patent",
+    "publication": "JournalArticle",
+    "publication-preprint": "Article",
+    "report": "Report",
+    "softwaredocumentation": "Software",
+    "thesis": "Dissertation",
+    "technicalnote": "Report",
+    "workingpaper": "Report",
+    "datamanagementplan": "OutputManagementPlan",
+    "annotationcollection": "Collection",
+    "taxonomictreatment": "Collection",
+    "peerreview": "PeerReview",
+    "poster": "Presentation",
+    "presentation": "Presentation",
+    "dataset": "Dataset",
+    "figure": "Image",
+    "plot": "Image",
+    "drawing": "Image",
+    "photo": "Image",
+    "image": "Image",
+    "video": "Audiovisual",
+    "software": "Software",
+    "lesson": "InteractiveResource",
+    "physicalobject": "PhysicalObject",
+    "workflow": "Workflow",
+    "other": "Other",
+}
+
+CM_TO_INVENIORDM_TRANSLATIONS = {
+    "Article": "publication-preprint",
+    "Book": "book",
+    "Dataset": "dataset",
+    "Image": "image-other",
+    "JournalArticle": "publication-article",
+    "Presentation": "presentation",
+    "Software": "software",
+    "Other": "other",
 }
 
 CM_TO_DC_TRANSLATIONS = {
@@ -244,6 +290,7 @@ CM_TO_DC_TRANSLATIONS = {
     "Event": "Event",
     "Figure": "Image",
     "Image": "Image",
+    "Instrument": "Instrument",
     "JournalArticle": "JournalArticle",
     "LegalDocument": "Text",
     "Manuscript": "Text",
@@ -259,6 +306,7 @@ CM_TO_DC_TRANSLATIONS = {
     "Software": "Software",
     "Sound": "Sound",
     "Standard": "Standard",
+    "StudyRegistration": "StudyRegistration",
     "WebPage": "Text",
 }
 
@@ -357,22 +405,34 @@ SO_TO_CM_TRANSLATIONS = {
     "BookChapter": "BookChapter",
     "CreativeWork": "Other",
     "Dataset": "Dataset",
+    "DigitalDocument": "Document",
     "Dissertation": "Dissertation",
+    "Instrument": "Instrument",
     "NewsArticle": "Article",
     "Legislation": "LegalDocument",
+    "Report": "Report",
     "ScholarlyArticle": "JournalArticle",
     "SoftwareSourceCode": "Software",
 }
 
 CM_TO_SO_TRANSLATIONS = {
     "Article": "Article",
+    "Audiovisual": "CreativeWork",
     "Book": "Book",
     "BookChapter": "BookChapter",
+    "Collection": "CreativeWork",
     "Dataset": "Dataset",
     "Dissertation": "Dissertation",
-    "LegalDocument": "Legislation",
+    "Document": "CreativeWork",
+    "Entry": "CreativeWork",
+    "Event": "CreativeWork",
+    "Figure": "CreativeWork",
+    "Image": "CreativeWork",
+    "Instrument": "Instrument",
     "JournalArticle": "ScholarlyArticle",
+    "LegalDocument": "Legislation",
     "Software": "SoftwareSourceCode",
+    "Presentation": "PresentationDigitalDocument",
 }
 
 SO_TO_DC_RELATION_TYPES = {
@@ -396,10 +456,159 @@ SO_TO_DC_REVERSE_RELATION_TYPES = {
 }
 
 CROSSREF_CONTAINER_TYPES = {
-    "BookChapter": "book",
-    "Dataset": "database",
-    "JournalArticle": "journal",
-    "JournalIssue": "journal",
-    "Monograph": "book-series",
-    "ProceedingsArticle": "proceedings",
+    "book-chapter": "book",
+    "dataset": "database",
+    "journal-article": "journal",
+    "journal-issue": "journal",
+    "monograph": "book-series",
+    "proceedings-article": "proceedings",
+    "posted-content": "periodical",
+}
+
+COMMONMETA_CONTAINER_TYPES = {
+    "Article": "Periodical",
+    "BookChapter": "Book",
+    "Book": "BookSeries",
+    "Dataset": "Repository",
+    "JournalArticle": "Journal",
+    "JournalIssue": "Journal",
+    "Monograph": "Book",
+    "ProceedingsArticle": "Proceedings",
+    "Proceedings": "ProceedingsSeries",
+    "PostedContent": "Periodical",
+}
+
+CR_TO_CM_CONTAINER_TRANSLATIONS = {
+    "book": "Book",
+    "book-series": "BookSeries",
+    "database": "DataRepository",
+    "journal": "Journal",
+    "proceedings": "Proceedings",
+    "periodical": "Periodical",
+}
+
+DC_TO_CM_CONTAINER_TRANSLATIONS = {
+    "Book": "Book",
+    "BookSeries": "BookSeries",
+    "DataRepository": "DataRepository",
+    "Journal": "Journal",
+    "Periodical": "Periodical",
+    "Proceedings": "ProceedingsSeries",
+    "Repository": "Repository",
+    "Series": "Series",
+}
+
+DATACITE_CONTRIBUTOR_TYPES = {
+    "ContactPerson": "ContactPerson",
+    "DataCollector": "DataCollector",
+    "DataCurator": "DataCuration",
+    "DataManager": "DataManager",
+    "Distributor": "Distributor",
+    "Editor": "Editor",
+    "HostingInstitution": "HostingInstitution",
+    "Other": "Other",
+    "Producer": "Producer",
+    "ProjectLeader": "ProjectLeader",
+    "ProjectManager": "ProjectManager",
+    "ProjectMember": "ProjectMember",
+    "RegistrationAgency": "RegistrationAgency",
+    "RegistrationAuthority": "RegistrationAuthority",
+    "RelatedPerson": "RelatedPerson",
+    "ResearchGroup": "ResearchGroup",
+    "RightsHolder": "RightsHolder",
+    "Researcher": "Researcher",
+    "Sponsor": "Sponsor",
+    "Supervisor": "Supervision",
+    "WorkPackageLeader": "WorkPackageLeader",
+}
+
+# from commonmeta schema
+COMMONMETA_RELATION_TYPES = [
+    "IsNewVersionOf",
+    "IsPreviousVersionOf",
+    "IsVersionOf",
+    "HasVersion",
+    "IsPartOf",
+    "HasPart",
+    "IsVariantFormOf",
+    "IsOriginalFormOf",
+    "IsIdenticalTo",
+    "IsTranslationOf",
+    "IsReviewedBy",
+    "Reviews",
+    "IsPreprintOf",
+    "HasPreprint",
+    "IsSupplementTo",
+]
+
+# from commonmeta schema
+COMMONMETA_CONTRIBUTOR_ROLES = [
+    "Author",
+    "Editor",
+    "Chair",
+    "Reviewer",
+    "ReviewAssistant",
+    "StatsReviewer",
+    "ReviewerExternal",
+    "Reader",
+    "Translator",
+    "ContactPerson",
+    "DataCollector",
+    "DataManager",
+    "Distributor",
+    "HostingInstitution",
+    "Producer",
+    "ProjectLeader",
+    "ProjectManager",
+    "ProjectMember",
+    "RegistrationAgency",
+    "RegistrationAuthority",
+    "RelatedPerson",
+    "ResearchGroup",
+    "RightsHolder",
+    "Researcher",
+    "Sponsor",
+    "WorkPackageLeader",
+    "Conceptualization",
+    "DataCuration",
+    "FormalAnalysis",
+    "FundingAcquisition",
+    "Investigation",
+    "Methodology",
+    "ProjectAdministration",
+    "Resources",
+    "Software",
+    "Supervision",
+    "Validation",
+    "Visualization",
+    "WritingOriginalDraft",
+    "WritingReviewEditing",
+    "Maintainer",
+    "Other",
+]
+
+INVENIORDM_IDENTIFIER_TYPES = {
+    "Ark": "ark",
+    "ArXiv": "arxiv",
+    "Bibcode": "ads",
+    "CrossrefFunderID": "crossreffunderid",
+    "DOI": "doi",
+    "EAN13": "ean13",
+    "EISSN": "eissn",
+    "GRID": "grid",
+    "Handle": "handle",
+    "IGSN": "igsn",
+    "ISBN": "isbn",
+    "ISNI": "isni",
+    "ISSN": "issn",
+    "ISTC": "istc",
+    "LISSN": "lissn",
+    "LSID": "lsid",
+    "PMID": "pmid",
+    "PURL": "purl",
+    "UPC": "upc",
+    "URL": "url",
+    "URN": "urn",
+    "W3ID": "w3id",
+    "Other": "other",
 }

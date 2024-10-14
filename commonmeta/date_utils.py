@@ -1,11 +1,11 @@
 """Date utils for commonmeta-py"""
 import datetime
-from collections import defaultdict
 from datetime import datetime as dt
 from typing import Optional, Union
 import dateparser
 import pydash as py_
 
+from .base_utils import compact
 
 MONTH_NAMES = {
     "01": "jan",
@@ -22,7 +22,20 @@ MONTH_NAMES = {
     "12": "dec",
 }
 
-MONTH_SHORT_NAMES = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+MONTH_SHORT_NAMES = [
+    "jan",
+    "feb",
+    "mar",
+    "apr",
+    "may",
+    "jun",
+    "jul",
+    "aug",
+    "sep",
+    "oct",
+    "nov",
+    "dec",
+]
 
 ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
@@ -63,6 +76,13 @@ def get_date_parts(iso8601_time: Optional[str]) -> dict:
     return {"date-parts": [date_parts]}
 
 
+def get_date_from_unix_timestamp(timestamp: Optional[int]) -> Optional[str]:
+    """Get date from unix timestamp"""
+    if timestamp is None:
+        return None
+    return datetime.datetime.fromtimestamp(timestamp).replace(microsecond=0).isoformat()
+
+
 def get_date_from_date_parts(date_as_parts: Optional[dict]) -> Optional[str]:
     """Get date from date parts"""
     if date_as_parts is None:
@@ -99,7 +119,7 @@ def get_date_from_parts(year=0, month=0, day=0) -> Optional[str]:
 
 
 def get_month_from_date(
-    date: Optional[Union[str, int, datetime.datetime, datetime.date]]
+    date: Optional[Union[str, int, datetime.datetime, datetime.date]],
 ) -> Optional[str]:
     """Get month from date"""
     if date is None:
@@ -123,11 +143,10 @@ def strip_milliseconds(iso8601_time: Optional[str]) -> Optional[str]:
         return None
     if "T00:00:00" in iso8601_time:
         return iso8601_time.split("T")[0]
-    if "+00:00" in iso8601_time:
-        return iso8601_time.split("+")[0] + "Z"
     if "." in iso8601_time:
         return iso8601_time.split(".")[0] + "Z"
-
+    if "+00:00" in iso8601_time:
+        return iso8601_time.split("+")[0] + "Z"
     return iso8601_time
 
 
@@ -136,6 +155,16 @@ def get_datetime_from_time(time: str) -> Optional[str]:
     try:
         return dt.strptime(time, "%Y%m%d%H%M%S").strftime("%Y-%m-%dT%H:%M:%SZ")
     except ValueError:
+        return None
+
+
+def get_datetime_from_pdf_time(time: str) -> Optional[str]:
+    """iso8601 datetime in slightly different format, used in PDF metadata"""
+    try:
+        time = str(time).replace("D:", "").replace("'", "")
+        return dt.strptime(time, "%Y%m%d%H%M%S%z").strftime("%Y-%m-%dT%H:%M:%SZ")
+    except ValueError as e:
+        print(e)
         return None
 
 
@@ -151,16 +180,14 @@ def normalize_date_dict(data: dict) -> dict:
     - updated
     - withdrawn
     """
-    data = py_.rename_keys(
-        data,
+    return compact(
         {
-            "Created": "created",
-            "Submitted": "submitted",
-            "Accepted": "accepted",
-            "Issued": "published",
-            "Available": "available",
-            "Updated": "updated",
-            "Withdrawn": "withdrawn",
-        },
+            "created": data.get("Created", None),
+            "submitted": data.get("Submitted", None),
+            "accepted": data.get("Accepted", None),
+            "published": data.get("Issued", None),
+            "available": data.get("Available", None),
+            "updated": data.get("Updated", None),
+            "withdrawn": data.get("Withdrawn", None),
+        }
     )
-    return data
