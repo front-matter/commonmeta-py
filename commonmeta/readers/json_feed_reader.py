@@ -214,13 +214,15 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             or furl(urls[0]).host == "cordis.europa.eu"
         ):
             return [
-                {
-                    "funderName": "European Commission",
-                    "funderIdentifier": "https://doi.org/10.13039/501100000780",
-                    "funderIdentifierType": "Crossref Funder ID",
-                    "awardUri": urls[0],
-                    "awardNumber": urls[0].split("/")[-1],
-                }
+                compact(
+                    {
+                        "funderName": "European Commission",
+                        "funderIdentifier": "https://ror.org/00k4n6c32",
+                        "funderIdentifierType": "ROR",
+                        "awardUri": urls[0],
+                        "awardNumber": urls[0].split("/")[-1],
+                    }
+                )
             ]
         # Prefix 10.13039 means funder ID from Open Funder registry.
         elif len(urls) == 2 and validate_prefix(urls[0]) == "10.13039":
@@ -235,29 +237,24 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             else:
                 award_number = f.path.segments[-1]
             return [
-                {
+                compact({
                     "funderName": funder_name,
                     "funderIdentifier": urls[0],
                     "funderIdentifierType": "Crossref Funder ID",
                     "awardUri": urls[1],
                     "awardNumber": award_number,
-                }
+                })
             ]
-        # URL is ROR ID for funder. Need to transform to Crossref Funder ID
-        # until Crossref production service supports ROR IDs.
+        # URL is ROR ID for funder.
         elif len(urls) == 2 and validate_ror(urls[0]):
             f = furl(urls[0])
             _id = f.path.segments[-1]
             response = httpx.get(f"https://api.ror.org/organizations/{_id}", timeout=10)
             ror = response.json()
             funder_name = ror.get("name", None)
-            funder_identifier = py_.get(ror, "external_ids.FUNDREF.all.0")
-            if funder_identifier is not None:
-                funder_identifier = f"https://doi.org/{funder_identifier}"
-                funder_identifier_type = "Crossref Funder ID"
-            else:
-                funder_identifier = urls[0]
-                funder_identifier_type = "ROR"
+            funder_identifier = urls[0]
+            funder_identifier_type = "ROR"
+            
             f = furl(urls[1])
             # url is for NSF grant
             if f.args["awd_id"] is not None:
@@ -266,13 +263,13 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 award_number = f.path.segments[-1]
             return [
                 compact(
-                    {
+                    compact({
                         "funderName": funder_name,
                         "funderIdentifier": funder_identifier,
                         "funderIdentifierType": funder_identifier_type,
                         "awardUri": urls[1],
                         "awardNumber": award_number,
-                    }
+                    })
                 )
             ]
 
@@ -290,7 +287,6 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 "funderName": funding.get("funder_name", None),
                 "funderIdentifier": funding.get("funder_id", None),
                 "funderIdentifierType": "Crossref Funder ID",
-                "awardTitle": funding.get("award", None),
                 "awardNumber": funding.get("award_number", None),
             }
         ]

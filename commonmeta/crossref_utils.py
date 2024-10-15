@@ -8,7 +8,7 @@ import uuid
 import pydash as py_
 from furl import furl
 
-from .constants import Commonmeta
+from .constants import Commonmeta, ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS
 from .utils import wrap, compact, normalize_orcid, normalize_id, validate_url
 from .doi_utils import doi_from_url, validate_doi
 
@@ -362,11 +362,16 @@ def insert_funding_references(metadata, xml):
             {"name": "funder_name"},
         )
         if funding_reference.get("funderIdentifier", None) is not None:
+            funder_identifier = funding_reference.get("funderIdentifier", None)
+            
+            # translate ROR to Crossref funder ID until Crossref supports ROR
+            funder_identifier = ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS.get(funder_identifier, funder_identifier)
+            
             etree.SubElement(
                 funder_name,
                 "assertion",
                 {"name": "funder_identifier"},
-            ).text = funding_reference.get("funderIdentifier", None)
+            ).text = funder_identifier
         if funding_reference.get("awardNumber", None) is not None:
             etree.SubElement(
                 assertion,

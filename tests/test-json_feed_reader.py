@@ -133,8 +133,8 @@ def test_post_with_relationships():
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/00k4n6c32",
+            "funderIdentifierType": "ROR",
             "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
@@ -190,8 +190,8 @@ def test_post_with_relationships_as_doi():
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/00k4n6c32",
+            "funderIdentifierType": "ROR",
             "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
@@ -287,8 +287,8 @@ def test_post_with_more_funding():
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/00k4n6c32",
+            "funderIdentifierType": "ROR",
             "awardUri": "https://cordis.europa.eu/project/id/312788",
             "awardNumber": "312788",
         }
@@ -624,6 +624,25 @@ def test_cczero_license():
         "id": "CC0-1.0",
         "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
     }
+
+
+@pytest.mark.vcr
+def test_funded_project():
+    "funded project"
+    string = "https://api.rogue-scholar.org/posts/10.59350/p000s-pth40"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/p000s-pth40"
+    assert subject.type == "Article"
+    assert subject.titles[0] == {"title": "THOR’s last hurrah"}
+    assert subject.funding_references == [
+        {
+            "awardNumber": "654039",
+            "funderIdentifier": "https://doi.org/10.13039/501100007601",
+            "funderIdentifierType": "Crossref Funder ID",
+            "funderName": "European Union’s Horizon 2020 research and innovation programme",
+        },
+    ]
 
 
 def test_get_json_feed_item():

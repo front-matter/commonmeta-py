@@ -623,3 +623,13 @@ CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS = {
     "https://doi.org/10.13039/501100001711": "https://ror.org/00yjd3n13",
     "https://doi.org/10.13039/501100003043": "https://ror.org/04wfr2810",
 }
+
+
+ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS = {
+    "https://ror.org/021nxhr62": "https://doi.org/10.13039/100000001",
+    "https://ror.org/00k4n6c32": "https://doi.org/10.13039/501100000780",
+    "https://ror.org/018mejw64": "https://doi.org/10.13039/501100001659",
+    "https://ror.org/019whta54": "https://doi.org/10.13039/501100006390",
+    "https://ror.org/00yjd3n13": "https://doi.org/10.13039/501100001711",
+    "https://ror.org/04wfr2810": "https://doi.org/10.13039/501100003043",
+}

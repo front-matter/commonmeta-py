@@ -243,7 +243,7 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
 def to_inveniordm_funding(funding: dict) -> Optional[dict]:
     """Convert funding to inveniordm funding"""
     if funding.get("funderIdentifierType", None) == "ROR":
-        funder_identifier = id_from_url(funder_identifier)
+        funder_identifier = id_from_url(funding.get("funderIdentifier", None))
     elif funding.get("funderIdentifierType", None) == "Crossref Funder ID":
         # convert to ROR
         funder_identifier = id_from_url(
