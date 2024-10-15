@@ -123,13 +123,19 @@ def test_post_with_relationships():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert subject.references is None
+    assert len(subject.references) == 5
+    assert subject.references[0] == {
+        "id": "https://doi.org/10.5438/s6d3-k860",
+        "key": "ref1",
+        "publicationYear": "2018",
+        "title": "Are your data being used? Event Data has the answer!",
+    }
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",
             "funderIdentifierType": "Crossref Funder ID",
-            "award_uri": "https://doi.org/10.3030/777523",
+            "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
     ]
@@ -180,13 +186,13 @@ def test_post_with_relationships_as_doi():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert subject.references is None
+    assert len(subject.references) == 5
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",
             "funderIdentifierType": "Crossref Funder ID",
-            "award_uri": "https://doi.org/10.3030/777523",
+            "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
     ]
@@ -241,14 +247,16 @@ def test_post_with_funding():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert subject.references is None
+    assert subject.references == [
+        {"id": "https://doi.org/10.5281/zenodo.8284206", "key": "ref1"}
+    ]
     assert subject.relations is None
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
             "funderIdentifier": "https://doi.org/10.13039/100000001",
             "funderIdentifierType": "Crossref Funder ID",
-            "award_uri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
+            "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
             "awardNumber": "2134956",
         }
     ]
@@ -281,7 +289,7 @@ def test_post_with_more_funding():
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",
             "funderIdentifierType": "Crossref Funder ID",
-            "award_uri": "https://cordis.europa.eu/project/id/312788",
+            "awardUri": "https://cordis.europa.eu/project/id/312788",
             "awardNumber": "312788",
         }
     ]
@@ -338,7 +346,7 @@ def test_post_with_funding_ror():
             "funderName": "National Science Foundation",
             "funderIdentifier": "https://ror.org/021nxhr62",
             "funderIdentifierType": "ROR",
-            "award_uri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
+            "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
             "awardNumber": "2135874",
         }
     ]
@@ -541,13 +549,7 @@ def test_ghost_with_personal_name_parsing():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert len(subject.references) == 2
-    assert subject.references[0] == {
-        "id": "https://doi.org/10.1001/jamanetworkopen.2021.42527",
-        "key": "ref1",
-        "publicationYear": "2022",
-        "title": "Analysis of Reported Voting Behaviors of US Physicians, 2000-2020",
-    }
+    assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]

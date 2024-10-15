@@ -542,7 +542,6 @@ def test_json_feed_item_with_organizational_author():
             "name": "Liberate Science",
         }
     ]
-    print(subject.write(to="crossref_xml"))
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.organization")) == 1
@@ -559,7 +558,7 @@ def test_json_feed_item_with_organizational_author():
         "mime_type": "text/html",
         "#text": "https://libscie.org/ku-leuven-supports-researchequals",
     }
-    assert crossref_xml.get("group_title") == "Social sciences"
+    assert crossref_xml.get("group_title") == "Social science"
 
 
 @pytest.mark.vcr
@@ -654,7 +653,7 @@ def test_json_feed_item_with_relations_and_funding():
             "funderName": "European Commission",
             "funderIdentifier": "https://doi.org/10.13039/501100000780",
             "funderIdentifierType": "Crossref Funder ID",
-            "award_uri": "https://doi.org/10.3030/777523",
+            "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
     ]

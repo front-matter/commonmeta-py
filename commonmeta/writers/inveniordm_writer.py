@@ -41,8 +41,6 @@ def write_inveniordm(metadata):
         for i in wrap(metadata.identifiers)
         if i.get("id", None) != metadata.id
     ]
-    print(metadata.references)
-    print(metadata.relations)
     references = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.references)
@@ -225,17 +223,18 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
         scheme = "url"
 
     # normalize relation types
+    relation_type = relation.get("type")
     if relation.get("type", None) is None:
-        relation["type"] = "References"
+        relation_type = "References"
     if relation.get("type") == "HasReview":
-        relation["type"] = "IsReviewedBy"
-    relation_type = relation.get("type").lower()
+        relation_type = "IsReviewedBy"
+
     return compact(
         {
             "identifier": identifier,
             "scheme": scheme,
             "relation_type": {
-                "id": relation_type,
+                "id": relation_type.lower(),
             },
         }
     )
@@ -254,30 +253,43 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
         )
     else:
         funder_identifier = None
+    award_number = funding.get("awardNumber", None)
     award_title = funding.get("awardTitle", None)
     if award_title:
         award_title = {"title": {"en": award_title}}
     if funding.get("awardUri", None):
+        award_identifier = funding.get("awardUri", None)
+        scheme = "doi" if normalize_doi(award_identifier) else "url"
+        if scheme == "doi":
+            award_identifier = doi_from_url(award_identifier)
         award_identifiers = [
             {
-                "scheme": "url",
-                "identifier": funding.get("awardUri", None),
+                "scheme": scheme,
+                "identifier": award_identifier,
             },
         ]
     else:
         award_identifiers = None
-    if funding.get("awardNumber", None) or award_title or award_identifiers:
-        award = (
-            compact(
-                {
-                    "number": funding.get("awardNumber", None),
-                    "title": award_title,
-                    "identifiers": award_identifiers,
-                }
-            ),
+
+    if award_number or award_title or award_identifiers:
+        return compact(
+            {
+                "funder": compact(
+                    {
+                        "name": funding.get("funderName"),
+                        "id": funder_identifier,
+                    }
+                ),
+                "award": compact(
+                    {
+                        "number": award_number,
+                        "title": award_title,
+                        "identifiers": award_identifiers,
+                    }
+                ),
+            }
         )
-    else:
-        award = None
+
     return compact(
         {
             "funder": compact(
@@ -286,6 +298,5 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
                     "id": funder_identifier,
                 }
             ),
-            "award": award,
         }
     )

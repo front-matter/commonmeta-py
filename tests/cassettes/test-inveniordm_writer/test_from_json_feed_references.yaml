@@ -13,7 +13,7 @@ interactions:
       user-agent:
       - python-httpx/0.27.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/8a4de443-3347-4b82-b57d-e3c82b6485fc
+    uri: https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578
   response:
     body:
       string: !!binary |
@@ -123,15 +123,15 @@ interactions:
       content-type:
       - application/json
       date:
-      - Tue, 15 Oct 2024 17:32:10 GMT
+      - Tue, 15 Oct 2024 17:33:10 GMT
       fly-request-id:
-      - 01JA8KSFT8HH22KXVP4M79FYZZ-arn
+      - 01JA8KVA2RHGEJTSX8EHH0DC8R-arn
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '8'
+      - '9'
       ratelimit-reset:
-      - '27'
+      - '21'
       server:
       - Fly/c3dfa7435 (2024-10-15)
       transfer-encoding:

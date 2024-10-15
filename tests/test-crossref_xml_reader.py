@@ -801,7 +801,6 @@ def test_dataset():
         "familyName": "Fermi",
     }
     assert subject.license is None
-    print(subject.date)
     assert subject.date["created"].startswith("2006-01")
     assert subject.date["published"].startswith("1984-07")
     assert subject.date["updated"].startswith("2024-05")

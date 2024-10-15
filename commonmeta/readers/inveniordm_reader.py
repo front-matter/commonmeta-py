@@ -36,7 +36,6 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
 
 def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     """read_inveniordm"""
-    print(data)
     meta = data
     read_options = kwargs or {}
 
@@ -49,7 +48,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(
         meta, "metadata.resource_type.id"
     )
-    print(resource_type)
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
 
     contributors = py_.get(meta, "metadata.creators")

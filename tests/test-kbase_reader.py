@@ -34,7 +34,7 @@ def test_metatranscriptome():
     assert subject.funding_references == [
         {
             "awardNumber": "505780",
-            "award_uri": "https://www.osti.gov/award-doi-service/biblio/10.46936/10.25585/60001289",
+            "awardUri": "https://www.osti.gov/award-doi-service/biblio/10.46936/10.25585/60001289",
             "funderIdentifier": "https://doi.org/10.13039/100000015",
             "funderIdentifierType": "DOI",
             "funderName": "US Department of Energy",

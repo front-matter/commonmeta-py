@@ -186,7 +186,7 @@ def get_funding_references(funding_references: list) -> list:
                     funding_reference, "funder.organization_name", None
                 ),
                 "awardNumber": funding_reference.get("grant_id", None),
-                "award_uri": funding_reference.get("grant_url", None),
+                "awardUri": funding_reference.get("grant_url", None),
             }
         )
 

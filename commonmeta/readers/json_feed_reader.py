@@ -46,7 +46,6 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
-    print(meta)
     read_options = kwargs or {}
 
     url = normalize_url(meta.get("url", None))
@@ -168,39 +167,28 @@ def get_references(references: list) -> list:
     def get_reference(reference: dict) -> Optional[dict]:
         if reference is None or not isinstance(reference, dict):
             return None
-        try:
-            if reference.get("doi", None) and validate_doi(reference.get("doi")):
-                id_ = normalize_doi(reference.get("doi"))
-                return compact(
-                    {
-                        "id": id_,
-                        "title": reference.get("title", None),
-                        "publicationYear": reference.get("publicationYear", None),
-                    }
-                )
 
-            elif (
-                reference.get("url", None)
-                and validate_url(reference.get("url")) == "URL"
-            ):
-                response = httpx.head(reference.get("url", None), timeout=10)
-                # check that URL resolves.
-                # TODO: check for redirects
-                if response.status_code in [404]:
-                    return None
-                return {
-                    "id": reference.get("url"),
+        if reference.get("id", None) and validate_doi(reference.get("id")):
+            id_ = normalize_doi(reference.get("id"))
+            return compact(
+                {
+                    "id": id_,
+                    "title": reference.get("title", None),
+                    "publicationYear": reference.get("publicationYear", None),
                 }
-        except Exception as error:
-            print(error)
-            return None
+            )
+
+        else:
+            return {
+                "id": reference.get("id", None),
+            }
 
     def number_reference(reference: dict, index: int) -> dict:
         """number reference"""
         reference["key"] = f"ref{index +1}"
         return reference
 
-    references = [get_reference(i) for i in references]
+    references = [get_reference(i) for i in references if i.get("id", None)]
     return [
         number_reference(i, index)
         for index, i in enumerate(references)
@@ -230,7 +218,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                     "funderName": "European Commission",
                     "funderIdentifier": "https://doi.org/10.13039/501100000780",
                     "funderIdentifierType": "Crossref Funder ID",
-                    "award_uri": urls[0],
+                    "awardUri": urls[0],
                     "awardNumber": urls[0].split("/")[-1],
                 }
             ]
@@ -251,7 +239,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                     "funderName": funder_name,
                     "funderIdentifier": urls[0],
                     "funderIdentifierType": "Crossref Funder ID",
-                    "award_uri": urls[1],
+                    "awardUri": urls[1],
                     "awardNumber": award_number,
                 }
             ]
@@ -282,7 +270,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                         "funderName": funder_name,
                         "funderIdentifier": funder_identifier,
                         "funderIdentifierType": funder_identifier_type,
-                        "award_uri": urls[1],
+                        "awardUri": urls[1],
                         "awardNumber": award_number,
                     }
                 )

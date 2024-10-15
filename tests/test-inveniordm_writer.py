@@ -181,7 +181,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert py_.get(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-08T11:51:22Z", "type": {"id": "updated"}}
+        {"date": "2024-10-15T15:32:07Z", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
@@ -239,8 +239,22 @@ def test_from_json_feed():
         {"subject": "Threads"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    assert py_.get(inveniordm, "metadata.related_identifiers") is None
-    assert py_.get(inveniordm, "metadata.related_identifiers") is None
+    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert len(related_identifiers) == 7
+    assert related_identifiers[0] == {
+        "identifier": "https://ling.auf.net/lingbuzz/006031",
+        "relation_type": {
+            "id": "references",
+        },
+        "scheme": "url",
+    }
+    assert related_identifiers[1] == {
+        "identifier": "10.1038/s41562-017-0163",
+        "relation_type": {
+            "id": "references",
+        },
+        "scheme": "doi",
+    }
     assert py_.get(inveniordm, "files.enabled") == False
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
@@ -298,8 +312,13 @@ def test_from_json_feed_affiliations():
         {"subject": "Research"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    assert py_.get(inveniordm, "metadata.related_identifiers") is None
-    assert py_.get(inveniordm, "metadata.related_identifiers") is None
+    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert len(related_identifiers) == 4
+    assert py_.get(inveniordm, "metadata.related_identifiers[0]") == {
+        "identifier": "10.1007/978-3-658-01928-0",
+        "relation_type": {"id": "references"},
+        "scheme": "doi",
+    }
     assert py_.get(inveniordm, "files.enabled") == False
     assert (
         py_.get(inveniordm, "custom_fields.journal:journal.title")
@@ -339,7 +358,7 @@ def test_from_json_feed_funding():
     assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
     assert py_.get(inveniordm, "metadata.funding") == [
         {
-            "award": [{"number": "654039"}],
+            "award": {"number": "654039"},
             "funder": {
                 "id": "00k4n6c32",
                 "name": "European Union’s Horizon 2020 research and innovation programme",
@@ -355,6 +374,7 @@ def test_from_json_feed_more_funding():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
     assert subject.type == "Article"
+    print(subject.references)
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
@@ -364,10 +384,58 @@ def test_from_json_feed_more_funding():
     )
     assert py_.get(inveniordm, "metadata.funding") == [
         {
-            "award": [{"number": "422587133"}],
+            "award": {"number": "422587133"},
             "funder": {
                 "id": "018mejw64",
                 "name": "Deutsche Forschungsgemeinschaft",
+            },
+        }
+    ]
+
+
+@pytest.mark.vcr
+def test_from_json_feed_references():
+    "JSON Feed references"
+    string = "https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert (
+        py_.get(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
+    )
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "Differences between ORCID and DataCite Metadata"
+    )
+    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert len(related_identifiers) == 3
+    assert related_identifiers[0] == {
+        "identifier": "10.5281/zenodo.30799",
+        "relation_type": {"id": "references"},
+        "scheme": "doi",
+    }
+    assert related_identifiers[1] == {
+        "identifier": "10.5438/bc11-cqw1",
+        "relation_type": {"id": "isidenticalto"},
+        "scheme": "doi",
+    }
+    assert related_identifiers[2] == {
+        "identifier": "2749-9952",
+        "relation_type": {"id": "ispartof"},
+        "scheme": "issn",
+    }
+    assert py_.get(inveniordm, "metadata.funding") == [
+        {
+            "award": {
+                "number": "654039",
+                "identifiers": [{"scheme": "doi", "identifier": "10.3030/654039"}],
+            },
+            "funder": {
+                "id": "00k4n6c32",
+                "name": "European Commission",
             },
         }
     ]

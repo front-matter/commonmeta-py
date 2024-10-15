@@ -20,10 +20,8 @@ interactions:
         H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
         APmc72o3AAAA
     headers:
-      CF-Cache-Status:
-      - DYNAMIC
       CF-RAY:
-      - 8c9cc57d2fd26a89-DUS
+      - 8d318b144be7cb22-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -31,21 +29,26 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 27 Sep 2024 16:11:46 GMT
+      - Tue, 15 Oct 2024 17:31:31 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Y6rRMUJU3q38QpxCDAr8VXSCrGHqAQoJ0ZFJIqmR3jkwX3jHSldKuQsjXkhObzARv5%2BLVUOZPmzNV1cLjry8OpBjxlUY2b3PW4WkwL2Hw%2FO7FoUO1lK54DvjbPOwUSbAkR4LbUE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=roDJW3PE1XttcWhjDfTPQ4lxdYRnF9rCLfZBcz101fVb82ONCToEX8vRTzVakPlbzeh5%2BtOEcVF0oDdb2slY6zkonRSNbKMnCazJJ5TM0yvElnHYCyDSZdX5zJMBCSvLKbmMYRI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       vary:
       - Origin
+      - accept-encoding
     status:
       code: 200
       message: OK
@@ -108,7 +111,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Fri, 27 Sep 2024 16:11:46 GMT
+      - Tue, 15 Oct 2024 17:31:32 GMT
       permissions-policy:
       - interest-cohort=()
       server:

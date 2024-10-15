@@ -23,7 +23,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8c9cc67b2fc8c7bc-DUS
+      - 8d318c208fec6a89-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -31,17 +31,19 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 27 Sep 2024 16:12:26 GMT
+      - Tue, 15 Oct 2024 17:32:14 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=el%2FVZAzpjHzv2m4YKaU6WrSslutmhwynPGeXLT7u82iJ3ivqTZWN%2B3p55Ts8XgucGQdDY%2F%2BNa%2FzkleuV60zfQlw0wTeCMZJi253CFdRSr4bLvl2LV2aiD9lvmTCQ6J8cgqRkGYs%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=1CP%2BwWSUoxtCO5KcyvJ7fvIFyDN6CFsoIsrjMi6pu2lF3RRzjdHYUkTemveuG5oy6rGEExqwwCmoh%2FTLM6encnJ9lE0gW8N77lBNjaNH3GMbdX6bJR47J4T8l4XWhKlTidH7ifs%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       vary:
@@ -67,7 +69,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAGrZ9mYAA+xc2W7rVrL9FcJP6ZtzbJKSbMtAP1iyLVGxZFuz2AkanExR2hzCQVNwvqfR35Ef
+        H4sIACCnDmcAA+xc2W7rVrL9FcJP6ZtzbJKSbMtAP1iyLVGxZFuz2AkanExR2hzCQVNwvqfR35Ef
         u6s2SYm0Zet0305wHxrIQSyqdu2qVauGTZP+7czUYu3s5rczxzy7OZPE85p4KV2Y4VYzz69rUu3s
         y1m8DSx8Z/pOhE9aHIeOnsRWRKtw8aNlQWi9OpvDt7gUJa/ppZKgY1pe7Lw6VgiVf/sFW7DYCj0t
         tpS33xihpcU+//Tbmae5ZNcTY77rfxEalrfQXMeDRvpmmFr9jLW+pzFctZ2V5fXSRQXhV/yfbXtF
@@ -194,9 +196,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Fri, 27 Sep 2024 16:12:26 GMT
+      - Tue, 15 Oct 2024 17:32:16 GMT
       ETag:
-      - W/"0631701a653726464d6ca896d4f793e5"
+      - W/"490138aad6b3e56183ea0678220a31a0"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -218,9 +220,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.23
       X-Request-Id:
-      - 6420bade-20c3-4941-9bad-440b0b979ea7
+      - f52a7560-02a7-4f19-b0df-b77cb5ddce9d
       X-Runtime:
-      - '0.030895'
+      - '1.168152'
       X-XSS-Protection:
       - '0'
     status:

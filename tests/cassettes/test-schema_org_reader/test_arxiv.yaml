@@ -33,11 +33,13 @@ interactions:
         />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/static/browse/0.3.4/css/arXiv-print.css?v=20200611\"
         />\n  <link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"/static/browse/0.3.4/css/browse_search.css\"
         />\n  <script language=\"javascript\" src=\"/static/browse/0.3.4/js/accordion.js\"
-        /></script>\n  <link rel=\"canonical\" href=\"/abs/1902.02534\"/><meta property=\"og:type\"
-        content=\"website\" />\n<meta property=\"og:site_name\" content=\"arXiv.org\"
-        />\n<meta property=\"og:title\" content=\"Crowdsourcing open citations with
-        CROCI -- An analysis of the current status of open citations, and a proposal\"
-        />\n<meta property=\"og:url\" content=\"https://arxiv.org/abs/1902.02534v2\"
+        /></script>\n  <link rel=\"canonical\" href=\"https://arxiv.org/abs/1902.02534\"/>\n
+        \ <meta name=\"description\" content=\"Abstract page for arXiv paper 1902.02534:
+        Crowdsourcing open citations with CROCI -- An analysis of the current status
+        of open citations, and a proposal\"><meta property=\"og:type\" content=\"website\"
+        />\n<meta property=\"og:site_name\" content=\"arXiv.org\" />\n<meta property=\"og:title\"
+        content=\"Crowdsourcing open citations with CROCI -- An analysis of the current
+        status of open citations, and a proposal\" />\n<meta property=\"og:url\" content=\"https://arxiv.org/abs/1902.02534v2\"
         />\n<meta property=\"og:image\" content=\"/static/browse/0.3.4/images/arxiv-logo-fb.png\"
         />\n<meta property=\"og:image:secure_url\" content=\"/static/browse/0.3.4/images/arxiv-logo-fb.png\"
         />\n<meta property=\"og:image:width\" content=\"1200\" />\n<meta property=\"og:image:height\"
@@ -569,15 +571,15 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '45287'
+      - '45495'
       Date:
-      - Sun, 29 Sep 2024 08:44:43 GMT
+      - Tue, 15 Oct 2024 17:33:24 GMT
       X-Cache:
-      - HIT, MISS
+      - MISS, MISS
       X-Served-By:
-      - cache-lga21969-LGA, cache-fra-etou8220148-FRA
+      - cache-lga21930-LGA, cache-fra-etou8220132-FRA
       X-Timer:
-      - S1727599483.468512,VS0,VE242
+      - S1729013604.883253,VS0,VE271
       cache-control:
       - max-age=3600
       content-security-policy:
@@ -591,7 +593,7 @@ interactions:
       via:
       - 1.1 google, 1.1 varnish, 1.1 varnish
       x-cloud-trace-context:
-      - e33c0a667e8f81f037b820dada490d93
+      - f0044af8bc063695168fd2af300b9024
       x-frame-options:
       - SAMEORIGIN
     status:
@@ -621,7 +623,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 8caab1660939c7c7-DUS
+      - 8d318dd3591a14cb-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -629,17 +631,19 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Sun, 29 Sep 2024 08:44:43 GMT
+      - Tue, 15 Oct 2024 17:33:24 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=kku5xi6i%2Bc6dW2J%2FBAPkqOS334XTsyPig7NsjqCKrx5a1sXehfLWOIJZkORBFHpcyEHoFL1%2BibmBuQ9zpjoU0T6wOjJMbtFYpe%2BbIBcr%2FiBzPJ5BEstT8EUnS8TKe5vUebqdSgQ%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=sPBp6zcIT36GfT%2Bu7J32Jl9WJhgJQg%2FPdANEXx7O%2FzDVmBhKDq7dVYECp3ZZDH4eprr8Q212CTP4AKgrRAA8xOGXCw8yVg5tOXt8FTOqizTPht2Xm6J42p14pL7qTIlyCYL43n4%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       vary:
@@ -665,7 +669,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAHwT+WYAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
+        H4sIAGWnDmcAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
         7syZhz5lhSJjjy+CVP+4M7VIu3v5cUfNu5c7SXysPtdq4pMWHGnyKNVF+VGUa5Xq3f1dlPoELKZH
         QzxpURRQPY5IyA6D+D+c9gPyTo9XTKCF8TunfcBPTeJG9J2SAAr+9ePqmcn4mHPOLdSCNU3ufn6H
         kXZEAleLiHIj7YMXpcMfHi0rZvKNgGiRl8t0NYcJ6BOq03tBSTQXYhgxl/wK5Z6r2aBaNCHumPPn
@@ -749,9 +753,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Sun, 29 Sep 2024 08:44:44 GMT
+      - Tue, 15 Oct 2024 17:33:25 GMT
       ETag:
-      - W/"b0031bc1da359a74e851ba83fb66bf91"
+      - W/"aa423dec2e0c730e322e90e111427d84"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -773,9 +777,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.23
       X-Request-Id:
-      - 446a22b2-942e-43de-b566-ad85bc482022
+      - 4e540cde-3a2a-434b-90e0-bac61bd332c3
       X-Runtime:
-      - '0.037905'
+      - '0.660251'
       X-XSS-Protection:
       - '0'
     status:
