@@ -607,6 +607,23 @@ def test_medium_post_with_multiple_authors():
     }
 
 
+@pytest.mark.vcr
+def test_cczero_license():
+    "cc zero license"
+    string = "https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/xgwqt-1sq35"
+    assert subject.type == "Article"
+    assert subject.titles[0] == {
+        "title": "Epistemic diversity and knowledge production"
+    }
+    assert subject.license == {
+        "id": "CC0-1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+    }
+
+
 def test_get_json_feed_item():
     """Test get_json_feed_item_id"""
     item = get_json_feed_item_uuid("1357c246-b632-462a-9876-753ef8b6927d")
