@@ -7,7 +7,11 @@ from furl import furl
 from ..base_utils import compact, wrap, parse_attributes, presence
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, normalize_doi
-from ..constants import CM_TO_INVENIORDM_TRANSLATIONS, INVENIORDM_IDENTIFIER_TYPES
+from ..constants import (
+    CM_TO_INVENIORDM_TRANSLATIONS,
+    INVENIORDM_IDENTIFIER_TYPES,
+    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
+)
 from ..utils import (
     get_language,
     validate_orcid,
@@ -50,6 +54,13 @@ def write_inveniordm(metadata):
         if i.get("id", None) and i.get("type", None)
     ]
     related_identifiers = references + relations
+    funding = compact(
+        [
+            to_inveniordm_funding(i)
+            for i in wrap(metadata.funding_references)
+            if i.get("funderName", None)
+        ]
+    )
     container = metadata.container if metadata.container else {}
     journal = (
         container.get("title", None)
@@ -110,6 +121,7 @@ def write_inveniordm(metadata):
                     else None,
                     "identifiers": identifiers,
                     "related_identifiers": presence(related_identifiers),
+                    "funding": presence(funding),
                     "version": metadata.version,
                 }
             ),
@@ -225,5 +237,55 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
             "relation_type": {
                 "id": relation_type,
             },
+        }
+    )
+
+
+def to_inveniordm_funding(funding: dict) -> Optional[dict]:
+    """Convert funding to inveniordm funding"""
+    if funding.get("funderIdentifierType", None) == "ROR":
+        funder_identifier = id_from_url(funder_identifier)
+    elif funding.get("funderIdentifierType", None) == "Crossref Funder ID":
+        # convert to ROR
+        funder_identifier = id_from_url(
+            CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
+                funding.get("funderIdentifier", None), None
+            )
+        )
+    else:
+        funder_identifier = None
+    award_title = funding.get("awardTitle", None)
+    if award_title:
+        award_title = {"title": {"en": award_title}}
+    if funding.get("awardUri", None):
+        award_identifiers = [
+            {
+                "scheme": "url",
+                "identifier": funding.get("awardUri", None),
+            },
+        ]
+    else:
+        award_identifiers = None
+    if funding.get("awardNumber", None) or award_title or award_identifiers:
+        award = (
+            compact(
+                {
+                    "number": funding.get("awardNumber", None),
+                    "title": award_title,
+                    "identifiers": award_identifiers,
+                }
+            ),
+        )
+    else:
+        award = None
+    return compact(
+        {
+            "funder": compact(
+                {
+                    "name": funding.get("funderName"),
+                    "id": funder_identifier,
+                }
+            ),
+            "award": award,
         }
     )

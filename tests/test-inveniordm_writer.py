@@ -52,6 +52,7 @@ def test_publication():
             "scheme": "doi",
         }
     ]
+    assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -125,6 +126,29 @@ def test_journal_article():
         },
         "scheme": "issn",
     }
+    assert py_.get(inveniordm, "metadata.funding") == [
+        {"funder": {"name": "SystemsX"}},
+        {"funder": {"name": "EMBO longterm post-doctoral fellowships"}},
+        {"funder": {"name": "Marie Heim-Voegtlin"}},
+        {
+            "funder": {
+                "id": "019whta54",
+                "name": "University of Lausanne",
+            },
+        },
+        {
+            "funder": {
+                "id": "04wfr2810",
+                "name": "EMBO",
+            },
+        },
+        {
+            "funder": {
+                "id": "00yjd3n13",
+                "name": "Swiss National Science Foundation",
+            },
+        },
+    ]
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -167,6 +191,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.subjects") is None
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
+    assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "files.enabled") == False
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
@@ -214,6 +239,7 @@ def test_from_json_feed():
         {"subject": "Threads"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "files.enabled") == False
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
@@ -273,6 +299,7 @@ def test_from_json_feed_affiliations():
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
+    assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "files.enabled") == False
     assert (
         py_.get(inveniordm, "custom_fields.journal:journal.title")
@@ -295,4 +322,52 @@ def test_from_json_feed_dates():
     assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
     assert py_.get(inveniordm, "metadata.dates") == [
         {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}}
+    ]
+
+
+@pytest.mark.vcr
+def test_from_json_feed_funding():
+    "JSON Feed funding"
+    string = "https://api.rogue-scholar.org/posts/10.59350/hnegw-6rx17"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/hnegw-6rx17"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
+    assert py_.get(inveniordm, "metadata.funding") == [
+        {
+            "award": [{"number": "654039"}],
+            "funder": {
+                "id": "00k4n6c32",
+                "name": "European Union’s Horizon 2020 research and innovation programme",
+            },
+        }
+    ]
+
+
+@pytest.mark.vcr
+def test_from_json_feed_more_funding():
+    "JSON Feed more funding"
+    string = "https://api.rogue-scholar.org/posts/10.59350/m99dx-x9g53"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert (
+        py_.get(inveniordm, "metadata.title") == "Summer Meeting of the Editorial Board"
+    )
+    assert py_.get(inveniordm, "metadata.funding") == [
+        {
+            "award": [{"number": "422587133"}],
+            "funder": {
+                "id": "018mejw64",
+                "name": "Deutsche Forschungsgemeinschaft",
+            },
+        }
     ]
