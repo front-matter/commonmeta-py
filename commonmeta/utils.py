@@ -1076,9 +1076,19 @@ def from_curie(id: Optional[str]) -> Optional[str]:
 
 def issn_as_url(issn: str) -> Optional[str]:
     """ISSN as URL"""
-    if issn is None:
+    if normalize_issn(issn) is None:
         return None
     return f"https://portal.issn.org/resource/ISSN/{issn}"
+
+
+def issn_from_url(url: str) -> Optional[str]:
+    """ISSN from URL"""
+    if url is None:
+        return None
+    match = re.match(r"\Ahttps://portal.issn.org/resource/ISSN/(.+)\Z", url)
+    if match is None:
+        return None
+    return match.group(1)
 
 
 def get_language(lang: str, format: str = "alpha_2") -> Optional[str]:

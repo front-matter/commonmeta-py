@@ -2,12 +2,19 @@
 
 import orjson as json
 from typing import Optional
+from furl import furl
 
 from ..base_utils import compact, wrap, parse_attributes, presence
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url
+from ..doi_utils import doi_from_url, normalize_doi
 from ..constants import CM_TO_INVENIORDM_TRANSLATIONS, INVENIORDM_IDENTIFIER_TYPES
-from ..utils import get_language, validate_orcid, id_from_url, FOS_MAPPINGS
+from ..utils import (
+    get_language,
+    validate_orcid,
+    id_from_url,
+    issn_from_url,
+    FOS_MAPPINGS,
+)
 
 
 def write_inveniordm(metadata):
@@ -30,6 +37,19 @@ def write_inveniordm(metadata):
         for i in wrap(metadata.identifiers)
         if i.get("id", None) != metadata.id
     ]
+    print(metadata.references)
+    print(metadata.relations)
+    references = [
+        to_inveniordm_related_identifier(i)
+        for i in wrap(metadata.references)
+        if i.get("id", None)
+    ]
+    relations = [
+        to_inveniordm_related_identifier(i)
+        for i in wrap(metadata.relations)
+        if i.get("id", None) and i.get("type", None)
+    ]
+    related_identifiers = references + relations
     container = metadata.container if metadata.container else {}
     journal = (
         container.get("title", None)
@@ -42,6 +62,14 @@ def write_inveniordm(metadata):
         if container.get("identifierType", None) == "ISSN"
         else None
     )
+    dates = []
+    if metadata.date.get("updated", None):
+        dates.append(
+            {
+                "date": metadata.date.get("updated"),
+                "type": {"id": "updated"},
+            }
+        )
 
     subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
     data = compact(
@@ -67,14 +95,7 @@ def write_inveniordm(metadata):
                     "publication_date": get_iso8601_date(metadata.date.get("published"))
                     if metadata.date.get("published", None)
                     else None,
-                    "dates": [
-                        {
-                            "date": metadata.date.get("updated"),
-                            "type": {"id": "updated"},
-                        }
-                    ]
-                    if metadata.date.get("updated", None)
-                    else None,
+                    "dates": presence(dates),
                     "subjects": presence(subjects),
                     "description": parse_attributes(
                         metadata.descriptions, content="description", first=True
@@ -88,6 +109,7 @@ def write_inveniordm(metadata):
                     if metadata.language
                     else None,
                     "identifiers": identifiers,
+                    "related_identifiers": presence(related_identifiers),
                     "version": metadata.version,
                 }
             ),
@@ -172,4 +194,36 @@ def to_inveniordm_affiliations(creator: dict) -> Optional[list]:
 
     return compact(
         [format_affiliation(i) for i in wrap(creator.get("affiliations", None))]
+    )
+
+
+def to_inveniordm_related_identifier(relation: dict) -> dict:
+    """Convert reference or relation to inveniordm related_identifier"""
+    if normalize_doi(relation.get("id", None)):
+        identifier = doi_from_url(relation.get("id", None))
+        scheme = "doi"
+    elif (
+        relation.get("type", None) == "IsPartOf"
+        and furl(relation.get("id", None)).host == "portal.issn.org"
+    ):
+        identifier = issn_from_url(relation.get("id", None))
+        scheme = "issn"
+    else:
+        identifier = relation.get("id", None)
+        scheme = "url"
+
+    # normalize relation types
+    if relation.get("type", None) is None:
+        relation["type"] = "References"
+    if relation.get("type") == "HasReview":
+        relation["type"] = "IsReviewedBy"
+    relation_type = relation.get("type").lower()
+    return compact(
+        {
+            "identifier": identifier,
+            "scheme": scheme,
+            "relation_type": {
+                "id": relation_type,
+            },
+        }
     )

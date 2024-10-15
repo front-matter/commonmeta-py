@@ -18,6 +18,7 @@ from commonmeta.utils import (
     normalize_cc_url,
     normalize_issn,
     issn_as_url,
+    issn_from_url,
     from_csl,
     find_from_format_by_id,
     find_from_format_by_string,
@@ -292,7 +293,15 @@ def test_normalize_issn():
 def test_issn_as_url():
     """issn as url"""
     assert "https://portal.issn.org/resource/ISSN/2146-8427" == issn_as_url("2146-8427")
-    assert None is issn_as_url(None)
+    assert None is issn_as_url("10.5438/0012")
+
+
+def test_issn_from_url():
+    """issn from url"""
+    assert "2146-8427" == issn_from_url(
+        "https://portal.issn.org/resource/ISSN/2146-8427"
+    )
+    assert None is issn_from_url("https://doi.org/10.5438/0012")
 
 
 def test_from_csl():
