@@ -49,7 +49,7 @@ def write_inveniordm(metadata):
     relations = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
-        if i.get("id", None) and i.get("type", None)
+        if i.get("id", None) and i.get("type", None) != "IsPartOf"
     ]
     related_identifiers = references + relations
     funding = compact(
@@ -212,12 +212,6 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
     if normalize_doi(relation.get("id", None)):
         identifier = doi_from_url(relation.get("id", None))
         scheme = "doi"
-    elif (
-        relation.get("type", None) == "IsPartOf"
-        and furl(relation.get("id", None)).host == "portal.issn.org"
-    ):
-        identifier = issn_from_url(relation.get("id", None))
-        scheme = "issn"
     else:
         identifier = relation.get("id", None)
         scheme = "url"

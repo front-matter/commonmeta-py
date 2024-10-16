@@ -97,7 +97,7 @@ def test_journal_article():
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 31
+    assert len(related_identifiers) == 30
     assert related_identifiers[0] == {
         "identifier": "10.1038/nature02100",
         "relation_type": {
@@ -118,13 +118,6 @@ def test_journal_article():
             "id": "isreviewedby",
         },
         "scheme": "doi",
-    }
-    assert related_identifiers[30] == {
-        "identifier": "2050-084X",
-        "relation_type": {
-            "id": "ispartof",
-        },
-        "scheme": "issn",
     }
     assert py_.get(inveniordm, "metadata.funding") == [
         {"funder": {"name": "SystemsX"}},
@@ -411,7 +404,7 @@ def test_from_json_feed_references():
         == "Differences between ORCID and DataCite Metadata"
     )
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 3
+    assert len(related_identifiers) == 2
     assert related_identifiers[0] == {
         "identifier": "10.5281/zenodo.30799",
         "relation_type": {"id": "references"},
@@ -421,11 +414,6 @@ def test_from_json_feed_references():
         "identifier": "10.5438/bc11-cqw1",
         "relation_type": {"id": "isidenticalto"},
         "scheme": "doi",
-    }
-    assert related_identifiers[2] == {
-        "identifier": "2749-9952",
-        "relation_type": {"id": "ispartof"},
-        "scheme": "issn",
     }
     assert py_.get(inveniordm, "metadata.funding") == [
         {
