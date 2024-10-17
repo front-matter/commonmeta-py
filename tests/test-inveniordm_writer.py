@@ -45,6 +45,7 @@ def test_publication():
         "The Origins of SARS-CoV-2: A Critical Review"
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
+    assert py_.get(inveniordm, "metadata.identifiers") == []
     assert py_.get(inveniordm, "metadata.related_identifiers") == [
         {
             "identifier": "10.5281/zenodo.5075887",
@@ -96,6 +97,7 @@ def test_journal_article():
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
+    assert py_.get(inveniordm, "metadata.identifiers") == []
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 30
     assert related_identifiers[0] == {
@@ -174,7 +176,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert py_.get(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-15T15:32:07Z", "type": {"id": "updated"}}
+        {"date": "2024-10-17T18:54:34Z", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
@@ -183,6 +185,7 @@ def test_rogue_scholar():
     )
     assert py_.get(inveniordm, "metadata.subjects") is None
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    assert py_.get(inveniordm, "metadata.identifiers") == []
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "files.enabled") == False
@@ -217,7 +220,8 @@ def test_from_json_feed():
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
-        {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "other"}
+        {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
+        {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
     ]
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(
@@ -290,7 +294,11 @@ def test_from_json_feed_affiliations():
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
-        {"identifier": "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "other"}
+        {"identifier": "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "uuid"},
+        {
+            "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/",
+            "scheme": "guid",
+        },
     ]
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(

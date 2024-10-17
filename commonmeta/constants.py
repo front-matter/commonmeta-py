@@ -610,6 +610,8 @@ INVENIORDM_IDENTIFIER_TYPES = {
     "URL": "url",
     "URN": "urn",
     "W3ID": "w3id",
+    "GUID": "guid",
+    "UUID": "uuid",
     "Other": "other",
 }
 

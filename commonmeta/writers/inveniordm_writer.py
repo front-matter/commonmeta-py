@@ -16,7 +16,6 @@ from ..utils import (
     get_language,
     validate_orcid,
     id_from_url,
-    issn_from_url,
     FOS_MAPPINGS,
 )
 
@@ -39,8 +38,9 @@ def write_inveniordm(metadata):
             ),
         }
         for i in wrap(metadata.identifiers)
-        if i.get("id", None) != metadata.id
+        if i.get("identifier", None) != metadata.id
     ]
+    print(identifiers, metadata.id)
     references = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.references)

@@ -363,10 +363,12 @@ def insert_funding_references(metadata, xml):
         )
         if funding_reference.get("funderIdentifier", None) is not None:
             funder_identifier = funding_reference.get("funderIdentifier", None)
-            
+
             # translate ROR to Crossref funder ID until Crossref supports ROR
-            funder_identifier = ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS.get(funder_identifier, funder_identifier)
-            
+            funder_identifier = ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS.get(
+                funder_identifier, funder_identifier
+            )
+
             etree.SubElement(
                 funder_name,
                 "assertion",
@@ -447,9 +449,7 @@ def insert_item_number(metadata, xml):
     if metadata.identifiers is None:
         return xml
     for identifier in metadata.identifiers:
-        if identifier.get("identifier", None) is None:
-            continue
-        if identifier.get("identifierType", None) is not None:
+        if identifier.get("identifierType", None) == "UUID":
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
             if identifier.get("identifierType", None) == "UUID":
                 identifier["identifier"] = identifier.get("identifier", "").replace(
@@ -461,9 +461,7 @@ def insert_item_number(metadata, xml):
                 {"item_number_type": identifier.get("identifierType", "").lower()},
             ).text = identifier.get("identifier", None)
         else:
-            etree.SubElement(xml, "item_number").text = identifier.get(
-                "identifier", None
-            )
+            continue
     return xml
 
 

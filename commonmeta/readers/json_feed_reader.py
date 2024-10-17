@@ -127,7 +127,10 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-    identifiers = [{"identifier": meta.get("id"), "identifierType": "UUID"}]
+    identifiers = [
+        {"identifier": meta.get("id"), "identifierType": "UUID"},
+        {"identifier": meta.get("guid"), "identifierType": "GUID"},
+    ]
     files = get_files(_id)
     state = "findable" if meta or read_options else "not_found"
 
@@ -237,13 +240,15 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             else:
                 award_number = f.path.segments[-1]
             return [
-                compact({
-                    "funderName": funder_name,
-                    "funderIdentifier": urls[0],
-                    "funderIdentifierType": "Crossref Funder ID",
-                    "awardUri": urls[1],
-                    "awardNumber": award_number,
-                })
+                compact(
+                    {
+                        "funderName": funder_name,
+                        "funderIdentifier": urls[0],
+                        "funderIdentifierType": "Crossref Funder ID",
+                        "awardUri": urls[1],
+                        "awardNumber": award_number,
+                    }
+                )
             ]
         # URL is ROR ID for funder.
         elif len(urls) == 2 and validate_ror(urls[0]):
@@ -254,7 +259,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             funder_name = ror.get("name", None)
             funder_identifier = urls[0]
             funder_identifier_type = "ROR"
-            
+
             f = furl(urls[1])
             # url is for NSF grant
             if f.args["awd_id"] is not None:
@@ -263,13 +268,15 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 award_number = f.path.segments[-1]
             return [
                 compact(
-                    compact({
-                        "funderName": funder_name,
-                        "funderIdentifier": funder_identifier,
-                        "funderIdentifierType": funder_identifier_type,
-                        "awardUri": urls[1],
-                        "awardNumber": award_number,
-                    })
+                    compact(
+                        {
+                            "funderName": funder_name,
+                            "funderIdentifier": funder_identifier,
+                            "funderIdentifierType": funder_identifier_type,
+                            "awardUri": urls[1],
+                            "awardNumber": award_number,
+                        }
+                    )
                 )
             ]
 

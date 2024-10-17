@@ -62,6 +62,13 @@ def test_wordpress_with_references():
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"}
     ]
+    assert subject.identifiers == [
+        {
+            "identifier": "4e4bf150-751f-4245-b4ca-fe69e3c3bb24",
+            "identifierType": "UUID",
+        },
+        {"identifier": "https://svpow.com/?p=20992", "identifierType": "GUID"},
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Sauropod Vertebra Picture of the Week",
@@ -147,6 +154,13 @@ def test_post_with_relationships():
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
+    assert subject.identifiers == [
+        {
+            "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
+            "identifierType": "UUID",
+        },
+        {"identifier": "62d42bbd41e317003df48eed", "identifierType": "GUID"},
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Front Matter",
@@ -204,6 +218,13 @@ def test_post_with_relationships_as_doi():
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
+    assert subject.identifiers == [
+        {
+            "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
+            "identifierType": "UUID",
+        },
+        {"identifier": "62d42bbd41e317003df48eed", "identifierType": "GUID"},
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Front Matter",
@@ -251,6 +272,13 @@ def test_post_with_funding():
         {"id": "https://doi.org/10.5281/zenodo.8284206", "key": "ref1"}
     ]
     assert subject.relations is None
+    assert subject.identifiers == [
+        {
+            "identifier": "5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9",
+            "identifierType": "UUID",
+        },
+        {"identifier": "655f8ec74e902104cd51d8ce", "identifierType": "GUID"},
+    ]
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
@@ -283,6 +311,13 @@ def test_post_with_more_funding():
     assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+    ]
+    assert subject.identifiers == [
+        {
+            "identifier": "44690ae5-2ece-403d-8e34-a05668277a29",
+            "identifierType": "UUID",
+        },
+        {"identifier": "62d42bbd41e317003df48d99", "identifierType": "GUID"},
     ]
     assert subject.funding_references == [
         {
@@ -341,6 +376,13 @@ def test_post_with_funding_ror():
     }
     assert subject.references is None
     assert subject.relations is None
+    assert subject.identifiers == [
+        {
+            "identifier": "24251b1a-c09c-4341-a65c-30cf92a47d73",
+            "identifierType": "UUID",
+        },
+        {"identifier": "62268c301674dc074d971710", "identifierType": "GUID"},
+    ]
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
@@ -393,6 +435,13 @@ def test_ghost_with_institutional_author():
     }
     assert subject.references is None
     assert subject.relations is None
+    assert subject.identifiers == [
+        {
+            "identifier": "2b3cdd27-5123-4167-9482-3c074392e2d2",
+            "identifierType": "UUID",
+        },
+        {"identifier": "63cef642602205003d6f50fb", "identifierType": "GUID"},
+    ]
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
     #     {"funderName": "EMBO longterm post-doctoral fellowships"},
@@ -493,6 +542,13 @@ def test_ghost_with_affiliations():
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
     ]
+    assert subject.identifiers == [
+        {
+            "identifier": "fef48952-87bc-467b-8ebb-0bff92ab9e1a",
+            "identifierType": "UUID",
+        },
+        {"identifier": "62d42bbd41e317003df48d81", "identifierType": "GUID"},
+    ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Front Matter",
@@ -552,6 +608,16 @@ def test_ghost_with_personal_name_parsing():
     assert subject.references is None
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
+    ]
+    assert subject.identifiers == [
+        {
+            "identifier": "4262e4b7-c2db-467b-b8b0-5b6ec32870a7",
+            "identifierType": "UUID",
+        },
+        {
+            "identifier": "66399ca46f25d60001df1427",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.container == {
         "identifier": "2993-1150",
