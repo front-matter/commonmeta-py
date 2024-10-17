@@ -40,6 +40,12 @@ def write_inveniordm(metadata):
         for i in wrap(metadata.identifiers)
         if i.get("identifier", None) != metadata.id
     ]
+    identifiers.append(
+        {
+            "identifier": metadata.url,
+            "scheme": "url",
+        }
+    )
     print(identifiers, metadata.id)
     references = [
         to_inveniordm_related_identifier(i)

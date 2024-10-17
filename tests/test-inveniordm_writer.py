@@ -45,7 +45,9 @@ def test_publication():
         "The Origins of SARS-CoV-2: A Critical Review"
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == []
+    assert py_.get(inveniordm, "metadata.identifiers") == [
+        {"identifier": "https://zenodo.org/records/5244404", "scheme": "url"}
+    ]
     assert py_.get(inveniordm, "metadata.related_identifiers") == [
         {
             "identifier": "10.5281/zenodo.5075887",
@@ -97,7 +99,9 @@ def test_journal_article():
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == []
+    assert py_.get(inveniordm, "metadata.identifiers") == [
+        {"identifier": "https://elifesciences.org/articles/01567", "scheme": "url"}
+    ]
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 30
     assert related_identifiers[0] == {
@@ -185,7 +189,12 @@ def test_rogue_scholar():
     )
     assert py_.get(inveniordm, "metadata.subjects") is None
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == []
+    assert py_.get(inveniordm, "metadata.identifiers") == [
+        {
+            "identifier": "https://beta.rogue-scholar.org/records/1xr7q-9fp18",
+            "scheme": "url",
+        }
+    ]
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "files.enabled") == False
@@ -222,6 +231,10 @@ def test_from_json_feed():
     assert py_.get(inveniordm, "metadata.identifiers") == [
         {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
         {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
+        {
+            "identifier": "https://ideophone.org/linguistic-roots-of-connectionism",
+            "scheme": "url",
+        },
     ]
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(
@@ -298,6 +311,10 @@ def test_from_json_feed_affiliations():
         {
             "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/",
             "scheme": "guid",
+        },
+        {
+            "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report",
+            "scheme": "url",
         },
     ]
     assert py_.get(inveniordm, "metadata.version") is None
