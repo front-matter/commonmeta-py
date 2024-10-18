@@ -96,6 +96,8 @@ def test_wordpress_with_references():
         {"subject": "Diplodocids"},
     ]
     assert subject.language == "en"
+    assert subject.content.startswith('::: {#attachment_21038 .wp-caption .aligncenter shortcode="caption" style="width: 1034px"}')
+    assert subject.image == "https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480"
     assert subject.version is None
 
 
@@ -167,6 +169,8 @@ def test_post_with_relationships():
         "identifier": "2749-9952",
         "identifierType": "ISSN",
     }
+    assert subject.content.startswith("Persistent identifiers (PIDs) are not only important")
+    assert subject.image == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
 
 
 @pytest.mark.vcr
@@ -294,6 +298,8 @@ def test_post_with_funding():
         "identifier": "https://rogue-scholar.org/blogs/upstream",
         "identifierType": "URL",
     }
+    assert subject.content.startswith("## Introduction\n\nA recent [blog\npost](https://metadatagamechangers.com/blog/2023/9/20/informate-metadata-game-changers-and-chorus-collaborate-to-make-the-invisible-visible)\ndescribed a new partnership between Metadata Game Changers and\n[CHORUS](https://www.chorusaccess.org/)")
+    assert subject.image == "https://upstream.force11.org/content/images/2023/11/ashin-k-suresh-mkxTOAxqTTo-unsplash--3-.jpg"
 
 
 @pytest.mark.vcr
@@ -398,7 +404,8 @@ def test_post_with_funding_ror():
         "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
         "identifierType": "URL",
     }
-
+    assert subject.content.startswith(':::::::::::::::::::::::::::::::::::::::::::::: {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label="Post Body" data-type="item" updated-on="1646694120644"}')
+    assert subject.image == "https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png"
 
 @pytest.mark.vcr
 def test_ghost_with_institutional_author():
@@ -425,7 +432,6 @@ def test_ghost_with_institutional_author():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-
     assert subject.date == {
         "published": "2023-01-24T12:11:47",
         "updated": "2023-10-01T17:34:13",
@@ -493,6 +499,8 @@ def test_ghost_with_institutional_author():
         {"subject": "OA.Report"},
     ]
     assert subject.language == "en"
+    assert subject.content.startswith("After a couple of years of working to support institutions")
+    assert subject.image == "https://blog.oa.works/content/images/2023/01/nature-website-v2.png"
     assert subject.version is None
 
 
@@ -640,6 +648,8 @@ def test_ghost_with_personal_name_parsing():
         {"subject": "Preprint"},
     ]
     assert subject.language == "en"
+    assert subject.content.startswith("As residents within the healthcare profession,")
+    assert subject.image == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
     assert subject.version is None
 
 
@@ -673,6 +683,8 @@ def test_medium_post_with_multiple_authors():
         "id": "https://orcid.org/0009-0008-8672-3168",
         "type": "Person",
     }
+    assert subject.content.startswith("**Tools and Platform for Integration of Knowledge Graph")
+    assert subject.image == "https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png"
 
 
 @pytest.mark.vcr
@@ -707,6 +719,8 @@ def test_post_with_peer_reviewed_version():
             "type": "IsPreprintOf",
         },
     ]
+    assert subject.content.startswith("*The New York Times* ushered in the New Year")
+    assert subject.image == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
 
 
 @pytest.mark.vcr

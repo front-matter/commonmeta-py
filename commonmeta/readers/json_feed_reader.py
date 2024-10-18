@@ -134,6 +134,8 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         {"identifier": meta.get("id"), "identifierType": "UUID"},
         {"identifier": meta.get("guid"), "identifierType": "GUID"},
     ]
+    content = py_.get(meta, "content_text", None)
+    image = py_.get(meta, "image", None)
     files = get_files(_id)
     state = "findable" if meta or read_options else "not_found"
 
@@ -158,6 +160,8 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
+        "content": presence(content),
+        "image": presence(image),
         "files": files,
         # other properties
         "container": presence(container),

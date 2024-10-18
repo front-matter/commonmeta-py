@@ -126,6 +126,8 @@ def write_inveniordm(metadata):
                     "related_identifiers": presence(related_identifiers),
                     "funding": presence(funding),
                     "version": metadata.version,
+                    "content": presence(metadata.content),
+                    "image": presence(metadata.image),
                 }
             ),
             "custom_fields": {

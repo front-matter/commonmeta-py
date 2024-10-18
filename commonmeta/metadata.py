@@ -101,6 +101,8 @@ class Metadata:
         self.titles = meta.get("titles")
         self.url = meta.get("url")
         self.version = meta.get("version")
+        self.content = meta.get("content")
+        self.image = meta.get("image")
         # other properties
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")
