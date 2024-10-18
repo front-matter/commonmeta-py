@@ -693,6 +693,23 @@ def test_cczero_license():
 
 
 @pytest.mark.vcr
+def test_post_with_peer_reviewed_version():
+    "post with peer-reviewed version"
+    string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/zg929-e9595"
+    assert subject.type == "Article"
+    assert subject.titles[0] == {"title": "Large Language Publishing"}
+    assert subject.relations == [
+        {
+            "id": "https://doi.org/10.18357/kula.291",
+            "type": "IsPreprintOf",
+        },
+    ]
+
+
+@pytest.mark.vcr
 def test_funded_project():
     "funded project"
     string = "https://api.rogue-scholar.org/posts/10.59350/p000s-pth40"

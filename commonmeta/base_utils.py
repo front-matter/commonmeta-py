@@ -94,6 +94,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
             "item",
             "citation",
             "program",
+            "related_item",
         }
 
     kwargs["attr_prefix"] = ""

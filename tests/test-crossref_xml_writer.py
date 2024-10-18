@@ -243,13 +243,15 @@ def test_write_crossref_xml_missing_doi():
     assert py_.get(crossref_xml, "program.1") == {
         "name": "relations",
         "xmlns": OrderedDict([("", "http://www.crossref.org/relations.xsd")]),
-        "related_item": {
-            "inter_work_relation": {
-                "relationship-type": "isPartOf",
-                "identifier-type": "issn",
-                "#text": "2993-1150",
+        "related_item": [
+            {
+                "inter_work_relation": {
+                    "#text": "2993-1150",
+                    "identifier-type": "issn",
+                    "relationship-type": "isPartOf",
+                }
             }
-        },
+        ],
     }
 
 
@@ -569,7 +571,8 @@ def test_json_feed_item_with_archived_content():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/faeph-x4x84"
     assert (
-        subject.url == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
+        subject.url
+        == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
@@ -705,6 +708,34 @@ def test_json_feed_item_with_relations_and_funding():
         ],
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
+
+
+@pytest.mark.vcr
+def test_json_feed_item_with_peer_reviewed_version():
+    """JSON Feed item with peer-reviewed version"""
+    string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/zg929-e9595"
+    assert subject.relations == [
+        {"id": "https://doi.org/10.18357/kula.291", "type": "IsPreprintOf"},
+    ]
+    crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    print(crossref_xml)
+    assert py_.get(crossref_xml, "program.1") == {
+        "name": "relations",
+        "xmlns": OrderedDict([("", "http://www.crossref.org/relations.xsd")]),
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "relationship-type": "isPreprintOf",
+                    "identifier-type": "doi",
+                    "#text": "10.18357/kula.291",
+                }
+            },
+        ],
+    }
 
 
 @pytest.mark.vcr
