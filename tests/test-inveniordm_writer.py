@@ -56,8 +56,8 @@ def test_publication():
         }
     ]
     assert py_.get(inveniordm, "metadata.funding") is None
-    assert py_.get(inveniordm, "metadata.content") is None
-    assert py_.get(inveniordm, "metadata.image") is None
+    assert py_.get(inveniordm, "custom_fields.rs:content_text") is None
+    assert py_.get(inveniordm, "custom_fields.rs:image") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -150,8 +150,8 @@ def test_journal_article():
             },
         },
     ]
-    assert py_.get(inveniordm, "metadata.content") is None
-    assert py_.get(inveniordm, "metadata.image") is None
+    assert py_.get(inveniordm, "custom_fields.rs:content_text") is None
+    assert py_.get(inveniordm, "custom_fields.rs:image") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -203,8 +203,8 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
-    # assert py_.get(inveniordm, "metadata.content").startswith("a")
-    # assert py_.get(inveniordm, "metadata.image") == 2
+    # assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith("a")
+    # assert py_.get(inveniordm, "custom_fields.rs:image") == 2
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -273,11 +273,11 @@ def test_from_json_feed():
     }
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "This [Lingbuzz preprint by\nBaroni](https://ling.auf.net/lingbuzz/006031)"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png"
     )
     assert py_.get(inveniordm, "files.enabled") == False
@@ -355,11 +355,11 @@ def test_from_json_feed_affiliations():
         == "Research Group Information Management @ Humboldt-Universität zu Berlin"
     )
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "In the beginning of June 2024, Nature reported on the Japanese Ministry\nof Education's plan to invest 10 billion yen"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
     assert py_.get(inveniordm, "files.enabled") == False
@@ -380,11 +380,11 @@ def test_from_json_feed_dates():
     assert py_.get(inveniordm, "metadata.dates") == [
         {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}}
     ]
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://svpow.files.wordpress.com/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     )
 
@@ -410,10 +410,10 @@ def test_from_json_feed_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "Come and join us at the Università degli Studi di Roma"
     )
-    assert py_.get(inveniordm, "metadata.image") is None
+    assert py_.get(inveniordm, "custom_fields.rs:image") is None
 
 
 @pytest.mark.vcr
@@ -440,11 +440,11 @@ def test_from_json_feed_more_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "![](/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg)\n\nSummer Meeting of the Editorial Board"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://coref.project.re3data.org/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg"
     )
 
@@ -490,11 +490,11 @@ def test_from_json_feed_references():
             },
         }
     ]
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "One of the first tasks for DataCite"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png"
     )
 
@@ -518,10 +518,10 @@ def test_from_json_feed_relations():
         "relation_type": {"id": "ispreviousversionof"},
         "scheme": "doi",
     }
-    assert py_.get(inveniordm, "metadata.content").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "*The New York Times* ushered in the New Year with"
     )
     assert (
-        py_.get(inveniordm, "metadata.image")
+        py_.get(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )

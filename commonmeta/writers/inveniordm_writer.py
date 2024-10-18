@@ -126,13 +126,15 @@ def write_inveniordm(metadata):
                     "related_identifiers": presence(related_identifiers),
                     "funding": presence(funding),
                     "version": metadata.version,
-                    "content": presence(metadata.content),
-                    "image": presence(metadata.image),
                 }
             ),
-            "custom_fields": {
-                "journal:journal": compact({"title": journal, "issn": issn}),
-            },
+            "custom_fields": compact(
+                {
+                    "journal:journal": compact({"title": journal, "issn": issn}),
+                    "rs:content_text": presence(metadata.content),
+                    "rs:image": presence(metadata.image),
+                }
+            ),
         }
     )
     return json.dumps(data)
