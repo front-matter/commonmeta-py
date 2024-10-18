@@ -47,8 +47,11 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         return {"state": "not_found"}
     meta = data
     read_options = kwargs or {}
-
-    url = normalize_url(meta.get("url", None))
+    url = None
+    if py_.get(meta, "blog.status", None) == "active":
+         url = normalize_url(meta.get("url", None))
+    elif py_.get(meta, "blog.status", None) == "archived":
+        url = normalize_url(meta.get("archive_url", None))
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
     _type = "Article"
 

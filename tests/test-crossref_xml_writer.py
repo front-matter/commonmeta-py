@@ -569,7 +569,7 @@ def test_json_feed_item_with_archived_content():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/faeph-x4x84"
     assert (
-        subject.url == "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
+        subject.url == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
@@ -596,7 +596,7 @@ def test_json_feed_item_with_archived_content():
     assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
-        "#text": "https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
+        "#text": "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
 
@@ -651,8 +651,8 @@ def test_json_feed_item_with_relations_and_funding():
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/00k4n6c32",
+            "funderIdentifierType": "ROR",
             "awardUri": "https://doi.org/10.3030/777523",
             "awardNumber": "777523",
         }
