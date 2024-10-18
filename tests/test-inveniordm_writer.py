@@ -452,3 +452,28 @@ def test_from_json_feed_references():
             },
         }
     ]
+    
+@pytest.mark.vcr
+def test_from_json_feed_relations():
+    "JSON Feed relations"
+    string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.54900/zg929-e9595"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert (
+        py_.get(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
+    )
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "Large Language Publishing"
+    )
+    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert len(related_identifiers) == 1
+    assert related_identifiers[0] == {
+        "identifier": "10.18357/kula.291",
+        "relation_type": {"id": "ispreviousversionof"},
+        "scheme": "doi",
+    }

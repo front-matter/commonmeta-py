@@ -46,7 +46,6 @@ def write_inveniordm(metadata):
             "scheme": "url",
         }
     )
-    print(identifiers, metadata.id)
     references = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.references)
@@ -226,8 +225,10 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
     relation_type = relation.get("type")
     if relation.get("type", None) is None:
         relation_type = "References"
-    if relation.get("type") == "HasReview":
+    elif relation.get("type") == "HasReview":
         relation_type = "IsReviewedBy"
+    elif relation.get("type") == "IsPreprintOf":
+        relation_type = "IsPreviousVersionOf"
 
     return compact(
         {
