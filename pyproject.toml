@@ -1,6 +1,6 @@
 [tool.poetry]
 name="commonmeta-py"
-version="0.49"
+version="0.50"
 repository = "https://github.com/front-matter/commonmeta-py"
 homepage = "https://python.commonmeta.org"
 documentation = "https://python.commonmeta.org"
@@ -38,9 +38,6 @@ types-xmltodict = "^0.13"
 nameparser = "^1.1.2"
 pycountry = "^23.12.11"
 click = "^8.1.7"
-quartodoc = "^0.7.1"
-jupyterlab = "^4.0.9"
-jupyterlab-quarto = "^0.2.8"
 furl = "^2.1.3"
 lxml = ">=4.8"
 python-dateutil = "^2.8.2"
@@ -52,6 +49,14 @@ anyio = "^4.2.0"
 orjson = "^3.9.14"
 orjsonl = "^1.0.0"
 pikepdf = "^8.14.0"
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
+quartodoc = "^0.7.1"
+jupyterlab = "^4.0.9"
+jupyterlab-quarto = "^0.2.8"
 
 [tool.poetry.scripts]
 commonmeta = "commonmeta.cli:cli"
