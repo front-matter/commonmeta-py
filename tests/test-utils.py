@@ -17,6 +17,7 @@ from commonmeta.utils import (
     normalize_ids,
     normalize_cc_url,
     normalize_issn,
+    normalize_url,
     issn_as_url,
     issn_from_url,
     from_csl,
@@ -75,9 +76,7 @@ def test_dict_to_spdx_url():
 
 def test_dict_to_spdx_not_found():
     "dict_to_spdx not found"
-    assert {"url": "info:eu-repo/semantics/openAccess"} == dict_to_spdx(
-        {"url": "info:eu-repo/semantics/openAccess"}
-    )
+    assert {} == dict_to_spdx({"url": "info:eu-repo/semantics/openAccess"})
 
 
 def test_validate_orcid():
@@ -302,6 +301,13 @@ def test_issn_from_url():
         "https://portal.issn.org/resource/ISSN/2146-8427"
     )
     assert None is issn_from_url("https://doi.org/10.5438/0012")
+
+
+def test_normalize_url():
+    """normalize url"""
+    # invalid scheme
+    assert None == normalize_url("%0ahttps:/doi.org/10.48550/arxiv.2405.08841")
+    assert None == normalize_url("mailto:info@example.org")
 
 
 def test_from_csl():

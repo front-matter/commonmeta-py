@@ -523,3 +523,24 @@ def test_from_json_feed_relations():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
+
+
+@pytest.mark.vcr
+def test_from_json_feed_broken_reference():
+    "JSON Feed relations"
+    string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.title") == "2024 mpox outbreak: common analytics tasks and available R tools"
+    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert len(related_identifiers) == 5
+    assert related_identifiers[1] == {
+        "identifier": "10.1371/journal.pcbi.1008409",
+        "relation_type": {"id": "references"},
+        "scheme": "doi",
+    }

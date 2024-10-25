@@ -49,7 +49,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
     url = None
     if py_.get(meta, "blog.status", None) == "active":
-         url = normalize_url(meta.get("url", None))
+        url = normalize_url(meta.get("url", None))
     elif py_.get(meta, "blog.status", None) == "archived":
         url = normalize_url(meta.get("archive_url", None))
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
@@ -189,9 +189,14 @@ def get_references(references: list) -> list:
             )
 
         else:
-            return {
-                "id": reference.get("id", None),
-            }
+            id_ = normalize_url(reference.get("id", None))
+            if id_ is None:
+                return None
+            return compact(
+                {
+                    "id": id_,
+                }
+            )
 
     def number_reference(reference: dict, index: int) -> dict:
         """number reference"""

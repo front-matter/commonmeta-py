@@ -741,6 +741,19 @@ def test_funded_project():
         },
     ]
 
+@pytest.mark.vcr
+def test_broken_reference():
+    "JSON Feed broken reference"
+    string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
+    assert subject.type == "Article"
+    assert len(subject.references) == 5
+    print(subject.references)
+    assert subject.references[2] == {
+        "key": "ref4",
+        "id": "https://doi.org/10.1016/s2214-109x(23)00198-5",
+    }
 
 def test_get_json_feed_item():
     """Test get_json_feed_item_id"""
