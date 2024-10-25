@@ -540,7 +540,7 @@ def test_ssl_error():
     string = "https://www.miketaylor.org.uk/dino/pubs/svpca2015/abstract.html"
     subject = Metadata(string)
     assert subject.errors == [
-        "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.miketaylor.org.uk'. (_ssl.c:1123)"
+        "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'www.miketaylor.org.uk'. (_ssl.c:1000)"
     ]
     assert subject.is_valid is False
     assert (

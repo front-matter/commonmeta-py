@@ -2,10 +2,9 @@
 
 import orjson as json
 from typing import Optional
-from furl import furl
 
 from ..base_utils import compact, wrap, parse_attributes, presence
-from ..date_utils import get_iso8601_date
+from ..date_utils import get_iso8601_date, validate_edtf
 from ..doi_utils import doi_from_url, normalize_doi
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
@@ -78,12 +77,15 @@ def write_inveniordm(metadata):
     )
     dates = []
     if metadata.date.get("updated", None):
-        dates.append(
-            {
-                "date": metadata.date.get("updated"),
-                "type": {"id": "updated"},
-            }
-        )
+        # workaround for InvenioRDM issue parsing some iso8601 strings
+        date_updated = validate_edtf(metadata.date.get("updated"))
+        if date_updated:
+            dates.append(
+                {
+                    "date": metadata.date.get("updated"),
+                    "type": {"id": "updated"},
+                }
+            )
 
     subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
     data = compact(
@@ -305,3 +307,5 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
             ),
         }
     )
+
+
