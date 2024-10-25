@@ -12,7 +12,7 @@ license = "MIT"
 packages = [{include = "commonmeta"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.13"
+python = ">=3.9,<4.0"
 docutils = "^0.19"
 setuptools = "^70.0"
 sphinxcontrib-issuetracker = "^0.11"
