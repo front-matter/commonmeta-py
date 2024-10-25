@@ -12,7 +12,7 @@ license = "MIT"
 packages = [{include = "commonmeta"}]
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0.0"
+python = ">=3.9,<3.13"
 docutils = "^0.19"
 setuptools = "^70.0"
 sphinxcontrib-issuetracker = "^0.11"
@@ -49,6 +49,7 @@ anyio = "^4.2.0"
 orjson = "^3.9.14"
 orjsonl = "^1.0.0"
 pikepdf = "^8.14.0"
+edtf = "^4.0.1"
 
 [tool.poetry.group.docs]
 optional = true

@@ -3,6 +3,8 @@ import datetime
 from datetime import datetime as dt
 from typing import Optional, Union
 import dateparser
+from edtf import parse_edtf, DateAndTime, Date
+from edtf.parser.edtf_exceptions import EDTFParseException
 import pydash as py_
 
 from .base_utils import compact
@@ -191,3 +193,17 @@ def normalize_date_dict(data: dict) -> dict:
             "withdrawn": data.get("Withdrawn", None),
         }
     )
+
+
+def validate_edtf(iso8601_time: Optional[str]) -> Optional[str]:
+    """Validate EDTF string using edtf. Return None if invalid"""
+    if iso8601_time is None:
+        return None
+    try:
+        edtf = parse_edtf(iso8601_time)
+    except EDTFParseException as e:
+        print(e)
+        return None
+    if not isinstance(edtf, (DateAndTime, Date)):
+        return None
+    return edtf.isoformat()

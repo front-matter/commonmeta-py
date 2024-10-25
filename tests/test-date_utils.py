@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test date utils"""
+
 from datetime import date
 import pytest  # noqa: F401
 
@@ -12,6 +13,7 @@ from commonmeta.date_utils import (
     get_date_from_crossref_parts,
     get_datetime_from_time,
     get_datetime_from_pdf_time,
+    validate_edtf,
 )
 
 
@@ -107,3 +109,14 @@ def test_get_datetime_from_pdf_time():
     time = "D:20180427082257+02'00'"
     response = get_datetime_from_pdf_time(time)
     assert "2018-04-27T08:22:57Z" == response
+
+
+def test_validate_edtf():
+    """validate_edtf"""
+    assert "2012-01-01T00:00:00Z" == validate_edtf("2012-01-01T00:00:00Z")
+    # assert "2012-01-01T00:00:00+00:00" == validate_edtf("2012-01-01T00:00:00+00:00")
+    assert "2012-01-01T09:12:45+06:00" == validate_edtf("2012-01-01T09:12:45+06:00")
+    assert "2024-07-22T23:11:00" == validate_edtf("2024-07-22T23:11:00")
+    # assert None is validate_edtf("2024-02-22T23:15:39")
+    assert "2024-10-23T13:58:21" == validate_edtf("2024-10-23T13:58:21")
+    assert "2012-01-01" == validate_edtf("2012-01-01")
