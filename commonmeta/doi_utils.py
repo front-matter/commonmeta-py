@@ -263,10 +263,11 @@ def is_rogue_scholar_doi(doi: str) -> bool:
     """Return True if DOI is from Rogue Scholar"""
     prefix = validate_prefix(doi)
     return prefix in [
-        "10.34732",
+        "10.34732", # not managed by Front Matter
         "10.53731",
         "10.54900",
-        "10.57689",
+        "10.57689", # not managed by Front Matter
+        "10.58079", # not managed by Front Matter
         "10.59348",
         "10.59349",
         "10.59350",

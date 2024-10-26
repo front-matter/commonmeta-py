@@ -544,3 +544,16 @@ def test_from_json_feed_broken_reference():
         "relation_type": {"id": "references"},
         "scheme": "doi",
     }
+
+@pytest.mark.vcr
+def test_external_doi():
+    "external DOI used by Rogue Scholar"
+    string = "https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.57689/dini-blog.20210712"
+    assert subject.type == "Article"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.title") == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
