@@ -118,6 +118,6 @@ def test_validate_edtf():
     assert None is validate_edtf("2012-01-01T00:00:00+00:00")
     assert "2012-01-01T09:12:45+06:00" == validate_edtf("2012-01-01T09:12:45+06:00")
     # edtf 4.0.1 has a bug and can't handle T23. Fixed in 5.0.0
-    assert None is validate_edtf("2024-07-22T23:11:00Z")
+    assert "2024-07-22T23:11:00Z" == validate_edtf("2024-07-22T23:11:00Z")
     assert "2024-10-23T13:58:21" == validate_edtf("2024-10-23T13:58:21")
     assert "2012-01-01" == validate_edtf("2012-01-01")

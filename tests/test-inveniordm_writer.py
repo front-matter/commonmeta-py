@@ -377,7 +377,7 @@ def test_from_json_feed_dates():
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
-    assert py_.get(inveniordm, "metadata.dates") is None
+    assert py_.get(inveniordm, "metadata.dates") == [{'date': '2018-10-19T23:13:05', 'type': {'id': 'updated'}}]
     assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
