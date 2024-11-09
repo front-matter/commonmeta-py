@@ -184,6 +184,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert py_.get(inveniordm, "metadata.dates") == [
+        {"date": "2024-10-07", "type": {"id": "issued"}},
         {"date": "2024-10-17T18:54:34Z", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
@@ -231,6 +232,7 @@ def test_from_json_feed():
     assert py_.get(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
     assert py_.get(inveniordm, "metadata.publication_date") == "2021-07-22"
     assert py_.get(inveniordm, "metadata.dates") == [
+        {'date': '2021-07-22T09:39:07','type': {     'id': 'issued'}},
         {"date": "2024-02-04T22:05:36", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
@@ -316,6 +318,7 @@ def test_from_json_feed_affiliations():
     )
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-07-15"
     assert py_.get(inveniordm, "metadata.dates") == [
+        {"date": "2024-07-15T00:00:00", "type": {"id": "issued"}},
         {"date": "2024-07-15T00:00:00", "type": {"id": "updated"}}
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
@@ -377,7 +380,11 @@ def test_from_json_feed_dates():
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
-    assert py_.get(inveniordm, "metadata.dates") == [{'date': '2018-10-19T23:13:05', 'type': {'id': 'updated'}}]
+    assert py_.get(inveniordm, "metadata.dates") == [{
+        'date': '2018-08-28T03:05:10',
+        'type': {
+            'id': 'issued',
+        }},{'date': '2018-10-19T23:13:05', 'type': {'id': 'updated'}}]
     assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )

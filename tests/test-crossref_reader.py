@@ -1334,6 +1334,8 @@ def test_proceedings_article():
     assert subject.container == {
         "type": "Proceedings",
         "title": "Proceedings of the 2021 International Conference on Management of Data",
+        "firstPage": "1386",
+        "lastPage": "1399",
     }
     assert subject.subjects is None
     assert subject.language is None

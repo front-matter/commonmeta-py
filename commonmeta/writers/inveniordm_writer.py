@@ -76,16 +76,20 @@ def write_inveniordm(metadata):
         else None
     )
     dates = []
-    if metadata.date.get("updated", None):
-        # workaround for InvenioRDM issue parsing some iso8601 strings
-        date_updated = validate_edtf(metadata.date.get("updated"))
-        if date_updated:
-            dates.append(
-                {
-                    "date": metadata.date.get("updated"),
-                    "type": {"id": "updated"},
-                }
-            )
+    for date in metadata.date.keys():
+        if metadata.date.get(date, None) is None:
+            continue
+        t = date.lower()
+        if t == "published":
+            t = "issued"
+        elif t == "accessed":
+            t = "other"
+        dates.append(
+            {
+                "date": metadata.date.get(date),
+                "type": {"id": t},
+            }
+        )
 
     subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
     data = compact(
