@@ -271,12 +271,12 @@ def test_dataset():
 @pytest.mark.vcr
 def test_rogue_scholar():
     """Rogue Scholar"""
-    string = "https://beta.rogue-scholar.org/api/records/1xr7q-9fp18"
+    string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "Article"
-    assert subject.url == "https://beta.rogue-scholar.org/records/1xr7q-9fp18"
+    assert subject.url == "https://rogue-scholar.org/records/1xr7q-9fp18"
     assert subject.titles[0] == {"title": "Rogue Scholar learns about communities"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {

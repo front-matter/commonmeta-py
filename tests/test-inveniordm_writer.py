@@ -158,7 +158,7 @@ def test_journal_article():
 @pytest.mark.vcr
 def test_rogue_scholar():
     "Rogue Scholar"
-    string = "https://beta.rogue-scholar.org/api/records/1xr7q-9fp18"
+    string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "Article"
@@ -196,7 +196,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "metadata.identifiers") == [
         {
-            "identifier": "https://beta.rogue-scholar.org/records/1xr7q-9fp18",
+            "identifier": "https://rogue-scholar.org/records/1xr7q-9fp18",
             "scheme": "url",
         }
     ]
