@@ -14,7 +14,7 @@ packages = [{include = "commonmeta"}]
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
 docutils = "^0.19"
-setuptools = "^70.0"
+setuptools = ">=70,<76"
 sphinxcontrib-issuetracker = "^0.11"
 sphinx-autodoc-typehints = "^1.19"
 httpx = "^0.27"
