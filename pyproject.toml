@@ -64,7 +64,7 @@ commonmeta = "commonmeta.cli:cli"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "*"
-ruff = "^0.3.0"
+ruff = ">=0.3,<0.9"
 pytest = "^8.3"
 pytest-cov = "^4.1.0"
 pytest-recording = "^0.13.1"
