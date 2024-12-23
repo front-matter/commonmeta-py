@@ -57,6 +57,7 @@ def test_wordpress_with_references():
     assert len(subject.references) > 1
     assert subject.references[0] == {
         "key": "ref1",
+        'publicationYear': '2014',
         "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
     }
     assert subject.relations == [

@@ -15,6 +15,7 @@ from ..utils import (
     get_language,
     validate_orcid,
     id_from_url,
+    normalize_url,
     FOS_MAPPINGS,
 )
 
@@ -45,17 +46,12 @@ def write_inveniordm(metadata):
             "scheme": "url",
         }
     )
-    references = [
-        to_inveniordm_related_identifier(i)
-        for i in wrap(metadata.references)
-        if i.get("id", None)
-    ]
-    relations = [
+    references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
+    related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
         if i.get("id", None) and i.get("type", None) != "IsPartOf"
     ]
-    related_identifiers = references + relations
     funding = compact(
         [
             to_inveniordm_funding(i)
@@ -129,6 +125,7 @@ def write_inveniordm(metadata):
                     if metadata.language
                     else None,
                     "identifiers": identifiers,
+                    "references": presence(references),
                     "related_identifiers": presence(related_identifiers),
                     "funding": presence(funding),
                     "version": metadata.version,
@@ -223,19 +220,19 @@ def to_inveniordm_affiliations(creator: dict) -> Optional[list]:
 
 
 def to_inveniordm_related_identifier(relation: dict) -> dict:
-    """Convert reference or relation to inveniordm related_identifier"""
+    """Convert relation to inveniordm related_identifier"""
     if normalize_doi(relation.get("id", None)):
         identifier = doi_from_url(relation.get("id", None))
         scheme = "doi"
-    else:
+    elif normalize_url(relation.get("id", None)):
         identifier = relation.get("id", None)
         scheme = "url"
+    else:
+        return None
 
     # normalize relation types
     relation_type = relation.get("type")
-    if relation.get("type", None) is None:
-        relation_type = "References"
-    elif relation.get("type") == "HasReview":
+    if relation.get("type") == "HasReview":
         relation_type = "IsReviewedBy"
     elif relation.get("type") == "IsPreprintOf":
         relation_type = "IsPreviousVersionOf"
@@ -249,6 +246,54 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
             },
         }
     )
+
+
+def to_inveniordm_reference(reference: dict) -> dict:
+    """Convert reference to inveniordm reference"""
+    print(reference)
+    if normalize_doi(reference.get("id", None)):
+        identifier = doi_from_url(reference.get("id", None))
+        scheme = "doi"
+    elif normalize_url(reference.get("id", None)):
+        identifier = reference.get("id", None)
+        scheme = "url"
+    else:
+        return None
+
+    if reference.get("unstructured", None) is None:
+        # use title as unstructured reference
+        if reference.get("title", None):
+            unstructured = reference.get("title")
+        else:
+            unstructured = "Unknown title"
+
+        if reference.get("publicationYear", None):
+            unstructured += " (" + reference.get("publicationYear") + ")."
+
+        return compact(
+            {
+                "reference": unstructured,
+                "scheme": scheme,
+                "identifier": identifier,
+            }
+        )
+    else:
+        unstructured = reference.get("unstructured")
+
+        # remove optional trailing period
+        unstructured = unstructured.rstrip(" .")
+
+        if reference.get("id", None):
+            # remove duplicate ID from unstructured reference
+            unstructured = unstructured.replace(reference.get("id"), "")
+
+        return compact(
+            {
+                "reference": unstructured,
+                "scheme": scheme,
+                "identifier": identifier,
+            }
+        )
 
 
 def to_inveniordm_funding(funding: dict) -> Optional[dict]:
@@ -311,5 +356,3 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
             ),
         }
     )
-
-

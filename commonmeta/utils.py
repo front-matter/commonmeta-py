@@ -111,6 +111,7 @@ FOS_MAPPINGS = {
     "Agricultural biotechnology": "http://www.oecd.org/science/inno/38235147",
     "Other agricultural sciences": "http://www.oecd.org/science/inno/38235147",
     "Social science": "http://www.oecd.org/science/inno/38235147.pdf?5",
+    "Social sciences": "http://www.oecd.org/science/inno/38235147.pdf?5",
     "Psychology": "http://www.oecd.org/science/inno/38235147.pdf?5.1",
     "Economics and business": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
     "Educational sciences": "http://www.oecd.org/science/inno/38235147.pdf?5.3",

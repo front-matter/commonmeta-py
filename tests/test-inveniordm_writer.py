@@ -105,26 +105,19 @@ def test_journal_article():
         {"identifier": "https://elifesciences.org/articles/01567", "scheme": "url"}
     ]
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 30
+    assert len(related_identifiers) == 3
     assert related_identifiers[0] == {
-        "identifier": "10.1038/nature02100",
-        "relation_type": {
-            "id": "references",
-        },
-        "scheme": "doi",
-    }
-    assert related_identifiers[27] == {
         "identifier": "10.5061/dryad.b835k",
         "relation_type": {
             "id": "issupplementedby",
         },
         "scheme": "doi",
     }
-    assert related_identifiers[28] == {
-        "identifier": "10.7554/elife.01567.017",
-        "relation_type": {
-            "id": "isreviewedby",
-        },
+    references = py_.get(inveniordm, "metadata.references")
+    assert len(references) == 27
+    assert references[0] == {
+        "identifier": "10.1038/nature02100",
+        "reference": "APL regulates vascular tissue identity in Arabidopsis (2003).",
         "scheme": "doi",
     }
     assert py_.get(inveniordm, "metadata.funding") == [
@@ -185,7 +178,7 @@ def test_rogue_scholar():
 
     assert py_.get(inveniordm, "metadata.dates") == [
         {"date": "2024-10-07", "type": {"id": "issued"}},
-        {"date": "2024-10-17T18:54:34Z", "type": {"id": "updated"}}
+        {"date": "2024-11-09T12:57:40Z", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
@@ -232,8 +225,8 @@ def test_from_json_feed():
     assert py_.get(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
     assert py_.get(inveniordm, "metadata.publication_date") == "2021-07-22"
     assert py_.get(inveniordm, "metadata.dates") == [
-        {'date': '2021-07-22T09:39:07','type': {     'id': 'issued'}},
-        {"date": "2024-02-04T22:05:36", "type": {"id": "updated"}}
+        {"date": "2021-07-22T09:39:07", "type": {"id": "issued"}},
+        {"date": "2024-02-04T22:05:36", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
@@ -257,21 +250,12 @@ def test_from_json_feed():
         {"subject": "Threads"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 7
-    assert related_identifiers[0] == {
+    references = py_.get(inveniordm, "metadata.references")
+    assert len(references) == 7
+    assert references[0] == {
+        "reference": "Unknown title",
         "identifier": "https://ling.auf.net/lingbuzz/006031",
-        "relation_type": {
-            "id": "references",
-        },
         "scheme": "url",
-    }
-    assert related_identifiers[1] == {
-        "identifier": "10.1038/s41562-017-0163",
-        "relation_type": {
-            "id": "references",
-        },
-        "scheme": "doi",
     }
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
@@ -319,7 +303,7 @@ def test_from_json_feed_affiliations():
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-07-15"
     assert py_.get(inveniordm, "metadata.dates") == [
         {"date": "2024-07-15T00:00:00", "type": {"id": "issued"}},
-        {"date": "2024-07-15T00:00:00", "type": {"id": "updated"}}
+        {"date": "2024-07-15T00:00:00", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.identifiers") == [
@@ -346,11 +330,11 @@ def test_from_json_feed_affiliations():
         {"subject": "Research"},
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 4
-    assert py_.get(inveniordm, "metadata.related_identifiers[0]") == {
+    references = py_.get(inveniordm, "metadata.references")
+    assert len(references) == 4
+    assert references[0] == {
+        "reference": "Unknown title",
         "identifier": "10.1007/978-3-658-01928-0",
-        "relation_type": {"id": "references"},
         "scheme": "doi",
     }
     assert (
@@ -380,11 +364,15 @@ def test_from_json_feed_dates():
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
-    assert py_.get(inveniordm, "metadata.dates") == [{
-        'date': '2018-08-28T03:05:10',
-        'type': {
-            'id': 'issued',
-        }},{'date': '2018-10-19T23:13:05', 'type': {'id': 'updated'}}]
+    assert py_.get(inveniordm, "metadata.dates") == [
+        {
+            "date": "2018-08-28T03:05:10",
+            "type": {
+                "id": "issued",
+            },
+        },
+        {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}},
+    ]
     assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
         "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
@@ -472,13 +460,8 @@ def test_from_json_feed_references():
         == "Differences between ORCID and DataCite Metadata"
     )
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 2
+    assert len(related_identifiers) == 1
     assert related_identifiers[0] == {
-        "identifier": "10.5281/zenodo.30799",
-        "relation_type": {"id": "references"},
-        "scheme": "doi",
-    }
-    assert related_identifiers[1] == {
         "identifier": "10.5438/bc11-cqw1",
         "relation_type": {"id": "isidenticalto"},
         "scheme": "doi",
@@ -543,14 +526,19 @@ def test_from_json_feed_broken_reference():
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
-    assert py_.get(inveniordm, "metadata.title") == "2024 mpox outbreak: common analytics tasks and available R tools"
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 5
-    assert related_identifiers[1] == {
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "2024 mpox outbreak: common analytics tasks and available R tools"
+    )
+    references = py_.get(inveniordm, "metadata.references")
+    assert len(references) == 5
+    print(references)
+    assert references[1] == {
+        "reference": "Unknown title",
         "identifier": "10.1371/journal.pcbi.1008409",
-        "relation_type": {"id": "references"},
         "scheme": "doi",
     }
+
 
 @pytest.mark.vcr
 def test_external_doi():
@@ -563,4 +551,7 @@ def test_external_doi():
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
-    assert py_.get(inveniordm, "metadata.title") == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
+    )
