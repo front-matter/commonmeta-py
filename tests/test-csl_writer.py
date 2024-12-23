@@ -327,29 +327,29 @@ def test_organization_author():
     assert csl.get("DOI") == "10.1186/s13742-015-0103-4"
     assert (
         csl.get("URL")
-        == "https://academic.oup.com/gigascience/article-lookup/doi/10.1186/s13742-015-0103-4"
+        == "https://academic.oup.com/gigascience/article/doi/10.1186/s13742-015-0103-4/2707526"
     )
     assert (
         csl.get("title")
-        == "Discovery, genotyping and characterization of structural variation and novel sequence at single nucleotide resolution from de novo genome assemblies on a population scale"
+        == "Discovery, genotyping and characterization of structural variation and novel sequence at single nucleotide resolution from <i>de novo</i> genome assemblies on a population scale"
     )
     assert csl.get("author") == [
-        {"literal": "The Genome Denmark Consortium"},
         {"family": "Liu", "given": "Siyang"},
         {"family": "Huang", "given": "Shujia"},
         {"family": "Rao", "given": "Junhua"},
         {"family": "Ye", "given": "Weijian"},
+        {"literal": "The Genome Denmark Consortium"},
         {"family": "Krogh", "given": "Anders"},
         {"family": "Wang", "given": "Jun"},
     ]
     assert csl.get("contributor") is None
     assert csl.get("publisher") == "Oxford University Press (OUP)"
-    assert csl.get("issued") == {"date-parts": [[2015, 12]]}
-    assert csl.get("container-title") == "GigaScience"
+    assert csl.get("issued") == {"date-parts": [[2015, 12, 1]]}
+    assert csl.get("container-title") == "Gigascience"
     assert csl.get("volume") == "4"
     assert csl.get("page") is None
     assert csl.get("language") == "en"
-    assert csl.get("copyright") is None
+    assert csl.get("copyright") == "CC-BY-4.0"
 
 
 #     it 'interactive resource without dates' do

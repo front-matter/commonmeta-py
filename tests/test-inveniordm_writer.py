@@ -416,7 +416,6 @@ def test_from_json_feed_more_funding():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
     assert subject.type == "Article"
-    print(subject.references)
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
@@ -532,7 +531,6 @@ def test_from_json_feed_broken_reference():
     )
     references = py_.get(inveniordm, "metadata.references")
     assert len(references) == 5
-    print(references)
     assert references[1] == {
         "reference": "Unknown title",
         "identifier": "10.1371/journal.pcbi.1008409",

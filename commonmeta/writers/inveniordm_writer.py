@@ -250,7 +250,6 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
 
 def to_inveniordm_reference(reference: dict) -> dict:
     """Convert reference to inveniordm reference"""
-    print(reference)
     if normalize_doi(reference.get("id", None)):
         identifier = doi_from_url(reference.get("id", None))
         scheme = "doi"
