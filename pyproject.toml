@@ -57,7 +57,7 @@ optional = true
 [tool.poetry.group.docs.dependencies]
 quartodoc = "^0.7.1"
 jupyterlab = "^4.0.9"
-jupyterlab-quarto = "^0.2.8"
+jupyterlab-quarto = ">=0.2.8,<0.4.0"
 
 [tool.poetry.scripts]
 commonmeta = "commonmeta.cli:cli"
