@@ -806,11 +806,22 @@ def test_encode_doi():
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
 
 
+def test_encode_doi_with_number():
+    """Generate a random DOI with preset number"""
+    response = encode_doi("10.5555", number=123456789012)
+    assert response == "https://doi.org/10.5555/3jz9j-6gm44"
+
 def test_decode_doi():
     """Extract number from random DOI"""
     doi = "10.5555/f9zqn-sf065"
-    response = decode_doi(doi)
+    response = decode_doi(doi, checksum=False)
     assert response == 538751765283013
+    
+def test_decode_doi_with_checksum():
+    """Extract number from random DOI with checksum"""
+    doi = "10.59350/v2gec-5xt36"
+    response = decode_doi(doi, checksum=True)
+    assert response == 930412369850
 
 
 def test_from_curie():

@@ -1092,16 +1092,24 @@ def name_to_fos(name: str) -> Optional[dict]:
     return {"subject": subject}
 
 
-def encode_doi(prefix):
+def encode_doi(prefix, number: Optional[int]= None, checksum: bool = True) -> str:
     """Generate a DOI using the DOI prefix and a random base32 suffix"""
-    suffix = base32.generate(length=10, split_every=5, checksum=True)
+    if isinstance(number, int):
+        suffix = base32.encode(number, split_every=5, checksum=checksum)
+    else:
+        suffix = base32.generate(length=10, split_every=5, checksum=True)
     return f"https://doi.org/{prefix}/{suffix}"
 
 
-def decode_doi(doi: str) -> int:
+def decode_doi(doi: str, checksum: bool = True) -> int:
     """Decode a DOI to a number"""
-    suffix = doi.split("/", maxsplit=5)[-1]
-    return base32.decode(suffix)
+    try:
+        suffix = doi.split("/", maxsplit=5)[-1]
+        if checksum:
+            return base32.decode(suffix, checksum=True)
+        return base32.decode(suffix)
+    except ValueError:
+        return 0
 
 
 def from_curie(id: Optional[str]) -> Optional[str]:
