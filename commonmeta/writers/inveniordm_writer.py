@@ -38,7 +38,7 @@ def write_inveniordm(metadata):
             ),
         }
         for i in wrap(metadata.identifiers)
-        if i.get("identifier", None) != metadata.id
+        if i.get("identifierType", None) != "DOI"
     ]
     identifiers.append(
         {

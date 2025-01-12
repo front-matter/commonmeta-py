@@ -57,7 +57,7 @@ def test_wordpress_with_references():
     assert len(subject.references) > 1
     assert subject.references[0] == {
         "key": "ref1",
-        'publicationYear': '2014',
+        "publicationYear": "2014",
         "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
     }
     assert subject.relations == [
@@ -97,8 +97,13 @@ def test_wordpress_with_references():
         {"subject": "Diplodocids"},
     ]
     assert subject.language == "en"
-    assert subject.content.startswith('::: {#attachment_21038 .wp-caption .aligncenter shortcode="caption" style="width: 1034px"}')
-    assert subject.image == "https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480"
+    assert subject.content.startswith(
+        '::: {#attachment_21038 .wp-caption .aligncenter shortcode="caption" style="width: 1034px"}'
+    )
+    assert (
+        subject.image
+        == "https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480"
+    )
     assert subject.version is None
 
 
@@ -162,7 +167,10 @@ def test_post_with_relationships():
             "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
             "identifierType": "UUID",
         },
-        {"identifier": "62d42bbd41e317003df48eed", "identifierType": "GUID"},
+        {
+            "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.container == {
         "type": "Periodical",
@@ -170,8 +178,13 @@ def test_post_with_relationships():
         "identifier": "2749-9952",
         "identifierType": "ISSN",
     }
-    assert subject.content.startswith("Persistent identifiers (PIDs) are not only important")
-    assert subject.image == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
+    assert subject.content.startswith(
+        "Persistent identifiers (PIDs) are not only important"
+    )
+    assert (
+        subject.image
+        == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
+    )
 
 
 @pytest.mark.vcr
@@ -228,7 +241,10 @@ def test_post_with_relationships_as_doi():
             "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
             "identifierType": "UUID",
         },
-        {"identifier": "62d42bbd41e317003df48eed", "identifierType": "GUID"},
+        {
+            "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.container == {
         "type": "Periodical",
@@ -282,7 +298,10 @@ def test_post_with_funding():
             "identifier": "5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9",
             "identifierType": "UUID",
         },
-        {"identifier": "655f8ec74e902104cd51d8ce", "identifierType": "GUID"},
+        {
+            "identifier": "https://doi.org/10.54900/vnevh-vaw22",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.funding_references == [
         {
@@ -299,8 +318,13 @@ def test_post_with_funding():
         "identifier": "https://rogue-scholar.org/blogs/upstream",
         "identifierType": "URL",
     }
-    assert subject.content.startswith("## Introduction\n\nA recent [blog\npost](https://metadatagamechangers.com/blog/2023/9/20/informate-metadata-game-changers-and-chorus-collaborate-to-make-the-invisible-visible)\ndescribed a new partnership between Metadata Game Changers and\n[CHORUS](https://www.chorusaccess.org/)")
-    assert subject.image == "https://upstream.force11.org/content/images/2023/11/ashin-k-suresh-mkxTOAxqTTo-unsplash--3-.jpg"
+    assert subject.content.startswith(
+        "## Introduction\n\nA recent [blog\npost](https://metadatagamechangers.com/blog/2023/9/20/informate-metadata-game-changers-and-chorus-collaborate-to-make-the-invisible-visible)\ndescribed a new partnership between Metadata Game Changers and\n[CHORUS](https://www.chorusaccess.org/)"
+    )
+    assert (
+        subject.image
+        == "https://upstream.force11.org/content/images/2023/11/ashin-k-suresh-mkxTOAxqTTo-unsplash--3-.jpg"
+    )
 
 
 @pytest.mark.vcr
@@ -324,7 +348,10 @@ def test_post_with_more_funding():
             "identifier": "44690ae5-2ece-403d-8e34-a05668277a29",
             "identifierType": "UUID",
         },
-        {"identifier": "62d42bbd41e317003df48d99", "identifierType": "GUID"},
+        {
+            "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw1y",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.funding_references == [
         {
@@ -392,7 +419,7 @@ def test_post_with_funding_ror():
     ]
     assert subject.funding_references == [
         {
-            "funderName": "National Science Foundation",
+            "funderName": "U.S. National Science Foundation",
             "funderIdentifier": "https://ror.org/021nxhr62",
             "funderIdentifierType": "ROR",
             "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
@@ -405,8 +432,14 @@ def test_post_with_funding_ror():
         "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
         "identifierType": "URL",
     }
-    assert subject.content.startswith(':::::::::::::::::::::::::::::::::::::::::::::: {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label="Post Body" data-type="item" updated-on="1646694120644"}')
-    assert subject.image == "https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png"
+    assert subject.content.startswith(
+        ':::::::::::::::::::::::::::::::::::::::::::::: {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label="Post Body" data-type="item" updated-on="1646694120644"}'
+    )
+    assert (
+        subject.image
+        == "https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png"
+    )
+
 
 @pytest.mark.vcr
 def test_ghost_with_institutional_author():
@@ -435,7 +468,7 @@ def test_ghost_with_institutional_author():
     }
     assert subject.date == {
         "published": "2023-01-24T12:11:47",
-        "updated": "2023-10-01T17:34:13",
+        "updated": "2023-01-24T12:11:47",
     }
     assert subject.publisher == {
         "name": "Front Matter",
@@ -484,9 +517,7 @@ def test_ghost_with_institutional_author():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "After a couple of years of working to support institutions implementing their OA policies"
-        )
+        .startswith("![Nature features OA.Report")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
@@ -495,13 +526,16 @@ def test_ghost_with_institutional_author():
     }
     assert subject.subjects == [
         {"subject": "FOS: Computer and information sciences"},
-        {"subject": "Nofeature"},
-        {"subject": "Noexcerpt"},
         {"subject": "OA.Report"},
     ]
     assert subject.language == "en"
-    assert subject.content.startswith("After a couple of years of working to support institutions")
-    assert subject.image == "https://blog.oa.works/content/images/2023/01/nature-website-v2.png"
+    assert subject.content.startswith(
+        "After a couple of years of working to support institutions"
+    )
+    assert (
+        subject.image
+        == "https://blog.oa.works/content/images/2023/01/nature-website-v2.png"
+    )
     assert subject.version is None
 
 
@@ -556,7 +590,10 @@ def test_ghost_with_affiliations():
             "identifier": "fef48952-87bc-467b-8ebb-0bff92ab9e1a",
             "identifierType": "UUID",
         },
-        {"identifier": "62d42bbd41e317003df48d81", "identifierType": "GUID"},
+        {
+            "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw16",
+            "identifierType": "GUID",
+        },
     ]
     assert subject.container == {
         "type": "Periodical",
@@ -614,7 +651,11 @@ def test_ghost_with_personal_name_parsing():
     assert subject.publisher == {
         "name": "Front Matter",
     }
-    assert subject.references is None
+    assert len(subject.references) == 5
+    assert subject.references[0] == {
+        "id": "https://doi.org/10.1001/jamanetworkopen.2021.42527",
+        "key": "ref1",
+    }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
     ]
@@ -650,7 +691,10 @@ def test_ghost_with_personal_name_parsing():
     ]
     assert subject.language == "en"
     assert subject.content.startswith("As residents within the healthcare profession,")
-    assert subject.image == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
+    assert (
+        subject.image
+        == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
+    )
     assert subject.version is None
 
 
@@ -684,8 +728,13 @@ def test_medium_post_with_multiple_authors():
         "id": "https://orcid.org/0009-0008-8672-3168",
         "type": "Person",
     }
-    assert subject.content.startswith("**Tools and Platform for Integration of Knowledge Graph")
-    assert subject.image == "https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png"
+    assert subject.content.startswith(
+        "**Tools and Platform for Integration of Knowledge Graph"
+    )
+    assert (
+        subject.image
+        == "https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png"
+    )
 
 
 @pytest.mark.vcr
@@ -721,7 +770,10 @@ def test_post_with_peer_reviewed_version():
         },
     ]
     assert subject.content.startswith("*The New York Times* ushered in the New Year")
-    assert subject.image == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
+    assert (
+        subject.image
+        == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
+    )
 
 
 @pytest.mark.vcr
@@ -742,6 +794,7 @@ def test_funded_project():
         },
     ]
 
+
 @pytest.mark.vcr
 def test_broken_reference():
     "JSON Feed broken reference"
@@ -749,12 +802,16 @@ def test_broken_reference():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
     assert subject.type == "Article"
-    assert len(subject.references) == 5
+    assert len(subject.references) == 4
     print(subject.references)
     assert subject.references[2] == {
         "key": "ref4",
         "id": "https://doi.org/10.1016/s2214-109x(23)00198-5",
+        "publicationYear": "2023",
+        "title": "Description of the first global outbreak of mpox: an analysis of global "
+        "surveillance data",
     }
+
 
 def test_get_json_feed_item():
     """Test get_json_feed_item_id"""

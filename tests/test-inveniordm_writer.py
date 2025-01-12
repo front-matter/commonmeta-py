@@ -151,7 +151,7 @@ def test_journal_article():
 @pytest.mark.vcr
 def test_rogue_scholar():
     "Rogue Scholar"
-    string = "https://rogue-scholar.org/api/records/1xr7q-9fp18"
+    string = "https://api.rogue-scholar.org/posts/10.53731/dv8z6-a6s33"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "Article"
@@ -161,37 +161,56 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert len(py_.get(inveniordm, "metadata.creators")) == 1
     assert py_.get(inveniordm, "metadata.creators.0") == {
+        "affiliations": [
+            {
+                "name": "Front Matter",
+            },
+        ],
         "person_or_org": {
             "family_name": "Fenner",
             "given_name": "Martin",
             "name": "Fenner, Martin",
             "type": "personal",
             "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
-        }
+        },
     }
     assert (
         py_.get(inveniordm, "metadata.title")
         == "Rogue Scholar learns about communities"
     )
-    assert py_.get(inveniordm, "metadata.publisher") is None
+    assert py_.get(inveniordm, "metadata.publisher") == "Front Matter"
     assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
 
     assert py_.get(inveniordm, "metadata.dates") == [
-        {"date": "2024-10-07", "type": {"id": "issued"}},
-        {"date": "2024-11-09T12:57:40Z", "type": {"id": "updated"}},
+        {"date": "2024-10-07T13:41:37", "type": {"id": "issued"}},
+        {"date": "2025-01-09T20:54:02", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(
         "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
     )
-    assert py_.get(inveniordm, "metadata.subjects") is None
+    assert py_.get(inveniordm, "metadata.subjects") == [
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+            "subject": "Computer and information sciences",
+        },
+        {"subject": "Rogue Scholar"},
+    ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert py_.get(inveniordm, "metadata.identifiers") == [
         {
-            "identifier": "https://rogue-scholar.org/records/1xr7q-9fp18",
+            "identifier": "c5c2e4e7-ac05-413b-b377-f989a72a5356",
+            "scheme": "uuid",
+        },
+        {
+            "identifier": "https://doi.org/10.53731/dv8z6-a6s33",
+            "scheme": "guid",
+        },
+        {
+            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities",
             "scheme": "url",
-        }
+        },
     ]
     assert py_.get(inveniordm, "metadata.related_identifiers") is None
     assert py_.get(inveniordm, "metadata.funding") is None
@@ -530,9 +549,9 @@ def test_from_json_feed_broken_reference():
         == "2024 mpox outbreak: common analytics tasks and available R tools"
     )
     references = py_.get(inveniordm, "metadata.references")
-    assert len(references) == 5
+    assert len(references) == 4
     assert references[1] == {
-        "reference": "Unknown title",
+        "reference": "Practical considerations for measuring the effective reproductive number, Rt (2020).",
         "identifier": "10.1371/journal.pcbi.1008409",
         "scheme": "doi",
     }
