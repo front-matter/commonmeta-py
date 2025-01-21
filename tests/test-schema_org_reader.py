@@ -53,6 +53,7 @@ def test_blog_posting():
     ]
     assert subject.container == {
         "type": "Periodical",
+        "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
     }
@@ -191,7 +192,13 @@ def test_dataverse():
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container is None
-    assert subject.descriptions is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "Summary of association tests for Nature Genetics"
+        )
+    )
     assert subject.subjects is None
     assert subject.language is None
     assert subject.version is None
@@ -334,6 +341,7 @@ def test_with_upstream_blog_post():
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
+        "title": "Upstream"
     }
     assert (
         subject.descriptions[0]

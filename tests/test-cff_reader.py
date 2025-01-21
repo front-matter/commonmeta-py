@@ -46,7 +46,7 @@ def test_ruby_cff():
         {"subject": "CFF"},
     ]
     assert subject.date == {"published": "2024-10-26"}
-    assert subject.version == "1.2.0"
+    assert subject.version == "1.3.0"
     assert subject.license == {
         "id": "Apache-2.0",
         "url": "http://www.apache.org/licenses/LICENSE-2.0",

@@ -415,7 +415,7 @@ def test_posted_content():
     }
     assert subject.relations is None
     assert subject.funding_references is None
-    assert subject.container == {"type": "Periodical"}
+    assert subject.container == {"type": "Periodical", "title": "bioRxiv"}
     assert subject.subjects == [{"subject": "Scientific Communication and Education"}]
     assert subject.language is None
     assert (
@@ -466,12 +466,14 @@ def test_blog_post():
         "publicationYear": "2023",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
+        {'id': 'https://rogue-scholar.org/api/communities/front_matter','type': 'IsPartOf'},
     ]
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "title": "Front Matter",
         "type": "Periodical",
     }
     assert subject.subjects == [{"subject": "Computer and information sciences"}]
