@@ -1,0 +1,127 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://doi.org/ra/10.1045
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QwMTUyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        ki+tmTYAAAA=
+    headers:
+      CF-RAY:
+      - 90562f0d2f8ac7c8-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 21 Jan 2025 09:12:39 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=1ViXrVkFK3EHc7UPhgaqTFlDKVgtj3BQ1JKPf2ugZYU%2FBEAkB8RyX4K4I1dua51u77Eg9Y26ncXmRsVzJSxJyJangULd34vpQfBgcYQoNaJHRiYyuonAoKJij3o%2F9IIuRv%2BWuBs%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=11560&min_rtt=8574&rtt_var=5348&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2829&recv_bytes=764&delivery_rate=471658&cwnd=252&unsent_bytes=0&cid=a42927787fe9e1b0&ts=136&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.crossref.org/works/10.1045/january2017-burton
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VVwXLTMBD9FY/OdiK7DnZ9KxSGDi0wTbmQ5CDbm0SNLBlJbppm+u+s7CR1gXYg
+        3GSt/Hbf0+rtlhjLbGNIRtSK+KQCY9gCArupAffWSvd370AbriQGwgEd0KcIybaEyxLuoXTLklkI
+        aqYt4k4mEY1iP/WjeDbzu5DllUN3gYCmQRTfhElGTzOafkdMF8WqqppkYRLFo/D0JE7fJPGjTzTM
+        QYMsIChUIy3JqE/qJhfcLEEj4rvP1xfeWVFYhOHGNC5LOB1G+FkoaUHaoFQV47KtcreaYFmFVsZU
+        TK8Cjbk1L2zLc86EAcxrlkrbwEHgH6CRgBWIPSHnwSXPvSu2YA8YIIh0/uXCJaWDkMaj6fCWyYbp
+        TUTDJMgbbREVGXbq3qpGSyYCFIoXiOfKANTnjxqGiR/6YfS7hghMwyCMbsI0GyXZ6DcN4zSO4iRO
+        Ukqp44JZC/frO8cZFW21Cg7SlkG+2ct7MnJQO643S/DGxVIJfu990KwC1x3eXGnvAqXVqgbNci64
+        3XhceufMMhQHA9hfGvAMnqyY09V7f18smVy0etWYmN8/SYbV3CnRdORO8Is1FtXHArZkwe/Add9Z
+        qTlzQs5ZxcUGd97upTXwo3EscG/OtXGNwOZzrIp1NzqZPfo9oIrrPsyZ3jDJn8OwsuTuXyZex/q4
+        ESvog31S+FyOw/rKlFB9rCuUa3lkYWMmS/0M7ZJ5b3Xz8KCOA7zCd9KYPuDYqmIF+kg4jt0Aoo93
+        zqEGmWsFq+Mwv62fXQW2LdqTOLpC90Kf9dsHkPKf0GbOK6u8danE+dHetspASeG844U3P8NKyF85
+        j9J8wZ2f7M/gnsC+aVqDJuAIlFArw//LYtKM0hcsxjlMazGF0vhn6Ax7bzdbfOkcHXbjlt+uLxF4
+        aW2dTYfT4Xq9HpSC5wOlF9OhWx2MM0ymw843p0MadqvB0laCPLpETd4j27l0b6MdAS9SbZU92J7p
+        jZS9Me9GyPbXWfIPd4cpnsialm2peEf09SGhQezaZ4sgF+PxZ3ftIU2j4DRNTkjHT+5GNbrjHRNd
+        kYcjh0kDAgqrleQFcZ2Ist3iRifSgcxrLB5/AkH8OYUpCAAA
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '834'
+      content-type:
+      - application/json
+      date:
+      - Tue, 21 Jan 2025 09:12:39 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+version: 1

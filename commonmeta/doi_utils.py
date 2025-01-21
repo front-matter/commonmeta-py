@@ -4,6 +4,7 @@ import re
 from typing import Optional
 import httpx
 from furl import furl
+import base32_lib as base32
 
 from .base_utils import compact
 
@@ -129,6 +130,34 @@ def get_doi_ra(doi) -> Optional[str]:
     if response.status_code != 200:
         return None
     return response.json()[0].get("RA", None)
+
+
+def encode_doi(prefix, number: Optional[int] = None, checksum: bool = True) -> str:
+    """Generate a DOI using the DOI prefix and a random base32 suffix"""
+    if isinstance(number, int):
+        suffix = base32.encode(number, split_every=5, checksum=checksum)
+    else:
+        suffix = base32.generate(length=10, split_every=5, checksum=True)
+    print("s", suffix)
+    return f"https://doi.org/{prefix}/{suffix}"
+
+
+def decode_doi(doi: str, checksum: bool = True) -> int:
+    """Decode a DOI to a number"""
+    try:
+        doi = validate_doi(doi)
+        if doi is None:
+            return 0
+        suffix = doi.split("/", maxsplit=1)[1]
+        print(suffix, checksum)
+        if checksum:
+            number = base32.decode(suffix, checksum=True)
+            print("n", number)
+        number = base32.decode(suffix)
+        print("nn", number)
+        return number
+    except ValueError:
+        return 0
 
 
 def get_crossref_member(member_id) -> Optional[dict]:
@@ -263,11 +292,11 @@ def is_rogue_scholar_doi(doi: str) -> bool:
     """Return True if DOI is from Rogue Scholar"""
     prefix = validate_prefix(doi)
     return prefix in [
-        "10.34732", # not managed by Front Matter
+        "10.34732",  # not managed by Front Matter
         "10.53731",
         "10.54900",
-        "10.57689", # not managed by Front Matter
-        "10.58079", # not managed by Front Matter
+        "10.57689",  # not managed by Front Matter
+        "10.58079",  # not managed by Front Matter
         "10.59348",
         "10.59349",
         "10.59350",

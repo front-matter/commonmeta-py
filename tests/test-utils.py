@@ -2,7 +2,6 @@
 """Test utils"""
 
 from os import path
-import re
 import pytest  # noqa: F401
 
 from commonmeta.utils import (
@@ -39,8 +38,6 @@ from commonmeta.utils import (
     github_as_codemeta_url,
     github_as_cff_url,
     github_as_repo_url,
-    encode_doi,
-    decode_doi,
     from_curie,
     get_language,
     validate_url,
@@ -798,30 +795,6 @@ def test_github_as_repo_url():
     url = "https://github.com/datacite/metadata-reports"
     response = github_as_repo_url(url)
     assert response == "https://github.com/datacite/metadata-reports"
-
-
-def test_encode_doi():
-    """Generate a random DOI"""
-    response = encode_doi("10.5555")
-    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
-
-
-def test_encode_doi_with_number():
-    """Generate a random DOI with preset number"""
-    response = encode_doi("10.5555", number=123456789012)
-    assert response == "https://doi.org/10.5555/3jz9j-6gm44"
-
-def test_decode_doi():
-    """Extract number from random DOI"""
-    doi = "10.5555/f9zqn-sf065"
-    response = decode_doi(doi, checksum=False)
-    assert response == 538751765283013
-    
-def test_decode_doi_with_checksum():
-    """Extract number from random DOI with checksum"""
-    doi = "10.59350/v2gec-5xt36"
-    response = decode_doi(doi, checksum=True)
-    assert response == 930412369850
 
 
 def test_from_curie():

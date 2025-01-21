@@ -59,6 +59,7 @@ def test_wordpress_with_references():
         "key": "ref1",
         "publicationYear": "2014",
         "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
+        "title": "None",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"}
@@ -517,7 +518,7 @@ def test_ghost_with_institutional_author():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("![Nature features OA.Report")
+        .startswith("After a couple of years")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {

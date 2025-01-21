@@ -458,7 +458,7 @@ def test_blog_post():
     }
     assert subject.date == {"published": "2023-10-04"}
     assert subject.publisher == {"name": "Front Matter"}
-    assert len(subject.references) == 2
+    assert len(subject.references) == 3
     assert subject.references[0] == {
         "key": "ref1",
         "id": "https://doi.org/10.1038/d41586-023-02554-0",

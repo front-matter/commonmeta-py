@@ -1,0 +1,135 @@
+interactions:
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - doi.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
+    headers:
+      CF-RAY:
+      - 90562effe961f95e-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 21 Jan 2025 09:12:37 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=iDCD4bZeU5QDxHFEQUIX07mVkjdyyDbMDHa20WCYFhs71TFLbfFPSlerEL1whqSSGgzuS915mhcLuKC44B1UOfyuDMKrgrCBGtS2YUxWVKydwitGVCXGy%2FR7tHF%2Fmm6xwhsoiQQ%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=13926&min_rtt=9955&rtt_var=6570&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2829&recv_bytes=765&delivery_rate=406228&cwnd=252&unsent_bytes=0&cid=465ef11f4512da49&ts=140&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.crossref.org
+      user-agent:
+      - python-httpx/0.27.2
+    method: GET
+    uri: https://api.crossref.org/works/10.53731/avg2ykg-gdxppcd
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/81X227bRhD9lQVfq5V40cUSggRN3IuBpgaS9KWWUazIpbQ1yWV2l7JYw//eM0vK
+        li+KH5oiMWyA5F7mzMyZM+ObwDrhGhssAn0VDIJSWivWkru2lvh2rc3h1600VukKC9EwHIb3K8Hi
+        JlCVdco1zm+4uAkqUdIVPxtdOfZeOCdNcHs5wL5M7mRGRzLhJK+FcbB/cRGH8WQQDaLkErv8klP+
+        ClrgYcSj5FM0XUThIoz/hG1aBfqyDhbRLJnOTsbTME6ScBDc40yGSQKgt4Og1tYdsZrAajy5vMSu
+        tdFNDbuuIMPvdFk3wM1ElTFV5dqUgvxjNlWySqUFCiNzaeiFp7qpXLCIYatZFcpu4PAj/wdBoVJZ
+        WekjBPDGfRHRkzgkFId48ilEEOj3cRymMwRhfBLSD9xJYVtW7iBxW00oMlmIlquKZ6KFTYTsjw+/
+        YXXjXG0Xy9FylBoJV7cy1WWpKzvUZr0c9eDtcrRql6PxMMQnuRZFqjOJGH8bj1xW/l8eXd7by3Qp
+        VOVd658uaNVoa0thrrgBYKPSjv25KKwEWLvRxnG6Aiek2fOKTooV9osUwQpe1a8/dnxiq0KvLduI
+        LR6lrJgAHUE9EI8JxwoprGNxyFopjPWk7LfCJ4l3psoaFgUIR7FnOt8zlZHXTaVSz98h+6hxt2QO
+        HKWDLcthBwULpAVT1jbSYhE2KylhX+1UtX7zVhijEHfmNPupcqZl7C0Ar7HG6kI4qg/r70WZNHSx
+        wyXKslqryg08YFhkTqabSuNkC1Os0s7jtnTN6sCE9CbI9xK1y2qp60IOXy1H9Wsk/PT8jHQoHE6S
+        WRItR2K7jturNV9nu7pOM2JRp2Fd4fM+kQElDUR4QQqO0jSagJKLZPocTSfz2Xza0dTqxqReQogh
+        0AhsV5bfiUXGV+1eMEK6qSNGcKrZteyCjggg7ncJ9NR4EwBZjVvUrnd+nkxIh0XjwDWvKucf3p2d
+        PmC+NqnKOr5TFXH8JTwaR3Mej8NJfxqxIXYAmd/ekxiKiJKhMnuPKIH2gyAXpSpaUjZZVV7TrPzc
+        EEZ8y5WxFGOR56pQ4oVmQAVWynLlhTKJZvPJoaD6g2Q1LeSdJP/oHWVnGeHNiSoLdobMmq2S1+xa
+        uQ37Reo8N7Jlb1WReYBULz6N4RxvV5LQw0xEuqEVF9ZK43xOiC934v2UZCaej6fjOZ/ms3l8Mucn
+        6XW08cr3GOd5TeWbokdYVEO7r9ESNSCc7nn9+9mvnAoP2YZ+AGS6eYB2dog2/ipoP9+p2hNJ0kah
+        lEVx+K1Q1ZXPw2M1JToOc0onL306h0qjMlFr0FLiL3eag6a85y/3/A3uBbWvTid3bjnauLIIjrcr
+        RZ8RJS7quug1rD/LS1VBOHwOHmMUtRoavW4kQGx0IUxXAz3Io9IxLLNjOKFyvga+E6B1lj9FemAa
+        VzzY8Y3hSpD1Bby05Yd/VP39gN49YOZzmHf/mbvUbiR1wGNt6eW5eLIYjxfj2bNzcRKezPq2lGqD
+        kxGp7L5F3aChKMwwLT1+pTK/JVvN6kBIulHo4IMfMl6cx++agT0Yrx+DhCp2yfzSNGAwIHaxv6FO
+        TPa4zr22qWyfV4Ci8qb2F8QzSOd8PiHdfai58OxvidGNaHZ/tjFqf/Qe2jOMAxExjHbjmFM0evr4
+        /lXu/0U4Yuyyi6l/8RHcS/+LQaRMdBg1DXzIzr+S6p2p9w0AAA==
+    headers:
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      connection:
+      - close
+      content-encoding:
+      - gzip
+      content-length:
+      - '1291'
+      content-type:
+      - application/json
+      date:
+      - Tue, 21 Jan 2025 09:12:37 GMT
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - public
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '50'
+      x-ratelimit-interval:
+      - 1s
+      x-ratelimit-limit:
+      - '50'
+    status:
+      code: 200
+      message: OK
+version: 1

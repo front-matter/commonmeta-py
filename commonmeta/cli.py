@@ -5,8 +5,7 @@ import orjson as json
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
-from commonmeta.doi_utils import validate_prefix
-from commonmeta.utils import encode_doi, decode_doi
+from commonmeta.doi_utils import validate_prefix, encode_doi, decode_doi
 from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
 )

@@ -14,7 +14,6 @@ from ..utils import (
     name_to_fos,
     validate_url,
     validate_ror,
-    encode_doi,
     issn_as_url,
 )
 from ..author_utils import get_authors
@@ -26,6 +25,7 @@ from ..doi_utils import (
     validate_doi,
     doi_from_url,
     is_rogue_scholar_doi,
+    encode_doi,
 )
 from ..constants import Commonmeta
 
@@ -188,6 +188,7 @@ def get_references(references: list) -> list:
                     "key": reference.get("key", None),
                     "title": reference.get("title", None),
                     "publicationYear": reference.get("publicationYear", None),
+                    "unstructured": reference.get("unstructured", None),
                 }
             )
 
@@ -201,12 +202,13 @@ def get_references(references: list) -> list:
                     "key": reference.get("key", None),
                     "title": reference.get("title", None),
                     "publicationYear": reference.get("publicationYear", None),
+                    "unstructured": reference.get("unstructured", None),
                 }
             )
 
     def number_reference(reference: dict, index: int) -> dict:
         """number reference"""
-        reference["key"] = f"ref{index +1}"
+        reference["key"] = f"ref{index + 1}"
         return reference
 
     references = [get_reference(i) for i in references if i.get("id", None)]

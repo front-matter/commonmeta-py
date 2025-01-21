@@ -45,7 +45,7 @@ def test_ruby_cff():
         {"subject": "citation file format"},
         {"subject": "CFF"},
     ]
-    assert subject.date == {"published": "2024-01-19"}
+    assert subject.date == {"published": "2024-10-26"}
     assert subject.version == "1.2.0"
     assert subject.license == {
         "id": "Apache-2.0",

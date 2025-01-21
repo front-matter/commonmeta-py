@@ -1,9 +1,9 @@
 """CSL-JSON reader for commonmeta-py"""
-from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos, encode_doi
+from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos
 from ..base_utils import wrap, compact, sanitize, presence
 from ..author_utils import get_authors
 from ..date_utils import get_date_from_date_parts
-from ..doi_utils import get_doi_ra, doi_from_url
+from ..doi_utils import get_doi_ra, doi_from_url, encode_doi
 from ..constants import (
     CSL_TO_CM_TRANSLATIONS,
     Commonmeta,

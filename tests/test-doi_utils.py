@@ -1,5 +1,7 @@
 """Test doi_utils module for commonmeta-py"""
 
+import re
+
 from commonmeta.doi_utils import (
     doi_as_url,
     doi_from_url,
@@ -9,6 +11,8 @@ from commonmeta.doi_utils import (
     validate_suffix,
     get_doi_ra,
     doi_resolver,
+    decode_doi,
+    encode_doi,
     crossref_api_url,
     crossref_api_query_url,
     datacite_api_url,
@@ -104,10 +108,12 @@ def test_validate_suffix():
     "validate_suffix"
     assert "journal.pone.0042793" == validate_suffix("10.1371/journal.pone.0042793")
     assert "journal.pone.0042793" == validate_suffix("doi:10.1371/journal.pone.0042793")
-    assert "journal.pone.0042793" == validate_suffix("http://doi.org/10.1371/journal.pone.0042793")
+    assert "journal.pone.0042793" == validate_suffix(
+        "http://doi.org/10.1371/journal.pone.0042793"
+    )
     assert None is validate_suffix("10.1371")
-    
-    
+
+
 def test_get_doi_ra():
     "get_doi_ra"
     assert "Crossref" == get_doi_ra("10.1371/journal.pone.0042793")
@@ -143,6 +149,41 @@ def test_doi_resolver():
     assert "https://handle.stage.datacite.org/" == doi_resolver(
         "https://doi.org/10.5061/dryad.8515", sandbox=True
     )
+
+
+def test_decode_doi():
+    """Decode base32-encoded DOI"""
+    # doi without checksum
+    doi = "10.5555/f9zqn-sf065"
+    response = decode_doi(doi, checksum=False)
+    assert response == 538751765283013
+    # doi with checksum
+    doi = "10.54900/ka4bq-90315"
+    response = decode_doi(doi, checksum=True)
+    assert response == 679648217271333
+    # doi with wrong checksum
+    doi = "10.54900/d3ck1-skq20"
+    response = decode_doi(doi, checksum=True)
+    assert response == 0
+    # doi expressed as url
+    doi = "https://doi.org/10.54900/b8pcg-q9k70"
+    response = decode_doi(doi)
+    assert response == 396593546448096
+    # doi not base32-encoded
+    doi = "10.1371/journal.pone.0042793"
+    response = decode_doi(doi)
+    assert response == 0
+
+def test_encode_doi():
+    """Generate a random DOI"""
+    response = encode_doi("10.5555")
+    assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", response)
+
+
+def test_encode_doi_with_number():
+    """Generate a random DOI with preset number"""
+    response = encode_doi("10.5555", number=123456789012)
+    assert response == "https://doi.org/10.5555/3jz9j-6gm44"
 
 
 def test_crossref_api_url():
