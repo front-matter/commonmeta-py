@@ -408,11 +408,32 @@ SO_TO_CM_TRANSLATIONS = {
     "DigitalDocument": "Document",
     "Dissertation": "Dissertation",
     "Instrument": "Instrument",
+    "MusicRecording": "Audiovisual",
+    "MusicAlbum": "Audiovisual",
     "NewsArticle": "Article",
     "Legislation": "LegalDocument",
+    "ProfilePage": "WebPage",
     "Report": "Report",
     "ScholarlyArticle": "JournalArticle",
     "SoftwareSourceCode": "Software",
+    "Video": "Audiovisual",
+    "WebSite": "WebPage",
+}
+
+# OpenGraph to schema.org mapping
+OG_TO_SO_TRANSLATIONS = {
+    "music.song": "MusicRecording",
+    "music.album": "MusicAlbum",
+    "music.playlist": "MusicPlaylist",
+    "music.radio_station": "RadioStation",
+    "video.movie": "Video",
+    "video.episode": "Video",
+    "video.tv_show": "Video",
+    "video.other": "Video",
+    "article": "Article",
+    "book": "Book",
+    "profile": "ProfilePage",
+    "website": "WebSite",
 }
 
 CM_TO_SO_TRANSLATIONS = {

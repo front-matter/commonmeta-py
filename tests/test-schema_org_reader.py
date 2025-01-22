@@ -199,9 +199,9 @@ def test_dataverse():
             "Summary of association tests for Nature Genetics"
         )
     )
-    assert subject.subjects is None
+    assert subject.subjects == [{'subject': 'Medicine, Health and Life Sciences'}, {'subject': 'Genome-Wide Association Studies'}, {'subject': 'Ankylosing spondylitis'}]
     assert subject.language is None
-    assert subject.version is None
+    assert subject.version == "1.0"
     assert subject.geo_locations is None
     assert subject.provider == "DataCite"
 
@@ -540,6 +540,39 @@ def test_pdf_file():
     assert subject.state == "findable"
     assert subject.titles == [{"title": "VOSviewer Manual"}]
     assert subject.date == {"published": "2018-04-27T08:22:57Z"}
+
+
+@pytest.mark.vcr
+def test_pubmed_central():
+    "PubMed Central"
+    string = "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc2674678"
+    subject = Metadata(string)
+    # assert subject.is_valid
+    assert (
+        subject.id
+        == "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc2674678"
+    )
+    assert subject.type == "WebPage"
+    assert subject.state == "forbidden"
+    assert subject.titles is None
+    assert subject.date is None
+
+
+
+@pytest.mark.vcr
+def test_youtube():
+    "YouTube"
+    string = "https://www.youtube.com/watch?v=4JsNT1gKe7I"
+    subject = Metadata(string)
+    # assert subject.is_valid
+    assert (
+        subject.id
+        == "https://www.youtube.com/watch?v=4JsNT1gKe7I"
+    )
+    assert subject.type == "Audiovisual"
+    assert subject.state == "findable"
+    assert subject.titles == [{"title": "Elsevier's David Tempest explains subscription-contract confidentiality clauses"}]
+    assert subject.date.get("accessed", None) is not None
 
 
 # @pytest.mark.vcr

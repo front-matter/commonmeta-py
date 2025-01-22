@@ -531,7 +531,7 @@ def test_ghost_with_institutional_author():
     ]
     assert subject.language == "en"
     assert subject.content.startswith(
-        "After a couple of years of working to support institutions"
+        "![Nature features OA.Report"
     )
     assert (
         subject.image

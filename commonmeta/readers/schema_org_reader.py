@@ -36,6 +36,7 @@ from ..constants import (
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
     SO_TO_DC_REVERSE_RELATION_TYPES,
+    OG_TO_SO_TRANSLATIONS,
     Commonmeta,
 )
 
@@ -59,7 +60,6 @@ def get_schema_org(pid: str, **kwargs) -> dict:
             "via": "schema_org",
             "errors": [str(error)],
         }
-
     if response.status_code >= 400:
         if response.status_code in [404, 410]:
             state = "not_found"
@@ -105,7 +105,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
 
     # load html meta tags
     data = get_html_meta(soup)
-
+    print(data)
     # load site-specific metadata
     data |= web_translator(soup, url)
 
@@ -119,6 +119,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         None,
     )
     if json_ld is not None:
+        print(json_ld)
         data |= json_ld
 
     # if @id is a DOI, get metadata from Crossref or DataCite
@@ -136,7 +137,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     # author and creator are synonyms
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
-
+    print(data)
     return data | {"via": "schema_org", "state": "findable"}
 
 
@@ -412,11 +413,13 @@ def get_html_meta(soup):
         data["@id"] = normalize_id(pid)
 
     _type = (
-        soup.select_one("meta[property='og:type']")
-        or soup.select_one("meta[name='dc.type']")
+        soup.select_one("meta[name='dc.type']")
         or soup.select_one("meta[name='DC.type']")
     )
     data["@type"] = _type["content"].capitalize() if _type else None
+    if _type is None:
+        _type = soup.select_one("meta[property='og:type']")
+        data["@type"] = OG_TO_SO_TRANSLATIONS.get(_type["content"]) if _type else None
 
     url = soup.select_one("meta[property='og:url']") or soup.select_one(
         "meta[name='twitter:url']"
@@ -431,6 +434,7 @@ def get_html_meta(soup):
         or soup.select_one("meta[name='DC.title']")
         or soup.select_one("meta[property='og:title']")
         or soup.select_one("meta[name='twitter:title']")
+        or soup.select_one("meta[name='title']")
     )
     data["name"] = title["content"] if title else None
 
@@ -441,6 +445,7 @@ def get_html_meta(soup):
         "meta[name='dc.description']"
         or soup.select_one("meta[property='og:description']")
         or soup.select_one("meta[name='twitter:description']")
+        or soup.select_one("meta[name='description']")
     )
     data["description"] = description["content"] if description else None
 
