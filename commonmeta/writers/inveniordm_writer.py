@@ -283,9 +283,9 @@ def to_inveniordm_reference(reference: dict) -> dict:
         # remove optional trailing period
         unstructured = unstructured.rstrip(" .")
 
-        if reference.get("id", None):
+        if identifier:
             # remove duplicate ID from unstructured reference
-            unstructured = unstructured.replace(reference.get("id"), "")
+            unstructured = unstructured.replace(identifier, "")
 
         return compact(
             {
