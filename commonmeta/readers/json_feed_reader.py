@@ -182,36 +182,25 @@ def get_references(references: list) -> list:
 
         if reference.get("id", None) and validate_doi(reference.get("id")):
             id_ = normalize_doi(reference.get("id"))
-            return compact(
-                {
-                    "id": id_,
-                    "key": reference.get("key", None),
-                    "title": reference.get("title", None),
-                    "publicationYear": reference.get("publicationYear", None),
-                    "unstructured": reference.get("unstructured", None),
-                }
-            )
-
         else:
             id_ = normalize_url(reference.get("id", None))
-            if id_ is None:
-                return None
-            return compact(
-                {
-                    "id": id_,
-                    "key": reference.get("key", None),
-                    "title": reference.get("title", None),
-                    "publicationYear": reference.get("publicationYear", None),
-                    "unstructured": reference.get("unstructured", None),
-                }
-            )
+            
+        return compact(
+            {
+                "id": id_,
+                "key": reference.get("key", None),
+                "title": reference.get("title", None),
+                "publicationYear": reference.get("publicationYear", None),
+                "unstructured": reference.get("unstructured", None),
+            }
+        )
 
     def number_reference(reference: dict, index: int) -> dict:
         """number reference"""
         reference["key"] = f"ref{index + 1}"
         return reference
 
-    references = [get_reference(i) for i in references if i.get("id", None)]
+    references = [get_reference(i) for i in references]
     return [
         number_reference(i, index)
         for index, i in enumerate(references)

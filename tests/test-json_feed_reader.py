@@ -704,7 +704,6 @@ def test_medium_post_with_multiple_authors():
     """blog post with multiple authors"""
     string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
     assert subject.type == "Article"
@@ -803,9 +802,8 @@ def test_broken_reference():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
     assert subject.type == "Article"
-    assert len(subject.references) == 4
-    print(subject.references)
-    assert subject.references[2] == {
+    assert len(subject.references) == 6
+    assert subject.references[3] == {
         "key": "ref4",
         "id": "https://doi.org/10.1016/s2214-109x(23)00198-5",
         "publicationYear": "2023",

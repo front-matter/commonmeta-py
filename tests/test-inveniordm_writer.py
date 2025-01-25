@@ -506,6 +506,31 @@ def test_from_json_feed_references():
 
 
 @pytest.mark.vcr
+def test_from_json_feed_unstructured_references():
+    "JSON Feed unstructured references"
+    string = "https://api.rogue-scholar.org/posts/10.59350/ffgmk-zjj78"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/ffgmk-zjj78"
+    assert subject.type == "Article"
+    assert len(subject.references) == 6
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert (
+        py_.get(inveniordm, "pids.doi.identifier") == "10.59350/ffgmk-zjj78"
+    )
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "About that <i>Saurophaganax</i> paper"
+    )
+    references = py_.get(inveniordm, "metadata.references")
+    assert len(references) == 6
+    assert references[2] == {
+        'reference': 'Hanik, Gina M., Matthew C. Lamanna and John A. Whitlock. 2017. A\njuvenile specimen of\xa0*Barosaurus\xa0*Marsh, 1890 (Sauropoda: Diplodocidae)\nfrom the Upper Jurassic Morrison Formation of Dinosaur National\nMonument, Utah, USA.\xa0Annals of Carnegie Museum\xa084(3):253–263'
+    }
+
+
+@pytest.mark.vcr
 def test_from_json_feed_relations():
     "JSON Feed relations"
     string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
@@ -549,10 +574,10 @@ def test_from_json_feed_broken_reference():
         == "2024 mpox outbreak: common analytics tasks and available R tools"
     )
     references = py_.get(inveniordm, "metadata.references")
-    assert len(references) == 4
-    assert references[1] == {
-        "reference": "Practical considerations for measuring the effective reproductive number, Rt (2020).",
-        "identifier": "10.1371/journal.pcbi.1008409",
+    assert len(references) == 6
+    assert references[0] == {
+        'identifier': '10.4269/ajtmh.23-0215',
+        'reference': 'Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data (2024).',
         "scheme": "doi",
     }
 
