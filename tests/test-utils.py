@@ -39,10 +39,12 @@ from commonmeta.utils import (
     github_as_cff_url,
     github_as_repo_url,
     from_curie,
+    extract_curie,
     get_language,
     validate_url,
     format_name_identifier,
     id_from_url,
+    extract_urls,
 )
 from commonmeta.base_utils import wrap
 
@@ -798,9 +800,12 @@ def test_github_as_repo_url():
 
 
 def test_from_curie():
-    """test_from_curie"""
+    """from_curie"""
     assert "https://doi.org/10.6084/m9.figshare.12644018.v3" == from_curie(
         "DOI:10.6084/m9.figshare.12644018.v3"
+    )
+    assert "https://doi.org/10.1080/02724634.2016.1111898" == from_curie(
+        "doi:10.1080/02724634.2016.1111898"
     )
     assert "https://ror.org/01znn6x10" == from_curie("ROR:01znn6x10")
     assert "https://orcid.org/0000-0001-8522-7682" == from_curie(
@@ -809,6 +814,52 @@ def test_from_curie():
     assert "https://isni.org/isni/0000000121099845" == from_curie(
         "ISNI:0000000121099845"
     )
+
+def test_extract_curie():
+    """extract_curie"""
+    string = """Melstrom, Keegan M., Michael D. D’Emic, Daniel Chure and Jeffrey A.
+Wilson. 2016. A juvenile sauropod dinosaur from the Late Jurassic of
+Utah, USA, presents further evidence of an avian style air-sac
+system. Journal of Vertebrate Paleontology 36(4):e1111898.
+doi:10.1080/02724634.2016.1111898"""
+    assert "https://doi.org/10.1080/02724634.2016.1111898" == extract_curie(string)
+
+
+def test_extract_curie_doi_space():
+    """extract_curie doi with space"""
+    string = """Melstrom, Keegan M., Michael D. D’Emic, Daniel Chure and Jeffrey A.
+Wilson. 2016. A juvenile sauropod dinosaur from the Late Jurassic of
+Utah, USA, presents further evidence of an avian style air-sac
+system. Journal of Vertebrate Paleontology 36(4):e1111898.
+DOI: 10.1080/02724634.2016.1111898"""
+    assert "https://doi.org/10.1080/02724634.2016.1111898" == extract_curie(string)
+
+
+def test_extract_urls():
+    """extract_urls"""
+    string = """Zauner, H. (2025, January 9). Sex chromosome madness in the iconic echidna. GigaBlog. https://doi.org/10.59350/9509z-ns663
+
+Willighagen, E. (2024, December 30). FAIR blog-to-blog citations. Chem-Bla-Ics. https://doi.org/10.59350/er1mn-m5q69
+
+Marcum, C. S. (2024, August 27). Drinking from the Firehose? Write More and Publish Less. Upstream. https://doi.org/10.54900/r8zwg-62003"""
+    assert ['https://doi.org/10.59350/9509z-ns663','https://doi.org/10.59350/er1mn-m5q69','https://doi.org/10.54900/r8zwg-62003',] == extract_urls(string)
+
+def test_extract_urls_markdown():
+    """extract_urls markdown"""
+    string = """Zauner, H. (2025, January 9). Sex chromosome madness in the iconic
+echidna. *GigaBlog*. <https://doi.org/10.59350/9509z-ns663>
+
+Willighagen, E. (2024, December 30). FAIR blog-to-blog citations.
+*Chem-Bla-Ics*. <https://doi.org/10.59350/er1mn-m5q69>
+
+Marcum, C. S. (2024, August 27). Drinking from the Firehose? Write More
+and Publish Less. *Upstream*. <https://doi.org/10.54900/r8zwg-62003>"""
+    assert ['https://doi.org/10.59350/9509z-ns663', 'https://doi.org/10.59350/er1mn-m5q69', 'https://doi.org/10.54900/r8zwg-62003'] == extract_urls(string)
+
+def test_extract_urls_html():
+    """extract_urls html"""
+    string = """<p>Zauner, H. (2025, January 9). Sex chromosome madness in the iconic echidna. <em>GigaBlog</em>. <a href="https://doi.org/10.59350/9509z-ns663">https://doi.org/10.59350/9509z-ns663</a></p><p>Willighagen, E. (2024, December 30). FAIR blog-to-blog citations. <em>Chem-Bla-Ics</em>. <a href="https://doi.org/10.59350/er1mn-m5q69">https://doi.org/10.59350/er1mn-m5q69</a></p><p>Marcum, C. S. (2024, August 27). Drinking from the Firehose? Write More and Publish Less. <em>Upstream</em>. <a href="https://doi.org/10.54900/r8zwg-62003">https://doi.org/10.54900/r8zwg-62003</a></p>"""
+    assert ['https://doi.org/10.59350/9509z-ns663', 'https://doi.org/10.59350/er1mn-m5q69', 'https://doi.org/10.54900/r8zwg-62003'] == extract_urls(string)
 
 
 def test_id_from_url():

@@ -257,7 +257,8 @@ def to_inveniordm_reference(reference: dict) -> dict:
         identifier = reference.get("id", None)
         scheme = "url"
     else:
-        return None
+        identifier = None
+        scheme = None
 
     if reference.get("unstructured", None) is None:
         # use title as unstructured reference

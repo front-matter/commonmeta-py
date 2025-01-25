@@ -1096,20 +1096,46 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     if id is None:
         return None
     _type = id.split(":")[0]
-    if _type == "DOI":
+    if _type.upper() == "DOI":
         return doi_as_url(id.split(":")[1])
-    elif _type == "ROR":
+    elif _type.upper() == "ROR":
         return "https://ror.org/" + id.split(":")[1]
-    elif _type == "ISNI":
+    elif _type.upper() == "ISNI":
         return "https://isni.org/isni/" + id.split(":")[1]
-    elif _type == "ORCID":
+    elif _type.upper() == "ORCID":
         return normalize_orcid(id.split(":")[1])
-    elif _type == "URL":
+    elif _type.upper() == "URL":
         return normalize_url(id.split(":")[1])
-    elif _type == "JDP":
+    elif _type.upper() == "JDP":
         return id.split(":")[1]
     # TODO: resolvable url for other identifier types
     return None
+
+
+def extract_curie(string: Optional[str]) -> Optional[str]:
+    """Extract CURIE"""
+    if string is None:
+        return None
+    match = re.search(r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    if match is None:
+        return None
+    return doi_as_url(match.group(2))
+
+    
+def extract_url(string: str) -> list:
+    """Extract urls from string, including markdown and html."""
+
+    match = re.search(r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    if match is None:
+        return None
+    return normalize_url(match.group(1))
+
+
+def extract_urls(string: str) -> list:
+    """Extract urls from string, including markdown and html."""
+
+    urls = re.findall(r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    return py_.uniq(urls)
 
 
 def issn_as_url(issn: str) -> Optional[str]:
