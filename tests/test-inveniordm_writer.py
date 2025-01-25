@@ -508,25 +508,27 @@ def test_from_json_feed_references():
 @pytest.mark.vcr
 def test_from_json_feed_unstructured_references():
     "JSON Feed unstructured references"
-    string = "https://api.rogue-scholar.org/posts/10.59350/ffgmk-zjj78"
+    string = "https://api.rogue-scholar.org/posts/10.59350/27ewm-zn378"
     subject = Metadata(string)
-    assert subject.id == "https://doi.org/10.59350/ffgmk-zjj78"
+    assert subject.id == "https://doi.org/10.59350/27ewm-zn378"
     assert subject.type == "Article"
-    assert len(subject.references) == 6
+    assert len(subject.references) == 7
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert (
-        py_.get(inveniordm, "pids.doi.identifier") == "10.59350/ffgmk-zjj78"
+        py_.get(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
     )
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
     assert (
         py_.get(inveniordm, "metadata.title")
-        == "About that <i>Saurophaganax</i> paper"
+        == "To what extent is science a strong-link problem?"
     )
     references = py_.get(inveniordm, "metadata.references")
-    assert len(references) == 6
-    assert references[2] == {
-        'reference': 'Hanik, Gina M., Matthew C. Lamanna and John A. Whitlock. 2017. A\njuvenile specimen of\xa0*Barosaurus\xa0*Marsh, 1890 (Sauropoda: Diplodocidae)\nfrom the Upper Jurassic Morrison Formation of Dinosaur National\nMonument, Utah, USA.\xa0Annals of Carnegie Museum\xa084(3):253–263'
+    assert len(references) == 7
+    assert references[0] == {
+        'identifier': '10.1128/iai.05661-11',
+        'reference': 'Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. Infection and Immunity, 79(10), 3855–3859.',
+        'scheme': 'doi'
     }
 
 

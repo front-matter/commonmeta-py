@@ -280,12 +280,12 @@ def to_inveniordm_reference(reference: dict) -> dict:
     else:
         unstructured = reference.get("unstructured")
 
-        # remove optional trailing period
-        unstructured = unstructured.rstrip(" .")
-
-        if identifier:
+        if reference.get("id", None):
             # remove duplicate ID from unstructured reference
-            unstructured = unstructured.replace(identifier, "")
+            unstructured = unstructured.replace(reference.get("id"), "")
+
+        # remove optional trailing whitespace
+        unstructured = unstructured.rstrip()
 
         return compact(
             {
