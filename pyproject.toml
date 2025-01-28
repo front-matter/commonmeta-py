@@ -84,9 +84,6 @@ default-groups = [
     "dev",
 ]
 
-[tool.setuptools]
-license-files = []
-
 [tool.hatch.build.targets.sdist]
 include = ["commonmeta"]
 
