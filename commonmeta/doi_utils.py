@@ -138,7 +138,6 @@ def encode_doi(prefix, number: Optional[int] = None, checksum: bool = True) -> s
         suffix = base32.encode(number, split_every=5, checksum=checksum)
     else:
         suffix = base32.generate(length=10, split_every=5, checksum=True)
-    print("s", suffix)
     return f"https://doi.org/{prefix}/{suffix}"
 
 
@@ -149,12 +148,9 @@ def decode_doi(doi: str, checksum: bool = True) -> int:
         if doi is None:
             return 0
         suffix = doi.split("/", maxsplit=1)[1]
-        print(suffix, checksum)
         if checksum:
             number = base32.decode(suffix, checksum=True)
-            print("n", number)
         number = base32.decode(suffix)
-        print("nn", number)
         return number
     except ValueError:
         return 0

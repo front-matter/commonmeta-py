@@ -184,7 +184,7 @@ def get_references(references: list) -> list:
             id_ = normalize_doi(reference.get("id"))
         else:
             id_ = normalize_url(reference.get("id", None))
-            
+
         return compact(
             {
                 "id": id_,
@@ -195,17 +195,7 @@ def get_references(references: list) -> list:
             }
         )
 
-    def number_reference(reference: dict, index: int) -> dict:
-        """number reference"""
-        reference["key"] = f"ref{index + 1}"
-        return reference
-
-    references = [get_reference(i) for i in references]
-    return [
-        number_reference(i, index)
-        for index, i in enumerate(references)
-        if i is not None
-    ]
+    return [get_reference(i) for i in references]
 
 
 def get_funding_references(meta: Optional[dict]) -> Optional[list]:

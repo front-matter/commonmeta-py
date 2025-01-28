@@ -105,7 +105,6 @@ def get_schema_org(pid: str, **kwargs) -> dict:
 
     # load html meta tags
     data = get_html_meta(soup)
-    print(data)
     # load site-specific metadata
     data |= web_translator(soup, url)
 
@@ -119,7 +118,6 @@ def get_schema_org(pid: str, **kwargs) -> dict:
         None,
     )
     if json_ld is not None:
-        print(json_ld)
         data |= json_ld
 
     # if @id is a DOI, get metadata from Crossref or DataCite
@@ -137,7 +135,6 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     # author and creator are synonyms
     if data.get("author", None) is None and data.get("creator", None) is not None:
         data["author"] = data["creator"]
-    print(data)
     return data | {"via": "schema_org", "state": "findable"}
 
 
