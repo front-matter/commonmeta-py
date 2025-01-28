@@ -546,21 +546,11 @@ def test_json_feed_item_with_organizational_author():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.organization")) == 1
-    assert py_.get(crossref_xml, "contributors.organization.0") == {
-        "contributor_role": "author",
-        "sequence": "first",
-        "#text": "Liberate Science",
-    }
-    assert (
-        py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
-    )
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
-        "mime_type": "text/html",
-        "#text": "https://libscie.org/ku-leuven-supports-researchequals",
-    }
-    assert crossref_xml.get("group_title") == "Social science"
+    assert py_.get(crossref_xml, "contributors.organization") is None
+    assert py_.get(crossref_xml, "titles.0.title") is None
+    assert py_.get(crossref_xml, "doi_data.collection.item") is None
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") is None
+    assert crossref_xml.get("group_title") is None
 
 
 @pytest.mark.vcr

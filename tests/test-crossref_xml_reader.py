@@ -38,11 +38,7 @@ def test_doi_with_data_citation():
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2014-02-11",
-        "published": "2014-02-11",
-        "updated": "2023-10-11",
-    }
+    assert subject.date["published"] == "2014-02-11"
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",

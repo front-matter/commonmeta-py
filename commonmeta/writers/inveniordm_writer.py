@@ -4,7 +4,7 @@ import orjson as json
 from typing import Optional
 
 from ..base_utils import compact, wrap, parse_attributes, presence
-from ..date_utils import get_iso8601_date, validate_edtf
+from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, normalize_doi
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,

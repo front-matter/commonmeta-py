@@ -12,7 +12,6 @@ from ..utils import (
     wrap,
     dict_to_spdx,
     name_to_fos,
-    validate_url,
     validate_ror,
     issn_as_url,
 )

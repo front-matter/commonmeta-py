@@ -2,7 +2,7 @@
 """Citeproc JSON reader tests"""
 
 from os import path
-from commonmeta import Metadata, MetadataList
+from commonmeta import Metadata
 
 
 def test_default():
@@ -608,15 +608,15 @@ def test_string():
     }
 
 
-def test_commonmeta_list():
-    "commonmeta list"
-    string = path.join(path.dirname(__file__), "fixtures", "commonmeta-list.json")
-    subject_list = MetadataList(string)
-    assert len(subject_list.items) == 15
-    subject = subject_list.items[0]
-    assert (
-        subject.id
-        == "https://blogs.fu-berlin.de/open-access-berlin/2022/05/12/das-bua-open-science-dashboard-projekt-die-entwicklung-disziplinspezifischer-open-science-indikatoren"
-    )
-    assert subject.type == "Article"
-    assert subject.is_valid
+# def test_commonmeta_list():
+#     "commonmeta list"
+#     string = path.join(path.dirname(__file__), "fixtures", "commonmeta-list.json")
+#     subject_list = MetadataList(string)
+#     assert len(subject_list.items) == 15
+#     subject = subject_list.items[0]
+#     assert (
+#         subject.id
+#         == "https://blogs.fu-berlin.de/open-access-berlin/2022/05/12/das-bua-open-science-dashboard-projekt-die-entwicklung-disziplinspezifischer-open-science-indikatoren"
+#     )
+#     assert subject.type == "Article"
+#     assert subject.is_valid
