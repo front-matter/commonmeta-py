@@ -84,6 +84,9 @@ default-groups = [
     "dev",
 ]
 
+[tool.setuptools]
+license-files = []
+
 [tool.hatch.build.targets.sdist]
 include = ["commonmeta"]
 
@@ -91,7 +94,7 @@ include = ["commonmeta"]
 include = ["commonmeta"]
 
 [build-system]
-requires = ["hatchling==1.26.3"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.ruff]
