@@ -47,7 +47,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
     url = None
-    if py_.get(meta, "blog.status", None) == "active":
+    if py_.get(meta, "blog.status", None) in ["active", "expired"]:
         url = normalize_url(meta.get("url", None))
     elif py_.get(meta, "blog.status", None) == "archived" and meta.get(
         "archive_url", None

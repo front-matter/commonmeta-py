@@ -32,7 +32,7 @@ def write_commonmeta(metadata):
             "funding_references": "fundingReferences",
         },
     )
-    return json.dumps(compact(data))
+    return json.dumps(compact(data), option=json.OPT_INDENT_2)
 
 
 def write_commonmeta_list(metalist):

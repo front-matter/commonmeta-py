@@ -140,7 +140,7 @@ def write_inveniordm(metadata):
             ),
         }
     )
-    return json.dumps(data)
+    return json.dumps(data, option=json.OPT_INDENT_2)
 
 
 def to_inveniordm_creator(creator: dict) -> dict:
