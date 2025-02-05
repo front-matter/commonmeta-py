@@ -43,7 +43,7 @@ def test_doi_for_blog_post():
     "DOi for blog post"
     subject = Metadata("10.53731/avg2ykg-gdxppcd")
     assert subject.id == "https://doi.org/10.53731/avg2ykg-gdxppcd"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     bibtex = subject.write(to="bibtex")
 
@@ -72,7 +72,7 @@ def test_blog_post():
     string = "https://upstream.force11.org/welcome-to-upstream/"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     bibtex = subject.write(to="bibtex")
 
     assert (
@@ -199,7 +199,7 @@ def test_book_chapter():
     doi = {10.1007/978-3-662-46370-3_13},
     isbn = {9783662463703},
     language = {en},
-    month = jan,
+    month = feb,
     pages = {155--158},
     publisher = {Springer Berlin Heidelberg},
     title = {Clinical Symptoms and Physical Examinations},
@@ -226,7 +226,7 @@ def test_conference_proceedings():
     author = {Sinop, Ali Kemal and Grady, Leo},
     booktitle = {2007 IEEE 11th International Conference on Computer Vision},
     doi = {10.1109/iccv.2007.4408927},
-    month = jan,
+    month = feb,
     pages = {1--8},
     publisher = {IEEE},
     title = {A Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker Which Yields A New Algorithm},
@@ -444,7 +444,7 @@ def test_kbase_gulf_of_mexico():
     copyright = {https://creativecommons.org/licenses/by/4.0/},
     doi = {10.25982/86723.65/1778009},
     language = {en},
-    month = jan,
+    month = feb,
     publisher = {KBase},
     title = {Gulf of Mexico blue hole harbors high levels of novel microbial lineages: A load of cool stuff from the blue hole in the Gulf of Mexico},
     urldate = {2021},

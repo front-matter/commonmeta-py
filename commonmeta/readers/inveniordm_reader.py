@@ -57,6 +57,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     publisher = meta.get("publisher", None) or py_.get(meta, "metadata.publisher")
     if publisher:
         publisher = {"name": publisher}
+    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+        _type = "BlogPost"
+
     title = py_.get(meta, "metadata.title")
     titles = [{"title": sanitize(title)}] if title else None
     additional_titles = py_.get(meta, "metadata.additional_titles")

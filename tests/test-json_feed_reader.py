@@ -20,7 +20,7 @@ def test_wordpress_with_references():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa"
@@ -115,7 +115,7 @@ def test_post_with_relationships():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
@@ -195,7 +195,7 @@ def test_post_with_relationships_as_doi():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
@@ -264,7 +264,7 @@ def test_post_with_funding():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://upstream.force11.org/informate-where-are-the-data"
     assert subject.titles[0] == {"title": "INFORMATE: Where Are the Data?"}
     assert len(subject.contributors) == 4
@@ -335,7 +335,7 @@ def test_post_with_more_funding():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw1y"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool"
@@ -378,7 +378,7 @@ def test_post_with_funding_ror():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/86jd5-wpv70"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://metadatagamechangers.com/blog/2022/3/7/ivfrlw6naf7am3bvord8pldtuyqn4r"
@@ -449,7 +449,7 @@ def test_ghost_with_institutional_author():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/tfahc-rp566"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice"
@@ -547,7 +547,7 @@ def test_ghost_with_affiliations():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources"
@@ -627,7 +627,7 @@ def test_ghost_with_personal_name_parsing():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout"
     assert subject.titles[0] == {
         "title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"
@@ -706,7 +706,7 @@ def test_medium_post_with_multiple_authors():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://medium.com/@researchgraph/unveiling-the-synergy-retrieval-augmented-generation-rag-meets-knowledge-graphs-fc0a6900f7eb"
@@ -744,7 +744,7 @@ def test_cczero_license():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/xgwqt-1sq35"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.titles[0] == {
         "title": "Epistemic diversity and knowledge production"
     }
@@ -761,7 +761,7 @@ def test_post_with_peer_reviewed_version():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/zg929-e9595"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.titles[0] == {"title": "Large Language Publishing"}
     assert subject.relations == [
         {
@@ -783,7 +783,7 @@ def test_funded_project():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/p000s-pth40"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.titles[0] == {"title": "THOR’s last hurrah"}
     assert subject.funding_references == [
         {
@@ -801,7 +801,7 @@ def test_broken_reference():
     string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert len(subject.references) == 6
     assert subject.references[3] == {
         "key": "ref4",

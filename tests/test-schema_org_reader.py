@@ -17,7 +17,7 @@ def test_blog_posting():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.contributors) == 1
@@ -275,7 +275,7 @@ def test_another_blog_with_dois():
         subject.id
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
@@ -316,7 +316,7 @@ def test_with_upstream_blog_post():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://upstream.force11.org/welcome-to-upstream"
     assert subject.titles[0] == {
         "title": "Welcome to Upstream: the new space for scholarly community discussion on all things open"

@@ -51,6 +51,7 @@ BIB_TO_CM_TRANSLATIONS = {
 
 CM_TO_BIB_TRANSLATIONS = {
     "Article": "article",
+    "BlogPost": "article",
     "Book": "book",
     "BookChapter": "inbook",
     "Dissertation": "phdthesis",
@@ -97,7 +98,7 @@ CSL_TO_CM_TRANSLATIONS = {
     "periodical": "Journal",
     "personal_communication": "PersonalCommunication",
     "post": "Post",
-    "post-weblog": "Article",
+    "post-weblog": "BlogPost",
     "regulation": "LegalDocument",
     "report": "Report",
     "review": "Review",
@@ -113,7 +114,7 @@ CSL_TO_CM_TRANSLATIONS = {
 
 CM_TO_CSL_TRANSLATIONS = {
     "Article": "article",
-    "JournalArticle": "article-journal",
+    "BlogPost": "post-weblog",
     "Book": "book",
     "BookChapter": "chapter",
     "Collection": "collection",
@@ -123,6 +124,7 @@ CM_TO_CSL_TRANSLATIONS = {
     "Event": "event",
     "Figure": "figure",
     "Image": "graphic",
+    "JournalArticle": "article-journal",
     "LegalDocument": "legal_case",
     "Manuscript": "manuscript",
     "Map": "map",
@@ -176,6 +178,7 @@ CR_TO_CM_TRANSLATIONS = {
 
 CM_TO_CR_TRANSLATIONS = {
     "Article": "PostedContent",
+    "BlogPost": "PostedContent",
     "BookChapter": "BookChapter",
     "BookSeries": "BookSeries",
     "Book": "Book",
@@ -200,7 +203,7 @@ CM_TO_CR_TRANSLATIONS = {
 # source: https://github.com/datacite/schema/blob/master/source/meta/kernel-4/include/datacite-resourceType-v4.xsd
 DC_TO_CM_TRANSLATIONS = {
     "Audiovisual": "Audiovisual",
-    "BlogPosting": "Article",
+    "BlogPosting": "BlogPost",
     "Book": "Book",
     "BookChapter": "BookChapter",
     "Collection": "Collection",
@@ -269,6 +272,7 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
 
 CM_TO_INVENIORDM_TRANSLATIONS = {
     "Article": "publication-preprint",
+    "BlogPost": "publication-preprint",
     "Book": "book",
     "Dataset": "dataset",
     "Image": "image-other",
@@ -281,6 +285,7 @@ CM_TO_INVENIORDM_TRANSLATIONS = {
 CM_TO_DC_TRANSLATIONS = {
     "Article": "Preprint",
     "Audiovisual": "Audiovisual",
+    "BlogPost": "Preprint",
     "Book": "Book",
     "BookChapter": "BookChapter",
     "Collection": "Collection",
@@ -317,7 +322,7 @@ RIS_TO_CM_TRANSLATIONS = {
     "ANCIENT": "Text",
     "ART": "Text",
     "BILL": "Text",
-    "BLOG": "Text",
+    "BLOG": "BlogPost",
     "BOOK": "Book",
     "CASE": "Text",
     "CHAP": "BookChapter",
@@ -370,6 +375,7 @@ RIS_TO_CM_TRANSLATIONS = {
 CM_TO_RIS_TRANSLATIONS = {
     "Article": "JOUR",
     "Audiovisual": "VIDEO",
+    "BlogPost": "BLOG",
     "Book": "BOOK",
     "BookChapter": "CHAP",
     "Collection": "CTLG",
@@ -400,7 +406,7 @@ CM_TO_RIS_TRANSLATIONS = {
 
 SO_TO_CM_TRANSLATIONS = {
     "Article": "Article",
-    "BlogPosting": "Article",
+    "BlogPosting": "BlogPost",
     "Book": "Book",
     "BookChapter": "BookChapter",
     "CreativeWork": "Other",
@@ -439,6 +445,7 @@ OG_TO_SO_TRANSLATIONS = {
 CM_TO_SO_TRANSLATIONS = {
     "Article": "Article",
     "Audiovisual": "CreativeWork",
+    "BlogPost": "BlogPosting",
     "Book": "Book",
     "BookChapter": "BookChapter",
     "Collection": "CreativeWork",

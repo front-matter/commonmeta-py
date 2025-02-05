@@ -322,7 +322,7 @@ def test_json_feed_item_upstream_blog():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
@@ -496,7 +496,7 @@ def test_ghost_with_affiliations():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
@@ -546,11 +546,11 @@ def test_json_feed_item_with_organizational_author():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "contributors.organization") is None
-    assert py_.get(crossref_xml, "titles.0.title") is None
-    assert py_.get(crossref_xml, "doi_data.collection.item") is None
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") is None
-    assert crossref_xml.get("group_title") is None
+    assert py_.get(crossref_xml, "contributors.organization") ==  [{'#text': 'Liberate Science', 'contributor_role': 'author', 'sequence': 'first'}]
+    assert py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {'#text': 'https://libscie.org/ku-leuven-supports-researchequals', 'mime_type': 'text/html'}
+    assert crossref_xml.get("group_title") == 'Social science'
 
 
 @pytest.mark.vcr

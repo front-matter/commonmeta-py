@@ -158,6 +158,9 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         or py_.get(bibmeta, "doi_data.doi")
     )
     _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
+    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+        _type = "BlogPost"
+
     url = parse_attributes(py_.get(bibmeta, "doi_data.resource"))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)

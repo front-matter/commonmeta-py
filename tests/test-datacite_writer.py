@@ -127,10 +127,10 @@ def test_blogposting_citeproc_json():
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
-        "citeproc": "article",
+        "citeproc": "post-weblog",
         "resourceTypeGeneral": "Preprint",
-        "ris": "JOUR",
-        "schemaOrg": "Article",
+        "ris": "BLOG",
+        "schemaOrg": "BlogPosting",
     }
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["descriptions"][0]["description"].startswith(
@@ -151,7 +151,7 @@ def test_blogposting_citeproc_json_no_doi():
     string = path.join(path.dirname(__file__), "fixtures", "citeproc_missing_doi.json")
     subject = Metadata(string, prefix="10.5438")
     assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", subject.id)
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.is_valid
 
     datacite = json.loads(subject.write(to="datacite"))
@@ -159,10 +159,10 @@ def test_blogposting_citeproc_json_no_doi():
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
-        "citeproc": "article",
+        "citeproc": "post-weblog",
         "resourceTypeGeneral": "Preprint",
-        "ris": "JOUR",
-        "schemaOrg": "Article",
+        "ris": "BLOG",
+        "schemaOrg": "BlogPosting",
     }
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["descriptions"][0]["description"].startswith(
@@ -251,8 +251,8 @@ def test_from_schema_org():
     )
     assert datacite["types"] == {
         "bibtex": "article",
-        "citeproc": "article",
+        "citeproc": "post-weblog",
         "resourceTypeGeneral": "Preprint",
-        "ris": "JOUR",
-        "schemaOrg": "Article",
+        "ris": "BLOG",
+        "schemaOrg": "BlogPosting",
     }

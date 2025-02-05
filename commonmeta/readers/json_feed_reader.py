@@ -54,7 +54,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     ):
         url = normalize_url(meta.get("archive_url", None))
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
-    _type = "Article"
+    _type = "BlogPost"
 
     # optionally generate a DOI if missing but a DOI prefix is provided
     prefix = read_options.get("prefix", None) or py_.get(meta, "blog.prefix", None)

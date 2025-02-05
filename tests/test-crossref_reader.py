@@ -437,7 +437,7 @@ def test_blog_post():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ybhah-9jy85"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert (
         subject.url
         == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter"

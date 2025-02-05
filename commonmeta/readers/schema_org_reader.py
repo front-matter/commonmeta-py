@@ -216,7 +216,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
                 "lastPage": meta.get("pageEnd", None),
             }
         )
-    elif _type == "Article":
+    elif _type in ["Article", "BlogPost"]:
         issn = py_.get(meta, "isPartOf.issn")
         container_url = py_.get(meta, "publisher.url")
         container = compact(

@@ -86,7 +86,7 @@ def test_blog_posting():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.contributors == [
         {
             "id": "https://orcid.org/0000-0003-1419-2405",

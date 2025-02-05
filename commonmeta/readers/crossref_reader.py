@@ -83,7 +83,8 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     url = normalize_url(py_.get(meta, "resource.primary.URL"))
     titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
-
+    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+        _type = "BlogPost"
     date = compact(
         {
             "published": py_.get(meta, "issued.date-time")

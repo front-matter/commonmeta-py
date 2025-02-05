@@ -794,10 +794,10 @@ def test_json_feed_item_upstream_blog():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     schema_org = json.loads(subject.write(to="schema_org"))
     assert schema_org.get("@id") == "https://doi.org/10.54900/n6dnt-xpq48"
-    assert schema_org.get("@type") == "Article"
+    assert schema_org.get("@type") == "BlogPosting"
     assert (
         schema_org.get("name")
         == "Attempts at automating journal subject classification"

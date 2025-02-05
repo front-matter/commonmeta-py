@@ -47,6 +47,8 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
 
     resource__typegeneral = CM_TO_DC_TRANSLATIONS.get(metadata.type, "Other")
     resource_type = CM_TO_CR_TRANSLATIONS.get(metadata.type, "Other")
+    if metadata.type == "BlogPost":
+        resource_type = "BlogPost"
     if resource__typegeneral == resource_type or resource__typegeneral in [
         "Dataset",
         "JournalArticle",

@@ -154,7 +154,7 @@ def test_rogue_scholar():
     string = "https://api.rogue-scholar.org/posts/10.53731/dv8z6-a6s33"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.53731/dv8z6-a6s33"
@@ -227,7 +227,7 @@ def test_from_json_feed():
     string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/dn2mm-m9q51"
@@ -294,7 +294,7 @@ def test_from_json_feed_affiliations():
     string = "https://api.rogue-scholar.org/posts/10.59350/mg09a-5ma64"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/mg09a-5ma64"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
@@ -377,7 +377,7 @@ def test_from_json_feed_dates():
     string = "https://api.rogue-scholar.org/posts/10.59350/k9zxj-pek64"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/k9zxj-pek64"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
@@ -407,7 +407,7 @@ def test_from_json_feed_funding():
     string = "https://api.rogue-scholar.org/posts/10.59350/hnegw-6rx17"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/hnegw-6rx17"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
@@ -434,7 +434,7 @@ def test_from_json_feed_more_funding():
     string = "https://api.rogue-scholar.org/posts/10.59350/m99dx-x9g53"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
@@ -466,7 +466,7 @@ def test_from_json_feed_references():
     string = "https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert (
@@ -511,7 +511,7 @@ def test_from_json_feed_unstructured_references():
     string = "https://api.rogue-scholar.org/posts/10.59350/27ewm-zn378"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/27ewm-zn378"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert len(subject.references) == 7
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
@@ -538,7 +538,7 @@ def test_from_json_feed_relations():
     string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/zg929-e9595"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
@@ -566,7 +566,7 @@ def test_from_json_feed_broken_reference():
     string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
@@ -590,7 +590,7 @@ def test_external_doi():
     string = "https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.57689/dini-blog.20210712"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"

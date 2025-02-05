@@ -36,13 +36,13 @@ def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
 
 def insert_crossref_work(metadata, xml):
     """Insert crossref work"""
-    if metadata.type not in ["JournalArticle", "Article"]:
+    if metadata.type not in ["JournalArticle", "Article", "BlogPost"]:
         return xml
     if doi_from_url(metadata.id) is None or metadata.url is None:
         return xml
     if metadata.type == "JournalArticle":
         xml = insert_journal(metadata, xml)
-    elif metadata.type == "Article":
+    elif metadata.type in ["Article", "BlogPost"]:
         xml = insert_posted_content(metadata, xml)
 
 

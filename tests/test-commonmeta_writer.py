@@ -146,7 +146,7 @@ def test_write_commonmeta_list_json_feed():
     assert len(commonmeta_list["items"]) == 15
     commonmeta = commonmeta_list["items"][0]
     assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
-    assert commonmeta["type"] == "Article"
+    assert commonmeta["type"] == "BlogPost"
     assert commonmeta["titles"] == [
         {
             "title": "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
@@ -163,7 +163,7 @@ def test_write_commonmeta_missing_doi():
     commonmeta = json.loads(subject.write())
     assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", commonmeta["id"])
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "Article"
+    assert commonmeta["type"] == "BlogPost"
 
 
 def test_write_commonmeta_missing_doi_no_prefix():
@@ -177,7 +177,7 @@ def test_write_commonmeta_missing_doi_no_prefix():
     commonmeta = json.loads(subject.write())
     assert commonmeta["id"] == "https://www.ideasurg.pub/residency-visual-abstract"
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "Article"
+    assert commonmeta["type"] == "BlogPost"
 
 
 def test_write_commonmeta_missing_doi_prefix():
@@ -191,4 +191,4 @@ def test_write_commonmeta_missing_doi_prefix():
     commonmeta = json.loads(subject.write())
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", commonmeta["id"])
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
-    assert commonmeta["type"] == "Article"
+    assert commonmeta["type"] == "BlogPost"

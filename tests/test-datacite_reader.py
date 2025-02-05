@@ -600,7 +600,7 @@ def test_datacite_json():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
