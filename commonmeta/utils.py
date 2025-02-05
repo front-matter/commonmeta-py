@@ -1116,16 +1116,33 @@ def extract_curie(string: Optional[str]) -> Optional[str]:
     """Extract CURIE"""
     if string is None:
         return None
-    match = re.search(r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    match = re.search(
+        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string
+    )
     if match is None:
         return None
     return doi_as_url(match.group(2))
 
-    
+
+def replace_curie(string: Optional[str]) -> Optional[str]:
+    """Replace CURIE with DOI expressed as URL"""
+    if string is None:
+        return None
+    match = re.sub(
+        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", r'https://doi.org/\2', string
+    )
+    if match is None:
+        return None
+    return match
+
+
 def extract_url(string: str) -> list:
     """Extract urls from string, including markdown and html."""
 
-    match = re.search(r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    match = re.search(
+        r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))",
+        string,
+    )
     if match is None:
         return None
     return normalize_url(match.group(1))
@@ -1134,7 +1151,10 @@ def extract_url(string: str) -> list:
 def extract_urls(string: str) -> list:
     """Extract urls from string, including markdown and html."""
 
-    urls = re.findall(r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", string)
+    urls = re.findall(
+        r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))",
+        string,
+    )
     return py_.uniq(urls)
 
 
