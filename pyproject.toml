@@ -17,7 +17,7 @@ keywords = [
 ]
 dependencies = [
     "docutils>=0.19,<0.22",
-    "setuptools~=70.0",
+    "setuptools>=70,<76",
     "sphinxcontrib-issuetracker>=0.11,<0.12",
     "sphinx-autodoc-typehints>=1.19,<4.0",
     "httpx>=0.28,<0.29",
