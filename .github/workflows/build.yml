@@ -15,9 +15,11 @@ jobs:
           fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.9' 
+          python-version: '3.12' 
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v5
       - name: Install tox and any other packages
-        run: pip install tox
+        run: uv tool install tox --with tox-uv
       - name: Run tox
         run: tox -e py
       - name: Override Coverage Source Path for Sonar
