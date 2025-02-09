@@ -244,6 +244,7 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
     "conferencepaper": "ProceedingsArticle",
     "patent": "Patent",
     "publication": "JournalArticle",
+    "publication-blogpost": "BlogPost",
     "publication-preprint": "Article",
     "report": "Report",
     "softwaredocumentation": "Software",
@@ -272,7 +273,7 @@ INVENIORDM_TO_CM_TRANSLATIONS = {
 
 CM_TO_INVENIORDM_TRANSLATIONS = {
     "Article": "publication-preprint",
-    "BlogPost": "publication-preprint",
+    "BlogPost": "publication-blogpost",
     "Book": "book",
     "Dataset": "dataset",
     "Image": "image-other",

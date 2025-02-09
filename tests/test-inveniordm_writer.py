@@ -158,7 +158,7 @@ def test_rogue_scholar():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.53731/dv8z6-a6s33"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(py_.get(inveniordm, "metadata.creators")) == 1
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "affiliations": [
@@ -231,7 +231,7 @@ def test_from_json_feed():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/dn2mm-m9q51"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(py_.get(inveniordm, "metadata.creators")) == 1
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
@@ -298,7 +298,7 @@ def test_from_json_feed_affiliations():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(py_.get(inveniordm, "metadata.creators")) == 4
     assert py_.get(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
@@ -381,7 +381,7 @@ def test_from_json_feed_dates():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
     assert py_.get(inveniordm, "metadata.dates") == [
         {
@@ -411,7 +411,7 @@ def test_from_json_feed_funding():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
     assert py_.get(inveniordm, "metadata.funding") == [
         {
@@ -438,7 +438,7 @@ def test_from_json_feed_more_funding():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title") == "Summer Meeting of the Editorial Board"
     )
@@ -472,7 +472,7 @@ def test_from_json_feed_references():
     assert (
         py_.get(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
     )
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title")
         == "Differences between ORCID and DataCite Metadata"
@@ -518,7 +518,7 @@ def test_from_json_feed_unstructured_references():
     assert (
         py_.get(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
     )
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title")
         == "To what extent is science a strong-link problem?"
@@ -542,7 +542,7 @@ def test_from_json_feed_relations():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert py_.get(inveniordm, "metadata.title") == "Large Language Publishing"
     related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 1
@@ -570,7 +570,7 @@ def test_from_json_feed_broken_reference():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title")
         == "2024 mpox outbreak: common analytics tasks and available R tools"
@@ -594,7 +594,7 @@ def test_external_doi():
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
     assert py_.get(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-preprint"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title")
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
