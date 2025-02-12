@@ -166,6 +166,7 @@ def is_personal_name(name):
             "Government",
             "Count",
             "Reviewers",
+            "Staff",
             "Lab",
         ]
     ):
