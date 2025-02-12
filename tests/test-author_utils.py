@@ -366,3 +366,6 @@ def test_is_personal_name():
         "International Genetics of Ankylosing Spondylitis Consortium (IGAS)"
     )
     assert False is is_personal_name("Research Graph")
+    assert False is is_personal_name("DH Lab")
+    assert False is is_personal_name("Make Data Count")
+    assert False is is_personal_name("BJPS Reviewers")
