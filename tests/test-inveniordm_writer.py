@@ -222,6 +222,29 @@ def test_rogue_scholar():
 
 
 @pytest.mark.vcr
+def test_rogue_scholar_organizational_author():
+    "Rogue Scholar organizational author"
+    string = "https://api.rogue-scholar.org/posts/10.59350/wg8rv-awm24"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/wg8rv-awm24"
+    assert subject.type == "BlogPost"
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/wg8rv-awm24"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(py_.get(inveniordm, "metadata.creators")) == 1
+    assert py_.get(inveniordm, "metadata.creators.0") == {
+        "person_or_org": {"name": "BSPS Staff", "type": "organizational"},
+    }
+    assert (
+        py_.get(inveniordm, "metadata.title")
+        == "Neil Levy, Philosophy, Bullshit, and Peer Review // Reviewed by Joshua Habgood-Coote"
+    )
+    assert py_.get(inveniordm, "metadata.publisher") == "Front Matter"
+    assert py_.get(inveniordm, "metadata.publication_date") == "2025-02-11"
+
+
+@pytest.mark.vcr
 def test_from_json_feed():
     "JSON Feed"
     string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
@@ -515,9 +538,7 @@ def test_from_json_feed_unstructured_references():
     assert len(subject.references) == 7
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert (
-        py_.get(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
-    )
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
         py_.get(inveniordm, "metadata.title")
@@ -526,9 +547,9 @@ def test_from_json_feed_unstructured_references():
     references = py_.get(inveniordm, "metadata.references")
     assert len(references) == 7
     assert references[0] == {
-        'identifier': '10.1128/iai.05661-11',
-        'reference': 'Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. Infection and Immunity, 79(10), 3855–3859.',
-        'scheme': 'doi'
+        "identifier": "10.1128/iai.05661-11",
+        "reference": "Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. Infection and Immunity, 79(10), 3855–3859.",
+        "scheme": "doi",
     }
 
 
@@ -578,8 +599,8 @@ def test_from_json_feed_broken_reference():
     references = py_.get(inveniordm, "metadata.references")
     assert len(references) == 6
     assert references[0] == {
-        'identifier': '10.4269/ajtmh.23-0215',
-        'reference': 'Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data (2024).',
+        "identifier": "10.4269/ajtmh.23-0215",
+        "reference": "Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data (2024).",
         "scheme": "doi",
     }
 
