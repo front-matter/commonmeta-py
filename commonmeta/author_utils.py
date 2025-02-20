@@ -168,7 +168,7 @@ def is_personal_name(name):
             "Reviewers",
             "Staff",
             "Lab",
-            "Redkation",
+            "Redaktion",
         ]
     ):
         return False
