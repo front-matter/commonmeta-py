@@ -63,7 +63,7 @@ def write_inveniordm(metadata):
     journal = (
         container.get("title", None)
         if _type not in ["inbook", "inproceedings"]
-        and container.get("type") in ["Journal", "Periodical"]
+        and container.get("type") in ["Journal", "Periodical", "Blog"]
         else None
     )
     issn = (
