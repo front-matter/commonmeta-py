@@ -7,7 +7,7 @@ from jsonschema import Draft202012Validator, ValidationError
 def json_schema_errors(instance, schema: str = "commonmeta"):
     """validate against JSON schema"""
     schema_map = {
-        "commonmeta": "commonmeta_v0.15",
+        "commonmeta": "commonmeta_v0.16",
         "datacite": "datacite-v4.5",
         "crossref": "crossref-v0.2",
         "csl": "csl-data",
