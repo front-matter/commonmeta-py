@@ -64,7 +64,7 @@ def write_csl_item(metadata) -> Optional[dict]:
             "container-title": container.get("title", None),
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
-            "page": pages_as_string(container),
+            "page": presence(pages_as_string(container)),
             "publisher": publisher.get("name", None),
             "title": parse_attributes(metadata.titles, content="title", first=True),
             "copyright": metadata.license.get("id", None) if metadata.license else None,
