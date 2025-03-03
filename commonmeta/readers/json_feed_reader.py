@@ -92,10 +92,11 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
     )
     container = compact(
         {
-            "type": "Periodical",
+            "type": "Blog",
             "title": py_.get(meta, "blog.title", None),
             "identifier": issn or blog_url,
             "identifierType": "ISSN" if issn else "URL",
+            "platform": py_.get(meta, "blog.generator", None),
         }
     )
     publisher = (
