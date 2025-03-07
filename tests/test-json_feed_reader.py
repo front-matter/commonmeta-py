@@ -72,10 +72,11 @@ def test_wordpress_with_references():
         {"identifier": "https://svpow.com/?p=20992", "identifierType": "GUID"},
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
         "identifier": "3033-3695",
         "identifierType": "ISSN",
+        "platform": "WordPress.com",
     }
     assert (
         subject.descriptions[0]
@@ -174,10 +175,11 @@ def test_post_with_relationships():
         },
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "platform": "Ghost",
     }
     assert subject.content.startswith(
         "Persistent identifiers (PIDs) are not only important"
@@ -248,10 +250,11 @@ def test_post_with_relationships_as_doi():
         },
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "platform": "Ghost",
     }
     assert subject.provider == "Crossref"
     assert subject.state == "findable"
@@ -314,8 +317,9 @@ def test_post_with_funding():
         }
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Upstream",
+        "platform": "Ghost",
         "identifier": "https://rogue-scholar.org/blogs/upstream",
         "identifierType": "URL",
     }
@@ -364,10 +368,11 @@ def test_post_with_more_funding():
         }
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "platform": "Ghost",
     }
 
 
@@ -428,10 +433,11 @@ def test_post_with_funding_ror():
         }
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Blog - Metadata Game Changers",
         "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
         "identifierType": "URL",
+        "platform": "Squarespace",
     }
     assert subject.content.startswith(
         ':::::::::::::::::::::::::::::::::::::::::::::: {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label="Post Body" data-type="item" updated-on="1646694120644"}'
@@ -510,10 +516,11 @@ def test_ghost_with_institutional_author():
     #     },
     # ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "OA.Works Blog",
         "identifier": "https://rogue-scholar.org/blogs/oa_works",
         "identifierType": "URL",
+        "platform": "Ghost",
     }
     assert (
         subject.descriptions[0]
@@ -597,10 +604,11 @@ def test_ghost_with_affiliations():
         },
     ]
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "platform": "Ghost",
     }
     assert (
         subject.descriptions[0]
@@ -673,8 +681,9 @@ def test_ghost_with_personal_name_parsing():
     assert subject.container == {
         "identifier": "2993-1150",
         "identifierType": "ISSN",
+        "platform": "Ghost",
         "title": "I.D.E.A.S.",
-        "type": "Periodical",
+        "type": "Blog",
     }
     assert (
         subject.descriptions[0]

@@ -217,11 +217,12 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
             }
         )
     elif _type in ["Article", "BlogPost"]:
+        container_type = "Blog" if _type == "BlogPost" else "Periodical"
         issn = py_.get(meta, "isPartOf.issn")
         container_url = py_.get(meta, "publisher.url")
         container = compact(
             {
-                "type": "Periodical",
+                "type": container_type,
                 "title": py_.get(meta, "isPartOf.name"),
                 "identifier": issn
                 if issn is not None

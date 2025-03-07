@@ -18,7 +18,7 @@ def test_journal_article():
 
     assert (
         subject.write(to="citation", style="apa", locale="en-US")
-        == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>Elife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
+        == "Sankar, M., Nieminen, K., Ragni, L., Xenarios, I., &amp; Hardtke, C. S. (2014). Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth. <i>eLife</i>, <i>3</i>. https://doi.org/10.7554/elife.01567"
     )
 
 

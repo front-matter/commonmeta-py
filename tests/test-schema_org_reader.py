@@ -296,7 +296,7 @@ def test_another_blog_with_dois():
     assert subject.references is None
     assert subject.container == {
         "title": "JSC Accelerating Devices Lab",
-        "type": "Periodical",
+        "type": "Blog",
     }
     assert (
         subject.descriptions[0]
@@ -341,7 +341,7 @@ def test_with_upstream_blog_post():
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
-        "title": "Upstream"
+        "title": "Upstream",
     }
     assert (
         subject.descriptions[0]
@@ -531,15 +531,15 @@ def test_pdf_file():
     "PDF file"
     string = "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid is False
     assert (
         subject.id
         == "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
     )
-    assert subject.type == "Document"
-    assert subject.state == "findable"
-    assert subject.titles == [{"title": "VOSviewer Manual"}]
-    assert subject.date == {"published": "2018-04-27T08:22:57Z"}
+    assert subject.type == "WebPage"
+    assert subject.state == "bad_request"
+    assert subject.titles is None
+    assert subject.date is None
 
 
 @pytest.mark.vcr

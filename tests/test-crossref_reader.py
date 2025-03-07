@@ -676,7 +676,7 @@ def test_doi_with_orcid():
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
     assert subject.date == {"published": "2012"}
-    assert subject.publisher == {"name": "Hindawi Limited"}
+    assert subject.publisher == {"name": "Wiley"}
     assert len(subject.references) == 27
     assert subject.references[-1] == {
         "key": "30",

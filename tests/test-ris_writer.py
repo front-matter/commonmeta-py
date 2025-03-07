@@ -49,7 +49,7 @@ def test_with_pages():
     assert ris[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294"
     assert ris[12].startswith("AB  - Objective. To find a statistically significant")
     assert ris[13] == "PY  - 2012"
-    assert ris[14] == "PB  - Hindawi Limited"
+    assert ris[14] == "PB  - Wiley"
     assert ris[15] == "LA  - en"
     assert ris[16] == "VL  - 2012"
     assert ris[17] == "SP  - 1"

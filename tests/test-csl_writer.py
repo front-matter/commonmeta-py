@@ -186,7 +186,7 @@ def test_with_pages():
         {"family": "Yesavage", "given": "Jerome A."},
     ]
     assert csl.get("contributor") is None
-    assert csl.get("publisher") == "Hindawi Limited"
+    assert csl.get("publisher") == "Wiley"
     assert csl.get("issued") == {"date-parts": [[2012]]}
     assert csl.get("container-title") == "Pulmonary Medicine"
     assert csl.get("volume") == "2012"
