@@ -447,6 +447,48 @@ def test_post_with_funding_ror():
         == "https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png"
     )
 
+@pytest.mark.vcr
+def test_post_with_even_more_funding():
+    "post with even_more funding"
+    string = "https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/s6am1-1sa79"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html"
+    )
+    assert subject.references is None
+    assert subject.relations is None
+    assert subject.identifiers == [
+        {
+            "identifier": "6f2b7003-a77d-4b7b-a88a-8ce78546ddf7",
+            "identifierType": "UUID",
+        },
+        {
+            "identifier": "https://doi.org/10.59350/s6am1-1sa79",
+            "identifierType": "GUID",
+        },
+    ]
+    assert subject.funding_references == [
+        {
+            "funderName": "European Commission",
+            "funderIdentifier": "https://ror.org/00k4n6c32",
+            "funderIdentifierType": "ROR",
+            "awardUri": "https://cordis.europa.eu/project/id/604134",
+            "awardNumber": "604134",
+            "awardTitle": "eNanoMapper",
+        }
+    ]
+    assert subject.container == {
+        "type": "Blog",
+        "title": "chem-bla-ics",
+        "identifier": "https://rogue-scholar.org/blogs/chem_bla_ics",
+        "identifierType": "URL",
+        "platform": "Jekyll",
+    }
+
 
 @pytest.mark.vcr
 def test_ghost_with_institutional_author():

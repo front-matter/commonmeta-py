@@ -113,6 +113,7 @@ def test_validate_orcid():
 def test_validate_ror():
     "validate_ror"
     assert "0342dzm54" == validate_ror("https://ror.org/0342dzm54")
+    assert "0342dzm54" == validate_ror("0342dzm54")
     # None
     assert None is validate_ror(None)
 

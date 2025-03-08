@@ -286,7 +286,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             if i.get("type", None) == "HasAward"
         ]
     )
-    funding = py_.get(meta, "blog.funding", None)
+    funding = py_.get(meta, "blog.funding")
     if funding is not None:
         awards += [
             {
@@ -296,6 +296,9 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 "awardNumber": funding.get("award_number", None),
             }
         ]
+    funding_references = py_.get(meta, "funding_references")
+    if funding_references is not None:
+        awards += [compact(i) for i in funding_references]
     return awards
 
 
