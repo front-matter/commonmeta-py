@@ -288,13 +288,19 @@ def test_post_with_funding():
 
     assert subject.date == {
         "published": "2023-12-05T10:00:43",
-        "updated": "2023-12-07T19:29:37",
+        "updated": "2025-01-24T18:28:43",
     }
     assert subject.publisher == {
         "name": "Front Matter",
     }
     assert subject.references == [
-        {"id": "https://doi.org/10.5281/zenodo.8284206", "key": "ref1"}
+        {"id": "https://doi.org/10.5281/zenodo.8284206", 
+         'unstructured': 'Plankytė, V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding '
+           'principles for implementing persistent identification and metadata '
+           'features on research tools to boost interoperability of research data '
+           'and support sample management workflows</i>. Zenodo. '
+           'https://doi.org/10.5281/zenodo.8284206'
+        }
     ]
     assert subject.relations is None
     assert subject.identifiers == [
@@ -838,10 +844,11 @@ def test_funded_project():
     assert subject.titles[0] == {"title": "THOR’s last hurrah"}
     assert subject.funding_references == [
         {
-            "awardNumber": "654039",
-            "funderIdentifier": "https://doi.org/10.13039/501100007601",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "European Union’s Horizon 2020 research and innovation programme",
+           'awardNumber': '654039',
+           'awardTitle': 'THOR – Technical and Human Infrastructure for Open Research',
+           'awardUri': 'https://doi.org/10.3030/654039',
+           'funderIdentifier': 'https://ror.org/019w4f821',
+           'funderName': 'European Union',
         },
     ]
 

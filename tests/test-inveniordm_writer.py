@@ -438,10 +438,21 @@ def test_from_json_feed_funding():
     assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
     assert py_.get(inveniordm, "metadata.funding") == [
         {
-            "award": {"number": "654039"},
+            'award': {
+                'identifiers': [
+                    {
+                        'identifier': '10.3030/654039',
+                        'scheme': 'doi',
+                    },
+                ],
+                'number': '654039',
+                'title': {
+                    'en': 'THOR – Technical and Human Infrastructure for Open Research',
+                },
+            },
             "funder": {
-                "id": "00k4n6c32",
-                "name": "European Union’s Horizon 2020 research and innovation programme",
+                "id": "019w4f821",
+                "name": "European Union",
             },
         }
     ]
@@ -467,7 +478,15 @@ def test_from_json_feed_more_funding():
     )
     assert py_.get(inveniordm, "metadata.funding") == [
         {
-            "award": {"number": "422587133"},
+            "award": {
+                'identifiers': [
+                    {
+                        'identifier': 'https://gepris.dfg.de/gepris/projekt/422587133',
+                        'scheme': 'url',
+                    },
+                ],
+                'number': '422587133',
+            },           
             "funder": {
                 "id": "018mejw64",
                 "name": "Deutsche Forschungsgemeinschaft",

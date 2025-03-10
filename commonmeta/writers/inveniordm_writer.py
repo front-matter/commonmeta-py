@@ -14,6 +14,7 @@ from ..constants import (
 from ..utils import (
     get_language,
     validate_orcid,
+    validate_ror,
     id_from_url,
     normalize_url,
     FOS_MAPPINGS,
@@ -299,9 +300,7 @@ def to_inveniordm_reference(reference: dict) -> dict:
 
 def to_inveniordm_funding(funding: dict) -> Optional[dict]:
     """Convert funding to inveniordm funding"""
-    if funding.get("funderIdentifierType", None) == "ROR":
-        funder_identifier = id_from_url(funding.get("funderIdentifier", None))
-    elif funding.get("funderIdentifierType", None) == "Crossref Funder ID":
+    if funding.get("funderIdentifierType", None) == "Crossref Funder ID":
         # convert to ROR
         funder_identifier = id_from_url(
             CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
@@ -309,11 +308,11 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
             )
         )
     else:
-        funder_identifier = None
+        funder_identifier = validate_ror(funding.get("funderIdentifier", None))
     award_number = funding.get("awardNumber", None)
     award_title = funding.get("awardTitle", None)
     if award_title:
-        award_title = {"title": {"en": award_title}}
+        award_title = {"en": award_title}
     if funding.get("awardUri", None):
         award_identifier = funding.get("awardUri", None)
         scheme = "doi" if normalize_doi(award_identifier) else "url"

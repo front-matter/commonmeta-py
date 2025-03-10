@@ -205,7 +205,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
 
     if meta is None or not isinstance(meta, dict):
         return None
-
+    
     def format_funding(urls: list) -> list:
         """format funding. URLs can either be a list of grant IDs or a funder identifier
         (Open Funder Registry ID or ROR), followed by a grant URL"""
@@ -286,19 +286,11 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             if i.get("type", None) == "HasAward"
         ]
     )
-    funding = py_.get(meta, "blog.funding")
-    if funding is not None:
-        awards += [
-            {
-                "funderName": funding.get("funder_name", None),
-                "funderIdentifier": funding.get("funder_id", None),
-                "funderIdentifierType": "Crossref Funder ID",
-                "awardNumber": funding.get("award_number", None),
-            }
-        ]
     funding_references = py_.get(meta, "funding_references")
     if funding_references is not None:
         awards += [compact(i) for i in funding_references]
+    
+    awards += wrap(py_.get(meta, "blog.funding"))
     return awards
 
 
