@@ -11,6 +11,7 @@ from ..utils import (
     name_to_fos,
     from_inveniordm,
     get_language,
+    validate_ror,
 )
 from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
@@ -111,6 +112,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
     relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
+    funding_references = get_funding_references(wrap(py_.get(meta, "metadata.funding")))
     if meta.get("conceptdoi", None):
         relations.append(
             {
@@ -138,7 +140,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         "license": presence(license_),
         "descriptions": descriptions,
         "geoLocations": None,
-        # "funding_references": presence(meta.get("fundingReferences", None)),
+        "fundingReferences": presence(funding_references),
         "references": presence(references),
         "relations": presence(relations),
         # other properties
@@ -179,6 +181,23 @@ def get_references(references: list) -> list:
 
     return [map_reference(i) for i in references if is_reference(i)]
 
+
+def get_funding_references(funding_references: list) -> list:
+    """get_funding_references"""
+
+    def map_funding(funding: dict) -> dict:
+        """map_funding"""
+
+        return compact({
+            "funderName": py_.get(funding, "funder.name"),
+            "funderIdentifier": py_.get(funding, "funder.id"),
+            "funderIdentifierType": "ROR" if validate_ror(py_.get(funding, "funder.id")) else None,
+            "awardTitle": py_.get(funding, "award.title.en"),
+            "awardNumber": py_.get(funding, "award.number"),
+            "awardUri": py_.get(funding, "award.identifiers[0].identifier"),
+        })
+    
+    return [map_funding(i) for i in funding_references]
 
 def get_file(file: dict) -> str:
     """get_file"""
