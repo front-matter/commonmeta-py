@@ -316,8 +316,8 @@ def test_post_with_funding():
     assert subject.funding_references == [
         {
             "funderName": "National Science Foundation",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
             "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
             "awardNumber": "2134956",
         }
