@@ -291,7 +291,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         awards += [compact(i) for i in funding_references]
     
     awards += wrap(py_.get(meta, "blog.funding"))
-    return awards
+    return py_.uniq(awards)
 
 
 def get_relations(relations: Optional[list]) -> Optional[list]:
