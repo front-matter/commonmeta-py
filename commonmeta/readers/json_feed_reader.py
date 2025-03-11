@@ -13,6 +13,7 @@ from ..utils import (
     dict_to_spdx,
     name_to_fos,
     validate_ror,
+    validate_url,
     issn_as_url,
 )
 from ..author_utils import get_authors
@@ -230,6 +231,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         elif len(urls) == 2 and validate_prefix(urls[0]) == "10.13039":
             if urls[0] == "https://doi.org/10.13039/100000001":
                 funder_name = "National Science Foundation"
+                funder_identifier = "https://ror.org/021nxhr62"
             else:
                 funder_name = None
             f = furl(urls[1])
@@ -242,8 +244,8 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 compact(
                     {
                         "funderName": funder_name,
-                        "funderIdentifier": urls[0],
-                        "funderIdentifierType": "Crossref Funder ID",
+                        "funderIdentifier": funder_identifier,
+                        "funderIdentifierType": "ROR",
                         "awardUri": urls[1],
                         "awardNumber": award_number,
                     }
@@ -286,9 +288,32 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             if i.get("type", None) == "HasAward"
         ]
     )
+    def format_funding_reference(funding: dict) -> dict:
+        """format funding reference. Make sure award URI is either a DOI or URL"""
+
+        award_uri = funding.get("awardUri", None)
+        if validate_url(funding.get("awardUri", None)) not in ["DOI", "URL"]:
+            award_uri = None
+        funder_identifier = funding.get("funderIdentifier", None)
+        funder_identifier_type = funding.get("funderIdentifierType", None)
+        if not funder_identifier_type and validate_ror(
+            funding.get("funderIdentifier", None)
+        ):
+            funder_identifier_type = "ROR"
+
+        return compact(
+            {
+                "funderName": funding.get("funderName", None),
+                "funderIdentifier": funder_identifier,
+                "funderIdentifierType": funder_identifier_type,
+                "awardTitle": funding.get("awardTitle", None),
+                "awardNumber": funding.get("awardNumber", None),
+                "awardUri": award_uri,
+            }
+        )
     funding_references = py_.get(meta, "funding_references")
     if funding_references is not None:
-        awards += [compact(i) for i in funding_references]
+        awards += [format_funding_reference(i) for i in funding_references if i.get("funderName", None)]
     
     awards += wrap(py_.get(meta, "blog.funding"))
     return py_.uniq(awards)
