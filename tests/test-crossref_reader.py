@@ -548,7 +548,7 @@ def test_peer_review():
         "name": "eLife Sciences Publications, Ltd",
     }
     assert subject.references is None
-    assert subject.relations is None
+    assert subject.relations == [{'id': 'https://doi.org/10.7554/elife.55167', 'type': 'IsReviewOf'}]
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None

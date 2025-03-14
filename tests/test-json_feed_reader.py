@@ -832,6 +832,27 @@ def test_post_with_peer_reviewed_version():
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
 
+@pytest.mark.vcr
+def test_post_with_peer_review():
+    "post with peer-review"
+    string = "https://api.rogue-scholar.org/posts/10.54900/r8zwg-62003"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.54900/r8zwg-62003"
+    assert subject.type == "BlogPost"
+    assert subject.titles[0] == {"title": "Drinking from the Firehose? Write More and Publish Less"}
+    assert subject.relations == [
+        {
+            "id": "https://metaror.org/kotahi/articles/40",
+            "type": "HasReview",
+        },
+    ]
+    assert subject.content.startswith("<figure class=\"kg-card kg-image-card kg-card-hascaption\">")
+    assert (
+        subject.image
+        == "https://upstream.force11.org/content/images/2024/08/1000008255.jpg"
+    )
+
 
 @pytest.mark.vcr
 def test_funded_project():
