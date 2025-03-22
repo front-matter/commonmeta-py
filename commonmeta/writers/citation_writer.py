@@ -66,5 +66,5 @@ def write_citation_list(metalist, **kwargs):
 def _clean_result(text):
     """Remove double spaces, punctuation."""
     text = re.sub(r"\s\s+", " ", text)
-    text = re.sub(r"\.\.+", ".", text)
+    text = re.sub(r"\.\. ", ". ", text)
     return text
