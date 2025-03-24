@@ -136,6 +136,7 @@ def write_inveniordm(metadata):
                 {
                     "journal:journal": compact({"title": journal, "issn": issn}),
                     "rs:content_text": presence(metadata.content),
+                    "rs:content_html": presence(metadata.html),
                     "rs:image": presence(metadata.image),
                     "rs:generator": container.get("platform", None),
                 }
