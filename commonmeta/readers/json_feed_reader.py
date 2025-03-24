@@ -110,7 +110,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         else None
     )
 
-    description = meta.get("abstract", None)
+    description = meta.get("abstract", None) or meta.get("summary", None)
     if description is not None:
         descriptions = [{"description": sanitize(description), "type": "Abstract"}]
     else:

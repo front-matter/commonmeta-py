@@ -82,7 +82,7 @@ def test_wordpress_with_references():
         subject.descriptions[0]
         .get("description")
         .startswith(
-            "{.wp-image-21038 .size-large aria-describedby=“caption-attachment-21038”"
+            "Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic Terrestrial Ecosystems and Biota (MTE14) in Salt Lake City, and the related paper is in the MTE14 volume in The Anatomical Record."
         )
     )
     assert len(subject.files) == 4
