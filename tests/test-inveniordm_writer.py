@@ -56,7 +56,7 @@ def test_publication():
         }
     ]
     assert py_.get(inveniordm, "metadata.funding") is None
-    assert py_.get(inveniordm, "custom_fields.rs:content_text") is None
+    assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
@@ -143,7 +143,7 @@ def test_journal_article():
             },
         },
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_text") is None
+    assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
@@ -216,7 +216,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
-    # assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith("a")
+    # assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert py_.get(inveniordm, "custom_fields.rs:image") == 2
     assert py_.get(inveniordm, "files.enabled") == False
 
@@ -301,7 +301,7 @@ def test_from_json_feed():
     }
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "This [Lingbuzz preprint by\nBaroni](https://ling.auf.net/lingbuzz/006031)"
     )
     assert (
@@ -384,7 +384,7 @@ def test_from_json_feed_affiliations():
         == "Research Group Information Management @ Humboldt-Universität zu Berlin"
     )
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "In the beginning of June 2024, Nature reported on the Japanese Ministry\nof Education's plan to invest 10 billion yen"
     )
     assert (
@@ -415,7 +415,7 @@ def test_from_json_feed_dates():
         },
         {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}},
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
     assert (
@@ -456,7 +456,7 @@ def test_from_json_feed_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "Come and join us at the Università degli Studi di Roma"
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
@@ -493,7 +493,7 @@ def test_from_json_feed_more_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "![](/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg)\n\nSummer Meeting of the Editorial Board"
     )
     assert (
@@ -538,7 +538,7 @@ def test_from_json_feed_references():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "One of the first tasks for DataCite"
     )
     assert (
@@ -591,7 +591,7 @@ def test_from_json_feed_relations():
         "relation_type": {"id": "ispreviousversionof"},
         "scheme": "doi",
     }
-    assert py_.get(inveniordm, "custom_fields.rs:content_text").startswith(
+    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
         "*The New York Times* ushered in the New Year with"
     )
     assert (
