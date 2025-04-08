@@ -27,6 +27,10 @@ from .readers.codemeta_reader import (
     get_codemeta,
     read_codemeta,
 )
+from .readers.openalex_reader import (
+    get_openalex,
+    read_openalex,
+)
 from .readers.csl_reader import read_csl
 from .readers.cff_reader import get_cff, read_cff
 from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
@@ -140,6 +144,8 @@ class Metadata:
                 return get_json_feed_item(pid)
             elif via == "inveniordm":
                 return get_inveniordm(pid)
+            elif via == "openalex":
+                return get_openalex(pid)
         elif string is not None:
             if via == "datacite_xml":
                 return parse_xml(string)
@@ -197,6 +203,8 @@ class Metadata:
             return read_kbase(data)
         elif via == "ris":
             return read_ris(data)
+        elif via == "openalex":
+            return read_openalex(data)
         else:
             raise ValueError("No input format found")
 
