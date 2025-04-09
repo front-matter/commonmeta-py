@@ -169,6 +169,7 @@ def is_personal_name(name):
             "Staff",
             "Lab",
             "Redaktion",
+            "area",
         ]
     ):
         return False
