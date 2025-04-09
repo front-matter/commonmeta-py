@@ -464,6 +464,30 @@ CM_TO_SO_TRANSLATIONS = {
     "Presentation": "PresentationDigitalDocument",
 }
 
+# source: https://api.openalex.org/works?group_by=type
+OA_TO_CM_TRANSLATIONS = {
+    "article": "Article",
+    "book-chapter": "BookChapter",
+    "dataset": "Dataset",
+    "preprint": "Article",
+    "dissertation": "Dissertation",
+    "book": "Book",
+    "review": "Article",
+    "paratext": "Component",
+    "libguides": "InteractiveResource",
+    "letter": "Article",
+    "other": "Other",
+    "reference-entry": "Other",
+    "report": "Report",
+    "editorial": "Document",
+    "peer-review": "PeerReview",
+    "erratum": "Other",
+    "standard": "Standard",
+    "grant": "Grant",
+    "supplementary-materials": "Component",
+    "retraction": "Other"
+}
+
 SO_TO_DC_RELATION_TYPES = {
     "citation": "References",
     "isBasedOn": "IsSupplementedBy",
@@ -525,6 +549,16 @@ DC_TO_CM_CONTAINER_TRANSLATIONS = {
     "Proceedings": "ProceedingsSeries",
     "Repository": "Repository",
     "Series": "Series",
+}
+
+OA_TO_CM_CONTAINER_TRANLATIONS = {
+    "journal": "Journal",
+    "repository": "Repository",
+    "conference": "Proceedings",
+    "ebook platform": "Repository",
+    "book series": "BookSeries",
+    "metadata": "DataRepository",
+    "Other": "Repository"
 }
 
 DATACITE_CONTRIBUTOR_TYPES = {
