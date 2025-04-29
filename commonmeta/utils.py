@@ -190,8 +190,6 @@ def normalize_url(
     if url is None or not isinstance(url, str):
         return None
     url = url.strip()
-    if url.endswith("/"):
-        url = url.strip("/")
     scheme = urlparse(url).scheme
     if not scheme or scheme not in ["http", "https"]:
         return None
@@ -202,55 +200,13 @@ def normalize_url(
     return url
 
 
-# def normalize_url(url: Optional[str], secure=False, fragments=False, lower=False) -> Optional[str]:
-#     """Normalize URL"""
-#     if url is None or not isinstance(url, str):
-#         return None
-#     try:
-#         f = furl(url.strip())
-#         f.path.normalize()
-
-#         # only allow http and https schemes
-#         if f.scheme not in ["http", "https"]:
-#             return None
-#         if secure and f.scheme == "http":
-#             f.set(scheme="https")
-
-#         # remove index.html
-#         if f.path.segments and f.path.segments[-1] in ["index.html"]:
-#             f.path.segments.pop(-1)
-
-#         # remove fragments
-#         if fragments:
-#             f.remove(fragment=True)
-
-#         # remove specific query parameters
-#         f.remove(
-#             [
-#                 "origin",
-#                 "ref",
-#                 "referrer",
-#                 "source",
-#                 "utm_content",
-#                 "utm_medium",
-#                 "utm_campaign",
-#                 "utm_source",
-#             ]
-#         )
-
-#         if lower:
-#             return f.url.lower().strip("/")
-#         return f.url.strip("/")
-#     except ValueError:
-#         print(f"Error normalizing url {url}")
-#         return None
-
-
 def normalize_cc_url(url: Optional[str]):
     """Normalize Creative Commons URL"""
     if url is None or not isinstance(url, str):
         return None
     url = normalize_url(url, secure=True)
+    if url and url.endswith("/"):
+        url = url.strip("/")
     return NORMALIZED_LICENSES.get(url, url)
 
 
@@ -1129,7 +1085,9 @@ def replace_curie(string: Optional[str]) -> Optional[str]:
     if string is None:
         return None
     match = re.sub(
-        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", r'https://doi.org/\2', string
+        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))",
+        r"https://doi.org/\2",
+        string,
     )
     if match is None:
         return None
