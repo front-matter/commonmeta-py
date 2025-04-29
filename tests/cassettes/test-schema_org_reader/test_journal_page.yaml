@@ -11,7 +11,7 @@ interactions:
       host:
       - app.pan.pl
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://app.pan.pl/article/item/app011052023.html
   response:
@@ -138,19 +138,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:14:19 GMT
+      - Tue, 29 Apr 2025 18:44:29 GMT
       Expires:
       - Wed, 28 Jan 1976 11:52:00 GMT
       Keep-Alive:
       - timeout=5, max=100
       Last-Modified:
-      - Tue, 21 Jan 2025 09:14:19 GMT
+      - Tue, 29 Apr 2025 18:44:29 GMT
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=3v0u1bb3ma60t8vhl0rnia1g61; path=/
+      - PHPSESSID=38ficjj26mal325k68hgs836j0; path=/
       Transfer-Encoding:
       - chunked
     status:
@@ -168,7 +168,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.4202
   response:
@@ -178,7 +178,7 @@ interactions:
         xPvtwjYAAAA=
     headers:
       CF-RAY:
-      - 90563180a9d4c7b0-DUS
+      - 9380f3736faccb11-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -186,11 +186,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:14:19 GMT
+      - Tue, 29 Apr 2025 18:44:29 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=DQzSTxQWr1P7CpiezNPO6S%2Fio9BPXC%2FrZc3Bc4evr3%2Fh2pugErM%2F%2Bg%2FmL8V1sXPZNXPqchFWPJSAnpRpWarNKvOAupmQ81ptIzH5myel%2BYO9G5AYvryvusIcqzvZZt4acUkxuWc%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=9Uua1vt7gEsrA2zMGNyKOc49QVaLL4RBTVKaYIbUIv072vAFXXb%2BkrasSnifyYvYSUWDvs0WJbc8pcfb3bVOtOtSwE2tD9n23nTjvDRqL8yYBzbPgm8hSfAvi1tgig08M6FMHDM%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -204,7 +204,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=10306&min_rtt=9176&rtt_var=4248&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2830&recv_bytes=764&delivery_rate=440714&cwnd=252&unsent_bytes=0&cid=bfd10b72a60d55f3&ts=107&x=0"
+      - cfL4;desc="?proto=TCP&rtt=11309&min_rtt=10164&rtt_var=4629&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=764&delivery_rate=397874&cwnd=252&unsent_bytes=0&cid=9204719a27c512a5&ts=135&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -223,7 +223,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.crossref.org/works/10.4202/app.01105.2023
   response:
@@ -261,7 +261,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Tue, 21 Jan 2025 09:14:20 GMT
+      - Tue, 29 Apr 2025 18:44:29 GMT
       permissions-policy:
       - interest-cohort=()
       server:

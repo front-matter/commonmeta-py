@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Citeproc writer tests"""
+
 import orjson as json
 import pytest
 from os import path
@@ -171,7 +172,7 @@ def test_with_pages():
     csl = json.loads(subject.write(to="csl"))
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1155/2012/291294"
-    assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294/"
     assert (
         csl.get("title")
         == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"

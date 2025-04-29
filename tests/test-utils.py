@@ -258,12 +258,12 @@ def test_normalize_cc_url():
     )
     assert (
         "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
-        == normalize_cc_url("https://creativecommons.org/publicdomain/zero/1.0")
+        == normalize_cc_url("https://creativecommons.org/publicdomain/zero/1.0/")
     )
     # http scheme
     assert (
         "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
-        == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0")
+        == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0/")
     )
     assert None is normalize_cc_url(None)
     assert None is normalize_cc_url(
@@ -847,7 +847,9 @@ system. Journal of Vertebrate Paleontology 36(4):e1111898. doi:10.1080/02724634.
     assert """Melstrom, Keegan M., Michael D. D’Emic, Daniel Chure and Jeffrey A.
 Wilson. 2016. A juvenile sauropod dinosaur from the Late Jurassic of
 Utah, USA, presents further evidence of an avian style air-sac
-system. Journal of Vertebrate Paleontology 36(4):e1111898. https://doi.org/10.1080/02724634.2016.1111898""" == replace_curie(string)
+system. Journal of Vertebrate Paleontology 36(4):e1111898. https://doi.org/10.1080/02724634.2016.1111898""" == replace_curie(
+        string
+    )
 
 
 def test_extract_urls():

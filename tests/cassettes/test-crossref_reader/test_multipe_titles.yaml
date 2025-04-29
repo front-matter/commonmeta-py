@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.1007
   response:
@@ -21,7 +21,7 @@ interactions:
         xkrz2jYAAAA=
     headers:
       CF-RAY:
-      - 90562fbf3ccbf95e-DUS
+      - 9380558988f5f809-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:13:07 GMT
+      - Tue, 29 Apr 2025 16:56:41 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=vKLda7XhQZXPib3SzhMGAlv0IU%2F9M2mOzsv7LwcOnU1U0j4XIX%2F2UQ9HEj2mot%2FaNd8SA%2B79PQu8yhXzKSU%2Fc0W78z0ub8xtq4g3RujcrM%2F8SBjLYgw5msGsc8kA1hlvVIS93po%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=UaU1afXGWHgoIE68IIUhZuMhZuGahViPjZZTXl%2BcJ7vzqJMIt6wd609GbYjhX5gmzjHwgbGQbqVNNTuzW7XaURDs%2Bg1w8sSpYewivSZMjZYC%2BjuI2dxeh6viFReNhJFIsuLlubU%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=15474&min_rtt=8124&rtt_var=8332&sent=5&recv=7&lost=0&retrans=0&sent_bytes=2829&recv_bytes=764&delivery_rate=431958&cwnd=252&unsent_bytes=0&cid=a3e3d8829157f149&ts=50&x=0"
+      - cfL4;desc="?proto=TCP&rtt=11581&min_rtt=10564&rtt_var=4688&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2826&recv_bytes=764&delivery_rate=382809&cwnd=252&unsent_bytes=0&cid=583a88081e4500dc&ts=55&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -66,7 +66,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.crossref.org/works/10.1007/s00120-007-1345-2
   response:
@@ -145,7 +145,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Tue, 21 Jan 2025 09:13:08 GMT
+      - Tue, 29 Apr 2025 16:56:41 GMT
       permissions-policy:
       - interest-cohort=()
       server:

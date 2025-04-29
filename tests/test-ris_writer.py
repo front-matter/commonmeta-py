@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """RIS writer tests"""
+
 import pytest
 from os import path
 
@@ -46,7 +47,7 @@ def test_with_pages():
     assert ris[2] == "T2  - Pulmonary Medicine"
     assert ris[3] == "AU  - Thanassi, Wendy"
     assert ris[10] == "DO  - 10.1155/2012/291294"
-    assert ris[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294"
+    assert ris[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294/"
     assert ris[12].startswith("AB  - Objective. To find a statistically significant")
     assert ris[13] == "PY  - 2012"
     assert ris[14] == "PB  - Wiley"

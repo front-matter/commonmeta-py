@@ -41,14 +41,12 @@ def test_blog_posting():
         {
             "id": "https://doi.org/10.5438/0012",
             "key": "ref1",
-            "publicationYear": "2016",
-            "title": "DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0",
+            "unstructured": "Group, D. M. W., Starr, J., Smaele, M. de ., Ashton, J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0</i>. DataCite e.V. https://doi.org/10.5438/0012",
         },
         {
             "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
-            "publicationYear": "2016",
-            "title": "Cool DOI's",
+            "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>. https://doi.org/10.5438/55e5-t5c0",
         },
     ]
     assert subject.container == {
@@ -188,18 +186,25 @@ def test_dataverse():
         "name": "International Genetics Of Ankylosing Spondylitis Consortium (IGAS)",
     }
     assert subject.license is None
-    assert subject.date == {'available': '2017-09-30', 'submitted': '2017-09-30', 'updated': '2017-10-01', "published": "2017"}
+    assert subject.date == {
+        "available": "2017-09-30",
+        "submitted": "2017-09-30",
+        "updated": "2017-10-01",
+        "published": "2017",
+    }
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container is None
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "Summary of association tests for Nature Genetics"
-        )
+        .startswith("Summary of association tests for Nature Genetics")
     )
-    assert subject.subjects == [{'subject': 'Medicine, Health and Life Sciences'}, {'subject': 'Genome-Wide Association Studies'}, {'subject': 'Ankylosing spondylitis'}]
+    assert subject.subjects == [
+        {"subject": "Medicine, Health and Life Sciences"},
+        {"subject": "Genome-Wide Association Studies"},
+        {"subject": "Ankylosing spondylitis"},
+    ]
     assert subject.language is None
     assert subject.version == "1.0"
     assert subject.geo_locations is None
@@ -218,7 +223,7 @@ def test_yet_another_blog_post():
     assert subject.type == "Article"
     assert (
         subject.url
-        == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
+        == "https://johnhawks.net/weblog/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals/"
     )
     assert subject.titles[0] == {
         "title": "Neandertals hunted dangerous prey. How they killed them."
@@ -395,7 +400,7 @@ def test_yet_another_ghost_post():
     assert subject.is_valid
     assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas"
     assert subject.type == "Article"
-    assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas"
+    assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     assert subject.titles[0] == {"title": "Why Surgery Needs I.D.E.A.S."}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -548,15 +553,11 @@ def test_pubmed_central():
     string = "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc2674678"
     subject = Metadata(string)
     # assert subject.is_valid
-    assert (
-        subject.id
-        == "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc2674678"
-    )
+    assert subject.id == "https://www.ncbi.nlm.nih.gov/pmc/articles/pmc2674678"
     assert subject.type == "WebPage"
     assert subject.state == "forbidden"
     assert subject.titles is None
     assert subject.date is None
-
 
 
 @pytest.mark.vcr
@@ -565,13 +566,14 @@ def test_youtube():
     string = "https://www.youtube.com/watch?v=4JsNT1gKe7I"
     subject = Metadata(string)
     # assert subject.is_valid
-    assert (
-        subject.id
-        == "https://www.youtube.com/watch?v=4JsNT1gKe7I"
-    )
+    assert subject.id == "https://www.youtube.com/watch?v=4JsNT1gKe7I"
     assert subject.type == "Audiovisual"
     assert subject.state == "findable"
-    assert subject.titles == [{"title": "Elsevier's David Tempest explains subscription-contract confidentiality clauses"}]
+    assert subject.titles == [
+        {
+            "title": "Elsevier's David Tempest explains subscription-contract confidentiality clauses"
+        }
+    ]
     assert subject.date.get("accessed", None) is not None
 
 
