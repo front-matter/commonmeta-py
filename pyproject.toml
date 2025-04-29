@@ -1,6 +1,6 @@
 [project]
 name = "commonmeta-py"
-version = "0.100"
+version = "0.101"
 description = "Library for conversions to/from the Commonmeta scholarly metadata format"
 authors = [{ name = "Martin Fenner", email = "martin@front-matter.io" }]
 requires-python = ">=3.9,<4.0"
@@ -71,10 +71,7 @@ dev = [
 ]
 
 [tool.uv]
-default-groups = [
-    "docs",
-    "dev",
-]
+default-groups = ["docs", "dev"]
 
 [tool.hatch.build.targets.sdist]
 include = ["commonmeta"]
@@ -88,10 +85,7 @@ build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 88
-select = [
-    "F401",
-    "F403",
-]
+select = ["F401", "F403"]
 
 [tool.tox]
 legacy_tox_ini = """
