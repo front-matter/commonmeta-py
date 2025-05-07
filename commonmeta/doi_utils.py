@@ -2,9 +2,10 @@
 
 import re
 from typing import Optional
+
+import base32_lib as base32
 import httpx
 from furl import furl
-import base32_lib as base32
 
 from .base_utils import compact
 
@@ -76,7 +77,7 @@ def doi_from_url(url: Optional[str]) -> Optional[str]:
                 f.path.segments.clear()
                 f.path.segments.append(uri)
 
-    path = str(f.path)
+    path = str(f.path).replace("%2F", "/")
     match = re.search(
         r"(10\.\d{4,5}/.+)\Z",
         path,
