@@ -183,7 +183,7 @@ def test_rogue_scholar():
 
     assert py_.get(inveniordm, "metadata.dates") == [
         {"date": "2024-10-07T13:41:37", "type": {"id": "issued"}},
-        {"date": "2025-01-09T20:54:02", "type": {"id": "updated"}},
+        {"date": "2025-01-23T17:42:32", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
     assert py_.get(inveniordm, "metadata.version") is None
@@ -208,7 +208,7 @@ def test_rogue_scholar():
             "scheme": "guid",
         },
         {
-            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities",
+            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities/",
             "scheme": "url",
         },
     ]
@@ -234,11 +234,16 @@ def test_rogue_scholar_organizational_author():
     assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(py_.get(inveniordm, "metadata.creators")) == 1
     assert py_.get(inveniordm, "metadata.creators.0") == {
-        "person_or_org": {"name": "BSPS Staff", "type": "organizational"},
+        "person_or_org": {
+            "family_name": "Habgood-Coote",
+            "given_name": "Joshua",
+            "name": "Habgood-Coote, Joshua",
+            "type": "personal",
+        },
     }
     assert (
         py_.get(inveniordm, "metadata.title")
-        == "Neil Levy, Philosophy, Bullshit, and Peer Review // Reviewed by Joshua Habgood-Coote"
+        == "Neil Levy, Philosophy, Bullshit, and Peer Review"
     )
     assert py_.get(inveniordm, "metadata.publisher") == "Front Matter"
     assert py_.get(inveniordm, "metadata.publication_date") == "2025-02-11"
@@ -281,7 +286,7 @@ def test_from_json_feed():
     ]
     assert py_.get(inveniordm, "metadata.version") is None
     assert py_.get(inveniordm, "metadata.description").startswith(
-        "This Lingbuzz preprint by Baroni is a nice read"
+        "A preprint claims that “ideas from theoretical linguistics have played no role"
     )
     assert py_.get(inveniordm, "metadata.subjects") == [
         {
@@ -293,21 +298,18 @@ def test_from_json_feed():
     ]
     assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     references = py_.get(inveniordm, "metadata.references")
-    assert len(references) == 7
+    assert len(references) == 6
     assert references[0] == {
-        "reference": "Unknown title",
+        "reference": "Baroni, M. (2021, June). On the proper role of linguistically-oriented deep net analysis in linguistic theorizing. LingBuzz. Retrieved from",
         "identifier": "https://ling.auf.net/lingbuzz/006031",
         "scheme": "url",
     }
     assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "This [Lingbuzz preprint by\nBaroni](https://ling.auf.net/lingbuzz/006031)"
+        '\n<p>This <a rel="noreferrer noopener" href="https://ling.auf.net/lingbuzz/006031"'
     )
-    assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
-        == "https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png"
-    )
+    assert py_.get(inveniordm, "custom_fields.rs:image") is None
     assert py_.get(inveniordm, "files.enabled") == False
 
 
@@ -375,7 +377,7 @@ def test_from_json_feed_affiliations():
     references = py_.get(inveniordm, "metadata.references")
     assert len(references) == 4
     assert references[0] == {
-        "reference": "Unknown title",
+        "reference": "Häder, M. (2014). <i>Delphi-Befragungen</i>. Springer Fachmedien Wiesbaden.",
         "identifier": "10.1007/978-3-658-01928-0",
         "scheme": "doi",
     }
@@ -383,9 +385,9 @@ def test_from_json_feed_affiliations():
         py_.get(inveniordm, "custom_fields.journal:journal.title")
         == "Research Group Information Management @ Humboldt-Universität zu Berlin"
     )
-    assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
+    assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2944-6848"
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "In the beginning of June 2024, Nature reported on the Japanese Ministry\nof Education's plan to invest 10 billion yen"
+        "<p>In the beginning of June 2024, Nature reported on the Japanese\nMinistry of Education’s plan to invest 10 billion"
     )
     assert (
         py_.get(inveniordm, "custom_fields.rs:image")
@@ -416,11 +418,11 @@ def test_from_json_feed_dates():
         {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}},
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "I was lucky enough to have Phil Mannion as one of the peer-reviewers"
+        "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
     assert (
         py_.get(inveniordm, "custom_fields.rs:image")
-        == "https://svpow.files.wordpress.com/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
+        == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     )
 
 
@@ -438,16 +440,16 @@ def test_from_json_feed_funding():
     assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
     assert py_.get(inveniordm, "metadata.funding") == [
         {
-            'award': {
-                'identifiers': [
+            "award": {
+                "identifiers": [
                     {
-                        'identifier': '10.3030/654039',
-                        'scheme': 'doi',
+                        "identifier": "10.3030/654039",
+                        "scheme": "doi",
                     },
                 ],
-                'number': '654039',
-                'title': {
-                    'en': 'THOR – Technical and Human Infrastructure for Open Research',
+                "number": "654039",
+                "title": {
+                    "en": "THOR – Technical and Human Infrastructure for Open Research",
                 },
             },
             "funder": {
@@ -457,7 +459,7 @@ def test_from_json_feed_funding():
         }
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "Come and join us at the Università degli Studi di Roma"
+        "<p>Come and join us at the Università degli Studi di Roma"
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
 
@@ -479,14 +481,14 @@ def test_from_json_feed_more_funding():
     assert py_.get(inveniordm, "metadata.funding") == [
         {
             "award": {
-                'identifiers': [
+                "identifiers": [
                     {
-                        'identifier': 'https://gepris.dfg.de/gepris/projekt/422587133',
-                        'scheme': 'url',
+                        "identifier": "https://gepris.dfg.de/gepris/projekt/422587133",
+                        "scheme": "url",
                     },
                 ],
-                'number': '422587133',
-            },           
+                "number": "422587133",
+            },
             "funder": {
                 "id": "018mejw64",
                 "name": "Deutsche Forschungsgemeinschaft",
@@ -494,12 +496,9 @@ def test_from_json_feed_more_funding():
         }
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "![](/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg)\n\nSummer Meeting of the Editorial Board"
+        '<img alt="" src="https://coref.project.re3data.org/images/7/b/6/1/b/'
     )
-    assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
-        == "https://coref.project.re3data.org/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg"
-    )
+    assert py_.get(inveniordm, "custom_fields.rs:image") is None
 
 
 @pytest.mark.vcr
@@ -539,7 +538,7 @@ def test_from_json_feed_references():
         }
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "One of the first tasks for DataCite"
+        "<p>One of the first tasks for DataCite"
     )
     assert (
         py_.get(inveniordm, "custom_fields.rs:image")
@@ -567,7 +566,7 @@ def test_from_json_feed_unstructured_references():
     assert len(references) == 7
     assert references[0] == {
         "identifier": "10.1128/iai.05661-11",
-        "reference": "Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. Infection and Immunity, 79(10), 3855–3859.",
+        "reference": "Fang, F. C., Casadevall, A., &amp; Morrison, R. P. (2011). Retracted Science and the Retraction Index. <i>Infection and Immunity</i>, <i>79</i>(10), 3855–3859.",
         "scheme": "doi",
     }
 
@@ -592,7 +591,7 @@ def test_from_json_feed_relations():
         "scheme": "doi",
     }
     assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
-        "*The New York Times* ushered in the New Year with"
+        "<p><em>The New York Times</em> ushered in the New Year with"
     )
     assert (
         py_.get(inveniordm, "custom_fields.rs:image")
@@ -619,7 +618,7 @@ def test_from_json_feed_broken_reference():
     assert len(references) == 6
     assert references[0] == {
         "identifier": "10.4269/ajtmh.23-0215",
-        "reference": "Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data (2024).",
+        "reference": "Charniga, K., McCollum, A. M., Hughes, C. M., Monroe, B., Kabamba, J., Lushima, R. S., Likafi, T., Nguete, B., Pukuta, E., Muyamuna, E., Muyembe Tamfum, J.-J., Karhemere, S., Kaba, D., &amp; Nakazawa, Y. (2024). Updating Reproduction Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance Data. <i>The American Journal of Tropical Medicine and Hygiene</i>, <i>110</i>(3), 561–568.",
         "scheme": "doi",
     }
 

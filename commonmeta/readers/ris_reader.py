@@ -1,4 +1,5 @@
 """RIS reader for commonmeta-py"""
+
 from typing import Optional
 
 from ..utils import compact, normalize_url, wrap

@@ -21,7 +21,7 @@ def test_dataset():
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "Dryad"}
-    assert subject.url == "https://datadryad.org/stash/dataset/doi:10.5061/dryad.8515"
+    assert subject.url == "https://datadryad.org/dataset/doi:10.5061/dryad.8515"
     assert subject.titles[0] == {
         "title": "Data from: A new malaria agent in African hominids."
     }
@@ -72,7 +72,7 @@ def test_blog_posting():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
-    assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022"
+    assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022/"
     assert subject.titles[0] == {
         "language": "en",
         "title": "DataCite Member Survey 2022",
@@ -599,7 +599,7 @@ def test_datacite_json():
     print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
-    assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food"
+    assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food/"
     assert subject.type == "BlogPost"
     assert subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert len(subject.contributors) == 1

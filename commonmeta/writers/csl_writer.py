@@ -1,4 +1,5 @@
 """CSL-JSON writer for commonmeta-py"""
+
 import orjson as json
 from typing import Optional
 

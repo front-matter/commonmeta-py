@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.5281
   response:
@@ -21,7 +21,7 @@ interactions:
         whSuNzYAAAA=
     headers:
       CF-RAY:
-      - 905630fa5bbccae9-DUS
+      - 93c0d7462a1bf805-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:13:58 GMT
+      - Wed, 07 May 2025 12:50:03 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=dhXvA9Q2SlVjhRAWT5IFVBxI5RFbN%2FlTG7oAAKtEeg0Es54zS2%2FsS4fNQle72AECsbaVm4bquuAA5j2%2Be5Wzr9v9vSU7c1UB2%2F42LYvAXSnF7oDLbDT7l%2FeFEyEKOqj99dkjprY%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=zeQ51KDW9O7zBaPwnPdit6kSpFl71XBW3rYOJKLXGj5Y3WGwejf1x5jB2s9rzn9B7bVMJl4%2BgZCaVPQ7JnX0W3ZT0vIiuTp7f9%2FdXu7Kr%2FgQYkN9MSphcEJmq11zZMlIsFsiQIs%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=10077&min_rtt=9271&rtt_var=4053&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2830&recv_bytes=764&delivery_rate=436198&cwnd=252&unsent_bytes=0&cid=4df15d6e0f75d0b3&ts=55&x=0"
+      - cfL4;desc="?proto=TCP&rtt=10372&min_rtt=9531&rtt_var=4175&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=764&delivery_rate=424299&cwnd=252&unsent_bytes=0&cid=4b2df94f4928bb5d&ts=67&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -66,13 +66,13 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.datacite.org/dois/10.5281/zenodo.48440?include=media,client
   response:
     body:
       string: !!binary |
-        H4sIAFZlj2cAA6RaW3fiuLL+Kz7ZDzOzOiHGQDpkrXkIhGuDQ7jjmVnTsqzYAt/GlgHTq//7rpJt
+        H4sIAPxWG2gAA6RaW3fiuLL+Kz7ZDzOzOiHGQDpkrXkIhGuDQ7jjmVnTsqzYAt/GlgHTq//7rpJt
         AiTdZ+9zHnoFSaVSqS5fyVX97coiglw9fLvi1tXDVVkt1bT78u2B+YEVlKr31ap6dX0l0pDBqhXw
         GEZEiIibiWAx7oPJH28MI/bK92/rMBUnr9nUBSm3mC/4K2cRsP3jLzjGFSzyiWC9yxUaMSICOfp2
         5RMPZeuQ6ECulS8RjwUnPjDEhWkm+Ai2Bj5xYdbmW+br2Z4T4lficTfVT3jhRUFSlxPBAz87GFle
@@ -161,13 +161,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 21 Jan 2025 09:13:58 GMT
+      - Wed, 07 May 2025 12:50:04 GMT
       ETag:
-      - W/"852ba246723f8e41e2bacb69bd54187f"
+      - W/"9c85f76df84c26d9fea8ff1865189ef1"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.0.24
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.26
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -183,11 +183,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.0.24
+      - Phusion Passenger(R) 6.0.26
       X-Request-Id:
-      - 9e7b2a5d-c9f9-458b-9168-362e1d0d5105
+      - 974f34f6-ec10-450a-a577-9106ce1bface
       X-Runtime:
-      - '0.034992'
+      - '0.023938'
       X-XSS-Protection:
       - '0'
     status:

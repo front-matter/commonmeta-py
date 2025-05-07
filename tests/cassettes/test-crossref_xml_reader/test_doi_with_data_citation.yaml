@@ -11,7 +11,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.crossref.org/works/10.7554/elife.01567/transform/application/vnd.crossref.unixsd+xml
   response:
@@ -167,6 +167,12 @@ interactions:
         dI+OnOtgh8QXx9fdn7Vfnj1yHGzl1/W34MrrkHZoKyWK35e+t49qLj/daQaKG7jEL74+6XzMRJI/
         P3/SGSvf/GF/gPI6C3BcZZv5d/8H18nJkV+mAAA=
     headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '8465'
+      Date:
+      - Wed, 07 May 2025 12:51:29 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -174,14 +180,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      connection:
-      - close
       content-encoding:
       - gzip
-      content-length:
-      - '8465'
-      date:
-      - Tue, 21 Jan 2025 09:13:28 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -190,10 +190,6 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
       x-ratelimit-interval:
       - 1s
       x-ratelimit-limit:
@@ -213,7 +209,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.7554
   response:
@@ -223,7 +219,7 @@ interactions:
         4VlVnTYAAAA=
     headers:
       CF-RAY:
-      - 9056304109787a55-DUS
+      - 93c0d9603fafc7fd-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -231,11 +227,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:13:28 GMT
+      - Wed, 07 May 2025 12:51:30 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=T%2BVfj8LuDfueEiYlzMMOUFW6kHeHK1SiRyZ%2B4DxI60BNXPTNLZGCaxMO2DJLN7k7Sk%2BaotIiDD%2F2X9Z9CS7pJ2CAkiXTYz00WeYqQkzwGATbfhk3R9uLVWqeIv7p%2FaZV%2FglVYlQ%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=VwIVjhLw%2FAcWotUfNLYxA6TEbE3bVWv%2FYdevMN971IbOMUeazykq0wUa4jfHL7F1koXdDJ3N3jQU9sOzuckJcXlYc8CPGMsUV0iKNQE62Adh3QoDSKiU7C6MTWc1MnEQvRs78xs%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -249,7 +245,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=12726&min_rtt=12423&rtt_var=5264&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2830&recv_bytes=764&delivery_rate=272378&cwnd=245&unsent_bytes=0&cid=ae380da88df737d8&ts=62&x=0"
+      - cfL4;desc="?proto=TCP&rtt=15592&min_rtt=12740&rtt_var=6815&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=764&delivery_rate=317425&cwnd=252&unsent_bytes=0&cid=d6fbff3699665e8b&ts=67&x=0"
       vary:
       - Origin
       - accept-encoding

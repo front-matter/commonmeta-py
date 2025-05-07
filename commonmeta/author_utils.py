@@ -1,4 +1,5 @@
 """Author utils module for commonmeta-py"""
+
 import re
 from typing import List
 from nameparser import HumanName
@@ -71,7 +72,11 @@ def get_one_author(author, **kwargs):
         or next(
             (
                 format_name_identifier(i)
-                for i in wrap(author.get("nameIdentifiers", None or author.get("identifiers", None)))
+                for i in wrap(
+                    author.get(
+                        "nameIdentifiers", None or author.get("identifiers", None)
+                    )
+                )
             ),
             None,
         )
@@ -169,6 +174,8 @@ def is_personal_name(name):
             "Staff",
             "Lab",
             "Redaktion",
+            "Group",
+            "area",
         ]
     ):
         return False

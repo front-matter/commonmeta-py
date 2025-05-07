@@ -223,7 +223,7 @@ def test_journal_article_original_language():
     assert subject.type == "JournalArticle"
     assert (
         subject.url
-        == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
+        == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
     )
     assert subject.titles[0].get("title") == "自律神経・循環器応答"
     assert subject.contributors == None
@@ -571,7 +571,7 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
     assert subject.titles[0] == {
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }

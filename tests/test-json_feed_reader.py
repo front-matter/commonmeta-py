@@ -56,10 +56,7 @@ def test_wordpress_with_references():
     }
     assert len(subject.references) > 1
     assert subject.references[0] == {
-        "key": "ref1",
-        "publicationYear": "2014",
-        "id": "https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf",
-        "title": "None",
+        "unstructured": "Bilbey, S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid sauropod dinosaur from the lower Morrison Formation of northeastern Utah. Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A.",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"}
@@ -100,12 +97,9 @@ def test_wordpress_with_references():
     ]
     assert subject.language == "en"
     assert subject.content.startswith(
-        '::: {#attachment_21038 .wp-caption .aligncenter shortcode="caption" style="width: 1034px"}'
+        '\r\n<div data-shortcode="caption" id="attachment_21038"'
     )
-    assert (
-        subject.image
-        == "https://svpow.files.wordpress.com/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480"
-    )
+    assert subject.image is None
     assert subject.version is None
 
 
@@ -117,7 +111,9 @@ def test_post_with_relationships():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert (
+        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+    )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -143,9 +139,7 @@ def test_post_with_relationships():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.5438/s6d3-k860",
-        "key": "ref1",
-        "publicationYear": "2018",
-        "title": "Are your data being used? Event Data has the answer!",
+        "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). <i>Are your data being used? Event Data has the answer!</i> (1.0). DataCite. https://doi.org/10.5438/s6d3-k860",
     }
     assert subject.funding_references == [
         {
@@ -182,7 +176,7 @@ def test_post_with_relationships():
         "platform": "Ghost",
     }
     assert subject.content.startswith(
-        "Persistent identifiers (PIDs) are not only important"
+        "<p>Persistent identifiers (PIDs) are not only important"
     )
     assert (
         subject.image
@@ -198,7 +192,9 @@ def test_post_with_relationships_as_doi():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert (
+        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+    )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -294,12 +290,13 @@ def test_post_with_funding():
         "name": "Front Matter",
     }
     assert subject.references == [
-        {"id": "https://doi.org/10.5281/zenodo.8284206", 
-         'unstructured': 'Plankytė, V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding '
-           'principles for implementing persistent identification and metadata '
-           'features on research tools to boost interoperability of research data '
-           'and support sample management workflows</i>. Zenodo. '
-           'https://doi.org/10.5281/zenodo.8284206'
+        {
+            "id": "https://doi.org/10.5281/zenodo.8284206",
+            "unstructured": "Plankytė, V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding "
+            "principles for implementing persistent identification and metadata "
+            "features on research tools to boost interoperability of research data "
+            "and support sample management workflows</i>. Zenodo. "
+            "https://doi.org/10.5281/zenodo.8284206",
         }
     ]
     assert subject.relations is None
@@ -330,7 +327,7 @@ def test_post_with_funding():
         "identifierType": "URL",
     }
     assert subject.content.startswith(
-        "## Introduction\n\nA recent [blog\npost](https://metadatagamechangers.com/blog/2023/9/20/informate-metadata-game-changers-and-chorus-collaborate-to-make-the-invisible-visible)\ndescribed a new partnership between Metadata Game Changers and\n[CHORUS](https://www.chorusaccess.org/)"
+        '<h2 id="introduction">Introduction</h2><p>A recent'
     )
     assert (
         subject.image
@@ -446,12 +443,13 @@ def test_post_with_funding_ror():
         "platform": "Squarespace",
     }
     assert subject.content.startswith(
-        ':::::::::::::::::::::::::::::::::::::::::::::: {#item-62268c301674dc074d971710 .sqs-layout .sqs-grid-12 .columns-12 layout-label="Post Body" data-type="item" updated-on="1646694120644"}'
+        '<div id="item-62268c301674dc074d971710"\nclass="sqs-layout sqs-grid-12 columns-12"'
     )
     assert (
         subject.image
         == "https://images.squarespace-cdn.com/content/v1/52ffa419e4b05b374032e6d9/1646696325913-X5EGMEB3U4DHZBM0IQ1X/figure1.png"
     )
+
 
 @pytest.mark.vcr
 def test_post_with_even_more_funding():
@@ -484,7 +482,7 @@ def test_post_with_even_more_funding():
             "funderIdentifierType": "ROR",
             "awardUri": "https://cordis.europa.eu/project/id/604134",
             "awardNumber": "604134",
-            "awardTitle": "eNanoMapper",
+            "awardTitle": "eNanoMapper - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment",
         }
     ]
     assert subject.container == {
@@ -571,9 +569,7 @@ def test_ghost_with_institutional_author():
         "platform": "Ghost",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("After a couple of years")
+        subject.descriptions[0].get("description").startswith("After a couple of years")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
@@ -586,7 +582,7 @@ def test_ghost_with_institutional_author():
     ]
     assert subject.language == "en"
     assert subject.content.startswith(
-        "![Nature features OA.Report"
+        '<p><img\nsrc="https://blog.oa.works/content/images/2023/01/nature-website-v2.png"'
     )
     assert (
         subject.image
@@ -634,9 +630,7 @@ def test_ghost_with_affiliations():
     assert len(subject.references) == 1
     assert subject.references[0] == {
         "id": "https://doi.org/10.1371/journal.pone.0063184",
-        "title": "Database Citation in Full Text Biomedical Articles",
-        "publicationYear": "2013",
-        "key": "ref1",
+        "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R., &amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184. https://doi.org/10.1371/journal.pone.0063184",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
@@ -711,7 +705,7 @@ def test_ghost_with_personal_name_parsing():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.1001/jamanetworkopen.2021.42527",
-        "key": "ref1",
+        "unstructured": "Ahmed, A., Chouairi, F., &amp; Li, X. (2022). Analysis of Reported Voting Behaviors of US Physicians, 2000-2020. <i>JAMA Network Open</i>, <i>5</i>(1), e2142527. https://doi.org/10.1001/jamanetworkopen.2021.42527",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
@@ -748,7 +742,9 @@ def test_ghost_with_personal_name_parsing():
         {"subject": "Preprint"},
     ]
     assert subject.language == "en"
-    assert subject.content.startswith("As residents within the healthcare profession,")
+    assert subject.content.startswith(
+        "<p>As residents within the healthcare profession,"
+    )
     assert (
         subject.image
         == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
@@ -786,7 +782,7 @@ def test_medium_post_with_multiple_authors():
         "type": "Person",
     }
     assert subject.content.startswith(
-        "**Tools and Platform for Integration of Knowledge Graph"
+        "<p><strong>Tools and Platform for Integration of Knowledge Graph"
     )
     assert (
         subject.image
@@ -826,11 +822,14 @@ def test_post_with_peer_reviewed_version():
             "type": "IsPreprintOf",
         },
     ]
-    assert subject.content.startswith("*The New York Times* ushered in the New Year")
+    assert subject.content.startswith(
+        "<p><em>The New York Times</em> ushered in the New Year"
+    )
     assert (
         subject.image
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
+
 
 @pytest.mark.vcr
 def test_post_with_peer_review():
@@ -840,18 +839,19 @@ def test_post_with_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/r8zwg-62003"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {"title": "Drinking from the Firehose? Write More and Publish Less"}
+    assert subject.titles[0] == {
+        "title": "Drinking from the Firehose? Write More and Publish Less"
+    }
     assert subject.relations == [
         {
             "id": "https://metaror.org/kotahi/articles/40",
             "type": "HasReview",
         },
     ]
-    assert subject.content.startswith("<figure class=\"kg-card kg-image-card kg-card-hascaption\">")
-    assert (
-        subject.image
-        == "https://upstream.force11.org/content/images/2024/08/1000008255.jpg"
+    assert subject.content.startswith(
+        '<figure class="kg-card kg-image-card kg-card-hascaption">'
     )
+    assert subject.image is None
 
 
 @pytest.mark.vcr
@@ -865,11 +865,11 @@ def test_funded_project():
     assert subject.titles[0] == {"title": "THOR’s last hurrah"}
     assert subject.funding_references == [
         {
-           'awardNumber': '654039',
-           'awardTitle': 'THOR – Technical and Human Infrastructure for Open Research',
-           'awardUri': 'https://doi.org/10.3030/654039',
-           'funderIdentifier': 'https://ror.org/019w4f821',
-           'funderName': 'European Union',
+            "awardNumber": "654039",
+            "awardTitle": "THOR – Technical and Human Infrastructure for Open Research",
+            "awardUri": "https://doi.org/10.3030/654039",
+            "funderIdentifier": "https://ror.org/019w4f821",
+            "funderName": "European Union",
         },
     ]
 
@@ -883,11 +883,8 @@ def test_broken_reference():
     assert subject.type == "BlogPost"
     assert len(subject.references) == 6
     assert subject.references[3] == {
-        "key": "ref4",
         "id": "https://doi.org/10.1016/s2214-109x(23)00198-5",
-        "publicationYear": "2023",
-        "title": "Description of the first global outbreak of mpox: an analysis of global "
-        "surveillance data",
+        "unstructured": "Laurenson-Schafer, H., Sklenovská, N., Hoxha, A., Kerr, S. M., Ndumbi, P., Fitzner, J., Almiron, M., de Sousa, L. A., Briand, S., Cenciarelli, O., Colombe, S., Doherty, M., Fall, I. S., García-Calavaro, C., Haussig, J. M., Kato, M., Mahamud, A. R., Morgan, O. W., Nabeth, P., … Biaukula, V. (2023). Description of the first global outbreak of mpox: an analysis of global surveillance data. <i>The Lancet Global Health</i>, <i>11</i>(7), e1012–e1023. https://doi.org/10.1016/s2214-109x(23)00198-5",
     }
 
 

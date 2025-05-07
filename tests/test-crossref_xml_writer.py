@@ -1,10 +1,11 @@
 """Test crossref_xml_writer module for commonmeta-py"""
 
-import pytest
-from os import path
-import pydash as py_
 import re
 from collections import OrderedDict
+from os import path
+
+import pydash as py_
+import pytest
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import parse_xml
@@ -546,11 +547,18 @@ def test_json_feed_item_with_organizational_author():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "contributors.organization") ==  [{'#text': 'Liberate Science', 'contributor_role': 'author', 'sequence': 'first'}]
-    assert py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    assert py_.get(crossref_xml, "contributors.organization") == [
+        {"#text": "Liberate Science", "contributor_role": "author", "sequence": "first"}
+    ]
+    assert (
+        py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    )
     assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {'#text': 'https://libscie.org/ku-leuven-supports-researchequals', 'mime_type': 'text/html'}
-    assert crossref_xml.get("group_title") == 'Social science'
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "#text": "https://libscie.org/ku-leuven-supports-researchequals",
+        "mime_type": "text/html",
+    }
+    assert crossref_xml.get("group_title") == "Social science"
 
 
 @pytest.mark.vcr
@@ -562,7 +570,7 @@ def test_json_feed_item_with_archived_content():
     assert subject.id == "https://doi.org/10.59350/faeph-x4x84"
     assert (
         subject.url
-        == "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
+        == "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
@@ -589,7 +597,7 @@ def test_json_feed_item_with_archived_content():
     assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
     assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
-        "#text": "https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
+        "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
     assert crossref_xml.get("group_title") == "Computer and information sciences"
 
@@ -630,13 +638,11 @@ def test_json_feed_item_with_relations_and_funding():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1"
-    # assert len(subject.references) == 3
-    # assert subject.references[0] == {
-    #     "key": "ref1",
-    #     "doi": "https://doi.org/10.5281/zenodo.30799",
-    #     "title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
-    #     "publicationYear": "2015",
-    # }
+    assert len(subject.references) == 3
+    assert subject.references[0] == {
+        "id": "https://doi.org/10.14454/3bpw-w381",
+        "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
+    }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
@@ -652,13 +658,12 @@ def test_json_feed_item_with_relations_and_funding():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    # assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
-    # assert py_.get(crossref_xml, "citation_list.citation.0") == {
-    #     "key": "ref1",
-    #     "cYear": "2019",
-    #     "article_title": "Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)",
-    #     "doi": "10.14454/3bpw-w381",
-    # }
+    assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
+    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+        "key": "ref1",
+        "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
+        "doi": "10.14454/3bpw-w381",
+    }
     assert py_.get(crossref_xml, "program.0") == {
         "name": "fundref",
         "xmlns": {"": "http://www.crossref.org/fundref.xsd"},
@@ -739,6 +744,7 @@ def test_json_feed_item_with_anonymous_author():
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
     assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0002-1102-5284",
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Mathias",

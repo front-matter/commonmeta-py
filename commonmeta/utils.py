@@ -1,22 +1,22 @@
 """Utils module for commonmeta-py"""
 
 import os
-import orjson as json
 import re
 import time
 from typing import Optional
 from urllib.parse import urlparse
-import yaml
-from furl import furl
+
 import bibtexparser
-from bs4 import BeautifulSoup
-from pydash import py_
+import orjson as json
 import pycountry
+import yaml
+from bs4 import BeautifulSoup
+from furl import furl
+from pydash import py_
 
-from .base_utils import wrap, compact, parse_attributes
-from .doi_utils import normalize_doi, doi_from_url, get_doi_ra, validate_doi, doi_as_url
+from .base_utils import compact, parse_attributes, wrap
 from .constants import DATACITE_CONTRIBUTOR_TYPES
-
+from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
 
 NORMALIZED_LICENSES = {
     "https://creativecommons.org/licenses/by/1.0": "https://creativecommons.org/licenses/by/1.0/legalcode",
@@ -144,17 +144,13 @@ def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
         return doi
 
     # check for valid HTTP uri and ensure https
-    uri = urlparse(pid)
-    if not uri.netloc or uri.scheme not in ["http", "https"]:
+    f = furl(pid)
+    if not f.host or f.scheme not in ["http", "https"]:
         return None
-    if uri.scheme == "http":
-        pid = pid.replace(HTTP_SCHEME, HTTPS_SCHEME)
+    if f.scheme == "http":
+        f.scheme = "https"
 
-    # remove trailing slash
-    if pid.endswith("/"):
-        pid = pid.strip("/")
-
-    return pid
+    return f.url
 
 
 def normalize_ids(ids: list, relation_type=None) -> list:
@@ -190,8 +186,6 @@ def normalize_url(
     if url is None or not isinstance(url, str):
         return None
     url = url.strip()
-    if url.endswith("/"):
-        url = url.strip("/")
     scheme = urlparse(url).scheme
     if not scheme or scheme not in ["http", "https"]:
         return None
@@ -202,55 +196,13 @@ def normalize_url(
     return url
 
 
-# def normalize_url(url: Optional[str], secure=False, fragments=False, lower=False) -> Optional[str]:
-#     """Normalize URL"""
-#     if url is None or not isinstance(url, str):
-#         return None
-#     try:
-#         f = furl(url.strip())
-#         f.path.normalize()
-
-#         # only allow http and https schemes
-#         if f.scheme not in ["http", "https"]:
-#             return None
-#         if secure and f.scheme == "http":
-#             f.set(scheme="https")
-
-#         # remove index.html
-#         if f.path.segments and f.path.segments[-1] in ["index.html"]:
-#             f.path.segments.pop(-1)
-
-#         # remove fragments
-#         if fragments:
-#             f.remove(fragment=True)
-
-#         # remove specific query parameters
-#         f.remove(
-#             [
-#                 "origin",
-#                 "ref",
-#                 "referrer",
-#                 "source",
-#                 "utm_content",
-#                 "utm_medium",
-#                 "utm_campaign",
-#                 "utm_source",
-#             ]
-#         )
-
-#         if lower:
-#             return f.url.lower().strip("/")
-#         return f.url.strip("/")
-#     except ValueError:
-#         print(f"Error normalizing url {url}")
-#         return None
-
-
 def normalize_cc_url(url: Optional[str]):
     """Normalize Creative Commons URL"""
     if url is None or not isinstance(url, str):
         return None
     url = normalize_url(url, secure=True)
+    if url and url.endswith("/"):
+        url = url.strip("/")
     return NORMALIZED_LICENSES.get(url, url)
 
 
@@ -1129,7 +1081,9 @@ def replace_curie(string: Optional[str]) -> Optional[str]:
     if string is None:
         return None
     match = re.sub(
-        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))", r'https://doi.org/\2', string
+        r"((?:doi|DOI):\s?([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))",
+        r"https://doi.org/\2",
+        string,
     )
     if match is None:
         return None

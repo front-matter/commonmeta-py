@@ -188,16 +188,21 @@ def get_funding_references(funding_references: list) -> list:
     def map_funding(funding: dict) -> dict:
         """map_funding"""
 
-        return compact({
-            "funderName": py_.get(funding, "funder.name"),
-            "funderIdentifier": py_.get(funding, "funder.id"),
-            "funderIdentifierType": "ROR" if validate_ror(py_.get(funding, "funder.id")) else None,
-            "awardTitle": py_.get(funding, "award.title.en"),
-            "awardNumber": py_.get(funding, "award.number"),
-            "awardUri": py_.get(funding, "award.identifiers[0].identifier"),
-        })
-    
+        return compact(
+            {
+                "funderName": py_.get(funding, "funder.name"),
+                "funderIdentifier": py_.get(funding, "funder.id"),
+                "funderIdentifierType": "ROR"
+                if validate_ror(py_.get(funding, "funder.id"))
+                else None,
+                "awardTitle": py_.get(funding, "award.title.en"),
+                "awardNumber": py_.get(funding, "award.number"),
+                "awardUri": py_.get(funding, "award.identifiers[0].identifier"),
+            }
+        )
+
     return [map_funding(i) for i in funding_references]
+
 
 def get_file(file: dict) -> str:
     """get_file"""

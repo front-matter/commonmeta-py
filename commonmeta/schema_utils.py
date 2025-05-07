@@ -1,4 +1,5 @@
 """Schema utils for commonmeta-py"""
+
 from os import path
 import orjson as json
 from jsonschema import Draft202012Validator, ValidationError

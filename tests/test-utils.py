@@ -2,31 +2,41 @@
 """Test utils"""
 
 from os import path
+
 import pytest  # noqa: F401
 
+from commonmeta.base_utils import wrap
 from commonmeta.utils import (
     dict_to_spdx,
-    normalize_orcid,
-    validate_orcid,
-    normalize_ror,
-    validate_isni,
-    normalize_isni,
-    validate_ror,
-    normalize_id,
-    normalize_ids,
-    normalize_cc_url,
-    normalize_issn,
-    normalize_url,
-    issn_as_url,
-    issn_from_url,
-    from_csl,
+    extract_curie,
+    extract_urls,
+    find_from_format_by_ext,
+    find_from_format_by_filename,
     find_from_format_by_id,
     find_from_format_by_string,
-    find_from_format_by_filename,
-    find_from_format_by_ext,
+    format_name_identifier,
+    from_csl,
+    from_curie,
     from_schema_org,
     from_schema_org_creators,
+    get_language,
+    github_as_cff_url,
+    github_as_codemeta_url,
+    github_as_repo_url,
+    github_from_url,
+    id_from_url,
+    issn_as_url,
+    issn_from_url,
+    normalize_cc_url,
+    normalize_id,
+    normalize_ids,
+    normalize_isni,
+    normalize_issn,
+    normalize_orcid,
+    normalize_ror,
+    normalize_url,
     pages_as_string,
+    replace_curie,
     subjects_as_string,
     to_csl,
     to_ris,
@@ -34,20 +44,11 @@ from commonmeta.utils import (
     to_schema_org_container,
     to_schema_org_creators,
     to_schema_org_identifiers,
-    github_from_url,
-    github_as_codemeta_url,
-    github_as_cff_url,
-    github_as_repo_url,
-    from_curie,
-    extract_curie,
-    replace_curie,
-    get_language,
+    validate_isni,
+    validate_orcid,
+    validate_ror,
     validate_url,
-    format_name_identifier,
-    id_from_url,
-    extract_urls,
 )
-from commonmeta.base_utils import wrap
 
 
 def test_dict_to_spdx_id():
@@ -168,7 +169,7 @@ def test_normalize_id():
         "http://dx.doi.org/10.5061/DRYAD.8515"
     )
     # url
-    assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
+    assert "https://blog.datacite.org/eating-your-own-dog-food/" == normalize_id(
         "https://blog.datacite.org/eating-your-own-dog-food/"
     )
     # cff url
@@ -186,7 +187,7 @@ def test_normalize_id():
         )
     )
     # http url
-    assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
+    assert "https://blog.datacite.org/eating-your-own-dog-food/" == normalize_id(
         "http://blog.datacite.org/eating-your-own-dog-food/"
     )
     # url with utf-8
@@ -196,7 +197,7 @@ def test_normalize_id():
     # invalid url
     assert None is normalize_id("http://")
     # bytes object
-    assert "https://blog.datacite.org/eating-your-own-dog-food" == normalize_id(
+    assert "https://blog.datacite.org/eating-your-own-dog-food/" == normalize_id(
         b"https://blog.datacite.org/eating-your-own-dog-food/"
     )
     # string
@@ -244,7 +245,7 @@ def test_normalize_ids():
     ]
     response = [
         {
-            "relatedIdentifier": "https://blog.datacite.org/eating-your-own-dog-food",
+            "relatedIdentifier": "https://blog.datacite.org/eating-your-own-dog-food/",
             "relatedIdentifierType": "URL",
         }
     ]
@@ -258,12 +259,12 @@ def test_normalize_cc_url():
     )
     assert (
         "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
-        == normalize_cc_url("https://creativecommons.org/publicdomain/zero/1.0")
+        == normalize_cc_url("https://creativecommons.org/publicdomain/zero/1.0/")
     )
     # http scheme
     assert (
         "https://creativecommons.org/publicdomain/zero/1.0/legalcode"
-        == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0")
+        == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0/")
     )
     assert None is normalize_cc_url(None)
     assert None is normalize_cc_url(
@@ -847,7 +848,9 @@ system. Journal of Vertebrate Paleontology 36(4):e1111898. doi:10.1080/02724634.
     assert """Melstrom, Keegan M., Michael D. D’Emic, Daniel Chure and Jeffrey A.
 Wilson. 2016. A juvenile sauropod dinosaur from the Late Jurassic of
 Utah, USA, presents further evidence of an avian style air-sac
-system. Journal of Vertebrate Paleontology 36(4):e1111898. https://doi.org/10.1080/02724634.2016.1111898""" == replace_curie(string)
+system. Journal of Vertebrate Paleontology 36(4):e1111898. https://doi.org/10.1080/02724634.2016.1111898""" == replace_curie(
+        string
+    )
 
 
 def test_extract_urls():

@@ -410,9 +410,8 @@ def get_html_meta(soup):
         pid = pid.get("content", None) or pid.get("href", None)
         data["@id"] = normalize_id(pid)
 
-    _type = (
-        soup.select_one("meta[name='dc.type']")
-        or soup.select_one("meta[name='DC.type']")
+    _type = soup.select_one("meta[name='dc.type']") or soup.select_one(
+        "meta[name='DC.type']"
     )
     data["@type"] = _type["content"].capitalize() if _type else None
     if _type is None:

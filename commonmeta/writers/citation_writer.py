@@ -1,4 +1,5 @@
 """Citation writer for commonmeta-py"""
+
 import orjson as json
 import re
 from pydash import py_

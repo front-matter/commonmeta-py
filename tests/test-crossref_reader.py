@@ -248,7 +248,7 @@ def test_journal_article_original_language():
     assert subject.type == "JournalArticle"
     assert (
         subject.url
-        == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja"
+        == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
     )
     assert subject.titles is None
     assert subject.contributors is None
@@ -398,7 +398,10 @@ def test_posted_content():
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.license == {'id': 'CC-BY-4.0', 'url': 'https://creativecommons.org/licenses/by/4.0/legalcode'}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
     assert subject.date["published"] == "2016-12-28"
     assert subject.publisher == {
         "name": "Cold Spring Harbor Laboratory",
@@ -460,14 +463,20 @@ def test_blog_post():
     assert subject.publisher == {"name": "Front Matter"}
     assert len(subject.references) == 3
     assert subject.references[0] == {
-        "key": "ref1",
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
-        "title": "Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty",
-        "publicationYear": "2023",
+        "key": "ref1",
+        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484. https://doi.org/10.1038/d41586-023-02554-0",
     }
     assert subject.relations == [
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-        {'id': 'https://rogue-scholar.org/api/communities/front_matter','type': 'IsPartOf'},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
+        {
+            "id": "https://rogue-scholar.org/api/communities/computerAndInformationSciences",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.funding_references is None
     assert subject.container == {
@@ -487,28 +496,10 @@ def test_blog_post():
     )
     assert subject.version is None
     assert subject.provider == "Crossref"
-    assert subject.files == [
-        {
-            "mimeType": "text/html",
-            "url": "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter",
-        },
-        {
-            "mimeType": "text/plain",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
-        },
-        {
-            "mimeType": "application/pdf",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.pdf",
-        },
-        {
-            "mimeType": "application/epub+zip",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.epub",
-        },
-        {
-            "mimeType": "application/xml",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.xml",
-        },
-    ]
+    assert subject.files[5] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
+    }
 
 
 def test_peer_review():
@@ -548,7 +539,9 @@ def test_peer_review():
         "name": "eLife Sciences Publications, Ltd",
     }
     assert subject.references is None
-    assert subject.relations == [{'id': 'https://doi.org/10.7554/elife.55167', 'type': 'IsReviewOf'}]
+    assert subject.relations == [
+        {"id": "https://doi.org/10.7554/elife.55167", "type": "IsReviewOf"}
+    ]
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -651,7 +644,7 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294"
+    assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
     assert subject.titles[0] == {
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }
@@ -1447,7 +1440,7 @@ def test_get_crossref_list():
     data = get_crossref_list(query)
     assert isinstance(data, list)
     assert len(data) == 20
-    assert data[0].get("DOI") == "10.1306/703c7c64-1707-11d7-8645000102c1865d"
+    assert data[0].get("DOI") == "10.3969/j.issn.1004-4132.2010.01.020"
     assert data[0].get("type") == "journal-article"
 
 

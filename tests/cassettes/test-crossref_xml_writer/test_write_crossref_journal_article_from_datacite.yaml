@@ -11,13 +11,13 @@ interactions:
       host:
       - api.datacite.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.datacite.org/dois/10.2312/geowissenschaften.1989.7.181?include=media,client
   response:
     body:
       string: !!binary |
-        H4sIAEllj2cAA5xZ6XLiSBJ+FYKIjdjdbts6kNv4n7mEaBCYQwJN9A9JVYiC0rE6uDq8T7OPsf/m
+        H4sIAPBWG2gAA5xZ6XLiSBJ+FYKIjdjdbts6kNv4n7mEaBCYQwJN9A9JVYiC0rE6uDq8T7OPsf/m
         xTZLBwiMx9070RPdVZV3fplZlH5WkRmb1eefVYKqz1WeuxdEXnhwsL8jUYS9yF6Zyxh793z9qX7/
         7Z5/4qtfq/EhwECNfBLByozjkFhJjCMmBzZ/XVAQ4iXZn+lhK0qW2dYnrARhLyZLgkNQ+8fP0hp4
         zR15BkP+nYv9m9D5ZWnTzLdlvL/zKaq+fb0h+hsnPZnSoy3hmmguESzNZb0mIY6XxEerbpoY/qvV
@@ -93,13 +93,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 21 Jan 2025 09:13:45 GMT
+      - Wed, 07 May 2025 12:49:52 GMT
       ETag:
-      - W/"0673482108b4155e4072c8c0ef79cf77"
+      - W/"fffd0aedafe3bcc5ed16f7fdbc5515db"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.0.24
+      - nginx/1.18.0 + Phusion Passenger(R) 6.0.26
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -115,11 +115,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.0.24
+      - Phusion Passenger(R) 6.0.26
       X-Request-Id:
-      - 53926812-f679-40f5-8dca-381dab25b8ed
+      - bf9cc55a-dae6-42e4-830e-871fc82100e0
       X-Runtime:
-      - '0.024535'
+      - '0.024082'
       X-XSS-Protection:
       - '0'
     status:

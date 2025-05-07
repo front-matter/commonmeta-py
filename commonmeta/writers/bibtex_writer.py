@@ -1,4 +1,5 @@
 """Bibtex writer for commonmeta-py"""
+
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
 from bibtexparser.customization import page_double_hyphen

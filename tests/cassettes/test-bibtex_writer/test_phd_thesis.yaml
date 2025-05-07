@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.14264
   response:
@@ -21,7 +21,7 @@ interactions:
         AMUR8AA3AAAA
     headers:
       CF-RAY:
-      - 90562f1bd815f968-DUS
+      - 93c0d8745e57c7b4-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:12:41 GMT
+      - Wed, 07 May 2025 12:50:52 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=SWDO2Wn1YrZktzhTxfCAPqOvhIFma%2FwzKoA%2Fn%2BFEYZcMvtOT8%2BvPhQfZVvSxuHULsta0JNOO7GDeAxtmt%2Bxv8DoG3bgL1OGLhTnaF6DwHXD6a54fMt%2FvXqAu9FzygjBnpCqYxcI%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ThxN4zp2FwMZe433FqmKBzlEEQ8sUJ2BGUuK3xD2hWIXNPSlHPUZ3QAvIpDRs8gtUtjFEIC9EER2ygWhgtpMTSvUJszwYbXAe6H92MSE6s4t7pfCAYb0gz4G3wfM%2BmgZxphoFA8%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=14041&min_rtt=10821&rtt_var=6358&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2829&recv_bytes=765&delivery_rate=373717&cwnd=252&unsent_bytes=0&cid=fb773d434de8bcac&ts=71&x=0"
+      - cfL4;desc="?proto=TCP&rtt=14060&min_rtt=13044&rtt_var=5617&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=310027&cwnd=252&unsent_bytes=0&cid=bbad4a8aad4d3607&ts=54&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -66,7 +66,7 @@ interactions:
       host:
       - api.crossref.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://api.crossref.org/works/10.14264/uql.2020.791
   response:
@@ -87,6 +87,14 @@ interactions:
         wfti8HRXjQoxhGnJDgQbVydM+yU8CeBOxe94m6h15+1PE/sTB3+15Lueaqt6J5zdYfTecVb7vqlf
         IEM3uMMfQ27qpakFAAA=
     headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '755'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 07 May 2025 12:50:52 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -94,16 +102,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      connection:
-      - close
       content-encoding:
       - gzip
-      content-length:
-      - '755'
-      content-type:
-      - application/json
-      date:
-      - Tue, 21 Jan 2025 09:12:42 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -112,10 +112,6 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
       x-ratelimit-interval:
       - 1s
       x-ratelimit-limit:

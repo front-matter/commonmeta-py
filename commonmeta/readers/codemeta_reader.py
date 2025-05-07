@@ -1,4 +1,5 @@
 """codemeta reader for commonmeta-py"""
+
 from typing import Optional
 from collections import defaultdict
 import httpx

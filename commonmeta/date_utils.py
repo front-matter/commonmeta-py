@@ -1,4 +1,5 @@
 """Date utils for commonmeta-py"""
+
 import datetime
 from datetime import datetime as dt
 from typing import Optional, Union

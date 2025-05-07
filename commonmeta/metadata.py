@@ -1,60 +1,61 @@
 """Metadata"""
 
 from os import path
-import orjson as json
 from typing import Optional, Union
+
+import orjson as json
 import yaml
 from pydash import py_
 
+from .base_utils import parse_xml, wrap
+from .constants import CM_TO_CR_TRANSLATIONS
+from .doi_utils import doi_from_url
+from .readers.cff_reader import get_cff, read_cff
+from .readers.codemeta_reader import (
+    get_codemeta,
+    read_codemeta,
+)
+from .readers.commonmeta_reader import read_commonmeta
 from .readers.crossref_reader import (
     get_crossref,
     read_crossref,
 )
+from .readers.crossref_xml_reader import (
+    get_crossref_xml,
+    read_crossref_xml,
+)
+from .readers.csl_reader import read_csl
 from .readers.datacite_reader import (
     get_datacite,
     read_datacite,
 )
 from .readers.datacite_xml_reader import read_datacite_xml
-from .readers.crossref_xml_reader import (
-    get_crossref_xml,
-    read_crossref_xml,
-)
-from .readers.schema_org_reader import (
-    get_schema_org,
-    read_schema_org,
-)
-from .readers.codemeta_reader import (
-    get_codemeta,
-    read_codemeta,
-)
-from .readers.openalex_reader import (
-    get_openalex,
-    read_openalex,
-)
-from .readers.csl_reader import read_csl
-from .readers.cff_reader import get_cff, read_cff
-from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
 from .readers.inveniordm_reader import (
     get_inveniordm,
     read_inveniordm,
 )
+from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
 from .readers.kbase_reader import read_kbase
-from .readers.commonmeta_reader import read_commonmeta
+from .readers.openalex_reader import (
+    get_openalex,
+    read_openalex,
+)
 from .readers.ris_reader import read_ris
-from .writers.datacite_writer import write_datacite
+from .readers.schema_org_reader import (
+    get_schema_org,
+    read_schema_org,
+)
+from .schema_utils import json_schema_errors
+from .utils import find_from_format, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
+from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_xml_writer import write_crossref_xml, write_crossref_xml_list
 from .writers.csl_writer import write_csl, write_csl_list
+from .writers.datacite_writer import write_datacite
+from .writers.inveniordm_writer import write_inveniordm
 from .writers.ris_writer import write_ris, write_ris_list
 from .writers.schema_org_writer import write_schema_org
-from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
-from .writers.inveniordm_writer import write_inveniordm
-from .utils import normalize_id, find_from_format
-from .base_utils import parse_xml, wrap
-from .doi_utils import doi_from_url
-from .schema_utils import json_schema_errors
-from .constants import CM_TO_CR_TRANSLATIONS
 
 
 # pylint: disable=R0902
@@ -126,128 +127,217 @@ class Metadata:
         )
 
     def get_metadata(self, pid, string) -> dict:
+        """Get metadata from various sources based on pid or string input."""
         via = self.via
+
+        # Handle pid-based metadata retrieval
         if pid is not None:
-            if via == "schema_org":
-                return get_schema_org(pid)
-            elif via == "datacite":
-                return get_datacite(pid)
-            elif via in ["crossref", "op"]:
-                return get_crossref(pid)
-            elif via == "crossref_xml":
-                return get_crossref_xml(pid)
-            elif via == "codemeta":
-                return get_codemeta(pid)
-            elif via == "cff":
-                return get_cff(pid)
-            elif via == "json_feed_item":
-                return get_json_feed_item(pid)
-            elif via == "inveniordm":
-                return get_inveniordm(pid)
-            elif via == "openalex":
-                return get_openalex(pid)
+            return self._get_metadata_from_pid(pid, via)
+        # Handle string-based metadata parsing
         elif string is not None:
+            return self._get_metadata_from_string(string, via)
+
+        # Default fallback
+        raise ValueError("No metadata found")
+
+    def _get_metadata_from_pid(self, pid, via) -> dict:
+        """Helper method to get metadata from a PID."""
+        if via == "schema_org":
+            return get_schema_org(pid)
+        elif via == "datacite":
+            return get_datacite(pid)
+        elif via in ["crossref", "op"]:
+            return get_crossref(pid)
+        elif via == "crossref_xml":
+            return get_crossref_xml(pid)
+        elif via == "codemeta":
+            return get_codemeta(pid)
+        elif via == "cff":
+            return get_cff(pid)
+        elif via == "json_feed_item":
+            return get_json_feed_item(pid)
+        elif via == "inveniordm":
+            return get_inveniordm(pid)
+        elif via == "openalex":
+            return get_openalex(pid)
+        else:
+            return {"pid": pid}
+
+    def _get_metadata_from_string(self, string, via) -> dict:
+        """Helper method to get metadata from a string."""
+        try:
+            # XML formats
             if via == "datacite_xml":
-                return parse_xml(string)
+                result = parse_xml(string)
+                if isinstance(result, (dict, list)):
+                    return dict(result) if isinstance(result, dict) else {"items": result}
+                return {}
             elif via == "crossref_xml":
-                return parse_xml(string, dialect="crossref")
+                result = parse_xml(string, dialect="crossref")
+                if isinstance(result, (dict, list)):
+                    return dict(result) if isinstance(result, dict) else {"items": result}
+                return {}
+            # YAML and other plain text formats
             elif via == "cff":
-                return yaml.safe_load(string)
+                return dict(yaml.safe_load(string) or {})
             elif via == "bibtex":
                 raise ValueError("Bibtex not supported")
             elif via == "ris":
-                return string
+                return {"data": string}
+            # JSON-based formats
             elif via in [
-                "commonmeta",
-                "crossref",
-                "datacite",
-                "schema_org",
-                "csl",
-                "json_feed_item",
-                "codemeta",
-                "kbase",
-                "inveniordm",
+                "commonmeta", "crossref", "datacite", "schema_org",
+                "csl", "json_feed_item", "codemeta", "kbase", "inveniordm"
             ]:
                 return json.loads(string)
             else:
                 raise ValueError("No input format found")
-        else:
-            raise ValueError("No metadata found")
+        except (TypeError, json.JSONDecodeError) as error:
+            return {"error": str(error)}
 
     def read_metadata(self, data: dict, **kwargs) -> dict:
-        """get_metadata"""
-        via = isinstance(data, dict) and data.get("via", None) or self.via
+        """Read and parse metadata from various formats."""
+        via = (isinstance(data, dict) and data.get("via")) or self.via
+
+        # All these reader methods should return a dict,
+        # even though some may return Commonmeta objects that can be treated as dicts
         if via == "commonmeta":
-            return read_commonmeta(data, **kwargs)
+            return dict(read_commonmeta(data, **kwargs))
         elif via == "schema_org":
-            return read_schema_org(data)
+            return dict(read_schema_org(data))
         elif via == "datacite":
-            return read_datacite(data)
+            return dict(read_datacite(data))
         elif via == "datacite_xml":
-            return read_datacite_xml(data)
+            return dict(read_datacite_xml(data))
         elif via in ["crossref", "op"]:
-            return read_crossref(data)
+            return dict(read_crossref(data))
         elif via == "crossref_xml":
-            return read_crossref_xml(data)
+            return dict(read_crossref_xml(data))
         elif via == "csl":
-            return read_csl(data, **kwargs)
+            return dict(read_csl(data, **kwargs))
         elif via == "codemeta":
-            return read_codemeta(data)
+            return dict(read_codemeta(data))
         elif via == "cff":
-            return read_cff(data)
+            return dict(read_cff(data))
         elif via == "json_feed_item":
-            return read_json_feed_item(data, **kwargs)
+            return dict(read_json_feed_item(data, **kwargs))
         elif via == "inveniordm":
-            return read_inveniordm(data)
+            return dict(read_inveniordm(data))
         elif via == "kbase":
-            return read_kbase(data)
-        elif via == "ris":
-            return read_ris(data)
+            return dict(read_kbase(data))
         elif via == "openalex":
             return read_openalex(data)
+        elif via == "ris":
+            return dict(read_ris(data["data"] if isinstance(data, dict) else data))
         else:
             raise ValueError("No input format found")
 
     def write(self, to: str = "commonmeta", **kwargs) -> str:
-        """convert metadata into different formats"""
+        """Convert metadata into different formats."""
         try:
-            if to == "commonmeta":
-                return write_commonmeta(self)
-            elif to == "bibtex":
-                return write_bibtex(self)
-            elif to == "csl":
-                instance = py_.omit(json.loads(write_csl(self)), [])
-                self.errors = json_schema_errors(instance, schema="csl")
-                return write_csl(self)
-            elif to == "citation":
-                self.style = kwargs.get("style", "apa")
-                self.locale = kwargs.get("locale", "en-US")
-                return write_citation(self)
-            elif to == "ris":
-                return write_ris(self)
-            elif to == "schema_org":
-                return write_schema_org(self)
-            elif to == "inveniordm":
-                return write_inveniordm(self)
-            elif to == "datacite":
-                instance = json.loads(write_datacite(self))
-                self.write_errors = json_schema_errors(instance, schema="datacite")
-                print(self.write_errors)
-                return write_datacite(self)
-            elif to == "crossref_xml":
-                doi = doi_from_url(self.id)
-                _type = CM_TO_CR_TRANSLATIONS.get(self.type, None)
-                url = self.url
-                instance = {"doi": doi, "type": _type, "url": url}
-                self.depositor = kwargs.get("depositor", None)
-                self.email = kwargs.get("email", None)
-                self.registrant = kwargs.get("registrant", None)
-                self.write_errors = json_schema_errors(instance, schema="crossref")
-                return write_crossref_xml(self)
-            else:
-                raise ValueError("No output format found")
-        except json.JSONDecodeError:
-            raise ValueError("Invalid JSON")
+            result = self._write_format(to, **kwargs)
+            if result is None or result == "":
+                return "{}"
+            return result
+        except json.JSONDecodeError as e:
+            # More specific error message including the original JSONDecodeError details
+            raise ValueError(f"Invalid JSON: {str(e)}")
+
+    def _write_format(self, to: str, **kwargs) -> str:
+        """Helper method to handle writing to different formats."""
+        # Split the format handling into multiple methods to reduce cyclomatic complexity
+        if to in ["commonmeta", "datacite", "inveniordm", "schema_org"]:
+            return self._write_json_format(to)
+        elif to in ["bibtex", "csl", "citation", "ris"]:
+            return self._write_text_format(to, **kwargs)
+        elif to in ["crossref_xml"]:
+            return self._write_xml_format(to, **kwargs)
+        else:
+            raise ValueError("No output format found")
+
+    def _write_json_format(self, to: str) -> str:
+        """Handle JSON-based output formats."""
+        if to == "commonmeta":
+            result = write_commonmeta(self)
+        elif to == "datacite":
+            result = write_datacite(self)
+        elif to == "inveniordm":
+            result = write_inveniordm(self)
+        elif to == "schema_org":
+            result = write_schema_org(self)
+        else:
+            return "{}"
+
+        if isinstance(result, str):
+            # Verify it's valid JSON
+            try:
+                json.loads(result)
+                return result
+            except json.JSONDecodeError:
+                return "{}"
+        elif result is not None:
+            try:
+                decoded = result.decode('utf-8')
+                # Verify it's valid JSON
+                json.loads(decoded)
+                return decoded
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                return "{}"
+        return "{}"
+
+    def _write_text_format(self, to: str, **kwargs) -> str:
+        """Handle text-based output formats."""
+        if to == "bibtex":
+            return write_bibtex(self)
+        elif to == "csl":
+            return self._write_csl(**kwargs)
+        elif to == "citation":
+            self.style = kwargs.get("style", "apa")
+            self.locale = kwargs.get("locale", "en-US")
+            return write_citation(self)
+        elif to == "ris":
+            return write_ris(self)
+        return ""
+
+    def _write_xml_format(self, to: str, **kwargs) -> str:
+        """Handle XML-based output formats."""
+        if to == "crossref_xml":
+            return self._write_crossref_xml(**kwargs)
+        return ""
+
+    def _write_csl(self, **kwargs) -> str:
+        """Write in CSL format with error checking."""
+        csl_output = write_csl(self)
+        if csl_output:
+            instance = py_.omit(json.loads(csl_output), [])
+            self.errors = json_schema_errors(instance, schema="csl")
+            return csl_output
+        return ""
+
+    def _write_datacite(self) -> str:
+        """Write in DataCite format with error checking."""
+        datacite_output = write_datacite(self)
+        if not datacite_output:
+            return ""
+        try:
+            instance = json.loads(datacite_output)
+            self.write_errors = json_schema_errors(instance, schema="datacite")
+            return str(datacite_output)
+        except (json.JSONDecodeError, TypeError):
+            return "{}" if not datacite_output else str(datacite_output)
+
+    def _write_crossref_xml(self, **kwargs) -> str:
+        """Write in Crossref XML format with error checking."""
+        doi = doi_from_url(self.id)
+        _type = CM_TO_CR_TRANSLATIONS.get(str(self.type or ""), None)
+        url = self.url
+        instance = {"doi": doi, "type": _type, "url": url}
+        self.depositor = kwargs.get("depositor", None)
+        self.email = kwargs.get("email", None)
+        self.registrant = kwargs.get("registrant", None)
+        self.write_errors = json_schema_errors(instance, schema="crossref")
+        result = write_crossref_xml(self)
+        return result if result is not None else ""
 
 
 class MetadataList:

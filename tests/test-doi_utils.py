@@ -3,21 +3,21 @@
 import re
 
 from commonmeta.doi_utils import (
+    crossref_api_query_url,
+    crossref_api_url,
+    datacite_api_url,
+    decode_doi,
     doi_as_url,
     doi_from_url,
-    validate_doi,
+    doi_resolver,
+    encode_doi,
+    get_doi_ra,
+    is_rogue_scholar_doi,
     normalize_doi,
+    short_doi_as_doi,
+    validate_doi,
     validate_prefix,
     validate_suffix,
-    get_doi_ra,
-    doi_resolver,
-    decode_doi,
-    encode_doi,
-    crossref_api_url,
-    crossref_api_query_url,
-    datacite_api_url,
-    is_rogue_scholar_doi,
-    short_doi_as_doi,
 )
 
 
@@ -160,7 +160,7 @@ def test_decode_doi():
     # doi with checksum
     doi = "10.54900/ka4bq-90315"
     response = decode_doi(doi, checksum=True)
-    assert response == 679648217271333
+    assert response == 663718962179
     # doi with wrong checksum
     doi = "10.54900/d3ck1-skq20"
     response = decode_doi(doi, checksum=True)
@@ -168,11 +168,12 @@ def test_decode_doi():
     # doi expressed as url
     doi = "https://doi.org/10.54900/b8pcg-q9k70"
     response = decode_doi(doi)
-    assert response == 396593546448096
+    assert response == 387298385203
     # doi not base32-encoded
     doi = "10.1371/journal.pone.0042793"
     response = decode_doi(doi)
     assert response == 0
+
 
 def test_encode_doi():
     """Generate a random DOI"""

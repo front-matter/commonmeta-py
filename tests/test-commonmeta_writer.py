@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
+
 from os import path
 import re
 import orjson as json
@@ -82,7 +83,7 @@ def test_datacite_schema_45():
 
     commonmeta = json.loads(subject.write())
     assert commonmeta["id"] == "https://doi.org/10.82433/b09z-4k37"
-    assert commonmeta["url"] == "https://example.com"
+    assert commonmeta["url"] == "https://example.com/"
     assert commonmeta["type"] == "Dataset"
     assert commonmeta["titles"] == [
         {"title": "Example Title", "language": "en"},
