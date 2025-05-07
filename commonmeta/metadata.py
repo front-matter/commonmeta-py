@@ -36,6 +36,10 @@ from .readers.inveniordm_reader import (
 )
 from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
 from .readers.kbase_reader import read_kbase
+from .readers.openalex_reader import (
+    get_openalex,
+    read_openalex,
+)
 from .readers.ris_reader import read_ris
 from .readers.schema_org_reader import (
     get_schema_org,
@@ -154,6 +158,8 @@ class Metadata:
             return get_json_feed_item(pid)
         elif via == "inveniordm":
             return get_inveniordm(pid)
+        elif via == "openalex":
+            return get_openalex(pid)
         else:
             return {"pid": pid}
 
@@ -219,6 +225,8 @@ class Metadata:
             return dict(read_inveniordm(data))
         elif via == "kbase":
             return dict(read_kbase(data))
+        elif via == "openalex":
+            return read_openalex(data)
         elif via == "ris":
             return dict(read_ris(data["data"] if isinstance(data, dict) else data))
         else:
