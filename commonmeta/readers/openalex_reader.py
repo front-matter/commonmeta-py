@@ -1,33 +1,29 @@
 """crossref reader for commonmeta-py"""
 
 from typing import Optional
+
 import httpx
 from pydash import py_
 
-from ..utils import (
-    dict_to_spdx,
-    normalize_cc_url,
-    normalize_url,
-    normalize_doi,
-    normalize_issn,
-    issn_as_url,
-)
-from ..base_utils import wrap, compact, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_date_parts
-from ..doi_utils import (
-    doi_as_url,
-    doi_from_url,
-    openalex_api_sample_url,
-    openalex_api_url,
-)
+from ..base_utils import compact, presence, sanitize, wrap
 from ..constants import (
     OA_TO_CM_CONTAINER_TRANLATIONS,
     OA_TO_CM_TRANSLATIONS,
-    CR_TO_CM_CONTAINER_TRANSLATIONS,
-    CROSSREF_CONTAINER_TYPES,
     Commonmeta,
 )
+from ..doi_utils import (
+    doi_as_url,
+    openalex_api_sample_url,
+    openalex_api_url,
+)
+from ..utils import (
+    dict_to_spdx,
+    normalize_cc_url,
+    normalize_doi,
+    normalize_url,
+)
+
 
 def get_openalex(pid: str, **kwargs) -> dict:
     """get_openalex"""
@@ -44,9 +40,6 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     if data is None:
         return {"state": "not_found"}
     meta = data
-    # read_options = ActiveSupport::HashWithIndifferentAccess.
-    # new(options.except(:doi, :id, :url,
-    # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
     doi = meta.get("doi", None)
@@ -84,17 +77,17 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
         "identifier": pidurl_as_pid(str(uid)),
         "identifierType": uidType.upper(),
     } for uidType, uid in (py_.get(meta, "ids") or {}).items()]
-    
+
     license_ = meta.get("license", None) #Returns string E.g. "cc-by"
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
-        license_ = dict_to_spdx({"url": license_}) if license_ else None 
-        # Need clarification on how the final license should look 
+        license_ = dict_to_spdx({"url": license_}) if license_ else None
+        # Need clarification on how the final license should look
     issn = None
     container = get_container(meta) # Todo
     relations = []
     references = [get_related(i) for i in get_references(meta.get("referenced_works", []))[:2]] #FTODO
-    funding_references = from_openalex_funding(wrap(meta.get("grants", None))) 
+    funding_references = from_openalex_funding(wrap(meta.get("grants", None)))
 
     description = get_abstract(meta)
     if description is not None:
@@ -171,7 +164,7 @@ def get_references(pids: list, **kwargs) -> list:
        \n Used for retrieving metadata for citations and references which are not included in the OpenAlex record
        \n Uses batches of 49 to meet their API limit of 50 pids per request"""
     pid_batches = [pids[i:i+49] for i in range(0, len(pids), 49)]
-    
+
     references = []
     for pid_batch in pid_batches:
         ids = "|".join(pid_batch)
@@ -182,7 +175,7 @@ def get_references(pids: list, **kwargs) -> list:
         response = response.json()
         if py_.get(response,"count") == 0:
             return {"state": "not_found"}
-            
+
         references.extend(response.get("results"))
 
     return references
