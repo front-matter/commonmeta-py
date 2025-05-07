@@ -71,7 +71,11 @@ def doi_from_url(url: Optional[str]) -> Optional[str]:
             f.path.segments[-1] in ["fetchobject.action"]
             and f.args.get("uri", None) is not None
         ):
-            f.path = f.args.get("uri")
+            uri = f.args.get("uri")
+            if uri is not None:
+                f.path.segments.clear()
+                f.path.segments.append(uri)
+
     path = str(f.path)
     match = re.search(
         r"(10\.\d{4,5}/.+)\Z",
@@ -86,9 +90,12 @@ def short_doi_as_doi(doi: Optional[str]) -> Optional[str]:
     """Resolve a short DOI"""
     if doi is None:
         return None
-    response = httpx.head(doi_as_url(doi), timeout=10)
+    doi_url = doi_as_url(doi)
+    if doi_url is None:
+        return None
+    response = httpx.head(doi_url, timeout=10)
     if response.status_code != 301:
-        return doi_as_url(doi)
+        return doi_url
     return response.headers.get("Location")
 
 
@@ -106,7 +113,10 @@ def normalize_doi(doi: Optional[str], **kwargs) -> Optional[str]:
     doi_str = validate_doi(doi)
     if not doi_str:
         return None
-    return doi_resolver(doi, **kwargs) + doi_str.lower()
+    resolver = doi_resolver(doi, **kwargs)
+    if resolver is None:
+        return None
+    return resolver + doi_str.lower()
 
 
 def doi_resolver(doi, **kwargs):
@@ -144,13 +154,14 @@ def encode_doi(prefix, number: Optional[int] = None, checksum: bool = True) -> s
 def decode_doi(doi: str, checksum: bool = True) -> int:
     """Decode a DOI to a number"""
     try:
-        doi = validate_doi(doi)
-        if doi is None:
+        validated_doi = validate_doi(doi)
+        if validated_doi is None:
             return 0
-        suffix = doi.split("/", maxsplit=1)[1]
+        suffix = validated_doi.split("/", maxsplit=1)[1]
         if checksum:
             number = base32.decode(suffix, checksum=True)
-        number = base32.decode(suffix)
+        else:
+            number = base32.decode(suffix)
         return number
     except ValueError:
         return 0
@@ -183,6 +194,9 @@ def crossref_api_query_url(query: dict) -> str:
     rows = min(int(query.get("rows", 20)), 1000)
     queries = []
     filters = []
+    _query = None
+    _filter = None
+
     if query.get("query", None) is not None:
         queries += [query.get("query")]
     for key, value in query.items():
@@ -193,7 +207,8 @@ def crossref_api_query_url(query: dict) -> str:
             "query.container-title",
         ]:
             queries += [f"{key}:{value}"]
-        _query = ",".join(queries) if len(queries) > 0 else None
+    if queries:
+        _query = ",".join(queries)
 
     for key, value in query.items():
         if key in [
@@ -207,8 +222,10 @@ def crossref_api_query_url(query: dict) -> str:
             "has-license",
         ]:
             filters += [f"{key}:{value}"]
-        _filter = ",".join(filters) if len(filters) > 0 else None
-    f.args = compact({"rows": rows, "query": _query, "filter": _filter})
+    if filters:
+        _filter = ",".join(filters)
+
+    f.args.update(compact({"rows": rows, "query": _query, "filter": _filter}))
 
     return f.url
 
