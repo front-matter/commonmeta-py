@@ -111,7 +111,9 @@ def test_post_with_relationships():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert (
+        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+    )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -190,7 +192,9 @@ def test_post_with_relationships_as_doi():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph"
+    assert (
+        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+    )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {

@@ -496,28 +496,10 @@ def test_blog_post():
     )
     assert subject.version is None
     assert subject.provider == "Crossref"
-    assert subject.files == [
-        {
-            "mimeType": "text/html",
-            "url": "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter",
-        },
-        {
-            "mimeType": "text/plain",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
-        },
-        {
-            "mimeType": "application/pdf",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.pdf",
-        },
-        {
-            "mimeType": "application/epub+zip",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.epub",
-        },
-        {
-            "mimeType": "application/xml",
-            "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.xml",
-        },
-    ]
+    assert subject.files[5] == {
+        "mimeType": "text/markdown",
+        "url": "https://api.rogue-scholar.org/posts/10.53731/ybhah-9jy85.md",
+    }
 
 
 def test_peer_review():

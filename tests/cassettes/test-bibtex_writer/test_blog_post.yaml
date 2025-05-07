@@ -23,7 +23,7 @@ interactions:
       Connection:
       - keep-alive
       Date:
-      - Tue, 29 Apr 2025 18:50:19 GMT
+      - Wed, 07 May 2025 12:50:47 GMT
       Location:
       - /welcome-to-upstream/
       Server:
@@ -417,7 +417,7 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Tue, 29 Apr 2025 18:50:19 GMT
+      - Wed, 07 May 2025 12:50:47 GMT
       ETag:
       - W/"1ad73-tbxGLWUyGs8LExqt5ItfH7YnPlM"
       Server:
@@ -453,7 +453,7 @@ interactions:
         ADCXIW83AAAA
     headers:
       CF-RAY:
-      - 9380fc021bd2f809-DUS
+      - 93c0d85a280ef95a-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -461,11 +461,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 29 Apr 2025 18:50:19 GMT
+      - Wed, 07 May 2025 12:50:48 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=OuNncSJfmJTJ9X1J4H5unIl5rK3p5yNC5QXTmyvyLfPlG1HiNklQQsOfXKl3GmszTK5DQNEi46jphuTiqjrCPykHzZLO%2FBxpad8ieT1G0o%2FZL%2FPADkKaF%2FgMjKCYxpr82as6Es8%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=oPiju05avvdM4RkctteIvTcFEPG6mf0L1Bk52u8Vnrw6%2B4%2BLIIQjoPbhpEbW0EMvcAP1tG9ZDx%2FupWlZW0Kw1dCamYwv7ntvw43rBEG9fSC3Zn8kGEsZvsjk1QB6P9nFV4EPWbc%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -479,7 +479,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=11472&min_rtt=9779&rtt_var=4876&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=413539&cwnd=252&unsent_bytes=0&cid=daefcab10b1081dd&ts=45&x=0"
+      - cfL4;desc="?proto=TCP&rtt=14492&min_rtt=12787&rtt_var=6013&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=316258&cwnd=252&unsent_bytes=0&cid=36935a682dfba338&ts=62&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -529,6 +529,14 @@ interactions:
         GX+L29fbgYx0XetgQFpbv+A1ad9z2EHDcR8Y17LD8nxfZaCl71i/wZYG3VKd9mV6d6O1kW1Jvle2
         H0QNBBO8AvQ9jMSGf6B5hxUc2PhDJF0N3v9oidjV9ue5QEY7gNq1vcDtX88ndeRSDwAA
     headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1362'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 07 May 2025 12:50:48 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -536,16 +544,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      connection:
-      - close
       content-encoding:
       - gzip
-      content-length:
-      - '1362'
-      content-type:
-      - application/json
-      date:
-      - Tue, 29 Apr 2025 18:50:20 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -554,10 +554,6 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
       x-ratelimit-interval:
       - 1s
       x-ratelimit-limit:

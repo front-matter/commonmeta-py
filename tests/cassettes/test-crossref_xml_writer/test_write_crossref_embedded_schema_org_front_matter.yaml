@@ -11,7 +11,7 @@ interactions:
       host:
       - doi.org
       user-agent:
-      - python-httpx/0.27.2
+      - python-httpx/0.28.1
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
@@ -21,7 +21,7 @@ interactions:
         APmc72o3AAAA
     headers:
       CF-RAY:
-      - 905630b7cc12c80d-DUS
+      - 93c0d708de62c7b0-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 21 Jan 2025 09:13:47 GMT
+      - Wed, 07 May 2025 12:49:54 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=rj59Ao39WnOD9Ie2fqooefp5kWVH2jAHbod9XzB18bsk1ozrcLtm6BUtslq7MI6zbXRdJnG0vFXoRgOM8TqNMcruAaPP3X%2FuHYOrty%2F9kePH5mNshplu2858RUWsBCR74TH8s14%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=XRNd1uEx4oe7Fx2axl27Q87o1nR1uQfCbisgShl%2BY5D560WewPkoMDij5KElCIx6Mg8VNqEWWGDK5u5FG2DEiWl5GMDBGppxxlEcKNTxdXOvmBqoxsRwCGw1VM%2BC%2FwjBpH2h7G8%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=12972&min_rtt=9913&rtt_var=5902&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2829&recv_bytes=765&delivery_rate=407949&cwnd=252&unsent_bytes=0&cid=b7191184475b6494&ts=49&x=0"
+      - cfL4;desc="?proto=TCP&rtt=13188&min_rtt=13002&rtt_var=5009&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=311029&cwnd=252&unsent_bytes=0&cid=316c39fca8000b64&ts=146&x=0"
       vary:
       - Origin
       - accept-encoding

@@ -7,7 +7,6 @@ import pytest
 
 from commonmeta import Metadata
 
-
 @pytest.mark.vcr
 def test_journal_article():
     "journal article"
@@ -124,7 +123,7 @@ def test_inveniordm_presentation():
     assert schema_org.get("@type") == "PresentationDigitalDocument"
     assert (
         schema_org.get("name")
-        == "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+        == "ARCHIVE - 11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
     )
     assert len(schema_org.get("author")) == 1
     assert schema_org.get("author")[0] == {

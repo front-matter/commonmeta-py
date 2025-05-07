@@ -275,7 +275,7 @@ def test_rogue_scholar():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
-    assert subject.type == "Article"
+    assert subject.type == "BlogPost"
     assert subject.url == "https://rogue-scholar.org/records/1xr7q-9fp18"
     assert subject.titles[0] == {"title": "Rogue Scholar learns about communities"}
     assert len(subject.contributors) == 1
@@ -291,7 +291,7 @@ def test_rogue_scholar():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date["published"] == "2024-10-07"
-    assert subject.publisher is None
+    assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]

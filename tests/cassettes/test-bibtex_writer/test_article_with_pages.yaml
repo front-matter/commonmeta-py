@@ -21,7 +21,7 @@ interactions:
         fpIZsjYAAAA=
     headers:
       CF-RAY:
-      - 9380fc058b13c801-DUS
+      - 93c0d85e5fd6cb37-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 29 Apr 2025 18:50:20 GMT
+      - Wed, 07 May 2025 12:50:48 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Moy2uSdl6KR2Fc%2F%2BUY4WSmBbm6sC5YmRZtVARqP91ieDqUJY71cImRq%2B5EbZXCHFpmHJhR68K0flJQdZrnzWDVBkVCPeYb0npUwzc%2F4cyDX8WGYlrBLXoh9Gz8p5dImzTu%2B4ueE%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=qpa%2FoNE%2FTx%2BxdkTzUyJCMY0Ee4VcMOX5mstkOwVL4ndt%2Bw7W7YnozfOgCwrtKWUrdfiMveigfjGDt37lFHmI5%2FOK4DU3tBlnyVDDQJ1QLenboGkbGte%2FNzSFvSTZi5hIx2t7vyY%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=10296&min_rtt=9345&rtt_var=4183&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=764&delivery_rate=432744&cwnd=252&unsent_bytes=0&cid=43219a403d049807&ts=45&x=0"
+      - cfL4;desc="?proto=TCP&rtt=12888&min_rtt=12113&rtt_var=5096&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=764&delivery_rate=333856&cwnd=252&unsent_bytes=0&cid=f15076926056c2d2&ts=50&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -197,6 +197,14 @@ interactions:
         +Dc85vL+/hOKveE4luZZ4LXLWUaVEAKklTSK8ypEEhJNDQ2qjof6awKuYv4Nbiqh2s7owFR+/gfj
         40ERkmQAAA==
     headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '7018'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 07 May 2025 12:50:49 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -204,16 +212,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      connection:
-      - close
       content-encoding:
       - gzip
-      content-length:
-      - '7018'
-      content-type:
-      - application/json
-      date:
-      - Tue, 29 Apr 2025 18:50:20 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -222,10 +222,6 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
       x-ratelimit-interval:
       - 1s
       x-ratelimit-limit:

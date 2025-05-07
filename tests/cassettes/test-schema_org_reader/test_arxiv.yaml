@@ -87,7 +87,7 @@ interactions:
         is-hidden-mobile\" id=\"cu-identity\">\n        <div class=\"column\" id=\"cu-logo\">\n
         \         <a href=\"https://www.cornell.edu/\"><img src=\"/static/browse/0.3.4/images/icons/cu/cornell-reduced-white-SMALL.svg\"
         alt=\"Cornell University\" /></a>\n        </div>\n\n\n        <!-- /from
-        April 7 at 1:00 AM to April 17 at 11:30 PM --><div class=\"column\" id=\"support-ack\">\n
+        May 2 at 1:00 AM to May 5 at 9:45 AM --><div class=\"column\" id=\"support-ack\">\n
         \         <span id=\"support-ack-url\">We gratefully acknowledge support from
         the Simons Foundation, <a href=\"https://info.arxiv.org/about/ourmembers.html\">member
         institutions</a>, and all contributors.</span>\n          <a href=\"https://info.arxiv.org/about/donate.html\"
@@ -588,19 +588,19 @@ interactions:
       Accept-Ranges:
       - bytes
       Age:
-      - '670115'
+      - '40329'
       Connection:
       - keep-alive
       Content-Length:
-      - '47208'
+      - '47202'
       Date:
-      - Tue, 29 Apr 2025 18:44:27 GMT
+      - Wed, 07 May 2025 12:50:32 GMT
       X-Cache:
-      - HIT, HIT
+      - MISS, HIT
       X-Served-By:
-      - cache-lga21944-LGA, cache-fra-etou8220022-FRA
+      - cache-lga21933-LGA, cache-fra-etou8220154-FRA
       X-Timer:
-      - S1745952268.781537,VS0,VE14
+      - S1746622232.358585,VS0,VE1
       cache-control:
       - max-age=3600
       content-security-policy:
@@ -614,7 +614,7 @@ interactions:
       via:
       - 1.1 google, 1.1 varnish, 1.1 varnish
       x-cloud-trace-context:
-      - 97fdc5289693bafe06f55b32bdefa04d
+      - ac70eccfe8873ace8971e49c1559c80f
       x-frame-options:
       - SAMEORIGIN
     status:
@@ -642,7 +642,7 @@ interactions:
         AJ19Ras3AAAA
     headers:
       CF-RAY:
-      - 9380f36a6ce4f811-DUS
+      - 93c0d7f8fe2cf962-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -650,11 +650,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 29 Apr 2025 18:44:27 GMT
+      - Wed, 07 May 2025 12:50:32 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=PYJH1voEzpmUyCwoSKA1L%2BSG0YS98PNjXLJgR2FMFD0hHwfTg2R3hqzmWqC1YY0pGD%2FavSXDluB%2Bsd4qClAZef1R2zBMUGSKcIizW4x%2BZWx51ZqgJgTVOa9tMR3l05HHhBiRk3M%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=VbfH366ITAnHeYwZWMQDEcI3b0ii6TIoNm%2Fm8nYXcuMf21GDRfrzZldx4%2FwJAgdhu%2Bm8pi981nCDWkWLQTKlGIQorCGuw1KRjl8TNXCr2bTgYedOcVsX23o0UKqmLITgykrQHvM%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -668,7 +668,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=11224&min_rtt=9265&rtt_var=4873&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=765&delivery_rate=436481&cwnd=252&unsent_bytes=0&cid=b44b314a66d03ec2&ts=59&x=0"
+      - cfL4;desc="?proto=TCP&rtt=13658&min_rtt=11325&rtt_var=5913&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=357086&cwnd=252&unsent_bytes=0&cid=0227a79430debbf1&ts=59&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -693,7 +693,7 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAweEWgAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
+        H4sIABhXG2gAA7xaWXfiyJL+Kzp+qpr2IgnoMp4ndkSz2OzonnrQkhYJ2kYbiDr13+dLpQSIcve4
         7syZhz5lhSJjjy+CVP+4M7VIu3v5cUfNu5c7SXysPtdq4pMWHGnyKNVF+VGUa5Xq3f1dlPoELKZH
         QzxpURRQPY5IyA6D+D+c9gPyTo9XTKCF8TunfcBPTeJG9J2SAAr+9ePqmcn4mHPOLdSCNU3ufn6H
         kXZEAleLiHIj7YMXpcMfHi0rZvKNgGiRl8t0NYcJ6BOq03tBSTQXYhgxl/wK5Z6r2aBaNCHumPPn
@@ -777,9 +777,9 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Tue, 29 Apr 2025 18:44:28 GMT
+      - Wed, 07 May 2025 12:50:32 GMT
       ETag:
-      - W/"41ba87ee237afc71dfeb6d03241698c3"
+      - W/"0dc92088222fa775e441fcd7d7ea17be"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
@@ -801,9 +801,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.0.26
       X-Request-Id:
-      - 4196bdcb-e523-4ea1-99a7-1c332b3803f9
+      - 0dbc84b2-f079-463f-a079-b74d4bf17e0a
       X-Runtime:
-      - '0.032568'
+      - '0.023249'
       X-XSS-Protection:
       - '0'
     status:

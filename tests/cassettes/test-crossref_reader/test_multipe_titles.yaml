@@ -21,7 +21,7 @@ interactions:
         xkrz2jYAAAA=
     headers:
       CF-RAY:
-      - 9380558988f5f809-DUS
+      - 93c0d92948edf95a-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +29,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Tue, 29 Apr 2025 16:56:41 GMT
+      - Wed, 07 May 2025 12:51:21 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=UaU1afXGWHgoIE68IIUhZuMhZuGahViPjZZTXl%2BcJ7vzqJMIt6wd609GbYjhX5gmzjHwgbGQbqVNNTuzW7XaURDs%2Bg1w8sSpYewivSZMjZYC%2BjuI2dxeh6viFReNhJFIsuLlubU%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=HIW5x4S5DVg0%2FlGjLWQP2VT2l7iFZ6GWAf%2FJn6vQ9IzbCJqtjdySj7jgvn4wX5qLnveQToJcljH%2BTZgkMGzxLpnCpHDTSCdtLBRCDBUeGGip5eaUh04vbDRnQtBquNPD58i%2BxdI%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +47,7 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=11581&min_rtt=10564&rtt_var=4688&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2826&recv_bytes=764&delivery_rate=382809&cwnd=252&unsent_bytes=0&cid=583a88081e4500dc&ts=55&x=0"
+      - cfL4;desc="?proto=TCP&rtt=14696&min_rtt=14485&rtt_var=5855&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=764&delivery_rate=249984&cwnd=252&unsent_bytes=0&cid=c9932fbf81c408e4&ts=63&x=0"
       vary:
       - Origin
       - accept-encoding
@@ -129,6 +129,14 @@ interactions:
         KpFWJ+G7R0XsbYn841Zn77miNEiczHi6PUj/Vh+NUxK4Fgku/25eOH7cXKa+b0UPr0edVuL5Wmr0
         geu9cfUNtrnz6xd26n8X2wktoyQAAA==
     headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '3157'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 07 May 2025 12:51:21 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -136,16 +144,8 @@ interactions:
       - '*'
       access-control-expose-headers:
       - Link
-      connection:
-      - close
       content-encoding:
       - gzip
-      content-length:
-      - '3157'
-      content-type:
-      - application/json
-      date:
-      - Tue, 29 Apr 2025 16:56:41 GMT
       permissions-policy:
       - interest-cohort=()
       server:
@@ -154,10 +154,6 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - public
-      x-rate-limit-interval:
-      - 1s
-      x-rate-limit-limit:
-      - '50'
       x-ratelimit-interval:
       - 1s
       x-ratelimit-limit:
