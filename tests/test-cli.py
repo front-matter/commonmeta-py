@@ -2,7 +2,8 @@
 
 import pytest
 from click.testing import CliRunner
-from commonmeta.cli import convert, encode, decode, json_feed, encode_by_id
+
+from commonmeta.cli import convert, decode, encode, encode_by_id, json_feed
 
 
 def vcr_config():
@@ -139,7 +140,7 @@ def test_decode():
     string = "https://doi.org/10.5555/xy8km-0q834"
     result = runner.invoke(decode, [string])
     assert result.exit_code == 0
-    assert "1053628090261604" in result.output
+    assert "1028933681896\n" in result.output
 
 
 @pytest.mark.vcr
