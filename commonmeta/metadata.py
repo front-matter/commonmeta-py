@@ -1,56 +1,57 @@
 """Metadata"""
 
 from os import path
-import orjson as json
 from typing import Optional, Union
+
+import orjson as json
 import yaml
 from pydash import py_
 
+from .base_utils import parse_xml, wrap
+from .constants import CM_TO_CR_TRANSLATIONS
+from .doi_utils import doi_from_url
+from .readers.cff_reader import get_cff, read_cff
+from .readers.codemeta_reader import (
+    get_codemeta,
+    read_codemeta,
+)
+from .readers.commonmeta_reader import read_commonmeta
 from .readers.crossref_reader import (
     get_crossref,
     read_crossref,
 )
+from .readers.crossref_xml_reader import (
+    get_crossref_xml,
+    read_crossref_xml,
+)
+from .readers.csl_reader import read_csl
 from .readers.datacite_reader import (
     get_datacite,
     read_datacite,
 )
 from .readers.datacite_xml_reader import read_datacite_xml
-from .readers.crossref_xml_reader import (
-    get_crossref_xml,
-    read_crossref_xml,
-)
-from .readers.schema_org_reader import (
-    get_schema_org,
-    read_schema_org,
-)
-from .readers.codemeta_reader import (
-    get_codemeta,
-    read_codemeta,
-)
-from .readers.csl_reader import read_csl
-from .readers.cff_reader import get_cff, read_cff
-from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
 from .readers.inveniordm_reader import (
     get_inveniordm,
     read_inveniordm,
 )
+from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
 from .readers.kbase_reader import read_kbase
-from .readers.commonmeta_reader import read_commonmeta
 from .readers.ris_reader import read_ris
-from .writers.datacite_writer import write_datacite
+from .readers.schema_org_reader import (
+    get_schema_org,
+    read_schema_org,
+)
+from .schema_utils import json_schema_errors
+from .utils import find_from_format, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
+from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_xml_writer import write_crossref_xml, write_crossref_xml_list
 from .writers.csl_writer import write_csl, write_csl_list
+from .writers.datacite_writer import write_datacite
+from .writers.inveniordm_writer import write_inveniordm
 from .writers.ris_writer import write_ris, write_ris_list
 from .writers.schema_org_writer import write_schema_org
-from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
-from .writers.inveniordm_writer import write_inveniordm
-from .utils import normalize_id, find_from_format
-from .base_utils import parse_xml, wrap
-from .doi_utils import doi_from_url
-from .schema_utils import json_schema_errors
-from .constants import CM_TO_CR_TRANSLATIONS
 
 
 # pylint: disable=R0902
@@ -227,11 +228,12 @@ class Metadata:
         """Convert metadata into different formats."""
         try:
             result = self._write_format(to, **kwargs)
-            if result is None:
-                return ""
+            if result is None or result == "":
+                return "{}"
             return result
-        except json.JSONDecodeError:
-            raise ValueError("Invalid JSON")
+        except json.JSONDecodeError as e:
+            # More specific error message including the original JSONDecodeError details
+            raise ValueError(f"Invalid JSON: {str(e)}")
 
     def _write_format(self, to: str, **kwargs) -> str:
         """Helper method to handle writing to different formats."""
@@ -254,13 +256,24 @@ class Metadata:
         elif to == "inveniordm":
             result = write_inveniordm(self)
         else:
-            return ""
+            return "{}"
 
         if isinstance(result, str):
-            return result
+            # Verify it's valid JSON
+            try:
+                json.loads(result)
+                return result
+            except json.JSONDecodeError:
+                return "{}"
         elif result is not None:
-            return result.decode('utf-8')
-        return ""
+            try:
+                decoded = result.decode('utf-8')
+                # Verify it's valid JSON
+                json.loads(decoded)
+                return decoded
+            except (json.JSONDecodeError, UnicodeDecodeError):
+                return "{}"
+        return "{}"
 
     def _write_text_format(self, to: str, **kwargs) -> str:
         """Handle text-based output formats."""
@@ -303,7 +316,7 @@ class Metadata:
             self.write_errors = json_schema_errors(instance, schema="datacite")
             return str(datacite_output)
         except (json.JSONDecodeError, TypeError):
-            return str(datacite_output) if datacite_output else ""
+            return "{}" if not datacite_output else str(datacite_output)
 
     def _write_crossref_xml(self, **kwargs) -> str:
         """Write in Crossref XML format with error checking."""
