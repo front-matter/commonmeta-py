@@ -1,4 +1,5 @@
 """Base utilities for commonmeta-py"""
+
 import html
 from os import path
 import re

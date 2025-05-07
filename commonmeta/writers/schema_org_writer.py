@@ -1,4 +1,5 @@
 """Schema.org writer for commonmeta-py"""
+
 import orjson as json
 from ..utils import to_schema_org_creators, github_as_repo_url, get_language
 from ..base_utils import compact, wrap, presence, parse_attributes

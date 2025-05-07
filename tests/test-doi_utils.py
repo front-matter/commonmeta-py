@@ -174,6 +174,7 @@ def test_decode_doi():
     response = decode_doi(doi)
     assert response == 0
 
+
 def test_encode_doi():
     """Generate a random DOI"""
     response = encode_doi("10.5555")

@@ -298,5 +298,5 @@ def is_rogue_scholar_doi(doi: str) -> bool:
         "10.59350",
         "10.63485",
         "10.64000",
-        "10.71938", # not managed by Front Matter
+        "10.71938",  # not managed by Front Matter
     ]

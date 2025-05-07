@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Citation writer tests"""
+
 from os import path
 import pytest
 from commonmeta import Metadata, MetadataList
@@ -132,6 +133,7 @@ def test_write_citation_list_ieee_style_german():
         == "[1]David G. Morse, „Sedimentology, Diagenesis, and Trapping Style, Chesterian Tar Springs Sandstone at Inman Field, Gallatin County, Illinois: ABSTRACT“, <i>AAPG Bulletin</i>, Bd. 80, 1996, doi: 10.1306/64ed9fd8-1724-11d7-8645000102c1865d."
     )
 
+
 def test_epijats_reference():
     "organization author"
     string = path.join(path.dirname(__file__), "fixtures", "epijats.json")
@@ -139,7 +141,9 @@ def test_epijats_reference():
     assert subject.id == "ref26"
     assert subject.type == "Other"
     assert subject.titles == [
-        {"title": "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"}
+        {
+            "title": "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"
+        }
     ]
     assert (
         subject.write(to="citation")

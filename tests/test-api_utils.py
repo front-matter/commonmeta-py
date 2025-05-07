@@ -1,4 +1,5 @@
 """Test api utils"""
+
 import pytest  # noqa: F401
 import jwt
 from datetime import datetime as date

@@ -546,11 +546,18 @@ def test_json_feed_item_with_organizational_author():
     ]
     crossref_xml = parse_xml(subject.write(to="crossref_xml"), dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "contributors.organization") ==  [{'#text': 'Liberate Science', 'contributor_role': 'author', 'sequence': 'first'}]
-    assert py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    assert py_.get(crossref_xml, "contributors.organization") == [
+        {"#text": "Liberate Science", "contributor_role": "author", "sequence": "first"}
+    ]
+    assert (
+        py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    )
     assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {'#text': 'https://libscie.org/ku-leuven-supports-researchequals', 'mime_type': 'text/html'}
-    assert crossref_xml.get("group_title") == 'Social science'
+    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "#text": "https://libscie.org/ku-leuven-supports-researchequals",
+        "mime_type": "text/html",
+    }
+    assert crossref_xml.get("group_title") == "Social science"
 
 
 @pytest.mark.vcr

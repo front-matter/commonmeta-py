@@ -1,4 +1,5 @@
 """Metadata tests"""
+
 import pytest
 from commonmeta import Metadata, MetadataList
 

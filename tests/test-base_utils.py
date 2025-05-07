@@ -1,5 +1,6 @@
 # pylint: disable=invalid-name
 """Test base utils"""
+
 import pytest  # noqa: F401
 from os import path
 import pydash as py_
