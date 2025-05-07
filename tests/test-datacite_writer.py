@@ -1,8 +1,9 @@
 # pylint: disable=invalid-name
 """Test DataCite Writer"""
 
-from os import path
 import re
+from os import path
+
 import orjson as json
 import pytest
 
@@ -225,6 +226,7 @@ def test_from_schema_org():
     subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     datacite = json.loads(subject.write(to="datacite"))
+    print(datacite)
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (
         datacite["url"] == "https://blog.front-matter.io/posts/eating-your-own-dog-food"

@@ -238,11 +238,11 @@ class Metadata:
     def _write_format(self, to: str, **kwargs) -> str:
         """Helper method to handle writing to different formats."""
         # Split the format handling into multiple methods to reduce cyclomatic complexity
-        if to in ["commonmeta", "schema_org", "inveniordm"]:
+        if to in ["commonmeta", "datacite", "inveniordm", "schema_org"]:
             return self._write_json_format(to)
         elif to in ["bibtex", "csl", "citation", "ris"]:
             return self._write_text_format(to, **kwargs)
-        elif to in ["datacite", "crossref_xml"]:
+        elif to in ["crossref_xml"]:
             return self._write_xml_format(to, **kwargs)
         else:
             raise ValueError("No output format found")
@@ -251,10 +251,12 @@ class Metadata:
         """Handle JSON-based output formats."""
         if to == "commonmeta":
             result = write_commonmeta(self)
-        elif to == "schema_org":
-            result = write_schema_org(self)
+        elif to == "datacite":
+            result = write_datacite(self)
         elif to == "inveniordm":
             result = write_inveniordm(self)
+        elif to == "schema_org":
+            result = write_schema_org(self)
         else:
             return "{}"
 
@@ -291,9 +293,7 @@ class Metadata:
 
     def _write_xml_format(self, to: str, **kwargs) -> str:
         """Handle XML-based output formats."""
-        if to == "datacite":
-            return self._write_datacite()
-        elif to == "crossref_xml":
+        if to == "crossref_xml":
             return self._write_crossref_xml(**kwargs)
         return ""
 

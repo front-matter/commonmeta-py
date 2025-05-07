@@ -1,16 +1,17 @@
 """Crossref utils module for commonmeta-py"""
 
-from lxml import etree
-from typing import Optional
-from datetime import datetime
-from dateutil.parser import parse
 import uuid
-import pydash as py_
-from furl import furl
+from datetime import datetime
+from typing import Optional
 
-from .constants import Commonmeta, ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS
-from .utils import wrap, compact, normalize_orcid, normalize_id, validate_url
+import pydash as py_
+from dateutil.parser import parse
+from furl import furl
+from lxml import etree
+
+from .constants import ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS, Commonmeta
 from .doi_utils import doi_from_url, validate_doi
+from .utils import compact, normalize_id, normalize_orcid, validate_url, wrap
 
 
 def generate_crossref_xml(metadata: Commonmeta) -> Optional[str]:
@@ -229,11 +230,12 @@ def insert_citation_list(metadata, xml):
         return xml
 
     citation_list = etree.SubElement(xml, "citation_list")
-    for ref in metadata.references:
+    for i, ref in enumerate(metadata.references):
+        print(i)
         if ref.get("id", None) is None:
             continue
         citation = etree.SubElement(
-            citation_list, "citation", {"key": ref.get("key", None)}
+            citation_list, "citation", {"key": ref.get("key", f"ref{i+1}")}
         )
         if ref.get("journal_title", None) is not None:
             etree.SubElement(citation, "journal_article").text = ref.get(
@@ -255,6 +257,7 @@ def insert_citation_list(metadata, xml):
             etree.SubElement(citation, "unstructured_citation").text = ref.get(
                 "unstructured"
             )
+        print(xml)
     return xml
 
 

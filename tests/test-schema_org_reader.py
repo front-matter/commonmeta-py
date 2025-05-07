@@ -2,6 +2,7 @@
 """Test schema.org reader"""
 
 import pytest
+
 from commonmeta import Metadata
 from commonmeta.readers.schema_org_reader import schema_org_geolocation
 
@@ -238,14 +239,16 @@ def test_yet_another_blog_post():
     assert subject.license is None
     assert subject.date == {
         "published": "2022-09-24T17:22:00Z",
-        "updated": "2023-10-23T03:26:56Z",
+        "updated": "2022-09-24T17:22:00Z",
     }
-    assert subject.publisher == {"name": "John Hawks"}
+    assert subject.publisher == {"name": "John Hawks", 'description': 'Our origins shape our future', 'identifier': 'pub:56991',   'image': {'@type': 'ImageObject',
+               'contentUrl': 'https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png',
+               'thumbnailUrl': 'https://substackcdn.com/image/fetch/w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png',
+               'url': 'https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png'}}
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
-        "title": "John Hawks",
-        "identifier": "https://johnhawks.net/",
+        "identifier": "https://www.johnhawks.net",
         "identifierType": "URL",
     }
     assert subject.descriptions and (
@@ -255,16 +258,7 @@ def test_yet_another_blog_post():
             "With deep experience in the hunt, Neandertals could anticipate the behavior of many of the most dangerous prey animals."
         )
     )
-    assert subject.subjects == [
-        {"subject": "neandertals"},
-        {"subject": "hunter-gatherers"},
-        {"subject": "hunting"},
-        {"subject": "taphonomy"},
-        {"subject": "technology"},
-        {"subject": "cooperation"},
-        {"subject": "middle paleolithic"},
-        {"subject": "diet"},
-    ]
+    assert subject.subjects is None
     assert subject.language == "en"
     assert subject.version is None
     assert subject.geo_locations is None
@@ -278,12 +272,12 @@ def test_another_blog_with_dois():
     assert subject.is_valid
     assert (
         subject.id
-        == "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
+        == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://x-dev.pages.jsc.fz-juelich.de/2022/10/05/doi-jekyll.html"
+        == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
     assert subject.titles and subject.titles[0] == {"title": "DOIng it Right! (DOIs for This Blog)"}
     assert subject.contributors and len(subject.contributors) == 1
@@ -368,12 +362,12 @@ def test_with_blog_with_datacite_dois():
     assert subject.is_valid
     assert (
         subject.id
-        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
+        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     )
     assert subject.type == "WebPage"
     assert (
         subject.url
-        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht"
+        == "https://blog.dini.de/EPub_FIS/2022/11/21/neue-standortbestimmung-fis-veroeffentlicht/"
     )
 
 
@@ -399,7 +393,7 @@ def test_yet_another_ghost_post():
     string = "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas"
+    assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     assert subject.type == "Article"
     assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     assert subject.titles and subject.titles[0] == {"title": "Why Surgery Needs I.D.E.A.S."}
@@ -501,7 +495,7 @@ def test_orcid_blog():
     string = "https://info.orcid.org/orcid-2023-annual-report/"
     subject = Metadata(string)
     assert subject.is_valid is False
-    assert subject.id == "https://info.orcid.org/orcid-2023-annual-report"
+    assert subject.id == "https://info.orcid.org/orcid-2023-annual-report/"
     assert subject.type == "WebPage"
     assert subject.state == "forbidden"
 

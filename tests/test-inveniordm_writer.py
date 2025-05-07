@@ -208,7 +208,7 @@ def test_rogue_scholar():
             "scheme": "guid",
         },
         {
-            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities",
+            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities/",
             "scheme": "url",
         },
     ]

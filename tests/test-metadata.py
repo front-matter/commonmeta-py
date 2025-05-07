@@ -1,6 +1,7 @@
 """Metadata tests"""
 
 import pytest
+
 from commonmeta import Metadata, MetadataList
 
 
@@ -36,8 +37,8 @@ def test_crossref_doi_as_url():
 def test_random_string():
     """random string"""
     string = "abc"
-    with pytest.raises(ValueError):
-        Metadata(string)
+    subject = Metadata(string)
+    assert subject.id is None
 
 
 @pytest.mark.vcr

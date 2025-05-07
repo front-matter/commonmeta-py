@@ -2,6 +2,7 @@
 """InvenioRDM reader tests"""
 
 from os import path
+
 import pytest
 
 from commonmeta import Metadata
@@ -84,7 +85,7 @@ def test_presentation():
     assert subject.type == "Presentation"
     assert subject.url == "https://zenodo.org/records/8173303"
     assert subject.titles[0] == {
-        "title": "11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+        "title": "ARCHIVE - 11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
     }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -101,7 +102,7 @@ def test_presentation():
 
     assert subject.date == {
         "published": "2023-07-21",
-        "updated": "2024-07-11T16:29:41Z",
+        "updated": "2025-01-22T19:42:46Z",
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},

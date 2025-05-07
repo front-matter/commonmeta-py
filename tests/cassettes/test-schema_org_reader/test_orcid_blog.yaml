@@ -44,4 +44,49 @@ interactions:
     status:
       code: 403
       message: Forbidden
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - info.orcid.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
+        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
+        AAD//wMAbXiVjpIAAAA=
+    headers:
+      CF-Cache-Status:
+      - BYPASS
+      CF-Ray:
+      - 93c305f9789f162c-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Wed, 07 May 2025 19:11:28 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      cf-apo-via:
+      - origin,page-rules
+    status:
+      code: 403
+      message: Forbidden
 version: 1
