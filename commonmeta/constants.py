@@ -1,6 +1,6 @@
 """Constants for commonmeta-py"""
 
-from typing import Optional, TypedDict, List
+from typing import List, Optional, TypedDict
 
 
 class Commonmeta(TypedDict):
@@ -467,25 +467,25 @@ CM_TO_SO_TRANSLATIONS = {
 # source: https://api.openalex.org/works?group_by=type
 OA_TO_CM_TRANSLATIONS = {
     "article": "Article",
+    "book": "Book",
     "book-chapter": "BookChapter",
     "dataset": "Dataset",
-    "preprint": "Article",
     "dissertation": "Dissertation",
-    "book": "Book",
-    "review": "Article",
-    "paratext": "Component",
-    "libguides": "InteractiveResource",
+    "editorial": "Document",
+    "erratum": "Other",
+    "grant": "Grant",
     "letter": "Article",
+    "libguides": "InteractiveResource",
     "other": "Other",
+    "paratext": "Component",
+    "peer-review": "PeerReview",
+    "preprint": "Article",
     "reference-entry": "Other",
     "report": "Report",
-    "editorial": "Document",
-    "peer-review": "PeerReview",
-    "erratum": "Other",
+    "retraction": "Other",
+    "review": "Article",
     "standard": "Standard",
-    "grant": "Grant",
     "supplementary-materials": "Component",
-    "retraction": "Other"
 }
 
 SO_TO_DC_RELATION_TYPES = {
