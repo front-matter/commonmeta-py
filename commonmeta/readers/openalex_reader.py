@@ -1,4 +1,4 @@
-"""crossref reader for commonmeta-py"""
+"""OpenAlex reader for commonmeta-py"""
 
 from typing import Optional
 
@@ -35,8 +35,9 @@ def get_openalex(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     return response.json() | {"via": "openalex"}
 
+
 def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
-    """read_crossref"""
+    """read_openalex"""
     if data is None:
         return {"state": "not_found"}
     meta = data
@@ -47,24 +48,17 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     _type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
 
     archive_locations = []
-
-    if meta.get("author", None):
-        contributors = get_authors(wrap(meta.get("authorships")), via="crossref")
-    else:
-        contributors = []
-
+    contributors = get_contributors(wrap(meta.get("authorships")))
+    contributors = get_authors(contributors)
     editors = []
 
-    url = normalize_url(compact({
-        py_.get(meta, "primary_location.landing_page_url")
-        or py_.get(meta, "id")
-        })
-        )
-    titles = [{
-                "title": sanitize(py_.get(meta, "title")),
-                "titleType": "Title",
-                }]
-    publisher = compact({"name": meta.get("primary_location.source.display_name", None)})
+    url = normalize_url(
+        py_.get(meta, "primary_location.landing_page_url") or py_.get(meta, "id")
+    )
+    titles = [{"title": sanitize(py_.get(meta, "title"))}]
+    publisher = compact(
+        {"name": meta.get("primary_location.source.display_name", None)}
+    )
     if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
         _type = "BlogPost"
     date = compact(
@@ -73,20 +67,25 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
             or py_.get(meta, "created_date")
         }
     )
-    identifiers = [{
-        "identifier": pidurl_as_pid(str(uid)),
-        "identifierType": uidType.upper(),
-    } for uidType, uid in (py_.get(meta, "ids") or {}).items()]
+    identifiers = [
+        {
+            "identifier": pidurl_as_pid(str(uid)),
+            "identifierType": uidType.upper(),
+        }
+        for uidType, uid in (meta.get("ids", {})).items()
+    ]
 
-    license_ = meta.get("license", None) #Returns string E.g. "cc-by"
+    license_ = meta.get("license", None)  # Returns string E.g. "cc-by"
     if license_ is not None:
         license_ = normalize_cc_url(license_[0].get("URL", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
         # Need clarification on how the final license should look
     issn = None
-    container = get_container(meta) # Todo
+    container = get_container(meta)  # Todo
     relations = []
-    references = [get_related(i) for i in get_references(meta.get("referenced_works", []))[:2]] #FTODO
+    references = [
+        get_related(i) for i in get_references(meta.get("referenced_works", []))[:2]
+    ]  # FTODO
     funding_references = from_openalex_funding(wrap(meta.get("grants", None)))
 
     description = get_abstract(meta)
@@ -97,16 +96,15 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
 
     subjects = py_.uniq(
         [
-            {"subject": py_.get(i,"subfield.display_name")}
+            {"subject": py_.get(i, "subfield.display_name")}
             for i in wrap(meta.get("topics", None))
         ]
     )
 
     files = py_.uniq(
-        [
-        ]
-    )# Openalex has urls for openacess article pdfs where available but not any more that I can see
-     # Would files be used just for these urls?
+        []
+    )  # Openalex has urls for openacess article pdfs where available but not any more that I can see
+    # Would files be used just for these urls?
 
     return {
         # required properties
@@ -135,6 +133,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
         "version": meta.get("version", None),
     } | read_options
 
+
 def pidurl_as_pid(pid):
     """Strip url parts from OpenAlex pid"""
     pid = str(pid)
@@ -142,28 +141,49 @@ def pidurl_as_pid(pid):
     pid = "/".join(parts[3:]) if len(parts) > 3 else pid
     return pid
 
+
 def get_abstract(meta):
     """Parse abstract from OpenAlex abstract_inverted_index"""
     abstract_inverted_index = py_.get(meta, "abstract_inverted_index")
 
     if abstract_inverted_index:
         # Determine the length of the abstract
-        max_pos = max(p for positions in abstract_inverted_index.values() for p in positions)
-        abstract_words = [''] * (max_pos + 1)
+        max_pos = max(
+            p for positions in abstract_inverted_index.values() for p in positions
+        )
+        abstract_words = [""] * (max_pos + 1)
 
         for word, positions in abstract_inverted_index.items():
             for p in positions:
                 abstract_words[p] = word
 
-        abstract = ' '.join(abstract_words)
+        abstract = " ".join(abstract_words)
     else:
-        abstract = ''
+        abstract = ""
+
+
+def get_contributors(contributors: list) -> list:
+    """Parse contributor"""
+
+    def parse_contributor(c):
+        return compact(
+            {
+                "id": py_.get(c, "author.orcid"),
+                "name": py_.get(c, "author.display_name"),
+                "affiliations": [
+                    {"name": py_.get(c, "affiliations[0].raw_affiliation_string")}
+                ],
+            }
+        )
+
+    return [parse_contributor(i) for i in contributors]
+
 
 def get_references(pids: list, **kwargs) -> list:
     """Get related articles from OpenAlex using their pid
-       \n Used for retrieving metadata for citations and references which are not included in the OpenAlex record
-       \n Uses batches of 49 to meet their API limit of 50 pids per request"""
-    pid_batches = [pids[i:i+49] for i in range(0, len(pids), 49)]
+    \n Used for retrieving metadata for citations and references which are not included in the OpenAlex record
+    \n Uses batches of 49 to meet their API limit of 50 pids per request"""
+    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
 
     references = []
     for pid_batch in pid_batches:
@@ -173,12 +193,13 @@ def get_references(pids: list, **kwargs) -> list:
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
-        if py_.get(response,"count") == 0:
+        if py_.get(response, "count") == 0:
             return {"state": "not_found"}
 
         references.extend(response.get("results"))
 
     return references
+
 
 def get_citations(citation_url: str, **kwargs) -> list:
     response = httpx.get(citation_url, timeout=10, **kwargs)
@@ -186,6 +207,7 @@ def get_citations(citation_url: str, **kwargs) -> list:
         return {"state": "not_found"}
     response = response.json()
     return response.json().get("results", [])
+
 
 def get_related(related: Optional[dict]) -> Optional[dict]:
     """Get reference from OpenAlex reference"""
@@ -197,18 +219,21 @@ def get_related(related: Optional[dict]) -> Optional[dict]:
         "id": normalize_doi(doi) if doi else None,
         "contributor": related.get("author", None),
         "title": related.get("display_name", None),
-        "publisher": related.get("primary_location.source.host_organization_name", None),
+        "publisher": related.get(
+            "primary_location.source.host_organization_name", None
+        ),
         "publicationYear": related.get("publication_year", None),
-        "volume": py_.get(related,"biblio.volume"),
-        "issue": py_.get(related,"biblio.issue"),
-        "firstPage": py_.get(related,"biblio.first_page"),
-        "lastPage": py_.get(related,"biblio.last_page"),
+        "volume": py_.get(related, "biblio.volume"),
+        "issue": py_.get(related, "biblio.issue"),
+        "firstPage": py_.get(related, "biblio.first_page"),
+        "lastPage": py_.get(related, "biblio.last_page"),
         "containerTitle": related.get("primary_location.source.display_name", None),
     }
     return compact(metadata)
 
+
 def get_file(file: dict) -> dict:
-    """Get file from Crossref"""
+    """Get file from OpenAlex"""
     return compact(
         {
             "url": file.get("URL", None),
@@ -216,18 +241,20 @@ def get_file(file: dict) -> dict:
         }
     )
 
+
 def get_container(meta: dict) -> dict:
-    """Get container from Crossref"""
-    container = py_.get(meta,"primary_location")
-    container_source = container.get("source")
-    container_type = py_.get(container_source,"type")
+    """Get container from OpenAlex"""
+    container = meta.get("primary_location", {})
+    container_source = container.get("source", None)
+    container_source = py_.get(meta, "primary_location.source") or {}
+    container_type = container_source.get("type", None)
     container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(container_type, None)
-    issn = py_.get(container_source,"issn_l")
-    id = container.get("id")
+    issn = container_source.get("issn_l", None)
+    id = container.get("id", None)
     container_title = container_source.get("display_name", None)
-    volume = py_.get(meta,"biblio.volume")
+    volume = py_.get(meta, "biblio.volume")
     issue = py_.get(meta, "biblio.issue")
-    first_page = py_.get(meta,"biblio.first_page")
+    first_page = py_.get(meta, "biblio.first_page")
     last_page = py_.get(meta, "biblio.last_page")
 
     # TODO: add support for series, location, missing in Crossref JSON
@@ -255,7 +282,7 @@ def from_openalex_funding(funding_references: list) -> list:
                 "funderName": funding.get("funder_display_name", None),
                 "funderIdentifier": pidurl_as_pid(funding["funder"]),
                 "funderIdentifierType": "OpenAlex Funder ID",
-                "awardNumber": funding.get("award_id",None)
+                "awardNumber": funding.get("award_id", None),
             }
         )
         formatted_funding_references.append(f)
