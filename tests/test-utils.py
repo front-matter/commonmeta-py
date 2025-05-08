@@ -44,8 +44,13 @@ from commonmeta.utils import (
     to_schema_org_container,
     to_schema_org_creators,
     to_schema_org_identifiers,
+    validate_id,
     validate_isni,
+    validate_mag,
+    validate_openalex,
     validate_orcid,
+    validate_pmcid,
+    validate_pmid,
     validate_ror,
     validate_url,
 )
@@ -119,6 +124,34 @@ def test_validate_ror():
     assert None is validate_ror(None)
 
 
+def test_validate_openalex():
+    "validate_openalex"
+    assert "W2121398592" == validate_openalex("https://openalex.org/W2121398592")
+    # None
+    assert None is validate_openalex(None)
+
+
+def test_validate_pmid():
+    "validate_pmid"
+    assert "24520159" == validate_pmid("https://pubmed.ncbi.nlm.nih.gov/24520159")
+    # None
+    assert None is validate_pmid(None)
+
+
+def test_validate_pmcid():
+    "validate_pmcid"
+    assert "3917233" == validate_pmcid("https://www.ncbi.nlm.nih.gov/pmc/articles/3917233")
+    # None
+    assert None is validate_pmcid(None)
+
+
+def test_validate_mag():
+    "validate_mag"
+    assert "2121398592" == validate_mag("2121398592")
+    # None
+    assert None is validate_mag(None)
+
+
 def test_validate_isni():
     "validate_isni"
     assert "0000000357526882" == validate_isni("https://isni.org/isni/0000000357526882")
@@ -129,6 +162,10 @@ def test_validate_isni():
     # None
     assert None is validate_isni(None)
 
+
+def test_validate_id():
+    "validate_id"
+    "h" == validate_id("https://isni.org/isni/0000000357526882")
 
 def test_normalize_orcid():
     "normalize_orcid"
