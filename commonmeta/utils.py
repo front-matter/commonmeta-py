@@ -285,6 +285,115 @@ def validate_isni(isni: Optional[str]) -> Optional[str]:
     return isni
 
 
+def validate_mag(mag: Optional[str]) -> Optional[str]:
+    """Validate Microsoft Academic Graph ID (mag)"""
+    if mag is None or not isinstance(mag, str):
+        return None
+    match = re.search(
+        r"\A(\d{4,10})\Z",
+        mag,
+    )
+    if match is None:
+        return None
+    return match.group(1)
+
+
+def validate_openalex(openalex: Optional[str]) -> Optional[str]:
+    """Validate OpenAlex ID"""
+    if openalex is None or not isinstance(openalex, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://openalex\.org/)?(W\d{10})\Z",
+        openalex,
+    )
+    if match is None:
+        return None
+    return match.group(1)
+
+
+def validate_pmid(pmid: Optional[str]) -> Optional[str]:
+    """Validate PubMed ID (pmid)"""
+    if pmid is None or not isinstance(pmid, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://pubmed\.ncbi\.nlm\.nih\.gov/)?(\d{4,8})\Z",
+        pmid,
+    )
+    if match is None:
+        return None
+    return match.group(1)
+
+
+def validate_pmcid(pmcid: Optional[str]) -> Optional[str]:
+    """Validate PubMed Central ID (pmcid)"""
+    if pmcid is None or not isinstance(pmcid, str):
+        return None
+    match = re.search(
+        r"\A(?:(?:http|https)://www\.ncbi\.nlm\.nih\.gov/pmc/articles/)?(\d{4,8})\Z",
+        pmcid,
+    )
+    if match is None:
+        return None
+    return match.group(1)
+
+
+def validate_id(id: Optional[str]) -> tuple[Optional[str], Optional[str]]:
+    """
+    Validate an identifier and return the validated identifier and its type.
+
+    Args:
+        id: The identifier string to validate
+
+    Returns:
+        A tuple containing (validated_id, id_type) or (None, None) if invalid
+    """
+    if id is None:
+        return None, None
+
+    # Check if it's a DOI
+    doi = validate_doi(id)
+    if doi:
+        return normalize_doi(id), "DOI"
+
+    # Check if it's an ORCID
+    orcid = validate_orcid(id)
+    if orcid:
+        return normalize_orcid(id), "ORCID"
+
+    # Check if it's a ROR
+    ror = validate_ror(id)
+    if ror:
+        return normalize_ror(id), "ROR"
+
+    # Check if it's an ISNI
+    isni = validate_isni(id)
+    if isni:
+        return normalize_isni(id), "ISNI"
+
+    # Check if it's an OpenAlex ID
+    openalex = validate_openalex(id)
+    if openalex:
+        return f"https://openalex.org/{openalex}", "OpenAlex"
+
+    # Check if it's a PubMed ID
+    pmid = validate_pmid(id)
+    if pmid:
+        return f"https://pubmed.ncbi.nlm.nih.gov/{pmid}", "PMID"
+
+    # Check if it's a PubMed Central ID
+    pmcid = validate_pmcid(id)
+    if pmcid:
+        return f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}", "PMCID"
+
+    # Check if it's a URL
+    url_type = validate_url(id)
+    if url_type:
+        return normalize_url(id), url_type
+
+    # No known valid identifier type was found
+    return None, None
+
+
 def normalize_isni(isni: Optional[str]) -> Optional[str]:
     """Normalize ISNI"""
     if isni is None or not isinstance(isni, str):
