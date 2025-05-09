@@ -1,16 +1,17 @@
-import click
 import time
-import pydash as py_
+
+import click
 import orjson as json
+import pydash as py_
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
-from commonmeta.doi_utils import validate_prefix, encode_doi, decode_doi
+from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
+from commonmeta.readers.crossref_reader import get_random_crossref_id
+from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
 )
-from commonmeta.readers.crossref_reader import get_random_crossref_id
-from commonmeta.readers.datacite_reader import get_random_datacite_id
 
 
 @click.group()

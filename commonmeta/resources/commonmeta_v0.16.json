@@ -5,8 +5,7 @@
   "description": "JSON representation of the Commonmeta schema.",
   "commonmeta": {
     "anyOf": [
-      { "$ref": "#/definitions/commonmeta"
-      },
+      { "$ref": "#/definitions/commonmeta" },
       {
         "type": "array",
         "description": "An array of commonmeta objects.",
@@ -196,7 +195,13 @@
               "type": {
                 "description": "The type of the description.",
                 "type": "string",
-                "enum": ["Abstract", "Summary", "Methods", "TechnicalInfo", "Other"]
+                "enum": [
+                  "Abstract",
+                  "Summary",
+                  "Methods",
+                  "TechnicalInfo",
+                  "Other"
+                ]
               },
               "language": {
                 "description": "The language of the title. Use one of the language codes from the IETF BCP 47 standard.",
@@ -267,7 +272,9 @@
                       "items": { "$ref": "#/definitions/geoLocationPoint" },
                       "minItems": 4
                     },
-                    "inPolygonPoint": { "$ref": "#/definitions/geoLocationPoint" }
+                    "inPolygonPoint": {
+                      "$ref": "#/definitions/geoLocationPoint"
+                    }
                   },
                   "required": ["polygonPoints"]
                 },
@@ -294,6 +301,7 @@
                   "Handle",
                   "ISBN",
                   "ISSN",
+                  "OpenAlex",
                   "PMID",
                   "PMCID",
                   "PURL",
@@ -323,7 +331,15 @@
         "provider": {
           "description": "The provider of the resource. This can be a DOI registration agency or a repository.",
           "type": "string",
-          "enum": ["Crossref", "DataCite", "GitHub", "JaLC", "KISTI", "mEDRA", "OP"]
+          "enum": [
+            "Crossref",
+            "DataCite",
+            "GitHub",
+            "JaLC",
+            "KISTI",
+            "mEDRA",
+            "OP"
+          ]
         },
         "publisher": {
           "description": "The publisher of the resource.",
