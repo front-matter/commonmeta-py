@@ -8,28 +8,30 @@ from pydash import py_
 from ..author_utils import get_authors
 from ..base_utils import compact, presence, sanitize, wrap
 from ..constants import (
+    CR_TO_CM_TRANSLATIONS,
     OA_TO_CM_CONTAINER_TRANLATIONS,
     OA_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
 from ..doi_utils import (
-    doi_as_url,
+    normalize_doi,
     openalex_api_sample_url,
     openalex_api_url,
 )
 from ..utils import (
     dict_to_spdx,
-    normalize_cc_url,
-    normalize_doi,
     normalize_url,
 )
+
+OA_LICENSES = {"cc-by": "CC-BY-4.0", "cc0": "CC0-1.0"}
 
 
 def get_openalex(pid: str, **kwargs) -> dict:
     """get_openalex"""
-    if pid is None:
+    doi = normalize_doi(pid)
+    if doi is None:
         return {"state": "not_found"}
-    url = openalex_api_url(pid)
+    url = openalex_api_url(doi)
     response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
@@ -44,8 +46,11 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     doi = meta.get("doi", None)
-    _id = doi_as_url(doi)
-    _type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
+    _id = normalize_doi(doi)
+    _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type_crossref", None)) or "Other"
+    additional_type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None))
+    if additional_type == _type:
+        additional_type = None
 
     archive_locations = []
     contributors = get_contributors(wrap(meta.get("authorships")))
@@ -55,12 +60,14 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     url = normalize_url(
         py_.get(meta, "primary_location.landing_page_url") or py_.get(meta, "id")
     )
-    titles = [{"title": sanitize(py_.get(meta, "title"))}]
+    title = meta.get("title", None)
+    if title is not None:
+        titles = [{"title": sanitize(title)}]
+    else:
+        titles = None
     publisher = compact(
-        {"name": meta.get("primary_location.source.display_name", None)}
+        {"name": py_.get(meta, "primary_location.source.host_organization_name")}
     )
-    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
-        _type = "BlogPost"
     date = compact(
         {
             "published": py_.get(meta, "publication_date")
@@ -75,11 +82,10 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
         for uidType, uid in (meta.get("ids", {})).items()
     ]
 
-    license_ = meta.get("license", None)  # Returns string E.g. "cc-by"
+    license_ = py_.get(meta, "best_oa_location.license")
     if license_ is not None:
-        license_ = normalize_cc_url(license_[0].get("URL", None))
-        license_ = dict_to_spdx({"url": license_}) if license_ else None
-        # Need clarification on how the final license should look
+        license_ = OA_LICENSES.get(license_, license_)
+        license_ = dict_to_spdx({"id": license_})
     issn = None
     container = get_container(meta)  # Todo
     relations = []
@@ -111,7 +117,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "additionalType": None,
+        "additionalType": additional_type,
         "archiveLocations": presence(archive_locations),
         "container": presence(container),
         "contributors": presence(contributors),
@@ -166,13 +172,22 @@ def get_contributors(contributors: list) -> list:
     """Parse contributor"""
 
     def parse_contributor(c):
+        affiliations = []
+        for affiliation in c.get("institutions", []):
+            affiliations.append(
+                compact(
+                    {
+                        "id": affiliation.get("ror", None),
+                        "name": affiliation.get("display_name", None),
+                    }
+                )
+            )
+
         return compact(
             {
                 "id": py_.get(c, "author.orcid"),
                 "name": py_.get(c, "author.display_name"),
-                "affiliations": [
-                    {"name": py_.get(c, "affiliations[0].raw_affiliation_string")}
-                ],
+                "affiliations": affiliations,
             }
         )
 
@@ -181,9 +196,9 @@ def get_contributors(contributors: list) -> list:
 
 def get_references(pids: list, **kwargs) -> list:
     """Get related articles from OpenAlex using their pid
-    \n Used for retrieving metadata for citations and references which are not included in the OpenAlex record
-    \n Uses batches of 49 to meet their API limit of 50 pids per request"""
-    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
+    Used for retrieving metadata for citations and references which are not included in the OpenAlex record
+    Uses batches of 49 to meet their API limit of 50 pids per request"""
+    pid_batches = [pids[i : i + min(len(pids), 49)] for i in range(0, len(pids), 49)]
 
     references = []
     for pid_batch in pid_batches:
@@ -289,9 +304,9 @@ def from_openalex_funding(funding_references: list) -> list:
     return py_.uniq(formatted_funding_references)
 
 
-def get_random_openalex_id(number: int = 1, **kwargs) -> list:
+def get_random_doi_from_openalex(number: int = 1, **kwargs) -> list:
     """Get random DOI from OpenAlex"""
-    number = 20 if number > 20 else number
+    number = min(number, 20)
     url = openalex_api_sample_url(number, **kwargs)
     try:
         response = httpx.get(url, timeout=10)

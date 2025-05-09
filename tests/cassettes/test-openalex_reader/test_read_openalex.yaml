@@ -2461,4 +2461,80 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.openalex.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.openalex.org/works/10.1017/9781108348843
+  response:
+    body:
+      string: '<!doctype html>
+
+        <html lang=en>
+
+        <title>404 Not Found</title>
+
+        <h1>Not Found</h1>
+
+        <p>The requested URL was not found on the server. If you entered the URL manually
+        please check your spelling and try again.</p>
+
+        '
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '207'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Thu, 08 May 2025 20:13:07 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746735187&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=JgMbKuUD2z9KZuN5FSoQWSGJP6HaVXBOkD9tdTTqEGo%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746735187&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=JgMbKuUD2z9KZuN5FSoQWSGJP6HaVXBOkD9tdTTqEGo%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 404
+      message: NOT FOUND
 version: 1

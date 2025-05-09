@@ -466,7 +466,7 @@ CM_TO_SO_TRANSLATIONS = {
 
 # source: https://api.openalex.org/works?group_by=type
 OA_TO_CM_TRANSLATIONS = {
-    "article": "JournalArticle",
+    "article": "Article",
     "book": "Book",
     "book-chapter": "BookChapter",
     "dataset": "Dataset",

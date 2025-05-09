@@ -235,7 +235,7 @@ def insert_citation_list(metadata, xml):
         if ref.get("id", None) is None:
             continue
         citation = etree.SubElement(
-            citation_list, "citation", {"key": ref.get("key", f"ref{i+1}")}
+            citation_list, "citation", {"key": ref.get("key", f"ref{i + 1}")}
         )
         if ref.get("journal_title", None) is not None:
             etree.SubElement(citation, "journal_article").text = ref.get(

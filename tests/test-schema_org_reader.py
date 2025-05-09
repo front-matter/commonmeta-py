@@ -148,11 +148,9 @@ def test_pangaea():
     assert subject.publisher == {"name": "PANGAEA"}
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions and subject.descriptions[0]
-        .get("description")
-        .startswith("Few hydrological studies have been made in Greenland")
-    )
+    assert subject.descriptions and subject.descriptions[0].get(
+        "description"
+    ).startswith("Few hydrological studies have been made in Greenland")
     assert subject.subjects == [
         {
             "subject": "GReenland Analogue Surface Project (GRASP)",
@@ -179,7 +177,9 @@ def test_dataverse():
         subject.url
         == "https://dataverse.harvard.edu/citation?persistentId=doi:10.7910/DVN/NJ7XSO"
     )
-    assert subject.titles and subject.titles[0] == {"title": "Summary data ankylosing spondylitis GWAS"}
+    assert subject.titles and subject.titles[0] == {
+        "title": "Summary data ankylosing spondylitis GWAS"
+    }
     assert subject.contributors and len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Organization",
@@ -196,11 +196,9 @@ def test_dataverse():
     assert subject.publisher == {"name": "Harvard Dataverse"}
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions and subject.descriptions[0]
-        .get("description")
-        .startswith("Summary of association tests for Nature Genetics")
-    )
+    assert subject.descriptions and subject.descriptions[0].get(
+        "description"
+    ).startswith("Summary of association tests for Nature Genetics")
     assert subject.subjects == [
         {"subject": "Medicine, Health and Life Sciences"},
         {"subject": "Genome-Wide Association Studies"},
@@ -241,10 +239,17 @@ def test_yet_another_blog_post():
         "published": "2022-09-24T17:22:00Z",
         "updated": "2022-09-24T17:22:00Z",
     }
-    assert subject.publisher == {"name": "John Hawks", 'description': 'Our origins shape our future', 'identifier': 'pub:56991',   'image': {'@type': 'ImageObject',
-               'contentUrl': 'https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png',
-               'thumbnailUrl': 'https://substackcdn.com/image/fetch/w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png',
-               'url': 'https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png'}}
+    assert subject.publisher == {
+        "name": "John Hawks",
+        "description": "Our origins shape our future",
+        "identifier": "pub:56991",
+        "image": {
+            "@type": "ImageObject",
+            "contentUrl": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+            "thumbnailUrl": "https://substackcdn.com/image/fetch/w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+            "url": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+        },
+    }
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
@@ -279,7 +284,9 @@ def test_another_blog_with_dois():
         subject.url
         == "https://x-dev.pages.jsc.fz-juelich.de//2022/10/05/doi-jekyll.html"
     )
-    assert subject.titles and subject.titles[0] == {"title": "DOIng it Right! (DOIs for This Blog)"}
+    assert subject.titles and subject.titles[0] == {
+        "title": "DOIng it Right! (DOIs for This Blog)"
+    }
     assert subject.contributors and len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
@@ -343,11 +350,9 @@ def test_with_upstream_blog_post():
         "type": "Periodical",
         "title": "Upstream",
     }
-    assert (
-        subject.descriptions and subject.descriptions[0]
-        .get("description")
-        .startswith("Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; .")
-    )
+    assert subject.descriptions and subject.descriptions[0].get(
+        "description"
+    ).startswith("Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; .")
     assert subject.subjects == [{"subject": "Humanities"}]
     assert subject.language is None
     assert subject.version is None
@@ -396,7 +401,9 @@ def test_yet_another_ghost_post():
     assert subject.id == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
     assert subject.type == "Article"
     assert subject.url == "https://www.ideasurg.pub/why-surgery-needs-ideas/"
-    assert subject.titles and subject.titles[0] == {"title": "Why Surgery Needs I.D.E.A.S."}
+    assert subject.titles and subject.titles[0] == {
+        "title": "Why Surgery Needs I.D.E.A.S."
+    }
     assert subject.contributors and len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "familyName": "Sathe",
@@ -417,11 +424,9 @@ def test_yet_another_ghost_post():
         "identifier": "https://www.ideasurg.pub/",
         "identifierType": "URL",
     }
-    assert (
-        subject.descriptions and subject.descriptions[0]
-        .get("description")
-        .startswith("I am by no means an expert on the future of academic publishing.")
-    )
+    assert subject.descriptions and subject.descriptions[0].get(
+        "description"
+    ).startswith("I am by no means an expert on the future of academic publishing.")
     assert subject.subjects == [{"subject": "essay"}]
     assert subject.language == "en"
     assert subject.version is None
@@ -461,12 +466,10 @@ def test_arxiv():
     assert subject.publisher == {"name": "arXiv"}
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions and subject.descriptions[0]
-        .get("description")
-        .startswith(
-            "In this paper, we analyse the current availability of open citations data in one particular dataset"
-        )
+    assert subject.descriptions and subject.descriptions[0].get(
+        "description"
+    ).startswith(
+        "In this paper, we analyse the current availability of open citations data in one particular dataset"
     )
     assert subject.subjects == [
         {

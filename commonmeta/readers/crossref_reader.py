@@ -1,32 +1,32 @@
 """crossref reader for commonmeta-py"""
 
 from typing import Optional
+
 import httpx
 from pydash import py_
 
-from ..utils import (
-    dict_to_spdx,
-    normalize_cc_url,
-    normalize_url,
-    normalize_doi,
-    normalize_issn,
-    issn_as_url,
-)
-from ..base_utils import wrap, compact, presence, sanitize, parse_attributes
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_date_parts
-from ..doi_utils import (
-    doi_as_url,
-    doi_from_url,
-    crossref_api_url,
-    crossref_api_query_url,
-    crossref_api_sample_url,
-)
+from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
 from ..constants import (
-    CR_TO_CM_TRANSLATIONS,
     CR_TO_CM_CONTAINER_TRANSLATIONS,
+    CR_TO_CM_TRANSLATIONS,
     CROSSREF_CONTAINER_TYPES,
     Commonmeta,
+)
+from ..date_utils import get_date_from_date_parts
+from ..doi_utils import (
+    crossref_api_query_url,
+    crossref_api_sample_url,
+    crossref_api_url,
+    doi_as_url,
+)
+from ..utils import (
+    dict_to_spdx,
+    issn_as_url,
+    normalize_cc_url,
+    normalize_doi,
+    normalize_issn,
+    normalize_url,
 )
 
 
@@ -41,7 +41,7 @@ def get_crossref_list(query: dict, **kwargs) -> list[dict]:
 
 def get_crossref(pid: str, **kwargs) -> dict:
     """get_crossref"""
-    doi = doi_from_url(pid)
+    doi = validate_doi(pid)
     if doi is None:
         return {"state": "not_found"}
     url = crossref_api_url(doi)

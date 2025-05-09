@@ -8,7 +8,7 @@ import pytest
 from commonmeta import Metadata
 from commonmeta.readers.openalex_reader import (
     get_openalex,
-    get_random_openalex_id,
+    get_random_doi_from_openalex,
     get_references,
     read_openalex,
 )
@@ -26,7 +26,8 @@ def test_doi_with_data_citation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "https://elifesciences.org/articles/01567"
+    assert subject.additional_type == "Article"
+    assert subject.url == "https://elifesciences.org/articles/01567"
     assert subject.titles[0] == {
         "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     }
@@ -119,7 +120,7 @@ def test_journal_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
+    assert subject.url == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.titles[0] == {
         "title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     }
@@ -182,19 +183,20 @@ def test_journal_article_with_funding():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.type == "JournalArticle"
-    # assert (
-    #     subject.url
-    #     == "https://www.frontiersin.org/article/10.3389/fpls.2019.00816/full"
-    # )
+    assert subject.url == "https://doi.org/10.3389/fpls.2019.00816"
     assert subject.titles[0] == {
         "title": "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"
     }
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0001-7552-0164",
         "type": "Person",
         "contributorRoles": ["Author"],
         "givenName": "Ana Margarida",
         "familyName": "Fortes",
+        "affiliations": [
+            {"id": "https://ror.org/01c27hj86", "name": "University of Lisbon"}
+        ],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -204,7 +206,7 @@ def test_journal_article_with_funding():
         "published": "2019-07-02",
     }
     assert subject.publisher == {
-        "name": "Frontiers Media SA",
+        "name": "Frontiers Media",
     }
     assert len(subject.references) == 70
     assert subject.references[-1] == {
@@ -248,16 +250,13 @@ def test_journal_article_original_language():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.type == "JournalArticle"
-    # assert (
-    #     subject.url
-    #     == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
-    # )
+    assert subject.url == "https://doi.org/10.7600/jspfsm.56.60"
     assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {"published": "2007"}
+    assert subject.date == {"published": "2007-01-01"}
     assert subject.publisher == {
-        "name": "The Japanese Society of Physical Fitness and Sports Medicine",
+        "name": "Japanese Society Of Physical Fitness And Sports Medicine",
     }
     assert len(subject.references) == 7
     assert subject.references[-1] == {
@@ -292,12 +291,9 @@ def test_journal_article_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.type == "JournalArticle"
-    # assert (
-    #     subject.url
-    #     == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
-    # )
+    assert subject.url == "https://doi.org/10.1163/1937240x-00002096"
     assert subject.titles[0] == {
-        "title": "Global distribution of Fabaeformiscandona subacuta: an&nbsp;exotic&nbsp;invasive Ostracoda on the Iberian Peninsula?"
+        "title": "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"
     }
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {
@@ -305,9 +301,12 @@ def test_journal_article_with_rdf_for_container():
         "contributorRoles": ["Author"],
         "givenName": "Andreu",
         "familyName": "Escrivà",
+        "affiliations": [
+            {"id": "https://ror.org/043nxc105", "name": "Universitat de València"}
+        ],
     }
     assert subject.license is None
-    assert subject.date == {"published": "2012-01-01"}
+    assert subject.date == {"published": "2012"}
     assert subject.publisher == {
         "name": "Oxford University Press (OUP)",
     }
@@ -347,7 +346,7 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.type == "BookChapter"
-    # assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
+    assert subject.url == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.titles[0] == {
         "title": "Human Body Orientation Estimation in Multiview Scenarios"
     }
@@ -360,14 +359,14 @@ def test_book_chapter_with_rdf_for_container():
         "familyName": "Chen",
         "affiliations": [
             {
-                "name": "Department of Informatics, Technische Universität München, 85748, "
-                "Garching bei München, Germany",
-            },
+                "id": "https://ror.org/02kkvpp62",
+                "name": "Technical University of Munich",
+            }
         ],
     }
     assert subject.license is None
-    assert subject.date == {"published": "2012"}
-    assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
+    assert subject.date == {"published": "2012-01-01"}
+    assert subject.publisher == {"name": "Springer Science+Business Media"}
     assert len(subject.references) == 11
     assert subject.references[-1] == {
         "key": "49_CR11",
@@ -398,7 +397,7 @@ def test_posted_content():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1101/097196"
     assert subject.type == "Article"
-    # assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
+    assert subject.url == "https://doi.org/10.1101/097196"
     assert subject.titles[0] == {
         "title": "A Data Citation Roadmap for Scholarly Data Repositories"
     }
@@ -409,11 +408,6 @@ def test_posted_content():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliations": [
-            {
-                "name": "DtCite, Hnnover, Germny",
-            },
-        ],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -457,11 +451,8 @@ def test_blog_post():
     subject = Metadata(string, via="openalex")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ybhah-9jy85"
-    assert subject.type == "BlogPost"
-    # assert (
-    #     subject.url
-    #     == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter"
-    # )
+    assert subject.type == "Article"
+    assert subject.url == "https://doi.org/10.53731/ybhah-9jy85"
     assert subject.titles[0] == {"title": "The rise of the (science) newsletter"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -470,15 +461,14 @@ def test_blog_post():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliations": [{"name": "Front Matter"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date == {"published": "2023-10-04"}
-    assert subject.publisher == {"name": "Front Matter"}
-    assert len(subject.references) == 3
+    assert subject.publisher is None
+    assert len(subject.references) == 1
     assert subject.references[0] == {
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "key": "ref1",
@@ -527,7 +517,7 @@ def test_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
-    # assert subject.url == "https://elifesciences.org/articles/55167v1/peer-reviews"
+    assert subject.url == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.titles[0] == {
         "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     }
@@ -539,7 +529,11 @@ def test_peer_review():
         "givenName": "Jeremy F.",
         "familyName": "Magland",
         "affiliations": [
-            {"name": "Center for Computational Mathematics, Flatiron Institute"}
+            {"id": "https://ror.org/00sekdz59", "name": "Flatiron Institute"},
+            {
+                "id": "https://ror.org/0508h6p74",
+                "name": "Flatiron Health (United States)",
+            },
         ],
     }
     assert subject.identifiers == [
@@ -586,7 +580,7 @@ def test_dissertation():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.14264/uql.2020.791"
     assert subject.type == "Dissertation"
-    # assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
+    assert subject.url == "https://doi.org/10.14264/uql.2020.791"
     assert subject.titles[0] == {
         "title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
     }
@@ -600,10 +594,9 @@ def test_dissertation():
     }
     assert subject.license is None
     assert subject.date == {"published": "2020-05-25"}
-    assert subject.publisher == {
-        "name": "University of Queensland Library",
-    }
-    assert subject.references is None
+    assert subject.publisher is None
+    assert len(subject.references) == 2
+    assert subject.references[0] == 1
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
@@ -624,10 +617,10 @@ def test_doi_with_sici():
         subject.id == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
     )
     assert subject.type == "JournalArticle"
-    # assert (
-    #     subject.url
-    #     == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
-    # )
+    assert subject.additional_type == "Article"
+    assert (
+        subject.url == "https://doi.org/10.1890/0012-9658(2006)87[2832:tiopma]2.0.co;2"
+    )
     assert subject.titles[0] == {
         "title": "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING BEHAVIOR ON PREDATOR–PREY COMMUNITIES"
     }
@@ -639,13 +632,10 @@ def test_doi_with_sici():
         "givenName": "Andy",
         "familyName": "Fenton",
         "affiliations": [
-            {
-                "name": "School of Biological Sciences, Crown Street, University of "
-                "Liverpool, Liverpool L69 7ZB, UK",
-            },
+            {"id": "https://ror.org/04xs57h96", "name": "University of Liverpool"}
         ],
     }
-    assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
+    assert subject.license is None
     assert subject.date == {"published": "2006-11"}
     assert subject.publisher == {"name": "Wiley"}
     assert len(subject.references) == 39
@@ -680,7 +670,8 @@ def test_doi_with_orcid():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
+    assert subject.additional_type == "Article"
+    assert subject.url == "https://doi.org/10.1155/2012/291294"
     assert subject.titles[0] == {
         "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     }
@@ -692,8 +683,10 @@ def test_doi_with_orcid():
         "givenName": "Beatriz",
         "familyName": "Hernandez",
         "affiliations": [
+            {"id": "https://ror.org/00f54p054", "name": "Stanford University"},
             {
-                "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
+                "id": "https://ror.org/02hd1sz82",
+                "name": "Mental Illness Research, Education and Clinical Centers",
             },
         ],
     }
@@ -743,21 +736,25 @@ def test_date_in_future():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.type == "JournalArticle"
-    # assert (
-    #     subject.url == "https://linkinghub.elsevier.com/retrieve/pii/S0014299915002332"
-    # )
+    assert subject.additional_type == "Article"
+    assert subject.url == "https://doi.org/10.1016/j.ejphar.2015.03.018"
     assert subject.titles[0] == {
         "title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
     }
     assert len(subject.contributors) == 10
     assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0002-6376-5276",
         "type": "Person",
         "contributorRoles": ["Author"],
         "givenName": "Sarah E.",
         "familyName": "Beck",
+        "affiliations": [
+            {"id": "https://ror.org/037zgn354", "name": "Johns Hopkins Medicine"},
+            {"id": "https://ror.org/00za53h95", "name": "Johns Hopkins University"},
+        ],
     }
-    assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
-    assert subject.date == {"published": "2015-07"}
+    assert subject.license is None
+    assert subject.date == {"published": "2015-04-06"}
     assert subject.publisher == {"name": "Elsevier BV"}
     assert len(subject.references) == 98
     assert subject.references[-1] == {
@@ -835,7 +832,8 @@ def test_vor_with_url():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "https://www.nature.com/articles/hdy201326"
+    assert subject.additional_type == "Article"
+    assert subject.url == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.titles[0] == {
         "title": "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"
     }
@@ -847,15 +845,12 @@ def test_vor_with_url():
         "givenName": "Joshua B.",
         "familyName": "Gross",
         "affiliations": [
-            {
-                "name": "Department of Biological Sciences, University of Cincinnati,  "
-                "Cincinnati,  OH 45221, USA",
-            },
+            {"id": "https://ror.org/01e3m7079", "name": "University of Cincinnati"}
         ],
     }
-    assert subject.license == {"url": "https://www.springer.com/tdm"}
+    assert subject.license is None
     assert subject.date == {"published": "2013-04-10"}
-    assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
+    assert subject.publisher == {"name": "Springer Nature"}
     assert len(subject.references) == 41
     assert subject.references[-1] == {
         "key": "BFhdy201326_CR41",
@@ -901,7 +896,7 @@ def test_dataset():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Component"
-    # assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
+    assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
     assert subject.titles[0] == {
         "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
     }
@@ -933,7 +928,7 @@ def test_component():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
-    # assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
+    assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
@@ -958,7 +953,7 @@ def test_dataset_usda():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.type == "Dataset"
-    # assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
+    assert subject.url == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0003-2583-1778",
@@ -966,11 +961,16 @@ def test_dataset_usda():
         "contributorRoles": ["Author"],
         "givenName": "Christine A.",
         "familyName": "Ribic",
-        "affiliations": [{"name": "U.S. Geological Survey"}],
+        "affiliations": [
+            {
+                "id": "https://ror.org/035a68863",
+                "name": "United States Geological Survey",
+            }
+        ],
     }
     assert subject.license is None
     assert subject.date == {"published": "2017-08-09"}
-    assert subject.publisher == {"name": "Forest Service Research Data Archive"}
+    assert subject.publisher is None
     assert len(subject.references) == 6
     assert subject.references[-1] == {
         "key": "ref6",
@@ -1002,7 +1002,7 @@ def test_book_chapter():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.type == "BookChapter"
-    # assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
+    assert subject.url == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0001-9873-208X",
@@ -1012,17 +1012,15 @@ def test_book_chapter():
         "familyName": "Diercks",
         "affiliations": [
             {
-                "name": "Department of Orthopaedics and Sports Medicine, University "
-                "Medical Center Groningen, University of Groningen, Groningen, The "
-                "Netherlands",
+                "id": "https://ror.org/03cv38k47",
+                "name": "University Medical Center Groningen",
             },
+            {"id": "https://ror.org/012p63287", "name": "University of Groningen"},
         ],
     }
-    assert subject.license == {
-        "url": "https://www.springernature.com/gp/researchers/text-and-data-mining"
-    }
-    assert subject.date == {"published": "2015"}
-    assert subject.publisher == {"name": "Springer Berlin Heidelberg"}
+    assert subject.license is None
+    assert subject.date == {"published": "2015-01-01"}
+    assert subject.publisher == {"name": "Springer Nature"}
     assert len(subject.references) == 22
     assert subject.references[0] == {
         "key": "13_CR1",
@@ -1063,7 +1061,7 @@ def test_another_book_chapter():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.type == "BookChapter"
-    # assert subject.url == "http://link.springer.com/10.1007/978-3-319-75889-3_1"
+    assert subject.url == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.titles[0] == {
         "title": "Climate Change and Increasing Risk of Extreme Heat"
     }
@@ -1075,13 +1073,17 @@ def test_another_book_chapter():
         "familyName": "Jones",
         "affiliations": [
             {
-                "name": "National Oceanic and Atmospheric Administration (UCAR Affiliate), "
-                "NOAA Research, Climate Program Office, Silver Spring, MD, USA",
+                "id": "https://ror.org/02z5nhe81",
+                "name": "National Oceanic and Atmospheric Administration",
+            },
+            {
+                "id": "https://ror.org/02kgve346",
+                "name": "NOAA Oceanic and Atmospheric Research",
             },
         ],
     }
-    assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {"published": "2018"}
+    assert subject.license is None
+    assert subject.date == {"published": "2018-01-01"}
     assert subject.publisher == {"name": "Springer International Publishing"}
     assert len(subject.references) == 44
     assert subject.references[0] == {
@@ -1113,17 +1115,19 @@ def test_yet_another_book_chapter():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.type == "BookChapter"
-    # assert (
-    #     subject.url
-    #     == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
-    # )
+    assert subject.url == "https://doi.org/10.4018/978-1-4666-1891-6.ch004"
     assert subject.titles == [
         {
             "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
         }
     ]
     assert subject.contributors[0] == {
-        "affiliations": [{"name": "Université de Lyon, France"}],
+        "affiliations": [
+            {
+                "id": "https://ror.org/029brtt94",
+                "name": "Université Claude Bernard Lyon 1",
+            }
+        ],
         "type": "Person",
         "contributorRoles": ["Author"],
         "givenName": "Charles‐Edmond",
@@ -1161,7 +1165,8 @@ def test_missing_contributor():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "https://www.mdpi.com/2304-6775/6/2/15"
+    assert subject.additional_type == "Article"
+    assert subject.url == "https://doi.org/10.3390/publications6020015"
     assert subject.titles[0] == {
         "title": "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
     }
@@ -1170,7 +1175,8 @@ def test_missing_contributor():
         "type": "Person",
         "affiliations": [
             {
-                "name": "CERN, CH-1211 Geneva 23, Switzerland",
+                "id": "https://ror.org/01ggx4157",
+                "name": "European Organization for Nuclear Research",
             },
         ],
         "contributorRoles": ["Author"],
@@ -1181,8 +1187,10 @@ def test_missing_contributor():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {"published": "2022-12-16"}
-    assert subject.publisher == {"name": "MDPI AG"}
+    assert subject.date == {"published": "2018-04-09"}
+    assert subject.publisher == {
+        "name": "Multidisciplinary Digital Publishing Institute"
+    }
     assert len(subject.references) == 23
     assert subject.references[-1] == {
         "key": "ref_23",
@@ -1236,7 +1244,7 @@ def test_missing_contributor_name():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.14264/3e10f66"
     assert subject.type == "Dissertation"
-    # assert subject.url == "https://espace.library.uq.edu.au/view/UQ:3e10f66"
+    assert subject.url == "https://doi.org/10.14264/3e10f66"
     assert subject.titles[0] == {
         "title": "A computational impact analysis approach leveraging non-conforming spatial, temporal and methodological discretisations"
     }
@@ -1248,8 +1256,8 @@ def test_missing_contributor_name():
         "familyName": "Wilson",
     }
     assert subject.license is None
-    assert subject.date == {"published": "2022-12-21T04:12:27Z"}
-    assert subject.publisher == {"name": "University of Queensland Library"}
+    assert subject.date == {"published": "2022-12-16"}
+    assert subject.publisher is None
 
 
 @pytest.mark.vcr
@@ -1260,7 +1268,7 @@ def test_too_many_contributor_names():
     # assert subject.is_valid
     assert subject.id == "https://doi.org/10.3934/nhm.2009.4.249"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "http://aimsciences.org//article/doi/10.3934/nhm.2009.4.249"
+    assert subject.url == "https://doi.org/10.3934/nhm.2009.4.249"
     assert subject.titles[0] == {
         "title": "A Hamiltonian perspective to the stabilization of systems of two conservation laws"
     }
@@ -1273,7 +1281,8 @@ def test_too_many_contributor_names():
         "familyName": "dos Santos",
         "affiliations": [
             {
-                "name": "Laboratoire d'automatique et de génie des procédés",
+                "id": "https://ror.org/03kfjwy31",
+                "name": "Automation and Process Engineering Laboratory",
             },
         ],
     }
@@ -1285,16 +1294,14 @@ def test_too_many_contributor_names():
         "type": "Person",
         "affiliations": [
             {
-                "name": "Franche-Comté Électronique Mécanique, Thermique et Optique - "
-                "Sciences et Technologies (UMR 6174)",
-            },
+                "id": "https://ror.org/004fmxv66",
+                "name": "Franche-Comté Électronique Mécanique Thermique et Optique - Sciences et Technologies",
+            }
         ],
     }
     assert subject.license is None
     assert subject.date == {"published": "2009-01-01"}
-    assert subject.publisher == {
-        "name": "American Institute of Mathematical Sciences (AIMS)"
-    }
+    assert subject.publisher == {"name": "American Institute of Mathematical Sciences"}
 
 
 @pytest.mark.vcr
@@ -1305,10 +1312,7 @@ def test_book():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1017/9781108348843"
     assert subject.type == "Book"
-    # assert (
-    #     subject.url
-    #     == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
-    # )
+    assert subject.url == "https://doi.org/10.1017/9781108348843"
     assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0001-5516-8714",
@@ -1316,14 +1320,9 @@ def test_book():
         "contributorRoles": ["Author"],
         "givenName": "Vincent S.",
         "familyName": "Leung",
-        "affiliations": [
-            {
-                "name": "Lingnan University, Hong Kong",
-            },
-        ],
     }
-    assert subject.license == {"url": "https://www.cambridge.org/core/terms"}
-    assert subject.publisher == {"name": "Cambridge University Press"}
+    assert subject.license is None
+    assert subject.publisher is None
     assert len(subject.references) == 273
     assert subject.references[0] == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
@@ -1356,24 +1355,26 @@ def test_proceedings_article():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
-    # assert subject.url == "https://dl.acm.org/doi/10.1145/3448016.3452841"
+    assert subject.url == "https://doi.org/10.1145/3448016.3452841"
     assert subject.titles == [
         {"title": "Vector Quotient Filters"},
-        {
-            "title": "Overcoming the Time/Space Trade-Off in Filter Design",
-            "titleType": "Subtitle",
-        },
     ]
     assert len(subject.contributors) == 6
     assert subject.contributors[0] == {
         "affiliations": [
             {
-                "name": "Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA"
-            }
+                "id": "https://ror.org/02jbv0t02",
+                ------------------------------"name": "Lawrence Berkeley National Laboratory",
+            },
+            {
+                "id": "https://ror.org/01an7q238",
+                "name": "University of California, Berkeley",
+            },
         ],
         "givenName": "Prashant",
         "familyName": "Pandey",
         "type": "Person",
+        "id": "https://orcid.org/0000-0001-5576-0320",
         "contributorRoles": ["Author"],
     }
     assert subject.license == {
@@ -1426,7 +1427,7 @@ def test_multipe_titles():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1007/s00120-007-1345-2"
     assert subject.type == "JournalArticle"
-    # assert subject.url == "https://link.springer.com/10.1007/s00120-007-1345-2"
+    assert subject.url == "https://doi.org/10.1007/s00120-007-1345-2"
     assert subject.titles == [
         {"title": "Penisverletzung durch eine Moulinette"},
     ]
@@ -1437,15 +1438,12 @@ def test_multipe_titles():
         "givenName": "Mike",
         "familyName": "Lehsnau",
         "affiliations": [
-            {
-                "name": "Klinik für Urologie und Neuro-Urologie, Unfallkrankenhaus, "
-                "Warener Straße 7, 12683, Berlin, Deutschland",
-            },
+            {"id": "https://ror.org/011zjcv36", "name": "Unfallkrankenhaus Berlin"}
         ],
     }
-    assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {"published": "2007-07"}
-    assert subject.publisher == {"name": "Springer Science and Business Media LLC"}
+    assert subject.license is None
+    assert subject.date == {"published": "2007-04-13"}
+    assert subject.publisher == {"name": "Springer Nature"}
     assert len(subject.references) == 20
     assert subject.references[-1] == {
         "key": "1345_CR20",
@@ -1481,15 +1479,15 @@ def test_multipe_titles():
 
 
 @pytest.mark.vcr
-def test_get_random_openalex_id():
+def test_get_random_doi_from_openalex():
     """Random DOI from OpenAlex API"""
-    data = get_random_openalex_id()
+    data = get_random_doi_from_openalex()
     assert len(data) == 1
-    assert re.match("^10\\.\\d{4,5}/.+", data[0])
+    assert re.match("10\\.\\d{4,5}/.+$", data[0])
     # 5 random DOIs
-    data = get_random_openalex_id(5)
+    data = get_random_doi_from_openalex(5)
     assert len(data) == 5
-    assert re.match("^10\\.\\d{4,5}/.+", data[0])
+    assert re.match("10\\.\\d{4,5}/.+$", data[0])
 
 
 @pytest.mark.vcr
@@ -1497,7 +1495,7 @@ def test_get_openalex():
     """get_openalex"""
     data = get_openalex("https://doi.org/10.1017/9781108348843")
     assert isinstance(data, dict)
-    assert data.get("DOI") == "10.1017/9781108348843"
+    assert data.get("doi") == "https://doi.org/10.1017/9781108348843"
 
 
 @pytest.mark.vcr

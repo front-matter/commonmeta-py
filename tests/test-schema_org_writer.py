@@ -7,6 +7,7 @@ import pytest
 
 from commonmeta import Metadata
 
+
 @pytest.mark.vcr
 def test_journal_article():
     "journal article"

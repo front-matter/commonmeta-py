@@ -170,12 +170,16 @@ class Metadata:
             if via == "datacite_xml":
                 result = parse_xml(string)
                 if isinstance(result, (dict, list)):
-                    return dict(result) if isinstance(result, dict) else {"items": result}
+                    return (
+                        dict(result) if isinstance(result, dict) else {"items": result}
+                    )
                 return {}
             elif via == "crossref_xml":
                 result = parse_xml(string, dialect="crossref")
                 if isinstance(result, (dict, list)):
-                    return dict(result) if isinstance(result, dict) else {"items": result}
+                    return (
+                        dict(result) if isinstance(result, dict) else {"items": result}
+                    )
                 return {}
             # YAML and other plain text formats
             elif via == "cff":
@@ -186,8 +190,15 @@ class Metadata:
                 return {"data": string}
             # JSON-based formats
             elif via in [
-                "commonmeta", "crossref", "datacite", "schema_org",
-                "csl", "json_feed_item", "codemeta", "kbase", "inveniordm"
+                "commonmeta",
+                "crossref",
+                "datacite",
+                "schema_org",
+                "csl",
+                "json_feed_item",
+                "codemeta",
+                "kbase",
+                "inveniordm",
             ]:
                 return json.loads(string)
             else:
@@ -277,7 +288,7 @@ class Metadata:
                 return "{}"
         elif result is not None:
             try:
-                decoded = result.decode('utf-8')
+                decoded = result.decode("utf-8")
                 # Verify it's valid JSON
                 json.loads(decoded)
                 return decoded
