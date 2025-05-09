@@ -3619,4 +3619,345 @@ interactions:
     status:
       code: 404
       message: NOT FOUND
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.openalex.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.openalex.org/works?filter=ids.openalex:https://openalex.org/F4320332161|https://openalex.org/F4320332161|https://openalex.org/F4320332161|https://openalex.org/F4320332161|https://openalex.org/F4320332161
+  response:
+    body:
+      string: '{"meta":{"count":0,"db_response_time_ms":29,"page":1,"per_page":25,"groups_count":null},"results":[],"group_by":[]}
+
+        '
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '116'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 May 2025 12:48:19 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746794899&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=jagZJxdhD8T1bSxuM0Ygh9fDx3kLEQnMRuvmPrlS91M%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746794899&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=jagZJxdhD8T1bSxuM0Ygh9fDx3kLEQnMRuvmPrlS91M%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.openalex.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.openalex.org/works?filter=ids.openalex:F4320332161|F4320332161|F4320332161|F4320332161|F4320332161
+  response:
+    body:
+      string: '{"meta":{"count":0,"db_response_time_ms":20,"page":1,"per_page":25,"groups_count":null},"results":[],"group_by":[]}
+
+        '
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '116'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 May 2025 12:56:44 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746795404&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=WCC%2B0JvXVMdx3ATN30saT6L4fdpJ08FSfY%2FtTswRZpc%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746795404&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=WCC%2B0JvXVMdx3ATN30saT6L4fdpJ08FSfY%2FtTswRZpc%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.openalex.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.openalex.org/funders?filter=ids.openalex:F4320332161|F4320332161|F4320332161|F4320332161|F4320332161
+  response:
+    body:
+      string: !!binary |
+        H4sIANv8HWgA/71WTW/bOBC991cIPOxJsfkpkQKCvS2aS9Fu2lMRCIzEWET1tSJVr2v4v3co29lI
+        EbI91TBsi3hvZvj4ZugjaozXKDuiohtbjzISo/IxH4zru9aZ3NvG5I1DGaUx6vXOTIjeDPn5gYoY
+        7YZu7F1+CdCOdX2KEUQYaw/Er0dkS5ShyvveZdtt15tW1+bfTTfstn9xRjFjlCQEQWLr+lof8lY3
+        EBp90N52gI3uWuetH71xUfcUvTe69hXA4csMrfahSl+bkAt9uY/+j3Zd7hxAiwkKiNJEtY7udT2W
+        gPlw9x49xGdNhgNsrQwFfbkPRRpXDLYPOaalaNd9hzIa0/qoMaUtIDNs3uihqCLQqC0OwKq6xgTF
+        8nGoL2KAFvv9ftPaagMhAGObOSCoVXRNAwex2dtvNkTXk2z7rW1LkLCv+j+nvd/e96awus7+Bsxg
+        Cr99srXZwjYiigmL6m7XRVCmD+Vt3Pfdczpfjc1jq239mxL/sbelr24Zxig4R7f+2Tk0JQonMdp3
+        w7fnRSaZYGCywnpT5o+H6zoRmIpEqBi5sWk0HJLzOvjtiOhhyBuj23zitMbBqtgwyrDgKVVYKKFS
+        CFnl02ZQJrkEOQi+PlNGoHgwsS2ngFfL/pqLh254AYSnCYNJsf/nh5ESEEHTUoe2e4YFJ1yXJzzY
+        yfrD9hODekUIWwydc4N5AhLB5xcNduzsizDwNLEJ3hCGmdr+Bz1d7OyCiAew59Sa5x8Uhz6e6Z6q
+        hL1WPRE4SekpfkHkCyJVUq4wKcUi4XhGZcuzJpzxFSrhXKXJjEqXVEEIXaFiJjCTMypZUDlsaSUr
+        UZSwlM2oeJk1TXi65k3wGpkVTNSSyqlKVqiYK8pnWYlcUqlco6apkHTOTF+dDZfyNVOkjMl0xly2
+        IYUmXBGJg8v4nLk0ElFkjQkCyWR2MGTpJMLlmgcplVSKGXNppISKtWMBZaWaEZc2AiXWrJBwluLT
+        Q+jt8z1znH5B49nLZRJug/iNi+6OUKWgIymbBsBMWomhkFDWJWY/PtbWVWZ4M+JHzghmJEkFX0Zk
+        MNDEi4BPI8y1t6PNR9jKBA67H3sYT6BM+IRAYWrcYHirz1hkLMkE3UipUp5M48ossOwG0xvCUIg0
+        /WUAhUHKh9O7n3aNwKqFCAAA
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '873'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 May 2025 13:02:19 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746795739&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=xApy2xd9%2FO0MMkMa%2F4MOZNvejgYfWmm3y61Xaf7ZW14%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746795739&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=xApy2xd9%2FO0MMkMa%2F4MOZNvejgYfWmm3y61Xaf7ZW14%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: ''
+    headers:
+      accept:
+      - '*/*'
+      accept-encoding:
+      - gzip, deflate
+      connection:
+      - keep-alive
+      host:
+      - api.openalex.org
+      user-agent:
+      - python-httpx/0.28.1
+    method: GET
+    uri: https://api.openalex.org/sources/S187816532
+  response:
+    body:
+      string: !!binary |
+        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
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '2996'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 May 2025 15:19:32 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746803972&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=w1sltWojUHaGMC6Swc7tOb6MLVrHjI%2B53H6bR4N6bZY%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746803972&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=w1sltWojUHaGMC6Swc7tOb6MLVrHjI%2B53H6bR4N6bZY%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1

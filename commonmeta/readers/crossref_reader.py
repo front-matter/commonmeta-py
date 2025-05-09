@@ -19,6 +19,7 @@ from ..doi_utils import (
     crossref_api_sample_url,
     crossref_api_url,
     doi_as_url,
+    validate_doi,
 )
 from ..utils import (
     dict_to_spdx,

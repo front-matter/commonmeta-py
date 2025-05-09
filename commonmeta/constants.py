@@ -555,7 +555,7 @@ OA_TO_CM_CONTAINER_TRANLATIONS = {
     "journal": "Journal",
     "repository": "Repository",
     "conference": "Proceedings",
-    "ebook platform": "Repository",
+    "ebook platform": "Book",
     "book series": "BookSeries",
     "metadata": "DataRepository",
     "Other": "Repository",

@@ -16,11 +16,7 @@ commonmeta-py uses semantic versioning. Currently, its major version number is s
 
 Stable version
 
-    pip (or pip3) install commonmeta-py
-
-Dev version
-
-    pip install git+https://github.com/front-matter/commonmeta-py.git#egg=commonmeta-py
+    uv add commonmeta-py
 
 ## Supported Metadata Formats
 
@@ -45,9 +41,10 @@ Commometa-py reads and/or writes these metadata formats:
 | [RIS](http://en.wikipedia.org/wiki/RIS_(file_format))                                            | ris           | application/x-research-info-systems    | yes   | yes     |
 | [InvenioRDM](https://inveniordm.docs.cern.ch/reference/metadata/)                                | inveniordm    | application/vnd.inveniordm.v1+json     | yes   | yes     |
 | [JSON Feed](https://www.jsonfeed.org/)                                                           | json_feed_item     | application/feed+json    | yes | later     |
+| [OpenAlex](https://www.openalex.org/)                                                           | openalex     |    | yes | no     |
 
 _commonmeta_: the Commonmeta format is the native format for the library and used internally.
-_Planned_: we plan to implement this format for the v1.0 public release.  
+_Planned_: we plan to implement this format for the v1.0 public release.
 _Later_: we plan to implement this format in a later release.
 
 ## Documentation
@@ -56,6 +53,6 @@ Documentation (work in progress) for using the library is available at the [comm
 
 ## Meta
 
-Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/commonmeta-py/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.  
+Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/commonmeta-py/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 License: [MIT](https://github.com/front-matter/commonmeta-py/blob/main/LICENSE)

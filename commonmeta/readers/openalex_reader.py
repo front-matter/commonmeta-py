@@ -21,9 +21,18 @@ from ..doi_utils import (
 from ..utils import (
     dict_to_spdx,
     normalize_url,
+    validate_openalex,
 )
 
+# Map OpenAlex license strings to SPDX licenceId. May not be the correct license version.
 OA_LICENSES = {"cc-by": "CC-BY-4.0", "cc0": "CC0-1.0"}
+OA_IDENTIFIER_TYPES = {
+    "openalex": "OpenAlex",
+    "doi": "DOI",
+    "mag": "MAG",
+    "pmid": "PMID",
+    "pmcid": "PMCID",
+}
 
 
 def get_openalex(pid: str, **kwargs) -> dict:
@@ -55,7 +64,6 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     archive_locations = []
     contributors = get_contributors(wrap(meta.get("authorships")))
     contributors = get_authors(contributors)
-    editors = []
 
     url = normalize_url(
         py_.get(meta, "primary_location.landing_page_url") or py_.get(meta, "id")
@@ -76,8 +84,8 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     )
     identifiers = [
         {
-            "identifier": pidurl_as_pid(str(uid)),
-            "identifierType": uidType.upper(),
+            "identifier": uid,
+            "identifierType": OA_IDENTIFIER_TYPES[uidType],
         }
         for uidType, uid in (meta.get("ids", {})).items()
     ]
@@ -86,12 +94,11 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     if license_ is not None:
         license_ = OA_LICENSES.get(license_, license_)
         license_ = dict_to_spdx({"id": license_})
-    issn = None
-    container = get_container(meta)  # Todo
+    container = get_container(meta)
     relations = []
     references = [
-        get_related(i) for i in get_references(meta.get("referenced_works", []))[:2]
-    ]  # FTODO
+        get_related(i) for i in get_references(meta.get("referenced_works", []))
+    ]
     funding_references = from_openalex_funding(wrap(meta.get("grants", None)))
 
     description = get_abstract(meta)
@@ -106,11 +113,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
             for i in wrap(meta.get("topics", None))
         ]
     )
-
-    files = py_.uniq(
-        []
-    )  # Openalex has urls for openacess article pdfs where available but not any more that I can see
-    # Would files be used just for these urls?
+    files = get_files(meta)
 
     return {
         # required properties
@@ -140,14 +143,6 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     } | read_options
 
 
-def pidurl_as_pid(pid):
-    """Strip url parts from OpenAlex pid"""
-    pid = str(pid)
-    parts = pid.split("/")
-    pid = "/".join(parts[3:]) if len(parts) > 3 else pid
-    return pid
-
-
 def get_abstract(meta):
     """Parse abstract from OpenAlex abstract_inverted_index"""
     abstract_inverted_index = py_.get(meta, "abstract_inverted_index")
@@ -165,7 +160,8 @@ def get_abstract(meta):
 
         abstract = " ".join(abstract_words)
     else:
-        abstract = ""
+        abstract = None
+    return abstract
 
 
 def get_contributors(contributors: list) -> list:
@@ -197,22 +193,8 @@ def get_contributors(contributors: list) -> list:
 def get_references(pids: list, **kwargs) -> list:
     """Get related articles from OpenAlex using their pid
     Used for retrieving metadata for citations and references which are not included in the OpenAlex record
-    Uses batches of 49 to meet their API limit of 50 pids per request"""
-    pid_batches = [pids[i : i + min(len(pids), 49)] for i in range(0, len(pids), 49)]
-
-    references = []
-    for pid_batch in pid_batches:
-        ids = "|".join(pid_batch)
-        url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
-        response = httpx.get(url, timeout=10, **kwargs)
-        if response.status_code != 200:
-            return {"state": "not_found"}
-        response = response.json()
-        if py_.get(response, "count") == 0:
-            return {"state": "not_found"}
-
-        references.extend(response.get("results"))
-
+    """
+    references = get_openalex_works(pids)
     return references
 
 
@@ -229,7 +211,6 @@ def get_related(related: Optional[dict]) -> Optional[dict]:
     if related is None or not isinstance(related, dict):
         return None
     doi = related.get("doi", None)
-    print(doi)
     metadata = {
         "id": normalize_doi(doi) if doi else None,
         "contributor": related.get("author", None),
@@ -247,56 +228,135 @@ def get_related(related: Optional[dict]) -> Optional[dict]:
     return compact(metadata)
 
 
-def get_file(file: dict) -> dict:
-    """Get file from OpenAlex"""
+def get_openalex_works(pids: list, **kwargs) -> list:
+    """Get OpenAlex works, use batches of 49 to honor API limit."""
+    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
+    works = []
+    for pid_batch in pid_batches:
+        ids = "|".join(pid_batch)
+        url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
+        response = httpx.get(url, timeout=10, **kwargs)
+        if response.status_code != 200:
+            return {"state": "not_found"}
+        response = response.json()
+        if py_.get(response, "count") == 0:
+            return {"state": "not_found"}
+
+        works.extend(response.get("results"))
+
+    return works
+
+
+def get_openalex_funders(pids: list, **kwargs) -> list:
+    """Get ROR id and name from OpenAlex funders.
+    use batches of 49 to honor API limit."""
+    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
+    funders = []
+    for pid_batch in pid_batches:
+        ids = "|".join(pid_batch)
+        url = f"https://api.openalex.org/funders?filter=ids.openalex:{ids}"
+        response = httpx.get(url, timeout=10, **kwargs)
+        if response.status_code != 200:
+            return {"state": "not_found"}
+        response = response.json()
+        if py_.get(response, "count") == 0:
+            return {"state": "not_found"}
+
+        def format_funder(funder):
+            return compact(
+                {
+                    "id": py_.get(funder, "id"),
+                    "ror": py_.get(funder, "ids.ror"),
+                    "name": py_.get(funder, "display_name"),
+                }
+            )
+
+        f = [format_funder(i) for i in response.get("results")]
+        funders.extend(f)
+
+    return funders
+
+
+def get_openalex_source(str: Optional[str], **kwargs) -> Optional[dict]:
+    """Get issn, name, homepage_url and type from OpenAlex source."""
+    id = validate_openalex(str)
+    if not id:
+        return None
+
+    url = f"https://api.openalex.org/sources/{id}"
+    response = httpx.get(url, timeout=10, **kwargs)
+    if response.status_code != 200:
+        return {"state": "not_found"}
+    response = response.json()
+    if py_.get(response, "count") == 0:
+        return {"state": "not_found"}
+
     return compact(
         {
-            "url": file.get("URL", None),
-            "mimeType": file.get("content-type", None),
+            "id": py_.get(response, "id"),
+            "url": py_.get(response, "homepage_url"),
+            "issn": py_.get(response, "issn_l"),
+            "title": py_.get(response, "display_name"),
+            "type": py_.get(response, "type"),
         }
     )
 
 
+def get_files(meta) -> Optional[list]:
+    """get file links"""
+    pdf_url = py_.get(meta, "best_oa_location.pdf_url")
+    if pdf_url is None:
+        return None
+    return [
+        {"mimeType": "application/pdf", "url": pdf_url},
+    ]
+
+
 def get_container(meta: dict) -> dict:
     """Get container from OpenAlex"""
-    container = meta.get("primary_location", {})
-    container_source = container.get("source", None)
-    container_source = py_.get(meta, "primary_location.source") or {}
-    container_type = container_source.get("type", None)
-    container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(container_type, None)
-    issn = container_source.get("issn_l", None)
-    id = container.get("id", None)
-    container_title = container_source.get("display_name", None)
-    volume = py_.get(meta, "biblio.volume")
-    issue = py_.get(meta, "biblio.issue")
-    first_page = py_.get(meta, "biblio.first_page")
-    last_page = py_.get(meta, "biblio.last_page")
-
-    # TODO: add support for series, location, missing in Crossref JSON
+    source = get_openalex_source(py_.get(meta, "primary_location.source.id"))
+    print(source)
+    container_type = py_.get(source, "type")
+    if container_type:
+        container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
+            container_type, container_type
+        )
+    issn = py_.get(source, "issn")
+    container_title = py_.get(source, "title")
+    url_ = py_.get(source, "url")
 
     return compact(
         {
             "type": container_type,
-            "identifier": issn or id,
-            "identifierType": "ISSN" if issn else "OpenAlexID",
+            "identifier": issn or url_,
+            "identifierType": "ISSN" if issn else "URL" if url_ else None,
             "title": container_title,
-            "volume": volume,
-            "issue": issue,
-            "firstPage": first_page,
-            "lastPage": last_page,
+            "volume": py_.get(meta, "biblio.volume"),
+            "issue": py_.get(meta, "biblio.issue"),
+            "firstPage": py_.get(meta, "biblio.first_page"),
+            "lastPage": py_.get(meta, "biblio.last_page"),
         }
     )
 
 
 def from_openalex_funding(funding_references: list) -> list:
     """Get funding references from OpenAlex"""
+    funder_ids = [
+        validate_openalex(funding.get("funder"))
+        for funding in funding_references
+        if "funder" in funding
+    ]
+    funders = get_openalex_funders(funder_ids)
     formatted_funding_references = []
     for funding in funding_references:
+        funder = next(
+            item for item in funders if item["id"] == funding.get("funder", None)
+        )
         f = compact(
             {
-                "funderName": funding.get("funder_display_name", None),
-                "funderIdentifier": pidurl_as_pid(funding["funder"]),
-                "funderIdentifierType": "OpenAlex Funder ID",
+                "funderName": funder.get("name", None),
+                "funderIdentifier": funder.get("ror", None),
+                "funderIdentifierType": "ROR" if funder.get("ror", None) else None,
                 "awardNumber": funding.get("award_id", None),
             }
         )
@@ -304,8 +364,8 @@ def from_openalex_funding(funding_references: list) -> list:
     return py_.uniq(formatted_funding_references)
 
 
-def get_random_doi_from_openalex(number: int = 1, **kwargs) -> list:
-    """Get random DOI from OpenAlex"""
+def get_random_id_from_openalex(number: int = 1, **kwargs) -> list:
+    """Get random ID from OpenAlex"""
     number = min(number, 20)
     url = openalex_api_sample_url(number, **kwargs)
     try:
@@ -314,6 +374,7 @@ def get_random_doi_from_openalex(number: int = 1, **kwargs) -> list:
             return []
 
         items = py_.get(response.json(), "results")
-        return [i.get("doi") for i in items]
+        print(items)
+        return [i.get("id") for i in items]
     except (httpx.ReadTimeout, httpx.ConnectError):
         return []

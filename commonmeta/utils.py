@@ -303,7 +303,7 @@ def validate_openalex(openalex: Optional[str]) -> Optional[str]:
     if openalex is None or not isinstance(openalex, str):
         return None
     match = re.search(
-        r"\A(?:(?:http|https)://openalex\.org/)?(W\d{10})\Z",
+        r"\A(?:(?:http|https)://openalex\.org/)?([AFIPSW]\d{8,10})\Z",
         openalex,
     )
     if match is None:
