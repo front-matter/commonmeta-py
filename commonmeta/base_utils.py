@@ -1,11 +1,12 @@
 """Base utilities for commonmeta-py"""
 
 import html
-from os import path
 import re
-import xmltodict
+from os import path
 from typing import Optional, Union
+
 import nh3
+import xmltodict
 
 
 def wrap(item) -> list:

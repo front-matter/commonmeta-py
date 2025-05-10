@@ -1,43 +1,45 @@
 """schema_org reader for commonmeta-py"""
 
-from typing import Optional
 import io
-import orjson as json
-from datetime import datetime
 from collections import defaultdict
-import httpx
-from pydash import py_
-from bs4 import BeautifulSoup
-import pikepdf
+from datetime import datetime
+from typing import Optional
 
-from ..utils import (
-    dict_to_spdx,
-    normalize_cc_url,
-    from_schema_org,
-    from_schema_org_creators,
-    normalize_id,
-    normalize_ids,
-    normalize_url,
-    name_to_fos,
-    get_language,
-)
-from ..readers.crossref_reader import get_crossref
-from ..readers.datacite_reader import get_datacite
-from ..base_utils import wrap, compact, presence, parse_attributes, sanitize
+import orjson as json
+import pikepdf
+import requests
+from bs4 import BeautifulSoup
+from pydash import py_
+from requests.exceptions import ConnectionError
+
 from ..author_utils import get_authors
-from ..date_utils import (
-    get_iso8601_date,
-    strip_milliseconds,
-    get_datetime_from_pdf_time,
-)
-from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
-from ..translators import web_translator
+from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
 from ..constants import (
+    OG_TO_SO_TRANSLATIONS,
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
     SO_TO_DC_REVERSE_RELATION_TYPES,
-    OG_TO_SO_TRANSLATIONS,
     Commonmeta,
+)
+from ..date_utils import (
+    get_datetime_from_pdf_time,
+    get_iso8601_date,
+    strip_milliseconds,
+)
+from ..doi_utils import doi_from_url, get_doi_ra, validate_doi
+from ..readers.crossref_reader import get_crossref
+from ..readers.datacite_reader import get_datacite
+from ..translators import web_translator
+from ..utils import (
+    dict_to_spdx,
+    from_schema_org,
+    from_schema_org_creators,
+    get_language,
+    name_to_fos,
+    normalize_cc_url,
+    normalize_id,
+    normalize_ids,
+    normalize_url,
 )
 
 
@@ -51,8 +53,8 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     if doi_from_url(pid):
         return get_doi_meta(doi_from_url(pid))
     try:
-        response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
-    except httpx.ConnectError as error:
+        response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
+    except ConnectionError as error:
         return {
             "@id": url,
             "@type": "WebPage",

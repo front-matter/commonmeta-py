@@ -1,17 +1,207 @@
 interactions:
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
-      - api.rogue-scholar.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KgQuVlmTkFxUrWUVXKyWmpWXm
+        ZCaWZObngfmZKUpWShklJQXFVvr6RflFevlF6foGpuYmpnnmFuZKOkp5ibmpSlZK7jGlBgZpZiUl
+        mXnpqXkKwSWJJakKiXkpCqF5mWWpRcWZJZUKPplJRYlFlUq1sXBtLol5mak5Ck6ppcnZqUo6SmBX
+        we3LL0rOTIHYaGBgoGtgYGCsa2JpYKpraGlsBjYmKSc/XcmqGu6r5PycnNRkiOuNjAyNDBEezsgv
+        xgiEgqLUtMwKJB+WJ1YmJSZn60FDSTezBGw92Ch9IwMjY0NDA1NDA1NzUyN9JYTZJZm5qcUlibkF
+        xRhhCgn15MS8/LzM5MQc5HBPTixJTc8vqlSyUirOT85MzAlOzkzNSwaFQ3J+bm5pXmZJZTw4ApJM
+        zZOMLEyNdS1TE010TSySTHUTUywsdFMMUlKSzNIMDRMtU5R0lJKLUhNLUlPiE0uUrAzNLCwtLM3N
+        DAx0lJJLi4pS80ri01JTU5AdkJJanFyUWQAJLiW3/KLi5IzSvPTizLy0/KJccCJIzVNQUwiuLC5J
+        zU1VqFFwzUnNLinKz8ssTs5ILVYIKE3KyazKTC1KzVOoUfDOzy1ILUnNq6pKzSspKs1V8MwrSS3K
+        L0gtSkzKSVXwTS1JTEksSc1T0lFKyc+MTyyOTy8FeS8tMac4FSJWlJoOC8G0xLLMZFAqhCcHUGTr
+        pWTmZeqlpOq7BpQmxbt5BuuXF+gm5+eVpOaV6JcW5OQnphTrGxkYWugbGOsnF+UXFKSm6Lp4+nnq
+        OrrrunkG6xrrGuoamhpUGJoa6BXkpSvpKIFDBeJhJSulxIKCnMxksN/1E0vyc7UrcnNgilBTJ3bn
+        gEwDawSlj7TMnJLUIriPSvNSMvPgHkxPzUstSizJL1KyUgrPL0oJKEotLlbSUYKLxxclliPLKZjp
+        mesZKukoZeTnpsYXJKZDczH+AFLSUQIFspJRqoGBsYllqm5KalqSromJqaWupZmpsW6akYVJmqmh
+        WWKykQFIbV5KakVqCszNmcXFeUpWSkaWJga6huaWFko6SjmJeemliemgXJ8CSqs5mcmpecUgLqyc
+        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
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:13:09 GMT
+      fly-request-id:
+      - 01JTWTYDFGGKNG41VX9PRR0Z74-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '7'
+      ratelimit-reset:
+      - '30'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KgQuVlmTkFxUrWUVXKyWmpWXm
+        ZCaWZObngfmZKUpWShklJQXFVvr6RflFevlF6foGpuYmpnnmFuZKOkp5ibmpSlZK7jGlBgZpZiUl
+        mXnpqXkKwSWJJakKiXkpCqF5mWWpRcWZJZUKPplJRYlFlUq1sXBtLol5mak5Ck6ppcnZqUo6SmBX
+        we3LL0rOTIHYaGBgoGtgYGCsa2JpYKpraGlsBjYmKSc/XcmqGu6r5PycnNRkiOuNjAyNDBEezsgv
+        xgiEgqLUtMwKJB+WJ1YmJSZn60FDSTezBGw92Ch9IwMjY0NDA1NDA1NzUyN9JYTZJZm5qcUlibkF
+        xRhhCgn15MS8/LzM5MQc5HBPTixJTc8vqlSyUirOT85MzAlOzkzNSwaFQ3J+bm5pXmZJZTw4ApJM
+        zZOMLEyNdS1TE010TSySTHUTUywsdFMMUlKSzNIMDRMtU5R0lJKLUhNLUlPiE0uUrAzNLCwtLM3N
+        DAx0lJJLi4pS80ri01JTU5AdkJJanFyUWQAJLiW3/KLi5IzSvPTizLy0/KJccCJIzVNQUwiuLC5J
+        zU1VqFFwzUnNLinKz8ssTs5ILVYIKE3KyazKTC1KzVOoUfDOzy1ILUnNq6pKzSspKs1V8MwrSS3K
+        L0gtSkzKSVXwTS1JTEksSc1T0lFKyc+MTyyOTy8FeS8tMac4FSJWlJoOC8G0xLLMZFAqhCcHUGTr
+        pWTmZeqlpOq7BpQmxbt5BuuXF+gm5+eVpOaV6JcW5OQnphTrGxkYWugbGOsnF+UXFKSm6Lp4+nnq
+        OrrrunkG6xrrGuoamhpUGJoa6BXkpSvpKIFDBeJhJSulxIKCnMxksN/1E0vyc7UrcnNgilBTJ3bn
+        gEwDawSlj7TMnJLUIriPSvNSMvPgHkxPzUstSizJL1KyUgrPL0oJKEotLlbSUYKLxxclliPLKZjp
+        mesZKukoZeTnpsYXJKZDczH+AFLSUQIFspJRqoGBsYllqm5KalqSromJqaWupZmpsW6akYVJmqmh
+        WWKykQFIbV5KakVqCszNmcXFeUpWSkaWJga6huaWFko6SjmJeemliemgXJ8CSqs5mcmpecUgLqyc
+        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
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:22:36 GMT
+      fly-request-id:
+      - 01JTWVFPY6BRW2CMXFCHA89NR7-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '9'
+      ratelimit-reset:
+      - '22'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
   response:
@@ -77,17 +267,209 @@ interactions:
       content-type:
       - application/json
       date:
-      - Wed, 07 May 2025 12:50:18 GMT
+      - Sat, 10 May 2025 10:39:56 GMT
       fly-request-id:
-      - 01JTNCQZYYMC12B65BA1BXJHZE-fra
+      - 01JTWWFECPVNZ51W85P0409T1C-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '4'
+      - '11'
       ratelimit-reset:
-      - '42'
+      - '12'
       server:
-      - Fly/bbaf6ebad (2025-05-06)
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KgQuVlmTkFxUrWUVXKyWmpWXm
+        ZCaWZObngfmZKUpWShklJQXFVvr6RflFevlF6foGpuYmpnnmFuZKOkp5ibmpSlZK7jGlBgZpZiUl
+        mXnpqXkKwSWJJakKiXkpCqF5mWWpRcWZJZUKPplJRYlFlUq1sXBtLol5mak5Ck6ppcnZqUo6SmBX
+        we3LL0rOTIHYaGBgoGtgYGCsa2JpYKpraGlsBjYmKSc/XcmqGu6r5PycnNRkiOuNjAyNDBEezsgv
+        xgiEgqLUtMwKJB+WJ1YmJSZn60FDSTezBGw92Ch9IwMjY0NDA1NDA1NzUyN9JYTZJZm5qcUlibkF
+        xRhhCgn15MS8/LzM5MQc5HBPTixJTc8vqlSyUirOT85MzAlOzkzNSwaFQ3J+bm5pXmZJZTw4ApJM
+        zZOMLEyNdS1TE010TSySTHUTUywsdFMMUlKSzNIMDRMtU5R0lJKLUhNLUlPiE0uUrAzNLCwtLM3N
+        DAx0lJJLi4pS80ri01JTU5AdkJJanFyUWQAJLiW3/KLi5IzSvPTizLy0/KJccCJIzVNQUwiuLC5J
+        zU1VqFFwzUnNLinKz8ssTs5ILVYIKE3KyazKTC1KzVOoUfDOzy1ILUnNq6pKzSspKs1V8MwrSS3K
+        L0gtSkzKSVXwTS1JTEksSc1T0lFKyc+MTyyOTy8FeS8tMac4FSJWlJoOC8G0xLLMZFAqhCcHUGTr
+        pWTmZeqlpOq7BpQmxbt5BuuXF+gm5+eVpOaV6JcW5OQnphTrGxkYWugbGOsnF+UXFKSm6Lp4+nnq
+        OrrrunkG6xrrGuoamhpUGJoa6BXkpSvpKIFDBeJhJSulxIKCnMxksN/1E0vyc7UrcnNgilBTJ3bn
+        gEwDawSlj7TMnJLUIriPSvNSMvPgHkxPzUstSizJL1KyUgrPL0oJKEotLlbSUYKLxxclliPLKZjp
+        mesZKukoZeTnpsYXJKZDczH+AFLSUQIFspJRqoGBsYllqm5KalqSromJqaWupZmpsW6akYVJmqmh
+        WWKykQFIbV5KakVqCszNmcXFeUpWSkaWJga6huaWFko6SjmJeemliemgXJ8CSqs5mcmpecUgLqyc
+        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
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:47:10 GMT
+      fly-request-id:
+      - 01JTWWWPBSSWR1JSEN3WTXRTJK-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '7'
+      ratelimit-reset:
+      - '29'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6pWSkwqLilKTC5RssorzcnRUUosSs7ILEuNLy3KgQuVlmTkFxUrWUVXKyWmpWXm
+        ZCaWZObngfmZKUpWShklJQXFVvr6RflFevlF6foGpuYmpnnmFuZKOkp5ibmpSlZK7jGlBgZpZiUl
+        mXnpqXkKwSWJJakKiXkpCqF5mWWpRcWZJZUKPplJRYlFlUq1sXBtLol5mak5Ck6ppcnZqUo6SmBX
+        we3LL0rOTIHYaGBgoGtgYGCsa2JpYKpraGlsBjYmKSc/XcmqGu6r5PycnNRkiOuNjAyNDBEezsgv
+        xgiEgqLUtMwKJB+WJ1YmJSZn60FDSTezBGw92Ch9IwMjY0NDA1NDA1NzUyN9JYTZJZm5qcUlibkF
+        xRhhCgn15MS8/LzM5MQc5HBPTixJTc8vqlSyUirOT85MzAlOzkzNSwaFQ3J+bm5pXmZJZTw4ApJM
+        zZOMLEyNdS1TE010TSySTHUTUywsdFMMUlKSzNIMDRMtU5R0lJKLUhNLUlPiE0uUrAzNLCwtLM3N
+        DAx0lJJLi4pS80ri01JTU5AdkJJanFyUWQAJLiW3/KLi5IzSvPTizLy0/KJccCJIzVNQUwiuLC5J
+        zU1VqFFwzUnNLinKz8ssTs5ILVYIKE3KyazKTC1KzVOoUfDOzy1ILUnNq6pKzSspKs1V8MwrSS3K
+        L0gtSkzKSVXwTS1JTEksSc1T0lFKyc+MTyyOTy8FeS8tMac4FSJWlJoOC8G0xLLMZFAqhCcHUGTr
+        pWTmZeqlpOq7BpQmxbt5BuuXF+gm5+eVpOaV6JcW5OQnphTrGxkYWugbGOsnF+UXFKSm6Lp4+nnq
+        OrrrunkG6xrrGuoamhpUGJoa6BXkpSvpKIFDBeJhJSulxIKCnMxksN/1E0vyc7UrcnNgilBTJ3bn
+        gEwDawSlj7TMnJLUIriPSvNSMvPgHkxPzUstSizJL1KyUgrPL0oJKEotLlbSUYKLxxclliPLKZjp
+        mesZKukoZeTnpsYXJKZDczH+AFLSUQIFspJRqoGBsYllqm5KalqSromJqaWupZmpsW6akYVJmqmh
+        WWKykQFIbV5KakVqCszNmcXFeUpWSkaWJga6huaWFko6SjmJeemliemgXJ8CSqs5mcmpecUgLqyc
+        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
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:50:38 GMT
+      fly-request-id:
+      - 01JTWX3112ZNXJC5EXFQEC3VM6-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '6'
+      ratelimit-reset:
+      - '33'
+      server:
+      - Fly/b39e0602b (2025-05-08)
       transfer-encoding:
       - chunked
       vary:

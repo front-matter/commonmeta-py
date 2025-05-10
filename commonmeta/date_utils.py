@@ -3,10 +3,11 @@
 import datetime
 from datetime import datetime as dt
 from typing import Optional, Union
+
 import dateparser
-from edtf import parse_edtf, DateAndTime, Date
-from edtf.parser.edtf_exceptions import EDTFParseException
 import pydash as py_
+from edtf import Date, DateAndTime, parse_edtf
+from edtf.parser.edtf_exceptions import EDTFParseException
 
 from .base_utils import compact
 

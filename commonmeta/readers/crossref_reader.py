@@ -2,8 +2,9 @@
 
 from typing import Optional
 
-import httpx
+import requests
 from pydash import py_
+from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..author_utils import get_authors
 from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
@@ -34,7 +35,7 @@ from ..utils import (
 def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
-    response = httpx.get(url, timeout=30, **kwargs)
+    response = requests.get(url, timeout=30, **kwargs)
     if response.status_code != 200:
         return []
     return response.json().get("message", {}).get("items", [])
@@ -46,7 +47,7 @@ def get_crossref(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_api_url(doi)
-    response = httpx.get(url, timeout=10, **kwargs)
+    response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json().get("message", {}) | {"via": "crossref"}
@@ -402,11 +403,11 @@ def get_random_crossref_id(number: int = 1, **kwargs) -> list:
     number = 20 if number > 20 else number
     url = crossref_api_sample_url(number, **kwargs)
     try:
-        response = httpx.get(url, timeout=10)
+        response = requests.get(url, timeout=10)
         if response.status_code != 200:
             return []
 
         items = py_.get(response.json(), "message.items")
         return [i.get("DOI") for i in items]
-    except (httpx.ReadTimeout, httpx.ConnectError):
+    except (ReadTimeout, ConnectionError):
         return []

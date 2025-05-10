@@ -1,30 +1,31 @@
 """codemeta reader for commonmeta-py"""
 
-from typing import Optional
 from collections import defaultdict
-import httpx
+from typing import Optional
 
+import requests
+
+from ..author_utils import get_authors
+from ..base_utils import compact, presence, sanitize, wrap
+from ..constants import (
+    SO_TO_CM_TRANSLATIONS,
+    Commonmeta,
+)
 from ..utils import (
-    normalize_id,
-    from_schema_org_creators,
-    name_to_fos,
     dict_to_spdx,
+    doi_from_url,
+    from_schema_org_creators,
     github_as_codemeta_url,
     github_as_repo_url,
-    doi_from_url,
-)
-from ..base_utils import wrap, presence, compact, sanitize
-from ..author_utils import get_authors
-from ..constants import (
-    Commonmeta,
-    SO_TO_CM_TRANSLATIONS,
+    name_to_fos,
+    normalize_id,
 )
 
 
 def get_codemeta(pid: str, **kwargs) -> dict:
     """get_codemeta"""
     url = str(github_as_codemeta_url(pid))
-    response = httpx.get(url, timeout=10, **kwargs)
+    response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     data = response.json()

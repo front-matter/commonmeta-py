@@ -2,23 +2,23 @@
 
 import re
 from typing import List
+
+from furl import furl
 from nameparser import HumanName
 from pydash import py_
-from furl import furl
 
-from .utils import (
-    normalize_orcid,
-    normalize_id,
-    normalize_ror,
-    normalize_isni,
-    format_name_identifier,
-    validate_ror,
-    validate_orcid,
-)
-from .base_utils import parse_attributes, wrap, presence, compact
-
+from .base_utils import compact, parse_attributes, presence, wrap
 from .constants import (
     COMMONMETA_CONTRIBUTOR_ROLES,
+)
+from .utils import (
+    format_name_identifier,
+    normalize_id,
+    normalize_isni,
+    normalize_orcid,
+    normalize_ror,
+    validate_orcid,
+    validate_ror,
 )
 
 

@@ -1,34 +1,35 @@
 """crossref_xml reader for commonmeta-py"""
 
-from typing import Optional
 from collections import defaultdict
-import httpx
+from typing import Optional
+
+import requests
 from pydash import py_
 
+from ..author_utils import get_authors
+from ..base_utils import (
+    compact,
+    parse_attributes,
+    parse_xml,
+    presence,
+    sanitize,
+    wrap,
+)
+from ..constants import (
+    CR_TO_CM_CONTAINER_TRANSLATIONS,
+    CR_TO_CM_TRANSLATIONS,
+    CROSSREF_CONTAINER_TYPES,
+    Commonmeta,
+)
+from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
+from ..doi_utils import crossref_xml_api_url, get_doi_ra, normalize_doi
 from ..utils import (
-    doi_from_url,
     dict_to_spdx,
+    doi_from_url,
     from_crossref_xml,
     normalize_cc_url,
     normalize_issn,
     normalize_url,
-)
-from ..base_utils import (
-    compact,
-    wrap,
-    presence,
-    sanitize,
-    parse_attributes,
-    parse_xml,
-)
-from ..author_utils import get_authors
-from ..date_utils import get_date_from_crossref_parts, get_iso8601_date
-from ..doi_utils import get_doi_ra, crossref_xml_api_url, normalize_doi
-from ..constants import (
-    Commonmeta,
-    CR_TO_CM_TRANSLATIONS,
-    CROSSREF_CONTAINER_TYPES,
-    CR_TO_CM_CONTAINER_TRANSLATIONS,
 )
 
 
@@ -38,7 +39,7 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_xml_api_url(doi)
-    response = httpx.get(
+    response = requests.get(
         url, headers={"Accept": "text/xml;charset=utf-8"}, timeout=10, **kwargs
     )
     if response.status_code != 200:

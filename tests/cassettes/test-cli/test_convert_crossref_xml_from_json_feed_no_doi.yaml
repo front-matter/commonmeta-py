@@ -1,17 +1,15 @@
 interactions:
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
-      - api.rogue-scholar.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
     uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
   response:
@@ -24,17 +22,189 @@ interactions:
       content-type:
       - application/json
       date:
-      - Wed, 07 May 2025 12:51:02 GMT
+      - Sat, 10 May 2025 10:12:11 GMT
       fly-request-id:
-      - 01JTNCSAQ6GHBBWYCS1VVGDRJF-fra
+      - 01JTWTWMQ8FF71VGCJ3EY46JQV-fra
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '7'
+      - '11'
       ratelimit-reset:
-      - '30'
+      - '15'
       server:
-      - Fly/bbaf6ebad (2025-05-06)
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslIKyC8uUcjLL1FIyy/NS1Gq5QIAvvo61RsAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:21:35 GMT
+      fly-request-id:
+      - 01JTWVDVDENACR11B538A8PK9G-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '12'
+      ratelimit-reset:
+      - '11'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslIKyC8uUcjLL1FIyy/NS1Gq5QIAvvo61RsAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:38:52 GMT
+      fly-request-id:
+      - 01JTWWDG3VPASHY9DB8S240CH1-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '13'
+      ratelimit-reset:
+      - '7'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslIKyC8uUcjLL1FIyy/NS1Gq5QIAvvo61RsAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:45:59 GMT
+      fly-request-id:
+      - 01JTWWTGHC9CSWR2NGEGDRRPGX-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '13'
+      ratelimit-reset:
+      - '7'
+      server:
+      - Fly/b39e0602b (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 404
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslIKyC8uUcjLL1FIyy/NS1Gq5QIAvvo61RsAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sat, 10 May 2025 10:49:34 GMT
+      fly-request-id:
+      - 01JTWX12ZX28D98XC3EYXZDGMT-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '13'
+      ratelimit-reset:
+      - '7'
+      server:
+      - Fly/b39e0602b (2025-05-08)
       transfer-encoding:
       - chunked
       vary:

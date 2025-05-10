@@ -1,33 +1,34 @@
 """JSON Feed reader for commonmeta-py"""
 
 from typing import Optional
-import httpx
-from pydash import py_
-from furl import furl
 
-from ..utils import (
-    compact,
-    normalize_url,
-    from_json_feed,
-    wrap,
-    dict_to_spdx,
-    name_to_fos,
-    validate_ror,
-    validate_url,
-    issn_as_url,
-)
+import requests
+from furl import furl
+from pydash import py_
+
 from ..author_utils import get_authors
-from ..base_utils import presence, sanitize, parse_attributes
+from ..base_utils import parse_attributes, presence, sanitize
+from ..constants import Commonmeta
 from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
-    normalize_doi,
-    validate_prefix,
-    validate_doi,
     doi_from_url,
-    is_rogue_scholar_doi,
     encode_doi,
+    is_rogue_scholar_doi,
+    normalize_doi,
+    validate_doi,
+    validate_prefix,
 )
-from ..constants import Commonmeta
+from ..utils import (
+    compact,
+    dict_to_spdx,
+    from_json_feed,
+    issn_as_url,
+    name_to_fos,
+    normalize_url,
+    validate_ror,
+    validate_url,
+    wrap,
+)
 
 
 def get_json_feed_item(pid: str, **kwargs) -> dict:
@@ -35,7 +36,7 @@ def get_json_feed_item(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
-    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
+    response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json() | {"via": "json_feed_item"}
@@ -255,7 +256,9 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         elif len(urls) == 2 and validate_ror(urls[0]):
             f = furl(urls[0])
             _id = f.path.segments[-1]
-            response = httpx.get(f"https://api.ror.org/organizations/{_id}", timeout=10)
+            response = requests.get(
+                f"https://api.ror.org/organizations/{_id}", timeout=10
+            )
             ror = response.json()
             funder_name = ror.get("name", None)
             funder_identifier = urls[0]
@@ -398,7 +401,7 @@ def get_json_feed_item_uuid(id: str):
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
-    response = httpx.get(url, timeout=10)
+    response = requests.get(url, timeout=10)
     if response.status_code != 200:
         return response.json()
     post = response.json()
@@ -426,7 +429,7 @@ def get_json_feed_blog_slug(id: str):
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
-    response = httpx.get(url, timeout=10)
+    response = requests.get(url, timeout=10)
     if response.status_code != 200:
         return response.json()
     post = response.json()

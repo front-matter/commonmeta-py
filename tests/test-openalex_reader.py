@@ -10,7 +10,6 @@ from commonmeta.readers.openalex_reader import (
     get_references,
     read_openalex,
 )
-from commonmeta.utils import validate_openalex
 
 
 def vcr_config():
@@ -1631,11 +1630,11 @@ def test_get_random_id_from_openalex():
     """Random works ID from OpenAlex API. Associated ids can be DOI, PMID and/or PMCID."""
     data = get_random_openalex_id()
     assert len(data) == 1
-    assert validate_openalex(data[0]) is not None
+    assert data[0].get("id", None) is not None
     # 5 random DOIs
     data = get_random_openalex_id(5)
     assert len(data) == 5
-    assert validate_openalex(data[0]) is not None
+    assert data[0].get("id", None) is not None
 
 
 @pytest.mark.vcr

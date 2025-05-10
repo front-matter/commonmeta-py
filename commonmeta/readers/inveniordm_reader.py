@@ -1,26 +1,26 @@
 """InvenioRDM reader for Commonmeta"""
 
-import httpx
-from pydash import py_
+import requests
 from furl import furl
+from pydash import py_
 
-from ..utils import (
-    normalize_url,
-    normalize_doi,
-    dict_to_spdx,
-    name_to_fos,
-    from_inveniordm,
-    get_language,
-    validate_ror,
-)
-from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
+from ..base_utils import compact, presence, sanitize, wrap
+from ..constants import (
+    COMMONMETA_RELATION_TYPES,
+    INVENIORDM_TO_CM_TRANSLATIONS,
+    Commonmeta,
+)
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, doi_from_url
-from ..constants import (
-    INVENIORDM_TO_CM_TRANSLATIONS,
-    COMMONMETA_RELATION_TYPES,
-    Commonmeta,
+from ..utils import (
+    dict_to_spdx,
+    from_inveniordm,
+    get_language,
+    name_to_fos,
+    normalize_doi,
+    normalize_url,
+    validate_ror,
 )
 
 
@@ -29,7 +29,7 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
-    response = httpx.get(url, timeout=10, follow_redirects=True, **kwargs)
+    response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json()
@@ -63,7 +63,6 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     title = py_.get(meta, "metadata.title")
     titles = [{"title": sanitize(title)}] if title else None
-    additional_titles = py_.get(meta, "metadata.additional_titles")
     # if additional_titles:
     #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
 

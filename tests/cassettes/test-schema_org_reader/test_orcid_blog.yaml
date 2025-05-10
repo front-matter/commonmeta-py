@@ -1,62 +1,15 @@
 interactions:
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - info.orcid.org
-      user-agent:
-      - python-httpx/0.28.1
-    method: GET
-    uri: https://info.orcid.org/orcid-2023-annual-report
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAA7LJKMnNsePlsslITUyxsynJLMlJtTMxMFZwyy9KykxJSc2z0YcI2uiDlfBy2STl
-        p1SC6OTUvJLUIjubDEN0HRmGdjb6UGmQ2UV2MMV56Zl5Fchy+jDT9MEuAQAAAP//4uUCAAAA//8D
-        AG14lY6SAAAA
-    headers:
-      CF-Cache-Status:
-      - BYPASS
-      CF-Ray:
-      - 93c0d7fb8cbac7b7-DUS
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - text/html
-      Date:
-      - Wed, 07 May 2025 12:50:33 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      cf-apo-via:
-      - origin,page-rules
-    status:
-      code: 403
-      message: Forbidden
-- request:
-    body: ''
-    headers:
-      accept:
-      - '*/*'
-      accept-encoding:
-      - gzip, deflate
-      connection:
-      - keep-alive
-      host:
-      - info.orcid.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
     uri: https://info.orcid.org/orcid-2023-annual-report/
   response:
@@ -69,7 +22,7 @@ interactions:
       CF-Cache-Status:
       - BYPASS
       CF-Ray:
-      - 93c305f9789f162c-DUS
+      - 93d8aaf79992162d-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -77,7 +30,179 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Wed, 07 May 2025 19:11:28 GMT
+      - Sat, 10 May 2025 10:14:07 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      cf-apo-via:
+      - origin,page-rules
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
+        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
+        AAD//wMAbXiVjpIAAAA=
+    headers:
+      CF-Cache-Status:
+      - BYPASS
+      CF-Ray:
+      - 93d8b8d87c6a7a40-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 10 May 2025 10:23:36 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      cf-apo-via:
+      - origin,page-rules
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
+        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
+        AAD//wMAbXiVjpIAAAA=
+    headers:
+      CF-Cache-Status:
+      - BYPASS
+      CF-Ray:
+      - 93d8d23becfc7a5a-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 10 May 2025 10:40:56 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      cf-apo-via:
+      - origin,page-rules
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
+        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
+        AAD//wMAbXiVjpIAAAA=
+    headers:
+      CF-Cache-Status:
+      - BYPASS
+      CF-Ray:
+      - 93d8dccec9be6a85-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 10 May 2025 10:48:09 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      cf-apo-via:
+      - origin,page-rules
+    status:
+      code: 403
+      message: Forbidden
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://info.orcid.org/orcid-2023-annual-report/
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
+        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
+        AAD//wMAbXiVjpIAAAA=
+    headers:
+      CF-Cache-Status:
+      - BYPASS
+      CF-Ray:
+      - 93d8e1e64d3bc7dc-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 10 May 2025 10:51:37 GMT
       Server:
       - cloudflare
       Transfer-Encoding:

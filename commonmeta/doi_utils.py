@@ -4,7 +4,7 @@ import re
 from typing import Optional
 
 import base32_lib as base32
-import httpx
+import requests
 from furl import furl
 
 from .base_utils import compact
@@ -94,7 +94,7 @@ def short_doi_as_doi(doi: Optional[str]) -> Optional[str]:
     doi_url = doi_as_url(doi)
     if doi_url is None:
         return None
-    response = httpx.head(doi_url, timeout=10)
+    response = requests.head(doi_url, timeout=10)
     if response.status_code != 301:
         return doi_url
     return response.headers.get("Location")
@@ -137,7 +137,7 @@ def get_doi_ra(doi) -> Optional[str]:
     prefix = validate_prefix(doi)
     if prefix is None:
         return None
-    response = httpx.get("https://doi.org/ra/" + prefix, timeout=10)
+    response = requests.get("https://doi.org/ra/" + prefix, timeout=10)
     if response.status_code != 200:
         return None
     return response.json()[0].get("RA", None)
@@ -170,7 +170,7 @@ def decode_doi(doi: str, checksum: bool = True) -> int:
 
 def get_crossref_member(member_id) -> Optional[dict]:
     """Return the Crossref member for a given member_id"""
-    response = httpx.get("https://api.crossref.org/members/" + member_id, timeout=10)
+    response = requests.get("https://api.crossref.org/members/" + member_id, timeout=10)
     if response.status_code != 200:
         return None
     data = response.json().get("message", None)

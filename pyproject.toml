@@ -1,6 +1,6 @@
 [project]
 name = "commonmeta-py"
-version = "0.105"
+version = "0.106"
 description = "Library for conversions to/from the Commonmeta scholarly metadata format"
 authors = [{ name = "Martin Fenner", email = "martin@front-matter.io" }]
 requires-python = ">=3.9,<4.0"
@@ -14,27 +14,30 @@ keywords = [
     "csl",
     "crossref",
     "datacite",
+    "openalex",
+    "schemaorg",
+    "inveniordm",
 ]
 dependencies = [
-    "httpx>=0.28,<0.29",
+    "requests>=2.31.0",
     "dateparser>=1.1.7,<2",
     "types-dateparser~=1.1",
-    "PyYAML~=6.0",
-    "types-PyYAML~=6.0",
-    "pydash>=7,<9",
-    "beautifulsoup4~=4.11",
-    "types-beautifulsoup4~=4.11",
+    "PyYAML>=5.4",
+    "types-PyYAML>=5.4",
+    "pydash>=6,<9",
+    "beautifulsoup4>=4.11,<5",
+    "types-beautifulsoup4>=4.11,<5",
     "simplejson~=3.18",
     "bibtexparser~=1.4",
-    "citeproc-py-styles~=0.1.3",
-    "citeproc-py>=0.7,<0.9",
+    "citeproc-py-styles>=0.1.2,<1",
+    "citeproc-py>=0.6,<1",
     "jsonschema~=4.21",
     "base32_lib~=1.0",
-    "datacite~=1.1",
-    "xmltodict>=0.12,<0.15",
-    "types-xmltodict>=0.13,<0.15",
-    "nameparser>=1.1.2,<2",
-    "pycountry>=23.12.11,<25",
+    "datacite>=1.1.1,<2",
+    "xmltodict>=0.12,<0.20",
+    "types-xmltodict>=0.13,<0.20",
+    "nameparser>=1.1.1,<2",
+    "pycountry>=22.3.5",
     "click>=8.1.7,<9",
     "furl>=2.1.3,<3",
     "lxml>=4.8",
@@ -45,6 +48,7 @@ dependencies = [
     "orjsonl>=1.0.0,<2",
     "pikepdf>=8.14,<10.0",
     "edtf>=5.0.0,<6",
+    "requests>=2.32.3",
 ]
 
 [project.urls]

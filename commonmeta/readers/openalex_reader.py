@@ -2,8 +2,9 @@
 
 from typing import Optional
 
-import httpx
+import requests
 from pydash import py_
+from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..author_utils import get_authors
 from ..base_utils import compact, presence, sanitize, wrap
@@ -40,7 +41,7 @@ OA_IDENTIFIER_TYPES = {
 def get_openalex_list(query: dict, **kwargs) -> list[dict]:
     """get_openalex list from OpenAlex API."""
     url = openalex_api_query_url(query, **kwargs)
-    response = httpx.get(url, timeout=30, **kwargs)
+    response = requests.get(url, timeout=30, **kwargs)
     if response.status_code != 200:
         return []
     return response.json().get("results", [])
@@ -52,7 +53,7 @@ def get_openalex(pid: str, **kwargs) -> dict:
     if identifier_type not in ["DOI", "MAG", "OpenAlex", "PMID", "PMCID"]:
         return {"state": "not_found"}
     url = openalex_api_url(id, identifier_type, **kwargs)
-    response = httpx.get(url, timeout=10, **kwargs)
+    response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     # OpenAlex returns record as list
@@ -212,7 +213,7 @@ def get_references(pids: list, **kwargs) -> list:
 
 
 def get_citations(citation_url: str, **kwargs) -> list:
-    response = httpx.get(citation_url, timeout=10, **kwargs)
+    response = requests.get(citation_url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
@@ -248,7 +249,7 @@ def get_openalex_works(pids: list, **kwargs) -> list:
     for pid_batch in pid_batches:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
-        response = httpx.get(url, timeout=10, **kwargs)
+        response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
@@ -268,7 +269,7 @@ def get_openalex_funders(pids: list, **kwargs) -> list:
     for pid_batch in pid_batches:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/funders?filter=ids.openalex:{ids}"
-        response = httpx.get(url, timeout=10, **kwargs)
+        response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
@@ -297,7 +298,7 @@ def get_openalex_source(str: Optional[str], **kwargs) -> Optional[dict]:
         return None
 
     url = f"https://api.openalex.org/sources/{id}"
-    response = httpx.get(url, timeout=10, **kwargs)
+    response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
@@ -381,11 +382,11 @@ def get_random_openalex_id(number: int = 1, **kwargs) -> list:
     number = min(number, 20)
     url = openalex_api_sample_url(number, **kwargs)
     try:
-        response = httpx.get(url, timeout=10)
+        response = requests.get(url, timeout=10)
         if response.status_code != 200:
             return []
 
         items = py_.get(response.json(), "results")
         return items
-    except (httpx.ReadTimeout, httpx.ConnectError):
+    except (ReadTimeout, ConnectionError):
         return []

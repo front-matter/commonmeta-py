@@ -1,7 +1,8 @@
 """Web translators for commonmeta. Using BeautifulSoup to extract metadata from web pages."""
 
-from furl import furl
 import re
+
+from furl import furl
 
 from .doi_utils import doi_as_url
 

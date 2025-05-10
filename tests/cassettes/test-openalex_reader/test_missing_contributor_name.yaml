@@ -1,23 +1,21 @@
 interactions:
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
-      - api.openalex.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
     uri: https://api.openalex.org/works/https://doi.org/10.14264/3e10f66
   response:
     body:
       string: !!binary |
-        H4sIAIvRG2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
+        H4sIAN0mH2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
         5zKZHSi0hQ4Z8JGOjr5zP3rxeenP/bUxjZ7PZrJhglbs+Uaq1exrFOIAhUEehf7ELyUfMQLleDC6
         wVGQRLOQYbRMEmA03FQMWG+9QtZNa6jhEoR6vG5oYTwK31vNtUebRklarL2KPTFFV1ysPCHFtJBi
         KVVtSd3AYVpNPMPqRioQQkXp1cysZSkrueIFLJVcF4oZrt1F2kLluqnolgha/7NAmnZRwZYlyZZR
@@ -64,15 +62,15 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 07 May 2025 21:32:59 GMT
+      - Sat, 10 May 2025 10:13:49 GMT
       Nel:
       - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Report-To:
-      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746653579&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=aVwhnOFeM0TBi790ofKyQ2W6Vz%2BbJA4LPvJ7ihEJocI%3D"}]}'
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746872029&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=QViehUxCAuPl7mU9WJoPSrYy6PBaO55h018E%2Bgsz3Oc%3D"}]}'
       Reporting-Endpoints:
-      - heroku-nel=https://nel.heroku.com/reports?ts=1746653579&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=aVwhnOFeM0TBi790ofKyQ2W6Vz%2BbJA4LPvJ7ihEJocI%3D
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746872029&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=QViehUxCAuPl7mU9WJoPSrYy6PBaO55h018E%2Bgsz3Oc%3D
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -93,34 +91,45 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
-      - api.openalex.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
-    uri: https://api.openalex.org/works/10.14264/3e10f66
+    uri: https://api.openalex.org/works/https://doi.org/10.14264/3e10f66
   response:
     body:
-      string: '<!doctype html>
-
-        <html lang=en>
-
-        <title>404 Not Found</title>
-
-        <h1>Not Found</h1>
-
-        <p>The requested URL was not found on the server. If you entered the URL manually
-        please check your spelling and try again.</p>
-
-        '
+      string: !!binary |
+        H4sIABQpH2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
+        5zKZHSi0hQ4Z8JGOjr5zP3rxeenP/bUxjZ7PZrJhglbs+Uaq1exrFOIAhUEehf7ELyUfMQLleDC6
+        wVGQRLOQYbRMEmA03FQMWG+9QtZNa6jhEoR6vG5oYTwK31vNtUebRklarL2KPTFFV1ysPCHFtJBi
+        KVVtSd3AYVpNPMPqRioQQkXp1cysZSkrueIFLJVcF4oZrt1F2kLluqnolgha/7NAmnZRwZYlyZZR
+        5c8DFATH6yU1FqTdmGL4WRPyUvvzF3/wxt/qoN3Er6hYtXRlr2XCwlS8pmpLKtlhsndzTST150ta
+        aeZOlGAH0sAp0qrq+yKhKZcds2irauJr2aqCDRQYgAl9ShIbjt0K+EI7MB0JgGhRsMawcg8L1pwp
+        9Xq/COqZbWNVA3dopjqv+90qKZTUWrHl+TYXJXtmJeFw4b2/53uYOC+4q7U+N4ykRIOMFrb8opIa
+        cLjFkdpUbIlijdTcSDDymmqyhA3Dns0BM20hlJRe8wYk3b/0NHGnnBH8JVfa+AOnQ/Jq5t7GKA3z
+        OE5wfp4Od8ww5X3llXaKS1UcC7K0k4Lgbwr/eBqnaToNcYRt9HChIcXbLsbn92ChQrbCKM56EixU
+        SKWYbqSLGn9uVAu2UnRDer0uQ3EMyyWveJcaGoSKVS91tOFWdg9HUAh17rwAioD+hovCELfkz9Gx
+        Dpf2j/APoF1W3r9t8YfT82OYnRCrT1MQiFyzDxOgG3oI/+Wm4MP3hZiBOzikAllsx7B5F89EQN2i
+        Ff8LGBoGSScMtzX5xX+iVQsf6AY5P3FBjGwIHrjGmTXsoZPN3ejqg/C+vr34tc0gkF5TqFtxDtwL
+        Dikq3e2yamt2yGjd7gkX3q6+7CsCPVrYOVBQXxUU75MaQBU9Ms1Q0AA/L66nyhccBEF6niW/iCeu
+        pKhBu77af5YFtADv16573EK4aW23baHX4HBn1jTNMyDbxZKzqrx+9cClZ0GIsnMIH6FDrZi9YuJ9
+        lMKWD4imiXcnoVhuHabf6Mam5Hdctr/pLVU/F5wJKNM721FqysV1uR2Pnl2Qe7eG9locRGp/Z6uz
+        9UlX5P73yr/FK2/4AmF0AaCtJa7cOKXvmLLTEgWRIzccewG/3wk4QxeUODhhUMNh+B3qUdchvE9M
+        Q0Eq1u9zBL7g8J9Zwe0gMjLY+5wQnMvso3bkAugIj2y7karc9y9hp523MuVDhBHKcGSBb/gjh3GS
+        jng3m83NsOz4LTH7I8A4v6DqBzcnQ0vWfbhBFYaZuHIFfe/HOEtQFmILuWZ63cEdZkc9tCM8Wut0
+        +K9OlKDdgkEvgrHuMCH3AFqY/rigC2iApbWUbGxQkpWEk07rEwt/YmVbsNLjgv3ZQoc2dmqaHPsX
+        nhXU+asVXTKU1hbjTIoDC2qlqDB9tFh+zQaqV7SnYI5lyrqzJBBfj3o0MJxuDQcqakZLr74+8iRF
+        OIxiwPY6S5InKA6uscQIR4l7w7zKgsM0DlwIXGYJ0ijL4yDDr0sJwhwF0AgQvsKSBYHlyq6wpEke
+        BhjlV1ggQ5IsCq9ggak6QnGWIzst0oV2Uw2MXOA5414hpX329ZPh5W3yFA4c+3mMNvwkmWDl5uhu
+        59SfYJaGPP/RHtTz43ekiw5tpXUjnY2ItildRBweq/EUhVMUf0F4Dr8wu0lwmKc2SuENfMILjHiK
+        In/3wzcW5E7ybxAAAA==
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -135,26 +144,30 @@ interactions:
       - Authorization, Cache-Control
       Connection:
       - keep-alive
+      Content-Encoding:
+      - gzip
       Content-Length:
-      - '207'
+      - '1324'
       Content-Security-Policy:
       - default-src 'self'; object-src 'none'
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Thu, 08 May 2025 20:13:04 GMT
+      - Sat, 10 May 2025 10:23:16 GMT
       Nel:
       - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Report-To:
-      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746735184&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=knF18Eo3NyRQwBJXwECL%2FdEZ4tSw1JKtCpjz2uBBHb0%3D"}]}'
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746872596&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=trqrdIXbQQCxg%2BhQDlrSUQ54PE5PdiCUC1wBHh0cDi4%3D"}]}'
       Reporting-Endpoints:
-      - heroku-nel=https://nel.heroku.com/reports?ts=1746735184&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=knF18Eo3NyRQwBJXwECL%2FdEZ4tSw1JKtCpjz2uBBHb0%3D
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746872596&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=trqrdIXbQQCxg%2BhQDlrSUQ54PE5PdiCUC1wBHh0cDi4%3D
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
       Via:
       - 1.1 vegur
       X-Api-Pool:
@@ -166,6 +179,279 @@ interactions:
       X-Xss-Protection:
       - 1; mode=block
     status:
-      code: 404
-      message: NOT FOUND
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.openalex.org/works/https://doi.org/10.14264/3e10f66
+  response:
+    body:
+      string: !!binary |
+        H4sIACQtH2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
+        5zKZHSi0hQ4Z8JGOjr5zP3rxeenP/bUxjZ7PZrJhglbs+Uaq1exrFOIAhUEehf7ELyUfMQLleDC6
+        wVGQRLOQYbRMEmA03FQMWG+9QtZNa6jhEoR6vG5oYTwK31vNtUebRklarL2KPTFFV1ysPCHFtJBi
+        KVVtSd3AYVpNPMPqRioQQkXp1cysZSkrueIFLJVcF4oZrt1F2kLluqnolgha/7NAmnZRwZYlyZZR
+        5c8DFATH6yU1FqTdmGL4WRPyUvvzF3/wxt/qoN3Er6hYtXRlr2XCwlS8pmpLKtlhsndzTST150ta
+        aeZOlGAH0sAp0qrq+yKhKZcds2irauJr2aqCDRQYgAl9ShIbjt0K+EI7MB0JgGhRsMawcg8L1pwp
+        9Xq/COqZbWNVA3dopjqv+90qKZTUWrHl+TYXJXtmJeFw4b2/53uYOC+4q7U+N4ykRIOMFrb8opIa
+        cLjFkdpUbIlijdTcSDDymmqyhA3Dns0BM20hlJRe8wYk3b/0NHGnnBH8JVfa+AOnQ/Jq5t7GKA3z
+        OE5wfp4Od8ww5X3llXaKS1UcC7K0k4Lgbwr/eBqnaToNcYRt9HChIcXbLsbn92ChQrbCKM56EixU
+        SKWYbqSLGn9uVAu2UnRDer0uQ3EMyyWveJcaGoSKVS91tOFWdg9HUAh17rwAioD+hovCELfkz9Gx
+        Dpf2j/APoF1W3r9t8YfT82OYnRCrT1MQiFyzDxOgG3oI/+Wm4MP3hZiBOzikAllsx7B5F89EQN2i
+        Ff8LGBoGSScMtzX5xX+iVQsf6AY5P3FBjGwIHrjGmTXsoZPN3ejqg/C+vr34tc0gkF5TqFtxDtwL
+        Dikq3e2yamt2yGjd7gkX3q6+7CsCPVrYOVBQXxUU75MaQBU9Ms1Q0AA/L66nyhccBEF6niW/iCeu
+        pKhBu77af5YFtADv16573EK4aW23baHX4HBn1jTNMyDbxZKzqrx+9cClZ0GIsnMIH6FDrZi9YuJ9
+        lMKWD4imiXcnoVhuHabf6Mam5Hdctr/pLVU/F5wJKNM721FqysV1uR2Pnl2Qe7eG9locRGp/Z6uz
+        9UlX5P73yr/FK2/4AmF0AaCtJa7cOKXvmLLTEgWRIzccewG/3wk4QxeUODhhUMNh+B3qUdchvE9M
+        Q0Eq1u9zBL7g8J9Zwe0gMjLY+5wQnMvso3bkAugIj2y7karc9y9hp523MuVDhBHKcGSBb/gjh3GS
+        jng3m83NsOz4LTH7I8A4v6DqBzcnQ0vWfbhBFYaZuHIFfe/HOEtQFmILuWZ63cEdZkc9tCM8Wut0
+        +K9OlKDdgkEvgrHuMCH3AFqY/rigC2iApbWUbGxQkpWEk07rEwt/YmVbsNLjgv3ZQoc2dmqaHPsX
+        nhXU+asVXTKU1hbjTIoDC2qlqDB9tFh+zQaqV7SnYI5lyrqzJBBfj3o0MJxuDQcqakZLr74+8iRF
+        OIxiwPY6S5InKA6uscQIR4l7w7zKgsM0DlwIXGYJ0ijL4yDDr0sJwhwF0AgQvsKSBYHlyq6wpEke
+        BhjlV1ggQ5IsCq9ggak6QnGWIzst0oV2Uw2MXOA5414hpX329ZPh5W3yFA4c+3mMNvwkmWDl5uhu
+        59SfYJaGPP/RHtTz43ekiw5tpXUjnY2ItildRBweq/EUhVMUf0F4Dr8wu0lwmKc2SuENfMILjHiK
+        In/3wzcW5E7ybxAAAA==
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1324'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 10 May 2025 10:40:36 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746873636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=UrTJNfP68Yrx0pN%2BK1k%2Bqo4htpc6ilVBY89kwrfSkO0%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746873636&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=UrTJNfP68Yrx0pN%2BK1k%2Bqo4htpc6ilVBY89kwrfSkO0%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.openalex.org/works/https://doi.org/10.14264/3e10f66
+  response:
+    body:
+      string: !!binary |
+        H4sIANYuH2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
+        5zKZHSi0hQ4Z8JGOjr5zP3rxeenP/bUxjZ7PZrJhglbs+Uaq1exrFOIAhUEehf7ELyUfMQLleDC6
+        wVGQRLOQYbRMEmA03FQMWG+9QtZNa6jhEoR6vG5oYTwK31vNtUebRklarL2KPTFFV1ysPCHFtJBi
+        KVVtSd3AYVpNPMPqRioQQkXp1cysZSkrueIFLJVcF4oZrt1F2kLluqnolgha/7NAmnZRwZYlyZZR
+        5c8DFATH6yU1FqTdmGL4WRPyUvvzF3/wxt/qoN3Er6hYtXRlr2XCwlS8pmpLKtlhsndzTST150ta
+        aeZOlGAH0sAp0qrq+yKhKZcds2irauJr2aqCDRQYgAl9ShIbjt0K+EI7MB0JgGhRsMawcg8L1pwp
+        9Xq/COqZbWNVA3dopjqv+90qKZTUWrHl+TYXJXtmJeFw4b2/53uYOC+4q7U+N4ykRIOMFrb8opIa
+        cLjFkdpUbIlijdTcSDDymmqyhA3Dns0BM20hlJRe8wYk3b/0NHGnnBH8JVfa+AOnQ/Jq5t7GKA3z
+        OE5wfp4Od8ww5X3llXaKS1UcC7K0k4Lgbwr/eBqnaToNcYRt9HChIcXbLsbn92ChQrbCKM56EixU
+        SKWYbqSLGn9uVAu2UnRDer0uQ3EMyyWveJcaGoSKVS91tOFWdg9HUAh17rwAioD+hovCELfkz9Gx
+        Dpf2j/APoF1W3r9t8YfT82OYnRCrT1MQiFyzDxOgG3oI/+Wm4MP3hZiBOzikAllsx7B5F89EQN2i
+        Ff8LGBoGSScMtzX5xX+iVQsf6AY5P3FBjGwIHrjGmTXsoZPN3ejqg/C+vr34tc0gkF5TqFtxDtwL
+        Dikq3e2yamt2yGjd7gkX3q6+7CsCPVrYOVBQXxUU75MaQBU9Ms1Q0AA/L66nyhccBEF6niW/iCeu
+        pKhBu77af5YFtADv16573EK4aW23baHX4HBn1jTNMyDbxZKzqrx+9cClZ0GIsnMIH6FDrZi9YuJ9
+        lMKWD4imiXcnoVhuHabf6Mam5Hdctr/pLVU/F5wJKNM721FqysV1uR2Pnl2Qe7eG9locRGp/Z6uz
+        9UlX5P73yr/FK2/4AmF0AaCtJa7cOKXvmLLTEgWRIzccewG/3wk4QxeUODhhUMNh+B3qUdchvE9M
+        Q0Eq1u9zBL7g8J9Zwe0gMjLY+5wQnMvso3bkAugIj2y7karc9y9hp523MuVDhBHKcGSBb/gjh3GS
+        jng3m83NsOz4LTH7I8A4v6DqBzcnQ0vWfbhBFYaZuHIFfe/HOEtQFmILuWZ63cEdZkc9tCM8Wut0
+        +K9OlKDdgkEvgrHuMCH3AFqY/rigC2iApbWUbGxQkpWEk07rEwt/YmVbsNLjgv3ZQoc2dmqaHPsX
+        nhXU+asVXTKU1hbjTIoDC2qlqDB9tFh+zQaqV7SnYI5lyrqzJBBfj3o0MJxuDQcqakZLr74+8iRF
+        OIxiwPY6S5InKA6uscQIR4l7w7zKgsM0DlwIXGYJ0ijL4yDDr0sJwhwF0AgQvsKSBYHlyq6wpEke
+        BhjlV1ggQ5IsCq9ggak6QnGWIzst0oV2Uw2MXOA5414hpX329ZPh5W3yFA4c+3mMNvwkmWDl5uhu
+        59SfYJaGPP/RHtTz43ekiw5tpXUjnY2ItildRBweq/EUhVMUf0F4Dr8wu0lwmKc2SuENfMILjHiK
+        In/3wzcW5E7ybxAAAA==
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1324'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 10 May 2025 10:47:50 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746874070&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=wty7oElYdr7qIGKan6K86111FF3pjN28g5i4gDcc2pc%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746874070&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=wty7oElYdr7qIGKan6K86111FF3pjN28g5i4gDcc2pc%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.openalex.org/works/https://doi.org/10.14264/3e10f66
+  response:
+    body:
+      string: !!binary |
+        H4sIAKYvH2gA/+1XW4vjNhR+768wfk4mku8OlDJs+1Do0unuwj4Mg1BsJRFjS64kTyYd8t/3SLYT
+        5zKZHSi0hQ4Z8JGOjr5zP3rxeenP/bUxjZ7PZrJhglbs+Uaq1exrFOIAhUEehf7ELyUfMQLleDC6
+        wVGQRLOQYbRMEmA03FQMWG+9QtZNa6jhEoR6vG5oYTwK31vNtUebRklarL2KPTFFV1ysPCHFtJBi
+        KVVtSd3AYVpNPMPqRioQQkXp1cysZSkrueIFLJVcF4oZrt1F2kLluqnolgha/7NAmnZRwZYlyZZR
+        5c8DFATH6yU1FqTdmGL4WRPyUvvzF3/wxt/qoN3Er6hYtXRlr2XCwlS8pmpLKtlhsndzTST150ta
+        aeZOlGAH0sAp0qrq+yKhKZcds2irauJr2aqCDRQYgAl9ShIbjt0K+EI7MB0JgGhRsMawcg8L1pwp
+        9Xq/COqZbWNVA3dopjqv+90qKZTUWrHl+TYXJXtmJeFw4b2/53uYOC+4q7U+N4ykRIOMFrb8opIa
+        cLjFkdpUbIlijdTcSDDymmqyhA3Dns0BM20hlJRe8wYk3b/0NHGnnBH8JVfa+AOnQ/Jq5t7GKA3z
+        OE5wfp4Od8ww5X3llXaKS1UcC7K0k4Lgbwr/eBqnaToNcYRt9HChIcXbLsbn92ChQrbCKM56EixU
+        SKWYbqSLGn9uVAu2UnRDer0uQ3EMyyWveJcaGoSKVS91tOFWdg9HUAh17rwAioD+hovCELfkz9Gx
+        Dpf2j/APoF1W3r9t8YfT82OYnRCrT1MQiFyzDxOgG3oI/+Wm4MP3hZiBOzikAllsx7B5F89EQN2i
+        Ff8LGBoGSScMtzX5xX+iVQsf6AY5P3FBjGwIHrjGmTXsoZPN3ejqg/C+vr34tc0gkF5TqFtxDtwL
+        Dikq3e2yamt2yGjd7gkX3q6+7CsCPVrYOVBQXxUU75MaQBU9Ms1Q0AA/L66nyhccBEF6niW/iCeu
+        pKhBu77af5YFtADv16573EK4aW23baHX4HBn1jTNMyDbxZKzqrx+9cClZ0GIsnMIH6FDrZi9YuJ9
+        lMKWD4imiXcnoVhuHabf6Mam5Hdctr/pLVU/F5wJKNM721FqysV1uR2Pnl2Qe7eG9locRGp/Z6uz
+        9UlX5P73yr/FK2/4AmF0AaCtJa7cOKXvmLLTEgWRIzccewG/3wk4QxeUODhhUMNh+B3qUdchvE9M
+        Q0Eq1u9zBL7g8J9Zwe0gMjLY+5wQnMvso3bkAugIj2y7karc9y9hp523MuVDhBHKcGSBb/gjh3GS
+        jng3m83NsOz4LTH7I8A4v6DqBzcnQ0vWfbhBFYaZuHIFfe/HOEtQFmILuWZ63cEdZkc9tCM8Wut0
+        +K9OlKDdgkEvgrHuMCH3AFqY/rigC2iApbWUbGxQkpWEk07rEwt/YmVbsNLjgv3ZQoc2dmqaHPsX
+        nhXU+asVXTKU1hbjTIoDC2qlqDB9tFh+zQaqV7SnYI5lyrqzJBBfj3o0MJxuDQcqakZLr74+8iRF
+        OIxiwPY6S5InKA6uscQIR4l7w7zKgsM0DlwIXGYJ0ijL4yDDr0sJwhwF0AgQvsKSBYHlyq6wpEke
+        BhjlV1ggQ5IsCq9ggak6QnGWIzst0oV2Uw2MXOA5414hpX329ZPh5W3yFA4c+3mMNvwkmWDl5uhu
+        59SfYJaGPP/RHtTz43ekiw5tpXUjnY2ItildRBweq/EUhVMUf0F4Dr8wu0lwmKc2SuENfMILjHiK
+        In/3wzcW5E7ybxAAAA==
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept, Accept-Encoding, Authorization,
+        Cache-Control
+      Access-Control-Allow-Methods:
+      - POST, GET, OPTIONS, PUT, DELETE, PATCH
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Authorization, Cache-Control
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1324'
+      Content-Security-Policy:
+      - default-src 'self'; object-src 'none'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 10 May 2025 10:51:18 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","max_age":3600,"success_fraction":0.005,"failure_fraction":0.05,"response_headers":["Via"]}'
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Report-To:
+      - '{"group":"heroku-nel","max_age":3600,"endpoints":[{"url":"https://nel.heroku.com/reports?ts=1746874278&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=ebG3ybsVsNy9nY72Pk71rs0PadrOQfyIrAH645lC5bU%3D"}]}'
+      Reporting-Endpoints:
+      - heroku-nel=https://nel.heroku.com/reports?ts=1746874278&sid=1b10b0ff-8a76-4548-befa-353fc6c6c045&s=ebG3ybsVsNy9nY72Pk71rs0PadrOQfyIrAH645lC5bU%3D
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      Via:
+      - 1.1 vegur
+      X-Api-Pool:
+      - common
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1

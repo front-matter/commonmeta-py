@@ -2,26 +2,27 @@
 
 from typing import Optional
 from urllib.parse import urlparse
-import httpx
+
+import requests
 import yaml
 
+from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
+from ..constants import Commonmeta
+from ..date_utils import get_iso8601_date
 from ..utils import (
-    normalize_id,
-    name_to_fos,
     dict_to_spdx,
-    normalize_orcid,
     github_as_cff_url,
     github_as_repo_url,
+    name_to_fos,
+    normalize_id,
+    normalize_orcid,
 )
-from ..base_utils import compact, wrap, presence, sanitize, parse_attributes
-from ..date_utils import get_iso8601_date
-from ..constants import Commonmeta
 
 
 def get_cff(pid: str, **kwargs) -> dict:
     """get_cff"""
     url = github_as_cff_url(pid)
-    response = httpx.get(url, timeout=10, **kwargs)
+    response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     text = response.text

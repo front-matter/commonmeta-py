@@ -1,17 +1,15 @@
 interactions:
 - request:
-    body: ''
+    body: null
     headers:
-      accept:
+      Accept:
       - '*/*'
-      accept-encoding:
+      Accept-Encoding:
       - gzip, deflate
-      connection:
+      Connection:
       - keep-alive
-      host:
-      - doi.org
-      user-agent:
-      - python-httpx/0.28.1
+      User-Agent:
+      - python-requests/2.32.3
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
@@ -21,7 +19,7 @@ interactions:
         APmc72o3AAAA
     headers:
       CF-RAY:
-      - 93c0d708de62c7b0-DUS
+      - 93d8a913aadbc7db-DUS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -29,11 +27,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Wed, 07 May 2025 12:49:54 GMT
+      - Sat, 10 May 2025 10:12:49 GMT
       NEL:
       - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=XRNd1uEx4oe7Fx2axl27Q87o1nR1uQfCbisgShl%2BY5D560WewPkoMDij5KElCIx6Mg8VNqEWWGDK5u5FG2DEiWl5GMDBGppxxlEcKNTxdXOvmBqoxsRwCGw1VM%2BC%2FwjBpH2h7G8%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ru%2FTon3K3RqfFwW8ZoyEEWLGaURiht5Fe9Z6gED8s37f7E255B4zYeO4B7vaosgzXFJLV0CWMXJBYhWMHrXkGDiVLjUEt%2B7d3Fc%2FuG%2FDwjQmYWEnuoJTq8NBwV9r8UcfFtzAEn0%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -47,7 +45,219 @@ interactions:
       permissions-policy:
       - interest-cohort=(),browsing-topics=()
       server-timing:
-      - cfL4;desc="?proto=TCP&rtt=13188&min_rtt=13002&rtt_var=5009&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=765&delivery_rate=311029&cwnd=252&unsent_bytes=0&cid=316c39fca8000b64&ts=146&x=0"
+      - cfL4;desc="?proto=TCP&rtt=11689&min_rtt=11339&rtt_var=4502&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2826&recv_bytes=768&delivery_rate=356645&cwnd=252&unsent_bytes=0&cid=cf49563cd595bca2&ts=56&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
+    headers:
+      CF-RAY:
+      - 93d8b6e03ca9f954-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 May 2025 10:22:15 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=anjPiV5pT2rYHu2JsyrR6kTqoD9%2FTh7RRara%2BpkrD3lp1FneXR0iwfh9c%2Fbefq%2B2ySgXfCtSCCSPM%2F3TM7WoboyCTg1Gd2H3AKXhwn8qKvEZt1f6pFpLTSbV4gTMhdNgiPOdXBY%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=9970&min_rtt=9912&rtt_var=3759&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=768&delivery_rate=407990&cwnd=252&unsent_bytes=0&cid=fe33ea81aacc83a7&ts=54&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
+    headers:
+      CF-RAY:
+      - 93d8d042297ec7df-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 May 2025 10:39:34 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=0an7FdWrcmmDWBuEyuvhn8fDKAl9%2F88oVbZ7VSjr2dbc3rOXrDVQM0Z8yuvBgs3fH74uM40CaNZdXtUerJjZW9Lx%2FsdDKY79leCcxRplXF%2BrAcpOZaVPH7XJQct49aRSi245Dxs%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=11052&min_rtt=10189&rtt_var=4437&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=768&delivery_rate=396898&cwnd=252&unsent_bytes=0&cid=af5a7363e418646e&ts=131&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
+    headers:
+      CF-RAY:
+      - 93d8dade1bbe1611-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 May 2025 10:46:49 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=WmxBr38jLvDLrALXkfSze3hG41Uo2lcnmR8pbvNnNowOVf0iefx3L2GbsuOSpiWfikXf80TFx6zYFhKtLUN8awEh0ealBLuvxl0b3dptJ5a6PM1qkQ0FWdloVyxNYbjP5ctON3Y%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=14176&min_rtt=11073&rtt_var=6369&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2827&recv_bytes=768&delivery_rate=365212&cwnd=252&unsent_bytes=0&cid=b85f12875655ac3e&ts=55&x=0"
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://doi.org/ra/10.53731
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
+    headers:
+      CF-RAY:
+      - 93d8dff0f9dac7af-DUS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Sat, 10 May 2025 10:50:17 GMT
+      NEL:
+      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=h6eU5V10h5iitsYXVjopvbeMs8O3fDiqgzLBXgssQ32Bc6g855iHIHkqbz5Ez3IllOlHdXlrisTc4oWENWPpbinelfG9uQAvKRWMJRkHJ%2BWMqNTpt2AVbG6KEc7pWOyrZORIV%2F8%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      server-timing:
+      - cfL4;desc="?proto=TCP&rtt=11692&min_rtt=9715&rtt_var=5055&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2828&recv_bytes=768&delivery_rate=416263&cwnd=252&unsent_bytes=0&cid=16fe52d1c1d9f4e7&ts=51&x=0"
       vary:
       - Origin
       - accept-encoding

@@ -3,8 +3,9 @@
 from collections import defaultdict
 from typing import Optional
 
-import httpx
+import requests
 from pydash import py_
+from requests.exceptions import ReadTimeout
 
 from ..author_utils import get_authors
 from ..base_utils import compact, presence, wrap
@@ -36,11 +37,11 @@ def get_datacite(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = datacite_api_url(doi)
     try:
-        response = httpx.get(url, timeout=10, **kwargs)
+        response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite"}
-    except httpx.ReadTimeout:
+    except ReadTimeout:
         return {"state": "timeout"}
 
 
@@ -381,11 +382,11 @@ def get_random_datacite_id(number: int = 1) -> list:
     number = 20 if number > 20 else number
     url = datacite_api_sample_url(number)
     try:
-        response = httpx.get(url, timeout=60)
+        response = requests.get(url, timeout=60)
         if response.status_code != 200:
             return []
 
         items = py_.get(response.json(), "data")
         return [i.get("id") for i in items]
-    except httpx.ReadTimeout:
+    except ReadTimeout:
         return []
