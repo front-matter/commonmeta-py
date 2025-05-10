@@ -2,12 +2,12 @@
 
 from typing import Optional
 
-from ..utils import compact, normalize_url, wrap
-from ..base_utils import presence
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_parts
-from ..doi_utils import normalize_doi, doi_from_url
+from ..base_utils import presence
 from ..constants import RIS_TO_CM_TRANSLATIONS, Commonmeta
+from ..date_utils import get_date_from_parts
+from ..doi_utils import doi_from_url, normalize_doi
+from ..utils import compact, normalize_url, wrap
 
 
 def read_ris(data: Optional[str], **kwargs) -> Commonmeta:

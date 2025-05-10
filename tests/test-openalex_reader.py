@@ -1,13 +1,12 @@
 # pylint: disable=invalid-name,too-many-lines
 """Openalex reader tests"""
 
-
 import pytest
 
 from commonmeta import Metadata
 from commonmeta.readers.openalex_reader import (
     get_openalex,
-    get_random_id_from_openalex,
+    get_random_openalex_id,
     get_references,
     read_openalex,
 )
@@ -406,7 +405,12 @@ def test_journal_article_with_rdf_for_container():
     ]
     assert subject.version is None
     assert subject.provider == "OpenAlex"
-    assert subject.files == [{'mimeType': 'application/pdf', 'url': 'https://academic.oup.com/jcb/article-pdf/32/6/949/10336473/jcb0949.pdf'}]
+    assert subject.files == [
+        {
+            "mimeType": "application/pdf",
+            "url": "https://academic.oup.com/jcb/article-pdf/32/6/949/10336473/jcb0949.pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -559,7 +563,7 @@ def test_blog_post():
     assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container is None
-    assert subject.subjects == [{'subject': 'Sociology and Political Science'}]
+    assert subject.subjects == [{"subject": "Sociology and Political Science"}]
     assert subject.language == "en"
     assert (
         subject.descriptions[0]
@@ -820,7 +824,12 @@ def test_doi_with_orcid():
     ]
     assert subject.version is None
     assert subject.provider == "OpenAlex"
-    assert subject.files == [{'mimeType': 'application/pdf', 'url': 'https://downloads.hindawi.com/journals/pm/2012/291294.pdf'}]
+    assert subject.files == [
+        {
+            "mimeType": "application/pdf",
+            "url": "https://downloads.hindawi.com/journals/pm/2012/291294.pdf",
+        }
+    ]
 
 
 @pytest.mark.vcr
@@ -1620,11 +1629,11 @@ def test_multipe_titles():
 @pytest.mark.vcr
 def test_get_random_id_from_openalex():
     """Random works ID from OpenAlex API. Associated ids can be DOI, PMID and/or PMCID."""
-    data = get_random_id_from_openalex()
+    data = get_random_openalex_id()
     assert len(data) == 1
     assert validate_openalex(data[0]) is not None
     # 5 random DOIs
-    data = get_random_id_from_openalex(5)
+    data = get_random_openalex_id(5)
     assert len(data) == 5
     assert validate_openalex(data[0]) is not None
 
@@ -1660,10 +1669,10 @@ def test_get_references():
     ]
     references = get_references(referenced_works)
     assert len(references) == 8
-    assert references[0].get("ids") ==  {
-        'doi': 'https://doi.org/10.1038/nbt1206-1565',
-        'mag': '1964940342',
-        'openalex': 'https://openalex.org/W1964940342',
-        'pmid': 'https://pubmed.ncbi.nlm.nih.gov/17160063',
+    assert references[0].get("ids") == {
+        "doi": "https://doi.org/10.1038/nbt1206-1565",
+        "mag": "1964940342",
+        "openalex": "https://openalex.org/W1964940342",
+        "pmid": "https://pubmed.ncbi.nlm.nih.gov/17160063",
     }
     assert len(get_references([])) == 0

@@ -12,6 +12,7 @@ from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.json_feed_reader import (
     get_json_feed_item_uuid,
 )
+from commonmeta.readers.openalex_reader import get_random_openalex_id
 
 
 @click.group()
@@ -131,6 +132,8 @@ def sample(provider, prefix, type, number, to, style, locale, show_errors):
         )
     elif provider == "datacite":
         string = json.dumps({"items": get_random_datacite_id(number)})
+    elif provider == "openalex":
+        string = json.dumps({"items": get_random_openalex_id(number)})
     else:
         output = "Provider not supported. Use 'crossref' or 'datacite' instead."
         click.echo(output)

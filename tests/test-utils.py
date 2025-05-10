@@ -167,28 +167,26 @@ def test_validate_isni():
 
 def test_validate_id():
     "validate_id"
-    assert ("https://doi.org/10.5061/dryad.8515", "DOI") == validate_id(
+    assert ("10.5061/dryad.8515", "DOI") == validate_id(
         "https://doi.org/10.5061/dryad.8515"
     )
-    assert ("https://isni.org/isni/0000000357526882", "ISNI") == validate_id(
+    assert ("0000000357526882", "ISNI") == validate_id(
         "https://isni.org/isni/0000000357526882"
     )
-    assert ("https://openalex.org/W2121398592", "OpenAlex") == validate_id(
+    assert ("W2121398592", "OpenAlex") == validate_id(
         "https://openalex.org/W2121398592"
     )
-    assert ("https://orcid.org/0000-0002-2590-225X", "ORCID") == validate_id(
+    assert ("0000-0002-2590-225X", "ORCID") == validate_id(
         "http://orcid.org/0000-0002-2590-225X"
     )
-    assert ("https://pubmed.ncbi.nlm.nih.gov/24520159", "PMID") == validate_id(
+    assert ("24520159", "PMID") == validate_id(
         "https://pubmed.ncbi.nlm.nih.gov/24520159"
     )
     assert (
-        "https://www.ncbi.nlm.nih.gov/pmc/articles/3917233",
+        "3917233",
         "PMCID",
     ) == validate_id("https://www.ncbi.nlm.nih.gov/pmc/articles/3917233")
-    assert ("https://ror.org/0342dzm54", "ROR") == validate_id(
-        "https://ror.org/0342dzm54"
-    )
+    assert ("0342dzm54", "ROR") == validate_id("https://ror.org/0342dzm54")
     assert ("http://blog.datacite.org/eating-your-own-dog-food/", "URL") == validate_id(
         "http://blog.datacite.org/eating-your-own-dog-food/"
     )
@@ -372,8 +370,8 @@ def test_issn_from_url():
 def test_normalize_url():
     """normalize url"""
     # invalid scheme
-    assert None == normalize_url("%0ahttps:/doi.org/10.48550/arxiv.2405.08841")
-    assert None == normalize_url("mailto:info@example.org")
+    assert normalize_url("%0ahttps:/doi.org/10.48550/arxiv.2405.08841") is None
+    assert normalize_url("mailto:info@example.org") is None
 
 
 def test_from_csl():

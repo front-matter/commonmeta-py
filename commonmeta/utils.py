@@ -353,37 +353,37 @@ def validate_id(id: Optional[str]) -> tuple[Optional[str], Optional[str]]:
     # Check if it's a DOI
     doi = validate_doi(id)
     if doi:
-        return normalize_doi(id), "DOI"
+        return doi, "DOI"
 
     # Check if it's an ORCID
     orcid = validate_orcid(id)
     if orcid:
-        return normalize_orcid(id), "ORCID"
+        return orcid, "ORCID"
 
     # Check if it's a ROR
     ror = validate_ror(id)
     if ror:
-        return normalize_ror(id), "ROR"
+        return ror, "ROR"
 
     # Check if it's an ISNI
     isni = validate_isni(id)
     if isni:
-        return normalize_isni(id), "ISNI"
+        return isni, "ISNI"
 
     # Check if it's an OpenAlex ID
     openalex = validate_openalex(id)
     if openalex:
-        return f"https://openalex.org/{openalex}", "OpenAlex"
+        return openalex, "OpenAlex"
 
     # Check if it's a PubMed ID
     pmid = validate_pmid(id)
     if pmid:
-        return f"https://pubmed.ncbi.nlm.nih.gov/{pmid}", "PMID"
+        return pmid, "PMID"
 
     # Check if it's a PubMed Central ID
     pmcid = validate_pmcid(id)
     if pmcid:
-        return f"https://www.ncbi.nlm.nih.gov/pmc/articles/{pmcid}", "PMCID"
+        return pmcid, "PMCID"
 
     # Check if it's a URL
     url_type = validate_url(id)
@@ -392,6 +392,66 @@ def validate_id(id: Optional[str]) -> tuple[Optional[str], Optional[str]]:
 
     # No known valid identifier type was found
     return None, None
+
+
+def openalex_api_url(id: str, identifier_type: str, **kwargs) -> str:
+    """Return the OpenAlex API URL for a given ID"""
+    if identifier_type == "DOI":
+        return f"https://api.openalex.org/works/{doi_as_url(id)}"
+    if identifier_type == "OpenAlex":
+        return f"https://api.openalex.org/works/{id}"
+    if identifier_type == "PMID":
+        return f"https://api.openalex.org/works?filter=ids.pmid:{id}"
+    if identifier_type == "PMCID":
+        return f"https://api.openalex.org/works?filter=ids.pmcid:{id}"
+
+
+def openalex_api_query_url(query: dict) -> str:
+    """Return the OpenAlex API query URL"""
+    url = "https://api.openalex.org/works"
+    f = furl(url)
+    rows = min(int(query.get("rows", 20)), 1000)
+    queries = []
+    filters = []
+    _query = None
+    _filter = None
+
+    if query.get("query", None) is not None:
+        queries += [query.get("query")]
+    for key, value in query.items():
+        if key in [
+            "query.bibliographic",
+            "query.author",
+            "query.title",
+            "query.container-title",
+        ]:
+            queries += [f"{key}:{value}"]
+    if queries:
+        _query = ",".join(queries)
+
+    for key, value in query.items():
+        if key in [
+            "prefix",
+            "member",
+            "type",
+            "has-full-text",
+            "has-references",
+            "has-orcid",
+            "has-funder",
+            "has-license",
+        ]:
+            filters += [f"{key}:{value}"]
+    if filters:
+        _filter = ",".join(filters)
+
+    f.args.update(compact({"rows": rows, "query": _query, "filter": _filter}))
+
+    return f.url
+
+
+def openalex_api_sample_url(number: int = 1, **kwargs) -> str:
+    """Return the OpenAlex API URL for a sample of dois"""
+    return f"https://api.openalex.org/works?sample={number}"
 
 
 def normalize_isni(isni: Optional[str]) -> Optional[str]:
@@ -801,6 +861,20 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
         is not None
     ):
         return "codemeta"
+    if re.match(r"\A(http|https):/(/)?openalex\.org/(.+)\Z", pid) is not None:
+        return "openalex"
+    if (
+        re.match(r"\A(http|https):/(/)?pubmed\.ncbi\.nlm\.nih\.gov/(.+)\Z", pid)
+        is not None
+    ):
+        return "openalex"  # pmid
+    if (
+        re.match(
+            r"\A(http|https):/(/)?www\.ncbi\.nlm\.nih\.gov/pmc/articles/(.+)\Z", pid
+        )
+        is not None
+    ):
+        return "openalex"  # pmcid
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
     if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:

@@ -302,16 +302,6 @@ def datacite_api_sample_url(number: int = 1, **kwargs) -> str:
     return f"https://api.datacite.org/dois?random=true&page[size]={number}"
 
 
-def openalex_api_url(doi: str, **kwargs) -> str:
-    """Return the OpenAlex API URL for a given DOI"""
-    return f"https://api.openalex.org/works/{doi}"
-
-
-def openalex_api_sample_url(number: int = 1, **kwargs) -> str:
-    """Return the OpenAlex API URL for a sample of dois"""
-    return f"https://api.openalex.org/works?sample={number}"
-
-
 def is_rogue_scholar_doi(doi: str) -> bool:
     """Return True if DOI is from Rogue Scholar"""
     prefix = validate_prefix(doi)

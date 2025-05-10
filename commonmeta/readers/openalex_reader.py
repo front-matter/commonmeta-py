@@ -15,12 +15,14 @@ from ..constants import (
 )
 from ..doi_utils import (
     normalize_doi,
-    openalex_api_sample_url,
-    openalex_api_url,
 )
 from ..utils import (
     dict_to_spdx,
     normalize_url,
+    openalex_api_query_url,
+    openalex_api_sample_url,
+    openalex_api_url,
+    validate_id,
     validate_openalex,
 )
 
@@ -35,15 +37,27 @@ OA_IDENTIFIER_TYPES = {
 }
 
 
+def get_openalex_list(query: dict, **kwargs) -> list[dict]:
+    """get_openalex list from OpenAlex API."""
+    url = openalex_api_query_url(query, **kwargs)
+    response = httpx.get(url, timeout=30, **kwargs)
+    if response.status_code != 200:
+        return []
+    return response.json().get("results", [])
+
+
 def get_openalex(pid: str, **kwargs) -> dict:
     """get_openalex"""
-    doi = normalize_doi(pid)
-    if doi is None:
+    id, identifier_type = validate_id(pid)
+    if identifier_type not in ["DOI", "MAG", "OpenAlex", "PMID", "PMCID"]:
         return {"state": "not_found"}
-    url = openalex_api_url(doi)
+    url = openalex_api_url(id, identifier_type, **kwargs)
     response = httpx.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
+    # OpenAlex returns record as list
+    if identifier_type in ["MAG", "PMID", "PMCID"]:
+        return py_.get(response.json(), "results[0]") | {"via": "openalex"}
     return response.json() | {"via": "openalex"}
 
 
@@ -54,8 +68,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    doi = meta.get("doi", None)
-    _id = normalize_doi(doi)
+    _id = meta.get("doi", None) or meta.get("id", None)
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type_crossref", None)) or "Other"
     additional_type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None))
     if additional_type == _type:
@@ -315,7 +328,6 @@ def get_files(meta) -> Optional[list]:
 def get_container(meta: dict) -> dict:
     """Get container from OpenAlex"""
     source = get_openalex_source(py_.get(meta, "primary_location.source.id"))
-    print(source)
     container_type = py_.get(source, "type")
     if container_type:
         container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
@@ -364,7 +376,7 @@ def from_openalex_funding(funding_references: list) -> list:
     return py_.uniq(formatted_funding_references)
 
 
-def get_random_id_from_openalex(number: int = 1, **kwargs) -> list:
+def get_random_openalex_id(number: int = 1, **kwargs) -> list:
     """Get random ID from OpenAlex"""
     number = min(number, 20)
     url = openalex_api_sample_url(number, **kwargs)
@@ -374,7 +386,6 @@ def get_random_id_from_openalex(number: int = 1, **kwargs) -> list:
             return []
 
         items = py_.get(response.json(), "results")
-        print(items)
-        return [i.get("id") for i in items]
+        return items
     except (httpx.ReadTimeout, httpx.ConnectError):
         return []

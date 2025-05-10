@@ -199,6 +199,7 @@ class Metadata:
                 "codemeta",
                 "kbase",
                 "inveniordm",
+                "openalex",
             ]:
                 return json.loads(string)
             else:
@@ -237,7 +238,7 @@ class Metadata:
         elif via == "kbase":
             return dict(read_kbase(data))
         elif via == "openalex":
-            return read_openalex(data)
+            return dict(read_openalex(data))
         elif via == "ris":
             return dict(read_ris(data["data"] if isinstance(data, dict) else data))
         else:
@@ -397,6 +398,7 @@ class MetadataList:
             "crossref",
             "datacite",
             "schema_org",
+            "openalex",
             "csl",
             "json_feed_item",
         ]:
@@ -425,6 +427,8 @@ class MetadataList:
             raise ValueError("Schema.org not supported for metadata lists")
         elif to == "datacite":
             raise ValueError("Datacite not supported for metadata lists")
+        elif to == "openalex":
+            raise ValueError("OpenAlex not supported for metadata lists")
         elif to == "crossref_xml":
             return write_crossref_xml_list(self)
         else:
