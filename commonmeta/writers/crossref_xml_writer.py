@@ -1,6 +1,7 @@
 """Crossref XML writer for commonmeta-py"""
 
 from typing import Optional
+
 from ..constants import Commonmeta
 from ..crossref_utils import generate_crossref_xml, generate_crossref_xml_list
 

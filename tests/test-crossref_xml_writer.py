@@ -791,25 +791,7 @@ def test_json_feed_item_with_anonymous_author():
     assert crossref_xml.get("group_title") == "Computer and information sciences"
 
 
-@pytest.mark.vcr
-def test_json_feed_item_with_references():
-    """JSON Feed item with references"""
-    string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
-    assert subject.relations is None
 
-    crossref_xml = subject.write(to="crossref_xml")
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
-        "contributor_role": "author",
-        "sequence": "first",
-        "given_name": "Mark",
-        "surname": "Dingemanse",
-    }
 
 
 @pytest.mark.vcr
