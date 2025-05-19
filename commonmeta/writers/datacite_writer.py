@@ -1,19 +1,20 @@
 """DataCite writer for commonmeta-py"""
 
-import orjson as json
 from typing import Optional, Union
 
-from ..base_utils import wrap, compact
-from ..doi_utils import doi_from_url, normalize_doi
+import orjson as json
+
+from ..base_utils import compact, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
-    CM_TO_CSL_TRANSLATIONS,
     CM_TO_CR_TRANSLATIONS,
+    CM_TO_CSL_TRANSLATIONS,
     CM_TO_DC_TRANSLATIONS,
     CM_TO_RIS_TRANSLATIONS,
     CM_TO_SO_TRANSLATIONS,
     Commonmeta,
 )
+from ..doi_utils import doi_from_url, normalize_doi
 
 
 def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:

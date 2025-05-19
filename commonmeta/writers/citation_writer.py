@@ -1,13 +1,18 @@
 """Citation writer for commonmeta-py"""
 
-import orjson as json
 import re
-from pydash import py_
-from citeproc import CitationStylesStyle, CitationStylesBibliography
-from citeproc import Citation, CitationItem
-from citeproc import formatter
+
+import orjson as json
+from citeproc import (
+    Citation,
+    CitationItem,
+    CitationStylesBibliography,
+    CitationStylesStyle,
+    formatter,
+)
 from citeproc.source.json import CiteProcJSON
 from citeproc_styles import get_style_filepath
+from pydash import py_
 
 
 def write_citation(metadata):

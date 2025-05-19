@@ -1,23 +1,24 @@
 """InvenioRDM writer for commonmeta-py"""
 
-import orjson as json
 from typing import Optional
 
-from ..base_utils import compact, wrap, parse_attributes, presence
-from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url, normalize_doi
+import orjson as json
+
+from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
-    INVENIORDM_IDENTIFIER_TYPES,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
+    INVENIORDM_IDENTIFIER_TYPES,
 )
+from ..date_utils import get_iso8601_date
+from ..doi_utils import doi_from_url, normalize_doi
 from ..utils import (
+    FOS_MAPPINGS,
     get_language,
-    validate_orcid,
-    validate_ror,
     id_from_url,
     normalize_url,
-    FOS_MAPPINGS,
+    validate_orcid,
+    validate_ror,
 )
 
 

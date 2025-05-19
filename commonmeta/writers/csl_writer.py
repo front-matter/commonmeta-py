@@ -1,13 +1,14 @@
 """CSL-JSON writer for commonmeta-py"""
 
-import orjson as json
 from typing import Optional
 
-from ..utils import pages_as_string, to_csl
-from ..base_utils import wrap, presence, parse_attributes, compact
+import orjson as json
+
+from ..base_utils import compact, parse_attributes, presence, wrap
+from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
-from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
+from ..utils import pages_as_string, to_csl
 
 
 def write_csl(metadata: Commonmeta) -> Optional[str]:
