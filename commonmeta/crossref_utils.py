@@ -231,7 +231,6 @@ def insert_citation_list(metadata, xml):
 
     citation_list = etree.SubElement(xml, "citation_list")
     for i, ref in enumerate(metadata.references):
-        print(i)
         if ref.get("id", None) is None:
             continue
         citation = etree.SubElement(
@@ -581,3 +580,83 @@ def generate_crossref_xml_list(metalist) -> Optional[str]:
         doctype='<?xml version="1.0" encoding="UTF-8"?>',
         pretty_print=True,
     )
+
+
+"""Errors for the Crossref XML API.
+
+Error responses will be converted into an exception from this module.
+"""
+
+
+class HttpError(Exception):
+    """Exception raised when a connection problem happens."""
+
+
+class CrossrefError(Exception):
+    """Exception raised when the server returns a known HTTP error code.
+
+    Known HTTP error codes include:
+
+    * 204 No Content
+    * 400 Bad Request
+    * 401 Unauthorized
+    * 403 Forbidden
+    * 404 Not Found
+    * 410 Gone (deleted)
+    """
+
+    @staticmethod
+    def factory(err_code, *args):
+        """Create exceptions through a Factory based on the HTTP error code."""
+        if err_code == 204:
+            return CrossrefNoContentError(*args)
+        elif err_code == 400:
+            return CrossrefBadRequestError(*args)
+        elif err_code == 401:
+            return CrossrefUnauthorizedError(*args)
+        elif err_code == 403:
+            return CrossrefForbiddenError(*args)
+        elif err_code == 404:
+            return CrossrefNotFoundError(*args)
+        else:
+            return CrossrefServerError(*args)
+
+
+class CrossrefServerError(CrossrefError):
+    """An internal server error happened on the Crossref end. Try later.
+
+    Base class for all 5XX-related HTTP error codes.
+    """
+
+
+class CrossrefRequestError(CrossrefError):
+    """A Crossref request error. You made an invalid request.
+
+    Base class for all 4XX-related HTTP error codes as well as 204.
+    """
+
+
+class CrossrefNoContentError(CrossrefRequestError):
+    """DOI is known to Crossref, but not resolvable.
+
+    This might be due to handle's latency.
+    """
+
+
+class CrossrefBadRequestError(CrossrefRequestError):
+    """Bad request error.
+
+    Bad requests can include e.g. invalid XML, wrong domain, wrong prefix.
+    """
+
+
+class CrossrefUnauthorizedError(CrossrefRequestError):
+    """Bad username or password."""
+
+
+class CrossrefForbiddenError(CrossrefRequestError):
+    """Login problem, record belongs to another party or quota exceeded."""
+
+
+class CrossrefNotFoundError(CrossrefRequestError):
+    """DOI does not exist in the database."""
