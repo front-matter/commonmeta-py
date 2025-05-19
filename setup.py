@@ -1,7 +1,7 @@
 import codecs
 import re
-from setuptools import setup
-from setuptools import find_packages
+
+from setuptools import find_packages, setup
 
 VERSION = ""
 with open("commonmeta/__init__.py", "r") as fd:
@@ -40,5 +40,6 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
 )
