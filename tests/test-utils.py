@@ -35,6 +35,7 @@ from commonmeta.utils import (
     normalize_orcid,
     normalize_ror,
     normalize_url,
+    openalex_api_query_url,
     pages_as_string,
     replace_curie,
     subjects_as_string,
@@ -982,6 +983,40 @@ def test_validate_url():
     assert "URL" == validate_url("https://blog.datacite.org/eating-your-own-dog-food")
     assert "ISSN" == validate_url("ISSN 2050-084X")
     assert None is validate_url("eating-your-own-dog-food")
+
+
+def test_openalex_api_query_url():
+    """Construct OpenAlex Query URL"""
+
+    # Default case
+    query = {}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?per-page=10&page=1&sort=publication_date%3Adesc"
+
+    # Custom number and page
+    query = {"number": 100, "page": 3}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?per-page=100&page=3&sort=publication_date%3Adesc"
+
+    # Basic sample
+    query = {"sample": True}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?sample=10"
+
+    # Sample with custom number
+    query = {"sample": True, "number": 120}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?sample=120"
+
+    # Sample with ORCID
+    query = {"sample": True, "orcid": "0000-0002-8635-8390"}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?sample=10&filter=authorships.author.id%3A0000-0002-8635-8390"
+
+    # Sample with ROR
+    query = {"sample": True, "ror": "041kmwe10"}
+    url = openalex_api_query_url(query)
+    assert url == "https://api.openalex.org/works?sample=10&filter=authorships.institutions.ror%3A041kmwe10"
 
 
 def test_format_name_identifier():

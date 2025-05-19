@@ -408,14 +408,36 @@ def openalex_api_url(id: str, identifier_type: str, **kwargs) -> str:
 
 def openalex_api_query_url(query: dict) -> str:
     """Return the OpenAlex API query URL"""
+    # Define allowed types
+    types = [
+        "article", "book-chapter", "dataset", "preprint", "dissertation",
+        "book", "review", "paratext", "libguides", "letter", "other",
+        "reference-entry", "report", "editorial", "peer-review", "erratum",
+        "standard", "grant", "supplementary-materials", "retraction",
+    ]
+
     url = "https://api.openalex.org/works"
     f = furl(url)
-    rows = min(int(query.get("rows", 20)), 1000)
-    queries = []
-    filters = []
-    _query = None
-    _filter = None
 
+    # Handle pagination and sample parameters
+    number = max(1, min(1000, int(query.get("number", query.get("rows", 10)))))
+    page = max(1, int(query.get("page", 1)))
+
+    sample = query.get("sample", False)
+    if sample:
+        f.args["sample"] = str(number)
+    else:
+        f.args["per-page"] = str(number)
+        f.args["page"] = str(page)
+        # Sort results by published date in descending order
+        f.args["sort"] = "publication_date:desc"
+
+    # Build filters
+    filters = []
+    queries = []
+    _query = None
+
+    # Handle query parameters
     if query.get("query", None) is not None:
         queries += [query.get("query")]
     for key, value in query.items():
@@ -428,23 +450,60 @@ def openalex_api_query_url(query: dict) -> str:
             queries += [f"{key}:{value}"]
     if queries:
         _query = ",".join(queries)
+        f.args["query"] = _query
 
+    # Member/IDs filter
+    ids = query.get("ids", query.get("member", ""))
+    if ids:
+        filters.append(f"member:{ids}")
+
+    # Type filter
+    type_ = query.get("type_", query.get("type", ""))
+    if type_ and type_ in types:
+        filters.append(f"type:{type_}")
+
+    # ROR filter
+    ror = query.get("ror", "")
+    if ror:
+        r = validate_ror(ror)
+        if r:
+            filters.append(f"authorships.institutions.ror:{r}")
+
+    # ORCID filter
+    orcid = query.get("orcid", "")
+    if orcid:
+        o = validate_orcid(orcid)
+        if o:
+            filters.append(f"authorships.author.id:{o}")
+
+    # Year filter
+    year = query.get("year", query.get("publication_year", ""))
+    if year:
+        filters.append(f"publication_year:{year}")
+
+    # Other filters from the original function
     for key, value in query.items():
         if key in [
             "prefix",
-            "member",
-            "type",
             "has-full-text",
-            "has-references",
-            "has-orcid",
             "has-funder",
             "has-license",
         ]:
-            filters += [f"{key}:{value}"]
-    if filters:
-        _filter = ",".join(filters)
+            filters.append(f"{key}:{value}")
 
-    f.args.update(compact({"rows": rows, "query": _query, "filter": _filter}))
+    # Boolean filters
+    # if query.get("hasORCID", query.get("has-orcid", False)):
+    #     filters.append("has-orcid:true")
+
+    # if query.get("hasReferences", query.get("has-references", False)):
+    #     filters.append("has-references:true")
+
+    # if query.get("hasAbstract", query.get("has-abstract", False)):
+    #     filters.append("has-abstract:true")
+
+    # Add filters to params if any exist
+    if filters:
+        f.args["filter"] = ",".join(filters)
 
     return f.url
 
