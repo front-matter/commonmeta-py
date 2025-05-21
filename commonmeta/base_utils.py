@@ -6,6 +6,7 @@ from os import path
 from typing import Optional, Union
 
 import nh3
+import pydash as py_
 import xmltodict
 
 
@@ -67,7 +68,7 @@ def parse_attributes(
 
 
 def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
-    """Parse XML into dict. Set default options, and options for Crossref XML"""
+    """Parse XML into dict using xmltodict. Set default options, and options for Crossref XML"""
     if string is None:
         return None
     if path.exists(string):
@@ -77,7 +78,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
     if kwargs.get("dialect", None) == "crossref":
         # remove namespaces from xml
         namespaces = {
-            "http://www.crossref.org/schema/5.3.1": None,
+            "http://www.crossref.org/schema/5.4.0": None,
             "http://www.crossref.org/qrschema/3.0": None,
             "http://www.crossref.org/xschema/1.0": None,
             "http://www.crossref.org/xschema/1.1": None,
@@ -100,9 +101,95 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
         }
 
     kwargs["attr_prefix"] = ""
+    # kwargs["cdata_key"] = "#text"
     kwargs["dict_constructor"] = dict
     kwargs.pop("dialect", None)
     return xmltodict.parse(string, **kwargs)
+
+
+def unparse_xml(input: Optional[dict], **kwargs) -> str:
+    """Unparse (dump) dict into XML using xmltodict. Set default options, and options for Crossref XML"""
+    if input is None:
+        return None
+    if kwargs.get("dialect", None) == "crossref":
+        # Add additional logic for crossref dialect
+        # add attributes to root element
+        # add body and type as wrapping elements
+        # rename keys
+        input = py_.rename_keys(
+                    input,
+                    {
+                        "rel_program": "program",
+                        "ai_program": "program",
+                        "fr_program": "program",
+                    },
+                )
+        type = input.get("type", "other")
+        input = py_.omit(input, "type")
+        if type in ["journal_article"]:
+            input = {
+                "journal": {
+                    type: input
+                }
+            }
+        else:
+            input = { type: input }
+
+        doi_batch = {
+            "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@version": "5.4.0",
+            "body": input
+        }
+        input = { "doi_batch": doi_batch }
+    kwargs["pretty"] = True
+    kwargs["indent"] = "  "
+    kwargs.pop("dialect", None)
+    return xmltodict.unparse(input, **kwargs)
+
+
+def unparse_xml_list(input: Optional[list], **kwargs) -> str:
+    """Unparse (dump) list into XML using xmltodict. Set default options, and options for Crossref XML"""
+    if input is None:
+        return None
+    if kwargs.get("dialect", None) == "crossref":
+        # Add additional logic for crossref dialect
+        # add attributes to root element
+        # add body and type as wrapping elements
+        # rename keys
+
+        items = []
+        for item in wrap(input):
+            item = py_.rename_keys(
+                    item,
+                    {
+                        "rel_program": "program",
+                        "ai_program": "program",
+                        "fr_program": "program",
+                    },
+                )
+            type = item.get("type", "other")
+            item = py_.omit(item, "type")
+            if type in ["journal_article"]:
+                item = {
+                    "journal": {
+                        type: item
+                    }
+                }
+            else:
+                item = { type: item }
+            items.append(item)
+
+        doi_batch = {
+            "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@version": "5.4.0",
+            "body": items
+        }
+        output = { "doi_batch": doi_batch }
+
+    kwargs["pretty"] = True
+    kwargs["indent"] = "  "
+    kwargs.pop("dialect", None)
+    return xmltodict.unparse(output, **kwargs)
 
 
 def sanitize(text: str, **kwargs) -> str:
