@@ -156,8 +156,10 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
         # add attributes to root element
         # add body and type as wrapping elements
         # rename keys
-
-        items = []
+        
+        # Group items by type with minimal grouping
+        items_by_type = {}
+        
         for item in wrap(input):
             item = py_.rename_keys(
                     item,
@@ -167,24 +169,35 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                         "fr_program": "program",
                     },
                 )
-            type = item.get("type", "other")
+            
+            # Extract and remove type
+            item_type = item.get("type", "other")
             item = py_.omit(item, "type")
-            if type in ["journal_article"]:
-                item = {
-                    "journal": {
-                        type: item
-                    }
-                }
+            
+            # Add item to appropriate type bucket
+            if item_type not in items_by_type:
+                items_by_type[item_type] = []
+                
+            if item_type == "journal_article":
+                items_by_type[item_type].append({"journal_article": item})
             else:
-                item = { type: item }
-            items.append(item)
-
+                items_by_type[item_type].append(item)
+        
+        # Create a body with all item types
+        body = {}
+        for type_key, items in items_by_type.items():
+            if type_key == "journal_article":
+                body["journal"] = items
+            else:
+                body[type_key] = items
+                
+        # Create the final structure
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@version": "5.4.0",
-            "body": items
+            "body": body
         }
-        output = { "doi_batch": doi_batch }
+        output = {"doi_batch": doi_batch}
 
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
