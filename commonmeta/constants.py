@@ -190,6 +190,7 @@ CM_TO_CR_TRANSLATIONS = {
     "JournalIssue": "JournalIssue",
     "JournalVolume": "JournalVolume",
     "Journal": "Journal",
+    "PeerReview": "PeerReview",
     "ProceedingsArticle": "ProceedingsArticle",
     "ProceedingsSeries": "ProceedingsSeries",
     "Proceedings": "Proceedings",
