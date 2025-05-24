@@ -43,9 +43,11 @@ class CrossrefXMLSchema(Schema):
     publication_date = fields.Dict()
     posted_date = fields.Dict()
     review_date = fields.Dict()
+    approval_date = fields.Dict()
     publisher_item = fields.Dict()
     institution = fields.Dict()
     item_number = fields.Dict()
+    institution = fields.Dict()
     isbn = fields.String()
     issn = fields.String()
     publisher = fields.Dict()
@@ -93,8 +95,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
 
     if metadata.type == "Article":
         institution = None
-        if metadata.container.get("title", None) is not None:
-            institution = {"institution_name": metadata.container.get("title")}
+        container = metadata.container or {}
+        if container.get("title", None) is not None:
+            institution = {"institution_name": container.get("title")}
         kwargs["type"] = "preprint"
         kwargs["language"] = metadata.language
         data = compact(
@@ -118,8 +121,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
         )
     elif metadata.type == "BlogPost":
         institution = None
-        if metadata.publisher.get("name", None) is not None:
-            institution = {"institution_name": metadata.publisher.get("name")}
+        container = metadata.container or {}
+        if container.get("title", None) is not None:
+            institution = {"institution_name": container.get("title")}
         kwargs["type"] = "other"
         kwargs["language"] = metadata.language
         data = compact(
@@ -219,25 +223,29 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     elif metadata.type == "Dissertation":
+        institution = None
+        container = metadata.container or {}
+        if container.get("title", None) is not None:
+            institution = {"institution_name": container.get("title")}
+        print(container)
         data = compact(
             {
                 "dissertation": get_attributes(metadata, **kwargs),
-                "group_title": get_group_title(metadata),
                 "contributors": contributors,
                 "titles": titles,
-                "posted_date": get_publication_date(metadata),
-                "item_number": get_item_number(metadata),
                 "abstract": abstract,
+                "approval_date": get_publication_date(metadata),
+                "institution": institution,
+                "degree": None,
+                "isbn": get_isbn(metadata),
+                "publisher_item": None,
                 "funding_references": funding_references,
                 "license": license,
-                "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
                 "doi_data": doi_data,
-                "references": references,
-                "component_list": None,
             }
         )
+
     elif metadata.type == "JournalArticle":
         publisher_item = None
         kwargs["language"] = metadata.language
@@ -351,14 +359,22 @@ def write_crossref_xml_list(metalist):
     if metalist is None or not metalist.is_valid:
         return None
 
+    schema = CrossrefXMLSchema()
     crossref_xml_list = []
     for item in metalist.items:
         data = convert_crossref_xml(item)
-        if data is not None:
-            first_key = next(iter(data.keys()))
-            schema = CrossrefXMLSchema(context={"type": first_key})
-            crossref_xml = schema.dump(data)
-            crossref_xml_list.append(crossref_xml)
+        crossref_xml = schema.dump(data)
+
+        # Ensure the order of fields in the XML matches the expected order
+        key_map = {
+            "license": "ai:program",
+            "funding_references": "fr:program",
+            "relations": "rel:program",
+            "references": "citation_list",
+        }
+        field_order = [key_map.get(k, k) for k in list(data.keys())]
+        crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
+        crossref_xml_list.append(crossref_xml)
 
     return unparse_xml_list(crossref_xml_list, dialect="crossref")
 
