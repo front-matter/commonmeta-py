@@ -1,17 +1,18 @@
 # pylint: disable=invalid-name,too-many-lines
 """Crossref reader tests"""
 
-from os import path
 import re
+from os import path
+
 import pytest
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.readers.crossref_reader import (
     get_crossref,
-    read_crossref,
-    get_reference,
     get_crossref_list,
     get_random_crossref_id,
+    get_reference,
+    read_crossref,
 )
 
 
@@ -578,7 +579,7 @@ def test_dissertation():
     }
     assert subject.references is None
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {"title": "The University of Queensland"}
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
@@ -857,7 +858,7 @@ def test_dataset():
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
-    assert subject.type == "Component"
+    assert subject.type == "Dataset"
     assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
     assert subject.titles[0] == {
         "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
@@ -869,11 +870,14 @@ def test_dataset():
         "familyName": "Fermi",
     }
     assert subject.license is None
-    assert subject.date == {"published": "1984-07-17"}
+    assert subject.date == {"published": "1984-03-07"}
     assert subject.publisher == {"name": "Worldwide Protein Data Bank"}
     assert subject.references is None
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {
+        "title": "Worldwide Protein Data Bank",
+        "type": "DataRepository",
+    }
     assert subject.subjects is None
     assert subject.language is None
     assert subject.descriptions is None
