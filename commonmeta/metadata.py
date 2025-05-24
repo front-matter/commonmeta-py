@@ -8,8 +8,6 @@ import yaml
 from pydash import py_
 
 from .base_utils import parse_xml, wrap
-from .constants import CM_TO_CR_TRANSLATIONS
-from .doi_utils import doi_from_url
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
     get_codemeta,
@@ -45,12 +43,15 @@ from .readers.schema_org_reader import (
     get_schema_org,
     read_schema_org,
 )
-from .schema_utils import json_schema_errors
+from .schema_utils import json_schema_errors, xml_schema_errors
 from .utils import find_from_format, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
-from .writers.crossref_xml_writer import write_crossref_xml, write_crossref_xml_list
+from .writers.crossref_xml_writer import (
+    write_crossref_xml,
+    write_crossref_xml_list,
+)
 from .writers.csl_writer import write_csl, write_csl_list
 from .writers.datacite_writer import write_datacite
 from .writers.inveniordm_writer import write_inveniordm
@@ -340,16 +341,18 @@ class Metadata:
 
     def _write_crossref_xml(self, **kwargs) -> str:
         """Write in Crossref XML format with error checking."""
-        doi = doi_from_url(self.id)
-        _type = CM_TO_CR_TRANSLATIONS.get(str(self.type or ""), None)
-        url = self.url
-        instance = {"doi": doi, "type": _type, "url": url}
+        # doi = doi_from_url(self.id)
+        # _type = CM_TO_CR_TRANSLATIONS.get(str(self.type or ""), None)
+        # url = self.url
+        # instance = {"doi": doi, "type": _type, "url": url}
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
-        self.write_errors = json_schema_errors(instance, schema="crossref")
-        result = write_crossref_xml(self)
-        return result if result is not None else ""
+        output = write_crossref_xml(self)
+        self.write_errors = xml_schema_errors(output, schema="crossref_xml")
+        if self.write_errors is not None:
+            self.is_valid = False
+        return output if output is not None else ""
 
 
 class MetadataList:
