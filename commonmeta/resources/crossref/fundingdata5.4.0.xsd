@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    targetNamespace="http://www.crossref.org/fundref.xsd"
-    xmlns="http://www.crossref.org/fundref.xsd">
-
+    targetNamespace="http://www.crossref.org/fundingdata5.4.0.xsd"
+    xmlns="http://www.crossref.org/fundingdata5.4.0.xsd">
+    
     <!--=========Change History===========
-    10/9/24 (PDF) added ror identifier
+    10/9/24 (PDF) added ror identifier    
     5/2/13 (PDF) changed funding_identifier to award_number
-    04/10/24 (PDF) added ror and grant_doi
+    04/10/24 (PDF) added ror and grant_doi  
     -->
-
+    
     <xsd:element name="program">
         <xsd:annotation>
             <xsd:documentation>Information about registering funding data is available in our documentation: https://www.crossref.org/documentation/funder-registry/funding-data-deposits/</xsd:documentation>

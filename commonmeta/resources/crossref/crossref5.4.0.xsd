@@ -1,19 +1,39 @@
-<xsd:schema xmlns="http://www.crossref.org/schema/5.3.1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:fr="http://www.crossref.org/fundref.xsd" xmlns:ct="http://www.crossref.org/clinicaltrials.xsd" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1" targetNamespace="http://www.crossref.org/schema/5.3.1"><!-- *************************************************************
-	Crossref Metadata Input Schema v. 5.3.1 
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.crossref.org/schema/5.4.0"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://www.crossref.org/schema/5.4.0"
+	xmlns:fr="http://www.crossref.org/fundref.xsd"
+	xmlns:fd="http://www.crossref.org/fundingdata5.4.0.xsd"
+	xmlns:ct="http://www.crossref.org/clinicaltrials.xsd"
+	xmlns:ai="http://www.crossref.org/AccessIndicators.xsd"
+	xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:jats="http://www.ncbi.nlm.nih.gov/JATS1">
+
+	<!--*************************************************************
+	Crossref Metadata Input Schema v. 5.4.0
 	*************************************************************
-	
+
 This is the latest iteration of the Crossref Metadata Input Schema, used to register metadata records with Crossref. This schema was originally developed for Crossref by Inera (http://www.inera.com) and is currently maintained by Crossref staff.
 
 As of version 4.5.0 all changes are noted in the release notes for the schema repository in GitLab:  https://gitlab.com/crossref/schema/-/releases
-	
-Prior updates are noted as comments within previous schema versions.   --><!--  include common schema  -->
-	<xsd:include schemaLocation="common5.3.1.xsd"/><!--  imported schema  -->
+
+Prior updates are noted as comments within previous schema versions.  -->
+
+	<!-- include common schema -->
+
+	<xsd:include schemaLocation="common5.4.0.xsd"/>
+
+	<!-- imported schema -->
 	<xsd:import namespace="http://www.ncbi.nlm.nih.gov/JATS1" schemaLocation="JATS-journalpublishing1-3d2-mathml3.xsd"/>
+	<xsd:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2009/01/xml.xsd"/>
 	<xsd:import namespace="http://www.w3.org/1998/Math/MathML" schemaLocation="http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/fundref.xsd" schemaLocation="fundref.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/fundingdata5.4.0.xsd" schemaLocation="fundingdata5.4.0.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd" schemaLocation="clinicaltrials.xsd"/>
 	<xsd:import namespace="http://www.crossref.org/AccessIndicators.xsd" schemaLocation="AccessIndicators.xsd"/>
-	<xsd:import namespace="http://www.crossref.org/relations.xsd" schemaLocation="relations.xsd"/><!--  *** Head elements (used when processing submission XML)  -->
+	<xsd:import namespace="http://www.crossref.org/relations.xsd" schemaLocation="relations.xsd"/>
+
+	<!-- *** Head elements (used when processing submission XML) -->
 	<xsd:element name="doi_batch">
 		<xsd:annotation>
 			<xsd:documentation>Top level element for a metadata record submission. This element indicates the start and end of the XML file. The version number is fixed to the version of the schema. </xsd:documentation>
@@ -23,12 +43,13 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 				<xsd:element ref="head"/>
 				<xsd:element ref="body"/>
 			</xsd:sequence>
-			<xsd:attribute name="version" type="xsd:string" fixed="5.3.1"/>
+			<xsd:attribute name="version" type="xsd:string" fixed="5.4.0"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="head">
 		<xsd:annotation>
-			<xsd:documentation>Container for information related to the DOI batch submission. This element uniquely identifies the batch deposit to Crossref and contains information that will be used as a reference in error messages triggered during submission processing. </xsd:documentation>
+			<xsd:documentation>Container for information related to the DOI batch submission. This element uniquely identifies the batch deposit to Crossref and contains information that will be used as a reference in error messages triggered during submission processing.
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -39,6 +60,7 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="body">
 		<xsd:annotation>
 			<xsd:documentation>Container for the main body of a DOI record submission. While it is possible to include records for multiple journals, books, conferences, or other types of content in a single submission, it is not possible to mix content types within a single DOI submission. </xsd:documentation>
@@ -58,10 +80,13 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 				<xsd:element ref="posted_content" maxOccurs="unbounded"/>
 			</xsd:choice>
 		</xsd:complexType>
-	</xsd:element><!--  *** Journal elements *** -->
+	</xsd:element>
+
+	<!-- *** Journal elements ***-->
+
 	<xsd:element name="journal">
 		<xsd:annotation>
-			<xsd:documentation>Container for all information about a single journal and the volumes, issues, and articles being registered within the journal. Within a journal instance you may register articles from a single issue, detailed in journal_issue. If you want to register items from more than one issue you must use multiple journal instances within your XML file.</xsd:documentation>
+			<xsd:documentation>Container for all information about a single journal and the volumes, issues, and articles being registered within the journal.  Within a journal instance you may register articles from a single issue, detailed in journal_issue. If you want to register items from more than one issue you must use multiple journal instances within your XML file.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -85,7 +110,6 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 				<xsd:element ref="doi_data" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="full_title">
@@ -99,9 +123,11 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
+
 	<xsd:element name="abbrev_title">
 		<xsd:annotation>
-			<xsd:documentation> Common abbreviation or abbreviations used when citing a journal. It is recommended that periods be included after abbreviated words within the title. </xsd:documentation>
+			<xsd:documentation> Common abbreviation or abbreviations used when citing a journal. It is recommended that periods be included after abbreviated words within the title.
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -142,7 +168,7 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 	</xsd:element>
 	<xsd:element name="special_numbering">
 		<xsd:annotation>
-			<xsd:documentation>Issue level numbering for supplements or special issues. Text defining the type of special issue (e.g. &quot;suppl&quot;) should be included in this element along with the number.</xsd:documentation>
+			<xsd:documentation>Issue level numbering for supplements or special issues. Text defining the type of special issue (e.g. "suppl") should be included in this element along with the number.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -175,15 +201,19 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0"/>
 				<xsd:element ref="doi_data"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="component_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="publication_type.atts"/>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
-	</xsd:element><!--  *** Conference elements  -->
+	</xsd:element>
+
+	<!-- *** Conference elements -->
+
 	<xsd:element name="conference">
 		<xsd:annotation>
 			<xsd:documentation>Container for all information about a single conference and its proceedings. If a conference proceedings spans multiple volumes, each volume must be contained in a unique conference element.</xsd:documentation>
@@ -229,7 +259,7 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 	</xsd:element>
 	<xsd:element name="conference_theme">
 		<xsd:annotation>
-			<xsd:documentation>The theme is the slogan or special emphasis of a conference in a particular year. It differs from the subject of a conference in that the subject is stable over the years while the theme may vary from year to year. For example, the American Society for Information Science and Technology conference theme was &quot;Knowledge: Creation, Organization and Use&quot; in 1999 and &quot;Defining Information Architecture&quot; in 2000.</xsd:documentation>
+			<xsd:documentation>The theme is the slogan or special emphasis of a conference in a particular year. It differs from the subject of a conference in that the subject is stable over the years while the theme may vary from year to year. For example, the American Society for Information Science and Technology conference theme was "Knowledge: Creation, Organization and Use" in 1999 and "Defining Information Architecture" in 2000.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -240,7 +270,7 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 	</xsd:element>
 	<xsd:element name="conference_acronym">
 		<xsd:annotation>
-			<xsd:documentation>The popularly known as or jargon name (e.g. SIGGRAPH for &quot;Special Interest Group on Computer Graphics&quot;). Authors commonly cite the conference acronym rather than the full conference or proceedings name, so it is best to include this element when it is available.</xsd:documentation>
+			<xsd:documentation>The popularly known as or jargon name (e.g. SIGGRAPH for "Special Interest Group on Computer Graphics"). Authors commonly cite the conference acronym rather than the full conference or proceedings name, so it is best to include this element when it is available.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -290,9 +320,11 @@ Prior updates are noted as comments within previous schema versions.   --><!--  
 	</xsd:simpleType>
 	<xsd:element name="conference_date">
 		<xsd:annotation>
-			<xsd:documentation>
-The start and end dates of a conference event. conference_date may be used in three ways: 1. If publishers that do not have parsed date values, provide just text with the conference dates. The date text should be taken from the proceedings title page. 2. If publishers have parsed date values, provide them in the attributes. 3. If both parsed date values and the date text are available, both should be provided. This is the preferred tagging for conference_date. For example:
-<conference_date start_month="01" start_year="1997" start_day="15" end_year="1997" end_month="01" end_day="17">Jan. 15-17, 1997</conference_date>
+			<xsd:documentation>The start and end dates of a conference event. conference_date may be used in three ways:
+				1. If publishers that do not have parsed date values, provide just text with the conference dates. The date text should be taken from the proceedings title page.
+				2. If publishers have parsed date values, provide them in the attributes.
+				3. If both parsed date values and the date text are available, both should be provided. This is the preferred tagging for conference_date. For example:
+				<conference_date start_month="01" start_year="1997" start_day="15" end_year="1997" end_month="01" end_day="17">Jan. 15-17, 1997</conference_date>
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -319,7 +351,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="publisher" maxOccurs="5"/>
 				<xsd:element ref="publication_date" maxOccurs="10"/>
 				<xsd:choice>
-					<xsd:element ref="isbn" maxOccurs="6"/>
+					<xsd:element ref="isbn" maxOccurs="100"/>
 					<xsd:element ref="noisbn"/>
 				</xsd:choice>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
@@ -327,7 +359,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="doi_data" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="proceedings_series_metadata">
@@ -350,7 +382,7 @@ The start and end dates of a conference event. conference_date may be used in th
 						<xsd:element ref="publisher" maxOccurs="5"/>
 						<xsd:element ref="publication_date" maxOccurs="10"/>
 						<xsd:choice>
-							<xsd:element ref="isbn" maxOccurs="6"/>
+							<xsd:element ref="isbn" maxOccurs="100"/>
 							<xsd:element ref="noisbn"/>
 						</xsd:choice>
 					</xsd:sequence>
@@ -364,7 +396,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="0"/>
 			</xsd:sequence>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="proceedings_title">
@@ -380,7 +412,7 @@ The start and end dates of a conference event. conference_date may be used in th
 	</xsd:element>
 	<xsd:element name="proceedings_subject">
 		<xsd:annotation>
-			<xsd:documentation>The subject of the conference proceeding, e.g. &quot;Computer Graphics&quot; is the subject matter of SIGGRAPH.</xsd:documentation>
+			<xsd:documentation>The subject of the conference proceeding, e.g. "Computer Graphics" is the subject matter of SIGGRAPH.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -412,16 +444,20 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
-				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/><!--  cs-3495  -->
+				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0"/>
 				<xsd:element ref="doi_data"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="component_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="publication_type.atts"/>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
-	</xsd:element><!--  *** book elements ***  -->
+	</xsd:element>
+
+	<!-- *** book elements *** -->
+
 	<xsd:element name="book">
 		<xsd:annotation>
 			<xsd:documentation>Container for all information about a single book.</xsd:documentation>
@@ -460,7 +496,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="publication_date" maxOccurs="10"/>
 				<xsd:element ref="acceptance_date" minOccurs="0" maxOccurs="1"/>
 				<xsd:choice>
-					<xsd:element ref="isbn" maxOccurs="6"/>
+					<xsd:element ref="isbn" maxOccurs="100"/>
 					<xsd:element ref="noisbn"/>
 				</xsd:choice>
 				<xsd:element ref="publisher" minOccurs="1" maxOccurs="unbounded"/>
@@ -478,7 +514,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="book_series_metadata">
@@ -502,7 +538,7 @@ The start and end dates of a conference event. conference_date may be used in th
 						<xsd:element ref="edition_number" minOccurs="0"/>
 						<xsd:element ref="publication_date" maxOccurs="10"/>
 						<xsd:choice>
-							<xsd:element ref="isbn" maxOccurs="6"/>
+							<xsd:element ref="isbn" maxOccurs="100"/>
 							<xsd:element ref="noisbn"/>
 						</xsd:choice>
 					</xsd:sequence>
@@ -523,7 +559,6 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="book_set_metadata">
@@ -545,7 +580,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="edition_number" minOccurs="0"/>
 				<xsd:element ref="publication_date" maxOccurs="10"/>
 				<xsd:choice>
-					<xsd:element ref="isbn" maxOccurs="6"/>
+					<xsd:element ref="isbn" maxOccurs="100"/>
 					<xsd:element ref="noisbn"/>
 				</xsd:choice>
 				<xsd:element ref="publisher"/>
@@ -563,9 +598,11 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
 		</xsd:complexType>
-	</xsd:element><!--  elements used across content types   -->
+	</xsd:element>
+
+	<!-- elements used across content types  -->
+
 	<xsd:element name="content_item">
 		<xsd:annotation>
 			<xsd:documentation>A segment of a book, report, or standard for which a DOI is being registered. Most commonly used for book chapters.</xsd:documentation>
@@ -591,6 +628,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="component_list" minOccurs="0"/>
@@ -618,7 +656,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:attribute>
 			<xsd:attributeGroup ref="publication_type.atts"/>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="series_metadata">
@@ -658,7 +696,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:sequence>
 				<xsd:element ref="titles"/>
 				<xsd:choice>
-					<xsd:element ref="isbn" maxOccurs="6"/>
+					<xsd:element ref="isbn" maxOccurs="100"/>
 					<xsd:element ref="noisbn"/>
 				</xsd:choice>
 				<xsd:element ref="contributors" minOccurs="0"/>
@@ -690,7 +728,10 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:minLength value="1"/>
 			</xsd:restriction>
 		</xsd:simpleType>
-	</xsd:element><!--  *** dissertation elements ***  -->
+	</xsd:element>
+
+	<!-- *** dissertation elements *** -->
+
 	<xsd:element name="dissertation">
 		<xsd:annotation>
 			<xsd:documentation>dissertation is the top level element for deposit of metadata about one or more dissertations.</xsd:documentation>
@@ -706,7 +747,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="approval_date" maxOccurs="10"/>
 				<xsd:element ref="institution" maxOccurs="6"/>
 				<xsd:element ref="degree" minOccurs="0" maxOccurs="10"/>
-				<xsd:element ref="isbn" minOccurs="0" maxOccurs="6"/>
+				<xsd:element ref="isbn" minOccurs="0" maxOccurs="100"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
 				<xsd:choice>
 					<xsd:element ref="crossmark" minOccurs="0"/>
@@ -718,15 +759,17 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="component_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="publication_type.atts"/>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="report-paper">
 		<xsd:annotation>
 			<xsd:documentation>report-paper is the top level element for deposit of metadata about one or more reports or working papers. </xsd:documentation>
@@ -755,7 +798,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="jats:abstract" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element ref="publication_date" maxOccurs="10"/>
 				<xsd:element ref="approval_date" minOccurs="0" maxOccurs="10"/>
-				<xsd:element ref="isbn" minOccurs="0" maxOccurs="6"/>
+				<xsd:element ref="isbn" minOccurs="0" maxOccurs="100"/>
 				<xsd:element ref="publisher" minOccurs="0"/>
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="5"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
@@ -770,16 +813,17 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="0"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="report-paper_series_metadata">
 		<xsd:annotation>
-			<xsd:documentation>Container for the metadata related to a Technical Report or Working Paper that is part of a series.</xsd:documentation>
+			<xsd:documentation>Container for the metadata related to a technical report or working paper that is part of a series.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -796,18 +840,19 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="edition_number" minOccurs="0"/>
 				<xsd:element ref="publication_date" maxOccurs="10"/>
 				<xsd:element ref="approval_date" minOccurs="0" maxOccurs="10"/>
-				<xsd:element ref="isbn" minOccurs="0" maxOccurs="6"/>
+				<xsd:element ref="isbn" minOccurs="0" maxOccurs="100"/>
 				<xsd:element ref="publisher" minOccurs="0"/>
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="5"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
 				<xsd:element ref="contract_number" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="0"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="standard">
@@ -825,6 +870,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:attributeGroup ref="publication_type.atts"/>
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="standard_metadata">
 		<xsd:annotation>
 			<xsd:documentation>Container for the metadata related to a Standard that is not part of a series.</xsd:documentation>
@@ -837,7 +883,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="designators" minOccurs="1" maxOccurs="1"/>
 				<xsd:element ref="edition_number" minOccurs="0"/>
 				<xsd:element ref="approval_date" minOccurs="0" maxOccurs="1"/>
-				<xsd:element ref="isbn" minOccurs="0" maxOccurs="6"/>
+				<xsd:element ref="isbn" minOccurs="0" maxOccurs="100"/>
 				<xsd:element ref="publisher" minOccurs="0"/>
 				<xsd:element ref="standards_body"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
@@ -850,6 +896,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="1" maxOccurs="1"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
@@ -862,9 +909,11 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:simpleType>
 			</xsd:attribute>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
+
+
 	<xsd:element name="database">
 		<xsd:annotation>
 			<xsd:documentation>database is the top level element for deposit of metadata about one or more datasets or records in a database. </xsd:documentation>
@@ -893,11 +942,12 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="10"/>
 				<xsd:element ref="publisher_item" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="0"/>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
-			<xsd:attributeGroup ref="reference_distribution_opts.att"/>
+
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="dataset">
@@ -921,6 +971,7 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="archive_locations" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 				<xsd:element ref="component_list" minOccurs="0"/>
@@ -936,12 +987,14 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:simpleType>
 			</xsd:attribute>
 		</xsd:complexType>
-	</xsd:element><!--  ===========================================================
+	</xsd:element>
+
+	<!-- ===========================================================
 		Top level content type for pending_publication DOIs
-		==============================================================  -->
+		============================================================== -->
 	<xsd:element name="publication">
 		<xsd:annotation>
-			<xsd:documentation>Used to define a publication (book, journal, etc) for pending publication content. A title must be supplied, as well as an ISSN, ISBN, or title-level DOI </xsd:documentation>
+			<xsd:documentation>Used to define a publication (book, journal, etc.) for pending publication content. A title must be supplied, as well as an ISSN, ISBN, or title-level DOI </xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -964,9 +1017,10 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="intent_statement">
 		<xsd:annotation>
-			<xsd:documentation>Member&apos;s custom statement of intent to publish content for which a pending publication DOI has been created</xsd:documentation>
+			<xsd:documentation>Member's custom statement of intent to publish content for which a pending publication DOI has been created</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType mixed="true">
 			<xsd:choice minOccurs="0" maxOccurs="unbounded">
@@ -977,12 +1031,15 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:choice>
 			<xsd:attributeGroup ref="language.atts"/>
 		</xsd:complexType>
-	</xsd:element><!--  ===========================================================
+	</xsd:element>
+
+	<!-- ===========================================================
 		Top level content type for peer_review DOIs
-		==============================================================  -->
+		============================================================== -->
 	<xsd:element name="peer_review">
 		<xsd:annotation>
-			<xsd:documentation> The peer_review content type is intended for assigning DOIs to the reports and other artifacts associated with the review of published content. </xsd:documentation>
+			<xsd:documentation> The peer_review content type is intended for assigning DOIs to the reports and other artifacts associated with the review of published content.
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1036,8 +1093,11 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:annotation>
 			</xsd:attribute>
 			<xsd:attributeGroup ref="language.atts"/>
+
 		</xsd:complexType>
+
 	</xsd:element>
+
 	<xsd:element name="competing_interest_statement">
 		<xsd:annotation>
 			<xsd:documentation>Statement of competing interest supplied by a review author during the review process.</xsd:documentation>
@@ -1049,16 +1109,23 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:attributeGroup ref="language.atts"/>
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="running_number" type="xsd:string">
 		<xsd:annotation>
 			<xsd:documentation>Running numbers to specify the various reports (ex: RC1 to RC4) </xsd:documentation>
 		</xsd:annotation>
-	</xsd:element><!--  ===========================================================
-	     					11. Posted Content elements
-         ==============================================================  -->
+	</xsd:element>
+
+
+
+	<!-- ===========================================================
+	     Top level content type for prepublication DOIs
+        ============================================================== -->
+
+
 	<xsd:element name="pending_publication">
 		<xsd:annotation>
-			<xsd:documentation>Container for &apos;pending publication&apos; metadata. Pending publication DOIs are used to create a DOI for a content item that is not yet available online or in print.</xsd:documentation>
+			<xsd:documentation>Container for 'pending publication' metadata. Pending publication DOIs are used to create a DOI for a content item that is not yet available online or in print.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1079,15 +1146,21 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:choice>
 				<xsd:element ref="rel:program" minOccurs="0"/>
 				<xsd:element ref="doi" minOccurs="1" maxOccurs="1"/>
+
 			</xsd:sequence>
 			<xsd:attributeGroup ref="language.atts"/>
+
 		</xsd:complexType>
-	</xsd:element><!--  ===========================================================
-	     Top level content type for prepublication DOIs
-        ==============================================================  -->
+	</xsd:element>
+
+	<!-- ===========================================================
+	     	Posted Content elements
+         ============================================================== -->
+
 	<xsd:element name="posted_content">
 		<xsd:annotation>
-			<xsd:documentation>Container for posted content metadata. </xsd:documentation>
+			<xsd:documentation>Container for posted content metadata.
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1096,13 +1169,15 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="titles"/>
 				<xsd:element ref="posted_date" minOccurs="1" maxOccurs="1"/>
 				<xsd:element ref="acceptance_date" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="status" minOccurs="0" maxOccurs="unbounded"/>
 				<xsd:element ref="institution" minOccurs="0" maxOccurs="5"/>
 				<xsd:element ref="item_number" minOccurs="0" maxOccurs="3"/>
 				<xsd:element ref="jats:abstract" minOccurs="0" maxOccurs="unbounded"/>
-				<xsd:element maxOccurs="1" ref="fr:program" minOccurs="0"/>
+				<xsd:element ref="fr:program" minOccurs="0" maxOccurs="1" />
 				<xsd:element ref="ai:program" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="rel:program" minOccurs="0"/>
-				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/><!--  cs-3495  -->
+				<xsd:element ref="scn_policies" minOccurs="0" maxOccurs="1"/>
+				<xsd:element ref="version_info" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="doi_data" minOccurs="1"/>
 				<xsd:element ref="citation_list" minOccurs="0"/>
 			</xsd:sequence>
@@ -1120,11 +1195,13 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:simpleType>
 			</xsd:attribute>
 			<xsd:attributeGroup ref="language.atts"/>
+
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="group_title">
 		<xsd:annotation>
-			<xsd:documentation>Posted content may be organzed into groupings within a given publisher. This element provides for naming the group. It is expected that publishers will have a small number of groups each of which reflect a topic or subject area.</xsd:documentation>
+			<xsd:documentation>Posted content may be organized into groupings within a given publisher. This element provides for naming the group. It is expected that publishers will have a small number of groups each of which reflect a topic or subject area.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -1132,11 +1209,42 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:minLength value="1"/>
 			</xsd:restriction>
 		</xsd:simpleType>
-	</xsd:element><!--  =============================================================
+	</xsd:element>
 
-        10. Elements common to reports, dissertations and standards
 
-     =============================================================  -->
+
+
+	<xsd:element name="status">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="description" minOccurs="1" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="type">
+				<xsd:simpleType>
+					<xsd:restriction base="xsd:NMTOKEN">
+						<xsd:enumeration value="withdrawn"/>
+						<xsd:enumeration value="removed"/>
+					</xsd:restriction>
+				</xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="date" type="xsd:date"/>
+		</xsd:complexType>
+	</xsd:element>
+
+	<xsd:simpleType name="status_description">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="2000"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+
+	<!-- =============================================================
+
+     Elements common to reports, dissertations and standards
+
+     ============================================================= -->
 	<xsd:element name="institution">
 		<xsd:annotation>
 			<xsd:documentation>Container element for information about an institution or organization associated with an item.</xsd:documentation>
@@ -1225,6 +1333,8 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
+
+
 	<xsd:element name="degree">
 		<xsd:annotation>
 			<xsd:documentation>The degree(s) awarded for a dissertation.</xsd:documentation>
@@ -1258,6 +1368,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
+
 	<xsd:attributeGroup name="contributor.atts">
 		<xsd:attribute name="sequence" use="required">
 			<xsd:simpleType>
@@ -1294,6 +1405,8 @@ The start and end dates of a conference event. conference_date may be used in th
 		</xsd:attribute>
 		<xsd:attributeGroup ref="language.atts"/>
 	</xsd:attributeGroup>
+
+
 	<xsd:element name="contributors">
 		<xsd:annotation>
 			<xsd:documentation>The container for all who contributed to authoring or editing an item.</xsd:documentation>
@@ -1333,19 +1446,29 @@ The start and end dates of a conference event. conference_date may be used in th
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
-				<xsd:element ref="given_name" minOccurs="0"/>
-				<xsd:element ref="surname"/>
+				<xsd:choice>
+					<xsd:sequence>
+						<xsd:element ref="given_name" minOccurs="1"/>
+						<xsd:element ref="surname" minOccurs="1"/>
+						<xsd:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:sequence>
+						<xsd:element ref="surname" minOccurs="1"/>
+						<xsd:element ref="name" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+					<xsd:element ref="name" minOccurs="1" maxOccurs="unbounded"/>
+				</xsd:choice>
 				<xsd:element ref="suffix" minOccurs="0"/>
 				<xsd:element ref="affiliations" minOccurs="0" maxOccurs="1"/>
 				<xsd:element ref="ORCID" minOccurs="0" maxOccurs="1"/>
-				<xsd:element ref="alt-name" minOccurs="0"/>
+				<!--<xsd:element ref="alt-name" minOccurs="0"/>-->
 			</xsd:sequence>
 			<xsd:attributeGroup ref="contributor.atts"/>
 		</xsd:complexType>
 	</xsd:element>
 	<xsd:element name="anonymous">
 		<xsd:annotation>
-			<xsd:documentation></xsd:documentation>
+			<xsd:documentation>Used to capture anonymous contributors.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1354,9 +1477,25 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:attributeGroup ref="contributor.atts"/>
 		</xsd:complexType>
 	</xsd:element>
+
+	<xsd:element name="name">
+		<xsd:annotation>
+			<xsd:documentation>Full name of a contributor (includes family names, middle names, given names) Should represent name as it appears in citations </xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:maxLength value="60"/>
+				<xsd:minLength value="1"/>
+				<xsd:pattern value="[^\d\?]*[^\?\s]+[^\d]*"/>
+				<xsd:whiteSpace value="collapse"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+
+
 	<xsd:element name="given_name">
 		<xsd:annotation>
-			<xsd:documentation>A contributor&apos;s given name.</xsd:documentation>
+			<xsd:documentation>A contributor's given name.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -1396,6 +1535,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:pattern value="https?://orcid.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}"/>
 		</xsd:restriction>
 	</xsd:simpleType>
+
 	<xsd:element name="ORCID">
 		<xsd:annotation>
 			<xsd:documentation>The ORCID iD for an author.</xsd:documentation>
@@ -1415,6 +1555,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+	<!--
 	<xsd:element name="alt-name">
 		<xsd:complexType>
 			<xsd:choice maxOccurs="unbounded">
@@ -1423,6 +1564,8 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:choice>
 		</xsd:complexType>
 	</xsd:element>
+	-->
+	<!--
 	<xsd:element name="name">
 		<xsd:complexType>
 			<xsd:sequence>
@@ -1475,6 +1618,8 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:attributeGroup ref="language.atts"/>
 		</xsd:complexType>
 	</xsd:element>
+
+	-->
 	<xsd:element name="prefix">
 		<xsd:complexType mixed="true">
 			<xsd:attribute name="content-type"/>
@@ -1602,17 +1747,21 @@ The start and end dates of a conference event. conference_date may be used in th
 		<xsd:complexType mixed="true">
 			<xsd:choice minOccurs="0" maxOccurs="unbounded">
 				<xsd:group ref="face_markup"/>
+
 			</xsd:choice>
 		</xsd:complexType>
-	</xsd:element><!--  ***  Dates ***  -->
+	</xsd:element>
+
+	<!-- ***  Dates *** -->
+
 	<xsd:element name="month" type="xrefMonth">
 		<xsd:annotation>
-			<xsd:documentation>Month of publication. The month must be expressed in numeric format rather spelling out the name (e.g.. submit &quot;10&quot;, not &quot;October&quot;). The month must be expressed with a leading zero if it is less than 10 (e.g. submit &quot;05&quot;, not &quot;5&quot;). When a journal issue has both an issue number and a season, the issue number should be placed in issue. If the month of publication is not known, the season should be placed in month as a two-digit value as follows: Season Value Spring 21 Summer 22 Autumn 23 Winter 24 First Quarter 31 Second Quarter 32 Third Quarter 33 Fourth Quarter 34 In cases when an issue covers multiple months, e.g. &quot;March-April&quot;, include only the digits for the first month of the range.</xsd:documentation>
+			<xsd:documentation>Month of publication. The month must be expressed in numeric format rather spelling out the name (e.g. submit "10", not "October"). The month must be expressed with a leading zero if it is less than 10 (e.g. submit "05", not "5"). When a journal issue has both an issue number and a season, the issue number should be placed in issue. If the month of publication is not known, the season should be placed in month as a two-digit value as follows: Season Value Spring 21 Summer 22 Autumn 23 Winter 24 First Quarter 31 Second Quarter 32 Third Quarter 33 Fourth Quarter 34 In cases when an issue covers multiple months, e.g. "March-April", include only the digits for the first month of the range.</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 	<xsd:element name="day" type="xrefDay">
 		<xsd:annotation>
-			<xsd:documentation>Day of publication. The should must be expressed with a leading zero if it is less than 10 (e.g. submit &quot;05&quot;, not &quot;5&quot;).</xsd:documentation>
+			<xsd:documentation>Day of publication. The day must be expressed with a leading zero if it is less than 10 (e.g. submit "05", not "5").</xsd:documentation>
 		</xsd:annotation>
 	</xsd:element>
 	<xsd:element name="year" type="xrefYear">
@@ -1674,7 +1823,7 @@ The start and end dates of a conference event. conference_date may be used in th
 	</xsd:element>
 	<xsd:element name="update_date">
 		<xsd:annotation>
-			<xsd:documentation>The date a pre-print was posted to a repository.</xsd:documentation>
+			<xsd:documentation>The date a dataset or database was last updated.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:complexContent>
@@ -1753,7 +1902,9 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:minInclusive value="01"/>
 			<xsd:totalDigits value="2"/>
 		</xsd:restriction>
-	</xsd:simpleType><!--  *** pages and identifiers ***  -->
+	</xsd:simpleType>
+
+	<!-- *** pages and identifiers *** -->
 	<xsd:element name="pages">
 		<xsd:annotation>
 			<xsd:documentation>The container for information about page ranges.</xsd:documentation>
@@ -1766,6 +1917,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:sequence>
 		</xsd:complexType>
 	</xsd:element>
+
 	<xsd:element name="noisbn">
 		<xsd:annotation>
 			<xsd:documentation>Identifies books or conference proceedings that have no ISBN assigned.</xsd:documentation>
@@ -1854,7 +2006,9 @@ The start and end dates of a conference event. conference_date may be used in th
 				</xsd:extension>
 			</xsd:simpleContent>
 		</xsd:complexType>
-	</xsd:element><!--  *** archiving elements ***  -->
+	</xsd:element>
+
+	<!-- *** archiving elements *** -->
 	<xsd:element name="publisher">
 		<xsd:annotation>
 			<xsd:documentation>A container for information about the publisher of the item being registered</xsd:documentation>
@@ -1865,10 +2019,13 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:element ref="publisher_place" minOccurs="0"/>
 			</xsd:sequence>
 		</xsd:complexType>
-	</xsd:element><!--  *** other metadata  -->
+	</xsd:element>
+
+	<!-- *** other metadata -->
+
 	<xsd:element name="publisher_place">
 		<xsd:annotation>
-			<xsd:documentation>publisher_place gives the primary city location of the publisher. If the city is not a major city, the appropriate country, state, or province should be added.</xsd:documentation>
+			<xsd:documentation>publisher_place gives the primary city location of the publisher.  If the city is not a major city, the appropriate country, state, or province should be added.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:simpleType>
 			<xsd:restriction base="xsd:string">
@@ -1888,6 +2045,7 @@ The start and end dates of a conference event. conference_date may be used in th
 			</xsd:restriction>
 		</xsd:simpleType>
 	</xsd:element>
+
 	<xsd:element name="description">
 		<xsd:annotation>
 			<xsd:documentation>A narrative description of a file (e.g. a figure caption or video description).</xsd:documentation>
@@ -1897,8 +2055,12 @@ The start and end dates of a conference event. conference_date may be used in th
 				<xsd:group ref="face_markup"/>
 			</xsd:choice>
 			<xsd:attributeGroup ref="language.atts"/>
+			<xsd:attribute ref="xml:lang"/>
 		</xsd:complexType>
 	</xsd:element>
+
+
+
 	<xsd:simpleType name="format_t">
 		<xsd:restriction base="xsd:string">
 			<xsd:maxLength value="130"/>
@@ -1907,7 +2069,7 @@ The start and end dates of a conference event. conference_date may be used in th
 	</xsd:simpleType>
 	<xsd:element name="format">
 		<xsd:annotation>
-			<xsd:documentation>A narrative description of a component&apos;s file format and/or file extension.</xsd:documentation>
+			<xsd:documentation>A narrative description of a component's file format and/or file extension.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
 			<xsd:simpleContent>
@@ -1935,15 +2097,51 @@ The start and end dates of a conference event. conference_date may be used in th
 			<xsd:attribute name="name" use="required">
 				<xsd:simpleType>
 					<xsd:restriction base="xsd:string">
+						<xsd:enumeration value="ADS"/>
+						<xsd:enumeration value="BL"/>
+						<xsd:enumeration value="Cariniana Network"/>
 						<xsd:enumeration value="CLOCKSS"/>
-						<xsd:enumeration value="LOCKSS"/>
-						<xsd:enumeration value="Portico"/>
-						<xsd:enumeration value="KB"/>
-						<xsd:enumeration value="Internet Archive"/>
 						<xsd:enumeration value="DWT"/>
+						<xsd:enumeration value="HathiTrust"/>
+						<xsd:enumeration value="Internet Archive"/>
+						<xsd:enumeration value="KB"/>
+						<xsd:enumeration value="LOCKSS"/>
+						<xsd:enumeration value="LOC"/>
+						<xsd:enumeration value="NAA"/>
+						<xsd:enumeration value="NARA"/>
+						<xsd:enumeration value="NDPP"/>
+						<xsd:enumeration value="NSK"/>
+						<xsd:enumeration value="PKP PN"/>
+						<xsd:enumeration value="Portico"/>
+						<xsd:enumeration value="PSNC"/>
+						<xsd:enumeration value="Scholars Portal"/>
+						<xsd:enumeration value="TNA"/>
 					</xsd:restriction>
 				</xsd:simpleType>
 			</xsd:attribute>
 		</xsd:complexType>
 	</xsd:element>
+	<xsd:element name="version_info">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="version" minOccurs="1"/>
+				<xsd:element ref="description" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="version">
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:extension base="version">
+					<xsd:attribute ref="xml:lang"/>
+				</xsd:extension>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:simpleType name="version">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="100"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
 </xsd:schema>
