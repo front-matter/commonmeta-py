@@ -2,6 +2,8 @@
 
 import html
 import re
+import uuid
+from datetime import datetime
 from os import path
 from typing import Optional, Union
 
@@ -69,7 +71,7 @@ def parse_attributes(
 
 def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
     """Parse XML into dict using xmltodict. Set default options, and options for Crossref XML"""
-    if string is None:
+    if string is None or string == "{}":
         return None
     if path.exists(string):
         with open(string, encoding="utf-8") as file:
@@ -113,34 +115,44 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
         return None
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
-        # add attributes to root element
-        # add body and type as wrapping elements
-        # rename keys
-        input = py_.rename_keys(
-                    input,
-                    {
-                        "rel_program": "program",
-                        "ai_program": "program",
-                        "fr_program": "program",
-                    },
-                )
-        type = input.get("type", "other")
-        input = py_.omit(input, "type")
-        if type in ["journal_article"]:
+        # add body and root element as wrapping elements
+        type = next(iter(input))
+        attributes = input.get(type)
+        input.pop(type)
+
+        if type == "book":
+            book_metadata = py_.get(input, "book_metadata") or {}
+            input.pop("book_metadata")
+            book_metadata = {**book_metadata, **input}
+            input = {"book": {**attributes, "book_metadata": book_metadata}}
+        elif type == "journal":
+            journal_metadata = py_.get(input, "journal_metadata") or {}
+            journal_issue = py_.get(input, "journal_issue") or {}
+            journal_article = py_.get(input, "journal_article") or {}
+            input.pop("journal_metadata")
+            input.pop("journal_issue")
+            input.pop("journal_article")
             input = {
                 "journal": {
-                    type: input
+                    "journal_metadata": journal_metadata,
+                    "journal_issue": journal_issue,
+                    "journal_article": journal_article | input,
                 }
             }
+        elif type == "sa_component":
+            input = {type: attributes | input}
+            component_list = input
+            input = {"sa_component": {"component_list": component_list}}
         else:
-            input = { type: input }
+            input = {type: attributes | input}
 
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@version": "5.4.0",
-            "body": input
+            "head": get_crossref_xml_head(input),
+            "body": input,
         }
-        input = { "doi_batch": doi_batch }
+        input = {"doi_batch": doi_batch}
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
     kwargs.pop("dialect", None)
@@ -154,35 +166,22 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
         # add attributes to root element
-        # add body and type as wrapping elements
-        # rename keys
-        
+        # add body and root element as wrapping elements
+
         # Group items by type with minimal grouping
         items_by_type = {}
-        
+
         for item in wrap(input):
-            item = py_.rename_keys(
-                    item,
-                    {
-                        "rel_program": "program",
-                        "ai_program": "program",
-                        "fr_program": "program",
-                    },
-                )
-            
-            # Extract and remove type
-            item_type = item.get("type", "other")
-            item = py_.omit(item, "type")
-            
+            type = next(iter(item))
+            attributes = item.get(type)
+            item.pop(type)
+            item = {type: attributes | item}
+
             # Add item to appropriate type bucket
-            if item_type not in items_by_type:
-                items_by_type[item_type] = []
-                
-            if item_type == "journal_article":
-                items_by_type[item_type].append({"journal_article": item})
-            else:
-                items_by_type[item_type].append(item)
-        
+            if type not in items_by_type:
+                items_by_type[type] = []
+            items_by_type[type].append(item)
+
         # Create a body with all item types
         body = {}
         for type_key, items in items_by_type.items():
@@ -190,12 +189,16 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 body["journal"] = items
             else:
                 body[type_key] = items
-                
+
         # Create the final structure
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
+            "@xmlns:rel": "http://www.crossref.org/relations.xsd",
+            "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
             "@version": "5.4.0",
-            "body": body
+            "head": get_crossref_xml_head(input),
+            "body": body,
         }
         output = {"doi_batch": doi_batch}
 
@@ -222,3 +225,16 @@ def sanitize(text: str, **kwargs) -> str:
     string = nh3.clean(text, tags=tags, attributes=attributes, link_rel=None)
     # remove excessive internal whitespace
     return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
+
+
+def get_crossref_xml_head(metadata: dict) -> dict:
+    """Get head element for Crossref XML"""
+    return {
+        "doi_batch_id": str(uuid.uuid4()),
+        "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
+        "depositor": {
+            "depositor_name": metadata.get("depositor", None) or "test",
+            "email_address": metadata.get("email", None) or "info@example.org",
+        },
+        "registrant": metadata.get("registrant", None) or "test",
+    }
