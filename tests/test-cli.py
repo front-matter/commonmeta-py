@@ -36,6 +36,7 @@ def test_convert_crossref_xml():
     runner = CliRunner()
     string = "10.7554/elife.01567"
     result = runner.invoke(convert, [string, "--to", "crossref_xml"])
+    print(result.output)
     assert result.exit_code == 0
     assert (
         "<title>Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth</title>"
@@ -105,7 +106,7 @@ def test_convert_commonmeta_from_json_feed_no_doi():
 def test_convert_crossref_xml_from_json_feed_no_doi():
     """Test crossref_xml generation from json_feed no doi"""
     runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0"
+    string = "https://api.rogue-scholar.org/posts/a080e9d7-20a1-4a0c-b550-0c39d4423868"
     result = runner.invoke(
         convert, [string, "--to", "crossref_xml", "--prefix", "10.5555"]
     )
