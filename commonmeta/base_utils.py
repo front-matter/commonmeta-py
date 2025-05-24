@@ -165,7 +165,6 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
         return None
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
-        # add attributes to root element
         # add body and root element as wrapping elements
 
         # Group items by type with minimal grouping
@@ -175,20 +174,43 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
             type = next(iter(item))
             attributes = item.get(type)
             item.pop(type)
-            item = {type: attributes | item}
+
+            # handle nested book_metadata and journal structure as in unparse_xml
+            if type == "book":
+                book_metadata = py_.get(item, "book_metadata") or {}
+                item.pop("book_metadata")
+                book_metadata = {**book_metadata, **item}
+                item = {"book": {**attributes, "book_metadata": book_metadata}}
+            elif type == "journal":
+                journal_metadata = py_.get(item, "journal_metadata") or {}
+                journal_issue = py_.get(item, "journal_issue") or {}
+                journal_article = py_.get(item, "journal_article") or {}
+                item.pop("journal_metadata")
+                item.pop("journal_issue")
+                item.pop("journal_article")
+                item = {
+                    "journal": {
+                        "journal_metadata": journal_metadata,
+                        "journal_issue": journal_issue,
+                        "journal_article": journal_article | item,
+                    }
+                }
+            elif type == "sa_component":
+                item = {type: attributes | item}
+                component_list = item
+                item = {"sa_component": {"component_list": component_list}}
+            else:
+                item = {type: attributes | item}
 
             # Add item to appropriate type bucket
             if type not in items_by_type:
                 items_by_type[type] = []
-            items_by_type[type].append(item)
+            items_by_type[type].append(item[type])
 
-        # Create a body with all item types
+        # Create a body with all item types, ensuring no duplicate top-level keys
         body = {}
         for type_key, items in items_by_type.items():
-            if type_key == "journal_article":
-                body["journal"] = items
-            else:
-                body[type_key] = items
+            body[type_key] = items
 
         # Create the final structure
         doi_batch = {
@@ -197,7 +219,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
             "@xmlns:rel": "http://www.crossref.org/relations.xsd",
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
             "@version": "5.4.0",
-            "head": get_crossref_xml_head(input),
+            "head": get_crossref_xml_head(input[0]),
             "body": body,
         }
         output = {"doi_batch": doi_batch}
