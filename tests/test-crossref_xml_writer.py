@@ -884,25 +884,31 @@ def test_dissertation():
     assert subject.type == "Dissertation"
 
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-
-
-@pytest.mark.vcr
-def test_with_ror_id():
-    "with ror id"
-    string = "https://doi.org/10.14264/uql.2020.791"
-    subject = Metadata(string, via="crossref")
-    assert subject.id == "https://doi.org/10.14264/uql.2020.791"
-    assert subject.type == "Dissertation"
-
-    crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
-    assert subject.is_valid
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.dissertation", {})
+    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
+    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Patricia Maree",
+        "surname": "Collingwood",
+        "ORCID": "https://orcid.org/0000-0003-3086-4443",
+    }
+    assert (
+        py_.get(crossref_xml, "titles.0.title")
+        == "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
+    )
+    assert py_.get(crossref_xml, "approval_date") == {
+        "day": "8",
+        "month": "6",
+        "year": "2020",
+    }
+    assert py_.get(crossref_xml, "doi_data.doi") == "10.14264/uql.2020.791"
+    assert (
+        py_.get(crossref_xml, "doi_data.resource")
+        == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
+    )
 
 
 @pytest.mark.vcr
