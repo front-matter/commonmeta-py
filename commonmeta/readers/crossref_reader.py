@@ -341,7 +341,7 @@ def get_container(meta: dict, issn: str) -> dict:
     )
     isbn = isbn["value"] if isbn else None
     container_title = parse_attributes(meta.get("container-title", None), first=True)
-    if not container_title and container_type in ["Periodical"]:
+    if not container_title:
         container_title = py_.get(meta, "institution.0.name")
     volume = meta.get("volume", None)
     issue = py_.get(meta, "journal-issue.issue")
