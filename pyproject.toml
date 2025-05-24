@@ -1,6 +1,6 @@
 [project]
 name = "commonmeta-py"
-version = "0.107"
+version = "0.108"
 description = "Library for conversions to/from the Commonmeta scholarly metadata format"
 authors = [{ name = "Martin Fenner", email = "martin@front-matter.io" }]
 requires-python = ">=3.9,<4.0"
@@ -50,6 +50,7 @@ dependencies = [
     "edtf>=5.0.0,<6",
     "requests>=2.32.3",
     "marshmallow-utils>=0.10.0",
+    "xmlschema>=4.0.1",
 ]
 
 [project.urls]
