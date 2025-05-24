@@ -991,12 +991,18 @@ def test_openalex_api_query_url():
     # Default case
     query = {}
     url = openalex_api_query_url(query)
-    assert url == "https://api.openalex.org/works?per-page=10&page=1&sort=publication_date%3Adesc"
+    assert (
+        url
+        == "https://api.openalex.org/works?per-page=10&page=1&sort=publication_date%3Adesc"
+    )
 
     # Custom number and page
     query = {"number": 100, "page": 3}
     url = openalex_api_query_url(query)
-    assert url == "https://api.openalex.org/works?per-page=100&page=3&sort=publication_date%3Adesc"
+    assert (
+        url
+        == "https://api.openalex.org/works?per-page=100&page=3&sort=publication_date%3Adesc"
+    )
 
     # Basic sample
     query = {"sample": True}
@@ -1011,12 +1017,18 @@ def test_openalex_api_query_url():
     # Sample with ORCID
     query = {"sample": True, "orcid": "0000-0002-8635-8390"}
     url = openalex_api_query_url(query)
-    assert url == "https://api.openalex.org/works?sample=10&filter=authorships.author.id%3A0000-0002-8635-8390"
+    assert (
+        url
+        == "https://api.openalex.org/works?sample=10&filter=authorships.author.orcid%3A0000-0002-8635-8390"
+    )
 
     # Sample with ROR
     query = {"sample": True, "ror": "041kmwe10"}
     url = openalex_api_query_url(query)
-    assert url == "https://api.openalex.org/works?sample=10&filter=authorships.institutions.ror%3A041kmwe10"
+    assert (
+        url
+        == "https://api.openalex.org/works?sample=10&filter=authorships.institutions.ror%3A041kmwe10"
+    )
 
 
 def test_format_name_identifier():

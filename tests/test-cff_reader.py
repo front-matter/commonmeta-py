@@ -1,6 +1,7 @@
 """Test cff reader"""
 
 import pytest
+
 from commonmeta import Metadata
 
 

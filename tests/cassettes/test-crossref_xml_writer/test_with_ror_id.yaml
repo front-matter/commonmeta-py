@@ -11,199 +11,33 @@ interactions:
       User-Agent:
       - python-requests/2.32.3
     method: GET
-    uri: https://doi.org/ra/10.1371
+    uri: https://api.crossref.org/works/10.14264/uql.2020.791
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q2NzQyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        fpIZsjYAAAA=
-    headers:
-      CF-RAY:
-      - 944dc7102b09f811-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Sat, 24 May 2025 15:20:32 GMT
-      NEL:
-      - '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=qxabK0pTY1IRsFcxaaDirp6sK0HptXGkeHxN3hmxu5kPE48uDpHKEzK2osX9%2FzEOrEX1Hd2C4ZlyixIpac4BUpd5il%2FagGa1O6turMu2SzKa0u6I32a9I9diVV%2FuOVB0XnNMElI%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cf-cache-status:
-      - DYNAMIC
-      permissions-policy:
-      - interest-cohort=(),browsing-topics=()
-      server-timing:
-      - cfL4;desc="?proto=TCP&rtt=10628&min_rtt=9830&rtt_var=4256&sent=5&recv=6&lost=0&retrans=0&sent_bytes=2826&recv_bytes=767&delivery_rate=411393&cwnd=252&unsent_bytes=0&cid=f1466ecc565d5bbe&ts=52&x=0"
-      vary:
-      - Origin
-      - accept-encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.3
-    method: GET
-    uri: https://api.crossref.org/works/10.1371/journal.pone.0000030
-  response:
-    body:
-      string: !!binary |
-        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
-        CxKszZQOzeXv/wI9ZTC2QF8AAA==
+        H4sIAAAAAAAA/6VUy47bMAz8FUNn25FjOw9fu5cCLdp9XbrJQZGZRK0sefXYbRDk30vaaTdoN6cC
+        QSCIIoczHPrIfBAhetYw+4OlrAPvxQ6ycOgB716tu7x9AeeVNRgocp7ztwhrjkwZH1SIYXjwdGRG
+        dFTiYQ/Jo1FDajgkdpvcRgDjtTAtFmihFy50YAImsXu5t1bTo3srldDJvVRgJLD1aZ0iQgs/oSWw
+        VgTIKBM7f3qa8mmd1mlRrfHVEApqAKdAxuusqB541ZTTppx/Q1CKIu+uZ00xr+bFcl7U86riKXtj
+        WOYVz2t2SpmDLTjqIpM2Up/4ro8brfweHL68xi75pDZOuAMCSmsCUsxa2wllBgLn0xN2LJ31vhPu
+        R+awLafkqOFWaA+I7/fWhYxKYAY45BY0jJk3Xz7SMHheVNNZtZrEZ50jZ57PlwXxHKfYKu/B4Zyp
+        LMEBSvS+jDydpYt3VOQZn2V88cDrhi+aevG3ivUSf9NlueCcY8ui7519uYpRp9N6vSZqNjpJEB9I
+        AhQayyqf/VG8zTaHC9V/M//tk+CiMPKQkNhbZfBMniGb9IB/WCBpo1Nml0AHbkcH0UYdMLltEpFo
+        a3Zo2RZTNRYR+uCVpyE6kKD6QEeq7UArQdWsSaTwewQWxmOPnqFUPbarfl7MAUmIiCBu2IMvdx8+
+        3mB0H0Lvm9VkNbFOqja3breaoFwoLedlVvLFLKuqqjxno12UpDllw3PWIFlI2Q69Rvb8KsgoSiSf
+        hQPAnK3olD6QlFZrZPqKHPHaw3McNqhhW+V8oOrbrUI+50UdNquDbjN4uS4X87Nf/zGbdWpHSl3e
+        odIWnf9/blpec9NydJOX1mFmQXA7YosO+Lq/SfDTgvOiEeDenJ10xHGojrYOj493n87CD7qD74WE
+        XI9rmcfnHNqYi7iavCh4XU0eb5tpKQqYV+xEsHFzwXTcwosLXKr4Hm8TtR7M/cfF/sLCby2NXmit
+        Gp1wdYnRfOdZHcemvoMMw+BOvwBEv/22vgUAAA==
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '7201'
+      - '769'
       Content-Type:
       - application/json
       Date:
-      - Sat, 24 May 2025 15:20:32 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -248,11 +82,11 @@ interactions:
         \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
     headers:
       Age:
-      - '10201'
+      - '10257'
       CF-Cache-Status:
       - HIT
       CF-RAY:
-      - 944dc7147a46f811-DUS
+      - 944dc86fe9eaf807-DUS
       Cache-Control:
       - max-age=7776000
       Connection:
@@ -260,12 +94,12 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Sat, 24 May 2025 15:20:32 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=K2Z3wVAs67NlUUFPc8hIY4syrrnWy3cxFxM3Uh8IxXs-1748100032-1.0.1.1-c3lVzjBDJnhaT2Ifdoz6wxvkijVUiYTwBqXh0VRtvITKk1ITeSToYHEpSa3bnNOiPlISw6mlz8uUxlFobNlQTGaceb.vV9_30p.Mco.mcHc;
-        path=/; expires=Sat, 24-May-25 15:50:32 GMT; domain=.w3.org; HttpOnly
+      - __cf_bm=mTmZF5yT20OE2.QIUpH42Wg75B0FpIfHhpFbH17zXnY-1748100088-1.0.1.1-tstzVSUKU3Ah9PZTQTs5F_miJcltfc88syJG.8NJM.SeO5fLd1QhSi37c0OhVN0Xl8PDTWTH91LVD4YUum7LSSAztCmPJVGMpgd48J1sLUI;
+        path=/; expires=Sat, 24-May-25 15:51:28 GMT; domain=.w3.org; HttpOnly
       Transfer-Encoding:
       - chunked
       alt-svc:
@@ -669,11 +503,11 @@ interactions:
         \  <xs:element name=\"infinity\" substitutionGroup=\"m:constant-arith.class\"/>\n</xs:schema>"
     headers:
       Age:
-      - '12363'
+      - '12419'
       CF-Cache-Status:
       - HIT
       CF-RAY:
-      - 944dc714bd0ef94c-DUS
+      - 944dc8702c5e1605-DUS
       Cache-Control:
       - max-age=7776000
       Connection:
@@ -681,12 +515,12 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Sat, 24 May 2025 15:20:32 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=Rx24hO6QfJhtcLKtQUFKygle8719a6bMk4hpX7ipo_8-1748100032-1.0.1.1-EtJJuQ6_ELRBRkTtnTwNK6TAosKeQldp9xizdbnpEbrf8dXa3JTJnNfLnzfgLYgAg0qygAQAUVRWv.kV13FZ0TxPLOfCmT0biLDPr7iT3Y0;
-        path=/; expires=Sat, 24-May-25 15:50:32 GMT; domain=.w3.org; HttpOnly
+      - __cf_bm=rvTODPoGBunX1iCtCr7Y2k5le7l7LTmR5gNAaUgAeak-1748100088-1.0.1.1-zbS3horBlQn8sb4sbM_g60ap0lIoKmUNG_TgQvs0WBh7MJwZuD3HUuEcrMG1r2CbixOkZn7UTmSeXdoBRDJXjIXA9N7oJksUBEBVAJOyo90;
+        path=/; expires=Sat, 24-May-25 15:51:28 GMT; domain=.w3.org; HttpOnly
       Transfer-Encoding:
       - chunked
       alt-svc:
@@ -811,11 +645,11 @@ interactions:
         \     </xs:choice>\n   </xs:group>\n</xs:schema>"
     headers:
       Age:
-      - '11545'
+      - '11601'
       CF-Cache-Status:
       - HIT
       CF-RAY:
-      - 944dc7153bbcf811-DUS
+      - 944dc8709d25f94c-DUS
       Cache-Control:
       - max-age=7776000
       Connection:
@@ -823,12 +657,12 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Sat, 24 May 2025 15:20:32 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=M0S6tmg_1e4krZt4KWhBNb7JvKVIN6SFpgSdOpxwHLw-1748100032-1.0.1.1-HJVO2rvjh.C2arf0xJYIH8NmZYxRJoLjzZK6Aktk.9GD1iuWjdSqXfl.tgWZ9tWvHZtdMAVGGpJCUl5A2YPQlMmo1Rc2ilF6t9KSOJjJ.qw;
-        path=/; expires=Sat, 24-May-25 15:50:32 GMT; domain=.w3.org; HttpOnly
+      - __cf_bm=F1j7UjF9XLO0Ka6W10TtLK2ik4X1PzOrQPSKBCn5ME0-1748100088-1.0.1.1-ESSrAP7VGr4QF6ivS2VAqU4rSSOxJMmesxQhldCkj8SHb4dLv8hpFlk5RFgEvcj3kbam_QXaQVtR.GX.yZPN7oUL4sH.taiI4ItTo0Ywt5k;
+        path=/; expires=Sat, 24-May-25 15:51:28 GMT; domain=.w3.org; HttpOnly
       Transfer-Encoding:
       - chunked
       alt-svc:
@@ -1884,11 +1718,11 @@ interactions:
         name=\"selection\" type=\"m:positive-integer\"/>\n   </xs:attributeGroup>\n</xs:schema>"
     headers:
       Age:
-      - '10201'
+      - '10257'
       CF-Cache-Status:
       - HIT
       CF-RAY:
-      - 944dc7159fbf1603-DUS
+      - 944dc870ef8ff813-DUS
       Cache-Control:
       - max-age=7776000
       Connection:
@@ -1896,12 +1730,12 @@ interactions:
       Content-Type:
       - application/xml
       Date:
-      - Sat, 24 May 2025 15:20:32 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=5GTUDuyYWCMMatU_0aUVdcrvmdgL7xc.9hdrV45zaOU-1748100032-1.0.1.1-_1980dlI_wOrxVDi7Fu4GkgTwREZHbS3LjVWicmk189KHxEHRD0aiAc.1L6lfrVhXIRFI667gHDMfsoQ_fiTyfJptaWWeDzNFFmSCvsYE64;
-        path=/; expires=Sat, 24-May-25 15:50:32 GMT; domain=.w3.org; HttpOnly
+      - __cf_bm=N2Ci7ycjIS9dx3fB._k2osj8XDOofjTBNhC4ebjbzyY-1748100088-1.0.1.1-MvmExzeEfqmtrVDqta2M5H3z7.Vh9bTIZUXngojKDKsQNJnWFs3Zc95LsL72Oifa70RIPQeN.5Ede6Rymdx1zTYhsChBTOzDGktk_s6rI8E;
+        path=/; expires=Sat, 24-May-25 15:51:28 GMT; domain=.w3.org; HttpOnly
       Transfer-Encoding:
       - chunked
       alt-svc:
@@ -1938,98 +1772,38 @@ interactions:
     uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3-common.xsd
   response:
     body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:element
-        name=\"math\">\n      <xs:complexType>\n         <xs:group minOccurs=\"0\"
-        maxOccurs=\"unbounded\" ref=\"m:MathExpression\"/>\n         <xs:attributeGroup
-        ref=\"m:math.attributes\"/>\n      </xs:complexType>\n   </xs:element>\n   <xs:attributeGroup
-        name=\"CommonDeprecatedAtt\">\n      <xs:attribute name=\"other\"/>\n   </xs:attributeGroup>\n
-        \  <xs:attributeGroup name=\"CommonAtt\">\n      <xs:attribute name=\"id\"
-        type=\"xs:ID\"/>\n      <xs:attribute name=\"xref\"/>\n      <xs:attribute
-        name=\"class\" type=\"xs:NMTOKENS\"/>\n      <xs:attribute name=\"style\"
-        type=\"xs:string\"/>\n      <xs:attribute name=\"href\" type=\"xs:anyURI\"/>\n
-        \     <xs:attributeGroup ref=\"m:CommonDeprecatedAtt\"/>\n      <xs:anyAttribute
-        namespace=\"##other\" processContents=\"skip\"/>\n   </xs:attributeGroup>\n
-        \  <xs:attributeGroup name=\"math.deprecatedattributes\">\n      <xs:attribute
-        name=\"mode\" type=\"xs:string\"/>\n      <xs:attribute name=\"macros\" type=\"xs:string\"/>\n
-        \  </xs:attributeGroup>\n   <xs:attributeGroup name=\"name\">\n      <xs:attribute
-        name=\"name\" use=\"required\" type=\"xs:NCName\"/>\n   </xs:attributeGroup>\n
-        \  <xs:attributeGroup name=\"cd\">\n      <xs:attribute name=\"cd\" use=\"required\"
-        type=\"xs:NCName\"/>\n   </xs:attributeGroup>\n   <xs:attributeGroup name=\"src\">\n
-        \     <xs:attribute name=\"src\" type=\"xs:anyURI\"/>\n   </xs:attributeGroup>\n
-        \  <xs:element name=\"annotation\">\n      <xs:complexType mixed=\"true\">\n
-        \        <xs:attributeGroup ref=\"m:annotation.attributes\"/>\n      </xs:complexType>\n
-        \  </xs:element>\n   <xs:complexType name=\"annotation-xml.model\"><!--content
-        model altered for libxml (annotation-xml)--><xs:sequence>\n         <xs:any
-        processContents=\"lax\"/>\n      </xs:sequence>\n   </xs:complexType>\n   <xs:group
-        name=\"anyElement\">\n      <xs:choice>\n         <xs:any namespace=\"##other\"
-        processContents=\"skip\"/>\n         <xs:any namespace=\"##local\" processContents=\"skip\"/>\n
-        \     </xs:choice>\n   </xs:group>\n   <xs:element name=\"annotation-xml\">\n
-        \     <xs:complexType>\n         <xs:complexContent>\n            <xs:extension
-        base=\"m:annotation-xml.model\">\n               <xs:attributeGroup ref=\"m:annotation.attributes\"/>\n
-        \           </xs:extension>\n         </xs:complexContent>\n      </xs:complexType>\n
-        \  </xs:element>\n   <xs:attributeGroup name=\"annotation.attributes\">\n
-        \     <xs:attributeGroup ref=\"m:CommonAtt\"/>\n      <xs:attribute name=\"cd\"
-        type=\"xs:NCName\"/>\n      <xs:attribute name=\"name\" type=\"xs:NCName\"/>\n
-        \     <xs:attributeGroup ref=\"m:DefEncAtt\"/>\n      <xs:attributeGroup ref=\"m:src\"/>\n
-        \  </xs:attributeGroup>\n   <xs:attributeGroup name=\"DefEncAtt\">\n      <xs:attribute
-        name=\"encoding\" type=\"xs:string\"/>\n      <xs:attribute name=\"definitionURL\"
-        type=\"xs:anyURI\"/>\n   </xs:attributeGroup>\n   <xs:group name=\"semantics\">\n
-        \     <xs:sequence>\n         <xs:element name=\"semantics\">\n            <xs:complexType>\n
-        \              <xs:sequence>\n                  <xs:group ref=\"m:MathExpression\"/>\n
-        \                 <xs:choice minOccurs=\"0\" maxOccurs=\"unbounded\">\n                     <xs:element
-        ref=\"m:annotation\"/>\n                     <xs:element ref=\"m:annotation-xml\"/>\n
-        \                 </xs:choice>\n               </xs:sequence>\n               <xs:attributeGroup
-        ref=\"m:semantics.attributes\"/>\n            </xs:complexType>\n         </xs:element>\n
-        \     </xs:sequence>\n   </xs:group>\n   <xs:attributeGroup name=\"semantics.attributes\">\n
-        \     <xs:attributeGroup ref=\"m:CommonAtt\"/>\n      <xs:attributeGroup ref=\"m:DefEncAtt\"/>\n
-        \     <xs:attribute name=\"cd\" type=\"xs:NCName\"/>\n      <xs:attribute
-        name=\"name\" type=\"xs:NCName\"/>\n   </xs:attributeGroup>\n   <xs:simpleType
-        name=\"length\">\n      <xs:restriction base=\"xs:string\">\n         <xs:pattern
-        value=\"\\s*((-?[0-9]*([0-9]\\.?|\\.[0-9])[0-9]*(e[mx]|in|cm|mm|p[xtc]|%)?)|(negative)?((very){0,2}thi(n|ck)|medium)mathspace)\\s*\"/>\n
-        \     </xs:restriction>\n   </xs:simpleType>\n</xs:schema>"
+      string: 'error code: 1015'
     headers:
-      Age:
-      - '52463'
-      CF-Cache-Status:
-      - HIT
       CF-RAY:
-      - 944dc7165beb1608-DUS
+      - 944dc8721821c7b8-DUS
       Cache-Control:
-      - max-age=7776000
+      - private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0
       Connection:
       - close
+      Content-Length:
+      - '16'
       Content-Type:
-      - application/xml
+      - text/plain; charset=UTF-8
       Date:
-      - Sat, 24 May 2025 15:20:33 GMT
+      - Sat, 24 May 2025 15:21:28 GMT
+      Expires:
+      - Thu, 01 Jan 1970 00:00:01 GMT
+      Referrer-Policy:
+      - same-origin
+      Retry-After:
+      - '0'
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=yhC_NG0RHt5GZ4RJTwbpGDZXKlk6d1tibWfcaC7SQgI-1748100033-1.0.1.1-XI16xCHpZ1JjhUN4_WUQvHBzPY0VURzxyo.RgBCwElHPPKAokJ3Gw.etKNvOBZWHmzWszv.BqCzPvfcPXgiZQgSi9JOoao7sEaN.YF9xK5A;
-        path=/; expires=Sat, 24-May-25 15:50:33 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
+      - __cf_bm=wsCFS8IQJMHNvhpIKor8VkP_2LIM_DMYvEQcL5X0H_U-1748100088-1.0.1.1-eq.4Kh6JZyTPW.jDSisoQUwaRaapbGAb7xw25D.fL4ioYHVGwBqPYMR8lFZcwke.8XewInixvR5I5scDxLjNBSUzWFZAW_ha8WlawrIxfFU;
+        path=/; expires=Sat, 24-May-25 15:51:28 GMT; domain=.w3.org; HttpOnly
+      Vary:
+      - Accept-Encoding
+      X-Frame-Options:
+      - SAMEORIGIN
       alt-svc:
       - h3=":443"; ma=86400
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"fe2-4f67da4daf300-gzip"
-      expires:
-      - Thu, 21 Aug 2025 08:00:37 GMT
-      last-modified:
-      - Tue, 08 Apr 2014 01:10:04 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 940116a18f18b055
     status:
-      code: 200
-      message: OK
+      code: 429
+      message: Too Many Requests
 version: 1

@@ -2,7 +2,9 @@
 """Crossref XML reader tests"""
 
 from os import path
+
 import pytest
+
 from commonmeta import Metadata
 
 
@@ -54,7 +56,7 @@ def test_doi_with_data_citation():
         "firstPage": "181",
         "containerTitle": "Nature",
     }
-    assert subject.funding_references == None
+    assert subject.funding_references is None
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
     #     {"funderName": "EMBO longterm post-doctoral fellowships"},
@@ -193,7 +195,7 @@ def test_journal_article_with_funding():
         "firstPage": "141",
         "containerTitle": "Plant Physiol. Biochem.",
     }
-    assert subject.funding_references == None
+    assert subject.funding_references is None
     # assert subject.funding_references[1] == {
     #     "funderName": "COST (European Cooperation in Science and Technology)",
     #     "funderIdentifier": "https://doi.org/10.13039/501100000921",
@@ -226,7 +228,7 @@ def test_journal_article_original_language():
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
     )
     assert subject.titles[0].get("title") == "自律神経・循環器応答"
-    assert subject.contributors == None
+    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "created": "2012-08-30",
@@ -823,7 +825,7 @@ def test_component():
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
     assert subject.titles is None
-    assert subject.contributors == None
+    assert subject.contributors is None
     assert subject.license is None
     assert subject.date == {
         "created": "2015-10-20",
@@ -1188,7 +1190,7 @@ def test_proceedings_article():
         "key": "e_1_3_2_2_56_1",
         "id": "https://doi.org/10.5555/1364813.1364831",
     }
-    assert subject.funding_references == None
+    assert subject.funding_references is None
     # assert subject.funding_references[0] == {
     #     "funderName": "NSF (National Science Foundation)",
     #     "funderIdentifier": "https://doi.org/10.13039/100000001",

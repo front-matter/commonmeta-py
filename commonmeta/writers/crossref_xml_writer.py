@@ -2,18 +2,928 @@
 
 from typing import Optional
 
+from dateutil.parser import parse as date_parse
+from furl import furl
+from marshmallow import Schema, fields
+from pydash import py_
+
+from ..base_utils import compact, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
-from ..crossref_utils import generate_crossref_xml, generate_crossref_xml_list
+from ..doi_utils import doi_from_url, validate_doi
+from ..utils import validate_url
+
+
+class CrossrefXMLSchema(Schema):
+    """Crossref XML schema"""
+
+    # root element
+    book = fields.Dict()
+    conference = fields.Dict()
+    database = fields.Dict()
+    dissertation = fields.Dict()
+    journal = fields.Dict()
+    peer_review = fields.Dict()
+    report_paper = fields.Dict()
+    pending_publication = fields.Dict()
+    posted_content = fields.Dict()
+    sa_component = fields.Dict()
+    standard = fields.Dict()
+
+    # elements
+    group_title = fields.String()
+    book_metadata = fields.Dict()
+    event_metadata = fields.Dict()
+    proceedings_metadata = fields.Dict()
+    journal_metadata = fields.Dict()
+    journal_issue = fields.Dict()
+    journal_article = fields.Dict()
+    titles = fields.List(fields.Dict())
+    contributors = fields.Dict()
+    abstract = fields.Dict(data_key="jats:abstract")
+    publication_date = fields.Dict()
+    posted_date = fields.Dict()
+    review_date = fields.Dict()
+    publisher_item = fields.Dict()
+    institution = fields.Dict()
+    item_number = fields.Dict()
+    isbn = fields.String()
+    issn = fields.String()
+    publisher = fields.Dict()
+    funding_references = fields.Dict(data_key="fr:program")
+    license = fields.Dict(data_key="ai:program")
+    relations = fields.Dict(data_key="rel:program")
+    archive_locations = fields.List(fields.String())
+    doi_data = fields.Dict(data_key="doi_data")
+    references = fields.Dict(data_key="citation_list")
+
+
+def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
+    """Convert Crossref XML"""
+
+    # return None if type is not supported by Crossref
+    if metadata.type not in [
+        "Article",
+        "BlogPost",
+        "Book",
+        "BookChapter",
+        "Component",
+        "Dataset",
+        "Dissertation",
+        "JournalArticle",
+        "PeerReview",
+        "ProceedingsArticle",
+        "Report",
+        "Standard",
+    ]:
+        return None
+
+    # return None if doi or url are not present
+    if doi_from_url(metadata.id) is None or metadata.url is None:
+        return None
+
+    titles = get_titles(metadata)
+    contributors = get_contributors(metadata)
+    abstract = get_abstract(metadata)
+    relations = get_relations(metadata)
+    doi_data = get_doi_data(metadata)
+    references = get_references(metadata)
+    funding_references = get_funding_references(metadata)
+    license = get_license(metadata)
+    kwargs = {}
+
+    if metadata.type == "Article":
+        institution = None
+        if metadata.container.get("title", None) is not None:
+            institution = {"institution_name": metadata.container.get("title")}
+        kwargs["type"] = "preprint"
+        kwargs["language"] = metadata.language
+        data = compact(
+            {
+                "posted_content": get_attributes(metadata, **kwargs),
+                "group_title": get_group_title(metadata),
+                "contributors": contributors,
+                "titles": titles,
+                "posted_date": get_publication_date(metadata),
+                "institution": institution,
+                "item_number": get_item_number(metadata),
+                "abstract": abstract,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "BlogPost":
+        institution = None
+        if metadata.publisher.get("name", None) is not None:
+            institution = {"institution_name": metadata.publisher.get("name")}
+        kwargs["type"] = "other"
+        kwargs["language"] = metadata.language
+        data = compact(
+            {
+                "posted_content": get_attributes(metadata, **kwargs),
+                "group_title": get_group_title(metadata),
+                "contributors": contributors,
+                "titles": titles,
+                "posted_date": get_publication_date(metadata),
+                "institution": institution,
+                "item_number": get_item_number(metadata),
+                "abstract": abstract,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "Book":
+        kwargs["book_type"] = "monograph"
+        data = compact(
+            {
+                "book": get_attributes(metadata, **kwargs),
+                "book_metadata": get_book_metadata(metadata),
+                "contributors": contributors,
+                "titles": titles,
+                "abstract": abstract,
+                "publication_date": get_publication_date(metadata, media_type="online"),
+                "isbn": get_isbn(metadata),
+                "publisher": get_publisher(metadata),
+                "publisher_item": None,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "BookChapter":
+        kwargs["book_type"] = "monograph"
+        data = compact(
+            {
+                "book": get_attributes(metadata, **kwargs),
+                "book_metadata": get_book_metadata(metadata),
+                "contributors": contributors,
+                "titles": titles,
+                "publication_date": get_publication_date(metadata, media_type="online"),
+                "isbn": get_isbn(metadata),
+                "publisher": get_publisher(metadata),
+                "abstract": abstract,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "Component":
+        data = compact(
+            {
+                "sa_component": get_attributes(metadata),
+                "group_title": get_group_title(metadata, **kwargs),
+                "contributors": contributors,
+                "titles": titles,
+                "publication_date": get_publication_date(metadata),
+                "item_number": get_item_number(metadata),
+                "abstract": abstract,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "Dataset":
+        kwargs["reg-agency"] = "Crossref"
+        data = compact(
+            {
+                "sa_component": get_attributes(metadata, **kwargs),
+                "titles": titles,
+                "contributors": contributors,
+                "publication_date": get_publication_date(metadata, media_type="online"),
+                "description": abstract,
+                "doi_data": doi_data,
+            }
+        )
+    elif metadata.type == "Dissertation":
+        data = compact(
+            {
+                "dissertation": get_attributes(metadata, **kwargs),
+                "group_title": get_group_title(metadata),
+                "contributors": contributors,
+                "titles": titles,
+                "posted_date": get_publication_date(metadata),
+                "item_number": get_item_number(metadata),
+                "abstract": abstract,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    elif metadata.type == "JournalArticle":
+        publisher_item = None
+        kwargs["language"] = metadata.language
+        data = compact(
+            {
+                "journal": {},
+                "journal_metadata": get_journal_metadata(metadata),
+                "journal_issue": get_journal_issue(metadata),
+                "journal_article": get_attributes(metadata, **kwargs),
+                "titles": titles,
+                "contributors": contributors,
+                "abstract": abstract,
+                "publication_date": get_publication_date(metadata, media_type="online"),
+                "publisher_item": publisher_item,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+            }
+        )
+    elif metadata.type == "PeerReview":
+        kwargs["type"] = "author-comment"
+        kwargs["stage"] = "pre-publication"
+        data = compact(
+            {
+                "peer_review": get_attributes(metadata, **kwargs),
+                "contributors": contributors,
+                "titles": titles,
+                "review_date": get_publication_date(metadata),
+                "license": license,
+                "relations": relations,
+                "doi_data": doi_data,
+            }
+        )
+    elif metadata.type == "ProceedingsArticle":
+        publisher_item = None
+        data = compact(
+            {
+                "conference": get_attributes(metadata, **kwargs),
+                "event_metadata": get_event_metadata(metadata),
+                "proceedings_metadata": get_proceedings_metadata(metadata),
+                "conference_paper": get_attributes(metadata, **kwargs),
+                "contributors": contributors,
+                "titles": titles,
+                "publication_date": get_publication_date(metadata),
+                "abstract": abstract,
+                "publisher_item": publisher_item,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+            }
+        )
+    elif metadata.type == "Standard":
+        publisher_item = None
+        data = compact(
+            {
+                "standard": get_attributes(metadata, **kwargs),
+                "journal_metadata": get_journal_metadata(metadata),
+                "journal_issue": get_journal_issue(metadata),
+                "titles": titles,
+                "contributors": contributors,
+                "abstract": abstract,
+                "publication_date": get_publication_date(metadata),
+                "publisher_item": publisher_item,
+                "funding_references": funding_references,
+                "license": license,
+                "crossmark": None,
+                "relations": relations,
+                "archive_locations": metadata.archive_locations,
+                "doi_data": doi_data,
+                "references": references,
+                "component_list": None,
+            }
+        )
+    else:
+        data = None
+    return data
 
 
 def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     """Write Crossref XML"""
-    return generate_crossref_xml(metadata)
+
+    data = convert_crossref_xml(metadata)
+    if data is None:
+        return None
+    schema = CrossrefXMLSchema()
+    crossref_xml = schema.dump(data)
+
+    # Ensure the order of fields in the XML matches the expected order
+    key_map = {
+        "license": "ai:program",
+        "funding_references": "fr:program",
+        "relations": "rel:program",
+        "references": "citation_list",
+    }
+    field_order = [key_map.get(k, k) for k in list(data.keys())]
+    crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
+    # Convert to XML
+    return unparse_xml(crossref_xml, dialect="crossref")
 
 
 def write_crossref_xml_list(metalist):
     """Write crossref_xml list"""
-    if metalist is None:
+    if metalist is None or not metalist.is_valid:
         return None
 
-    return generate_crossref_xml_list(metalist)
+    crossref_xml_list = []
+    for item in metalist.items:
+        data = convert_crossref_xml(item)
+        if data is not None:
+            first_key = next(iter(data.keys()))
+            schema = CrossrefXMLSchema(context={"type": first_key})
+            crossref_xml = schema.dump(data)
+            crossref_xml_list.append(crossref_xml)
+
+    return unparse_xml_list(crossref_xml_list, dialect="crossref")
+
+
+def get_attributes(obj, **kwargs) -> dict:
+    """Get root attributes"""
+    return compact(
+        {
+            "@type": kwargs.get("type", None),
+            "@book_type": kwargs.get("book_type", None),
+            "@language": kwargs.get("language", None),
+            "@stage": kwargs.get("stage", None),
+            "@reg-agency": kwargs.get("reg-agency", None),
+        }
+    )
+
+
+def get_journal_metadata(obj) -> Optional[dict]:
+    """get journal metadata"""
+    issn = (
+        py_.get(obj, "container.identifier")
+        if py_.get(obj, "container.identifierType") == "ISSN"
+        else None
+    )
+    return compact(
+        {
+            "@language": py_.get(obj, "language"),
+            "full_title": py_.get(obj, "container.title"),
+            "issn": issn,
+        }
+    )
+
+
+def get_book_metadata(obj) -> Optional[dict]:
+    return compact(
+        {
+            "@language": py_.get(obj, "language"),
+        }
+    )
+
+
+def get_event_metadata(obj) -> Optional[dict]:
+    """get event metadata"""
+    if py_.get(obj, "container.title") is None:
+        return None
+
+    return compact(
+        {
+            "conference_name": py_.get(obj, "container.title"),
+            "conference_location": py_.get(obj, "container.location"),
+            "conference_date": None,
+        }
+    )
+
+
+def get_proceedings_metadata(obj) -> Optional[dict]:
+    """get proceedings metadata"""
+    if py_.get(obj, "container.title") is None:
+        return None
+
+    return compact(
+        {
+            "@language": py_.get(obj, "language"),
+            "proceedings_title": py_.get(obj, "container.title"),
+        }
+    )
+
+
+def get_journal_issue(obj) -> Optional[dict]:
+    """get journal issue"""
+    volume = py_.get(obj, "container.volume")
+    if volume is not None:
+        volume = {"volume": volume}
+    return compact(
+        {
+            "publication_date": get_publication_date(obj),
+            "journal_volume": volume,
+            "issue": py_.get(obj, "container.issue"),
+        }
+    )
+
+
+def get_titles(obj) -> Optional[list]:
+    """get titles"""
+
+    def format_title(title):
+        """format title"""
+        if isinstance(title, dict):
+            return {"title": title.get("title", None)}
+        else:
+            return {"title": title}
+
+    if obj.titles is None or len(obj.titles) == 0:
+        return None
+
+    return [
+        format_title(title) for title in py_.get(obj, "titles") if title is not None
+    ]
+
+
+def get_contributors(obj) -> Optional[dict]:
+    """get contributors"""
+
+    def map_affiliations(affiliations):
+        """map affiliations"""
+        if affiliations is None:
+            return None
+        return [
+            compact(
+                {
+                    "institution": compact(
+                        {
+                            "institution_name": affiliation.get("name", None),
+                            "institution_id": {
+                                "#text": affiliation.get("id"),
+                                "@type": "ror",
+                            }
+                            if affiliation.get("id", None) is not None
+                            else None,
+                        }
+                    ),
+                }
+            )
+            for affiliation in affiliations
+        ]
+
+    if py_.get(obj, "contributors") is None or len(py_.get(obj, "contributors")) == 0:
+        return None
+
+    con = [
+        c
+        for c in py_.get(obj, "contributors")
+        if c.get("contributorRoles", None) == ["Author"]
+        or c.get("contributorRoles", None) == ["Editor"]
+    ]
+
+    person_names = []
+    organizations = []
+    anonymous_contributors = []
+
+    for num, contributor in enumerate(con):
+        contributor_role = (
+            "author" if "Author" in contributor.get("contributorRoles") else None
+        )
+        if contributor_role is None:
+            contributor_role = (
+                "editor" if "Editor" in contributor.get("contributorRoles") else None
+            )
+        sequence = "first" if num == 0 else "additional"
+        if (
+            contributor.get("type", None) == "Organization"
+            and contributor.get("name", None) is not None
+        ):
+            organizations.append(
+                {
+                    "@contributor_role": contributor_role,
+                    "@sequence": sequence,
+                    "#text": contributor.get("name"),
+                }
+            )
+        elif (
+            contributor.get("givenName", None) is not None
+            or contributor.get("familyName", None) is not None
+        ):
+            person_names.append(
+                compact(
+                    {
+                        "@contributor_role": contributor_role,
+                        "@sequence": sequence,
+                        "given_name": contributor.get("givenName", None),
+                        "surname": contributor.get("familyName", None),
+                        "affiliations": map_affiliations(
+                            contributor.get("affiliations", None)
+                        ),
+                        "ORCID": contributor.get("id", None),
+                    }
+                )
+            )
+        else:
+            anonymous_contributors.append(
+                compact(
+                    {
+                        "@contributor_role": contributor_role,
+                        "@sequence": sequence,
+                        "affiliations": map_affiliations(
+                            contributor.get("affiliations", None)
+                        ),
+                    }
+                )
+            )
+
+    result = {}
+    if person_names:
+        result["person_name"] = person_names
+    if organizations:
+        result["organization"] = organizations
+    if anonymous_contributors:
+        result["anonymous"] = anonymous_contributors
+
+    return result if result else None
+
+
+def get_publisher(obj) -> Optional[dict]:
+    """get publisher"""
+    if py_.get(obj, "publisher.name") is None:
+        return None
+
+    return {
+        "publisher_name": py_.get(obj, "publisher.name"),
+    }
+
+
+def get_abstract(obj) -> Optional[str]:
+    """get abstract"""
+    if py_.get(obj, "descriptions") is None:
+        return None
+    if isinstance(py_.get(obj, "descriptions[0]"), dict):
+        d = py_.get(obj, "descriptions[0]")
+    else:
+        d = {}
+        d["description"] = py_.get(obj, "descriptions[0]")
+    return {
+        "@xmlns:jats": "http://www.ncbi.nlm.nih.gov/JATS1",
+        "jats:p": d.get("description", None),
+    }
+
+
+def get_group_title(obj) -> Optional[str]:
+    """Get group title from metadata"""
+    if py_.get(obj, "subjects") is None or len(py_.get(obj, "subjects")) == 0:
+        return None
+    group_title = py_.get(obj, "subjects[0].subject")
+
+    # strip optional FOS (Field of Science) prefix
+    if group_title.startswith("FOS: "):
+        group_title = group_title[5:]
+
+    return group_title
+
+
+def get_item_number(obj) -> Optional[dict]:
+    """Insert item number"""
+    if py_.get(obj, "identifiers") is None:
+        return None
+
+    for identifier in py_.get(obj, "identifiers"):
+        if identifier.get("identifierType", None) == "UUID":
+            # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
+            return {
+                "@item_number_type": identifier.get("identifierType", "").lower(),
+                "#text": identifier.get("identifier", None).replace("-", ""),
+            }
+
+
+def get_publication_date(obj, media_type: str = None) -> Optional[str]:
+    """get publication date"""
+    pub_date = date_parse(py_.get(obj, "date.published"))
+    if pub_date is None:
+        return None
+
+    return compact(
+        {
+            "@media_type": media_type,
+            "month": f"{pub_date.month:d}",
+            "day": f"{pub_date.day:d}",
+            "year": str(pub_date.year),
+        }
+    )
+
+
+def get_references(obj) -> Optional[dict]:
+    """get references"""
+    if py_.get(obj, "references") is None or len(py_.get(obj, "references")) == 0:
+        return None
+
+    citations = []
+    for i, ref in enumerate(py_.get(obj, "references")):
+        reference = compact(
+            {
+                "@key": ref.get("key", f"ref{i + 1}"),
+                "doi": doi_from_url(ref.get("id", None)),
+                "journal_title": ref.get("journal_title", None),
+                "author": ref.get("author", None),
+                "volume": ref.get("volume", None),
+                "first_page": ref.get("first_page", None),
+                "cYear": ref.get("publicationYear", None),
+                "article_title": ref.get("title", None),
+                "unstructured_citation": ref.get("unstructured", None),
+            }
+        )
+        citations.append(reference)
+    return {"citation": citations}
+
+
+def get_license(obj) -> Optional[dict]:
+    """get license"""
+    rights_uri = py_.get(obj, "license.url")
+    if rights_uri is None:
+        return None
+
+    return {
+        "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
+        "@name": "AccessIndicators",
+        "ai:license_ref": [
+            {
+                "@applies_to": "vor",
+                "#text": rights_uri,
+            },
+            {
+                "@applies_to": "tdm",
+                "#text": rights_uri,
+            },
+        ],
+    }
+
+
+def get_funding_references(obj) -> Optional[list]:
+    """Get funding references"""
+    if (
+        py_.get(obj, "funding_references") is None
+        or len(py_.get(obj, "funding_references")) == 0
+    ):
+        return None
+
+    funding_references = []
+    for funding_reference in wrap(py_.get(obj, "funding_references")):
+        funder_identifier = funding_reference.get("funderIdentifier", None)
+        funder_identifier_type = funding_reference.get("funderIdentifierType", None)
+        if len(wrap(py_.get(obj, "funding_references"))) == 1:
+            if funder_identifier is not None and funder_identifier_type == "ROR":
+                funding_references.append(
+                    {
+                        "@name": "ror",
+                        "#text": funder_identifier,
+                    }
+                )
+            elif funding_reference.get("funderName", None) is not None:
+                funding_references.append(
+                    {
+                        "@name": "funder_name",
+                        "#text": funding_reference.get("funderName"),
+                    }
+                )
+            if funding_reference.get("awardNumber", None) is not None:
+                funding_references.append(
+                    {
+                        "@name": "award_number",
+                        "#text": funding_reference.get("awardNumber"),
+                    }
+                )
+    return {
+        "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
+        "@name": "fundref",
+        "fr:assertion": funding_references,
+    }
+
+
+def get_relations(obj) -> list:
+    """get relations"""
+    if py_.get(obj, "relations") is None or len(py_.get(obj, "relations")) == 0:
+        return None
+
+    def format_relation(relation):
+        """format relation"""
+
+        if relation.get("type", None) in [
+            "IsPartOf",
+            "HasPart",
+            "IsReviewOf",
+            "HasReview",
+            "IsRelatedMaterial",
+            "HasRelatedMaterial",
+        ]:
+            group = "rel:inter_work_relation"
+        elif relation.get("type", None) in [
+            "IsIdenticalTo",
+            "IsPreprintOf",
+            "HasPreprint",
+            "IsTranslationOf",
+            "HasTranslation",
+            "IsVersionOf",
+            "HasVersion",
+        ]:
+            group = "rel:intra_work_relation"
+        else:
+            return None
+
+        f = furl(relation.get("id", None))
+        if validate_doi(relation.get("id", None)):
+            identifier_type = "doi"
+            _id = doi_from_url(relation.get("id", None))
+        elif f.host == "portal.issn.org" and obj.type in [
+            "Article",
+            "BlogPost",
+        ]:
+            identifier_type = "issn"
+            _id = f.path.segments[-1] if f.path.segments else None
+        elif validate_url(relation.get("id", None)) == "URL":
+            identifier_type = "uri"
+            _id = relation.get("id", None)
+        else:
+            identifier_type = "other"
+            _id = relation.get("id", None)
+
+        return {
+            group: compact(
+                {
+                    "@relationship-type": py_.lower_first(relation.get("type"))
+                    if relation.get("type", None) is not None
+                    else None,
+                    "@identifier-type": identifier_type,
+                    "#text": _id,
+                },
+            )
+        }
+
+    return {
+        "@xmlns:rel": "http://www.crossref.org/relations.xsd",
+        "@name": "relations",
+        "rel:related_item": [
+            format_relation(i)
+            for i in py_.get(obj, "relations")
+            if format_relation(i) is not None
+        ],
+    }
+
+
+def get_subjects(obj) -> Optional[list]:
+    """Get crossref subjects"""
+    if py_.get(obj, "subjects") is None:
+        return None
+    subjects = []
+    for subject in py_.get(obj, "subjects"):
+        if isinstance(subject, dict):
+            subjects.append(subject.get("subject", None))
+        else:
+            subjects.append(subject)
+    return subjects
+
+
+def get_doi_data(obj) -> Optional[dict]:
+    """get doi data"""
+    if doi_from_url(py_.get(obj, "id")) is None or py_.get(obj, "url") is None:
+        return None
+
+    items = [
+        {
+            "resource": {
+                "@mime_type": "text/html",
+                "#text": py_.get(obj, "url"),
+            }
+        }
+    ]
+    for file in wrap(py_.get(obj, "files")):
+        if file.get("mimeType", None) is not None and file.get("url", None) is not None:
+            items.append(
+                {
+                    "resource": {
+                        "@mime_type": file.get("mimeType"),
+                        "#text": file.get("url"),
+                    }
+                }
+            )
+
+    return compact(
+        {
+            "doi": doi_from_url(py_.get(obj, "id")),
+            "resource": py_.get(obj, "url"),
+            "collection": {
+                "@property": "text-mining",
+                "item": items,
+            },
+        }
+    )
+
+
+def get_isbn(obj):
+    """get isbn"""
+    if py_.get(obj, "container.identifierType") != "ISBN":
+        return None
+    return py_.get(obj, "container.identifier")
+
+
+def get_issn(obj):
+    """get issn"""
+    if py_.get(obj, "container.identifierType") != "ISSN":
+        return None
+    return py_.get(obj, "container.identifier")
+
+
+"""Errors for the Crossref XML API.
+
+Error responses will be converted into an exception from this module.
+"""
+
+
+class HttpError(Exception):
+    """Exception raised when a connection problem happens."""
+
+
+class CrossrefError(Exception):
+    """Exception raised when the server returns a known HTTP error code.
+
+    Known HTTP error codes include:
+
+    * 204 No Content
+    * 400 Bad Request
+    * 401 Unauthorized
+    * 403 Forbidden
+    * 404 Not Found
+    * 410 Gone (deleted)
+    """
+
+    @staticmethod
+    def factory(err_code, *args):
+        """Create exceptions through a Factory based on the HTTP error code."""
+        if err_code == 204:
+            return CrossrefNoContentError(*args)
+        elif err_code == 400:
+            return CrossrefBadRequestError(*args)
+        elif err_code == 401:
+            return CrossrefUnauthorizedError(*args)
+        elif err_code == 403:
+            return CrossrefForbiddenError(*args)
+        elif err_code == 404:
+            return CrossrefNotFoundError(*args)
+        else:
+            return CrossrefServerError(*args)
+
+
+class CrossrefServerError(CrossrefError):
+    """An internal server error happened on the Crossref end. Try later.
+
+    Base class for all 5XX-related HTTP error codes.
+    """
+
+
+class CrossrefRequestError(CrossrefError):
+    """A Crossref request error. You made an invalid request.
+
+    Base class for all 4XX-related HTTP error codes as well as 204.
+    """
+
+
+class CrossrefNoContentError(CrossrefRequestError):
+    """DOI is known to Crossref, but not resolvable.
+
+    This might be due to handle's latency.
+    """
+
+
+class CrossrefBadRequestError(CrossrefRequestError):
+    """Bad request error.
+
+    Bad requests can include e.g. invalid XML, wrong domain, wrong prefix.
+    """
+
+
+class CrossrefUnauthorizedError(CrossrefRequestError):
+    """Bad username or password."""
+
+
+class CrossrefForbiddenError(CrossrefRequestError):
+    """Login problem, record belongs to another party or quota exceeded."""
+
+
+class CrossrefNotFoundError(CrossrefRequestError):
+    """DOI does not exist in the database."""

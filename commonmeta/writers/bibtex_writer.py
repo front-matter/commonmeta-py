@@ -1,15 +1,15 @@
 """Bibtex writer for commonmeta-py"""
 
-from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
+from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.customization import page_double_hyphen
 
-from ..utils import pages_as_string, get_language
-from ..base_utils import compact
 from ..author_utils import authors_as_string
-from ..date_utils import get_month_from_date, get_iso8601_date, MONTH_SHORT_NAMES
-from ..doi_utils import doi_from_url
+from ..base_utils import compact
 from ..constants import CM_TO_BIB_TRANSLATIONS, Commonmeta
+from ..date_utils import MONTH_SHORT_NAMES, get_iso8601_date, get_month_from_date
+from ..doi_utils import doi_from_url
+from ..utils import get_language, pages_as_string
 
 
 def write_bibtex(metadata: Commonmeta) -> str:

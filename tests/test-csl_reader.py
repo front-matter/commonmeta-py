@@ -2,6 +2,7 @@
 """Citeproc JSON reader tests"""
 
 from os import path
+
 from commonmeta import Metadata
 
 

@@ -53,7 +53,7 @@ def test_with_orcid_id():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
     datacite = json.loads(subject.write(to="datacite"))
-    assert subject.write_errors == None
+    assert subject.write_errors is None
     assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
     assert (
         datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"]

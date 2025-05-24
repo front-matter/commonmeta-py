@@ -1,8 +1,9 @@
 # pylint: disable=invalid-name
 """Commonmeta writer tests"""
 
-from os import path
 import re
+from os import path
+
 import orjson as json
 import pytest
 
