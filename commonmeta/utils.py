@@ -410,10 +410,26 @@ def openalex_api_query_url(query: dict) -> str:
     """Return the OpenAlex API query URL"""
     # Define allowed types
     types = [
-        "article", "book-chapter", "dataset", "preprint", "dissertation",
-        "book", "review", "paratext", "libguides", "letter", "other",
-        "reference-entry", "report", "editorial", "peer-review", "erratum",
-        "standard", "grant", "supplementary-materials", "retraction",
+        "article",
+        "book-chapter",
+        "dataset",
+        "preprint",
+        "dissertation",
+        "book",
+        "review",
+        "paratext",
+        "libguides",
+        "letter",
+        "other",
+        "reference-entry",
+        "report",
+        "editorial",
+        "peer-review",
+        "erratum",
+        "standard",
+        "grant",
+        "supplementary-materials",
+        "retraction",
     ]
 
     url = "https://api.openalex.org/works"
@@ -474,7 +490,7 @@ def openalex_api_query_url(query: dict) -> str:
     if orcid:
         o = validate_orcid(orcid)
         if o:
-            filters.append(f"authorships.author.id:{o}")
+            filters.append(f"authorships.author.orcid:{o}")
 
     # Year filter
     year = query.get("year", query.get("publication_year", ""))
