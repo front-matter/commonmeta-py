@@ -96,6 +96,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
             "person_name",
             "organization",
             "titles",
+            "abstract",
             "item",
             "citation",
             "program",
@@ -103,7 +104,6 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
         }
 
     kwargs["attr_prefix"] = ""
-    # kwargs["cdata_key"] = "#text"
     kwargs["dict_constructor"] = dict
     kwargs.pop("dialect", None)
     return xmltodict.parse(string, **kwargs)
@@ -125,6 +125,21 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
             input.pop("book_metadata")
             book_metadata = {**book_metadata, **input}
             input = {"book": {**attributes, "book_metadata": book_metadata}}
+        elif type == "database":
+            database_metadata = py_.get(input, "database_metadata") or {}
+            input.pop("database_metadata")
+            val = input.pop("publisher_item")
+            institution = input.pop("institution", None)
+            database_metadata = {**{"titles": val}, **database_metadata}
+            database_metadata["institution"] = institution or {}
+            component = input.pop("component", None)
+            input = {
+                "database": {
+                    **attributes,
+                    "database_metadata": database_metadata,
+                    "component_list": {"component": component | input},
+                }
+            }
         elif type == "journal":
             journal_metadata = py_.get(input, "journal_metadata") or {}
             journal_issue = py_.get(input, "journal_issue") or {}
@@ -137,6 +152,16 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
                     "journal_metadata": journal_metadata,
                     "journal_issue": journal_issue,
                     "journal_article": journal_article | input,
+                }
+            }
+        elif type == "proceedings_article":
+            proceedings_metadata = py_.get(input, "proceedings_metadata") or {}
+            input.pop("proceedings_metadata")
+            input = {
+                "proceedings": {
+                    **attributes,
+                    "proceedings_metadata": proceedings_metadata,
+                    "conference_paper": input,
                 }
             }
         elif type == "sa_component":
@@ -181,6 +206,13 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 item.pop("book_metadata")
                 book_metadata = {**book_metadata, **item}
                 item = {"book": {**attributes, "book_metadata": book_metadata}}
+            elif type == "database":
+                database_metadata = py_.get(item, "database_metadata") or {}
+                item.pop("database_metadata")
+                database_metadata = {**database_metadata, **item}
+                item = {
+                    "database": {**attributes, "database_metadata": database_metadata}
+                }
             elif type == "journal":
                 journal_metadata = py_.get(item, "journal_metadata") or {}
                 journal_issue = py_.get(item, "journal_issue") or {}
