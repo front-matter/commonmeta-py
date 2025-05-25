@@ -332,7 +332,7 @@ def crossref_description(bibmeta):
         )
         return compact(
             {
-                "descriptionType": description_type,
+                "type": description_type,
                 "description": sanitize(
                     parse_attributes(element, content="p", first=True)
                 ),

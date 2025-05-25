@@ -267,13 +267,15 @@ def get_descriptions(descriptions: list) -> list:
 
     def map_description(description):
         """map_description"""
+        type = description.get("descriptionType", None)
+        if type is None:
+            type = "Abstract"
+        elif type not in ["Abstract", "Methods", "TechnicalInfo", "Other"]:
+            type = "Other"
         return compact(
             {
                 "description": description.get("description", None),
-                "type": description.get("descriptionType")
-                if description.get("descriptionType", None)
-                in ["Abstract", "Methods", "TechnicalInfo", "Other"]
-                else "Other",
+                "type": type,
                 "language": description.get("lang", None),
             }
         )

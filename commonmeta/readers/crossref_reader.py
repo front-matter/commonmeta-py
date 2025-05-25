@@ -1,13 +1,14 @@
 """crossref reader for commonmeta-py"""
 
 from typing import Optional
+from xml.parsers.expat import ExpatError
 
 import requests
 from pydash import py_
 from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
+from ..base_utils import compact, parse_attributes, parse_xml, presence, sanitize, wrap
 from ..constants import (
     CR_TO_CM_CONTAINER_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
@@ -66,6 +67,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     doi = meta.get("DOI", None)
     _id = doi_as_url(doi)
     _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type", None)) or "Other"
+    additional_type = meta.get("subtype", None)
 
     archive_locations = wrap(meta.get("archive", None))
 
@@ -120,13 +122,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         relations = py_.uniq(relations)
     references = py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
-
-    description = meta.get("abstract", None)
-    if description is not None:
-        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
-    else:
-        descriptions = None
-
+    descriptions = get_abstract(meta)
     subjects = py_.uniq(
         [
             {"subject": i}
@@ -146,7 +142,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "additionalType": None,
+        "additionalType": additional_type,
         "archiveLocations": presence(archive_locations),
         "container": presence(container),
         "contributors": presence(contributors),
@@ -199,6 +195,23 @@ def get_titles(meta):
             for i in original_language_titles
         ]
     )
+
+
+def get_abstract(meta: dict) -> Optional[str]:
+    """Get abstract from Crossref metadata."""
+    abstract = meta.get("abstract", None)
+    if abstract is None:
+        return None
+
+    try:
+        # Parse the abstract XML if it is JATS formatted
+        description_dct = parse_xml(abstract, xml_attribs=True)
+        description = py_.get(description_dct, "jats:p")
+        if description is None:
+            description = abstract
+        return [{"description": sanitize(description), "type": "Abstract"}]
+    except (TypeError, ExpatError):
+        return [{"description": sanitize(abstract), "type": "Abstract"}]
 
 
 def get_reference(reference: Optional[dict]) -> Optional[dict]:

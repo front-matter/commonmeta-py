@@ -36,7 +36,6 @@ def test_convert_crossref_xml():
     runner = CliRunner()
     string = "10.7554/elife.01567"
     result = runner.invoke(convert, [string, "--to", "crossref_xml"])
-    print(result.output)
     assert result.exit_code == 0
     assert (
         "<title>Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth</title>"

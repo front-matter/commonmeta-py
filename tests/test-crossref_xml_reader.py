@@ -787,7 +787,7 @@ def test_dataset():
     subject = Metadata(string, via="crossref_xml")
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
-    assert subject.type == "Component"
+    assert subject.type == "Dataset"
     assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
     assert subject.titles[0] == {
         "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
@@ -800,17 +800,20 @@ def test_dataset():
     }
     assert subject.license is None
     assert subject.date["created"].startswith("2006-01")
-    assert subject.date["published"].startswith("1984-07")
-    assert subject.date["updated"].startswith("2024-05")
+    assert subject.date["published"].startswith("2006-01")
+    assert subject.date["updated"].startswith("2025-05")
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/7763",
         "name": "Worldwide Protein Data Bank",
     }
     assert len(subject.references) == 0
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {
+        "title": "Worldwide Protein Data Bank",
+        "type": "DataRepository",
+    }
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "Crossref"

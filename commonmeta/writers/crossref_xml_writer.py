@@ -12,6 +12,24 @@ from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, validate_doi
 from ..utils import validate_url
 
+POSTED_CONTENT_TYPES = [
+    "preprint",
+    "working_paper",
+    "letter",
+    "dissertation",
+    "report",
+    "review",
+    "other",
+]
+
+MARSHMALLOW_MAP = {
+    "abstracts": "jats:abstract",
+    "license": "ai:program",
+    "funding_references": "fr:program",
+    "relations": "rel:program",
+    "references": "citation_list",
+}
+
 
 class CrossrefXMLSchema(Schema):
     """Crossref XML schema"""
@@ -32,14 +50,16 @@ class CrossrefXMLSchema(Schema):
     # elements
     group_title = fields.String()
     book_metadata = fields.Dict()
+    database_metadata = fields.Dict()
     event_metadata = fields.Dict()
     proceedings_metadata = fields.Dict()
     journal_metadata = fields.Dict()
     journal_issue = fields.Dict()
     journal_article = fields.Dict()
-    titles = fields.List(fields.Dict())
+    component = fields.Dict()
+    titles = fields.Dict()
     contributors = fields.Dict()
-    abstract = fields.Dict(data_key="jats:abstract")
+    abstracts = fields.List(fields.Dict(), data_key="jats:abstract")
     publication_date = fields.Dict()
     posted_date = fields.Dict()
     review_date = fields.Dict()
@@ -51,10 +71,11 @@ class CrossrefXMLSchema(Schema):
     isbn = fields.String()
     issn = fields.String()
     publisher = fields.Dict()
+    description = fields.Dict()
     funding_references = fields.Dict(data_key="fr:program")
     license = fields.Dict(data_key="ai:program")
     relations = fields.Dict(data_key="rel:program")
-    archive_locations = fields.List(fields.String())
+    archive_locations = fields.List(fields.Dict())
     doi_data = fields.Dict(data_key="doi_data")
     references = fields.Dict(data_key="citation_list")
 
@@ -85,7 +106,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
 
     titles = get_titles(metadata)
     contributors = get_contributors(metadata)
-    abstract = get_abstract(metadata)
+    abstracts = get_abstracts(metadata)
     relations = get_relations(metadata)
     doi_data = get_doi_data(metadata)
     references = get_references(metadata)
@@ -94,11 +115,10 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
     kwargs = {}
 
     if metadata.type == "Article":
-        institution = None
-        container = metadata.container or {}
-        if container.get("title", None) is not None:
-            institution = {"institution_name": container.get("title")}
-        kwargs["type"] = "preprint"
+        if metadata.additional_type in POSTED_CONTENT_TYPES:
+            kwargs["type"] = metadata.additional_type
+        else:
+            kwargs["type"] = "other"
         kwargs["language"] = metadata.language
         data = compact(
             {
@@ -107,9 +127,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "contributors": contributors,
                 "titles": titles,
                 "posted_date": get_publication_date(metadata),
-                "institution": institution,
+                "institution": get_institution(metadata),
                 "item_number": get_item_number(metadata),
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
@@ -120,10 +140,6 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     elif metadata.type == "BlogPost":
-        institution = None
-        container = metadata.container or {}
-        if container.get("title", None) is not None:
-            institution = {"institution_name": container.get("title")}
         kwargs["type"] = "other"
         kwargs["language"] = metadata.language
         data = compact(
@@ -133,9 +149,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "contributors": contributors,
                 "titles": titles,
                 "posted_date": get_publication_date(metadata),
-                "institution": institution,
+                "institution": get_institution(metadata),
                 "item_number": get_item_number(metadata),
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
@@ -153,7 +169,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "book_metadata": get_book_metadata(metadata),
                 "contributors": contributors,
                 "titles": titles,
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "publication_date": get_publication_date(metadata, media_type="online"),
                 "isbn": get_isbn(metadata),
                 "publisher": get_publisher(metadata),
@@ -162,7 +178,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
                 "component_list": None,
@@ -179,12 +195,12 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "publication_date": get_publication_date(metadata, media_type="online"),
                 "isbn": get_isbn(metadata),
                 "publisher": get_publisher(metadata),
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
                 "component_list": None,
@@ -199,43 +215,44 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "titles": titles,
                 "publication_date": get_publication_date(metadata),
                 "item_number": get_item_number(metadata),
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
                 "component_list": None,
             }
         )
     elif metadata.type == "Dataset":
-        kwargs["reg-agency"] = "Crossref"
+        publisher = py_.get(metadata, "publisher.name")
+        if publisher is not None:
+            publisher_item = {
+                "title": publisher,
+            }
         data = compact(
             {
-                "sa_component": get_attributes(metadata, **kwargs),
+                "database": {},
+                "database_metadata": get_database_metadata(metadata),
+                "publisher_item": publisher_item if publisher else None,
+                "institution": get_institution(metadata),
+                "component": {"@parent_relation": "isPartOf"},
                 "titles": titles,
                 "contributors": contributors,
                 "publication_date": get_publication_date(metadata, media_type="online"),
-                "description": abstract,
                 "doi_data": doi_data,
             }
         )
     elif metadata.type == "Dissertation":
-        institution = None
-        container = metadata.container or {}
-        if container.get("title", None) is not None:
-            institution = {"institution_name": container.get("title")}
-        print(container)
         data = compact(
             {
                 "dissertation": get_attributes(metadata, **kwargs),
                 "contributors": contributors,
                 "titles": titles,
-                "abstract": abstract,
                 "approval_date": get_publication_date(metadata),
-                "institution": institution,
+                "institution": get_institution(metadata),
                 "degree": None,
                 "isbn": get_isbn(metadata),
                 "publisher_item": None,
@@ -257,14 +274,14 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "journal_article": get_attributes(metadata, **kwargs),
                 "titles": titles,
                 "contributors": contributors,
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "publication_date": get_publication_date(metadata, media_type="online"),
                 "publisher_item": publisher_item,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -290,17 +307,19 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "conference": get_attributes(metadata, **kwargs),
                 "event_metadata": get_event_metadata(metadata),
                 "proceedings_metadata": get_proceedings_metadata(metadata),
+                "proceedings_title": py_.get(metadata, "container.title"),
+                "publisher": get_publisher(metadata),
                 "conference_paper": get_attributes(metadata, **kwargs),
                 "contributors": contributors,
                 "titles": titles,
                 "publication_date": get_publication_date(metadata),
-                "abstract": abstract,
+                "abstracts": abstracts,
                 "publisher_item": publisher_item,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -314,14 +333,13 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "journal_issue": get_journal_issue(metadata),
                 "titles": titles,
                 "contributors": contributors,
-                "abstract": abstract,
                 "publication_date": get_publication_date(metadata),
                 "publisher_item": publisher_item,
                 "funding_references": funding_references,
                 "license": license,
                 "crossmark": None,
                 "relations": relations,
-                "archive_locations": metadata.archive_locations,
+                "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
                 "component_list": None,
@@ -342,13 +360,7 @@ def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     crossref_xml = schema.dump(data)
 
     # Ensure the order of fields in the XML matches the expected order
-    key_map = {
-        "license": "ai:program",
-        "funding_references": "fr:program",
-        "relations": "rel:program",
-        "references": "citation_list",
-    }
-    field_order = [key_map.get(k, k) for k in list(data.keys())]
+    field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
     crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
     # Convert to XML
     return unparse_xml(crossref_xml, dialect="crossref")
@@ -366,13 +378,7 @@ def write_crossref_xml_list(metalist):
         crossref_xml = schema.dump(data)
 
         # Ensure the order of fields in the XML matches the expected order
-        key_map = {
-            "license": "ai:program",
-            "funding_references": "fr:program",
-            "relations": "rel:program",
-            "references": "citation_list",
-        }
-        field_order = [key_map.get(k, k) for k in list(data.keys())]
+        field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
         crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
         crossref_xml_list.append(crossref_xml)
 
@@ -409,6 +415,14 @@ def get_journal_metadata(obj) -> Optional[dict]:
 
 
 def get_book_metadata(obj) -> Optional[dict]:
+    return compact(
+        {
+            "@language": py_.get(obj, "language"),
+        }
+    )
+
+
+def get_database_metadata(obj) -> Optional[dict]:
     return compact(
         {
             "@language": py_.get(obj, "language"),
@@ -457,22 +471,36 @@ def get_journal_issue(obj) -> Optional[dict]:
     )
 
 
-def get_titles(obj) -> Optional[list]:
-    """get titles"""
-
-    def format_title(title):
-        """format title"""
-        if isinstance(title, dict):
-            return {"title": title.get("title", None)}
-        else:
-            return {"title": title}
-
-    if obj.titles is None or len(obj.titles) == 0:
+def get_institution(obj) -> Optional[dict]:
+    """get institution"""
+    if py_.get(obj, "container.title") is None:
         return None
 
-    return [
-        format_title(title) for title in py_.get(obj, "titles") if title is not None
-    ]
+    return compact(
+        {
+            "institution_name": py_.get(obj, "container.title"),
+            "institution_id": {
+                "#text": py_.get(obj, "container.identifier"),
+                "@type": "ror",
+            }
+            if py_.get(obj, "container.identifierTyoe") == "ROR"
+            else None,
+        }
+    )
+
+
+def get_titles(obj) -> Optional[dict]:
+    """get titles"""
+
+    title = {}
+    for t in wrap(py_.get(obj, "titles", [])):
+        if isinstance(t, str):
+            title["title"] = t
+        elif isinstance(t, dict) and t.get("titleType", None) == "Subtitle":
+            title["subtitle"] = t.get("title", None)
+        elif isinstance(title, dict):
+            title["title"] = t.get("title", None)
+    return title
 
 
 def get_contributors(obj) -> Optional[dict]:
@@ -587,19 +615,28 @@ def get_publisher(obj) -> Optional[dict]:
     }
 
 
-def get_abstract(obj) -> Optional[str]:
-    """get abstract"""
+def get_abstracts(obj) -> Optional[list]:
+    """get abstracts"""
     if py_.get(obj, "descriptions") is None:
         return None
-    if isinstance(py_.get(obj, "descriptions[0]"), dict):
-        d = py_.get(obj, "descriptions[0]")
-    else:
-        d = {}
-        d["description"] = py_.get(obj, "descriptions[0]")
-    return {
-        "@xmlns:jats": "http://www.ncbi.nlm.nih.gov/JATS1",
-        "jats:p": d.get("description", None),
-    }
+
+    abstracts = []
+    for d in wrap(py_.get(obj, "descriptions", [])):
+        if d.get("type", None) == "Abstract":
+            abstracts.append(
+                {
+                    "@xmlns:jats": "http://www.ncbi.nlm.nih.gov/JATS1",
+                    "jats:p": d.get("description", None),
+                }
+            )
+        elif d.get("type", None) == "Other":
+            abstracts.append(
+                {
+                    "@xmlns:jats": "http://www.ncbi.nlm.nih.gov/JATS1",
+                    "jats:p": d.get("description", None),
+                }
+            )
+    return abstracts
 
 
 def get_group_title(obj) -> Optional[str]:
@@ -643,6 +680,24 @@ def get_publication_date(obj, media_type: str = None) -> Optional[str]:
             "year": str(pub_date.year),
         }
     )
+
+
+def get_archive_locations(obj) -> Optional[list]:
+    """get archive locations"""
+    if (
+        py_.get(obj, "archive_locations") is None
+        or len(py_.get(obj, "archive_locations")) == 0
+    ):
+        return None
+
+    return [
+        compact(
+            {
+                "archive": {"@name": location},
+            }
+        )
+        for location in py_.get(obj, "archive_locations")
+    ]
 
 
 def get_references(obj) -> Optional[dict]:

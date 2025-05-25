@@ -75,7 +75,7 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
         descriptions = [
             {
                 "description": sanitize(str(meta.get("description"))),
-                "descriptionType": "Abstract",
+                "type": "Abstract",
             }
         ]
     else:
