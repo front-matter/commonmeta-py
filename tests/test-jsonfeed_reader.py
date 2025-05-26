@@ -257,7 +257,7 @@ def test_post_with_relationships_as_doi():
 @pytest.mark.vcr
 def test_post_with_funding():
     "post with funding"
-    string = "https://api.rogue-scholar.org/posts/5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9"
+    string = "https://api.rogue-scholar.org/posts/10.54900/vnevh-vaw22"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
@@ -336,7 +336,7 @@ def test_post_with_funding():
 @pytest.mark.vcr
 def test_post_with_more_funding():
     "post with more funding"
-    string = "https://api.rogue-scholar.org/posts/44690ae5-2ece-403d-8e34-a05668277a29"
+    string = "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw1y"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw1y"
@@ -380,7 +380,7 @@ def test_post_with_more_funding():
 @pytest.mark.vcr
 def test_post_with_funding_ror():
     "post with funding ROR ID"
-    string = "https://api.rogue-scholar.org/posts/24251b1a-c09c-4341-a65c-30cf92a47d73"
+    string = "https://api.rogue-scholar.org/posts/10.59350/86jd5-wpv70"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/86jd5-wpv70"

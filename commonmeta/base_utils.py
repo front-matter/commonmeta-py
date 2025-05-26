@@ -165,9 +165,16 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
                 }
             }
         elif type == "sa_component":
-            input = {type: attributes | input}
-            component_list = input
-            input = {"sa_component": {"component_list": component_list}}
+            component = py_.get(input, "component") or {}
+            input.pop("component")
+            input = {
+                "sa_component": {
+                    **attributes,
+                    "component_list": {
+                        "component": component | input
+                    }
+                }
+            }
         else:
             input = {type: attributes | input}
 
@@ -228,9 +235,16 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                     }
                 }
             elif type == "sa_component":
-                item = {type: attributes | item}
-                component_list = item
-                item = {"sa_component": {"component_list": component_list}}
+                component = py_.get(input, "component") or {}
+                item.pop("component")
+                item = {
+                    "sa_component": {
+                        **attributes,
+                        "component_list": {
+                            "component": component | item
+                        }
+                    }
+                }
             else:
                 item = {type: attributes | item}
 
@@ -246,7 +260,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 body_content[type_key] = items[0]  # Use single item without array
             else:
                 body_content[type_key] = items  # Use array when multiple items
-        
+
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",

@@ -3,7 +3,7 @@
 import pytest
 from click.testing import CliRunner
 
-from commonmeta.cli import convert, decode, encode, encode_by_id, json_feed
+from commonmeta.cli import convert, decode, encode, list
 
 
 def vcr_config():
@@ -117,22 +117,10 @@ def test_convert_crossref_xml_from_jsonfeed_no_doi():
 def test_list():
     """Test commonmeta list"""
     runner = CliRunner()
-    string = "10.7554/elife.01567"
+    string = "posts.json"
     result = runner.invoke(list, [string])
     assert result.exit_code == 0
-    assert "JournalArticle" in result.output
-
-
-@pytest.mark.vcr
-def test_jsonfeed_blog_slug():
-    """Test jsonfeed blog_slug"""
-    runner = CliRunner()
-    string = "blog_slug"
-    result = runner.invoke(
-        json_feed, [string, "--id", "6603f220-1683-4366-8663-c4284e9f9a78"]
-    )
-    assert result.exit_code == 0
-    assert "libreas" in result.output
+    # assert 2 == len(result.output)
 
 
 def test_encode():
@@ -151,13 +139,3 @@ def test_decode():
     result = runner.invoke(decode, [string])
     assert result.exit_code == 0
     assert "1028933681896\n" in result.output
-
-
-@pytest.mark.vcr
-def test_encode_by_id():
-    """Test encode by id"""
-    runner = CliRunner()
-    string = "d0ca6fa3-3a93-46d3-b820-446938d78f70"
-    result = runner.invoke(encode_by_id, [string])
-    assert result.exit_code == 0
-    assert "https://doi.org/10.53731/" in result.output

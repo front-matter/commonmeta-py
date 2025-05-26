@@ -35,16 +35,16 @@ def xml_schema_errors(instance, schema: str = "crossref_xml"):
     schema_map = {
         "crossref_xml": "crossref5.4.0",
     }
-    # try:
-    if schema not in schema_map.keys():
-        raise ValueError("No schema found")
-    base_dir = path.join(path.dirname(__file__), "resources", "crossref")
-    schema_path = path.join(base_dir, "crossref5.4.0.xsd")
-    schema = xmlschema.XMLSchema(schema_path)
-    print(instance)
-    return schema.validate(instance)
-    # except xmlschema.validators.exceptions.XMLSchemaValidationError as error:
-    #     return error
+    try:
+        if schema not in schema_map.keys():
+            raise ValueError("No schema found")
+        base_dir = path.join(path.dirname(__file__), "resources", "crossref")
+        schema_path = path.join(base_dir, "crossref5.4.0.xsd")
+        schema = xmlschema.XMLSchema(schema_path)
+        return schema.validate(instance)
+    except xmlschema.validators.exceptions.XMLSchemaValidationError as error:
+        print(error)
+        return error
     # except xmlschema.exceptions.XMLSchemaException as error:
     #     print(error)
     #     print(instance)

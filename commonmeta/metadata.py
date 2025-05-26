@@ -352,6 +352,7 @@ class Metadata:
         self.write_errors = xml_schema_errors(output, schema="crossref_xml")
         if self.write_errors is not None:
             self.is_valid = False
+            return ""
         return output if output is not None else ""
 
 

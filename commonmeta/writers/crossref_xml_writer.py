@@ -133,11 +133,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
-                "crossmark": None,
                 "relations": relations,
                 "doi_data": doi_data,
                 "references": references,
-                "component_list": None,
             }
         )
     elif metadata.type == "BlogPost":
@@ -155,11 +153,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
-                "crossmark": None,
                 "relations": relations,
                 "doi_data": doi_data,
                 "references": references,
-                "component_list": None,
             }
         )
     elif metadata.type == "Book":
@@ -177,12 +173,10 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "publisher_item": None,
                 "funding_references": funding_references,
                 "license": license,
-                "crossmark": None,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
-                "component_list": None,
             }
         )
     elif metadata.type == "BookChapter":
@@ -199,32 +193,19 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "abstracts": abstracts,
                 "funding_references": funding_references,
                 "license": license,
-                "crossmark": None,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
                 "doi_data": doi_data,
                 "references": references,
-                "component_list": None,
             }
         )
     elif metadata.type == "Component":
         data = compact(
             {
                 "sa_component": get_attributes(metadata),
-                "group_title": get_group_title(metadata, **kwargs),
-                "contributors": contributors,
-                "titles": titles,
-                "publication_date": get_publication_date(metadata),
-                "item_number": get_item_number(metadata),
-                "abstracts": abstracts,
-                "funding_references": funding_references,
-                "license": license,
-                "crossmark": None,
-                "relations": relations,
-                "archive_locations": get_archive_locations(metadata),
+                "component": {"@reg-agency":"CrossRef"},
+                "description": None,
                 "doi_data": doi_data,
-                "references": references,
-                "component_list": None,
             }
         )
     elif metadata.type == "Dataset":
@@ -772,37 +753,33 @@ def get_funding_references(obj) -> Optional[dict]:
 
     funding_references = []
     for funding_reference in wrap(py_.get(obj, "funding_references")):
-        assertions = []
         funder_identifier = funding_reference.get("funderIdentifier", None)
         funder_identifier_type = funding_reference.get("funderIdentifierType", None)
-        
+
         if funder_identifier is not None and funder_identifier_type == "ROR":
-            assertions.append({
+            assertion = {
                 "@name": "ror",
                 "#text": funder_identifier,
-            })
+            }
+
+            funding_references.append(assertion)
         elif funding_reference.get("funderName", None) is not None:
-            assertions.append({
+            assertion = {
                 "@name": "funder_name",
                 "#text": funding_reference.get("funderName"),
-            })
-            
+            }
+            funding_references.append(assertion)
+
         if funding_reference.get("awardNumber", None) is not None:
-            assertions.append({
+            assertion = {
                 "@name": "award_number",
                 "#text": funding_reference.get("awardNumber"),
-            })
-            
-        if assertions:
-            funding_references.append({"fr:assertion": assertions})
-    
-    if not funding_references:
-        return None
-        
+            }
+            funding_references.append(assertion)
     return {
         "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
         "@name": "fundref",
-        "fr:program": funding_references,
+        "fr:assertion": funding_references,
     }
 
 

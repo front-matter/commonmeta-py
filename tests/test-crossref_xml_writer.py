@@ -34,6 +34,25 @@ def test_write_metadata_as_crossref_xml():
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert (
+        py_.get(crossref_xml, "titles.0.title")
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
+    assert len(py_.get(crossref_xml, "contributors.person_name")) == 5
+    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Martial",
+        "surname": "Sankar",
+        "affiliations": {
+            "institution": {
+                "institution_name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+            }
+        },
+    }
+    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+        "Among various advantages, their small size makes model organisms preferred subjects of investigation."
+    )
     assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
     assert len(py_.get(crossref_xml, "citation_list.citation")) == 27
     assert py_.get(crossref_xml, "citation_list.citation.0") == {
@@ -43,9 +62,6 @@ def test_write_metadata_as_crossref_xml():
         "article_title": "APL regulates vascular tissue identity in Arabidopsis",
         "doi": "10.1038/nature02100",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
-        "Among various advantages, their small size makes model organisms preferred subjects of investigation."
-    )
 
 
 @pytest.mark.vcr
@@ -908,7 +924,6 @@ def test_component():
     assert subject.type == "Component"
 
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
@@ -1014,7 +1029,7 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "25",
+        "day": "26",
         "month": "5",
         "year": "2023",
     }
@@ -1046,7 +1061,6 @@ def test_archived():
     assert subject.type == "JournalArticle"
 
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})

@@ -2,14 +2,12 @@ import time
 
 import click
 import orjson as json
-import pydash as py_
 
 from commonmeta import Metadata, MetadataList  # __version__
 from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
-from commonmeta.readers.jsonfeed_reader import get_jsonfeed, get_jsonfeed_uuid
 from commonmeta.readers.openalex_reader import get_random_openalex_id
 
 
@@ -47,7 +45,7 @@ def convert(
 ):
     metadata = Metadata(input, via=via, doi=doi, prefix=prefix)
     if show_errors and not metadata.is_valid:
-        raise click.ClickException(str(metadata.errors) + str(metadata.write_errors))
+        raise click.ClickException(str(metadata.errors))
 
     click.echo(
         metadata.write(
@@ -263,29 +261,6 @@ def encode(prefix):
 @click.argument("doi", type=str, required=True)
 def decode(doi):
     output = decode_doi(doi)
-    click.echo(output)
-
-
-@cli.command()
-@click.argument("id", type=str, required=True)
-def encode_by_id(id):
-    post = get_jsonfeed(id)
-    prefix = py_.get(post, "blog.prefix")
-    if validate_prefix(prefix) is None:
-        return None
-    output = encode_doi(prefix)
-    click.echo(output)
-
-
-@cli.command()
-@click.argument("filter", type=str, required=True, default="unregistered")
-@click.option("--id", type=str)
-def json_feed(filter, id=None):
-    if filter == "blog_slug" and id is not None:
-        post = get_jsonfeed_uuid(id)
-        output = py_.get(post, "blog.slug", "no slug found")
-    else:
-        output = "no filter specified"
     click.echo(output)
 
 
