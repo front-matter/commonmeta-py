@@ -3,8 +3,10 @@
 import orjson as json
 import orjsonl
 import pydash as py_
+import yaml
 
 from ..base_utils import compact
+from ..file_utils import get_extension, write_gz_file, write_zip_file
 
 
 def write_commonmeta(metadata):
@@ -37,8 +39,8 @@ def write_commonmeta(metadata):
 
 
 def write_commonmeta_list(metalist):
-    """Write commonmeta list. If filename is provided,
-    write to file. Optionally, use JSON Lines format."""
+    """Write commonmeta list. If file is provided,
+    write to file. Supports JSON, JSON Lines and YAML format."""
     if metalist is None:
         return None
 
@@ -57,13 +59,25 @@ def write_commonmeta_list(metalist):
         }
     )
 
-    if metalist.filename and metalist.filename.rsplit(".", 1)[1] in ["jsonl", "json"]:
-        if metalist.jsonlines:
-            orjsonl.save(metalist.filename, items)
-        else:
+    if metalist.file:
+        filename, extension, compress = get_extension(metalist.file)
+        if not extension:
+            extension = "json"
+        if extension == "jsonl":
+            orjsonl.save(metalist.file, items)
+        elif extension == "json":
             json_output = json.dumps(output).decode("utf-8")
-            with open(metalist.filename, "w") as file:
+            with open(metalist.file, "w") as file:
                 file.write(json_output)
-        return metalist.filename
+        elif extension == "yaml":
+            yaml_output = yaml.dump(output).decode("utf-8")
+            if compress == "gz":
+                write_gz_file(filename, yaml_output)
+            elif compress == "zip":
+                write_zip_file(filename, yaml_output)
+            else:
+                with open(metalist.file, "w") as file:
+                    file.write(yaml_output)
+        return metalist.file
     else:
         return json.dumps(output).decode("utf-8")
