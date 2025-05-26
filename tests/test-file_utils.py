@@ -57,7 +57,7 @@ def test_unzip_content():
 def test_download_file():
     "download_file"
     url = "https://zenodo.org/records/15461402/files/front-matter/commonmeta-v0.25.0.zip?download=1"
-    assert len(download_file(url, progress=True)) == 18820287
+    assert len(download_file(url)) == 18820287
 
 
 def test_write_file():
