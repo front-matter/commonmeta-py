@@ -166,10 +166,11 @@ def list(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-@click.option("--login_in", type=str)
+@click.option("--login_id", type=str)
 @click.option("--login_passwd", type=str)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
+@click.option("--legacy-key", type=str)
 @click.option("--file", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
@@ -183,10 +184,12 @@ def push(
     depositor,
     email,
     registrant,
-    login_in,
+    login_id,
     login_passwd,
     host,
     token,
+    legacy_key,
+    file,
     show_errors,
     show_timer,
 ):
@@ -194,10 +197,11 @@ def push(
     metadata_list = MetadataList(
         string,
         via=via,
+        file=file,
         depositor=depositor,
         email=email,
         registrant=registrant,
-        login_in=login_in,
+        login_id=login_id,
         login_passwd=login_passwd,
         host=host,
         token=token,
@@ -207,7 +211,8 @@ def push(
     runtime = end - start
     if show_errors and not metadata_list.is_valid:
         raise click.ClickException(str(metadata_list.errors))
-    click.echo(metadata_list.write(to=to, style=style, locale=locale))
+
+    click.echo(metadata_list.push(to=to, style=style, locale=locale))
     if show_errors and len(metadata_list.write_errors) > 0:
         raise click.ClickException(str(metadata_list.write_errors))
     if show_timer:
