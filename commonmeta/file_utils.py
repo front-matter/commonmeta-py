@@ -59,18 +59,26 @@ def download_file(url: str, progress: bool = False) -> bytes:
 
 
 def write_file(filename: str, output: bytes) -> None:
-    with open(Path(filename).name, "wb") as f:
+    file_path = Path(filename).expanduser().resolve()
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(file_path, "wb") as f:
         f.write(output)
 
 
 def write_gz_file(filename: str, output: bytes) -> None:
-    with gzip.open(filename + ".gz", "wb") as gzfile:
+    file_path = Path(filename).expanduser().resolve()
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    gz_path = file_path.with_suffix(file_path.suffix + ".gz")
+    with gzip.open(gz_path, "wb") as gzfile:
         gzfile.write(output)
 
 
 def write_zip_file(filename: str, output: bytes) -> None:
-    with zipfile.ZipFile(filename + ".zip", "w", zipfile.ZIP_DEFLATED) as zipf:
-        zipf.writestr(Path(filename).name, output)
+    file_path = Path(filename).expanduser().resolve()
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+    zip_path = file_path.with_suffix(file_path.suffix + ".zip")
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+        zipf.writestr(file_path.name, output)
 
 
 def get_extension(filename: str, ext: str = "") -> tuple[str, str, str]:
