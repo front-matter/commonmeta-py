@@ -239,12 +239,14 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 items_by_type[type] = []
             items_by_type[type].append(item[type])
 
-        # Create a body with all item types, ensuring no duplicate top-level keys
-        body = {}
+        # Create the final structure with body containing all grouped items
+        body_content = {}
         for type_key, items in items_by_type.items():
-            body[type_key] = items
-
-        # Create the final structure
+            if len(items) == 1:
+                body_content[type_key] = items[0]  # Use single item without array
+            else:
+                body_content[type_key] = items  # Use array when multiple items
+        
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
@@ -252,7 +254,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
             "@version": "5.4.0",
             "head": get_crossref_xml_head(input[0]),
-            "body": body,
+            "body": body_content,
         }
         output = {"doi_batch": doi_batch}
 
