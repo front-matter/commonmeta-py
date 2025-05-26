@@ -101,6 +101,7 @@ def test_get_extension():
     assert get_extension("test.yaml") == ("test.yaml", ".yaml", None)
     assert get_extension("test") == ("test.json", ".json", None)
 
+
 def test_write_output():
     "write_output"
     filename = path.join(path.dirname(__file__), "fixtures", "posts.json")
@@ -108,6 +109,7 @@ def test_write_output():
     new_filename = path.join(path.dirname(__file__), "fixtures", "posts1.json.zip")
     assert write_output(new_filename, output, [".json"]) is None
     remove(new_filename)
+
 
 def test_write_output_wrong_extension():
     "write_output wrong extension"
