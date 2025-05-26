@@ -699,3 +699,22 @@ ROR_TO_CROSSREF_FUNDER_ID_TRANSLATIONS = {
     "https://ror.org/00yjd3n13": "https://doi.org/10.13039/501100001711",
     "https://ror.org/04wfr2810": "https://doi.org/10.13039/501100003043",
 }
+
+COMMUNITY_TRANSLATIONS = {
+    "ai": "artificialintelligence",
+    "llms": "artificialintelligence",
+    "book%20review": "bookreview",
+    "bjps%20review%20of%20books": "bookreview",
+    "books": "bookreview",
+    "nachrichten": "news",
+    "opencitations": "researchassessment",
+    "papers": "researchblogging",
+    "urheberrecht": "copyright",
+    "workshop": "events",
+    "veranstaltungen": "events",
+    "veranstaltungshinweise": "events",
+    "asapbio": "preprints",
+    "biorxiv": "preprints",
+    "runiverse": "r",
+    "bericht": "report",
+}
