@@ -21,7 +21,7 @@ from ..doi_utils import (
 from ..utils import (
     compact,
     dict_to_spdx,
-    from_json_feed,
+    from_jsonfeed,
     issn_as_url,
     name_to_fos,
     normalize_url,
@@ -31,19 +31,19 @@ from ..utils import (
 )
 
 
-def get_json_feed_item(pid: str, **kwargs) -> dict:
-    """get_json_feed_item"""
+def get_jsonfeed(pid: str, **kwargs) -> dict:
+    """get_jsonfeed"""
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
     response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json() | {"via": "json_feed_item"}
+    return response.json() | {"via": "jsonfeed"}
 
 
-def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
-    """read_json_feed_item"""
+def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
+    """read_jsonfeed"""
     if data is None:
         return {"state": "not_found"}
     meta = data
@@ -64,7 +64,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
         _id = encode_doi(prefix)
 
     if meta.get("authors", None):
-        contributors = get_authors(from_json_feed(wrap(meta.get("authors"))))
+        contributors = get_authors(from_jsonfeed(wrap(meta.get("authors"))))
     else:
         contributors = None
 
@@ -176,7 +176,7 @@ def read_json_feed_item(data: Optional[dict], **kwargs) -> Commonmeta:
 
 
 def get_references(references: list) -> list:
-    """get json feed references."""
+    """get jsonfeed references."""
 
     def get_reference(reference: dict) -> Optional[dict]:
         if reference is None or not isinstance(reference, dict):
@@ -396,8 +396,8 @@ def get_files(pid: str) -> Optional[list]:
     ]
 
 
-def get_json_feed_item_uuid(id: str):
-    """get JSON Feed item by uuid"""
+def get_jsonfeed_uuid(id: str):
+    """get jsonfeed by uuid"""
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
@@ -424,8 +424,8 @@ def get_json_feed_item_uuid(id: str):
     )
 
 
-def get_json_feed_blog_slug(id: str):
-    """get JSON Feed item by id and return blog slug"""
+def get_jsonfeed_blog_slug(id: str):
+    """get jsonfeed by id and return blog slug"""
     if id is None:
         return None
     url = f"https://api.rogue-scholar.org/posts/{id}"
