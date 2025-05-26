@@ -10,6 +10,7 @@ from pydash import py_
 from ..base_utils import compact, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, validate_doi
+from ..file_utils import get_extension, write_gz_file, write_zip_file
 from ..utils import validate_url
 
 POSTED_CONTENT_TYPES = [
@@ -382,7 +383,22 @@ def write_crossref_xml_list(metalist):
         crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
         crossref_xml_list.append(crossref_xml)
 
-    return unparse_xml_list(crossref_xml_list, dialect="crossref")
+    if metalist.file:
+        filename, extension, compress = get_extension(metalist.file)
+        if not extension:
+            extension = "xml"
+        elif extension == "xml":
+            xml_output = unparse_xml_list(crossref_xml_list, dialect="crossref")
+            if compress == "gz":
+                write_gz_file(filename, xml_output)
+            elif compress == "zip":
+                write_zip_file(filename, xml_output)
+            else:
+                with open(metalist.file, "w") as file:
+                    file.write(xml_output)
+        return metalist.file
+    else:
+        return unparse_xml_list(crossref_xml_list, dialect="crossref")
 
 
 def get_attributes(obj, **kwargs) -> dict:
@@ -746,7 +762,7 @@ def get_license(obj) -> Optional[dict]:
     }
 
 
-def get_funding_references(obj) -> Optional[list]:
+def get_funding_references(obj) -> Optional[dict]:
     """Get funding references"""
     if (
         py_.get(obj, "funding_references") is None
@@ -756,34 +772,37 @@ def get_funding_references(obj) -> Optional[list]:
 
     funding_references = []
     for funding_reference in wrap(py_.get(obj, "funding_references")):
+        assertions = []
         funder_identifier = funding_reference.get("funderIdentifier", None)
         funder_identifier_type = funding_reference.get("funderIdentifierType", None)
-        if len(wrap(py_.get(obj, "funding_references"))) == 1:
-            if funder_identifier is not None and funder_identifier_type == "ROR":
-                funding_references.append(
-                    {
-                        "@name": "ror",
-                        "#text": funder_identifier,
-                    }
-                )
-            elif funding_reference.get("funderName", None) is not None:
-                funding_references.append(
-                    {
-                        "@name": "funder_name",
-                        "#text": funding_reference.get("funderName"),
-                    }
-                )
-            if funding_reference.get("awardNumber", None) is not None:
-                funding_references.append(
-                    {
-                        "@name": "award_number",
-                        "#text": funding_reference.get("awardNumber"),
-                    }
-                )
+        
+        if funder_identifier is not None and funder_identifier_type == "ROR":
+            assertions.append({
+                "@name": "ror",
+                "#text": funder_identifier,
+            })
+        elif funding_reference.get("funderName", None) is not None:
+            assertions.append({
+                "@name": "funder_name",
+                "#text": funding_reference.get("funderName"),
+            })
+            
+        if funding_reference.get("awardNumber", None) is not None:
+            assertions.append({
+                "@name": "award_number",
+                "#text": funding_reference.get("awardNumber"),
+            })
+            
+        if assertions:
+            funding_references.append({"fr:assertion": assertions})
+    
+    if not funding_references:
+        return None
+        
     return {
         "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
         "@name": "fundref",
-        "fr:assertion": funding_references,
+        "fr:program": funding_references,
     }
 
 
