@@ -115,7 +115,7 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
         for i in wrap(metadata.descriptions)
     ]
 
-    data = compact(
+    return compact(
         {
             "id": metadata.id,
             "doi": doi_from_url(metadata.id),
@@ -139,7 +139,6 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
             "schemaVersion": "http://datacite.org/schema/kernel-4",
         }
     )
-    return json.dumps(data)
 
 
 def to_datacite_creator(creator: dict) -> dict:
@@ -195,3 +194,12 @@ def to_datacite_related_identifier(reference: dict) -> dict:
             "relationType": "References",
         }
     )
+
+
+def write_datacite_list(metalist):
+    """Write DataCite list"""
+    if metalist is None:
+        return None
+    items = [write_datacite(item) for item in metalist.items]
+
+    return json.dumps(items).decode("utf-8")

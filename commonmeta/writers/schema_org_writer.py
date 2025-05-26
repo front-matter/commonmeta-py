@@ -1,9 +1,8 @@
 """Schema.org writer for commonmeta-py"""
 
-import orjson as json
-from ..utils import to_schema_org_creators, github_as_repo_url, get_language
-from ..base_utils import compact, wrap, presence, parse_attributes
+from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
+from ..utils import get_language, github_as_repo_url, to_schema_org_creators
 
 
 def write_schema_org(metadata):
@@ -97,7 +96,7 @@ def write_schema_org(metadata):
     else:
         code_repository = None
 
-    data = compact(
+    return compact(
         {
             "@context": "http://schema.org",
             "@id": metadata.id,
@@ -144,4 +143,10 @@ def write_schema_org(metadata):
             else None,
         }
     )
-    return json.dumps(data)
+
+
+def write_schema_org_list(metalist):
+    """Write Schema.org list"""
+    if metalist is None:
+        return None
+    return [write_schema_org(item) for item in metalist.items]

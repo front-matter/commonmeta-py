@@ -1,9 +1,9 @@
 """RIS writer for commonmeta-py"""
 
-from ..utils import to_ris
-from ..base_utils import compact, wrap, presence, parse_attributes
-from ..doi_utils import doi_from_url
+from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import CM_TO_RIS_TRANSLATIONS
+from ..doi_utils import doi_from_url
+from ..utils import to_ris
 
 
 def write_ris(metadata):
