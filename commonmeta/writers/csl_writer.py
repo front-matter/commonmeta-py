@@ -79,5 +79,4 @@ def write_csl_list(metalist):
     """Write CSL-JSON list"""
     if metalist is None:
         return None
-    items = [write_csl_item(item) for item in metalist.items]
-    return json.dumps(items).decode("utf-8")
+    return [write_csl_item(item) for item in metalist.items]

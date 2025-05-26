@@ -2,8 +2,6 @@
 
 from typing import Optional, Union
 
-import orjson as json
-
 from ..base_utils import compact, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
@@ -200,6 +198,4 @@ def write_datacite_list(metalist):
     """Write DataCite list"""
     if metalist is None:
         return None
-    items = [write_datacite(item) for item in metalist.items]
-
-    return json.dumps(items).decode("utf-8")
+    return [write_datacite(item) for item in metalist.items]

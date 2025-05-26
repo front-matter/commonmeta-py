@@ -367,9 +367,7 @@ def write_inveniordm_list(metalist):
     """Write InvenioRDM list"""
     if metalist is None:
         return None
-    items = [write_inveniordm(item) for item in metalist.items]
-
-    return json.dumps(items).decode("utf-8")
+    return [write_inveniordm(item) for item in metalist.items]
 
 
 def push_inveniordm(metadata, host: str, token: str):

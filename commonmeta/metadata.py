@@ -277,13 +277,13 @@ class Metadata:
     def _write_json_format(self, to: str) -> str:
         """Handle JSON-based output formats."""
         if to == "commonmeta":
-            result = write_commonmeta(self)
+            result = json.dumps(write_commonmeta(self))
         elif to == "datacite":
-            result = write_datacite(self)
+            result = json.dumps(write_datacite(self))
         elif to == "inveniordm":
-            result = write_inveniordm(self)
+            result = json.dumps(write_inveniordm(self))
         elif to == "schema_org":
-            result = write_schema_org(self)
+            result = json.dumps(write_schema_org(self))
         else:
             return "{}"
 
@@ -438,7 +438,7 @@ class MetadataList:
         elif to == "citation":
             return write_citation_list(self, **kwargs)
         elif to == "commonmeta":
-            output = write_commonmeta_list(self)
+            output = json.dumps(write_commonmeta_list(self))
             if self.file:
                 return write_output(self.file, output, [".json", ".jsonl"])
             else:
@@ -450,19 +450,19 @@ class MetadataList:
             else:
                 return output
         elif to == "csl":
-            output = write_csl_list(self)
+            output = json.dumps(write_csl_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "datacite":
-            output = write_datacite_list(self)
+            output = json.dumps(write_datacite_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "inveniordm":
-            output = write_inveniordm_list(self)
+            output = json.dumps(write_inveniordm_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:
@@ -470,7 +470,7 @@ class MetadataList:
         elif to == "ris":
             return write_ris_list(self)
         elif to == "schema_org":
-            output = write_schema_org_list(self)
+            output = json.dumps(write_schema_org_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
             else:

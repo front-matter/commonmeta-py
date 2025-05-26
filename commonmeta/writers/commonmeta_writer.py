@@ -1,6 +1,5 @@
 """Commonmeta writer for commonmeta-py"""
 
-import orjson as json
 import pydash as py_
 
 from ..base_utils import compact
@@ -32,7 +31,7 @@ def write_commonmeta(metadata):
             "funding_references": "fundingReferences",
         },
     )
-    return json.dumps(compact(data), option=json.OPT_INDENT_2)
+    return compact(data)
 
 
 def write_commonmeta_list(metalist):
@@ -47,7 +46,7 @@ def write_commonmeta_list(metalist):
         return compact(item)
 
     items = [format_item(item) for item in metalist.items]
-    output = compact(
+    return compact(
         {
             "id": metalist.id,
             "title": metalist.title,
@@ -55,5 +54,3 @@ def write_commonmeta_list(metalist):
             "items": items,
         }
     )
-
-    return json.dumps(output).decode("utf-8")
