@@ -1,12 +1,17 @@
 """InvenioRDM writer for commonmeta-py"""
 
+import re
 from typing import Optional
+from urllib.parse import urlparse
 
 import orjson as json
+import pydash as py_
+import requests
 
 from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
+    COMMUNITY_TRANSLATIONS,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
 )
@@ -90,7 +95,7 @@ def write_inveniordm(metadata):
         )
 
     subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
-    data = compact(
+    return compact(
         {
             "pids": {
                 "doi": {
@@ -143,7 +148,6 @@ def write_inveniordm(metadata):
             ),
         }
     )
-    return json.dumps(data, option=json.OPT_INDENT_2)
 
 
 def to_inveniordm_creator(creator: dict) -> dict:
@@ -357,3 +361,276 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
             ),
         }
     )
+
+
+def write_inveniordm_list(metalist):
+    """Write InvenioRDM list"""
+    if metalist is None:
+        return None
+    items = [write_inveniordm(item) for item in metalist.items]
+
+    return json.dumps(items).decode("utf-8")
+
+
+def push_inveniordm(metadata, host: str, token: str):
+    """Push record to InvenioRDM"""
+
+    record = {}
+    input = write_inveniordm(metadata)
+
+    try:
+        # Remove IsPartOf relation with InvenioRDM community identifier after storing it
+        community_index = None
+        if hasattr(metadata, "relations") and metadata.relations:
+            for i, relation in enumerate(metadata.relations):
+                if (relation.get("type") == "IsPartOf" and
+                    relation.get("id", "").startswith("https://rogue-scholar.org/api/communities/")):
+                    slug = relation.get("id").split("/")[5]
+                    community_id, _ = search_by_slug(slug, "blog", host, token)
+                    if community_id:
+                        record["community"] = slug
+                        record["community_id"] = community_id
+                        community_index = i
+
+            # Remove the relation if we found and processed it
+            if community_index is not None and hasattr(metadata, "relations"):
+                metadata.relations.pop(community_index)
+
+        # Remove InvenioRDM rid after storing it
+        # rid_index = None
+        # if hasattr(metadata, "identifiers") and metadata.identifiers:
+        #     for i, identifier in enumerate(metadata.identifiers):
+        #         if identifier.get("identifierType") == "RID" and identifier.get("identifier"):
+        #             record["id"] = identifier.get("identifier")
+        #             rid_index = i
+        #         elif identifier.get("identifierType") == "UUID" and identifier.get("identifier"):
+        #             record["uuid"] = identifier.get("identifier")
+
+        # # Remove the identifier if we found and processed it
+        # if rid_index is not None and hasattr(metadata, "identifiers"):
+        #     metadata.identifiers.pop(rid_index)
+
+        # Check if record already exists in InvenioRDM
+        record["id"] = search_by_doi(doi_from_url(metadata.id), host, token)
+
+        if record["id"] is not None:
+
+            # Create draft record from published record
+            record = edit_published_record(record, host, token)
+
+            # Update draft record
+            record = update_draft_record(record, host, token, input)
+        else:
+            # Create draft record
+            record = create_draft_record(record, host, token, input)
+
+        # Publish draft record
+        record = publish_draft_record(record, host, token)
+
+        # Add record to blog community if blog community is specified and exists
+        if record.get("community_id", None) is not None:
+            record = add_record_to_community(
+                record, host, token, record["community_id"]
+            )
+
+        # Add record to subject area community if subject area community is specified and exists
+        # Subject area communities should exist for all subjects in the FOSMappings
+
+        if hasattr(metadata, "subjects"):
+            for subject in metadata.subjects:
+                slug = string_to_slug(subject.get("subject", ""))
+                if slug in COMMUNITY_TRANSLATIONS:
+                    slug = COMMUNITY_TRANSLATIONS[slug]
+
+                community_id = search_by_slug(slug, "topic", host, token)
+                if community_id:
+                    record = add_record_to_community(
+                        record, host, token, community_id
+                    )
+
+        # Add record to communities defined as IsPartOf relation in inveniordm metadata's RelatedIdentifiers
+        related_identifiers = py_.get(input, "metadata.related_identifiers")
+
+        for identifier in wrap(related_identifiers):
+            if py_.get(identifier, "relation_type.id") == "ispartof":
+                parsed_url = urlparse(identifier.get("identifier", ""))
+                path_parts = parsed_url.path.split("/")
+
+                if (
+                    parsed_url.netloc == urlparse(host).netloc
+                    and len(path_parts) == 3
+                    and path_parts[1] == "communities"
+                ):
+                    record = add_record_to_community(
+                        record, host, token, path_parts[2]
+                    )
+    except Exception as e:
+        raise InvenioRDMError(f"Unexpected error: {str(e)}")
+
+    return record
+
+
+def push_inveniordm_list(metalist, host: str, token: str) -> list:
+    """Push inveniordm list to InvenioRDM, returns list of push results."""
+
+    if metalist is None:
+        return None
+    items = [push_inveniordm(item, host, token) for item in metalist.items]
+    return json.dumps(items, option=json.OPT_INDENT_2)
+
+
+def search_by_doi(doi, host, token) -> Optional[str]:
+    """Search for a record by DOI in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    params = {"q": f"doi:{doi}", "size": 1}
+    try:
+        response = requests.get(f"https://{host}/api/records", headers=headers, params=params)
+        response.raise_for_status()
+        data = response.json()
+        if py_.get(data, "hits.total") or 0 > 0:
+            return py_.get(data, "hits.hits.0.id")
+        return None
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error searching for DOI: {str(e)}")
+
+
+def create_draft_record(record, host, token, input):
+    """Create a new draft record in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(f"https://{host}/api/records", headers=headers, json=input)
+        response.raise_for_status()
+        data = response.json()
+        return {
+            "id": data.get("id", None),
+            "created": data.get("created", None),
+            "updated": data.get("updated", None),
+            "status": "updated"
+        }
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error creating draft record: {str(e)}")
+
+
+def edit_published_record(record, host, token):
+    """Create a draft from a published record in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(
+            f"https://{host}/api/records/{record['id']}/draft", headers=headers
+        )
+        response.raise_for_status()
+        data = response.json()
+        record["doi"] = py_.get(data, "pids.doi.identifier")
+        record["created"] = data.get("created", None)
+        record["updated"] = data.get("updated", None)
+        record["status"] = "edited"
+        return record
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error creating draft from published record: {str(e)}")
+
+
+def update_draft_record(record, host, token, inveniordm_data):
+    """Update a draft record in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.put(
+            f"https://{host}/api/records/{record['id']}/draft",
+            headers=headers,
+            json=inveniordm_data,
+        )
+        response.raise_for_status()
+        data = response.json()
+        record["created"] = data.get("created", None)
+        record["updated"] = data.get("updated", None)
+        record["status"] = "updated"
+        return record
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error updating draft record: {str(e)}")
+
+
+def publish_draft_record(record, host, token):
+    """Publish a draft record in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(
+            f"https://{host}/api/records/{record['id']}/draft/actions/publish",
+            headers=headers,
+        )
+        response.raise_for_status()
+        data = response.json()
+        record["created"] = data.get("created", None)
+        record["updated"] = data.get("updated", None)
+        record["status"] = "published"
+        return record
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error publishing draft record: {str(e)}")
+
+
+def add_record_to_community(record, host, token, community_id):
+    """Add a record to a community in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(
+            f"https://{host}/api/records/{record['id']}/communities",
+            headers=headers,
+            json={"id": community_id},
+        )
+        response.raise_for_status()
+        return record
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error adding record to community: {str(e)}")
+
+
+def search_by_slug(slug, type_value, host, token) -> Optional[str]:
+    """Search for a community by slug in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    params = {"q": f"slug:{slug} AND type:{type_value}", "size": 1}
+    try:
+        response = requests.get(
+            f"https://{host}/api/communities", headers=headers, params=params
+        )
+        response.raise_for_status()
+        data = response.json()
+        if py_.get(data, "hits.total") or 0 > 0:
+            return py_.get(data, "hits.hits.0.id")
+        return None
+    except requests.exceptions.RequestException as e:
+        raise InvenioRDMError(f"Error searching for community: {str(e)}")
+
+
+def string_to_slug(text):
+    """Convert a string to a slug format"""
+    # Replace spaces with hyphens
+    slug = re.sub(r"\s+", "-", text.lower())
+    # Remove special characters
+    slug = re.sub(r"[^a-z0-9-]", "", slug)
+    # Remove multiple consecutive hyphens
+    slug = re.sub(r"-+", "-", slug)
+    # Remove leading and trailing hyphens
+    slug = slug.strip("-")
+    return slug
+
+
+class InvenioRDMError(Exception):
+    """Custom exception for InvenioRDM API errors"""
