@@ -1,11 +1,11 @@
 """Test author utils"""
 
 from commonmeta.author_utils import (
-    cleanup_author,
     authors_as_string,
-    get_one_author,
-    get_authors,
+    cleanup_author,
     get_affiliations,
+    get_authors,
+    get_one_author,
     is_personal_name,
 )
 from commonmeta.base_utils import wrap
@@ -216,11 +216,14 @@ def test_one_author():
 
 def test_cleanup_author():
     "cleanup_author"
-    assert "John Smith" == cleanup_author("John Smith")
-    assert "Smith, John" == cleanup_author("Smith, John")
-    assert "Smith, J." == cleanup_author("Smith, J.")
-    assert None == cleanup_author(
-        ",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon"
+    assert cleanup_author("John Smith") == "John Smith"
+    assert cleanup_author("Smith, John") == "Smith, John"
+    assert cleanup_author("Smith, J.") == "Smith, J."
+    assert (
+        cleanup_author(
+            ",FEMTO-ST/AS2M, ENSMM Besan¸con, 24 rue Alain Savary, 25 000 Besanon"
+        )
+        is None
     )
 
 

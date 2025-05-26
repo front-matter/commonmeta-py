@@ -1,9 +1,10 @@
 # pylint: disable=invalid-name
 """Citeproc writer tests"""
 
+from os import path
+
 import orjson as json
 import pytest
-from os import path
 
 from commonmeta import Metadata, MetadataList
 

@@ -1,18 +1,19 @@
 # pylint: disable=invalid-name
 """Test base utils"""
 
-import pytest  # noqa: F401
 from os import path
+
 import pydash as py_
+import pytest  # noqa: F401
 
 from commonmeta.base_utils import (
-    parse_attributes,
-    presence,
     compact,
-    wrap,
-    unwrap,
-    sanitize,
+    parse_attributes,
     parse_xml,
+    presence,
+    sanitize,
+    unwrap,
+    wrap,
 )
 
 
@@ -78,9 +79,9 @@ def test_parse_attributes():
         ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"]
     )
     # list of empty strings
-    assert None == parse_attributes([""])
+    assert parse_attributes([""]) is None
     # None
-    assert None is parse_attributes(None)
+    assert parse_attributes(None) is None
 
 
 def test_sanitize():

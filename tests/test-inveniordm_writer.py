@@ -58,7 +58,7 @@ def test_publication():
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "files.enabled") == False
+    assert not py_.get(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -145,7 +145,7 @@ def test_journal_article():
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "files.enabled") == False
+    assert not py_.get(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -218,7 +218,7 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
     # assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert py_.get(inveniordm, "custom_fields.rs:image") == 2
-    assert py_.get(inveniordm, "files.enabled") == False
+    assert not py_.get(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -310,7 +310,7 @@ def test_from_jsonfeed():
         '\n<p>This <a rel="noreferrer noopener" href="https://ling.auf.net/lingbuzz/006031"'
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "files.enabled") == False
+    assert not py_.get(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -393,7 +393,7 @@ def test_from_jsonfeed_affiliations():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
-    assert py_.get(inveniordm, "files.enabled") == False
+    assert not py_.get(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr

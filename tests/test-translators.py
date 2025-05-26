@@ -1,12 +1,13 @@
 # pylint: disable=invalid-name
 """Test translators."""
 
-from os import path
 import re
+from os import path
+
 import pytest  # noqa: F401
+from bs4 import BeautifulSoup
 
 from commonmeta.translators import web_translator
-from bs4 import BeautifulSoup
 
 
 def test_web_translator_arxiv():

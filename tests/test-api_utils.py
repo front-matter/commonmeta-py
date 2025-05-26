@@ -1,8 +1,9 @@
 """Test api utils"""
 
-import pytest  # noqa: F401
-import jwt
 from datetime import datetime as date
+
+import jwt
+import pytest  # noqa: F401
 
 from commonmeta.api_utils import (
     generate_ghost_token,

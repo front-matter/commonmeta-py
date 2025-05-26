@@ -2,7 +2,9 @@
 """Citation writer tests"""
 
 from os import path
+
 import pytest
+
 from commonmeta import Metadata, MetadataList
 
 
@@ -77,11 +79,11 @@ def test_software_with_version():
     )
 
 
-def test_software_via_cff():
-    """software via cff"""
-    subject = Metadata("https://github.com/blebon/directChillFoam")
-    # assert subject.write(to="citation")(
-    # ) == 'Liang, K. (2023). <i>Long Context Transformer v0.0.1</i> (0.0.1) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.7651809'
+# def test_software_via_cff():
+#     """software via cff"""
+#     subject = Metadata("https://github.com/blebon/directChillFoam")
+#     assert subject.write(to="citation")(
+#     ) == 'Liang, K. (2023). <i>Long Context Transformer v0.0.1</i> (0.0.1) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.7651809'
 
 
 def test_kbase_gulf_of_mexico():

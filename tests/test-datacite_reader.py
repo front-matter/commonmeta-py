@@ -2,7 +2,9 @@
 """DataCite reader tests"""
 
 from os import path
+
 import pytest
+
 from commonmeta import Metadata
 from commonmeta.readers.datacite_reader import get_datacite, read_datacite
 

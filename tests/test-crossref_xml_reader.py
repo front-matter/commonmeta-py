@@ -689,7 +689,7 @@ def test_date_in_future():
         "firstPage": "449",
         "containerTitle": "HIV Med.",
     }
-    assert subject.funding_references == None
+    assert subject.funding_references is None
     # assert subject.funding_references[0] == {
     #     "awardNumber": "R01 NS089482",
     #     "funderIdentifier": "https://doi.org/10.13039/100000002",

@@ -1,7 +1,9 @@
 """Bibtex writer tests"""
 
 from os import path
+
 import pytest
+
 from commonmeta import Metadata, MetadataList
 
 

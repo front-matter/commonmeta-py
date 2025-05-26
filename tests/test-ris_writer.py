@@ -1,8 +1,9 @@
 # pylint: disable=invalid-name
 """RIS writer tests"""
 
-import pytest
 from os import path
+
+import pytest
 
 from commonmeta import Metadata, MetadataList
 

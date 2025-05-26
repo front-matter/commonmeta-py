@@ -2,17 +2,18 @@
 """Test date utils"""
 
 from datetime import date
+
 import pytest  # noqa: F401
 
 from commonmeta.date_utils import (
-    get_iso8601_date,
+    get_date_from_crossref_parts,
     get_date_from_date_parts,
     get_date_from_parts,
     get_date_parts,
-    get_month_from_date,
-    get_date_from_crossref_parts,
-    get_datetime_from_time,
     get_datetime_from_pdf_time,
+    get_datetime_from_time,
+    get_iso8601_date,
+    get_month_from_date,
     validate_edtf,
 )
 
