@@ -135,6 +135,7 @@ def list(
     metadata_list = MetadataList(
         string,
         via=via,
+        file=file,
         depositor=depositor,
         email=email,
         registrant=registrant,

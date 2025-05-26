@@ -10,7 +10,6 @@ from pydash import py_
 from ..base_utils import compact, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, validate_doi
-from ..file_utils import get_extension, write_gz_file, write_zip_file
 from ..utils import validate_url
 
 POSTED_CONTENT_TYPES = [
@@ -203,7 +202,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
         data = compact(
             {
                 "sa_component": get_attributes(metadata),
-                "component": {"@reg-agency":"CrossRef"},
+                "component": {"@reg-agency": "CrossRef"},
                 "description": None,
                 "doi_data": doi_data,
             }
@@ -363,23 +362,7 @@ def write_crossref_xml_list(metalist):
         field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
         crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
         crossref_xml_list.append(crossref_xml)
-
-    if metalist.file:
-        filename, extension, compress = get_extension(metalist.file)
-        if not extension:
-            extension = "xml"
-        elif extension == "xml":
-            xml_output = unparse_xml_list(crossref_xml_list, dialect="crossref")
-            if compress == "gz":
-                write_gz_file(filename, xml_output)
-            elif compress == "zip":
-                write_zip_file(filename, xml_output)
-            else:
-                with open(metalist.file, "w") as file:
-                    file.write(xml_output)
-        return metalist.file
-    else:
-        return unparse_xml_list(crossref_xml_list, dialect="crossref")
+    return unparse_xml_list(crossref_xml_list, dialect="crossref")
 
 
 def get_attributes(obj, **kwargs) -> dict:

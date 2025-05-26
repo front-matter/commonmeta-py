@@ -8,6 +8,7 @@ import yaml
 from pydash import py_
 
 from .base_utils import parse_xml, wrap
+from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
     get_codemeta,
@@ -417,11 +418,23 @@ class MetadataList:
     def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata list into different formats"""
         if to == "commonmeta":
-            return write_commonmeta_list(self)
+            output = write_commonmeta_list(self)
+            if self.file:
+                return write_output(self.file, output, [".json", ".jsonl"])
+            else:
+                return output
         elif to == "bibtex":
-            return write_bibtex_list(self)
+            output = write_bibtex_list(self)
+            if self.file:
+                return write_output(self.file, output, [".bib"])
+            else:
+                return output
         elif to == "csl":
-            return write_csl_list(self)
+            output = write_csl_list(self)
+            if self.file:
+                return write_output(self.file, output, [".json"])
+            else:
+                return output
         elif to == "citation":
             return write_citation_list(self, **kwargs)
         elif to == "ris":
@@ -433,6 +446,10 @@ class MetadataList:
         elif to == "openalex":
             raise ValueError("OpenAlex not supported for metadata lists")
         elif to == "crossref_xml":
-            return write_crossref_xml_list(self)
+            output = write_crossref_xml_list(self).encode()
+            if self.file:
+                return write_output(self.file, output, [".xml"])
+            else:
+                return output
         else:
             raise ValueError("No output format found")

@@ -15,14 +15,14 @@ def read_file(filename: str) -> bytes:
         return f.read()
 
 
-def uncompress_content(input_bytes: bytes) -> bytes:
-    with gzip.GzipFile(fileobj=io.BytesIO(input_bytes)) as gz:
+def uncompress_content(input: bytes) -> bytes:
+    with gzip.GzipFile(fileobj=io.BytesIO(input)) as gz:
         return gz.read()
 
 
-def unzip_content(input_bytes: bytes, filename: Optional[str] = None) -> bytes:
+def unzip_content(input: bytes, filename: Optional[str] = None) -> bytes:
     output = b""
-    with zipfile.ZipFile(io.BytesIO(input_bytes)) as zf:
+    with zipfile.ZipFile(io.BytesIO(input)) as zf:
         for info in zf.infolist():
             if filename and info.filename != filename:
                 continue
@@ -59,46 +59,49 @@ def download_file(url: str, progress: bool = False) -> bytes:
 
 
 def write_file(filename: str, output: bytes) -> None:
-    file_path = Path(filename).expanduser().resolve()
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(file_path, "wb") as f:
+    with open(filename, "xb") as f:
         f.write(output)
 
 
 def write_gz_file(filename: str, output: bytes) -> None:
-    file_path = Path(filename).expanduser().resolve()
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-    gz_path = file_path.with_suffix(file_path.suffix + ".gz")
-    with gzip.open(gz_path, "wb") as gzfile:
+    with gzip.open(filename, "xb") as gzfile:
         gzfile.write(output)
 
 
 def write_zip_file(filename: str, output: bytes) -> None:
-    file_path = Path(filename).expanduser().resolve()
-    file_path.parent.mkdir(parents=True, exist_ok=True)
-    zip_path = file_path.with_suffix(file_path.suffix + ".zip")
-    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
-        zipf.writestr(file_path.name, output)
+    path = Path(filename)
+    with zipfile.ZipFile(filename, "w", zipfile.ZIP_DEFLATED) as zipf:
+        zipf.writestr(path.name, output)
 
 
-def get_extension(filename: str, ext: str = "") -> tuple[str, str, str]:
-    extension = ""
-    compress = ""
-    if filename:
+def get_extension(filename: str) -> tuple[str, str, Optional[str]]:
+    """Extract extension and compression from filename"""
+    extension = Path(filename).suffix
+    if extension == ".gz":
+        compress = ".gz"
+        filename = filename[:-3]
         extension = Path(filename).suffix
-        if extension == ".gz":
-            compress = "gz"
-            filename = filename[:-3]
-            extension = Path(filename).suffix
-        elif extension == ".zip":
-            compress = "zip"
-            filename = filename[:-4]
-            extension = Path(filename).suffix
-        else:
-            compress = ""
-        return filename, extension, compress
-    if not ext:
-        ext = ".json"
-    extension = ext
-    compress = ""
+    elif extension == ".zip":
+        compress = ".zip"
+        filename = filename[:-4]
+        extension = Path(filename).suffix
+    elif extension == "":
+        compress = None
+        filename = filename + ".json"
+        extension = ".json"
+    else:
+        compress = None
     return filename, extension, compress
+
+
+def write_output(filename: str, output: bytes, ext: list[str]) -> None:
+    """Write output to file with supported extension"""
+    filename, extension, compress = get_extension(filename)
+    if extension not in ext:
+        raise ValueError(f"File format not supported. Please provide a filename with {ext} extension.")
+    if compress == ".gz":
+        write_gz_file(filename + compress, output)
+    elif compress == ".zip":
+        write_zip_file(filename + compress, output)
+    else:
+        write_file(filename, output)

@@ -1,12 +1,9 @@
 """Commonmeta writer for commonmeta-py"""
 
 import orjson as json
-import orjsonl
 import pydash as py_
-import yaml
 
 from ..base_utils import compact
-from ..file_utils import get_extension, write_gz_file, write_zip_file
 
 
 def write_commonmeta(metadata):
@@ -59,25 +56,4 @@ def write_commonmeta_list(metalist):
         }
     )
 
-    if metalist.file:
-        filename, extension, compress = get_extension(metalist.file)
-        if not extension:
-            extension = "json"
-        if extension == "jsonl":
-            orjsonl.save(metalist.file, items)
-        elif extension == "json":
-            json_output = json.dumps(output).decode("utf-8")
-            with open(metalist.file, "w") as file:
-                file.write(json_output)
-        elif extension == "yaml":
-            yaml_output = yaml.dump(output).decode("utf-8")
-            if compress == "gz":
-                write_gz_file(filename, yaml_output)
-            elif compress == "zip":
-                write_zip_file(filename, yaml_output)
-            else:
-                with open(metalist.file, "w") as file:
-                    file.write(yaml_output)
-        return metalist.file
-    else:
-        return json.dumps(output).decode("utf-8")
+    return json.dumps(output).decode("utf-8")
