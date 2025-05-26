@@ -50,14 +50,19 @@ from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_xml_writer import (
+    push_crossref_xml_list,
     write_crossref_xml,
     write_crossref_xml_list,
 )
 from .writers.csl_writer import write_csl, write_csl_list
-from .writers.datacite_writer import write_datacite
-from .writers.inveniordm_writer import write_inveniordm
+from .writers.datacite_writer import write_datacite, write_datacite_list
+from .writers.inveniordm_writer import (
+    push_inveniordm_list,
+    write_inveniordm,
+    write_inveniordm_list,
+)
 from .writers.ris_writer import write_ris, write_ris_list
-from .writers.schema_org_writer import write_schema_org
+from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 
 
 # pylint: disable=R0902
@@ -383,6 +388,12 @@ class MetadataList:
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
+        self.login_id = kwargs.get("login_id", None)
+        self.login_passwd = kwargs.get("login_passwd", None)
+
+        # options needed for InvenioRDM registration
+        self.host = kwargs.get("host", None)
+        self.token = kwargs.get("token", None)
 
         self.items = self.read_metadata_list(wrap(meta.get("items", None)), **kwargs)
         self.errors = [i.errors for i in self.items if i.errors is not None]
@@ -400,11 +411,12 @@ class MetadataList:
         if self.via in [
             "commonmeta",
             "crossref",
-            "datacite",
-            "schema_org",
-            "openalex",
             "csl",
+            "datacite",
+            "inveniordm",
             "jsonfeed",
+            "openalex",
+            "schema_org",
         ]:
             return json.loads(string)
         else:
@@ -417,16 +429,24 @@ class MetadataList:
 
     def write(self, to: str = "commonmeta", **kwargs) -> str:
         """convert metadata list into different formats"""
-        if to == "commonmeta":
+        if to == "bibtex":
+            output = write_bibtex_list(self)
+            if self.file:
+                return write_output(self.file, output, [".bib"])
+            else:
+                return output
+        elif to == "citation":
+            return write_citation_list(self, **kwargs)
+        elif to == "commonmeta":
             output = write_commonmeta_list(self)
             if self.file:
                 return write_output(self.file, output, [".json", ".jsonl"])
             else:
                 return output
-        elif to == "bibtex":
-            output = write_bibtex_list(self)
+        elif to == "crossref_xml":
+            output = write_crossref_xml_list(self)
             if self.file:
-                return write_output(self.file, output, [".bib"])
+                return write_output(self.file, output, [".xml"])
             else:
                 return output
         elif to == "csl":
@@ -435,21 +455,41 @@ class MetadataList:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
-        elif to == "citation":
-            return write_citation_list(self, **kwargs)
+        elif to == "datacite":
+            output = write_datacite_list(self)
+            if self.file:
+                return write_output(self.file, output, [".json"])
+            else:
+                return output
+        elif to == "inveniordm":
+            output = write_inveniordm_list(self)
+            if self.file:
+                return write_output(self.file, output, [".json"])
+            else:
+                return output
         elif to == "ris":
             return write_ris_list(self)
         elif to == "schema_org":
-            raise ValueError("Schema.org not supported for metadata lists")
-        elif to == "datacite":
-            raise ValueError("Datacite not supported for metadata lists")
-        elif to == "openalex":
-            raise ValueError("OpenAlex not supported for metadata lists")
-        elif to == "crossref_xml":
-            output = write_crossref_xml_list(self).encode()
+            output = write_schema_org_list(self)
             if self.file:
-                return write_output(self.file, output, [".xml"])
+                return write_output(self.file, output, [".json"])
             else:
                 return output
         else:
-            raise ValueError("No output format found")
+            raise ValueError("No valid output format found")
+
+    def push(self, to: str = "commonmeta", **kwargs) -> str:
+        """push metadata list to external APIs"""
+
+        if to == "crossref_xml":
+            response = push_crossref_xml_list(
+                self, login_id=self.login_id, login_passwd=self.login_passwd
+            )
+            return response
+        elif to == "datacite":
+            raise ValueError("Datacite not yet supported for metadata lists")
+        elif to == "inveniordm":
+            response = push_inveniordm_list(self, host=self.host, token=self.token)
+            return response
+        else:
+            raise ValueError("No valid output format found")
