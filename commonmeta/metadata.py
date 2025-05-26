@@ -32,7 +32,7 @@ from .readers.inveniordm_reader import (
     get_inveniordm,
     read_inveniordm,
 )
-from .readers.json_feed_reader import get_json_feed_item, read_json_feed_item
+from .readers.jsonfeed_reader import get_jsonfeed, read_jsonfeed
 from .readers.kbase_reader import read_kbase
 from .readers.openalex_reader import (
     get_openalex,
@@ -155,8 +155,8 @@ class Metadata:
             return get_codemeta(pid)
         elif via == "cff":
             return get_cff(pid)
-        elif via == "json_feed_item":
-            return get_json_feed_item(pid)
+        elif via == "jsonfeed":
+            return get_jsonfeed(pid)
         elif via == "inveniordm":
             return get_inveniordm(pid)
         elif via == "openalex":
@@ -196,7 +196,7 @@ class Metadata:
                 "datacite",
                 "schema_org",
                 "csl",
-                "json_feed_item",
+                "jsonfeed",
                 "codemeta",
                 "kbase",
                 "inveniordm",
@@ -232,8 +232,8 @@ class Metadata:
             return dict(read_codemeta(data))
         elif via == "cff":
             return dict(read_cff(data))
-        elif via == "json_feed_item":
-            return dict(read_json_feed_item(data, **kwargs))
+        elif via == "jsonfeed":
+            return dict(read_jsonfeed(data, **kwargs))
         elif via == "inveniordm":
             return dict(read_inveniordm(data))
         elif via == "kbase":
@@ -390,8 +390,7 @@ class MetadataList:
         self.is_valid = all([i.is_valid for i in self.items])
 
         # other options
-        self.jsonlines = kwargs.get("jsonlines", False)
-        self.filename = kwargs.get("filename", None)
+        self.file = kwargs.get("file", None)
 
     def get_metadata_list(self, string) -> list:
         if string is None or not isinstance(string, (str, bytes)):
@@ -403,7 +402,7 @@ class MetadataList:
             "schema_org",
             "openalex",
             "csl",
-            "json_feed_item",
+            "jsonfeed",
         ]:
             return json.loads(string)
         else:
