@@ -256,14 +256,14 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 body_content[type_key] = items[0]  # Use single item without array
             else:
                 body_content[type_key] = items  # Use array when multiple items
-
+        head = kwargs["head"] or {}
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
             "@xmlns:rel": "http://www.crossref.org/relations.xsd",
             "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
             "@version": "5.4.0",
-            "head": get_crossref_xml_head(input[0]),
+            "head": get_crossref_xml_head(head),
             "body": body_content,
         }
         output = {"doi_batch": doi_batch}
@@ -271,6 +271,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
     kwargs.pop("dialect", None)
+    kwargs.pop("head", None)
     return xmltodict.unparse(output, **kwargs)
 
 
