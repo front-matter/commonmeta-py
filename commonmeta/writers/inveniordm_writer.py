@@ -1,6 +1,7 @@
 """InvenioRDM writer for commonmeta-py"""
 
 import re
+from time import time
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -370,7 +371,7 @@ def write_inveniordm_list(metalist):
     return [write_inveniordm(item) for item in metalist.items]
 
 
-def push_inveniordm(metadata, host: str, token: str):
+def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
     """Push record to InvenioRDM"""
 
     record = {}
@@ -462,18 +463,23 @@ def push_inveniordm(metadata, host: str, token: str):
                     record = add_record_to_community(
                         record, host, token, path_parts[2]
                     )
+
+        # optionally update rogue-scholar legacy record
+        if host == "rogue-scholar.org" and legacy_key is not None:
+            record = update_legacy_record(record, legacy_key)
+
     except Exception as e:
         raise InvenioRDMError(f"Unexpected error: {str(e)}")
 
     return record
 
 
-def push_inveniordm_list(metalist, host: str, token: str) -> list:
+def push_inveniordm_list(metalist, host: str, token: str, legacy_key:str) -> list:
     """Push inveniordm list to InvenioRDM, returns list of push results."""
 
     if metalist is None:
         return None
-    items = [push_inveniordm(item, host, token) for item in metalist.items]
+    items = [push_inveniordm(item, host, token, legacy_key) for item in metalist.items]
     return json.dumps(items, option=json.OPT_INDENT_2)
 
 
@@ -571,6 +577,7 @@ def publish_draft_record(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
+        record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
         record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "published"
@@ -595,6 +602,56 @@ def add_record_to_community(record, host, token, community_id):
         return record
     except requests.exceptions.RequestException as e:
         raise InvenioRDMError(f"Error adding record to community: {str(e)}")
+
+
+def update_legacy_record(record, legacy_key: str):
+    """Update corresponding record in Rogue Scholar legacy database."""
+
+    legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
+
+    if not legacy_key:
+        return record, ValueError("no legacy key provided")
+
+    if not record.get("uuid", None):
+        return record, ValueError("no UUID provided")
+
+    now = f"{int(time())}"
+
+    if not record.get("doi", None):
+        return ValueError("no valid doi to update")
+
+    output = {
+            "doi": record["doi"],
+            "indexed_at": now,
+            "indexed": "true",
+            "archived": "true"
+        }
+
+    request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
+
+    headers = {
+        "Content-Type": "application/json",
+        "apikey": legacy_key,
+        "Authorization": f"Bearer {legacy_key}",
+        "Prefer": "return=minimal"
+    }
+
+    try:
+        response = requests.patch(
+            request_url,
+            json=output,
+            headers=headers,
+            timeout=30
+        )
+        response.raise_for_status()
+        if response.status_code != 204:
+            return record, Exception(f"Unexpected status code: {response.status_code}")
+
+        record["status"] = "updated_legacy"
+        return record
+
+    except requests.exceptions.RequestException as e:
+        return record, e
 
 
 def search_by_slug(slug, type_value, host, token) -> Optional[str]:

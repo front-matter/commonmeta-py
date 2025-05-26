@@ -205,6 +205,7 @@ def push(
         login_passwd=login_passwd,
         host=host,
         token=token,
+        legacy_key=legacy_key,
         prefix=prefix,
     )
     end = time.time()

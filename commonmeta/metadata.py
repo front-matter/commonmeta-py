@@ -394,6 +394,7 @@ class MetadataList:
         # options needed for InvenioRDM registration
         self.host = kwargs.get("host", None)
         self.token = kwargs.get("token", None)
+        self.legacy_key = kwargs.get("legacy_key", None)
 
         self.items = self.read_metadata_list(wrap(meta.get("items", None)), **kwargs)
         self.errors = [i.errors for i in self.items if i.errors is not None]
@@ -489,7 +490,7 @@ class MetadataList:
         elif to == "datacite":
             raise ValueError("Datacite not yet supported for metadata lists")
         elif to == "inveniordm":
-            response = push_inveniordm_list(self, host=self.host, token=self.token)
+            response = push_inveniordm_list(self, host=self.host, token=self.token, legacy_key=self.legacy_key)
             return response
         else:
             raise ValueError("No valid output format found")
