@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Optional, Union
 
 import requests
-from tqdm import tqdm
 
 
 def read_file(filename: str) -> bytes:
@@ -41,21 +40,20 @@ def read_zip_file(filename: str, name: Optional[str] = None) -> bytes:
     return unzip_content(input_bytes, name)
 
 
-def download_file(url: str, progress: bool = False) -> bytes:
+def download_file(url: str) -> bytes:
     resp = requests.get(url, stream=True)
     resp.raise_for_status()
-    if not progress:
-        return resp.content
-    # Progress bar
-    total = int(resp.headers.get("content-length", 0))
+    return resp.content
+    # # Progress bar
+    # total = int(resp.headers.get("content-length", 0))
 
-    buf = io.BytesIO()
-    with tqdm(total=total, unit="B", unit_scale=True, desc="downloading") as bar:
-        for chunk in resp.iter_content(chunk_size=8192):
-            if chunk:
-                buf.write(chunk)
-                bar.update(len(chunk))
-    return buf.getvalue()
+    # buf = io.BytesIO()
+    # with tqdm(total=total, unit="B", unit_scale=True, desc="downloading") as bar:
+    #     for chunk in resp.iter_content(chunk_size=8192):
+    #         if chunk:
+    #             buf.write(chunk)
+    #             bar.update(len(chunk))
+    # return buf.getvalue()
 
 
 def write_file(filename: str, output: bytes) -> None:
