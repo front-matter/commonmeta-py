@@ -170,9 +170,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
             input = {
                 "sa_component": {
                     **attributes,
-                    "component_list": {
-                        "component": component | input
-                    }
+                    "component_list": {"component": component | input},
                 }
             }
         else:
@@ -240,9 +238,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 item = {
                     "sa_component": {
                         **attributes,
-                        "component_list": {
-                            "component": component | item
-                        }
+                        "component_list": {"component": component | item},
                     }
                 }
             else:
