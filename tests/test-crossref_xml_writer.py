@@ -338,8 +338,8 @@ def test_write_crossref_schema_org_upstream_blog():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_upstream_blog():
-    """json_feed_item upstream blog"""
+def test_jsonfeed_upstream_blog():
+    """jsonfeed upstream blog"""
     string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
@@ -383,8 +383,8 @@ def test_json_feed_item_upstream_blog():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_references():
-    """json_feed_item with references"""
+def test_jsonfeed_with_references():
+    """jsonfeed with references"""
     string = "https://api.rogue-scholar.org/posts/954f8138-0ecd-4090-87c5-cef1297f1470"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/zwm7q-vet94"
@@ -427,8 +427,8 @@ def test_json_feed_item_with_references():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_doi():
-    """JSON Feed item with DOI"""
+def test_jsonfeed_with_doi():
+    """jsonfeed with DOI"""
     string = "https://api.rogue-scholar.org/posts/1c578558-1324-4493-b8af-84c49eabc52f"
     subject = Metadata(string, doi="10.59350/kz04m-s8z58")
     assert subject.id == "https://doi.org/10.59350/kz04m-s8z58"
@@ -480,8 +480,8 @@ def test_json_feed_item_with_doi():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_without_doi():
-    """JSON Feed item without DOI"""
+def test_jsonfeed_without_doi():
+    """jsonfeed without DOI"""
     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
     subject = Metadata(string)
     assert subject.is_valid
@@ -586,8 +586,8 @@ def test_ghost_with_affiliations():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_organizational_author():
-    """JSON Feed item with organizational author"""
+def test_jsonfeed_with_organizational_author():
+    """jsonfeed item with organizational author"""
     string = "https://api.rogue-scholar.org/posts/5561f8e4-2ff1-4186-a8d5-8dacb3afe414"
     subject = Metadata(string)
     assert subject.is_valid
@@ -619,8 +619,8 @@ def test_json_feed_item_with_organizational_author():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_archived_content():
-    """JSON Feed item with archived content"""
+def test_jsonfeed_with_archived_content():
+    """jsonfeed item with archived content"""
     string = "https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e"
     subject = Metadata(string)
     assert subject.is_valid
@@ -662,8 +662,8 @@ def test_json_feed_item_with_archived_content():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_relations():
-    """JSON Feed item with relations"""
+def test_jsonfeed_with_relations():
+    """jsonfeed item with relations"""
     string = "https://api.rogue-scholar.org/posts/8a4de443-3347-4b82-b57d-e3c82b6485fc"
     subject = Metadata(string)
     assert subject.is_valid
@@ -696,8 +696,8 @@ def test_json_feed_item_with_relations():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_with_relations_and_funding():
-    """JSON Feed item with relations and funding"""
+def test_jsonfeed_with_relations_and_funding():
+    """jsoneed with relations and funding"""
     string = "https://api.rogue-scholar.org/posts/e58dc9c8-b870-4db2-8896-238b3246c551"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1"

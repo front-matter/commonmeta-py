@@ -250,7 +250,7 @@ def test_rogue_scholar_organizational_author():
 
 
 @pytest.mark.vcr
-def test_from_json_feed():
+def test_from_jsonfeed():
     "JSON Feed"
     string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
     subject = Metadata(string)
@@ -314,7 +314,7 @@ def test_from_json_feed():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_affiliations():
+def test_from_jsonfeed_affiliations():
     "JSON Feed affiliations"
     string = "https://api.rogue-scholar.org/posts/10.59350/mg09a-5ma64"
     subject = Metadata(string)
@@ -397,7 +397,7 @@ def test_from_json_feed_affiliations():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_dates():
+def test_from_jsonfeed_dates():
     "JSON Feed dates"
     string = "https://api.rogue-scholar.org/posts/10.59350/k9zxj-pek64"
     subject = Metadata(string)
@@ -427,7 +427,7 @@ def test_from_json_feed_dates():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_funding():
+def test_from_jsonfeed_funding():
     "JSON Feed funding"
     string = "https://api.rogue-scholar.org/posts/10.59350/hnegw-6rx17"
     subject = Metadata(string)
@@ -465,7 +465,7 @@ def test_from_json_feed_funding():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_more_funding():
+def test_from_jsonfeed_more_funding():
     "JSON Feed more funding"
     string = "https://api.rogue-scholar.org/posts/10.59350/m99dx-x9g53"
     subject = Metadata(string)
@@ -502,7 +502,7 @@ def test_from_json_feed_more_funding():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_references():
+def test_from_jsonfeed_references():
     "JSON Feed references"
     string = "https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578"
     subject = Metadata(string)
@@ -547,7 +547,7 @@ def test_from_json_feed_references():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_unstructured_references():
+def test_from_jsonfeed_unstructured_references():
     "JSON Feed unstructured references"
     string = "https://api.rogue-scholar.org/posts/10.59350/27ewm-zn378"
     subject = Metadata(string)
@@ -572,7 +572,7 @@ def test_from_json_feed_unstructured_references():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_relations():
+def test_fromjson_feed_relations():
     "JSON Feed relations"
     string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
     subject = Metadata(string)
@@ -600,7 +600,7 @@ def test_from_json_feed_relations():
 
 
 @pytest.mark.vcr
-def test_from_json_feed_broken_reference():
+def test_fromjson_feed_broken_reference():
     "JSON Feed relations"
     string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
     subject = Metadata(string)

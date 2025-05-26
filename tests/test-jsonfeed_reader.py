@@ -1,12 +1,10 @@
 # pylint: disable=invalid-name,too-many-lines
-"""JSON Feed reader tests"""
+"""Jsonfeed reader tests"""
 
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.json_feed_reader import (
-    get_json_feed_item_uuid,
-)
+from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
 
 
 def vcr_config():
@@ -888,12 +886,12 @@ def test_broken_reference():
     }
 
 
-def test_get_json_feed_item():
-    """Test get_json_feed_item_id"""
-    item = get_json_feed_item_uuid("1357c246-b632-462a-9876-753ef8b6927d")
+def test_get_jsonfeed():
+    """Test get_jsonfeed"""
+    item = get_jsonfeed_uuid("1357c246-b632-462a-9876-753ef8b6927d")
     assert item["guid"] == "http://gigasciencejournal.com/blog/?p=5621"
 
 
-def test_get_json_feed_item_not_found():
+def test_get_jsonfeed_item_not_found():
     """Test get_json_feed_item_id not found"""
-    assert {"error": "An error occured."} == get_json_feed_item_uuid("notfound")
+    assert {"error": "An error occured."} == get_jsonfeed_uuid("notfound")

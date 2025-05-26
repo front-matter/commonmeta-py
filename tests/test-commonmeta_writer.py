@@ -139,8 +139,8 @@ def test_write_commonmeta_list():
 
 
 @pytest.mark.vcr
-def test_write_commonmeta_list_json_feed():
-    """write_commonmeta_list json feed"""
+def test_write_commonmeta_list_jsonfeed():
+    """write_commonmeta_list jsonfeed"""
     string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 15
@@ -159,7 +159,7 @@ def test_write_commonmeta_list_json_feed():
 def test_write_commonmeta_missing_doi():
     """Write commonmeta missing doi"""
     string = path.join(path.dirname(__file__), "fixtures", "json_feed_item_no_id.json")
-    subject = Metadata(string, via="json_feed_item")
+    subject = Metadata(string, via="jsonfeed")
     assert subject.is_valid
     assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
     commonmeta = json.loads(subject.write())
@@ -173,7 +173,7 @@ def test_write_commonmeta_missing_doi_no_prefix():
     string = path.join(
         path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
     )
-    subject = Metadata(string, via="json_feed_item")
+    subject = Metadata(string, via="jsonfeed")
     assert subject.is_valid
     assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
     commonmeta = json.loads(subject.write())
@@ -187,7 +187,7 @@ def test_write_commonmeta_missing_doi_prefix():
     string = path.join(
         path.dirname(__file__), "fixtures", "json_feed_item_no_prefix.json"
     )
-    subject = Metadata(string, via="json_feed_item", prefix="10.5555")
+    subject = Metadata(string, via="jsonfeed", prefix="10.5555")
     assert subject.is_valid
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", subject.id)
     commonmeta = json.loads(subject.write())

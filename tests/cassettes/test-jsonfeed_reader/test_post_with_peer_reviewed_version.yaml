@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.3
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.54900/zg929-e9595
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiZGlgoh+fkKvol5
+        lQpBqYWlqcUlxTb6EEkumwxDOyyyGYZ2XDYFdiEZmcUKpcWpRQoZicUKqRXJqakpqSkKiXkKiTk5
+        +SUlqSkKRRATFZLzS/NK9BRCiioVEtMTM/MUchJLUov0bPQL7LgA8Xu8D6kAAAA=
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - text/html; charset=utf-8
+      date:
+      - Sun, 25 May 2025 22:18:31 GMT
+      fly-request-id:
+      - 01JW4RDC3B7MSDVCR6ZMRF4PJE-fra
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '0'
+      ratelimit-reset:
+      - '56'
+      retry-after:
+      - '0'
+      server:
+      - Fly/f5a9cf807 (2025-05-08)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io
+    status:
+      code: 429
+      message: ''
+version: 1

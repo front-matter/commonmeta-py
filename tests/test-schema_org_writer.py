@@ -2,6 +2,7 @@
 """Test schema.org writer"""
 
 from os import path
+
 import orjson as json
 import pytest
 
@@ -788,8 +789,8 @@ def test_instrument():
 
 
 @pytest.mark.vcr
-def test_json_feed_item_upstream_blog():
-    """json_feed_item upstream blog"""
+def test_jsonfeed_upstream_blog():
+    """jsonfeed upstream blog"""
     string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
     subject = Metadata(string)
     assert subject.is_valid
