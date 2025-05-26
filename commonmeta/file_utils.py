@@ -4,7 +4,7 @@ import gzip
 import io
 import zipfile
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Union
 
 import requests
 from tqdm import tqdm
@@ -94,14 +94,21 @@ def get_extension(filename: str) -> tuple[str, str, Optional[str]]:
     return filename, extension, compress
 
 
-def write_output(filename: str, output: bytes, ext: list[str]) -> None:
+def write_output(filename: str, input: Union[bytes, str], ext: list[str]) -> None:
     """Write output to file with supported extension"""
+
+    # Convert string to bytes if necessary
+    if isinstance(input, str):
+        input = input.encode("utf-8")
+
     filename, extension, compress = get_extension(filename)
     if extension not in ext:
-        raise ValueError(f"File format not supported. Please provide a filename with {ext} extension.")
+        raise ValueError(
+            f"File format not supported. Please provide a filename with {ext} extension."
+        )
     if compress == ".gz":
-        write_gz_file(filename + compress, output)
+        write_gz_file(filename + compress, input)
     elif compress == ".zip":
-        write_zip_file(filename + compress, output)
+        write_zip_file(filename + compress, input)
     else:
-        write_file(filename, output)
+        write_file(filename, input)
