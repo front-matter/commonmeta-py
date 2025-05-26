@@ -54,6 +54,14 @@ from .doi_utils import (
     validate_doi,
     validate_prefix,
 )
+from .file_utils import (
+    download_file,
+    read_file,
+    read_gz_file,
+    read_zip_file,
+    uncompress_content,
+    unzip_content,
+)
 from .metadata import Metadata, MetadataList
 from .readers import (
     cff_reader,
@@ -63,7 +71,7 @@ from .readers import (
     datacite_reader,
     datacite_xml_reader,
     inveniordm_reader,
-    json_feed_reader,
+    jsonfeed_reader,
     kbase_reader,
     openalex_reader,
     ris_reader,
@@ -75,7 +83,7 @@ from .utils import (
     extract_url,
     extract_urls,
     from_csl,
-    from_json_feed,
+    from_jsonfeed,
     from_schema_org,
     get_language,
     issn_as_url,
