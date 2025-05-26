@@ -7,8 +7,9 @@ import jwt
 import requests
 from furl import furl
 
+from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
+
 from .doi_utils import doi_as_url, validate_doi
-from .readers.json_feed_reader import get_json_feed_item_uuid
 
 
 def generate_ghost_token(key: str) -> str:
@@ -34,7 +35,7 @@ def update_ghost_post_via_api(
     """Update Ghost post via API"""
     # get post doi and url from Rogue Scholar API
     # post url is needed to find post via Ghost API
-    post = get_json_feed_item_uuid(_id)
+    post = get_jsonfeed_uuid(_id)
     if post.get("error", None):
         return post
     doi = validate_doi(post.get("doi", None))
