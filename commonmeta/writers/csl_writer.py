@@ -3,11 +3,14 @@
 from typing import Optional
 
 import orjson as json
+import orjsonl
+import yaml
 
 from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
+from ..file_utils import get_extension, write_gz_file, write_zip_file
 from ..utils import pages_as_string, to_csl
 
 
@@ -80,4 +83,31 @@ def write_csl_list(metalist):
     if metalist is None:
         return None
     items = [write_csl_item(item) for item in metalist.items]
-    return json.dumps(items)
+
+    if metalist.file:
+        filename, extension, compress = get_extension(metalist.file)
+        if not extension:
+            extension = "json"
+        if extension == "jsonl":
+            orjsonl.save(metalist.file, items)
+        elif extension == "json":
+            json_output = json.dumps(items).decode("utf-8")
+            if compress == "gz":
+                write_gz_file(filename, json_output)
+            elif compress == "zip":
+                write_zip_file(filename, json_output)
+            else:
+                with open(metalist.file, "w") as file:
+                    file.write(json_output)
+        elif extension == "yaml":
+            yaml_output = yaml.dump(items).decode("utf-8")
+            if compress == "gz":
+                write_gz_file(filename, yaml_output)
+            elif compress == "zip":
+                write_zip_file(filename, yaml_output)
+            else:
+                with open(metalist.file, "w") as file:
+                    file.write(yaml_output)
+        return metalist.file
+    else:
+        return json.dumps(items)
