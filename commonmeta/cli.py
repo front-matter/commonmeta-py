@@ -9,9 +9,7 @@ from commonmeta.api_utils import update_ghost_post_via_api
 from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
-from commonmeta.readers.json_feed_reader import (
-    get_json_feed_item_uuid,
-)
+from commonmeta.readers.jsonfeed_reader import get_jsonfeed, get_jsonfeed_uuid
 from commonmeta.readers.openalex_reader import get_random_openalex_id
 
 
@@ -118,8 +116,7 @@ def put(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-@click.option("--filename", type=str)
-@click.option("--jsonlines/--no-jsonlines", type=bool, show_default=True, default=False)
+@click.option("--file", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
 def list(
@@ -132,8 +129,7 @@ def list(
     depositor,
     email,
     registrant,
-    filename,
-    jsonlines,
+    file,
     show_errors,
     show_timer,
 ):
@@ -145,14 +141,16 @@ def list(
         email=email,
         registrant=registrant,
         prefix=prefix,
-        filename=filename,
-        jsonlines=jsonlines,
     )
     end = time.time()
     runtime = end - start
     if show_errors and not metadata_list.is_valid:
         raise click.ClickException(str(metadata_list.errors))
-    click.echo(metadata_list.write(to=to, style=style, locale=locale))
+    if file:
+        metadata_list.write(to=to, style=style, locale=locale)
+    else:
+        click.echo(metadata_list.write(to=to, style=style, locale=locale))
+
     if show_errors and len(metadata_list.write_errors) > 0:
         raise click.ClickException(str(metadata_list.write_errors))
     if show_timer:
@@ -169,8 +167,11 @@ def list(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
-@click.option("--filename", type=str)
-@click.option("--jsonlines/--no-jsonlines", type=bool, show_default=True, default=False)
+@click.option("--login_in", type=str)
+@click.option("--login_passwd", type=str)
+@click.option("--host", type=str)
+@click.option("--token", type=str)
+@click.option("--file", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
 def push(
@@ -183,8 +184,10 @@ def push(
     depositor,
     email,
     registrant,
-    filename,
-    jsonlines,
+    login_in,
+    login_passwd,
+    host,
+    token,
     show_errors,
     show_timer,
 ):
@@ -195,9 +198,11 @@ def push(
         depositor=depositor,
         email=email,
         registrant=registrant,
+        login_in=login_in,
+        login_passwd=login_passwd,
+        host=host,
+        token=token,
         prefix=prefix,
-        filename=filename,
-        jsonlines=jsonlines,
     )
     end = time.time()
     runtime = end - start
@@ -264,7 +269,7 @@ def decode(doi):
 @cli.command()
 @click.argument("id", type=str, required=True)
 def encode_by_id(id):
-    post = get_json_feed_item_uuid(id)
+    post = get_jsonfeed(id)
     prefix = py_.get(post, "blog.prefix")
     if validate_prefix(prefix) is None:
         return None
@@ -277,7 +282,7 @@ def encode_by_id(id):
 @click.option("--id", type=str)
 def json_feed(filter, id=None):
     if filter == "blog_slug" and id is not None:
-        post = get_json_feed_item_uuid(id)
+        post = get_jsonfeed_uuid(id)
         output = py_.get(post, "blog.slug", "no slug found")
     else:
         output = "no filter specified"
