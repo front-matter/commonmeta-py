@@ -654,7 +654,7 @@ def dict_to_spdx(dct: dict) -> dict:
     # end
 
 
-def from_json_feed(elements: list) -> list:
+def from_jsonfeed(elements: list) -> list:
     """Convert from JSON Feed elements"""
 
     def format_element(element):
@@ -953,7 +953,7 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     if re.match(r"\A(http|https):/(/)?github\.com/(.+)\Z", pid) is not None:
         return "cff"
     if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
-        return "json_feed_item"
+        return "jsonfeed"
     if re.match(r"\Ahttps:/(/)(.+)/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
     return "schema_org"
@@ -981,7 +981,7 @@ def find_from_format_by_dict(dct: dict) -> Optional[str]:
     ]:
         return "codemeta"
     if dct.get("guid", None) is not None:
-        return "json_feed_item"
+        return "jsonfeed"
     if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
         return "datacite"
     if dct.get("source", None) == "Crossref":
@@ -1014,7 +1014,7 @@ def find_from_format_by_string(string: str) -> Optional[str]:
         ]:
             return "codemeta"
         if data.get("guid", None) is not None:
-            return "json_feed_item"
+            return "jsonfeed"
         if data.get("schemaVersion", "").startswith(
             "http://datacite.org/schema/kernel"
         ):
