@@ -23,6 +23,7 @@ from ..utils import (
     get_language,
     id_from_url,
     normalize_url,
+    pages_as_string,
     validate_orcid,
     validate_ror,
 )
@@ -68,7 +69,7 @@ def write_inveniordm(metadata):
         ]
     )
     container = metadata.container if metadata.container else {}
-    journal = (
+    journal_title = (
         container.get("title", None)
         if _type not in ["inbook", "inproceedings"]
         and container.get("type") in ["Journal", "Periodical", "Blog"]
@@ -79,6 +80,10 @@ def write_inveniordm(metadata):
         if container.get("identifierType", None) == "ISSN"
         else None
     )
+    volume = container.get("volume", None)
+    issue = container.get("issue", None)
+    pages = pages_as_string(container)
+
     dates = []
     for date in metadata.date.keys():
         if metadata.date.get(date, None) is None:
@@ -141,7 +146,15 @@ def write_inveniordm(metadata):
             ),
             "custom_fields": compact(
                 {
-                    "journal:journal": compact({"title": journal, "issn": issn}),
+                    "journal:journal": compact(
+                        {
+                            "title": journal_title,
+                            "issn": issn,
+                            "volume": volume,
+                            "issue": issue,
+                            "pages": pages,
+                        }
+                    ),
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
                     "rs:generator": container.get("platform", None),
@@ -618,9 +631,19 @@ def update_legacy_record(record, legacy_key: str):
 
     now = f"{int(time())}"
     if record.get("id", None) is not None:
-        output = {"rid": record.get("id"), "indexed_at": now, "indexed": "true", "archived": "true"}
+        output = {
+            "rid": record.get("id"),
+            "indexed_at": now,
+            "indexed": "true",
+            "archived": "true",
+        }
     else:
-        output = {"doi": record.get("doi"), "indexed_at": now, "indexed": "true", "archived": "true"}
+        output = {
+            "doi": record.get("doi"),
+            "indexed_at": now,
+            "indexed": "true",
+            "archived": "true",
+        }
 
     request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
     headers = {
