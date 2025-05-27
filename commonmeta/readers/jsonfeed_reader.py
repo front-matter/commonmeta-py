@@ -86,6 +86,10 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         elif read_options.get("prefix"):
             _id = encode_doi(read_options.get("prefix"))
 
+    # fall back to url if no DOI can be generated
+    if _id is None:
+        _id = url
+
     _type = "BlogPost"
 
     if meta.get("authors", None):
