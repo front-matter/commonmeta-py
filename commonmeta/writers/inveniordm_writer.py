@@ -611,19 +611,18 @@ def update_legacy_record(record, legacy_key: str):
 
     if not legacy_key:
         return record, ValueError("no legacy key provided")
-
     if not record.get("uuid", None):
         return record, ValueError("no UUID provided")
-
-    now = f"{int(time())}"
-
     if not record.get("doi", None):
         return ValueError("no valid doi to update")
 
-    output = {"indexed_at": now, "indexed": "true", "archived": "true"}
+    now = f"{int(time())}"
+    if record.get("id", None) is not None:
+        output = {"rid": record.get("id"), "indexed_at": now, "indexed": "true", "archived": "true"}
+    else:
+        output = {"doi": record.get("doi"), "indexed_at": now, "indexed": "true", "archived": "true"}
 
     request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
-
     headers = {
         "Content-Type": "application/json",
         "apikey": legacy_key,
@@ -641,7 +640,7 @@ def update_legacy_record(record, legacy_key: str):
         return record
 
     except requests.exceptions.RequestException as e:
-        return record, e
+        raise InvenioRDMError(f"Error updating legacy record: {str(e)}")
 
 
 def search_by_slug(slug, type_value, host, token) -> Optional[str]:
