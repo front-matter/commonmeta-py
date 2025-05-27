@@ -476,7 +476,6 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
         # optionally update rogue-scholar legacy record
         if host == "rogue-scholar.org" and legacy_key is not None:
             record = update_legacy_record(record, legacy_key)
-        print("g", record)
     except Exception as e:
         raise InvenioRDMError(f"Unexpected error: {str(e)}")
 
@@ -524,12 +523,11 @@ def create_draft_record(record, host, token, input):
         )
         response.raise_for_status()
         data = response.json()
-        return {
-            "id": data.get("id", None),
-            "created": data.get("created", None),
-            "updated": data.get("updated", None),
-            "status": "updated",
-        }
+        record["id"]: data.get("id", None)
+        record["created"] = data.get("created", None)
+        record["updated"] = data.get("updated", None)
+        record["status"] = "draft"
+        return record
     except requests.exceptions.RequestException as e:
         raise InvenioRDMError(f"Error creating draft record: {str(e)}")
 
@@ -623,11 +621,11 @@ def update_legacy_record(record, legacy_key: str):
     legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
 
     if not legacy_key:
-        return record, ValueError("no legacy key provided")
+        raise ValueError("no legacy key provided")
     if not record.get("uuid", None):
-        return record, ValueError("no UUID provided")
+        raise ValueError("no UUID provided")
     if not record.get("doi", None):
-        return ValueError("no valid doi to update")
+        raise ValueError("no valid doi to update")
 
     now = f"{int(time())}"
     if record.get("id", None) is not None:
@@ -637,13 +635,15 @@ def update_legacy_record(record, legacy_key: str):
             "indexed": "true",
             "archived": "true",
         }
-    else:
+    elif record.get("doi", None) is not None:
         output = {
             "doi": record.get("doi"),
             "indexed_at": now,
             "indexed": "true",
             "archived": "true",
         }
+    else:
+        return record # nothing to update
 
     request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
     headers = {
@@ -657,7 +657,7 @@ def update_legacy_record(record, legacy_key: str):
         response = requests.patch(request_url, json=output, headers=headers, timeout=30)
         response.raise_for_status()
         if response.status_code != 204:
-            return record, Exception(f"Unexpected status code: {response.status_code}")
+            return Exception(f"Unexpected status code: {response.status_code}")
 
         record["status"] = "updated_legacy"
         return record
