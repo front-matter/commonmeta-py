@@ -301,20 +301,101 @@ def datacite_api_sample_url(number: int = 1, **kwargs) -> str:
         return f"https://api.stage.datacite.org/dois?random=true&page[size]={number}"
     return f"https://api.datacite.org/dois?random=true&page[size]={number}"
 
-
-def is_rogue_scholar_doi(doi: str) -> bool:
-    """Return True if DOI is from Rogue Scholar"""
-    prefix = validate_prefix(doi)
-    return prefix in [
-        "10.34732",  # not managed by Front Matter
+def is_rogue_scholar_doi(doi: str, ra: str="crossref") -> bool:
+    """Check if a DOI is from Rogue Scholar with specific registration agency"""
+    rogue_scholar_crossref_prefixes = [
+        "10.13003",
         "10.53731",
         "10.54900",
-        "10.57689",  # not managed by Front Matter
-        "10.58079",  # not managed by Front Matter
+        "10.57689",
+        "10.59347",
         "10.59348",
         "10.59349",
         "10.59350",
         "10.63485",
         "10.64000",
-        "10.71938",  # not managed by Front Matter
     ]
+    rogue_scholar_datacite_prefixes = [
+        "10.5438",
+        "10.34732", # not managed by Front Matter
+        "10.57689", # not managed by Front Matter
+        "10.58079", # not managed by Front Matter
+        "10.60804",
+        "10.71938",  # not managed by Front Matter
+        # "10.83132",
+    ]
+
+    prefix = validate_prefix(doi)
+    if not prefix:
+        return False
+
+    is_crossref = prefix in rogue_scholar_crossref_prefixes
+    is_datacite = prefix in rogue_scholar_datacite_prefixes
+
+    if ra == "crossref":
+        return is_crossref
+    elif ra == "datacite":
+        return is_datacite
+    return is_crossref or is_datacite
+
+
+def generate_wordpress_doi(prefix: str, slug: str, guid: str) -> str:
+    """Generate a DOI from a WordPress GUID and slug"""
+    import re
+
+    if not prefix or not guid:
+        return ""
+
+    pattern = re.compile(r'p=(\d+)$')
+    matched = pattern.search(guid)
+
+    if not matched:
+        return ""
+
+    doi = f"https://doi.org/{prefix}/{slug}.{matched.group(1)}"
+    return doi
+
+
+def generate_doi_from_guid(prefix: str, guid: str) -> str:
+    """Validates a GUID that is a DOI"""
+    import base32_lib as base32
+
+    if not prefix:
+        return ""
+
+    doi = normalize_doi(guid)
+    if not doi:
+        return ""
+
+    p = validate_prefix(doi)
+    if not p or p != prefix:
+        return ""
+
+    suffix = doi.split("/")[-1]
+
+    try:
+        number = base32.decode(suffix, checksum=True)
+        if number != 0:
+            return doi
+    except (ValueError, IndexError):
+        pass
+
+    return ""
+
+
+def generate_substack_doi(prefix: str, guid: str) -> str:
+    """Generate a DOI from a Substack GUID"""
+    import base32_lib as base32
+
+    if not prefix or not guid:
+        return ""
+
+    try:
+        i = int(guid)
+    except ValueError:
+        return ""
+
+    # encode the number using base32 with length=4, split_every=8, and checksum=True
+    suffix = base32.encode(i, length=4, split_every=8, checksum=True)
+    doi = f"https://doi.org/{prefix}/{suffix}"
+    return doi

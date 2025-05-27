@@ -13,6 +13,9 @@ from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
     doi_from_url,
     encode_doi,
+    generate_doi_from_guid,
+    generate_substack_doi,
+    generate_wordpress_doi,
     is_rogue_scholar_doi,
     normalize_doi,
     validate_doi,
@@ -55,13 +58,35 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         "archive_url", None
     ):
         url = normalize_url(meta.get("archive_url", None))
-    _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None)) or url
-    _type = "BlogPost"
 
-    # optionally generate a DOI if missing but a DOI prefix is provided
-    prefix = read_options.get("prefix", None) or py_.get(meta, "blog.prefix", None)
-    if doi_from_url(_id) is None and prefix is not None:
-        _id = encode_doi(prefix)
+    # generate DOI string for registration if not provided
+    _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
+    if _id is None:
+        if meta.get("guid") and py_.get(meta, "blog.doi_reg", False):
+            # Generate DOI based on blogging platform
+            generator = py_.get(meta, "blog.generator")
+            prefix = py_.get(meta, "blog.prefix")
+            slug = py_.get(meta, "blog.slug")
+            guid = meta.get("guid")
+
+            # Import these functions only when needed to avoid circular imports
+            if generator in ["WordPress", "WordPress.com"] and prefix and slug and guid:
+                _id = generate_wordpress_doi(prefix, slug, guid)
+            elif generator == "Substack" and prefix and guid:
+                _id = generate_substack_doi(prefix, guid)
+            elif prefix and guid:
+                _id = generate_doi_from_guid(prefix, guid)
+
+        # If still no DOI but prefix provided and not registered for DOI generation
+        elif py_.get(meta, "blog.prefix") and not py_.get(meta, "blog.doi_reg", False):
+            prefix = py_.get(meta, "blog.prefix")
+            _id = encode_doi(prefix)
+
+        # If override prefix is provided in read_options, use that
+        elif read_options.get("prefix"):
+            _id = encode_doi(read_options.get("prefix"))
+
+    _type = "BlogPost"
 
     if meta.get("authors", None):
         contributors = get_authors(from_jsonfeed(wrap(meta.get("authors"))))
