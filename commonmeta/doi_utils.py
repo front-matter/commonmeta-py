@@ -301,7 +301,8 @@ def datacite_api_sample_url(number: int = 1, **kwargs) -> str:
         return f"https://api.stage.datacite.org/dois?random=true&page[size]={number}"
     return f"https://api.datacite.org/dois?random=true&page[size]={number}"
 
-def is_rogue_scholar_doi(doi: str, ra: str="crossref") -> bool:
+
+def is_rogue_scholar_doi(doi: str, ra: str = "crossref") -> bool:
     """Check if a DOI is from Rogue Scholar with specific registration agency"""
     rogue_scholar_crossref_prefixes = [
         "10.13003",
@@ -317,9 +318,9 @@ def is_rogue_scholar_doi(doi: str, ra: str="crossref") -> bool:
     ]
     rogue_scholar_datacite_prefixes = [
         "10.5438",
-        "10.34732", # not managed by Front Matter
-        "10.57689", # not managed by Front Matter
-        "10.58079", # not managed by Front Matter
+        "10.34732",  # not managed by Front Matter
+        "10.57689",  # not managed by Front Matter
+        "10.58079",  # not managed by Front Matter
         "10.60804",
         "10.71938",  # not managed by Front Matter
         # "10.83132",
@@ -346,7 +347,7 @@ def generate_wordpress_doi(prefix: str, slug: str, guid: str) -> str:
     if not prefix or not guid:
         return ""
 
-    pattern = re.compile(r'p=(\d+)$')
+    pattern = re.compile(r"p=(\d+)$")
     matched = pattern.search(guid)
 
     if not matched:
