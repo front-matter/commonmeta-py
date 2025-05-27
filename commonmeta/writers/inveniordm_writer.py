@@ -477,7 +477,7 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
         if host == "rogue-scholar.org" and legacy_key is not None:
             record = update_legacy_record(record, legacy_key)
     except Exception as e:
-        raise InvenioRDMError(f"Unexpected error: {str(e)}")
+        print(f"Unexpected error: {str(e)}")
 
     return record
 
@@ -508,7 +508,8 @@ def search_by_doi(doi, host, token) -> Optional[str]:
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error searching for DOI: {str(e)}")
+        print(f"Error searching for DOI: {str(e)}")
+        return None
 
 
 def create_draft_record(record, host, token, input):
@@ -535,7 +536,9 @@ def create_draft_record(record, host, token, input):
         record["status"] = "draft"
         return record
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error creating draft record: {str(e)}")
+        print(f"Error creating draft record: {str(e)}")
+        record["status"] = "error_draft"
+        return record
 
 
 def edit_published_record(record, host, token):
@@ -554,7 +557,9 @@ def edit_published_record(record, host, token):
         record["status"] = "edited"
         return record
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error creating draft from published record: {str(e)}")
+        print(f"Error creating draft from published record: {str(e)}")
+        record["status"] = "error_edit_published_record"
+        return record
 
 
 def update_draft_record(record, host, token, inveniordm_data):
@@ -576,7 +581,9 @@ def update_draft_record(record, host, token, inveniordm_data):
         record["status"] = "updated"
         return record
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error updating draft record: {str(e)}")
+        print(f"Error updating draft record: {str(e)}")
+        record["status"] = "error_update_draft_record"
+        return record
 
 
 def publish_draft_record(record, host, token):
@@ -585,9 +592,10 @@ def publish_draft_record(record, host, token):
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    if not record.get("id", None):
-        raise InvenioRDMError("Error publishing draft record")
     try:
+        if not record.get("id", None):
+            raise InvenioRDMError("Missing record id")
+
         response = requests.post(
             f"https://{host}/api/records/{record['id']}/draft/actions/publish",
             headers=headers,
@@ -606,7 +614,9 @@ def publish_draft_record(record, host, token):
         record["status"] = "published"
         return record
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error publishing draft record: {str(e)}")
+        print(f"Error publishing draft record: {str(e)}")
+        record["status"] = "error_publish_draft_record"
+        return record
 
 
 def add_record_to_community(record, host, token, community_id):
@@ -624,49 +634,47 @@ def add_record_to_community(record, host, token, community_id):
         response.raise_for_status()
         return record
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error adding record to community: {str(e)}")
+        print(f"Error adding record to community: {str(e)}")
+        return record
 
 
 def update_legacy_record(record, legacy_key: str):
     """Update corresponding record in Rogue Scholar legacy database."""
 
     legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
-
-    if not legacy_key:
-        raise ValueError("no legacy key provided")
-    if not record.get("uuid", None):
-        raise ValueError("no UUID provided")
-
-    now = f"{int(time())}"
-    if record.get("id", None) is not None:
-        output = {
-            "rid": record.get("id"),
-            "indexed_at": now,
-            "indexed": "true",
-            "archived": "true",
-        }
-    elif record.get("doi", None) is not None:
-        output = {
-            "doi": record.get("doi"),
-            "indexed_at": now,
-            "indexed": "true",
-            "archived": "true",
-        }
-    else:
-        print(f"nothing to update for id {record.get("uuid")}")
-        return record # nothing to update
-
-    request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
-    headers = {
-        "Content-Type": "application/json",
-        "apikey": legacy_key,
-        "Authorization": f"Bearer {legacy_key}",
-        "Prefer": "return=minimal",
-    }
-
     try:
+        if not legacy_key:
+            raise ValueError("no legacy key provided")
+        if not record.get("uuid", None):
+            raise ValueError("no UUID provided")
+
+        now = f"{int(time())}"
+        if record.get("id", None) is not None:
+            output = {
+                "rid": record.get("id"),
+                "indexed_at": now,
+                "indexed": "true",
+                "archived": "true",
+            }
+        elif record.get("doi", None) is not None:
+            output = {
+                "doi": record.get("doi"),
+                "indexed_at": now,
+                "indexed": "true",
+                "archived": "true",
+            }
+        else:
+            print(f"nothing to update for id {record.get("uuid")}")
+            return record # nothing to update
+
+        request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
+        headers = {
+            "Content-Type": "application/json",
+            "apikey": legacy_key,
+            "Authorization": f"Bearer {legacy_key}",
+            "Prefer": "return=minimal",
+        }
         response = requests.patch(request_url, json=output, headers=headers, timeout=30)
-        response.raise_for_status()
         if response.status_code != 204:
             return Exception(f"Unexpected status code: {response.status_code}")
 
@@ -674,7 +682,9 @@ def update_legacy_record(record, legacy_key: str):
         return record
 
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error updating legacy record: {str(e)}")
+        print(f"Error updating legacy record: {str(e)}")
+        record["status"] = "error_update_legacy_record"
+        return record
 
 
 def search_by_slug(slug, type_value, host, token) -> Optional[str]:
@@ -694,11 +704,12 @@ def search_by_slug(slug, type_value, host, token) -> Optional[str]:
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        raise InvenioRDMError(f"Error searching for community: {str(e)}")
+        print(f"Error searching for community: {str(e)}")
+        return None
 
 
 def string_to_slug(text):
-    """Convert a string to a slug format"""
+    """makes a string lowercase and removes non-alphanumeric characters"""
     # Replace spaces with hyphens
     slug = re.sub(r"\s+", "-", text.lower())
     # Remove special characters
