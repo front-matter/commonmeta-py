@@ -521,7 +521,13 @@ def create_draft_record(record, host, token, input):
         response = requests.post(
             f"https://{host}/api/records", headers=headers, json=input
         )
-        response.raise_for_status()
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
+        if response.status_code != 201:
+            print(response.json())
+            record["status"] = "failed_create_draft"
+            return record
         data = response.json()
         record["id"]: data.get("id", None)
         record["created"] = data.get("created", None)
@@ -544,8 +550,6 @@ def edit_published_record(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
-        record["doi"] = py_.get(data, "pids.doi.identifier")
-        record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "edited"
         return record
@@ -581,12 +585,20 @@ def publish_draft_record(record, host, token):
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
+    if not record.get("id", None):
+        raise InvenioRDMError("Error publishing draft record")
     try:
         response = requests.post(
             f"https://{host}/api/records/{record['id']}/draft/actions/publish",
             headers=headers,
         )
-        response.raise_for_status()
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
+        if response.status_code != 202:
+            print(response.json())
+            record["status"] = "failed_publish_draft"
+            return record
         data = response.json()
         record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
         record["created"] = data.get("created", None)
