@@ -636,8 +636,6 @@ def update_legacy_record(record, legacy_key: str):
         raise ValueError("no legacy key provided")
     if not record.get("uuid", None):
         raise ValueError("no UUID provided")
-    if not record.get("doi", None):
-        raise ValueError("no valid doi to update")
 
     now = f"{int(time())}"
     if record.get("id", None) is not None:
@@ -655,6 +653,7 @@ def update_legacy_record(record, legacy_key: str):
             "archived": "true",
         }
     else:
+        print(f"nothing to update for id {record.get("uuid")}")
         return record # nothing to update
 
     request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
