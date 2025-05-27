@@ -1,8 +1,9 @@
 """InvenioRDM writer for commonmeta-py"""
 
+import logging
 import re
 from time import time
-from typing import Optional
+from typing import Any, Dict, Optional, Tuple
 from urllib.parse import urlparse
 
 import orjson as json
@@ -15,6 +16,7 @@ from ..constants import (
     COMMUNITY_TRANSLATIONS,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
+    Commonmeta,
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, normalize_doi
@@ -28,6 +30,7 @@ from ..utils import (
     validate_ror,
 )
 
+logger = logging.getLogger(__name__)
 
 def write_inveniordm(metadata):
     """Write inveniordm"""
@@ -384,7 +387,12 @@ def write_inveniordm_list(metalist):
     return [write_inveniordm(item) for item in metalist.items]
 
 
-def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
+def push_inveniordm(
+        metadata: Commonmeta,
+        host: str,
+        token: str,
+        legacy_key: str
+    ) -> Tuple[Dict[str, Any], Optional[Exception]]:
     """Push record to InvenioRDM"""
 
     record = {}
@@ -392,22 +400,22 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
 
     try:
         # Remove IsPartOf relation with InvenioRDM community identifier after storing it
-        community_index = None
-        if hasattr(metadata, "relations") and metadata.relations:
-            for i, relation in enumerate(metadata.relations):
-                if relation.get("type") == "IsPartOf" and relation.get(
-                    "id", ""
-                ).startswith("https://rogue-scholar.org/api/communities/"):
-                    slug = relation.get("id").split("/")[5]
-                    community_id, _ = search_by_slug(slug, "blog", host, token)
-                    if community_id:
-                        record["community"] = slug
-                        record["community_id"] = community_id
-                        community_index = i
+        # community_index = None
+        # if hasattr(metadata, "relations") and metadata.relations:
+        #     for i, relation in enumerate(metadata.relations):
+        #         if relation.get("type") == "IsPartOf" and relation.get(
+        #             "id", ""
+        #         ).startswith("https://rogue-scholar.org/api/communities/"):
+        #             slug = relation.get("id").split("/")[5]
+        #             community_id, _ = search_by_slug(slug, "blog", host, token)
+        #             if community_id:
+        #                 record["community"] = slug
+        #                 record["community_id"] = community_id
+        #                 community_index = i
 
-            # Remove the relation if we found and processed it
-            if community_index is not None and hasattr(metadata, "relations"):
-                metadata.relations.pop(community_index)
+        #     # Remove the relation if we found and processed it
+        #     if community_index is not None and hasattr(metadata, "relations"):
+        #         metadata.relations.pop(community_index)
 
         # Remove InvenioRDM rid after storing it
         # rid_index = None
@@ -450,7 +458,8 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
 
         if hasattr(metadata, "subjects"):
             for subject in metadata.subjects:
-                slug = string_to_slug(subject.get("subject", ""))
+                subject_name = subject.get("subject", "")
+                slug = string_to_slug(subject_name)
                 if slug in COMMUNITY_TRANSLATIONS:
                     slug = COMMUNITY_TRANSLATIONS[slug]
 
@@ -477,7 +486,11 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
         if host == "rogue-scholar.org" and legacy_key is not None:
             record = update_legacy_record(record, legacy_key)
     except Exception as e:
-        print(f"Unexpected error: {str(e)}")
+        logger.error(f"Unexpected error in push_inveniordm: {str(e)}", exc_info=True, extra={
+            "host": host,
+            "record_id": record.get("id")
+        })
+        record["status"] = "error"
 
     return record
 
@@ -504,11 +517,11 @@ def search_by_doi(doi, host, token) -> Optional[str]:
         )
         response.raise_for_status()
         data = response.json()
-        if py_.get(data, "hits.total") or 0 > 0:
+        if py_.get(data, "hits.total", 0) > 0:
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        print(f"Error searching for DOI: {str(e)}")
+        logger.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
         return None
 
 
@@ -526,17 +539,17 @@ def create_draft_record(record, host, token, input):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 201:
-            print(response.json())
+            logger.error(f"Failed to create draft record: {response.status_code} - {response.json()}")
             record["status"] = "failed_create_draft"
             return record
         data = response.json()
-        record["id"]: data.get("id", None)
+        record["id"] = data.get("id", None)
         record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "draft"
         return record
     except requests.exceptions.RequestException as e:
-        print(f"Error creating draft record: {str(e)}")
+        logger.error(f"Error creating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_draft"
         return record
 
@@ -557,7 +570,7 @@ def edit_published_record(record, host, token):
         record["status"] = "edited"
         return record
     except requests.exceptions.RequestException as e:
-        print(f"Error creating draft from published record: {str(e)}")
+        logger.error(f"Error creating draft from published record: {str(e)}", exc_info=True)
         record["status"] = "error_edit_published_record"
         return record
 
@@ -581,7 +594,7 @@ def update_draft_record(record, host, token, inveniordm_data):
         record["status"] = "updated"
         return record
     except requests.exceptions.RequestException as e:
-        print(f"Error updating draft record: {str(e)}")
+        logger.error(f"Error updating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_update_draft_record"
         return record
 
@@ -604,8 +617,8 @@ def publish_draft_record(record, host, token):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 202:
-            print(response.json())
-            record["status"] = "failed_publish_draft"
+            logger.error(f"Failed to publish draft record: {response.status_code} - {response.json()}")
+            record["status"] = "error_publish_draft_record"
             return record
         data = response.json()
         record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
@@ -614,7 +627,7 @@ def publish_draft_record(record, host, token):
         record["status"] = "published"
         return record
     except requests.exceptions.RequestException as e:
-        print(f"Error publishing draft record: {str(e)}")
+        logger.error(f"Error publishing draft record: {str(e)}", exc_info=True)
         record["status"] = "error_publish_draft_record"
         return record
 
@@ -634,7 +647,7 @@ def add_record_to_community(record, host, token, community_id):
         response.raise_for_status()
         return record
     except requests.exceptions.RequestException as e:
-        print(f"Error adding record to community: {str(e)}")
+        logger.error(f"Error adding record to community: {str(e)}", exc_info=True)
         return record
 
 
@@ -682,7 +695,7 @@ def update_legacy_record(record, legacy_key: str):
         return record
 
     except requests.exceptions.RequestException as e:
-        print(f"Error updating legacy record: {str(e)}")
+        logger.error(f"Error updating legacy record: {str(e)}", exc_info=True)
         record["status"] = "error_update_legacy_record"
         return record
 
@@ -700,11 +713,11 @@ def search_by_slug(slug, type_value, host, token) -> Optional[str]:
         )
         response.raise_for_status()
         data = response.json()
-        if py_.get(data, "hits.total") or 0 > 0:
+        if py_.get(data, "hits.total", 0) > 0:
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        print(f"Error searching for community: {str(e)}")
+        logger.error(f"Error searching for community: {str(e)}", exc_info=True)
         return None
 
 
