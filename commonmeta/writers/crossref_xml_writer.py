@@ -1,6 +1,7 @@
 """Crossref XML writer for commonmeta-py"""
 
 import io
+import logging
 from datetime import datetime
 from time import time
 from typing import Optional
@@ -17,6 +18,8 @@ from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, validate_doi
 from ..utils import validate_url
+
+logger = logging.getLogger(__name__)
 
 POSTED_CONTENT_TYPES = [
     "preprint",
@@ -342,20 +345,25 @@ def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
 
     data = convert_crossref_xml(metadata)
     if data is None:
+        logger.error(f"Could not convert metadata to Crossref XML: {metadata.id}")
         return None
+
+    # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
     crossref_xml = schema.dump(data)
 
-    # Ensure the order of fields in the XML matches the expected order
+    # Ensure consistent field ordering through the defined mapping
     field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
     crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
+
     # Convert to XML
     return unparse_xml(crossref_xml, dialect="crossref")
 
 
-def write_crossref_xml_list(metalist):
+def write_crossref_xml_list(metalist) -> Optional[str]:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
+        logger.error("Invalid metalist provided for Crossref XML generation")
         return None
 
     schema = CrossrefXMLSchema()
@@ -380,15 +388,17 @@ def push_crossref_xml_list(metalist, login_id: str, login_passwd: str) -> bytes:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     input = write_crossref_xml_list(metalist)
+    if not input:
+        logger.error("Failed to generate XML for upload")
+        return "{}"
 
     # Convert string to bytes if necessary
     if isinstance(input, str):
         input = input.encode("utf-8")
 
-    # The filename displayed in the Crossref admin interface, using the current UNIX timestamp
+    # The filename displayed in the Crossref admin interface
     filename = f"{int(time())}"
 
-    # Create multipart form data
     multipart_data = MultipartEncoder(
         fields={
             "fname": (filename, io.BytesIO(input), "application/xml"),
@@ -398,38 +408,32 @@ def push_crossref_xml_list(metalist, login_id: str, login_passwd: str) -> bytes:
         }
     )
 
-    # Set up the request
     post_url = "https://doi.crossref.org/servlet/deposit"
     headers = {"Content-Type": multipart_data.content_type}
+    resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=10)
+    resp.raise_for_status()
 
-    try:
-        # Send the request
-        resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=10)
-        resp.raise_for_status()
+    # Parse the response
+    response = parse_xml(resp.content)
+    status = py_.get(response, "html.body.h2")
+    if status == "SUCCESS":
+        items = []
+        for item in metalist.items:
+            items.append(
+                {
+                    "doi": item.id,
+                    "updated": datetime.now().isoformat("T", "seconds"),
+                    "status": "submitted",
+                }
+            )
 
-        # Parse the response
-        response = parse_xml(resp.content)
-        status = py_.get(response, "html.body.h2")
-        if status == "SUCCESS":
-            items = []
-            for item in metalist.items:
-                items.append(
-                    {
-                        "doi": item.id,
-                        "updated": datetime.now().isoformat("T", "seconds"),
-                        "status": "submitted",
-                    }
-                )
+        # Return JSON response
+        return json.dumps(items, option=json.OPT_INDENT_2)
 
-            # orjson has different options
-            return json.dumps(items, option=json.OPT_INDENT_2)
-
-        # if there is an error
-        message = py_.get(response, "html.body.p")
-        raise CrossrefError(f"Error uploading batch: {message}")
-
-    except requests.exceptions.RequestException as e:
-        raise CrossrefError(f"Error uploading batch: {str(e)}") from e
+    # Handle error response
+    message = py_.get(response, "html.body.p")
+    logger.error(f"Crossref API error: {message}")
+    return "{}"
 
 
 def get_attributes(obj, **kwargs) -> dict:
@@ -539,15 +543,16 @@ def get_institution(obj) -> Optional[dict]:
 def get_titles(obj) -> Optional[dict]:
     """get titles"""
 
-    title = {}
+    titles = {}
     for t in wrap(py_.get(obj, "titles", [])):
         if isinstance(t, str):
-            title["title"] = t
+            titles["title"] = t
         elif isinstance(t, dict) and t.get("titleType", None) == "Subtitle":
-            title["subtitle"] = t.get("title", None)
-        elif isinstance(title, dict):
-            title["title"] = t.get("title", None)
-    return title
+            titles["subtitle"] = t.get("title", None)
+        elif isinstance(t, dict):
+            titles["title"] = t.get("title", None)
+
+    return titles if titles else None
 
 
 def get_contributors(obj) -> Optional[dict]:

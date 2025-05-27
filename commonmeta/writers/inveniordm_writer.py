@@ -3,7 +3,7 @@
 import logging
 import re
 from time import time
-from typing import Any, Dict, Optional, Tuple
+from typing import Dict, Optional
 from urllib.parse import urlparse
 
 import orjson as json
@@ -392,11 +392,11 @@ def push_inveniordm(
         host: str,
         token: str,
         legacy_key: str
-    ) -> Tuple[Dict[str, Any], Optional[Exception]]:
+    ) -> Dict:
     """Push record to InvenioRDM"""
 
     record = {}
-    input = write_inveniordm(metadata)
+    output = write_inveniordm(metadata)
 
     try:
         # Remove IsPartOf relation with InvenioRDM community identifier after storing it
@@ -439,10 +439,10 @@ def push_inveniordm(
             record = edit_published_record(record, host, token)
 
             # Update draft record
-            record = update_draft_record(record, host, token, input)
+            record = update_draft_record(record, host, token, output)
         else:
             # Create draft record
-            record = create_draft_record(record, host, token, input)
+            record = create_draft_record(record, host, token, output)
 
         # Publish draft record
         record = publish_draft_record(record, host, token)
@@ -525,7 +525,7 @@ def search_by_doi(doi, host, token) -> Optional[str]:
         return None
 
 
-def create_draft_record(record, host, token, input):
+def create_draft_record(record, host, token, output):
     """Create a new draft record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -533,7 +533,7 @@ def create_draft_record(record, host, token, input):
     }
     try:
         response = requests.post(
-            f"https://{host}/api/records", headers=headers, json=input
+            f"https://{host}/api/records", headers=headers, json=output
         )
         if response.status_code == 429:
             record["status"] = "failed_rate_limited"

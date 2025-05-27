@@ -342,7 +342,6 @@ def is_rogue_scholar_doi(doi: str, ra: str = "crossref") -> bool:
 
 def generate_wordpress_doi(prefix: str, slug: str, guid: str) -> str:
     """Generate a DOI from a WordPress GUID and slug"""
-    import re
 
     if not prefix or not guid:
         return ""
