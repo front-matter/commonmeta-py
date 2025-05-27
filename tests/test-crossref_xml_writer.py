@@ -1029,7 +1029,7 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "26",
+        "day": "27",
         "month": "5",
         "year": "2023",
     }
