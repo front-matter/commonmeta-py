@@ -490,7 +490,9 @@ class MetadataList:
         elif to == "datacite":
             raise ValueError("Datacite not yet supported for metadata lists")
         elif to == "inveniordm":
-            response = push_inveniordm_list(self, host=self.host, token=self.token, legacy_key=self.legacy_key)
+            response = push_inveniordm_list(
+                self, host=self.host, token=self.token, legacy_key=self.legacy_key
+            )
             return response
         else:
             raise ValueError("No valid output format found")

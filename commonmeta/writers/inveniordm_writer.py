@@ -371,7 +371,7 @@ def write_inveniordm_list(metalist):
     return [write_inveniordm(item) for item in metalist.items]
 
 
-def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
+def push_inveniordm(metadata, host: str, token: str, legacy_key: str):
     """Push record to InvenioRDM"""
 
     record = {}
@@ -382,8 +382,9 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
         community_index = None
         if hasattr(metadata, "relations") and metadata.relations:
             for i, relation in enumerate(metadata.relations):
-                if (relation.get("type") == "IsPartOf" and
-                    relation.get("id", "").startswith("https://rogue-scholar.org/api/communities/")):
+                if relation.get("type") == "IsPartOf" and relation.get(
+                    "id", ""
+                ).startswith("https://rogue-scholar.org/api/communities/"):
                     slug = relation.get("id").split("/")[5]
                     community_id, _ = search_by_slug(slug, "blog", host, token)
                     if community_id:
@@ -413,7 +414,6 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
         record["id"] = search_by_doi(doi_from_url(metadata.id), host, token)
 
         if record["id"] is not None:
-
             # Create draft record from published record
             record = edit_published_record(record, host, token)
 
@@ -443,9 +443,7 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
 
                 community_id = search_by_slug(slug, "topic", host, token)
                 if community_id:
-                    record = add_record_to_community(
-                        record, host, token, community_id
-                    )
+                    record = add_record_to_community(record, host, token, community_id)
 
         # Add record to communities defined as IsPartOf relation in inveniordm metadata's RelatedIdentifiers
         related_identifiers = py_.get(input, "metadata.related_identifiers")
@@ -460,21 +458,19 @@ def push_inveniordm(metadata, host: str, token: str, legacy_key:str):
                     and len(path_parts) == 3
                     and path_parts[1] == "communities"
                 ):
-                    record = add_record_to_community(
-                        record, host, token, path_parts[2]
-                    )
+                    record = add_record_to_community(record, host, token, path_parts[2])
 
         # optionally update rogue-scholar legacy record
         if host == "rogue-scholar.org" and legacy_key is not None:
             record = update_legacy_record(record, legacy_key)
-
+        print("g", record)
     except Exception as e:
         raise InvenioRDMError(f"Unexpected error: {str(e)}")
 
     return record
 
 
-def push_inveniordm_list(metalist, host: str, token: str, legacy_key:str) -> list:
+def push_inveniordm_list(metalist, host: str, token: str, legacy_key: str) -> list:
     """Push inveniordm list to InvenioRDM, returns list of push results."""
 
     if metalist is None:
@@ -491,7 +487,9 @@ def search_by_doi(doi, host, token) -> Optional[str]:
     }
     params = {"q": f"doi:{doi}", "size": 1}
     try:
-        response = requests.get(f"https://{host}/api/records", headers=headers, params=params)
+        response = requests.get(
+            f"https://{host}/api/records", headers=headers, params=params
+        )
         response.raise_for_status()
         data = response.json()
         if py_.get(data, "hits.total") or 0 > 0:
@@ -508,14 +506,16 @@ def create_draft_record(record, host, token, input):
         "Content-Type": "application/json",
     }
     try:
-        response = requests.post(f"https://{host}/api/records", headers=headers, json=input)
+        response = requests.post(
+            f"https://{host}/api/records", headers=headers, json=input
+        )
         response.raise_for_status()
         data = response.json()
         return {
             "id": data.get("id", None),
             "created": data.get("created", None),
             "updated": data.get("updated", None),
-            "status": "updated"
+            "status": "updated",
         }
     except requests.exceptions.RequestException as e:
         raise InvenioRDMError(f"Error creating draft record: {str(e)}")
@@ -620,12 +620,7 @@ def update_legacy_record(record, legacy_key: str):
     if not record.get("doi", None):
         return ValueError("no valid doi to update")
 
-    output = {
-            "doi": record["doi"],
-            "indexed_at": now,
-            "indexed": "true",
-            "archived": "true"
-        }
+    output = {"indexed_at": now, "indexed": "true", "archived": "true"}
 
     request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
 
@@ -633,16 +628,11 @@ def update_legacy_record(record, legacy_key: str):
         "Content-Type": "application/json",
         "apikey": legacy_key,
         "Authorization": f"Bearer {legacy_key}",
-        "Prefer": "return=minimal"
+        "Prefer": "return=minimal",
     }
 
     try:
-        response = requests.patch(
-            request_url,
-            json=output,
-            headers=headers,
-            timeout=30
-        )
+        response = requests.patch(request_url, json=output, headers=headers, timeout=30)
         response.raise_for_status()
         if response.status_code != 204:
             return record, Exception(f"Unexpected status code: {response.status_code}")
