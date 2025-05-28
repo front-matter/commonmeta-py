@@ -1,7 +1,7 @@
 """API Utils module for commonmeta-py"""
 
 from datetime import datetime as date
-from typing import Optional
+from typing import Dict, Optional
 
 import jwt
 import requests
@@ -31,7 +31,7 @@ def generate_ghost_token(key: str) -> str:
 
 def update_ghost_post_via_api(
     _id: str, api_key: Optional[str] = None, api_url: Optional[str] = None
-) -> dict[str, str]:
+) -> Dict[str, str]:
     """Update Ghost post via API"""
     # get post doi and url from Rogue Scholar API
     # post url is needed to find post via Ghost API

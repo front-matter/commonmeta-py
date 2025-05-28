@@ -2,15 +2,15 @@
 
 from pydash import py_
 
-from ..utils import normalize_url, normalize_doi, from_curie, from_kbase
-from ..base_utils import compact, wrap, presence, sanitize
 from ..author_utils import get_authors
-from ..date_utils import normalize_date_dict
-from ..doi_utils import doi_from_url, validate_doi
+from ..base_utils import compact, presence, sanitize, wrap
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
     Commonmeta,
 )
+from ..date_utils import normalize_date_dict
+from ..doi_utils import doi_from_url, validate_doi
+from ..utils import from_curie, from_kbase, normalize_doi, normalize_url
 
 
 def read_kbase(data: dict, **kwargs) -> Commonmeta:
@@ -70,32 +70,35 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        # required properties
-        "id": _id,
-        "type": _type,
-        "doi": doi_from_url(_id),
-        "url": normalize_url(meta.get("url", None)),
-        "contributors": presence(contributors),
-        "titles": titles,
-        "publisher": publisher,
-        "date": compact(date),
-        # recommended and optional properties
-        "additional_type": None,
-        "subjects": None,
-        "language": language,
-        "identifiers": None,
-        "version": py_.get(meta, "metadata.version"),
-        "license": presence(license_),
-        "descriptions": descriptions,
-        "geo_locations": None,
-        "fundingReferences": presence(funding_references),
-        "references": presence(references),
-        "relations": presence(relations),
-        # other properties
-        "files": presence(files),
-        "container": container,
-        "provider": "DataCite",
-    } | read_options
+        **{
+            # required properties
+            "id": _id,
+            "type": _type,
+            "doi": doi_from_url(_id),
+            "url": normalize_url(meta.get("url", None)),
+            "contributors": presence(contributors),
+            "titles": titles,
+            "publisher": publisher,
+            "date": compact(date),
+            # recommended and optional properties
+            "additional_type": None,
+            "subjects": None,
+            "language": language,
+            "identifiers": None,
+            "version": py_.get(meta, "metadata.version"),
+            "license": presence(license_),
+            "descriptions": descriptions,
+            "geo_locations": None,
+            "fundingReferences": presence(funding_references),
+            "references": presence(references),
+            "relations": presence(relations),
+            # other properties
+            "files": presence(files),
+            "container": container,
+            "provider": "DataCite",
+        },
+        **read_options,
+    }
 
 
 def format_title(title: dict) -> dict:

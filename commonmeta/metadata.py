@@ -1,7 +1,7 @@
 """Metadata"""
 
 from os import path
-from typing import Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 import orjson as json
 import yaml
@@ -69,7 +69,7 @@ from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 class Metadata:
     """Metadata"""
 
-    def __init__(self, string: Optional[Union[str, dict]], **kwargs):
+    def __init__(self, string: Optional[Union[str, Dict[str, Any]]], **kwargs):
         if string is None or not isinstance(string, (str, dict)):
             raise ValueError("No input found")
         self.via = kwargs.get("via", None)
@@ -147,7 +147,7 @@ class Metadata:
         # Default fallback
         raise ValueError("No metadata found")
 
-    def _get_metadata_from_pid(self, pid, via) -> dict:
+    def _get_metadata_from_pid(self, pid, via) -> Dict[str, Any]:
         """Helper method to get metadata from a PID."""
         if via == "schema_org":
             return get_schema_org(pid)
@@ -170,7 +170,7 @@ class Metadata:
         else:
             return {"pid": pid}
 
-    def _get_metadata_from_string(self, string, via) -> dict:
+    def _get_metadata_from_string(self, string, via) -> Dict[str, Any]:
         """Helper method to get metadata from a string."""
         try:
             # XML formats
@@ -214,7 +214,7 @@ class Metadata:
         except (TypeError, json.JSONDecodeError) as error:
             return {"error": str(error)}
 
-    def read_metadata(self, data: dict, **kwargs) -> dict:
+    def read_metadata(self, data: Dict[str, Any], **kwargs) -> Dict[str, Any]:
         """Read and parse metadata from various formats."""
         via = (isinstance(data, dict) and data.get("via")) or self.via
 
@@ -251,8 +251,8 @@ class Metadata:
         else:
             raise ValueError("No input format found")
 
-    def write(self, to: str = "commonmeta", **kwargs) -> str:
-        """Convert metadata into different formats."""
+    def write(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+        """convert metadata list into different formats"""
         try:
             result = self._write_format(to, **kwargs)
             if result is None or result == "":
@@ -262,20 +262,9 @@ class Metadata:
             # More specific error message including the original JSONDecodeError details
             raise ValueError(f"Invalid JSON: {str(e)}")
 
-    def _write_format(self, to: str, **kwargs) -> str:
+    def _write_format(self, to: str, **kwargs) -> Union[str, bytes]:
         """Helper method to handle writing to different formats."""
-        # Split the format handling into multiple methods to reduce cyclomatic complexity
-        if to in ["commonmeta", "datacite", "inveniordm", "schema_org"]:
-            return self._write_json_format(to)
-        elif to in ["bibtex", "csl", "citation", "ris"]:
-            return self._write_text_format(to, **kwargs)
-        elif to in ["crossref_xml"]:
-            return self._write_xml_format(to, **kwargs)
-        else:
-            raise ValueError("No output format found")
-
-    def _write_json_format(self, to: str) -> str:
-        """Handle JSON-based output formats."""
+        # JSON-based output formats
         if to == "commonmeta":
             result = json.dumps(write_commonmeta(self))
         elif to == "datacite":
@@ -284,8 +273,22 @@ class Metadata:
             result = json.dumps(write_inveniordm(self))
         elif to == "schema_org":
             result = json.dumps(write_schema_org(self))
+        # Text-based output formats
+        elif to == "bibtex":
+            return write_bibtex(self)
+        elif to == "csl":
+            return self._write_csl(**kwargs)
+        elif to == "citation":
+            self.style = kwargs.get("style", "apa")
+            self.locale = kwargs.get("locale", "en-US")
+            return write_citation(self)
+        elif to == "ris":
+            return write_ris(self)
+        # XML-based output formats
+        elif to == "crossref_xml":
+            return self._write_crossref_xml(**kwargs)
         else:
-            return "{}"
+            raise ValueError("No output format found")
 
         if isinstance(result, str):
             # Verify it's valid JSON
@@ -303,26 +306,6 @@ class Metadata:
             except (json.JSONDecodeError, UnicodeDecodeError):
                 return "{}"
         return "{}"
-
-    def _write_text_format(self, to: str, **kwargs) -> str:
-        """Handle text-based output formats."""
-        if to == "bibtex":
-            return write_bibtex(self)
-        elif to == "csl":
-            return self._write_csl(**kwargs)
-        elif to == "citation":
-            self.style = kwargs.get("style", "apa")
-            self.locale = kwargs.get("locale", "en-US")
-            return write_citation(self)
-        elif to == "ris":
-            return write_ris(self)
-        return ""
-
-    def _write_xml_format(self, to: str, **kwargs) -> str:
-        """Handle XML-based output formats."""
-        if to == "crossref_xml":
-            return self._write_crossref_xml(**kwargs)
-        return ""
 
     def _write_csl(self, **kwargs) -> str:
         """Write in CSL format with error checking."""
@@ -366,8 +349,8 @@ class MetadataList:
     """MetadataList"""
 
     def __init__(
-        self, dct: Optional[Union[str, dict]] = None, **kwargs
-    ) -> Optional[dict]:
+        self, dct: Optional[Union[str, Dict[str, Any]]] = None, **kwargs
+    ) -> None:
         if dct is None or not isinstance(dct, (str, bytes, dict)):
             raise ValueError("No input found")
         if isinstance(dct, dict):
@@ -423,12 +406,12 @@ class MetadataList:
         else:
             raise ValueError("No input format found")
 
-    def read_metadata_list(self, data: list, **kwargs) -> list:
+    def read_metadata_list(self, items, **kwargs) -> List[Metadata]:
         """read_metadata_list"""
         kwargs["via"] = kwargs.get("via", None) or self.via
-        return [Metadata(i, **kwargs) for i in data]
+        return [Metadata(i, **kwargs) for i in items]
 
-    def write(self, to: str = "commonmeta", **kwargs) -> str:
+    def write(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
         """convert metadata list into different formats"""
         if to == "bibtex":
             output = write_bibtex_list(self)
@@ -479,12 +462,15 @@ class MetadataList:
         else:
             raise ValueError("No valid output format found")
 
-    def push(self, to: str = "commonmeta", **kwargs) -> str:
+    def push(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
         """push metadata list to external APIs"""
 
         if to == "crossref_xml":
             response = push_crossref_xml_list(
-                self, login_id=self.login_id, login_passwd=self.login_passwd, legacy_key=self.legacy_key
+                self,
+                login_id=self.login_id,
+                login_passwd=self.login_passwd,
+                legacy_key=self.legacy_key,
             )
             return response
         elif to == "datacite":

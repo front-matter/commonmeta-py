@@ -67,21 +67,24 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     state = "findable" if meta.get("DO", None) or read_options else "not_found"
 
     return {
-        "id": _id,
-        "type": _type,
-        "doi": doi_from_url(_id),
-        "url": normalize_url(meta.get("UR", None)),
-        "titles": [{"title": meta.get("T1", None)}],
-        "descriptions": descriptions,
-        "contributors": presence(contributors),
-        "publisher": presence(publisher),
-        "container": container,
-        # 'related_identifiers': related_identifiers,
-        "date": date,
-        "subjects": subjects,
-        "language": meta.get("LA", None),
-        "state": state,
-    } | read_options
+        **{
+            "id": _id,
+            "type": _type,
+            "doi": doi_from_url(_id),
+            "url": normalize_url(meta.get("UR", None)),
+            "titles": [{"title": meta.get("T1", None)}],
+            "descriptions": descriptions,
+            "contributors": presence(contributors),
+            "publisher": presence(publisher),
+            "container": container,
+            # 'related_identifiers': related_identifiers,
+            "date": date,
+            "subjects": subjects,
+            "language": meta.get("LA", None),
+            "state": state,
+        },
+        **read_options,
+    }
 
 
 def ris_meta(data):

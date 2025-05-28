@@ -122,31 +122,34 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
     return {
-        # required properties
-        "id": _id,
-        "type": _type,
-        "doi": doi_from_url(_id),
-        "url": url,
-        "contributors": presence(contributors),
-        "titles": titles,
-        "publisher": publisher,
-        "date": compact(date),
-        # recommended and optional properties
-        # "additional_type": additional_type,
-        "subjects": presence(subjects),
-        "language": get_language(language),
-        "version": py_.get(meta, "metadata.version"),
-        "license": presence(license_),
-        "descriptions": descriptions,
-        "geoLocations": None,
-        "fundingReferences": presence(funding_references),
-        "references": presence(references),
-        "relations": presence(relations),
-        # other properties
-        "files": files,
-        "container": container,
-        "provider": "DataCite",
-    } | read_options
+        **{
+            # required properties
+            "id": _id,
+            "type": _type,
+            "doi": doi_from_url(_id),
+            "url": url,
+            "contributors": presence(contributors),
+            "titles": titles,
+            "publisher": publisher,
+            "date": compact(date),
+            # recommended and optional properties
+            # "additional_type": additional_type,
+            "subjects": presence(subjects),
+            "language": get_language(language),
+            "version": py_.get(meta, "metadata.version"),
+            "license": presence(license_),
+            "descriptions": descriptions,
+            "geoLocations": None,
+            "fundingReferences": presence(funding_references),
+            "references": presence(references),
+            "relations": presence(relations),
+            # other properties
+            "files": files,
+            "container": container,
+            "provider": "DataCite",
+        },
+        **read_options,
+    }
 
 
 def get_references(references: list) -> list:

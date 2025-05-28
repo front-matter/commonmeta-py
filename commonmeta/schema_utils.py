@@ -1,13 +1,14 @@
 """Schema utils for commonmeta-py"""
 
 from os import path
+from typing import Any, Dict, Optional, Union
 
 import orjson as json
 import xmlschema
 from jsonschema import Draft202012Validator, ValidationError
 
 
-def json_schema_errors(instance, schema: str = "commonmeta"):
+def json_schema_errors(instance: Dict[str, Any], schema: str = "commonmeta") -> Optional[str]:
     """validate against JSON schema"""
     schema_map = {
         "commonmeta": "commonmeta_v0.16",
@@ -30,7 +31,7 @@ def json_schema_errors(instance, schema: str = "commonmeta"):
         return error.message
 
 
-def xml_schema_errors(instance, schema: str = "crossref_xml"):
+def xml_schema_errors(instance: Union[str, bytes], schema: str = "crossref_xml") -> Optional[Union[bool, Exception]]:
     """validate against XML schema"""
     schema_map = {
         "crossref_xml": "crossref5.4.0",
@@ -40,8 +41,8 @@ def xml_schema_errors(instance, schema: str = "crossref_xml"):
             raise ValueError("No schema found")
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
         schema_path = path.join(base_dir, "crossref5.4.0.xsd")
-        schema = xmlschema.XMLSchema(schema_path)
-        return schema.validate(instance)
+        schema_obj = xmlschema.XMLSchema(schema_path)
+        return schema_obj.validate(instance)
     except xmlschema.validators.exceptions.XMLSchemaValidationError as error:
         print(error)
         return error

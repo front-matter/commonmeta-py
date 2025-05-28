@@ -1,6 +1,6 @@
 """crossref reader for commonmeta-py"""
 
-from typing import Optional
+from typing import List, Optional
 from xml.parsers.expat import ExpatError
 
 import requests
@@ -33,7 +33,7 @@ from ..utils import (
 )
 
 
-def get_crossref_list(query: dict, **kwargs) -> list[dict]:
+def get_crossref_list(query: dict, **kwargs) -> List[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
     response = requests.get(url, timeout=30, **kwargs)
@@ -51,7 +51,7 @@ def get_crossref(pid: str, **kwargs) -> dict:
     response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return response.json().get("message", {}) | {"via": "crossref"}
+    return {**response.json().get("message", {}), "via": "crossref"}
 
 
 def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
@@ -138,31 +138,34 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     )
 
     return {
-        # required properties
-        "id": _id,
-        "type": _type,
-        # recommended and optional properties
-        "additionalType": additional_type,
-        "archiveLocations": presence(archive_locations),
-        "container": presence(container),
-        "contributors": presence(contributors),
-        "date": presence(date),
-        "descriptions": presence(descriptions),
-        "files": presence(files),
-        "fundingReferences": presence(funding_references),
-        "geoLocations": None,
-        "identifiers": identifiers,
-        "language": meta.get("language", None),
-        "license": license_,
-        "provider": "Crossref",
-        "publisher": presence(publisher),
-        "references": presence(references),
-        "relations": presence(relations),
-        "subjects": presence(subjects),
-        "titles": presence(titles),
-        "url": url,
-        "version": meta.get("version", None),
-    } | read_options
+        **{
+            # required properties
+            "id": _id,
+            "type": _type,
+            # recommended and optional properties
+            "additionalType": additional_type,
+            "archiveLocations": presence(archive_locations),
+            "container": presence(container),
+            "contributors": presence(contributors),
+            "date": presence(date),
+            "descriptions": presence(descriptions),
+            "files": presence(files),
+            "fundingReferences": presence(funding_references),
+            "geoLocations": None,
+            "identifiers": identifiers,
+            "language": meta.get("language", None),
+            "license": license_,
+            "provider": "Crossref",
+            "publisher": presence(publisher),
+            "references": presence(references),
+            "relations": presence(relations),
+            "subjects": presence(subjects),
+            "titles": presence(titles),
+            "url": url,
+            "version": meta.get("version", None),
+        },
+        **read_options,
+    }
 
 
 def get_titles(meta):

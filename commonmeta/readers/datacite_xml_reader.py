@@ -22,7 +22,7 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite_xml"}
+    return {**py_.get(response.json(), "data.attributes", {}), "via": "datacite_xml"}
 
 
 def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
@@ -203,38 +203,41 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     state = "findable" if _id or read_options else "not_found"
 
     return {
-        # required properties
-        "id": _id,
-        "type": _type,
-        "doi": doi_from_url(_id),
-        "url": normalize_url(meta.get("url", None)),
-        "contributors": presence(contributors),
-        "titles": compact(titles),
-        "publisher": publisher,
-        "date": date,
-        # recommended and optional properties
-        "additionalType": presence(additional_type),
-        "subjects": presence(subjects),
-        "language": meta.get("language", None),
-        "identifiers": identifiers,
-        "version": meta.get("version", None),
-        "license": presence(license_),
-        "descriptions": presence(descriptions),
-        "geoLocations": presence(geo_locations),
-        "fundingReferences": presence(funding_references),
-        "references": presence(references),
-        "relations": presence(relations),
-        # other properties
-        "date_created": strip_milliseconds(meta.get("created", None)),
-        "date_registered": strip_milliseconds(meta.get("registered", None)),
-        "date_published": strip_milliseconds(meta.get("published", None)),
-        "date_updated": strip_milliseconds(meta.get("updated", None)),
-        "files": presence(files),
-        "container": presence(meta.get("container", None)),
-        "provider": "DataCite",
-        "state": state,
-        "schema_version": meta.get("xmlns", None),
-    } | read_options
+        **{
+            # required properties
+            "id": _id,
+            "type": _type,
+            "doi": doi_from_url(_id),
+            "url": normalize_url(meta.get("url", None)),
+            "contributors": presence(contributors),
+            "titles": compact(titles),
+            "publisher": publisher,
+            "date": date,
+            # recommended and optional properties
+            "additionalType": presence(additional_type),
+            "subjects": presence(subjects),
+            "language": meta.get("language", None),
+            "identifiers": identifiers,
+            "version": meta.get("version", None),
+            "license": presence(license_),
+            "descriptions": presence(descriptions),
+            "geoLocations": presence(geo_locations),
+            "fundingReferences": presence(funding_references),
+            "references": presence(references),
+            "relations": presence(relations),
+            # other properties
+            "date_created": strip_milliseconds(meta.get("created", None)),
+            "date_registered": strip_milliseconds(meta.get("registered", None)),
+            "date_published": strip_milliseconds(meta.get("published", None)),
+            "date_updated": strip_milliseconds(meta.get("updated", None)),
+            "files": presence(files),
+            "container": presence(meta.get("container", None)),
+            "provider": "DataCite",
+            "state": state,
+            "schema_version": meta.get("xmlns", None),
+        },
+        **read_options,
+    }
 
 
 def get_xml_identifiers(identifiers: list) -> list:

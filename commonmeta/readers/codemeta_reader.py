@@ -97,18 +97,21 @@ def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "id": _id,
-        "type": _type,
-        "url": normalize_id(meta.get("codeRepository", None)),
-        "identifiers": None,
-        "titles": titles,
-        "contributors": presence(contributors),
-        "publisher": publisher,
-        "date": compact(date),
-        "descriptions": descriptions,
-        "license": license_,
-        "version": meta.get("version", None),
-        "subjects": presence(subjects),
-        "provider": provider,
-        "state": state,
-    } | read_options
+        **{
+            "id": _id,
+            "type": _type,
+            "url": normalize_id(meta.get("codeRepository", None)),
+            "identifiers": None,
+            "titles": titles,
+            "contributors": presence(contributors),
+            "publisher": publisher,
+            "date": compact(date),
+            "descriptions": descriptions,
+            "license": license_,
+            "version": meta.get("version", None),
+            "subjects": presence(subjects),
+            "provider": provider,
+            "state": state,
+        },
+        **read_options,
+    }

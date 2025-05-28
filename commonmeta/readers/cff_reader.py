@@ -99,22 +99,25 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     state = "findable" if meta or read_options else "not_found"
 
     return {
-        "id": _id,
-        "type": _type,
-        # 'identifiers' => identifiers,
-        "url": url,
-        "titles": titles,
-        "contributors": presence(contributors),
-        "publisher": publisher,
-        "references": presence(references),
-        "date": date,
-        "descriptions": presence(descriptions),
-        "license": license_,
-        "version": meta.get("version", None),
-        "subjects": presence(subjects),
-        "provider": "DataCite" if _id else "GitHub",
-        "state": state,
-    } | read_options
+        **{
+            "id": _id,
+            "type": _type,
+            # 'identifiers' => identifiers,
+            "url": url,
+            "titles": titles,
+            "contributors": presence(contributors),
+            "publisher": publisher,
+            "references": presence(references),
+            "date": date,
+            "descriptions": presence(descriptions),
+            "license": license_,
+            "version": meta.get("version", None),
+            "subjects": presence(subjects),
+            "provider": "DataCite" if _id else "GitHub",
+            "state": state,
+        },
+        **read_options,
+    }
 
 
 def cff_contributors(contributors):

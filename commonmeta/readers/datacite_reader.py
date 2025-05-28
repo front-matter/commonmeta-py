@@ -40,7 +40,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
         response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
-        return py_.get(response.json(), "data.attributes", {}) | {"via": "datacite"}
+        return {**py_.get(response.json(), "data.attributes", {}), "via": "datacite"}
     except ReadTimeout:
         return {"state": "timeout"}
 
@@ -114,30 +114,33 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     subjects = py_.uniq([format_subject(i) for i in wrap(meta.get("subjects", None))])
 
     return {
-        # required properties
-        "id": _id,
-        "type": _type,
-        # recommended and optional properties
-        "additionalType": additional_type,
-        "container": presence(container),
-        "contributors": presence(contributors),
-        "date": compact(date),
-        "descriptions": presence(descriptions),
-        "files": presence(files),
-        "fundingReferences": presence(meta.get("fundingReferences", None)),
-        "geoLocations": presence(geo_locations),
-        "identifiers": presence(identifiers),
-        "language": meta.get("language", None),
-        "license": presence(license_),
-        "provider": "DataCite",
-        "publisher": publisher,
-        "references": presence(references),
-        "relations": presence(relations),
-        "subjects": presence(subjects),
-        "titles": presence(titles),
-        "url": normalize_url(meta.get("url", None)),
-        "version": meta.get("version", None),
-    } | read_options
+        **{
+            # required properties
+            "id": _id,
+            "type": _type,
+            # recommended and optional properties
+            "additionalType": additional_type,
+            "container": presence(container),
+            "contributors": presence(contributors),
+            "date": compact(date),
+            "descriptions": presence(descriptions),
+            "files": presence(files),
+            "fundingReferences": presence(meta.get("fundingReferences", None)),
+            "geoLocations": presence(geo_locations),
+            "identifiers": presence(identifiers),
+            "language": meta.get("language", None),
+            "license": presence(license_),
+            "provider": "DataCite",
+            "publisher": publisher,
+            "references": presence(references),
+            "relations": presence(relations),
+            "subjects": presence(subjects),
+            "titles": presence(titles),
+            "url": normalize_url(meta.get("url", None)),
+            "version": meta.get("version", None),
+        },
+        **read_options,
+    }
 
 
 def get_identifiers(identifiers: list) -> list:
