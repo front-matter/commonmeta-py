@@ -1,13 +1,13 @@
 """InvenioRDM writer for commonmeta-py"""
 
 import logging
-import re
 from time import time
 from typing import Dict, Optional
 
 import orjson as json
 import pydash as py_
 import requests
+from urllib3._collections import HTTPHeaderDict
 
 from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import (
@@ -18,13 +18,14 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_as_url, doi_from_url, normalize_doi
+from ..doi_utils import doi_from_url, normalize_doi
 from ..utils import (
     FOS_MAPPINGS,
     get_language,
     id_from_url,
     normalize_url,
     pages_as_string,
+    string_to_slug,
     validate_orcid,
     validate_ror,
 )
@@ -399,28 +400,17 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
             "doi": doi,
         }
 
-        # extract optional information needed but not upserted to the InvenioRDM API:
-        # rid is the InvenioRDM record id,
-        # uuid is the Rogue Scholar uuid,
-        # community_id is the id of the primary community of the record
+        # extract optional information needed
+        # uuid is the Rogue Scholar uuid
+        # community_id is the id of the primary community of the record,
+        # in the case of Rogue Scholar the blog community
+
         if hasattr(metadata, "identifiers") and metadata.identifiers:
-            rid_index = None
-            uuid_index = None
             for i, identifier in enumerate(metadata.identifiers):
-                if identifier.get("identifierType") == "RID" and identifier.get(
-                    "identifier"
-                ):
-                    record["id"] = identifier.get("identifier")
-                    rid_index = i
-                elif identifier.get("identifierType") == "UUID" and identifier.get(
+                if identifier.get("identifierType") == "UUID" and identifier.get(
                     "identifier"
                 ):
                     record["uuid"] = identifier.get("identifier")
-                    uuid_index = i
-            if rid_index is not None:
-                metadata.identifiers.pop(rid_index)
-            if uuid_index is not None:
-                metadata.identifiers.pop(uuid_index)
 
         if hasattr(metadata, "relations") and metadata.relations:
             community_index = None
@@ -434,6 +424,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
                         record["community"] = slug
                         record["community_id"] = community_id
                         community_index = i
+                        break
 
             if community_index is not None:
                 metadata.relations.pop(community_index)
@@ -496,8 +487,17 @@ def add_record_to_communities(
 ) -> dict:
     """Add record to one or more InvenioRDM communities"""
 
+    community_ids = []
+    communities = get_record_communities(record, host, token)
+    if communities is not None:
+        for c in communities:
+            community_ids.append(c.get("id"))
+
     # Add record to primary community if primary community is specified
-    if record.get("community_id", None) is not None:
+    if (
+        record.get("community_id", None) is not None
+        and record.get("community_id") not in community_ids
+    ):
         record = add_record_to_community(record, host, token, record["community_id"])
 
     # Add record to subject area community if subject area community is specified
@@ -509,9 +509,8 @@ def add_record_to_communities(
             slug = string_to_slug(subject_name)
             if slug in COMMUNITY_TRANSLATIONS:
                 slug = COMMUNITY_TRANSLATIONS[slug]
-
             community_id = search_by_slug(slug, "topic", host, token)
-            if community_id:
+            if community_id and community_id not in community_ids:
                 record = add_record_to_community(record, host, token, community_id)
 
     # Add record to communities defined as IsPartOf relation in InvenioRDM RelatedIdentifiers
@@ -522,7 +521,7 @@ def add_record_to_communities(
             ).startswith(f"https://{host}/api/communities/"):
                 slug = identifier.get("identifier").split("/")[5]
                 community_id = search_by_slug(slug, "topic", host, token)
-                if community_id:
+                if community_id and community_id not in community_ids:
                     record = add_record_to_community(record, host, token, community_id)
 
     return record
@@ -664,8 +663,6 @@ def publish_draft_record(record, host, token):
             record["status"] = "error_publish_draft_record"
             return record
         data = response.json()
-        record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
-        record["doi"] = (doi_as_url(py_.get(data, "pids.doi.identifier")),)
         record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "published"
@@ -676,17 +673,39 @@ def publish_draft_record(record, host, token):
         return record
 
 
-def add_record_to_community(record, host, token, community_id):
-    """Add a record to a community in InvenioRDM"""
+def get_record_communities(record, host, token):
+    """Get record communities by id"""
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
     try:
+        response = requests.get(
+            f"https://{host}/api/records/{record['id']}/communities",
+            headers=headers,
+        )
+        response.raise_for_status()
+        data = response.json()
+        if py_.get(data, "hits.total", 0) > 0:
+            return py_.get(data, "hits.hits")
+        return None
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error getting communities: {str(e)}", exc_info=True)
+        return None
+
+
+def add_record_to_community(record, host, token, community_id):
+    """Add a record to a community"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    json = {"communities": [{"id": community_id}]}
+    try:
         response = requests.post(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
-            json={"id": community_id},
+            json=json,
         )
         response.raise_for_status()
         return record
@@ -750,7 +769,11 @@ def search_by_slug(slug: str, type_value: str, host: str, token: str) -> Optiona
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    params = {"q": f"slug:{slug} AND type:{type_value}", "size": 1}
+    params = HTTPHeaderDict()
+    params.add("q", f"slug:{slug}")
+    params.add("type", type_value)
+    params.add("type", "subject")
+    params.add("size", 1)
     try:
         response = requests.get(
             f"https://{host}/api/communities", headers=headers, params=params
@@ -763,19 +786,6 @@ def search_by_slug(slug: str, type_value: str, host: str, token: str) -> Optiona
     except requests.exceptions.RequestException as e:
         logger.error(f"Error searching for community: {str(e)}", exc_info=True)
         return None
-
-
-def string_to_slug(text):
-    """makes a string lowercase and removes non-alphanumeric characters"""
-    # Replace spaces with hyphens
-    slug = re.sub(r"\s+", "-", text.lower())
-    # Remove special characters
-    slug = re.sub(r"[^a-z0-9-]", "", slug)
-    # Remove multiple consecutive hyphens
-    slug = re.sub(r"-+", "-", slug)
-    # Remove leading and trailing hyphens
-    slug = slug.strip("-")
-    return slug
 
 
 class InvenioRDMError(Exception):

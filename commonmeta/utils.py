@@ -128,6 +128,57 @@ FOS_MAPPINGS = {
     "Other humanities": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
 }
 
+FOS_TO_STRING_MAPPINGS = {
+    "Natural sciences": "naturalSciences",
+    "Mathematics": "mathematics",
+    "Computer and information sciences": "computerAndInformationSciences",
+    "Physical sciences": "physicalSciences",
+    "Chemical sciences": "chemicalSciences",
+    "Earth and related environmental sciences": "earthAndRelatedEnvironmentalSciences",
+    "Biological sciences": "biologicalSciences",
+    "Other natural sciences": "otherNaturalSciences",
+    "Engineering and technology": "engineeringAndTechnology",
+    "Civil engineering": "civilEngineering",
+    "Electrical engineering, electronic engineering, information engineering": "electricalEngineering",
+    "Mechanical engineering": "mechanicalEngineering",
+    "Chemical engineering": "chemicalEngineering",
+    "Materials engineering": "materialsEngineering",
+    "Medical engineering": "medicalEngineering",
+    "Environmental engineering": "environmentalEngineering",
+    "Environmental biotechnology": "environmentalBiotechnology",
+    "Industrial biotechnology": "industrialBiotechnology",
+    "Nano technology": "nanoTechnology",
+    "Other engineering and technologies": "otherEngineeringAndTechnologies",
+    "Medical and health sciences": "medicalAndHealthSciences",
+    "Basic medicine": "basicMedicine",
+    "Clinical medicine": "clinicalMedicine",
+    "Health sciences": "healthSciences",
+    "Health biotechnology": "healthBiotechnology",
+    "Other medical sciences": "otherMedicalSciences",
+    "Agricultural sciences": "agriculturalSciences",
+    "Agriculture, forestry, and fisheries": "agricultureForestryAndFisheries",
+    "Animal and dairy science": "animalAndDairyScience",
+    "Veterinary science": "veterinaryScience",
+    "Agricultural biotechnology": "agriculturalBiotechnology",
+    "Other agricultural sciences": "otherAgriculturalSciences",
+    "Social science": "socialScience",
+    "Psychology": "psychology",
+    "Economics and business": "economicsAndBusiness",
+    "Educational sciences": "educationalSciences",
+    "Sociology": "sociology",
+    "Law": "law",
+    "Political science": "politicalScience",
+    "Social and economic geography": "socialAndEconomicGeography",
+    "Media and communications": "mediaAndCommunications",
+    "Other social sciences": "otherSocialSciences",
+    "Humanities": "humanities",
+    "History and archaeology": "historyAndArchaeology",
+    "Languages and literature": "languagesAndLiterature",
+    "Philosophy, ethics and religion": "philosophyEthicsAndReligion",
+    "Arts (arts, history of arts, performing arts, music)": "artsArtsHistoryOfArtsPerformingArtsMusic",
+    "Other humanities": "otherHumanities",
+}
+
 
 def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
     """Check for valid DOI or HTTP(S) URL"""
@@ -1277,9 +1328,14 @@ def subjects_as_string(subjects):
 def string_to_slug(text):
     """makes a string lowercase and removes non-alphanumeric characters"""
     # Remove FOS (Fields of Science) prefix
-    slug = text.removeprefix("FOS: ")
+    text = text.removeprefix("FOS: ")
+    # Lookup FOS name
+    slug = FOS_TO_STRING_MAPPINGS.get(text, None)
+    if slug is not None:
+        return slug.lower()
+
     # Replace spaces with hyphens
-    slug = re.sub(r"\s+", "-", slug.lower())
+    slug = re.sub(r"\s+", "-", text.lower())
     # Remove special characters
     slug = re.sub(r"[^a-z0-9-]", "", slug)
     # Remove multiple consecutive hyphens

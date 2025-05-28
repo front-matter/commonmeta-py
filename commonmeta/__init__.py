@@ -96,6 +96,7 @@ from .utils import (
     normalize_url,
     pages_as_string,
     replace_curie,
+    string_to_slug,
     to_csl,
     validate_orcid,
     validate_ror,
