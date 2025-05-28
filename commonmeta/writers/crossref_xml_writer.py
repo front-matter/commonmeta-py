@@ -433,6 +433,7 @@ def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, legacy_ke
 
         # update rogue-scholar legacy record if legacy_key is provided
         if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
+             record["uuid"] = py_.get(item, "identifiers.0.identifier")
              record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
         items.append(record)
 
