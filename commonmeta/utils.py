@@ -1274,6 +1274,21 @@ def subjects_as_string(subjects):
     return ", ".join(keywords)
 
 
+def string_to_slug(text):
+    """makes a string lowercase and removes non-alphanumeric characters"""
+    # Remove FOS (Fields of Science) prefix
+    slug = text.removeprefix("FOS: ")
+    # Replace spaces with hyphens
+    slug = re.sub(r"\s+", "-", slug.lower())
+    # Remove special characters
+    slug = re.sub(r"[^a-z0-9-]", "", slug)
+    # Remove multiple consecutive hyphens
+    slug = re.sub(r"-+", "-", slug)
+    # Remove leading and trailing hyphens
+    slug = slug.strip("-")
+    return slug
+
+
 # def reverse():
 #       return { 'citation': wrap(related_identifiers).select do |ri|
 #                         ri['relationType'] == 'IsReferencedBy'

@@ -38,6 +38,7 @@ from commonmeta.utils import (
     openalex_api_query_url,
     pages_as_string,
     replace_curie,
+    string_to_slug,
     subjects_as_string,
     to_csl,
     to_ris,
@@ -1078,3 +1079,8 @@ def test_format_name_identifier():
             "publisherIdentifierScheme": "ROR",
         }
     )
+
+def test_string_to_slug():
+    """string_to_slug"""
+    assert string_to_slug("Legal Helpdesk") == "legal-helpdesk"
+    assert string_to_slug("FOS: Law") == "law"
