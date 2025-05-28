@@ -484,7 +484,7 @@ class MetadataList:
 
         if to == "crossref_xml":
             response = push_crossref_xml_list(
-                self, login_id=self.login_id, login_passwd=self.login_passwd
+                self, login_id=self.login_id, login_passwd=self.login_passwd, legacy_key=self.legacy_key
             )
             return response
         elif to == "datacite":

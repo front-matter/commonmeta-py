@@ -410,7 +410,7 @@ wheels = [
 
 [[package]]
 name = "commonmeta-py"
-version = "0.119"
+version = "0.120"
 source = { editable = "." }
 dependencies = [
     { name = "base32-lib" },
@@ -438,7 +438,6 @@ dependencies = [
     { name = "pyyaml" },
     { name = "requests" },
     { name = "requests-toolbelt" },
-    { name = "setuptools" },
     { name = "simplejson" },
     { name = "types-beautifulsoup4" },
     { name = "types-dateparser" },
@@ -491,7 +490,6 @@ requires-dist = [
     { name = "requests", specifier = ">=2.31.0" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "requests-toolbelt", specifier = ">=1.0.0" },
-    { name = "setuptools", specifier = ">=70.3.0,<81" },
     { name = "simplejson", specifier = "~=3.18" },
     { name = "types-beautifulsoup4", specifier = ">=4.11,<5" },
     { name = "types-dateparser", specifier = "~=1.1" },

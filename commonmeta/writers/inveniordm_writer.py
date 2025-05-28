@@ -484,7 +484,7 @@ def push_inveniordm(
 
         # optionally update rogue-scholar legacy record
         if host == "rogue-scholar.org" and legacy_key is not None:
-            record = update_legacy_record(record, legacy_key)
+            record = update_legacy_record(record, legacy_key=legacy_key, field="rid")
     except Exception as e:
         logger.error(f"Unexpected error in push_inveniordm: {str(e)}", exc_info=True, extra={
             "host": host,
@@ -651,7 +651,7 @@ def add_record_to_community(record, host, token, community_id):
         return record
 
 
-def update_legacy_record(record, legacy_key: str):
+def update_legacy_record(record, legacy_key: str, field:str=None) -> dict:
     """Update corresponding record in Rogue Scholar legacy database."""
 
     legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
@@ -662,7 +662,7 @@ def update_legacy_record(record, legacy_key: str):
             raise ValueError("no UUID provided")
 
         now = f"{int(time())}"
-        if record.get("id", None) is not None:
+        if field == "rid" and record.get("id", None) is not None:
             output = {
                 "rid": record.get("id"),
                 "indexed_at": now,
