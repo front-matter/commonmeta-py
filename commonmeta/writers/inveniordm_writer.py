@@ -19,7 +19,7 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url, normalize_doi
+from ..doi_utils import doi_as_url, doi_from_url, normalize_doi
 from ..utils import (
     FOS_MAPPINGS,
     get_language,
@@ -589,7 +589,6 @@ def update_draft_record(record, host, token, inveniordm_data):
         )
         response.raise_for_status()
         data = response.json()
-        record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "updated"
         return record
@@ -622,6 +621,7 @@ def publish_draft_record(record, host, token):
             return record
         data = response.json()
         record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
+        record["doi"] =  doi_as_url(py_.get(data, "pids.doi.identifier")),
         record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "published"
