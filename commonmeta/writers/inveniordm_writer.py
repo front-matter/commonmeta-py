@@ -677,7 +677,7 @@ def update_legacy_record(record, legacy_key: str, field:str=None) -> dict:
                 "archived": "true",
             }
         else:
-            print(f"nothing to update for id {record.get("uuid")}")
+            print(f"nothing to update for id {record.get('uuid')}")
             return record # nothing to update
 
         request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
