@@ -420,7 +420,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
             if rid_index is not None:
                 metadata.identifiers.pop(rid_index)
             if uuid_index is not None:
-                metadata.identifiers.pop(rid_index)
+                metadata.identifiers.pop(uuid_index)
 
         if hasattr(metadata, "relations") and metadata.relations:
             community_index = None
