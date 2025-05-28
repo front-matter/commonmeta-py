@@ -4,7 +4,6 @@ import logging
 import re
 from time import time
 from typing import Dict, Optional
-from urllib.parse import urlparse
 
 import orjson as json
 import pydash as py_
@@ -31,6 +30,7 @@ from ..utils import (
 )
 
 logger = logging.getLogger(__name__)
+
 
 def write_inveniordm(metadata):
     """Write inveniordm"""
@@ -387,121 +387,159 @@ def write_inveniordm_list(metalist):
     return [write_inveniordm(item) for item in metalist.items]
 
 
-def push_inveniordm(
-        metadata: Commonmeta,
-        host: str,
-        token: str,
-        legacy_key: str
-    ) -> Dict:
+def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Dict:
     """Push record to InvenioRDM"""
 
-    record = {}
-    output = write_inveniordm(metadata)
-
     try:
-        # Remove IsPartOf relation with InvenioRDM community identifier after storing it
-        # community_index = None
-        # if hasattr(metadata, "relations") and metadata.relations:
-        #     for i, relation in enumerate(metadata.relations):
-        #         if relation.get("type") == "IsPartOf" and relation.get(
-        #             "id", ""
-        #         ).startswith("https://rogue-scholar.org/api/communities/"):
-        #             slug = relation.get("id").split("/")[5]
-        #             community_id, _ = search_by_slug(slug, "blog", host, token)
-        #             if community_id:
-        #                 record["community"] = slug
-        #                 record["community_id"] = community_id
-        #                 community_index = i
+        doi = normalize_doi(metadata.id)
+        if doi is None:
+            raise ValueError("no doi provided")
 
-        #     # Remove the relation if we found and processed it
-        #     if community_index is not None and hasattr(metadata, "relations"):
-        #         metadata.relations.pop(community_index)
+        record = {
+            "doi": doi,
+        }
 
-        # Remove InvenioRDM rid after storing it
-        # rid_index = None
-        # if hasattr(metadata, "identifiers") and metadata.identifiers:
-        #     for i, identifier in enumerate(metadata.identifiers):
-        #         if identifier.get("identifierType") == "RID" and identifier.get("identifier"):
-        #             record["id"] = identifier.get("identifier")
-        #             rid_index = i
-        #         elif identifier.get("identifierType") == "UUID" and identifier.get("identifier"):
-        #             record["uuid"] = identifier.get("identifier")
-
-        # # Remove the identifier if we found and processed it
-        # if rid_index is not None and hasattr(metadata, "identifiers"):
-        #     metadata.identifiers.pop(rid_index)
-
-        # Check if record already exists in InvenioRDM
-        record["id"] = search_by_doi(doi_from_url(metadata.id), host, token)
-
-        if record["id"] is not None:
-            # Create draft record from published record
-            record = edit_published_record(record, host, token)
-
-            # Update draft record
-            record = update_draft_record(record, host, token, output)
-        else:
-            # Create draft record
-            record = create_draft_record(record, host, token, output)
-
-        # Publish draft record
-        record = publish_draft_record(record, host, token)
-
-        # Add record to blog community if blog community is specified and exists
-        if record.get("community_id", None) is not None:
-            record = add_record_to_community(
-                record, host, token, record["community_id"]
-            )
-
-        # Add record to subject area community if subject area community is specified and exists
-        # Subject area communities should exist for all subjects in the FOSMappings
-
-        if hasattr(metadata, "subjects"):
-            for subject in metadata.subjects:
-                subject_name = subject.get("subject", "")
-                slug = string_to_slug(subject_name)
-                if slug in COMMUNITY_TRANSLATIONS:
-                    slug = COMMUNITY_TRANSLATIONS[slug]
-
-                community_id = search_by_slug(slug, "topic", host, token)
-                if community_id:
-                    record = add_record_to_community(record, host, token, community_id)
-
-        # Add record to communities defined as IsPartOf relation in inveniordm metadata's RelatedIdentifiers
-        related_identifiers = py_.get(input, "metadata.related_identifiers")
-
-        for identifier in wrap(related_identifiers):
-            if py_.get(identifier, "relation_type.id") == "ispartof":
-                parsed_url = urlparse(identifier.get("identifier", ""))
-                path_parts = parsed_url.path.split("/")
-
-                if (
-                    parsed_url.netloc == urlparse(host).netloc
-                    and len(path_parts) == 3
-                    and path_parts[1] == "communities"
+        # extract optional information needed but not upserted to the InvenioRDM API:
+        # rid is the InvenioRDM record id,
+        # uuid is the Rogue Scholar uuid,
+        # community_id is the id of the primary community of the record
+        if hasattr(metadata, "identifiers") and metadata.identifiers:
+            rid_index = None
+            uuid_index = None
+            for i, identifier in enumerate(metadata.identifiers):
+                if identifier.get("identifierType") == "RID" and identifier.get(
+                    "identifier"
                 ):
-                    record = add_record_to_community(record, host, token, path_parts[2])
+                    record["id"] = identifier.get("identifier")
+                    rid_index = i
+                elif identifier.get("identifierType") == "UUID" and identifier.get(
+                    "identifier"
+                ):
+                    record["uuid"] = identifier.get("identifier")
+                    uuid_index = i
+            if rid_index is not None:
+                metadata.identifiers.pop(rid_index)
+            if uuid_index is not None:
+                metadata.identifiers.pop(rid_index)
 
-        # optionally update rogue-scholar legacy record
-        if host == "rogue-scholar.org" and legacy_key is not None:
-            record = update_legacy_record(record, legacy_key=legacy_key, field="rid")
+        if hasattr(metadata, "relations") and metadata.relations:
+            community_index = None
+            for i, relation in enumerate(metadata.relations):
+                if relation.get("type") == "IsPartOf" and relation.get(
+                    "id", ""
+                ).startswith(f"https://{host}/api/communities/"):
+                    slug = relation.get("id").split("/")[5]
+                    community_id = search_by_slug(slug, "blog", host, token)
+                    if community_id:
+                        record["community"] = slug
+                        record["community_id"] = community_id
+                        community_index = i
+
+            if community_index is not None:
+                metadata.relations.pop(community_index)
+
+        # upsert record via the InvenioRDM API
+        record = upsert_record(metadata, host, token, record)
+
+        # optionally add record to InvenioRDM communities
+        record = add_record_to_communities(metadata, host, token, record)
+
+        # optionally update external services
+        record = update_external_services(metadata, host, token, record, **kwargs)
+
     except Exception as e:
-        logger.error(f"Unexpected error in push_inveniordm: {str(e)}", exc_info=True, extra={
-            "host": host,
-            "record_id": record.get("id")
-        })
+        logger.error(
+            f"Unexpected error in push_inveniordm: {str(e)}",
+            exc_info=True,
+            extra={"host": host, "record_id": record.get("id")},
+        )
         record["status"] = "error"
 
     return record
 
 
-def push_inveniordm_list(metalist, host: str, token: str, legacy_key: str) -> list:
+def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> list:
     """Push inveniordm list to InvenioRDM, returns list of push results."""
 
     if metalist is None:
         return None
-    items = [push_inveniordm(item, host, token, legacy_key) for item in metalist.items]
+    items = [push_inveniordm(item, host, token, **kwargs) for item in metalist.items]
     return json.dumps(items, option=json.OPT_INDENT_2)
+
+
+def upsert_record(metadata: Commonmeta, host: str, token: str, record: dict) -> dict:
+    """Upsert InvenioRDM record, based on DOI"""
+
+    output = write_inveniordm(metadata)
+
+    # Check if record already exists in InvenioRDM
+    record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
+
+    if record["id"] is not None:
+        # Create draft record from published record
+        record = edit_published_record(record, host, token)
+
+        # Update draft record
+        record = update_draft_record(record, host, token, output)
+    else:
+        # Create draft record
+        record = create_draft_record(record, host, token, output)
+
+    # Publish draft record
+    record = publish_draft_record(record, host, token)
+
+    return record
+
+
+def add_record_to_communities(
+    metadata: Commonmeta, host: str, token: str, record: dict
+) -> dict:
+    """Add record to one or more InvenioRDM communities"""
+
+    # Add record to primary community if primary community is specified
+    if record.get("community_id", None) is not None:
+        record = add_record_to_community(record, host, token, record["community_id"])
+
+    # Add record to subject area community if subject area community is specified
+    # Subject area communities should exist for all OECD subject areas
+
+    if hasattr(metadata, "subjects"):
+        for subject in metadata.subjects:
+            subject_name = subject.get("subject", "")
+            slug = string_to_slug(subject_name)
+            if slug in COMMUNITY_TRANSLATIONS:
+                slug = COMMUNITY_TRANSLATIONS[slug]
+
+            community_id = search_by_slug(slug, "topic", host, token)
+            if community_id:
+                record = add_record_to_community(record, host, token, community_id)
+
+    # Add record to communities defined as IsPartOf relation in InvenioRDM RelatedIdentifiers
+    if hasattr(metadata, "related_identifiers") and metadata.related_identifiers:
+        for identifier in metadata.related_identifiers:
+            if py_.get(identifier, "relation_type.id") == "ispartof" and identifier.get(
+                "identifier", ""
+            ).startswith(f"https://{host}/api/communities/"):
+                slug = identifier.get("identifier").split("/")[5]
+                community_id = search_by_slug(slug, "topic", host, token)
+                if community_id:
+                    record = add_record_to_community(record, host, token, community_id)
+
+    return record
+
+
+def update_external_services(
+    metadata: Commonmeta, host: str, token: str, record: dict, **kwargs
+) -> dict:
+    """Update external services with changes in InvenioRDM"""
+
+    # optionally update rogue-scholar legacy record
+    if host == "rogue-scholar.org" and kwargs.get("legacy_key", None) is not None:
+        record = update_legacy_record(
+            record, legacy_key=kwargs.get("legacy_key"), field="rid"
+        )
+
+    return record
 
 
 def search_by_doi(doi, host, token) -> Optional[str]:
@@ -539,7 +577,9 @@ def create_draft_record(record, host, token, output):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 201:
-            logger.error(f"Failed to create draft record: {response.status_code} - {response.json()}")
+            logger.error(
+                f"Failed to create draft record: {response.status_code} - {response.json()}"
+            )
             record["status"] = "failed_create_draft"
             return record
         data = response.json()
@@ -570,7 +610,9 @@ def edit_published_record(record, host, token):
         record["status"] = "edited"
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error creating draft from published record: {str(e)}", exc_info=True)
+        logger.error(
+            f"Error creating draft from published record: {str(e)}", exc_info=True
+        )
         record["status"] = "error_edit_published_record"
         return record
 
@@ -616,12 +658,14 @@ def publish_draft_record(record, host, token):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 202:
-            logger.error(f"Failed to publish draft record: {response.status_code} - {response.json()}")
+            logger.error(
+                f"Failed to publish draft record: {response.status_code} - {response.json()}"
+            )
             record["status"] = "error_publish_draft_record"
             return record
         data = response.json()
         record["uuid"] = py_.get(data, "metadata.identifiers.0.identifier")
-        record["doi"] =  doi_as_url(py_.get(data, "pids.doi.identifier")),
+        record["doi"] = (doi_as_url(py_.get(data, "pids.doi.identifier")),)
         record["created"] = data.get("created", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "published"
@@ -651,7 +695,7 @@ def add_record_to_community(record, host, token, community_id):
         return record
 
 
-def update_legacy_record(record, legacy_key: str, field:str=None) -> dict:
+def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
     """Update corresponding record in Rogue Scholar legacy database."""
 
     legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
@@ -678,7 +722,7 @@ def update_legacy_record(record, legacy_key: str, field:str=None) -> dict:
             }
         else:
             print(f"nothing to update for id {record.get('uuid')}")
-            return record # nothing to update
+            return record  # nothing to update
 
         request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
         headers = {
@@ -700,7 +744,7 @@ def update_legacy_record(record, legacy_key: str, field:str=None) -> dict:
         return record
 
 
-def search_by_slug(slug, type_value, host, token) -> Optional[str]:
+def search_by_slug(slug: str, type_value: str, host: str, token: str) -> Optional[str]:
     """Search for a community by slug in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",

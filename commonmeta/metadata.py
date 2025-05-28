@@ -476,8 +476,9 @@ class MetadataList:
         elif to == "datacite":
             raise ValueError("Datacite not yet supported for metadata lists")
         elif to == "inveniordm":
+            kwargs = {"legacy_key": self.legacy_key}
             response = push_inveniordm_list(
-                self, host=self.host, token=self.token, legacy_key=self.legacy_key
+                self, host=self.host, token=self.token, **kwargs
             )
             return response
         else:

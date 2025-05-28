@@ -385,7 +385,9 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
 
 
-def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, legacy_key:str=None) -> bytes:
+def push_crossref_xml_list(
+    metalist, login_id: str, login_passwd: str, legacy_key: str = None
+) -> bytes:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     input = write_crossref_xml_list(metalist)
@@ -426,26 +428,19 @@ def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, legacy_ke
     items = []
     for item in metalist.items:
         record = {
-                "doi": item.id,
-                "updated": datetime.now().isoformat("T", "seconds"),
-                "status": "submitted",
-            }
+            "doi": item.id,
+            "updated": datetime.now().isoformat("T", "seconds"),
+            "status": "submitted",
+        }
 
         # update rogue-scholar legacy record if legacy_key is provided
         if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
-             record["uuid"] = py_.get(item, "identifiers.0.identifier")
-             record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
+            record["uuid"] = py_.get(item, "identifiers.0.identifier")
+            record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
         items.append(record)
 
     # Return JSON response
     return json.dumps(items, option=json.OPT_INDENT_2)
-
-
-
-
-
-
-
 
 
 def get_attributes(obj, **kwargs) -> dict:
