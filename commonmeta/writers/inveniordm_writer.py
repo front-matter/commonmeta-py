@@ -487,11 +487,8 @@ def add_record_to_communities(
 ) -> dict:
     """Add record to one or more InvenioRDM communities"""
 
-    community_ids = []
     communities = get_record_communities(record, host, token)
-    if communities is not None:
-        for c in communities:
-            community_ids.append(c.get("id"))
+    community_ids = [c.get("id") for c in communities] if communities else []
 
     # Add record to primary community if primary community is specified
     if (
