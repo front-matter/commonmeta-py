@@ -1083,6 +1083,7 @@ def test_format_name_identifier():
 
 def test_string_to_slug():
     """string_to_slug"""
-    assert string_to_slug("Legal Helpdesk") == "legal-helpdesk"
+    assert string_to_slug("Legal Helpdesk") == "legalhelpdesk"
     assert string_to_slug("FOS: Law") == "law"
     assert string_to_slug("FOS: Other social sciences") == "othersocialsciences"
+    assert string_to_slug("Investigación-Digital💿") == "investigacióndigital"
