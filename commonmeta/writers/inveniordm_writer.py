@@ -7,7 +7,6 @@ from typing import Dict, Optional
 import orjson as json
 import pydash as py_
 import requests
-from urllib3._collections import HTTPHeaderDict
 
 from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import (
@@ -760,17 +759,13 @@ def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
         return record
 
 
-def search_by_slug(slug: str, type_value: str, host: str, token: str) -> Optional[str]:
+def search_by_slug(slug: str, type: str, host: str, token: str) -> Optional[str]:
     """Search for a community by slug in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    params = HTTPHeaderDict()
-    params.add("q", f"slug:{slug}")
-    params.add("type", type_value)
-    params.add("type", "subject")
-    params.add("size", 1)
+    params = [("q", f"slug:{slug}"), ("type", type), ("type", "subject"), ("size", 1)]
     try:
         response = requests.get(
             f"https://{host}/api/communities", headers=headers, params=params
