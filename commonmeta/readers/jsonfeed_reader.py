@@ -75,7 +75,10 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
             elif generator == "Substack" and prefix and guid:
                 _id = generate_substack_doi(prefix, guid)
             elif prefix and guid:
-                _id = generate_doi_from_guid(prefix, guid)
+                # don't use checksum as some legacy GUIDs (generated with commonmeta Go between May 2024
+                # and April 2025) don't have valued checksum
+                guid = guid[:-2]  # remove checksum
+                _id = generate_doi_from_guid(prefix, guid, checksum=False)
 
         # If still no DOI but prefix provided and not registered for DOI generation
         elif py_.get(meta, "blog.prefix") and not py_.get(meta, "blog.doi_reg", False):

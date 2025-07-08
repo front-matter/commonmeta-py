@@ -356,7 +356,7 @@ def generate_wordpress_doi(prefix: str, slug: str, guid: str) -> str:
     return doi
 
 
-def generate_doi_from_guid(prefix: str, guid: str) -> str:
+def generate_doi_from_guid(prefix: str, guid: str, checksum=True) -> Optional[str]:
     """Validates a GUID that is a DOI"""
     import base32_lib as base32
 
@@ -374,13 +374,11 @@ def generate_doi_from_guid(prefix: str, guid: str) -> str:
     suffix = doi.split("/")[-1]
 
     try:
-        number = base32.decode(suffix, checksum=True)
+        number = base32.decode(suffix, checksum)
         if number != 0:
             return doi
     except (ValueError, IndexError):
-        pass
-
-    return ""
+        return None
 
 
 def generate_substack_doi(prefix: str, guid: str) -> str:
