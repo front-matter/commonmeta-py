@@ -1,3 +1,4 @@
+import importlib.metadata
 import time
 
 import click
@@ -278,6 +279,12 @@ def decode(doi):
 def update_ghost_post(id, api_key, api_url):
     output = update_ghost_post_via_api(id, api_key, api_url)
     click.echo(output)
+
+
+@cli.command()
+def version():
+    version = importlib.metadata.version("commonmeta-py")
+    click.echo(f"commonmeta-py {version}")
 
 
 if __name__ == "__main__":
