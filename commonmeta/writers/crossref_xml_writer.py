@@ -371,6 +371,10 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     crossref_xml_list = []
     for item in metalist.items:
         data = convert_crossref_xml(item)
+        if data is None:
+            logger.error(f"Could not convert metadata to Crossref XML: {item.id}")
+            continue
+
         crossref_xml = schema.dump(data)
 
         # Ensure the order of fields in the XML matches the expected order
