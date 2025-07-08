@@ -371,7 +371,7 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     crossref_xml_list = []
     for item in metalist.items:
         data = convert_crossref_xml(item)
-        if data is None:
+        if data is None or not isinstance(data, dict):
             logger.error(f"Could not convert metadata to Crossref XML: {item.id}")
             continue
 
