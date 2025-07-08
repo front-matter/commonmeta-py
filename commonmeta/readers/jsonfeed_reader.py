@@ -13,12 +13,12 @@ from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
     doi_from_url,
     encode_doi,
-    generate_doi_from_guid,
     generate_substack_doi,
     generate_wordpress_doi,
     is_rogue_scholar_doi,
     normalize_doi,
     validate_doi,
+    validate_doi_from_guid,
     validate_prefix,
 )
 from ..utils import (
@@ -74,11 +74,14 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
                 _id = generate_wordpress_doi(prefix, slug, guid)
             elif generator == "Substack" and prefix and guid:
                 _id = generate_substack_doi(prefix, guid)
-            elif prefix and guid:
-                # don't use checksum as some legacy GUIDs (generated with commonmeta Go between May 2024
-                # and April 2025) don't have valued checksum
-                guid = guid[:-2]  # remove checksum
-                _id = generate_doi_from_guid(prefix, guid, checksum=False)
+            # don't use checksum as some legacy GUIDs (generated with commonmeta Go between May 2024
+            # and April 2025) don't have valid checksum
+            elif (
+                prefix
+                and guid
+                and validate_doi_from_guid(prefix, guid[:-2], checksum=False)
+            ):
+                _id = guid
 
         # If still no DOI but prefix provided and not registered for DOI generation
         elif py_.get(meta, "blog.prefix") and not py_.get(meta, "blog.doi_reg", False):
