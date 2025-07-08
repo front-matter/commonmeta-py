@@ -4,7 +4,7 @@ import io
 import logging
 from datetime import datetime
 from time import time
-from typing import Optional
+from typing import Dict, Optional
 
 import orjson as json
 import requests
@@ -390,25 +390,25 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
 
 
 def push_crossref_xml_list(
-    metalist, login_id: str, login_passwd: str, legacy_key: str = None
-) -> bytes:
+    metalist, login_id: str, login_passwd: str, legacy_key: Optional[str] = None
+) -> str:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
-    input = write_crossref_xml_list(metalist)
-    if not input:
+    input_xml = write_crossref_xml_list(metalist)
+    if not input_xml:
         logger.error("Failed to generate XML for upload")
         return "{}"
 
     # Convert string to bytes if necessary
-    if isinstance(input, str):
-        input = input.encode("utf-8")
+    if isinstance(input_xml, str):
+        input_xml = input_xml.encode("utf-8")
 
     # The filename displayed in the Crossref admin interface
     filename = f"{int(time())}"
 
     multipart_data = MultipartEncoder(
         fields={
-            "fname": (filename, io.BytesIO(input), "application/xml"),
+            "fname": (filename, io.BytesIO(input_xml), "application/xml"),
             "operation": "doMDUpload",
             "login_id": login_id,
             "login_passwd": login_passwd,
@@ -417,16 +417,25 @@ def push_crossref_xml_list(
 
     post_url = "https://doi.crossref.org/servlet/deposit"
     headers = {"Content-Type": multipart_data.content_type}
-    resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=10)
-    resp.raise_for_status()
+
+    try:
+        resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=30)
+        resp.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Failed to upload to Crossref: {e}")
+        return "{}"
 
     # Parse the response
-    response = parse_xml(resp.content)
-    status = py_.get(response, "html.body.h2")
-    if status != "SUCCESS":
-        # Handle error response
-        message = py_.get(response, "html.body.p")
-        logger.error(f"Crossref API error: {message}")
+    try:
+        response = parse_xml(resp.content)
+        status = py_.get(response, "html.body.h2")
+        if status != "SUCCESS":
+            # Handle error response
+            message = py_.get(response, "html.body.p")
+            logger.error(f"Crossref API error: {message}")
+            return "{}"
+    except Exception as e:
+        logger.error(f"Failed to parse Crossref response: {e}")
         return "{}"
 
     items = []
@@ -439,12 +448,16 @@ def push_crossref_xml_list(
 
         # update rogue-scholar legacy record if legacy_key is provided
         if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
-            record["uuid"] = py_.get(item, "identifiers.0.identifier")
-            record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
+            uuid = py_.get(item, "identifiers.0.identifier")
+            if uuid:
+                record["uuid"] = uuid
+                record = update_legacy_record(
+                    record, legacy_key=legacy_key, field="doi"
+                )
         items.append(record)
 
     # Return JSON response
-    return json.dumps(items, option=json.OPT_INDENT_2)
+    return json.dumps(items, option=json.OPT_INDENT_2).decode("utf-8")
 
 
 def get_attributes(obj, **kwargs) -> dict:
@@ -729,10 +742,16 @@ def get_item_number(obj) -> Optional[dict]:
             }
 
 
-def get_publication_date(obj, media_type: str = None) -> Optional[str]:
+def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict]:
     """get publication date"""
-    pub_date = date_parse(py_.get(obj, "date.published"))
-    if pub_date is None:
+    pub_date_str = py_.get(obj, "date.published")
+    if pub_date_str is None:
+        return None
+
+    try:
+        pub_date = date_parse(pub_date_str)
+    except (ValueError, TypeError) as e:
+        logger.warning(f"Failed to parse publication date '{pub_date_str}': {e}")
         return None
 
     return compact(
@@ -763,17 +782,20 @@ def get_archive_locations(obj) -> Optional[list]:
     ]
 
 
-def get_references(obj) -> Optional[dict]:
+def get_references(obj) -> Optional[Dict]:
     """get references"""
     if py_.get(obj, "references") is None or len(py_.get(obj, "references")) == 0:
         return None
 
     citations = []
     for i, ref in enumerate(py_.get(obj, "references")):
+        # Validate DOI before using it
+        doi = doi_from_url(ref.get("id", None))
+
         reference = compact(
             {
                 "@key": ref.get("key", f"ref{i + 1}"),
-                "doi": doi_from_url(ref.get("id", None)),
+                "doi": doi,
                 "journal_title": ref.get("journal_title", None),
                 "author": ref.get("author", None),
                 "volume": ref.get("volume", None),
@@ -849,15 +871,18 @@ def get_funding_references(obj) -> Optional[dict]:
     }
 
 
-def get_relations(obj) -> list:
+def get_relations(obj) -> Optional[Dict]:
     """get relations"""
     if py_.get(obj, "relations") is None or len(py_.get(obj, "relations")) == 0:
         return None
 
     def format_relation(relation):
         """format relation"""
+        relation_type = relation.get("type", None)
+        if relation_type is None:
+            return None
 
-        if relation.get("type", None) in [
+        if relation_type in [
             "IsPartOf",
             "HasPart",
             "IsReviewOf",
@@ -866,7 +891,7 @@ def get_relations(obj) -> list:
             "HasRelatedMaterial",
         ]:
             group = "rel:inter_work_relation"
-        elif relation.get("type", None) in [
+        elif relation_type in [
             "IsIdenticalTo",
             "IsPreprintOf",
             "HasPreprint",
@@ -879,43 +904,47 @@ def get_relations(obj) -> list:
         else:
             return None
 
-        f = furl(relation.get("id", None))
-        if validate_doi(relation.get("id", None)):
+        relation_id = relation.get("id", None)
+        if relation_id is None:
+            return None
+
+        f = furl(relation_id)
+        if validate_doi(relation_id):
             identifier_type = "doi"
-            _id = doi_from_url(relation.get("id", None))
-        elif f.host == "portal.issn.org" and obj.type in [
-            "Article",
-            "BlogPost",
-        ]:
+            _id = doi_from_url(relation_id)
+        elif f.host == "portal.issn.org" and obj.type in ["Article", "BlogPost"]:
             identifier_type = "issn"
             _id = f.path.segments[-1] if f.path.segments else None
-        elif validate_url(relation.get("id", None)) == "URL":
+        elif validate_url(relation_id) == "URL":
             identifier_type = "uri"
-            _id = relation.get("id", None)
+            _id = relation_id
         else:
             identifier_type = "other"
-            _id = relation.get("id", None)
+            _id = relation_id
 
         return {
             group: compact(
                 {
-                    "@relationship-type": py_.lower_first(relation.get("type"))
-                    if relation.get("type", None) is not None
-                    else None,
+                    "@relationship-type": py_.lower_first(relation_type),
                     "@identifier-type": identifier_type,
                     "#text": _id,
                 },
             )
         }
 
+    related_items = [
+        format_relation(i)
+        for i in py_.get(obj, "relations")
+        if format_relation(i) is not None
+    ]
+
+    if not related_items:
+        return None
+
     return {
         "@xmlns:rel": "http://www.crossref.org/relations.xsd",
         "@name": "relations",
-        "rel:related_item": [
-            format_relation(i)
-            for i in py_.get(obj, "relations")
-            if format_relation(i) is not None
-        ],
+        "rel:related_item": related_items,
     }
 
 
