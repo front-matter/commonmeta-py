@@ -428,11 +428,11 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
             if community_index is not None:
                 metadata.relations.pop(community_index)
 
-        # optionally add record to InvenioRDM communities
-        record = add_record_to_communities(metadata, host, token, record)
-
         # upsert record via the InvenioRDM API
         record = upsert_record(metadata, host, token, record)
+
+        # optionally add record to InvenioRDM communities
+        record = add_record_to_communities(metadata, host, token, record)
 
         # optionally update external services
         record = update_external_services(metadata, host, token, record, **kwargs)
