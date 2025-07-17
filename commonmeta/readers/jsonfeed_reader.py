@@ -162,6 +162,13 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     references = get_references(wrap(meta.get("reference", None)))
     funding_references = get_funding_references(meta)
     relations = get_relations(wrap(meta.get("relationships", None)))
+    if meta.get("blog_slug", None):
+        relations.append(
+            {
+                "id": f"https://rogue-scholar.org/api/communities/{meta.get('blog_slug')}",
+                "type": "IsPartOf",
+            }
+        )
     if issn is not None:
         relations.append(
             {
