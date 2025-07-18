@@ -686,9 +686,13 @@ def test_jsonfeed_with_relations():
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
-    # assert len(subject.references) == 1
+    assert len(subject.references) == 1
     # assert subject.references[0] == {
     #     "key": "ref1",
     #     "doi": "https://doi.org/10.5281/zenodo.30799",
@@ -725,6 +729,10 @@ def test_jsonfeed_with_relations_and_funding():
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
@@ -764,6 +772,13 @@ def test_jsonfeed_with_relations_and_funding():
                     "identifier-type": "doi",
                     "#text": "10.5438/bv9z-dc66",
                 }
+            },
+            {
+                "inter_work_relation": {
+                    "relationship-type": "isPartOf",
+                    "identifier-type": "uri",
+                    "#text": "https://rogue-scholar.org/api/communities/front_matter",
+                },
             },
             {
                 "inter_work_relation": {
@@ -1029,8 +1044,8 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "27",
-        "month": "5",
+        "day": "18",
+        "month": "7",
         "year": "2023",
     }
     assert py_.get(crossref_xml, "abstract.0.p").startswith(

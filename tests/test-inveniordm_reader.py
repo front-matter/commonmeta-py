@@ -291,7 +291,7 @@ def test_rogue_scholar():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date["published"] == "2024-10-07"
+    assert subject.date["published"] == "2024-10-07T13:41:37"
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert (
@@ -306,7 +306,11 @@ def test_rogue_scholar():
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",
+        "platform": "Ghost",
     }
-    assert subject.subjects is None
+    assert subject.subjects == [
+        {"subject": "FOS: Computer and information sciences"},
+        {"subject": "Rogue Scholar"},
+    ]
     assert subject.language == "en"
     assert subject.version is None

@@ -245,9 +245,9 @@ def test_yet_another_blog_post():
         "identifier": "pub:56991",
         "image": {
             "@type": "ImageObject",
-            "contentUrl": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
-            "thumbnailUrl": "https://substackcdn.com/image/fetch/w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
-            "url": "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+            "contentUrl": "https://substackcdn.com/image/fetch/$s_!GBU1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+            "thumbnailUrl": "https://substackcdn.com/image/fetch/$s_!GBU1!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
+            "url": "https://substackcdn.com/image/fetch/$s_!GBU1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
         },
     }
     assert subject.references is None

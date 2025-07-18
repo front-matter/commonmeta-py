@@ -1308,7 +1308,8 @@ def test_proceedings_article():
         "contributorRoles": ["Author"],
     }
     assert subject.license == {
-        "url": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date == {"published": "2021-06-09"}
     assert subject.publisher == {"name": "ACM"}

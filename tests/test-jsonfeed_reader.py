@@ -57,7 +57,11 @@ def test_wordpress_with_references():
         "unstructured": "Bilbey, S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid sauropod dinosaur from the lower Morrison Formation of northeastern Utah. Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A.",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"}
+        {
+            "id": "https://rogue-scholar.org/api/communities/svpow",
+            "type": "IsPartOf",
+        },
+        {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {
@@ -154,6 +158,10 @@ def test_post_with_relationships():
             "type": "IsIdenticalTo",
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -231,6 +239,10 @@ def test_post_with_relationships_as_doi():
             "type": "IsIdenticalTo",
         },
         {"id": "https://doi.org/10.5438/jwvf-8a66", "type": "IsIdenticalTo"},
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
@@ -297,7 +309,9 @@ def test_post_with_funding():
             "https://doi.org/10.5281/zenodo.8284206",
         }
     ]
-    assert subject.relations is None
+    assert subject.relations == [
+        {"id": "https://rogue-scholar.org/api/communities/upstream", "type": "IsPartOf"}
+    ]
     assert subject.identifiers == [
         {
             "identifier": "5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9",
@@ -347,7 +361,11 @@ def test_post_with_more_funding():
     )
     assert subject.references is None
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {
@@ -416,7 +434,12 @@ def test_post_with_funding_ror():
         "name": "Front Matter",
     }
     assert subject.references is None
-    assert subject.relations is None
+    assert subject.relations == [
+        {
+            "id": "https://rogue-scholar.org/api/communities/metadatagamechangers",
+            "type": "IsPartOf",
+        }
+    ]
     assert subject.identifiers == [
         {
             "identifier": "24251b1a-c09c-4341-a65c-30cf92a47d73",
@@ -462,7 +485,12 @@ def test_post_with_even_more_funding():
         == "https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html"
     )
     assert subject.references is None
-    assert subject.relations is None
+    assert subject.relations == [
+        {
+            "id": "https://rogue-scholar.org/api/communities/chem_bla_ics",
+            "type": "IsPartOf",
+        }
+    ]
     assert subject.identifiers == [
         {
             "identifier": "6f2b7003-a77d-4b7b-a88a-8ce78546ddf7",
@@ -525,7 +553,9 @@ def test_ghost_with_institutional_author():
         "name": "Front Matter",
     }
     assert subject.references is None
-    assert subject.relations is None
+    assert subject.relations == [
+        {"id": "https://rogue-scholar.org/api/communities/oa_works", "type": "IsPartOf"}
+    ]
     assert subject.identifiers == [
         {
             "identifier": "2b3cdd27-5123-4167-9482-3c074392e2d2",
@@ -631,7 +661,11 @@ def test_ghost_with_affiliations():
         "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R., &amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184. https://doi.org/10.1371/journal.pone.0063184",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"}
+        {
+            "id": "https://rogue-scholar.org/api/communities/front_matter",
+            "type": "IsPartOf",
+        },
+        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {
@@ -706,7 +740,11 @@ def test_ghost_with_personal_name_parsing():
         "unstructured": "Ahmed, A., Chouairi, F., &amp; Li, X. (2022). Analysis of Reported Voting Behaviors of US Physicians, 2000-2020. <i>JAMA Network Open</i>, <i>5</i>(1), e2142527. https://doi.org/10.1001/jamanetworkopen.2021.42527",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"}
+        {
+            "id": "https://rogue-scholar.org/api/communities/ideas",
+            "type": "IsPartOf",
+        },
+        {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
         {
@@ -819,6 +857,10 @@ def test_post_with_peer_reviewed_version():
             "id": "https://doi.org/10.18357/kula.291",
             "type": "IsPreprintOf",
         },
+        {
+            "id": "https://rogue-scholar.org/api/communities/upstream",
+            "type": "IsPartOf",
+        },
     ]
     assert subject.content.startswith(
         "<p><em>The New York Times</em> ushered in the New Year"
@@ -844,6 +886,10 @@ def test_post_with_peer_review():
         {
             "id": "https://metaror.org/kotahi/articles/40",
             "type": "HasReview",
+        },
+        {
+            "id": "https://rogue-scholar.org/api/communities/upstream",
+            "type": "IsPartOf",
         },
     ]
     assert subject.content.startswith(

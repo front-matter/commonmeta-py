@@ -13,6 +13,7 @@ from ..constants import (
     INVENIORDM_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
+from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi
 from ..utils import (
     dict_to_fos,
@@ -92,7 +93,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             if py_.get(i, "type.id") == "updated" and i.get("date", None) is not None
         ),
         None,
-    )
+    ) or strip_milliseconds(meta.get("updated", None))
     f = furl(url)
     if f.host == "zenodo.org":
         container = compact(
