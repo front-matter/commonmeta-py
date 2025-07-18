@@ -1367,6 +1367,15 @@ def name_to_fos(name: str) -> Optional[dict]:
     return {"subject": subject}
 
 
+def dict_to_fos(dct: dict) -> Optional[dict]:
+    """Convert dict to Fields of Science (OECD) subject"""
+    if not isinstance(dct, dict):
+        return None
+    if dct.get("subject", None) is not None:
+        return name_to_fos(dct["subject"])
+    return None
+
+
 def from_curie(id: Optional[str]) -> Optional[str]:
     """from CURIE"""
     if id is None:

@@ -1,5 +1,7 @@
 """InvenioRDM reader for Commonmeta"""
 
+from typing import Optional
+
 import requests
 from furl import furl
 from pydash import py_
@@ -11,9 +13,9 @@ from ..constants import (
     INVENIORDM_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
-from ..date_utils import strip_milliseconds
-from ..doi_utils import doi_as_url, doi_from_url
+from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi
 from ..utils import (
+    dict_to_fos,
     dict_to_spdx,
     from_inveniordm,
     get_language,
@@ -40,7 +42,15 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    url = normalize_url(py_.get(meta, "links.self_html"))
+    url = normalize_url(py_.get(meta, "links.self_html")) or next(
+        (
+            normalize_url(identifier.get("identifier"))
+            for identifier in wrap(py_.get(meta, "metadata.identifiers", []))
+            if identifier.get("scheme") == "url"
+            and identifier.get("identifier", None) is not None
+        ),
+        None,
+    )
     _id = (
         doi_as_url(meta.get("doi", None))
         or doi_as_url(py_.get(meta, "pids.doi.identifier"))
@@ -67,10 +77,22 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
 
     date: dict = {}
-    date["published"] = py_.get(meta, ("metadata.publication_date"))
-    if date["published"]:
-        date["published"] = date["published"].split("/")[0]
-    date["updated"] = strip_milliseconds(meta.get("updated", None))
+    date["published"] = next(
+        (
+            i.get("date")
+            for i in wrap(py_.get(meta, "metadata.dates", []))
+            if py_.get(i, "type.id") == "issued" and i.get("date", None) is not None
+        ),
+        None,
+    ) or py_.get(meta, ("metadata.publication_date"))
+    date["updated"] = next(
+        (
+            i.get("date")
+            for i in wrap(py_.get(meta, "metadata.dates", []))
+            if py_.get(i, "type.id") == "updated" and i.get("date", None) is not None
+        ),
+        None,
+    )
     f = furl(url)
     if f.host == "zenodo.org":
         container = compact(
@@ -89,25 +111,31 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 {
                     "type": "Periodical",
                     "title": container.get("title", None),
-                    "identifier": issn,
+                    "identifier": issn if issn else None,
                     "identifierType": "ISSN" if issn else None,
+                    "platform": py_.get(meta, "custom_fields.rs:generator", None),
                 }
             )
-    license_ = py_.get(meta, "metadata.rights[0].id") or py_.get(
-        meta, "metadata.license.id"
-    )
-    if license_:
-        license_ = dict_to_spdx({"id": license_})
     descriptions = format_descriptions(
         [
             py_.get(meta, "metadata.description"),
             py_.get(meta, "metadata.notes"),
         ]
     )
+    identifiers = py_.compact(
+        [format_identifier(i) for i in wrap(py_.get(meta, "metadata.identifiers"))]
+    )
     language = py_.get(meta, "metadata.language") or py_.get(
         meta, "metadata.languages[0].id"
     )
-    subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
+    license_ = py_.get(meta, "metadata.rights[0].id") or py_.get(
+        meta, "metadata.license.id"
+    )
+    if license_:
+        license_ = dict_to_spdx({"id": license_})
+    subjects = [dict_to_fos(i) for i in wrap(py_.get(meta, "metadata.subjects"))] or [
+        name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))
+    ]
 
     references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
     relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
@@ -119,6 +147,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "IsVersionOf",
             }
         )
+
+    content = py_.get(meta, "custom_fields.rs:content_html")
+    image = py_.get(meta, "custom_fields.rs:image")
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
     return {
@@ -135,6 +166,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             # recommended and optional properties
             # "additional_type": additional_type,
             "subjects": presence(subjects),
+            "identifiers": presence(identifiers),
             "language": get_language(language),
             "version": py_.get(meta, "metadata.version"),
             "license": presence(license_),
@@ -143,10 +175,12 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "fundingReferences": presence(funding_references),
             "references": presence(references),
             "relations": presence(relations),
+            "content": presence(content),
+            "image": presence(image),
+            "files": presence(files),
             # other properties
-            "files": files,
             "container": container,
-            "provider": "DataCite",
+            "provider": "Crossref" if is_rogue_scholar_doi(_id) else "Datacite",
         },
         **read_options,
     }
@@ -258,3 +292,27 @@ def format_descriptions(descriptions: list) -> list:
         for index, i in enumerate(descriptions)
         if i
     ]
+
+
+def format_identifier(identifier: dict) -> Optional[dict]:
+    """format_identifier. scheme url is stored as url metadata."""
+    if (
+        identifier.get("identifier", None) is None
+        or identifier.get("scheme", None) is None
+        or identifier.get("scheme") == "url"
+    ):
+        return None
+
+    scheme = identifier.get("scheme")
+    if scheme == "doi":
+        identifier_type = "DOI"
+    elif scheme == "uuid":
+        identifier_type = "UUID"
+    elif scheme == "guid":
+        identifier_type = "GUID"
+    else:
+        identifier_type = None
+    return {
+        "identifier": identifier.get("identifier"),
+        "identifierType": identifier_type,
+    }
