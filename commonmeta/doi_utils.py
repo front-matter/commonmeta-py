@@ -315,6 +315,7 @@ def is_rogue_scholar_doi(doi: str, ra: str = "crossref") -> bool:
         "10.59350",
         "10.63485",
         "10.64000",
+        "10.64395",
     ]
     rogue_scholar_datacite_prefixes = [
         "10.5438",
