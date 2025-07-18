@@ -452,7 +452,9 @@ def push_crossref_xml_list(
             if uuid:
                 record["uuid"] = uuid
                 record = update_legacy_record(
-                    record, legacy_key=legacy_key, field="doi"
+                    # record, legacy_key=legacy_key, field="doi"
+                    record,
+                    legacy_key=legacy_key,
                 )
         items.append(record)
 
