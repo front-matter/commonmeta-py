@@ -355,13 +355,14 @@ class MetadataList:
             raise ValueError("No input found")
         if isinstance(dct, dict):
             meta = dct
+        elif isinstance(dct, list):
+            meta = {"items": dct}
         elif isinstance(dct, (str, bytes)):
             if path.exists(dct):
                 with open(dct, encoding="utf-8") as file:
                     dct = file.read()
             self.via = kwargs.get("via", None) or find_from_format(string=dct)
             meta = self.get_metadata_list(dct)
-
         self.id = meta.get("id", None)
         self.type = meta.get("type", None)
         self.title = meta.get("title", None)
@@ -393,11 +394,14 @@ class MetadataList:
         if string is None or not isinstance(string, (str, bytes)):
             raise ValueError("No input found")
         if self.via in [
+            "inveniordm",
+        ]:
+            return {"items": json.loads(string)}
+        if self.via in [
             "commonmeta",
             "crossref",
             "csl",
             "datacite",
-            "inveniordm",
             "jsonfeed",
             "openalex",
             "schema_org",
