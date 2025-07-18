@@ -382,9 +382,16 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
 
 def write_inveniordm_list(metalist):
     """Write InvenioRDM list"""
+
     if metalist is None:
         return None
-    return [write_inveniordm(item) for item in metalist.items]
+
+    def write_item(item):
+        """write inveniordm item for inveniordm list"""
+
+        return write_inveniordm(item)
+
+    return [write_item(item) for item in metalist.items]
 
 
 def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Dict:
