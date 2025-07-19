@@ -731,6 +731,7 @@ def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
         if field == "rid" and record.get("id", None) is not None:
             output = {
                 "rid": record.get("id"),
+                "doi": record.get("doi", None),
                 "indexed_at": now,
                 "indexed": "true",
                 "archived": "true",
