@@ -472,7 +472,7 @@ def upsert_record(metadata: Commonmeta, host: str, token: str, record: dict) -> 
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
 
-    if record["id"] is not None:
+    if record.get("id", None) is not None:
         # Create draft record from published record
         record = edit_published_record(record, host, token)
 
