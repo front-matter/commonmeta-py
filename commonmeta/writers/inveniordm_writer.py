@@ -417,6 +417,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
                     "identifier"
                 ):
                     record["uuid"] = identifier.get("identifier")
+                    continue
 
         if hasattr(metadata, "relations") and metadata.relations:
             community_index = None
@@ -430,21 +431,26 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
                         record["community"] = slug
                         record["community_id"] = community_id
                         community_index = i
-                        break
+                        continue
 
             if community_index is not None:
                 metadata.relations.pop(community_index)
 
         # upsert record via the InvenioRDM API
         record = upsert_record(metadata, host, token, record)
+        print("Record after upsert:", record)
 
         # optionally add record to InvenioRDM communities
         record = add_record_to_communities(metadata, host, token, record)
+        print("Record after adding to communities:", record)
 
         # optionally update external services
         record = update_external_services(metadata, host, token, record, **kwargs)
+        print("Record after updating external services:", record)
 
     except Exception as e:
+        print(f"Error in push_inveniordm: {str(e)}")
+        print("Record before error:", record)
         logger.error(
             f"Unexpected error in push_inveniordm: {str(e)}",
             exc_info=True,
