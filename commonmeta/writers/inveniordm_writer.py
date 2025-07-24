@@ -740,7 +740,6 @@ def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
                 "registered": "false",
             }
         elif record.get("doi", None) is not None:
-            print(f"Updating legacy record for {record['uuid']} with field {field}")
             output = {
                 "registered": "true",
             }
