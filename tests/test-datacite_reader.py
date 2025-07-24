@@ -761,8 +761,11 @@ def test_geolocation_box():
     ]
     assert subject.publisher == {"name": "Dryad"}
     assert subject.date == {
-        "published": "2016-03-14T17:02:02Z",
         "available": "2016-03-14T17:02:02Z",
+        "created": "2023-08-18T17:31:44Z",
+        "published": "2016-03-14T17:02:02Z",
+        "submitted": "2022-03-01T22:38:07Z",
+        "updated": "2022-03-30T00:00:00Z",
     }
     assert subject.subjects == [
         {"subject": "air temperature"},
