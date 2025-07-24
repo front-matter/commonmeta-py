@@ -11,6 +11,8 @@ from commonmeta.doi_utils import (
     doi_from_url,
     doi_resolver,
     encode_doi,
+    generate_substack_doi,
+    generate_wordpress_doi,
     get_doi_ra,
     is_rogue_scholar_doi,
     normalize_doi,
@@ -273,3 +275,27 @@ def test_crossref_api_query_url():
         response
         == "https://api.crossref.org/works?rows=100&filter=member%3A31795%2Chas-references%3Atrue"
     )
+
+
+def test_generate_wordpress_doi():
+    """Generate a WordPress DOI"""
+    response = generate_wordpress_doi(
+        prefix="10.5555",
+        slug="pkp",
+        guid="https://sfupkp.dev.affinitybridge.com/?p=1456",
+    )
+    assert response == "https://doi.org/10.5555/pkp.1456"
+
+    # No post_id in guid
+    response = generate_wordpress_doi(
+        prefix="10.5555",
+        slug="pkp",
+        guid="https://sfupkp.dev.affinitybridge.com/2022/11/04/world-digital-preservation-day-2022-using-pkp-pn-to-keep-journals-data-for-all-for-good-forever/",
+    )
+    assert response.startswith("https://doi.org/10.5555/")
+
+
+def test_generate_substack_doi():
+    """Generate a Substack DOI"""
+    response = generate_substack_doi(prefix="10.5555", guid="167348334")
+    assert response == "https://doi.org/10.5555/004zk-23e33"

@@ -350,17 +350,18 @@ def generate_wordpress_doi(prefix: str, slug: str, guid: str) -> str:
     pattern = re.compile(r"p=(\d+)$")
     matched = pattern.search(guid)
 
-    if not matched:
-        return ""
+    if matched:
+        suffix = f"{slug}.{matched.group(1)}"
+    else:
+        # post_id not found, use random base32 encoding
+        suffix = base32.generate(length=10, split_every=5, checksum=True)
 
-    doi = f"https://doi.org/{prefix}/{slug}.{matched.group(1)}"
+    doi = f"https://doi.org/{prefix}/{suffix}"
     return doi
 
 
 def validate_doi_from_guid(prefix: str, guid: str, checksum=True) -> bool:
     """Validates a GUID that is a DOI"""
-    import base32_lib as base32
-
     if not prefix:
         return False
 
@@ -383,8 +384,6 @@ def validate_doi_from_guid(prefix: str, guid: str, checksum=True) -> bool:
 
 def generate_substack_doi(prefix: str, guid: str) -> str:
     """Generate a DOI from a Substack GUID"""
-    import base32_lib as base32
-
     if not prefix or not guid:
         return ""
 
@@ -393,7 +392,6 @@ def generate_substack_doi(prefix: str, guid: str) -> str:
     except ValueError:
         return ""
 
-    # encode the number using base32 with length=4, split_every=8, and checksum=True
-    suffix = base32.encode(i, length=4, split_every=8, checksum=True)
+    suffix = base32.encode(i, split_every=5, min_length=10, checksum=True)
     doi = f"https://doi.org/{prefix}/{suffix}"
     return doi
