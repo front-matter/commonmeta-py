@@ -717,7 +717,7 @@ def test_jsonfeed_with_relations():
 
 @pytest.mark.vcr
 def test_jsonfeed_with_relations_and_funding():
-    """jsoneed with relations and funding"""
+    """jsonfeed with relations and funding"""
     string = "https://api.rogue-scholar.org/posts/e58dc9c8-b870-4db2-8896-238b3246c551"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1"
@@ -725,6 +725,7 @@ def test_jsonfeed_with_relations_and_funding():
     assert len(subject.references) == 3
     assert subject.references[0] == {
         "id": "https://doi.org/10.14454/3bpw-w381",
+        "type": "ComputationalNotebook",
         "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
     }
     assert subject.relations == [

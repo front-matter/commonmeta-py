@@ -108,6 +108,7 @@ class Metadata:
         self.provider = meta.get("provider")
         self.publisher = meta.get("publisher")
         self.references = meta.get("references")
+        self.citations = meta.get("citations")
         self.relations = meta.get("relations")
         self.subjects = meta.get("subjects")
         self.titles = meta.get("titles")

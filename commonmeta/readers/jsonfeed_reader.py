@@ -160,6 +160,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     if tags is not None:
         subjects += wrap([format_subject(i) for i in tags])
     references = get_references(wrap(meta.get("reference", None)))
+    citations = get_citations(wrap(meta.get("citations", None)))
     funding_references = get_funding_references(meta)
     relations = get_relations(wrap(meta.get("relationships", None)))
     if meta.get("blog_slug", None):
@@ -205,6 +206,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         "geoLocations": None,
         "fundingReferences": presence(funding_references),
         "references": presence(references),
+        "citations": presence(citations),
         "relations": presence(relations),
         "content": presence(content),
         "image": presence(image),
@@ -233,13 +235,36 @@ def get_references(references: list) -> list:
             {
                 "id": id_,
                 "key": reference.get("key", None),
+                "type": reference.get("type", None),
+                "unstructured": reference.get("unstructured", None),
                 "title": reference.get("title", None),
                 "publicationYear": reference.get("publicationYear", None),
-                "unstructured": reference.get("unstructured", None),
             }
         )
 
     return [get_reference(i) for i in references]
+
+
+def get_citations(citations: list) -> list:
+    """get jsonfeed citations."""
+
+    def get_citation(citation: dict) -> Optional[dict]:
+        if citation is None or not isinstance(citation, dict):
+            return None
+
+        return compact(
+            {
+                "id": normalize_doi(citation.get("citation")),
+                "type": citation.get("type", None),
+                "unstructured": citation.get("unstructured", None),
+                "published_at": citation.get("published_at", None),
+                "updated_at": citation.get("updated_at", None),
+            }
+        )
+
+    citations = [get_citation(i) for i in citations if i.get("validated", False)]
+    citations.sort(key=lambda x: x.get("published_at", None))
+    return citations
 
 
 def get_funding_references(meta: Optional[dict]) -> Optional[list]:

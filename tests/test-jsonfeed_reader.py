@@ -141,6 +141,7 @@ def test_post_with_relationships():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.5438/s6d3-k860",
+        "type": "Document",
         "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). <i>Are your data being used? Event Data has the answer!</i> (1.0). DataCite. https://doi.org/10.5438/s6d3-k860",
     }
     assert subject.funding_references == [
@@ -188,6 +189,113 @@ def test_post_with_relationships():
         subject.image
         == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
     )
+
+
+@pytest.mark.vcr
+def test_post_with_citations():
+    "post with citations"
+    string = "https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/dcw3y-7em87"
+    assert subject.type == "BlogPost"
+    assert subject.url == "https://opencitations.hypotheses.org/31"
+    assert subject.titles[0] == {"title": "Use of CiTO in CiteULike"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0001-5506-523X",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "David M.",
+        "familyName": "Shotton",
+        "affiliations": [
+            {"id": "https://ror.org/052gg0110", "name": "University of Oxford"}
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2010-10-21T16:32:43",
+        "updated": "2022-08-04T15:52:06",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert subject.references is None
+    assert subject.citations == [
+        {
+            "id": "https://doi.org/10.1007/s11192-013-1108-3",
+            "published_at": "2013-08-10",
+            "unstructured": "Parinov, S., &amp; Kogalovsky, M. (2013). Semantic linkages in "
+            "research information systems as a new data source for scientometric "
+            "studies. <i>Scientometrics</i>, <i>98</i>(2), 927–943. "
+            "https://doi.org/10.1007/s11192-013-1108-3",
+            "updated_at": "2025-02-02T19:19:01.385995+00:00",
+        },
+        {
+            "id": "https://doi.org/10.1134/s0361768814060139",
+            "published_at": "2014-11",
+            "unstructured": "Kogalovsky, M. R., &amp; Parinov, S. I. (2014). Social network "
+            "technologies for semantic linking of information objects in "
+            "scientific digital library. <i>Programming and Computer Software</i>, "
+            "<i>40</i>(6), 314–322. https://doi.org/10.1134/s0361768814060139",
+            "updated_at": "2025-02-02T19:18:41.652975+00:00",
+        },
+    ]
+    assert subject.relations == [
+        {
+            "id": "https://rogue-scholar.org/api/communities/opencitations",
+            "type": "IsPartOf",
+        },
+    ]
+    assert subject.identifiers == [
+        {
+            "identifier": "6d0f1603-4081-4a4c-9bdf-1f0146558935",
+            "identifierType": "UUID",
+        },
+        {
+            "identifier": "http://opencitations.wordpress.com/?p=31",
+            "identifierType": "GUID",
+        },
+    ]
+    assert subject.container == {
+        "type": "Blog",
+        "title": "OpenCitations blog",
+        "identifier": "https://rogue-scholar.org/blogs/opencitations",
+        "identifierType": "URL",
+        "platform": "WordPress",
+    }
+    assert subject.content.startswith(
+        "<p>Egon Willighagen, at Uppsala University, has pioneered the use of object properties from CiTO"
+    )
+    assert subject.image is None
+
+
+@pytest.mark.vcr
+def test_another_post_with_citations():
+    "another post with citations"
+    string = "https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/50ebs-4zq55"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies"
+    )
+    assert subject.titles[0] == {"title": "Ruby CDK for Newbies"}
+    assert subject.citations == [
+        {
+            "id": "https://doi.org/10.59350/myaw4-dtg76",
+            "published_at": "2024-12-08",
+            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. <i>Front "
+            "Matter</i>. https://doi.org/10.59350/myaw4-dtg76",
+            "updated_at": "2025-02-02T19:18:39.899725+00:00",
+        },
+    ]
 
 
 @pytest.mark.vcr
@@ -302,6 +410,7 @@ def test_post_with_funding():
     assert subject.references == [
         {
             "id": "https://doi.org/10.5281/zenodo.8284206",
+            "type": "Document",
             "unstructured": "Plankytė, V., Macneil, R., &amp; Chen, X. (2023). <i>Guiding "
             "principles for implementing persistent identification and metadata "
             "features on research tools to boost interoperability of research data "
@@ -658,6 +767,7 @@ def test_ghost_with_affiliations():
     assert len(subject.references) == 1
     assert subject.references[0] == {
         "id": "https://doi.org/10.1371/journal.pone.0063184",
+        "type": "JournalArticle",
         "unstructured": "Kafkas, Ş., Kim, J.-H., McEntyre, J. R., &amp; Larivière, V. (2013). Database Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184. https://doi.org/10.1371/journal.pone.0063184",
     }
     assert subject.relations == [
@@ -737,6 +847,7 @@ def test_ghost_with_personal_name_parsing():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.1001/jamanetworkopen.2021.42527",
+        "type": "JournalArticle",
         "unstructured": "Ahmed, A., Chouairi, F., &amp; Li, X. (2022). Analysis of Reported Voting Behaviors of US Physicians, 2000-2020. <i>JAMA Network Open</i>, <i>5</i>(1), e2142527. https://doi.org/10.1001/jamanetworkopen.2021.42527",
     }
     assert subject.relations == [
@@ -928,6 +1039,7 @@ def test_broken_reference():
     assert len(subject.references) == 6
     assert subject.references[3] == {
         "id": "https://doi.org/10.1016/s2214-109x(23)00198-5",
+        "type": "JournalArticle",
         "unstructured": "Laurenson-Schafer, H., Sklenovská, N., Hoxha, A., Kerr, S. M., Ndumbi, P., Fitzner, J., Almiron, M., de Sousa, L. A., Briand, S., Cenciarelli, O., Colombe, S., Doherty, M., Fall, I. S., García-Calavaro, C., Haussig, J. M., Kato, M., Mahamud, A. R., Morgan, O. W., Nabeth, P., … Biaukula, V. (2023). Description of the first global outbreak of mpox: an analysis of global surveillance data. <i>The Lancet Global Health</i>, <i>11</i>(7), e1012–e1023. https://doi.org/10.1016/s2214-109x(23)00198-5",
     }
 

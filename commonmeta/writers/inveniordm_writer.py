@@ -59,6 +59,7 @@ def write_inveniordm(metadata):
         }
     )
     references = [to_inveniordm_reference(i) for i in wrap(metadata.references)]
+    citations = [to_inveniordm_reference(i) for i in wrap(metadata.citations)]
     related_identifiers = [
         to_inveniordm_related_identifier(i)
         for i in wrap(metadata.relations)
@@ -160,6 +161,7 @@ def write_inveniordm(metadata):
                     ),
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
+                    "rs:citations": presence(citations),
                     "rs:generator": container.get("platform", None),
                 }
             ),

@@ -572,7 +572,31 @@ def test_from_jsonfeed_unstructured_references():
 
 
 @pytest.mark.vcr
-def test_fromjson_feed_relations():
+def test_from_jsonfeed_citations():
+    "JSON Feed citations"
+    string = "https://api.rogue-scholar.org/posts/10.59350/dcw3y-7em87"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/dcw3y-7em87"
+    assert subject.type == "BlogPost"
+    assert len(subject.citations) == 2
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert py_.get(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
+    citations = py_.get(inveniordm, "custom_fields.rs:citations")
+    assert len(citations) == 2
+    assert citations[0] == {
+        "identifier": "10.1007/s11192-013-1108-3",
+        "reference": "Parinov, S., &amp; Kogalovsky, M. (2013). Semantic linkages in research "
+        "information systems as a new data source for scientometric studies. "
+        "<i>Scientometrics</i>, <i>98</i>(2), 927–943.",
+        "scheme": "doi",
+    }
+
+
+@pytest.mark.vcr
+def test_from_jsonfeed_relations():
     "JSON Feed relations"
     string = "https://api.rogue-scholar.org/posts/10.54900/zg929-e9595"
     subject = Metadata(string)
@@ -600,7 +624,7 @@ def test_fromjson_feed_relations():
 
 
 @pytest.mark.vcr
-def test_fromjson_feed_broken_reference():
+def test_from_jsonfeed_broken_reference():
     "JSON Feed relations"
     string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
     subject = Metadata(string)
