@@ -10,6 +10,7 @@ import orjson as json
 import requests
 from dateutil.parser import parse as date_parse
 from furl import furl
+from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
 from pydash import py_
 from requests_toolbelt.multipart.encoder import MultipartEncoder
@@ -177,7 +178,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "titles": titles,
                 "abstracts": abstracts,
                 "publication_date": get_publication_date(metadata, media_type="online"),
-                "isbn": get_isbn(metadata),
+                "isbn": get_isbn(metadata, media_type="online"),
                 "publisher": get_publisher(metadata),
                 "publisher_item": None,
                 "funding_references": funding_references,
@@ -302,8 +303,6 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "conference": get_attributes(metadata, **kwargs),
                 "event_metadata": get_event_metadata(metadata),
                 "proceedings_metadata": get_proceedings_metadata(metadata),
-                "proceedings_title": py_.get(metadata, "container.title"),
-                "publisher": get_publisher(metadata),
                 "conference_paper": get_attributes(metadata, **kwargs),
                 "contributors": contributors,
                 "titles": titles,
@@ -525,15 +524,23 @@ def get_event_metadata(obj) -> Optional[dict]:
 
 def get_proceedings_metadata(obj) -> Optional[dict]:
     """get proceedings metadata"""
-    if py_.get(obj, "container.title") is None:
+    if (
+        py_.get(obj, "container.title") is None
+        or py_.get(obj, "publisher.name") is None
+    ):
         return None
 
-    return compact(
-        {
-            "@language": py_.get(obj, "language"),
-            "proceedings_title": py_.get(obj, "container.title"),
-        }
-    )
+    proceedings_metadata = {
+        "@language": py_.get(obj, "language"),
+        "proceedings_title": py_.get(obj, "container.title"),
+        "publisher": {
+            "publisher_name": py_.get(obj, "publisher.name"),
+        },
+        "publication_date": get_publication_date(obj, media_type="online"),
+    }
+    if py_.get(obj, "container.identifierType") == "ISBN":
+        proceedings_metadata["isbn"] = get_isbn(obj)
+    return compact(proceedings_metadata)
 
 
 def get_journal_issue(obj) -> Optional[dict]:
@@ -562,7 +569,7 @@ def get_institution(obj) -> Optional[dict]:
                 "#text": py_.get(obj, "container.identifier"),
                 "@type": "ror",
             }
-            if py_.get(obj, "container.identifierTyoe") == "ROR"
+            if py_.get(obj, "container.identifierType") == "ROR"
             else None,
         }
     )
@@ -1004,11 +1011,42 @@ def get_doi_data(obj) -> Optional[dict]:
     )
 
 
-def get_isbn(obj):
+def get_isbn(obj, media_type: Optional[str] = None) -> Optional[Dict]:
     """get isbn"""
-    if py_.get(obj, "container.identifierType") != "ISBN":
+    if (
+        py_.get(obj, "container.identifierType") != "ISBN"
+        or py_.get(obj, "container.identifier") is None
+    ):
         return None
-    return py_.get(obj, "container.identifier")
+    isbn = py_.get(obj, "container.identifier")
+    return normalize_isbn_crossref(isbn)
+
+
+def normalize_isbn_crossref(isbn: str) -> Optional[str]:
+    """Normalize ISBN for Crossref XML.
+
+    Crossref XSD pattern: (97(8|9)-)?\\d[\\d \\-]+[\\dX]
+    """
+    if not isbn:
+        return None
+
+    # Get canonical ISBN (removes hyphens and validates)
+    isbn_canonical = canonical(isbn)
+    if isbn_canonical is None:
+        return None
+
+    # For ISBN-13
+    if is_isbn13(isbn_canonical):
+        return (
+            f"{isbn_canonical[:3]}-{isbn_canonical[3:]}"  # Add hyphen after 978 or 979
+        )
+
+    # For ISBN-10
+    elif is_isbn10(isbn_canonical):
+        return isbn_canonical  # ISBN-10 is already in the correct format
+
+    # If we can't properly format it, return None rather than invalid format
+    return None
 
 
 def get_issn(obj):
@@ -1095,4 +1133,6 @@ class CrossrefForbiddenError(CrossrefRequestError):
 
 
 class CrossrefNotFoundError(CrossrefRequestError):
+    """DOI does not exist in the database."""
+
     """DOI does not exist in the database."""

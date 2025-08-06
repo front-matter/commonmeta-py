@@ -8,6 +8,7 @@ import pytest
 
 from commonmeta import Metadata, MetadataList
 from commonmeta.base_utils import parse_xml
+from commonmeta.writers.crossref_xml_writer import normalize_isbn_crossref
 
 
 def test_write_crossref_xml_header():
@@ -122,6 +123,14 @@ def test_write_commonmeta_list_as_crossref_xml():
     assert py_.get(crossref_xml, "abstract.0.p").startswith(
         "Autorinnen: Maaike Duine (ORCiD) und Maxi Kindling (ORCiD)"
     )
+
+
+def test_normalize_isbn_crossref():
+    """Test normalize_isbn_crossref"""
+    assert normalize_isbn_crossref("9783161484100") == "978-3161484100"
+    assert normalize_isbn_crossref("9783662463703") == "978-3662463703"
+    assert normalize_isbn_crossref("9781108348843") == "978-1108348843"
+    assert normalize_isbn_crossref("invalid-isbn") is None
 
 
 @pytest.mark.vcr
@@ -801,6 +810,13 @@ def test_doi_with_multiple_funding_references():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
+    assert subject.publisher == {"name": "ACM"}
+    assert subject.container == {
+        "firstPage": "1386",
+        "lastPage": "1399",
+        "title": "Proceedings of the 2021 International Conference on Management of Data",
+        "type": "Proceedings",
+    }
     assert len(subject.funding_references) == 2
     assert subject.funding_references[0] == {
         "awardNumber": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
@@ -816,7 +832,6 @@ def test_doi_with_multiple_funding_references():
     }
 
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.conference", {})
     assert py_.get(crossref_xml, "program.0.assertion") == [
