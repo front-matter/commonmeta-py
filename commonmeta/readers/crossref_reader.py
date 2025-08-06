@@ -31,6 +31,7 @@ from ..utils import (
     normalize_doi,
     normalize_issn,
     normalize_url,
+    validate_isbn,
 )
 
 
@@ -337,6 +338,7 @@ def get_container(meta: dict, issn: str) -> dict:
     """Get container from Crossref"""
     container_type = CROSSREF_CONTAINER_TYPES.get(meta.get("type", None))
     container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
+    # TODO: ISBN not included in ProceedingsArticle metadata
     isbn = (
         next(
             (
@@ -356,7 +358,7 @@ def get_container(meta: dict, issn: str) -> dict:
         )
         or {}
     )
-    isbn = isbn["value"] if isbn else None
+    isbn = validate_isbn(isbn["value"]) if isbn else None
     container_title = parse_attributes(meta.get("container-title", None), first=True)
     if not container_title:
         container_title = py_.get(meta, "institution.0.name")
