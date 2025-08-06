@@ -76,17 +76,17 @@ def test_doi_with_data_citation():
         {"funderName": "Marie Heim-Voegtlin"},
         {
             "funderName": "University of Lausanne",
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/019whta54",
+            "funderIdentifierType": "ROR",
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100003043",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/04wfr2810",
+            "funderIdentifierType": "ROR",
             "funderName": "EMBO",
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100001711",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/00yjd3n13",
+            "funderIdentifierType": "ROR",
             "funderName": "Swiss National Science Foundation",
         },
     ]
@@ -1321,14 +1321,14 @@ def test_proceedings_article():
     assert subject.funding_references == [
         {
             "funderName": "NSF (National Science Foundation)",
-            "funderIdentifier": "https://doi.org/10.13039/100000001",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/021nxhr62",
+            "funderIdentifierType": "ROR",
             "awardNumber": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
         },
         {
             "funderName": "DOE U.S. Department of Energy",
-            "funderIdentifier": "https://doi.org/10.13039/100000015",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funderIdentifier": "https://ror.org/01bj3aw27",
+            "funderIdentifierType": "ROR",
             "awardNumber": "DE-AC02-05CH11231,17-SC-20-SC",
         },
     ]

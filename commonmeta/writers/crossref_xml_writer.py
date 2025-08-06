@@ -17,7 +17,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
-from ..utils import validate_url
+from ..utils import id_from_url, validate_url
 from .inveniordm_writer import update_legacy_record
 
 logger = logging.getLogger(__name__)
@@ -292,7 +292,11 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     elif metadata.type == "ProceedingsArticle":
-        publisher_item = None
+        publisher = py_.get(metadata, "publisher.name")
+        if publisher is not None:
+            publisher_item = {
+                "title": publisher,
+            }
         data = compact(
             {
                 "conference": get_attributes(metadata, **kwargs),
@@ -847,11 +851,14 @@ def get_funding_references(obj) -> Optional[dict]:
         if funder_identifier is not None and funder_identifier_type == "ROR":
             assertion = {
                 "@name": "ror",
-                "#text": funder_identifier,
+                "#text": id_from_url(funder_identifier),
             }
 
             funding_references.append(assertion)
-        elif funding_reference.get("funderName", None) is not None:
+        elif (
+            funding_reference.get("funderName", None) is not None
+            and funder_identifier_type != "ROR"
+        ):
             assertion = {
                 "@name": "funder_name",
                 "#text": funding_reference.get("funderName"),

@@ -13,6 +13,7 @@ from ..constants import (
     CR_TO_CM_CONTAINER_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
     CROSSREF_CONTAINER_TYPES,
+    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     Commonmeta,
 )
 from ..date_utils import get_date_from_date_parts
@@ -400,6 +401,14 @@ def from_crossref_funding(funding_references: list) -> list:
                 else None,
             }
         )
+        if f.get("funderIdentifierType", None) == "Crossref Funder ID":
+            # convert to ROR
+            funderIdentifier = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
+                f.get("funderIdentifier", None)
+            )
+            if funderIdentifier:
+                f["funderIdentifier"] = funderIdentifier
+                f["funderIdentifierType"] = "ROR"
         f = py_.omit(f, "DOI", "doi-asserted-by")
         if (
             funding.get("name", None) is not None

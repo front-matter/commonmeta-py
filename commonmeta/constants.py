@@ -682,6 +682,7 @@ INVENIORDM_IDENTIFIER_TYPES = {
 
 CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS = {
     "https://doi.org/10.13039/100000001": "https://ror.org/021nxhr62",
+    "https://doi.org/10.13039/100000015": "https://ror.org/01bj3aw27",
     "https://doi.org/10.13039/501100000780": "https://ror.org/00k4n6c32",
     "https://doi.org/10.13039/501100007601": "https://ror.org/00k4n6c32",
     "https://doi.org/10.13039/501100001659": "https://ror.org/018mejw64",
