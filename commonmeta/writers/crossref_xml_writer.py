@@ -18,7 +18,7 @@ from requests_toolbelt.multipart.encoder import MultipartEncoder
 from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
-from ..utils import id_from_url, validate_url
+from ..utils import validate_url
 from .inveniordm_writer import update_legacy_record
 
 logger = logging.getLogger(__name__)
@@ -850,7 +850,33 @@ def get_funding_references(obj) -> Optional[dict]:
     ):
         return None
 
+    # use funding_groups if there are funding references with award numbers by more than one funder
+    # otherwise use funding_references
     funding_references = []
+    if (
+        len(
+            [
+                f
+                for f in wrap(py_.get(obj, "funding_references"))
+                if f.get("awardNumber", None) is not None
+            ]
+        )
+        > 0
+        and len(
+            set(
+                [
+                    f.get("funderIdentifier", None)
+                    for f in wrap(py_.get(obj, "funding_references"))
+                    if f.get("funderIdentifier", None) is not None
+                ]
+            )
+        )
+        > 1
+    ):
+        funding_groups = []
+    else:
+        funding_groups = None
+    print("funding_groups", funding_groups)
     for funding_reference in wrap(py_.get(obj, "funding_references")):
         funder_identifier = funding_reference.get("funderIdentifier", None)
         funder_identifier_type = funding_reference.get("funderIdentifierType", None)
@@ -858,26 +884,38 @@ def get_funding_references(obj) -> Optional[dict]:
         if funder_identifier is not None and funder_identifier_type == "ROR":
             assertion = {
                 "@name": "ror",
-                "#text": id_from_url(funder_identifier),
+                "#text": funder_identifier,
             }
-
-            funding_references.append(assertion)
-        elif (
-            funding_reference.get("funderName", None) is not None
-            and funder_identifier_type != "ROR"
-        ):
+            if funding_groups:
+                funding_groups.append(assertion)
+            else:
+                funding_references.append(assertion)
+        elif funding_reference.get("funderName", None) is not None:
             assertion = {
                 "@name": "funder_name",
                 "#text": funding_reference.get("funderName"),
             }
-            funding_references.append(assertion)
-
+            if funding_groups:
+                funding_groups.append(assertion)
+            else:
+                funding_references.append(assertion)
         if funding_reference.get("awardNumber", None) is not None:
             assertion = {
                 "@name": "award_number",
                 "#text": funding_reference.get("awardNumber"),
             }
-            funding_references.append(assertion)
+            if funding_groups:
+                funding_groups.append(assertion)
+            else:
+                funding_references.append(assertion)
+        if funding_groups:
+            funding_references.append(
+                {
+                    "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
+                    "@name": "fundref",
+                    "fr:assertion": funding_groups,
+                }
+            )
     return {
         "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
         "@name": "fundref",
