@@ -47,6 +47,7 @@ from commonmeta.utils import (
     to_schema_org_creators,
     to_schema_org_identifiers,
     validate_id,
+    validate_isbn,
     validate_isni,
     validate_mag,
     validate_openalex,
@@ -147,6 +148,14 @@ def test_validate_pmcid():
     )
     # None
     assert None is validate_pmcid(None)
+
+
+def test_validate_isbn():
+    "validate_isbn"
+    assert "9783662463703" == validate_isbn("978-366246370-3")
+    assert "9781108348843" == validate_isbn("9781108348843")
+    # None
+    assert None is validate_isbn(None)
 
 
 def test_validate_mag():

@@ -12,6 +12,7 @@ import pycountry
 import yaml
 from bs4 import BeautifulSoup
 from furl import furl
+from isbnlib import canonical, is_isbn10, is_isbn13
 from pydash import py_
 
 from .base_utils import compact, parse_attributes, wrap
@@ -334,6 +335,16 @@ def validate_isni(isni: Optional[str]) -> Optional[str]:
         return None
     isni = match.group(1).replace(" ", "")
     return isni
+
+
+def validate_isbn(isbn: Optional[str]) -> Optional[str]:
+    """Validate ISBN"""
+    if isbn is None or not isinstance(isbn, str):
+        return None
+    isbn = canonical(isbn)
+    if not (is_isbn10(isbn) or is_isbn13(isbn)):
+        return None
+    return isbn
 
 
 def validate_mag(mag: Optional[str]) -> Optional[str]:
