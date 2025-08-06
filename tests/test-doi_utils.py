@@ -18,6 +18,7 @@ from commonmeta.doi_utils import (
     normalize_doi,
     short_doi_as_doi,
     validate_doi,
+    validate_doi_from_guid,
     validate_prefix,
     validate_suffix,
 )
@@ -80,6 +81,15 @@ def test_validate_doi():
     assert "10.1371/journal.pone.0042793" == validate_doi(
         "https://doi.org/10.1371/journal.pone.0042793"
     )
+
+
+def test_validate_doi_from_guid():
+    "validate doi from guid"
+    prefix = "10.59350"
+    guid = "https://doi.org/10.59350/yb098-wm38"
+    assert validate_doi_from_guid(prefix, guid, checksum=True)
+    # ignore checksum
+    assert validate_doi_from_guid(prefix, guid[:-2], checksum=False)
 
 
 def test_normalize_doi():
@@ -299,3 +309,6 @@ def test_generate_substack_doi():
     """Generate a Substack DOI"""
     response = generate_substack_doi(prefix="10.5555", guid="167348334")
     assert response == "https://doi.org/10.5555/004zk-23e33"
+
+    response = generate_substack_doi(prefix="10.5555", guid="169821534")
+    assert response == "https://doi.org/10.5555/0051y-hay60"

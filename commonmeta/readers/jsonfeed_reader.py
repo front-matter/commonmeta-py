@@ -62,7 +62,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     # generate DOI string for registration if not provided
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
     if _id is None:
-        if meta.get("guid") and py_.get(meta, "blog.doi_reg", False):
+        if meta.get("guid"):
             # Generate DOI based on blogging platform
             generator = py_.get(meta, "blog.generator")
             prefix = py_.get(meta, "blog.prefix")
@@ -74,7 +74,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
                 _id = generate_wordpress_doi(prefix, slug, guid)
             elif generator == "Substack" and prefix and guid:
                 _id = generate_substack_doi(prefix, guid)
-            # don't use checksum as some legacy GUIDs (generated with commonmeta Go between May 2024
+            # don't use checksum as some legacy DOIs (generated with commonmeta Go between May 2024
             # and April 2025) don't have valid checksum
             elif (
                 prefix
@@ -83,14 +83,14 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
             ):
                 _id = guid
 
-        # If still no DOI but prefix provided and not registered for DOI generation
-        elif py_.get(meta, "blog.prefix") and not py_.get(meta, "blog.doi_reg", False):
-            prefix = py_.get(meta, "blog.prefix")
-            _id = encode_doi(prefix)
+    # If still no DOI but prefix provided
+    if _id is None and py_.get(meta, "blog.prefix"):
+        prefix = py_.get(meta, "blog.prefix")
+        _id = encode_doi(prefix)
 
-        # If override prefix is provided in read_options, use that
-        elif read_options.get("prefix"):
-            _id = encode_doi(read_options.get("prefix"))
+    # If override prefix is provided in read_options, use that
+    elif _id is None and read_options.get("prefix", None):
+        _id = encode_doi(read_options.get("prefix"))
 
     # fall back to url if no DOI can be generated
     if _id is None:
