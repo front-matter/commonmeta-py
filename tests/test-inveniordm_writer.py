@@ -1,6 +1,8 @@
 # pylint: disable=invalid-name
 """InvenioRDM writer tests"""
 
+import re
+
 import orjson as json
 import pytest
 from pydash import py_
@@ -661,4 +663,26 @@ def test_external_doi():
     assert (
         py_.get(inveniordm, "metadata.title")
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
+    )
+
+
+@pytest.mark.vcr
+def test_content_with_external_src():
+    "external DOI used by Rogue Scholar"
+    string = "https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.59350/vwd81-p8z85"
+    assert subject.type == "BlogPost"
+    assert re.search(
+        'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
+        subject.content,
+    )
+
+    inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/vwd81-p8z85"
+    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert py_.get(inveniordm, "metadata.title") == "Archiving, but not really"
+    assert re.search(
+        'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
+        py_.get(inveniordm, "custom_fields.rs:content_html"),
     )
