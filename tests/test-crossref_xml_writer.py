@@ -817,7 +817,6 @@ def test_doi_with_multiple_funding_references():
         "funderName": "University of Lausanne",
     }
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert len(py_.get(crossref_xml, "program.0.assertion")) == 6
