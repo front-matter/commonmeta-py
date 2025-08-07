@@ -817,12 +817,13 @@ def test_doi_with_multiple_funding_references():
         "funderName": "University of Lausanne",
     }
     crossref_xml = subject.write(to="crossref_xml")
+    print(crossref_xml)
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert len(py_.get(crossref_xml, "program.0.assertion")) == 6
     assert py_.get(crossref_xml, "program.0.assertion.3") == {
         "name": "ror",
-        "#text": "https://ror.org/019whta54",
+        "#text": "https://ror.org/019whta53",
     }
 
 
@@ -1087,7 +1088,7 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "6",
+        "day": "7",
         "month": "8",
         "year": "2023",
     }

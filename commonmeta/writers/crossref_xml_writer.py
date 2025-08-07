@@ -850,76 +850,83 @@ def get_funding_references(obj) -> Optional[dict]:
     ):
         return None
 
-    # use funding_groups if there are funding references with award numbers by more than one funder
-    # otherwise use funding_references
-    funding_references = []
-    if (
-        len(
-            [
-                f
-                for f in wrap(py_.get(obj, "funding_references"))
-                if f.get("awardNumber", None) is not None
-            ]
-        )
-        > 0
-        and len(
-            set(
-                [
-                    f.get("funderIdentifier", None)
-                    for f in wrap(py_.get(obj, "funding_references"))
-                    if f.get("funderIdentifier", None) is not None
-                ]
-            )
-        )
-        > 1
-    ):
-        funding_groups = []
-    else:
-        funding_groups = None
-    print("funding_groups", funding_groups)
-    for funding_reference in wrap(py_.get(obj, "funding_references")):
+    funding_refs = wrap(py_.get(obj, "funding_references"))
+    assertions = []
+
+    # Check if we need funding groups (multiple funders with award numbers)
+    funders_with_awards = [
+        f for f in funding_refs if f.get("awardNumber", None) is not None
+    ]
+    unique_funders = set(
+        f.get("funderIdentifier", None) or f.get("funderName", None)
+        for f in funding_refs
+        if f.get("funderIdentifier", None) is not None
+        or f.get("funderName", None) is not None
+    )
+
+    use_funding_groups = len(funders_with_awards) > 0 and len(unique_funders) > 1
+
+    for funding_reference in funding_refs:
+        group_assertions = []
+
+        # Handle funder identifier/name
         funder_identifier = funding_reference.get("funderIdentifier", None)
         funder_identifier_type = funding_reference.get("funderIdentifierType", None)
+        funder_name = funding_reference.get("funderName", None)
 
-        if funder_identifier is not None and funder_identifier_type == "ROR":
-            assertion = {
+        if funder_identifier and funder_identifier_type == "ROR":
+            funder_assertion = {
                 "@name": "ror",
                 "#text": funder_identifier,
             }
-            if funding_groups:
-                funding_groups.append(assertion)
-            else:
-                funding_references.append(assertion)
-        elif funding_reference.get("funderName", None) is not None:
-            assertion = {
+            group_assertions.append(funder_assertion)
+        elif funder_identifier and funder_identifier_type == "Crossref Funder ID":
+            # Create nested structure for Crossref Funder ID
+            funder_id_assertion = {
+                "@name": "funder_identifier",
+                "#text": funder_identifier,
+            }
+            funder_assertion = {
                 "@name": "funder_name",
-                "#text": funding_reference.get("funderName"),
+                "#text": funder_name,
+                "fr:assertion": [funder_id_assertion],
             }
-            if funding_groups:
-                funding_groups.append(assertion)
-            else:
-                funding_references.append(assertion)
-        if funding_reference.get("awardNumber", None) is not None:
-            assertion = {
+            group_assertions.append(funder_assertion)
+        elif funder_name:
+            funder_assertion = {
+                "@name": "funder_name",
+                "#text": funder_name,
+            }
+            group_assertions.append(funder_assertion)
+
+        # Handle award number
+        award_number = funding_reference.get("awardNumber", None)
+        if award_number:
+            award_assertion = {
                 "@name": "award_number",
-                "#text": funding_reference.get("awardNumber"),
+                "#text": award_number,
             }
-            if funding_groups:
-                funding_groups.append(assertion)
-            else:
-                funding_references.append(assertion)
-        if funding_groups:
-            funding_references.append(
-                {
-                    "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
-                    "@name": "fundref",
-                    "fr:assertion": funding_groups,
-                }
-            )
+            group_assertions.append(award_assertion)
+
+        # Add to main assertions list
+        if use_funding_groups:
+            # Wrap in funding group
+            funding_group = {
+                "@name": "fundgroup",
+                "fr:assertion": group_assertions,
+            }
+            assertions.append(funding_group)
+        else:
+            # Add assertions directly
+            assertions.extend(group_assertions)
+
+    if not assertions:
+        return None
+
     return {
         "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
         "@name": "fundref",
-        "fr:assertion": funding_references,
+        "fr:assertion": assertions,
     }
 
 
@@ -1171,6 +1178,4 @@ class CrossrefForbiddenError(CrossrefRequestError):
 
 
 class CrossrefNotFoundError(CrossrefRequestError):
-    """DOI does not exist in the database."""
-
     """DOI does not exist in the database."""
