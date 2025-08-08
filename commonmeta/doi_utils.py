@@ -382,16 +382,17 @@ def validate_doi_from_guid(prefix: str, guid: str, checksum=True) -> bool:
         return False
 
 
-def generate_substack_doi(prefix: str, guid: str) -> str:
-    """Generate a DOI from a Substack GUID"""
-    if not prefix or not guid:
+def generate_substack_doi(prefix: str, slug: str, guid: str) -> str:
+    """Generate a DOI from a Substack GUID and slug"""
+    if not prefix or not slug or not guid:
         return ""
 
+    # make sure guid is an integer
     try:
-        i = int(guid)
+        _ = int(guid)
     except ValueError:
         return ""
+    suffix = f"{slug}.{guid}"
 
-    suffix = base32.encode(i, split_every=5, min_length=10, checksum=True)
     doi = f"https://doi.org/{prefix}/{suffix}"
     return doi

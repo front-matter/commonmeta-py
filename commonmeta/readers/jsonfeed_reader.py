@@ -73,7 +73,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
             if generator in ["WordPress", "WordPress.com"] and prefix and slug and guid:
                 _id = generate_wordpress_doi(prefix, slug, guid)
             elif generator == "Substack" and prefix and guid:
-                _id = generate_substack_doi(prefix, guid)
+                _id = generate_substack_doi(prefix, slug, guid)
             # don't use checksum as some legacy DOIs (generated with commonmeta Go between May 2024
             # and April 2025) don't have valid checksum
             elif (

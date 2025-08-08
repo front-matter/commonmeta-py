@@ -307,8 +307,7 @@ def test_generate_wordpress_doi():
 
 def test_generate_substack_doi():
     """Generate a Substack DOI"""
-    response = generate_substack_doi(prefix="10.5555", guid="167348334")
-    assert response == "https://doi.org/10.5555/004zk-23e33"
-
-    response = generate_substack_doi(prefix="10.5555", guid="169821534")
-    assert response == "https://doi.org/10.5555/0051y-hay60"
+    response = generate_substack_doi(
+        prefix="10.5555", slug="stephenturner", guid="167348334"
+    )
+    assert response == "https://doi.org/10.5555/stephenturner.167348334"
