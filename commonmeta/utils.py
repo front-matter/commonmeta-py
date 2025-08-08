@@ -12,6 +12,7 @@ import pycountry
 import yaml
 from bs4 import BeautifulSoup
 from furl import furl
+from idutils import is_isni, is_orcid
 from isbnlib import canonical, is_isbn10, is_isbn13
 from pydash import py_
 
@@ -320,6 +321,8 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
     if match is None:
         return None
     orcid = match.group(1).replace(" ", "-")
+    if not is_orcid(orcid):
+        return None
     return orcid
 
 
@@ -333,7 +336,9 @@ def validate_isni(isni: Optional[str]) -> Optional[str]:
     )
     if match is None:
         return None
-    isni = match.group(1).replace(" ", "")
+    isni = match.group(1).replace(" ", "").replace("-", "")
+    if not is_isni(isni):
+        return None
     return isni
 
 

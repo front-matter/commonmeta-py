@@ -172,6 +172,10 @@ def test_validate_isni():
     assert "0000000357526882" == validate_isni("http://isni.org/isni/0000000357526882")
     # only isni id
     assert "0000000357526882" == validate_isni("0000000357526882")
+    # isni with spaces
+    assert "0000000357526882" == validate_isni("0000 0003 5752 6882")
+    # wrong isni
+    assert None is validate_isni("0000 0004 0420 2273")
     # None
     assert None is validate_isni(None)
 
@@ -1056,18 +1060,18 @@ def test_format_name_identifier():
             "schemeURI": "https://ror.org/",
         }
     )
-    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+    assert "https://isni.org/isni/0000000120314590" == format_name_identifier(
         {
-            "nameIdentifier": "0000000110230567",
+            "nameIdentifier": "0000000120314590",
             "nameIdentifierScheme": "ISNI",
         }
     )
-    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
-        "0000000110230567"
+    assert "https://isni.org/isni/0000000120314590" == format_name_identifier(
+        "0000000120314590"
     )
-    assert "https://isni.org/isni/0000000110230567" == format_name_identifier(
+    assert "https://isni.org/isni/0000000120314590" == format_name_identifier(
         {
-            "nameIdentifier": "0000000110230567",
+            "nameIdentifier": "0000000120314590",
             "nameIdentifierScheme": "ISNI",
             "schemeURI": "http://isni.org/isni/",
         }
