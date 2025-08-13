@@ -22,8 +22,8 @@ from ..utils import (
     get_language,
     name_to_fos,
     normalize_doi,
+    normalize_ror,
     normalize_url,
-    validate_ror,
 )
 
 
@@ -268,16 +268,19 @@ def get_funding_references(funding_references: list) -> list:
     def map_funding(funding: dict) -> dict:
         """map_funding"""
 
+        funder_identifier = normalize_ror(py_.get(funding, "funder.id"))
+        award_uri = py_.get(funding, "award.identifiers[0].identifier")
+        if normalize_doi(award_uri) is not None:
+            award_uri = normalize_doi(award_uri)
+
         return compact(
             {
                 "funderName": py_.get(funding, "funder.name"),
-                "funderIdentifier": py_.get(funding, "funder.id"),
-                "funderIdentifierType": "ROR"
-                if validate_ror(py_.get(funding, "funder.id"))
-                else None,
+                "funderIdentifier": funder_identifier,
+                "funderIdentifierType": "ROR" if funder_identifier else None,
                 "awardTitle": py_.get(funding, "award.title.en"),
                 "awardNumber": py_.get(funding, "award.number"),
-                "awardUri": py_.get(funding, "award.identifiers[0].identifier"),
+                "awardUri": award_uri,
             }
         )
 
