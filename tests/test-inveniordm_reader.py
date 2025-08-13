@@ -302,7 +302,7 @@ def test_rogue_scholar():
         )
     )
     assert subject.container == {
-        "type": "Periodical",
+        "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
         "identifierType": "ISSN",

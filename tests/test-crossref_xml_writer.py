@@ -414,7 +414,13 @@ def test_jsonfeed_with_references():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/zwm7q-vet94"
     assert subject.subjects == [{"subject": "FOS: Humanities"}, {"subject": "News"}]
-
+    assert len(subject.references) == 11
+    assert subject.references[0] == {
+        "id": "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
+        "unstructured": "It’s impossible to conduct research without software, say 7 out of 10 UK "
+        "researchers. Accessed April 13, 2023. "
+        "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
+    }
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -822,7 +828,7 @@ def test_doi_with_multiple_funding_references():
     assert len(py_.get(crossref_xml, "program.0.assertion")) == 6
     assert py_.get(crossref_xml, "program.0.assertion.3") == {
         "name": "ror",
-        "#text": "https://ror.org/019whta53",
+        "#text": "https://ror.org/019whta54",
     }
 
 
@@ -866,6 +872,56 @@ def test_proceedings_article_with_multiple_funding_references():
     assert py_.get(crossref_xml, "program.2") == 1
     assert py_.get(crossref_xml, "abstract.0.p").startswith(
         "Bacterial membrane lipids are critical for membrane bilayer formation"
+    )
+
+
+@pytest.mark.vcr
+def test_inveniordm_record_with_references():
+    "InvenioRDM record with references"
+    string = "https://rogue-scholar.org/api/records/49yb9-h8k11"
+    subject = Metadata(string, via="inveniordm")
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.64000/wd6rx-vpq73"
+    assert subject.type == "BlogPost"
+    assert subject.publisher == {"name": "Front Matter"}
+    assert subject.container == {
+        "identifier": "https://rogue-scholar.org/communities/crossref",
+        "identifierType": "URL",
+        "platform": "Hugo",
+        "title": "Crossref Blog",
+        "type": "Blog",
+    }
+    assert len(subject.references) == 2
+    assert subject.references[0] == {
+        "id": "https://en.wikipedia.org/wiki/Infrastructure_as_code",
+        "unstructured": "projects, C. to W. (2016). <i>Infrastructure as code</i>. Wikimedia "
+        "Foundation, Inc.",
+    }
+    assert subject.references[1] == {
+        "id": "https://doi.org/10.64000/4s2ee-wkr84",
+        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025). The "
+        "programs approach: our experiences during the first quarter of 2025. In "
+        "<i>Crossref Blog</i>. Crossref.",
+    }
+
+    crossref_xml = subject.write(to="crossref_xml")
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(py_.get(crossref_xml, "citation_list.citation")) == 2
+    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+        "key": "ref1",
+        "unstructured_citation": "projects, C. to W. (2016). <i>Infrastructure as code</i>. Wikimedia "
+        "Foundation, Inc. https://en.wikipedia.org/wiki/Infrastructure_as_code",
+    }
+    assert py_.get(crossref_xml, "citation_list.citation.1") == {
+        "doi": "10.64000/4s2ee-wkr84",
+        "key": "ref2",
+        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025). The "
+        "programs approach: our experiences during the first quarter of 2025. In "
+        "<i>Crossref Blog</i>. Crossref.",
+    }
+    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+        "TLDR: We've successfully moved the main Crossref systems to the cloud!"
     )
 
 
@@ -1087,7 +1143,7 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "7",
+        "day": "13",
         "month": "8",
         "year": "2023",
     }

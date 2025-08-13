@@ -104,6 +104,22 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             }
         )
         publisher = {"name": "Zenodo"}
+    elif f.host == "rogue-scholar.org":
+        issn = py_.get(meta, "custom_fields.journal:journal.issn")
+        slug = py_.get(meta, "parent.communities.entries.0.slug")
+        community_url = (
+            f"https://rogue-scholar.org/communities/{slug}" if slug else None
+        )
+        container = compact(
+            {
+                "type": "Blog",
+                "title": py_.get(meta, "custom_fields.journal:journal.title"),
+                "identifier": issn if issn else community_url,
+                "identifierType": "ISSN" if issn else "URL",
+                "platform": py_.get(meta, "custom_fields.rs:generator", None),
+            }
+        )
+        publisher = {"name": "Front Matter"}
     else:
         container = py_.get(meta, "custom_fields.journal:journal")
         if container:
@@ -137,8 +153,12 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     subjects = [dict_to_fos(i) for i in wrap(py_.get(meta, "metadata.subjects"))] or [
         name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))
     ]
-
-    references = get_references(wrap(py_.get(meta, "metadata.related_identifiers")))
+    references = get_references(wrap(py_.get(meta, "metadata.references")))
+    # fallback to related_identifiers
+    if len(references) == 0:
+        references = get_references_from_relations(
+            wrap(py_.get(meta, "metadata.related_identifiers"))
+        )
     relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
     funding_references = get_funding_references(wrap(py_.get(meta, "metadata.funding")))
     if meta.get("conceptdoi", None):
@@ -189,6 +209,29 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
 def get_references(references: list) -> list:
     """get_references"""
+
+    def get_reference(reference: dict) -> Optional[dict]:
+        if reference is None or not isinstance(reference, dict):
+            return None
+
+        if reference.get("scheme", None) == "doi":
+            id_ = normalize_doi(reference.get("identifier"))
+        elif reference.get("scheme", None) == "url":
+            id_ = normalize_url(reference.get("identifier"))
+        else:
+            id_ = reference.get("identifier")
+        return compact(
+            {
+                "id": id_,
+                "unstructured": reference.get("reference", None),
+            }
+        )
+
+    return [get_reference(i) for i in references]
+
+
+def get_references_from_relations(references: list) -> list:
+    """get_references_from_relations"""
 
     def is_reference(reference):
         """is_reference"""

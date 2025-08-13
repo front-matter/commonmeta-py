@@ -802,6 +802,16 @@ def get_references(obj) -> Optional[Dict]:
     for i, ref in enumerate(py_.get(obj, "references")):
         # Validate DOI before using it
         doi = doi_from_url(ref.get("id", None))
+        unstructured = ref.get("unstructured", None)
+
+        # include id in unstructured_citation if it is not a DOI
+        if (
+            doi is None
+            and unstructured is not None
+            and ref.get("id", None) is not None
+            and not unstructured.endswith(ref.get("id"))
+        ):
+            unstructured += " " + ref.get("id")
 
         reference = compact(
             {
@@ -813,7 +823,7 @@ def get_references(obj) -> Optional[Dict]:
                 "first_page": ref.get("first_page", None),
                 "cYear": ref.get("publicationYear", None),
                 "article_title": ref.get("title", None),
-                "unstructured_citation": ref.get("unstructured", None),
+                "unstructured_citation": unstructured,
             }
         )
         citations.append(reference)
