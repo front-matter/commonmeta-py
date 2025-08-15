@@ -277,7 +277,10 @@ def test_rogue_scholar():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://rogue-scholar.org/records/1xr7q-9fp18"
+    assert (
+        subject.url
+        == "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities/"
+    )
     assert subject.titles[0] == {"title": "Rogue Scholar learns about communities"}
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {

@@ -43,20 +43,24 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    url = normalize_url(py_.get(meta, "links.self_html")) or next(
-        (
-            normalize_url(identifier.get("identifier"))
-            for identifier in wrap(py_.get(meta, "metadata.identifiers", []))
-            if identifier.get("scheme") == "url"
-            and identifier.get("identifier", None) is not None
-        ),
-        None,
-    )
+    url = normalize_url(py_.get(meta, "links.self_html"))
     _id = (
         doi_as_url(meta.get("doi", None))
         or doi_as_url(py_.get(meta, "pids.doi.identifier"))
         or url
     )
+    # Rogue Scholar records use an external URL
+    if is_rogue_scholar_doi(_id):
+        url = next(
+            (
+                normalize_url(identifier.get("identifier"))
+                for identifier in wrap(py_.get(meta, "metadata.identifiers", []))
+                if identifier.get("scheme") == "url"
+                and identifier.get("identifier", None) is not None
+            ),
+            None,
+        )
+
     resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(
         meta, "metadata.resource_type.id"
     )
