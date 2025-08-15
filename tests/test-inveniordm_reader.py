@@ -296,6 +296,12 @@ def test_rogue_scholar():
     }
     assert subject.date["published"] == "2024-10-07T13:41:37"
     assert subject.publisher == {"name": "Front Matter"}
+    assert len(subject.citations) == 4
+    assert subject.citations[0] == {
+        "id": "https://doi.org/10.53731/a7v8h-8px31",
+        "unstructured": "Fenner, M. (2024, October 14). The Rogue Scholar migration to InvenioRDM "
+        "is taking shape. <i>Front Matter</i>.",
+    }
     assert subject.funding_references is None
     assert (
         subject.descriptions[0]
@@ -317,3 +323,59 @@ def test_rogue_scholar():
     ]
     assert subject.language == "en"
     assert subject.version is None
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_with_citations():
+    """Rogue Scholar"""
+    string = "https://rogue-scholar.org/api/records/n5tg4-5h654"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.63485/mppz2-19243"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://www.earlham.edu/~peters/fos/2007/05/carl-zimmer-contrasts-wiley-and-plos.html"
+    )
+    assert subject.titles[0] == {"title": "Carl Zimmer contrasts Wiley and PLoS"}
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Peter",
+        "familyName": "Suber",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date["published"] == "2007-05-24T16:09:00"
+    assert subject.publisher == {"name": "Front Matter"}
+    assert subject.funding_references is None
+    assert subject.references is None
+    assert len(subject.citations) == 1
+    assert subject.citations[0] == {
+        "id": "https://doi.org/10.63485/mppz2-19243",
+        "type": "IsCitedBy",
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
+        )
+    )
+    assert subject.container == {
+        "type": "Blog",
+        "title": "Front Matter",
+        "identifier": "2749-9952",
+        "identifierType": "ISSN",
+        "platform": "Ghost",
+    }
+    assert subject.subjects == [
+        {"subject": "FOS: Computer and information sciences"},
+        {"subject": "Rogue Scholar"},
+    ]
+    assert subject.language == "en"
+    assert subject.version is None
+    assert subject.state == "findable"

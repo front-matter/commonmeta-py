@@ -1,0 +1,208 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.4
+    method: GET
+    uri: https://rogue-scholar.org/api/records/n5tg4-5h654
+  response:
+    body:
+      string: '{"id": "n5tg4-5h654", "created": "2025-03-26T06:47:04.567993+00:00",
+        "updated": "2025-08-15T13:52:36.720948+00:00", "links": {"self": "https://rogue-scholar.org/api/records/n5tg4-5h654",
+        "self_html": "https://rogue-scholar.org/records/n5tg4-5h654", "preview_html":
+        "https://rogue-scholar.org/records/n5tg4-5h654?preview=1", "doi": "https://handle.stage.datacite.org/10.63485/mppz2-19243",
+        "self_doi": "https://handle.stage.datacite.org/10.63485/mppz2-19243", "self_doi_html":
+        "https://rogue-scholar.org/doi/10.63485/mppz2-19243", "reserve_doi": "https://rogue-scholar.org/api/records/n5tg4-5h654/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/enjv5-xh191", "parent_html":
+        "https://rogue-scholar.org/records/enjv5-xh191", "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:n5tg4-5h654/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:n5tg4-5h654/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/n5tg4-5h654/files", "media_files":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/media-files", "archive":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/n5tg4-5h654/latest", "versions": "https://rogue-scholar.org/api/records/n5tg4-5h654/versions",
+        "draft": "https://rogue-scholar.org/api/records/n5tg4-5h654/draft", "access_links":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/request", "access":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/access", "communities":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/n5tg4-5h654/communities-suggestions",
+        "requests": "https://rogue-scholar.org/api/records/n5tg4-5h654/requests"},
+        "revision_id": 13, "parent": {"id": "enjv5-xh191", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["ae846881-a440-41ae-9c19-da3ea2b0dd60", "e31421de-c2b6-4ed8-8105-f749e28dc0c0"],
+        "default": "ae846881-a440-41ae-9c19-da3ea2b0dd60", "entries": [{"id": "ae846881-a440-41ae-9c19-da3ea2b0dd60",
+        "created": "2025-03-17T15:09:11.805332+00:00", "updated": "2025-08-15T07:39:07.440608+00:00",
+        "links": {}, "revision_id": 153, "slug": "oan", "metadata": {"title": "Open
+        Access News", "description": "How the internet is transforming scholarly research
+        and publication", "type": {"id": "blog"}, "website": "https://legacy.earlham.edu/~peters/fos/fosblog.html"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"rs:feed_url": "https://www.blogger.com/feeds/3536726/posts/default", "rs:prefix":
+        "10.63485", "rs:joined": "March 17, 2025", "rs:feed_format": "application/atom+xml",
+        "rs:generator": "Blogger", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "rs:language": "English", "rs:category": "Social science"}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "e31421de-c2b6-4ed8-8105-f749e28dc0c0", "created": "2025-02-11T21:59:21.242481+00:00",
+        "updated": "2025-06-30T16:00:23.605285+00:00", "links": {}, "revision_id":
+        6, "slug": "socialscience", "metadata": {"title": "Social science", "description":
+        "Social science subject area.", "type": {"id": "subject"}}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
+        {}}, "versions": {"is_latest": true, "index": 1}, "is_published": true, "is_draft":
+        false, "pids": {"doi": {"identifier": "10.63485/mppz2-19243", "provider":
+        "external"}, "oai": {"identifier": "oai:invenio-rdm:n5tg4-5h654", "provider":
+        "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost", "title":
+        {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators":
+        [{"person_or_org": {"type": "personal", "name": "Suber, Peter", "given_name":
+        "Peter", "family_name": "Suber"}}], "title": "Carl Zimmer contrasts Wiley
+        and PLoS", "publisher": "Front Matter", "publication_date": "2007-05-24",
+        "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5", "subject":
+        "Social science", "scheme": "FOS"}], "dates": [{"date": "2007-05-24T16:09:00",
+        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2007-05-24T16:45:23", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "1bc27f6b-9a12-43f6-983d-ec790ca0a58c", "scheme": "uuid"}, {"identifier":
+        "tag:blogger.com,1999:blog-3536726.post-6528603867120185583", "scheme": "guid"},
+        {"identifier": "https://www.earlham.edu/~peters/fos/2007/05/carl-zimmer-contrasts-wiley-and-plos.html",
+        "scheme": "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Carl Zimmer, An Open Mouse, <em> The
+        Loom </em> , May 24, 2007.&nbsp; Excerpt: PS:&nbsp; The Batts/Wiley story
+        broke in late April when I was traveling.&nbsp; If I''d been at my desk, I''d
+        have covered it or&nbsp;at least I''d have tried.&nbsp; But because the comments
+        proliferated explosively, I wasn''t at my desk, and I had a full load of other
+        work, I decided that I had to let it go.&nbsp; I''m glad to catch up a bit
+        with this post."}, "custom_fields": {"journal:journal": {"title": "Open Access
+        News"}, "rs:content_html": "<p>Carl Zimmer, <a href=\"http://scienceblogs.com/loom/2007/05/24/an_open_mouse.php\">An
+        Open Mouse</a>, <em>The Loom</em>, May 24, 2007.&nbsp; Excerpt:</p> <blockquote>
+        <p>[This] is also a chance to add my two cents to a discussion that''s been
+        bubbling for a few weeks: the clash between bloggers and scientific journal
+        publishers. Last month Shelley Batts at <a href=\"http://scienceblogs.com/retrospectacle\">Retrospectacle</a>
+        wrote a post about a paper, and included a chart that appeared in it. She
+        promptly got a letter from Wiley, the journal''s publisher, <a href=\"http://scienceblogs.com/retrospectacle/2007/04/when_fair_use_isnt_fair_1.php\">menacing
+        her with legal action</a> unless she took the chart down. A <a href=\"http://scienceblogs.com/seed/2007/04/blogging_and_fair_use.php\">long
+        discussion then unfolded</a> about fair use, a concept so mystical that I
+        get a headache every time I try to figure out whether it applies to some text
+        or image I''d like to use in my own work. Once the controversy reached Boing-Boing
+        proportions, Wiley sent Batts a note telling her that <a href=\"http://scienceblogs.com/retrospectacle/2007/04/victory_a_happy_resolution.php\">it
+        was all a big misunderstanding</a> and that they \"would typically grant permission
+        on request in order to ensure that figures and extracts are properly credited.\"</p>
+        <p>For us science writers, there''s a huge irony to this episode. Scientific
+        journals like attention. The better-funded ones will go to great lengths to
+        get stories written about their papers. They offer us science writers elaborately
+        appointed press packages offering sneak peeks at papers coming out in the
+        near future. They sometimes give us the cell phones of the authors of those
+        papers, in case we need to call them in the middle of the night....  <p>But
+        scientific journals also cling to conventions that block the news from spreading
+        --particularly through the online world. Wiley, for example, initially reacted
+        to Shelley not with enthusiasm, but with a menacing note. When Shelley responded
+        by politely asking for permission, she was told to contact another person
+        at Wiley. And when Wiley finally sort-of apologized, they still expected Shelley
+        to jump through conventional hoops to get permission. All this kerfuffle over
+        a little graph. It might have taken days to get permission to reprint it,
+        which in the blogosphere is a geological era. Wiley was, consciously or unconsciously,
+        going out of their way to squash interest in their papers.  <p>Compare Shelley''s
+        experience to what I''m about to do. I''m going to --shudder-- reprint a diagram
+        from a journal. Just lift it straight out.... <p>[<em>PS:&nbsp; Omitting chart
+        and discussion of it.</em>]  <p>[The chart is from] <a href=\"http://genetics.plosjournals.org/perlserv/?request=get-document&amp;doi=10.1371/journal.pgen.0020114\">a
+        paper they published last summer in the journal PLOS Genetics</a>....  <p>And
+        what do I now hear from PLOS? Do I hear the grinding of lawyerly knives?&nbsp;
+        No. I hear the blissful silence of Open Access, a slowly-spreading trend in
+        the journal world.&nbsp; PLOS makes it very clear on their web site that <a
+        href=\"http://www.plos.org/oa/index.html\">\"everything we publish is freely
+        available online throughout the world, for you to read, download, copy, distribute,
+        and use (with attribution) any way you wish.\"</a> No muss, no fuss. If I
+        want to blog about this paper right now, I can grab a relevant image right
+        now from it. In fact, I just did.  <p>I certainly appreciate the importance
+        of copyrights (as the owner of many for my articles and books), but in these
+        situations, keeping information behind a thick wall starts to seem a bit crazy,
+        like <a href=\"http://www.youtube.com/watch?v=ekw3XVq1uHs\">the loss of precious
+        bodily fluids</a>. Far from committing some sort of violation to the PLOS
+        paper, I have actually just spread the word about it. A few readers may even
+        go back to read the original. And it was so easy and straightforward for me
+        to do so that I will be very reluctant to bother with anything else. </p></blockquote>
+        <p>PS:&nbsp; The Batts/Wiley story broke in late April when I was traveling.&nbsp;
+        If I''d been at my desk, I''d have covered it or&nbsp;at least I''d have tried.&nbsp;
+        But because the comments proliferated explosively, I wasn''t at my desk, and
+        I had a full load of other work, I decided that I had to let it go.&nbsp;
+        I''m glad to catch up a bit with this post.&nbsp; I''m also glad to have the
+        chance to recommend comments by <a href=\"http://scienceblogs.com/goodmath/2007/04/legal_threats.php\">Mark
+        Chu-Carroll</a>, <a href=\"http://www.boingboing.net/2007/04/26/wiley_threatens_scie.html\">Cory
+        Doctorow</a>, <a href=\"http://journalology.blogspot.com/2007/04/open-access-and-reuse-of-images.html\">Matt
+        Hodgkinson</a>, <a href=\"http://www.sennoma.net/main/archives/2007/04/every_time_a_traditional_publi.php\">Bill
+        Hooker</a>, <a href=\"http://scienceblogs.com/interactions/2007/05/copyright_and_scientific_paper_1.php\">Rob
+        Knop</a>, <a href=\"http://chronicle.com/wiredcampus/index.php?id=2030\">Brock
+        Read</a>, <a href=\"http://sciencecommons.org/weblog/archives/2007/04/30/copyright-fair-use-in-the-blogosphere/\">Kaitlin
+        Thaney</a>, <a href=\"http://blogs.openaccesscentral.com/blogs/ccblog/entry/200704261\">Bryan
+        Vickery</a>, and <a href=\"http://copyfight.corante.com/archives/2007/05/01/fair_use_and_scientific_illustration.php\">Alan
+        Wexelblat</a>.&nbsp; Finally, Katherine Sharpe at <em>ScienceBlogs</em>, where
+        the controversy began, solicited&nbsp;<a href=\"http://scienceblogs.com/seed/2007/04/blogging_and_fair_use.php\">comments</a>
+        from five&nbsp;\"experts and stakeholders\" (Jan Velterop of Springer, John
+        Wilbanks of Science Commons, Mark Patterson of PLoS, Matt Cockerill of BMC,
+        and me.)</p>", "rs:generator": "Blogger", "rs:stale": false}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
+        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Content-Length:
+      - '13044'
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org plausible.io
+        www.youtube.com player.vimeo.com www.blogger.com; img-src *'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 15 Aug 2025 13:53:33 GMT
+      Etag:
+      - '"13"'
+      Link:
+      - <https://rogue-scholar.org/api/records/n5tg4-5h654> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '1'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '493'
+      X-Ratelimit-Reset:
+      - '1755266015'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

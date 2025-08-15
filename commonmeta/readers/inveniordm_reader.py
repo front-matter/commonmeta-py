@@ -163,6 +163,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         references = get_references_from_relations(
             wrap(py_.get(meta, "metadata.related_identifiers"))
         )
+    citations = get_citations(wrap(py_.get(meta, "custom_fields.rs:citations")))
     relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
     funding_references = get_funding_references(wrap(py_.get(meta, "metadata.funding")))
     if meta.get("conceptdoi", None):
@@ -200,6 +201,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "geoLocations": None,
             "fundingReferences": presence(funding_references),
             "references": presence(references),
+            "citations": presence(citations),
             "relations": presence(relations),
             "content": presence(content),
             "image": presence(image),
@@ -217,7 +219,7 @@ def get_references(references: list) -> list:
     """get_references"""
 
     def get_reference(reference: dict) -> Optional[dict]:
-        if reference is None or not isinstance(reference, dict):
+        if not isinstance(reference, dict):
             return None
 
         if reference.get("scheme", None) == "doi":
@@ -234,6 +236,30 @@ def get_references(references: list) -> list:
         )
 
     return [get_reference(i) for i in references]
+
+
+def get_citations(citations: list) -> list:
+    """get citations."""
+
+    def get_citation(citation: dict) -> Optional[dict]:
+        print(citation)
+        if not isinstance(citation, dict):
+            return None
+
+        if citation.get("scheme", None) == "doi":
+            id_ = normalize_doi(citation.get("identifier"))
+        elif citation.get("scheme", None) == "url":
+            id_ = normalize_url(citation.get("identifier"))
+        else:
+            id_ = citation.get("identifier")
+        return compact(
+            {
+                "id": id_,
+                "unstructured": citation.get("reference", None),
+            }
+        )
+
+    return [get_citation(i) for i in citations]
 
 
 def get_references_from_relations(references: list) -> list:
