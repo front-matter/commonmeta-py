@@ -163,6 +163,7 @@ def write_inveniordm(metadata):
                     "rs:image": presence(metadata.image),
                     "rs:citations": presence(citations),
                     "rs:generator": container.get("platform", None),
+                    "rs:stale": metadata.state == "stale",
                 }
             ),
         }

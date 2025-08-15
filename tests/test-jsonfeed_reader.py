@@ -103,6 +103,7 @@ def test_wordpress_with_references():
     )
     assert subject.image is None
     assert subject.version is None
+    assert subject.state == "stale"
 
 
 @pytest.mark.vcr
@@ -189,6 +190,7 @@ def test_post_with_relationships():
         subject.image
         == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
     )
+    assert subject.state == "stale"
 
 
 @pytest.mark.vcr
@@ -371,7 +373,7 @@ def test_post_with_relationships_as_doi():
         "platform": "Ghost",
     }
     assert subject.provider == "Crossref"
-    assert subject.state == "findable"
+    assert subject.state == "stale"
 
 
 @pytest.mark.vcr
@@ -454,6 +456,7 @@ def test_post_with_funding():
         subject.image
         == "https://upstream.force11.org/content/images/2023/11/ashin-k-suresh-mkxTOAxqTTo-unsplash--3-.jpg"
     )
+    assert subject.state == "stale"
 
 
 @pytest.mark.vcr

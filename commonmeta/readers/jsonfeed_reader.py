@@ -184,7 +184,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     content = py_.get(meta, "content_html", "")
     image = py_.get(meta, "image", None)
     files = get_files(_id)
-    state = "findable" if meta or read_options else "not_found"
+    state = "stale" if meta or read_options else "not_found"
 
     return {
         # required properties

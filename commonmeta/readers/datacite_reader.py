@@ -112,6 +112,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         )
 
     subjects = py_.uniq([format_subject(i) for i in wrap(meta.get("subjects", None))])
+    state = "stale" if py_.get(meta, "custom_fields.rs:stale") else "findable"
 
     return {
         **{
@@ -130,7 +131,6 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": presence(license_),
-            "provider": "DataCite",
             "publisher": publisher,
             "references": presence(references),
             "relations": presence(relations),
@@ -138,6 +138,9 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             "titles": presence(titles),
             "url": normalize_url(meta.get("url", None)),
             "version": meta.get("version", None),
+            # other properties
+            "provider": "DataCite",
+            "state": state,
         },
         **read_options,
     }

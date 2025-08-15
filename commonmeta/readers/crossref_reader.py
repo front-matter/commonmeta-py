@@ -138,6 +138,7 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             if i["content-type"] != "unspecified"
         ]
     )
+    state = "findable" if meta or read_options else "not_found"
 
     return {
         **{
@@ -157,7 +158,6 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             "identifiers": identifiers,
             "language": meta.get("language", None),
             "license": license_,
-            "provider": "Crossref",
             "publisher": presence(publisher),
             "references": presence(references),
             "relations": presence(relations),
@@ -165,6 +165,9 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
             "titles": presence(titles),
             "url": url,
             "version": meta.get("version", None),
+            # other properties
+            "provider": "Crossref",
+            "state": state,
         },
         **read_options,
     }

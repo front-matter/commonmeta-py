@@ -171,6 +171,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     content = py_.get(meta, "custom_fields.rs:content_html")
     image = py_.get(meta, "custom_fields.rs:image")
+    state = "stale" if py_.get(meta, "custom_fields.rs:stale") else "findable"
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
     return {
@@ -202,6 +203,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             # other properties
             "container": container,
             "provider": "Crossref" if is_rogue_scholar_doi(_id) else "Datacite",
+            "state": state,
         },
         **read_options,
     }
