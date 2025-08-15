@@ -392,7 +392,9 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
 
 
-def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, **kwargs) -> str:
+def push_crossref_xml_list(
+    metalist, login_id: str, login_passwd: str, host: str, token: str, legacy_key: str
+) -> str:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     input_xml = write_crossref_xml_list(metalist)
@@ -452,26 +454,21 @@ def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, **kwargs)
         if (
             is_rogue_scholar_doi(item.id, ra="crossref")
             and item.state == "stale"
-            and kwargs.get("host", None) is not None
-            and kwargs.get("token", None) is not None
+            and host is not None
+            and token is not None
         ):
             item.state = "findable"
-            r = push_inveniordm(
-                item, host=kwargs.get("host"), token=kwargs.get("token"), **kwargs
-            )
+            r = push_inveniordm(item, host=host, token=token)
             if r["status"] != "error":
                 record["status"] = "updated"
 
         # update rogue-scholar legacy record if legacy_key is provided
-        if (
-            is_rogue_scholar_doi(item.id, ra="crossref")
-            and kwargs.get("legacy_key", None) is not None
-        ):
+        if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
             uuid = py_.get(item, "identifiers.0.identifier")
             if uuid:
                 record["uuid"] = uuid
                 record = update_legacy_record(
-                    record, legacy_key=kwargs.get("legacy_key"), field="doi"
+                    record, legacy_key=legacy_key, field="doi"
                 )
         items.append(record)
 

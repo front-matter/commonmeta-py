@@ -471,13 +471,13 @@ class MetadataList:
         """push metadata list to external APIs"""
 
         if to == "crossref_xml":
-            kwargs = {
-                "host": self.host,
-                "token": self.token,
-                "legacy_key": self.legacy_key,
-            }
             response = push_crossref_xml_list(
-                self, login_id=self.login_id, login_passwd=self.login_passwd, **kwargs
+                self,
+                login_id=self.login_id,
+                login_passwd=self.login_passwd,
+                host=self.host,
+                token=self.token,
+                legacy_key=self.legacy_key,
             )
             return response
         elif to == "datacite":
