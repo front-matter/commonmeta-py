@@ -19,7 +19,7 @@ from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
-from .inveniordm_writer import update_legacy_record
+from .inveniordm_writer import push_inveniordm, update_legacy_record
 
 logger = logging.getLogger(__name__)
 
@@ -392,9 +392,7 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
 
 
-def push_crossref_xml_list(
-    metalist, login_id: str, login_passwd: str, legacy_key: Optional[str] = None
-) -> str:
+def push_crossref_xml_list(metalist, login_id: str, login_passwd: str, **kwargs) -> str:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     input_xml = write_crossref_xml_list(metalist)
@@ -449,13 +447,31 @@ def push_crossref_xml_list(
             "status": "submitted",
         }
 
+        # update rogue-scholar record with state findable
+        # if stale is stale and host and token are provided
+        if (
+            is_rogue_scholar_doi(item.id, ra="crossref")
+            and item.state == "stale"
+            and kwargs.get("host", None) is not None
+            and kwargs.get("token", None) is not None
+        ):
+            item.state = "findable"
+            r = push_inveniordm(
+                item, host=kwargs.get("host"), token=kwargs.get("token"), **kwargs
+            )
+            if r["status"] != "error":
+                record["status"] = "updated"
+
         # update rogue-scholar legacy record if legacy_key is provided
-        if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
+        if (
+            is_rogue_scholar_doi(item.id, ra="crossref")
+            and kwargs.get("legacy_key", None) is not None
+        ):
             uuid = py_.get(item, "identifiers.0.identifier")
             if uuid:
                 record["uuid"] = uuid
                 record = update_legacy_record(
-                    record, legacy_key=legacy_key, field="doi"
+                    record, legacy_key=kwargs.get("legacy_key"), field="doi"
                 )
         items.append(record)
 

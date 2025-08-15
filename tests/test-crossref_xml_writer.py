@@ -138,6 +138,7 @@ def test_write_crossref_xml_journal_article_plos():
     string = "https://doi.org/10.1371/journal.pone.0000030"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -166,6 +167,7 @@ def test_write_crossref_xml_posted_content():
     string = "https://doi.org/10.1101/2020.12.01.406702"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.1101/2020.12.01.406702"
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -216,6 +218,7 @@ def test_write_crossref_journal_article_from_datacite():
     assert subject.descriptions == [
         {"description": "Die Geowissenschaften", "type": "Other"}
     ]
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -242,6 +245,7 @@ def test_write_crossref_schema_org_front_matter():
     string = "https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw"
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -263,6 +267,7 @@ def test_write_crossref_another_schema_org_front_matter():
     string = "https://blog.front-matter.io/posts/dryad-interview-jen-gibson"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63"
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -368,6 +373,7 @@ def test_jsonfeed_upstream_blog():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
+    assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -420,6 +426,8 @@ def test_jsonfeed_with_references():
         "researchers. Accessed April 13, 2023. "
         "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
+    assert subject.state == "stale"
+
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -468,6 +476,7 @@ def test_jsonfeed_with_doi():
         {"subject": "Open Access Transformation"},
         {"subject": "Open Science"},
     ]
+    assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -537,6 +546,7 @@ def test_jsonfeed_without_doi():
             "familyName": "Waltman",
         },
     ]
+    assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -594,6 +604,7 @@ def test_ghost_with_affiliations():
             }
         ],
     }
+    assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.write_errors is None
@@ -817,6 +828,7 @@ def test_inveniordm_with_relations_and_funding():
             "awardNumber": "777523",
         }
     ]
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -880,6 +892,8 @@ def test_doi_with_multiple_funding_references():
         "funderIdentifierType": "ROR",
         "funderName": "University of Lausanne",
     }
+    assert subject.state == "findable"
+
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
@@ -918,6 +932,7 @@ def test_proceedings_article_with_multiple_funding_references():
         "funderIdentifierType": "ROR",
         "funderName": "DOE U.S. Department of Energy",
     }
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -961,6 +976,7 @@ def test_inveniordm_record_with_references():
         "programs approach: our experiences during the first quarter of 2025. In "
         "<i>Crossref Blog</i>. Crossref.",
     }
+    assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -1201,7 +1217,7 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert py_.get(crossref_xml, "posted_date") == {
-        "day": "13",
+        "day": "15",
         "month": "8",
         "year": "2023",
     }
