@@ -36,7 +36,7 @@ def write_inveniordm(metadata):
     """Write inveniordm"""
     if metadata is None or metadata.write_errors is not None:
         return None
-    _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
+    _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "other")
     creators = [
         to_inveniordm_creator(i)
         for i in wrap(metadata.contributors)
