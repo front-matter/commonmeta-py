@@ -10,7 +10,7 @@ commonmeta-py is a Python library to convert scholarly metadata
 """
 
 __title__ = "commonmeta-py"
-__version__ = "0.158"
+__version__ = "0.159"
 __author__ = "Martin Fenner"
 __license__ = "MIT"
 
@@ -127,5 +127,6 @@ from .writers.crossref_xml_writer import (
     CrossrefXMLClient,
     CrossrefXMLSchema,
     HttpError,
+    convert_crossref_xml,
     write_crossref_xml,
 )
