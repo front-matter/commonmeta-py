@@ -2,6 +2,7 @@
 
 import io
 import logging
+import ssl
 from datetime import datetime
 from time import time
 from typing import Dict, Optional
@@ -13,6 +14,8 @@ from furl import furl
 from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
 from pydash import py_
+from requests.auth import HTTPBasicAuth
+from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
@@ -1122,6 +1125,217 @@ def get_issn(obj):
     if py_.get(obj, "container.identifierType") != "ISSN":
         return None
     return py_.get(obj, "container.identifier")
+
+
+HTTP_OK = requests.codes["ok"]
+HTTP_CREATED = requests.codes["created"]
+
+
+class CrossrefXMLRequest(object):
+    """Helper class for making requests.
+
+    :param base_url: Base URL for all requests.
+    :param username: HTTP Basic Authentication Username
+    :param password: HTTP Basic Authentication Password
+    :param default_params: A key/value-mapping which will be converted into a
+        query string on all requests.
+    :param timeout: Connect and read timeout in seconds. Specify a tuple
+        (connect, read) to specify each timeout individually.
+    """
+
+    def __init__(
+        self,
+        base_url=None,
+        username=None,
+        password=None,
+        default_params=None,
+        timeout=None,
+    ):
+        """Initialize request object."""
+        self.base_url = base_url
+        self.username = username
+        self.password = password.encode("utf8")
+        self.default_params = default_params or {}
+        self.timeout = timeout
+
+    def request(self, url, method="GET", body=None, params=None, headers=None):
+        """Make a request.
+
+        If the request was successful (i.e no exceptions), you can find the
+        HTTP response code in self.code and the response body in self.value.
+
+        :param url: Request URL (relative to base_url if set)
+        :param method: Request method (GET, POST, DELETE) supported
+        :param body: Request body
+        :param params: Request parameters
+        :param headers: Request headers
+        """
+        params = params or {}
+        headers = headers or {}
+
+        self.data = None
+        self.code = None
+
+        if self.default_params:
+            params.update(self.default_params)
+
+        if self.base_url:
+            url = self.base_url + url
+
+        if body and isinstance(body, str):
+            body = body.encode("utf-8")
+
+        request_func = getattr(requests, method.lower())
+        kwargs = dict(
+            auth=HTTPBasicAuth(self.username, self.password),
+            params=params,
+            headers=headers,
+        )
+
+        if method == "POST":
+            kwargs["data"] = body
+        if method == "PUT":
+            kwargs["data"] = body
+        if self.timeout is not None:
+            kwargs["timeout"] = self.timeout
+
+        try:
+            return request_func(url, **kwargs)
+        except RequestException as e:
+            raise HttpError(e)
+        except ssl.SSLError as e:
+            raise HttpError(e)
+
+    def get(self, url, params=None, headers=None):
+        """Make a GET request."""
+        return self.request(url, params=params, headers=headers)
+
+    def post(self, url, body=None, params=None, headers=None):
+        """Make a POST request."""
+        return self.request(
+            url, method="POST", body=body, params=params, headers=headers
+        )
+
+    def put(self, url, body=None, params=None, headers=None):
+        """Make a PUT request."""
+        return self.request(
+            url, method="PUT", body=body, params=params, headers=headers
+        )
+
+    def delete(self, url, params=None, headers=None):
+        """Make a DELETE request."""
+        return self.request(url, method="DELETE", params=params, headers=headers)
+
+
+class CrossrefXMLClient(object):
+    """Crossref XML API client wrapper."""
+
+    def __init__(
+        self, username, password, prefix, test_mode=False, url=None, timeout=None
+    ):
+        """Initialize the API client wrapper.
+
+        :param username: Crossref username.
+        :param password: Crossref password.
+        :param prefix: DOI prefix
+        :param test_mode: use test URL when True
+        :param url: Crossref API base URL.
+        :param timeout: Connect and read timeout in seconds. Specify a tuple
+            (connect, read) to specify each timeout individually.
+        """
+        self.username = username
+        self.password = password
+        self.prefix = prefix
+
+        if test_mode:
+            self.api_url = None  # not implemented
+        else:
+            self.api_url = url or "https://doi.crossref.org/"
+
+        if not self.api_url.endswith("/"):
+            self.api_url += "/"
+
+        self.timeout = timeout
+
+    def __repr__(self):
+        """Create string representation of object."""
+        return "<CrossrefXMLClient: {0}>".format(self.username)
+
+    def _create_request(self):
+        """Create a new Request object."""
+        return CrossrefXMLRequest(
+            base_url=self.api_url,
+            username=self.username,
+            password=self.password,
+            timeout=self.timeout,
+        )
+
+    def doi_get(self, doi):
+        """Get the URL where the resource pointed by the DOI is located.
+
+        :param doi: DOI name of the resource.
+        """
+        request = self._create_request()
+        resp = request.get("doi/" + doi)
+        if resp.status_code == HTTP_OK:
+            return resp.text
+        else:
+            raise CrossrefError.factory(resp.status_code, resp.text)
+
+    def doi_post(self, new_doi, location):
+        """Mint new DOI.
+
+        :param new_doi: DOI name for the new resource.
+        :param location: URL where the resource is located.
+        :return: "CREATED" or "HANDLE_ALREADY_EXISTS".
+        """
+        headers = {"Content-Type": "text/plain;charset=UTF-8"}
+        # Use \r\n for HTTP client data.
+        body = "\r\n".join(["doi=%s" % new_doi, "url=%s" % location])
+
+        request = self._create_request()
+        resp = request.post("doi", body=body, headers=headers)
+
+        if resp.status_code == HTTP_CREATED:
+            return resp.text
+        else:
+            raise CrossrefError.factory(resp.status_code, resp.text)
+
+    def metadata_get(self, doi):
+        """Get the XML metadata associated to a DOI name.
+
+        :param doi: DOI name of the resource.
+        """
+        headers = {"Accept": "application/xml", "Accept-Encoding": "UTF-8"}
+
+        request = self._create_request()
+        resp = request.get("metadata/" + doi, headers=headers)
+
+        if resp.status_code == HTTP_OK:
+            return resp.text
+        else:
+            raise CrossrefError.factory(resp.status_code, resp.text)
+
+    def metadata_post(self, metadata):
+        """Set new metadata for an existing DOI.
+
+        Metadata should follow the DataCite Metadata Schema:
+        http://schema.datacite.org/
+
+        :param metadata: XML format of the metadata.
+        :return: "CREATED" or "HANDLE_ALREADY_EXISTS"
+        """
+        headers = {
+            "Content-Type": "application/xml;charset=UTF-8",
+        }
+
+        request = self._create_request()
+        resp = request.post("metadata", body=metadata, headers=headers)
+
+        if resp.status_code == HTTP_CREATED:
+            return resp.text
+        else:
+            raise CrossrefError.factory(resp.status_code, resp.text)
 
 
 """Errors for the Crossref XML API.
