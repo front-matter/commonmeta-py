@@ -50,6 +50,7 @@ from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_xml_writer import (
+    push_crossref_xml,
     push_crossref_xml_list,
     write_crossref_xml,
     write_crossref_xml_list,
@@ -57,6 +58,7 @@ from .writers.crossref_xml_writer import (
 from .writers.csl_writer import write_csl, write_csl_list
 from .writers.datacite_writer import write_datacite, write_datacite_list
 from .writers.inveniordm_writer import (
+    push_inveniordm,
     push_inveniordm_list,
     write_inveniordm,
     write_inveniordm_list,
@@ -344,6 +346,28 @@ class Metadata:
             self.is_valid = False
             return ""
         return output if output is not None else ""
+
+    def push(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+        """push metadata to external APIs"""
+
+        if to == "crossref_xml":
+            response = push_crossref_xml(
+                self,
+                login_id=self.login_id,
+                login_passwd=self.login_passwd,
+                host=self.host,
+                token=self.token,
+                legacy_key=self.legacy_key,
+            )
+            return response
+        elif to == "datacite":
+            raise ValueError("Datacite not yet supported")
+        elif to == "inveniordm":
+            kwargs = {"legacy_key": self.legacy_key}
+            response = push_inveniordm(self, host=self.host, token=self.token, **kwargs)
+            return response
+        else:
+            raise ValueError("No valid output format found")
 
 
 class MetadataList:

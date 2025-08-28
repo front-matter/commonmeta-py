@@ -103,6 +103,9 @@ def put(
     )
     if show_errors and metadata.write_errors:
         raise click.ClickException(str(metadata.write_errors))
+    click.echo(metadata.push(to=to, style=style, locale=locale))
+    if show_errors and len(metadata.write_errors) > 0:
+        raise click.ClickException(str(metadata.write_errors))
 
 
 @cli.command()

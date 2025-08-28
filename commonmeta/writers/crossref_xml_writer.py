@@ -395,6 +395,90 @@ def write_crossref_xml_list(metalist) -> Optional[str]:
     return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
 
 
+def push_crossref_xml(
+    metadata: Commonmeta,
+    login_id: str,
+    login_passwd: str,
+    host: str,
+    token: str,
+    legacy_key: str,
+) -> str:
+    """Push crossref_xml to Crossref API, returns the API response."""
+
+    input_xml = write_crossref_xml(metadata)
+    if not input_xml:
+        logger.error("Failed to generate XML for upload")
+        return "{}"
+
+    # Convert string to bytes if necessary
+    if isinstance(input_xml, str):
+        input_xml = input_xml.encode("utf-8")
+
+    # The filename displayed in the Crossref admin interface
+    filename = f"{int(time())}"
+
+    multipart_data = MultipartEncoder(
+        fields={
+            "fname": (filename, io.BytesIO(input_xml), "application/xml"),
+            "operation": "doMDUpload",
+            "login_id": login_id,
+            "login_passwd": login_passwd,
+        }
+    )
+
+    post_url = "https://doi.crossref.org/servlet/deposit"
+    headers = {"Content-Type": multipart_data.content_type}
+
+    try:
+        resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=30)
+        resp.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Failed to upload to Crossref: {e}")
+        return "{}"
+
+    # Parse the response
+    try:
+        response = parse_xml(resp.content)
+        status = py_.get(response, "html.body.h2")
+        if status != "SUCCESS":
+            # Handle error response
+            message = py_.get(response, "html.body.p")
+            logger.error(f"Crossref API error: {message}")
+            return "{}"
+    except Exception as e:
+        logger.error(f"Failed to parse Crossref response: {e}")
+        return "{}"
+
+    record = {
+        "doi": metadata.id,
+        "updated": datetime.now().isoformat("T", "seconds"),
+        "status": "submitted",
+    }
+
+    # update rogue-scholar record with state findable
+    # if state is stale and host and token are provided
+    if (
+        is_rogue_scholar_doi(metadata.id, ra="crossref")
+        and metadata.state == "stale"
+        and host is not None
+        and token is not None
+    ):
+        metadata.state = "findable"
+        r = push_inveniordm(metadata, host=host, token=token)
+        if r["status"] != "error":
+            record["status"] = "updated"
+
+    # update rogue-scholar legacy record if legacy_key is provided
+    if is_rogue_scholar_doi(metadata.id, ra="crossref") and legacy_key is not None:
+        uuid = py_.get(metadata, "identifiers.0.identifier")
+        if uuid:
+            record["uuid"] = uuid
+            record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
+
+    # Return JSON response
+    return json.dumps(record, option=json.OPT_INDENT_2).decode("utf-8")
+
+
 def push_crossref_xml_list(
     metalist, login_id: str, login_passwd: str, host: str, token: str, legacy_key: str
 ) -> str:
@@ -1297,21 +1381,6 @@ class CrossrefXMLClient(object):
         resp = request.post("doi", body=body, headers=headers)
 
         if resp.status_code == HTTP_CREATED:
-            return resp.text
-        else:
-            raise CrossrefError.factory(resp.status_code, resp.text)
-
-    def metadata_get(self, doi):
-        """Get the XML metadata associated to a DOI name.
-
-        :param doi: DOI name of the resource.
-        """
-        headers = {"Accept": "application/xml", "Accept-Encoding": "UTF-8"}
-
-        request = self._create_request()
-        resp = request.get("metadata/" + doi, headers=headers)
-
-        if resp.status_code == HTTP_OK:
             return resp.text
         else:
             raise CrossrefError.factory(resp.status_code, resp.text)
