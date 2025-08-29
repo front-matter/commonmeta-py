@@ -20,7 +20,7 @@ def test_write_crossref_xml_header():
     assert lines[0] == '<?xml version="1.0" encoding="utf-8"?>'
     assert (
         lines[1]
-        == '<doi_batch xmlns="http://www.crossref.org/schema/5.4.0" version="5.4.0">'
+        == '<doi_batch xmlns="http://www.crossref.org/schema/5.4.0" xmlns:ai="http://www.crossref.org/AccessIndicators.xsd" xmlns:rel="http://www.crossref.org/relations.xsd" xmlns:fr="http://www.crossref.org/fundref.xsd" version="5.4.0">'
     )
 
 
