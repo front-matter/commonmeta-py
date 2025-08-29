@@ -303,20 +303,13 @@ def sanitize(text: str, **kwargs) -> str:
 
 def get_crossref_xml_head(metadata: dict) -> dict:
     """Get head element for Crossref XML"""
-    if (
-        metadata.get("depositor", None) is None
-        or metadata.get("email", None) is None
-        or metadata.get("registrant", None) is None
-    ):
-        return {
-            "doi_batch_id": "none",
-        }
+
     return {
         "doi_batch_id": str(uuid.uuid4()),
         "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
         "depositor": {
-            "depositor_name": metadata.get("depositor"),
-            "email_address": metadata.get("email"),
+            "depositor_name": metadata.get("depositor", None) or "test",
+            "email_address": metadata.get("email", None) or "info@example.org",
         },
-        "registrant": metadata.get("registrant"),
+        "registrant": metadata.get("registrant", None) or "test",
     }

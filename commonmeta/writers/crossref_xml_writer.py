@@ -2,10 +2,9 @@
 
 import io
 import logging
-import ssl
 from datetime import datetime
 from time import time
-from typing import Dict, Optional
+from typing import Dict, Optional, Union
 
 import orjson as json
 import requests
@@ -14,8 +13,6 @@ from furl import furl
 from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
 from pydash import py_
-from requests.auth import HTTPBasicAuth
-from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
@@ -24,7 +21,7 @@ from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
 from .inveniordm_writer import push_inveniordm, update_legacy_record
 
-logger = logging.getLogger(__name__)
+log = logging.getLogger(__name__)
 
 POSTED_CONTENT_TYPES = [
     "preprint",
@@ -349,36 +346,47 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
 
 def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     """Write Crossref XML"""
-
-    data = convert_crossref_xml(metadata)
-    if data is None:
-        logger.error(f"Could not convert metadata to Crossref XML: {metadata.id}")
+    if metadata is None or not metadata.is_valid:
+        log.error("Invalid metadata provided for Crossref XML generation")
         return None
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
+
+    data = convert_crossref_xml(metadata)
+    if data is None:
+        log.error(f"Could not convert metadata to Crossref XML: {metadata.id}")
+        return None
+
     crossref_xml = schema.dump(data)
 
     # Ensure consistent field ordering through the defined mapping
     field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
     crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
 
+    head = {
+        "depositor": metadata.depositor,
+        "email": metadata.email,
+        "registrant": metadata.registrant,
+    }
+
     # Convert to XML
-    return unparse_xml(crossref_xml, dialect="crossref")
+    return unparse_xml(crossref_xml, dialect="crossref", head=head)
 
 
 def write_crossref_xml_list(metalist) -> Optional[str]:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
-        logger.error("Invalid metalist provided for Crossref XML generation")
+        log.error("Invalid metalist provided for Crossref XML generation")
         return None
 
+    # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
     crossref_xml_list = []
     for item in metalist.items:
         data = convert_crossref_xml(item)
         if data is None or not isinstance(data, dict):
-            logger.error(f"Could not convert metadata to Crossref XML: {item.id}")
+            log.error(f"Could not convert metadata to Crossref XML: {item.id}")
             continue
 
         crossref_xml = schema.dump(data)
@@ -407,46 +415,17 @@ def push_crossref_xml(
 
     input_xml = write_crossref_xml(metadata)
     if not input_xml:
-        logger.error("Failed to generate XML for upload")
+        log.error("Failed to generate XML for upload")
         return "{}"
 
-    # Convert string to bytes if necessary
-    if isinstance(input_xml, str):
-        input_xml = input_xml.encode("utf-8")
-
-    # The filename displayed in the Crossref admin interface
-    filename = f"{int(time())}"
-
-    multipart_data = MultipartEncoder(
-        fields={
-            "fname": (filename, io.BytesIO(input_xml), "application/xml"),
-            "operation": "doMDUpload",
-            "login_id": login_id,
-            "login_passwd": login_passwd,
-        }
+    client = CrossrefXMLClient(
+        username=login_id,
+        password=login_passwd,
     )
+    status = client.post(input_xml)
 
-    post_url = "https://doi.crossref.org/servlet/deposit"
-    headers = {"Content-Type": multipart_data.content_type}
-
-    try:
-        resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=30)
-        resp.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Failed to upload to Crossref: {e}")
-        return "{}"
-
-    # Parse the response
-    try:
-        response = parse_xml(resp.content)
-        status = py_.get(response, "html.body.h2")
-        if status != "SUCCESS":
-            # Handle error response
-            message = py_.get(response, "html.body.p")
-            logger.error(f"Crossref API error: {message}")
-            return "{}"
-    except Exception as e:
-        logger.error(f"Failed to parse Crossref response: {e}")
+    if status != "SUCCESS":
+        log.error("Failed to upload XML to Crossref")
         return "{}"
 
     record = {
@@ -486,46 +465,17 @@ def push_crossref_xml_list(
 
     input_xml = write_crossref_xml_list(metalist)
     if not input_xml:
-        logger.error("Failed to generate XML for upload")
+        log.error("Failed to generate XML for upload")
         return "{}"
 
-    # Convert string to bytes if necessary
-    if isinstance(input_xml, str):
-        input_xml = input_xml.encode("utf-8")
-
-    # The filename displayed in the Crossref admin interface
-    filename = f"{int(time())}"
-
-    multipart_data = MultipartEncoder(
-        fields={
-            "fname": (filename, io.BytesIO(input_xml), "application/xml"),
-            "operation": "doMDUpload",
-            "login_id": login_id,
-            "login_passwd": login_passwd,
-        }
+    client = CrossrefXMLClient(
+        username=login_id,
+        password=login_passwd,
     )
+    status = client.post(input_xml)
 
-    post_url = "https://doi.crossref.org/servlet/deposit"
-    headers = {"Content-Type": multipart_data.content_type}
-
-    try:
-        resp = requests.post(post_url, data=multipart_data, headers=headers, timeout=30)
-        resp.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Failed to upload to Crossref: {e}")
-        return "{}"
-
-    # Parse the response
-    try:
-        response = parse_xml(resp.content)
-        status = py_.get(response, "html.body.h2")
-        if status != "SUCCESS":
-            # Handle error response
-            message = py_.get(response, "html.body.p")
-            logger.error(f"Crossref API error: {message}")
-            return "{}"
-    except Exception as e:
-        logger.error(f"Failed to parse Crossref response: {e}")
+    if status != "SUCCESS":
+        log.error("Failed to upload XML to Crossref")
         return "{}"
 
     items = []
@@ -537,7 +487,7 @@ def push_crossref_xml_list(
         }
 
         # update rogue-scholar record with state findable
-        # if stale is stale and host and token are provided
+        # if state is stale and host and token are provided
         if (
             is_rogue_scholar_doi(item.id, ra="crossref")
             and item.state == "stale"
@@ -862,7 +812,7 @@ def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict
     try:
         pub_date = date_parse(pub_date_str)
     except (ValueError, TypeError) as e:
-        logger.warning(f"Failed to parse publication date '{pub_date_str}': {e}")
+        log.warning(f"Failed to parse publication date '{pub_date_str}': {e}")
         return None
 
     return compact(
@@ -1211,200 +1161,90 @@ def get_issn(obj):
     return py_.get(obj, "container.identifier")
 
 
-HTTP_OK = requests.codes["ok"]
-HTTP_CREATED = requests.codes["created"]
-
-
-class CrossrefXMLRequest(object):
-    """Helper class for making requests.
-
-    :param base_url: Base URL for all requests.
-    :param username: HTTP Basic Authentication Username
-    :param password: HTTP Basic Authentication Password
-    :param default_params: A key/value-mapping which will be converted into a
-        query string on all requests.
-    :param timeout: Connect and read timeout in seconds. Specify a tuple
-        (connect, read) to specify each timeout individually.
-    """
-
-    def __init__(
-        self,
-        base_url=None,
-        username=None,
-        password=None,
-        default_params=None,
-        timeout=None,
-    ):
-        """Initialize request object."""
-        self.base_url = base_url
-        self.username = username
-        self.password = password.encode("utf8")
-        self.default_params = default_params or {}
-        self.timeout = timeout
-
-    def request(self, url, method="GET", body=None, params=None, headers=None):
-        """Make a request.
-
-        If the request was successful (i.e no exceptions), you can find the
-        HTTP response code in self.code and the response body in self.value.
-
-        :param url: Request URL (relative to base_url if set)
-        :param method: Request method (GET, POST, DELETE) supported
-        :param body: Request body
-        :param params: Request parameters
-        :param headers: Request headers
-        """
-        params = params or {}
-        headers = headers or {}
-
-        self.data = None
-        self.code = None
-
-        if self.default_params:
-            params.update(self.default_params)
-
-        if self.base_url:
-            url = self.base_url + url
-
-        if body and isinstance(body, str):
-            body = body.encode("utf-8")
-
-        request_func = getattr(requests, method.lower())
-        kwargs = dict(
-            auth=HTTPBasicAuth(self.username, self.password),
-            params=params,
-            headers=headers,
-        )
-
-        if method == "POST":
-            kwargs["data"] = body
-        if method == "PUT":
-            kwargs["data"] = body
-        if self.timeout is not None:
-            kwargs["timeout"] = self.timeout
-
-        try:
-            return request_func(url, **kwargs)
-        except RequestException as e:
-            raise HttpError(e)
-        except ssl.SSLError as e:
-            raise HttpError(e)
-
-    def get(self, url, params=None, headers=None):
-        """Make a GET request."""
-        return self.request(url, params=params, headers=headers)
-
-    def post(self, url, body=None, params=None, headers=None):
-        """Make a POST request."""
-        return self.request(
-            url, method="POST", body=body, params=params, headers=headers
-        )
-
-    def put(self, url, body=None, params=None, headers=None):
-        """Make a PUT request."""
-        return self.request(
-            url, method="PUT", body=body, params=params, headers=headers
-        )
-
-    def delete(self, url, params=None, headers=None):
-        """Make a DELETE request."""
-        return self.request(url, method="DELETE", params=params, headers=headers)
-
-
-class CrossrefXMLClient(object):
+class CrossrefXMLClient:
     """Crossref XML API client wrapper."""
 
-    def __init__(
-        self, username, password, prefix, test_mode=False, url=None, timeout=None
-    ):
-        """Initialize the API client wrapper.
+    def __init__(self, username: str, password: str, timeout: int = 30):
+        """Initialize the Crossref API client wrapper.
 
-        :param username: Crossref username.
-        :param password: Crossref password.
-        :param prefix: DOI prefix
-        :param test_mode: use test URL when True
-        :param url: Crossref API base URL.
-        :param timeout: Connect and read timeout in seconds. Specify a tuple
-            (connect, read) to specify each timeout individually.
+        :param username: Crossref login ID.
+        :param password: Crossref login password.
+        :param timeout: Request timeout in seconds.
         """
-        self.username = username
-        self.password = password
-        self.prefix = prefix
-
-        if test_mode:
-            self.api_url = None  # not implemented
-        else:
-            self.api_url = url or "https://doi.crossref.org/"
-
-        if not self.api_url.endswith("/"):
-            self.api_url += "/"
-
+        self.login_id = username
+        self.login_passwd = password
         self.timeout = timeout
+        self.api_url = "https://doi.crossref.org/servlet/deposit"
 
-    def __repr__(self):
-        """Create string representation of object."""
-        return "<CrossrefXMLClient: {0}>".format(self.username)
+    def post(self, input_xml: Union[str, bytes]) -> str:
+        """Upload metadata for a new or existing DOI.
 
-    def _create_request(self):
-        """Create a new Request object."""
-        return CrossrefXMLRequest(
-            base_url=self.api_url,
-            username=self.username,
-            password=self.password,
-            timeout=self.timeout,
-        )
-
-    def doi_get(self, doi):
-        """Get the URL where the resource pointed by the DOI is located.
-
-        :param doi: DOI name of the resource.
+        :param input_xml: XML metadata following the Crossref Metadata Schema (str or bytes).
+        :return: Status string ('SUCCESS' or '{}' on error).
         """
-        request = self._create_request()
-        resp = request.get("doi/" + doi)
-        if resp.status_code == HTTP_OK:
-            return resp.text
-        else:
-            raise CrossrefError.factory(resp.status_code, resp.text)
+        try:
+            # Convert string to bytes if necessary
+            if isinstance(input_xml, str):
+                input_xml = input_xml.encode("utf-8")
 
-    def doi_post(self, new_doi, location):
-        """Mint new DOI.
+            # The filename displayed in the Crossref admin interface
+            filename = f"{int(time())}"
 
-        :param new_doi: DOI name for the new resource.
-        :param location: URL where the resource is located.
-        :return: "CREATED" or "HANDLE_ALREADY_EXISTS".
+            multipart_data = MultipartEncoder(
+                fields={
+                    "fname": (filename, io.BytesIO(input_xml), "application/xml"),
+                    "operation": "doMDUpload",
+                    "login_id": self.login_id,
+                    "login_passwd": self.login_passwd,
+                }
+            )
+
+            headers = {"Content-Type": multipart_data.content_type}
+
+            # Make the request
+            resp = requests.post(
+                self.api_url, data=multipart_data, headers=headers, timeout=self.timeout
+            )
+            resp.raise_for_status()
+
+            return self._parse_response(resp)
+
+        except requests.exceptions.RequestException as e:
+            log.error(f"Failed to upload to Crossref: {e}")
+            return "{}"
+
+    def _parse_response(self, resp) -> str:
+        """Parse the Crossref API response.
+
+        :param resp: Response object from requests.
+        :return: Status string ('SUCCESS' or 'error message' on error).
         """
-        headers = {"Content-Type": "text/plain;charset=UTF-8"}
-        # Use \r\n for HTTP client data.
-        body = "\r\n".join(["doi=%s" % new_doi, "url=%s" % location])
+        try:
+            # Check content type
+            content_type = resp.headers.get("content-type", "").lower()
+            if "xml" not in content_type and "html" not in content_type:
+                log.error(f"Unexpected content type: {content_type}")
+                log.error(f"Response body: {resp.text}")
+                return "{}"
 
-        request = self._create_request()
-        resp = request.post("doi", body=body, headers=headers)
+            response = parse_xml(resp.content)
 
-        if resp.status_code == HTTP_CREATED:
-            return resp.text
-        else:
-            raise CrossrefError.factory(resp.status_code, resp.text)
+            status = py_.get(response, "html.body.h2")
+            if status != "SUCCESS":
+                # Handle error response
+                message = py_.get(response, "html.body.p")
+                log.error(f"Crossref API error: {message}")
+                return message
 
-    def metadata_post(self, metadata):
-        """Set new metadata for an existing DOI.
+            return status
 
-        Metadata should follow the DataCite Metadata Schema:
-        http://schema.datacite.org/
-
-        :param metadata: XML format of the metadata.
-        :return: "CREATED" or "HANDLE_ALREADY_EXISTS"
-        """
-        headers = {
-            "Content-Type": "application/xml;charset=UTF-8",
-        }
-
-        request = self._create_request()
-        resp = request.post("metadata", body=metadata, headers=headers)
-
-        if resp.status_code == HTTP_CREATED:
-            return resp.text
-        else:
-            raise CrossrefError.factory(resp.status_code, resp.text)
+        except Exception as e:
+            log.error(f"Failed to parse Crossref response: {e}")
+            log.error(
+                f"Response content type: {resp.headers.get('content-type', 'unknown')}"
+            )
+            log.error(f"Response body: {resp.text}")
+            return "{}"
 
 
 """Errors for the Crossref XML API.
