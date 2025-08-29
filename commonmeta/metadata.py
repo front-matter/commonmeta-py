@@ -125,6 +125,18 @@ class Metadata:
         self.date_updated = meta.get("date_updated")
         self.state = meta.get("state")
 
+        # options needed for Crossref DOI registration
+        self.depositor = kwargs.get("depositor", None)
+        self.email = kwargs.get("email", None)
+        self.registrant = kwargs.get("registrant", None)
+        self.login_id = kwargs.get("login_id", None)
+        self.login_passwd = kwargs.get("login_passwd", None)
+
+        # options needed for InvenioRDM registration
+        self.host = kwargs.get("host", None)
+        self.token = kwargs.get("token", None)
+        self.legacy_key = kwargs.get("legacy_key", None)
+
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
         self.errors = meta.get("errors", None) or json_schema_errors(
             json.loads(self.write())

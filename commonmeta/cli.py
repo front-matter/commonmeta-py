@@ -73,6 +73,11 @@ def convert(
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
+@click.option("--login_id", type=str)
+@click.option("--login_passwd", type=str)
+@click.option("--host", type=str)
+@click.option("--token", type=str)
+@click.option("--legacy-key", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def put(
     input,
@@ -85,24 +90,30 @@ def put(
     depositor,
     email,
     registrant,
+    login_id,
+    login_passwd,
+    host,
+    token,
+    legacy_key,
     show_errors,
 ):
-    metadata = Metadata(input, via=via, doi=doi, prefix=prefix)
+    metadata = Metadata(
+        input,
+        via=via,
+        doi=doi,
+        depositor=depositor,
+        email=email,
+        registrant=registrant,
+        login_id=login_id,
+        login_passwd=login_passwd,
+        host=host,
+        token=token,
+        legacy_key=legacy_key,
+        prefix=prefix,
+    )
     if show_errors and not metadata.is_valid:
         raise click.ClickException(str(metadata.errors) + str(metadata.write_errors))
 
-    click.echo(
-        metadata.write(
-            to=to,
-            style=style,
-            locale=locale,
-            depositor=depositor,
-            email=email,
-            registrant=registrant,
-        )
-    )
-    if show_errors and metadata.write_errors:
-        raise click.ClickException(str(metadata.write_errors))
     click.echo(metadata.push(to=to, style=style, locale=locale))
     if show_errors and len(metadata.write_errors) > 0:
         raise click.ClickException(str(metadata.write_errors))
