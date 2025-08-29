@@ -176,17 +176,24 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
         else:
             input = {type: attributes | input}
 
+        head = kwargs["head"] or {}
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
+            "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
+            "@xmlns:rel": "http://www.crossref.org/relations.xsd",
+            "@xmlns:fr": "http://www.crossref.org/fundref.xsd",
             "@version": "5.4.0",
-            "head": get_crossref_xml_head(input),
+            "head": get_crossref_xml_head(head),
             "body": input,
         }
-        input = {"doi_batch": doi_batch}
+        output = {"doi_batch": doi_batch}
+    else:
+        output = input
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
     kwargs.pop("dialect", None)
-    return xmltodict.unparse(input, **kwargs)
+    kwargs.pop("head", None)
+    return xmltodict.unparse(output, **kwargs)
 
 
 def unparse_xml_list(input: Optional[list], **kwargs) -> str:
