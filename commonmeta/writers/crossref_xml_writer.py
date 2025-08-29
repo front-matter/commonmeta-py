@@ -1164,7 +1164,14 @@ def get_issn(obj):
 class CrossrefXMLClient:
     """Crossref XML API client wrapper."""
 
-    def __init__(self, username: str, password: str, timeout: int = 30):
+    def __init__(
+        self,
+        username: str,
+        password: str,
+        prefix: str = "10.5555",
+        test_mode: bool = False,
+        timeout: int = 30,
+    ):
         """Initialize the Crossref API client wrapper.
 
         :param username: Crossref login ID.
@@ -1174,7 +1181,12 @@ class CrossrefXMLClient:
         self.login_id = username
         self.login_passwd = password
         self.timeout = timeout
-        self.api_url = "https://doi.crossref.org/servlet/deposit"
+        self.prefix = str(prefix)
+
+        if test_mode:
+            self.api_url = "https://test.crossref.org/servlet/deposit"
+        else:
+            self.api_url = "https://doi.crossref.org/servlet/deposit"
 
     def post(self, input_xml: Union[str, bytes]) -> str:
         """Upload metadata for a new or existing DOI.
