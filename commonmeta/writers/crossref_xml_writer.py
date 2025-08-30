@@ -109,10 +109,12 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
         "Report",
         "Standard",
     ]:
+        log.error(f"Type not supported by Crossref: {metadata.id}")
         return None
 
     # return None if doi or url are not present
     if doi_from_url(metadata.id) is None or metadata.url is None:
+        log.error(f"DOI or URL missing for Crossref XML: {metadata.id}")
         return None
 
     titles = get_titles(metadata)
@@ -340,8 +342,9 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     else:
+        log.error(f"Another error occured for Crossref XML: {metadata.id}")
         data = None
-    return data
+    return data, metadata
 
 
 def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:

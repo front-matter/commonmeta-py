@@ -29,7 +29,7 @@ from ..utils import (
     validate_ror,
 )
 
-logger = logging.getLogger(__name__)
+log = logging.getLogger(__name__)
 
 
 def write_inveniordm(metadata):
@@ -450,7 +450,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
 
     except Exception as e:
         print(f"Error in push_inveniordm: {str(e)}")
-        logger.error(
+        log.error(
             f"Unexpected error in push_inveniordm: {str(e)}",
             exc_info=True,
             extra={"host": host, "record_id": record.get("id")},
@@ -566,7 +566,7 @@ def search_by_doi(doi, host, token) -> Optional[str]:
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
+        log.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
         return None
 
 
@@ -584,7 +584,7 @@ def create_draft_record(record, host, token, output):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 201:
-            logger.error(
+            log.error(
                 f"Failed to create draft record: {response.status_code} - {response.json()}"
             )
             record["status"] = "failed_create_draft"
@@ -596,7 +596,7 @@ def create_draft_record(record, host, token, output):
         record["status"] = "draft"
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error creating draft record: {str(e)}", exc_info=True)
+        log.error(f"Error creating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_draft"
         return record
 
@@ -617,7 +617,7 @@ def edit_published_record(record, host, token):
         record["status"] = "edited"
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(
+        log.error(
             f"Error creating draft from published record: {str(e)}", exc_info=True
         )
         record["status"] = "error_edit_published_record"
@@ -642,7 +642,7 @@ def update_draft_record(record, host, token, inveniordm_data):
         record["status"] = "updated"
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error updating draft record: {str(e)}", exc_info=True)
+        log.error(f"Error updating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_update_draft_record"
         return record
 
@@ -665,7 +665,7 @@ def publish_draft_record(record, host, token):
             record["status"] = "failed_rate_limited"
             return record
         if response.status_code != 202:
-            logger.error(
+            log.error(
                 f"Failed to publish draft record: {response.status_code} - {response.json()}"
             )
             record["status"] = "error_publish_draft_record"
@@ -676,7 +676,7 @@ def publish_draft_record(record, host, token):
         record["status"] = "published"
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error publishing draft record: {str(e)}", exc_info=True)
+        log.error(f"Error publishing draft record: {str(e)}", exc_info=True)
         record["status"] = "error_publish_draft_record"
         return record
 
@@ -698,7 +698,7 @@ def get_record_communities(record, host, token):
             return py_.get(data, "hits.hits")
         return None
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error getting communities: {str(e)}", exc_info=True)
+        log.error(f"Error getting communities: {str(e)}", exc_info=True)
         return None
 
 
@@ -718,7 +718,7 @@ def add_record_to_community(record, host, token, community_id):
         response.raise_for_status()
         return record
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error adding record to community: {str(e)}", exc_info=True)
+        log.error(f"Error adding record to community: {str(e)}", exc_info=True)
         return record
 
 
@@ -772,7 +772,7 @@ def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
         return record
 
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error updating legacy record: {str(e)}", exc_info=True)
+        log.error(f"Error updating legacy record: {str(e)}", exc_info=True)
         record["status"] = "error_update_legacy_record"
         return record
 
@@ -794,7 +794,7 @@ def search_by_slug(slug: str, type: str, host: str, token: str) -> Optional[str]
             return py_.get(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error searching for community: {str(e)}", exc_info=True)
+        log.error(f"Error searching for community: {str(e)}", exc_info=True)
         return None
 
 

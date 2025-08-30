@@ -242,7 +242,6 @@ def get_citations(citations: list) -> list:
     """get citations."""
 
     def get_citation(citation: dict) -> Optional[dict]:
-        print(citation)
         if not isinstance(citation, dict):
             return None
 
