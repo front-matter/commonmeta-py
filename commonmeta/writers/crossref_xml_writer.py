@@ -344,7 +344,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
     else:
         log.error(f"Another error occured for Crossref XML: {metadata.id}")
         data = None
-    return data, metadata
+    return data
 
 
 def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
