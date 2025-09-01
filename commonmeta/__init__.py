@@ -10,7 +10,7 @@ commonmeta-py is a Python library to convert scholarly metadata
 """
 
 __title__ = "commonmeta-py"
-__version__ = "0.164"
+__version__ = "0.165"
 __author__ = "Martin Fenner"
 __license__ = "MIT"
 
@@ -80,6 +80,7 @@ from .readers import (
     ris_reader,
     schema_org_reader,
 )
+from .schema_utils import json_schema_errors, xml_schema_errors
 from .utils import (
     dict_to_spdx,
     extract_curie,
