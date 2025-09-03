@@ -410,6 +410,7 @@ def push_crossref_xml(
     metadata: Commonmeta,
     login_id: str,
     login_passwd: str,
+    test_mode: bool,
     host: str,
     token: str,
     legacy_key: str,
@@ -424,6 +425,7 @@ def push_crossref_xml(
     client = CrossrefXMLClient(
         username=login_id,
         password=login_passwd,
+        test_mode=test_mode,
     )
     status = client.post(input_xml)
 
@@ -462,7 +464,13 @@ def push_crossref_xml(
 
 
 def push_crossref_xml_list(
-    metalist, login_id: str, login_passwd: str, host: str, token: str, legacy_key: str
+    metalist,
+    login_id: str,
+    login_passwd: str,
+    test_mode: bool,
+    host: str,
+    token: str,
+    legacy_key: str,
 ) -> str:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
@@ -474,6 +482,7 @@ def push_crossref_xml_list(
     client = CrossrefXMLClient(
         username=login_id,
         password=login_passwd,
+        test_mode=test_mode,
     )
     status = client.post(input_xml)
 

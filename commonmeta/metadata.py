@@ -131,6 +131,7 @@ class Metadata:
         self.registrant = kwargs.get("registrant", None)
         self.login_id = kwargs.get("login_id", None)
         self.login_passwd = kwargs.get("login_passwd", None)
+        self.test_mode = kwargs.get("test_mode", False)
 
         # options needed for InvenioRDM registration
         self.host = kwargs.get("host", None)
@@ -367,6 +368,7 @@ class Metadata:
                 self,
                 login_id=self.login_id,
                 login_passwd=self.login_passwd,
+                test_mode=self.test_mode,
                 host=self.host,
                 token=self.token,
                 legacy_key=self.legacy_key,
@@ -411,6 +413,7 @@ class MetadataList:
         self.registrant = kwargs.get("registrant", None)
         self.login_id = kwargs.get("login_id", None)
         self.login_passwd = kwargs.get("login_passwd", None)
+        self.test_mode = kwargs.get("test_mode", False)
 
         # options needed for InvenioRDM registration
         self.host = kwargs.get("host", None)
@@ -511,6 +514,7 @@ class MetadataList:
                 self,
                 login_id=self.login_id,
                 login_passwd=self.login_passwd,
+                test_mode=self.test_mode,
                 host=self.host,
                 token=self.token,
                 legacy_key=self.legacy_key,

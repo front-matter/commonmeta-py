@@ -75,6 +75,7 @@ def convert(
 @click.option("--registrant", type=str)
 @click.option("--login_id", type=str)
 @click.option("--login_passwd", type=str)
+@click.option("--test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
 @click.option("--legacy-key", type=str)
@@ -92,6 +93,7 @@ def put(
     registrant,
     login_id,
     login_passwd,
+    test_mode,
     host,
     token,
     legacy_key,
@@ -106,6 +108,7 @@ def put(
         registrant=registrant,
         login_id=login_id,
         login_passwd=login_passwd,
+        test_mode=test_mode,
         host=host,
         token=token,
         legacy_key=legacy_key,
@@ -183,6 +186,7 @@ def list(
 @click.option("--registrant", type=str)
 @click.option("--login_id", type=str)
 @click.option("--login_passwd", type=str)
+@click.option("--test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
 @click.option("--legacy-key", type=str)
@@ -201,6 +205,7 @@ def push(
     registrant,
     login_id,
     login_passwd,
+    test_mode,
     host,
     token,
     legacy_key,
@@ -218,6 +223,7 @@ def push(
         registrant=registrant,
         login_id=login_id,
         login_passwd=login_passwd,
+        test_mode=test_mode,
         host=host,
         token=token,
         legacy_key=legacy_key,
