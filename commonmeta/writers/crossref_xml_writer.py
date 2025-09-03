@@ -1298,6 +1298,8 @@ class CrossrefError(Exception):
             return CrossrefForbiddenError(*args)
         elif err_code == 404:
             return CrossrefNotFoundError(*args)
+        elif err_code == 410:
+            return CrossrefGoneError(*args)
         else:
             return CrossrefServerError(*args)
 
@@ -1340,3 +1342,7 @@ class CrossrefForbiddenError(CrossrefRequestError):
 
 class CrossrefNotFoundError(CrossrefRequestError):
     """DOI does not exist in the database."""
+
+
+class CrossrefGoneError(CrossrefRequestError):
+    """DOI is no longer available."""

@@ -17,7 +17,7 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import get_iso8601_date
-from ..doi_utils import doi_from_url, normalize_doi
+from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
 from ..utils import (
     FOS_MAPPINGS,
     get_language,
@@ -110,7 +110,9 @@ def write_inveniordm(metadata):
             "pids": {
                 "doi": {
                     "identifier": doi_from_url(metadata.id),
-                    "provider": "external",
+                    "provider": "crossref"
+                    if is_rogue_scholar_doi(metadata.id, ra="crossref")
+                    else "external",
                 },
             },
             "access": {"record": "public", "files": "public"},
@@ -484,7 +486,8 @@ def upsert_record(metadata: Commonmeta, host: str, token: str, record: dict) -> 
         # Update draft record
         record = update_draft_record(record, host, token, output)
     else:
-        # Create draft record
+        # Create draft record for DOI that is external or needs to be registered
+        # (currently only supported for Crossref PID provider)
         record = create_draft_record(record, host, token, output)
 
     # Publish draft record
@@ -598,6 +601,30 @@ def create_draft_record(record, host, token, output):
     except requests.exceptions.RequestException as e:
         log.error(f"Error creating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_draft"
+        return record
+
+
+def reserve_doi(record, host, token) -> dict:
+    """Reserve a DOI for a draft record."""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(
+            f"https://{host}/api/records/{record.get('id')}/draft/pids/doi",
+            headers=headers,
+        )
+        response.raise_for_status()
+        data = response.json()
+        record["doi"] = data.get("doi", None)
+        record["status"] = "doi_reserved"
+        return record
+    except requests.exceptions.RequestException as e:
+        log.error(
+            f"Error reserving DOI for record {record['id']}: {str(e)}", exc_info=True
+        )
+        record["status"] = "error_reserve_doi"
         return record
 
 
