@@ -1180,7 +1180,7 @@ class CrossrefXMLClient:
         self,
         username: str,
         password: str,
-        prefix: str = "10.5555",
+        prefixes: list = ["10.5555"],
         test_mode: bool = False,
         timeout: int = 30,
     ):
@@ -1193,7 +1193,7 @@ class CrossrefXMLClient:
         self.login_id = username
         self.login_passwd = password
         self.timeout = timeout
-        self.prefix = str(prefix)
+        self.prefixes = [str(prefix) for prefix in prefixes]
 
         if test_mode:
             self.api_url = "https://test.crossref.org/servlet/deposit"
