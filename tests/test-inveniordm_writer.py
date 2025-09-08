@@ -60,7 +60,6 @@ def test_publication():
     assert py_.get(inveniordm, "metadata.funding") is None
     assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert not py_.get(inveniordm, "custom_fields.rs:stale")
     assert not py_.get(inveniordm, "files.enabled")
 
 
@@ -148,7 +147,6 @@ def test_journal_article():
     ]
     assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert not py_.get(inveniordm, "custom_fields.rs:stale")
     assert not py_.get(inveniordm, "files.enabled")
 
 
@@ -222,7 +220,6 @@ def test_rogue_scholar():
     assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
     # assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert py_.get(inveniordm, "custom_fields.rs:image") == 2
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
     assert not py_.get(inveniordm, "files.enabled")
 
 
@@ -315,7 +312,6 @@ def test_from_jsonfeed():
         '\n<p>This <a rel="noreferrer noopener" href="https://ling.auf.net/lingbuzz/006031"'
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
     assert not py_.get(inveniordm, "files.enabled")
 
 
@@ -399,7 +395,6 @@ def test_from_jsonfeed_affiliations():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
     assert not py_.get(inveniordm, "files.enabled")
 
 
@@ -431,7 +426,6 @@ def test_from_jsonfeed_dates():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     )
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
 
 
 @pytest.mark.vcr
@@ -470,7 +464,6 @@ def test_from_jsonfeed_funding():
         "<p>Come and join us at the Università degli Studi di Roma"
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
 
 
 @pytest.mark.vcr
@@ -508,7 +501,6 @@ def test_from_jsonfeed_more_funding():
         '<img alt="" src="https://coref.project.re3data.org/images/7/b/6/1/b/'
     )
     assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
 
 
 @pytest.mark.vcr
@@ -554,7 +546,6 @@ def test_from_jsonfeed_references():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png"
     )
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
 
 
 @pytest.mark.vcr
@@ -632,7 +623,6 @@ def test_from_jsonfeed_relations():
         py_.get(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
-    assert py_.get(inveniordm, "custom_fields.rs:stale")
 
 
 @pytest.mark.vcr

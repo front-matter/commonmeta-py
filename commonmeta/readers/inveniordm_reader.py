@@ -176,7 +176,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 
     content = py_.get(meta, "custom_fields.rs:content_html")
     image = py_.get(meta, "custom_fields.rs:image")
-    state = "stale" if py_.get(meta, "custom_fields.rs:stale") else "findable"
+    state = "findable"
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
     return {

@@ -13,8 +13,6 @@ from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
     doi_from_url,
     encode_doi,
-    generate_substack_doi,
-    generate_wordpress_doi,
     is_rogue_scholar_doi,
     normalize_doi,
     validate_doi,
@@ -61,27 +59,14 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
 
     # generate DOI string for registration if not provided
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
-    if _id is None:
-        if meta.get("guid"):
-            # Generate DOI based on blogging platform
-            generator = py_.get(meta, "blog.generator")
-            prefix = py_.get(meta, "blog.prefix")
-            slug = py_.get(meta, "blog.slug")
-            guid = meta.get("guid")
 
-            # Import these functions only when needed to avoid circular imports
-            if generator in ["WordPress", "WordPress.com"] and prefix and slug and guid:
-                _id = generate_wordpress_doi(prefix, slug, guid)
-            elif generator == "Substack" and prefix and guid:
-                _id = generate_substack_doi(prefix, slug, guid)
-            # don't use checksum as some legacy DOIs (generated with commonmeta Go between May 2024
-            # and April 2025) don't have valid checksum
-            elif (
-                prefix
-                and guid
-                and validate_doi_from_guid(prefix, guid[:-2], checksum=False)
-            ):
-                _id = guid
+    # Generate DOI from guid if it is a DOI string
+    if _id is None and py_.get(meta, "blog.prefix") and meta.get("guid", None):
+        prefix = py_.get(meta, "blog.prefix")
+        guid = meta.get("guid")
+
+        if validate_doi_from_guid(prefix, guid[:-2], checksum=False):
+            _id = guid
 
     # If still no DOI but prefix provided
     if _id is None and py_.get(meta, "blog.prefix"):
