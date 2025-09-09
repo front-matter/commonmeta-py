@@ -4,11 +4,11 @@ from collections import defaultdict
 from typing import Optional
 
 import requests
-from pydash import py_
 
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
+    dig,
     parse_attributes,
     parse_xml,
     presence,
@@ -52,12 +52,10 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     """read_crossref_xml"""
     if data is None:
         return {"state": "not_found"}
-    meta = py_.get(
-        data, "crossref_result.query_result.body.query.doi_record.crossref", {}
-    )
+    meta = dig(data, "crossref_result.query_result.body.query.doi_record.crossref", {})
 
     # query contains information from outside metadata schema, e.g. publisher name
-    query = py_.get(data, "crossref_result.query_result.body.query", {})
+    query = dig(data, "crossref_result.query_result.body.query", {})
 
     # read_options = ActiveSupport::HashWithIndifferentAccess.
     # new(options.except(:doi, :id, :url,
@@ -90,62 +88,62 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     )
 
     # fetch metadata depending of Crossref type
-    if py_.get(meta, "journal.journal_article", None):
-        bibmeta = py_.get(meta, "journal.journal_article", {})
+    if dig(meta, "journal.journal_article", None):
+        bibmeta = dig(meta, "journal.journal_article", {})
         resource_type = "journal-article"
-        language = py_.get(meta, "journal.journal_metadata.language")
-    elif py_.get(meta, "journal.journal_issue", None):
-        bibmeta = py_.get(meta, "journal.journal_issue", {})
+        language = dig(meta, "journal.journal_metadata.language")
+    elif dig(meta, "journal.journal_issue", None):
+        bibmeta = dig(meta, "journal.journal_issue", {})
         resource_type = "journal-issue"
-        language = py_.get(meta, "journal.journal_metadata.language")
-    elif py_.get(meta, "journal", None):
-        bibmeta = py_.get(meta, "journal", {})
+        language = dig(meta, "journal.journal_metadata.language")
+    elif dig(meta, "journal", None):
+        bibmeta = dig(meta, "journal", {})
         resource_type = "journal"
-        language = py_.get(meta, "journal.journal_metadata.language")
-    elif py_.get(meta, "posted_content", None):
+        language = dig(meta, "journal.journal_metadata.language")
+    elif dig(meta, "posted_content", None):
         bibmeta = meta.get("posted_content", {})
         if publisher.get("name", None) is None:
-            publisher = {"name": py_.get(bibmeta, "institution.institution_name", None)}
+            publisher = {"name": dig(bibmeta, "institution.institution_name", None)}
         resource_type = "posted-content"
-        language = py_.get(meta, "posted_content.language")
-    elif py_.get(meta, "book.content_item"):
-        bibmeta = py_.get(meta, "book.content_item")
+        language = dig(meta, "posted_content.language")
+    elif dig(meta, "book.content_item"):
+        bibmeta = dig(meta, "book.content_item")
         resource_type = "book-chapter"
-        language = py_.get(meta, "book.book_metadata.language")
-    elif py_.get(meta, "book.book_series_metadata"):
-        bibmeta = py_.get(meta, "book.book_series_metadata")
+        language = dig(meta, "book.book_metadata.language")
+    elif dig(meta, "book.book_series_metadata"):
+        bibmeta = dig(meta, "book.book_series_metadata")
         resource_type = "book-series"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "book.book_set_metadata"):
-        bibmeta = py_.get(meta, "book.book_set_metadata")
+    elif dig(meta, "book.book_set_metadata"):
+        bibmeta = dig(meta, "book.book_set_metadata")
         resource_type = "book-set"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "book.book_metadata"):
-        bibmeta = py_.get(meta, "book.book_metadata")
+    elif dig(meta, "book.book_metadata"):
+        bibmeta = dig(meta, "book.book_metadata")
         resource_type = "book"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "conference", None):
-        bibmeta = py_.get(meta, "conference.conference_paper", {})
+    elif dig(meta, "conference", None):
+        bibmeta = dig(meta, "conference.conference_paper", {})
         resource_type = "proceedings-article"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "sa_component", None):
-        bibmeta = py_.get(meta, "sa_component.component_list.component", {})
+    elif dig(meta, "sa_component", None):
+        bibmeta = dig(meta, "sa_component.component_list.component", {})
         resource_type = "component"
         language = None
-    elif py_.get(meta, "database", None):
-        bibmeta = py_.get(meta, "database.dataset", {})
+    elif dig(meta, "database", None):
+        bibmeta = dig(meta, "database.dataset", {})
         resource_type = "dataset"
-        language = py_.get(meta, "database.database_metadata.language")
-    elif py_.get(meta, "report_paper", None):
-        bibmeta = py_.get(meta, "report_paper.report_paper_metadata", {})
+        language = dig(meta, "database.database_metadata.language")
+    elif dig(meta, "report_paper", None):
+        bibmeta = dig(meta, "report_paper.report_paper_metadata", {})
         resource_type = "report"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "peer_review", None):
-        bibmeta = py_.get(meta, "peer_review", {})
+    elif dig(meta, "peer_review", None):
+        bibmeta = dig(meta, "peer_review", {})
         resource_type = "peer-review"
         language = bibmeta.get("language", None)
-    elif py_.get(meta, "dissertation", None):
-        bibmeta = py_.get(meta, "dissertation", {})
+    elif dig(meta, "dissertation", None):
+        bibmeta = dig(meta, "dissertation", {})
         resource_type = "dissertation"
         language = bibmeta.get("language", None)
     else:
@@ -156,13 +154,13 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     _id = normalize_doi(
         kwargs.get("doi", None)
         or kwargs.get("id", None)
-        or py_.get(bibmeta, "doi_data.doi")
+        or dig(bibmeta, "doi_data.doi")
     )
     _type = CR_TO_CM_TRANSLATIONS.get(resource_type, "Other")
-    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+    if _type == "Article" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
 
-    url = parse_attributes(py_.get(bibmeta, "doi_data.resource"))
+    url = parse_attributes(dig(bibmeta, "doi_data.resource"))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
     contributors = crossref_people(bibmeta)
@@ -195,16 +193,16 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
     descriptions = crossref_description(bibmeta)
     funding = (
-        py_.get(bibmeta, "program.0")
-        or py_.get(bibmeta, "program.0.assertion")
-        or py_.get(bibmeta, "crossmark.custom_metadata.program.0.assertion")
+        dig(bibmeta, "program.0")
+        or dig(bibmeta, "program.0.assertion")
+        or dig(bibmeta, "crossmark.custom_metadata.program.0.assertion")
     )
     funding_references = crossref_funding(wrap(funding))
 
     license_ = (
-        py_.get(bibmeta, "program.0.license_ref")
-        or py_.get(bibmeta, "crossmark.custom_metadata.program.0.license_ref")
-        or py_.get(bibmeta, "crossmark.custom_metadata.program.1.license_ref")
+        dig(bibmeta, "program.0.license_ref")
+        or dig(bibmeta, "crossmark.custom_metadata.program.0.license_ref")
+        or dig(bibmeta, "crossmark.custom_metadata.program.1.license_ref")
     )
     license_ = crossref_license(wrap(license_))
 
@@ -214,23 +212,23 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     #     container = compact(
     #         {
     #             "type": "Book",
-    #             "title": py_.get(book_metadata, "titles.title"),
-    #             "firstPage": py_.get(bibmeta, "pages.first_page"),
-    #             "lastPage": py_.get(bibmeta, "pages.last_page"),
+    #             "title": dig(book_metadata, "titles.title"),
+    #             "firstPage": dig(bibmeta, "pages.first_page"),
+    #             "lastPage": dig(bibmeta, "pages.last_page"),
     #             #'identifiers' => identifiers
     #         }
     #     )
 
     # elif book_series_metadata.get("series_metadata", None):
     #     issn = normalize_issn(
-    #         py_.get(book_series_metadata, "series_metadata.issn.0.#text")
+    #         dig(book_series_metadata, "series_metadata.issn.0.#text")
     #     )
     #     container = compact(
     #         {
     #             "type": "Book Series",
     #             "identifier": issn,
     #             "identifierType": "ISSN" if issn else None,
-    #             "title": py_.get(book_series_metadata, "series_metadata.titles.title"),
+    #             "title": dig(book_series_metadata, "series_metadata.titles.title"),
     #             "volume": bibmeta.get("volume", None),
     #         }
     #     )
@@ -238,7 +236,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     #     container = None
     container = crossref_container(meta, resource_type=resource_type)
     references = [
-        crossref_reference(i) for i in wrap(py_.get(bibmeta, "citation_list.citation"))
+        crossref_reference(i) for i in wrap(dig(bibmeta, "citation_list.citation"))
     ]
     files = presence(meta.get("contentUrl", None))
     provider = (
@@ -287,13 +285,13 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
 def crossref_titles(bibmeta):
     """Title information from Crossref metadata."""
-    title = parse_attributes(py_.get(bibmeta, "titles.0.title"))
-    subtitle = parse_attributes(py_.get(bibmeta, "titles.0.subtitle"))
+    title = parse_attributes(dig(bibmeta, "titles.0.title"))
+    subtitle = parse_attributes(dig(bibmeta, "titles.0.subtitle"))
     original_language_title = parse_attributes(
-        py_.get(bibmeta, "titles.0.original_language_title")
+        dig(bibmeta, "titles.0.original_language_title")
     )
     language = parse_attributes(
-        py_.get(bibmeta, "titles.0.original_language_title"), content="language"
+        dig(bibmeta, "titles.0.original_language_title"), content="language"
     )
     if title is None and original_language_title is None:
         return None
@@ -345,10 +343,10 @@ def crossref_description(bibmeta):
 def crossref_people(bibmeta):
     """Person information from Crossref metadata."""
 
-    person = py_.get(bibmeta, "contributors.person_name") or bibmeta.get(
+    person = dig(bibmeta, "contributors.person_name") or bibmeta.get(
         "person_name", None
     )
-    organization = wrap(py_.get(bibmeta, "contributors.organization"))
+    organization = wrap(dig(bibmeta, "contributors.organization"))
 
     return get_authors(from_crossref_xml(wrap(person) + wrap(organization)))
 
@@ -423,11 +421,9 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     issn = next(
         (
             i
-            for i in wrap(
-                py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
-            )
+            for i in wrap(dig(meta, f"{container_type}.{container_type}_metadata.issn"))
             + wrap(
-                py_.get(
+                dig(
                     meta,
                     f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                 )
@@ -438,11 +434,9 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
     ) or next(
         (
             i
-            for i in wrap(
-                py_.get(meta, f"{container_type}.{container_type}_metadata.issn")
-            )
+            for i in wrap(dig(meta, f"{container_type}.{container_type}_metadata.issn"))
             + wrap(
-                py_.get(
+                dig(
                     meta,
                     f"{container_type}.{container_type}_series_metadata.series_metadata.issn",
                 )
@@ -452,21 +446,21 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
         {},
     )
     issn = normalize_issn(issn) if issn else None
-    isbn = py_.get(meta, f"conference.{container_type}_metadata.isbn.#text")
+    isbn = dig(meta, f"conference.{container_type}_metadata.isbn.#text")
     container_title = (
-        py_.get(meta, f"{container_type}.{container_type}_metadata.full_title")
-        or py_.get(meta, f"{container_type}.{container_type}_metadata.titles.0.title")
-        or py_.get(meta, f"conference.{container_type}_metadata.{container_type}_title")
-        or py_.get(
+        dig(meta, f"{container_type}.{container_type}_metadata.full_title")
+        or dig(meta, f"{container_type}.{container_type}_metadata.titles.0.title")
+        or dig(meta, f"conference.{container_type}_metadata.{container_type}_title")
+        or dig(
             meta,
             f"{container_type}.{container_type}_series_metadata.series_metadata.titles.0.title",
         )
     )
-    volume = py_.get(
+    volume = dig(
         meta,
         f"{container_type}.{container_type}_issue.{container_type}_volume.volume",
     )
-    issue = py_.get(meta, f"{container_type}.{container_type}_issue.issue")
+    issue = dig(meta, f"{container_type}.{container_type}_issue.issue")
     return compact(
         {
             "type": CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None),
@@ -475,18 +469,18 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
             "title": container_title,
             "volume": volume,
             "issue": issue,
-            "firstPage": py_.get(
+            "firstPage": dig(
                 meta, f"{container_type}.{container_type}_article.pages.first_page"
             )
-            or py_.get(meta, f"{container_type}.content_item.pages.first_page")
-            or py_.get(meta, "conference.conference_paper.pages.first_page"),
-            "lastPage": py_.get(
+            or dig(meta, f"{container_type}.content_item.pages.first_page")
+            or dig(meta, "conference.conference_paper.pages.first_page"),
+            "lastPage": dig(
                 meta, f"{container_type}.{container_type}_article.pages.last_page"
             )
-            or py_.get(meta, f"{container_type}.content_item.pages.last_page")
-            or py_.get(meta, "conference.conference_paper.pages.last_page"),
-            "location": py_.get(meta, "conference.event_metadata.conference_location"),
-            "series": py_.get(meta, "conference.event_metadata.conference_acronym"),
+            or dig(meta, f"{container_type}.content_item.pages.last_page")
+            or dig(meta, "conference.conference_paper.pages.last_page"),
+            "location": dig(meta, "conference.event_metadata.conference_location"),
+            "series": dig(meta, "conference.event_metadata.conference_acronym"),
         }
     )
 

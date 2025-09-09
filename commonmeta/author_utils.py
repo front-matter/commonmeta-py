@@ -5,9 +5,8 @@ from typing import List
 
 from furl import furl
 from nameparser import HumanName
-from pydash import py_
 
-from .base_utils import compact, parse_attributes, presence, wrap
+from .base_utils import compact, parse_attributes, presence, unique, wrap
 from .constants import (
     COMMONMETA_CONTRIBUTOR_ROLES,
 )
@@ -214,7 +213,14 @@ def cleanup_author(author):
 
 def get_authors(authors, **kwargs):
     """transform array of author dicts into commonmeta format"""
-    return py_.uniq(py_.compact([get_one_author(i, **kwargs) for i in authors]))
+    author_list = [
+        author
+        for author in [get_one_author(i, **kwargs) for i in authors]
+        if author is not None
+    ]
+
+    # Remove duplicates while preserving order
+    return unique(author_list)
 
 
 def authors_as_string(authors: List[dict]) -> str:
@@ -268,4 +274,4 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
             }
         )
 
-    return py_.uniq(py_.compact([format_element(i) for i in affiliations]))
+    return unique(compact([format_element(i) for i in affiliations]))

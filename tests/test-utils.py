@@ -27,6 +27,7 @@ from commonmeta.utils import (
     id_from_url,
     issn_as_url,
     issn_from_url,
+    name_to_fos,
     normalize_cc_url,
     normalize_id,
     normalize_ids,
@@ -1092,6 +1093,14 @@ def test_format_name_identifier():
             "publisherIdentifierScheme": "ROR",
         }
     )
+
+
+def test_name_to_fos():
+    """name_to_fos"""
+    assert name_to_fos("Computer and information sciences") == {
+        "subject": "FOS: Computer and information sciences"
+    }
+    assert name_to_fos("Open Access") == {"subject": "Open Access"}
 
 
 def test_string_to_slug():

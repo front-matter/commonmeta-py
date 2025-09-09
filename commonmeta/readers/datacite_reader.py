@@ -4,11 +4,10 @@ from collections import defaultdict
 from typing import Optional
 
 import requests
-from pydash import py_
 from requests.exceptions import ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, presence, wrap
+from ..base_utils import compact, dig, presence, unique, wrap
 from ..constants import (
     DC_TO_CM_CONTAINER_TRANSLATIONS,
     DC_TO_CM_TRANSLATIONS,
@@ -40,7 +39,7 @@ def get_datacite(pid: str, **kwargs) -> dict:
         response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
-        return {**py_.get(response.json(), "data.attributes", {}), "via": "datacite"}
+        return {**dig(response.json(), "data.attributes", {}), "via": "datacite"}
     except ReadTimeout:
         return {"state": "timeout"}
 
@@ -54,8 +53,8 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = doi_as_url(meta.get("doi", None))
-    resource__typegeneral = py_.get(meta, "types.resourceTypeGeneral")
-    resource_type = py_.get(meta, "types.resourceType")
+    resource__typegeneral = dig(meta, "types.resourceTypeGeneral")
+    resource_type = dig(meta, "types.resourceType")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
     additional_type = DC_TO_CM_TRANSLATIONS.get(resource_type, None)
     # if resource_type is one of the new resource__typegeneral types introduced in schema 4.3, use it
@@ -111,7 +110,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             }
         )
 
-    subjects = py_.uniq([format_subject(i) for i in wrap(meta.get("subjects", None))])
+    subjects = unique([format_subject(i) for i in wrap(meta.get("subjects", None))])
     state = "findable"
 
     return {
@@ -394,7 +393,7 @@ def get_random_datacite_id(number: int = 1) -> list:
         if response.status_code != 200:
             return []
 
-        items = py_.get(response.json(), "data")
+        items = dig(response.json(), "data")
         return [i.get("id") for i in items]
     except ReadTimeout:
         return []

@@ -5,7 +5,6 @@ from datetime import datetime as dt
 from typing import Optional, Union
 
 import dateparser
-import pydash as py_
 from edtf import Date, DateAndTime, parse_edtf
 from edtf.parser.edtf_exceptions import EDTFParseException
 
@@ -76,7 +75,7 @@ def get_date_parts(iso8601_time: Optional[str]) -> dict:
     month = int(iso8601_time[5:7])
     day = int(iso8601_time[8:10])
 
-    date_parts = py_.reject([year, month, day], lambda x: x == 0)
+    date_parts = [x for x in [year, month, day] if x != 0]
     return {"date-parts": [date_parts]}
 
 

@@ -1,8 +1,6 @@
 """Commonmeta writer for commonmeta-py"""
 
-import pydash as py_
-
-from ..base_utils import compact
+from ..base_utils import compact, omit
 
 
 def write_commonmeta(metadata):
@@ -10,7 +8,7 @@ def write_commonmeta(metadata):
     if metadata is None:
         return None
 
-    data = py_.omit(
+    data = omit(
         vars(metadata),
         [
             "via",
@@ -22,15 +20,19 @@ def write_commonmeta(metadata):
             "state",
         ],
     )
-    data = py_.rename_keys(
-        data,
-        {
-            "additional_type": "additionalType",
-            "archive_locations": "archiveLocations",
-            "geo_locations": "geoLocations",
-            "funding_references": "fundingReferences",
-        },
-    )
+
+    # Rename keys to camelCase
+    key_mappings = {
+        "additional_type": "additionalType",
+        "archive_locations": "archiveLocations",
+        "geo_locations": "geoLocations",
+        "funding_references": "fundingReferences",
+    }
+
+    for old_key, new_key in key_mappings.items():
+        if old_key in data:
+            data[new_key] = data.pop(old_key)
+
     return compact(data)
 
 
@@ -42,7 +44,7 @@ def write_commonmeta_list(metalist):
 
     def format_item(item):
         """Format item for commonmeta list"""
-        item = py_.omit(vars(item), ["via", "is_valid"])
+        item = omit(vars(item), ["via", "is_valid"])
         return compact(item)
 
     items = [format_item(item) for item in metalist.items]

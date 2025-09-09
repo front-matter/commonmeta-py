@@ -9,11 +9,10 @@ import orjson as json
 import pikepdf
 import requests
 from bs4 import BeautifulSoup
-from pydash import py_
 from requests.exceptions import ConnectionError
 
 from ..author_utils import get_authors
-from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
+from ..base_utils import compact, dig, omit, parse_attributes, presence, sanitize, wrap
 from ..constants import (
     OG_TO_SO_TRANSLATIONS,
     SO_TO_CM_TRANSLATIONS,
@@ -187,7 +186,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
 
     publisher = meta.get("publisher", None)
     if publisher is not None:
-        publisher = py_.omit(
+        publisher = omit(
             publisher, ["@type", "logo", "url", "disambiguatingDescription"]
         )
 
@@ -220,12 +219,12 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         )
     elif _type in ["Article", "BlogPost"]:
         container_type = "Blog" if _type == "BlogPost" else "Periodical"
-        issn = py_.get(meta, "isPartOf.issn")
-        container_url = py_.get(meta, "publisher.url")
+        issn = dig(meta, "isPartOf.issn")
+        container_url = dig(meta, "publisher.url")
         container = compact(
             {
                 "type": container_type,
-                "title": py_.get(meta, "isPartOf.name"),
+                "title": dig(meta, "isPartOf.name"),
                 "identifier": issn
                 if issn is not None
                 else container_url
@@ -263,11 +262,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     if isinstance(meta.get("inLanguage"), str):
         language = meta.get("inLanguage")
     elif isinstance(meta.get("inLanguage"), list):
-        language = py_.get(meta, "inLanguage.0")
+        language = dig(meta, "inLanguage.0")
     elif isinstance(meta.get("inLanguage"), dict):
-        language = py_.get(meta, "inLanguage.alternateName") or py_.get(
-            meta, "inLanguage.name"
-        )
+        language = dig(meta, "inLanguage.alternateName") or dig(meta, "inLanguage.name")
     else:
         language = None
 
@@ -332,7 +329,7 @@ def schema_org_related_item(meta, relation_type=None):
 def schema_org_reverse_related_item(meta, relation_type=None):
     """Reverse related items"""
     normalize_ids(
-        ids=wrap(py_.get(meta, f"@reverse.{relation_type}")),
+        ids=wrap(dig(meta, f"@reverse.{relation_type}")),
         relation_type=SO_TO_DC_REVERSE_RELATION_TYPES.get(relation_type),
     )
 
@@ -387,9 +384,9 @@ def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
     if not isinstance(geo_location, dict):
         return None
 
-    _type = py_.get(geo_location, "geo.@type")
-    longitude = py_.get(geo_location, "geo.longitude")
-    latitude = py_.get(geo_location, "geo.latitude")
+    _type = dig(geo_location, "geo.@type")
+    longitude = dig(geo_location, "geo.longitude")
+    latitude = dig(geo_location, "geo.latitude")
 
     if _type == "GeoCoordinates":
         return {

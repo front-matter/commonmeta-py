@@ -4,10 +4,17 @@ from typing import Optional
 
 import requests
 from furl import furl
-from pydash import py_
 
 from ..author_utils import get_authors
-from ..base_utils import parse_attributes, presence, sanitize
+from ..base_utils import (
+    dig,
+    flatten,
+    keep,
+    parse_attributes,
+    presence,
+    sanitize,
+    unique,
+)
 from ..constants import Commonmeta
 from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
@@ -50,27 +57,25 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
     url = None
-    if py_.get(meta, "blog.status", None) in ["active", "expired"]:
+    if dig(meta, "blog.status", None) in ["active", "expired"]:
         url = normalize_url(meta.get("url", None))
-    elif py_.get(meta, "blog.status", None) == "archived" and meta.get(
-        "archive_url", None
-    ):
+    elif dig(meta, "blog.status", None) == "archived" and meta.get("archive_url", None):
         url = normalize_url(meta.get("archive_url", None))
 
     # generate DOI string for registration if not provided
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
 
     # Generate DOI from guid if it is a DOI string
-    if _id is None and py_.get(meta, "blog.prefix") and meta.get("guid", None):
-        prefix = py_.get(meta, "blog.prefix")
+    if _id is None and dig(meta, "blog.prefix") and meta.get("guid", None):
+        prefix = dig(meta, "blog.prefix")
         guid = meta.get("guid")
 
         if validate_doi_from_guid(prefix, guid[:-2], checksum=False):
             _id = guid
 
     # If still no DOI but prefix provided
-    if _id is None and py_.get(meta, "blog.prefix"):
-        prefix = py_.get(meta, "blog.prefix")
+    if _id is None and dig(meta, "blog.prefix"):
+        prefix = dig(meta, "blog.prefix")
         _id = encode_doi(prefix)
 
     # If override prefix is provided in read_options, use that
@@ -103,10 +108,10 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         else None
     )
 
-    license_ = py_.get(meta, "blog.license", None)
+    license_ = dig(meta, "blog.license", None)
     if license_ is not None:
         license_ = dict_to_spdx({"url": license_})
-    issn = py_.get(meta, "blog.issn", None)
+    issn = dig(meta, "blog.issn", None)
     blog_url = (
         f"https://rogue-scholar.org/blogs/{meta.get('blog_slug')}"
         if meta.get("blog_slug", None)
@@ -115,10 +120,10 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     container = compact(
         {
             "type": "Blog",
-            "title": py_.get(meta, "blog.title", None),
+            "title": dig(meta, "blog.title", None),
             "identifier": issn or blog_url,
             "identifierType": "ISSN" if issn else "URL",
-            "platform": py_.get(meta, "blog.generator", None),
+            "platform": dig(meta, "blog.generator", None),
         }
     )
     publisher = (
@@ -136,12 +141,20 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         descriptions = [{"description": sanitize(description), "type": "Abstract"}]
     else:
         descriptions = None
-    category = py_.get(meta, "blog.category", None)
+    category = dig(meta, "blog.category", None)
     if category is not None:
-        subjects = [name_to_fos(py_.human_case(category))]
+        # Convert from PascalCase to words with first letter capitalized
+        spaced_category = ""
+        for i, char in enumerate(category):
+            if i > 0 and char.isupper():
+                spaced_category += " "
+            spaced_category += char
+        # Capitalize first letter of the resulting string
+        formatted_category = spaced_category.capitalize()
+        subjects = [name_to_fos(formatted_category)]
     else:
         subjects = []
-    tags = wrap(py_.get(meta, "tags", None))
+    tags = wrap(dig(meta, "tags", None))
     if tags is not None:
         subjects += wrap([format_subject(i) for i in tags])
     references = get_references(wrap(meta.get("reference", None)))
@@ -166,8 +179,8 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         {"identifier": meta.get("id"), "identifierType": "UUID"},
         {"identifier": meta.get("guid"), "identifierType": "GUID"},
     ]
-    content = py_.get(meta, "content_html", "")
-    image = py_.get(meta, "image", None)
+    content = dig(meta, "content_html", "")
+    image = dig(meta, "image", None)
     files = get_files(_id)
     state = "stale" if meta or read_options else "not_found"
 
@@ -336,7 +349,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
                 )
             ]
 
-    awards = py_.flatten(
+    awards = flatten(
         [
             format_funding(i.get("urls"))
             for i in wrap(meta.get("relationships", None))
@@ -368,7 +381,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             }
         )
 
-    funding_references = py_.get(meta, "funding_references")
+    funding_references = dig(meta, "funding_references")
     if funding_references is not None:
         awards += [
             format_funding_reference(i)
@@ -376,8 +389,8 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
             if i.get("funderName", None)
         ]
 
-    awards += wrap(py_.get(meta, "blog.funding"))
-    return py_.uniq(awards)
+    awards += wrap(dig(meta, "blog.funding"))
+    return unique(awards)
 
 
 def get_relations(relations: Optional[list]) -> Optional[list]:
@@ -414,7 +427,7 @@ def get_relations(relations: Optional[list]) -> Optional[list]:
             "type": relation.get("type", None),
         }
 
-    return py_.flatten(
+    return flatten(
         [
             format_relationship(i)
             for i in relations
@@ -457,7 +470,7 @@ def get_jsonfeed_uuid(id: str):
     if response.status_code != 200:
         return response.json()
     post = response.json()
-    return py_.pick(
+    return keep(
         post,
         [
             "id",
@@ -485,7 +498,7 @@ def get_jsonfeed_blog_slug(id: str):
     if response.status_code != 200:
         return response.json()
     post = response.json()
-    return py_.get(post, "blog.slug", None)
+    return dig(post, "blog.slug", None)
 
 
 def format_subject(subject: str) -> Optional[dict]:

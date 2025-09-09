@@ -14,9 +14,8 @@ from bs4 import BeautifulSoup
 from furl import furl
 from idutils import is_isni, is_orcid
 from isbnlib import canonical, is_isbn10, is_isbn13
-from pydash import py_
 
-from .base_utils import compact, parse_attributes, wrap
+from .base_utils import compact, dig, omit, parse_attributes, pascal_case, unique, wrap
 from .constants import DATACITE_CONTRIBUTOR_TYPES
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
 
@@ -794,9 +793,7 @@ def from_crossref_xml(elements: list) -> list:
         if element.get("ORCID", None) is not None:
             orcid = parse_attributes(element.get("ORCID"))
             element["ORCID"] = normalize_orcid(orcid)
-        element = py_.omit(
-            element, "given_name", "surname", "sequence", "contributor_role"
-        )
+        element = omit(element, "given_name", "surname", "sequence", "contributor_role")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -807,7 +804,7 @@ def from_kbase(elements: list) -> list:
 
     def map_contributor_role(role):
         if role.split(":")[0] == "CRediT":
-            return py_.pascal_case(role.split(":")[1])
+            return pascal_case(role.split(":")[1])
         elif role.split(":")[0] == "DataCite":
             return DATACITE_CONTRIBUTOR_TYPES.get(role.split(":")[1], "Other")
         else:
@@ -823,7 +820,7 @@ def from_kbase(elements: list) -> list:
             map_contributor_role(i)
             for i in wrap(element.get("contributor_roles", None))
         ]
-        element = py_.omit(element, "contributor_id")
+        element = omit(element, "contributor_id")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -848,7 +845,7 @@ def from_csl(elements: list) -> list:
         element["givenName"] = element.get("given", None)
         element["familyName"] = element.get("family", None)
         element["affiliation"] = element.get("affiliation", None)
-        element = py_.omit(element, "given", "family", "literal", "sequence")
+        element = omit(element, "given", "family", "literal", "sequence")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -914,7 +911,7 @@ def to_schema_org_creators(elements: list) -> list():
             element["@type"] = "Person"
         else:
             element["@type"] = "Organization"
-        element = py_.omit(element, "type", "contributorRoles")
+        element = omit(element, "type", "contributorRoles")
         return compact(element)
 
     return [format_element(i) for i in elements]
@@ -967,9 +964,9 @@ def to_schema_org_relations(related_items: list, relation_type=None):
     else:
         relation_type = [relation_type]
 
-    related_items = py_.filter(
-        wrap(related_items), lambda ri: ri["relationType"] in relation_type
-    )
+    related_items = [
+        ri for ri in wrap(related_items) if ri["relationType"] in relation_type
+    ]
     return [format_element(i) for i in related_items]
 
 
@@ -1053,11 +1050,11 @@ def find_from_format_by_dict(dct: dict) -> Optional[str]:
         return "datacite"
     if dct.get("source", None) == "Crossref":
         return "crossref"
-    if py_.get(dct, "issued.date-parts") is not None:
+    if dig(dct, "issued.date-parts") is not None:
         return "csl"
-    if py_.get(dct, "conceptdoi") is not None:
+    if dig(dct, "conceptdoi") is not None:
         return "inveniordm"
-    if py_.get(dct, "credit_metadata") is not None:
+    if dig(dct, "credit_metadata") is not None:
         return "kbase"
     return None
 
@@ -1088,11 +1085,11 @@ def find_from_format_by_string(string: str) -> Optional[str]:
             return "datacite"
         if data.get("source", None) == "Crossref":
             return "crossref"
-        if py_.get(data, "issued.date-parts") is not None:
+        if dig(data, "issued.date-parts") is not None:
             return "csl"
-        if py_.get(data, "conceptdoi") is not None:
+        if dig(data, "conceptdoi") is not None:
             return "inveniordm"
-        if py_.get(data, "credit_metadata") is not None:
+        if dig(data, "credit_metadata") is not None:
             return "kbase"
     except (TypeError, json.JSONDecodeError):
         pass
@@ -1143,7 +1140,7 @@ def from_schema_org(element):
         return None
     element["type"] = element.get("@type", None)
     element["id"] = element.get("@id", None)
-    return compact(py_.omit(element, ["@type", "@id"]))
+    return compact(omit(element, ["@type", "@id"]))
 
 
 def from_schema_org_creators(elements: list) -> list:
@@ -1160,8 +1157,9 @@ def from_schema_org_creators(elements: list) -> list:
         elif isinstance(i.get("@type", None), str):
             element["type"] = i.get("@type")
         elif isinstance(i.get("@type", None), list):
-            element["type"] = py_.find(
-                i["@type"], lambda x: x in ["Person", "Organization"]
+            # Find first element that matches the condition
+            element["type"] = next(
+                (x for x in i["@type"] if x in ["Person", "Organization"]), None
             )
 
         # strip text after comma if suffix is an academic title
@@ -1214,7 +1212,7 @@ def from_schema_org_creators(elements: list) -> list:
 
         if isinstance(i.get("affiliation", None), str):
             element["affiliation"] = {"type": "Organization", "name": i["affiliation"]}
-        elif urlparse(py_.get(i, "affiliation.@id", "")).hostname in [
+        elif urlparse(dig(i, "affiliation.@id", "")).hostname in [
             "ror.org",
             "isni.org",
         ]:
@@ -1458,7 +1456,7 @@ def extract_urls(string: str) -> list:
         r"((?:http|https):\/\/(?:[\w_-]+(?:(?:\.[\w_-]+)+))(?:[\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-]))",
         string,
     )
-    return py_.uniq(urls)
+    return unique(urls)
 
 
 def issn_as_url(issn: str) -> Optional[str]:

@@ -1,9 +1,7 @@
 """kbase reader for Commonmeta"""
 
-from pydash import py_
-
 from ..author_utils import get_authors
-from ..base_utils import compact, presence, sanitize, wrap
+from ..base_utils import compact, dig, omit, presence, sanitize, wrap
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
     Commonmeta,
@@ -56,10 +54,10 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
             if des["description_type"] in ["Abstract", "Description", "Summary"]
             else None
         )
-        py_.omit(des, ["description_text", "description_type"])
+        omit(des, ["description_text", "description_type"])
     language = meta.get("language", None)
 
-    # subjects = [name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))]
+    # subjects = [name_to_fos(i) for i in wrap(dig(meta, "metadata.keywords"))]
 
     version = meta.get("version", None)
     references = get_references(wrap(meta.get("related_identifiers")))
@@ -85,7 +83,7 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
             "subjects": None,
             "language": language,
             "identifiers": None,
-            "version": py_.get(meta, "metadata.version"),
+            "version": dig(meta, "metadata.version"),
             "license": presence(license_),
             "descriptions": descriptions,
             "geo_locations": None,
@@ -133,7 +131,7 @@ def get_references(references: list) -> list:
             reference["doi"] = normalize_doi(identifier)
         elif identifier and identifier_type == "URL":
             reference["url"] = normalize_url(identifier)
-        reference = py_.omit(
+        reference = omit(
             reference,
             [
                 "id",
@@ -178,7 +176,7 @@ def get_funding_references(funding_references: list) -> list:
 
     def map_funding_reference(funding_reference: dict) -> dict:
         """map_funding_reference"""
-        funder_identifier = py_.get(funding_reference, "funder.organization_id", None)
+        funder_identifier = dig(funding_reference, "funder.organization_id", None)
         funder_identifier_type = (
             funder_identifier.split(":")[0] if funder_identifier else None
         )
@@ -186,9 +184,7 @@ def get_funding_references(funding_references: list) -> list:
             {
                 "funderIdentifier": from_curie(funder_identifier),
                 "funderIdentifierType": funder_identifier_type,
-                "funderName": py_.get(
-                    funding_reference, "funder.organization_name", None
-                ),
+                "funderName": dig(funding_reference, "funder.organization_name", None),
                 "awardNumber": funding_reference.get("grant_id", None),
                 "awardUri": funding_reference.get("grant_url", None),
             }

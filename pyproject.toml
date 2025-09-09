@@ -1,6 +1,6 @@
 [project]
 name = "commonmeta-py"
-version = "0.169"
+version = "0.170"
 description = "Library for conversions to/from the Commonmeta scholarly metadata format"
 authors = [{ name = "Martin Fenner", email = "martin@front-matter.io" }]
 requires-python = ">=3.9,<4.0"
@@ -24,7 +24,6 @@ dependencies = [
     "types-dateparser~=1.1",
     "PyYAML>=5.4",
     "types-PyYAML>=5.4",
-    "pydash>=6,<9",
     "beautifulsoup4>=4.11,<5",
     "types-beautifulsoup4>=4.11,<5",
     "simplejson~=3.18",

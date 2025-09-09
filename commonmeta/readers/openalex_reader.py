@@ -3,11 +3,10 @@
 from typing import Optional
 
 import requests
-from pydash import py_
 from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, presence, sanitize, wrap
+from ..base_utils import compact, dig, presence, sanitize, unique, wrap
 from ..constants import (
     CR_TO_CM_TRANSLATIONS,
     OA_TO_CM_CONTAINER_TRANLATIONS,
@@ -58,7 +57,7 @@ def get_openalex(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     # OpenAlex returns record as list
     if identifier_type in ["MAG", "PMID", "PMCID"]:
-        return py_.get(response.json(), "results[0]") | {"via": "openalex"}
+        return dig(response.json(), "results[0]") | {"via": "openalex"}
     return response.json() | {"via": "openalex"}
 
 
@@ -80,7 +79,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     contributors = get_authors(contributors)
 
     url = normalize_url(
-        py_.get(meta, "primary_location.landing_page_url") or py_.get(meta, "id")
+        dig(meta, "primary_location.landing_page_url") or dig(meta, "id")
     )
     title = meta.get("title", None)
     if title is not None:
@@ -88,13 +87,10 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         titles = None
     publisher = compact(
-        {"name": py_.get(meta, "primary_location.source.host_organization_name")}
+        {"name": dig(meta, "primary_location.source.host_organization_name")}
     )
     date = compact(
-        {
-            "published": py_.get(meta, "publication_date")
-            or py_.get(meta, "created_date")
-        }
+        {"published": dig(meta, "publication_date") or dig(meta, "created_date")}
     )
     identifiers = [
         {
@@ -104,7 +100,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
         for uidType, uid in (meta.get("ids", {})).items()
     ]
 
-    license_ = py_.get(meta, "best_oa_location.license")
+    license_ = dig(meta, "best_oa_location.license")
     if license_ is not None:
         license_ = OA_LICENSES.get(license_, license_)
         license_ = dict_to_spdx({"id": license_})
@@ -121,9 +117,9 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         descriptions = None
 
-    subjects = py_.uniq(
+    subjects = unique(
         [
-            {"subject": py_.get(i, "subfield.display_name")}
+            {"subject": dig(i, "subfield.display_name")}
             for i in wrap(meta.get("topics", None))
         ]
     )
@@ -159,7 +155,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
 
 def get_abstract(meta):
     """Parse abstract from OpenAlex abstract_inverted_index"""
-    abstract_inverted_index = py_.get(meta, "abstract_inverted_index")
+    abstract_inverted_index = dig(meta, "abstract_inverted_index")
 
     if abstract_inverted_index:
         # Determine the length of the abstract
@@ -195,8 +191,8 @@ def get_contributors(contributors: list) -> list:
 
         return compact(
             {
-                "id": py_.get(c, "author.orcid"),
-                "name": py_.get(c, "author.display_name"),
+                "id": dig(c, "author.orcid"),
+                "name": dig(c, "author.display_name"),
                 "affiliations": affiliations,
             }
         )
@@ -233,10 +229,10 @@ def get_related(related: Optional[dict]) -> Optional[dict]:
             "primary_location.source.host_organization_name", None
         ),
         "publicationYear": related.get("publication_year", None),
-        "volume": py_.get(related, "biblio.volume"),
-        "issue": py_.get(related, "biblio.issue"),
-        "firstPage": py_.get(related, "biblio.first_page"),
-        "lastPage": py_.get(related, "biblio.last_page"),
+        "volume": dig(related, "biblio.volume"),
+        "issue": dig(related, "biblio.issue"),
+        "firstPage": dig(related, "biblio.first_page"),
+        "lastPage": dig(related, "biblio.last_page"),
         "containerTitle": related.get("primary_location.source.display_name", None),
     }
     return compact(metadata)
@@ -253,7 +249,7 @@ def get_openalex_works(pids: list, **kwargs) -> list:
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
-        if py_.get(response, "count") == 0:
+        if dig(response, "count") == 0:
             return {"state": "not_found"}
 
         works.extend(response.get("results"))
@@ -273,15 +269,15 @@ def get_openalex_funders(pids: list, **kwargs) -> list:
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
-        if py_.get(response, "count") == 0:
+        if dig(response, "count") == 0:
             return {"state": "not_found"}
 
         def format_funder(funder):
             return compact(
                 {
-                    "id": py_.get(funder, "id"),
-                    "ror": py_.get(funder, "ids.ror"),
-                    "name": py_.get(funder, "display_name"),
+                    "id": dig(funder, "id"),
+                    "ror": dig(funder, "ids.ror"),
+                    "name": dig(funder, "display_name"),
                 }
             )
 
@@ -302,23 +298,23 @@ def get_openalex_source(str: Optional[str], **kwargs) -> Optional[dict]:
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
-    if py_.get(response, "count") == 0:
+    if dig(response, "count") == 0:
         return {"state": "not_found"}
 
     return compact(
         {
-            "id": py_.get(response, "id"),
-            "url": py_.get(response, "homepage_url"),
-            "issn": py_.get(response, "issn_l"),
-            "title": py_.get(response, "display_name"),
-            "type": py_.get(response, "type"),
+            "id": dig(response, "id"),
+            "url": dig(response, "homepage_url"),
+            "issn": dig(response, "issn_l"),
+            "title": dig(response, "display_name"),
+            "type": dig(response, "type"),
         }
     )
 
 
 def get_files(meta) -> Optional[list]:
     """get file links"""
-    pdf_url = py_.get(meta, "best_oa_location.pdf_url")
+    pdf_url = dig(meta, "best_oa_location.pdf_url")
     if pdf_url is None:
         return None
     return [
@@ -328,15 +324,15 @@ def get_files(meta) -> Optional[list]:
 
 def get_container(meta: dict) -> dict:
     """Get container from OpenAlex"""
-    source = get_openalex_source(py_.get(meta, "primary_location.source.id"))
-    container_type = py_.get(source, "type")
+    source = get_openalex_source(dig(meta, "primary_location.source.id"))
+    container_type = dig(source, "type")
     if container_type:
         container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
             container_type, container_type
         )
-    issn = py_.get(source, "issn")
-    container_title = py_.get(source, "title")
-    url_ = py_.get(source, "url")
+    issn = dig(source, "issn")
+    container_title = dig(source, "title")
+    url_ = dig(source, "url")
 
     return compact(
         {
@@ -344,10 +340,10 @@ def get_container(meta: dict) -> dict:
             "identifier": issn or url_,
             "identifierType": "ISSN" if issn else "URL" if url_ else None,
             "title": container_title,
-            "volume": py_.get(meta, "biblio.volume"),
-            "issue": py_.get(meta, "biblio.issue"),
-            "firstPage": py_.get(meta, "biblio.first_page"),
-            "lastPage": py_.get(meta, "biblio.last_page"),
+            "volume": dig(meta, "biblio.volume"),
+            "issue": dig(meta, "biblio.issue"),
+            "firstPage": dig(meta, "biblio.first_page"),
+            "lastPage": dig(meta, "biblio.last_page"),
         }
     )
 
@@ -374,7 +370,7 @@ def from_openalex_funding(funding_references: list) -> list:
             }
         )
         formatted_funding_references.append(f)
-    return py_.uniq(formatted_funding_references)
+    return unique(formatted_funding_references)
 
 
 def get_random_openalex_id(number: int = 1, **kwargs) -> list:
@@ -386,7 +382,7 @@ def get_random_openalex_id(number: int = 1, **kwargs) -> list:
         if response.status_code != 200:
             return []
 
-        items = py_.get(response.json(), "results")
+        items = dig(response.json(), "results")
         return items
     except (ReadTimeout, ConnectionError):
         return []

@@ -1193,6 +1193,7 @@ def test_missing_contributor_name():
     assert subject.titles[0] == {
         "title": "A computational impact analysis approach leveraging non-conforming spatial, temporal and methodological discretisations"
     }
+    assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "id": "https://orcid.org/0000-0001-5777-3141",
         "type": "Person",

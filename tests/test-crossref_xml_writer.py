@@ -2,11 +2,10 @@
 
 from os import path
 
-import pydash as py_
 import pytest
 
 from commonmeta import Metadata, MetadataList
-from commonmeta.base_utils import parse_xml
+from commonmeta.base_utils import dig, parse_xml
 from commonmeta.writers.crossref_xml_writer import normalize_isbn_crossref
 
 
@@ -33,13 +32,13 @@ def test_write_metadata_as_crossref_xml():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 5
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 5
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Martial",
@@ -50,12 +49,12 @@ def test_write_metadata_as_crossref_xml():
             }
         },
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 27
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    assert dig(crossref_xml, "doi_data.doi") == "10.7554/elife.01567"
+    assert len(dig(crossref_xml, "citation_list.citation")) == 27
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "bib1",
         "volume": "426",
         "cYear": "2003",
@@ -74,24 +73,24 @@ def test_write_crossref_xml_list():
     crossref_xml_list = subject_list.write(to="crossref_xml")
     assert subject_list.is_valid
     crossref_xml_list = parse_xml(crossref_xml_list, dialect="crossref")
-    crossref_xml_list = py_.get(crossref_xml_list, "doi_batch.body.journal", [])
+    crossref_xml_list = dig(crossref_xml_list, "doi_batch.body.journal", [])
     assert len(crossref_xml_list) == 20
     crossref_xml = crossref_xml_list[0]
     assert (
-        py_.get(crossref_xml, "journal_article.doi_data.doi")
+        dig(crossref_xml, "journal_article.doi_data.doi")
         == "10.1306/703c7c64-1707-11d7-8645000102c1865d"
     )
     assert (
-        py_.get(crossref_xml, "journal_article.titles.0.title")
+        dig(crossref_xml, "journal_article.titles.0.title")
         == "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
     )
-    assert len(py_.get(crossref_xml, "journal_article.contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "journal_article.contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "journal_article.contributors.person_name")) == 1
+    assert dig(crossref_xml, "journal_article.contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "surname": "Newell P. Campbell",
     }
-    assert py_.get(crossref_xml, "abstract") is None
+    assert dig(crossref_xml, "abstract") is None
 
 
 @pytest.mark.vcr
@@ -104,22 +103,22 @@ def test_write_commonmeta_list_as_crossref_xml():
     crossref_xml_list = subject_list.write(to="crossref_xml")
     assert subject_list.is_valid
     crossref_xml_list = parse_xml(crossref_xml_list, dialect="crossref")
-    crossref_xml_list = py_.get(crossref_xml_list, "doi_batch.body.posted_content", [])
+    crossref_xml_list = dig(crossref_xml_list, "doi_batch.body.posted_content", [])
     assert len(crossref_xml_list) == 15
     crossref_xml = crossref_xml_list[0]
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.59350/26ft6-dmv65"
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/26ft6-dmv65"
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "given_name": "Maatje Sophia",
         "sequence": "first",
         "surname": "Duine",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Autorinnen: Maaike Duine (ORCiD) und Maxi Kindling (ORCiD)"
     )
 
@@ -143,22 +142,22 @@ def test_write_crossref_xml_journal_article_plos():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
-    assert py_.get(crossref_xml, "language") == "en"
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.1371/journal.pone.0000030"
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 73
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert dig(crossref_xml, "doi_data.doi") == "10.1371/journal.pone.0000030"
+    assert len(dig(crossref_xml, "citation_list.citation")) == 73
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 6
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 6
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "given_name": "Markus",
         "sequence": "first",
         "surname": "Ralser",
     }
-    assert py_.get(crossref_xml, "abstract") is None
+    assert dig(crossref_xml, "abstract") is None
 
 
 @pytest.mark.vcr
@@ -172,11 +171,11 @@ def test_write_crossref_xml_posted_content():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "type") == "preprint"
-    assert py_.get(crossref_xml, "language") is None
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 8
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "type") == "preprint"
+    assert dig(crossref_xml, "language") is None
+    assert len(dig(crossref_xml, "contributors.person_name")) == 8
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "ORCID": "https://orcid.org/0000-0002-9346-671X",
@@ -184,26 +183,26 @@ def test_write_crossref_xml_posted_content():
         "surname": "Joyce",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Identification of a novel cationic glycolipid in<i>Streptococcus agalactiae</i>that contributes to brain entry and meningitis"
     )
-    assert py_.get(crossref_xml, "posted_date") == {
+    assert dig(crossref_xml, "posted_date") == {
         "day": "1",
         "month": "12",
         "year": "2020",
     }
-    assert py_.get(crossref_xml, "institution.institution_name") == "bioRxiv"
-    assert py_.get(crossref_xml, "item_number") is None
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "institution.institution_name") == "bioRxiv"
+    assert dig(crossref_xml, "item_number") is None
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "AbstractBacterial membrane lipids are critical for membrane bilayer formation"
     )
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.1101/2020.12.01.406702"
+    assert dig(crossref_xml, "doi_data.doi") == "10.1101/2020.12.01.406702"
     assert (
-        py_.get(crossref_xml, "doi_data.resource")
+        dig(crossref_xml, "doi_data.resource")
         == "http://biorxiv.org/lookup/doi/10.1101/2020.12.01.406702"
     )
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 61
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    assert len(dig(crossref_xml, "citation_list.citation")) == 61
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "2024080502174202000_2020.12.01.406702v5.1",
         "doi": "10.1002/iub.240",
     }
@@ -223,20 +222,20 @@ def test_write_crossref_journal_article_from_datacite():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
-    assert py_.get(crossref_xml, "language") == "en"
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert dig(crossref_xml, "language") == "en"
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "An Overview of the Geology of Canadian Gold Occurrences"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "David J",
         "surname": "Mossman",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith("Die Geowissenschaften")
+    assert dig(crossref_xml, "abstract.0.p").startswith("Die Geowissenschaften")
 
 
 @pytest.mark.vcr
@@ -250,13 +249,13 @@ def test_write_crossref_schema_org_front_matter():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "language") is None
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") is None
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Editorial by more than 200 health journals: Call for emergency action to limit global temperature increases, restore biodiversity, and protect health"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "More than 200 health journals today published an editorial calling for urgent action"
     )
 
@@ -272,10 +271,10 @@ def test_write_crossref_another_schema_org_front_matter():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "language") is None
-    assert py_.get(crossref_xml, "titles.0.title") == "Dryad: Interview with Jen Gibson"
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") is None
+    assert dig(crossref_xml, "titles.0.title") == "Dryad: Interview with Jen Gibson"
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "In October Jen Gibson started as the new Executive Director for the Dryad Data Repository."
     )
 
@@ -292,9 +291,9 @@ def test_write_crossref_embedded_schema_org_front_matter():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
         "sequence": "first",
@@ -302,10 +301,10 @@ def test_write_crossref_embedded_schema_org_front_matter():
         "surname": "Fenner",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Editorial by more than 200 health journals: Call for emergency action to limit global temperature increases, restore biodiversity, and protect health"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "More than 200 health journals today published an editorial calling for urgent action to keep average global temperature increases below 1.5°C"
     )
 
@@ -320,9 +319,9 @@ def test_write_crossref_schema_org_from_another_science_blog():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "ORCID": "https://orcid.org/0000-0002-8424-0604",
         "contributor_role": "author",
         "sequence": "first",
@@ -330,10 +329,10 @@ def test_write_crossref_schema_org_from_another_science_blog():
         "surname": "Winston",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Implementing the FAIR Principles Through FAIR-Enabling Artifacts and Services"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "How does a Research Software Engineer (RSE)"
     )
 
@@ -348,9 +347,9 @@ def test_write_crossref_schema_org_upstream_blog():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 4
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 4
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Mohammad",
@@ -358,10 +357,10 @@ def test_write_crossref_schema_org_upstream_blog():
         "ORCID": "https://orcid.org/0000-0002-2385-985X",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Deep dive into ethics of Contributor Roles: report of a FORCE11 workshop"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "The FORCE11 attribution working group held a workshop during the 2021 FORCE conference"
     )
 
@@ -378,11 +377,11 @@ def test_jsonfeed_upstream_blog():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "type") == "other"
-    assert py_.get(crossref_xml, "language") == "en"
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "type") == "other"
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Esha",
@@ -390,22 +389,22 @@ def test_jsonfeed_upstream_blog():
         "ORCID": "https://orcid.org/0000-0001-9165-2757",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Attempts at automating journal subject classification"
     )
-    assert py_.get(crossref_xml, "item_number") == {
+    assert dig(crossref_xml, "item_number") == {
         "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
         "item_number_type": "uuid",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Traditionally, journal subject classification was done manually at varying levels of granularity"
     )
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
         "mime_type": "text/html",
     }
-    assert py_.get(crossref_xml, "doi_data.collection.item.1.resource") == {
+    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
         "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
         "mime_type": "text/markdown",
     }
@@ -431,9 +430,9 @@ def test_jsonfeed_with_references():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 2
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "ORCID": "https://orcid.org/0000-0001-5934-7525",
         "affiliations": {
@@ -450,14 +449,13 @@ def test_jsonfeed_with_references():
         "surname": "Katz",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
-        == "The Research Software Alliance (ReSA)"
+        dig(crossref_xml, "titles.0.title") == "The Research Software Alliance (ReSA)"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Research software is a key part of most research today."
     )
-    assert len(py_.get(crossref_xml, "citation_list.citation")) > 5
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    assert len(dig(crossref_xml, "citation_list.citation")) > 5
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "unstructured_citation": "It’s impossible to conduct research without software, say 7 out of 10 UK researchers. Accessed April 13, 2023. https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
@@ -481,9 +479,9 @@ def test_jsonfeed_with_doi():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Heinz",
@@ -500,18 +498,18 @@ def test_jsonfeed_with_doi():
         },
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "EU-Mitgliedstaaten betonen die Rolle von wissenschaftsgeleiteten Open-Access-Modellen jenseits von APCs"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Die EU-Wissenschaftsministerien haben sich auf ihrer heutigen Sitzung in Brüssel unter dem Titel “Council conclusions on high-quality, transparent, open, trustworthy and equitable scholarly publishing"
     )
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
         "mime_type": "text/html",
     }
-    assert py_.get(crossref_xml, "doi_data.collection.item.1.resource") == {
+    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
         "#text": "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58.md",
         "mime_type": "text/markdown",
     }
@@ -550,14 +548,14 @@ def test_jsonfeed_without_doi():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.59350/qc0px-76778"
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/qc0px-76778"
     assert (
-        py_.get(crossref_xml, "doi_data.resource")
+        dig(crossref_xml, "doi_data.resource")
         == "https://www.leidenmadtrics.nl/articles/an-open-approach-for-classifying-research-publications"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 2
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "ORCID": "https://orcid.org/0000-0001-8448-4521",
         "affiliations": {
             "institution": {
@@ -574,10 +572,10 @@ def test_jsonfeed_without_doi():
         "surname": "van Eck",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "An open approach for classifying research publications"
     )
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Classifying research publications into research topics or research areas is crucial for many bibliometric analyses."
     )
 
@@ -609,9 +607,9 @@ def test_ghost_with_affiliations():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.write_errors is None
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Martin",
@@ -644,15 +642,13 @@ def test_jsonfeed_with_organizational_author():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "contributors.organization") == [
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "contributors.organization") == [
         {"#text": "Liberate Science", "contributor_role": "author", "sequence": "first"}
     ]
-    assert (
-        py_.get(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
-    )
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+    assert dig(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://libscie.org/ku-leuven-supports-researchequals",
         "mime_type": "text/html",
     }
@@ -673,9 +669,9 @@ def test_jsonfeed_with_archived_content():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Markus",
@@ -691,11 +687,9 @@ def test_jsonfeed_with_archived_content():
             },
         },
     }
-    assert (
-        py_.get(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
-    )
-    assert len(py_.get(crossref_xml, "doi_data.collection.item")) == 5
-    assert py_.get(crossref_xml, "doi_data.collection.item.0.resource") == {
+    assert dig(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
         "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
@@ -727,12 +721,12 @@ def test_jsonfeed_with_relations():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "One of the first tasks for DataCite in the European Commission-funded THOR project"
     )
-    # assert len(py_.get(crossref_xml, "citation_list.citation")) == 1
-    # assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    # assert len(dig(crossref_xml, "citation_list.citation")) == 1
+    # assert dig(crossref_xml, "citation_list.citation.0") == {
     #     "key": "ref1",
     #     "cYear": "2015",
     #     "article_title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
@@ -774,22 +768,22 @@ def test_jsonfeed_with_relations_and_funding():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "citation_list.citation")) > 1
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
         "doi": "10.14454/3bpw-w381",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
     )
-    assert py_.get(crossref_xml, "program.0.assertion") == [
+    assert dig(crossref_xml, "program.0.assertion") == [
         {"name": "ror", "#text": "https://ror.org/00k4n6c32"},
         {"name": "award_number", "#text": "777523"},
     ]
-    assert len(py_.get(crossref_xml, "program.2.related_item")) == 3
-    assert py_.get(crossref_xml, "program.2.related_item.0") == {
+    assert len(dig(crossref_xml, "program.2.related_item")) == 3
+    assert dig(crossref_xml, "program.2.related_item.0") == {
         "intra_work_relation": {
             "relationship-type": "isIdenticalTo",
             "identifier-type": "doi",
@@ -833,22 +827,22 @@ def test_inveniordm_with_relations_and_funding():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "citation_list.citation")) > 1
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "citation_list.citation")) > 1
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite.",
         "doi": "10.14454/3bpw-w381",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "The connections between scholarly resources generated by persistent identifiers (PIDs) and associated metadata form a graph"
     )
-    assert py_.get(crossref_xml, "program.0.assertion") == [
+    assert dig(crossref_xml, "program.0.assertion") == [
         {"name": "ror", "#text": "https://ror.org/00k4n6c32"},
         {"name": "award_number", "#text": "777523"},
     ]
-    # assert len(py_.get(crossref_xml, "program.2.related_item")) == 3
-    # assert py_.get(crossref_xml, "program.2.related_item.0") == {
+    # assert len(dig(crossref_xml, "program.2.related_item")) == 3
+    # assert dig(crossref_xml, "program.2.related_item.0") == {
     #     "name": "relations",
     #     "xmlns": OrderedDict([("rel", "http://www.crossref.org/relations.xsd")]),
     #     "related_item": [
@@ -896,9 +890,9 @@ def test_doi_with_multiple_funding_references():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
-    assert len(py_.get(crossref_xml, "program.0.assertion")) == 6
-    assert py_.get(crossref_xml, "program.0.assertion.3") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert len(dig(crossref_xml, "program.0.assertion")) == 6
+    assert dig(crossref_xml, "program.0.assertion.3") == {
         "name": "ror",
         "#text": "https://ror.org/019whta54",
     }
@@ -936,14 +930,14 @@ def test_proceedings_article_with_multiple_funding_references():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.conference", {})
-    assert py_.get(crossref_xml, "program.0.assertion") == [
+    crossref_xml = dig(crossref_xml, "doi_batch.body.conference", {})
+    assert dig(crossref_xml, "program.0.assertion") == [
         {"name": "ror", "#text": "https://ror.org/021nxhr62"},
         {"name": "award_number", "#text": "DE-AC02-05CH11231,17-SC-20-SC"},
     ]
-    assert py_.get(crossref_xml, "program.1") == 1
-    assert py_.get(crossref_xml, "program.2") == 1
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "program.1") == 1
+    assert dig(crossref_xml, "program.2") == 1
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "Bacterial membrane lipids are critical for membrane bilayer formation"
     )
 
@@ -980,21 +974,21 @@ def test_inveniordm_record_with_references():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 2
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "citation_list.citation")) == 2
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
         "unstructured_citation": "projects, C. to W. (2016). <i>Infrastructure as code</i>. Wikimedia "
         "Foundation, Inc. https://en.wikipedia.org/wiki/Infrastructure_as_code",
     }
-    assert py_.get(crossref_xml, "citation_list.citation.1") == {
+    assert dig(crossref_xml, "citation_list.citation.1") == {
         "doi": "10.64000/4s2ee-wkr84",
         "key": "ref2",
         "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025). The "
         "programs approach: our experiences during the first quarter of 2025. In "
         "<i>Crossref Blog</i>. Crossref.",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "TLDR: We've successfully moved the main Crossref systems to the cloud!"
     )
 
@@ -1010,20 +1004,19 @@ def test_book():
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.book.book_metadata", {})
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.book.book_metadata", {})
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Vincent S.",
         "surname": "Leung",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
-        == "The Politics of the Past in Early China"
+        dig(crossref_xml, "titles.0.title") == "The Politics of the Past in Early China"
     )
-    assert py_.get(crossref_xml, "abstract") is None
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 273
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    assert dig(crossref_xml, "abstract") is None
+    assert len(dig(crossref_xml, "citation_list.citation")) == 273
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "9781108348843#EMT-rl-1_BIBe-r-273",
         "volume": "5",
         "cYear": "1997",
@@ -1042,20 +1035,20 @@ def test_book_chapter():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.book.book_metadata", {})
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.book.book_metadata", {})
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Ronald L.",
         "surname": "Diercks",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Clinical Symptoms and Physical Examinations"
     )
-    assert py_.get(crossref_xml, "abstract") is None
-    assert len(py_.get(crossref_xml, "citation_list.citation")) == 22
-    assert py_.get(crossref_xml, "citation_list.citation.0") == {
+    assert dig(crossref_xml, "abstract") is None
+    assert len(dig(crossref_xml, "citation_list.citation")) == 22
+    assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "13_CR1",
         "doi": "10.1007/s00256-012-1391-8",
         "volume": "41",
@@ -1075,30 +1068,30 @@ def test_dataset():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(
+    crossref_xml = dig(
         crossref_xml, "doi_batch.body.database.component_list.component", {}
     )
-    assert py_.get(crossref_xml, "parent_relation") == "isPartOf"
+    assert dig(crossref_xml, "parent_relation") == "isPartOf"
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
     )
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 2
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    assert len(dig(crossref_xml, "contributors.person_name")) == 2
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "G.",
         "surname": "Fermi",
     }
-    assert py_.get(crossref_xml, "publication_date") == {
+    assert dig(crossref_xml, "publication_date") == {
         "day": "7",
         "month": "3",
         "year": "1984",
         "media_type": "online",
     }
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.2210/pdb4hhb/pdb"
+    assert dig(crossref_xml, "doi_data.doi") == "10.2210/pdb4hhb/pdb"
     assert (
-        py_.get(crossref_xml, "doi_data.resource")
+        dig(crossref_xml, "doi_data.resource")
         == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
     )
 
@@ -1114,7 +1107,7 @@ def test_component():
     crossref_xml = subject.write(to="crossref_xml")
     assert not subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
 
 
 @pytest.mark.vcr
@@ -1129,11 +1122,11 @@ def test_peer_review():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.peer_review", {})
-    assert py_.get(crossref_xml, "type") == "author-comment"
-    assert py_.get(crossref_xml, "stage") == "pre-publication"
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 8
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.peer_review", {})
+    assert dig(crossref_xml, "type") == "author-comment"
+    assert dig(crossref_xml, "stage") == "pre-publication"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 8
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Jeremy",
@@ -1146,10 +1139,10 @@ def test_peer_review():
         },
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     )
-    assert py_.get(crossref_xml, "review_date") == {
+    assert dig(crossref_xml, "review_date") == {
         "day": "29",
         "month": "4",
         "year": "2020",
@@ -1167,9 +1160,9 @@ def test_dissertation():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.dissertation", {})
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.dissertation", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Patricia Maree",
@@ -1177,17 +1170,17 @@ def test_dissertation():
         "ORCID": "https://orcid.org/0000-0003-3086-4443",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
     )
-    assert py_.get(crossref_xml, "approval_date") == {
+    assert dig(crossref_xml, "approval_date") == {
         "day": "8",
         "month": "6",
         "year": "2020",
     }
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.14264/uql.2020.791"
+    assert dig(crossref_xml, "doi_data.doi") == "10.14264/uql.2020.791"
     assert (
-        py_.get(crossref_xml, "doi_data.resource")
+        dig(crossref_xml, "doi_data.resource")
         == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
     )
 
@@ -1203,28 +1196,28 @@ def test_arxiv():
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = py_.get(crossref_xml, "doi_batch.body.posted_content", {})
-    assert py_.get(crossref_xml, "language") is None
-    assert len(py_.get(crossref_xml, "contributors.person_name")) == 10
-    assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") is None
+    assert len(dig(crossref_xml, "contributors.person_name")) == 10
+    assert dig(crossref_xml, "contributors.person_name.0") == {
         "contributor_role": "author",
         "sequence": "first",
         "given_name": "Hui",
         "surname": "Yin",
     }
     assert (
-        py_.get(crossref_xml, "titles.0.title")
+        dig(crossref_xml, "titles.0.title")
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
-    assert py_.get(crossref_xml, "posted_date") == {
+    assert dig(crossref_xml, "posted_date") == {
         "day": "15",
         "month": "8",
         "year": "2023",
     }
-    assert py_.get(crossref_xml, "abstract.0.p").startswith(
+    assert dig(crossref_xml, "abstract.0.p").startswith(
         "The number of publications related to the Sustainable Development Goals (SDGs) continues to grow."
     )
-    assert py_.get(crossref_xml, "program.0.license_ref") == [
+    assert dig(crossref_xml, "program.0.license_ref") == [
         {
             "applies_to": "vor",
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
@@ -1234,10 +1227,8 @@ def test_arxiv():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    assert py_.get(crossref_xml, "doi_data.doi") == "10.48550/arxiv.2311.16162"
-    assert (
-        py_.get(crossref_xml, "doi_data.resource") == "https://arxiv.org/abs/2311.16162"
-    )
+    assert dig(crossref_xml, "doi_data.doi") == "10.48550/arxiv.2311.16162"
+    assert dig(crossref_xml, "doi_data.resource") == "https://arxiv.org/abs/2311.16162"
 
 
 @pytest.mark.vcr
@@ -1251,27 +1242,27 @@ def test_archived():
     # crossref_xml = subject.write(to="crossref_xml")
     # assert subject.is_valid
     # crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    # crossref_xml = py_.get(crossref_xml, "doi_batch.body.journal.journal_article", {})
-    # assert py_.get(crossref_xml, "language") == "en"
-    # assert len(py_.get(crossref_xml, "contributors.person_name")) == 1
-    # assert py_.get(crossref_xml, "contributors.person_name.0") == {
+    # crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    # assert dig(crossref_xml, "language") == "en"
+    # assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    # assert dig(crossref_xml, "contributors.person_name.0") == {
     #     "contributor_role": "author",
     #     "sequence": "first",
     #     "given_name": "H.",
     #     "surname": "Baker",
     # }
     # assert (
-    #     py_.get(crossref_xml, "titles.0.title")
+    #     dig(crossref_xml, "titles.0.title")
     #     == "A case of acute yellow atrophy of the liver"
     # )
-    # assert py_.get(crossref_xml, "publication_date") == {
+    # assert dig(crossref_xml, "publication_date") == {
     #     "day": "1",
     #     "month": "1",
     #     "year": "1943",
     #     "media_type": "online",
     # }
-    # assert py_.get(crossref_xml, "doi_data.doi") == "10.5694/j.1326-5377.1943.tb44329.x"
+    # assert dig(crossref_xml, "doi_data.doi") == "10.5694/j.1326-5377.1943.tb44329.x"
     # assert (
-    #     py_.get(crossref_xml, "doi_data.resource")
+    #     dig(crossref_xml, "doi_data.resource")
     #     == "https://www.mja.com.au/journal/1943/1/1/case-acute-yellow-atrophy-liver"
     # )

@@ -92,7 +92,9 @@ def write_schema_org(metadata):
             ),
             None,
         )
-        code_repository = github_as_repo_url(rel["id"])
+        code_repository = (
+            github_as_repo_url(rel["id"]) if rel and rel.get("id", None) else None
+        )
     else:
         code_repository = None
 

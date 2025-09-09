@@ -5,9 +5,9 @@ import re
 
 import orjson as json
 import pytest
-from pydash import py_
 
 from commonmeta import Metadata
+from commonmeta.base_utils import dig
 
 
 @pytest.mark.vcr
@@ -19,10 +19,10 @@ def test_publication():
     assert subject.type == "JournalArticle"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.5281/zenodo.5244404"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-article"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 21
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "pids.doi.identifier") == "10.5281/zenodo.5244404"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-article"
+    assert len(dig(inveniordm, "metadata.creators")) == 21
+    assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
             "family_name": "Holmes",
             "given_name": "Edward C",
@@ -36,31 +36,31 @@ def test_publication():
         ],
     }
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "The Origins of SARS-CoV-2: A Critical Review"
     )
-    assert py_.get(inveniordm, "metadata.publisher") == "Zenodo"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2021-08-18"
-    assert py_.get(inveniordm, "metadata.languages.0.id") is None
-    assert py_.get(inveniordm, "metadata.version") == "Authors' final version"
-    assert py_.get(inveniordm, "metadata.description").startswith(
+    assert dig(inveniordm, "metadata.publisher") == "Zenodo"
+    assert dig(inveniordm, "metadata.publication_date") == "2021-08-18"
+    assert dig(inveniordm, "metadata.languages.0.id") is None
+    assert dig(inveniordm, "metadata.version") == "Authors' final version"
+    assert dig(inveniordm, "metadata.description").startswith(
         "The Origins of SARS-CoV-2: A Critical Review"
     )
-    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == [
+    assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-nc-nd-4.0"}]
+    assert dig(inveniordm, "metadata.identifiers") == [
         {"identifier": "https://zenodo.org/records/5244404", "scheme": "url"}
     ]
-    assert py_.get(inveniordm, "metadata.related_identifiers") == [
+    assert dig(inveniordm, "metadata.related_identifiers") == [
         {
             "identifier": "10.5281/zenodo.5075887",
             "relation_type": {"id": "isversionof"},
             "scheme": "doi",
         }
     ]
-    assert py_.get(inveniordm, "metadata.funding") is None
-    assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
-    assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert not py_.get(inveniordm, "files.enabled")
+    assert dig(inveniordm, "metadata.funding") is None
+    assert dig(inveniordm, "custom_fields.rs:content_html") is None
+    assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -71,10 +71,10 @@ def test_journal_article():
     assert subject.type == "JournalArticle"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-article"
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.7554/elife.01567"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 5
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-article"
+    assert dig(inveniordm, "pids.doi.identifier") == "10.7554/elife.01567"
+    assert len(dig(inveniordm, "metadata.creators")) == 5
+    assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
             "family_name": "Sankar",
             "given_name": "Martial",
@@ -90,23 +90,21 @@ def test_journal_article():
     }
 
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     )
-    assert (
-        py_.get(inveniordm, "metadata.publisher") == "eLife Sciences Publications, Ltd"
-    )
-    assert py_.get(inveniordm, "metadata.publication_date") == "2014-02-11"
-    assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
-    assert py_.get(inveniordm, "metadata.version") is None
-    assert py_.get(inveniordm, "metadata.description").startswith(
+    assert dig(inveniordm, "metadata.publisher") == "eLife Sciences Publications, Ltd"
+    assert dig(inveniordm, "metadata.publication_date") == "2014-02-11"
+    assert dig(inveniordm, "metadata.languages.0.id") == "eng"
+    assert dig(inveniordm, "metadata.version") is None
+    assert dig(inveniordm, "metadata.description").startswith(
         "Among various advantages, their small size makes model organisms preferred subjects of investigation."
     )
-    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == [
+    assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-3.0"}]
+    assert dig(inveniordm, "metadata.identifiers") == [
         {"identifier": "https://elifesciences.org/articles/01567", "scheme": "url"}
     ]
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    related_identifiers = dig(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 3
     assert related_identifiers[0] == {
         "identifier": "10.5061/dryad.b835k",
@@ -115,14 +113,14 @@ def test_journal_article():
         },
         "scheme": "doi",
     }
-    references = py_.get(inveniordm, "metadata.references")
+    references = dig(inveniordm, "metadata.references")
     assert len(references) == 27
     assert references[0] == {
         "identifier": "10.1038/nature02100",
         "reference": "APL regulates vascular tissue identity in Arabidopsis (2003).",
         "scheme": "doi",
     }
-    assert py_.get(inveniordm, "metadata.funding") == [
+    assert dig(inveniordm, "metadata.funding") == [
         {"funder": {"name": "SystemsX"}},
         {"funder": {"name": "EMBO longterm post-doctoral fellowships"}},
         {"funder": {"name": "Marie Heim-Voegtlin"}},
@@ -145,9 +143,9 @@ def test_journal_article():
             },
         },
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_html") is None
-    assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert not py_.get(inveniordm, "files.enabled")
+    assert dig(inveniordm, "custom_fields.rs:content_html") is None
+    assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -159,10 +157,10 @@ def test_rogue_scholar():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.53731/dv8z6-a6s33"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 1
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "pids.doi.identifier") == "10.53731/dv8z6-a6s33"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 1
+    assert dig(inveniordm, "metadata.creators.0") == {
         "affiliations": [
             {
                 "name": "Front Matter",
@@ -176,31 +174,28 @@ def test_rogue_scholar():
             "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme": "orcid"}],
         },
     }
-    assert (
-        py_.get(inveniordm, "metadata.title")
-        == "Rogue Scholar learns about communities"
-    )
-    assert py_.get(inveniordm, "metadata.publisher") == "Front Matter"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2024-10-07"
+    assert dig(inveniordm, "metadata.title") == "Rogue Scholar learns about communities"
+    assert dig(inveniordm, "metadata.publisher") == "Front Matter"
+    assert dig(inveniordm, "metadata.publication_date") == "2024-10-07"
 
-    assert py_.get(inveniordm, "metadata.dates") == [
+    assert dig(inveniordm, "metadata.dates") == [
         {"date": "2024-10-07T13:41:37", "type": {"id": "issued"}},
         {"date": "2025-01-23T17:42:32", "type": {"id": "updated"}},
     ]
-    assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
-    assert py_.get(inveniordm, "metadata.version") is None
-    assert py_.get(inveniordm, "metadata.description").startswith(
+    assert dig(inveniordm, "metadata.languages.0.id") == "eng"
+    assert dig(inveniordm, "metadata.version") is None
+    assert dig(inveniordm, "metadata.description").startswith(
         "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
     )
-    assert py_.get(inveniordm, "metadata.subjects") == [
+    assert dig(inveniordm, "metadata.subjects") == [
         {
             "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
             "subject": "Computer and information sciences",
         },
         {"subject": "Rogue Scholar"},
     ]
-    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    assert py_.get(inveniordm, "metadata.identifiers") == [
+    assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    assert dig(inveniordm, "metadata.identifiers") == [
         {
             "identifier": "c5c2e4e7-ac05-413b-b377-f989a72a5356",
             "scheme": "uuid",
@@ -214,13 +209,13 @@ def test_rogue_scholar():
             "scheme": "url",
         },
     ]
-    assert py_.get(inveniordm, "metadata.related_identifiers") is None
-    assert py_.get(inveniordm, "metadata.funding") is None
-    assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
-    assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
-    # assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith("a")
-    # assert py_.get(inveniordm, "custom_fields.rs:image") == 2
-    assert not py_.get(inveniordm, "files.enabled")
+    assert dig(inveniordm, "metadata.related_identifiers") is None
+    assert dig(inveniordm, "metadata.funding") is None
+    assert dig(inveniordm, "custom_fields.journal:journal.title") == "Front Matter"
+    assert dig(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
+    # assert dig(inveniordm, "custom_fields.rs:content_html").startswith("a")
+    # assert dig(inveniordm, "custom_fields.rs:image") == 2
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -232,10 +227,10 @@ def test_rogue_scholar_organizational_author():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/wg8rv-awm24"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 1
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/wg8rv-awm24"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 1
+    assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
             "family_name": "Habgood-Coote",
             "given_name": "Joshua",
@@ -244,11 +239,11 @@ def test_rogue_scholar_organizational_author():
         },
     }
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "Neil Levy, Philosophy, Bullshit, and Peer Review"
     )
-    assert py_.get(inveniordm, "metadata.publisher") == "Front Matter"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2025-02-11"
+    assert dig(inveniordm, "metadata.publisher") == "Front Matter"
+    assert dig(inveniordm, "metadata.publication_date") == "2025-02-11"
 
 
 @pytest.mark.vcr
@@ -260,10 +255,10 @@ def test_from_jsonfeed():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/dn2mm-m9q51"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 1
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dn2mm-m9q51"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 1
+    assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
             "family_name": "Dingemanse",
             "given_name": "Mark",
@@ -271,14 +266,14 @@ def test_from_jsonfeed():
             "type": "personal",
         },
     }
-    assert py_.get(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2021-07-22"
-    assert py_.get(inveniordm, "metadata.dates") == [
+    assert dig(inveniordm, "metadata.title") == "Linguistic roots of connectionism"
+    assert dig(inveniordm, "metadata.publication_date") == "2021-07-22"
+    assert dig(inveniordm, "metadata.dates") == [
         {"date": "2021-07-22T09:39:07", "type": {"id": "issued"}},
         {"date": "2024-02-04T22:05:36", "type": {"id": "updated"}},
     ]
-    assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
-    assert py_.get(inveniordm, "metadata.identifiers") == [
+    assert dig(inveniordm, "metadata.languages.0.id") == "eng"
+    assert dig(inveniordm, "metadata.identifiers") == [
         {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
         {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
         {
@@ -286,11 +281,11 @@ def test_from_jsonfeed():
             "scheme": "url",
         },
     ]
-    assert py_.get(inveniordm, "metadata.version") is None
-    assert py_.get(inveniordm, "metadata.description").startswith(
+    assert dig(inveniordm, "metadata.version") is None
+    assert dig(inveniordm, "metadata.description").startswith(
         "A preprint claims that “ideas from theoretical linguistics have played no role"
     )
-    assert py_.get(inveniordm, "metadata.subjects") == [
+    assert dig(inveniordm, "metadata.subjects") == [
         {
             "id": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
             "subject": "Languages and literature",
@@ -298,21 +293,21 @@ def test_from_jsonfeed():
         {"subject": "Linguistics"},
         {"subject": "Threads"},
     ]
-    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    references = py_.get(inveniordm, "metadata.references")
+    assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    references = dig(inveniordm, "metadata.references")
     assert len(references) == 6
     assert references[0] == {
         "reference": "Baroni, M. (2021, June). On the proper role of linguistically-oriented deep net analysis in linguistic theorizing. LingBuzz. Retrieved from",
         "identifier": "https://ling.auf.net/lingbuzz/006031",
         "scheme": "url",
     }
-    assert py_.get(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
-    assert py_.get(inveniordm, "custom_fields.journal:journal.issn") is None
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.journal:journal.title") == "The Ideophone"
+    assert dig(inveniordm, "custom_fields.journal:journal.issn") is None
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         '\n<p>This <a rel="noreferrer noopener" href="https://ling.auf.net/lingbuzz/006031"'
     )
-    assert py_.get(inveniordm, "custom_fields.rs:image") is None
-    assert not py_.get(inveniordm, "files.enabled")
+    assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -324,10 +319,10 @@ def test_from_jsonfeed_affiliations():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert len(py_.get(inveniordm, "metadata.creators")) == 4
-    assert py_.get(inveniordm, "metadata.creators.0") == {
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 4
+    assert dig(inveniordm, "metadata.creators.0") == {
         "person_or_org": {
             "family_name": "Beucke",
             "given_name": "Daniel",
@@ -343,16 +338,16 @@ def test_from_jsonfeed_affiliations():
         ],
     }
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "Report on the Hands-On Lab ‘Scenarios for the Development of Open Access Repositories’ at the 112th BiblioCon"
     )
-    assert py_.get(inveniordm, "metadata.publication_date") == "2024-07-15"
-    assert py_.get(inveniordm, "metadata.dates") == [
+    assert dig(inveniordm, "metadata.publication_date") == "2024-07-15"
+    assert dig(inveniordm, "metadata.dates") == [
         {"date": "2024-07-15T00:00:00", "type": {"id": "issued"}},
         {"date": "2024-07-15T00:00:00", "type": {"id": "updated"}},
     ]
-    assert py_.get(inveniordm, "metadata.languages.0.id") == "eng"
-    assert py_.get(inveniordm, "metadata.identifiers") == [
+    assert dig(inveniordm, "metadata.languages.0.id") == "eng"
+    assert dig(inveniordm, "metadata.identifiers") == [
         {"identifier": "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "uuid"},
         {
             "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/",
@@ -363,11 +358,11 @@ def test_from_jsonfeed_affiliations():
             "scheme": "url",
         },
     ]
-    assert py_.get(inveniordm, "metadata.version") is None
-    assert py_.get(inveniordm, "metadata.description").startswith(
+    assert dig(inveniordm, "metadata.version") is None
+    assert dig(inveniordm, "metadata.description").startswith(
         "In the beginning of June 2024,"
     )
-    assert py_.get(inveniordm, "metadata.subjects") == [
+    assert dig(inveniordm, "metadata.subjects") == [
         {
             "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
             "subject": "Computer and information sciences",
@@ -375,8 +370,8 @@ def test_from_jsonfeed_affiliations():
         {"subject": "Lab Life"},
         {"subject": "Research"},
     ]
-    assert py_.get(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
-    references = py_.get(inveniordm, "metadata.references")
+    assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
+    references = dig(inveniordm, "metadata.references")
     assert len(references) == 4
     assert references[0] == {
         "reference": "Häder, M. (2014). <i>Delphi-Befragungen</i>. Springer Fachmedien Wiesbaden.",
@@ -384,18 +379,18 @@ def test_from_jsonfeed_affiliations():
         "scheme": "doi",
     }
     assert (
-        py_.get(inveniordm, "custom_fields.journal:journal.title")
+        dig(inveniordm, "custom_fields.journal:journal.title")
         == "Research Group Information Management @ Humboldt-Universität zu Berlin"
     )
-    assert py_.get(inveniordm, "custom_fields.journal:journal.issn") == "2944-6848"
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.journal:journal.issn") == "2944-6848"
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>In the beginning of June 2024, Nature reported on the Japanese\nMinistry of Education’s plan to invest 10 billion"
     )
     assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
+        dig(inveniordm, "custom_fields.rs:image")
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
-    assert not py_.get(inveniordm, "files.enabled")
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -407,10 +402,10 @@ def test_from_jsonfeed_dates():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert py_.get(inveniordm, "metadata.publication_date") == "2018-08-28"
-    assert py_.get(inveniordm, "metadata.dates") == [
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.publication_date") == "2018-08-28"
+    assert dig(inveniordm, "metadata.dates") == [
         {
             "date": "2018-08-28T03:05:10",
             "type": {
@@ -419,11 +414,11 @@ def test_from_jsonfeed_dates():
         },
         {"date": "2018-10-19T23:13:05", "type": {"id": "updated"}},
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
     assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
+        dig(inveniordm, "custom_fields.rs:image")
         == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
     )
 
@@ -437,10 +432,10 @@ def test_from_jsonfeed_funding():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert py_.get(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
-    assert py_.get(inveniordm, "metadata.funding") == [
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
+    assert dig(inveniordm, "metadata.funding") == [
         {
             "award": {
                 "identifiers": [
@@ -460,10 +455,10 @@ def test_from_jsonfeed_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>Come and join us at the Università degli Studi di Roma"
     )
-    assert py_.get(inveniordm, "custom_fields.rs:image") is None
+    assert dig(inveniordm, "custom_fields.rs:image") is None
 
 
 @pytest.mark.vcr
@@ -475,12 +470,10 @@ def test_from_jsonfeed_more_funding():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert (
-        py_.get(inveniordm, "metadata.title") == "Summer Meeting of the Editorial Board"
-    )
-    assert py_.get(inveniordm, "metadata.funding") == [
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "Summer Meeting of the Editorial Board"
+    assert dig(inveniordm, "metadata.funding") == [
         {
             "award": {
                 "identifiers": [
@@ -497,10 +490,10 @@ def test_from_jsonfeed_more_funding():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         '<img alt="" src="https://coref.project.re3data.org/images/7/b/6/1/b/'
     )
-    assert py_.get(inveniordm, "custom_fields.rs:image") is None
+    assert dig(inveniordm, "custom_fields.rs:image") is None
 
 
 @pytest.mark.vcr
@@ -512,22 +505,20 @@ def test_from_jsonfeed_references():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
+    assert dig(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
-        py_.get(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
-    )
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "Differences between ORCID and DataCite Metadata"
     )
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    related_identifiers = dig(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 1
     assert related_identifiers[0] == {
         "identifier": "10.5438/bc11-cqw1",
         "relation_type": {"id": "isidenticalto"},
         "scheme": "doi",
     }
-    assert py_.get(inveniordm, "metadata.funding") == [
+    assert dig(inveniordm, "metadata.funding") == [
         {
             "award": {
                 "number": "654039",
@@ -539,11 +530,11 @@ def test_from_jsonfeed_references():
             },
         }
     ]
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>One of the first tasks for DataCite"
     )
     assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
+        dig(inveniordm, "custom_fields.rs:image")
         == "https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png"
     )
 
@@ -558,13 +549,13 @@ def test_from_jsonfeed_unstructured_references():
     assert len(subject.references) == 7
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "To what extent is science a strong-link problem?"
     )
-    references = py_.get(inveniordm, "metadata.references")
+    references = dig(inveniordm, "metadata.references")
     assert len(references) == 7
     assert references[0] == {
         "identifier": "10.1128/iai.05661-11",
@@ -583,10 +574,10 @@ def test_from_jsonfeed_citations():
     assert len(subject.citations) == 2
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert py_.get(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
-    citations = py_.get(inveniordm, "custom_fields.rs:citations")
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
+    citations = dig(inveniordm, "custom_fields.rs:citations")
     assert len(citations) == 2
     assert citations[0] == {
         "identifier": "10.1007/s11192-013-1108-3",
@@ -606,21 +597,21 @@ def test_from_jsonfeed_relations():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert py_.get(inveniordm, "metadata.title") == "Large Language Publishing"
-    related_identifiers = py_.get(inveniordm, "metadata.related_identifiers")
+    assert dig(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "Large Language Publishing"
+    related_identifiers = dig(inveniordm, "metadata.related_identifiers")
     assert len(related_identifiers) == 1
     assert related_identifiers[0] == {
         "identifier": "10.18357/kula.291",
         "relation_type": {"id": "ispreviousversionof"},
         "scheme": "doi",
     }
-    assert py_.get(inveniordm, "custom_fields.rs:content_html").startswith(
+    assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p><em>The New York Times</em> ushered in the New Year with"
     )
     assert (
-        py_.get(inveniordm, "custom_fields.rs:image")
+        dig(inveniordm, "custom_fields.rs:image")
         == "https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg"
     )
 
@@ -634,13 +625,13 @@ def test_from_jsonfeed_broken_reference():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "2024 mpox outbreak: common analytics tasks and available R tools"
     )
-    references = py_.get(inveniordm, "metadata.references")
+    references = dig(inveniordm, "metadata.references")
     assert len(references) == 6
     assert references[0] == {
         "identifier": "10.4269/ajtmh.23-0215",
@@ -658,10 +649,10 @@ def test_external_doi():
     assert subject.type == "BlogPost"
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
-        py_.get(inveniordm, "metadata.title")
+        dig(inveniordm, "metadata.title")
         == "Eine Musterdienstvereinbarung fürs FIS – ein Beispiel der TIB"
     )
 
@@ -679,10 +670,10 @@ def test_content_with_external_src():
     )
 
     inveniordm = json.loads(subject.write(to="inveniordm"))
-    assert py_.get(inveniordm, "pids.doi.identifier") == "10.59350/vwd81-p8z85"
-    assert py_.get(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert py_.get(inveniordm, "metadata.title") == "Archiving, but not really"
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/vwd81-p8z85"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.title") == "Archiving, but not really"
     assert re.search(
         'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
-        py_.get(inveniordm, "custom_fields.rs:content_html"),
+        dig(inveniordm, "custom_fields.rs:content_html"),
     )

@@ -12,10 +12,9 @@ from dateutil.parser import parse as date_parse
 from furl import furl
 from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
-from pydash import py_
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from ..base_utils import compact, parse_xml, unparse_xml, unparse_xml_list, wrap
+from ..base_utils import compact, dig, parse_xml, unparse_xml, unparse_xml_list, wrap
 from ..constants import Commonmeta
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
@@ -221,7 +220,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     elif metadata.type == "Dataset":
-        publisher = py_.get(metadata, "publisher.name")
+        publisher = dig(metadata, "publisher.name")
         if publisher is not None:
             publisher_item = {
                 "title": publisher,
@@ -295,7 +294,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
             }
         )
     elif metadata.type == "ProceedingsArticle":
-        publisher = py_.get(metadata, "publisher.name")
+        publisher = dig(metadata, "publisher.name")
         if publisher is not None:
             publisher_item = {
                 "title": publisher,
@@ -454,7 +453,7 @@ def push_crossref_xml(
 
     # update rogue-scholar legacy record if legacy_key is provided
     if is_rogue_scholar_doi(metadata.id, ra="crossref") and legacy_key is not None:
-        uuid = py_.get(metadata, "identifiers.0.identifier")
+        uuid = dig(metadata, "identifiers.0.identifier")
         if uuid:
             record["uuid"] = uuid
             record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
@@ -513,7 +512,7 @@ def push_crossref_xml_list(
 
         # update rogue-scholar legacy record if legacy_key is provided
         if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
-            uuid = py_.get(item, "identifiers.0.identifier")
+            uuid = dig(item, "identifiers.0.identifier")
             if uuid:
                 record["uuid"] = uuid
                 record = update_legacy_record(
@@ -541,14 +540,14 @@ def get_attributes(obj, **kwargs) -> dict:
 def get_journal_metadata(obj) -> Optional[dict]:
     """get journal metadata"""
     issn = (
-        py_.get(obj, "container.identifier")
-        if py_.get(obj, "container.identifierType") == "ISSN"
+        dig(obj, "container.identifier")
+        if dig(obj, "container.identifierType") == "ISSN"
         else None
     )
     return compact(
         {
-            "@language": py_.get(obj, "language"),
-            "full_title": py_.get(obj, "container.title"),
+            "@language": dig(obj, "language"),
+            "full_title": dig(obj, "container.title"),
             "issn": issn,
         }
     )
@@ -557,7 +556,7 @@ def get_journal_metadata(obj) -> Optional[dict]:
 def get_book_metadata(obj) -> Optional[dict]:
     return compact(
         {
-            "@language": py_.get(obj, "language"),
+            "@language": dig(obj, "language"),
         }
     )
 
@@ -565,20 +564,20 @@ def get_book_metadata(obj) -> Optional[dict]:
 def get_database_metadata(obj) -> Optional[dict]:
     return compact(
         {
-            "@language": py_.get(obj, "language"),
+            "@language": dig(obj, "language"),
         }
     )
 
 
 def get_event_metadata(obj) -> Optional[dict]:
     """get event metadata"""
-    if py_.get(obj, "container.title") is None:
+    if dig(obj, "container.title") is None:
         return None
 
     return compact(
         {
-            "conference_name": py_.get(obj, "container.title"),
-            "conference_location": py_.get(obj, "container.location"),
+            "conference_name": dig(obj, "container.title"),
+            "conference_location": dig(obj, "container.location"),
             "conference_date": None,
         }
     )
@@ -586,52 +585,49 @@ def get_event_metadata(obj) -> Optional[dict]:
 
 def get_proceedings_metadata(obj) -> Optional[dict]:
     """get proceedings metadata"""
-    if (
-        py_.get(obj, "container.title") is None
-        or py_.get(obj, "publisher.name") is None
-    ):
+    if dig(obj, "container.title") is None or dig(obj, "publisher.name") is None:
         return None
 
     proceedings_metadata = {
-        "@language": py_.get(obj, "language"),
-        "proceedings_title": py_.get(obj, "container.title"),
+        "@language": dig(obj, "language"),
+        "proceedings_title": dig(obj, "container.title"),
         "publisher": {
-            "publisher_name": py_.get(obj, "publisher.name"),
+            "publisher_name": dig(obj, "publisher.name"),
         },
         "publication_date": get_publication_date(obj, media_type="online"),
     }
-    if py_.get(obj, "container.identifierType") == "ISBN":
+    if dig(obj, "container.identifierType") == "ISBN":
         proceedings_metadata["isbn"] = get_isbn(obj)
     return compact(proceedings_metadata)
 
 
 def get_journal_issue(obj) -> Optional[dict]:
     """get journal issue"""
-    volume = py_.get(obj, "container.volume")
+    volume = dig(obj, "container.volume")
     if volume is not None:
         volume = {"volume": volume}
     return compact(
         {
             "publication_date": get_publication_date(obj),
             "journal_volume": volume,
-            "issue": py_.get(obj, "container.issue"),
+            "issue": dig(obj, "container.issue"),
         }
     )
 
 
 def get_institution(obj) -> Optional[dict]:
     """get institution"""
-    if py_.get(obj, "container.title") is None:
+    if dig(obj, "container.title") is None:
         return None
 
     return compact(
         {
-            "institution_name": py_.get(obj, "container.title"),
+            "institution_name": dig(obj, "container.title"),
             "institution_id": {
-                "#text": py_.get(obj, "container.identifier"),
+                "#text": dig(obj, "container.identifier"),
                 "@type": "ror",
             }
-            if py_.get(obj, "container.identifierType") == "ROR"
+            if dig(obj, "container.identifierType") == "ROR"
             else None,
         }
     )
@@ -641,7 +637,7 @@ def get_titles(obj) -> Optional[dict]:
     """get titles"""
 
     titles = {}
-    for t in wrap(py_.get(obj, "titles", [])):
+    for t in wrap(dig(obj, "titles", [])):
         if isinstance(t, str):
             titles["title"] = t
         elif isinstance(t, dict) and t.get("titleType", None) == "Subtitle":
@@ -678,12 +674,12 @@ def get_contributors(obj) -> Optional[dict]:
             for affiliation in affiliations
         ]
 
-    if py_.get(obj, "contributors") is None or len(py_.get(obj, "contributors")) == 0:
+    if len(wrap(dig(obj, "contributors"))) == 0:
         return None
 
     con = [
         c
-        for c in py_.get(obj, "contributors")
+        for c in dig(obj, "contributors", [])
         if c.get("contributorRoles", None) == ["Author"]
         or c.get("contributorRoles", None) == ["Editor"]
     ]
@@ -756,21 +752,21 @@ def get_contributors(obj) -> Optional[dict]:
 
 def get_publisher(obj) -> Optional[dict]:
     """get publisher"""
-    if py_.get(obj, "publisher.name") is None:
+    if dig(obj, "publisher.name") is None:
         return None
 
     return {
-        "publisher_name": py_.get(obj, "publisher.name"),
+        "publisher_name": dig(obj, "publisher.name"),
     }
 
 
 def get_abstracts(obj) -> Optional[list]:
     """get abstracts"""
-    if py_.get(obj, "descriptions") is None:
+    if len(wrap(dig(obj, "descriptions"))) == 0:
         return None
 
     abstracts = []
-    for d in wrap(py_.get(obj, "descriptions", [])):
+    for d in wrap(dig(obj, "descriptions", [])):
         if d.get("type", None) == "Abstract":
             abstracts.append(
                 {
@@ -790,9 +786,9 @@ def get_abstracts(obj) -> Optional[list]:
 
 def get_group_title(obj) -> Optional[str]:
     """Get group title from metadata"""
-    if py_.get(obj, "subjects") is None or len(py_.get(obj, "subjects")) == 0:
+    if len(wrap(dig(obj, "subjects"))) == 0:
         return None
-    group_title = py_.get(obj, "subjects[0].subject")
+    group_title = dig(obj, "subjects.0.subject")
 
     # strip optional FOS (Field of Science) prefix
     if group_title.startswith("FOS: "):
@@ -803,10 +799,10 @@ def get_group_title(obj) -> Optional[str]:
 
 def get_item_number(obj) -> Optional[dict]:
     """Insert item number"""
-    if py_.get(obj, "identifiers") is None:
+    if len(wrap(dig(obj, "identifiers"))) == 0:
         return None
 
-    for identifier in py_.get(obj, "identifiers"):
+    for identifier in wrap(dig(obj, "identifiers")):
         if identifier.get("identifierType", None) == "UUID":
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
             return {
@@ -817,7 +813,7 @@ def get_item_number(obj) -> Optional[dict]:
 
 def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict]:
     """get publication date"""
-    pub_date_str = py_.get(obj, "date.published")
+    pub_date_str = dig(obj, "date.published")
     if pub_date_str is None:
         return None
 
@@ -839,10 +835,7 @@ def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict
 
 def get_archive_locations(obj) -> Optional[list]:
     """get archive locations"""
-    if (
-        py_.get(obj, "archive_locations") is None
-        or len(py_.get(obj, "archive_locations")) == 0
-    ):
+    if len(wrap(dig(obj, "archive_locations"))) == 0:
         return None
 
     return [
@@ -851,17 +844,17 @@ def get_archive_locations(obj) -> Optional[list]:
                 "archive": {"@name": location},
             }
         )
-        for location in py_.get(obj, "archive_locations")
+        for location in dig(obj, "archive_locations")
     ]
 
 
 def get_references(obj) -> Optional[Dict]:
     """get references"""
-    if py_.get(obj, "references") is None or len(py_.get(obj, "references")) == 0:
+    if len(wrap(dig(obj, "references"))) == 0:
         return None
 
     citations = []
-    for i, ref in enumerate(py_.get(obj, "references")):
+    for i, ref in enumerate(dig(obj, "references", [])):
         # Validate DOI before using it
         doi = doi_from_url(ref.get("id", None))
         unstructured = ref.get("unstructured", None)
@@ -894,7 +887,7 @@ def get_references(obj) -> Optional[Dict]:
 
 def get_license(obj) -> Optional[dict]:
     """get license"""
-    rights_uri = py_.get(obj, "license.url")
+    rights_uri = dig(obj, "license.url")
     if rights_uri is None:
         return None
 
@@ -916,13 +909,10 @@ def get_license(obj) -> Optional[dict]:
 
 def get_funding_references(obj) -> Optional[dict]:
     """Get funding references"""
-    if (
-        py_.get(obj, "funding_references") is None
-        or len(py_.get(obj, "funding_references")) == 0
-    ):
+    if len(wrap(dig(obj, "funding_references"))) == 0:
         return None
 
-    funding_refs = wrap(py_.get(obj, "funding_references"))
+    funding_refs = wrap(dig(obj, "funding_references"))
     assertions = []
 
     # Check if we need funding groups (multiple funders with award numbers)
@@ -1004,7 +994,7 @@ def get_funding_references(obj) -> Optional[dict]:
 
 def get_relations(obj) -> Optional[Dict]:
     """get relations"""
-    if py_.get(obj, "relations") is None or len(py_.get(obj, "relations")) == 0:
+    if len(wrap(dig(obj, "relations"))) == 0:
         return None
 
     def format_relation(relation):
@@ -1056,7 +1046,7 @@ def get_relations(obj) -> Optional[Dict]:
         return {
             group: compact(
                 {
-                    "@relationship-type": py_.lower_first(relation_type),
+                    "@relationship-type": relation_type[0].lower() + relation_type[1:],
                     "@identifier-type": identifier_type,
                     "#text": _id,
                 },
@@ -1065,7 +1055,7 @@ def get_relations(obj) -> Optional[Dict]:
 
     related_items = [
         format_relation(i)
-        for i in py_.get(obj, "relations")
+        for i in dig(obj, "relations")
         if format_relation(i) is not None
     ]
 
@@ -1081,10 +1071,10 @@ def get_relations(obj) -> Optional[Dict]:
 
 def get_subjects(obj) -> Optional[list]:
     """Get crossref subjects"""
-    if py_.get(obj, "subjects") is None:
+    if dig(obj, "subjects") is None:
         return None
     subjects = []
-    for subject in py_.get(obj, "subjects"):
+    for subject in dig(obj, "subjects"):
         if isinstance(subject, dict):
             subjects.append(subject.get("subject", None))
         else:
@@ -1094,18 +1084,18 @@ def get_subjects(obj) -> Optional[list]:
 
 def get_doi_data(obj) -> Optional[dict]:
     """get doi data"""
-    if doi_from_url(py_.get(obj, "id")) is None or py_.get(obj, "url") is None:
+    if doi_from_url(dig(obj, "id")) is None or dig(obj, "url") is None:
         return None
 
     items = [
         {
             "resource": {
                 "@mime_type": "text/html",
-                "#text": py_.get(obj, "url"),
+                "#text": dig(obj, "url"),
             }
         }
     ]
-    for file in wrap(py_.get(obj, "files")):
+    for file in wrap(dig(obj, "files")):
         if file.get("mimeType", None) is not None and file.get("url", None) is not None:
             items.append(
                 {
@@ -1118,8 +1108,8 @@ def get_doi_data(obj) -> Optional[dict]:
 
     return compact(
         {
-            "doi": doi_from_url(py_.get(obj, "id")),
-            "resource": py_.get(obj, "url"),
+            "doi": doi_from_url(dig(obj, "id")),
+            "resource": dig(obj, "url"),
             "collection": {
                 "@property": "text-mining",
                 "item": items,
@@ -1131,11 +1121,11 @@ def get_doi_data(obj) -> Optional[dict]:
 def get_isbn(obj, media_type: Optional[str] = None) -> Optional[Dict]:
     """get isbn"""
     if (
-        py_.get(obj, "container.identifierType") != "ISBN"
-        or py_.get(obj, "container.identifier") is None
+        dig(obj, "container.identifierType") != "ISBN"
+        or dig(obj, "container.identifier") is None
     ):
         return None
-    isbn = py_.get(obj, "container.identifier")
+    isbn = dig(obj, "container.identifier")
     return normalize_isbn_crossref(isbn)
 
 
@@ -1168,9 +1158,9 @@ def normalize_isbn_crossref(isbn: str) -> Optional[str]:
 
 def get_issn(obj):
     """get issn"""
-    if py_.get(obj, "container.identifierType") != "ISSN":
+    if dig(obj, "container.identifierType") != "ISSN":
         return None
-    return py_.get(obj, "container.identifier")
+    return dig(obj, "container.identifier")
 
 
 class CrossrefXMLClient:
@@ -1253,10 +1243,10 @@ class CrossrefXMLClient:
 
             response = parse_xml(resp.content)
 
-            status = py_.get(response, "html.body.h2")
+            status = dig(response, "html.body.h2")
             if status != "SUCCESS":
                 # Handle error response
-                message = py_.get(response, "html.body.p")
+                message = dig(response, "html.body.p")
                 log.error(f"Crossref API error: {message}")
                 return message
 

@@ -5,9 +5,8 @@ from typing import Any, Dict, List, Optional, Union
 
 import orjson as json
 import yaml
-from pydash import py_
 
-from .base_utils import parse_xml, wrap
+from .base_utils import omit, parse_xml, wrap
 from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -327,7 +326,7 @@ class Metadata:
         """Write in CSL format with error checking."""
         csl_output = write_csl(self)
         if csl_output:
-            instance = py_.omit(json.loads(csl_output), [])
+            instance = omit(json.loads(csl_output), [])
             self.errors = json_schema_errors(instance, schema="csl")
             return csl_output
         return ""

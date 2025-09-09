@@ -3,15 +3,22 @@
 
 from os import path
 
-import pydash as py_
 import pytest  # noqa: F401
 
 from commonmeta.base_utils import (
+    camel_case,
     compact,
+    dig,
+    flatten,
+    kebab_case,
+    keep,
+    omit,
     parse_attributes,
     parse_xml,
+    pascal_case,
     presence,
     sanitize,
+    unique,
     unwrap,
     wrap,
 )
@@ -37,6 +44,61 @@ def test_unwrap():
     assert [{"name": "test"}, {"name": "test2"}] == unwrap(
         [{"name": "test"}, {"name": "test2"}]
     )
+
+
+def test_omit():
+    "omit"
+    assert {"name": "test"} == omit({"name": "test", "other": None}, ["other"])
+    assert {} == omit(None, ["other"])
+
+
+def test_keep():
+    "keep"
+    assert {"name": "test"} == keep({"name": "test", "other": None}, ["name"])
+    assert {} == keep(None, ["name"])
+
+
+def test_flatten():
+    "flatten"
+    assert [1, 2, 3] == flatten([[1], [2], [3]])
+    assert [1, 2, 3] == flatten([[1, 2], [3]])
+    assert [1, 2, 3] == flatten([1, 2, 3])
+    assert [] == flatten([])
+
+
+def test_unique():
+    "unique"
+    assert [1, 2, 3] == unique([1, 2, 2, 3])
+    assert [] == unique([])
+
+
+def test_dig():
+    "dig"
+    assert "test" == dig({"name": "test", "other": None}, ["name"])
+    assert "value" == dig({"name": {"test": ["value", "another"]}}, "name.test[0]")
+    assert "value" == dig({"name": {"test": ["value", "another"]}}, "name.test.0")
+    assert None is dig(None, ["name"])
+
+
+def test_pascal_case():
+    "pascal_case"
+    assert "HelloWorld" == pascal_case("hello world")
+    assert "HelloWorld" == pascal_case("hello_world")
+    assert "HelloWorld" == pascal_case("hello-world")
+
+
+def test_camel_case():
+    "camel_case"
+    assert "helloWorld" == camel_case("hello world")
+    assert "helloWorld" == camel_case("hello_world")
+    assert "helloWorld" == camel_case("hello-world")
+
+
+def test_kebab_case():
+    "kebab_case"
+    assert "hello-world" == kebab_case("hello world")
+    assert "hello-world" == kebab_case("hello_world")
+    assert "hello-world" == kebab_case("hello-world")
 
 
 def test_presence():
@@ -99,9 +161,7 @@ def test_parse_xml():
     "parse XML"
     string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
     data = parse_xml(string)
-    assert (
-        py_.get(data, "crossref_result.xmlns") == "http://www.crossref.org/qrschema/3.0"
-    )
+    assert dig(data, "crossref_result.xmlns") == "http://www.crossref.org/qrschema/3.0"
 
 
 def test_parse_xml_crossref():
@@ -109,7 +169,7 @@ def test_parse_xml_crossref():
     string = path.join(path.dirname(__file__), "fixtures", "crossref.xml")
     data = parse_xml(string, dialect="crossref")
     assert (
-        py_.get(
+        dig(
             data,
             "crossref_result.query_result.body.query.doi_record.crossref.journal.journal_article.doi_data.doi",
         )

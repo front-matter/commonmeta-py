@@ -4,11 +4,22 @@ from typing import List, Optional
 from xml.parsers.expat import ExpatError
 
 import requests
-from pydash import py_
 from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..author_utils import get_authors
-from ..base_utils import compact, parse_attributes, parse_xml, presence, sanitize, wrap
+from ..base_utils import (
+    compact,
+    dig,
+    flatten,
+    omit,
+    parse_attributes,
+    parse_xml,
+    pascal_case,
+    presence,
+    sanitize,
+    unique,
+    wrap,
+)
 from ..constants import (
     CR_TO_CM_CONTAINER_TRANSLATIONS,
     CR_TO_CM_TRANSLATIONS,
@@ -86,16 +97,16 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
     if editors:
         contributors += get_authors(editors)
 
-    url = normalize_url(py_.get(meta, "resource.primary.URL"))
+    url = normalize_url(dig(meta, "resource.primary.URL"))
     titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
-    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+    if _type == "Article" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
     date = compact(
         {
-            "published": py_.get(meta, "issued.date-time")
+            "published": dig(meta, "issued.date-time")
             or get_date_from_date_parts(meta.get("issued", None))
-            or py_.get(meta, "created.date-time")
+            or dig(meta, "created.date-time")
         }
     )
     identifiers = []
@@ -121,17 +132,17 @@ def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-        relations = py_.uniq(relations)
-    references = py_.uniq([get_reference(i) for i in wrap(meta.get("reference", None))])
+        relations = unique(relations)
+    references = unique([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
     descriptions = get_abstract(meta)
-    subjects = py_.uniq(
+    subjects = unique(
         [
             {"subject": i}
             for i in wrap(meta.get("subject", None) or meta.get("group-title", None))
         ]
     )
-    files = py_.uniq(
+    files = unique(
         [
             get_file(i)
             for i in wrap(meta.get("link", None))
@@ -214,7 +225,7 @@ def get_abstract(meta: dict) -> Optional[str]:
     try:
         # Parse the abstract XML if it is JATS formatted
         description_dct = parse_xml(abstract, xml_attribs=True)
-        description = py_.get(description_dct, "jats:p")
+        description = dig(description_dct, "jats:p")
         if description is None:
             description = abstract
         return [{"description": sanitize(description), "type": "Abstract"}]
@@ -270,7 +281,7 @@ def get_relations(relations: list) -> list:
         return []
 
     def format_relation(key, values):
-        _type = py_.pascal_case(key)
+        _type = pascal_case(key)
         if _type not in supported_types:
             return None
         rs = []
@@ -286,8 +297,8 @@ def get_relations(relations: list) -> list:
 
         return rs
 
-    return py_.uniq(
-        py_.compact(py_.flatten([format_relation(k, v) for k, v in relations.items()]))
+    return unique(
+        compact(flatten([format_relation(k, v) for k, v in relations.items()]))
     )
 
 
@@ -323,7 +334,7 @@ def get_issn(meta: dict) -> Optional[str]:
         or next(
             (
                 item
-                for item in py_.get(meta, "relation.is-part-of", [])
+                for item in dig(meta, "relation.is-part-of", [])
                 if item["id-type"] == "issn"
             ),
             None,
@@ -364,9 +375,9 @@ def get_container(meta: dict, issn: str) -> dict:
     isbn = validate_isbn(isbn["value"]) if isbn else None
     container_title = parse_attributes(meta.get("container-title", None), first=True)
     if not container_title:
-        container_title = py_.get(meta, "institution.0.name")
+        container_title = dig(meta, "institution.0.name")
     volume = meta.get("volume", None)
-    issue = py_.get(meta, "journal-issue.issue")
+    issue = dig(meta, "journal-issue.issue")
     if meta.get("page", None):
         pages = meta.get("page", None).split("-")
         first_page = pages[0]
@@ -414,7 +425,7 @@ def from_crossref_funding(funding_references: list) -> list:
             if funderIdentifier:
                 f["funderIdentifier"] = funderIdentifier
                 f["funderIdentifierType"] = "ROR"
-        f = py_.omit(f, "DOI", "doi-asserted-by")
+        f = omit(f, "DOI", "doi-asserted-by")
         if (
             funding.get("name", None) is not None
             and funding.get("award", None) is not None
@@ -425,7 +436,7 @@ def from_crossref_funding(funding_references: list) -> list:
                 formatted_funding_references.append(fund_ref)
         elif f != {}:
             formatted_funding_references.append(f)
-    return py_.uniq(formatted_funding_references)
+    return unique(formatted_funding_references)
 
 
 def get_random_crossref_id(number: int = 1, **kwargs) -> list:
@@ -437,7 +448,7 @@ def get_random_crossref_id(number: int = 1, **kwargs) -> list:
         if response.status_code != 200:
             return []
 
-        items = py_.get(response.json(), "message.items")
+        items = dig(response.json(), "message.items")
         return [i.get("DOI") for i in items]
     except (ReadTimeout, ConnectionError):
         return []

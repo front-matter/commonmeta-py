@@ -4,10 +4,9 @@ from typing import Optional
 
 import requests
 from furl import furl
-from pydash import py_
 
 from ..author_utils import get_authors
-from ..base_utils import compact, presence, sanitize, wrap
+from ..base_utils import compact, dig, omit, presence, sanitize, wrap
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
     INVENIORDM_TO_CM_TRANSLATIONS,
@@ -43,10 +42,10 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    url = normalize_url(py_.get(meta, "links.self_html"))
+    url = normalize_url(dig(meta, "links.self_html"))
     _id = (
         doi_as_url(meta.get("doi", None))
-        or doi_as_url(py_.get(meta, "pids.doi.identifier"))
+        or doi_as_url(dig(meta, "pids.doi.identifier"))
         or url
     )
     # Rogue Scholar records use an external URL
@@ -54,29 +53,29 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         url = next(
             (
                 normalize_url(identifier.get("identifier"))
-                for identifier in wrap(py_.get(meta, "metadata.identifiers", []))
+                for identifier in wrap(dig(meta, "metadata.identifiers"))
                 if identifier.get("scheme") == "url"
                 and identifier.get("identifier", None) is not None
             ),
             None,
         )
 
-    resource_type = py_.get(meta, "metadata.resource_type.type") or py_.get(
+    resource_type = dig(meta, "metadata.resource_type.type") or dig(
         meta, "metadata.resource_type.id"
     )
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
 
-    contributors = py_.get(meta, "metadata.creators")
+    contributors = dig(meta, "metadata.creators")
     contributors = get_authors(
         from_inveniordm(wrap(contributors)),
     )
-    publisher = meta.get("publisher", None) or py_.get(meta, "metadata.publisher")
+    publisher = meta.get("publisher", None) or dig(meta, "metadata.publisher")
     if publisher:
         publisher = {"name": publisher}
-    if _type == "Article" and py_.get(publisher, "name") == "Front Matter":
+    if _type == "Article" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
 
-    title = py_.get(meta, "metadata.title")
+    title = dig(meta, "metadata.title")
     titles = [{"title": sanitize(title)}] if title else None
     # if additional_titles:
     #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
@@ -85,16 +84,16 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     date["published"] = next(
         (
             i.get("date")
-            for i in wrap(py_.get(meta, "metadata.dates", []))
-            if py_.get(i, "type.id") == "issued" and i.get("date", None) is not None
+            for i in wrap(dig(meta, "metadata.dates"))
+            if dig(i, "type.id") == "issued" and i.get("date", None) is not None
         ),
         None,
-    ) or py_.get(meta, ("metadata.publication_date"))
+    ) or dig(meta, ("metadata.publication_date"))
     date["updated"] = next(
         (
             i.get("date")
-            for i in wrap(py_.get(meta, "metadata.dates", []))
-            if py_.get(i, "type.id") == "updated" and i.get("date", None) is not None
+            for i in wrap(dig(meta, "metadata.dates", []))
+            if dig(i, "type.id") == "updated" and i.get("date", None) is not None
         ),
         None,
     ) or strip_milliseconds(meta.get("updated", None))
@@ -109,63 +108,59 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         )
         publisher = {"name": "Zenodo"}
     elif f.host == "rogue-scholar.org":
-        issn = py_.get(meta, "custom_fields.journal:journal.issn")
-        slug = py_.get(meta, "parent.communities.entries.0.slug")
+        issn = dig(meta, "custom_fields.journal:journal.issn")
+        slug = dig(meta, "parent.communities.entries.0.slug")
         community_url = (
             f"https://rogue-scholar.org/communities/{slug}" if slug else None
         )
         container = compact(
             {
                 "type": "Blog",
-                "title": py_.get(meta, "custom_fields.journal:journal.title"),
+                "title": dig(meta, "custom_fields.journal:journal.title"),
                 "identifier": issn if issn else community_url,
                 "identifierType": "ISSN" if issn else "URL",
-                "platform": py_.get(meta, "custom_fields.rs:generator", None),
+                "platform": dig(meta, "custom_fields.rs:generator", None),
             }
         )
         publisher = {"name": "Front Matter"}
     else:
-        container = py_.get(meta, "custom_fields.journal:journal")
+        container = dig(meta, "custom_fields.journal:journal")
         if container:
-            issn = py_.get(meta, "custom_fields.journal:journal.issn")
+            issn = dig(meta, "custom_fields.journal:journal.issn")
             container = compact(
                 {
                     "type": "Periodical",
                     "title": container.get("title", None),
                     "identifier": issn if issn else None,
                     "identifierType": "ISSN" if issn else None,
-                    "platform": py_.get(meta, "custom_fields.rs:generator", None),
+                    "platform": dig(meta, "custom_fields.rs:generator", None),
                 }
             )
     descriptions = format_descriptions(
         [
-            py_.get(meta, "metadata.description"),
-            py_.get(meta, "metadata.notes"),
+            dig(meta, "metadata.description"),
+            dig(meta, "metadata.notes"),
         ]
     )
-    identifiers = py_.compact(
-        [format_identifier(i) for i in wrap(py_.get(meta, "metadata.identifiers"))]
+    identifiers = compact(
+        [format_identifier(i) for i in wrap(dig(meta, "metadata.identifiers"))]
     )
-    language = py_.get(meta, "metadata.language") or py_.get(
-        meta, "metadata.languages[0].id"
-    )
-    license_ = py_.get(meta, "metadata.rights[0].id") or py_.get(
-        meta, "metadata.license.id"
-    )
+    language = dig(meta, "metadata.language") or dig(meta, "metadata.languages.0.id")
+    license_ = dig(meta, "metadata.rights.0.id") or dig(meta, "metadata.license.id")
     if license_:
         license_ = dict_to_spdx({"id": license_})
-    subjects = [dict_to_fos(i) for i in wrap(py_.get(meta, "metadata.subjects"))] or [
-        name_to_fos(i) for i in wrap(py_.get(meta, "metadata.keywords"))
+    subjects = [dict_to_fos(i) for i in wrap(dig(meta, "metadata.subjects"))] or [
+        name_to_fos(i) for i in wrap(dig(meta, "metadata.keywords"))
     ]
-    references = get_references(wrap(py_.get(meta, "metadata.references")))
+    references = get_references(wrap(dig(meta, "metadata.references")))
     # fallback to related_identifiers
     if len(references) == 0:
         references = get_references_from_relations(
-            wrap(py_.get(meta, "metadata.related_identifiers"))
+            wrap(dig(meta, "metadata.related_identifiers"))
         )
-    citations = get_citations(wrap(py_.get(meta, "custom_fields.rs:citations")))
-    relations = get_relations(wrap(py_.get(meta, "metadata.related_identifiers")))
-    funding_references = get_funding_references(wrap(py_.get(meta, "metadata.funding")))
+    citations = get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
+    relations = get_relations(wrap(dig(meta, "metadata.related_identifiers")))
+    funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
     if meta.get("conceptdoi", None):
         relations.append(
             {
@@ -174,8 +169,8 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             }
         )
 
-    content = py_.get(meta, "custom_fields.rs:content_html")
-    image = py_.get(meta, "custom_fields.rs:image")
+    content = dig(meta, "custom_fields.rs:content_html")
+    image = dig(meta, "custom_fields.rs:image")
     state = "findable"
     files = [get_file(i) for i in wrap(meta.get("files"))]
 
@@ -195,7 +190,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "subjects": presence(subjects),
             "identifiers": presence(identifiers),
             "language": get_language(language),
-            "version": py_.get(meta, "metadata.version"),
+            "version": dig(meta, "metadata.version"),
             "license": presence(license_),
             "descriptions": descriptions,
             "geoLocations": None,
@@ -276,7 +271,7 @@ def get_references_from_relations(references: list) -> list:
             reference["id"] = normalize_doi(identifier)
         elif identifier and identifier_type == "URL":
             reference["id"] = normalize_url(identifier)
-        reference = py_.omit(
+        reference = omit(
             reference,
             [
                 "relationType",
@@ -299,18 +294,18 @@ def get_funding_references(funding_references: list) -> list:
     def map_funding(funding: dict) -> dict:
         """map_funding"""
 
-        funder_identifier = normalize_ror(py_.get(funding, "funder.id"))
-        award_uri = py_.get(funding, "award.identifiers[0].identifier")
+        funder_identifier = normalize_ror(dig(funding, "funder.id"))
+        award_uri = dig(funding, "award.identifiers.0.identifier")
         if normalize_doi(award_uri) is not None:
             award_uri = normalize_doi(award_uri)
 
         return compact(
             {
-                "funderName": py_.get(funding, "funder.name"),
+                "funderName": dig(funding, "funder.name"),
                 "funderIdentifier": funder_identifier,
                 "funderIdentifierType": "ROR" if funder_identifier else None,
-                "awardTitle": py_.get(funding, "award.title.en"),
-                "awardNumber": py_.get(funding, "award.number"),
+                "awardTitle": dig(funding, "award.title.en"),
+                "awardNumber": dig(funding, "award.number"),
                 "awardUri": award_uri,
             }
         )
@@ -326,7 +321,7 @@ def get_file(file: dict) -> str:
             "bucket": file.get("bucket", None),
             "key": file.get("key", None),
             "checksum": file.get("checksum", None),
-            "url": py_.get(file, "links.self"),
+            "url": dig(file, "links.self"),
             "size": file.get("size", None),
             "mimeType": "application/" + _type if _type else None,
         }
@@ -338,26 +333,23 @@ def get_relations(relations: list) -> list:
 
     def map_relation(relation: dict) -> dict:
         """map_relation"""
-        identifier = relation.get("identifier", None)
-        scheme = relation.get("scheme", None)
-        relation_type = relation.get("relation", None) or relation.get(
-            "relation_type", None
-        )
+        identifier = dig(relation, "identifier")
+        scheme = dig(relation, "scheme")
+        relation_type = dig(relation, "relation_type.id") or dig(relation, "relation")
         if scheme == "doi":
             identifier = doi_as_url(identifier)
         else:
             identifier = normalize_url(identifier)
         return {
             "id": identifier,
-            "type": py_.capitalize(relation_type, False) if relation_type else None,
+            "type": (relation_type[0].upper() + relation_type[1:])
+            if relation_type
+            else None,
         }
 
     identifiers = [map_relation(i) for i in relations]
-    return [
-        i
-        for i in identifiers
-        if py_.upper_first(i["type"]) in COMMONMETA_RELATION_TYPES
-    ]
+    print(identifiers)
+    return [i for i in identifiers if i["type"] in COMMONMETA_RELATION_TYPES]
 
 
 def format_descriptions(descriptions: list) -> list:

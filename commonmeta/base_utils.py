@@ -5,14 +5,138 @@ import re
 import uuid
 from datetime import datetime
 from os import path
-from typing import Optional, Union
+from typing import Any, Dict, Iterable, List, Optional, TypeVar, Union
 
 import nh3
-import pydash as py_
 import xmltodict
 
+T = TypeVar("T")
 
-def wrap(item) -> list:
+
+def _tokens(path: Union[str, Iterable[Any]]):
+    """Yield tokens from a dot/bracket path like a.b[0]['c'] or a.0.b"""
+    if isinstance(path, (list, tuple)):
+        yield from path
+        return
+    if not isinstance(path, str) or not path:
+        return
+
+    i, n = 0, len(path)
+    buf = []
+    while i < n:
+        c = path[i]
+
+        if c == ".":  # end of a token
+            if buf:
+                token = "".join(buf)
+                # Convert numeric strings to integers for list indexing
+                if token.isdigit():
+                    yield int(token)
+                else:
+                    yield token
+                buf = []
+            i += 1
+        elif c == "[":  # bracket expression
+            if buf:
+                token = "".join(buf)
+                # Convert numeric strings to integers for list indexing
+                if token.isdigit():
+                    yield int(token)
+                else:
+                    yield token
+                buf = []
+            i += 1
+            if path[i] in ("'", '"'):  # quoted key
+                quote = path[i]
+                i += 1
+                start = i
+                while i < n and path[i] != quote:
+                    i += 1
+                yield path[start:i]
+                i += 2  # skip closing quote + ]
+            else:  # integer index
+                start = i
+                while i < n and path[i].isdigit():
+                    i += 1
+                yield int(path[start:i])
+                i += 1  # skip ]
+        else:
+            buf.append(c)
+            i += 1
+
+    if buf:
+        token = "".join(buf)
+        # Convert numeric strings to integers for list indexing
+        if token.isdigit():
+            yield int(token)
+        else:
+            yield token
+
+
+def dig(obj: Any, path: Union[str, Iterable[Any]], default: Any = None) -> Any:
+    """
+    Safe nested getter similar to pydash.get.
+    """
+    cur = obj
+    for key in _tokens(path):
+        try:
+            if isinstance(cur, dict):
+                cur = cur[key]
+            elif isinstance(cur, (list, tuple)) and isinstance(key, int):
+                cur = cur[key]
+            else:
+                cur = getattr(cur, key)
+        except (KeyError, IndexError, AttributeError, TypeError):
+            return default
+    return cur
+
+
+def unique(iterable: Optional[Iterable[T]]) -> List[T]:
+    """
+    Return a list of unique values in the given iterable, preserving order.
+    Returns empty list if iterable is None.
+    Handles unhashable types like dicts by using list comparison.
+    """
+    if iterable is None:
+        return []
+
+    result = []
+    for item in iterable:
+        if item not in result:
+            result.append(item)
+    return result
+
+
+def omit(obj: Optional[Dict[str, Any]], *keys) -> Dict[str, Any]:
+    """
+    Return a new dict without the specified keys.
+    Can accept keys as separate arguments or as an iterable.
+    Returns empty dict if obj is None.
+    """
+    if obj is None:
+        return {}
+
+    # If first argument is an iterable and no other args, treat it as the keys
+    if len(keys) == 1 and hasattr(keys[0], "__iter__") and not isinstance(keys[0], str):
+        keys = keys[0]
+
+    keys = set(keys)
+    return {k: v for k, v in obj.items() if k not in keys}
+
+
+def keep(obj: Optional[Dict[str, Any]], keys: Iterable[str]) -> Dict[str, Any]:
+    """
+    Return a new dict with only the specified keys.
+    Returns empty dict if obj is None.
+    """
+    if obj is None:
+        return {}
+
+    keys = set(keys)
+    return {k: v for k, v in obj.items() if k in keys}
+
+
+def wrap(item: Optional[Union[dict, list, str]]) -> list:
     """Turn None, dict, or list into list"""
     if item is None:
         return []
@@ -28,6 +152,19 @@ def unwrap(lst: list) -> Optional[Union[dict, list]]:
     if len(lst) == 1:
         return lst[0]
     return lst
+
+
+def flatten(array: Iterable[Iterable[Any]]) -> List[Any]:
+    """
+    Flatten a list one level deep.
+    """
+    result = []
+    for item in array:
+        if isinstance(item, (list, tuple)):
+            result.extend(item)
+        else:
+            result.append(item)
+    return result
 
 
 def presence(
@@ -46,6 +183,47 @@ def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
         return lst if len(lst) > 0 else None
 
     return None
+
+
+def _split_words(s: str) -> List[str]:
+    """Split string into words by space, underscore, hyphen, and case changes."""
+    words, current = [], []
+    for i, ch in enumerate(s):
+        if ch in (" ", "_", "-"):
+            if current:
+                words.append("".join(current))
+                current = []
+        elif ch.isupper() and current and not current[-1].isupper():
+            # Start of a new word on case change (e.g. fooBar -> foo, Bar)
+            words.append("".join(current))
+            current = [ch]
+        else:
+            current.append(ch)
+    if current:
+        words.append("".join(current))
+    return words
+
+
+def pascal_case(s: str) -> str:
+    """Convert string to PascalCase (HelloWorld)."""
+    words = _split_words(s)
+    return "".join(w[:1].upper() + w[1:].lower() for w in words if w)
+
+
+def camel_case(s: str) -> str:
+    """Convert string to camelCase (helloWorld)."""
+    words = _split_words(s)
+    if not words:
+        return ""
+    first = words[0].lower()
+    rest = [w[:1].upper() + w[1:].lower() for w in words[1:] if w]
+    return first + "".join(rest)
+
+
+def kebab_case(s: str) -> str:
+    """Convert string to kebab-case (hello-world)."""
+    words = _split_words(s)
+    return "-".join(w.lower() for w in words if w)
 
 
 def parse_attributes(
@@ -121,12 +299,12 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
         input.pop(type)
 
         if type == "book":
-            book_metadata = py_.get(input, "book_metadata") or {}
+            book_metadata = dig(input, "book_metadata") or {}
             input.pop("book_metadata")
             book_metadata = {**book_metadata, **input}
             input = {"book": {**attributes, "book_metadata": book_metadata}}
         elif type == "database":
-            database_metadata = py_.get(input, "database_metadata") or {}
+            database_metadata = dig(input, "database_metadata") or {}
             input.pop("database_metadata")
             val = input.pop("publisher_item")
             institution = input.pop("institution", None)
@@ -141,9 +319,9 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
                 }
             }
         elif type == "journal":
-            journal_metadata = py_.get(input, "journal_metadata") or {}
-            journal_issue = py_.get(input, "journal_issue") or {}
-            journal_article = py_.get(input, "journal_article") or {}
+            journal_metadata = dig(input, "journal_metadata") or {}
+            journal_issue = dig(input, "journal_issue") or {}
+            journal_article = dig(input, "journal_article") or {}
             input.pop("journal_metadata")
             input.pop("journal_issue")
             input.pop("journal_article")
@@ -155,7 +333,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
                 }
             }
         elif type == "proceedings_article":
-            proceedings_metadata = py_.get(input, "proceedings_metadata") or {}
+            proceedings_metadata = dig(input, "proceedings_metadata") or {}
             input.pop("proceedings_metadata")
             input = {
                 "proceedings": {
@@ -165,7 +343,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
                 }
             }
         elif type == "sa_component":
-            component = py_.get(input, "component") or {}
+            component = dig(input, "component") or {}
             input.pop("component")
             input = {
                 "sa_component": {
@@ -214,21 +392,21 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
 
             # handle nested book_metadata and journal structure as in unparse_xml
             if type == "book":
-                book_metadata = py_.get(item, "book_metadata") or {}
+                book_metadata = dig(item, "book_metadata") or {}
                 item.pop("book_metadata")
                 book_metadata = {**book_metadata, **item}
                 item = {"book": {**attributes, "book_metadata": book_metadata}}
             elif type == "database":
-                database_metadata = py_.get(item, "database_metadata") or {}
+                database_metadata = dig(item, "database_metadata") or {}
                 item.pop("database_metadata")
                 database_metadata = {**database_metadata, **item}
                 item = {
                     "database": {**attributes, "database_metadata": database_metadata}
                 }
             elif type == "journal":
-                journal_metadata = py_.get(item, "journal_metadata") or {}
-                journal_issue = py_.get(item, "journal_issue") or {}
-                journal_article = py_.get(item, "journal_article") or {}
+                journal_metadata = dig(item, "journal_metadata") or {}
+                journal_issue = dig(item, "journal_issue") or {}
+                journal_article = dig(item, "journal_article") or {}
                 item.pop("journal_metadata")
                 item.pop("journal_issue")
                 item.pop("journal_article")
@@ -240,7 +418,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                     }
                 }
             elif type == "sa_component":
-                component = py_.get(input, "component") or {}
+                component = dig(input, "component") or {}
                 item.pop("component")
                 item = {
                     "sa_component": {
@@ -282,6 +460,20 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
     return xmltodict.unparse(output, **kwargs)
 
 
+def get_crossref_xml_head(metadata: dict) -> dict:
+    """Get head element for Crossref XML"""
+
+    return {
+        "doi_batch_id": str(uuid.uuid4()),
+        "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
+        "depositor": {
+            "depositor_name": metadata.get("depositor", None) or "test",
+            "email_address": metadata.get("email", None) or "info@example.org",
+        },
+        "registrant": metadata.get("registrant", None) or "test",
+    }
+
+
 def sanitize(text: str, **kwargs) -> str:
     """Sanitize text"""
     # default whitelisted HTML tags
@@ -299,17 +491,3 @@ def sanitize(text: str, **kwargs) -> str:
     string = nh3.clean(text, tags=tags, attributes=attributes, link_rel=None)
     # remove excessive internal whitespace
     return " ".join(re.split(r"\s+", string, flags=re.UNICODE))
-
-
-def get_crossref_xml_head(metadata: dict) -> dict:
-    """Get head element for Crossref XML"""
-
-    return {
-        "doi_batch_id": str(uuid.uuid4()),
-        "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
-        "depositor": {
-            "depositor_name": metadata.get("depositor", None) or "test",
-            "email_address": metadata.get("email", None) or "info@example.org",
-        },
-        "registrant": metadata.get("registrant", None) or "test",
-    }

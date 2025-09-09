@@ -5,10 +5,9 @@ from time import time
 from typing import Dict, Optional
 
 import orjson as json
-import pydash as py_
 import requests
 
-from ..base_utils import compact, parse_attributes, presence, wrap
+from ..base_utils import compact, dig, parse_attributes, presence, wrap
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
@@ -526,7 +525,7 @@ def add_record_to_communities(
     # Add record to communities defined as IsPartOf relation in InvenioRDM RelatedIdentifiers
     if hasattr(metadata, "related_identifiers") and metadata.related_identifiers:
         for identifier in metadata.related_identifiers:
-            if py_.get(identifier, "relation_type.id") == "ispartof" and identifier.get(
+            if dig(identifier, "relation_type.id") == "ispartof" and identifier.get(
                 "identifier", ""
             ).startswith(f"https://{host}/api/communities/"):
                 slug = identifier.get("identifier").split("/")[5]
@@ -564,8 +563,8 @@ def search_by_doi(doi, host, token) -> Optional[str]:
         )
         response.raise_for_status()
         data = response.json()
-        if py_.get(data, "hits.total", 0) > 0:
-            return py_.get(data, "hits.hits.0.id")
+        if dig(data, "hits.total", 0) > 0:
+            return dig(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
         log.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
@@ -720,8 +719,8 @@ def get_record_communities(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
-        if py_.get(data, "hits.total", 0) > 0:
-            return py_.get(data, "hits.hits")
+        if dig(data, "hits.total", 0) > 0:
+            return dig(data, "hits.hits")
         return None
     except requests.exceptions.RequestException as e:
         log.error(f"Error getting communities: {str(e)}", exc_info=True)
@@ -816,8 +815,8 @@ def search_by_slug(slug: str, type: str, host: str, token: str) -> Optional[str]
         )
         response.raise_for_status()
         data = response.json()
-        if py_.get(data, "hits.total", 0) > 0:
-            return py_.get(data, "hits.hits.0.id")
+        if dig(data, "hits.total", 0) > 0:
+            return dig(data, "hits.hits.0.id")
         return None
     except requests.exceptions.RequestException as e:
         log.error(f"Error searching for community: {str(e)}", exc_info=True)

@@ -3,10 +3,9 @@
 from collections import defaultdict
 
 import requests
-from pydash import py_
 
 from ..author_utils import get_authors
-from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
+from ..base_utils import compact, dig, omit, parse_attributes, presence, sanitize, wrap
 from ..constants import DC_TO_CM_TRANSLATIONS, Commonmeta
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
@@ -22,7 +21,7 @@ def get_datacite_xml(pid: str, **kwargs) -> dict:
     response = requests.get(url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
-    return {**py_.get(response.json(), "data.attributes", {}), "via": "datacite_xml"}
+    return {**dig(response.json(), "data.attributes", {}), "via": "datacite_xml"}
 
 
 def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
@@ -37,11 +36,11 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
     doi = parse_attributes(meta.get("identifier", None))
     _id = doi_as_url(doi) if doi else None
 
-    resource__typegeneral = py_.get(meta, "resourceType.resourceTypeGeneral")
+    resource__typegeneral = dig(meta, "resourceType.resourceTypeGeneral")
     _type = DC_TO_CM_TRANSLATIONS.get(resource__typegeneral, "Other")
-    additional_type = py_.get(meta, "resourceType.#text")
+    additional_type = dig(meta, "resourceType.#text")
 
-    identifiers = wrap(py_.get(meta, "alternateIdentifiers.alternateIdentifier"))
+    identifiers = wrap(dig(meta, "alternateIdentifiers.alternateIdentifier"))
     identifiers = get_xml_identifiers(identifiers)
 
     def format_title(title):
@@ -56,16 +55,14 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             }
         return None
 
-    titles = [format_title(i) for i in wrap(py_.get(meta, "titles.title"))]
+    titles = [format_title(i) for i in wrap(dig(meta, "titles.title"))]
 
-    contributors = get_authors(wrap(py_.get(meta, "creators.creator")))
+    contributors = get_authors(wrap(dig(meta, "creators.creator")))
     contrib = get_authors(wrap(meta.get("contributors", None)))
     if contrib:
         contributors = contributors + contrib
-    publisher = {"name": py_.get(meta, "publisher")}
-    date = get_dates(
-        wrap(py_.get(meta, "dates.date")), meta.get("publicationYear", None)
-    )
+    publisher = {"name": dig(meta, "publisher")}
+    date = get_dates(wrap(dig(meta, "dates.date")), meta.get("publicationYear", None))
 
     def format_description(description):
         """format_description"""
@@ -82,7 +79,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
         return None
 
     descriptions = [
-        format_description(i) for i in wrap(py_.get(meta, "descriptions.description"))
+        format_description(i) for i in wrap(dig(meta, "descriptions.description"))
     ]
 
     def format_subject(subject):
@@ -99,7 +96,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             )
         return None
 
-    subjects = [format_subject(i) for i in wrap(py_.get(meta, "subjects.subject")) if i]
+    subjects = [format_subject(i) for i in wrap(dig(meta, "subjects.subject")) if i]
 
     def format_geo_location(geo_location):
         """format_geo_location"""
@@ -163,7 +160,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             )
         return None
 
-    geo_locations = []  # [format_geo_location(i) for i in wrap(py_.get(meta, "geoLocations.geoLocation")) if i]
+    geo_locations = []  # [format_geo_location(i) for i in wrap(dig(meta, "geoLocations.geoLocation")) if i]
 
     def map_rights(rights):
         """map_rights"""
@@ -175,16 +172,16 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             }
         )
 
-    license_ = wrap(py_.get(meta, "rightsList.rights"))
+    license_ = wrap(dig(meta, "rightsList.rights"))
     if len(license_) > 0:
         license_ = normalize_cc_url(license_[0].get("rightsURI", None))
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     references = get_xml_references(
-        wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
+        wrap(dig(meta, "relatedIdentifiers.relatedIdentifier"))
     )
     relations = get_xml_relations(
-        wrap(py_.get(meta, "relatedIdentifiers.relatedIdentifier"))
+        wrap(dig(meta, "relatedIdentifiers.relatedIdentifier"))
     )
 
     def map_funding_reference(funding_reference):
@@ -197,7 +194,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "awardTitle": funding_reference.get("awardTitle", None),
         }
 
-    funding_references = []  # [map_funding_reference(i) for i in wrap(py_.get(meta, "fundingReferences.fundingReference"))]
+    funding_references = []  # [map_funding_reference(i) for i in wrap(dig(meta, "fundingReferences.fundingReference"))]
 
     files = meta.get("contentUrl", None)
     state = "findable" if _id or read_options else "not_found"
@@ -297,7 +294,7 @@ def get_xml_references(references: list) -> list:
             reference["doi"] = normalize_doi(identifier)
         elif identifier and identifier_type == "URL":
             reference["url"] = normalize_url(identifier)
-        reference = py_.omit(
+        reference = omit(
             reference,
             [
                 "relationType",
