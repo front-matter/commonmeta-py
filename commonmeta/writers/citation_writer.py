@@ -12,7 +12,8 @@ from citeproc import (
 )
 from citeproc.source.json import CiteProcJSON
 from citeproc_styles import get_style_filepath
-from pydash import py_
+
+from ..base_utils import omit
 
 
 def write_citation(metadata):
@@ -41,7 +42,7 @@ def write_citation_item(metadata):
     csl = json.loads(metadata.write(to="csl"))
 
     # Remove keys that are not supported by citeproc-py.
-    csl = py_.omit(csl, "copyright", "categories")
+    csl = omit(csl, "copyright", "categories")
     return CiteProcJSON([csl])
 
 
