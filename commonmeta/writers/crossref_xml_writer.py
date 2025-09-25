@@ -617,20 +617,12 @@ def get_journal_issue(obj) -> Optional[dict]:
 
 def get_institution(obj) -> Optional[dict]:
     """get institution"""
-    if dig(obj, "container.title") is None:
+    if dig(obj, "publisher.name") is None:
         return None
 
-    return compact(
-        {
-            "institution_name": dig(obj, "container.title"),
-            "institution_id": {
-                "#text": dig(obj, "container.identifier"),
-                "@type": "ror",
-            }
-            if dig(obj, "container.identifierType") == "ROR"
-            else None,
-        }
-    )
+    return {
+        "institution_name": dig(obj, "publisher.name"),
+    }
 
 
 def get_titles(obj) -> Optional[dict]:
@@ -786,15 +778,7 @@ def get_abstracts(obj) -> Optional[list]:
 
 def get_group_title(obj) -> Optional[str]:
     """Get group title from metadata"""
-    if len(wrap(dig(obj, "subjects"))) == 0:
-        return None
-    group_title = dig(obj, "subjects.0.subject")
-
-    # strip optional FOS (Field of Science) prefix
-    if group_title.startswith("FOS: "):
-        group_title = group_title[5:]
-
-    return group_title
+    return dig(obj, "container.title")
 
 
 def get_item_number(obj) -> Optional[dict]:

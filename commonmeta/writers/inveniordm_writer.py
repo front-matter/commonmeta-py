@@ -415,9 +415,11 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
         # in the case of Rogue Scholar the blog community
 
         if hasattr(metadata, "identifiers") and metadata.identifiers:
-            for i, identifier in enumerate(metadata.identifiers):
-                if identifier.get("identifierType") == "UUID" and identifier.get(
-                    "identifier"
+            for identifier in metadata.identifiers:
+                if (
+                    isinstance(identifier, dict)
+                    and identifier.get("identifierType") == "UUID"
+                    and identifier.get("identifier")
                 ):
                     record["uuid"] = identifier.get("identifier")
                     continue
@@ -638,6 +640,7 @@ def edit_published_record(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
+        print("Edited published record:", dig(data, "parent.pids.doi.identifier"))
         record["updated"] = data.get("updated", None)
         record["status"] = "edited"
         return record
@@ -663,6 +666,7 @@ def update_draft_record(record, host, token, inveniordm_data):
         )
         response.raise_for_status()
         data = response.json()
+        print("Update draft record:", dig(data, "parent.pids.doi.identifier"))
         record["updated"] = data.get("updated", None)
         record["status"] = "updated"
         return record

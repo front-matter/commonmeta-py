@@ -191,7 +191,11 @@ def test_write_crossref_xml_posted_content():
         "month": "12",
         "year": "2020",
     }
-    assert dig(crossref_xml, "institution.institution_name") == "bioRxiv"
+    assert (
+        dig(crossref_xml, "institution.institution_name")
+        == "Cold Spring Harbor Laboratory"
+    )
+    assert crossref_xml.get("group_title") == "bioRxiv"
     assert dig(crossref_xml, "item_number") is None
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "AbstractBacterial membrane lipids are critical for membrane bilayer formation"
@@ -258,6 +262,7 @@ def test_write_crossref_schema_org_front_matter():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "More than 200 health journals today published an editorial calling for urgent action"
     )
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -277,6 +282,7 @@ def test_write_crossref_another_schema_org_front_matter():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "In October Jen Gibson started as the new Executive Director for the Dryad Data Repository."
     )
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -307,6 +313,7 @@ def test_write_crossref_embedded_schema_org_front_matter():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "More than 200 health journals today published an editorial calling for urgent action to keep average global temperature increases below 1.5°C"
     )
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -335,6 +342,7 @@ def test_write_crossref_schema_org_from_another_science_blog():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "How does a Research Software Engineer (RSE)"
     )
+    assert crossref_xml.get("group_title") == "Polyneme LLC"
 
 
 @pytest.mark.vcr
@@ -363,6 +371,7 @@ def test_write_crossref_schema_org_upstream_blog():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "The FORCE11 attribution working group held a workshop during the 2021 FORCE conference"
     )
+    assert crossref_xml.get("group_title") == "Upstream"
 
 
 @pytest.mark.vcr
@@ -408,7 +417,7 @@ def test_jsonfeed_upstream_blog():
         "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
         "mime_type": "text/markdown",
     }
-    assert crossref_xml.get("group_title") == "Humanities"
+    assert crossref_xml.get("group_title") == "Upstream"
 
 
 @pytest.mark.vcr
@@ -459,7 +468,7 @@ def test_jsonfeed_with_references():
         "key": "ref1",
         "unstructured_citation": "It’s impossible to conduct research without software, say 7 out of 10 UK researchers. Accessed April 13, 2023. https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
-    assert crossref_xml.get("group_title") == "Humanities"
+    assert crossref_xml.get("group_title") == "Upstream"
 
 
 @pytest.mark.vcr
@@ -513,7 +522,7 @@ def test_jsonfeed_with_doi():
         "#text": "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58.md",
         "mime_type": "text/markdown",
     }
-    assert crossref_xml.get("group_title") == "Social science"
+    assert crossref_xml.get("group_title") == "wisspub.net"
 
 
 @pytest.mark.vcr
@@ -578,6 +587,7 @@ def test_jsonfeed_without_doi():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Classifying research publications into research topics or research areas is crucial for many bibliometric analyses."
     )
+    assert crossref_xml.get("group_title") == "Leiden Madtrics"
 
 
 @pytest.mark.vcr
@@ -622,6 +632,7 @@ def test_ghost_with_affiliations():
         },
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -652,7 +663,7 @@ def test_jsonfeed_with_organizational_author():
         "#text": "https://libscie.org/ku-leuven-supports-researchequals",
         "mime_type": "text/html",
     }
-    assert crossref_xml.get("group_title") == "Social science"
+    assert crossref_xml.get("group_title") == "Liberate Science"
 
 
 @pytest.mark.vcr
@@ -693,7 +704,7 @@ def test_jsonfeed_with_archived_content():
         "mime_type": "text/html",
         "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
-    assert crossref_xml.get("group_title") == "Computer and information sciences"
+    assert crossref_xml.get("group_title") == "Project THOR"
 
 
 @pytest.mark.vcr
@@ -732,6 +743,7 @@ def test_jsonfeed_with_relations():
     #     "article_title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
     #     "doi": "10.5281/zenodo.30799",
     # }
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -790,7 +802,7 @@ def test_jsonfeed_with_relations_and_funding():
             "#text": "10.5438/bv9z-dc66",
         }
     }
-    assert crossref_xml.get("group_title") == "Computer and information sciences"
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr
@@ -869,7 +881,7 @@ def test_inveniordm_with_relations_and_funding():
     #         },
     #     ],
     # }
-    assert crossref_xml.get("group_title") == "Computer and information sciences"
+    assert crossref_xml.get("group_title") == "Front Matter"
 
 
 @pytest.mark.vcr

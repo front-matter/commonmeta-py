@@ -142,9 +142,11 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             dig(meta, "metadata.notes"),
         ]
     )
-    identifiers = compact(
-        [format_identifier(i) for i in wrap(dig(meta, "metadata.identifiers"))]
-    )
+    identifiers = [
+        result
+        for i in wrap(dig(meta, "metadata.identifiers"))
+        if (result := format_identifier(i)) is not None
+    ]
     language = dig(meta, "metadata.language") or dig(meta, "metadata.languages.0.id")
     license_ = dig(meta, "metadata.rights.0.id") or dig(meta, "metadata.license.id")
     if license_:
@@ -331,25 +333,27 @@ def get_file(file: dict) -> str:
 def get_relations(relations: list) -> list:
     """get_relations"""
 
-    def map_relation(relation: dict) -> dict:
+    def map_relation(relation: dict) -> Optional[dict]:
         """map_relation"""
         identifier = dig(relation, "identifier")
         scheme = dig(relation, "scheme")
         relation_type = dig(relation, "relation_type.id") or dig(relation, "relation")
+
+        # Return None if essential data is missing
+        if not identifier or not relation_type:
+            return None
+
         if scheme == "doi":
             identifier = doi_as_url(identifier)
         else:
             identifier = normalize_url(identifier)
         return {
             "id": identifier,
-            "type": (relation_type[0].upper() + relation_type[1:])
-            if relation_type
-            else None,
+            "type": (relation_type[0].upper() + relation_type[1:]),
         }
 
-    identifiers = [map_relation(i) for i in relations]
-    print(identifiers)
-    return [i for i in identifiers if i["type"] in COMMONMETA_RELATION_TYPES]
+    identifiers = [result for i in relations if (result := map_relation(i)) is not None]
+    return [i for i in identifiers if i.get("type") in COMMONMETA_RELATION_TYPES]
 
 
 def format_descriptions(descriptions: list) -> list:
