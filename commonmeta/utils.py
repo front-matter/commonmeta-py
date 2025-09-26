@@ -3,6 +3,7 @@
 import os
 import re
 import time
+from collections import ChainMap
 from typing import Optional
 from urllib.parse import urlparse
 
@@ -1532,3 +1533,36 @@ def id_from_url(url: Optional[str]) -> Optional[str]:
         return None
 
     return str(f.path).strip("/")
+
+
+class ChainObject:
+    """Read-only wrapper to chain attribute/key lookup over multiple objects.
+    Copied from invenio-rdm-records to avoid circular dependency."""
+
+    def __init__(self, *objs, aliases=None):
+        """Constructor."""
+        self._objs = objs
+        self._aliases = aliases or {}
+
+    def __getattr__(self, name):
+        """Lookup attribute over all objects."""
+        # Check aliases first
+        aliases = super().__getattribute__("_aliases")
+        if name in aliases:
+            return aliases[name]
+
+        objs = super().__getattribute__("_objs")
+        for o in objs:
+            if getattr(o, name, None):
+                return getattr(o, name)
+        raise AttributeError()
+
+    def __getitem__(self, key):
+        """Index lookup over all objects."""
+        objs = super().__getattribute__("_objs")
+        return ChainMap(*objs)[key]
+
+    def get(self, key, default=None):
+        """Index lookup a la ``dict.get`` over all objects."""
+        objs = super().__getattribute__("_objs")
+        return ChainMap(*objs).get(key, default=default)

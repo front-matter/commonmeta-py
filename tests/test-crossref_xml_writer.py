@@ -1278,3 +1278,204 @@ def test_archived():
     #     dig(crossref_xml, "doi_data.resource")
     #     == "https://www.mja.com.au/journal/1943/1/1/case-acute-yellow-atrophy-liver"
     # )
+
+
+@pytest.mark.vcr
+def test_zenodo():
+    "zenodo publication"
+    string = "https://zenodo.org/api/records/5244404"
+    subject = Metadata(string, via="inveniordm")
+    assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
+    assert subject.type == "JournalArticle"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert dig(crossref_xml, "language") is None
+    assert len(dig(crossref_xml, "contributors.person_name")) == 21
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "affiliations": {
+            "institution": {
+                "institution_name": "School of Life and Environmental Sciences and School of Medical "
+                "Sciences, The University of Sydney, Sydney, NSW 2006, Australia",
+            },
+        },
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Edward C",
+        "surname": "Holmes",
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "The Origins of SARS-CoV-2: A Critical Review"
+    )
+    assert dig(crossref_xml, "publication_date") == {
+        "media_type": "online",
+        "xmlns": {"jats": "http://www.ncbi.nlm.nih.gov/JATS1"},
+        "month": "8",
+        "day": "18",
+        "year": "2021",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
+    )
+    assert dig(crossref_xml, "program.0.license_ref") == [
+        {
+            "applies_to": "vor",
+            "#text": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        },
+        {
+            "applies_to": "tdm",
+            "#text": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+        },
+    ]
+    assert dig(crossref_xml, "program.1") == {
+        "name": "relations",
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "#text": "10.5281/zenodo.5075887",
+                    "identifier-type": "doi",
+                    "relationship-type": "isVersionOf",
+                },
+            },
+        ],
+        "xmlns": {
+            "rel": "http://www.crossref.org/relations.xsd",
+        },
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.5281/zenodo.5244404"
+    assert (
+        dig(crossref_xml, "doi_data.resource") == "https://zenodo.org/records/5244404"
+    )
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_with_parent_doi():
+    """Rogue Scholar with parent DOI"""
+    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.53731/taha2-fvd76"
+    assert subject.type == "BlogPost"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Martin",
+        "surname": "Fenner",
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+    )
+    assert dig(crossref_xml, "posted_date") == {
+        "month": "9",
+        "day": "24",
+        "year": "2025",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "On April 16, 2025, the Rogue Scholar Advisory Board met for the third"
+    )
+    assert dig(crossref_xml, "program.0.license_ref") == [
+        {
+            "applies_to": "vor",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+        {
+            "applies_to": "tdm",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+    ]
+    assert dig(crossref_xml, "program.1") == {
+        "name": "relations",
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "#text": "10.59350/t3d89-8jj38",
+                    "identifier-type": "doi",
+                    "relationship-type": "isVersionOf",
+                },
+            },
+        ],
+        "xmlns": {
+            "rel": "http://www.crossref.org/relations.xsd",
+        },
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.53731/taha2-fvd76"
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+    )
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_as_parent_doi():
+    """Rogue Scholar as parent DOI"""
+    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
+    subject = Metadata(string, parent_doi="10.59350/t3d89-8jj38")
+    assert subject.id == "https://doi.org/10.59350/t3d89-8jj38"
+    assert subject.type == "BlogPost"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Martin",
+        "surname": "Fenner",
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+    )
+    assert dig(crossref_xml, "posted_date") == {
+        "month": "9",
+        "day": "24",
+        "year": "2025",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "On April 16, 2025, the Rogue Scholar Advisory Board met for the third"
+    )
+    assert dig(crossref_xml, "program.0.license_ref") == [
+        {
+            "applies_to": "vor",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+        {
+            "applies_to": "tdm",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+    ]
+    assert dig(crossref_xml, "program.1") == {
+        "name": "relations",
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "#text": "10.53731/taha2-fvd76",
+                    "identifier-type": "doi",
+                    "relationship-type": "hasVersion",
+                },
+            },
+        ],
+        "xmlns": {
+            "rel": "http://www.crossref.org/relations.xsd",
+        },
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/t3d89-8jj38"
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+    )

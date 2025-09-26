@@ -43,11 +43,17 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     url = normalize_url(dig(meta, "links.self_html"))
-    _id = (
-        doi_as_url(meta.get("doi", None))
-        or doi_as_url(dig(meta, "pids.doi.identifier"))
-        or url
-    )
+
+    # if data is for a parent record
+    if kwargs.get("parent_doi", None):
+        _id = doi_as_url(kwargs.get("parent_doi", None))
+    else:
+        _id = (
+            doi_as_url(meta.get("doi", None))
+            or doi_as_url(dig(meta, "pids.doi.identifier"))
+            or url
+        )
+
     # Rogue Scholar records use an external URL
     if is_rogue_scholar_doi(_id):
         url = next(
@@ -97,8 +103,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         ),
         None,
     ) or strip_milliseconds(meta.get("updated", None))
-    f = furl(url)
-    if f.host == "zenodo.org":
+    if furl(url).host == "zenodo.org":
         container = compact(
             {
                 "id": "https://www.re3data.org/repository/r3d100010468",
@@ -107,7 +112,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             }
         )
         publisher = {"name": "Zenodo"}
-    elif f.host == "rogue-scholar.org":
+    elif is_rogue_scholar_doi(_id):
         issn = dig(meta, "custom_fields.journal:journal.issn")
         slug = dig(meta, "parent.communities.entries.0.slug")
         community_url = (
@@ -162,14 +167,29 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         )
     citations = get_citations(wrap(dig(meta, "custom_fields.rs:citations")))
     relations = get_relations(wrap(dig(meta, "metadata.related_identifiers")))
-    funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
-    if meta.get("conceptdoi", None):
+
+    # if data is for a parent record
+    if kwargs.get("parent_doi", None):
+        related_id = doi_as_url(meta.get("doi", None)) or doi_as_url(
+            dig(meta, "pids.doi.identifier")
+        )
         relations.append(
             {
-                "id": doi_as_url(meta.get("conceptdoi")),
+                "id": related_id,
+                "type": "HasVersion",
+            }
+        )
+    elif meta.get("conceptdoi", None) or dig(meta, "links.parent_doi"):
+        relations.append(
+            {
+                "id": doi_as_url(
+                    meta.get("conceptdoi") or dig(meta, "links.parent_doi")
+                ),
                 "type": "IsVersionOf",
             }
         )
+
+    funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
 
     content = dig(meta, "custom_fields.rs:content_html")
     image = dig(meta, "custom_fields.rs:image")

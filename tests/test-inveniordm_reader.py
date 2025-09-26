@@ -295,6 +295,7 @@ def test_rogue_scholar():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date["published"] == "2024-10-07T13:41:37"
+    assert subject.relations is None
     assert subject.publisher == {"name": "Front Matter"}
     assert len(subject.citations) == 4
     assert subject.citations[0] == {
@@ -350,20 +351,70 @@ def test_rogue_scholar_with_citations():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
     assert subject.date["published"] == "2007-05-24T16:09:00"
+    assert subject.relations is None
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert subject.references is None
-    assert len(subject.citations) == 1
-    assert subject.citations[0] == {
-        "id": "https://doi.org/10.63485/mppz2-19243",
-        "type": "IsCitedBy",
-    }
+    assert subject.citations is None
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
-        )
+        .startswith("Carl Zimmer, An Open Mouse")
+    )
+    assert subject.container == {
+        "type": "Blog",
+        "title": "Open Access News",
+        "identifier": "https://rogue-scholar.org/communities/oan",
+        "identifierType": "URL",
+        "platform": "Blogger",
+    }
+    assert subject.subjects == [
+        {"subject": "FOS: Social science"},
+    ]
+    assert subject.language == "en"
+    assert subject.version is None
+    assert subject.state == "findable"
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_with_parent_doi():
+    """Rogue Scholar with parent DOI"""
+    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.53731/taha2-fvd76"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+    )
+    assert subject.titles[0] == {
+        "title": "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+    }
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date["published"] == "2025-09-24T10:32:00"
+    assert subject.relations == [
+        {"id": "https://doi.org/10.59350/t3d89-8jj38", "type": "IsVersionOf"}
+    ]
+    assert subject.publisher == {"name": "Front Matter"}
+    assert subject.funding_references is None
+    assert subject.references is None
+    assert subject.citations is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("On April 16, 2025, the Rogue Scholar Advisory Board met")
     )
     assert subject.container == {
         "type": "Blog",

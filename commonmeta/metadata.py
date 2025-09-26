@@ -6,7 +6,7 @@ from typing import Any, Dict, List, Optional, Union
 import orjson as json
 import yaml
 
-from .base_utils import omit, parse_xml, wrap
+from .base_utils import dig, omit, parse_xml, wrap
 from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -44,7 +44,7 @@ from .readers.schema_org_reader import (
     read_schema_org,
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
-from .utils import find_from_format, normalize_id
+from .utils import ChainObject, find_from_format, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
@@ -71,11 +71,16 @@ class Metadata:
     """Metadata"""
 
     def __init__(self, string: Optional[Union[str, Dict[str, Any]]], **kwargs):
-        if string is None or not isinstance(string, (str, dict)):
+        if string is None or not isinstance(string, (str, dict, ChainObject)):
             raise ValueError("No input found")
         self.via = kwargs.get("via", None)
         if isinstance(string, dict):
             data = string
+        # if string is an InvenioRDM chain object
+        elif isinstance(string, ChainObject):
+            data = string._child
+            self.via = "inveniordm"
+            kwargs["parent_doi"] = dig(string._parent.pids, "doi.identifier")
         elif isinstance(string, str):
             pid = normalize_id(string)
             if pid is not None and self.via is None:
@@ -256,7 +261,7 @@ class Metadata:
         elif via == "jsonfeed":
             return dict(read_jsonfeed(data, **kwargs))
         elif via == "inveniordm":
-            return dict(read_inveniordm(data))
+            return dict(read_inveniordm(data, **kwargs))
         elif via == "kbase":
             return dict(read_kbase(data))
         elif via == "openalex":
