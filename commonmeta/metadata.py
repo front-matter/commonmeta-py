@@ -44,7 +44,7 @@ from .readers.schema_org_reader import (
     read_schema_org,
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
-from .utils import ChainObject, find_from_format, normalize_id
+from .utils import find_from_format, is_chain_object, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
@@ -71,13 +71,17 @@ class Metadata:
     """Metadata"""
 
     def __init__(self, string: Optional[Union[str, Dict[str, Any]]], **kwargs):
-        if string is None or not isinstance(string, (str, dict, ChainObject)):
+        if (
+            string is None
+            or not isinstance(string, (str, dict))
+            and not is_chain_object
+        ):
             raise ValueError("No input found")
         self.via = kwargs.get("via", None)
         if isinstance(string, dict):
             data = string
-        # if string is an InvenioRDM chain object
-        elif isinstance(string, ChainObject):
+        # if string is an InvenioRDM chain object or any ChainObject-like object
+        elif is_chain_object:
             data = string._child
             self.via = "inveniordm"
             kwargs["parent_doi"] = dig(string._parent.pids, "doi.identifier")
