@@ -449,7 +449,17 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
 
         # optionally update external services
         record = update_external_services(metadata, host, token, record, **kwargs)
-
+    except ValueError as ve:
+        print(f"Error in push_inveniordm: {str(ve)}")
+        log.error(
+            f"Value error in push_inveniordm: {str(ve)}",
+            exc_info=True,
+            extra={"host": host, "record_id": metadata.id},
+        )
+        record = {
+            "doi": doi if "doi" in locals() else None,
+            "status": "error",
+        }
     except Exception as e:
         print(f"Error in push_inveniordm: {str(e)}")
         log.error(

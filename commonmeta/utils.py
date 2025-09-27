@@ -1536,11 +1536,10 @@ def id_from_url(url: Optional[str]) -> Optional[str]:
 
 def is_chain_object(string: Any) -> bool:
     """Check if the given string is a ChainObject-like object,
-    for example the invenio-rdm-records ChainObject."""
+    for example the invenio-rdm-records ChainObject.
+
+    Checks for both the _child and _parent attributes to ensure it's a proper chain object.
+    """
     if string is None:
         return False
-    return (
-        hasattr(string, "_objs")
-        and hasattr(string, "__getattr__")
-        and hasattr(string, "__getitem__")
-    )
+    return hasattr(string, "_child") and hasattr(string, "_parent")

@@ -74,14 +74,14 @@ class Metadata:
         if (
             string is None
             or not isinstance(string, (str, dict))
-            and not is_chain_object
+            and not is_chain_object(string)
         ):
             raise ValueError("No input found")
         self.via = kwargs.get("via", None)
         if isinstance(string, dict):
             data = string
-        # if string is an InvenioRDM chain object or any ChainObject-like object
-        elif is_chain_object:
+        # if string is an InvenioRDM chain object
+        elif is_chain_object(string):
             data = string._child
             self.via = "inveniordm"
             kwargs["parent_doi"] = dig(string._parent.pids, "doi.identifier")
