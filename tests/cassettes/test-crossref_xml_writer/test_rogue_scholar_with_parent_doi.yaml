@@ -216,8 +216,6 @@ interactions:
       Set-Cookie:
       - __cf_bm=UuALeGYSk13LLWzob3ynV0PSb1mXdh5jSxe7j1qgzys-1758884193-1.0.1.1-rPV4DsTmIA8ox0ysq2I7iT8DsICAqvbNVDY2_cwG11fU4SDc4ZLCG6Am4tFliVdZlx734Nxsnjr05BT9hrULIOIMazEY9DO6w4xZf9BPECg;
         path=/; expires=Fri, 26-Sep-25 11:26:33 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       content-security-policy:
@@ -637,8 +635,6 @@ interactions:
       Set-Cookie:
       - __cf_bm=_PsXXtC1uXcJxD.qmfjG19TaH_OsoAR79E2N62JwZDg-1758884193-1.0.1.1-Sv2qXrCiDgHFMo6OrOnnRiwCfXdGDefpT05GW4XdChZD3RHRqNVQ_z1mywWNa9jH1FHIfckZlk6ZLsfHKGe1qC59vy1q105Wf3ja73iALP4;
         path=/; expires=Fri, 26-Sep-25 11:26:33 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       content-security-policy:
@@ -779,8 +775,6 @@ interactions:
       Set-Cookie:
       - __cf_bm=h3dN5auLtzpTOdTw6sQkRThfwPe2Yn.UT_1zU8e21jM-1758884193-1.0.1.1-GGQKw5EqDEds_OsBOCsG_8R18hkCpJHPM88fl4i7NgbAZmCvdrJMS6jmk569Ig9fQjSy8CNfoyMz0h83Cbv1xYsLTwp8KreIHNJU3GLrnYg;
         path=/; expires=Fri, 26-Sep-25 11:26:33 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       content-security-policy:
@@ -1852,8 +1846,6 @@ interactions:
       Set-Cookie:
       - __cf_bm=T1ZpaqdRtyCoIXmy9sVJDFpBU.ByYpN9p7mc39JgNV4-1758884193-1.0.1.1-tym3nt0LF9AbIyyarX8dqzA4HBMX20Q3nST1xYDWCPcA_Ja0QF71UDeFpar9C.UWdabxSe3e3ISnilsJX7BejQnjWghjDrkWDCtNbDFMqLM;
         path=/; expires=Fri, 26-Sep-25 11:26:33 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       content-security-policy:
@@ -1959,8 +1951,6 @@ interactions:
       Set-Cookie:
       - __cf_bm=xJVK4pMeF__MLHCRXqZ6MyaFsYOyiK1MgYalj47buck-1758884194-1.0.1.1-MVLg841JpLfjRlUxCHldcDx_5aEpMLGAzBlH.kWgV5zBbThiiSPl6STWnP_CiBQpj1im8hX26a.ocq5CvcEUmoSN1kqXg1VFrkPAiU7BE0Q;
         path=/; expires=Fri, 26-Sep-25 11:26:34 GMT; domain=.w3.org; HttpOnly
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       content-security-policy:
@@ -1979,6 +1969,197 @@ interactions:
       - www-mirrors
       x-request-id:
       - 97d736c3dae0e5f8
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://rogue-scholar.org/api/records/nmdtw-dbr94
+  response:
+    body:
+      string: '{"id": "nmdtw-dbr94", "created": "2025-09-25T08:13:17.310517+00:00",
+        "updated": "2025-09-25T08:13:17.389855+00:00", "links": {"self": "https://rogue-scholar.org/api/records/nmdtw-dbr94",
+        "self_html": "https://rogue-scholar.org/records/nmdtw-dbr94", "preview_html":
+        "https://rogue-scholar.org/records/nmdtw-dbr94?preview=1", "doi": "https://doi.org/10.59350/wnkxe-b8330",
+        "self_doi": "https://doi.org/10.59350/wnkxe-b8330", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/wnkxe-b8330",
+        "reserve_doi": "https://rogue-scholar.org/api/records/nmdtw-dbr94/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/ad9pb-kwm66", "parent_html":
+        "https://rogue-scholar.org/records/ad9pb-kwm66", "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:nmdtw-dbr94/manifest",
+        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:nmdtw-dbr94/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/nmdtw-dbr94/files", "media_files":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/media-files", "archive":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/nmdtw-dbr94/latest", "versions": "https://rogue-scholar.org/api/records/nmdtw-dbr94/versions",
+        "draft": "https://rogue-scholar.org/api/records/nmdtw-dbr94/draft", "access_links":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/request", "access":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access", "communities":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/nmdtw-dbr94/communities-suggestions",
+        "requests": "https://rogue-scholar.org/api/records/nmdtw-dbr94/requests"},
+        "revision_id": 3, "parent": {"id": "ad9pb-kwm66", "access": {"owned_by": {"user":
+        "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests": false,
+        "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["0e13541f-417e-46c0-a859-65927249df72", "346efb91-f134-4f0b-bd6a-30e2094d2c40",
+        "ce85b38a-7acb-4a36-a274-4e026646af48"], "default": "0e13541f-417e-46c0-a859-65927249df72",
+        "entries": [{"id": "0e13541f-417e-46c0-a859-65927249df72", "created": "2024-10-05T08:57:03.365247+00:00",
+        "updated": "2025-09-28T07:38:17.529799+00:00", "links": {}, "revision_id":
+        354, "slug": "svpow", "metadata": {"title": "Sauropod Vertebra Picture of
+        the Week", "description": "SV-POW!  ...  All sauropod vertebrae, except when
+        we''re talking about Open Access. ISSN 3033-3695", "type": {"id": "blog"},
+        "website": "https://svpow.com"}, "access": {"visibility": "public", "members_visibility":
+        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {"rs:issn": "3033-3695", "rs:feed_url": "https://svpow.com/feed/atom/",
+        "rs:prefix": "10.59350", "rs:joined": "February 1, 2023", "rs:feed_format":
+        "application/atom+xml", "rs:generator": "WordPress.com", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "rs:language": "English", "rs:category": "Earth and related environmental
+        sciences"}, "deletion_status": {"is_deleted": false, "status": "P"}, "children":
+        {"allow": false}}, {"id": "346efb91-f134-4f0b-bd6a-30e2094d2c40", "created":
+        "2024-10-02T19:02:40.195535+00:00", "updated": "2025-07-15T19:21:07.796032+00:00",
+        "links": {}, "revision_id": 13, "slug": "openaccess", "metadata": {"title":
+        "Open Access", "description": "Blog posts about Open Access.", "type": {"id":
+        "topic"}}, "access": {"visibility": "public", "members_visibility": "public",
+        "member_policy": "open", "record_submission_policy": "open", "review_policy":
+        "open"}, "custom_fields": {}, "deletion_status": {"is_deleted": false, "status":
+        "P"}, "children": {"allow": false}}, {"id": "ce85b38a-7acb-4a36-a274-4e026646af48",
+        "created": "2025-02-10T08:10:20.634480+00:00", "updated": "2025-06-30T16:00:16.467890+00:00",
+        "links": {}, "revision_id": 6, "slug": "earthandrelatedenvironmentalsciences",
+        "metadata": {"title": "Earth and related environmental sciences", "description":
+        "Earth and related environmental sciences subject area.", "type": {"id": "subject"}},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}]}, "pids": {}}, "versions": {"is_latest": true, "index": 1}, "is_published":
+        true, "is_draft": false, "pids": {"doi": {"identifier": "10.59350/wnkxe-b8330",
+        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:nmdtw-dbr94",
+        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
+        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
+        "creators": [{"person_or_org": {"type": "personal", "name": "Taylor, Mike",
+        "given_name": "Mike", "family_name": "Taylor", "identifiers": [{"identifier":
+        "0000-0002-1003-5675", "scheme": "orcid"}]}, "affiliations": [{"id": "0524sp257",
+        "name": "University of Bristol", "identifiers": [{"identifier": "0524sp257",
+        "scheme": "ror"}]}]}], "title": "Want to help fund the free publication of
+        sauropod science? Now''s your chance!", "publisher": "Front Matter", "publication_date":
+        "2025-09-25", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.5",
+        "subject": "Earth and related environmental sciences", "scheme": "FOS"}, {"subject":
+        "Diplodocids"}, {"subject": "Gold Open Access"}, {"subject": "Help SV-POW!"},
+        {"subject": "Open Access"}], "dates": [{"date": "2025-09-25T08:02:15", "type":
+        {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv":
+        "Utf\u00e4rdad"}}}, {"date": "2025-09-25T08:02:15", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "c211b98f-e821-49b3-83ec-bfb929b32c16", "scheme": "uuid"}, {"identifier":
+        "https://svpow.com/?p=24258", "scheme": "guid"}, {"identifier": "https://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/",
+        "scheme": "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
+        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
+        Commons Attribution license allows re-distribution and re-use of a licensed
+        work on the condition that the creator is appropriately credited."}, "icon":
+        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "Anyone who''s been reading this blog
+        for a while knows that Matt and I are both all in on open access. What is
+        the point of \"publishing\" something that not everyone can read?"}, "custom_fields":
+        {"journal:journal": {"title": "Sauropod Vertebra Picture of the Week", "issn":
+        "3033-3695"}, "rs:content_html": "<p>Anyone who&#8217;s been reading this
+        blog for a while knows that Matt and I are both <a href=\"https://svpow.com/the-digital-future/\">all
+        in on open access</a>. What is the point of &#8220;publishing&#8221; something
+        that not everyone can read? We always want our work to be available to the
+        widest possible audience, so it&#8217;s a no-brainer that we won&#8217;t let
+        it moulder behind a paywall.</p>\n<p>But the process of scholarly publication
+        does cost money. Nowhere near as much as commercial publishers charge, sure,
+        but there <em>is</em> an irreducible cost which has to be paid somehow.</p>\n<p>And
+        now, here comes <em>Diplodocoidea (Dinosauria, Sauropoda): Systematics, Phylogeny,
+        Biogeography</em>!</p>\n<p><a href=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"><img
+        data-attachment-id=\"24261\" data-permalink=\"http://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/crowdfunder/\"
+        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"
+        data-orig-size=\"640,360\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
+        data-image-title=\"crowdfunder\" data-image-description=\"\" data-image-caption=\"\"
+        data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg?w=300\"
+        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg?w=640\"
+        loading=\"lazy\" class=\"alignnone size-full wp-image-24261\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"
+        alt=\"\" width=\"480\" height=\"270\" /></a></p>\n<p>This is the snappy title
+        of a &#8220;virtual edited volume&#8221; on Diplodocoids, which is being published
+        a chapter at a time at the venerable open-access journal <a href=\"https://palaeo-electronica.org/content/\"><em>Palaeontologia
+        Electronica</em></a> (<em>PE</em> for short). Each chapter comes out as soon
+        as it&#8217;s ready, and you&#8217;ve probably already seen the first two:</p>\n<ul>\n<li><a
+        href=\"https://palaeo-electronica.org/content/2024/5327-new-diplodocine-sauropod\">A
+        new diplodocine sauropod from the Morrison Formation, Wyoming, USA</a> (<em>Ardetosaurus
+        viator</em>)</li>\n<li><a href=\"https://palaeo-electronica.org/content/2025/5554-introduction-to-diplodocoidea\">Introduction
+        to Diplodocoidea</a> (I was an author on this one: see <a href=\"https://svpow.com/2025/07/01/baffled-by-diplodocoids-need-a-comprehensive-introduction-youre-in-luck/\">the
+        introduction to the introduction</a>.)</li>\n</ul>\n<p>Two more chapters have
+        already been accepted and are in press; and a fifth is in review. There are
+        plenty more in preparation, including at least one more new diplodocoid. A
+        link to each paper will appear in <a href=\"https://palaeo-electronica.org/content/diplodocoidea-dinosauria-sauropoda\">the
+        Table of Contents page</a>, so that page will always be an index to all the
+        available content.</p>\n<p>To cover their costs for this volume, <em>PE</em>
+        needs $3000. That comes out crazy cheap \u2014 we&#8217;re looking at a double-digit
+        number of papers, so the cost to make each one freely available to the whole
+        world in perpetuity is less than $300.</p>\n<p>To raise this money, the group
+        has kicked off a crowdfunding effort. It has a little under a month to raise
+        the necessary $3000, and as I write this it&#8217;s 20% of the way to that
+        goal. <a href=\"https://experiment.com/projects/reassessing-the-evolutionary-family-tree-and-biogeography-of-the-iconic-sauropod-group-diplodocoidea\"><strong>If
+        you can afford to chip in, please do get yourself over there and make a contribution.</strong></a>
+        You&#8217;ll have the satisfaction of knowing that you helped increase the
+        world&#8217;s access to knowledge of diplodocoids.</p>\n<p>&nbsp;</p>", "rs:generator":
+        "WordPress.com", "rs:stale": false}, "access": {"record": "public", "files":
+        "public", "embargo": {"active": false, "reason": null}, "status": "metadata-only"},
+        "files": {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries":
+        {}}, "media_files": {"enabled": false, "order": [], "count": 0, "total_bytes":
+        0, "entries": {}}, "status": "published", "deletion_status": {"is_deleted":
+        false, "status": "P"}, "stats": {"this_version": {"views": 5, "unique_views":
+        5, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions":
+        {"views": 5, "unique_views": 5, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}}}'
+    headers:
+      Content-Length:
+      - '12313'
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org www.youtube.com
+        player.vimeo.com www.blogger.com www.canva.com; img-src *'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 28 Sep 2025 11:02:14 GMT
+      Etag:
+      - '"3"'
+      Link:
+      - <https://rogue-scholar.org/api/records/nmdtw-dbr94> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '60'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '499'
+      X-Ratelimit-Reset:
+      - '1759057395'
+      X-Xss-Protection:
+      - 1; mode=block
     status:
       code: 200
       message: OK

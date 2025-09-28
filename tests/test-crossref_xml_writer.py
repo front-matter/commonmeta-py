@@ -1385,9 +1385,9 @@ def test_zenodo():
 @pytest.mark.vcr
 def test_rogue_scholar_with_parent_doi():
     """Rogue Scholar with parent DOI"""
-    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
+    string = "https://rogue-scholar.org/api/records/nmdtw-dbr94"
     subject = Metadata(string)
-    assert subject.id == "https://doi.org/10.53731/taha2-fvd76"
+    assert subject.id == "https://doi.org/10.59350/wnkxe-b8330"
     assert subject.type == "BlogPost"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -1397,23 +1397,23 @@ def test_rogue_scholar_with_parent_doi():
     assert dig(crossref_xml, "language") == "en"
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
     assert dig(crossref_xml, "contributors.person_name.0") == {
-        "ORCID": "https://orcid.org/0000-0003-1419-2405",
+        "ORCID": "https://orcid.org/0000-0002-1003-5675",
         "contributor_role": "author",
         "sequence": "first",
-        "given_name": "Martin",
-        "surname": "Fenner",
+        "given_name": "Mike",
+        "surname": "Taylor",
     }
     assert (
         dig(crossref_xml, "titles.0.title")
-        == "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+        == "Want to help fund the free publication of sauropod science? Now's your chance!"
     )
     assert dig(crossref_xml, "posted_date") == {
         "month": "9",
-        "day": "24",
+        "day": "25",
         "year": "2025",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
-        "On April 16, 2025, the Rogue Scholar Advisory Board met for the third"
+        "Anyone who's been reading this blog for a while"
     )
     assert dig(crossref_xml, "program.0.license_ref") == [
         {
@@ -1425,27 +1425,26 @@ def test_rogue_scholar_with_parent_doi():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    # assert dig(crossref_xml, "program.1") == {
-    #     "name": "relations",
-    #     "related_item": [
-    #         {
-    #             "intra_work_relation": {
-    #                 "#text": "10.59350/t3d89-8jj38",
-    #                 "identifier-type": "doi",
-    #                 "relationship-type": "isVersionOf",
-    #             },
-    #         },
-    #     ],
-    #     "xmlns": {
-    #         "rel": "http://www.crossref.org/relations.xsd",
-    #     },
-    # }
-    assert dig(crossref_xml, "doi_data.doi") == "10.53731/taha2-fvd76"
+    assert dig(crossref_xml, "program.1") == {
+        "name": "relations",
+        "related_item": [
+            {
+                "intra_work_relation": {
+                    "#text": "10.59350/ad9pb-kwm66",
+                    "identifier-type": "doi",
+                    "relationship-type": "isVersionOf",
+                },
+            },
+        ],
+        "xmlns": {
+            "rel": "http://www.crossref.org/relations.xsd",
+        },
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/wnkxe-b8330"
     assert (
         dig(crossref_xml, "doi_data.resource")
-        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+        == "https://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/"
     )
-    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
