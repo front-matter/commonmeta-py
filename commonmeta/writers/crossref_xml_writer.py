@@ -86,6 +86,7 @@ class CrossrefXMLSchema(Schema):
     license = fields.Dict(data_key="ai:program")
     relations = fields.Dict(data_key="rel:program")
     archive_locations = fields.List(fields.Dict())
+    version_info = fields.Dict()
     doi_data = fields.Dict(data_key="doi_data")
     references = fields.Dict(data_key="citation_list")
 
@@ -145,6 +146,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "funding_references": funding_references,
                 "license": license,
                 "relations": relations,
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -165,6 +167,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "funding_references": funding_references,
                 "license": license,
                 "relations": relations,
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -206,6 +209,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "license": license,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -235,6 +239,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "titles": titles,
                 "contributors": contributors,
                 "publication_date": get_publication_date(metadata, media_type="online"),
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
             }
         )
@@ -252,6 +257,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "funding_references": funding_references,
                 "license": license,
                 "relations": relations,
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
             }
         )
@@ -275,6 +281,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "crossmark": None,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -315,6 +322,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "crossmark": None,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
             }
@@ -335,6 +343,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
                 "crossmark": None,
                 "relations": relations,
                 "archive_locations": get_archive_locations(metadata),
+                "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
                 "component_list": None,
@@ -830,6 +839,14 @@ def get_archive_locations(obj) -> Optional[list]:
         )
         for location in dig(obj, "archive_locations")
     ]
+
+
+def get_version_info(obj) -> Optional[str]:
+    """get version_info"""
+    if dig(obj, "version") is None:
+        return None
+    # TODO: add optional description and xml:lang attributes
+    return compact({"version": dig(obj, "version")})
 
 
 def get_references(obj) -> Optional[Dict]:

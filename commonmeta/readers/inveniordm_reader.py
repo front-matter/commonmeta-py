@@ -13,7 +13,7 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import strip_milliseconds
-from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi
+from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi, validate_prefix
 from ..utils import (
     dict_to_fos,
     dict_to_spdx,
@@ -179,12 +179,17 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "HasVersion",
             }
         )
-    elif meta.get("conceptdoi", None) or dig(meta, "links.parent_doi"):
+    elif meta.get("conceptdoi", None):
         relations.append(
             {
-                "id": doi_as_url(
-                    meta.get("conceptdoi") or dig(meta, "links.parent_doi")
-                ),
+                "id": doi_as_url(meta.get("conceptdoi")),
+                "type": "IsVersionOf",
+            }
+        )
+    elif validate_prefix(_id) == "10.59350":
+        relations.append(
+            {
+                "id": doi_as_url(f"10.59350/{dig(meta, 'parent.id')}"),
                 "type": "IsVersionOf",
             }
         )

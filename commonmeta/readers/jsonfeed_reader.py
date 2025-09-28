@@ -198,7 +198,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         "subjects": presence(subjects),
         "language": meta.get("language", None),
         "identifiers": identifiers,
-        "version": None,
+        "version": meta.get("version", None) or "1",
         "license": license_,
         "descriptions": descriptions,
         "geoLocations": None,

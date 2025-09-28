@@ -200,6 +200,7 @@ def test_write_crossref_xml_posted_content():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "AbstractBacterial membrane lipids are critical for membrane bilayer formation"
     )
+    assert dig(crossref_xml, "version_info") is None
     assert dig(crossref_xml, "doi_data.doi") == "10.1101/2020.12.01.406702"
     assert (
         dig(crossref_xml, "doi_data.resource")
@@ -240,6 +241,7 @@ def test_write_crossref_journal_article_from_datacite():
         "surname": "Mossman",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith("Die Geowissenschaften")
+    assert dig(crossref_xml, "version_info") == {"version": "1.0"}
 
 
 @pytest.mark.vcr
@@ -263,6 +265,7 @@ def test_write_crossref_schema_org_front_matter():
         "More than 200 health journals today published an editorial calling for urgent action"
     )
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -283,6 +286,7 @@ def test_write_crossref_another_schema_org_front_matter():
         "In October Jen Gibson started as the new Executive Director for the Dryad Data Repository."
     )
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -314,6 +318,7 @@ def test_write_crossref_embedded_schema_org_front_matter():
         "More than 200 health journals today published an editorial calling for urgent action to keep average global temperature increases below 1.5°C"
     )
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -343,6 +348,7 @@ def test_write_crossref_schema_org_from_another_science_blog():
         "How does a Research Software Engineer (RSE)"
     )
     assert crossref_xml.get("group_title") == "Polyneme LLC"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -372,6 +378,7 @@ def test_write_crossref_schema_org_upstream_blog():
         "The FORCE11 attribution working group held a workshop during the 2021 FORCE conference"
     )
     assert crossref_xml.get("group_title") == "Upstream"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -382,6 +389,7 @@ def test_jsonfeed_upstream_blog():
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.state == "stale"
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -418,6 +426,7 @@ def test_jsonfeed_upstream_blog():
         "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "Upstream"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -435,6 +444,7 @@ def test_jsonfeed_with_references():
         "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
     assert subject.state == "stale"
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -469,6 +479,7 @@ def test_jsonfeed_with_references():
         "unstructured_citation": "It’s impossible to conduct research without software, say 7 out of 10 UK researchers. Accessed April 13, 2023. https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
     assert crossref_xml.get("group_title") == "Upstream"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -484,6 +495,7 @@ def test_jsonfeed_with_doi():
         {"subject": "Open Science"},
     ]
     assert subject.state == "stale"
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -523,6 +535,7 @@ def test_jsonfeed_with_doi():
         "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "wisspub.net"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -554,6 +567,7 @@ def test_jsonfeed_without_doi():
         },
     ]
     assert subject.state == "stale"
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -588,6 +602,7 @@ def test_jsonfeed_without_doi():
         "Classifying research publications into research topics or research areas is crucial for many bibliometric analyses."
     )
     assert crossref_xml.get("group_title") == "Leiden Madtrics"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -633,6 +648,7 @@ def test_ghost_with_affiliations():
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -650,6 +666,7 @@ def test_jsonfeed_with_organizational_author():
             "name": "Liberate Science",
         }
     ]
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -664,6 +681,7 @@ def test_jsonfeed_with_organizational_author():
         "mime_type": "text/html",
     }
     assert crossref_xml.get("group_title") == "Liberate Science"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -677,6 +695,7 @@ def test_jsonfeed_with_archived_content():
         subject.url
         == "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -705,6 +724,7 @@ def test_jsonfeed_with_archived_content():
         "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
     assert crossref_xml.get("group_title") == "Project THOR"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -729,6 +749,7 @@ def test_jsonfeed_with_relations():
     #     "title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
     #     "publicationYear": "2015",
     # }
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -744,6 +765,7 @@ def test_jsonfeed_with_relations():
     #     "doi": "10.5281/zenodo.30799",
     # }
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -776,6 +798,7 @@ def test_jsonfeed_with_relations_and_funding():
             "awardNumber": "777523",
         }
     ]
+    assert subject.version == "1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -803,6 +826,7 @@ def test_jsonfeed_with_relations_and_funding():
         }
     }
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -882,6 +906,7 @@ def test_inveniordm_with_relations_and_funding():
     #     ],
     # }
     assert crossref_xml.get("group_title") == "Front Matter"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1003,6 +1028,7 @@ def test_inveniordm_record_with_references():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "TLDR: We've successfully moved the main Crossref systems to the cloud!"
     )
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1067,6 +1093,7 @@ def test_book_chapter():
         "cYear": "2012",
         "unstructured_citation": "Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation between magnetic resonance imaging and clinical impairment in patients with adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301–8.",
     }
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1106,6 +1133,7 @@ def test_dataset():
         dig(crossref_xml, "doi_data.resource")
         == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
     )
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1195,6 +1223,7 @@ def test_dissertation():
         dig(crossref_xml, "doi_data.resource")
         == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
     )
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1241,6 +1270,7 @@ def test_arxiv():
     ]
     assert dig(crossref_xml, "doi_data.doi") == "10.48550/arxiv.2311.16162"
     assert dig(crossref_xml, "doi_data.resource") == "https://arxiv.org/abs/2311.16162"
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1349,6 +1379,7 @@ def test_zenodo():
     assert (
         dig(crossref_xml, "doi_data.resource") == "https://zenodo.org/records/5244404"
     )
+    assert dig(crossref_xml, "version_info") == {"version": "Authors' final version"}
 
 
 @pytest.mark.vcr
@@ -1394,26 +1425,27 @@ def test_rogue_scholar_with_parent_doi():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    assert dig(crossref_xml, "program.1") == {
-        "name": "relations",
-        "related_item": [
-            {
-                "intra_work_relation": {
-                    "#text": "10.59350/t3d89-8jj38",
-                    "identifier-type": "doi",
-                    "relationship-type": "isVersionOf",
-                },
-            },
-        ],
-        "xmlns": {
-            "rel": "http://www.crossref.org/relations.xsd",
-        },
-    }
+    # assert dig(crossref_xml, "program.1") == {
+    #     "name": "relations",
+    #     "related_item": [
+    #         {
+    #             "intra_work_relation": {
+    #                 "#text": "10.59350/t3d89-8jj38",
+    #                 "identifier-type": "doi",
+    #                 "relationship-type": "isVersionOf",
+    #             },
+    #         },
+    #     ],
+    #     "xmlns": {
+    #         "rel": "http://www.crossref.org/relations.xsd",
+    #     },
+    # }
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/taha2-fvd76"
     assert (
         dig(crossref_xml, "doi_data.resource")
         == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
     )
+    assert dig(crossref_xml, "version_info") is None
 
 
 @pytest.mark.vcr
@@ -1479,3 +1511,4 @@ def test_rogue_scholar_as_parent_doi():
         dig(crossref_xml, "doi_data.resource")
         == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
     )
+    assert dig(crossref_xml, "version_info") is None

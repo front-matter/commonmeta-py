@@ -102,7 +102,7 @@ def test_wordpress_with_references():
         '\r\n<div data-shortcode="caption" id="attachment_21038"'
     )
     assert subject.image is None
-    assert subject.version is None
+    assert subject.version == "1"
     assert subject.state == "stale"
 
 
@@ -728,7 +728,7 @@ def test_ghost_with_institutional_author():
         subject.image
         == "https://blog.oa.works/content/images/2023/01/nature-website-v2.png"
     )
-    assert subject.version is None
+    assert subject.version == "1"
 
 
 @pytest.mark.vcr
@@ -812,7 +812,7 @@ def test_ghost_with_affiliations():
         {"subject": "Feature"},
     ]
     assert subject.language == "en"
-    assert subject.version is None
+    assert subject.version == "1"
 
 
 @pytest.mark.vcr
@@ -899,7 +899,7 @@ def test_ghost_with_personal_name_parsing():
         subject.image
         == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
     )
-    assert subject.version is None
+    assert subject.version == "1"
 
 
 @pytest.mark.vcr
