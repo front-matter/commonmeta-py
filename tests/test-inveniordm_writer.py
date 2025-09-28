@@ -183,7 +183,7 @@ def test_rogue_scholar():
         {"date": "2025-01-23T17:42:32", "type": {"id": "updated"}},
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
-    assert dig(inveniordm, "metadata.version") == "1"
+    assert dig(inveniordm, "metadata.version") == "v1"
     assert dig(inveniordm, "metadata.description").startswith(
         "The Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure a few weeks ago."
     )
@@ -281,7 +281,7 @@ def test_from_jsonfeed():
             "scheme": "url",
         },
     ]
-    assert dig(inveniordm, "metadata.version") == "1"
+    assert dig(inveniordm, "metadata.version") == "v1"
     assert dig(inveniordm, "metadata.description").startswith(
         "A preprint claims that “ideas from theoretical linguistics have played no role"
     )
@@ -358,7 +358,7 @@ def test_from_jsonfeed_affiliations():
             "scheme": "url",
         },
     ]
-    assert dig(inveniordm, "metadata.version") == "1"
+    assert dig(inveniordm, "metadata.version") == "v1"
     assert dig(inveniordm, "metadata.description").startswith(
         "In the beginning of June 2024,"
     )

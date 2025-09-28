@@ -389,7 +389,7 @@ def test_jsonfeed_upstream_blog():
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
     assert subject.state == "stale"
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -426,7 +426,7 @@ def test_jsonfeed_upstream_blog():
         "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "Upstream"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -444,7 +444,7 @@ def test_jsonfeed_with_references():
         "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
     assert subject.state == "stale"
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -479,7 +479,7 @@ def test_jsonfeed_with_references():
         "unstructured_citation": "It’s impossible to conduct research without software, say 7 out of 10 UK researchers. Accessed April 13, 2023. https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
     }
     assert crossref_xml.get("group_title") == "Upstream"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -495,7 +495,7 @@ def test_jsonfeed_with_doi():
         {"subject": "Open Science"},
     ]
     assert subject.state == "stale"
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -535,7 +535,7 @@ def test_jsonfeed_with_doi():
         "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "wisspub.net"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -567,7 +567,7 @@ def test_jsonfeed_without_doi():
         },
     ]
     assert subject.state == "stale"
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -602,7 +602,7 @@ def test_jsonfeed_without_doi():
         "Classifying research publications into research topics or research areas is crucial for many bibliometric analyses."
     )
     assert crossref_xml.get("group_title") == "Leiden Madtrics"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -648,7 +648,7 @@ def test_ghost_with_affiliations():
         "ORCID": "https://orcid.org/0000-0003-1419-2405",
     }
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -666,7 +666,7 @@ def test_jsonfeed_with_organizational_author():
             "name": "Liberate Science",
         }
     ]
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -681,7 +681,7 @@ def test_jsonfeed_with_organizational_author():
         "mime_type": "text/html",
     }
     assert crossref_xml.get("group_title") == "Liberate Science"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -695,7 +695,7 @@ def test_jsonfeed_with_archived_content():
         subject.url
         == "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"
     )
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -724,7 +724,7 @@ def test_jsonfeed_with_archived_content():
         "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
     }
     assert crossref_xml.get("group_title") == "Project THOR"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -749,7 +749,7 @@ def test_jsonfeed_with_relations():
     #     "title": "D2.1: Artefact, Contributor, And Organisation Relationship Data Schema",
     #     "publicationYear": "2015",
     # }
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
@@ -765,7 +765,7 @@ def test_jsonfeed_with_relations():
     #     "doi": "10.5281/zenodo.30799",
     # }
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -798,7 +798,7 @@ def test_jsonfeed_with_relations_and_funding():
             "awardNumber": "777523",
         }
     ]
-    assert subject.version == "1"
+    assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -826,7 +826,7 @@ def test_jsonfeed_with_relations_and_funding():
         }
     }
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") == {"version": "1"}
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr

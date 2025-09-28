@@ -186,7 +186,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "IsVersionOf",
             }
         )
-    elif validate_prefix(_id) == "10.59350":
+    elif validate_prefix(_id) == "10.59350" and dig(meta, "parent.id"):
         relations.append(
             {
                 "id": doi_as_url(f"10.59350/{dig(meta, 'parent.id')}"),
