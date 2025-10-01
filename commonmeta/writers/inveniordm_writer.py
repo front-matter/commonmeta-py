@@ -442,7 +442,9 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
                 metadata.relations.pop(community_index)
 
         # upsert record via the InvenioRDM API
-        record = upsert_record(metadata, host, token, record)
+        record = upsert_record(
+            metadata, host, token, record, previous=kwargs.get("previous", None)
+        )
 
         # optionally add record to InvenioRDM communities
         record = add_record_to_communities(metadata, host, token, record)
@@ -450,7 +452,6 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
         # optionally update external services
         record = update_external_services(metadata, host, token, record, **kwargs)
     except ValueError as ve:
-        print(f"Error in push_inveniordm: {str(ve)}")
         log.error(
             f"Value error in push_inveniordm: {str(ve)}",
             exc_info=True,
@@ -461,7 +462,6 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
             "status": "error",
         }
     except Exception as e:
-        print(f"Error in push_inveniordm: {str(e)}")
         log.error(
             f"Unexpected error in push_inveniordm: {str(e)}",
             exc_info=True,
@@ -481,7 +481,13 @@ def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> list:
     return json.dumps(items, option=json.OPT_INDENT_2)
 
 
-def upsert_record(metadata: Commonmeta, host: str, token: str, record: dict) -> dict:
+def upsert_record(
+    metadata: Commonmeta,
+    host: str,
+    token: str,
+    record: dict,
+    previous: Optional[str] = None,
+) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
     output = write_inveniordm(metadata)
@@ -489,11 +495,17 @@ def upsert_record(metadata: Commonmeta, host: str, token: str, record: dict) -> 
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
 
-    if record.get("id", None) is not None:
+    if record.get("id", None) is not None and previous is None:
         # Create draft record from published record
         record = edit_published_record(record, host, token)
 
         # Update draft record
+        record = update_draft_record(record, host, token, output)
+    elif record.get("id", None) is not None and previous is not None:
+        # Create a new version of the existing record
+        record = create_new_version(record, host, token)
+
+        # Update new vesion
         record = update_draft_record(record, host, token, output)
     else:
         # Create draft record for DOI that is external or needs to be registered
@@ -650,7 +662,6 @@ def edit_published_record(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
-        print("Edited published record:", dig(data, "parent.pids.doi.identifier"))
         record["updated"] = data.get("updated", None)
         record["status"] = "edited"
         return record
@@ -659,6 +670,29 @@ def edit_published_record(record, host, token):
             f"Error creating draft from published record: {str(e)}", exc_info=True
         )
         record["status"] = "error_edit_published_record"
+        return record
+
+
+def create_new_version(record, host, token):
+    """Create a new version of a published record in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    try:
+        response = requests.post(
+            f"https://{host}/api/records/{record['id']}/versions", headers=headers
+        )
+        response.raise_for_status()
+        data = response.json()
+        record["updated"] = data.get("updated", None)
+        record["status"] = "new_version"
+        return record
+    except requests.exceptions.RequestException as e:
+        log.error(
+            f"Error creating new version from published record: {str(e)}", exc_info=True
+        )
+        record["status"] = "error_create_new_version"
         return record
 
 
@@ -676,7 +710,6 @@ def update_draft_record(record, host, token, inveniordm_data):
         )
         response.raise_for_status()
         data = response.json()
-        print("Update draft record:", dig(data, "parent.pids.doi.identifier"))
         record["updated"] = data.get("updated", None)
         record["status"] = "updated"
         return record

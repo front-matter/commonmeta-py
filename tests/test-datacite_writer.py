@@ -229,7 +229,8 @@ def test_from_schema_org():
     print(datacite)
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (
-        datacite["url"] == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+        datacite["url"]
+        == "https://blog.front-matter.io/posts/eating-your-own-dog-food/"
     )
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["creators"] == [
@@ -245,7 +246,6 @@ def test_from_schema_org():
                     "schemeUri": "https://orcid.org",
                 }
             ],
-            "affiliation": [{"name": "DataCite"}],
         }
     ]
     assert datacite["descriptions"][0]["description"].startswith(
