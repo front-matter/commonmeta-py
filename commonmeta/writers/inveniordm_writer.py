@@ -502,10 +502,11 @@ def upsert_record(
         # Update draft record
         record = update_draft_record(record, host, token, output)
     elif record.get("id", None) is not None and previous is not None:
-        # Create a new version of the existing record
+        # Create a new version draft record of the previous record
+        record["id"] = previous
         record = create_new_version(record, host, token)
 
-        # Update new vesion
+        # Update new version draft record
         record = update_draft_record(record, host, token, output)
     else:
         # Create draft record for DOI that is external or needs to be registered
@@ -685,6 +686,7 @@ def create_new_version(record, host, token):
         )
         response.raise_for_status()
         data = response.json()
+        record["id"] = data.get("id", None)
         record["updated"] = data.get("updated", None)
         record["status"] = "new_version"
         return record
