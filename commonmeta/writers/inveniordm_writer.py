@@ -407,6 +407,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
 
         record = {
             "doi": doi,
+            "previous_doi": kwargs.get("previous_doi", None),
         }
 
         # extract optional information needed
@@ -442,9 +443,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
                 metadata.relations.pop(community_index)
 
         # upsert record via the InvenioRDM API
-        record = upsert_record(
-            metadata, host, token, record, previous=kwargs.get("previous", None)
-        )
+        record = upsert_record(metadata, host, token, record)
 
         # optionally add record to InvenioRDM communities
         record = add_record_to_communities(metadata, host, token, record)
@@ -486,7 +485,6 @@ def upsert_record(
     host: str,
     token: str,
     record: dict,
-    previous: Optional[str] = None,
 ) -> dict:
     """Upsert InvenioRDM record, based on DOI"""
 
@@ -495,18 +493,23 @@ def upsert_record(
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
 
-    if record.get("id", None) is not None and previous is None:
+    if record["previous_doi"] is not None:
+        record["previous_id"] = search_by_doi(
+            doi_from_url(record["previous_doi"]), host, token
+        )
+
+    if record.get("previous_id", None) is not None:
+        # Create a new version from the previous record
+        record["id"] = record["previous_id"]
+        record = create_new_version(record, host, token)
+
+        # Update new version
+        record = update_draft_record(record, host, token, output)
+    elif record.get("id", None) is not None:
         # Create draft record from published record
         record = edit_published_record(record, host, token)
 
         # Update draft record
-        record = update_draft_record(record, host, token, output)
-    elif record.get("id", None) is not None and previous is not None:
-        # Create a new version draft record of the previous record
-        record["id"] = previous
-        record = create_new_version(record, host, token)
-
-        # Update new version draft record
         record = update_draft_record(record, host, token, output)
     else:
         # Create draft record for DOI that is external or needs to be registered

@@ -26,7 +26,6 @@ dependencies = [
     "types-PyYAML>=5.4",
     "beautifulsoup4>=4.11,<5",
     "types-beautifulsoup4>=4.11,<5",
-    "simplejson~=3.18",
     "bibtexparser~=1.4",
     "citeproc-py-styles>=0.1.2,<1",
     "citeproc-py>=0.6,<1",
@@ -89,6 +88,13 @@ include = ["commonmeta"]
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+python_files = "test-*.py"
+testpaths = ["tests"]
+
+[tool.mypy]
+exclude = ["build"]
 
 [tool.ruff]
 # Enable autofix for all enabled rules (when `--fix` is passed)
