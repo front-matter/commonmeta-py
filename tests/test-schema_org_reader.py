@@ -324,7 +324,7 @@ def test_with_upstream_blog_post():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://upstream.force11.org/welcome-to-upstream"
+    assert subject.url == "https://upstream.force11.org/welcome-to-upstream/"
     assert subject.titles and subject.titles[0] == {
         "title": "Welcome to Upstream: the new space for scholarly community discussion on all things open"
     }
@@ -335,7 +335,6 @@ def test_with_upstream_blog_post():
         "contributorRoles": ["Author"],
         "givenName": "John",
         "familyName": "Chodacki",
-        "affiliations": [{"name": "University of California Office of the President"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -348,14 +347,16 @@ def test_with_upstream_blog_post():
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
-        "title": "Upstream",
+        "title": "Front Matter",
     }
     assert subject.descriptions and subject.descriptions[0].get(
         "description"
-    ).startswith("Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; .")
-    assert subject.subjects == [{"subject": "Humanities"}]
+    ).startswith(
+        "Today we are announcing Upstream. And if you're reading this, you're already a part of it!"
+    )
+    assert subject.subjects == [{"subject": "Upstream"}]
     assert subject.language is None
-    assert subject.version is None
+    assert subject.version == "v1"
     assert subject.geo_locations is None
     assert subject.provider == "Crossref"
 

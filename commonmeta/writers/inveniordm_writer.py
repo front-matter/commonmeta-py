@@ -1,13 +1,15 @@
 """InvenioRDM writer for commonmeta-py"""
 
+from __future__ import annotations
+
 import logging
 from time import time
-from typing import Dict, Optional
 
 import orjson as json
 import requests
+from requests.exceptions import RequestException
 
-from ..base_utils import compact, dig, parse_attributes, presence, wrap
+from ..base_utils import compact, dig, first, parse_attributes, presence, scrub, wrap
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
@@ -31,7 +33,7 @@ from ..utils import (
 log = logging.getLogger(__name__)
 
 
-def write_inveniordm(metadata):
+def write_inveniordm(metadata: Commonmeta) -> dict | None:
     """Write inveniordm"""
     if metadata is None or metadata.write_errors is not None:
         return None
@@ -64,7 +66,7 @@ def write_inveniordm(metadata):
         for i in wrap(metadata.relations)
         if i.get("id", None) and i.get("type", None) != "IsPartOf"
     ]
-    funding = compact(
+    funding = scrub(
         [
             to_inveniordm_funding(i)
             for i in wrap(metadata.funding_references)
@@ -120,8 +122,8 @@ def write_inveniordm(metadata):
                 {
                     "resource_type": {"id": _type},
                     "creators": creators,
-                    "title": parse_attributes(
-                        metadata.titles, content="title", first=True
+                    "title": first(
+                        parse_attributes(metadata.titles, content="title", first=True)
                     ),
                     "publisher": metadata.publisher.get("name", None)
                     if metadata.publisher
@@ -131,8 +133,10 @@ def write_inveniordm(metadata):
                     else None,
                     "dates": presence(dates),
                     "subjects": presence(subjects),
-                    "description": parse_attributes(
-                        metadata.descriptions, content="description", first=True
+                    "description": first(
+                        parse_attributes(
+                            metadata.descriptions, content="description", first=True
+                        )
                     ),
                     "rights": [{"id": metadata.license.get("id").lower()}]
                     if metadata.license.get("id", None)
@@ -206,7 +210,7 @@ def to_inveniordm_creator(creator: dict) -> dict:
     )
 
 
-def to_inveniordm_subject(sub: dict) -> Optional[dict]:
+def to_inveniordm_subject(sub: dict) -> dict | None:
     """Convert subject to inveniordm subject"""
     if sub.get("subject", None) is None:
         return None
@@ -226,7 +230,7 @@ def to_inveniordm_subject(sub: dict) -> Optional[dict]:
     )
 
 
-def to_inveniordm_affiliations(creator: dict) -> Optional[list]:
+def to_inveniordm_affiliations(creator: dict) -> list | None:
     """Convert affiliations to inveniordm affiliations.
     Returns None if creator is not a person."""
 
@@ -241,7 +245,7 @@ def to_inveniordm_affiliations(creator: dict) -> Optional[list]:
     if creator.get("type", None) != "Person":
         return None
 
-    return compact(
+    return scrub(
         [format_affiliation(i) for i in wrap(creator.get("affiliations", None))]
     )
 
@@ -275,7 +279,7 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
     )
 
 
-def to_inveniordm_reference(reference: dict) -> dict:
+def to_inveniordm_reference(reference: dict) -> dict | None:
     """Convert reference to inveniordm reference"""
     if normalize_doi(reference.get("id", None)):
         identifier = doi_from_url(reference.get("id", None))
@@ -305,7 +309,7 @@ def to_inveniordm_reference(reference: dict) -> dict:
             }
         )
     else:
-        unstructured = reference.get("unstructured")
+        unstructured = reference.get("unstructured", "")
 
         if reference.get("id", None):
             # remove duplicate ID from unstructured reference
@@ -323,7 +327,7 @@ def to_inveniordm_reference(reference: dict) -> dict:
         )
 
 
-def to_inveniordm_funding(funding: dict) -> Optional[dict]:
+def to_inveniordm_funding(funding: dict) -> dict | None:
     """Convert funding to inveniordm funding"""
     if funding.get("funderIdentifierType", None) == "Crossref Funder ID":
         # convert to ROR
@@ -383,13 +387,13 @@ def to_inveniordm_funding(funding: dict) -> Optional[dict]:
     )
 
 
-def write_inveniordm_list(metalist):
+def write_inveniordm_list(metalist: list) -> list | None:
     """Write InvenioRDM list"""
 
     if metalist is None:
         return None
 
-    def write_item(item):
+    def write_item(item) -> dict | None:
         """write inveniordm item for inveniordm list"""
 
         return write_inveniordm(item)
@@ -397,7 +401,7 @@ def write_inveniordm_list(metalist):
     return [write_item(item) for item in metalist.items]
 
 
-def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Dict:
+def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> dict:
     """Push record to InvenioRDM"""
 
     try:
@@ -450,6 +454,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
 
         # optionally update external services
         record = update_external_services(metadata, host, token, record, **kwargs)
+        return record
     except ValueError as ve:
         log.error(
             f"Value error in push_inveniordm: {str(ve)}",
@@ -471,7 +476,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> Di
     return record
 
 
-def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> list:
+def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> bytes | None:
     """Push inveniordm list to InvenioRDM, returns list of push results."""
 
     if metalist is None:
@@ -572,13 +577,13 @@ def update_external_services(
     # optionally update rogue-scholar legacy record
     if host == "rogue-scholar.org" and kwargs.get("legacy_key", None) is not None:
         record = update_legacy_record(
-            record, legacy_key=kwargs.get("legacy_key"), field="rid"
+            record, legacy_key=kwargs.get("legacy_key", None), field="rid"
         )
 
     return record
 
 
-def search_by_doi(doi, host, token) -> Optional[str]:
+def search_by_doi(doi, host, token) -> str | None:
     """Search for a record by DOI in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -594,12 +599,12 @@ def search_by_doi(doi, host, token) -> Optional[str]:
         if dig(data, "hits.total", 0) > 0:
             return dig(data, "hits.hits.0.id")
         return None
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
         return None
 
 
-def create_draft_record(record, host, token, output):
+def create_draft_record(record: dict, host: str, token: str, output: dict) -> dict:
     """Create a new draft record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -624,13 +629,13 @@ def create_draft_record(record, host, token, output):
         record["updated"] = data.get("updated", None)
         record["status"] = "draft"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error creating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_draft"
         return record
 
 
-def reserve_doi(record, host, token) -> dict:
+def reserve_doi(record: dict, host: str, token: str) -> dict:
     """Reserve a DOI for a draft record."""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -646,7 +651,7 @@ def reserve_doi(record, host, token) -> dict:
         record["doi"] = data.get("doi", None)
         record["status"] = "doi_reserved"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(
             f"Error reserving DOI for record {record['id']}: {str(e)}", exc_info=True
         )
@@ -654,7 +659,7 @@ def reserve_doi(record, host, token) -> dict:
         return record
 
 
-def edit_published_record(record, host, token):
+def edit_published_record(record: dict, host: str, token: str) -> dict:
     """Create a draft from a published record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -669,7 +674,7 @@ def edit_published_record(record, host, token):
         record["updated"] = data.get("updated", None)
         record["status"] = "edited"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(
             f"Error creating draft from published record: {str(e)}", exc_info=True
         )
@@ -677,7 +682,7 @@ def edit_published_record(record, host, token):
         return record
 
 
-def create_new_version(record, host, token):
+def create_new_version(record: dict, host: str, token: str) -> dict:
     """Create a new version of a published record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -693,7 +698,7 @@ def create_new_version(record, host, token):
         record["updated"] = data.get("updated", None)
         record["status"] = "new_version"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(
             f"Error creating new version from published record: {str(e)}", exc_info=True
         )
@@ -701,7 +706,9 @@ def create_new_version(record, host, token):
         return record
 
 
-def update_draft_record(record, host, token, inveniordm_data):
+def update_draft_record(
+    record: dict, host: str, token: str, inveniordm_data: dict
+) -> dict:
     """Update a draft record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -718,13 +725,13 @@ def update_draft_record(record, host, token, inveniordm_data):
         record["updated"] = data.get("updated", None)
         record["status"] = "updated"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error updating draft record: {str(e)}", exc_info=True)
         record["status"] = "error_update_draft_record"
         return record
 
 
-def publish_draft_record(record, host, token):
+def publish_draft_record(record: dict, host: str, token: str) -> dict:
     """Publish a draft record in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -752,13 +759,13 @@ def publish_draft_record(record, host, token):
         record["updated"] = data.get("updated", None)
         record["status"] = "published"
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error publishing draft record: {str(e)}", exc_info=True)
         record["status"] = "error_publish_draft_record"
         return record
 
 
-def get_record_communities(record, host, token):
+def get_record_communities(record: dict, host: str, token: str) -> list | None:
     """Get record communities by id"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -774,12 +781,14 @@ def get_record_communities(record, host, token):
         if dig(data, "hits.total", 0) > 0:
             return dig(data, "hits.hits")
         return None
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error getting communities: {str(e)}", exc_info=True)
         return None
 
 
-def add_record_to_community(record, host, token, community_id):
+def add_record_to_community(
+    record: dict, host: str, token: str, community_id: str
+) -> dict:
     """Add a record to a community"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -794,12 +803,14 @@ def add_record_to_community(record, host, token, community_id):
         )
         response.raise_for_status()
         return record
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error adding record to community: {str(e)}", exc_info=True)
         return record
 
 
-def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
+def update_legacy_record(
+    record, legacy_key: str | None, field: str | None = None
+) -> dict:
     """Update corresponding record in Rogue Scholar legacy database."""
 
     legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
@@ -848,13 +859,13 @@ def update_legacy_record(record, legacy_key: str, field: str = None) -> dict:
         record["status"] = "updated_legacy"
         return record
 
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error updating legacy record: {str(e)}", exc_info=True)
         record["status"] = "error_update_legacy_record"
         return record
 
 
-def search_by_slug(slug: str, type: str, host: str, token: str) -> Optional[str]:
+def search_by_slug(slug: str, type: str, host: str, token: str) -> str | None:
     """Search for a community by slug in InvenioRDM"""
     headers = {
         "Authorization": f"Bearer {token}",
@@ -870,7 +881,7 @@ def search_by_slug(slug: str, type: str, host: str, token: str) -> Optional[str]
         if dig(data, "hits.total", 0) > 0:
             return dig(data, "hits.hits.0.id")
         return None
-    except requests.exceptions.RequestException as e:
+    except RequestException as e:
         log.error(f"Error searching for community: {str(e)}", exc_info=True)
         return None
 

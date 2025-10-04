@@ -1,9 +1,17 @@
 """Commonmeta writer for commonmeta-py"""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from ..base_utils import compact, omit
+from ..constants import Commonmeta
+
+if TYPE_CHECKING:
+    from ..metadata import MetadataList
 
 
-def write_commonmeta(metadata):
+def write_commonmeta(metadata: Commonmeta | None) -> dict | None:
     """Write commonmeta"""
     if metadata is None:
         return None
@@ -36,13 +44,13 @@ def write_commonmeta(metadata):
     return compact(data)
 
 
-def write_commonmeta_list(metalist):
+def write_commonmeta_list(metalist: MetadataList | None) -> dict | None:
     """Write commonmeta list. If file is provided,
     write to file. Supports JSON, JSON Lines and YAML format."""
     if metalist is None:
         return None
 
-    def format_item(item):
+    def format_item(item) -> dict:
         """Format item for commonmeta list"""
         item = omit(vars(item), ["via", "is_valid"])
         return compact(item)

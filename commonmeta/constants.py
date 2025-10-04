@@ -1,6 +1,8 @@
 """Constants for commonmeta-py"""
 
-from typing import List, Optional, TypedDict
+from __future__ import annotations
+
+from typing import TypedDict
 
 
 class Commonmeta(TypedDict):
@@ -9,27 +11,27 @@ class Commonmeta(TypedDict):
     id: str
     type: str
     url: str
-    creators: List[dict]
-    titles: List[dict]
+    creators: list[dict]
+    titles: list[dict]
     publisher: dict
     date: dict
-    additional_type: Optional[str]
-    subjects: Optional[List[dict]]
-    contributors: Optional[List[dict]]
-    language: Optional[str]
-    identifiers: Optional[List[dict]]
-    relations: Optional[List[dict]]
-    sizes: Optional[List[dict]]
-    formats: Optional[List[dict]]
-    version: Optional[str]
-    license: Optional[dict]
-    descriptions: Optional[List[dict]]
-    geo_locations: Optional[List[dict]]
-    funding_references: Optional[List[dict]]
-    references: Optional[List[dict]]
-    container: Optional[dict]
-    files: Optional[List[dict]]
-    agency: Optional[str]
+    additional_type: str | None
+    subjects: list[dict] | None
+    contributors: list[dict] | None
+    language: str | None
+    identifiers: list[dict] | None
+    relations: list[dict] | None
+    sizes: list[dict] | None
+    formats: list[dict] | None
+    version: str | None
+    license: dict | None
+    descriptions: list[dict] | None
+    geo_locations: list[dict] | None
+    funding_references: list[dict] | None
+    references: list[dict] | None
+    container: dict | None
+    files: list[dict] | None
+    agency: str | None
     state: str
 
 

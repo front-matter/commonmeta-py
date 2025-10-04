@@ -1,17 +1,19 @@
 """CSL-JSON reader for commonmeta-py"""
 
-from ..utils import dict_to_spdx, from_csl, normalize_id, name_to_fos, issn_as_url
-from ..base_utils import wrap, compact, sanitize, presence
+from __future__ import annotations
+
 from ..author_utils import get_authors
-from ..date_utils import get_date_from_date_parts
-from ..doi_utils import get_doi_ra, doi_from_url, encode_doi
+from ..base_utils import compact, presence, sanitize, wrap
 from ..constants import (
     CSL_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
+from ..date_utils import get_date_from_date_parts
+from ..doi_utils import doi_from_url, encode_doi, get_doi_ra
+from ..utils import dict_to_spdx, from_csl, issn_as_url, name_to_fos, normalize_id
 
 
-def read_csl(data: dict, **kwargs) -> Commonmeta:
+def read_csl(data: dict | None, **kwargs) -> Commonmeta:
     """read_csl"""
     if data is None:
         return {"state": "not_found"}

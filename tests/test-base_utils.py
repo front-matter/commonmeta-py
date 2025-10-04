@@ -121,11 +121,11 @@ def test_compact():
 def test_parse_attributes():
     "parse_attributes"
     # string
-    assert "10.5061/DRYAD.8515" == parse_attributes("10.5061/DRYAD.8515")
+    assert ["10.5061/DRYAD.8515"] == parse_attributes("10.5061/DRYAD.8515")
     # dict
-    assert "10.5061/DRYAD.8515" == parse_attributes({"#text": "10.5061/DRYAD.8515"})
+    assert ["10.5061/DRYAD.8515"] == parse_attributes({"#text": "10.5061/DRYAD.8515"})
     # dict with other keys
-    assert "10.5061/DRYAD.8515" == parse_attributes(
+    assert ["10.5061/DRYAD.8515"] == parse_attributes(
         {"name": "10.5061/DRYAD.8515"}, content="name"
     )
     # list of dicts
@@ -133,7 +133,7 @@ def test_parse_attributes():
         [{"#text": "10.5061/DRYAD.8515"}, {"#text": "10.5061/DRYAD.8516"}]
     )
     # first in list of dicts
-    assert "10.5061/DRYAD.8515" == parse_attributes(
+    assert ["10.5061/DRYAD.8515"] == parse_attributes(
         [{"#text": "10.5061/DRYAD.8515"}, {"#text": "10.5061/DRYAD.8516"}], first=True
     )
     # list of strings
@@ -141,9 +141,9 @@ def test_parse_attributes():
         ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"]
     )
     # list of empty strings
-    assert parse_attributes([""]) is None
+    assert parse_attributes([""]) == []
     # None
-    assert parse_attributes(None) is None
+    assert parse_attributes(None) == []
 
 
 def test_sanitize():

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import importlib.metadata
 import time
 
@@ -278,7 +280,7 @@ def sample(provider, prefix, type, number, to, style, locale, show_errors):
 
 @cli.command()
 @click.argument("prefix", type=str, required=True)
-def encode(prefix):
+def encode(prefix: str) -> None:
     if validate_prefix(prefix) is None:
         return None
     output = encode_doi(prefix)
@@ -287,7 +289,7 @@ def encode(prefix):
 
 @cli.command()
 @click.argument("doi", type=str, required=True)
-def decode(doi):
+def decode(doi: str) -> None:
     output = decode_doi(doi)
     click.echo(output)
 
@@ -296,13 +298,13 @@ def decode(doi):
 @click.argument("id", type=str, required=True)
 @click.option("--api-key", "-k", type=str, required=True)
 @click.option("--api-url", "-u", type=str, required=True)
-def update_ghost_post(id, api_key, api_url):
+def update_ghost_post(id: str, api_key: str, api_url: str) -> None:
     output = update_ghost_post_via_api(id, api_key, api_url)
     click.echo(output)
 
 
 @cli.command()
-def version():
+def version() -> None:
     version = importlib.metadata.version("commonmeta-py")
     click.echo(f"commonmeta-py {version}")
 

@@ -1,10 +1,12 @@
 """Crossref XML writer for commonmeta-py"""
 
+from __future__ import annotations
+
 import io
 import logging
 from datetime import datetime
 from time import time
-from typing import Dict, Optional, Union
+from typing import Dict
 
 import orjson as json
 import requests
@@ -91,7 +93,7 @@ class CrossrefXMLSchema(Schema):
     references = fields.Dict(data_key="citation_list")
 
 
-def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
+def convert_crossref_xml(metadata: Commonmeta) -> dict | None:
     """Convert Crossref XML"""
 
     # return None if type is not supported by Crossref
@@ -355,7 +357,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> Optional[dict]:
     return data
 
 
-def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
+def write_crossref_xml(metadata: Commonmeta) -> str | None:
     """Write Crossref XML"""
     if metadata is None or not metadata.is_valid:
         log.error("Invalid metadata provided for Crossref XML generation")
@@ -385,7 +387,7 @@ def write_crossref_xml(metadata: Commonmeta) -> Optional[str]:
     return unparse_xml(crossref_xml, dialect="crossref", head=head)
 
 
-def write_crossref_xml_list(metalist) -> Optional[str]:
+def write_crossref_xml_list(metalist) -> str | None:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
         log.error("Invalid metalist provided for Crossref XML generation")
@@ -479,13 +481,13 @@ def push_crossref_xml_list(
     host: str,
     token: str,
     legacy_key: str,
-) -> str:
+) -> bytes | None:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     input_xml = write_crossref_xml_list(metalist)
     if not input_xml:
         log.error("Failed to generate XML for upload")
-        return "{}"
+        return None
 
     client = CrossrefXMLClient(
         username=login_id,
@@ -496,7 +498,7 @@ def push_crossref_xml_list(
 
     if status != "SUCCESS":
         log.error("Failed to upload XML to Crossref")
-        return "{}"
+        return None
 
     items = []
     for item in metalist.items:
@@ -530,7 +532,7 @@ def push_crossref_xml_list(
         items.append(record)
 
     # Return JSON response
-    return json.dumps(items, option=json.OPT_INDENT_2).decode("utf-8")
+    return json.dumps(items, option=json.OPT_INDENT_2)
 
 
 def get_attributes(obj, **kwargs) -> dict:
@@ -546,7 +548,7 @@ def get_attributes(obj, **kwargs) -> dict:
     )
 
 
-def get_journal_metadata(obj) -> Optional[dict]:
+def get_journal_metadata(obj) -> dict | None:
     """get journal metadata"""
     issn = (
         dig(obj, "container.identifier")
@@ -562,7 +564,7 @@ def get_journal_metadata(obj) -> Optional[dict]:
     )
 
 
-def get_book_metadata(obj) -> Optional[dict]:
+def get_book_metadata(obj) -> dict | None:
     return compact(
         {
             "@language": dig(obj, "language"),
@@ -570,7 +572,7 @@ def get_book_metadata(obj) -> Optional[dict]:
     )
 
 
-def get_database_metadata(obj) -> Optional[dict]:
+def get_database_metadata(obj) -> dict | None:
     return compact(
         {
             "@language": dig(obj, "language"),
@@ -578,7 +580,7 @@ def get_database_metadata(obj) -> Optional[dict]:
     )
 
 
-def get_event_metadata(obj) -> Optional[dict]:
+def get_event_metadata(obj) -> dict | None:
     """get event metadata"""
     if dig(obj, "container.title") is None:
         return None
@@ -592,7 +594,7 @@ def get_event_metadata(obj) -> Optional[dict]:
     )
 
 
-def get_proceedings_metadata(obj) -> Optional[dict]:
+def get_proceedings_metadata(obj) -> dict | None:
     """get proceedings metadata"""
     if dig(obj, "container.title") is None or dig(obj, "publisher.name") is None:
         return None
@@ -610,7 +612,7 @@ def get_proceedings_metadata(obj) -> Optional[dict]:
     return compact(proceedings_metadata)
 
 
-def get_journal_issue(obj) -> Optional[dict]:
+def get_journal_issue(obj) -> dict | None:
     """get journal issue"""
     volume = dig(obj, "container.volume")
     if volume is not None:
@@ -624,7 +626,7 @@ def get_journal_issue(obj) -> Optional[dict]:
     )
 
 
-def get_institution(obj) -> Optional[dict]:
+def get_institution(obj) -> dict | None:
     """get institution"""
     if dig(obj, "publisher.name") is None:
         return None
@@ -634,7 +636,7 @@ def get_institution(obj) -> Optional[dict]:
     }
 
 
-def get_titles(obj) -> Optional[dict]:
+def get_titles(obj) -> dict | None:
     """get titles"""
 
     titles = {}
@@ -649,7 +651,7 @@ def get_titles(obj) -> Optional[dict]:
     return titles if titles else None
 
 
-def get_contributors(obj) -> Optional[dict]:
+def get_contributors(obj) -> dict | None:
     """get contributors"""
 
     def map_affiliations(affiliations):
@@ -751,7 +753,7 @@ def get_contributors(obj) -> Optional[dict]:
     return result if result else None
 
 
-def get_publisher(obj) -> Optional[dict]:
+def get_publisher(obj) -> dict | None:
     """get publisher"""
     if dig(obj, "publisher.name") is None:
         return None
@@ -761,7 +763,7 @@ def get_publisher(obj) -> Optional[dict]:
     }
 
 
-def get_abstracts(obj) -> Optional[list]:
+def get_abstracts(obj) -> list | None:
     """get abstracts"""
     if len(wrap(dig(obj, "descriptions"))) == 0:
         return None
@@ -785,12 +787,12 @@ def get_abstracts(obj) -> Optional[list]:
     return abstracts
 
 
-def get_group_title(obj) -> Optional[str]:
+def get_group_title(obj) -> str | None:
     """Get group title from metadata"""
     return dig(obj, "container.title")
 
 
-def get_item_number(obj) -> Optional[dict]:
+def get_item_number(obj) -> dict | None:
     """Insert item number"""
     if len(wrap(dig(obj, "identifiers"))) == 0:
         return None
@@ -804,7 +806,7 @@ def get_item_number(obj) -> Optional[dict]:
             }
 
 
-def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict]:
+def get_publication_date(obj, media_type: str | None = None) -> Dict | None:
     """get publication date"""
     pub_date_str = dig(obj, "date.published")
     if pub_date_str is None:
@@ -826,7 +828,7 @@ def get_publication_date(obj, media_type: Optional[str] = None) -> Optional[Dict
     )
 
 
-def get_archive_locations(obj) -> Optional[list]:
+def get_archive_locations(obj) -> list | None:
     """get archive locations"""
     if len(wrap(dig(obj, "archive_locations"))) == 0:
         return None
@@ -841,7 +843,7 @@ def get_archive_locations(obj) -> Optional[list]:
     ]
 
 
-def get_version_info(obj) -> Optional[str]:
+def get_version_info(obj) -> str | None:
     """get version_info"""
     if dig(obj, "version") is None:
         return None
@@ -849,7 +851,7 @@ def get_version_info(obj) -> Optional[str]:
     return compact({"version": dig(obj, "version")})
 
 
-def get_references(obj) -> Optional[Dict]:
+def get_references(obj) -> Dict | None:
     """get references"""
     if len(wrap(dig(obj, "references"))) == 0:
         return None
@@ -886,7 +888,7 @@ def get_references(obj) -> Optional[Dict]:
     return {"citation": citations}
 
 
-def get_license(obj) -> Optional[dict]:
+def get_license(obj) -> dict | None:
     """get license"""
     rights_uri = dig(obj, "license.url")
     if rights_uri is None:
@@ -908,7 +910,7 @@ def get_license(obj) -> Optional[dict]:
     }
 
 
-def get_funding_references(obj) -> Optional[dict]:
+def get_funding_references(obj) -> dict | None:
     """Get funding references"""
     if len(wrap(dig(obj, "funding_references"))) == 0:
         return None
@@ -993,7 +995,7 @@ def get_funding_references(obj) -> Optional[dict]:
     }
 
 
-def get_relations(obj) -> Optional[Dict]:
+def get_relations(obj) -> Dict | None:
     """get relations"""
     if len(wrap(dig(obj, "relations"))) == 0:
         return None
@@ -1070,7 +1072,7 @@ def get_relations(obj) -> Optional[Dict]:
     }
 
 
-def get_subjects(obj) -> Optional[list]:
+def get_subjects(obj) -> list | None:
     """Get crossref subjects"""
     if dig(obj, "subjects") is None:
         return None
@@ -1083,7 +1085,7 @@ def get_subjects(obj) -> Optional[list]:
     return subjects
 
 
-def get_doi_data(obj) -> Optional[dict]:
+def get_doi_data(obj) -> dict | None:
     """get doi data"""
     if doi_from_url(dig(obj, "id")) is None or dig(obj, "url") is None:
         return None
@@ -1119,7 +1121,7 @@ def get_doi_data(obj) -> Optional[dict]:
     )
 
 
-def get_isbn(obj, media_type: Optional[str] = None) -> Optional[Dict]:
+def get_isbn(obj, media_type: str | None = None) -> Dict | None:
     """get isbn"""
     if (
         dig(obj, "container.identifierType") != "ISBN"
@@ -1130,7 +1132,7 @@ def get_isbn(obj, media_type: Optional[str] = None) -> Optional[Dict]:
     return normalize_isbn_crossref(isbn)
 
 
-def normalize_isbn_crossref(isbn: str) -> Optional[str]:
+def normalize_isbn_crossref(isbn: str) -> str | None:
     """Normalize ISBN for Crossref XML.
 
     Crossref XSD pattern: (97(8|9)-)?\\d[\\d \\-]+[\\dX]
@@ -1191,7 +1193,7 @@ class CrossrefXMLClient:
         else:
             self.api_url = "https://doi.crossref.org/servlet/deposit"
 
-    def post(self, input_xml: Union[str, bytes]) -> str:
+    def post(self, input_xml: str | bytes) -> str:
         """Upload metadata for a new or existing DOI.
 
         :param input_xml: XML metadata following the Crossref Metadata Schema (str or bytes).

@@ -1,12 +1,21 @@
 """cff reader for commonmeta-py"""
 
-from typing import Optional
+from __future__ import annotations
+
 from urllib.parse import urlparse
 
 import requests
 import yaml
 
-from ..base_utils import compact, parse_attributes, presence, sanitize, wrap
+from ..base_utils import (
+    compact,
+    first,
+    parse_attributes,
+    presence,
+    sanitize,
+    scrub,
+    wrap,
+)
 from ..constants import Commonmeta
 from ..date_utils import get_iso8601_date
 from ..utils import (
@@ -36,7 +45,7 @@ def get_cff(pid: str, **kwargs) -> dict:
     return data
 
 
-def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_cff(data: dict | None, **kwargs) -> Commonmeta:
     """read_cff"""
     if data is None:
         return {"state": "not_found"}
@@ -120,10 +129,10 @@ def read_cff(data: Optional[dict], **kwargs) -> Commonmeta:
     }
 
 
-def cff_contributors(contributors):
+def cff_contributors(contributors) -> list:
     """cff_contributors"""
 
-    def format_affiliation(affiliation):
+    def format_affiliation(affiliation) -> dict | None:
         """format_affiliation"""
         if isinstance(affiliation, str):
             return {"name": affiliation}
@@ -138,16 +147,16 @@ def cff_contributors(contributors):
         #   { 'name' => a['#text'] }
         # elsif a.strip.blank
 
-    def format_element(i):
+    def format_element(i) -> dict:
         """format_element"""
-        if normalize_orcid(parse_attributes(i.get("orcid", None))):
-            _id = normalize_orcid(parse_attributes(i.get("orcid", None)))
+        if normalize_orcid(first(parse_attributes(i.get("orcid", None)))) is not None:
+            _id = normalize_orcid(first(parse_attributes(i.get("orcid", None))))
         else:
             _id = None
         if i.get("given-names", None) or i.get("family-names", None) or _id:
-            given_name = parse_attributes(i.get("given-names", None))
-            family_name = parse_attributes(i.get("family-names", None))
-            affiliation = compact(
+            given_name = first(parse_attributes(i.get("given-names", None)))
+            family_name = first(parse_attributes(i.get("family-names", None)))
+            affiliation = scrub(
                 [format_affiliation(a) for a in wrap(i.get("affiliation", None))]
             )
 
@@ -170,10 +179,10 @@ def cff_contributors(contributors):
     return [format_element(i) for i in contributors]
 
 
-def cff_references(references):
+def cff_references(references) -> list:
     """cff_references"""
 
-    def is_reference(i):
+    def is_reference(i) -> bool:
         """is_reference"""
         return (
             next(
@@ -187,7 +196,7 @@ def cff_references(references):
             is not None
         )
 
-    def map_reference(i):
+    def map_reference(i) -> dict:
         """map_element"""
         identifier = next(
             (
@@ -198,7 +207,11 @@ def cff_references(references):
             None,
         )
         return compact(
-            {"doi": normalize_id(parse_attributes(identifier.get("value", None)))}
+            {
+                "doi": normalize_id(
+                    first(parse_attributes(identifier.get("value", None)))
+                )
+            }
         )
 
     return [map_reference(i) for i in references if is_reference(i)]

@@ -1,13 +1,19 @@
 """Web translators for commonmeta. Using BeautifulSoup to extract metadata from web pages."""
 
+from __future__ import annotations
+
 import re
+from typing import TYPE_CHECKING
 
 from furl import furl
 
 from .doi_utils import doi_as_url
 
+if TYPE_CHECKING:
+    from bs4 import BeautifulSoup
 
-def web_translator(soup, url: str):
+
+def web_translator(soup: BeautifulSoup, url: str) -> dict:
     """Extract metadata from web pages"""
     f = furl(url)
     if f.host == "arxiv.org":
@@ -19,7 +25,7 @@ def web_translator(soup, url: str):
     return {}
 
 
-def arxiv_translator(soup):
+def arxiv_translator(soup: BeautifulSoup) -> dict:
     """Extract metadata from arXiv. Find the DOI and return it."""
     arxiv_id = soup.select_one("meta[name='citation_arxiv_id']")
     if arxiv_id is None:
@@ -27,7 +33,7 @@ def arxiv_translator(soup):
     return {"@id": f"https://doi.org/10.48550/arXiv.{arxiv_id['content']}"}
 
 
-def datacite_translator(soup):
+def datacite_translator(soup: BeautifulSoup) -> dict:
     """Extract metadata from DataCite blog posts. Find the DOI and return it."""
     doi = soup.select_one("div#citation")
     if doi is None:
@@ -35,7 +41,7 @@ def datacite_translator(soup):
     return {"@id": doi.get("data-doi", None)}
 
 
-def pan_translator(soup):
+def pan_translator(soup: BeautifulSoup) -> dict:
     """Extract metadata from Acta Palaeontologica Polonica. Find the DOI and return it."""
     caption = soup.select_one("p.caption div.vol").text
     match = re.search(

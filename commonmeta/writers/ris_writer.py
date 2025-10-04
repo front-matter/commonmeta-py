@@ -1,6 +1,6 @@
 """RIS writer for commonmeta-py"""
 
-from ..base_utils import compact, parse_attributes, presence, wrap
+from ..base_utils import compact, first, parse_attributes, wrap
 from ..constants import CM_TO_RIS_TRANSLATIONS
 from ..doi_utils import doi_from_url
 from ..utils import to_ris
@@ -13,18 +13,18 @@ def write_ris(metadata):
     ris = compact(
         {
             "TY": _type,
-            "T1": parse_attributes(metadata.titles, content="title", first=True),
+            "T1": first(parse_attributes(metadata.titles, content="title", first=True)),
             "T2": container.get("title", None),
             "AU": to_ris(metadata.contributors),
             "DO": doi_from_url(metadata.id),
             "UR": metadata.url,
-            "AB": parse_attributes(
-                metadata.descriptions, content="description", first=True
-            ),
-            "KW": presence(
+            "AB": first(
                 parse_attributes(
-                    wrap(metadata.subjects), content="subject", first=False
+                    metadata.descriptions, content="description", first=True
                 )
+            ),
+            "KW": parse_attributes(
+                wrap(metadata.subjects), content="subject", first=False
             ),
             "PY": metadata.date.get("published")[:4]
             if metadata.date.get("published", None)

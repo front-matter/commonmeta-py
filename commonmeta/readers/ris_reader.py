@@ -1,6 +1,6 @@
 """RIS reader for commonmeta-py"""
 
-from typing import Optional
+from __future__ import annotations
 
 from ..author_utils import get_authors
 from ..base_utils import presence
@@ -10,7 +10,7 @@ from ..doi_utils import doi_from_url, normalize_doi
 from ..utils import compact, normalize_url, wrap
 
 
-def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
+def read_ris(data: str | None, **kwargs) -> Commonmeta:
     """read_ris"""
 
     meta = ris_meta(data=data)
@@ -87,7 +87,7 @@ def read_ris(data: Optional[str], **kwargs) -> Commonmeta:
     }
 
 
-def ris_meta(data):
+def ris_meta(data: str | None) -> dict:
     """ris_meta"""
     meta = {}
     if data is None:

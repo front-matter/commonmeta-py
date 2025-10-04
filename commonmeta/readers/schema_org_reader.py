@@ -1,9 +1,10 @@
 """schema_org reader for commonmeta-py"""
 
+from __future__ import annotations
+
 import io
 from collections import defaultdict
 from datetime import datetime
-from typing import Optional
 
 import orjson as json
 import pikepdf
@@ -12,7 +13,16 @@ from bs4 import BeautifulSoup
 from requests.exceptions import ConnectionError
 
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, omit, parse_attributes, presence, sanitize, wrap
+from ..base_utils import (
+    compact,
+    dig,
+    first,
+    omit,
+    parse_attributes,
+    presence,
+    sanitize,
+    wrap,
+)
 from ..constants import (
     OG_TO_SO_TRANSLATIONS,
     SO_TO_CM_TRANSLATIONS,
@@ -42,7 +52,7 @@ from ..utils import (
 )
 
 
-def get_schema_org(pid: str, **kwargs) -> dict:
+def get_schema_org(pid: str | None, **kwargs) -> dict | None:
     """get_schema_org"""
     if pid is None:
         return {"state": "not_found"}
@@ -139,7 +149,7 @@ def get_schema_org(pid: str, **kwargs) -> dict:
     return data | {"via": "schema_org", "state": "findable"}
 
 
-def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     """read_schema_org"""
     if (
         data is None
@@ -166,7 +176,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     )
     if contrib:
-        contributors = contributors + contrib
+        contributors += contrib
 
     if meta.get("name", None) is not None:
         titles = [{"title": meta.get("name")}]
@@ -196,19 +206,24 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
         license_ = dict_to_spdx({"url": license_}) if license_ else None
 
     if _type == "Dataset":
-        container_url = parse_attributes(
-            from_schema_org(meta.get("includedInDataCatalog", None)),
-            content="url",
-            first=True,
+        _title = first(
+            parse_attributes(
+                from_schema_org(meta.get("includedInDataCatalog", None)),
+                content="name",
+                first=True,
+            )
+        )
+        container_url = first(
+            parse_attributes(
+                from_schema_org(meta.get("includedInDataCatalog", None)),
+                content="url",
+                first=True,
+            )
         )
         container = compact(
             {
                 "type": "DataRepository",
-                "title": parse_attributes(
-                    from_schema_org(meta.get("includedInDataCatalog", None)),
-                    content="name",
-                    first=True,
-                ),
+                "title": _title,
                 "identifier": container_url,
                 "identifierType": "URL" if container_url is not None else None,
                 "volume": meta.get("volumeNumber", None),
@@ -275,7 +290,9 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     provider = (
         get_doi_ra(_id)
         if doi_from_url(_id)
-        else parse_attributes(meta.get("provider", None), content="name", first=True)
+        else first(
+            parse_attributes(meta.get("provider", None), content="name", first=True)
+        )
     )
     state = "findable"
 
@@ -308,7 +325,7 @@ def read_schema_org(data: Optional[dict], **kwargs) -> Commonmeta:
     } | read_options
 
 
-def get_doi_meta(doi: str) -> Optional[dict]:
+def get_doi_meta(doi: str | None) -> dict | None:
     """get_doi_meta"""
     ra = get_doi_ra(doi)
     if ra == "Crossref":
@@ -318,7 +335,7 @@ def get_doi_meta(doi: str) -> Optional[dict]:
     return None
 
 
-def schema_org_related_item(meta, relation_type=None):
+def schema_org_related_item(meta, relation_type=None) -> None:
     """Related items"""
     normalize_ids(
         ids=wrap(meta.get(relation_type, None)),
@@ -326,7 +343,7 @@ def schema_org_related_item(meta, relation_type=None):
     )
 
 
-def schema_org_reverse_related_item(meta, relation_type=None):
+def schema_org_reverse_related_item(meta, relation_type=None) -> None:
     """Reverse related items"""
     normalize_ids(
         ids=wrap(dig(meta, f"@reverse.{relation_type}")),
@@ -334,68 +351,68 @@ def schema_org_reverse_related_item(meta, relation_type=None):
     )
 
 
-def schema_org_is_identical_to(meta):
+def schema_org_is_identical_to(meta) -> None:
     """isIdenticalTo is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="sameAs")
 
 
-def schema_org_is_part_of(meta):
+def schema_org_is_part_of(meta) -> None:
     """isPartOf is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="isPartOf")
 
 
-def schema_org_has_part(meta):
+def schema_org_has_part(meta) -> None:
     """hasPart is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="hasPart")
 
 
-def schema_org_is_previous_version_of(meta):
+def schema_org_is_previous_version_of(meta) -> None:
     """isPreviousVersionOf is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="PredecessorOf")
 
 
-def schema_org_is_new_version_of(meta):
+def schema_org_is_new_version_of(meta) -> None:
     """isNewVersionOf is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="SuccessorOf")
 
 
-def schema_org_references(meta):
+def schema_org_references(meta) -> None:
     """references is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="citation")
 
 
-def schema_org_is_referenced_by(meta):
+def schema_org_is_referenced_by(meta) -> None:
     """isReferencedBy is a special case because it can be a string or an object."""
     schema_org_reverse_related_item(meta, relation_type="citation")
 
 
-def schema_org_is_supplement_to(meta):
+def schema_org_is_supplement_to(meta) -> None:
     """isSupplementTo is a special case because it can be a string or an object."""
     schema_org_reverse_related_item(meta, relation_type="isBasedOn")
 
 
-def schema_org_is_supplemented_by(meta):
+def schema_org_is_supplemented_by(meta) -> None:
     """isSupplementedBy is a special case because it can be a string or an object."""
     schema_org_related_item(meta, relation_type="isBasedOn")
 
 
-def schema_org_geolocation(geo_location: Optional[dict]) -> Optional[dict]:
-    """Geolocations in Schema.org format"""
-    if not isinstance(geo_location, dict):
+def schema_org_geolocation(geo_location: dict | None) -> dict | None:
+    """schema_org_geolocation"""
+    if geo_location is None:
         return None
 
-    _type = dig(geo_location, "geo.@type")
+    type_ = dig(geo_location, "geo.@type")
     longitude = dig(geo_location, "geo.longitude")
     latitude = dig(geo_location, "geo.latitude")
 
-    if _type == "GeoCoordinates":
+    if type_ == "GeoCoordinates":
         return {
             "geoLocationPoint": {"pointLongitude": longitude, "pointLatitude": latitude}
         }
     return None
 
 
-def get_html_meta(soup):
+def get_html_meta(soup) -> dict:
     """Get metadata from HTML meta tags"""
     data = {}
     pid = (
@@ -494,7 +511,7 @@ def get_html_meta(soup):
     return data
 
 
-def get_funding_reference(dct):
+def get_funding_reference(dct) -> dict | None:
     """Get funding reference"""
     return compact(
         {

@@ -1,7 +1,8 @@
 """Doi utils for commonmeta-py"""
 
+from __future__ import annotations
+
 import re
-from typing import Optional
 
 import base32_lib as base32
 import requests
@@ -10,7 +11,7 @@ from furl import furl
 from .base_utils import compact
 
 
-def validate_doi(doi: Optional[str]) -> Optional[str]:
+def validate_doi(doi: str | None) -> str | None:
     """Validate a DOI"""
     if doi is None:
         return None
@@ -23,7 +24,7 @@ def validate_doi(doi: Optional[str]) -> Optional[str]:
     return match.group(6)
 
 
-def validate_prefix(doi: Optional[str]) -> Optional[str]:
+def validate_prefix(doi: str | None) -> str | None:
     """Validate a DOI prefix for a given DOI"""
     if doi is None:
         return None
@@ -36,7 +37,7 @@ def validate_prefix(doi: Optional[str]) -> Optional[str]:
     return match.group(6)
 
 
-def validate_suffix(doi: Optional[str]) -> Optional[str]:
+def validate_suffix(doi: str | None) -> str | None:
     """Validate a DOI suffix for a given DOI"""
     if doi is None:
         return None
@@ -49,7 +50,7 @@ def validate_suffix(doi: Optional[str]) -> Optional[str]:
     return match.group(7)
 
 
-def doi_from_url(url: Optional[str]) -> Optional[str]:
+def doi_from_url(url: str | None) -> str | None:
     """Return a DOI from a URL"""
     if url is None:
         return None
@@ -87,7 +88,7 @@ def doi_from_url(url: Optional[str]) -> Optional[str]:
     return match.group(0).lower()
 
 
-def short_doi_as_doi(doi: Optional[str]) -> Optional[str]:
+def short_doi_as_doi(doi: str | None) -> str | None:
     """Resolve a short DOI"""
     if doi is None:
         return None
@@ -100,7 +101,7 @@ def short_doi_as_doi(doi: Optional[str]) -> Optional[str]:
     return response.headers.get("Location")
 
 
-def doi_as_url(doi: Optional[str]) -> Optional[str]:
+def doi_as_url(doi: str | None) -> str | None:
     """Return a DOI as a URL"""
     if doi is None:
         return None
@@ -109,7 +110,7 @@ def doi_as_url(doi: Optional[str]) -> Optional[str]:
     return "https://doi.org/" + doi.lower()
 
 
-def normalize_doi(doi: Optional[str], **kwargs) -> Optional[str]:
+def normalize_doi(doi: str | None, **kwargs) -> str | None:
     """Normalize a DOI"""
     doi_str = validate_doi(doi)
     if not doi_str:
@@ -120,7 +121,7 @@ def normalize_doi(doi: Optional[str], **kwargs) -> Optional[str]:
     return resolver + doi_str.lower()
 
 
-def doi_resolver(doi, **kwargs):
+def doi_resolver(doi, **kwargs) -> str | None:
     """Return a DOI resolver for a given DOI"""
     if doi is None:
         return None
@@ -132,7 +133,7 @@ def doi_resolver(doi, **kwargs):
     return "https://doi.org/"
 
 
-def get_doi_ra(doi) -> Optional[str]:
+def get_doi_ra(doi) -> str | None:
     """Return the DOI registration agency for a given DOI"""
     prefix = validate_prefix(doi)
     if prefix is None:
@@ -143,7 +144,7 @@ def get_doi_ra(doi) -> Optional[str]:
     return response.json()[0].get("RA", None)
 
 
-def encode_doi(prefix, number: Optional[int] = None, checksum: bool = True) -> str:
+def encode_doi(prefix, number: int | None = None, checksum: bool = True) -> str:
     """Generate a DOI using the DOI prefix and a random base32 suffix"""
     if isinstance(number, int):
         suffix = base32.encode(number, split_every=5, checksum=checksum)
@@ -168,7 +169,7 @@ def decode_doi(doi: str, checksum: bool = True) -> int:
         return 0
 
 
-def get_crossref_member(member_id) -> Optional[dict]:
+def get_crossref_member(member_id) -> dict | None:
     """Return the Crossref member for a given member_id"""
     response = requests.get("https://api.crossref.org/members/" + member_id, timeout=10)
     if response.status_code != 200:
@@ -302,7 +303,7 @@ def datacite_api_sample_url(number: int = 1, **kwargs) -> str:
     return f"https://api.datacite.org/dois?random=true&page[size]={number}"
 
 
-def is_rogue_scholar_doi(doi: str, ra: str = "crossref") -> bool:
+def is_rogue_scholar_doi(doi: str | None, ra: str = "crossref") -> bool:
     """Check if a DOI is from Rogue Scholar with specific registration agency"""
     rogue_scholar_crossref_prefixes = [
         "10.13003",

@@ -9,6 +9,7 @@ from ..author_utils import get_authors
 from ..base_utils import (
     compact,
     dig,
+    first,
     parse_attributes,
     parse_xml,
     presence,
@@ -160,7 +161,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     if _type == "Article" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
 
-    url = parse_attributes(dig(bibmeta, "doi_data.resource"))
+    url = first(parse_attributes(dig(bibmeta, "doi_data.resource")))
     url = normalize_url(url)
     titles = crossref_titles(bibmeta)
     contributors = crossref_people(bibmeta)
@@ -285,13 +286,15 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
 
 def crossref_titles(bibmeta):
     """Title information from Crossref metadata."""
-    title = parse_attributes(dig(bibmeta, "titles.0.title"))
-    subtitle = parse_attributes(dig(bibmeta, "titles.0.subtitle"))
-    original_language_title = parse_attributes(
-        dig(bibmeta, "titles.0.original_language_title")
+    title = first(parse_attributes(dig(bibmeta, "titles.0.title")))
+    subtitle = first(parse_attributes(dig(bibmeta, "titles.0.subtitle")))
+    original_language_title = first(
+        parse_attributes(dig(bibmeta, "titles.0.original_language_title"))
     )
-    language = parse_attributes(
-        dig(bibmeta, "titles.0.original_language_title"), content="language"
+    language = first(
+        parse_attributes(
+            dig(bibmeta, "titles.0.original_language_title"), content="language"
+        )
     )
     if title is None and original_language_title is None:
         return None
@@ -332,7 +335,7 @@ def crossref_description(bibmeta):
             {
                 "type": description_type,
                 "description": sanitize(
-                    parse_attributes(element, content="p", first=True)
+                    first(parse_attributes(element, content="p", first=True))
                 ),
             }
         )
@@ -391,7 +394,7 @@ def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
     """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
-    doi = parse_attributes(reference.get("doi", None))
+    doi = first(parse_attributes(reference.get("doi", None)))
     unstructured = reference.get("unstructured_citation", None)
     if isinstance(unstructured, dict):
         text = unstructured.get("font", None) or unstructured.get("#text", None)
@@ -495,7 +498,7 @@ def crossref_license(licenses: list) -> dict:
 
     def map_element(element):
         """Format element"""
-        url = parse_attributes(element)
+        url = first(parse_attributes(element))
         url = normalize_cc_url(url)
         return dict_to_spdx({"url": url})
 

@@ -1,5 +1,9 @@
 """Bibtex writer for commonmeta-py"""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from bibtexparser.bibdatabase import BibDatabase
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.customization import page_double_hyphen
@@ -11,8 +15,11 @@ from ..date_utils import MONTH_SHORT_NAMES, get_iso8601_date, get_month_from_dat
 from ..doi_utils import doi_from_url
 from ..utils import get_language, pages_as_string
 
+if TYPE_CHECKING:
+    from ..metadata import MetadataList
 
-def write_bibtex(metadata: Commonmeta) -> str:
+
+def write_bibtex(metadata: Commonmeta) -> str | None:
     """Write bibtex"""
     if metadata.write_errors is not None:
         return None
@@ -128,7 +135,7 @@ def write_bibtex_item(metadata: Commonmeta) -> dict:
     )
 
 
-def write_bibtex_list(metalist):
+def write_bibtex_list(metalist: MetadataList | None) -> str | None:
     """Write bibtex list"""
     if metalist is None:
         return None

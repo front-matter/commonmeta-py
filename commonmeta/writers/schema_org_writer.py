@@ -1,6 +1,6 @@
 """Schema.org writer for commonmeta-py"""
 
-from ..base_utils import compact, parse_attributes, presence, wrap
+from ..base_utils import compact, first, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
 from ..utils import get_language, github_as_repo_url, to_schema_org_creators
 
@@ -106,18 +106,20 @@ def write_schema_org(metadata):
             "@type": schema_org,
             "url": metadata.url,
             "additionalType": additional_type,
-            "name": parse_attributes(metadata.titles, content="title", first=True),
+            "name": first(
+                parse_attributes(metadata.titles, content="title", first=True)
+            ),
             "author": to_schema_org_creators(authors),
             "editor": to_schema_org_creators(editors),
-            "description": parse_attributes(
-                metadata.descriptions, content="description", first=True
+            "description": first(
+                parse_attributes(
+                    metadata.descriptions, content="description", first=True
+                )
             ),
             "license": metadata.license.get("url", None) if metadata.license else None,
             "version": metadata.version,
-            "keywords": presence(
-                parse_attributes(
-                    wrap(metadata.subjects), content="subject", first=False
-                )
+            "keywords": parse_attributes(
+                wrap(metadata.subjects), content="subject", first=False
             ),
             "inLanguage": get_language(metadata.language, format="name"),
             "dateCreated": metadata.date.get("created", None),

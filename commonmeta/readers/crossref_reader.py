@@ -1,6 +1,7 @@
 """crossref reader for commonmeta-py"""
 
-from typing import List, Optional
+from __future__ import annotations
+
 from xml.parsers.expat import ExpatError
 
 import requests
@@ -10,6 +11,7 @@ from ..author_utils import get_authors
 from ..base_utils import (
     compact,
     dig,
+    first,
     flatten,
     omit,
     parse_attributes,
@@ -17,6 +19,7 @@ from ..base_utils import (
     pascal_case,
     presence,
     sanitize,
+    scrub,
     unique,
     wrap,
 )
@@ -46,7 +49,7 @@ from ..utils import (
 )
 
 
-def get_crossref_list(query: dict, **kwargs) -> List[dict]:
+def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
     response = requests.get(url, timeout=30, **kwargs)
@@ -55,7 +58,7 @@ def get_crossref_list(query: dict, **kwargs) -> List[dict]:
     return response.json().get("message", {}).get("items", [])
 
 
-def get_crossref(pid: str, **kwargs) -> dict:
+def get_crossref(pid: str | None, **kwargs) -> dict | None:
     """get_crossref"""
     doi = validate_doi(pid)
     if doi is None:
@@ -67,7 +70,7 @@ def get_crossref(pid: str, **kwargs) -> dict:
     return {**response.json().get("message", {}), "via": "crossref"}
 
 
-def read_crossref(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
     """read_crossref"""
     if data is None:
         return {"state": "not_found"}
@@ -216,7 +219,7 @@ def get_titles(meta):
     )
 
 
-def get_abstract(meta: dict) -> Optional[str]:
+def get_abstract(meta: dict) -> list | None:
     """Get abstract from Crossref metadata."""
     abstract = meta.get("abstract", None)
     if abstract is None:
@@ -233,7 +236,7 @@ def get_abstract(meta: dict) -> Optional[str]:
         return [{"description": sanitize(abstract), "type": "Abstract"}]
 
 
-def get_reference(reference: Optional[dict]) -> Optional[dict]:
+def get_reference(reference: dict | None) -> dict | None:
     """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
@@ -297,9 +300,7 @@ def get_relations(relations: list) -> list:
 
         return rs
 
-    return unique(
-        compact(flatten([format_relation(k, v) for k, v in relations.items()]))
-    )
+    return unique(scrub(flatten([format_relation(k, v) for k, v in relations.items()])))
 
 
 def get_file(file: dict) -> dict:
@@ -312,7 +313,7 @@ def get_file(file: dict) -> dict:
     )
 
 
-def get_issn(meta: dict) -> Optional[str]:
+def get_issn(meta: dict) -> str | None:
     """Get ISSN from Crossref"""
     issn = (
         next(
@@ -373,7 +374,9 @@ def get_container(meta: dict, issn: str) -> dict:
         or {}
     )
     isbn = validate_isbn(isbn["value"]) if isbn else None
-    container_title = parse_attributes(meta.get("container-title", None), first=True)
+    container_title = first(
+        parse_attributes(meta.get("container-title", None), first=True)
+    )
     if not container_title:
         container_title = dig(meta, "institution.0.name")
     volume = meta.get("volume", None)

@@ -1,6 +1,8 @@
 """DataCite writer for commonmeta-py"""
 
-from typing import Optional, Union
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 from ..base_utils import compact, wrap
 from ..constants import (
@@ -14,8 +16,11 @@ from ..constants import (
 )
 from ..doi_utils import doi_from_url, normalize_doi
 
+if TYPE_CHECKING:
+    from ..metadata import MetadataList
 
-def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
+
+def write_datacite(metadata: Commonmeta) -> str | dict | None:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
         return "{}"
@@ -73,17 +78,17 @@ def write_datacite(metadata: Commonmeta) -> Optional[Union[str, dict]]:
         else None
     )
 
-    def to_datacite_date(date: dict) -> dict:
-        """Convert dates to datacite dates"""
-        for k, v in date.items():
-            if k == "published":
-                k = "issued"
-            return {
-                "date": v,
-                "dateType": k.title(),
-            }
+    def to_datacite_date(date_item: tuple[str, str]) -> dict:
+        """Convert date tuple (key, value) to datacite date"""
+        k, v = date_item
+        if k == "published":
+            k = "issued"
+        return {
+            "date": v,
+            "dateType": k.title(),
+        }
 
-    dates = [to_datacite_date(i) for i in wrap(metadata.date)]
+    dates = [to_datacite_date(item) for item in metadata.date.items()]
 
     license_ = (
         [
@@ -149,7 +154,7 @@ def to_datacite_creator(creator: dict) -> dict:
     name_identifiers = creator.get("id", None)
     if name_identifiers:
 
-        def format_name_identifier(name_identifier):
+        def format_name_identifier(name_identifier: str) -> dict:
             return {
                 "nameIdentifier": name_identifier,
                 "nameIdentifierScheme": "ORCID",
@@ -194,7 +199,7 @@ def to_datacite_related_identifier(reference: dict) -> dict:
     )
 
 
-def write_datacite_list(metalist):
+def write_datacite_list(metalist: MetadataList | None) -> list | None:
     """Write DataCite list"""
     if metalist is None:
         return None

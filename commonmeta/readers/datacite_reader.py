@@ -1,7 +1,8 @@
 """datacite reader for Commonmeta"""
 
+from __future__ import annotations
+
 from collections import defaultdict
-from typing import Optional
 
 import requests
 from requests.exceptions import ReadTimeout
@@ -29,7 +30,7 @@ from ..utils import (
 )
 
 
-def get_datacite(pid: str, **kwargs) -> dict:
+def get_datacite(pid: str | None, **kwargs) -> dict | None:
     """get_datacite"""
     doi = doi_from_url(pid)
     if doi is None:
@@ -101,7 +102,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
     descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
     geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
 
-    def format_subject(subject):
+    def format_subject(subject) -> dict:
         """format_subject"""
         return compact(
             {
@@ -148,7 +149,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
 def get_identifiers(identifiers: list) -> list:
     """get_identifiers"""
 
-    def is_identifier(identifier):
+    def is_identifier(identifier) -> bool:
         """supported identifier types"""
         return identifier.get("identifierType", None) in [
             "ARK",
@@ -166,7 +167,7 @@ def get_identifiers(identifiers: list) -> list:
             "Other",
         ]
 
-    def format_identifier(identifier):
+    def format_identifier(identifier) -> dict:
         """format_identifier"""
         if is_identifier(identifier):
             type_ = identifier.get("identifierType")
@@ -186,11 +187,11 @@ def get_identifiers(identifiers: list) -> list:
 def get_references(references: list) -> list:
     """get_references"""
 
-    def is_reference(reference):
+    def is_reference(reference) -> bool:
         """is_reference"""
         return reference.get("relationType", None) in ["Cites", "References"]
 
-    def map_reference(reference, index):
+    def map_reference(reference, index) -> dict:
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
@@ -215,7 +216,7 @@ def get_references(references: list) -> list:
 def get_relations(relations: list) -> list:
     """get_relations"""
 
-    def is_relation(relation):
+    def is_relation(relation) -> bool:
         """relation"""
         return relation.get("relationType", None) in [
             "IsNewVersionOf",
@@ -235,7 +236,7 @@ def get_relations(relations: list) -> list:
             "IsSupplementTo",
         ]
 
-    def map_relation(relation):
+    def map_relation(relation) -> dict:
         """map_relation"""
 
         identifier = normalize_doi(
@@ -270,7 +271,7 @@ def get_dates(dates: list, publication_year) -> dict:
 def get_descriptions(descriptions: list) -> list:
     """get_descriptions"""
 
-    def map_description(description):
+    def map_description(description) -> dict:
         """map_description"""
         type = description.get("descriptionType", None)
         if type is None:
@@ -295,7 +296,7 @@ def get_descriptions(descriptions: list) -> list:
 def get_titles(titles: list) -> list:
     """get_titles"""
 
-    def map_title(title):
+    def map_title(title) -> dict:
         """map_title"""
         return compact(
             {
@@ -321,7 +322,7 @@ def get_publisher(publisher: dict) -> dict:
 def get_geolocation(geolocations: list) -> list:
     """get_geolocation"""
 
-    def geo_location_point(point: dict):
+    def geo_location_point(point: dict) -> dict:
         """geo_location_point, convert lat and long to int"""
         return {
             "pointLatitude": float(point.get("pointLatitude"))
@@ -332,7 +333,7 @@ def get_geolocation(geolocations: list) -> list:
             else None,
         }
 
-    def geo_location_box(box: dict):
+    def geo_location_box(box: dict) -> dict:
         """geo_location_box, convert lat and long to int"""
         return {
             "eastBoundLongitude": float(box.get("eastBoundLongitude"))
@@ -365,7 +366,7 @@ def get_geolocation(geolocations: list) -> list:
     ]
 
 
-def get_container(container: Optional[dict]) -> dict or None:
+def get_container(container: dict | None) -> dict | None:
     """get_container"""
     if container is None:
         return None

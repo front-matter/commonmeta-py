@@ -73,6 +73,7 @@ dev = [
     "pytest~=8.3",
     "pytest-cov>=4.1.0,<5",
     "pytest-recording>=0.13.1,<0.14",
+    "pytest-black",
     "vcrpy>=6.02",
 ]
 
@@ -110,16 +111,6 @@ fixable = ["ALL"]
 unfixable = []
 # Sort imports
 ignore = ["E501"]
-
-[tool.ruff.format]
-# Like Black, use double quotes for strings
-quote-style = "double"
-# Like Black, indent with 4 spaces
-indent-style = "space"
-# Like Black, respect magic trailing commas
-skip-magic-trailing-comma = false
-# Like Black, automatically detect the appropriate line ending
-line-ending = "auto"
 
 [tool.hatch.version]
 path = "commonmeta/__init__.py"

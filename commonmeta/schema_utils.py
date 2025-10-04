@@ -1,7 +1,9 @@
 """Schema utils for commonmeta-py"""
 
+from __future__ import annotations
+
 from os import path
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import orjson as json
 import xmlschema
@@ -9,8 +11,8 @@ from jsonschema import Draft202012Validator, ValidationError
 
 
 def json_schema_errors(
-    instance: Dict[str, Any], schema: str = "commonmeta"
-) -> Optional[str]:
+    instance: dict[str, Any], schema: str = "commonmeta"
+) -> str | None:
     """validate against JSON schema"""
     schema_map = {
         "commonmeta": "commonmeta_v0.16",
@@ -34,8 +36,8 @@ def json_schema_errors(
 
 
 def xml_schema_errors(
-    instance: Union[str, bytes], schema: str = "crossref_xml"
-) -> Optional[Union[bool, Exception]]:
+    instance: str | bytes, schema: str = "crossref_xml"
+) -> bool | Exception | None:
     """validate against XML schema"""
     schema_map = {
         "crossref_xml": "crossref5.4.0",

@@ -1,6 +1,9 @@
 """Citation writer for commonmeta-py"""
 
+from __future__ import annotations
+
 import re
+from typing import TYPE_CHECKING
 
 import orjson as json
 from citeproc import (
@@ -14,9 +17,13 @@ from citeproc.source.json import CiteProcJSON
 from citeproc_styles import get_style_filepath
 
 from ..base_utils import omit
+from ..constants import Commonmeta
+
+if TYPE_CHECKING:
+    from ..metadata import MetadataList
 
 
-def write_citation(metadata):
+def write_citation(metadata: Commonmeta) -> str:
     """Write citation"""
 
     # Process the JSON data to generate a citeproc-py BibliographySource.
@@ -35,7 +42,7 @@ def write_citation(metadata):
         return f"Error: citation not available for style {metadata.style} and locale {metadata.locale}."
 
 
-def write_citation_item(metadata):
+def write_citation_item(metadata: Commonmeta) -> CiteProcJSON | None:
     """Write citation item"""
     if metadata.write_errors is not None:
         return None
@@ -46,7 +53,7 @@ def write_citation_item(metadata):
     return CiteProcJSON([csl])
 
 
-def write_citation_list(metalist, **kwargs):
+def write_citation_list(metalist: MetadataList | None, **kwargs) -> str | None:
     """Write citation list"""
     if metalist is None:
         return None
@@ -56,7 +63,7 @@ def write_citation_list(metalist, **kwargs):
     style_path = get_style_filepath(style)
     style = CitationStylesStyle(style_path, locale=locale)  #
 
-    def format_citation(index, item):
+    def format_citation(index: int, item: CiteProcJSON) -> str:
         bib = CitationStylesBibliography(style, item, formatter.html)
         _id = metalist.items[index].id
         citation = Citation([CitationItem(_id)])
@@ -70,7 +77,7 @@ def write_citation_list(metalist, **kwargs):
     return "\n\n".join(bibliographies)
 
 
-def _clean_result(text):
+def _clean_result(text: str) -> str:
     """Remove double spaces, punctuation."""
     text = re.sub(r"\s\s+", " ", text)
     text = re.sub(r"\.\. ", ". ", text)

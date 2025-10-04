@@ -4,7 +4,7 @@ from typing import Optional
 
 import orjson as json
 
-from ..base_utils import compact, parse_attributes, presence, wrap
+from ..base_utils import compact, first, parse_attributes, presence, wrap
 from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
@@ -43,10 +43,8 @@ def write_csl_item(metadata) -> Optional[dict]:
             "id": metadata.id,
             "DOI": doi_from_url(metadata.id),
             "URL": metadata.url,
-            "categories": presence(
-                parse_attributes(
-                    wrap(metadata.subjects), content="subject", first=False
-                )
+            "categories": parse_attributes(
+                wrap(metadata.subjects), content="subject", first=False
             ),
             "language": metadata.language,
             "author": author,
@@ -60,15 +58,19 @@ def write_csl_item(metadata) -> Optional[dict]:
             "accessed": get_date_parts(date.get("accessed"))
             if date.get("accessed", None)
             else None,
-            "abstract": parse_attributes(
-                metadata.descriptions, content="description", first=True
+            "abstract": first(
+                parse_attributes(
+                    metadata.descriptions, content="description", first=True
+                )
             ),
             "container-title": container.get("title", None),
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "page": presence(pages_as_string(container)),
             "publisher": publisher.get("name", None),
-            "title": parse_attributes(metadata.titles, content="title", first=True),
+            "title": first(
+                parse_attributes(metadata.titles, content="title", first=True)
+            ),
             "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
         }

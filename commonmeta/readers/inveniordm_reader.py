@@ -1,6 +1,6 @@
 """InvenioRDM reader for Commonmeta"""
 
-from typing import Optional
+from __future__ import annotations
 
 import requests
 from furl import furl
@@ -240,7 +240,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
 def get_references(references: list) -> list:
     """get_references"""
 
-    def get_reference(reference: dict) -> Optional[dict]:
+    def get_reference(reference: dict) -> dict | None:
         if not isinstance(reference, dict):
             return None
 
@@ -250,12 +250,10 @@ def get_references(references: list) -> list:
             id_ = normalize_url(reference.get("identifier"))
         else:
             id_ = reference.get("identifier")
-        return compact(
-            {
-                "id": id_,
-                "unstructured": reference.get("reference", None),
-            }
-        )
+        return {
+            "id": id_,
+            "unstructured": reference.get("reference", None),
+        }
 
     return [get_reference(i) for i in references]
 
@@ -263,7 +261,7 @@ def get_references(references: list) -> list:
 def get_citations(citations: list) -> list:
     """get citations."""
 
-    def get_citation(citation: dict) -> Optional[dict]:
+    def get_citation(citation: dict) -> dict | None:
         if not isinstance(citation, dict):
             return None
 
@@ -273,12 +271,10 @@ def get_citations(citations: list) -> list:
             id_ = normalize_url(citation.get("identifier"))
         else:
             id_ = citation.get("identifier")
-        return compact(
-            {
-                "id": id_,
-                "unstructured": citation.get("reference", None),
-            }
-        )
+        return {
+            "id": id_,
+            "unstructured": citation.get("reference", None),
+        }
 
     return [get_citation(i) for i in citations]
 
@@ -286,11 +282,11 @@ def get_citations(citations: list) -> list:
 def get_references_from_relations(references: list) -> list:
     """get_references_from_relations"""
 
-    def is_reference(reference):
+    def is_reference(reference) -> bool:
         """is_reference"""
         return reference.get("relationType", None) in ["Cites", "References"]
 
-    def map_reference(reference):
+    def map_reference(reference) -> dict:
         """map_reference"""
         identifier = reference.get("relatedIdentifier", None)
         identifier_type = reference.get("relatedIdentifierType", None)
@@ -340,7 +336,7 @@ def get_funding_references(funding_references: list) -> list:
     return [map_funding(i) for i in funding_references]
 
 
-def get_file(file: dict) -> str:
+def get_file(file: dict) -> dict | None:
     """get_file"""
     _type = file.get("type", None)
     return compact(
@@ -358,7 +354,7 @@ def get_file(file: dict) -> str:
 def get_relations(relations: list) -> list:
     """get_relations"""
 
-    def map_relation(relation: dict) -> Optional[dict]:
+    def map_relation(relation: dict) -> dict | None:
         """map_relation"""
         identifier = dig(relation, "identifier")
         scheme = dig(relation, "scheme")
@@ -393,7 +389,7 @@ def format_descriptions(descriptions: list) -> list:
     ]
 
 
-def format_identifier(identifier: dict) -> Optional[dict]:
+def format_identifier(identifier: dict) -> dict | None:
     """format_identifier. scheme url is stored as url metadata."""
     if (
         identifier.get("identifier", None) is None

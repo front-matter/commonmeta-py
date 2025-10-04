@@ -1,7 +1,8 @@
 """codemeta reader for commonmeta-py"""
 
+from __future__ import annotations
+
 from collections import defaultdict
-from typing import Optional
 
 import requests
 
@@ -35,7 +36,7 @@ def get_codemeta(pid: str, **kwargs) -> dict:
     return data
 
 
-def read_codemeta(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_codemeta(data: dict | None, **kwargs) -> Commonmeta:
     """read_codemeta"""
     if data is None:
         return {"state": "not_found"}

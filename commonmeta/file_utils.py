@@ -1,10 +1,11 @@
 """File utils module for commonmeta-py"""
 
+from __future__ import annotations
+
 import gzip
 import io
 import zipfile
 from pathlib import Path
-from typing import Optional, Union
 
 import requests
 
@@ -19,7 +20,7 @@ def uncompress_content(input: bytes) -> bytes:
         return gz.read()
 
 
-def unzip_content(input: bytes, filename: Optional[str] = None) -> bytes:
+def unzip_content(input: bytes, filename: str | None = None) -> bytes:
     output = b""
     with zipfile.ZipFile(io.BytesIO(input)) as zf:
         for info in zf.infolist():
@@ -35,7 +36,7 @@ def read_gz_file(filename: str) -> bytes:
     return uncompress_content(input_bytes)
 
 
-def read_zip_file(filename: str, name: Optional[str] = None) -> bytes:
+def read_zip_file(filename: str, name: str | None = None) -> bytes:
     input_bytes = read_file(filename)
     return unzip_content(input_bytes, name)
 
@@ -62,7 +63,7 @@ def write_zip_file(filename: str, output: bytes) -> None:
         zipf.writestr(path.name, output)
 
 
-def get_extension(filename: str) -> tuple[str, str, Optional[str]]:
+def get_extension(filename: str) -> tuple[str, str, str | None]:
     """Extract extension and compression from filename"""
     extension = Path(filename).suffix
     if extension == ".gz":
@@ -82,7 +83,7 @@ def get_extension(filename: str) -> tuple[str, str, Optional[str]]:
     return filename, extension, compress
 
 
-def write_output(filename: str, input: Union[bytes, str], ext: list[str]) -> None:
+def write_output(filename: str, input: bytes | str, ext: list[str]) -> None:
     """Write output to file with supported extension"""
 
     # Convert string to bytes if necessary

@@ -1,11 +1,13 @@
 """Base utilities for commonmeta-py"""
 
+from __future__ import annotations
+
 import html
 import re
 import uuid
 from datetime import datetime
 from os import path
-from typing import Any, Dict, Iterable, List, Optional, TypeVar, Union
+from typing import Any, Generator, Iterable, TypeVar
 
 import nh3
 import xmltodict
@@ -13,7 +15,7 @@ import xmltodict
 T = TypeVar("T")
 
 
-def _tokens(path: Union[str, Iterable[Any]]):
+def _tokens(path: str | Iterable[Any]) -> Generator[str | int, None, None]:
     """Yield tokens from a dot/bracket path like a.b[0]['c'] or a.0.b"""
     if isinstance(path, (list, tuple)):
         yield from path
@@ -73,7 +75,7 @@ def _tokens(path: Union[str, Iterable[Any]]):
             yield token
 
 
-def dig(obj: Any, path: Union[str, Iterable[Any]], default: Any = None) -> Any:
+def dig(obj: Any, path: str | Iterable[Any], default: Any = None) -> Any:
     """
     Safe nested getter similar to pydash.get.
     """
@@ -91,7 +93,7 @@ def dig(obj: Any, path: Union[str, Iterable[Any]], default: Any = None) -> Any:
     return cur
 
 
-def unique(iterable: Optional[Iterable[T]]) -> List[T]:
+def unique(iterable: Iterable[T] | None) -> list[T]:
     """
     Return a list of unique values in the given iterable, preserving order.
     Returns empty list if iterable is None.
@@ -107,7 +109,7 @@ def unique(iterable: Optional[Iterable[T]]) -> List[T]:
     return result
 
 
-def omit(obj: Optional[Dict[str, Any]], *keys) -> Dict[str, Any]:
+def omit(obj: dict[str, Any] | None, *keys) -> dict[str, Any]:
     """
     Return a new dict without the specified keys.
     Can accept keys as separate arguments or as an iterable.
@@ -124,7 +126,7 @@ def omit(obj: Optional[Dict[str, Any]], *keys) -> Dict[str, Any]:
     return {k: v for k, v in obj.items() if k not in keys}
 
 
-def keep(obj: Optional[Dict[str, Any]], keys: Iterable[str]) -> Dict[str, Any]:
+def keep(obj: dict[str, Any] | None, keys: Iterable[str]) -> dict[str, Any]:
     """
     Return a new dict with only the specified keys.
     Returns empty dict if obj is None.
@@ -136,7 +138,7 @@ def keep(obj: Optional[Dict[str, Any]], keys: Iterable[str]) -> Dict[str, Any]:
     return {k: v for k, v in obj.items() if k in keys}
 
 
-def wrap(item: Optional[Union[dict, list, str]]) -> list:
+def wrap(item: dict | list | str | None) -> list:
     """Turn None, dict, or list into list"""
     if item is None:
         return []
@@ -145,7 +147,7 @@ def wrap(item: Optional[Union[dict, list, str]]) -> list:
     return [item]
 
 
-def unwrap(lst: list) -> Optional[Union[dict, list]]:
+def unwrap(lst: list) -> dict | list | None:
     """Turn list into dict or None, depending on list size"""
     if len(lst) == 0:
         return None
@@ -154,7 +156,14 @@ def unwrap(lst: list) -> Optional[Union[dict, list]]:
     return lst
 
 
-def flatten(array: Iterable[Iterable[Any]]) -> List[Any]:
+def first(lst: list | None) -> Any:
+    """Return the first element of a list or None if the list is empty or None."""
+    if lst is not None and len(lst) > 0:
+        return lst[0]
+    return None
+
+
+def flatten(array: Iterable[Iterable[Any]]) -> list:
     """
     Flatten a list one level deep.
     """
@@ -168,24 +177,28 @@ def flatten(array: Iterable[Iterable[Any]]) -> List[Any]:
 
 
 def presence(
-    item: Optional[Union[dict, list, str]],
-) -> Optional[Union[dict, list, str]]:
+    item: dict | list | str | None,
+) -> dict | list | str | None:
     """Turn empty list, dict or str into None"""
     return None if item is None or len(item) == 0 or item == [{}] else item
 
 
-def compact(dict_or_list: Union[dict, list]) -> Optional[Union[dict, list]]:
-    """Remove None from dict or list"""
-    if isinstance(dict_or_list, dict):
-        return {k: v for k, v in dict_or_list.items() if v is not None}
-    if isinstance(dict_or_list, list):
-        lst = [compact(i) for i in dict_or_list]
-        return lst if len(lst) > 0 else None
-
-    return None
+def compact(obj: dict | None) -> dict | None:
+    """Remove None values from dict"""
+    if obj is None:
+        return None
+    return {k: v for k, v in obj.items() if v is not None}
 
 
-def _split_words(s: str) -> List[str]:
+def scrub(list_obj: list | None) -> list | None:
+    """Remove None values from list recursively"""
+    if list_obj is None:
+        return None
+    lst = [compact(i) for i in list_obj]
+    return lst if len(lst) > 0 else None
+
+
+def _split_words(s: str) -> list[str]:
     """Split string into words by space, underscore, hyphen, and case changes."""
     words, current = [], []
     for i, ch in enumerate(s):
@@ -226,28 +239,41 @@ def kebab_case(s: str) -> str:
     return "-".join(w.lower() for w in words if w)
 
 
-def parse_attributes(
-    element: Union[str, dict, list], **kwargs
-) -> Optional[Union[str, list]]:
-    """extract attributes from a string, dict or list"""
+def parse_attributes(element: str | dict | list | None, **kwargs) -> list:
+    """Extract attributes from a string, dict or list.
 
-    def parse_item(item):
+    Args:
+        element: Input to parse (str, dict, list, or None)
+        **kwargs: Optional parameters:
+            - content: Key to extract from dict (default: "#text")
+
+    Returns:
+        - list of extracted strings, or empty list if none found
+    """
+
+    def parse_item(item) -> str | None:
+        """Parse a single item from the element list"""
         if isinstance(item, dict):
             return item.get(html.unescape(content), None)
-        return html.unescape(item)
+        return html.unescape(item) if isinstance(item, str) else None
+
+    if element is None:
+        return []
 
     content = kwargs.get("content", "#text")
     if isinstance(element, str) and kwargs.get("content", None) is None:
-        return html.unescape(element)
+        return [html.unescape(element)]
     if isinstance(element, dict):
-        return element.get(html.unescape(content), None)
+        return [element.get(html.unescape(content), None)]
     if isinstance(element, list):
         arr = [parse_item(i) for i in element if i]
-        arr = arr[0] if len(arr) > 0 and kwargs.get("first") else unwrap(arr)
+        arr = [arr[0]] if len(arr) > 0 and kwargs.get("first") else arr
         return arr
 
+    return []
 
-def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
+
+def parse_xml(string: str | None, **kwargs) -> dict | list | None:
     """Parse XML into dict using xmltodict. Set default options, and options for Crossref XML"""
     if string is None or string == "{}":
         return None
@@ -287,7 +313,7 @@ def parse_xml(string: Optional[str], **kwargs) -> Optional[Union[dict, list]]:
     return xmltodict.parse(string, **kwargs)
 
 
-def unparse_xml(input: Optional[dict], **kwargs) -> str:
+def unparse_xml(input: dict | None, **kwargs) -> str | None:
     """Unparse (dump) dict into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
         return None
@@ -295,7 +321,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
         # Add additional logic for crossref dialect
         # add body and root element as wrapping elements
         type = next(iter(input))
-        attributes = input.get(type)
+        attributes = input.get(type) or {}
         input.pop(type)
 
         if type == "book":
@@ -310,7 +336,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
             institution = input.pop("institution", None)
             database_metadata = {**{"titles": val}, **database_metadata}
             database_metadata["institution"] = institution or {}
-            component = input.pop("component", None)
+            component = input.pop("component", None) or {}
             input = {
                 "database": {
                     **attributes,
@@ -354,7 +380,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
         else:
             input = {type: attributes | input}
 
-        head = kwargs["head"] or {}
+        head = kwargs.get("head", {}) or {}
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",
@@ -374,7 +400,7 @@ def unparse_xml(input: Optional[dict], **kwargs) -> str:
     return xmltodict.unparse(output, **kwargs)
 
 
-def unparse_xml_list(input: Optional[list], **kwargs) -> str:
+def unparse_xml_list(input: list | None, **kwargs) -> str | None:
     """Unparse (dump) list into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
         return None
@@ -387,7 +413,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
 
         for item in wrap(input):
             type = next(iter(item))
-            attributes = item.get(type)
+            attributes = item.get(type) or {}
             item.pop(type)
 
             # handle nested book_metadata and journal structure as in unparse_xml
@@ -441,7 +467,7 @@ def unparse_xml_list(input: Optional[list], **kwargs) -> str:
                 body_content[type_key] = items[0]  # Use single item without array
             else:
                 body_content[type_key] = items  # Use array when multiple items
-        head = kwargs["head"] or {}
+        head = kwargs.get("head", {}) or {}
         doi_batch = {
             "@xmlns": "http://www.crossref.org/schema/5.4.0",
             "@xmlns:ai": "http://www.crossref.org/AccessIndicators.xsd",

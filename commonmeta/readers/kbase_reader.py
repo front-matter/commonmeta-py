@@ -1,5 +1,7 @@
 """kbase reader for Commonmeta"""
 
+from __future__ import annotations
+
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, omit, presence, sanitize, wrap
 from ..constants import (
@@ -99,7 +101,7 @@ def read_kbase(data: dict, **kwargs) -> Commonmeta:
     }
 
 
-def format_title(title: dict) -> dict:
+def format_title(title: dict) -> dict | None:
     """format_title"""
     _type = title.get("title_type", None)
     return compact(
@@ -143,7 +145,7 @@ def get_references(references: list) -> list:
     return [map_reference(i) for i in references if is_reference(i)]
 
 
-def get_file(file: str) -> dict:
+def get_file(file: str) -> dict | None:
     """get_file"""
     return compact({"url": file})
 
@@ -180,15 +182,13 @@ def get_funding_references(funding_references: list) -> list:
         funder_identifier_type = (
             funder_identifier.split(":")[0] if funder_identifier else None
         )
-        return compact(
-            {
-                "funderIdentifier": from_curie(funder_identifier),
-                "funderIdentifierType": funder_identifier_type,
-                "funderName": dig(funding_reference, "funder.organization_name", None),
-                "awardNumber": funding_reference.get("grant_id", None),
-                "awardUri": funding_reference.get("grant_url", None),
-            }
-        )
+        return {
+            "funderIdentifier": from_curie(funder_identifier),
+            "funderIdentifierType": funder_identifier_type,
+            "funderName": dig(funding_reference, "funder.organization_name", None),
+            "awardNumber": funding_reference.get("grant_id", None),
+            "awardUri": funding_reference.get("grant_url", None),
+        }
 
     return [map_funding_reference(i) for i in funding_references]
 

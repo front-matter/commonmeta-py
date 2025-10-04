@@ -5,7 +5,17 @@ from collections import defaultdict
 import requests
 
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, omit, parse_attributes, presence, sanitize, wrap
+from ..base_utils import (
+    compact,
+    dig,
+    first,
+    omit,
+    parse_attributes,
+    presence,
+    sanitize,
+    scrub,
+    wrap,
+)
 from ..constants import DC_TO_CM_TRANSLATIONS, Commonmeta
 from ..date_utils import normalize_date_dict, strip_milliseconds
 from ..doi_utils import datacite_api_url, doi_as_url, doi_from_url, normalize_doi
@@ -33,7 +43,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
 
     meta = data.get("resource", {})
 
-    doi = parse_attributes(meta.get("identifier", None))
+    doi = first(parse_attributes(meta.get("identifier", None)))
     _id = doi_as_url(doi) if doi else None
 
     resource__typegeneral = dig(meta, "resourceType.resourceTypeGeneral")
@@ -207,7 +217,7 @@ def read_datacite_xml(data: dict, **kwargs) -> Commonmeta:
             "doi": doi_from_url(_id),
             "url": normalize_url(meta.get("url", None)),
             "contributors": presence(contributors),
-            "titles": compact(titles),
+            "titles": scrub(titles),
             "publisher": publisher,
             "date": date,
             # recommended and optional properties

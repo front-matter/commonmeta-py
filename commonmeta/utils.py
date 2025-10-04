@@ -1,9 +1,11 @@
 """Utils module for commonmeta-py"""
 
+from __future__ import annotations
+
 import os
 import re
 import time
-from typing import Any, Optional
+from typing import Any
 from urllib.parse import urlparse
 
 import bibtexparser
@@ -12,10 +14,19 @@ import pycountry
 import yaml
 from bs4 import BeautifulSoup
 from furl import furl
-from idutils import is_isni, is_orcid
+from idutils import validators
 from isbnlib import canonical, is_isbn10, is_isbn13
 
-from .base_utils import compact, dig, omit, parse_attributes, pascal_case, unique, wrap
+from .base_utils import (
+    compact,
+    dig,
+    first,
+    omit,
+    parse_attributes,
+    pascal_case,
+    unique,
+    wrap,
+)
 from .constants import DATACITE_CONTRIBUTOR_TYPES
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
 
@@ -181,7 +192,7 @@ FOS_TO_STRING_MAPPINGS = {
 }
 
 
-def normalize_id(pid: Optional[str], **kwargs) -> Optional[str]:
+def normalize_id(pid: str | None, **kwargs) -> str | None:
     """Check for valid DOI or HTTP(S) URL"""
     if pid is None:
         return None
@@ -232,8 +243,8 @@ def normalize_ids(ids: list, relation_type=None) -> list:
 
 
 def normalize_url(
-    url: Optional[str], secure=False, fragments=False, lower=False
-) -> Optional[str]:
+    url: str | None, secure: bool = False, fragments: bool = False, lower: bool = False
+) -> str | None:
     """Normalize URL"""
     if url is None or not isinstance(url, str):
         return None
@@ -248,7 +259,7 @@ def normalize_url(
     return url
 
 
-def normalize_cc_url(url: Optional[str]):
+def normalize_cc_url(url: str | None) -> str | None:
     """Normalize Creative Commons URL"""
     if url is None or not isinstance(url, str):
         return None
@@ -258,7 +269,7 @@ def normalize_cc_url(url: Optional[str]):
     return NORMALIZED_LICENSES.get(url, url)
 
 
-def normalize_ror(ror: Optional[str]) -> Optional[str]:
+def normalize_ror(ror: str | None) -> str | None:
     """Normalize ROR ID"""
     ror = validate_ror(ror)
     if ror is None:
@@ -268,7 +279,7 @@ def normalize_ror(ror: Optional[str]) -> Optional[str]:
     return "https://ror.org/" + ror
 
 
-def validate_ror(ror: Optional[str]) -> Optional[str]:
+def validate_ror(ror: str | None) -> str | None:
     """Validate ROR"""
     if ror is None or not isinstance(ror, str):
         return None
@@ -282,7 +293,7 @@ def validate_ror(ror: Optional[str]) -> Optional[str]:
     return ror
 
 
-def validate_url(url: str) -> Optional[str]:
+def validate_url(url: str | None) -> str | None:
     if url is None:
         return None
     elif validate_doi(url):
@@ -299,7 +310,7 @@ def validate_url(url: str) -> Optional[str]:
     return None
 
 
-def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
+def normalize_orcid(orcid: str | None) -> str | None:
     """Normalize ORCID"""
     if orcid is None or not isinstance(orcid, str):
         return None
@@ -309,7 +320,7 @@ def normalize_orcid(orcid: Optional[str]) -> Optional[str]:
     return "https://orcid.org/" + orcid
 
 
-def validate_orcid(orcid: Optional[str]) -> Optional[str]:
+def validate_orcid(orcid: str | None) -> str | None:
     """Validate ORCID"""
     if orcid is None or not isinstance(orcid, str):
         return None
@@ -320,12 +331,12 @@ def validate_orcid(orcid: Optional[str]) -> Optional[str]:
     if match is None:
         return None
     orcid = match.group(1).replace(" ", "-")
-    if not is_orcid(orcid):
+    if not validators.is_orcid(orcid):
         return None
     return orcid
 
 
-def validate_isni(isni: Optional[str]) -> Optional[str]:
+def validate_isni(isni: str | None) -> str | None:
     """Validate ISNI"""
     if isni is None or not isinstance(isni, str):
         return None
@@ -336,12 +347,12 @@ def validate_isni(isni: Optional[str]) -> Optional[str]:
     if match is None:
         return None
     isni = match.group(1).replace(" ", "").replace("-", "")
-    if not is_isni(isni):
+    if not validators.is_isni(isni):
         return None
     return isni
 
 
-def validate_isbn(isbn: Optional[str]) -> Optional[str]:
+def validate_isbn(isbn: str | None) -> str | None:
     """Validate ISBN"""
     if isbn is None or not isinstance(isbn, str):
         return None
@@ -351,7 +362,7 @@ def validate_isbn(isbn: Optional[str]) -> Optional[str]:
     return isbn
 
 
-def validate_mag(mag: Optional[str]) -> Optional[str]:
+def validate_mag(mag: str | None) -> str | None:
     """Validate Microsoft Academic Graph ID (mag)"""
     if mag is None or not isinstance(mag, str):
         return None
@@ -364,7 +375,7 @@ def validate_mag(mag: Optional[str]) -> Optional[str]:
     return match.group(1)
 
 
-def validate_openalex(openalex: Optional[str]) -> Optional[str]:
+def validate_openalex(openalex: str | None) -> str | None:
     """Validate OpenAlex ID"""
     if openalex is None or not isinstance(openalex, str):
         return None
@@ -377,7 +388,7 @@ def validate_openalex(openalex: Optional[str]) -> Optional[str]:
     return match.group(1)
 
 
-def validate_pmid(pmid: Optional[str]) -> Optional[str]:
+def validate_pmid(pmid: str | None) -> str | None:
     """Validate PubMed ID (pmid)"""
     if pmid is None or not isinstance(pmid, str):
         return None
@@ -390,7 +401,7 @@ def validate_pmid(pmid: Optional[str]) -> Optional[str]:
     return match.group(1)
 
 
-def validate_pmcid(pmcid: Optional[str]) -> Optional[str]:
+def validate_pmcid(pmcid: str | None) -> str | None:
     """Validate PubMed Central ID (pmcid)"""
     if pmcid is None or not isinstance(pmcid, str):
         return None
@@ -403,7 +414,7 @@ def validate_pmcid(pmcid: Optional[str]) -> Optional[str]:
     return match.group(1)
 
 
-def validate_id(id: Optional[str]) -> tuple[Optional[str], Optional[str]]:
+def validate_id(id: str | None) -> tuple[str | None, str | None]:
     """
     Validate an identifier and return the validated identifier and its type.
 
@@ -460,7 +471,7 @@ def validate_id(id: Optional[str]) -> tuple[Optional[str], Optional[str]]:
     return None, None
 
 
-def openalex_api_url(id: str, identifier_type: str, **kwargs) -> str:
+def openalex_api_url(id: str | None, identifier_type: str, **kwargs) -> str | None:
     """Return the OpenAlex API URL for a given ID"""
     if identifier_type == "DOI":
         return f"https://api.openalex.org/works/{doi_as_url(id)}"
@@ -470,6 +481,7 @@ def openalex_api_url(id: str, identifier_type: str, **kwargs) -> str:
         return f"https://api.openalex.org/works?filter=ids.pmid:{id}"
     if identifier_type == "PMCID":
         return f"https://api.openalex.org/works?filter=ids.pmcid:{id}"
+    return None
 
 
 def openalex_api_query_url(query: dict) -> str:
@@ -595,7 +607,7 @@ def openalex_api_sample_url(number: int = 1, **kwargs) -> str:
     return f"https://api.openalex.org/works?sample={number}"
 
 
-def normalize_isni(isni: Optional[str]) -> Optional[str]:
+def normalize_isni(isni: str | None) -> str | None:
     """Normalize ISNI"""
     if isni is None or not isinstance(isni, str):
         return None
@@ -605,7 +617,7 @@ def normalize_isni(isni: Optional[str]) -> Optional[str]:
     return "https://isni.org/isni/" + isni
 
 
-def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
+def normalize_name_identifier(ni: str | None) -> str | None:
     """Normalize name identifier"""
     if ni is None:
         return None
@@ -621,7 +633,7 @@ def normalize_name_identifier(ni: Optional[str]) -> Optional[str]:
     return None
 
 
-def format_name_identifier(ni):
+def format_name_identifier(ni) -> str | None:
     """format_name_identifier"""
     if ni is None:
         return None
@@ -653,7 +665,7 @@ def format_name_identifier(ni):
     return None
 
 
-def normalize_issn(string, **kwargs):
+def normalize_issn(string, **kwargs) -> str | None:
     """Normalize ISSN
     Pick electronic issn if there are multiple
     Format issn as xxxx-xxxx"""
@@ -677,7 +689,7 @@ def normalize_issn(string, **kwargs):
     return None
 
 
-def dict_to_spdx(dct: dict) -> dict:
+def dict_to_spdx(dct: dict) -> dict | None:
     """Convert a dict to SPDX"""
     dct.update({"url": normalize_cc_url(dct.get("url", None))})
     file_path = os.path.join(
@@ -791,7 +803,7 @@ def from_crossref_xml(elements: list) -> list:
             "contributor_role", "author"
         ).capitalize()
         if element.get("ORCID", None) is not None:
-            orcid = parse_attributes(element.get("ORCID"))
+            orcid = first(parse_attributes(element.get("ORCID")))
             element["ORCID"] = normalize_orcid(orcid)
         element = omit(element, "given_name", "surname", "sequence", "contributor_role")
         return compact(element)
@@ -867,7 +879,7 @@ def to_csl(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def to_ris(elements: Optional[list]) -> list:
+def to_ris(elements: list | None) -> list:
     """Convert element to RIS"""
     if elements is None:
         return []
@@ -887,7 +899,7 @@ def to_ris(elements: Optional[list]) -> list:
     ]
 
 
-def to_schema_org(element: Optional[dict]) -> Optional[dict]:
+def to_schema_org(element: dict | None) -> dict | None:
     """Convert a metadata element to Schema.org"""
     if not isinstance(element, dict):
         return None
@@ -898,7 +910,7 @@ def to_schema_org(element: Optional[dict]) -> Optional[dict]:
     return element
 
 
-def to_schema_org_creators(elements: list) -> list():
+def to_schema_org_creators(elements: list) -> list:
     """Convert creators to Schema.org"""
 
     def format_element(element):
@@ -917,7 +929,7 @@ def to_schema_org_creators(elements: list) -> list():
     return [format_element(i) for i in elements]
 
 
-def to_schema_org_container(element: Optional[dict], **kwargs) -> Optional[dict]:
+def to_schema_org_container(element: dict | None, **kwargs) -> dict | None:
     """Convert CSL container to Schema.org container"""
     if element is None and kwargs.get("container_title", None) is None:
         return None
@@ -949,7 +961,7 @@ def to_schema_org_identifiers(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def to_schema_org_relations(related_items: list, relation_type=None):
+def to_schema_org_relations(related_items: list, relation_type=None) -> list:
     """Convert relatedItems to Schema.org relations"""
 
     def format_element(i):
@@ -970,7 +982,9 @@ def to_schema_org_relations(related_items: list, relation_type=None):
     return [format_element(i) for i in related_items]
 
 
-def find_from_format(pid=None, string=None, ext=None, dct=None, filename=None):
+def find_from_format(
+    pid=None, string=None, ext=None, dct=None, filename=None
+) -> str | None:
     """Find reader from format"""
     if pid is not None:
         return find_from_format_by_id(pid)
@@ -985,7 +999,7 @@ def find_from_format(pid=None, string=None, ext=None, dct=None, filename=None):
     return "datacite"
 
 
-def find_from_format_by_id(pid: str) -> Optional[str]:
+def find_from_format_by_id(pid: str) -> str:
     """Find reader from format by id"""
     doi = validate_doi(pid)
     if doi and (registration_agency := get_doi_ra(doi)) is not None:
@@ -1023,7 +1037,7 @@ def find_from_format_by_id(pid: str) -> Optional[str]:
     return "schema_org"
 
 
-def find_from_format_by_ext(ext: str) -> Optional[str]:
+def find_from_format_by_ext(ext: str) -> str | None:
     """Find reader from format by ext"""
     if ext == ".bib":
         return "bibtex"
@@ -1032,7 +1046,7 @@ def find_from_format_by_ext(ext: str) -> Optional[str]:
     return None
 
 
-def find_from_format_by_dict(dct: dict) -> Optional[str]:
+def find_from_format_by_dict(dct: dict) -> str | None:
     if dct is None or not isinstance(dct, dict):
         return None
     """Find reader from format by dict"""
@@ -1059,7 +1073,7 @@ def find_from_format_by_dict(dct: dict) -> Optional[str]:
     return None
 
 
-def find_from_format_by_string(string: str) -> Optional[str]:
+def find_from_format_by_string(string: str) -> str | None:
     """Find reader from format by string"""
     if string is None:
         return None
@@ -1127,14 +1141,14 @@ def find_from_format_by_string(string: str) -> Optional[str]:
     return None
 
 
-def find_from_format_by_filename(filename):
+def find_from_format_by_filename(filename) -> str | None:
     """Find reader from format by filename"""
     if filename == "CITATION.cff":
         return "cff"
     return None
 
 
-def from_schema_org(element):
+def from_schema_org(element) -> dict | None:
     """Convert schema.org to DataCite"""
     if element is None:
         return None
@@ -1246,22 +1260,22 @@ def github_from_url(url: str) -> dict:
     return compact({"owner": owner, "repo": repo, "release": release, "path": path})
 
 
-def github_repo_from_url(url: str) -> Optional[str]:
+def github_repo_from_url(url: str) -> str | None:
     """Get github repo from url"""
     return github_from_url(url).get("repo", None)
 
 
-def github_release_from_url(url: str) -> Optional[str]:
+def github_release_from_url(url: str) -> str | None:
     """Get github release from url"""
     return github_from_url(url).get("release", None)
 
 
-def github_owner_from_url(url: str) -> Optional[str]:
+def github_owner_from_url(url: str) -> str | None:
     """Get github owner from url"""
     return github_from_url(url).get("owner", None)
 
 
-def github_as_owner_url(url: str) -> Optional[str]:
+def github_as_owner_url(url: str) -> str | None:
     """Get github owner url from url"""
     github_dict = github_from_url(url)
     if github_dict.get("owner", None) is None:
@@ -1269,7 +1283,7 @@ def github_as_owner_url(url: str) -> Optional[str]:
     return f"https://github.com/{github_dict.get('owner')}"
 
 
-def github_as_repo_url(url) -> Optional[str]:
+def github_as_repo_url(url) -> str | None:
     """Get github repo url from url"""
     github_dict = github_from_url(url)
     if github_dict.get("repo", None) is None:
@@ -1277,7 +1291,7 @@ def github_as_repo_url(url) -> Optional[str]:
     return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}"
 
 
-def github_as_release_url(url: str) -> Optional[str]:
+def github_as_release_url(url: str) -> str | None:
     """Get github release url from url"""
     github_dict = github_from_url(url)
     if github_dict.get("release", None) is None:
@@ -1285,11 +1299,11 @@ def github_as_release_url(url: str) -> Optional[str]:
     return f"https://github.com/{github_dict.get('owner')}/{github_dict.get('repo')}/tree/{github_dict.get('release')}"
 
 
-def github_as_codemeta_url(url: str) -> Optional[str]:
+def github_as_codemeta_url(url: str) -> str | None:
     """Get github codemeta.json url from url"""
     github_dict = github_from_url(url)
 
-    if github_dict.get("path", None) and github_dict.get("path").endswith(
+    if github_dict.get("path", None) and github_dict.get("path", "").endswith(
         "codemeta.json"
     ):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
@@ -1299,11 +1313,11 @@ def github_as_codemeta_url(url: str) -> Optional[str]:
         return None
 
 
-def github_as_cff_url(url: str) -> Optional[str]:
+def github_as_cff_url(url: str) -> str | None:
     """Get github CITATION.cff url from url"""
     github_dict = github_from_url(url)
 
-    if github_dict.get("path", None) and github_dict.get("path").endswith(
+    if github_dict.get("path", None) and github_dict.get("path", "").endswith(
         "CITATION.cff"
     ):
         return f"https://raw.githubusercontent.com/{github_dict.get('owner')}/{github_dict.get('repo')}/{github_dict.get('release')}/{github_dict.get('path')}"
@@ -1312,9 +1326,7 @@ def github_as_cff_url(url: str) -> Optional[str]:
     return None
 
 
-def pages_as_string(
-    container: Optional[dict], page_range_separator="-"
-) -> Optional[str]:
+def pages_as_string(container: dict | None, page_range_separator="-") -> str | None:
     """Parse pages for BibTeX"""
     if container is None:
         return None
@@ -1328,7 +1340,7 @@ def pages_as_string(
     )
 
 
-def subjects_as_string(subjects):
+def subjects_as_string(subjects) -> str | None:
     """convert subject list to string, e.g. for bibtex"""
     if subjects is None:
         return None
@@ -1371,7 +1383,7 @@ def string_to_slug(text: str) -> str:
 #                        end.unwrap }.compact
 
 
-def name_to_fos(name: str) -> Optional[dict]:
+def name_to_fos(name: str) -> dict | None:
     """Convert name to Fields of Science (OECD) subject"""
 
     subject = name.strip()
@@ -1381,7 +1393,7 @@ def name_to_fos(name: str) -> Optional[dict]:
     return {"subject": subject}
 
 
-def dict_to_fos(dct: dict) -> Optional[dict]:
+def dict_to_fos(dct: dict) -> dict | None:
     """Convert dict to Fields of Science (OECD) subject"""
     if not isinstance(dct, dict):
         return None
@@ -1390,7 +1402,7 @@ def dict_to_fos(dct: dict) -> Optional[dict]:
     return None
 
 
-def from_curie(id: Optional[str]) -> Optional[str]:
+def from_curie(id: str | None) -> str | None:
     """from CURIE"""
     if id is None:
         return None
@@ -1411,7 +1423,7 @@ def from_curie(id: Optional[str]) -> Optional[str]:
     return None
 
 
-def extract_curie(string: Optional[str]) -> Optional[str]:
+def extract_curie(string: str | None) -> str | None:
     """Extract CURIE"""
     if string is None:
         return None
@@ -1423,7 +1435,7 @@ def extract_curie(string: Optional[str]) -> Optional[str]:
     return doi_as_url(match.group(2))
 
 
-def replace_curie(string: Optional[str]) -> Optional[str]:
+def replace_curie(string: str | None) -> str | None:
     """Replace CURIE with DOI expressed as URL"""
     if string is None:
         return None
@@ -1437,7 +1449,7 @@ def replace_curie(string: Optional[str]) -> Optional[str]:
     return match
 
 
-def extract_url(string: str) -> list:
+def extract_url(string: str) -> str | None:
     """Extract urls from string, including markdown and html."""
 
     match = re.search(
@@ -1459,14 +1471,14 @@ def extract_urls(string: str) -> list:
     return unique(urls)
 
 
-def issn_as_url(issn: str) -> Optional[str]:
+def issn_as_url(issn: str) -> str | None:
     """ISSN as URL"""
     if normalize_issn(issn) is None:
         return None
     return f"https://portal.issn.org/resource/ISSN/{issn}"
 
 
-def issn_from_url(url: str) -> Optional[str]:
+def issn_from_url(url: str) -> str | None:
     """ISSN from URL"""
     if url is None:
         return None
@@ -1476,7 +1488,7 @@ def issn_from_url(url: str) -> Optional[str]:
     return match.group(1)
 
 
-def get_language(lang: str, format: str = "alpha_2") -> Optional[str]:
+def get_language(lang: str | None, format: str = "alpha_2") -> str | None:
     """Provide a language string based on ISO 639, with either a name in English,
     ISO 639-1, or ISO 639-3 code as input. Optionally format as alpha_2 (defaul),
     alpha_3, or name.
@@ -1521,7 +1533,7 @@ def timer_func(func):
     return function_timer
 
 
-def id_from_url(url: Optional[str]) -> Optional[str]:
+def id_from_url(url: str | None) -> str | None:
     """Return a ID from a URL"""
     if url is None:
         return None

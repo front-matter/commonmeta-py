@@ -1,6 +1,6 @@
 """JSON Feed reader for commonmeta-py"""
 
-from typing import Optional
+from __future__ import annotations
 
 import requests
 from furl import furl
@@ -8,6 +8,7 @@ from furl import furl
 from ..author_utils import get_authors
 from ..base_utils import (
     dig,
+    first,
     flatten,
     keep,
     parse_attributes,
@@ -50,7 +51,7 @@ def get_jsonfeed(pid: str, **kwargs) -> dict:
     return response.json() | {"via": "jsonfeed"}
 
 
-def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     """read_jsonfeed"""
     if data is None:
         return {"state": "not_found"}
@@ -93,7 +94,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
     else:
         contributors = None
 
-    title = parse_attributes(meta.get("title", None))
+    title = first(parse_attributes(meta.get("title", None)))
     titles = [{"title": sanitize(title)}] if title else None
 
     date: dict = {}
@@ -117,15 +118,13 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
         if meta.get("blog_slug", None)
         else None
     )
-    container = compact(
-        {
-            "type": "Blog",
-            "title": dig(meta, "blog.title", None),
-            "identifier": issn or blog_url,
-            "identifierType": "ISSN" if issn else "URL",
-            "platform": dig(meta, "blog.generator", None),
-        }
-    )
+    container = {
+        "type": "Blog",
+        "title": dig(meta, "blog.title", None),
+        "identifier": issn or blog_url,
+        "identifierType": "ISSN" if issn else "URL",
+        "platform": dig(meta, "blog.generator", None),
+    }
     publisher = (
         {"name": "Front Matter"}
         if is_rogue_scholar_doi(_id)
@@ -220,7 +219,7 @@ def read_jsonfeed(data: Optional[dict], **kwargs) -> Commonmeta:
 def get_references(references: list) -> list:
     """get jsonfeed references."""
 
-    def get_reference(reference: dict) -> Optional[dict]:
+    def get_reference(reference: dict) -> dict | None:
         if reference is None or not isinstance(reference, dict):
             return None
 
@@ -246,7 +245,7 @@ def get_references(references: list) -> list:
 def get_citations(citations: list) -> list:
     """get jsonfeed citations."""
 
-    def get_citation(citation: dict) -> Optional[dict]:
+    def get_citation(citation: dict) -> dict | None:
         if citation is None or not isinstance(citation, dict):
             return None
 
@@ -265,7 +264,7 @@ def get_citations(citations: list) -> list:
     return citations
 
 
-def get_funding_references(meta: Optional[dict]) -> Optional[list]:
+def get_funding_references(meta: dict | None) -> list | None:
     """get json feed funding references.
     Check that relationships resolve and have type "HasAward" or
     funding is provided by blog metadata"""
@@ -357,7 +356,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
         ]
     )
 
-    def format_funding_reference(funding: dict) -> dict:
+    def format_funding_reference(funding: dict) -> dict | None:
         """format funding reference. Make sure award URI is either a DOI or URL"""
 
         award_uri = funding.get("awardUri", None)
@@ -393,7 +392,7 @@ def get_funding_references(meta: Optional[dict]) -> Optional[list]:
     return unique(awards)
 
 
-def get_relations(relations: Optional[list]) -> Optional[list]:
+def get_relations(relations: list) -> list:
     """get json feed related relations.
     Check that relations resolve and have a supported type"""
     supported_types = [
@@ -436,7 +435,7 @@ def get_relations(relations: Optional[list]) -> Optional[list]:
     )
 
 
-def get_files(pid: str) -> Optional[list]:
+def get_files(pid: str | None) -> list | None:
     """get json feed file links"""
     doi = doi_from_url(pid)
     if not is_rogue_scholar_doi(doi):
@@ -461,7 +460,7 @@ def get_files(pid: str) -> Optional[list]:
     ]
 
 
-def get_jsonfeed_uuid(id: str):
+def get_jsonfeed_uuid(id: str) -> dict | None:
     """get jsonfeed by uuid"""
     if id is None:
         return None
@@ -489,7 +488,7 @@ def get_jsonfeed_uuid(id: str):
     )
 
 
-def get_jsonfeed_blog_slug(id: str):
+def get_jsonfeed_blog_slug(id: str) -> str | None:
     """get jsonfeed by id and return blog slug"""
     if id is None:
         return None
@@ -501,7 +500,7 @@ def get_jsonfeed_blog_slug(id: str):
     return dig(post, "blog.slug", None)
 
 
-def format_subject(subject: str) -> Optional[dict]:
+def format_subject(subject: str) -> dict | None:
     """format subject"""
     if subject is None or not isinstance(subject, str):
         return None

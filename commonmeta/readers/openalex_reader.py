@@ -1,6 +1,6 @@
 """OpenAlex reader for commonmeta-py"""
 
-from typing import Optional
+from __future__ import annotations
 
 import requests
 from requests.exceptions import ConnectionError, ReadTimeout
@@ -61,7 +61,7 @@ def get_openalex(pid: str, **kwargs) -> dict:
     return response.json() | {"via": "openalex"}
 
 
-def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
+def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     """read_openalex"""
     if data is None:
         return {"state": "not_found"}
@@ -153,7 +153,7 @@ def read_openalex(data: Optional[dict], **kwargs) -> Commonmeta:
     } | read_options
 
 
-def get_abstract(meta):
+def get_abstract(meta: dict) -> str | None:
     """Parse abstract from OpenAlex abstract_inverted_index"""
     abstract_inverted_index = dig(meta, "abstract_inverted_index")
 
@@ -177,7 +177,7 @@ def get_abstract(meta):
 def get_contributors(contributors: list) -> list:
     """Parse contributor"""
 
-    def parse_contributor(c):
+    def parse_contributor(c: dict) -> dict:
         affiliations = []
         for affiliation in c.get("institutions", []):
             affiliations.append(
@@ -189,13 +189,11 @@ def get_contributors(contributors: list) -> list:
                 )
             )
 
-        return compact(
-            {
-                "id": dig(c, "author.orcid"),
-                "name": dig(c, "author.display_name"),
-                "affiliations": affiliations,
-            }
-        )
+        return {
+            "id": dig(c, "author.orcid"),
+            "name": dig(c, "author.display_name"),
+            "affiliations": affiliations,
+        }
 
     return [parse_contributor(i) for i in contributors]
 
@@ -208,7 +206,7 @@ def get_references(pids: list, **kwargs) -> list:
     return references
 
 
-def get_citations(citation_url: str, **kwargs) -> list:
+def get_citations(citation_url: str, **kwargs) -> dict | list:
     response = requests.get(citation_url, timeout=10, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
@@ -216,7 +214,7 @@ def get_citations(citation_url: str, **kwargs) -> list:
     return response.json().get("results", [])
 
 
-def get_related(related: Optional[dict]) -> Optional[dict]:
+def get_related(related: dict | None) -> dict | None:
     """Get reference from OpenAlex reference"""
     if related is None or not isinstance(related, dict):
         return None
@@ -247,17 +245,17 @@ def get_openalex_works(pids: list, **kwargs) -> list:
         url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
         response = requests.get(url, timeout=10, **kwargs)
         if response.status_code != 200:
-            return {"state": "not_found"}
+            return []
         response = response.json()
         if dig(response, "count") == 0:
-            return {"state": "not_found"}
+            return []
 
         works.extend(response.get("results"))
 
     return works
 
 
-def get_openalex_funders(pids: list, **kwargs) -> list:
+def get_openalex_funders(pids: list, **kwargs) -> dict | list:
     """Get ROR id and name from OpenAlex funders.
     use batches of 49 to honor API limit."""
     pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
@@ -272,14 +270,12 @@ def get_openalex_funders(pids: list, **kwargs) -> list:
         if dig(response, "count") == 0:
             return {"state": "not_found"}
 
-        def format_funder(funder):
-            return compact(
-                {
-                    "id": dig(funder, "id"),
-                    "ror": dig(funder, "ids.ror"),
-                    "name": dig(funder, "display_name"),
-                }
-            )
+        def format_funder(funder: dict) -> dict:
+            return {
+                "id": dig(funder, "id"),
+                "ror": dig(funder, "ids.ror"),
+                "name": dig(funder, "display_name"),
+            }
 
         f = [format_funder(i) for i in response.get("results")]
         funders.extend(f)
@@ -287,7 +283,7 @@ def get_openalex_funders(pids: list, **kwargs) -> list:
     return funders
 
 
-def get_openalex_source(str: Optional[str], **kwargs) -> Optional[dict]:
+def get_openalex_source(str: str | None, **kwargs) -> dict | None:
     """Get issn, name, homepage_url and type from OpenAlex source."""
     id = validate_openalex(str)
     if not id:
@@ -312,7 +308,7 @@ def get_openalex_source(str: Optional[str], **kwargs) -> Optional[dict]:
     )
 
 
-def get_files(meta) -> Optional[list]:
+def get_files(meta: dict) -> list | None:
     """get file links"""
     pdf_url = dig(meta, "best_oa_location.pdf_url")
     if pdf_url is None:
@@ -322,7 +318,7 @@ def get_files(meta) -> Optional[list]:
     ]
 
 
-def get_container(meta: dict) -> dict:
+def get_container(meta: dict) -> dict | None:
     """Get container from OpenAlex"""
     source = get_openalex_source(dig(meta, "primary_location.source.id"))
     container_type = dig(source, "type")

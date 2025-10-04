@@ -1,7 +1,9 @@
 """Metadata"""
 
+from __future__ import annotations
+
 from os import path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List
 
 import orjson as json
 import yaml
@@ -70,7 +72,7 @@ from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 class Metadata:
     """Metadata"""
 
-    def __init__(self, string: Optional[Union[str, Dict[str, Any]]], **kwargs):
+    def __init__(self, string: str | Dict[str, Any] | None, **kwargs):
         if (
             string is None
             or not isinstance(string, (str, dict))
@@ -275,7 +277,7 @@ class Metadata:
         else:
             raise ValueError("No input format found")
 
-    def write(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+    def write(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
         """convert metadata list into different formats"""
         try:
             result = self._write_format(to, **kwargs)
@@ -286,7 +288,7 @@ class Metadata:
             # More specific error message including the original JSONDecodeError details
             raise ValueError(f"Invalid JSON: {str(e)}")
 
-    def _write_format(self, to: str, **kwargs) -> Union[str, bytes]:
+    def _write_format(self, to: str, **kwargs) -> str | bytes:
         """Helper method to handle writing to different formats."""
         # JSON-based output formats
         if to == "commonmeta":
@@ -368,7 +370,7 @@ class Metadata:
             return ""
         return output if output is not None else ""
 
-    def push(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+    def push(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
         """push metadata to external APIs"""
 
         if to == "crossref_xml":
@@ -395,9 +397,7 @@ class Metadata:
 class MetadataList:
     """MetadataList"""
 
-    def __init__(
-        self, dct: Optional[Union[str, Dict[str, Any]]] = None, **kwargs
-    ) -> None:
+    def __init__(self, dct: str | Dict[str, Any] | None = None, **kwargs) -> None:
         if dct is None or not isinstance(dct, (str, bytes, dict)):
             raise ValueError("No input found")
         if isinstance(dct, dict):
@@ -463,7 +463,7 @@ class MetadataList:
         kwargs["via"] = kwargs.get("via", None) or self.via
         return [Metadata(i, **kwargs) for i in items]
 
-    def write(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+    def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
         if to == "bibtex":
             output = write_bibtex_list(self)
@@ -514,7 +514,7 @@ class MetadataList:
         else:
             raise ValueError("No valid output format found")
 
-    def push(self, to: str = "commonmeta", **kwargs) -> Union[str, bytes]:
+    def push(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """push metadata list to external APIs"""
 
         if to == "crossref_xml":

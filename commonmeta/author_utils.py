@@ -1,16 +1,18 @@
 """Author utils module for commonmeta-py"""
 
+from __future__ import annotations
+
 import re
-from typing import List
 
 from furl import furl
 from nameparser import HumanName
 
-from .base_utils import compact, parse_attributes, presence, unique, wrap
+from .base_utils import compact, parse_attributes, presence, scrub, unique, wrap
 from .constants import (
     COMMONMETA_CONTRIBUTOR_ROLES,
 )
 from .utils import (
+    first,
     format_name_identifier,
     normalize_id,
     normalize_isni,
@@ -21,7 +23,7 @@ from .utils import (
 )
 
 
-def get_one_author(author, **kwargs):
+def get_one_author(author, **kwargs) -> dict | None:
     """parse one author string into commonmeta format"""
     # if author is a string
     if isinstance(author, str):
@@ -31,17 +33,21 @@ def get_one_author(author, **kwargs):
     if isinstance(author.get("creatorName", None), list):
         return None
 
+    # Parse name fields - ensure they are strings, not lists
     name = (
-        parse_attributes(author.get("creatorName", None))
-        or parse_attributes(author.get("contributorName", None))
-        or parse_attributes(author.get("name", None))
+        first(parse_attributes(author.get("creatorName", None)))
+        or first(parse_attributes(author.get("contributorName", None)))
+        or first(parse_attributes(author.get("name", None)))
     )
-    given_name = parse_attributes(author.get("givenName", None)) or parse_attributes(
-        author.get("given", None)
+    given_name = first(parse_attributes(author.get("givenName", None))) or first(
+        parse_attributes(author.get("given", None))
     )
-    family_name = parse_attributes(author.get("familyName", None)) or parse_attributes(
-        author.get("family", None)
+    family_name = first(parse_attributes(author.get("familyName", None))) or first(
+        parse_attributes(author.get("family", None))
     )
+    # Ensure family_name is string, not list
+    if isinstance(family_name, list):
+        family_name = family_name[0] if len(family_name) > 0 else None
 
     name = cleanup_author(name)
 
@@ -50,19 +56,28 @@ def get_one_author(author, **kwargs):
         return None
 
     # parse contributor roles, checking for roles supported by commonmeta
-    contributor_roles = wrap(
-        parse_attributes(author.get("contributorType", None))
-    ) or wrap(parse_attributes(author.get("contributor_roles", None)))
+    contributor_roles_raw = parse_attributes(
+        author.get("contributorType", None)
+    ) or parse_attributes(author.get("contributor_roles", None))
+
+    # Filter to only string values that are in COMMONMETA_CONTRIBUTOR_ROLES
     contributor_roles = [
-        i for i in contributor_roles if i in COMMONMETA_CONTRIBUTOR_ROLES
+        i
+        for i in wrap(contributor_roles_raw)
+        if isinstance(i, str) and i in COMMONMETA_CONTRIBUTOR_ROLES
     ] or ["Author"]
 
     # parse author type, i.e. "Person", "Organization" or not specified
-    _type = parse_attributes(
-        author.get("creatorName", None), content="type", first=True
-    ) or parse_attributes(
-        author.get("contributorName", None), content="type", first=True
-    )
+    # Only pass dict to parse_attributes when using content="type"
+    creator_name = author.get("creatorName", None)
+    contributor_name = author.get("contributorName", None)
+
+    _type = None
+    if isinstance(creator_name, dict):
+        _type = first(parse_attributes(creator_name, content="type"))
+    if not _type and isinstance(contributor_name, dict):
+        _type = first(parse_attributes(contributor_name, content="type"))
+
     # also handle Crossref, JSON Feed, or DataCite metadata
     _id = (
         author.get("id", None)
@@ -72,9 +87,8 @@ def get_one_author(author, **kwargs):
             (
                 format_name_identifier(i)
                 for i in wrap(
-                    author.get(
-                        "nameIdentifiers", None or author.get("identifiers", None)
-                    )
+                    author.get("nameIdentifiers", None)
+                    or author.get("identifiers", None)
                 )
             ),
             None,
@@ -130,7 +144,7 @@ def get_one_author(author, **kwargs):
     )
 
 
-def is_personal_name(name):
+def is_personal_name(name) -> bool:
     """is_personal_name"""
     # personal names are not allowed to contain semicolons
     if ";" in name:
@@ -191,7 +205,7 @@ def is_personal_name(name):
     return False
 
 
-def cleanup_author(author):
+def cleanup_author(author: str | None) -> str | None:
     """clean up author string"""
     if author is None:
         return None
@@ -211,7 +225,7 @@ def cleanup_author(author):
     return author
 
 
-def get_authors(authors, **kwargs):
+def get_authors(authors, **kwargs) -> list[dict]:
     """transform array of author dicts into commonmeta format"""
     author_list = [
         author
@@ -223,7 +237,7 @@ def get_authors(authors, **kwargs):
     return unique(author_list)
 
 
-def authors_as_string(authors: List[dict]) -> str:
+def authors_as_string(authors: list[dict]) -> str:
     """convert authors list to string, e.g. for bibtex"""
 
     def format_author(author):
@@ -236,7 +250,7 @@ def authors_as_string(authors: List[dict]) -> str:
     return " and ".join([format_author(i) for i in wrap(authors) if i is not None])
 
 
-def get_affiliations(affiliations: List[dict]) -> List[dict]:
+def get_affiliations(affiliations: list[dict]) -> list[dict]:
     """parse array of affiliation strings into commonmeta format"""
 
     def format_element(i):
@@ -252,7 +266,7 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
                     scheme_uri = (
                         i["schemeURI"]
                         if i["schemeURI"].endswith("/")
-                        else "{affiliation['schemeURI']}/"
+                        else f"{i['schemeURI']}/"
                     )
                 affiliation_identifier = (
                     normalize_id(scheme_uri + affiliation_identifier)
@@ -274,4 +288,4 @@ def get_affiliations(affiliations: List[dict]) -> List[dict]:
             }
         )
 
-    return unique(compact([format_element(i) for i in affiliations]))
+    return unique(scrub([format_element(i) for i in affiliations]))
