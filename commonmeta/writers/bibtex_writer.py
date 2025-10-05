@@ -19,10 +19,10 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_bibtex(metadata: Metadata) -> str:
+def write_bibtex(metadata: Metadata) -> bytes | None:
     """Write bibtex"""
     if metadata.write_errors is not None:
-        return ""
+        return None
     item = write_bibtex_item(metadata)
     bibtex_str = """
     @comment{
@@ -40,7 +40,7 @@ def write_bibtex(metadata: Metadata) -> str:
     # Hack to remove curly braces around month names
     for month_name in MONTH_SHORT_NAMES:
         bibtex_str = bibtex_str.replace(f"{{{month_name}}}", month_name)
-    return bibtex_str
+    return bibtex_str.encode("utf-8")
 
 
 def write_bibtex_item(metadata: Metadata) -> dict:
@@ -69,7 +69,11 @@ def write_bibtex_item(metadata: Metadata) -> dict:
     )
     author = authors if authors and len(authors) > 0 else None
     license_ = str(metadata.license.get("url")) if metadata.license else None
-    institution = metadata.publisher.get("name", None) if _type == "phdthesis" else None
+    institution = (
+        metadata.publisher.get("name", None)
+        if _type == "phdthesis" and metadata.publisher
+        else None
+    )
     issn = (
         container.get("identifier", None)
         if container.get("identifierType", None) == "ISSN"
@@ -100,7 +104,7 @@ def write_bibtex_item(metadata: Metadata) -> dict:
     pages = pages_as_string(container)
     publisher = (
         metadata.publisher.get("name", None)
-        if _type not in ["article", "phdthesis"]
+        if _type not in ["article", "phdthesis"] and metadata.publisher
         else None
     )
     series = container.get("series", None)

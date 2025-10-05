@@ -250,7 +250,7 @@ def authors_as_string(authors: list[dict]) -> str:
     return " and ".join([format_author(i) for i in wrap(authors) if i is not None])
 
 
-def get_affiliations(affiliations: list[dict]) -> list[dict]:
+def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
     """parse array of affiliation strings into commonmeta format"""
 
     def format_element(i):

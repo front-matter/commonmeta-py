@@ -19,10 +19,10 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_datacite(metadata: Metadata) -> str | dict | None:
+def write_datacite(metadata: Metadata) -> dict | None:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
-        return "{}"
+        return {"errors": metadata.write_errors}
 
     alternate_identifiers = [
         {
@@ -150,6 +150,8 @@ def to_datacite_creator(creator: dict) -> dict:
         name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
     elif creator.get("name", None):
         name = creator.get("name", None)
+    else:
+        name = None
     name_identifiers = creator.get("id", None)
     if name_identifiers:
 

@@ -13,7 +13,12 @@ from jsonschema import Draft202012Validator, ValidationError
 def json_schema_errors(
     instance: dict[str, Any], schema: str = "commonmeta"
 ) -> str | None:
-    """validate against JSON schema"""
+    """validate against JSON schema
+
+    Returns:
+        str: Error message if validation fails
+        None: If validation succeeds
+    """
     schema_map = {
         "commonmeta": "commonmeta_v0.16",
         "datacite": "datacite-v4.5",
@@ -21,41 +26,56 @@ def json_schema_errors(
         "csl": "csl-data",
         "cff": "cff_v1.2.0",
     }
+    if instance is None:
+        raise ValueError("No instance provided")
     try:
         if schema not in schema_map:
             raise ValueError("No schema found")
         file_path = path.join(
             path.dirname(__file__), f"resources/{schema_map[schema]}.json"
         )
-        with open(file_path, encoding="utf-8") as file:
-            string = file.read()
-            schema_definition = json.loads(string)
-        return Draft202012Validator(schema_definition).validate(instance)
+        try:
+            with open(file_path, encoding="utf-8") as file:
+                string = file.read()
+                schema_definition = json.loads(string)
+        except FileNotFoundError:
+            raise ValueError(f"Schema file not found: {file_path}")
+        except json.JSONDecodeError:
+            raise ValueError(f"Invalid JSON in schema file: {file_path}")
+        # validate() returns None if valid, raises ValidationError if invalid
+        Draft202012Validator(schema_definition).validate(instance)
+        return None
     except ValidationError as error:
         return error.message
 
 
 def xml_schema_errors(
-    instance: str | bytes, schema: str = "crossref_xml"
-) -> bool | Exception | None:
-    """validate against XML schema"""
+    instance: str | bytes | None, schema: str = "crossref_xml"
+) -> str | None:
+    """validate against XML schema
+
+    Returns:
+        str: Error message if validation fails
+        None: If validation succeeds
+    """
     schema_map = {
         "crossref_xml": "crossref5.4.0",
     }
+    if instance is None:
+        raise ValueError("No instance provided")
     try:
         if schema not in schema_map:
             raise ValueError("No schema found")
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
         schema_path = path.join(base_dir, "crossref5.4.0.xsd")
-        schema_obj = xmlschema.XMLSchema(schema_path)
-        return schema_obj.validate(instance)
+        try:
+            schema_obj = xmlschema.XMLSchema(schema_path)
+        except FileNotFoundError:
+            raise ValueError(f"Schema file not found: {schema_path}")
+        except xmlschema.XMLSchemaException as error:
+            raise ValueError(f"Invalid XML schema file: {str(error)}")
+        # validate() returns None if valid, raises exception if invalid
+        schema_obj.validate(instance)
+        return None
     except xmlschema.validators.exceptions.XMLSchemaValidationError as error:
-        print(error)
-        return error
-    # except xmlschema.exceptions.XMLSchemaException as error:
-    #     print(error)
-    #     print(instance)
-    #     return error
-    # except Exception as error:
-    #     print(error)
-    #     return error
+        return str(error)

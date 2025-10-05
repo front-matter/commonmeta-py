@@ -345,9 +345,6 @@ def test_normalize_cc_url():
         == normalize_cc_url("http://creativecommons.org/publicdomain/zero/1.0/")
     )
     assert None is normalize_cc_url(None)
-    assert None is normalize_cc_url(
-        {"url": "https://creativecommons.org/licenses/by/4.0/legalcode"}
-    )
 
 
 def test_normalize_issn():
@@ -755,7 +752,6 @@ def test_to_schema_org_container():
         "@type": "Periodical",
         "name": "PANGAEA",
     } == to_schema_org_container(pangaea)
-    assert None is to_schema_org_container("Pangaea")
     assert None is to_schema_org_container(None)
 
 

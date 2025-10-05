@@ -18,7 +18,10 @@ def generate_ghost_token(key: str) -> str:
     From https://ghost.org/docs/admin-api/#token-authentication"""
 
     # Split the key into ID and SECRET
-    _id, secret = key.split(":")
+    try:
+        _id, secret = key.split(":")
+    except ValueError:
+        raise ValueError("Invalid API key format. Expected format: 'id:secret'")
 
     # Prepare header and payload
     iat = int(date.now().timestamp())
@@ -34,11 +37,17 @@ def update_ghost_post_via_api(
     _id: str, api_key: str | None = None, api_url: str | None = None
 ) -> dict[str, str]:
     """Update Ghost post via API"""
+    # Check required parameters
+    if not api_key or not api_url:
+        return {"error": "api_key and api_url are required"}
+
     # get post doi and url from Rogue Scholar API
     # post url is needed to find post via Ghost API
     post = get_jsonfeed_uuid(_id)
+    if not isinstance(post, dict):
+        return {"error": "Invalid response from Rogue Scholar API"}
     if post.get("error", None):
-        return post
+        return {"error": str(post.get("error"))}
     doi = validate_doi(post.get("doi", None))
     doi = doi_as_url(doi)
     url = post.get("url", None)
@@ -53,12 +62,28 @@ def update_ghost_post_via_api(
         "Accept-Version": "v5",
     }
     f = furl(url)
+    if not f.path.segments:
+        return {"error": "Invalid URL: no path segments found"}
     slug = f.path.segments[-1]
     ghost_url = f"{api_url}/ghost/api/admin/posts/slug/{slug}/"
-    response = requests.get(ghost_url, headers=headers, timeout=10)
+
+    try:
+        response = requests.get(ghost_url, headers=headers, timeout=10)
+    except requests.RequestException as e:
+        return {"error": f"Network error fetching post: {str(e)}"}
+
     if response.status_code != 200:
         return {"error": "Error fetching post"}
-    ghost_post = response.json().get("posts")[0]
+
+    try:
+        posts = response.json().get("posts")
+    except requests.JSONDecodeError:
+        return {"error": "Invalid JSON response from Ghost API"}
+
+    if not posts or not isinstance(posts, list) or len(posts) == 0:
+        return {"error": "No posts found in response"}
+
+    ghost_post = posts[0]
     guid = ghost_post.get("id")
     updated_at = ghost_post.get("updated_at")
     if not guid or not updated_at:
@@ -69,12 +94,17 @@ def update_ghost_post_via_api(
     # rather than url for put requests
     ghost_url = f"{api_url}/ghost/api/admin/posts/{guid}/"
 
-    json = {"posts": [{"canonical_url": doi, "updated_at": updated_at}]}
-    response = requests.put(
-        ghost_url,
-        headers=headers,
-        json=json,
-    )
+    request_data = {"posts": [{"canonical_url": doi, "updated_at": updated_at}]}
+    try:
+        response = requests.put(
+            ghost_url,
+            headers=headers,
+            json=request_data,
+            timeout=10,
+        )
+    except requests.RequestException as e:
+        return {"error": f"Network error updating post: {str(e)}"}
+
     if response.status_code != 200:
         return {"error": "Error updating post"}
     return {"message": f"DOI {doi} added", "guid": guid, "updated_at": updated_at}

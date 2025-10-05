@@ -18,7 +18,7 @@ def test_doi_with_data_citation():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -47,7 +47,7 @@ def test_doi_for_blog_post():
     assert subject.id == "https://doi.org/10.53731/avg2ykg-gdxppcd"
     assert subject.type == "BlogPost"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -75,7 +75,7 @@ def test_blog_post():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf"
     assert subject.type == "BlogPost"
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -102,7 +102,7 @@ def test_article_with_pages():
     assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -132,7 +132,7 @@ def test_article_dlib_magazine():
     assert subject.id == "https://doi.org/10.1045/january2017-burton"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -159,7 +159,7 @@ def test_inproceedings():
     subject = Metadata("https://doi.org/10.1145/3448016.3452841", via="crossref_xml")
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -190,7 +190,7 @@ def test_book_chapter():
     assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.type == "BookChapter"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -220,7 +220,7 @@ def test_conference_proceedings():
     assert subject.id == "https://doi.org/10.1109/iccv.2007.4408927"
     assert subject.type == "ProceedingsArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -247,7 +247,7 @@ def test_phd_thesis():
     assert subject.id == "https://doi.org/10.14264/uql.2020.791"
     assert subject.type == "Dissertation"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -272,7 +272,7 @@ def test_inveniordm_software():
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -300,7 +300,7 @@ def test_inveniordm_presentation():
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
     assert subject.type == "Presentation"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -328,7 +328,7 @@ def test_inveniordm_publication():
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -355,7 +355,7 @@ def test_inveniordm_report():
     assert subject.id == "https://doi.org/10.5281/zenodo.3871094"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -383,7 +383,7 @@ def test_inveniordm_preprint():
     assert subject.id == "https://doi.org/10.5281/zenodo.8120771"
     assert subject.type == "JournalArticle"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -411,7 +411,7 @@ def test_inveniordm_dataset():
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
 
-    bibtex = subject.write(to="bibtex")
+    bibtex = subject.write(to="bibtex").decode("utf-8")
 
     assert (
         bibtex
@@ -439,7 +439,7 @@ def test_kbase_gulf_of_mexico():
     )
     subject = Metadata(string)
     assert (
-        subject.write(to="bibtex")
+        subject.write(to="bibtex").decode("utf-8")
         == """@misc{10.25982/86723.65/1778009,
     abstract = {xploration of oxygen-depleted marine environments has consistently revealed novel microbial taxa and metabolic capabilities that expand our understanding of microbial evolution and ecology. Marine blue holes are shallow karst formations characterized by low oxygen and high organic matter content. They are logistically challenging to sample, and thus our understanding of their biogeochemistry and microbial ecology is limited. We present a metagenomic and geochemical characterization of Amberjack Hole on the Florida continental shelf (Gulf of Mexico). Dissolved oxygen became depleted at the hole's rim (32 m water depth), remained low but detectable in an intermediate hypoxic zone (40-75 m), and then increased to a secondary peak before falling below detection in the bottom layer (80-110 m), concomitant with increases in nutrients, dissolved iron, and a series of sequentially more reduced sulfur species. Microbial communities in the bottom layer contained heretofore undocumented levels of the recently discovered phylum Woesearchaeota (up to 58% of the community), along with lineages in the bacterial Candidate Phyla Radiation (CPR). Thirty-one high-quality metagenome-assembled genomes (MAGs) showed extensive biochemical capabilities for sulfur and nitrogen cycling, as well as for resisting and respiring arsenic. One uncharacterized gene associated with a CPR lineage differentiated hypoxic from anoxic zone communities. Overall, microbial communities and geochemical profiles were stable across two sampling dates in the spring and fall of 2019. The blue hole habitat is a natural marine laboratory that provides opportunities for sampling taxa with under-characterized but potentially important roles in redox-stratified microbial processes.},
     author = {Patin, Nastassia},
@@ -462,7 +462,8 @@ def test_write_bibtex_list():
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
     subject_list = MetadataList(string, via="crossref")
     assert len(subject_list.items) == 20
-    bibtex_list = subject_list.write(to="bibtex")
+    bibtex_list = subject_list.write(to="bibtex").decode("utf-8")
+    assert bibtex_list is not None
     lines = bibtex_list.splitlines()
     assert lines[0] == "@article{10.1002/fedr.4910730105,"
     assert lines[1].lstrip() == "author = {Dvořák, František},"

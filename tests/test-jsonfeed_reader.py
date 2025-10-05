@@ -1047,12 +1047,15 @@ def test_broken_reference():
     }
 
 
+@pytest.mark.vcr
 def test_get_jsonfeed():
     """Test get_jsonfeed"""
     item = get_jsonfeed_uuid("1357c246-b632-462a-9876-753ef8b6927d")
+    assert isinstance(item, dict)
     assert item["guid"] == "http://gigasciencejournal.com/blog/?p=5621"
 
 
+@pytest.mark.vcr
 def test_get_jsonfeed_item_not_found():
     """Test get_json_feed_item_id not found"""
     assert {"error": "An error occured."} == get_jsonfeed_uuid("notfound")

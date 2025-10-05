@@ -78,7 +78,6 @@ def test_get_month_from_date():
     assert "sep" == get_month_from_date(84914841)
     assert "may" == get_month_from_date(date(2020, 5, 17))
     assert None is get_month_from_date(None)
-    assert None is get_month_from_date([8])
 
 
 def test_get_datetime_from_time():

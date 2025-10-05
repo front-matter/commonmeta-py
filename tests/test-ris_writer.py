@@ -15,22 +15,24 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    ris = subject.write(to="ris").splitlines()
-    assert ris[0] == "TY  - JOUR"
+    ris = subject.write(to="ris").decode("utf-8")
+    assert ris is not None
+    lines = ris.splitlines()
+    assert lines[0] == "TY  - JOUR"
     assert (
-        ris[1]
+        lines[1]
         == "T1  - Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     )
-    assert ris[2] == "T2  - eLife"
-    assert ris[3] == "AU  - Sankar, Martial"
-    assert ris[8] == "DO  - 10.7554/elife.01567"
-    assert ris[9] == "UR  - https://elifesciences.org/articles/01567"
-    assert ris[10].startswith("AB  - Among various advantages")
-    assert ris[11] == "PY  - 2014"
-    assert ris[12] == "PB  - eLife Sciences Publications, Ltd"
-    assert ris[13] == "LA  - en"
-    assert ris[14] == "VL  - 3"
-    assert ris[15] == "ER  - "
+    assert lines[2] == "T2  - eLife"
+    assert lines[3] == "AU  - Sankar, Martial"
+    assert lines[8] == "DO  - 10.7554/elife.01567"
+    assert lines[9] == "UR  - https://elifesciences.org/articles/01567"
+    assert lines[10].startswith("AB  - Among various advantages")
+    assert lines[11] == "PY  - 2014"
+    assert lines[12] == "PB  - eLife Sciences Publications, Ltd"
+    assert lines[13] == "LA  - en"
+    assert lines[14] == "VL  - 3"
+    assert lines[15] == "ER  - "
 
 
 def test_with_pages():
@@ -39,24 +41,26 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    ris = subject.write(to="ris").splitlines()
-    assert ris[0] == "TY  - JOUR"
+    ris = subject.write(to="ris").decode("utf-8")
+    assert ris is not None
+    lines = ris.splitlines()
+    assert lines[0] == "TY  - JOUR"
     assert (
-        ris[1]
+        lines[1]
         == "T1  - Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     )
-    assert ris[2] == "T2  - Pulmonary Medicine"
-    assert ris[3] == "AU  - Thanassi, Wendy"
-    assert ris[10] == "DO  - 10.1155/2012/291294"
-    assert ris[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294/"
-    assert ris[12].startswith("AB  - Objective. To find a statistically significant")
-    assert ris[13] == "PY  - 2012"
-    assert ris[14] == "PB  - Wiley"
-    assert ris[15] == "LA  - en"
-    assert ris[16] == "VL  - 2012"
-    assert ris[17] == "SP  - 1"
-    assert ris[18] == "EP  - 7"
-    assert ris[19] == "ER  - "
+    assert lines[2] == "T2  - Pulmonary Medicine"
+    assert lines[3] == "AU  - Thanassi, Wendy"
+    assert lines[10] == "DO  - 10.1155/2012/291294"
+    assert lines[11] == "UR  - http://www.hindawi.com/journals/pm/2012/291294/"
+    assert lines[12].startswith("AB  - Objective. To find a statistically significant")
+    assert lines[13] == "PY  - 2012"
+    assert lines[14] == "PB  - Wiley"
+    assert lines[15] == "LA  - en"
+    assert lines[16] == "VL  - 2012"
+    assert lines[17] == "SP  - 1"
+    assert lines[18] == "EP  - 7"
+    assert lines[19] == "ER  - "
 
 
 #     it 'alternate name' do
@@ -227,8 +231,10 @@ def test_write_ris_list():
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
     subject_list = MetadataList(string, via="crossref")
     assert len(subject_list.items) == 20
-    ris_list = subject_list.write(to="ris").splitlines()
-    assert ris_list[0].startswith("TY  - JOUR")
-    assert ris_list[1].startswith(
+    ris_list = subject_list.write(to="ris").decode("utf-8")
+    assert ris_list is not None
+    lines = ris_list.splitlines()
+    assert lines[0].startswith("TY  - JOUR")
+    assert lines[1].startswith(
         "T1  - Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
     )

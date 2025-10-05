@@ -8,7 +8,7 @@ from typing import Any
 import orjson as json
 import yaml
 
-from .base_utils import dig, omit, parse_xml, wrap
+from .base_utils import dig, parse_xml, wrap
 from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -73,21 +73,8 @@ class Metadata:
     """Metadata"""
 
     def __init__(self, string: str | dict[str, Any] | None, **kwargs):
-        if (
-            string is None
-            or not isinstance(string, (str, dict))
-            and not is_chain_object(string)
-        ):
-            raise ValueError("No input found")
         self.via = kwargs.get("via", None)
-        if isinstance(string, dict):
-            data = string
-        # if string is an InvenioRDM chain object
-        elif is_chain_object(string):
-            data = string._child
-            self.via = "inveniordm"
-            kwargs["parent_doi"] = dig(string._parent.pids, "doi.identifier")
-        elif isinstance(string, str):
+        if isinstance(string, str):
             pid = normalize_id(string)
             if pid is not None and self.via is None:
                 self.via = find_from_format(pid=pid)
@@ -99,6 +86,20 @@ class Metadata:
             if self.via is None:
                 self.via = "commonmeta"
             data = self.get_metadata(pid=pid, string=string)
+        # if string is an InvenioRDM chain object
+        elif is_chain_object(string):
+            self.via = "inveniordm"
+            data = getattr(string, "_child", None)
+            if data is None:
+                raise ValueError("No valid input found")
+            parent = getattr(string, "_parent", None)
+            if parent is not None and hasattr(parent, "pids"):
+                kwargs["parent_doi"] = dig(parent.pids, "doi.identifier")
+        elif isinstance(string, dict):
+            data = string
+        else:
+            raise ValueError("No valid input found")
+
         meta = self.read_metadata(data=data, **kwargs)
 
         # required properties
@@ -277,18 +278,15 @@ class Metadata:
         else:
             raise ValueError("No input format found")
 
-    def write(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
+    def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
         try:
-            result = self._write_format(to, **kwargs)
-            if result is None or result == "":
-                return "{}"
-            return result
+            return self._write_format(to, **kwargs)
         except json.JSONDecodeError as e:
             # More specific error message including the original JSONDecodeError details
             raise ValueError(f"Invalid JSON: {str(e)}")
 
-    def _write_format(self, to: str, **kwargs) -> str | bytes:
+    def _write_format(self, to: str, **kwargs) -> bytes | None:
         """Helper method to handle writing to different formats."""
         # JSON-based output formats
         if to == "commonmeta":
@@ -299,11 +297,11 @@ class Metadata:
             result = json.dumps(write_inveniordm(self))
         elif to == "schema_org":
             result = json.dumps(write_schema_org(self))
+        elif to == "csl":
+            result = write_csl(self)
         # Text-based output formats
         elif to == "bibtex":
             return write_bibtex(self)
-        elif to == "csl":
-            return self._write_csl(**kwargs)
         elif to == "citation":
             self.style = kwargs.get("style", "apa")
             self.locale = kwargs.get("locale", "en-US")
@@ -312,7 +310,14 @@ class Metadata:
             return write_ris(self)
         # XML-based output formats
         elif to == "crossref_xml":
-            return self._write_crossref_xml(**kwargs)
+            self.depositor = kwargs.get("depositor", None)
+            self.email = kwargs.get("email", None)
+            self.registrant = kwargs.get("registrant", None)
+            output = write_crossref_xml(self)
+            self.write_errors = xml_schema_errors(output, schema="crossref_xml")
+            if self.write_errors is not None:
+                self.is_valid = False
+            return output
         else:
             raise ValueError("No output format found")
 
@@ -322,49 +327,16 @@ class Metadata:
                 json.loads(result)
                 return result
             except json.JSONDecodeError:
-                return "{}"
+                return b"{}"
         elif result is not None:
             try:
                 decoded = result.decode("utf-8")
                 # Verify it's valid JSON
                 json.loads(decoded)
-                return decoded
+                return decoded.encode("utf-8")
             except (json.JSONDecodeError, UnicodeDecodeError):
-                return "{}"
-        return "{}"
-
-    def _write_csl(self, **kwargs) -> str:
-        """Write in CSL format with error checking."""
-        csl_output = write_csl(self)
-        if csl_output:
-            instance = omit(json.loads(csl_output), [])
-            self.errors = json_schema_errors(instance, schema="csl")
-            return csl_output
-        return ""
-
-    def _write_datacite(self) -> str:
-        """Write in DataCite format with error checking."""
-        datacite_output = write_datacite(self)
-        if not datacite_output:
-            return ""
-        try:
-            instance = json.loads(datacite_output)
-            self.write_errors = json_schema_errors(instance, schema="datacite")
-            return str(datacite_output)
-        except (json.JSONDecodeError, TypeError):
-            return "{}" if not datacite_output else str(datacite_output)
-
-    def _write_crossref_xml(self, **kwargs) -> str:
-        """Write in Crossref XML format with error checking."""
-        self.depositor = kwargs.get("depositor", None)
-        self.email = kwargs.get("email", None)
-        self.registrant = kwargs.get("registrant", None)
-        output = write_crossref_xml(self)
-        self.write_errors = xml_schema_errors(output, schema="crossref_xml")
-        if self.write_errors is not None:
-            self.is_valid = False
-            return ""
-        return output if output is not None else ""
+                return b"{}"
+        return b"{}"
 
     def push(self, to: str = "commonmeta", **kwargs) -> str | dict:
         """push metadata to external APIs"""
@@ -393,7 +365,9 @@ class Metadata:
 class MetadataList:
     """MetadataList"""
 
-    def __init__(self, dct: str | dict[str, Any] | None = None, **kwargs) -> None:
+    def __init__(
+        self, dct: str | bytes | dict[str, Any] | None = None, **kwargs
+    ) -> None:
         if dct is None or not isinstance(dct, (str, bytes, dict)):
             raise ValueError("No input found")
         if isinstance(dct, dict):

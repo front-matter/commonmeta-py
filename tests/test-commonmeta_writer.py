@@ -15,7 +15,11 @@ def test_journal_article():
     "journal article"
     subject = Metadata("10.7554/elife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    commonmeta = json.loads(subject.write())
+    assert subject.type == "JournalArticle"
+
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
@@ -46,8 +50,10 @@ def test_journal_article_crossref_xml():
     "journal article crossref_xml"
     subject = Metadata("10.7554/elife.01567", via="crossref_xml")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    commonmeta = json.loads(subject.write())
 
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
@@ -81,7 +87,9 @@ def test_datacite_schema_45():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/b09z-4k37"
 
-    commonmeta = json.loads(subject.write())
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert commonmeta["id"] == "https://doi.org/10.82433/b09z-4k37"
     assert commonmeta["url"] == "https://example.com/"
     assert commonmeta["type"] == "Dataset"
@@ -124,7 +132,10 @@ def test_write_commonmeta_list():
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 20
-    commonmeta_list = json.loads(subject_list.write())
+
+    commonmeta_list = subject_list.write()
+    assert commonmeta_list is not None
+    commonmeta_list = json.loads(commonmeta_list)
     assert len(commonmeta_list["items"]) == 20
     commonmeta = commonmeta_list["items"][0]
     assert (
@@ -143,7 +154,10 @@ def test_write_commonmeta_list_jsonfeed():
     string = path.join(path.dirname(__file__), "fixtures", "json_feed.json")
     subject_list = MetadataList(string)
     assert len(subject_list.items) == 15
-    commonmeta_list = json.loads(subject_list.write())
+
+    commonmeta_list = subject_list.write()
+    assert commonmeta_list is not None
+    commonmeta_list = json.loads(commonmeta_list)
     assert len(commonmeta_list["items"]) == 15
     commonmeta = commonmeta_list["items"][0]
     assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
@@ -161,7 +175,10 @@ def test_write_commonmeta_missing_doi():
     subject = Metadata(string, via="jsonfeed")
     assert subject.is_valid
     assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", subject.id)
-    commonmeta = json.loads(subject.write())
+
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert re.match(r"\A(https://doi\.org/10\.59350/.+)\Z", commonmeta["id"])
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
     assert commonmeta["type"] == "BlogPost"
@@ -175,7 +192,10 @@ def test_write_commonmeta_missing_doi_no_prefix():
     subject = Metadata(string, via="jsonfeed")
     assert subject.is_valid
     assert subject.id == "https://www.ideasurg.pub/residency-visual-abstract"
-    commonmeta = json.loads(subject.write())
+
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert commonmeta["id"] == "https://www.ideasurg.pub/residency-visual-abstract"
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
     assert commonmeta["type"] == "BlogPost"
@@ -189,7 +209,10 @@ def test_write_commonmeta_missing_doi_prefix():
     subject = Metadata(string, via="jsonfeed", prefix="10.5555")
     assert subject.is_valid
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", subject.id)
-    commonmeta = json.loads(subject.write())
+
+    commonmeta = subject.write()
+    assert commonmeta is not None
+    commonmeta = json.loads(commonmeta)
     assert re.match(r"\A(https://doi\.org/10\.5555/.+)\Z", commonmeta["id"])
     assert commonmeta["url"] == "https://www.ideasurg.pub/residency-visual-abstract"
     assert commonmeta["type"] == "BlogPost"

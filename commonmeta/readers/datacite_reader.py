@@ -30,7 +30,7 @@ from ..utils import (
 )
 
 
-def get_datacite(pid: str | None, **kwargs) -> dict | None:
+def get_datacite(pid: str | None, **kwargs) -> dict:
     """get_datacite"""
     doi = doi_from_url(pid)
     if doi is None:

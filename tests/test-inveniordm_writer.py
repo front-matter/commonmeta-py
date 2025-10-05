@@ -18,7 +18,9 @@ def test_publication():
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.5281/zenodo.5244404"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-article"
     assert len(dig(inveniordm, "metadata.creators")) == 21
@@ -70,7 +72,9 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-article"
     assert dig(inveniordm, "pids.doi.identifier") == "10.7554/elife.01567"
     assert len(dig(inveniordm, "metadata.creators")) == 5
@@ -156,7 +160,9 @@ def test_rogue_scholar():
     assert subject.id == "https://doi.org/10.53731/dv8z6-a6s33"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.53731/dv8z6-a6s33"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 1
@@ -226,7 +232,9 @@ def test_rogue_scholar_organizational_author():
     assert subject.id == "https://doi.org/10.59350/wg8rv-awm24"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/wg8rv-awm24"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 1
@@ -254,7 +262,9 @@ def test_from_jsonfeed():
     assert subject.id == "https://doi.org/10.59350/dn2mm-m9q51"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dn2mm-m9q51"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 1
@@ -318,7 +328,9 @@ def test_from_jsonfeed_affiliations():
     assert subject.id == "https://doi.org/10.59350/mg09a-5ma64"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert len(dig(inveniordm, "metadata.creators")) == 4
@@ -401,7 +413,9 @@ def test_from_jsonfeed_dates():
     assert subject.id == "https://doi.org/10.59350/k9zxj-pek64"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.publication_date") == "2018-08-28"
@@ -431,7 +445,9 @@ def test_from_jsonfeed_funding():
     assert subject.id == "https://doi.org/10.59350/hnegw-6rx17"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "THOR Final Event programme is out!"
@@ -469,7 +485,9 @@ def test_from_jsonfeed_more_funding():
     assert subject.id == "https://doi.org/10.59350/m99dx-x9g53"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Summer Meeting of the Editorial Board"
@@ -504,7 +522,9 @@ def test_from_jsonfeed_references():
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
@@ -548,7 +568,9 @@ def test_from_jsonfeed_unstructured_references():
     assert subject.type == "BlogPost"
     assert len(subject.references) == 7
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
@@ -573,7 +595,9 @@ def test_from_jsonfeed_citations():
     assert subject.type == "BlogPost"
     assert len(subject.citations) == 2
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Use of CiTO in CiteULike"
@@ -596,7 +620,9 @@ def test_from_jsonfeed_relations():
     assert subject.id == "https://doi.org/10.54900/zg929-e9595"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Large Language Publishing"
@@ -624,7 +650,9 @@ def test_from_jsonfeed_broken_reference():
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
@@ -648,7 +676,9 @@ def test_external_doi():
     assert subject.id == "https://doi.org/10.57689/dini-blog.20210712"
     assert subject.type == "BlogPost"
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert (
@@ -669,7 +699,9 @@ def test_content_with_external_src():
         subject.content,
     )
 
-    inveniordm = json.loads(subject.write(to="inveniordm"))
+    inveniordm = subject.write(to="inveniordm")
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/vwd81-p8z85"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
     assert dig(inveniordm, "metadata.title") == "Archiving, but not really"

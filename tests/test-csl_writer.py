@@ -98,7 +98,9 @@ def test_doi_with_data_citation():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.write(to="csl"))
+    csl = subject.write(to="csl")
+    assert csl is not None
+    csl = json.loads(csl)
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.7554/elife.01567"
     assert (
@@ -170,7 +172,9 @@ def test_with_pages():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.write(to="csl"))
+    csl = subject.write(to="csl")
+    assert csl is not None
+    csl = json.loads(csl)
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1155/2012/291294"
     assert csl.get("URL") == "http://www.hindawi.com/journals/pm/2012/291294/"
@@ -203,7 +207,9 @@ def test_only_first_page():
     assert subject.id == "https://doi.org/10.1371/journal.pone.0214986"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.write(to="csl"))
+    csl = subject.write(to="csl")
+    assert csl is not None
+    csl = json.loads(csl)
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1371/journal.pone.0214986"
     assert csl.get("URL") == "https://dx.plos.org/10.1371/journal.pone.0214986"
@@ -229,7 +235,9 @@ def test_missing_creator():
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.write(to="csl"))
+    csl = subject.write(to="csl")
+    assert csl is not None
+    csl = json.loads(csl)
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.3390/publications6020015"
     assert csl.get("URL") == "https://www.mdpi.com/2304-6775/6/2/15"
@@ -324,7 +332,9 @@ def test_organization_author():
     assert subject.id == "https://doi.org/10.1186/s13742-015-0103-4"
     assert subject.type == "JournalArticle"
 
-    csl = json.loads(subject.write(to="csl"))
+    csl = subject.write(to="csl")
+    assert csl is not None
+    csl = json.loads(csl)
     assert csl.get("type") == "article-journal"
     assert csl.get("DOI") == "10.1186/s13742-015-0103-4"
     assert (
@@ -369,9 +379,11 @@ def test_write_csl_list():
     string = path.join(path.dirname(__file__), "fixtures", "crossref-list.json")
     subject_list = MetadataList(string, via="crossref")
     assert len(subject_list.items) == 20
-    csl_list = json.loads(subject_list.write(to="csl"))
-    assert len(csl_list) == 20
-    csl = csl_list[0]
+    csl_list = subject_list.write(to="csl")
+    assert csl_list is not None
+    csl_list_ = json.loads(csl_list)
+    assert len(csl_list_) == 20
+    csl = csl_list_[0]
     assert (
         csl.get("id") == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
     )

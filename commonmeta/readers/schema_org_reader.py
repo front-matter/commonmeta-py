@@ -52,7 +52,7 @@ from ..utils import (
 )
 
 
-def get_schema_org(pid: str | None, **kwargs) -> dict | None:
+def get_schema_org(pid: str | None, **kwargs) -> dict:
     """get_schema_org"""
     if pid is None:
         return {"state": "not_found"}
@@ -325,14 +325,17 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
     } | read_options
 
 
-def get_doi_meta(doi: str | None) -> dict | None:
+def get_doi_meta(doi: str | None) -> dict:
     """get_doi_meta"""
+    if doi is None:
+        return {"state": "not_found"}
     ra = get_doi_ra(doi)
     if ra == "Crossref":
         return get_crossref(doi)
     elif ra == "DataCite":
         return get_datacite(doi)
-    return None
+    else:
+        raise ValueError(f"Unsupported DOI registration agency: {ra}")
 
 
 def schema_org_related_item(meta, relation_type=None) -> None:

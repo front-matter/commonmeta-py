@@ -120,7 +120,7 @@ def put(
         raise click.ClickException(str(metadata.errors) + str(metadata.write_errors))
 
     click.echo(metadata.push(to=to, style=style, locale=locale))
-    if show_errors and len(metadata.write_errors) > 0:
+    if show_errors and metadata.write_errors and len(metadata.write_errors) > 0:
         raise click.ClickException(str(metadata.write_errors))
 
 
@@ -252,10 +252,10 @@ def push(
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
-def sample(provider, prefix, type, number, to, style, locale, show_errors):
+def sample(provider, prefix, item_type, number, to, style, locale, show_errors):
     if provider == "crossref":
         string = json.dumps(
-            {"items": get_random_crossref_id(number, prefix=prefix, _type=type)}
+            {"items": get_random_crossref_id(number, prefix=prefix, _type=item_type)}
         )
     elif provider == "datacite":
         string = json.dumps({"items": get_random_datacite_id(number)})

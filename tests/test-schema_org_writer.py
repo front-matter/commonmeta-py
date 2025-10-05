@@ -16,7 +16,9 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.7554/elife.01567"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert (
@@ -71,7 +73,9 @@ def test_inveniordm_software():
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7752775"
     assert schema_org.get("@type") == "SoftwareSourceCode"
     assert schema_org.get("name") == "commonmeta-ruby"
@@ -120,7 +124,9 @@ def test_inveniordm_presentation():
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
     assert subject.type == "Presentation"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8173303"
     assert schema_org.get("@type") == "PresentationDigitalDocument"
     assert (
@@ -169,7 +175,9 @@ def test_inveniordm_publication():
     assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.5244404"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert schema_org.get("name") == "The Origins of SARS-CoV-2: A Critical Review"
@@ -219,7 +227,9 @@ def test_inveniordm_report():
     assert subject.id == "https://doi.org/10.5281/zenodo.3871094"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.3871094"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert schema_org.get("name") == "An open letter to Mehra et al and The Lancet"
@@ -266,7 +276,9 @@ def test_inveniordm_preprint():
     assert subject.id == "https://doi.org/10.5281/zenodo.8120771"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.8120771"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert (
@@ -315,7 +327,9 @@ def test_inveniordm_dataset():
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.5281/zenodo.7834392"
     assert schema_org.get("@type") == "Dataset"
     assert (
@@ -358,7 +372,9 @@ def test_article_with_pages():
     assert subject.id == "https://doi.org/10.1371/journal.ppat.1008184"
     assert subject.type == "JournalArticle"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.1371/journal.ppat.1008184"
     assert schema_org.get("@type") == "ScholarlyArticle"
     assert (
@@ -409,7 +425,9 @@ def test_instrument():
     assert subject.id == "https://doi.org/10.82433/08qf-ee96"
     assert subject.type == "Instrument"
 
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.82433/08qf-ee96"
     assert schema_org.get("@type") == "Instrument"
     assert schema_org.get("name") == "Pilatus detector at MX station 14.1"
@@ -796,7 +814,9 @@ def test_jsonfeed_upstream_blog():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
     assert subject.type == "BlogPost"
-    schema_org = json.loads(subject.write(to="schema_org"))
+    schema_org = subject.write(to="schema_org")
+    assert schema_org is not None
+    schema_org = json.loads(schema_org)
     assert schema_org.get("@id") == "https://doi.org/10.54900/n6dnt-xpq48"
     assert schema_org.get("@type") == "BlogPosting"
     assert (

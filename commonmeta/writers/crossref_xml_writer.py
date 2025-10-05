@@ -367,7 +367,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     return data
 
 
-def write_crossref_xml(metadata: Metadata) -> str | None:
+def write_crossref_xml(metadata: Metadata) -> bytes | None:
     """Write Crossref XML"""
     if metadata is None or not metadata.is_valid:
         log.error("Invalid metadata provided for Crossref XML generation")
@@ -423,8 +423,7 @@ def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
         "email": metalist.email,
         "registrant": metalist.registrant,
     }
-    result = unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
-    return result.encode("utf-8") if result is not None else None
+    return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
 
 
 def push_crossref_xml(

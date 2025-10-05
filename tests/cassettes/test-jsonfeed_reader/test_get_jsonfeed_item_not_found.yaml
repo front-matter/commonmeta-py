@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAE/6tWSi0qyi9SslJyzFMAMxXyk5NLi1JT9JRquQAqh03AHgAAAA==
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Sun, 05 Oct 2025 14:02:57 GMT
+      fly-request-id:
+      - 01K6TAXJ9SN0WR7PG5CE4NTGK0-ams
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '14'
+      ratelimit-reset:
+      - '3'
+      server:
+      - Fly/90a8089aa (2025-09-23)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io, 1.1 fly.io
+    status:
+      code: 400
+      message: ''
+version: 1

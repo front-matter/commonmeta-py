@@ -15,7 +15,9 @@ def test_write_metadata_as_datacite_json():
     """Write metadata as datacite json"""
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
-    datacite = json.loads(subject.write(to="datacite"))
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["id"] == "https://doi.org/10.7554/elife.01567"
     assert datacite["doi"] == "10.7554/elife.01567"
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
@@ -52,8 +54,11 @@ def test_with_orcid_id():
     subject = Metadata("https://doi.org/10.1155/2012/291294")
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
-    datacite = json.loads(subject.write(to="datacite"))
     assert subject.write_errors is None
+
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["creators"][2]["name"] == "Hernandez, Beatriz"
     assert (
         datacite["creators"][2]["nameIdentifiers"][0]["nameIdentifier"]
@@ -73,7 +78,10 @@ def test_with_data_citation():
     subject = Metadata("10.7554/eLife.01567")
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert len(subject.references) == 27
-    datacite = json.loads(subject.write(to="datacite"))
+
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["url"] == "https://elifesciences.org/articles/01567"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -124,7 +132,9 @@ def test_blogposting_citeproc_json():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
 
-    datacite = json.loads(subject.write(to="datacite"))
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
         "bibtex": "article",
@@ -155,7 +165,9 @@ def test_blogposting_citeproc_json_no_doi():
     assert subject.type == "BlogPost"
     assert subject.is_valid
 
-    datacite = json.loads(subject.write(to="datacite"))
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert re.match(r"\A(https://doi\.org/10\.5438/.+)\Z", datacite["id"])
     assert datacite["url"] == "https://blog.datacite.org/eating-your-own-dog-food"
     assert datacite["types"] == {
@@ -185,7 +197,9 @@ def test_rdataone():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.5063/f1m61h5x"
 
-    datacite = json.loads(subject.write(to="datacite"))
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["titles"] == [{"title": "R Interface to the DataONE REST API"}]
     assert len(datacite["creators"]) == 3
     assert datacite["creators"][0] == {
@@ -225,8 +239,10 @@ def test_from_schema_org():
     """Schema.org"""
     subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
-    datacite = json.loads(subject.write(to="datacite"))
-    print(datacite)
+
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (
         datacite["url"]

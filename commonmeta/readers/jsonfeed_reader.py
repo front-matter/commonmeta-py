@@ -303,8 +303,8 @@ def get_funding_references(meta: dict | None) -> list | None:
                 funder_name = None
             f = furl(urls[1])
             # url is for NSF grant
-            if f.args["awd_id"] is not None:
-                award_number = f.args["awd_id"]
+            if f.args.get("awd_id") is not None:
+                award_number = f.args.get("awd_id")
             else:
                 award_number = f.path.segments[-1]
             return compact(
@@ -330,8 +330,8 @@ def get_funding_references(meta: dict | None) -> list | None:
 
             f = furl(urls[1])
             # url is for NSF grant
-            if f.args["awd_id"] is not None:
-                award_number = f.args["awd_id"]
+            if f.args.get("awd_id") is not None:
+                award_number = f.args.get("awd_id")
             else:
                 award_number = f.path.segments[-1]
             return compact(
@@ -454,7 +454,7 @@ def get_files(pid: str | None) -> list | None:
     ]
 
 
-def get_jsonfeed_uuid(id: str) -> dict | None:
+def get_jsonfeed_uuid(id: str | None) -> dict | None:
     """get jsonfeed by uuid"""
     if id is None:
         return None

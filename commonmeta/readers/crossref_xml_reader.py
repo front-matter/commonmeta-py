@@ -35,7 +35,7 @@ from ..utils import (
 )
 
 
-def get_crossref_xml(pid: str, **kwargs) -> dict | list | None:
+def get_crossref_xml(pid: str, **kwargs) -> dict:
     """Get crossref_xml metadata from a DOI"""
     doi = doi_from_url(pid)
     if doi is None:
@@ -47,7 +47,8 @@ def get_crossref_xml(pid: str, **kwargs) -> dict | list | None:
     if response.status_code != 200:
         return {"state": "not_found"}
 
-    return parse_xml(response.text, dialect="crossref")
+    dct = parse_xml(response.text, dialect="crossref")
+    return dct if isinstance(dct, dict) else {"state": "not_found"}
 
 
 def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:

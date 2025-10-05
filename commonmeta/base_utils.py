@@ -87,7 +87,9 @@ def dig(obj: Any, path: str | Iterable[Any], default: Any = None) -> Any:
             elif isinstance(cur, (list, tuple)) and isinstance(key, int):
                 cur = cur[key]
             else:
-                cur = getattr(cur, key)
+                # getattr expects a string attribute name
+                key_str = str(key) if not isinstance(key, str) else key
+                cur = getattr(cur, key_str)
         except (KeyError, IndexError, AttributeError, TypeError):
             return default
     return cur
@@ -276,13 +278,18 @@ def parse_attributes(element: str | dict | list | None, **kwargs) -> list[str]:
     return []
 
 
-def parse_xml(string: str | None, **kwargs) -> dict | list | None:
+def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
     """Parse XML into dict using xmltodict. Set default options, and options for Crossref XML"""
     if string is None or string == "{}":
         return None
-    if path.exists(string):
+
+    # Convert to string if it's a file path
+    xml_string: str | bytes
+    if isinstance(string, (str, bytes)) and path.exists(string):
         with open(string, encoding="utf-8") as file:
-            string = file.read()
+            xml_string = file.read()
+    else:
+        xml_string = string
 
     if kwargs.get("dialect", None) == "crossref":
         # remove namespaces from xml
@@ -313,10 +320,10 @@ def parse_xml(string: str | None, **kwargs) -> dict | list | None:
     kwargs["attr_prefix"] = ""
     kwargs["dict_constructor"] = dict
     kwargs.pop("dialect", None)
-    return xmltodict.parse(string, **kwargs)
+    return xmltodict.parse(xml_string, **kwargs)
 
 
-def unparse_xml(input: dict | None, **kwargs) -> str | None:
+def unparse_xml(input: dict | None, **kwargs) -> bytes | None:
     """Unparse (dump) dict into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
         return None
@@ -393,17 +400,17 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
             "head": get_crossref_xml_head(head),
             "body": input,
         }
-        output = {"doi_batch": doi_batch}
+        output: dict[str, Any] = {"doi_batch": doi_batch}
     else:
-        output = input
+        output: dict[str, Any] = input
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
     kwargs.pop("dialect", None)
     kwargs.pop("head", None)
-    return xmltodict.unparse(output, **kwargs)
+    return xmltodict.unparse(output, **kwargs).encode("utf-8")
 
 
-def unparse_xml_list(input: list | None, **kwargs) -> str | None:
+def unparse_xml_list(input: list | None, **kwargs) -> bytes | None:
     """Unparse (dump) list into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
         return None
@@ -482,13 +489,13 @@ def unparse_xml_list(input: list | None, **kwargs) -> str | None:
         }
         output = {"doi_batch": doi_batch}
     else:
-        output = input
+        output = {"body": input}
 
     kwargs["pretty"] = True
     kwargs["indent"] = "  "
     kwargs.pop("dialect", None)
     kwargs.pop("head", None)
-    return xmltodict.unparse(output, **kwargs)
+    return xmltodict.unparse(output, **kwargs).encode("utf-8")
 
 
 def get_crossref_xml_head(metadata: dict) -> dict:

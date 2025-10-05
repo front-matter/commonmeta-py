@@ -22,13 +22,15 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_citation(metadata: Metadata) -> str:
+def write_citation(metadata: Metadata) -> bytes | None:
     """Write citation"""
+    if metadata is None:
+        return None
 
     # Process the JSON data to generate a citeproc-py BibliographySource.
     item = write_citation_item(metadata)
     if item is None:
-        return f"Error: citation not available for {metadata.id}."
+        return f"Error: citation not available for {metadata.id}.".encode("utf-8")
 
     style_path = get_style_filepath(metadata.style)
     style = CitationStylesStyle(style_path, locale=metadata.locale)
@@ -38,10 +40,12 @@ def write_citation(metadata: Metadata) -> str:
     # workaround for the issue with the vancouver style and de locale
     try:
         bib.register(citation)
-        return _clean_result(str(bib.bibliography()[0]))
+        return _clean_result(str(bib.bibliography()[0])).encode("utf-8")
     except Exception as e:
         print(e)
-        return f"Error: citation not available for style {metadata.style} and locale {metadata.locale}."
+        return f"Error: citation not available for style {metadata.style} and locale {metadata.locale}.".encode(
+            "utf-8"
+        )
 
 
 def write_citation_item(metadata: Metadata) -> CiteProcJSON | None:

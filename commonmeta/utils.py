@@ -192,22 +192,25 @@ FOS_TO_STRING_MAPPINGS = {
 }
 
 
-def normalize_id(pid: str | None, **kwargs) -> str | None:
+def normalize_id(pid: str | bytes | None, **kwargs) -> str | None:
     """Check for valid DOI or HTTP(S) URL"""
     if pid is None:
         return None
 
-    # check if pid is a bytes object
+    # Convert bytes/bytearray to string
+    pid_str: str
     if isinstance(pid, (bytes, bytearray)):
-        pid = pid.decode()
+        pid_str = pid.decode()
+    else:
+        pid_str = pid
 
     # check for valid DOI
-    doi = normalize_doi(pid, **kwargs)
+    doi = normalize_doi(pid_str, **kwargs)
     if doi is not None:
         return doi
 
     # check for valid HTTP uri and ensure https
-    f = furl(pid)
+    f = furl(pid_str)
     if not f.host or f.scheme not in ["http", "https"]:
         return None
     if f.scheme == "http":
@@ -622,7 +625,7 @@ def normalize_name_identifier(ni: str | None) -> str | None:
     if ni is None:
         return None
     if isinstance(ni, str):
-        return
+        return normalize_orcid(ni) or normalize_ror(ni) or normalize_isni(ni)
     if isinstance(ni, dict):
         return format_name_identifier(ni)
     if isinstance(ni, list):
@@ -633,7 +636,7 @@ def normalize_name_identifier(ni: str | None) -> str | None:
     return None
 
 
-def format_name_identifier(ni) -> str | None:
+def format_name_identifier(ni: str | dict | None) -> str | None:
     """format_name_identifier"""
     if ni is None:
         return None
@@ -665,7 +668,7 @@ def format_name_identifier(ni) -> str | None:
     return None
 
 
-def normalize_issn(string, **kwargs) -> str | None:
+def normalize_issn(string: str | dict | list | None, **kwargs) -> str | None:
     """Normalize ISSN
     Pick electronic issn if there are multiple
     Format issn as xxxx-xxxx"""
@@ -1073,7 +1076,7 @@ def find_from_format_by_dict(dct: dict) -> str | None:
     return None
 
 
-def find_from_format_by_string(string: str) -> str | None:
+def find_from_format_by_string(string: str | None) -> str | None:
     """Find reader from format by string"""
     if string is None:
         return None
@@ -1148,7 +1151,7 @@ def find_from_format_by_filename(filename) -> str | None:
     return None
 
 
-def from_schema_org(element) -> dict | None:
+def from_schema_org(element: dict | None) -> dict | None:
     """Convert schema.org to DataCite"""
     if element is None:
         return None

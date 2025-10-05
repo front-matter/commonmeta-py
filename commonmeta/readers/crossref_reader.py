@@ -57,7 +57,7 @@ def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     return response.json().get("message", {}).get("items", [])
 
 
-def get_crossref(pid: str | None, **kwargs) -> dict | None:
+def get_crossref(pid: str | None, **kwargs) -> dict:
     """get_crossref"""
     doi = validate_doi(pid)
     if doi is None:
