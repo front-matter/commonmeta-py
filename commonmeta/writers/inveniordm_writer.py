@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import logging
 from time import time
+from typing import TYPE_CHECKING
 
 import orjson as json
 import requests
@@ -15,7 +16,6 @@ from ..constants import (
     COMMUNITY_TRANSLATIONS,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
-    Commonmeta,
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
@@ -30,13 +30,16 @@ from ..utils import (
     validate_ror,
 )
 
+if TYPE_CHECKING:
+    from ..metadata import Metadata, MetadataList
+
 log = logging.getLogger(__name__)
 
 
-def write_inveniordm(metadata: Commonmeta) -> dict | None:
+def write_inveniordm(metadata: Metadata) -> dict:
     """Write inveniordm"""
     if metadata is None or metadata.write_errors is not None:
-        return None
+        return {}
     _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
     creators = [
         to_inveniordm_creator(i)
@@ -214,8 +217,8 @@ def to_inveniordm_subject(sub: dict) -> dict | None:
     """Convert subject to inveniordm subject"""
     if sub.get("subject", None) is None:
         return None
-    if sub.get("subject").startswith("FOS: "):
-        subject = sub.get("subject")[5:]
+    elif str(sub.get("subject")).startswith("FOS: "):
+        subject = str(sub.get("subject"))[5:]
         id_ = FOS_MAPPINGS.get(subject, None)
         return compact(
             {
@@ -250,7 +253,7 @@ def to_inveniordm_affiliations(creator: dict) -> list | None:
     )
 
 
-def to_inveniordm_related_identifier(relation: dict) -> dict:
+def to_inveniordm_related_identifier(relation: dict) -> dict | None:
     """Convert relation to inveniordm related_identifier"""
     if normalize_doi(relation.get("id", None)):
         identifier = doi_from_url(relation.get("id", None))
@@ -262,19 +265,20 @@ def to_inveniordm_related_identifier(relation: dict) -> dict:
         return None
 
     # normalize relation types
-    relation_type = relation.get("type")
-    if relation.get("type") == "HasReview":
-        relation_type = "IsReviewedBy"
-    elif relation.get("type") == "IsPreprintOf":
-        relation_type = "IsPreviousVersionOf"
+    if relation.get("type", None) == "HasReview":
+        relation_type = "isreviewedby"
+    elif relation.get("type", None) == "IsPreprintOf":
+        relation_type = "ispreviousversionof"
+    elif relation.get("type", None) is not None:
+        relation_type = str(relation.get("type")).lower()
+    else:
+        return None
 
     return compact(
         {
             "identifier": identifier,
             "scheme": scheme,
-            "relation_type": {
-                "id": relation_type.lower(),
-            },
+            "relation_type": {"id": relation_type},
         }
     )
 
@@ -293,13 +297,14 @@ def to_inveniordm_reference(reference: dict) -> dict | None:
 
     if reference.get("unstructured", None) is None:
         # use title as unstructured reference
-        if reference.get("title", None):
-            unstructured = reference.get("title")
+        title = reference.get("title", None)
+        if title:
+            unstructured = str(title)
         else:
             unstructured = "Unknown title"
 
         if reference.get("publicationYear", None):
-            unstructured += " (" + reference.get("publicationYear") + ")."
+            unstructured += f" ({reference.get('publicationYear')})."
 
         return compact(
             {
@@ -387,7 +392,7 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
     )
 
 
-def write_inveniordm_list(metalist: list) -> list | None:
+def write_inveniordm_list(metalist: MetadataList) -> list | None:
     """Write InvenioRDM list"""
 
     if metalist is None:
@@ -401,7 +406,7 @@ def write_inveniordm_list(metalist: list) -> list | None:
     return [write_item(item) for item in metalist.items]
 
 
-def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> dict:
+def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict:
     """Push record to InvenioRDM"""
 
     try:
@@ -419,7 +424,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> di
         # community_id is the id of the primary community of the record,
         # in the case of Rogue Scholar the blog community
 
-        if hasattr(metadata, "identifiers") and metadata.identifiers:
+        if metadata.identifiers:
             for identifier in metadata.identifiers:
                 if (
                     isinstance(identifier, dict)
@@ -429,7 +434,7 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> di
                     record["uuid"] = identifier.get("identifier")
                     continue
 
-        if hasattr(metadata, "relations") and metadata.relations:
+        if metadata.relations:
             community_index = None
             for i, relation in enumerate(metadata.relations):
                 if relation.get("type") == "IsPartOf" and relation.get(
@@ -476,7 +481,9 @@ def push_inveniordm(metadata: Commonmeta, host: str, token: str, **kwargs) -> di
     return record
 
 
-def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> bytes | None:
+def push_inveniordm_list(
+    metalist: MetadataList, host: str, token: str, **kwargs
+) -> bytes | None:
     """Push inveniordm list to InvenioRDM, returns list of push results."""
 
     if metalist is None:
@@ -486,7 +493,7 @@ def push_inveniordm_list(metalist, host: str, token: str, **kwargs) -> bytes | N
 
 
 def upsert_record(
-    metadata: Commonmeta,
+    metadata: Metadata,
     host: str,
     token: str,
     record: dict,
@@ -528,7 +535,7 @@ def upsert_record(
 
 
 def add_record_to_communities(
-    metadata: Commonmeta, host: str, token: str, record: dict
+    metadata: Metadata, host: str, token: str, record: dict
 ) -> dict:
     """Add record to one or more InvenioRDM communities"""
 
@@ -545,7 +552,7 @@ def add_record_to_communities(
     # Add record to subject area community if subject area community is specified
     # Subject area communities should exist for all OECD subject areas
 
-    if hasattr(metadata, "subjects"):
+    if metadata.subjects:
         for subject in metadata.subjects:
             subject_name = subject.get("subject", "")
             slug = string_to_slug(subject_name)
@@ -556,12 +563,12 @@ def add_record_to_communities(
                 record = add_record_to_community(record, host, token, community_id)
 
     # Add record to communities defined as IsPartOf relation in InvenioRDM RelatedIdentifiers
-    if hasattr(metadata, "related_identifiers") and metadata.related_identifiers:
-        for identifier in metadata.related_identifiers:
-            if dig(identifier, "relation_type.id") == "ispartof" and identifier.get(
-                "identifier", ""
+    if metadata.relations:
+        for relation in metadata.relations:
+            if relation.get("type", None) == "IsPartOf" and relation.get(
+                "id", ""
             ).startswith(f"https://{host}/api/communities/"):
-                slug = identifier.get("identifier").split("/")[5]
+                slug = relation.get("id").split("/")[5]
                 community_id = search_by_slug(slug, "topic", host, token)
                 if community_id and community_id not in community_ids:
                     record = add_record_to_community(record, host, token, community_id)
@@ -570,7 +577,7 @@ def add_record_to_communities(
 
 
 def update_external_services(
-    metadata: Commonmeta, host: str, token: str, record: dict, **kwargs
+    metadata: Metadata, host: str, token: str, record: dict, **kwargs
 ) -> dict:
     """Update external services with changes in InvenioRDM"""
 
@@ -854,7 +861,7 @@ def update_legacy_record(
         }
         response = requests.patch(request_url, json=output, headers=headers, timeout=30)
         if response.status_code != 204:
-            return Exception(f"Unexpected status code: {response.status_code}")
+            raise Exception(f"Unexpected status code: {response.status_code}")
 
         record["status"] = "updated_legacy"
         return record

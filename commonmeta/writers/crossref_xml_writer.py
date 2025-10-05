@@ -6,7 +6,7 @@ import io
 import logging
 from datetime import datetime
 from time import time
-from typing import Dict
+from typing import TYPE_CHECKING, Dict
 
 import orjson as json
 import requests
@@ -14,13 +14,23 @@ from dateutil.parser import parse as date_parse
 from furl import furl
 from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
+from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
-from ..base_utils import compact, dig, parse_xml, unparse_xml, unparse_xml_list, wrap
-from ..constants import Commonmeta
+from ..base_utils import (
+    compact,
+    dig,
+    parse_xml,
+    unparse_xml,
+    unparse_xml_list,
+    wrap,
+)
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
 from .inveniordm_writer import push_inveniordm, update_legacy_record
+
+if TYPE_CHECKING:
+    from ..metadata import Metadata, MetadataList
 
 log = logging.getLogger(__name__)
 
@@ -93,7 +103,7 @@ class CrossrefXMLSchema(Schema):
     references = fields.Dict(data_key="citation_list")
 
 
-def convert_crossref_xml(metadata: Commonmeta) -> dict | None:
+def convert_crossref_xml(metadata: Metadata) -> dict | None:
     """Convert Crossref XML"""
 
     # return None if type is not supported by Crossref
@@ -357,7 +367,7 @@ def convert_crossref_xml(metadata: Commonmeta) -> dict | None:
     return data
 
 
-def write_crossref_xml(metadata: Commonmeta) -> str | None:
+def write_crossref_xml(metadata: Metadata) -> str | None:
     """Write Crossref XML"""
     if metadata is None or not metadata.is_valid:
         log.error("Invalid metadata provided for Crossref XML generation")
@@ -387,7 +397,7 @@ def write_crossref_xml(metadata: Commonmeta) -> str | None:
     return unparse_xml(crossref_xml, dialect="crossref", head=head)
 
 
-def write_crossref_xml_list(metalist) -> str | None:
+def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
         log.error("Invalid metalist provided for Crossref XML generation")
@@ -413,11 +423,12 @@ def write_crossref_xml_list(metalist) -> str | None:
         "email": metalist.email,
         "registrant": metalist.registrant,
     }
-    return unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
+    result = unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
+    return result.encode("utf-8") if result is not None else None
 
 
 def push_crossref_xml(
-    metadata: Commonmeta,
+    metadata: Metadata,
     login_id: str,
     login_passwd: str,
     test_mode: bool,
@@ -474,7 +485,7 @@ def push_crossref_xml(
 
 
 def push_crossref_xml_list(
-    metalist,
+    metalist: MetadataList,
     login_id: str,
     login_passwd: str,
     test_mode: bool,
@@ -843,7 +854,7 @@ def get_archive_locations(obj) -> list | None:
     ]
 
 
-def get_version_info(obj) -> str | None:
+def get_version_info(obj) -> dict | None:
     """get version_info"""
     if dig(obj, "version") is None:
         return None
@@ -1121,7 +1132,7 @@ def get_doi_data(obj) -> dict | None:
     )
 
 
-def get_isbn(obj, media_type: str | None = None) -> Dict | None:
+def get_isbn(obj, media_type: str | None = None) -> str | None:
     """get isbn"""
     if (
         dig(obj, "container.identifierType") != "ISBN"
@@ -1226,7 +1237,7 @@ class CrossrefXMLClient:
 
             return self._parse_response(resp)
 
-        except requests.exceptions.RequestException as e:
+        except RequestException as e:
             log.error(f"Failed to upload to Crossref: {e}")
             return "{}"
 

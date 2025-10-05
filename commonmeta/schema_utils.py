@@ -22,15 +22,15 @@ def json_schema_errors(
         "cff": "cff_v1.2.0",
     }
     try:
-        if schema not in schema_map.keys():
+        if schema not in schema_map:
             raise ValueError("No schema found")
         file_path = path.join(
             path.dirname(__file__), f"resources/{schema_map[schema]}.json"
         )
         with open(file_path, encoding="utf-8") as file:
             string = file.read()
-            schema = json.loads(string)
-        return Draft202012Validator(schema).validate(instance)
+            schema_definition = json.loads(string)
+        return Draft202012Validator(schema_definition).validate(instance)
     except ValidationError as error:
         return error.message
 
@@ -43,7 +43,7 @@ def xml_schema_errors(
         "crossref_xml": "crossref5.4.0",
     }
     try:
-        if schema not in schema_map.keys():
+        if schema not in schema_map:
             raise ValueError("No schema found")
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
         schema_path = path.join(base_dir, "crossref5.4.0.xsd")

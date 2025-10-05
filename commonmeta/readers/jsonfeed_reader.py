@@ -69,9 +69,13 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     # Generate DOI from guid if it is a DOI string
     if _id is None and dig(meta, "blog.prefix") and meta.get("guid", None):
         prefix = dig(meta, "blog.prefix")
-        guid = meta.get("guid")
+        guid = meta.get("guid", None)
 
-        if validate_doi_from_guid(prefix, guid[:-2], checksum=False):
+        if (
+            guid is not None
+            and len(guid) > 2
+            and validate_doi_from_guid(prefix, guid[:-2], checksum=False)
+        ):
             _id = guid
 
     # If still no DOI but prefix provided
@@ -272,7 +276,7 @@ def get_funding_references(meta: dict | None) -> list | None:
     if meta is None or not isinstance(meta, dict):
         return None
 
-    def format_funding(urls: list) -> list:
+    def format_funding(urls: list) -> dict | None:
         """format funding. URLs can either be a list of grant IDs or a funder identifier
         (Open Funder Registry ID or ROR), followed by a grant URL"""
         # Prefix 10.3030 means grant ID from funder is European Commission.
@@ -281,17 +285,15 @@ def get_funding_references(meta: dict | None) -> list | None:
             validate_prefix(urls[0]) == "10.3030"
             or furl(urls[0]).host == "cordis.europa.eu"
         ):
-            return [
-                compact(
-                    {
-                        "funderName": "European Commission",
-                        "funderIdentifier": "https://ror.org/00k4n6c32",
-                        "funderIdentifierType": "ROR",
-                        "awardUri": urls[0],
-                        "awardNumber": urls[0].split("/")[-1],
-                    }
-                )
-            ]
+            return compact(
+                {
+                    "funderName": "European Commission",
+                    "funderIdentifier": "https://ror.org/00k4n6c32",
+                    "funderIdentifierType": "ROR",
+                    "awardUri": urls[0],
+                    "awardNumber": urls[0].split("/")[-1],
+                }
+            )
         # Prefix 10.13039 means funder ID from Open Funder registry.
         elif len(urls) == 2 and validate_prefix(urls[0]) == "10.13039":
             if urls[0] == "https://doi.org/10.13039/100000001":
@@ -305,17 +307,15 @@ def get_funding_references(meta: dict | None) -> list | None:
                 award_number = f.args["awd_id"]
             else:
                 award_number = f.path.segments[-1]
-            return [
-                compact(
-                    {
-                        "funderName": funder_name,
-                        "funderIdentifier": funder_identifier,
-                        "funderIdentifierType": "ROR",
-                        "awardUri": urls[1],
-                        "awardNumber": award_number,
-                    }
-                )
-            ]
+            return compact(
+                {
+                    "funderName": funder_name,
+                    "funderIdentifier": funder_identifier,
+                    "funderIdentifierType": "ROR",
+                    "awardUri": urls[1],
+                    "awardNumber": award_number,
+                }
+            )
         # URL is ROR ID for funder.
         elif len(urls) == 2 and validate_ror(urls[0]):
             f = furl(urls[0])
@@ -334,27 +334,21 @@ def get_funding_references(meta: dict | None) -> list | None:
                 award_number = f.args["awd_id"]
             else:
                 award_number = f.path.segments[-1]
-            return [
-                compact(
-                    compact(
-                        {
-                            "funderName": funder_name,
-                            "funderIdentifier": funder_identifier,
-                            "funderIdentifierType": funder_identifier_type,
-                            "awardUri": urls[1],
-                            "awardNumber": award_number,
-                        }
-                    )
-                )
-            ]
+            return compact(
+                {
+                    "funderName": funder_name,
+                    "funderIdentifier": funder_identifier,
+                    "funderIdentifierType": funder_identifier_type,
+                    "awardUri": urls[1],
+                    "awardNumber": award_number,
+                }
+            )
 
-    awards = flatten(
-        [
-            format_funding(i.get("urls"))
-            for i in wrap(meta.get("relationships", None))
-            if i.get("type", None) == "HasAward"
-        ]
-    )
+    awards = [
+        format_funding(i.get("urls"))
+        for i in wrap(meta.get("relationships", None))
+        if i.get("type", None) == "HasAward"
+    ]
 
     def format_funding_reference(funding: dict) -> dict | None:
         """format funding reference. Make sure award URI is either a DOI or URL"""
@@ -413,7 +407,7 @@ def get_relations(relations: list) -> list:
         "IsSupplementTo",
     ]
 
-    def format_relationship(relation: dict) -> dict:
+    def format_relationship(relation: dict) -> list | dict:
         """format relationship"""
         _id = relation.get("url", None) or relation.get("urls", None)
         if isinstance(_id, list):

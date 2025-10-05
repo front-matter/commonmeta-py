@@ -5,34 +5,40 @@ from __future__ import annotations
 from typing import TypedDict
 
 
-class Commonmeta(TypedDict):
-    """TypedDict for Commonmeta"""
+class CommonmetaRequired(TypedDict):
+    """Required fields for Commonmeta"""
 
     id: str
     type: str
-    url: str
-    creators: list[dict]
-    titles: list[dict]
-    publisher: dict
-    date: dict
+
+
+class Commonmeta(CommonmetaRequired, total=False):
+    """TypedDict for Commonmeta"""
+
+    # optional fields
     additional_type: str | None
-    subjects: list[dict] | None
+    agency: str | None
+    container: dict | None
     contributors: list[dict] | None
-    language: str | None
+    creators: list[dict] | None
+    date: dict | None
+    descriptions: list[dict] | None
+    files: list[dict] | None
+    formats: list[dict] | None
+    funding_references: list[dict] | None
+    geo_locations: list[dict] | None
     identifiers: list[dict] | None
+    language: str | None
+    license: dict | None
+    publisher: dict | None
+    references: list[dict] | None
     relations: list[dict] | None
     sizes: list[dict] | None
-    formats: list[dict] | None
+    state: str | None
+    subjects: list[dict] | None
+    titles: list[dict] | None
+    url: str | None
     version: str | None
-    license: dict | None
-    descriptions: list[dict] | None
-    geo_locations: list[dict] | None
-    funding_references: list[dict] | None
-    references: list[dict] | None
-    container: dict | None
-    files: list[dict] | None
-    agency: str | None
-    state: str
 
 
 # source: https://www.bibtex.com/e/entry-types/

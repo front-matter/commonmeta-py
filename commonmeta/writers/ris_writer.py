@@ -1,12 +1,19 @@
 """RIS writer for commonmeta-py"""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from ..base_utils import compact, first, parse_attributes, wrap
 from ..constants import CM_TO_RIS_TRANSLATIONS
 from ..doi_utils import doi_from_url
 from ..utils import to_ris
 
+if TYPE_CHECKING:
+    from ..metadata import Metadata, MetadataList
 
-def write_ris(metadata):
+
+def write_ris(metadata: Metadata) -> str:
     """Write ris"""
     container = metadata.container or {}
     _type = CM_TO_RIS_TRANSLATIONS.get(metadata.type, "GEN")
@@ -51,9 +58,9 @@ def write_ris(metadata):
     return "\r\n".join(string)
 
 
-def write_ris_list(metalist):
+def write_ris_list(metalist: MetadataList) -> bytes | None:
     """Write RIS list"""
     if metalist is None:
         return None
     items = [write_ris(item) for item in metalist.items]
-    return "\r\n\r\n".join(items)
+    return "\r\n\r\n".join(items).encode("utf-8")

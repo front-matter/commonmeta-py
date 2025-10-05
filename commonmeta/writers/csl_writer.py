@@ -1,17 +1,22 @@
 """CSL-JSON writer for commonmeta-py"""
 
-from typing import Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
 
 import orjson as json
 
 from ..base_utils import compact, first, parse_attributes, presence, wrap
-from ..constants import CM_TO_CSL_TRANSLATIONS, Commonmeta
+from ..constants import CM_TO_CSL_TRANSLATIONS
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
 from ..utils import pages_as_string, to_csl
 
+if TYPE_CHECKING:
+    from ..metadata import Metadata, MetadataList
 
-def write_csl(metadata: Commonmeta) -> Optional[str]:
+
+def write_csl(metadata: Metadata) -> bytes | None:
     """Write CSL-JSON"""
     item = write_csl_item(metadata)
     if item is None:
@@ -19,7 +24,7 @@ def write_csl(metadata: Commonmeta) -> Optional[str]:
     return json.dumps(item)
 
 
-def write_csl_item(metadata) -> Optional[dict]:
+def write_csl_item(metadata: Metadata) -> dict | None:
     """Write CSL-JSON item"""
     if metadata is None or metadata.write_errors is not None:
         return None
@@ -77,7 +82,7 @@ def write_csl_item(metadata) -> Optional[dict]:
     )
 
 
-def write_csl_list(metalist):
+def write_csl_list(metalist: MetadataList) -> list | None:
     """Write CSL-JSON list"""
     if metalist is None:
         return None

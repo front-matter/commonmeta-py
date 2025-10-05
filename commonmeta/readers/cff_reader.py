@@ -76,21 +76,20 @@ def read_cff(data: dict | None, **kwargs) -> Commonmeta:
         titles = [{"title": meta.get("title", None)}]
     else:
         titles = []
-
-    date = {
-        "published": get_iso8601_date(meta.get("date-released"))
-        if meta.get("date-released", None)
-        else None
-    }
+    if meta.get("date-released", None):
+        date_released = meta.get("date-released")
+        date = {"published": get_iso8601_date(date_released)}
+    else:
+        date = {}
 
     publisher = (
         {"name": "GitHub"} if url and urlparse(url).hostname == "github.com" else None
     )
-
-    if meta.get("abstract", None):
+    abstract = meta.get("abstract", None)
+    if abstract is not None:
         descriptions = [
             {
-                "description": sanitize(meta.get("abstract")),
+                "description": sanitize(abstract),
                 "type": "Abstract",
             }
         ]
@@ -204,13 +203,12 @@ def cff_references(references) -> list:
                 for item in wrap(i.get("identifers", None))
                 if item.get("type", None) == "doi"
             ),
-            None,
+            {},
         )
+        value = identifier.get("value", None)
         return compact(
             {
-                "doi": normalize_id(
-                    first(parse_attributes(identifier.get("value", None)))
-                )
+                "doi": normalize_id(first(parse_attributes(value))),
             }
         )
 

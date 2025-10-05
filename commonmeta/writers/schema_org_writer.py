@@ -1,11 +1,18 @@
 """Schema.org writer for commonmeta-py"""
 
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
 from ..base_utils import compact, first, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
 from ..utils import get_language, github_as_repo_url, to_schema_org_creators
 
+if TYPE_CHECKING:
+    from ..metadata import Metadata, MetadataList
 
-def write_schema_org(metadata):
+
+def write_schema_org(metadata: Metadata) -> dict:
     """Write schema.org"""
     container = metadata.container
     if metadata.type == "Dataset" and metadata.files is not None:
@@ -149,7 +156,7 @@ def write_schema_org(metadata):
     )
 
 
-def write_schema_org_list(metalist):
+def write_schema_org_list(metalist: MetadataList) -> list | None:
     """Write Schema.org list"""
     if metalist is None:
         return None

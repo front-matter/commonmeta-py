@@ -115,7 +115,7 @@ def test_presence():
 def test_compact():
     "compact"
     assert {"name": "test"} == compact({"name": "test", "other": None})
-    assert None is compact(None)
+    assert {} == compact(None)
 
 
 def test_parse_attributes():

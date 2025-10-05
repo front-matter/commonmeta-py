@@ -19,7 +19,6 @@ from ..base_utils import (
     pascal_case,
     presence,
     sanitize,
-    scrub,
     unique,
     wrap,
 )
@@ -259,7 +258,7 @@ def get_reference(reference: dict | None) -> dict | None:
     return compact(metadata)
 
 
-def get_relations(relations: list) -> list:
+def get_relations(relations: dict | None) -> list:
     """Get relations from Crossref"""
     supported_types = [
         "IsNewVersionOf",
@@ -283,7 +282,7 @@ def get_relations(relations: list) -> list:
     if not relations:
         return []
 
-    def format_relation(key, values):
+    def format_relation(key: str, values: list) -> list[dict] | None:
         _type = pascal_case(key)
         if _type not in supported_types:
             return None
@@ -300,7 +299,10 @@ def get_relations(relations: list) -> list:
 
         return rs
 
-    return unique(scrub(flatten([format_relation(k, v) for k, v in relations.items()])))
+    # Format all relations and filter out None values
+    formatted = [format_relation(k, v) for k, v in relations.items()]
+    valid = [r for r in formatted if r is not None]
+    return unique(flatten(valid))
 
 
 def get_file(file: dict) -> dict:
@@ -349,7 +351,7 @@ def get_issn(meta: dict) -> str | None:
     )
 
 
-def get_container(meta: dict, issn: str) -> dict:
+def get_container(meta: dict, issn: str | None) -> dict:
     """Get container from Crossref"""
     container_type = CROSSREF_CONTAINER_TYPES.get(meta.get("type", None))
     container_type = CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None)
@@ -381,8 +383,9 @@ def get_container(meta: dict, issn: str) -> dict:
         container_title = dig(meta, "institution.0.name")
     volume = meta.get("volume", None)
     issue = dig(meta, "journal-issue.issue")
-    if meta.get("page", None):
-        pages = meta.get("page", None).split("-")
+    page = meta.get("page", None)
+    if page is not None:
+        pages = page.split("-")
         first_page = pages[0]
         last_page = pages[1] if len(pages) > 1 else None
     else:

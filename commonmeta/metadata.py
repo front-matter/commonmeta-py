@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from os import path
-from typing import Any, Dict, List
+from typing import Any
 
 import orjson as json
 import yaml
@@ -72,7 +72,7 @@ from .writers.schema_org_writer import write_schema_org, write_schema_org_list
 class Metadata:
     """Metadata"""
 
-    def __init__(self, string: str | Dict[str, Any] | None, **kwargs):
+    def __init__(self, string: str | dict[str, Any] | None, **kwargs):
         if (
             string is None
             or not isinstance(string, (str, dict))
@@ -173,7 +173,7 @@ class Metadata:
         # Default fallback
         raise ValueError("No metadata found")
 
-    def _get_metadata_from_pid(self, pid, via) -> Dict[str, Any]:
+    def _get_metadata_from_pid(self, pid, via) -> dict[str, Any]:
         """Helper method to get metadata from a PID."""
         if via == "schema_org":
             return get_schema_org(pid)
@@ -196,7 +196,7 @@ class Metadata:
         else:
             return {"pid": pid}
 
-    def _get_metadata_from_string(self, string, via) -> Dict[str, Any]:
+    def _get_metadata_from_string(self, string, via) -> dict[str, Any]:
         """Helper method to get metadata from a string."""
         try:
             # XML formats
@@ -240,7 +240,7 @@ class Metadata:
         except (TypeError, json.JSONDecodeError) as error:
             return {"error": str(error)}
 
-    def read_metadata(self, data: Dict[str, Any], **kwargs) -> Dict[str, Any]:
+    def read_metadata(self, data: dict[str, Any], **kwargs) -> dict[str, Any]:
         """Read and parse metadata from various formats."""
         via = (isinstance(data, dict) and data.get("via")) or self.via
 
@@ -356,10 +356,6 @@ class Metadata:
 
     def _write_crossref_xml(self, **kwargs) -> str:
         """Write in Crossref XML format with error checking."""
-        # doi = doi_from_url(self.id)
-        # _type = CM_TO_CR_TRANSLATIONS.get(str(self.type or ""), None)
-        # url = self.url
-        # instance = {"doi": doi, "type": _type, "url": url}
         self.depositor = kwargs.get("depositor", None)
         self.email = kwargs.get("email", None)
         self.registrant = kwargs.get("registrant", None)
@@ -370,7 +366,7 @@ class Metadata:
             return ""
         return output if output is not None else ""
 
-    def push(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
+    def push(self, to: str = "commonmeta", **kwargs) -> str | dict:
         """push metadata to external APIs"""
 
         if to == "crossref_xml":
@@ -397,7 +393,7 @@ class Metadata:
 class MetadataList:
     """MetadataList"""
 
-    def __init__(self, dct: str | Dict[str, Any] | None = None, **kwargs) -> None:
+    def __init__(self, dct: str | dict[str, Any] | None = None, **kwargs) -> None:
         if dct is None or not isinstance(dct, (str, bytes, dict)):
             raise ValueError("No input found")
         if isinstance(dct, dict):
@@ -438,7 +434,7 @@ class MetadataList:
         # other options
         self.file = kwargs.get("file", None)
 
-    def get_metadata_list(self, string) -> list:
+    def get_metadata_list(self, string) -> dict:
         if string is None or not isinstance(string, (str, bytes)):
             raise ValueError("No input found")
         if self.via in [
@@ -458,21 +454,25 @@ class MetadataList:
         else:
             raise ValueError("No input format found")
 
-    def read_metadata_list(self, items, **kwargs) -> List[Metadata]:
+    def read_metadata_list(self, items, **kwargs) -> list[Metadata]:
         """read_metadata_list"""
         kwargs["via"] = kwargs.get("via", None) or self.via
         return [Metadata(i, **kwargs) for i in items]
 
-    def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
+    def write(self, to: str = "commonmeta", **kwargs) -> str | bytes | None:
         """convert metadata list into different formats"""
         if to == "bibtex":
             output = write_bibtex_list(self)
-            if self.file:
+            if self.file and output is not None:
                 return write_output(self.file, output, [".bib"])
             else:
                 return output
         elif to == "citation":
-            return write_citation_list(self, **kwargs)
+            output = write_citation_list(self, **kwargs)
+            if self.file and output is not None:
+                return write_output(self.file, output, [".html"])
+            else:
+                return output
         elif to == "commonmeta":
             output = json.dumps(write_commonmeta_list(self))
             if self.file:
@@ -481,7 +481,7 @@ class MetadataList:
                 return output
         elif to == "crossref_xml":
             output = write_crossref_xml_list(self)
-            if self.file:
+            if self.file and output is not None:
                 return write_output(self.file, output, [".xml"])
             else:
                 return output
@@ -504,7 +504,11 @@ class MetadataList:
             else:
                 return output
         elif to == "ris":
-            return write_ris_list(self)
+            output = write_ris_list(self)
+            if self.file and output is not None:
+                return write_output(self.file, output, [".ris"])
+            else:
+                return output
         elif to == "schema_org":
             output = json.dumps(write_schema_org_list(self))
             if self.file:

@@ -1,7 +1,8 @@
 """crossref_xml reader for commonmeta-py"""
 
+from __future__ import annotations
+
 from collections import defaultdict
-from typing import Optional
 
 import requests
 
@@ -34,7 +35,7 @@ from ..utils import (
 )
 
 
-def get_crossref_xml(pid: str, **kwargs) -> dict:
+def get_crossref_xml(pid: str, **kwargs) -> dict | list | None:
     """Get crossref_xml metadata from a DOI"""
     doi = doi_from_url(pid)
     if doi is None:
@@ -46,10 +47,10 @@ def get_crossref_xml(pid: str, **kwargs) -> dict:
     if response.status_code != 200:
         return {"state": "not_found"}
 
-    return parse_xml(response.text, dialect="crossref") | {"via": "crossref_xml"}
+    return parse_xml(response.text, dialect="crossref")
 
 
-def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
+def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
     """read_crossref_xml"""
     if data is None:
         return {"state": "not_found"}
@@ -240,13 +241,8 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
         crossref_reference(i) for i in wrap(dig(bibmeta, "citation_list.citation"))
     ]
     files = presence(meta.get("contentUrl", None))
-    provider = (
-        bibmeta.get("reg-agency").capitalize()
-        if bibmeta.get("reg-agency", None)
-        else None
-    )
-    if provider is None:
-        provider = get_doi_ra(_id)
+    provider = bibmeta.get("reg-agency", None)
+    provider = provider.capitalize() if provider else get_doi_ra(_id)
     state = "findable" if meta or read_options else "not_found"
 
     return {
@@ -284,7 +280,7 @@ def read_crossref_xml(data: dict, **kwargs) -> Commonmeta:
     } | read_options
 
 
-def crossref_titles(bibmeta):
+def crossref_titles(bibmeta: dict) -> list | None:
     """Title information from Crossref metadata."""
     title = first(parse_attributes(dig(bibmeta, "titles.0.title")))
     subtitle = first(parse_attributes(dig(bibmeta, "titles.0.subtitle")))
@@ -319,10 +315,10 @@ def crossref_titles(bibmeta):
         ]
 
 
-def crossref_description(bibmeta):
+def crossref_description(bibmeta: dict) -> list:
     """Description information from Crossref metadata."""
 
-    def format_abstract(element):
+    def format_abstract(element: dict) -> dict:
         """Format abstract"""
         if isinstance(element.get("p", None), list):
             element["p"] = element["p"][0]
@@ -343,7 +339,7 @@ def crossref_description(bibmeta):
     return [format_abstract(i) for i in wrap(bibmeta.get("abstract", None))]
 
 
-def crossref_people(bibmeta):
+def crossref_people(bibmeta: dict) -> list:
     """Person information from Crossref metadata."""
 
     person = dig(bibmeta, "contributors.person_name") or bibmeta.get(
@@ -390,7 +386,7 @@ def crossref_people(bibmeta):
     #           'name' => a['name'] || a['#text'] }
 
 
-def crossref_reference(reference: Optional[dict]) -> Optional[dict]:
+def crossref_reference(reference: dict | None) -> dict | None:
     """Get reference from Crossref reference"""
     if reference is None or not isinstance(reference, dict):
         return None
@@ -493,10 +489,10 @@ def crossref_funding(funding: list) -> list:
     return []
 
 
-def crossref_license(licenses: list) -> dict:
+def crossref_license(licenses: list) -> dict | None:
     """Get license from Crossref"""
 
-    def map_element(element):
+    def map_element(element: dict) -> dict | None:
         """Format element"""
         url = first(parse_attributes(element))
         url = normalize_cc_url(url)

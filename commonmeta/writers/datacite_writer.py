@@ -12,15 +12,14 @@ from ..constants import (
     CM_TO_DC_TRANSLATIONS,
     CM_TO_RIS_TRANSLATIONS,
     CM_TO_SO_TRANSLATIONS,
-    Commonmeta,
 )
 from ..doi_utils import doi_from_url, normalize_doi
 
 if TYPE_CHECKING:
-    from ..metadata import MetadataList
+    from ..metadata import Metadata, MetadataList
 
 
-def write_datacite(metadata: Commonmeta) -> str | dict | None:
+def write_datacite(metadata: Metadata) -> str | dict | None:
     """Write datacite. Make sure JSON Schema validates before writing"""
     if metadata.write_errors is not None:
         return "{}"

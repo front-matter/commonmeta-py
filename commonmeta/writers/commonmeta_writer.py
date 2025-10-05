@@ -5,13 +5,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ..base_utils import compact, omit
-from ..constants import Commonmeta
 
 if TYPE_CHECKING:
-    from ..metadata import MetadataList
+    from ..metadata import Metadata, MetadataList
 
 
-def write_commonmeta(metadata: Commonmeta | None) -> dict | None:
+def write_commonmeta(metadata: Metadata | None) -> dict | None:
     """Write commonmeta"""
     if metadata is None:
         return None

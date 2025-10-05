@@ -10,19 +10,19 @@ from bibtexparser.customization import page_double_hyphen
 
 from ..author_utils import authors_as_string
 from ..base_utils import compact
-from ..constants import CM_TO_BIB_TRANSLATIONS, Commonmeta
+from ..constants import CM_TO_BIB_TRANSLATIONS
 from ..date_utils import MONTH_SHORT_NAMES, get_iso8601_date, get_month_from_date
 from ..doi_utils import doi_from_url
 from ..utils import get_language, pages_as_string
 
 if TYPE_CHECKING:
-    from ..metadata import MetadataList
+    from ..metadata import Metadata, MetadataList
 
 
-def write_bibtex(metadata: Commonmeta) -> str | None:
+def write_bibtex(metadata: Metadata) -> str:
     """Write bibtex"""
     if metadata.write_errors is not None:
-        return None
+        return ""
     item = write_bibtex_item(metadata)
     bibtex_str = """
     @comment{
@@ -43,7 +43,7 @@ def write_bibtex(metadata: Commonmeta) -> str | None:
     return bibtex_str
 
 
-def write_bibtex_item(metadata: Commonmeta) -> dict:
+def write_bibtex_item(metadata: Metadata) -> dict:
     """Write bibtex item"""
     container = metadata.container if metadata.container else {}
     date_published = get_iso8601_date(metadata.date.get("published", None))
@@ -135,7 +135,7 @@ def write_bibtex_item(metadata: Commonmeta) -> dict:
     )
 
 
-def write_bibtex_list(metalist: MetadataList | None) -> str | None:
+def write_bibtex_list(metalist: MetadataList | None) -> bytes | None:
     """Write bibtex list"""
     if metalist is None:
         return None
@@ -154,4 +154,4 @@ def write_bibtex_list(metalist: MetadataList | None) -> str | None:
     # TODO: Fix this in write_bibtex_item
     for month_name in MONTH_SHORT_NAMES:
         bibtex_str = bibtex_str.replace(f"{{{month_name}}}", month_name)
-    return bibtex_str
+    return bibtex_str.encode("utf-8")

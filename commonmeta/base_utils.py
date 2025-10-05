@@ -183,14 +183,14 @@ def presence(
     return None if item is None or len(item) == 0 or item == [{}] else item
 
 
-def compact(obj: dict | None) -> dict | None:
+def compact(obj: dict | None) -> dict:
     """Remove None values from dict"""
     if obj is None:
-        return None
+        return {}
     return {k: v for k, v in obj.items() if v is not None}
 
 
-def scrub(list_obj: list | None) -> list | None:
+def scrub(list_obj: Iterable[dict] | None) -> list | None:
     """Remove None values from list recursively"""
     if list_obj is None:
         return None
@@ -239,7 +239,7 @@ def kebab_case(s: str) -> str:
     return "-".join(w.lower() for w in words if w)
 
 
-def parse_attributes(element: str | dict | list | None, **kwargs) -> list:
+def parse_attributes(element: str | dict | list | None, **kwargs) -> list[str]:
     """Extract attributes from a string, dict or list.
 
     Args:
@@ -264,9 +264,12 @@ def parse_attributes(element: str | dict | list | None, **kwargs) -> list:
     if isinstance(element, str) and kwargs.get("content", None) is None:
         return [html.unescape(element)]
     if isinstance(element, dict):
-        return [element.get(html.unescape(content), None)]
+        value = element.get(html.unescape(content), None)
+        return [value] if value is not None else []
     if isinstance(element, list):
         arr = [parse_item(i) for i in element if i]
+        # Filter out None values
+        arr = [item for item in arr if item is not None]
         arr = [arr[0]] if len(arr) > 0 and kwargs.get("first") else arr
         return arr
 
@@ -320,16 +323,16 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
         # add body and root element as wrapping elements
-        type = next(iter(input))
-        attributes = input.get(type) or {}
-        input.pop(type)
+        item_type = next(iter(input))
+        attributes = input.get(item_type) or {}
+        input.pop(item_type)
 
-        if type == "book":
+        if item_type == "book":
             book_metadata = dig(input, "book_metadata") or {}
             input.pop("book_metadata")
             book_metadata = {**book_metadata, **input}
             input = {"book": {**attributes, "book_metadata": book_metadata}}
-        elif type == "database":
+        elif item_type == "database":
             database_metadata = dig(input, "database_metadata") or {}
             input.pop("database_metadata")
             val = input.pop("publisher_item")
@@ -344,7 +347,7 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
                     "component_list": {"component": component | input},
                 }
             }
-        elif type == "journal":
+        elif item_type == "journal":
             journal_metadata = dig(input, "journal_metadata") or {}
             journal_issue = dig(input, "journal_issue") or {}
             journal_article = dig(input, "journal_article") or {}
@@ -358,7 +361,7 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
                     "journal_article": journal_article | input,
                 }
             }
-        elif type == "proceedings_article":
+        elif item_type == "proceedings_article":
             proceedings_metadata = dig(input, "proceedings_metadata") or {}
             input.pop("proceedings_metadata")
             input = {
@@ -368,7 +371,7 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
                     "conference_paper": input,
                 }
             }
-        elif type == "sa_component":
+        elif item_type == "sa_component":
             component = dig(input, "component") or {}
             input.pop("component")
             input = {
@@ -378,7 +381,7 @@ def unparse_xml(input: dict | None, **kwargs) -> str | None:
                 }
             }
         else:
-            input = {type: attributes | input}
+            input = {item_type: attributes | input}
 
         head = kwargs.get("head", {}) or {}
         doi_batch = {
@@ -409,27 +412,27 @@ def unparse_xml_list(input: list | None, **kwargs) -> str | None:
         # add body and root element as wrapping elements
 
         # Group items by type with minimal grouping
-        items_by_type = {}
+        items_by_type: dict[str, list] = {}
 
         for item in wrap(input):
-            type = next(iter(item))
-            attributes = item.get(type) or {}
-            item.pop(type)
+            item_type = next(iter(item))
+            attributes = item.get(item_type) or {}
+            item.pop(item_type)
 
             # handle nested book_metadata and journal structure as in unparse_xml
-            if type == "book":
+            if item_type == "book":
                 book_metadata = dig(item, "book_metadata") or {}
                 item.pop("book_metadata")
                 book_metadata = {**book_metadata, **item}
                 item = {"book": {**attributes, "book_metadata": book_metadata}}
-            elif type == "database":
+            elif item_type == "database":
                 database_metadata = dig(item, "database_metadata") or {}
                 item.pop("database_metadata")
                 database_metadata = {**database_metadata, **item}
                 item = {
                     "database": {**attributes, "database_metadata": database_metadata}
                 }
-            elif type == "journal":
+            elif item_type == "journal":
                 journal_metadata = dig(item, "journal_metadata") or {}
                 journal_issue = dig(item, "journal_issue") or {}
                 journal_article = dig(item, "journal_article") or {}
@@ -443,8 +446,8 @@ def unparse_xml_list(input: list | None, **kwargs) -> str | None:
                         "journal_article": journal_article | item,
                     }
                 }
-            elif type == "sa_component":
-                component = dig(input, "component") or {}
+            elif item_type == "sa_component":
+                component = dig(item, "component") or {}
                 item.pop("component")
                 item = {
                     "sa_component": {
@@ -453,15 +456,15 @@ def unparse_xml_list(input: list | None, **kwargs) -> str | None:
                     }
                 }
             else:
-                item = {type: attributes | item}
+                item = {item_type: attributes | item}
 
             # Add item to appropriate type bucket
-            if type not in items_by_type:
-                items_by_type[type] = []
-            items_by_type[type].append(item[type])
+            if item_type not in items_by_type:
+                items_by_type[item_type] = []
+            items_by_type[item_type].append(item[item_type])
 
         # Create the final structure with body containing all grouped items
-        body_content = {}
+        body_content: dict[str, Any] = {}
         for type_key, items in items_by_type.items():
             if len(items) == 1:
                 body_content[type_key] = items[0]  # Use single item without array
@@ -478,6 +481,8 @@ def unparse_xml_list(input: list | None, **kwargs) -> str | None:
             "body": body_content,
         }
         output = {"doi_batch": doi_batch}
+    else:
+        output = input
 
     kwargs["pretty"] = True
     kwargs["indent"] = "  "

@@ -44,7 +44,7 @@ MONTH_SHORT_NAMES = [
 ISO8601_DATE_FORMAT = "%Y-%m-%d"
 
 
-def get_iso8601_date(date: datetime.datetime | datetime.date | str | int) -> str:
+def get_iso8601_date(date: datetime.datetime | datetime.date | str | int | None) -> str:
     """Get ISO 8601 date without time"""
     if date is None:
         return ""
@@ -118,7 +118,9 @@ def get_date_from_crossref_parts(date_parts: dict) -> str | None:
     return get_date_from_parts(year, month, day)
 
 
-def get_date_from_parts(year=0, month=0, day=0) -> str | None:
+def get_date_from_parts(
+    year: int | str = 0, month: int | str = 0, day: int | str = 0
+) -> str | None:
     """Get date from parts"""
     arr = [str(year).rjust(4, "0"), str(month).rjust(2, "0"), str(day).rjust(2, "0")]
     arr = [e for i, e in enumerate(arr) if (e not in ["00", "0000"])]
