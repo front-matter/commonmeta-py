@@ -9,20 +9,28 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://info.orcid.org/orcid-2023-annual-report/
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
-        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
-        AAD//wMAbXiVjpIAAAA=
+        H4sIAAAAAAAA/5RUXWvbMBR9H+w/ZKVUNrR2spZura3A1rTsIUkZC+xhjCJLN7aKIhlJSZY1+e+7
+        thM3BNrRB9u6uh9H594jp4Wfqf77d2kBTPRTL72C/kX3vHNnbCaFAJ3GzWYa1yEYmhmxqr4ctAfb
+        T4veYQbupPHWXdXGoK2lc6n/7Psct7L0/WA619xLo4PwabfscDQWzHYyyiJuMEP7geHzGX7X63br
+        p9TCLCOx9SRyGmRNnqBZxC0wD7cKKl9AGjgSJiKSWoP9NhkN6dGyKfHwcHN3zBfHJbNs5uiTvSZX
+        n9mnS/4xE5fTqx6/AnLqr8lownv3E34+/vu9O5YXy9HgS/VQskkqWEZ3Z3kRnUXaaA6UEFw6yymJ
+        udBnPJcxL5hSoHM4KxXzU2NncZPm4kcn4hmTOnp0JGkxcvBbAPd1NWH5mM0gINWwSPir+ztiZQla
+        3BRSiYCFyVGSvSlFhJsNtrSFq6bftPdlnnKKDYSaZwEyLzzt4XIphS/qlfMrBVFpnKzmTAnLnFFz
+        D6T1eVPSbmspmPo9MzNWgKUEe7iXspBOZlJJv6KkqIW416Tq1IedQFZEGSakzskH+kwGuYjVD4+E
+        QlRgAspBB2O3ImFC3C4wbCgdqg9s2OYdegIyuB/dNCIdIg4IcsqbenX/4BnS6BrUVaAoAJz+er13
+        IzbJK5G0DUTZA76S/7A6OQleKwenyBqHvtmEyD7dqg8v9O7ex/U/4x8AAAD//+LlAgAAAP//AwBv
+        E+nBPAQAAA==
     headers:
       CF-Cache-Status:
       - BYPASS
       CF-Ray:
-      - 93d8aaf79992162d-DUS
+      - 98a76c2bbd3c1c9e-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -30,181 +38,13 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Sat, 10 May 2025 10:14:07 GMT
+      - Mon, 06 Oct 2025 19:04:06 GMT
       Server:
       - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      cf-apo-via:
-      - origin,page-rules
-    status:
-      code: 403
-      message: Forbidden
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.3
-    method: GET
-    uri: https://info.orcid.org/orcid-2023-annual-report/
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
-        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
-        AAD//wMAbXiVjpIAAAA=
-    headers:
-      CF-Cache-Status:
-      - BYPASS
-      CF-Ray:
-      - 93d8b8d87c6a7a40-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - text/html
-      Date:
-      - Sat, 10 May 2025 10:23:36 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      cf-apo-via:
-      - origin,page-rules
-    status:
-      code: 403
-      message: Forbidden
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.3
-    method: GET
-    uri: https://info.orcid.org/orcid-2023-annual-report/
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
-        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
-        AAD//wMAbXiVjpIAAAA=
-    headers:
-      CF-Cache-Status:
-      - BYPASS
-      CF-Ray:
-      - 93d8d23becfc7a5a-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - text/html
-      Date:
-      - Sat, 10 May 2025 10:40:56 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      cf-apo-via:
-      - origin,page-rules
-    status:
-      code: 403
-      message: Forbidden
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.3
-    method: GET
-    uri: https://info.orcid.org/orcid-2023-annual-report/
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
-        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
-        AAD//wMAbXiVjpIAAAA=
-    headers:
-      CF-Cache-Status:
-      - BYPASS
-      CF-Ray:
-      - 93d8dccec9be6a85-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - text/html
-      Date:
-      - Sat, 10 May 2025 10:48:09 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      cf-apo-via:
-      - origin,page-rules
-    status:
-      code: 403
-      message: Forbidden
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.3
-    method: GET
-    uri: https://info.orcid.org/orcid-2023-annual-report/
-  response:
-    body:
-      string: !!binary |
-        H4sIAAAAAAAAAwAAAP//sskoyc2x4+WyyUhNTLGzKcksyUm1MzEwVnDLL0rKTElJzbPRhwja6IOV
-        8HLZJOWnVILo5NS8ktQiO5sMQ3QdGYZ2NvpQaZDZRXYwxXnpmXkVyHL6MNP0wS4BAAAA///i5QIA
-        AAD//wMAbXiVjpIAAAA=
-    headers:
-      CF-Cache-Status:
-      - BYPASS
-      CF-Ray:
-      - 93d8e1e64d3bc7dc-DUS
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - text/html
-      Date:
-      - Sat, 10 May 2025 10:51:37 GMT
-      Server:
-      - cloudflare
+      Set-Cookie:
+      - __cf_bm=sRZzFVJIfksqYYjiLAXDcadcynqOB_9R57r1a2EhlQk-1759777446-1.0.1.1-huuJ4reJ72TRRU4B5Ofp_oRS4yFQ7SCo1jDNzuSeCVk.g.QQY3bJMmJrXJMm_cBPhRhZQDzythYhFJL8GDraz3gexmi_5dQR76r.KZEjDpU;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=orcid.org; Expires=Mon, 06
+        Oct 2025 19:34:06 GMT
       Transfer-Encoding:
       - chunked
       Vary:

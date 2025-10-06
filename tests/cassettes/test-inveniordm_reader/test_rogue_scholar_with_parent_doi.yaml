@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"id": "baq1p-0py32", "created": "2025-09-24T16:11:42.565843+00:00",
-        "updated": "2025-09-25T08:33:04.524823+00:00", "links": {"self": "https://staging.rogue-scholar.org/api/records/baq1p-0py32",
+        "updated": "2025-09-27T19:34:45.113650+00:00", "links": {"self": "https://staging.rogue-scholar.org/api/records/baq1p-0py32",
         "self_html": "https://staging.rogue-scholar.org/records/baq1p-0py32", "preview_html":
         "https://staging.rogue-scholar.org/records/baq1p-0py32?preview=1", "doi":
         "https://doi.org/10.53731/taha2-fvd76", "self_doi": "https://doi.org/10.53731/taha2-fvd76",
@@ -43,7 +43,7 @@ interactions:
         "communities": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/communities",
         "communities-suggestions": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/communities-suggestions",
         "requests": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/requests"},
-        "revision_id": 25, "parent": {"id": "t3d89-8jj38", "access": {"owned_by":
+        "revision_id": 35, "parent": {"id": "t3d89-8jj38", "access": {"owned_by":
         {"user": "1"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["9f88ce7e-fea3-4b79-b38b-b0d4c016fcae", "ddd86572-254d-4d8b-bec4-7afbaa668295"],
@@ -65,7 +65,7 @@ interactions:
         {"doi": {"identifier": "10.59350/t3d89-8jj38", "provider": "crossref", "client":
         "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
         true, "is_draft": false, "pids": {"doi": {"identifier": "10.53731/taha2-fvd76",
-        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:baq1p-0py32",
+        "provider": "external"}, "oai": {"identifier": "oai:invenio-rdm:baq1p-0py32",
         "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
         "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
         "creators": [{"person_or_org": {"type": "personal", "name": "Fenner, Martin",
@@ -135,21 +135,21 @@ interactions:
         0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
         0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
         {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        14, "unique_views": 7, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 14, "unique_views": 7, "downloads": 0, "unique_downloads":
+        29, "unique_views": 14, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 29, "unique_views": 14, "downloads": 0, "unique_downloads":
         0, "data_volume": 0.0}}}'
     headers:
       Content-Length:
-      - '10613'
+      - '10593'
       Content-Security-Policy:
       - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org www.youtube.com
         player.vimeo.com www.blogger.com www.canva.com; img-src *'
       Content-Type:
       - application/json
       Date:
-      - Fri, 26 Sep 2025 09:50:10 GMT
+      - Mon, 06 Oct 2025 19:02:58 GMT
       Etag:
-      - '"25"'
+      - '"35"'
       Link:
       - <https://staging.rogue-scholar.org/api/records/baq1p-0py32> ; rel="linkset"
         ; type="application/linkset+json"
@@ -158,7 +158,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '60'
+      - '39'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -170,9 +170,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '499'
+      - '498'
       X-Ratelimit-Reset:
-      - '1758880271'
+      - '1759777418'
       X-Xss-Protection:
       - 1; mode=block
     status:

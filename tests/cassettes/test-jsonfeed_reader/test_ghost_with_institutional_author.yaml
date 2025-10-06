@@ -9,7 +9,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
   response:
@@ -21,70 +21,151 @@ interactions:
         ijEcDvFacmJefl5mcmIOxHMlRaWpOkrJiSWp6flFlUpWSsn5uQWlJalFjnkpnnlp+UW5iSA/BCdn
         puYlpxYr6YAU5JbmZZZUxmemgNSbJxoZmSZa6JqZmJnpmpgbp+paJqel6CYZpiUZW5haGhuYmIJ0
         FaUmlqSmxCeWKFkZmpkbmVsamBgY6CgllxYVpeaVxKelpqZAXARxZkpqcXJRZgHIbqSQVnAChbKO
-        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
-        qBg8OwJKs7VcAPRlEz6FGQAA
+        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
+        RxEAAA==
     headers:
       content-encoding:
       - gzip
       content-type:
       - application/json
       date:
-      - Mon, 26 May 2025 08:03:58 GMT
+      - Mon, 06 Oct 2025 19:03:06 GMT
       fly-request-id:
-      - 01JW5SXC6H18YGXGEVCT72ZNDE-fra
+      - 01K6XEFVEFA1WEYHRY8YWC5WM5-ams
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '13'
+      - '0'
       ratelimit-reset:
-      - '7'
+      - '57'
       server:
-      - Fly/f5a9cf807 (2025-05-08)
+      - Fly/3e6134eab (2025-10-06)
       transfer-encoding:
       - chunked
       vary:
       - Origin
       via:
-      - 1.1 fly.io
+      - 1.1 fly.io, 1.1 fly.io
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2
+  response:
+    body:
+      string: !!binary |
+        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
+        RxEAAA==
+    headers:
+      content-encoding:
+      - gzip
+      content-type:
+      - application/json
+      date:
+      - Mon, 06 Oct 2025 19:13:42 GMT
+      fly-request-id:
+      - 01K6XF39BDYTY2W1BDSJH0HT3F-ams
+      ratelimit-limit:
+      - '15'
+      ratelimit-remaining:
+      - '8'
+      ratelimit-reset:
+      - '26'
+      server:
+      - Fly/3e6134eab (2025-10-06)
+      transfer-encoding:
+      - chunked
+      vary:
+      - Origin
+      via:
+      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
       message: ''

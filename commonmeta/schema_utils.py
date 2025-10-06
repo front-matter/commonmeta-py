@@ -20,11 +20,13 @@ def json_schema_errors(
         None: If validation succeeds
     """
     schema_map = {
+        "cff": "cff_v1.2.0",
         "commonmeta": "commonmeta_v0.16",
-        "datacite": "datacite-v4.5",
         "crossref": "crossref-v0.2",
         "csl": "csl-data",
-        "cff": "cff_v1.2.0",
+        "datacite": "datacite-v4.5",
+        "inveniordm": "inveniordm-v0.1",
+        "schema_org": "schema_org-v0.1",
     }
     if instance is None:
         raise ValueError("No instance provided")
@@ -69,7 +71,11 @@ def xml_schema_errors(
         base_dir = path.join(path.dirname(__file__), "resources", "crossref")
         schema_path = path.join(base_dir, "crossref5.4.0.xsd")
         try:
-            schema_obj = xmlschema.XMLSchema(schema_path)
+            # Load schema with allow="sandbox" to prevent network access
+            # and validation="skip" to skip validation of the schema itself
+            schema_obj = xmlschema.XMLSchema(
+                schema_path, allow="sandbox", validation="skip"
+            )
         except FileNotFoundError:
             raise ValueError(f"Schema file not found: {schema_path}")
         except xmlschema.XMLSchemaException as error:

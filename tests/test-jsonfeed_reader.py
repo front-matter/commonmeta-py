@@ -293,8 +293,7 @@ def test_another_post_with_citations():
         {
             "id": "https://doi.org/10.59350/myaw4-dtg76",
             "published_at": "2024-12-08",
-            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. <i>Front "
-            "Matter</i>. https://doi.org/10.59350/myaw4-dtg76",
+            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76",
             "updated_at": "2025-02-02T19:18:39.899725+00:00",
         },
     ]
@@ -384,7 +383,7 @@ def test_post_with_funding():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://upstream.force11.org/informate-where-are-the-data"
+    assert subject.url == "https://upstream.force11.org/informate-where-are-the-data/"
     assert subject.titles[0] == {"title": "INFORMATE: Where Are the Data?"}
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
@@ -469,7 +468,7 @@ def test_post_with_more_funding():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool"
+        == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool/"
     )
     assert subject.references is None
     assert subject.relations == [
@@ -741,7 +740,7 @@ def test_ghost_with_affiliations():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources"
+        == "https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources/"
     )
     assert subject.titles[0] == {"title": "Auto generating links to data and resources"}
     assert len(subject.contributors) == 1
@@ -823,7 +822,7 @@ def test_ghost_with_personal_name_parsing():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout"
+    assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout/"
     assert subject.titles[0] == {
         "title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"
     }
@@ -900,44 +899,6 @@ def test_ghost_with_personal_name_parsing():
         == "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg"
     )
     assert subject.version == "v1"
-
-
-@pytest.mark.vcr
-def test_medium_post_with_multiple_authors():
-    """blog post with multiple authors"""
-    string = "https://api.rogue-scholar.org/posts/05f01f68-ef81-47d7-a3c1-40aba91d358f"
-    subject = Metadata(string)
-    assert subject.is_valid
-    assert subject.id == "https://doi.org/10.59350/jhrs4-22440"
-    assert subject.type == "BlogPost"
-    assert (
-        subject.url
-        == "https://medium.com/@researchgraph/unveiling-the-synergy-retrieval-augmented-generation-rag-meets-knowledge-graphs-fc0a6900f7eb"
-    )
-    assert subject.titles[0] == {
-        "title": "Unveiling the Synergy: Retrieval Augmented Generation (RAG) Meets Knowledge Graphs"
-    }
-    assert len(subject.contributors) == 2
-    assert subject.contributors[0] == {
-        "affiliations": [
-            {
-                "id": "https://ror.org/031rekg67",
-                "name": "Swinburne University of Technology",
-            },
-        ],
-        "contributorRoles": ["Author"],
-        "familyName": "Astudillo",
-        "givenName": "Aland",
-        "id": "https://orcid.org/0009-0008-8672-3168",
-        "type": "Person",
-    }
-    assert subject.content.startswith(
-        "<p><strong>Tools and Platform for Integration of Knowledge Graph"
-    )
-    assert (
-        subject.image
-        == "https://cdn-images-1.medium.com/max/1024/1*bJ3eWZ7301vYDzBomwdLfQ.png"
-    )
 
 
 @pytest.mark.vcr

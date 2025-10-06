@@ -19,6 +19,7 @@ def test_publication():
     assert subject.type == "JournalArticle"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.5281/zenodo.5244404"
@@ -330,6 +331,7 @@ def test_from_jsonfeed_affiliations():
 
     inveniordm = subject.write(to="inveniordm")
     assert inveniordm is not None
+    assert subject.is_valid
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/mg09a-5ma64"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
@@ -414,6 +416,7 @@ def test_from_jsonfeed_dates():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/k9zxj-pek64"
@@ -446,6 +449,7 @@ def test_from_jsonfeed_funding():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/hnegw-6rx17"
@@ -486,6 +490,7 @@ def test_from_jsonfeed_more_funding():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/m99dx-x9g53"
@@ -523,6 +528,7 @@ def test_from_jsonfeed_references():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.53731/r79v4e1-97aq74v-ag578"
@@ -569,6 +575,7 @@ def test_from_jsonfeed_unstructured_references():
     assert len(subject.references) == 7
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/27ewm-zn378"
@@ -596,6 +603,7 @@ def test_from_jsonfeed_citations():
     assert len(subject.citations) == 2
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/dcw3y-7em87"
@@ -621,6 +629,7 @@ def test_from_jsonfeed_relations():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.54900/zg929-e9595"
@@ -651,6 +660,7 @@ def test_from_jsonfeed_broken_reference():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/z78kb-qrz59"
@@ -677,6 +687,7 @@ def test_external_doi():
     assert subject.type == "BlogPost"
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.57689/dini-blog.20210712"
@@ -700,6 +711,7 @@ def test_content_with_external_src():
     )
 
     inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
     assert inveniordm is not None
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/vwd81-p8z85"

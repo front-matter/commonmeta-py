@@ -483,7 +483,7 @@ CM_TO_SO_TRANSLATIONS = {
     "Event": "CreativeWork",
     "Figure": "CreativeWork",
     "Image": "CreativeWork",
-    "Instrument": "Instrument",
+    "Instrument": "Product",
     "JournalArticle": "ScholarlyArticle",
     "LegalDocument": "Legislation",
     "Software": "SoftwareSourceCode",

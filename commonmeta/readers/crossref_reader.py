@@ -7,6 +7,7 @@ from xml.parsers.expat import ExpatError
 import requests
 from requests.exceptions import ConnectionError, ReadTimeout
 
+from ..api_utils import COMMONMETA_USER_AGENT
 from ..author_utils import get_authors
 from ..base_utils import (
     compact,
@@ -51,7 +52,8 @@ from ..utils import (
 def get_crossref_list(query: dict, **kwargs) -> list[dict]:
     """get_crossref list from Crossref API."""
     url = crossref_api_query_url(query, **kwargs)
-    response = requests.get(url, timeout=30, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
+    response = requests.get(url, timeout=30, headers=headers, **kwargs)
     if response.status_code != 200:
         return []
     return response.json().get("message", {}).get("items", [])
@@ -63,7 +65,8 @@ def get_crossref(pid: str | None, **kwargs) -> dict:
     if doi is None:
         return {"state": "not_found"}
     url = crossref_api_url(doi)
-    response = requests.get(url, timeout=10, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
+    response = requests.get(url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return {**response.json().get("message", {}), "via": "crossref"}
@@ -138,12 +141,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
     references = unique([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
     descriptions = get_abstract(meta)
-    subjects = unique(
-        [
-            {"subject": i}
-            for i in wrap(meta.get("subject", None) or meta.get("group-title", None))
-        ]
-    )
+    subjects = unique([{"subject": i} for i in wrap(meta.get("subject", None))])
     files = unique(
         [
             get_file(i)
@@ -177,7 +175,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "subjects": presence(subjects),
             "titles": presence(titles),
             "url": url,
-            "version": meta.get("version", None),
+            "version": dig(meta, "version.version"),
             # other properties
             "provider": "Crossref",
             "state": state,
@@ -376,11 +374,11 @@ def get_container(meta: dict, issn: str | None) -> dict:
         or {}
     )
     isbn = validate_isbn(isbn["value"]) if isbn else None
-    container_title = first(
-        parse_attributes(meta.get("container-title", None), first=True)
+    container_title = (
+        first(parse_attributes(meta.get("container-title", None), first=True))
+        or dig(meta, "group-title")
+        or dig(meta, "institution.0.name")
     )
-    if not container_title:
-        container_title = dig(meta, "institution.0.name")
     volume = meta.get("volume", None)
     issue = dig(meta, "journal-issue.issue")
     page = meta.get("page", None)
@@ -449,8 +447,9 @@ def get_random_crossref_id(number: int = 1, **kwargs) -> list:
     """Get random DOI from Crossref"""
     number = 20 if number > 20 else number
     url = crossref_api_sample_url(number, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, timeout=10, headers=headers)
         if response.status_code != 200:
             return []
 

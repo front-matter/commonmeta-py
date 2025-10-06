@@ -52,15 +52,14 @@ def test_doi_for_blog_post():
     assert (
         bibtex
         == """@article{10.53731/avg2ykg-gdxppcd,
-    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing?Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
+    abstract = {Science blogs have been around for at least 20 years and have become an important part of science communication. So are there any fundamental issues that need fixing? Barriers to Entry Blogging platforms are mature at this point, and the technology is not imposing barriers to entry for most people.},
     author = {Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.53731/avg2ykg-gdxppcd},
-    issn = {2749-9952},
     journal = {Front Matter},
     month = jan,
     title = {Do we need to fix science blogs?},
-    url = {https://blog.front-matter.io/posts/need-to-fix-science-blogs},
+    url = {https://blog.front-matter.io/posts/need-to-fix-science-blogs/},
     urldate = {2023-01-25},
     year = {2023}
 }
@@ -80,14 +79,14 @@ def test_blog_post():
     assert (
         bibtex
         == """@article{10.54900/rckn8ey-1fm76va-qsrnf,
-    abstract = {Today we are announcing &lt;strong&gt; Upstream &lt;/strong&gt; . And if you’re reading this, you’re already a part of it! Upstream is a community blogging platform designed for Open enthusiasts to discuss… you guessed it: all things Open. It’s a space for the whole community to voice opinions, discuss open approaches to scholarly communication, and showcase research.},
+    abstract = {Today we are announcing Upstream. And if you're reading this, you're already a part of it! Upstream is a community blogging platform designed for Open enthusiasts to discuss… you guessed it: all things Open. It's a space for the whole community to voice opinions, discuss open approaches to scholarly communication, and showcase research.},
     author = {Chodacki, John and Hendricks, Ginny and Ferguson, Christine and Fenner, Martin},
     copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.54900/rckn8ey-1fm76va-qsrnf},
     journal = {Upstream},
     month = nov,
     title = {Welcome to Upstream: the new space for scholarly community discussion on all things open},
-    url = {https://upstream.force11.org/welcome-to-upstream},
+    url = {https://upstream.force11.org/welcome-to-upstream/},
     urldate = {2021-11-22},
     year = {2021}
 }
@@ -166,7 +165,7 @@ def test_inproceedings():
         == """@inproceedings{10.1145/3448016.3452841,
     author = {Pandey, Prashant and Conway, Alex and Durie, Joe and Bender, Michael A. and Farach-Colton, Martin and Johnson, Rob},
     booktitle = {Proceedings of the 2021 International Conference on Management of Data},
-    copyright = {https://www.acm.org/publications/policies/copyright_policy#Background},
+    copyright = {https://creativecommons.org/licenses/by/4.0/legalcode},
     doi = {10.1145/3448016.3452841},
     isbn = {9781450383431},
     location = {Virtual Event China},

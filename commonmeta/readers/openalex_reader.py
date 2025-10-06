@@ -5,6 +5,7 @@ from __future__ import annotations
 import requests
 from requests.exceptions import ConnectionError, ReadTimeout
 
+from ..api_utils import COMMONMETA_USER_AGENT
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, presence, sanitize, unique, wrap
 from ..constants import (
@@ -52,7 +53,8 @@ def get_openalex(pid: str, **kwargs) -> dict:
     if identifier_type not in ["DOI", "MAG", "OpenAlex", "PMID", "PMCID"]:
         return {"state": "not_found"}
     url = openalex_api_url(id, identifier_type, **kwargs)
-    response = requests.get(url, timeout=10, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
+    response = requests.get(url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     # OpenAlex returns record as list
@@ -207,7 +209,8 @@ def get_references(pids: list, **kwargs) -> list:
 
 
 def get_citations(citation_url: str, **kwargs) -> dict | list:
-    response = requests.get(citation_url, timeout=10, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
+    response = requests.get(citation_url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
@@ -243,7 +246,8 @@ def get_openalex_works(pids: list, **kwargs) -> list:
     for pid_batch in pid_batches:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
-        response = requests.get(url, timeout=10, **kwargs)
+        headers = {"User-Agent": COMMONMETA_USER_AGENT}
+        response = requests.get(url, timeout=10, headers=headers, **kwargs)
         if response.status_code != 200:
             return []
         response = response.json()
@@ -263,7 +267,8 @@ def get_openalex_funders(pids: list, **kwargs) -> dict | list:
     for pid_batch in pid_batches:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/funders?filter=ids.openalex:{ids}"
-        response = requests.get(url, timeout=10, **kwargs)
+        headers = {"User-Agent": COMMONMETA_USER_AGENT}
+        response = requests.get(url, timeout=10, headers=headers, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
@@ -290,7 +295,8 @@ def get_openalex_source(str: str | None, **kwargs) -> dict | None:
         return None
 
     url = f"https://api.openalex.org/sources/{id}"
-    response = requests.get(url, timeout=10, **kwargs)
+    headers = {"User-Agent": COMMONMETA_USER_AGENT}
+    response = requests.get(url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
@@ -320,15 +326,14 @@ def get_files(meta: dict) -> list | None:
 
 def get_container(meta: dict) -> dict | None:
     """Get container from OpenAlex"""
-    source = get_openalex_source(dig(meta, "primary_location.source.id"))
-    container_type = dig(source, "type")
+    container_type = dig(meta, "primary_location.source.type")
     if container_type:
         container_type = OA_TO_CM_CONTAINER_TRANLATIONS.get(
             container_type, container_type
         )
-    issn = dig(source, "issn")
-    container_title = dig(source, "title")
-    url_ = dig(source, "url")
+    issn = dig(meta, "primary_location.source.issn_l")
+    container_title = dig(meta, "primary_location.source.display_name")
+    url_ = dig(meta, "primary_location.source.url")
 
     return compact(
         {

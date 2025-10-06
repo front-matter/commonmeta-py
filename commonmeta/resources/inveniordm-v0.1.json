@@ -1,0 +1,684 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://inveniordm.docs.cern.ch/reference/metadata/",
+  "title": "InvenioRDM Record Metadata",
+  "description": "JSON schema for InvenioRDM record metadata format",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Record identifier"
+    },
+    "pids": {
+      "type": "object",
+      "description": "Persistent identifiers",
+      "properties": {
+        "doi": {
+          "$ref": "#/definitions/pid"
+        },
+        "oai": {
+          "$ref": "#/definitions/pid"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["title", "publication_date", "resource_type", "creators"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Primary title of the record"
+        },
+        "additional_titles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/additionalTitle"
+          },
+          "description": "Additional titles (e.g., subtitle, translated title)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Abstract or description of the record"
+        },
+        "additional_descriptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/additionalDescription"
+          },
+          "description": "Additional descriptions (e.g., methods, technical info)"
+        },
+        "resource_type": {
+          "$ref": "#/definitions/resourceType",
+          "description": "Resource type of the record"
+        },
+        "creators": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/creator"
+          },
+          "description": "The creators/authors of the record"
+        },
+        "contributors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contributor"
+          },
+          "description": "The contributors to the record"
+        },
+        "publication_date": {
+          "type": "string",
+          "description": "Publication date in ISO 8601 format (YYYY-MM-DD)"
+        },
+        "dates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/date"
+          },
+          "description": "Additional dates"
+        },
+        "publisher": {
+          "type": "string",
+          "description": "The publisher of the record"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the resource"
+        },
+        "languages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ISO 639-3 language code"
+              }
+            },
+            "required": ["id"]
+          },
+          "description": "The language(s) of the resource"
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/identifier"
+          },
+          "description": "Alternate identifiers"
+        },
+        "related_identifiers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/relatedIdentifier"
+          },
+          "description": "Related identifiers (e.g., citations, references)"
+        },
+        "subjects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/subject"
+          },
+          "description": "Subject keywords or classification codes"
+        },
+        "rights": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/rights"
+          },
+          "description": "Rights/license information"
+        },
+        "funding": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/funding"
+          },
+          "description": "Funding information"
+        },
+        "locations": {
+          "type": "object",
+          "properties": {
+            "features": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/geoLocation"
+              }
+            }
+          },
+          "description": "Geographic locations"
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/reference"
+          },
+          "description": "Reference list"
+        },
+        "sizes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Size information (e.g., file size, page count)"
+        },
+        "formats": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Format information (MIME types)"
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether files are enabled for this record"
+        },
+        "entries": {
+          "type": "object",
+          "description": "File entries"
+        }
+      }
+    },
+    "access": {
+      "type": "object",
+      "properties": {
+        "record": {
+          "type": "string",
+          "enum": ["public", "restricted"],
+          "description": "Access status of the record"
+        },
+        "files": {
+          "type": "string",
+          "enum": ["public", "restricted"],
+          "description": "Access status of the files"
+        },
+        "embargo": {
+          "$ref": "#/definitions/embargo"
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "description": "Parent record information"
+    },
+    "versions": {
+      "type": "object",
+      "properties": {
+        "is_latest": {
+          "type": "boolean"
+        },
+        "index": {
+          "type": "integer"
+        }
+      },
+      "description": "Version information"
+    }
+  },
+  "definitions": {
+    "pid": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string",
+          "enum": ["datacite", "crossref", "external", "oai"]
+        },
+        "client": {
+          "type": "string"
+        }
+      },
+      "required": ["identifier", "provider"]
+    },
+    "resourceType": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Resource type identifier"
+        }
+      },
+      "required": ["id"]
+    },
+    "creator": {
+      "type": "object",
+      "properties": {
+        "person_or_org": {
+          "$ref": "#/definitions/personOrOrg"
+        },
+        "role": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        },
+        "affiliations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/affiliation"
+          }
+        }
+      },
+      "required": ["person_or_org"]
+    },
+    "contributor": {
+      "type": "object",
+      "properties": {
+        "person_or_org": {
+          "$ref": "#/definitions/personOrOrg"
+        },
+        "role": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Contributor role (e.g., editor, supervisor)"
+            }
+          },
+          "required": ["id"]
+        },
+        "affiliations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/affiliation"
+          }
+        }
+      },
+      "required": ["person_or_org", "role"]
+    },
+    "personOrOrg": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["personal", "organizational"],
+          "description": "Type of entity"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name"
+        },
+        "given_name": {
+          "type": "string",
+          "description": "Given name (for persons)"
+        },
+        "family_name": {
+          "type": "string",
+          "description": "Family name (for persons)"
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "scheme": {
+                "type": "string",
+                "description": "Identifier scheme (e.g., orcid, ror, gnd)"
+              },
+              "identifier": {
+                "type": "string",
+                "description": "The identifier value"
+              }
+            },
+            "required": ["scheme", "identifier"]
+          },
+          "description": "Person or organization identifiers"
+        }
+      },
+      "required": ["type", "name"]
+    },
+    "affiliation": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Affiliation identifier (e.g., ROR ID)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Affiliation name"
+        }
+      }
+    },
+    "additionalTitle": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "subtitle",
+                "alternative-title",
+                "translated-title",
+                "other"
+              ]
+            }
+          }
+        },
+        "lang": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "ISO 639-3 language code"
+            }
+          }
+        }
+      },
+      "required": ["title", "type"]
+    },
+    "additionalDescription": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "abstract",
+                "methods",
+                "series-information",
+                "table-of-contents",
+                "technical-info",
+                "other"
+              ]
+            }
+          }
+        },
+        "lang": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["description", "type"]
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "description": "Date in ISO 8601 format"
+        },
+        "type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "accepted",
+                "available",
+                "collected",
+                "copyrighted",
+                "created",
+                "issued",
+                "other",
+                "submitted",
+                "updated",
+                "valid",
+                "withdrawn"
+              ]
+            }
+          },
+          "required": ["id"]
+        },
+        "description": {
+          "type": "string",
+          "description": "Free text description of the date"
+        }
+      },
+      "required": ["date", "type"]
+    },
+    "identifier": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "The identifier value"
+        },
+        "scheme": {
+          "type": "string",
+          "description": "The identifier scheme (e.g., doi, isbn, issn, url)"
+        }
+      },
+      "required": ["identifier", "scheme"]
+    },
+    "relatedIdentifier": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "description": "The related identifier value"
+        },
+        "scheme": {
+          "type": "string",
+          "description": "The identifier scheme"
+        },
+        "relation_type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "enum": [
+                "cites",
+                "iscitedby",
+                "supplements",
+                "issupplementedby",
+                "continues",
+                "iscontinuedby",
+                "describes",
+                "isdescribedby",
+                "hasmetadata",
+                "ismetadatafor",
+                "hasversion",
+                "isversionof",
+                "isnewversionof",
+                "ispreviousversionof",
+                "ispartof",
+                "haspart",
+                "isreferencedby",
+                "references",
+                "isdocumentedby",
+                "documents",
+                "iscompiledby",
+                "compiles",
+                "isvariantformof",
+                "isoriginalformof",
+                "isidenticalto",
+                "isreviewedby",
+                "reviews",
+                "isderivedfrom",
+                "issourceof",
+                "isrequiredby",
+                "requires",
+                "isobsoletedby",
+                "obsoletes"
+              ]
+            }
+          },
+          "required": ["id"]
+        },
+        "resource_type": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": ["identifier", "scheme", "relation_type"]
+    },
+    "subject": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Subject identifier (for controlled vocabularies)"
+        },
+        "subject": {
+          "type": "string",
+          "description": "The subject term or keyword"
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "License identifier (e.g., SPDX license ID)"
+        },
+        "title": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          }
+        },
+        "description": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            }
+          }
+        },
+        "link": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the license text"
+        }
+      }
+    },
+    "funding": {
+      "type": "object",
+      "properties": {
+        "funder": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Funder identifier (e.g., ROR ID)"
+            },
+            "name": {
+              "type": "string",
+              "description": "Funder name"
+            }
+          }
+        },
+        "award": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Award identifier"
+            },
+            "title": {
+              "type": "object",
+              "properties": {
+                "en": {
+                  "type": "string"
+                }
+              }
+            },
+            "number": {
+              "type": "string",
+              "description": "Award/grant number"
+            }
+          }
+        }
+      }
+    },
+    "geoLocation": {
+      "type": "object",
+      "properties": {
+        "geometry": {
+          "type": "object",
+          "description": "GeoJSON geometry object"
+        },
+        "place": {
+          "type": "string",
+          "description": "Place name"
+        },
+        "identifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "scheme": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "properties": {
+        "reference": {
+          "type": "string",
+          "description": "The reference string (citation)"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "Identifier for the reference (e.g., DOI)"
+        },
+        "scheme": {
+          "type": "string",
+          "description": "Identifier scheme"
+        }
+      },
+      "required": ["reference"]
+    },
+    "embargo": {
+      "type": "object",
+      "properties": {
+        "until": {
+          "type": "string",
+          "format": "date",
+          "description": "Embargo end date"
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Whether embargo is currently active"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reason for embargo"
+        }
+      }
+    }
+  }
+}

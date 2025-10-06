@@ -296,7 +296,7 @@ def test_rogue_scholar():
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date["published"] == "2025-09-27T06:53:26"
+    assert subject.date["published"] == "2025-09-27T08:53:26"
     assert subject.relations == [
         {"id": "https://doi.org/10.59350/sfw0f-2fe65", "type": "IsVersionOf"}
     ]
@@ -321,7 +321,7 @@ def test_rogue_scholar():
         {"subject": "FOS: Other social sciences"},
     ]
     assert subject.language == "en"
-    assert subject.version is None
+    assert subject.version == "v1"
 
 
 @pytest.mark.vcr
@@ -353,7 +353,12 @@ def test_rogue_scholar_with_citations():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.funding_references is None
     assert subject.references is None
-    assert subject.citations is None
+    assert subject.citations == [
+        {
+            "id": "https://doi.org/10.59350/jtzzf-jfz50",
+            "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
+        }
+    ]
     assert (
         subject.descriptions[0]
         .get("description")

@@ -10,7 +10,16 @@ import orjson as json
 import requests
 from requests.exceptions import RequestException
 
-from ..base_utils import compact, dig, first, parse_attributes, presence, scrub, wrap
+from ..base_utils import (
+    compact,
+    dig,
+    first,
+    parse_attributes,
+    presence,
+    scrub,
+    unique,
+    wrap,
+)
 from ..constants import (
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
@@ -69,7 +78,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
         for i in wrap(metadata.relations)
         if i.get("id", None) and i.get("type", None) != "IsPartOf"
     ]
-    funding = scrub(
+    funding = unique(
         [
             to_inveniordm_funding(i)
             for i in wrap(metadata.funding_references)

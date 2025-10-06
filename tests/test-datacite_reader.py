@@ -45,6 +45,7 @@ def test_dataset():
     assert subject.date == {
         "published": "2011-02-01T17:22:41Z",
         "available": "2011-02-01T17:22:41Z",
+        "submitted": "2011-02-01T13:09:15Z",
     }
     assert subject.references is None
     assert subject.container is None

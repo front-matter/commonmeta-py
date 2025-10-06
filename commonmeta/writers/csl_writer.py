@@ -4,8 +4,6 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-import orjson as json
-
 from ..base_utils import compact, first, parse_attributes, presence, wrap
 from ..constants import CM_TO_CSL_TRANSLATIONS
 from ..date_utils import get_date_parts
@@ -16,12 +14,10 @@ if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
 
 
-def write_csl(metadata: Metadata) -> bytes | None:
+def write_csl(metadata: Metadata) -> dict | None:
     """Write CSL-JSON"""
     item = write_csl_item(metadata)
-    if item is None:
-        return None
-    return json.dumps(item)
+    return item
 
 
 def write_csl_item(metadata: Metadata) -> dict | None:

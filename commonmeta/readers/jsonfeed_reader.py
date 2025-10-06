@@ -324,7 +324,15 @@ def get_funding_references(meta: dict | None) -> list | None:
                 f"https://api.ror.org/organizations/{_id}", timeout=10
             )
             ror = response.json()
-            funder_name = ror.get("name", None)
+            # Find the name with type "label" from the names list
+            funder_name = next(
+                (
+                    name.get("value")
+                    for name in dig(ror, "names")
+                    if name.get("types") and "label" in name.get("types")
+                ),
+                None,
+            )
             funder_identifier = urls[0]
             funder_identifier_type = "ROR"
 

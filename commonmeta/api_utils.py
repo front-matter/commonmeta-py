@@ -12,6 +12,11 @@ from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
 
 from .doi_utils import doi_as_url, validate_doi
 
+# User-Agent for API requests
+COMMONMETA_USER_AGENT = (
+    "commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)"
+)
+
 
 def generate_ghost_token(key: str) -> str:
     """Generate a short-lived JWT for the Ghost Admin API.

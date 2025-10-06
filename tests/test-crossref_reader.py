@@ -420,9 +420,11 @@ def test_posted_content():
     }
     assert subject.relations is None
     assert subject.funding_references is None
-    assert subject.container == {"type": "Periodical", "title": "bioRxiv"}
-    assert subject.subjects == [{"subject": "Scientific Communication and Education"}]
-    assert subject.language is None
+    assert subject.container == {
+        "type": "Periodical",
+        "title": "Scientific Communication and Education",
+    }
+    assert subject.subjects is None
     assert (
         subject.descriptions[0]
         .get("description")
@@ -445,7 +447,7 @@ def test_blog_post():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter"
+        == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter/"
     )
     assert subject.titles[0] == {"title": "The rise of the (science) newsletter"}
     assert len(subject.contributors) == 1
@@ -455,7 +457,6 @@ def test_blog_post():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliations": [{"name": "Front Matter"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -467,27 +468,17 @@ def test_blog_post():
     assert subject.references[0] == {
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "key": "ref1",
-        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484. https://doi.org/10.1038/d41586-023-02554-0",
+        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
     }
     assert subject.relations == [
-        {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-        {
-            "id": "https://rogue-scholar.org/api/communities/front_matter",
-            "type": "IsPartOf",
-        },
-        {
-            "id": "https://rogue-scholar.org/api/communities/computerAndInformationSciences",
-            "type": "IsPartOf",
-        },
+        {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}
     ]
     assert subject.funding_references is None
     assert subject.container == {
-        "identifier": "2749-9952",
-        "identifierType": "ISSN",
         "title": "Front Matter",
         "type": "Periodical",
     }
-    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.subjects is None
     assert subject.language is None
     assert (
         subject.descriptions[0]
@@ -496,7 +487,7 @@ def test_blog_post():
             "Newsletters have been around forever, but their popularity has significantly increased in the past few years"
         )
     )
-    assert subject.version is None
+    assert subject.version == "v1"
     assert subject.provider == "Crossref"
     assert subject.files[5] == {
         "mimeType": "text/markdown",

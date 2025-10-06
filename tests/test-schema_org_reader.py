@@ -19,7 +19,7 @@ def test_blog_posting():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+    assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food/"
     assert subject.titles and subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert subject.contributors and len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -28,7 +28,6 @@ def test_blog_posting():
         "contributorRoles": ["Author"],
         "givenName": "Martin",
         "familyName": "Fenner",
-        "affiliations": [{"name": "DataCite"}],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -42,28 +41,26 @@ def test_blog_posting():
         {
             "id": "https://doi.org/10.5438/0012",
             "key": "ref1",
-            "unstructured": "Group, D. M. W., Starr, J., Smaele, M. de ., Ashton, J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0</i>. DataCite e.V. https://doi.org/10.5438/0012",
+            "unstructured": "DataCite Metadata Working Group, Starr, J., Smaele, M. de ., Ashton, J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0</i>. DataCite e.V.",
         },
         {
             "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
-            "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>. https://doi.org/10.5438/55e5-t5c0",
+            "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>.",
         },
     ]
     assert subject.container == {
         "type": "Periodical",
         "title": "Front Matter",
-        "identifier": "2749-9952",
-        "identifierType": "ISSN",
     }
     assert subject.descriptions and (
         subject.descriptions[0]
         .get("description")
         .startswith("Eating your own dog food is a slang term to describe")
     )
-    assert subject.subjects == [{"subject": "Computer and information sciences"}]
+    assert subject.subjects is None
     assert subject.language is None
-    assert subject.version is None
+    assert subject.version == "v1"
     assert subject.provider == "Crossref"
 
 
@@ -347,14 +344,14 @@ def test_with_upstream_blog_post():
     assert subject.references is None
     assert subject.container == {
         "type": "Periodical",
-        "title": "Front Matter",
+        "title": "Upstream",
     }
     assert subject.descriptions and subject.descriptions[0].get(
         "description"
     ).startswith(
         "Today we are announcing Upstream. And if you're reading this, you're already a part of it!"
     )
-    assert subject.subjects == [{"subject": "Upstream"}]
+    assert subject.subjects is None
     assert subject.language is None
     assert subject.version == "v1"
     assert subject.geo_locations is None

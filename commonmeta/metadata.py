@@ -285,20 +285,27 @@ class Metadata:
         except json.JSONDecodeError as e:
             # More specific error message including the original JSONDecodeError details
             raise ValueError(f"Invalid JSON: {str(e)}")
+        except Exception as e:
+            raise ValueError(f"Error writing format '{to}': {str(e)}")
 
     def _write_format(self, to: str, **kwargs) -> bytes | None:
         """Helper method to handle writing to different formats."""
         # JSON-based output formats
-        if to == "commonmeta":
-            result = json.dumps(write_commonmeta(self))
-        elif to == "datacite":
-            result = json.dumps(write_datacite(self))
-        elif to == "inveniordm":
-            result = json.dumps(write_inveniordm(self))
-        elif to == "schema_org":
-            result = json.dumps(write_schema_org(self))
-        elif to == "csl":
-            result = write_csl(self)
+        if to in ["commonmeta", "datacite", "inveniordm", "schema_org", "csl"]:
+            writer_map = {
+                "commonmeta": write_commonmeta,
+                "datacite": write_datacite,
+                "inveniordm": write_inveniordm,
+                "schema_org": write_schema_org,
+                "csl": write_csl,
+            }
+            output = writer_map[to](self)
+            self.write_errors = json_schema_errors(output, schema=to)
+            if self.write_errors is not None:
+                self.is_valid = False
+            if output is None:
+                return b"{}"
+            return json.dumps(output)
         # Text-based output formats
         elif to == "bibtex":
             return write_bibtex(self)
@@ -319,24 +326,7 @@ class Metadata:
                 self.is_valid = False
             return output
         else:
-            raise ValueError("No output format found")
-
-        if isinstance(result, str):
-            # Verify it's valid JSON
-            try:
-                json.loads(result)
-                return result
-            except json.JSONDecodeError:
-                return b"{}"
-        elif result is not None:
-            try:
-                decoded = result.decode("utf-8")
-                # Verify it's valid JSON
-                json.loads(decoded)
-                return decoded.encode("utf-8")
-            except (json.JSONDecodeError, UnicodeDecodeError):
-                return b"{}"
-        return b"{}"
+            raise ValueError(f"Unsupported output format: {to}")
 
     def push(self, to: str = "commonmeta", **kwargs) -> str | dict:
         """push metadata to external APIs"""

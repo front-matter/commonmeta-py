@@ -335,7 +335,7 @@ def get_doi_meta(doi: str | None) -> dict:
     elif ra == "DataCite":
         return get_datacite(doi)
     else:
-        raise ValueError(f"Unsupported DOI registration agency: {ra}")
+        raise ValueError(f"Unsupported DOI registration agency: {ra} for DOI {doi}")
 
 
 def schema_org_related_item(meta, relation_type=None) -> None:

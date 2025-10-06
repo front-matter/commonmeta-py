@@ -14,9 +14,9 @@ def test_write_crossref_xml_header():
     string = "https://doi.org/10.1371/journal.pone.0000030"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
-    assert subject.is_valid
 
     crossref_xml = subject.write(to="crossref_xml").decode("utf-8")
+    assert subject.is_valid
     assert crossref_xml is not None
     lines = crossref_xml.split("\n")
     assert lines[0] == '<?xml version="1.0" encoding="utf-8"?>'
@@ -198,7 +198,7 @@ def test_write_crossref_xml_posted_content():
         dig(crossref_xml, "institution.institution_name")
         == "Cold Spring Harbor Laboratory"
     )
-    assert crossref_xml.get("group_title") == "bioRxiv"
+    assert crossref_xml.get("group_title") == "Microbiology"
     assert dig(crossref_xml, "item_number") is None
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "AbstractBacterial membrane lipids are critical for membrane bilayer formation"
@@ -268,7 +268,7 @@ def test_write_crossref_schema_org_front_matter():
         "More than 200 health journals today published an editorial calling for urgent action"
     )
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -289,7 +289,7 @@ def test_write_crossref_another_schema_org_front_matter():
         "In October Jen Gibson started as the new Executive Director for the Dryad Data Repository."
     )
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -381,7 +381,7 @@ def test_write_crossref_schema_org_upstream_blog():
         "The FORCE11 attribution working group held a workshop during the 2021 FORCE conference"
     )
     assert crossref_xml.get("group_title") == "Upstream"
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -421,7 +421,7 @@ def test_jsonfeed_upstream_blog():
     )
     assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
-        "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification",
+        "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification/",
         "mime_type": "text/html",
     }
     assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
@@ -530,7 +530,7 @@ def test_jsonfeed_with_doi():
     )
     assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
-        "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs",
+        "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/",
         "mime_type": "text/html",
     }
     assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
@@ -546,7 +546,6 @@ def test_jsonfeed_without_doi():
     """jsonfeed without DOI"""
     string = "https://api.rogue-scholar.org/posts/e2ecec16-405d-42da-8b4d-c746840398fa"
     subject = Metadata(string)
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/qc0px-76778"
     assert subject.contributors == [
         {
@@ -567,12 +566,20 @@ def test_jsonfeed_without_doi():
             "contributorRoles": ["Author"],
             "givenName": "Ludo",
             "familyName": "Waltman",
+            "id": "https://orcid.org/0000-0001-8249-1752",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/027bh9e22",
+                    "name": "Leiden University",
+                },
+            ],
         },
     ]
     assert subject.state == "stale"
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert dig(crossref_xml, "doi_data.doi") == "10.59350/qc0px-76778"
@@ -613,7 +620,6 @@ def test_ghost_with_affiliations():
     "ghost with affiliations"
     string = "https://api.rogue-scholar.org/posts/57ed3097-a397-491e-90c0843d1e0102ac"
     subject = Metadata(string)
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r796hz1-97aq74v-ag4f3"
     assert subject.type == "BlogPost"
     assert len(subject.contributors) == 1
@@ -633,7 +639,7 @@ def test_ghost_with_affiliations():
     assert subject.state == "stale"
 
     crossref_xml = subject.write(to="crossref_xml")
-    assert subject.write_errors is None
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
@@ -659,7 +665,6 @@ def test_jsonfeed_with_organizational_author():
     """jsonfeed item with organizational author"""
     string = "https://api.rogue-scholar.org/posts/5561f8e4-2ff1-4186-a8d5-8dacb3afe414"
     subject = Metadata(string)
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/2shz7-ehx26"
     assert subject.contributors == [
         {
@@ -672,6 +677,7 @@ def test_jsonfeed_with_organizational_author():
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert dig(crossref_xml, "contributors.organization") == [
@@ -692,7 +698,6 @@ def test_jsonfeed_with_archived_content():
     """jsonfeed item with archived content"""
     string = "https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e"
     subject = Metadata(string)
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/faeph-x4x84"
     assert (
         subject.url
@@ -701,6 +706,7 @@ def test_jsonfeed_with_archived_content():
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(dig(crossref_xml, "contributors.person_name")) == 1
@@ -735,7 +741,6 @@ def test_jsonfeed_with_relations():
     """jsonfeed item with relations"""
     string = "https://api.rogue-scholar.org/posts/8a4de443-3347-4b82-b57d-e3c82b6485fc"
     subject = Metadata(string)
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79v4e1-97aq74v-ag578"
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bc11-cqw1", "type": "IsIdenticalTo"},
@@ -755,6 +760,7 @@ def test_jsonfeed_with_relations():
     assert subject.version == "v1"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert dig(crossref_xml, "abstract.0.p").startswith(
@@ -909,7 +915,7 @@ def test_inveniordm_with_relations_and_funding():
     #     ],
     # }
     assert crossref_xml.get("group_title") == "Front Matter"
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -917,7 +923,6 @@ def test_doi_with_multiple_funding_references():
     "DOI with multiple funding references"
     string = "10.7554/elife.01567"
     subject = Metadata(string, via="crossref")
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert len(subject.funding_references) == 6
@@ -929,6 +934,7 @@ def test_doi_with_multiple_funding_references():
     assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
     assert len(dig(crossref_xml, "program.0.assertion")) == 6
@@ -943,7 +949,6 @@ def test_proceedings_article_with_multiple_funding_references():
     "ProceedingsArticle with multiple funding references"
     string = "10.1145/3448016.3452841"
     subject = Metadata(string, via="crossref")
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
     assert subject.publisher == {"name": "ACM"}
@@ -969,6 +974,8 @@ def test_proceedings_article_with_multiple_funding_references():
     assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
+    print(subject.write_errors)
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.conference", {})
     assert dig(crossref_xml, "program.0.assertion") == [
@@ -987,7 +994,6 @@ def test_inveniordm_record_with_references():
     "InvenioRDM record with references"
     string = "https://rogue-scholar.org/api/records/49yb9-h8k11"
     subject = Metadata(string, via="inveniordm")
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.64000/wd6rx-vpq73"
     assert subject.type == "BlogPost"
     assert subject.publisher == {"name": "Front Matter"}
@@ -1001,37 +1007,33 @@ def test_inveniordm_record_with_references():
     assert len(subject.references) == 2
     assert subject.references[0] == {
         "id": "https://en.wikipedia.org/wiki/Infrastructure_as_code",
-        "unstructured": "projects, C. to W. (2016). <i>Infrastructure as code</i>. Wikimedia "
-        "Foundation, Inc.",
+        "unstructured": "'Infrastructure as code' (2025) Wikipedia, 12 August. Available at:  "
+        "(Accessed: 12 August 2025).",
     }
     assert subject.references[1] == {
         "id": "https://doi.org/10.64000/4s2ee-wkr84",
-        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025). The "
-        "programs approach: our experiences during the first quarter of 2025. In "
-        "<i>Crossref Blog</i>. Crossref.",
+        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Front Matter</i>.",
     }
     assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert len(dig(crossref_xml, "citation_list.citation")) == 2
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": "projects, C. to W. (2016). <i>Infrastructure as code</i>. Wikimedia "
-        "Foundation, Inc. https://en.wikipedia.org/wiki/Infrastructure_as_code",
+        "unstructured_citation": "'Infrastructure as code' (2025) Wikipedia, 12 August. Available at:  (Accessed: 12 August 2025). https://en.wikipedia.org/wiki/Infrastructure_as_code",
     }
     assert dig(crossref_xml, "citation_list.citation.1") == {
         "doi": "10.64000/4s2ee-wkr84",
         "key": "ref2",
-        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025). The "
-        "programs approach: our experiences during the first quarter of 2025. In "
-        "<i>Crossref Blog</i>. Crossref.",
+        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Front Matter</i>.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "TLDR: We've successfully moved the main Crossref systems to the cloud!"
     )
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -1039,11 +1041,11 @@ def test_book():
     "book"
     string = "https://doi.org/10.1017/9781108348843"
     subject = Metadata(string, via="crossref")
-    assert subject.is_valid
     assert subject.id == "https://doi.org/10.1017/9781108348843"
     assert subject.type == "Book"
 
     crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.book.book_metadata", {})
     assert dig(crossref_xml, "contributors.person_name.0") == {
@@ -1254,8 +1256,8 @@ def test_arxiv():
         == "Leveraging Artificial Intelligence Technology for Mapping Research to Sustainable Development Goals: A Case Study"
     )
     assert dig(crossref_xml, "posted_date") == {
-        "day": "15",
-        "month": "8",
+        "day": "6",
+        "month": "10",
         "year": "2023",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
@@ -1273,7 +1275,7 @@ def test_arxiv():
     ]
     assert dig(crossref_xml, "doi_data.doi") == "10.48550/arxiv.2311.16162"
     assert dig(crossref_xml, "doi_data.resource") == "https://arxiv.org/abs/2311.16162"
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "1"}
 
 
 @pytest.mark.vcr
@@ -1284,33 +1286,38 @@ def test_archived():
     assert subject.id == "https://doi.org/10.5694/j.1326-5377.1943.tb44329.x"
     assert subject.type == "JournalArticle"
 
-    # crossref_xml = subject.write(to="crossref_xml")
-    # assert subject.is_valid
-    # crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    # crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
-    # assert dig(crossref_xml, "language") == "en"
-    # assert len(dig(crossref_xml, "contributors.person_name")) == 1
-    # assert dig(crossref_xml, "contributors.person_name.0") == {
-    #     "contributor_role": "author",
-    #     "sequence": "first",
-    #     "given_name": "H.",
-    #     "surname": "Baker",
-    # }
-    # assert (
-    #     dig(crossref_xml, "titles.0.title")
-    #     == "A case of acute yellow atrophy of the liver"
-    # )
-    # assert dig(crossref_xml, "publication_date") == {
-    #     "day": "1",
-    #     "month": "1",
-    #     "year": "1943",
-    #     "media_type": "online",
-    # }
-    # assert dig(crossref_xml, "doi_data.doi") == "10.5694/j.1326-5377.1943.tb44329.x"
-    # assert (
-    #     dig(crossref_xml, "doi_data.resource")
-    #     == "https://www.mja.com.au/journal/1943/1/1/case-acute-yellow-atrophy-liver"
-    # )
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_article", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Morris C.",
+        "surname": "Davis",
+        "affiliations": {
+            "institution": {
+                "institution_name": "Alfred HospitalMelbourne",
+            },
+        },
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "THE INVESTIGATION OF RENAL FUNCTION WITH A NEW NOMOGRAPHIC METHOD FOR THE DETERMINATION OF UREA CLEARANCE"
+    )
+    assert dig(crossref_xml, "publication_date") == {
+        "day": "6",
+        "month": "3",
+        "year": "1943",
+        "media_type": "online",
+    }
+    assert dig(crossref_xml, "doi_data.doi") == "10.5694/j.1326-5377.1943.tb44329.x"
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "https://onlinelibrary.wiley.com/doi/abs/10.5694/j.1326-5377.1943.tb44329.x"
+    )
 
 
 @pytest.mark.vcr
