@@ -9,6 +9,7 @@ from commonmeta.base_utils import (
     camel_case,
     compact,
     dig,
+    first,
     flatten,
     kebab_case,
     keep,
@@ -133,8 +134,13 @@ def test_parse_attributes():
         [{"#text": "10.5061/DRYAD.8515"}, {"#text": "10.5061/DRYAD.8516"}]
     )
     # first in list of dicts
-    assert ["10.5061/DRYAD.8515"] == parse_attributes(
-        [{"#text": "10.5061/DRYAD.8515"}, {"#text": "10.5061/DRYAD.8516"}], first=True
+    assert "10.5061/DRYAD.8515" == first(
+        parse_attributes(
+            [{"#text": "10.5061/DRYAD.8515"}, {"#text": "10.5061/DRYAD.8516"}]
+        )
+    )
+    assert "eng" == first(
+        parse_attributes([{"id": "eng", "title": {"en": "English"}}], content="id")
     )
     # list of strings
     assert ["10.5061/DRYAD.8515", "10.5061/DRYAD.8516"] == parse_attributes(
