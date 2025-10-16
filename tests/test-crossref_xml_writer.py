@@ -1521,3 +1521,22 @@ def test_rogue_scholar_as_parent_doi():
         == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
     )
     assert dig(crossref_xml, "version_info") is None
+
+
+@pytest.mark.vcr
+def test_doi_without_url():
+    "DOI without URL"
+    string = "10.7554/elife.01567"
+    subject = Metadata(string, via="crossref")
+    assert subject.id == "https://doi.org/10.7554/elife.01567"
+    assert subject.type == "JournalArticle"
+    subject.url = None
+    assert subject.url is None
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert not subject.is_valid
+    assert (
+        subject.write_errors
+        == "Could not convert metadata to Crossref XML: https://doi.org/10.7554/elife.01567"
+    )
+    assert crossref_xml is None

@@ -45,7 +45,7 @@ from .readers.schema_org_reader import (
     get_schema_org,
     read_schema_org,
 )
-from .schema_utils import json_schema_errors, xml_schema_errors
+from .schema_utils import json_schema_errors
 from .utils import find_from_format, is_chain_object, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
@@ -320,8 +320,7 @@ class Metadata:
             self.depositor = kwargs.get("depositor", None)
             self.email = kwargs.get("email", None)
             self.registrant = kwargs.get("registrant", None)
-            output = write_crossref_xml(self)
-            self.write_errors = xml_schema_errors(output, schema="crossref_xml")
+            output, self.write_errors = write_crossref_xml(self)
             if self.write_errors is not None:
                 self.is_valid = False
             return output
@@ -444,8 +443,8 @@ class MetadataList:
             else:
                 return output
         elif to == "crossref_xml":
-            output = write_crossref_xml_list(self)
-            if self.file and output is not None:
+            output, self.write_errors = write_crossref_xml_list(self)
+            if self.file and output is not None and self.write_errors is None:
                 return write_output(self.file, output, [".xml"])
             else:
                 return output
