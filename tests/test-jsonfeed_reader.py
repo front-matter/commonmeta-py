@@ -21,7 +21,7 @@ def test_wordpress_with_references():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa"
+        == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/"
     )
     assert subject.titles[0] == {
         "title": "New paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry Mesa"
@@ -80,9 +80,7 @@ def test_wordpress_with_references():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith(
-            "Brian Curtice and Colin Boisvert are presenting our talk on this project at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic Terrestrial Ecosystems and Biota (MTE14) in Salt Lake City, and the related paper is in the MTE14 volume in The Anatomical Record."
-        )
+        .startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae.")
     )
     assert len(subject.files) == 4
     assert subject.files[0] == {
@@ -1019,4 +1017,4 @@ def test_get_jsonfeed():
 @pytest.mark.vcr
 def test_get_jsonfeed_item_not_found():
     """Test get_json_feed_item_id not found"""
-    assert {"error": "An error occured."} == get_jsonfeed_uuid("notfound")
+    assert get_jsonfeed_uuid("notfound") is None

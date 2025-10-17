@@ -21,6 +21,7 @@ from ..base_utils import (
     compact,
     dig,
     parse_xml,
+    presence,
     unparse_xml,
     unparse_xml_list,
     wrap,
@@ -106,7 +107,7 @@ class CrossrefXMLSchema(Schema):
 def convert_crossref_xml(metadata: Metadata) -> dict | None:
     """Convert Crossref XML"""
 
-    # return None if type is not supported by Crossref
+    # raise error if type is not supported by Crossref
     if metadata.type not in [
         "Article",
         "BlogPost",
@@ -121,13 +122,13 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Report",
         "Standard",
     ]:
-        log.error(f"Type not supported by Crossref: {metadata.id}")
-        return None
+        raise CrossrefError(
+            f"Type not supported by Crossref: {metadata.type} for {metadata.id}"
+        )
 
-    # return None if doi or url are not present
+    # raise error if doi or url are not present
     if doi_from_url(metadata.id) is None or metadata.url is None:
-        log.error(f"DOI or URL missing for Crossref XML: {metadata.id}")
-        return None
+        raise CrossrefError(f"DOI or URL missing for Crossref XML: {metadata.id}")
 
     titles = get_titles(metadata)
     contributors = get_contributors(metadata)
@@ -362,23 +363,27 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
             }
         )
     else:
-        log.error(f"Another error occured for Crossref XML: {metadata.id}")
-        data = None
+        raise CrossrefError(
+            f"Unexpected metadata type for Crossref XML: {metadata.type} for {metadata.id}"
+        )
+
     return data
 
 
-def write_crossref_xml(metadata: Metadata) -> tuple[bytes | None, str | None]:
+def write_crossref_xml(metadata: Metadata) -> bytes | None:
     """Write Crossref XML"""
     if metadata is None or not metadata.is_valid:
-        return None, "Invalid metadata provided for Crossref XML generation"
+        raise ValueError("Invalid metadata provided for Crossref XML generation")
+
+    # Check for existing validation errors early
+    if metadata.write_errors is not None:
+        raise CrossrefError(f"Validation errors in metadata: {metadata.write_errors}")
+
+    # Convert metadata to Crossref XML structure (raises CrossrefError on failure)
+    data = convert_crossref_xml(metadata)
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
-
-    data = convert_crossref_xml(metadata)
-    if data is None:
-        return None, f"Could not convert metadata to Crossref XML: {metadata.id}"
-
     crossref_xml = schema.dump(data)
 
     # Ensure consistent field ordering through the defined mapping
@@ -393,15 +398,13 @@ def write_crossref_xml(metadata: Metadata) -> tuple[bytes | None, str | None]:
 
     # Convert to XML
     xml_bytes = unparse_xml(crossref_xml, dialect="crossref", head=head)
-    errors = metadata.write_errors
-
-    return xml_bytes, errors
+    return xml_bytes
 
 
-def write_crossref_xml_list(metalist: MetadataList) -> tuple[bytes | None, str | None]:
+def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
-        return None, "Invalid metalist provided for Crossref XML generation"
+        raise ValueError("Invalid metalist provided for Crossref XML generation")
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
@@ -419,6 +422,10 @@ def write_crossref_xml_list(metalist: MetadataList) -> tuple[bytes | None, str |
         crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
         crossref_xml_list.append(crossref_xml)
 
+    # Raise error if there are write_errors
+    if presence(metalist.write_errors):
+        raise CrossrefError(f"Validation errors in metalist: {metalist.write_errors}")
+
     head = {
         "depositor": metalist.depositor,
         "email": metalist.email,
@@ -426,9 +433,7 @@ def write_crossref_xml_list(metalist: MetadataList) -> tuple[bytes | None, str |
     }
 
     xml_bytes = unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
-    errors = metalist.write_errors
-
-    return xml_bytes, errors
+    return xml_bytes
 
 
 def push_crossref_xml(
@@ -442,10 +447,12 @@ def push_crossref_xml(
 ) -> str:
     """Push crossref_xml to Crossref API, returns the API response."""
 
-    input_xml, write_errors = write_crossref_xml(metadata)
-    if write_errors is not None:
-        log.error(f"Failed to generate XML for upload: {write_errors}")
+    try:
+        input_xml = write_crossref_xml(metadata)
+    except (ValueError, CrossrefError) as e:
+        log.error(f"Failed to generate XML for upload: {e}")
         return "{}"
+
     if not input_xml:
         log.error("Failed to generate XML for upload")
         return "{}"
@@ -502,10 +509,12 @@ def push_crossref_xml_list(
 ) -> bytes | None:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
-    input_xml, write_errors = write_crossref_xml_list(metalist)
-    if write_errors is not None:
-        log.error(f"Failed to generate XML for upload: {write_errors}")
+    try:
+        input_xml = write_crossref_xml_list(metalist)
+    except ValueError as e:
+        log.error(f"Failed to generate XML for upload: {e}")
         return None
+
     if not input_xml:
         log.error("Failed to generate XML for upload")
         return None

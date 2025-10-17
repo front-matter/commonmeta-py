@@ -1150,9 +1150,13 @@ def test_component():
     assert subject.type == "Component"
 
     crossref_xml = subject.write(to="crossref_xml")
-    assert not subject.is_valid
+    assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    crossref_xml = dig(crossref_xml, "doi_batch.body.sa_component", {})
+    assert (
+        dig(crossref_xml, "component_list.component.doi_data.doi")
+        == "10.1371/journal.pmed.0030277.g001"
+    )
 
 
 @pytest.mark.vcr
@@ -1537,6 +1541,6 @@ def test_doi_without_url():
     assert not subject.is_valid
     assert (
         subject.write_errors
-        == "Could not convert metadata to Crossref XML: https://doi.org/10.7554/elife.01567"
+        == "DOI or URL missing for Crossref XML: https://doi.org/10.7554/elife.01567"
     )
     assert crossref_xml is None

@@ -15,54 +15,6 @@ interactions:
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAE/7NRTMlPLqksSFXIKMnNseOyAVEKOYl56bapeXZcNiWZJTmpdiZGlgoh+fkKvol5
-        lQpBqYWlqcUlxTb6EEkumwxDOyyyGYZ2XDYFdiEZmcUKpcWpRQoZicUKqRXJqakpqSkKiXkKiTk5
-        +SUlqSkKRRATFZLzS/NK9BRCiioVEtMTM/MUchJLUov0bPQL7LgA8Xu8D6kAAAA=
-    headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - text/html; charset=utf-8
-      date:
-      - Mon, 06 Oct 2025 19:03:08 GMT
-      fly-request-id:
-      - 01K6XEFXRCTT08EENVYGT60KXK-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '0'
-      ratelimit-reset:
-      - '59'
-      retry-after:
-      - '3'
-      - '3'
-      server:
-      - Fly/3e6134eab (2025-10-06)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
-    status:
-      code: 429
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.5
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/notfound
-  response:
-    body:
-      string: !!binary |
         H4sIAAAAAAAE/6tWSi0qyi9SslJyzFMAMxXyk5NLi1JT9JRquQAqh03AHgAAAA==
     headers:
       content-encoding:
@@ -70,17 +22,17 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 06 Oct 2025 19:13:45 GMT
+      - Fri, 17 Oct 2025 09:28:26 GMT
       fly-request-id:
-      - 01K6XF3CCPHS6CM7P2EGZH4825-ams
+      - 01K7RQZH60CGXHFM5T9QTE8T6E-ams
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '0'
+      - '1'
       ratelimit-reset:
-      - '59'
+      - '52'
       server:
-      - Fly/3e6134eab (2025-10-06)
+      - Fly/31563e821d (2025-10-15)
       transfer-encoding:
       - chunked
       vary:

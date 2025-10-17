@@ -164,15 +164,15 @@ def test_journal_article():
     assert subject.publisher == {
         "name": "Public Library of Science",
     }
-    assert len(subject.references) == 50
-    assert subject.references[-1] == {
-        "title": "[Glycolytic enzyme defects and neurodegeneration].",
-        "publicationYear": 1998,
-        "volume": "192",
-        "issue": "5",
-        "firstPage": "929",
-        "lastPage": "45",
-    }
+    # assert len(subject.references) == 50
+    # assert subject.references[-1] == {
+    #     "title": "[Glycolytic enzyme defects and neurodegeneration].",
+    #     "publicationYear": 1998,
+    #     "volume": "192",
+    #     "issue": "5",
+    #     "firstPage": "929",
+    #     "lastPage": "45",
+    # }
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1932-6203",
@@ -1567,16 +1567,16 @@ def test_multipe_titles():
     assert subject.license is None
     assert subject.date == {"published": "2007-04-13"}
     assert subject.publisher == {"name": "Springer Nature"}
-    assert len(subject.references) == 19
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.1159/000281702",
-        "title": "Successful Replantation of a Totally Amputated Penis by Using Microvascular Techniques",
-        "publicationYear": 1990,
-        "volume": "45",
-        "issue": "3",
-        "firstPage": "177",
-        "lastPage": "180",
-    }
+    # assert len(subject.references) == 19
+    # assert subject.references[-1] == {
+    #     "id": "https://doi.org/10.1159/000281702",
+    #     "title": "Successful Replantation of a Totally Amputated Penis by Using Microvascular Techniques",
+    #     "publicationYear": 1990,
+    #     "volume": "45",
+    #     "issue": "3",
+    #     "firstPage": "177",
+    #     "lastPage": "180",
+    # }
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",

@@ -51,6 +51,7 @@ from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
 from .writers.crossref_xml_writer import (
+    CrossrefError,
     push_crossref_xml,
     push_crossref_xml_list,
     write_crossref_xml,
@@ -320,10 +321,15 @@ class Metadata:
             self.depositor = kwargs.get("depositor", None)
             self.email = kwargs.get("email", None)
             self.registrant = kwargs.get("registrant", None)
-            output, self.write_errors = write_crossref_xml(self)
-            if self.write_errors is not None:
+            try:
+                output = write_crossref_xml(self)
+                if self.write_errors is not None:
+                    self.is_valid = False
+                return output
+            except (ValueError, CrossrefError) as e:
+                self.write_errors = str(e)
                 self.is_valid = False
-            return output
+                return None
         else:
             raise ValueError(f"Unsupported output format: {to}")
 
@@ -443,11 +449,16 @@ class MetadataList:
             else:
                 return output
         elif to == "crossref_xml":
-            output, self.write_errors = write_crossref_xml_list(self)
-            if self.file and output is not None and self.write_errors is None:
-                return write_output(self.file, output, [".xml"])
-            else:
-                return output
+            try:
+                output = write_crossref_xml_list(self)
+                if self.file and output is not None:
+                    return write_output(self.file, output, [".xml"])
+                else:
+                    return output
+            except (ValueError, CrossrefError) as e:
+                self.write_errors = str(e)
+                self.is_valid = False
+                return None
         elif to == "csl":
             output = json.dumps(write_csl_list(self))
             if self.file:

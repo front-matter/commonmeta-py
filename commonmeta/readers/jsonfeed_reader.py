@@ -46,8 +46,13 @@ def get_jsonfeed(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = normalize_url(pid)
     response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
-    if response.status_code != 200:
+    print(f"Fetching JSON Feed from {url}: status {response.status_code}")
+    if response.status_code == 404:
         return {"state": "not_found"}
+    elif response.status_code == 429:
+        return {"error": "Rate limit exceeded"}
+    elif response.status_code >= 400:
+        return {"state": "An error occured."}
     return response.json() | {"via": "jsonfeed"}
 
 
@@ -469,7 +474,7 @@ def get_jsonfeed_uuid(id: str | None) -> dict | None:
     url = f"https://api.rogue-scholar.org/posts/{id}"
     response = requests.get(url, timeout=10)
     if response.status_code != 200:
-        return response.json()
+        return None
     post = response.json()
     return keep(
         post,

@@ -47,6 +47,6 @@ def test_update_ghost_post_via_api__idnot_found():
     api_key = "def"
     api_url = "https://example.com"
 
-    assert {"error": "An error occured."} == update_ghost_post_via_api(
-        _id, api_key, api_url
-    )
+    assert {
+        "error": "Invalid response from Rogue Scholar API"
+    } == update_ghost_post_via_api(_id, api_key, api_url)

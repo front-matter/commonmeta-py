@@ -1070,7 +1070,7 @@ def test_missing_contributor():
     assert subject.date == {
         "created": "2018-04-10",
         "published": "2018-04-09",
-        "updated": "2024-06-10",
+        "updated": "2025-10-11",
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/1968",
