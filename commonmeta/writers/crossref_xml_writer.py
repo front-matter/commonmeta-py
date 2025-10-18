@@ -123,7 +123,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Standard",
     ]:
         raise CrossrefError(
-            f"Type not supported by Crossref: {metadata.type} for {metadata.id}"
+            f"Type {metadata.type} not supported by Crossref: {metadata.id}"
         )
 
     # raise error if doi or url are not present
@@ -372,12 +372,8 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
 
 def write_crossref_xml(metadata: Metadata) -> bytes | None:
     """Write Crossref XML"""
-    if metadata is None or not metadata.is_valid:
-        raise ValueError("Invalid metadata provided for Crossref XML generation")
-
-    # Check for existing validation errors early
-    if metadata.write_errors is not None:
-        raise CrossrefError(f"Validation errors in metadata: {metadata.write_errors}")
+    if metadata is None:
+        raise CrossrefError("No metadata provided for Crossref XML generation")
 
     # Convert metadata to Crossref XML structure (raises CrossrefError on failure)
     data = convert_crossref_xml(metadata)
@@ -404,7 +400,7 @@ def write_crossref_xml(metadata: Metadata) -> bytes | None:
 def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
-        raise ValueError("Invalid metalist provided for Crossref XML generation")
+        raise CrossrefError("Invalid metalist provided for Crossref XML generation")
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()

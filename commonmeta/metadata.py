@@ -45,7 +45,7 @@ from .readers.schema_org_reader import (
     get_schema_org,
     read_schema_org,
 )
-from .schema_utils import json_schema_errors
+from .schema_utils import json_schema_errors, xml_schema_errors
 from .utils import find_from_format, is_chain_object, normalize_id
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
@@ -281,16 +281,6 @@ class Metadata:
 
     def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
-        try:
-            return self._write_format(to, **kwargs)
-        except json.JSONDecodeError as e:
-            # More specific error message including the original JSONDecodeError details
-            raise ValueError(f"Invalid JSON: {str(e)}")
-        except Exception as e:
-            raise ValueError(f"Error writing format '{to}': {str(e)}")
-
-    def _write_format(self, to: str, **kwargs) -> bytes | None:
-        """Helper method to handle writing to different formats."""
         # JSON-based output formats
         if to in ["commonmeta", "datacite", "inveniordm", "schema_org", "csl"]:
             writer_map = {
@@ -321,15 +311,11 @@ class Metadata:
             self.depositor = kwargs.get("depositor", None)
             self.email = kwargs.get("email", None)
             self.registrant = kwargs.get("registrant", None)
-            try:
-                output = write_crossref_xml(self)
-                if self.write_errors is not None:
-                    self.is_valid = False
-                return output
-            except (ValueError, CrossrefError) as e:
-                self.write_errors = str(e)
-                self.is_valid = False
-                return None
+            output = write_crossref_xml(self)
+            self.write_errors = xml_schema_errors(output, schema=to)
+            if self.write_errors is not None:
+                raise CrossrefError(self.write_errors)
+            return output
         else:
             raise ValueError(f"Unsupported output format: {to}")
 
