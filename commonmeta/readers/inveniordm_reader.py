@@ -71,9 +71,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     )
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
 
-    contributors = dig(meta, "metadata.creators")
+    contrib = dig(meta, "metadata.creators")
     contributors = get_authors(
-        from_inveniordm(wrap(contributors)),
+        from_inveniordm(wrap(contrib)),
     )
     publisher = meta.get("publisher", None) or dig(meta, "metadata.publisher")
     if publisher:
@@ -208,7 +208,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "type": _type,
             "doi": doi_from_url(_id),
             "url": url,
-            "contributors": presence(contributors),
+            "contributors": contributors,
             "titles": titles,
             "publisher": publisher,
             "date": compact(date),

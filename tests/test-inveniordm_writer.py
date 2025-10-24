@@ -727,6 +727,23 @@ def test_post_with_contributor_roles():
         },
         {
             "person_or_org": {
+                "name": "LaZerte, Steffi",
+                "given_name": "Steffi",
+                "family_name": "LaZerte",
+                "type": "personal",
+                "identifiers": [
+                    {
+                        "identifier": "0000-0002-7690-8360",
+                        "scheme": "orcid",
+                    },
+                ],
+                "role": {
+                    "id": "editor",
+                },
+            },
+        },
+        {
+            "person_or_org": {
                 "name": "Bellini Saibene, Yanina",
                 "given_name": "Yanina",
                 "family_name": "Bellini Saibene",
@@ -737,20 +754,7 @@ def test_post_with_contributor_roles():
             }
         },
     ]
-    assert dig(inveniordm, "metadata.contributors") == [
-        {
-            "person_or_org": {
-                "name": "LaZerte, Steffi",
-                "given_name": "Steffi",
-                "family_name": "LaZerte",
-                "type": "personal",
-                "identifiers": [
-                    {"identifier": "0000-0002-7690-8360", "scheme": "orcid"}
-                ],
-                "role": {"id": "editor"},
-            }
-        }
-    ]
+    assert dig(inveniordm, "metadata.contributors") is None
 
 
 @pytest.mark.vcr

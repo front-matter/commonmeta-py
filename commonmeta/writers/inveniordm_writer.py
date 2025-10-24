@@ -51,18 +51,11 @@ def write_inveniordm(metadata: Metadata) -> dict:
     if metadata is None or metadata.write_errors is not None:
         return {}
     _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
-    creators = [
-        to_inveniordm_creator(i)
+    contributors = [
+        to_inveniordm_contributor(i)
         for i in wrap(metadata.contributors)
-        if i.get("contributorRoles", None) == ["Author"]
+        # if i.get("contributorRoles", None) == ["Author"]
     ]
-    contributors = scrub(
-        [
-            to_inveniordm_contributor(i)
-            for i in wrap(metadata.contributors)
-            if i.get("contributorRoles", None) != ["Author"]
-        ]
-    )
     identifiers = [
         {
             "identifier": i.get("identifier", None),
@@ -141,8 +134,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
             "metadata": compact(
                 {
                     "resource_type": {"id": _type},
-                    "creators": creators,
-                    "contributors": presence(contributors),
+                    "creators": contributors,
                     "title": first(
                         parse_attributes(metadata.titles, content="title", first=True)
                     ),
@@ -195,44 +187,8 @@ def write_inveniordm(metadata: Metadata) -> dict:
     )
 
 
-def to_inveniordm_creator(creator: dict) -> dict:
-    """Convert contributors to inveniordm creators"""
-
-    def format_identifier(id):
-        identifier = validate_orcid(id)
-        if identifier:
-            return [
-                {
-                    "identifier": identifier,
-                    "scheme": "orcid",
-                }
-            ]
-        return None
-
-    _type = creator.get("type", None)
-    if creator.get("familyName", None):
-        name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
-    elif creator.get("name", None):
-        name = creator.get("name", None)
-
-    return compact(
-        {
-            "person_or_org": compact(
-                {
-                    "name": name,
-                    "given_name": creator.get("givenName", None),
-                    "family_name": creator.get("familyName", None),
-                    "type": _type.lower() + "al" if _type else None,
-                    "identifiers": format_identifier(creator.get("id", None)),
-                }
-            ),
-            "affiliations": to_inveniordm_affiliations(creator),
-        }
-    )
-
-
 def to_inveniordm_contributor(contributor: dict) -> dict | None:
-    """Convert contributors to inveniordm contributors"""
+    """Convert contributors to inveniordm creators"""
 
     def format_identifier(id):
         identifier = validate_orcid(id)
@@ -259,8 +215,7 @@ def to_inveniordm_contributor(contributor: dict) -> dict | None:
         if CM_TO_INVENIORDM_CONTRIBUTOR_ROLES.get(role)
         else None
     )
-    if _role is None:
-        return None
+
     return compact(
         {
             "person_or_org": compact(
