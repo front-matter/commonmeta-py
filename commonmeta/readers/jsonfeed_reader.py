@@ -46,7 +46,6 @@ def get_jsonfeed(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = normalize_url(pid)
     response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
-    print(f"Fetching JSON Feed from {url}: status {response.status_code}")
     if response.status_code == 404:
         return {"state": "not_found"}
     elif response.status_code == 429:

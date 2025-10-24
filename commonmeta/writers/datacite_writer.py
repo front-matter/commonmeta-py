@@ -4,11 +4,12 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, wrap
+from ..base_utils import compact, first, scrub, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
     CM_TO_CR_TRANSLATIONS,
     CM_TO_CSL_TRANSLATIONS,
+    CM_TO_DC_CONTRIBUTOR_ROLES,
     CM_TO_DC_TRANSLATIONS,
     CM_TO_RIS_TRANSLATIONS,
     CM_TO_SO_TRANSLATIONS,
@@ -38,11 +39,13 @@ def write_datacite(metadata: Metadata) -> dict | None:
         for i in wrap(metadata.contributors)
         if i.get("contributorRoles", None) == ["Author"]
     ]
-    contributors = [
-        to_datacite_creator(i)
-        for i in wrap(metadata.contributors)
-        if i.get("contributorRoles", None) != ["Author"]
-    ]
+    contributors = scrub(
+        [
+            to_datacite_contributor(i)
+            for i in wrap(metadata.contributors)
+            if i.get("contributorRoles", None) != ["Author"]
+        ]
+    )
     related_identifiers = [
         to_datacite_related_identifier(i)
         for i in wrap(metadata.references)
@@ -144,7 +147,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
 
 
 def to_datacite_creator(creator: dict) -> dict:
-    """Convert creators to datacite creators"""
+    """Convert contributors to datacite creators"""
     _type = creator.get("type", None)
     if creator.get("familyName", None):
         name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
@@ -171,6 +174,45 @@ def to_datacite_creator(creator: dict) -> dict:
             "nameType": _type + "al" if _type else None,
             "nameIdentifiers": name_identifiers,
             "affiliation": creator.get("affiliations", None),
+        }
+    )
+
+
+def to_datacite_contributor(contributor: dict) -> dict:
+    """Convert contributors to datacite contributors"""
+    _type = contributor.get("type", None)
+    if contributor.get("familyName", None):
+        name = ", ".join(
+            [contributor.get("familyName", ""), contributor.get("givenName", "")]
+        )
+    elif contributor.get("name", None):
+        name = contributor.get("name", None)
+    else:
+        name = None
+    name_identifiers = contributor.get("id", None)
+    if name_identifiers:
+
+        def format_name_identifier(name_identifier: str) -> dict:
+            return {
+                "nameIdentifier": name_identifier,
+                "nameIdentifierScheme": "ORCID",
+                "schemeUri": "https://orcid.org",
+            }
+
+        name_identifiers = [format_name_identifier(i) for i in wrap(name_identifiers)]
+    role = first(wrap(contributor.get("contributorRoles", None)))
+    _role = CM_TO_DC_CONTRIBUTOR_ROLES.get(role, None)
+    if _role is None:
+        return None
+    return compact(
+        {
+            "name": name,
+            "givenName": contributor.get("givenName", None),
+            "familyName": contributor.get("familyName", None),
+            "nameType": _type + "al" if _type else None,
+            "nameIdentifiers": name_identifiers,
+            "affiliation": contributor.get("affiliations", None),
+            "contributorType": _role,
         }
     )
 

@@ -21,6 +21,7 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import (
+    CM_TO_INVENIORDM_CONTRIBUTOR_ROLES,
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
@@ -55,6 +56,13 @@ def write_inveniordm(metadata: Metadata) -> dict:
         for i in wrap(metadata.contributors)
         if i.get("contributorRoles", None) == ["Author"]
     ]
+    contributors = scrub(
+        [
+            to_inveniordm_contributor(i)
+            for i in wrap(metadata.contributors)
+            if i.get("contributorRoles", None) != ["Author"]
+        ]
+    )
     identifiers = [
         {
             "identifier": i.get("identifier", None),
@@ -134,6 +142,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
                 {
                     "resource_type": {"id": _type},
                     "creators": creators,
+                    "contributors": presence(contributors),
                     "title": first(
                         parse_attributes(metadata.titles, content="title", first=True)
                     ),
@@ -187,7 +196,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
 
 
 def to_inveniordm_creator(creator: dict) -> dict:
-    """Convert creators to inveniordm creators"""
+    """Convert contributors to inveniordm creators"""
 
     def format_identifier(id):
         identifier = validate_orcid(id)
@@ -218,6 +227,53 @@ def to_inveniordm_creator(creator: dict) -> dict:
                 }
             ),
             "affiliations": to_inveniordm_affiliations(creator),
+        }
+    )
+
+
+def to_inveniordm_contributor(contributor: dict) -> dict | None:
+    """Convert contributors to inveniordm contributors"""
+
+    def format_identifier(id):
+        identifier = validate_orcid(id)
+        if identifier:
+            return [
+                {
+                    "identifier": identifier,
+                    "scheme": "orcid",
+                }
+            ]
+        return None
+
+    _type = contributor.get("type", None)
+    if contributor.get("familyName", None):
+        name = ", ".join(
+            [contributor.get("familyName", ""), contributor.get("givenName", "")]
+        )
+    elif contributor.get("name", None):
+        name = contributor.get("name", None)
+
+    role = first(wrap(contributor.get("contributorRoles", None)))
+    _role = (
+        {"id": CM_TO_INVENIORDM_CONTRIBUTOR_ROLES.get(role)}
+        if CM_TO_INVENIORDM_CONTRIBUTOR_ROLES.get(role)
+        else None
+    )
+    if _role is None:
+        return None
+    return compact(
+        {
+            "person_or_org": compact(
+                {
+                    "name": name,
+                    "given_name": contributor.get("givenName", None),
+                    "family_name": contributor.get("familyName", None),
+                    "type": _type.lower() + "al" if _type else None,
+                    "identifiers": format_identifier(contributor.get("id", None)),
+                    "role": _role,
+                }
+            ),
+            "affiliations": to_inveniordm_affiliations(contributor),
         }
     )
 

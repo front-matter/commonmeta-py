@@ -274,3 +274,63 @@ def test_from_schema_org():
         "ris": "BLOG",
         "schemaOrg": "BlogPosting",
     }
+
+
+@pytest.mark.vcr
+def test_post_with_contributor_roles():
+    "post with contributor roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
+    assert subject.type == "BlogPost"
+
+    datacite = subject.write(to="datacite")
+    assert datacite is not None
+    datacite = json.loads(datacite)
+    assert datacite["doi"] == "10.59350/510pg-zzf58"
+    assert datacite["url"] == "https://ropensci.org/blog/2025/10/14/blog-roles/"
+    assert datacite["creators"] == [
+        {
+            "name": "Salmon, Maëlle",
+            "givenName": "Maëlle",
+            "familyName": "Salmon",
+            "nameType": "Personal",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://orcid.org/0000-0002-2815-0399",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+        },
+        {
+            "name": "Bellini Saibene, Yanina",
+            "familyName": "Bellini Saibene",
+            "givenName": "Yanina",
+            "nameType": "Personal",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://orcid.org/0000-0002-4522-7466",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+        },
+    ]
+    assert datacite["contributors"] == [
+        {
+            "nameType": "Personal",
+            "familyName": "LaZerte",
+            "givenName": "Steffi",
+            "name": "LaZerte, Steffi",
+            "nameIdentifiers": [
+                {
+                    "nameIdentifier": "https://orcid.org/0000-0002-7690-8360",
+                    "nameIdentifierScheme": "ORCID",
+                    "schemeUri": "https://orcid.org",
+                }
+            ],
+            "contributorType": "Editor",
+        },
+    ]

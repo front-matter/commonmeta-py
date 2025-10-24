@@ -1517,6 +1517,60 @@ def test_rogue_scholar_as_parent_doi():
 
 
 @pytest.mark.vcr
+def test_post_with_contributor_roles():
+    "post with contributor roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
+    assert subject.type == "BlogPost"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 3
+    assert dig(crossref_xml, "contributors.person_name.1") == {
+        "ORCID": "https://orcid.org/0000-0002-7690-8360",
+        "contributor_role": "editor",
+        "sequence": "additional",
+        "given_name": "Steffi",
+        "surname": "LaZerte",
+    }
+
+
+@pytest.mark.vcr
+def test_post_with_translator_role():
+    "post with translator role"
+    string = "https://api.rogue-scholar.org/posts/10.59350/swnyg-ger25"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/swnyg-ger25"
+    assert subject.type == "BlogPost"
+    assert subject.contributors[1] == {
+        "id": "https://orcid.org/0000-0002-4522-7466",
+        "type": "Person",
+        "contributorRoles": ["Translator"],
+        "givenName": "Yanina",
+        "familyName": "Bellini Saibene",
+    }
+
+    crossref_xml = subject.write(to="crossref_xml")
+    print(crossref_xml)
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 2
+    assert dig(crossref_xml, "contributors.person_name.1") == {
+        "ORCID": "https://orcid.org/0000-0002-4522-7466",
+        "contributor_role": "translator",
+        "sequence": "additional",
+        "given_name": "Yanina",
+        "surname": "Bellini Saibene",
+    }
+
+
+@pytest.mark.vcr
 def test_doi_without_url():
     "DOI without URL"
     string = "10.7554/elife.01567"

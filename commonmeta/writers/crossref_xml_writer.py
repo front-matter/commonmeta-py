@@ -26,6 +26,7 @@ from ..base_utils import (
     unparse_xml_list,
     wrap,
 )
+from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
 from .inveniordm_writer import push_inveniordm, update_legacy_record
@@ -706,11 +707,11 @@ def get_contributors(obj) -> dict | None:
     if len(wrap(dig(obj, "contributors"))) == 0:
         return None
 
+    allowed_roles = {"Author", "Editor", "Reviewer", "Translator"}
     con = [
         c
         for c in dig(obj, "contributors", [])
-        if c.get("contributorRoles", None) == ["Author"]
-        or c.get("contributorRoles", None) == ["Editor"]
+        if set(c.get("contributorRoles", [])) & allowed_roles
     ]
 
     person_names = []
@@ -718,13 +719,15 @@ def get_contributors(obj) -> dict | None:
     anonymous_contributors = []
 
     for num, contributor in enumerate(con):
-        contributor_role = (
-            "author" if "Author" in contributor.get("contributorRoles") else None
+        roles = wrap(contributor.get("contributorRoles"))
+        contributor_role = next(
+            (
+                CM_TO_CR_CONTRIBUTOR_ROLES.get(role)
+                for role in roles
+                if role and CM_TO_CR_CONTRIBUTOR_ROLES.get(role)
+            ),
+            "author",
         )
-        if contributor_role is None:
-            contributor_role = (
-                "editor" if "Editor" in contributor.get("contributorRoles") else None
-            )
         sequence = "first" if num == 0 else "additional"
         if (
             contributor.get("type", None) == "Organization"

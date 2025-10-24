@@ -972,6 +972,64 @@ def test_post_with_peer_review():
 
 
 @pytest.mark.vcr
+def test_post_with_contributor_roles():
+    "post with contributor roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
+    assert subject.type == "BlogPost"
+    assert subject.url == "https://ropensci.org/blog/2025/10/14/blog-roles/"
+    assert subject.titles[0] == {"title": "Recognition Beyond Blog Post Authors"}
+    assert len(subject.contributors) == 3
+    assert subject.contributors[1] == {
+        "id": "https://orcid.org/0000-0002-7690-8360",
+        "type": "Person",
+        "contributorRoles": ["Editor"],
+        "givenName": "Steffi",
+        "familyName": "LaZerte",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2025-10-14T02:00:00",
+        "updated": "2025-10-14T09:58:33",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert subject.references is None
+    assert subject.relations == [
+        {
+            "id": "https://rogue-scholar.org/api/communities/ropensci",
+            "type": "IsPartOf",
+        },
+    ]
+    assert subject.identifiers == [
+        {
+            "identifier": "65e082c0-5500-4949-9ab6-307d55921762",
+            "identifierType": "UUID",
+        },
+        {
+            "identifier": "https://doi.org/10.59350/510pg-zzf58",
+            "identifierType": "GUID",
+        },
+    ]
+    assert subject.container == {
+        "type": "Blog",
+        "title": "rOpenSci - open tools for open science",
+        "identifier": "https://rogue-scholar.org/blogs/ropensci",
+        "identifierType": "URL",
+        "platform": "Hugo",
+    }
+    assert subject.content.startswith("<p>Our own dev guide")
+    assert subject.image is None
+
+
+@pytest.mark.vcr
 def test_funded_project():
     "funded project"
     string = "https://api.rogue-scholar.org/posts/10.59350/p000s-pth40"

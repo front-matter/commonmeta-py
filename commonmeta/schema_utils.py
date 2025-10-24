@@ -74,7 +74,7 @@ def xml_schema_errors(
             # Load schema with allow="sandbox" to prevent network access
             # and validation="skip" to skip validation of the schema itself
             schema_obj = xmlschema.XMLSchema(
-                schema_path, allow="sandbox", validation="skip"
+                schema_path, base_url=base_dir, allow="sandbox", validation="skip"
             )
         except FileNotFoundError:
             raise ValueError(f"Schema file not found: {schema_path}")

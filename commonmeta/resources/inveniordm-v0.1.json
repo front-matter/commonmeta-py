@@ -283,7 +283,31 @@
           "properties": {
             "id": {
               "type": "string",
-              "description": "Contributor role (e.g., editor, supervisor)"
+              "description": "Contributor role (e.g., editor, supervisor)",
+              "enum": [
+                "contactperson",
+                "datacollector",
+                "datacurator",
+                "datamanager",
+                "distributor",
+                "editor",
+                "hostinginstitution",
+                "other",
+                "producer",
+                "projectleader",
+                "projectmanager",
+                "projectmember",
+                "registrationagency",
+                "registrationauthority",
+                "relatedperson",
+                "researchgroup",
+                "rightsholder",
+                "researcher",
+                "sponsor",
+                "supervisor",
+                "translator",
+                "workpackageleader"
+              ]
             }
           },
           "required": ["id"]
@@ -295,7 +319,7 @@
           }
         }
       },
-      "required": ["person_or_org", "role"]
+      "required": ["person_or_org"]
     },
     "personOrOrg": {
       "type": "object",

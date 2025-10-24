@@ -699,6 +699,61 @@ def test_external_doi():
 
 
 @pytest.mark.vcr
+def test_post_with_contributor_roles():
+    "post with contributor roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/510pg-zzf58"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
+    assert subject.type == "BlogPost"
+
+    inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/510pg-zzf58"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.creators") == [
+        {
+            "person_or_org": {
+                "name": "Salmon, Ma\xeblle",
+                "given_name": "Ma\xeblle",
+                "family_name": "Salmon",
+                "type": "personal",
+                "identifiers": [
+                    {"identifier": "0000-0002-2815-0399", "scheme": "orcid"}
+                ],
+            }
+        },
+        {
+            "person_or_org": {
+                "name": "Bellini Saibene, Yanina",
+                "given_name": "Yanina",
+                "family_name": "Bellini Saibene",
+                "type": "personal",
+                "identifiers": [
+                    {"identifier": "0000-0002-4522-7466", "scheme": "orcid"}
+                ],
+            }
+        },
+    ]
+    assert dig(inveniordm, "metadata.contributors") == [
+        {
+            "person_or_org": {
+                "name": "LaZerte, Steffi",
+                "given_name": "Steffi",
+                "family_name": "LaZerte",
+                "type": "personal",
+                "identifiers": [
+                    {"identifier": "0000-0002-7690-8360", "scheme": "orcid"}
+                ],
+                "role": {"id": "editor"},
+            }
+        }
+    ]
+
+
+@pytest.mark.vcr
 def test_content_with_external_src():
     "external DOI used by Rogue Scholar"
     string = "https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85"
