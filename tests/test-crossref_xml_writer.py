@@ -1559,7 +1559,6 @@ def test_post_with_translator_role():
     }
 
     crossref_xml = subject.write(to="crossref_xml")
-    print(crossref_xml)
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
@@ -1570,6 +1569,29 @@ def test_post_with_translator_role():
         "sequence": "additional",
         "given_name": "Yanina",
         "surname": "Bellini Saibene",
+    }
+
+
+@pytest.mark.vcr
+def test_post_with_interviewee_roles():
+    "post with interviewee roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
+    assert subject.type == "BlogPost"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert len(dig(crossref_xml, "contributors.person_name")) == 4
+    assert dig(crossref_xml, "contributors.person_name.2") == {
+        "contributor_role": "editor",
+        "sequence": "additional",
+        "given_name": "Steffi",
+        "surname": "LaZerte",
+        "ORCID": "https://orcid.org/0000-0002-7690-8360",
     }
 
 

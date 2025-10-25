@@ -756,6 +756,36 @@ def test_post_with_contributor_roles():
 
 
 @pytest.mark.vcr
+def test_post_with_interviewee_roles():
+    "post with interviewee roles"
+    string = "https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/s8m95-ap410"
+    assert subject.type == "BlogPost"
+
+    inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/s8m95-ap410"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert len(dig(inveniordm, "metadata.creators")) == 3
+    assert len(dig(inveniordm, "metadata.contributors")) == 6
+    assert dig(inveniordm, "metadata.contributors.0") == {
+        "person_or_org": {
+            "name": "Black, Chris",
+            "given_name": "Chris",
+            "family_name": "Black",
+            "type": "personal",
+        },
+        "role": {
+            "id": "interviewee",
+        },
+    }
+
+
+@pytest.mark.vcr
 def test_content_with_external_src():
     "external DOI used by Rogue Scholar"
     string = "https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85"
