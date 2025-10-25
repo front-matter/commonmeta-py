@@ -755,16 +755,20 @@ def from_inveniordm(elements: list) -> list:
     """Convert from inveniordm elements"""
 
     def format_element(element):
+        """format element, merging the role and person_or_org subdicts"""
+        role = dig(element, "role.id")
+
         if "person_or_org" in element.keys():
             element = element["person_or_org"]
 
-        """format element"""
         if not isinstance(element, dict):
             return None
         mapping = {"orcid": "ORCID"}
         for key, value in mapping.items():
             if element.get(key, None) is not None:
                 element[value] = element.pop(key)
+        element["contributorType"] = [role.capitalize()] if role else []
+
         return element
 
     return [format_element(i) for i in elements]

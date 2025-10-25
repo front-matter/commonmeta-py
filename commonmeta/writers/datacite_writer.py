@@ -37,13 +37,13 @@ def write_datacite(metadata: Metadata) -> dict | None:
     creators = [
         to_datacite_creator(i)
         for i in wrap(metadata.contributors)
-        if i.get("contributorRoles", None) == ["Author"]
+        if "Author" in wrap(i.get("contributorRoles"))
     ]
     contributors = scrub(
         [
             to_datacite_contributor(i)
             for i in wrap(metadata.contributors)
-            if i.get("contributorRoles", None) != ["Author"]
+            if "Author" not in wrap(i.get("contributorRoles"))
         ]
     )
     related_identifiers = [

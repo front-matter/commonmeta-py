@@ -433,3 +433,30 @@ def test_rogue_scholar_with_parent_doi():
     assert subject.language == "en"
     assert subject.version is None
     assert subject.state == "findable"
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_with_contributors():
+    """Rogue Scholar"""
+    string = "https://rogue-scholar.org/api/records/apt10-14q04"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
+    assert subject.type == "BlogPost"
+    assert subject.url == "https://ropensci.org/blog/2025/10/14/blog-roles/"
+    assert subject.titles[0] == {"title": "Recognition Beyond Blog Post Authors"}
+    assert len(subject.contributors) == 3
+    assert subject.contributors[1] == {
+        "id": "https://orcid.org/0000-0002-4522-7466",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Yanina",
+        "familyName": "Bellini Saibene",
+    }
+    assert subject.contributors[2] == {
+        "id": "https://orcid.org/0000-0002-7690-8360",
+        "type": "Person",
+        "contributorRoles": ["Editor"],
+        "givenName": "Steffi",
+        "familyName": "LaZerte",
+    }

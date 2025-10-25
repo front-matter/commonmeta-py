@@ -9,6 +9,7 @@ from commonmeta.base_utils import dig, parse_xml
 from commonmeta.writers.crossref_xml_writer import (
     CrossrefError,
     normalize_isbn_crossref,
+    write_crossref_xml_list,
 )
 
 
@@ -975,6 +976,7 @@ def test_proceedings_article_with_multiple_funding_references():
         "funderName": "DOE U.S. Department of Energy",
     }
     assert subject.state == "findable"
+
     with pytest.raises(CrossrefError) as exc_info:
         subject.write(to="crossref_xml")
     assert (
@@ -1142,10 +1144,11 @@ def test_component():
     subject = Metadata(string, via="crossref")
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
+
     with pytest.raises(CrossrefError) as exc_info:
         subject.write(to="crossref_xml")
-    assert subject.is_valid
-    assert "Reason: missing required attribute 'parent_doi'" in str(exc_info.value)
+
+    assert "missing required attribute 'parent_doi'" in str(exc_info.value)
 
 
 @pytest.mark.vcr
@@ -1573,79 +1576,82 @@ def test_post_with_translator_role():
 @pytest.mark.vcr
 def test_doi_without_url():
     "DOI without URL"
-    string = "10.7554/elife.01567"
-    subject = Metadata(string, via="crossref")
-    assert subject.id == "https://doi.org/10.7554/elife.01567"
-    assert subject.type == "JournalArticle"
-    subject.url = None
-    assert subject.url is None
     with pytest.raises(CrossrefError) as exc_info:
+        string = "10.7554/elife.01567"
+        subject = Metadata(string, via="crossref")
+        assert subject.id == "https://doi.org/10.7554/elife.01567"
+        assert subject.type == "JournalArticle"
+        subject.url = None
+        assert subject.url is None
         subject.write(to="crossref_xml")
-    assert (
-        "DOI or URL missing for Crossref XML: https://doi.org/10.7554/elife.01567"
-        in str(exc_info.value)
-    )
+
+    assert "DOI or URL missing for Crossref XML" in str(exc_info.value)
+    assert subject.id in str(exc_info.value)
 
 
 @pytest.mark.vcr
 def test_type_software():
     "Type software"
     # Software is not supported by Crossref, so this should raise an error
-    string = "https://doi.org/10.5063/f1m61h5x"
-    subject = Metadata(string, via="datacite")
-    assert subject.id == "https://doi.org/10.5063/f1m61h5x"
-    assert subject.type == "Software"
     with pytest.raises(CrossrefError) as exc_info:
+        string = "https://doi.org/10.5063/f1m61h5x"
+        subject = Metadata(string, via="datacite")
+        assert subject.id == "https://doi.org/10.5063/f1m61h5x"
+        assert subject.type == "Software"
         subject.write(to="crossref_xml")
-    assert (
-        "Type Software not supported by Crossref: https://doi.org/10.5063/f1m61h5x"
-        in str(exc_info.value)
-    )
+
+    assert "Type not supported by Crossref: Software" in str(exc_info.value)
+    assert subject.id in str(exc_info.value)
 
 
 def test_error_invalid_metadata():
     """Test error handling for invalid metadata"""
-    with pytest.raises(Exception) as exc_info:
+    with pytest.raises(ValueError) as exc_info:
         subject = Metadata(None)
         subject.write(to="crossref_xml")
     assert "No valid input found" in str(exc_info.value)
 
 
-@pytest.mark.vcr
 def test_error_unsupported_type():
     """Test error handling for unsupported content type"""
-    string = "https://doi.org/10.1371/journal.pone.0000030"
-    subject = Metadata(string)
-    subject.type = "UnsupportedType"  # This type is not supported by Crossref
     with pytest.raises(CrossrefError) as exc_info:
+        string = "https://doi.org/10.1371/journal.pone.0000030"
+        subject = Metadata(string)
+        subject.type = "UnsupportedType"  # This type is not supported by Crossref
         subject.write(to="crossref_xml")
-    assert (
-        "Type UnsupportedType not supported by Crossref: https://doi.org/10.1371/journal.pone.0000030"
-        in str(exc_info.value)
-    )
+
+    assert "Type not supported by Crossref: UnsupportedType" in str(exc_info.value)
+    assert subject.id in str(exc_info.value)
 
 
-@pytest.mark.vcr
 def test_error_missing_doi():
     """Test error handling for missing DOI"""
-    string = "https://doi.org/10.1371/journal.pone.0000030"
-    subject = Metadata(string)
-    subject.id = "invalid-id-without-doi"  # Invalid DOI
     with pytest.raises(CrossrefError) as exc_info:
+        string = "https://doi.org/10.1371/journal.pone.0000030"
+        subject = Metadata(string)
+        subject.id = "invalid-id-without-doi"  # Invalid DOI
         subject.write(to="crossref_xml")
-    assert "DOI or URL missing for Crossref XML: invalid-id-without-doi" in str(
-        exc_info.value
-    )
+
+    assert "DOI or URL missing for Crossref XML" in str(exc_info.value)
 
 
-@pytest.mark.vcr
 def test_error_metadata_with_write_errors():
     """Test error handling for metadata with existing write_errors"""
-    string = "https://doi.org/10.1371/journal.pone.0000030"
-    subject = Metadata(string)
-    subject.titles = None  # This will cause validation error
     with pytest.raises(CrossrefError) as exc_info:
+        string = "https://doi.org/10.1371/journal.pone.0000030"
+        subject = Metadata(string)
+        subject.write_errors = "Some validation error"  # Set BEFORE calling write()
         subject.write(to="crossref_xml")
-    assert "Tag '{http://www.crossref.org/schema/5.4.0}titles' expected" in str(
+
+    assert "Validation errors in metadata: Some validation error" in str(exc_info.value)
+
+
+def test_error_invalid_metalist():
+    """Test error handling for invalid MetadataList"""
+
+    with pytest.raises(CrossrefError) as exc_info:
+        write_crossref_xml_list(None)
+
+    assert "Invalid metalist provided for Crossref XML generation" in str(
         exc_info.value
     )

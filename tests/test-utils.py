@@ -17,6 +17,7 @@ from commonmeta.utils import (
     format_name_identifier,
     from_csl,
     from_curie,
+    from_inveniordm,
     from_schema_org,
     from_schema_org_creators,
     get_language,
@@ -642,6 +643,42 @@ def test_from_schema_org_creators():
             "type": "Person",
         }
     ]
+
+
+def test_from_inveniordm():
+    "from_inveniordm"
+    contributors = [
+        {
+            "person_or_org": {
+                "type": "personal",
+                "name": "LaZerte, Steffi",
+                "given_name": "Steffi",
+                "family_name": "LaZerte",
+                "identifiers": [
+                    {"identifier": "0000-0002-7690-8360", "scheme": "orcid"}
+                ],
+            },
+            "role": {
+                "id": "editor",
+                "title": {"de": "EditorIn", "en": "Editor", "sv": "Redaktör"},
+            },
+        }
+    ]
+    assert [
+        {
+            "name": "LaZerte, Steffi",
+            "given_name": "Steffi",
+            "family_name": "LaZerte",
+            "type": "personal",
+            "identifiers": [
+                {
+                    "identifier": "0000-0002-7690-8360",
+                    "scheme": "orcid",
+                },
+            ],
+            "contributorType": ["Editor"],
+        }
+    ] == from_inveniordm(contributors)
 
 
 def test_pages_as_string():

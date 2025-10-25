@@ -124,7 +124,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
         "Standard",
     ]:
         raise CrossrefError(
-            f"Type {metadata.type} not supported by Crossref: {metadata.id}"
+            f"Type not supported by Crossref: {metadata.type} for {metadata.id}"
         )
 
     # raise error if doi or url are not present
@@ -378,6 +378,10 @@ def write_crossref_xml(metadata: Metadata) -> bytes | None:
 
     # Convert metadata to Crossref XML structure (raises CrossrefError on failure)
     data = convert_crossref_xml(metadata)
+
+    # Check for existing validation errors early
+    if metadata.write_errors is not None:
+        raise CrossrefError(f"Validation errors in metadata: {metadata.write_errors}")
 
     # Use the marshmallow schema to dump the data
     schema = CrossrefXMLSchema()
