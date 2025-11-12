@@ -324,7 +324,7 @@ def is_rogue_scholar_doi(doi: str | None, ra: str = "crossref") -> bool:
         "10.58079",  # not managed by Front Matter
         "10.60804",
         "10.71938",  # not managed by Front Matter
-        # "10.83132",
+        "10.83132",  # prefix in the test system
     ]
 
     prefix = validate_prefix(doi)

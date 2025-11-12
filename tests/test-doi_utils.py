@@ -81,6 +81,7 @@ def test_validate_doi():
     assert "10.1371/journal.pone.0042793" == validate_doi(
         "https://doi.org/10.1371/journal.pone.0042793"
     )
+    assert None is validate_doi("https://doi.org/10.2000/journal.pone.0042793")
 
 
 def test_validate_doi_from_guid():

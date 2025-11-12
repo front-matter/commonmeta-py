@@ -50,6 +50,20 @@ def write_inveniordm(metadata: Metadata) -> dict:
     """Write inveniordm"""
     if metadata is None or metadata.write_errors is not None:
         return {}
+    if is_rogue_scholar_doi(metadata.id, ra="crossref"):
+        pids = {
+            "doi": {
+                "identifier": doi_from_url(metadata.id),
+                "provider": "crossref",
+            },
+        }
+    elif is_rogue_scholar_doi(metadata.id, ra="datacite"):
+        # DataCite DOIs should not be provided in the InvenioRDM writer
+        pids = None
+    else:
+        pids = {
+            "doi": {"identifier": doi_from_url(metadata.id), "provider": "external"},
+        }
     _type = CM_TO_INVENIORDM_TRANSLATIONS.get(metadata.type, "Other")
     creators = [
         to_inveniordm_creator(i)
@@ -128,14 +142,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
     subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
     return compact(
         {
-            "pids": {
-                "doi": {
-                    "identifier": doi_from_url(metadata.id),
-                    "provider": "crossref"
-                    if is_rogue_scholar_doi(metadata.id, ra="crossref")
-                    else "external",
-                },
-            },
+            "pids": pids,
             "access": {"record": "public", "files": "public"},
             "files": {"enabled": False},
             "metadata": compact(

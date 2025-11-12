@@ -498,17 +498,18 @@ def unparse_xml_list(input: list | None, **kwargs) -> bytes | None:
     return xmltodict.unparse(output, **kwargs).encode("utf-8")
 
 
-def get_crossref_xml_head(metadata: dict) -> dict:
+def get_crossref_xml_head(obj: dict) -> dict:
     """Get head element for Crossref XML"""
 
     return {
-        "doi_batch_id": str(uuid.uuid4()),
-        "timestamp": datetime.now().strftime("%Y%m%d%H%M%S"),
+        "doi_batch_id": obj.get("doi_batch_id", None) or str(uuid.uuid4()),
+        "timestamp": obj.get("timestamp", None)
+        or datetime.now().strftime("%Y%m%d%H%M%S"),
         "depositor": {
-            "depositor_name": metadata.get("depositor", None) or "test",
-            "email_address": metadata.get("email", None) or "info@example.org",
+            "depositor_name": obj.get("depositor", None) or "test",
+            "email_address": obj.get("email", None) or "info@example.org",
         },
-        "registrant": metadata.get("registrant", None) or "test",
+        "registrant": obj.get("registrant", None) or "test",
     }
 
 
