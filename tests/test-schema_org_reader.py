@@ -19,7 +19,7 @@ def test_blog_posting():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
     assert subject.type == "BlogPost"
-    assert subject.url == "https://blog.front-matter.io/posts/eating-your-own-dog-food/"
+    assert subject.url == "https://blog.front-matter.de/posts/eating-your-own-dog-food/"
     assert subject.titles and subject.titles[0] == {"title": "Eating your own Dog Food"}
     assert subject.contributors and len(subject.contributors) == 1
     assert subject.contributors[0] == {
