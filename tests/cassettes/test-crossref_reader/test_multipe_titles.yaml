@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1007
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QwMDcyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        xkrz2jYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1007\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a76897adff671f-AMS
+      - 9a743cd4e9a20a77-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:01:39 GMT
+      - Mon, 01 Dec 2025 17:17:22 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=TuioncIE19z1%2F6k%2BgfdUiVHCpO3R4j%2F8jvB0bKWpT0b6znPEbEHo1YDLjHHnmh7sozgfHnNrqDp2CfaxR6qOjUKAckSGKky%2FkSKxMV375%2BjHkg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=I8vn2jVKOb5fMiZ3XGtpMXXOmHzjVOq7aE6WJri1g%2B0w%2B%2F3TZ1gZTxTrJWAIDA%2BsfRlQNHXSw4t8etW0lAa7c2PLhEj%2FctVnESXxPJxR%2BsahmA%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,63 +63,61 @@ interactions:
     uri: https://api.crossref.org/works/10.1007/s00120-007-1345-2
   response:
     body:
-      string: !!binary |
-        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
-        geu9cfUNtrnz6xd26n8X2wktoyQAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2023,9,13]],"date-time":"2023-09-13T18:21:04Z","timestamp":1694629264401},"reference-count":20,"publisher":"Springer
+        Science and Business Media LLC","issue":"7","license":[{"start":{"date-parts":[[2007,7,1]],"date-time":"2007-07-01T00:00:00Z","timestamp":1183248000000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.springer.com\/tdm"},{"start":{"date-parts":[[2007,7,1]],"date-time":"2007-07-01T00:00:00Z","timestamp":1183248000000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/www.springer.com\/tdm"}],"content-domain":{"domain":["link.springer.com"],"crossmark-restriction":false},"short-container-title":["Urologe"],"published-print":{"date-parts":[[2007,7]]},"DOI":"10.1007\/s00120-007-1345-2","type":"journal-article","created":{"date-parts":[[2007,4,13]],"date-time":"2007-04-13T09:57:50Z","timestamp":1176458270000},"page":"776-779","update-policy":"http:\/\/dx.doi.org\/10.1007\/springer_crossmark_policy","source":"Crossref","is-referenced-by-count":1,"title":["Penisverletzung
+        durch eine Moulinette","Penile injury caused by a Moulinette"],"prefix":"10.1007","volume":"46","author":[{"given":"M.","family":"Lehsnau","sequence":"first","affiliation":[]}],"member":"297","published-online":{"date-parts":[[2007,7,8]]},"reference":[{"key":"1345_CR1","doi-asserted-by":"crossref","first-page":"1143","DOI":"10.1016\/S0022-5347(17)35709-9","volume":"150","author":"Aboseif","year":"1993","unstructured":"Aboseif
+        S, Gomez R, Mc Aninch JW (1993) Genital self-mutilation. J Urol 150: 1143","journal-title":"J
+        Urol"},{"key":"1345_CR2","first-page":"717","volume":"16","author":"A Bigot","year":"1938","unstructured":"Bigot
+        A (1938) Recherches sur le penis des Tonkinois, suivies d\u00f9ne note sur
+        les automutilations genitals. Rev Med Franc d\u201aExtreme-Orient 16: 717","journal-title":"Rev
+        Med Franc d\u201aExtreme-Orient"},{"key":"1345_CR3","doi-asserted-by":"crossref","first-page":"35","DOI":"10.1080\/00926239608405304","volume":"22","author":"Catalona","year":"1996","unstructured":"Catalona
+        G, Morejon M, Alberts VA, Catalona MC (1996) Report of a case of male self-mutilation
+        and review of literature, with special emphasis on the effects of media. J
+        Sex Marital Ther 22: 35\u201346","journal-title":"J Sex Marital Ther"},{"key":"1345_CR4","first-page":"243","volume":"42","author":"Clark","year":"1981","unstructured":"Clark
+        RA (1981) Self-mutilation accompanying religious delusions: a case report
+        and review. J Clin Psychiatry 42: 243\u2013245","journal-title":"J Clin Psychiatry"},{"key":"1345_CR5","first-page":"682","volume":"36","author":"Conacher","year":"1991","unstructured":"Conacher
+        GN, Villeneuve D, Kane G (1991) Penile self mutilation presenting as rational
+        attempted suicide. Can J Psychiatry 36: 682\u2013685","journal-title":"Can
+        J Psychiatry"},{"key":"1345_CR6","doi-asserted-by":"publisher","first-page":"295","DOI":"10.1046\/j.1464-410x.2000.00438.x","volume":"85","author":"Eke","year":"2000","unstructured":"Eke
+        N (2000) Genital self-mutilation: there is no method in this madness. BJU
+        85: 295\u2013298","journal-title":"BJU"},{"key":"1345_CR7","doi-asserted-by":"crossref","first-page":"775","DOI":"10.1016\/S0022-5347(17)58190-2","volume":"118","author":"Evins","year":"1977","unstructured":"Evins
+        SC, Whittle T, Rous SN (1977) Self-emaskulation: review of literature, report
+        of a case and outline of the objectives of management. J Urol 118: 775\u2013776","journal-title":"J
+        Urol"},{"key":"1345_CR8","doi-asserted-by":"crossref","first-page":"441","DOI":"10.1001\/archpsyc.1979.01780040083009","volume":"36","author":"Greilsheimer","year":"1979","unstructured":"Greilsheimer
+        H, Groves JE (1979) Male genital self-mutilation. Arch Gen Psychiatry 36:
+        441\u2013446","journal-title":"Arch Gen Psychiatry"},{"key":"1345_CR9","first-page":"322","volume":"42","author":"Hall","year":"1981","unstructured":"Hall
+        DC, Lawson BZ, Wilson LG (1981) Command Hallucinations and self-amputation
+        of penis and hand a first psychotic break. J Clin Psychiatry 42: 322\u2013324","journal-title":"J
+        Clin Psychiatry"},{"key":"1345_CR10","doi-asserted-by":"crossref","first-page":"111","DOI":"10.3109\/00365598009181201","volume":"14","author":"Henriksson","year":"1980","unstructured":"Henriksson
+        TG, Hahne B, Hakelius L et al. (1980) Microsurgical replantation of en amputated
+        penis. Scand J Urol Nephrol 14: 111\u2013114","journal-title":"Scand J Urol
+        Nephrol"},{"key":"1345_CR11","doi-asserted-by":"crossref","first-page":"23","DOI":"10.1055\/s-2007-1006448","volume":"12","author":"Ishida","year":"1996","unstructured":"Ishida
+        O, Ikuta Y, Shirane T, Nkahara M (1996) Penile replantation after self-inflicted
+        complete amputation: case report. J Reconstr Microsurg 12: 23\u201326","journal-title":"J
+        Reconstr Microsurg"},{"key":"1345_CR12","doi-asserted-by":"crossref","first-page":"179","DOI":"10.1111\/j.2044-8341.1995.tb01824.x","volume":"68","author":"Krasucki","year":"1995","unstructured":"Krasucki
+        C, Kemp R, David A (1995) A case of female genital self-mutilation in schizophrenia.
+        Br J Med Psychol 68: 179\u2013186","journal-title":"Br J Med Psychol"},{"key":"1345_CR13","doi-asserted-by":"crossref","first-page":"208","DOI":"10.1016\/S0022-5347(17)55375-6","volume":"124","author":"Mora","year":"1980","unstructured":"Mora
+        W, Drach GW (1980) Self-emaskulation and self-castration: immediate surgical
+        management and ultimate psychological adjustment. J Urol 124: 208\u2013209","journal-title":"J
+        Urol"},{"key":"1345_CR14","doi-asserted-by":"publisher","first-page":"242","DOI":"10.1159\/000285000","volume":"29","author":"Nakaya","year":"1996","unstructured":"Nakaya
+        M (1996) On background factors of male genital self-mutilation. Psychopathology
+        29: 242\u2013248","journal-title":"Psychopathology"},{"key":"1345_CR15","first-page":"427","volume":"55","author":"Romilly","year":"1996","unstructured":"Romilly
+        CS, Isaac MT (1996) Male genital self-mutilation. Br J Hosp Med 55: 427\u2013431","journal-title":"Br
+        J Hosp Med"},{"key":"1345_CR16","doi-asserted-by":"crossref","first-page":"187","DOI":"10.1111\/j.2044-8341.1995.tb01825.x","volume":"68","author":"Shimizu","year":"1995","unstructured":"Shimizu
+        A, Mizuta I (1995) Male genital self-mutilation: a case report. Br J Med Psychol
+        68: 187\u2013189","journal-title":"Br J Med Psychol"},{"key":"1345_CR17","doi-asserted-by":"crossref","first-page":"143","DOI":"10.1177\/070674378002500208","volume":"25","author":"Stewart","year":"1980","unstructured":"Stewart
+        DE, Lowrey MR (1980) Replantation surgery following self-inflicted amputation.
+        Can J Psychiatry 25: 143\u2013150","journal-title":"Can J Psychiatry"},{"key":"1345_CR18","doi-asserted-by":"crossref","first-page":"270","DOI":"10.1001\/jama.1901.02470040048018","volume":"36","author":"Stroch","year":"1901","unstructured":"Stroch
+        D (1901) Self-castration. JAMA 36: 270","journal-title":"JAMA"},{"key":"1345_CR19","doi-asserted-by":"publisher","first-page":"287","DOI":"10.1097\/00006534-197708000-00028","volume":"60","author":"Tamai","year":"1977","unstructured":"Tamai
+        S, Nakamura Y, Motomiya Y (1977) Microsurgical replantation of a completely
+        amputated penis and scrotum: case report. Plast Reconstr Surg 60: 287\u2013291","journal-title":"Plast
+        Reconstr Surg"},{"key":"1345_CR20","doi-asserted-by":"crossref","first-page":"177","DOI":"10.1159\/000281702","volume":"45","author":"Wandschneider","year":"1990","unstructured":"Wandschneider
+        G, Hellbom B, Pummer K, Primus G (1990) Successful replantation of a totally
+        amputated penis by using microvascular techniques. Urol Int 45: 177\u2013180","journal-title":"Urol
+        Int"}],"container-title":["Der Urologe"],"original-title":[],"language":"de","link":[{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/link.springer.com\/article\/10.1007\/s00120-007-1345-2\/fulltext.html","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"http:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"},{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/s00120-007-1345-2.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2022,5,15]],"date-time":"2022-05-15T07:17:13Z","timestamp":1652599033000},"score":1,"resource":{"primary":{"URL":"https:\/\/link.springer.com\/10.1007\/s00120-007-1345-2"}},"subtitle":["Folge
+        einer autoerotischen Selbstverst\u00fcmmelung","Result of autoerotic self-mutilation"],"short-title":[],"issued":{"date-parts":[[2007,7]]},"references-count":20,"journal-issue":{"issue":"7","published-print":{"date-parts":[[2007,7]]}},"alternative-id":["1345"],"URL":"https:\/\/doi.org\/10.1007\/s00120-007-1345-2","relation":{},"ISSN":["0340-2592","1433-0563"],"issn-type":[{"value":"0340-2592","type":"print"},{"value":"1433-0563","type":"electronic"}],"subject":[],"published":{"date-parts":[[2007,7]]},"assertion":[{"value":"8
+        July 2007","order":1,"name":"first_online","label":"First Online","group":{"name":"ArticleHistory","label":"Article
+        History"}}]}}'
     headers:
       Connection:
       - keep-alive
@@ -130,7 +126,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:01:39 GMT
+      - Mon, 01 Dec 2025 17:17:22 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

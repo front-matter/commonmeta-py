@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a7682559a3661a-AMS
+      - 9a743c902a607638-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:01:20 GMT
+      - Mon, 01 Dec 2025 17:17:11 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=%2Bl1EOsG7GgAig0LkF9QdeEaFMT52aIoUL6Tis8wDtsbxXKUM0lFoFygnDD1%2BG1x%2FbVjGuYpvjm05WgnE81AMjbb%2Fi1ZhO9iR8nFVmMrxeVpfpw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Rml0JSQaOWHrKp4SvBeTFN5kRVXhHajf4isAPvWgfB%2BtzWyHlL0q10BZf0r0RLXdVxxsue%2BQeGQ0W9smEhWWVlfRi0%2FO40%2FJGHBT%2BJU5iPq9Mg%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,43 +63,31 @@ interactions:
     uri: https://api.crossref.org/works/10.53731/ybhah-9jy85
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
+        Matter"}],"indexed":{"date-parts":[[2025,11,27]],"date-time":"2025-11-27T13:34:39Z","timestamp":1764250479877,"version":"3.46.0"},"posted":{"date-parts":[[2023,10,4]]},"group-title":"Front
+        Matter","reference-count":3,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Newsletters
+        have been around forever, but their popularity has significantly increased
+        in the past few years, also thanks to platforms such as Ghost, Medium, and
+        Substack. Which of course also includes science newsletters. Failure of advertising
+        as a revenue model The most important driver of this trend is probably the
+        realization that advertising is a poor revenue model for content published
+        on the web, including blogs.<\/jats:p>","DOI":"10.53731\/ybhah-9jy85","type":"posted-content","created":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T08:48:19Z","timestamp":1696409299000},"source":"Crossref","is-referenced-by-count":0,"title":["The
+        rise of the (science) newsletter"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","unstructured":"Vidal
+        Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding
+        angst and uncertainty. <i>Nature<\/i>, <i>620<\/i>(7974), 482\u2013484.","DOI":"10.1038\/d41586-023-02554-0"},{"key":"ref2","doi-asserted-by":"publisher","unstructured":"Bilder,
+        G., Lin, J., &amp; Neylon, C. (2020). <i>The Principles of Open Scholarly
+        Infrastructure<\/i>. The Principles of Open Scholarly Infrastructure.","DOI":"10.24343\/c34w2h"},{"key":"ref3","doi-asserted-by":"publisher","unstructured":"Fenner,
+        M. (2023). The Rogue Scholar weekly newsletter launches on Wednesday. In <i>Front
+        Matter<\/i> (Version v1). Crossref.","DOI":"10.53731\/9cdnt-2k006"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2025,11,27]],"date-time":"2025-11-27T13:29:54Z","timestamp":1764250194000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,10,4]]},"references-count":3,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/ybhah-9jy85","relation":{},"subject":[],"published":{"date-parts":[[2023,10,4]]},"subtype":"other"}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1523'
+      - '1483'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:01:21 GMT
+      - Mon, 01 Dec 2025 17:17:11 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

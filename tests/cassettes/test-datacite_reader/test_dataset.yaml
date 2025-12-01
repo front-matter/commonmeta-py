@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.5061
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9UwMzQyUdiGiQI0jQJbEk0TmzJFUJKFjLFQsA
-        uS0EXjYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.5061\",\n    \"RA\": \"DataCite\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a76a29c92a0bba-AMS
+      - 9a743e5eff1dd919-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:02:43 GMT
+      - Mon, 01 Dec 2025 17:18:25 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=6%2BNth6VOKwKH9Ndwsa%2BrYK8ytiP2CA0Nrg9DaopcyvyrzIKA3DhHQ6LiWDVb3SQ8XHG6YjMOsMXkdT3ZFlJXQf8gTyPlY1maZgzNJQgoGcoicg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Jga4PZAd%2BzcRq8QufCRACwlxKx2ZZXu48oPb8Ofbs1WqBxZ38SpKN2Zhl%2BzTZREDzej8b4gJgr0%2BUKV26gwfJdm3LnGbOHfjQ03fL9Go6FlG%2BA%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,118 +63,54 @@ interactions:
     uri: https://api.datacite.org/dois/10.5061/dryad.8515?include=media,client
   response:
     body:
-      string: !!binary |
-        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
-        kCHY/vLtfwAAAP//AwB1Xb7Ak0kAAA==
+      string: "{\"data\":{\"id\":\"10.5061/dryad.8515\",\"type\":\"dois\",\"attributes\":{\"doi\":\"10.5061/dryad.8515\",\"prefix\":\"10.5061\",\"suffix\":\"dryad.8515\",\"identifiers\":[],\"alternateIdentifiers\":[],\"creators\":[{\"name\":\"Ollomo,
+        Benjamin\",\"nameType\":\"Personal\",\"givenName\":\"Benjamin\",\"familyName\":\"Ollomo\",\"affiliation\":[\"Centre
+        International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Durand,
+        Patrick\",\"nameType\":\"Personal\",\"givenName\":\"Patrick\",\"familyName\":\"Durand\",\"affiliation\":[\"Centre
+        National de la Recherche Scientifique\"],\"nameIdentifiers\":[]},{\"name\":\"Prugnolle,
+        Franck\",\"nameType\":\"Personal\",\"givenName\":\"Franck\",\"familyName\":\"Prugnolle\",\"affiliation\":[\"Centre
+        National de la Recherche Scientifique\"],\"nameIdentifiers\":[]},{\"name\":\"Douzery,
+        Emmanuel J. P.\",\"nameType\":\"Personal\",\"givenName\":\"Emmanuel J. P.\",\"familyName\":\"Douzery\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Arnathau,
+        C\xE9line\",\"nameType\":\"Personal\",\"givenName\":\"C\xE9line\",\"familyName\":\"Arnathau\",\"affiliation\":[\"Centre
+        National de la Recherche Scientifique\"],\"nameIdentifiers\":[]},{\"name\":\"Nkoghe,
+        Dieudonn\xE9\",\"nameType\":\"Personal\",\"givenName\":\"Dieudonn\xE9\",\"familyName\":\"Nkoghe\",\"affiliation\":[\"Centre
+        International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Leroy,
+        Eric\",\"nameType\":\"Personal\",\"givenName\":\"Eric\",\"familyName\":\"Leroy\",\"affiliation\":[\"Centre
+        International de Recherches M\xE9dicales de Franceville\"],\"nameIdentifiers\":[]},{\"name\":\"Renaud,
+        Fran\xE7ois\",\"nameType\":\"Personal\",\"givenName\":\"Fran\xE7ois\",\"familyName\":\"Renaud\",\"affiliation\":[\"Centre
+        National de la Recherche Scientifique\"],\"nameIdentifiers\":[]}],\"titles\":[{\"title\":\"Data
+        from: A new malaria agent in African hominids.\"}],\"publisher\":\"Dryad\",\"container\":{},\"publicationYear\":2011,\"subjects\":[{\"subject\":\"Plasmodium\",\"schemeUri\":\"https://github.com/PLOS/plos-thesaurus\",\"subjectScheme\":\"PLOS
+        Subject Area Thesaurus\"},{\"subject\":\"Malaria\",\"schemeUri\":\"https://github.com/PLOS/plos-thesaurus\",\"subjectScheme\":\"PLOS
+        Subject Area Thesaurus\"},{\"subject\":\"mitochondrial genome\"},{\"subject\":\"Parasites\"}],\"contributors\":[],\"dates\":[{\"date\":\"2011-02-01T13:09:15Z\",\"dateType\":\"Submitted\"},{\"date\":\"2011-02-01T17:22:41Z\",\"dateType\":\"Issued\"},{\"date\":\"2011-02-01T17:22:41Z\",\"dateType\":\"Available\"}],\"language\":\"en\",\"types\":{\"ris\":\"DATA\",\"bibtex\":\"misc\",\"citeproc\":\"dataset\",\"schemaOrg\":\"Dataset\",\"resourceType\":\"dataset\",\"resourceTypeGeneral\":\"Dataset\"},\"relatedIdentifiers\":[{\"relationType\":\"IsCitedBy\",\"relatedIdentifier\":\"10.1371/journal.ppat.1000446\",\"relatedIdentifierType\":\"DOI\"}],\"relatedItems\":[],\"sizes\":[\"128717
+        bytes\"],\"formats\":[],\"version\":\"1\",\"rightsList\":[{\"rights\":\"Creative
+        Commons Zero v1.0 Universal\",\"rightsUri\":\"https://creativecommons.org/publicdomain/zero/1.0/legalcode\",\"schemeUri\":\"https://spdx.org/licenses/\",\"rightsIdentifier\":\"cc0-1.0\",\"rightsIdentifierScheme\":\"SPDX\"}],\"descriptions\":[{\"description\":\"Plasmodium
+        falciparum is the major human malaria agent responsible for 200\\n to 300
+        million infections and one to three million deaths annually, mainly\\n among
+        African infants. The origin and evolution of this pathogen within\\n the human
+        lineage is still unresolved. A single species, P. reichenowi,\\n which infects
+        chimpanzees, is known to be a close sister lineage of P.\\n falciparum. Here
+        we report the discovery of a new Plasmodium species\\n infecting Hominids.
+        This new species has been isolated in two chimpanzees\\n (Pan troglodytes)
+        kept as pets by villagers in Gabon (Africa). Analysis of\\n its complete mitochondrial
+        genome (5529 nucleotides including Cyt b, Cox I\\n and Cox III genes) reveals
+        an older divergence of this lineage from the\\n clade that includes P. falciparum
+        and P. reichenowi (approximately 21+/-9\\n Myrs ago using Bayesian methods
+        and considering that the divergence\\n between P. falciparum and P. reichenowi
+        occurred 4 to 7 million years ago\\n as generally considered in the literature).
+        This time frame would be\\n congruent with the radiation of hominoids, suggesting
+        that this Plasmodium\\n lineage might have been present in early hominoids
+        and that they may both\\n have experienced a simultaneous diversification.
+        Investigation of the\\n nuclear genome of this new species will further the
+        understanding of the\\n genetic adaptations of P. falciparum to humans. The
+        risk of transfer and\\n emergence of this new species in humans must be now
+        seriously considered\\n given that it was found in two chimpanzees living
+        in contact with humans\\n and its close relatedness to the most virulent agent
+        of malaria.\",\"descriptionType\":\"Abstract\"},{\"description\":\"Ollomo_PLoSPathog_2009Nucleotide
+        alignment concatenation of 4\\n mitochondrial genes for 17 Plasmodium species
+        and one\\n outgroup.Ollomo_PLoSPathog_2009_PHYMLMaximum likelihood tree inferred
+        from\\n the 4-gene concatenation using PHYML.\",\"descriptionType\":\"Other\"}],\"geoLocations\":[{\"geoLocationPlace\":\"Africa\"}],\"fundingReferences\":[],\"xml\":\"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNTA2MS9EUllBRC44NTE1PC9pZGVudGlmaWVyPgogIDxjcmVhdG9ycz4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5PbGxvbW8sIEJlbmphbWluPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAxd3lxYjk5NyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgSW50ZXJuYXRpb25hbCBkZSBSZWNoZXJjaGVzIE3DqWRpY2FsZXMgZGUgRnJhbmNldmlsbGU8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkR1cmFuZCwgUGF0cmljazwvY3JlYXRvck5hbWU+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMmZlYWh3NzMiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZyI+Q2VudHJlIE5hdGlvbmFsIGRlIGxhIFJlY2hlcmNoZSBTY2llbnRpZmlxdWU8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPlBydWdub2xsZSwgRnJhbmNrPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAyZmVhaHc3MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgTmF0aW9uYWwgZGUgbGEgUmVjaGVyY2hlIFNjaWVudGlmaXF1ZTwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+RG91emVyeSwgRW1tYW51ZWwgSi4gUC48L2NyZWF0b3JOYW1lPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkFybmF0aGF1LCBDw6lsaW5lPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAyZmVhaHc3MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgTmF0aW9uYWwgZGUgbGEgUmVjaGVyY2hlIFNjaWVudGlmaXF1ZTwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+TmtvZ2hlLCBEaWV1ZG9ubsOpPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAxd3lxYjk5NyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgSW50ZXJuYXRpb25hbCBkZSBSZWNoZXJjaGVzIE3DqWRpY2FsZXMgZGUgRnJhbmNldmlsbGU8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkxlcm95LCBFcmljPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAxd3lxYjk5NyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgSW50ZXJuYXRpb25hbCBkZSBSZWNoZXJjaGVzIE3DqWRpY2FsZXMgZGUgRnJhbmNldmlsbGU8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPlJlbmF1ZCwgRnJhbsOnb2lzPC9jcmVhdG9yTmFtZT4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAyZmVhaHc3MyIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnIj5DZW50cmUgTmF0aW9uYWwgZGUgbGEgUmVjaGVyY2hlIFNjaWVudGlmaXF1ZTwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgPC9jcmVhdG9ycz4KICA8dGl0bGVzPgogICAgPHRpdGxlPkRhdGEgZnJvbTogQSBuZXcgbWFsYXJpYSBhZ2VudCBpbiBBZnJpY2FuIGhvbWluaWRzLjwvdGl0bGU+CiAgPC90aXRsZXM+CiAgPHB1Ymxpc2hlciBwdWJsaXNoZXJJZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDB4Nmg1bjk1IiBwdWJsaXNoZXJJZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnLyI+RHJ5YWQ8L3B1Ymxpc2hlcj4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IkRhdGFzZXQiPmRhdGFzZXQ8L3Jlc291cmNlVHlwZT4KICA8cHVibGljYXRpb25ZZWFyPjIwMTE8L3B1YmxpY2F0aW9uWWVhcj4KICA8c3ViamVjdHM+CiAgICA8c3ViamVjdCBzdWJqZWN0U2NoZW1lPSJQTE9TIFN1YmplY3QgQXJlYSBUaGVzYXVydXMiIHNjaGVtZVVSST0iaHR0cHM6Ly9naXRodWIuY29tL1BMT1MvcGxvcy10aGVzYXVydXMiPlBsYXNtb2RpdW08L3N1YmplY3Q+CiAgICA8c3ViamVjdCBzdWJqZWN0U2NoZW1lPSJQTE9TIFN1YmplY3QgQXJlYSBUaGVzYXVydXMiIHNjaGVtZVVSST0iaHR0cHM6Ly9naXRodWIuY29tL1BMT1MvcGxvcy10aGVzYXVydXMiPk1hbGFyaWE8L3N1YmplY3Q+CiAgICA8c3ViamVjdD5taXRvY2hvbmRyaWFsIGdlbm9tZTwvc3ViamVjdD4KICAgIDxzdWJqZWN0PlBhcmFzaXRlczwvc3ViamVjdD4KICA8L3N1YmplY3RzPgogIDxkYXRlcz4KICAgIDxkYXRlIGRhdGVUeXBlPSJTdWJtaXR0ZWQiPjIwMTEtMDItMDFUMTM6MDk6MTVaPC9kYXRlPgogICAgPGRhdGUgZGF0ZVR5cGU9Iklzc3VlZCI+MjAxMS0wMi0wMVQxNzoyMjo0MVo8L2RhdGU+CiAgICA8ZGF0ZSBkYXRlVHlwZT0iQXZhaWxhYmxlIj4yMDExLTAyLTAxVDE3OjIyOjQxWjwvZGF0ZT4KICA8L2RhdGVzPgogIDxsYW5ndWFnZT5lbjwvbGFuZ3VhZ2U+CiAgPHJlbGF0ZWRJZGVudGlmaWVycz4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGlvblR5cGU9IklzQ2l0ZWRCeSIgcmVsYXRlZElkZW50aWZpZXJUeXBlPSJET0kiPmh0dHBzOi8vZG9pLm9yZy8xMC4xMzcxL2pvdXJuYWwucHBhdC4xMDAwNDQ2PC9yZWxhdGVkSWRlbnRpZmllcj4KICA8L3JlbGF0ZWRJZGVudGlmaWVycz4KICA8c2l6ZXM+CiAgICA8c2l6ZT4xMjg3MTcgYnl0ZXM8L3NpemU+CiAgPC9zaXplcz4KICA8dmVyc2lvbj4xPC92ZXJzaW9uPgogIDxyaWdodHNMaXN0PgogICAgPHJpZ2h0cyByaWdodHNVUkk9Imh0dHBzOi8vc3BkeC5vcmcvbGljZW5zZXMvQ0MwLTEuMC5odG1sIj5DcmVhdGl2ZSBDb21tb25zIFplcm8gdjEuMCBVbml2ZXJzYWw8L3JpZ2h0cz4KICA8L3JpZ2h0c0xpc3Q+CiAgPGRlc2NyaXB0aW9ucz4KICAgIDxkZXNjcmlwdGlvbiBkZXNjcmlwdGlvblR5cGU9IkFic3RyYWN0Ij4KICAgICAgUGxhc21vZGl1bSBmYWxjaXBhcnVtIGlzIHRoZSBtYWpvciBodW1hbiBtYWxhcmlhIGFnZW50IHJlc3BvbnNpYmxlIGZvciAyMDAKICAgICAgdG8gMzAwIG1pbGxpb24gaW5mZWN0aW9ucyBhbmQgb25lIHRvIHRocmVlIG1pbGxpb24gZGVhdGhzIGFubnVhbGx5LCBtYWlubHkKICAgICAgYW1vbmcgQWZyaWNhbiBpbmZhbnRzLiBUaGUgb3JpZ2luIGFuZCBldm9sdXRpb24gb2YgdGhpcyBwYXRob2dlbiB3aXRoaW4KICAgICAgdGhlIGh1bWFuIGxpbmVhZ2UgaXMgc3RpbGwgdW5yZXNvbHZlZC4gQSBzaW5nbGUgc3BlY2llcywgUC4gcmVpY2hlbm93aSwKICAgICAgd2hpY2ggaW5mZWN0cyBjaGltcGFuemVlcywgaXMga25vd24gdG8gYmUgYSBjbG9zZSBzaXN0ZXIgbGluZWFnZSBvZiBQLgogICAgICBmYWxjaXBhcnVtLiBIZXJlIHdlIHJlcG9ydCB0aGUgZGlzY292ZXJ5IG9mIGEgbmV3IFBsYXNtb2RpdW0gc3BlY2llcwogICAgICBpbmZlY3RpbmcgSG9taW5pZHMuIFRoaXMgbmV3IHNwZWNpZXMgaGFzIGJlZW4gaXNvbGF0ZWQgaW4gdHdvIGNoaW1wYW56ZWVzCiAgICAgIChQYW4gdHJvZ2xvZHl0ZXMpIGtlcHQgYXMgcGV0cyBieSB2aWxsYWdlcnMgaW4gR2Fib24gKEFmcmljYSkuIEFuYWx5c2lzIG9mCiAgICAgIGl0cyBjb21wbGV0ZSBtaXRvY2hvbmRyaWFsIGdlbm9tZSAoNTUyOSBudWNsZW90aWRlcyBpbmNsdWRpbmcgQ3l0IGIsIENveCBJCiAgICAgIGFuZCBDb3ggSUlJIGdlbmVzKSByZXZlYWxzIGFuIG9sZGVyIGRpdmVyZ2VuY2Ugb2YgdGhpcyBsaW5lYWdlIGZyb20gdGhlCiAgICAgIGNsYWRlIHRoYXQgaW5jbHVkZXMgUC4gZmFsY2lwYXJ1bSBhbmQgUC4gcmVpY2hlbm93aSAoYXBwcm94aW1hdGVseSAyMSsvLTkKICAgICAgTXlycyBhZ28gdXNpbmcgQmF5ZXNpYW4gbWV0aG9kcyBhbmQgY29uc2lkZXJpbmcgdGhhdCB0aGUgZGl2ZXJnZW5jZQogICAgICBiZXR3ZWVuIFAuIGZhbGNpcGFydW0gYW5kIFAuIHJlaWNoZW5vd2kgb2NjdXJyZWQgNCB0byA3IG1pbGxpb24geWVhcnMgYWdvCiAgICAgIGFzIGdlbmVyYWxseSBjb25zaWRlcmVkIGluIHRoZSBsaXRlcmF0dXJlKS4gVGhpcyB0aW1lIGZyYW1lIHdvdWxkIGJlCiAgICAgIGNvbmdydWVudCB3aXRoIHRoZSByYWRpYXRpb24gb2YgaG9taW5vaWRzLCBzdWdnZXN0aW5nIHRoYXQgdGhpcyBQbGFzbW9kaXVtCiAgICAgIGxpbmVhZ2UgbWlnaHQgaGF2ZSBiZWVuIHByZXNlbnQgaW4gZWFybHkgaG9taW5vaWRzIGFuZCB0aGF0IHRoZXkgbWF5IGJvdGgKICAgICAgaGF2ZSBleHBlcmllbmNlZCBhIHNpbXVsdGFuZW91cyBkaXZlcnNpZmljYXRpb24uIEludmVzdGlnYXRpb24gb2YgdGhlCiAgICAgIG51Y2xlYXIgZ2Vub21lIG9mIHRoaXMgbmV3IHNwZWNpZXMgd2lsbCBmdXJ0aGVyIHRoZSB1bmRlcnN0YW5kaW5nIG9mIHRoZQogICAgICBnZW5ldGljIGFkYXB0YXRpb25zIG9mIFAuIGZhbGNpcGFydW0gdG8gaHVtYW5zLiBUaGUgcmlzayBvZiB0cmFuc2ZlciBhbmQKICAgICAgZW1lcmdlbmNlIG9mIHRoaXMgbmV3IHNwZWNpZXMgaW4gaHVtYW5zIG11c3QgYmUgbm93IHNlcmlvdXNseSBjb25zaWRlcmVkCiAgICAgIGdpdmVuIHRoYXQgaXQgd2FzIGZvdW5kIGluIHR3byBjaGltcGFuemVlcyBsaXZpbmcgaW4gY29udGFjdCB3aXRoIGh1bWFucwogICAgICBhbmQgaXRzIGNsb3NlIHJlbGF0ZWRuZXNzIHRvIHRoZSBtb3N0IHZpcnVsZW50IGFnZW50IG9mIG1hbGFyaWEuCiAgICA8L2Rlc2NyaXB0aW9uPgogICAgPGRlc2NyaXB0aW9uIGRlc2NyaXB0aW9uVHlwZT0iT3RoZXIiPgogICAgICBPbGxvbW9fUExvU1BhdGhvZ18yMDA5TnVjbGVvdGlkZSBhbGlnbm1lbnQgY29uY2F0ZW5hdGlvbiBvZiA0CiAgICAgIG1pdG9jaG9uZHJpYWwgZ2VuZXMgZm9yIDE3IFBsYXNtb2RpdW0gc3BlY2llcyBhbmQgb25lCiAgICAgIG91dGdyb3VwLk9sbG9tb19QTG9TUGF0aG9nXzIwMDlfUEhZTUxNYXhpbXVtIGxpa2VsaWhvb2QgdHJlZSBpbmZlcnJlZCBmcm9tCiAgICAgIHRoZSA0LWdlbmUgY29uY2F0ZW5hdGlvbiB1c2luZyBQSFlNTC4KICAgIDwvZGVzY3JpcHRpb24+CiAgPC9kZXNjcmlwdGlvbnM+CiAgPGdlb0xvY2F0aW9ucz4KICAgIDxnZW9Mb2NhdGlvbj4KICAgICAgPGdlb0xvY2F0aW9uUGxhY2U+QWZyaWNhPC9nZW9Mb2NhdGlvblBsYWNlPgogICAgPC9nZW9Mb2NhdGlvbj4KICA8L2dlb0xvY2F0aW9ucz4KPC9yZXNvdXJjZT4=\",\"url\":\"https://datadryad.org/dataset/doi:10.5061/dryad.8515\",\"contentUrl\":null,\"metadataVersion\":27,\"schemaVersion\":\"http://datacite.org/schema/kernel-4\",\"source\":\"mds\",\"isActive\":true,\"state\":\"findable\",\"reason\":null,\"viewCount\":417,\"viewsOverTime\":[{\"yearMonth\":\"2014-11\",\"total\":1},{\"yearMonth\":\"2015-03\",\"total\":4},{\"yearMonth\":\"2015-04\",\"total\":4},{\"yearMonth\":\"2015-05\",\"total\":3},{\"yearMonth\":\"2015-08\",\"total\":8},{\"yearMonth\":\"2015-09\",\"total\":4},{\"yearMonth\":\"2015-11\",\"total\":1},{\"yearMonth\":\"2016-01\",\"total\":2},{\"yearMonth\":\"2016-04\",\"total\":2},{\"yearMonth\":\"2016-08\",\"total\":1},{\"yearMonth\":\"2017-01\",\"total\":19},{\"yearMonth\":\"2017-02\",\"total\":26},{\"yearMonth\":\"2017-03\",\"total\":13},{\"yearMonth\":\"2017-04\",\"total\":8},{\"yearMonth\":\"2017-05\",\"total\":8},{\"yearMonth\":\"2017-06\",\"total\":5},{\"yearMonth\":\"2017-08\",\"total\":2},{\"yearMonth\":\"2017-09\",\"total\":5},{\"yearMonth\":\"2018-01\",\"total\":4},{\"yearMonth\":\"2018-02\",\"total\":1},{\"yearMonth\":\"2018-04\",\"total\":1},{\"yearMonth\":\"2018-10\",\"total\":2},{\"yearMonth\":\"2018-12\",\"total\":1},{\"yearMonth\":\"2019-01\",\"total\":2},{\"yearMonth\":\"2019-02\",\"total\":1},{\"yearMonth\":\"2019-04\",\"total\":5},{\"yearMonth\":\"2019-05\",\"total\":1},{\"yearMonth\":\"2019-06\",\"total\":2},{\"yearMonth\":\"2019-07\",\"total\":2},{\"yearMonth\":\"2019-08\",\"total\":1},{\"yearMonth\":\"2019-10\",\"total\":4},{\"yearMonth\":\"2019-12\",\"total\":3},{\"yearMonth\":\"2020-01\",\"total\":3},{\"yearMonth\":\"2020-02\",\"total\":4},{\"yearMonth\":\"2020-03\",\"total\":1},{\"yearMonth\":\"2020-04\",\"total\":4},{\"yearMonth\":\"2020-05\",\"total\":6},{\"yearMonth\":\"2020-07\",\"total\":6},{\"yearMonth\":\"2020-08\",\"total\":1},{\"yearMonth\":\"2020-09\",\"total\":2},{\"yearMonth\":\"2020-10\",\"total\":4},{\"yearMonth\":\"2020-11\",\"total\":4},{\"yearMonth\":\"2020-12\",\"total\":2},{\"yearMonth\":\"2021-01\",\"total\":11},{\"yearMonth\":\"2021-02\",\"total\":1},{\"yearMonth\":\"2021-03\",\"total\":2},{\"yearMonth\":\"2021-04\",\"total\":6},{\"yearMonth\":\"2021-06\",\"total\":6},{\"yearMonth\":\"2021-07\",\"total\":3},{\"yearMonth\":\"2021-08\",\"total\":3},{\"yearMonth\":\"2021-09\",\"total\":1},{\"yearMonth\":\"2021-10\",\"total\":7},{\"yearMonth\":\"2021-11\",\"total\":3},{\"yearMonth\":\"2022-01\",\"total\":1},{\"yearMonth\":\"2022-02\",\"total\":4},{\"yearMonth\":\"2022-03\",\"total\":8},{\"yearMonth\":\"2022-04\",\"total\":2},{\"yearMonth\":\"2022-07\",\"total\":1},{\"yearMonth\":\"2022-09\",\"total\":2},{\"yearMonth\":\"2022-10\",\"total\":3},{\"yearMonth\":\"2022-11\",\"total\":3},{\"yearMonth\":\"2022-12\",\"total\":8},{\"yearMonth\":\"2023-01\",\"total\":11},{\"yearMonth\":\"2023-03\",\"total\":1},{\"yearMonth\":\"2023-04\",\"total\":2},{\"yearMonth\":\"2023-05\",\"total\":5},{\"yearMonth\":\"2023-06\",\"total\":2},{\"yearMonth\":\"2023-07\",\"total\":3},{\"yearMonth\":\"2023-08\",\"total\":42},{\"yearMonth\":\"2023-09\",\"total\":48},{\"yearMonth\":\"2023-10\",\"total\":9},{\"yearMonth\":\"2023-11\",\"total\":5},{\"yearMonth\":\"2023-12\",\"total\":5},{\"yearMonth\":\"2024-06\",\"total\":1},{\"yearMonth\":\"2024-08\",\"total\":1},{\"yearMonth\":\"2024-10\",\"total\":1},{\"yearMonth\":\"2024-11\",\"total\":2},{\"yearMonth\":\"2025-01\",\"total\":2},{\"yearMonth\":\"2025-03\",\"total\":1},{\"yearMonth\":\"2025-04\",\"total\":1},{\"yearMonth\":\"2025-05\",\"total\":4},{\"yearMonth\":\"2025-07\",\"total\":3},{\"yearMonth\":\"2025-08\",\"total\":2},{\"yearMonth\":\"2025-09\",\"total\":1},{\"yearMonth\":\"2025-10\",\"total\":5},{\"yearMonth\":\"2025-11\",\"total\":2}],\"downloadCount\":35,\"downloadsOverTime\":[{\"yearMonth\":\"2014-11\",\"total\":1},{\"yearMonth\":\"2015-03\",\"total\":1},{\"yearMonth\":\"2015-04\",\"total\":2},{\"yearMonth\":\"2015-08\",\"total\":2},{\"yearMonth\":\"2015-09\",\"total\":2},{\"yearMonth\":\"2017-02\",\"total\":2},{\"yearMonth\":\"2017-04\",\"total\":2},{\"yearMonth\":\"2017-05\",\"total\":2},{\"yearMonth\":\"2017-06\",\"total\":1},{\"yearMonth\":\"2019-10\",\"total\":1},{\"yearMonth\":\"2020-02\",\"total\":1},{\"yearMonth\":\"2020-05\",\"total\":1},{\"yearMonth\":\"2020-11\",\"total\":1},{\"yearMonth\":\"2021-01\",\"total\":5},{\"yearMonth\":\"2021-02\",\"total\":1},{\"yearMonth\":\"2022-10\",\"total\":1},{\"yearMonth\":\"2022-12\",\"total\":1},{\"yearMonth\":\"2023-01\",\"total\":1},{\"yearMonth\":\"2023-03\",\"total\":1},{\"yearMonth\":\"2023-11\",\"total\":1},{\"yearMonth\":\"2023-12\",\"total\":1},{\"yearMonth\":\"2024-06\",\"total\":0},{\"yearMonth\":\"2024-08\",\"total\":0},{\"yearMonth\":\"2024-10\",\"total\":0},{\"yearMonth\":\"2024-11\",\"total\":0},{\"yearMonth\":\"2025-01\",\"total\":0},{\"yearMonth\":\"2025-03\",\"total\":0},{\"yearMonth\":\"2025-04\",\"total\":0},{\"yearMonth\":\"2025-05\",\"total\":3},{\"yearMonth\":\"2025-07\",\"total\":0},{\"yearMonth\":\"2025-08\",\"total\":1},{\"yearMonth\":\"2025-09\",\"total\":0},{\"yearMonth\":\"2025-10\",\"total\":0},{\"yearMonth\":\"2025-11\",\"total\":0}],\"referenceCount\":1,\"citationCount\":1,\"citationsOverTime\":[{\"year\":\"2019\",\"total\":1}],\"partCount\":2,\"partOfCount\":0,\"versionCount\":0,\"versionOfCount\":0,\"created\":\"2011-11-22T18:34:51.000Z\",\"registered\":\"2011-02-01T17:32:02.000Z\",\"published\":\"2011\",\"updated\":\"2025-07-21T19:52:52.000Z\"},\"relationships\":{\"client\":{\"data\":{\"id\":\"dryad.dryad\",\"type\":\"clients\"}},\"provider\":{\"data\":{\"id\":\"dryad\",\"type\":\"providers\"}},\"media\":{\"data\":{\"id\":\"10.5061/dryad.8515\",\"type\":\"media\"}},\"references\":{\"data\":[{\"id\":\"10.1371/journal.ppat.1000446\",\"type\":\"dois\"}]},\"citations\":{\"data\":[{\"id\":\"10.1371/journal.ppat.1000446\",\"type\":\"dois\"}]},\"parts\":{\"data\":[{\"id\":\"10.5061/dryad.8515/1\",\"type\":\"dois\"},{\"id\":\"10.5061/dryad.8515/2\",\"type\":\"dois\"}]},\"partOf\":{\"data\":[]},\"versions\":{\"data\":[]},\"versionOf\":{\"data\":[]}}},\"included\":[{\"id\":\"dryad.dryad\",\"type\":\"clients\",\"attributes\":{\"name\":\"DRYAD\",\"symbol\":\"DRYAD.DRYAD\",\"year\":2018,\"alternateName\":null,\"description\":\"Dryad
+        is an open data publishing platform and a community committed to the open
+        availability and routine re-use of all research data.\",\"language\":[],\"clientType\":\"repository\",\"domains\":\"*\",\"re3data\":\"https://doi.org/10.17616/R34S33\",\"opendoar\":null,\"issn\":{},\"url\":\"https://datadryad.org\",\"created\":\"2018-04-24T20:59:15.000Z\",\"updated\":\"2024-08-20T14:34:38.000Z\",\"isActive\":true},\"relationships\":{\"provider\":{\"data\":{\"id\":\"dryad\",\"type\":\"providers\"}},\"prefixes\":{\"data\":[{\"id\":\"10.5061\",\"type\":\"prefixes\"},{\"id\":\"10.15146\",\"type\":\"prefixes\"}]}}}]}"
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -195,13 +129,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 06 Oct 2025 19:02:43 GMT
+      - Mon, 01 Dec 2025 17:18:25 GMT
       ETag:
-      - W/"8ff403cac55d98e50b7f4629ea10ce41"
+      - W/"b0bb291bab861e12dffdfaf689fef39f"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.1.0
+      - nginx/1.24.0 + Phusion Passenger(R) 6.1.0
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -219,9 +153,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.1.0
       X-Request-Id:
-      - 720d8306-4bf6-42ed-aae2-85d596b0eba8
+      - dcdabfb4-a427-4460-9c2e-5427b7c4c357
       X-Runtime:
-      - '0.036101'
+      - '0.036325'
       X-XSS-Protection:
       - '0'
     status:

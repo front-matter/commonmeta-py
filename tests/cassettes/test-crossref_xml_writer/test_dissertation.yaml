@@ -14,21 +14,13 @@ interactions:
     uri: https://api.crossref.org/works/10.14264/uql.2020.791
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/6VUy47bMAz8FUNn25FjOw9fu5cCLdp9XbrJQZGZRK0sefXYbRDk30vaaTdoN6cC
-        QSCIIoczHPrIfBAhetYw+4OlrAPvxQ6ycOgB716tu7x9AeeVNRgocp7ztwhrjkwZH1SIYXjwdGRG
-        dFTiYQ/Jo1FDajgkdpvcRgDjtTAtFmihFy50YAImsXu5t1bTo3srldDJvVRgJLD1aZ0iQgs/oSWw
-        VgTIKBM7f3qa8mmd1mlRrfHVEApqAKdAxuusqB541ZTTppx/Q1CKIu+uZ00xr+bFcl7U86riKXtj
-        WOYVz2t2SpmDLTjqIpM2Up/4ro8brfweHL68xi75pDZOuAMCSmsCUsxa2wllBgLn0xN2LJ31vhPu
-        R+awLafkqOFWaA+I7/fWhYxKYAY45BY0jJk3Xz7SMHheVNNZtZrEZ50jZ57PlwXxHKfYKu/B4Zyp
-        LMEBSvS+jDydpYt3VOQZn2V88cDrhi+aevG3ivUSf9NlueCcY8ui7519uYpRp9N6vSZqNjpJEB9I
-        AhQayyqf/VG8zTaHC9V/M//tk+CiMPKQkNhbZfBMniGb9IB/WCBpo1Nml0AHbkcH0UYdMLltEpFo
-        a3Zo2RZTNRYR+uCVpyE6kKD6QEeq7UArQdWsSaTwewQWxmOPnqFUPbarfl7MAUmIiCBu2IMvdx8+
-        3mB0H0Lvm9VkNbFOqja3breaoFwoLedlVvLFLKuqqjxno12UpDllw3PWIFlI2Q69Rvb8KsgoSiSf
-        hQPAnK3olD6QlFZrZPqKHPHaw3McNqhhW+V8oOrbrUI+50UdNquDbjN4uS4X87Nf/zGbdWpHSl3e
-        odIWnf9/blpec9NydJOX1mFmQXA7YosO+Lq/SfDTgvOiEeDenJ10xHGojrYOj493n87CD7qD74WE
-        XI9rmcfnHNqYi7iavCh4XU0eb5tpKQqYV+xEsHFzwXTcwosLXKr4Hm8TtR7M/cfF/sLCby2NXmit
-        Gp1wdYnRfOdZHcemvoMMw+BOvwBEv/22vgUAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"The
+        University of Queensland","department":["School of Social Science"]}],"indexed":{"date-parts":[[2025,5,14]],"date-time":"2025-05-14T04:32:37Z","timestamp":1747197157440,"version":"3.40.5"},"reference-count":0,"publisher":"University
+        of Queensland Library","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"DOI":"10.14264\/uql.2020.791","type":"dissertation","created":{"date-parts":[[2020,6,8]],"date-time":"2020-06-08T05:08:58Z","timestamp":1591592938000},"approved":{"date-parts":[[2020,5,25]]},"source":"Crossref","is-referenced-by-count":0,"title":["School
+        truancy and financial independence during emerging adulthood: a longitudinal
+        analysis of receipt of and reliance on cash transfers"],"prefix":"10.14264","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-3086-4443","authenticated-orcid":true,"given":"Patricia
+        Maree","family":"Collingwood","sequence":"first","affiliation":[]}],"member":"5387","container-title":[],"original-title":[],"deposited":{"date-parts":[[2020,6,8]],"date-time":"2020-06-08T05:08:59Z","timestamp":1591592939000},"score":1,"degree":["PhD
+        Thesis"],"resource":{"primary":{"URL":"http:\/\/espace.library.uq.edu.au\/view\/UQ:23a1e74"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[null]]},"references-count":0,"URL":"https:\/\/doi.org\/10.14264\/uql.2020.791","relation":{},"subject":[]}}'
     headers:
       Connection:
       - keep-alive
@@ -37,7 +29,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:33 GMT
+      - Mon, 01 Dec 2025 17:18:11 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

@@ -127,7 +127,6 @@ def test_inveniordm_presentation():
     assert subject.type == "Presentation"
 
     schema_org = subject.write(to="schema_org")
-    print(subject.write_errors)
     assert subject.is_valid
     assert schema_org is not None
     schema_org = json.loads(schema_org)

@@ -110,7 +110,7 @@ def test_journal_article():
         {"identifier": "https://elifesciences.org/articles/01567", "scheme": "url"}
     ]
     related_identifiers = dig(inveniordm, "metadata.related_identifiers")
-    assert len(related_identifiers) == 3
+    assert len(related_identifiers) == 1
     assert related_identifiers[0] == {
         "identifier": "10.5061/dryad.b835k",
         "relation_type": {
@@ -196,8 +196,9 @@ def test_rogue_scholar():
     )
     assert dig(inveniordm, "metadata.subjects") == [
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-            "subject": "Computer and information sciences",
+            "id": "https://openalex.org/subfields/1710",
+            "subject": "Information Systems",
+            "scheme": "Subfields",
         },
         {"subject": "Rogue Scholar"},
     ]
@@ -212,7 +213,7 @@ def test_rogue_scholar():
             "scheme": "guid",
         },
         {
-            "identifier": "https://blog.front-matter.io/posts/rogue-scholar-learns-about-communities/",
+            "identifier": "https://blog.front-matter.de/posts/rogue-scholar-learns-about-communities/",
             "scheme": "url",
         },
     ]
@@ -298,8 +299,9 @@ def test_from_jsonfeed():
     )
     assert dig(inveniordm, "metadata.subjects") == [
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
-            "subject": "Languages and literature",
+            "id": "https://openalex.org/subfields/1203",
+            "subject": "Language and Linguistics",
+            "scheme": "Subfields",
         },
         {"subject": "Linguistics"},
         {"subject": "Threads"},
@@ -378,8 +380,9 @@ def test_from_jsonfeed_affiliations():
     )
     assert dig(inveniordm, "metadata.subjects") == [
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-            "subject": "Computer and information sciences",
+            "id": "https://openalex.org/subfields/1710",
+            "subject": "Information Systems",
+            "scheme": "Subfields",
         },
         {"subject": "Lab Life"},
         {"subject": "Research"},
@@ -434,10 +437,7 @@ def test_from_jsonfeed_dates():
     assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         "<p>I was lucky enough to have Phil Mannion as one of the peer-reviewers"
     )
-    assert (
-        dig(inveniordm, "custom_fields.rs:image")
-        == "https://svpow.wordpress.com/wp-content/uploads/2018/08/figure-a-different-kinds-of-horizontal.jpeg?w=480&h=261"
-    )
+    assert dig(inveniordm, "custom_fields.rs:image") is None
 
 
 @pytest.mark.vcr
@@ -561,7 +561,7 @@ def test_from_jsonfeed_references():
     )
     assert (
         dig(inveniordm, "custom_fields.rs:image")
-        == "https://blog.front-matter.io/content/images/2023/09/cat_and_dog-1.png"
+        == "https://blog.front-matter.de/content/images/2023/09/cat_and_dog-1.png"
     )
 
 

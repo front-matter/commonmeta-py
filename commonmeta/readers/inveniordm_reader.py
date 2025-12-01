@@ -6,7 +6,7 @@ import requests
 from furl import furl
 
 from ..author_utils import get_authors
-from ..base_utils import compact, dig, omit, presence, sanitize, wrap
+from ..base_utils import compact, dig, omit, presence, sanitize, scrub, wrap
 from ..constants import (
     COMMONMETA_RELATION_TYPES,
     INVENIORDM_TO_CM_TRANSLATIONS,
@@ -15,11 +15,9 @@ from ..constants import (
 from ..date_utils import strip_milliseconds
 from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi, validate_prefix
 from ..utils import (
-    dict_to_fos,
     dict_to_spdx,
     from_inveniordm,
     get_language,
-    name_to_fos,
     normalize_doi,
     normalize_ror,
     normalize_url,
@@ -71,8 +69,8 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     )
     _type = INVENIORDM_TO_CM_TRANSLATIONS.get(resource_type, "Other")
 
-    contrib = wrap(
-        dig(meta, "metadata.creators") + wrap(dig(meta, "metadata.contributors"))
+    contrib = wrap(dig(meta, "metadata.creators")) + wrap(
+        dig(meta, "metadata.contributors")
     )
     contributors = get_authors(
         from_inveniordm(contrib),
@@ -158,9 +156,9 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     license_ = dig(meta, "metadata.rights.0.id") or dig(meta, "metadata.license.id")
     if license_:
         license_ = dict_to_spdx({"id": license_})
-    subjects = [dict_to_fos(i) for i in wrap(dig(meta, "metadata.subjects"))] or [
-        name_to_fos(i) for i in wrap(dig(meta, "metadata.keywords"))
-    ]
+    subjects = get_subjects(
+        wrap(dig(meta, "metadata.subjects")) + wrap(dig(meta, "metadata.keywords"))
+    )
     references = get_references(wrap(dig(meta, "metadata.references")))
     # fallback to related_identifiers
     if len(references) == 0:
@@ -336,6 +334,35 @@ def get_funding_references(funding_references: list) -> list:
         )
 
     return [map_funding(i) for i in funding_references]
+
+
+def get_subjects(subjects: list) -> list:
+    """get_subjects/keywords. Can be list of dicts (Subjects: InvenioRDM) or list of strings (Keywords: Zenodo)."""
+
+    def get_subject(subject: dict) -> dict | None:
+        if isinstance(subject, str):
+            return {"subject": subject}
+        if not isinstance(subject, dict) or subject.get("subject", None) is None:
+            return None
+
+        if subject.get("id", None) is not None:
+            return {"id": subject.get("id"), "subject": subject.get("subject")}
+
+        if subject.get("scheme", None) == "FOS":
+            subj_str = f"FOS: {subject.get('subject')}"
+        elif subject.get("scheme", None) == "Domains":
+            subj_str = f"Domain: {subject.get('subject')}"
+        elif subject.get("scheme", None) == "Fields":
+            subj_str = f"Field: {subject.get('subject')}"
+        elif subject.get("scheme", None) == "Subfields":
+            subj_str = f"Subfield: {subject.get('subject')}"
+        elif subject.get("scheme", None) == "Topics":
+            subj_str = f"Topic: {subject.get('subject')}"
+        else:
+            subj_str = subject.get("subject")
+        return {"subject": subj_str}
+
+    return scrub([get_subject(i) for i in subjects])
 
 
 def get_file(file: dict) -> dict | None:

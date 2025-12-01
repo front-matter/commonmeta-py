@@ -88,7 +88,7 @@ def test_wordpress_with_references():
         "url": "https://api.rogue-scholar.org/posts/10.59350/hke8v-d1e66.md",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Earth and related environmental sciences"},
+        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
         {"subject": "MTE14"},
         {"subject": "Barosaurus"},
         {"subject": "Cervical"},
@@ -113,7 +113,7 @@ def test_post_with_relationships():
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
     assert (
-        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+        subject.url == "https://blog.front-matter.de/posts/introducing-the-pid-graph/"
     )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
@@ -141,7 +141,7 @@ def test_post_with_relationships():
     assert subject.references[0] == {
         "id": "https://doi.org/10.5438/s6d3-k860",
         "type": "Document",
-        "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). <i>Are your data being used? Event Data has the answer!</i> (1.0). DataCite. https://doi.org/10.5438/s6d3-k860",
+        "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). Are your data being used? Event Data has the answer!. In <i>DataCite Blog</i> (1.0). DataCite. https://doi.org/10.5438/s6d3-k860",
     }
     assert subject.funding_references == [
         {
@@ -186,7 +186,7 @@ def test_post_with_relationships():
     )
     assert (
         subject.image
-        == "https://blog.front-matter.io/content/images/2022/08/pid_graph_image-1.webp"
+        == "https://blog.front-matter.de/content/images/2022/08/pid_graph_image-1.webp"
     )
     assert subject.state == "stale"
 
@@ -306,7 +306,7 @@ def test_post_with_relationships_as_doi():
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
     assert subject.type == "BlogPost"
     assert (
-        subject.url == "https://blog.front-matter.io/posts/introducing-the-pid-graph/"
+        subject.url == "https://blog.front-matter.de/posts/introducing-the-pid-graph/"
     )
     assert subject.titles[0] == {"title": "Introducing the PID Graph"}
     assert len(subject.contributors) == 1
@@ -466,7 +466,7 @@ def test_post_with_more_funding():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/new-datacite-orcid-integration-tool/"
+        == "https://blog.front-matter.de/posts/new-datacite-orcid-integration-tool/"
     )
     assert subject.references is None
     assert subject.relations == [
@@ -714,7 +714,10 @@ def test_ghost_with_institutional_author():
         "url": "https://api.rogue-scholar.org/posts/10.59350/tfahc-rp566.md",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Computer and information sciences"},
+        {
+            "id": "https://openalex.org/subfields/1802",
+            "subject": "Information Systems and Management",
+        },
         {"subject": "OA.Report"},
     ]
     assert subject.language == "en"
@@ -738,7 +741,7 @@ def test_ghost_with_affiliations():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/auto-generating-links-to-data-and-resources/"
+        == "https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/"
     )
     assert subject.titles[0] == {"title": "Auto generating links to data and resources"}
     assert len(subject.contributors) == 1
@@ -805,7 +808,7 @@ def test_ghost_with_affiliations():
         "url": "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16.md",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Computer and information sciences"},
+        {"id": "https://openalex.org/subfields/1710", "subject": "Information Systems"},
         {"subject": "Feature"},
     ]
     assert subject.language == "en"
@@ -885,7 +888,7 @@ def test_ghost_with_personal_name_parsing():
         "url": "https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45.md",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Clinical medicine"},
+        {"id": "https://openalex.org/subfields/2746", "subject": "Surgery"},
         {"subject": "Preprint"},
     ]
     assert subject.language == "en"
@@ -1027,6 +1030,71 @@ def test_post_with_contributor_roles():
     }
     assert subject.content.startswith("<p>Our own dev guide")
     assert subject.image is None
+
+
+@pytest.mark.vcr
+def test_post_subfield_classification():
+    "post subfield classification"
+    string = "https://api.rogue-scholar.org/posts/10.59350/qsajq-6tn97"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/qsajq-6tn97"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
+    )
+    assert subject.titles[0] == {
+        "title": "Video of the 2024 SSP debate: “The open access movement has failed”"
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "Readers with good memories will remember that back in May last year"
+        )
+    )
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
+        {"subject": "Conferences"},
+        {"subject": "Debate"},
+        {"subject": "Open Access"},
+        {"subject": "SSP"},
+        {"subject": "Stinkin' Publishers"},
+    ]
+
+
+@pytest.mark.vcr
+def test_post_topic_classification():
+    "post topic classification"
+    string = "https://api.rogue-scholar.org/posts/10.59350/rjt2m-2hy19"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/rjt2m-2hy19"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://danielskatzblog.wordpress.com/2024/08/20/supporting-core-research-softtware-work/"
+    )
+    assert subject.titles[0] == {
+        "title": "Supporting the core work in research software"
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("(Please cite this post as")
+    )
+    assert subject.subjects == [
+        {
+            "id": "https://openalex.org/subfields/1802",
+            "subject": "Information Systems and Management",
+        },
+        {
+            "id": "https://openalex.org/T11986",
+            "subject": "Scientific Computing and Data Management",
+        },
+        {"subject": "RSE"},
+    ]
 
 
 @pytest.mark.vcr

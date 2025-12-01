@@ -442,7 +442,13 @@ def test_jsonfeed_with_references():
     string = "https://api.rogue-scholar.org/posts/954f8138-0ecd-4090-87c5-cef1297f1470"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.54900/zwm7q-vet94"
-    assert subject.subjects == [{"subject": "FOS: Humanities"}, {"subject": "News"}]
+    assert subject.subjects == [
+        {
+            "id": "https://openalex.org/subfields/1802",
+            "subject": "Information Systems and Management",
+        },
+        {"subject": "News"},
+    ]
     assert len(subject.references) == 11
     assert subject.references[0] == {
         "id": "https://www.software.ac.uk/blog/2014-12-04-its-impossible-conduct-research-without-software-say-7-out-10-uk-researchers",
@@ -496,7 +502,10 @@ def test_jsonfeed_with_doi():
     subject = Metadata(string, doi="10.59350/kz04m-s8z58")
     assert subject.id == "https://doi.org/10.59350/kz04m-s8z58"
     assert subject.subjects == [
-        {"subject": "FOS: Social science"},
+        {
+            "id": "https://openalex.org/subfields/1802",
+            "subject": "Information Systems and Management",
+        },
         {"subject": "Open Access"},
         {"subject": "Open Access Transformation"},
         {"subject": "Open Science"},
@@ -1008,7 +1017,7 @@ def test_inveniordm_record_with_references():
     }
     assert subject.references[1] == {
         "id": "https://doi.org/10.64000/4s2ee-wkr84",
-        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Front Matter</i>.",
+        "unstructured": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
     }
     assert subject.state == "findable"
 

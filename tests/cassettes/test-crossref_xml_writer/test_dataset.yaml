@@ -14,22 +14,12 @@ interactions:
     uri: https://api.crossref.org/works/10.2210/pdb4hhb/pdb
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/4VUa0/jMBD8K5E/J8F5lLSRTqcC5SEBQSXVHQfVyY1d6qOJc7ZD6KH+91snpS2P
-        glSpzno9np2d9TNSmuhKoRiJB2SjnClF7pmjFyWDWC3kdvSRScVFARuei1282UHxM+KF0lxXukm4
-        hW+6/kMzrUsV3+3d7UkhXSHv7/ZwGP1ddKKwCyicvlw4TIbwTZRiUjPqTBYQK6vJnKsZk2g5tlFB
-        cpP4Q8g5rTll1pUUmvHCOiKaWAekMIRJJkWxyIEAquurowM0Nkd5QdkTo4YsJZo5JZEaKr+99bHf
-        sTu2H4whq9nSvLnFbDi44/hBisO4g+Ow9wvgzS7olpco9qIw6kWdbtgLop6NNgoFbggioSUAMpVJ
-        XrbCoCdHkoVF+XQqSWZiltKyynQlGSBLNmWSFRlzMlEVGsXY3qr/q7IzUWhWaIeKnPCiqXO1uoXC
-        QBOlciIfHAnsJc9aRlMyVwxoqpmQ2jEQcIJJkEDP2erkCrcqjTgfCxgaAf3xeLkhTJ1SclPE23Sv
-        1w3tyPaiJv0oOTOOwq7ve/hur6STcDabNAujdWsMACCKaVOkZLtI4H3bszvvm4j3HexBH1OM4wD6
-        2H3bRC/YD33P73UxxkYKUcnMHD00kkFPjEeVs26OMeZLgzyD1CqF0tOBdTi8uU7759Z1OhwdpqPh
-        wEqOrdPRRf/SOhokP29O+4OL5OQ8OTi7tPqp5blRaPUvTyA9ubi2hoPr5HyUniWXCKoo4Ub+tBHH
-        OLvS0Kdmsu75IzOOOnEhPiU5n5tpOWYy5xBQ7G9luEJoyqUyypHplM85WU0oSL/BuHCPX6FcMVnp
-        f69hCKXcnCXzD7DG5i3IJ41Jo2g/2HLjzoY1Ngjs1gXvjfep2eE+Ifk9BzbbTqWsFIrv8mhn5dEd
-        Q+6nXhT78As+GvIg7IbByh+ZgGk1rYdJWnnlGbrFYboWZjkanr969eq6dusaDN2+fbD4zuk3+PsN
-        gNjYHS0NbjVZF98Exy9juVUiV6r6Us21VdXWQ/KWFRW85bNr9iSbrzr83LL7wzLdsljP+KdElsv/
-        mVKcdmEGAAA=
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"id":[{"id":"https:\/\/ror.org\/047qy5748","id-type":"ROR","asserted-by":"publisher"}],"name":"Worldwide
+        Protein Data Bank","acronym":["wwPDB"]}],"indexed":{"date-parts":[[2025,5,23]],"date-time":"2025-05-23T04:50:49Z","timestamp":1747975849379,"version":"3.41.0"},"description":"x-ray
+        diffraction structure","reference-count":0,"publisher":"Worldwide Protein
+        Data Bank","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"content-updated":{"date-parts":[[2024,5,22]]},"published-print":{"date-parts":[[1984,7,17]]},"DOI":"10.2210\/pdb4hhb\/pdb","type":"dataset","created":{"date-parts":[[2006,1,5]],"date-time":"2006-01-05T00:34:58Z","timestamp":1136421298000},"source":"Crossref","is-referenced-by-count":1,"title":["THE
+        CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"],"prefix":"10.2210","author":[{"given":"G.","family":"Fermi","sequence":"first","affiliation":[]},{"given":"M.F.","family":"Perutz","sequence":"additional","affiliation":[]}],"member":"7763","content-created":{"date-parts":[[1984,3,7]]},"container-title":["Worldwide
+        Protein Data Bank"],"original-title":[],"deposited":{"date-parts":[[2025,5,22]],"date-time":"2025-05-22T17:27:23Z","timestamp":1747934843000},"score":1,"resource":{"primary":{"URL":"https:\/\/www.wwpdb.org\/pdb?id=pdb_00004hhb"}},"subtitle":["4hhb"],"short-title":[],"issued":{"date-parts":[[1984,3,7]]},"references-count":0,"URL":"https:\/\/doi.org\/10.2210\/pdb4hhb\/pdb","relation":{},"subject":[],"published":{"date-parts":[[1984,3,7]]}}}'
     headers:
       Connection:
       - keep-alive
@@ -38,7 +28,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:29 GMT
+      - Mon, 01 Dec 2025 17:18:08 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

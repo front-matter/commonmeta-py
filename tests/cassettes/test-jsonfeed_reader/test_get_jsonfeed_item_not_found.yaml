@@ -14,25 +14,36 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/notfound
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAE/6tWSi0qyi9SslJyzFMAMxXyk5NLi1JT9JRquQAqh03AHgAAAA==
+      string: '<!doctype html>
+
+        <html lang=en>
+
+        <title>429 Too Many Requests</title>
+
+        <h1>Too Many Requests</h1>
+
+        <p>This user has exceeded an allotted request count. Try again later.</p>
+
+        '
     headers:
       content-encoding:
       - gzip
       content-type:
-      - application/json
+      - text/html; charset=utf-8
       date:
-      - Fri, 17 Oct 2025 09:28:26 GMT
+      - Mon, 01 Dec 2025 17:18:53 GMT
       fly-request-id:
-      - 01K7RQZH60CGXHFM5T9QTE8T6E-ams
+      - 01KBDES9WKWB2J9TBZS1KXPQSG-ams
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '1'
+      - '0'
       ratelimit-reset:
-      - '52'
+      - '56'
+      retry-after:
+      - '0'
       server:
-      - Fly/31563e821d (2025-10-15)
+      - Fly/0dca8e971 (2025-11-29)
       transfer-encoding:
       - chunked
       vary:
@@ -40,6 +51,6 @@ interactions:
       via:
       - 1.1 fly.io, 1.1 fly.io
     status:
-      code: 400
+      code: 429
       message: ''
 version: 1

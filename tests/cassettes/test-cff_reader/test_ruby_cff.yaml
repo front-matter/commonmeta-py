@@ -14,27 +14,41 @@ interactions:
     uri: https://raw.githubusercontent.com/citation-file-format/ruby-cff/main/CITATION.cff
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA5VW247bNhB911cMkJcWCGVJa1uSn7rxdpttbkV2gyKPtDSyCNOiQFJ2nL/pY78j
-        P9Yh5cvWVhPXsCGZHM71cM68gKdaGJg/PN0+PXx4HxZVBZWQCFtuoNDILZaw2IHuFjvmNn/aQBze
-        hNHPYfACfsP1DGprWzMbjZzIEtcmVHo5ci8jkieh+f39SagQlluhGuaMsErpNbfhUti6W4RCjYKA
-        zrANakMyM7KUhFGwRmP4EmfwUMFOddAZPPkjGremYav06iW0EjntkhUEYUlSNEuwNUKlpFRb92+N
-        lpfc8sAKK0npR9LkfIS3YqG53gV8YazmhZ31qZH9MrRabUSJBnh/RDQWdcULBKtgzRvRdpKyBfN9
-        hHDv0njvI/QpNQHvbK20mQUMKr4WcscaTsHN4DUXDe0DLMUGm8PqR7VAbWlV6UKUpxz6vz7LEX0Y
-        /RKWT24yluZxTuK8InPCO+FiQPjUCJ9SuwNVwTveFDUa8v4lfHpDvjhzvWCfi6EA7nCDUrWkJVjh
-        jpJd+jBcGehBQCmFpRejKrvl2lfAK3EyaJDroj5uPpcznbEUPF+Qx9apOpaHHXX0gOyxQstUq+AZ
-        QgiLQakEvUbhJMni0VdsVKnCOM7GUZoGpAyZRg8MSmISJWMWRyyZBlIU2BgK/bbllBHmsKaxVZQo
-        pXeMaysqj4PvI/zZkUKVeBLfw7pQ60HYjw4YJg0VamwK9Dm1u5aUHJMFsAfqUF1ctQ+gAjiH1Z3u
-        zMoLnSHr0WJb88Zv/BBcN2ycJxOWJuNswMZjy/nKXJr4vdNacN7A6/A6MwlLo+mYjaNpPmBmXncI
-        r1WzvLT0HoW81kSWpVOWTqPpgInjJfyva/i/L+K5hVd8hXogVe5xrf5kmiVsmifJkH7p1A6Uu3Xg
-        0teaiBN6i6d55g/gmgtJeOx1hAtv45elW3XQHnDjTyGlWNbUsgd8+XWprsRdzNLJOGFRkg1V649v
-        f2v8yh67b3/R89LOHadufS3AozQbU1Kj3B/Y4oLu87OLXLamRinUiagGHHqjGrXhUm0ufbmV+IU3
-        5bUViNkkyXN2k+SuyMQ5DTUigYc73vcHanleG5ns8LL5UVTxuA+HOKvQoj3RQaGoki319A8Prqt6
-        fiyIH7Hw7YW2XUt2XMmlhH2rNY46nORQGwqvdmwSp3F+kw47tjdFE8dz1/ar/TDwIy9O5OQ8GmQQ
-        t+E45ELA+KVLCvO1PlPw+fbd23+LnzGZ27tkPm+zJ0vq3MdB42L8oimDVLaSFILFL/sBAraEP6g7
-        mjYYEKBo7ChqalpEb8SZC3nymaaT3lkfGyXy4EEIc+IoSv2BzqHgTrqQHS1TZtduoqKn0HAkNkGm
-        aciRaEHRFh1aNWoLNf1ouVBaE3Tkrh+7+rMne36Ioq+rGjWRgqBcnPz6Xi0vmTtmUcb8LT1y93zO
-        Xn1mY6JugLO58R8cBf463AoAAA==
+      string: "# This CITATION.cff file was created by ruby-cff (v 1.3.0).\n# Gem:
+        https://rubygems.org/gems/cff\n# CFF: https://citation-file-format.github.io/\n\ncff-version:
+        1.2.0\nmessage: If you use ruby-cff in your work, please cite it using the
+        following metadata\ntitle: Ruby CFF Library\nabstract: This library provides
+        a Ruby interface to manipulate Citation File Format files\nauthors:\n- family-names:
+        Haines\n  given-names: Robert\n  orcid: https://orcid.org/0000-0002-9538-7919\n
+        \ affiliation: The University of Manchester, UK\n- name: The Ruby Citation
+        File Format Developers\nkeywords:\n- ruby\n- credit\n- software citation\n-
+        research software\n- software sustainability\n- metadata\n- citation file
+        format\n- CFF\nversion: 1.3.0\ndoi: 10.5281/zenodo.1184077\ndate-released:
+        2024-10-26\nlicense: Apache-2.0\nrepository-artifact: https://rubygems.org/gems/cff\nrepository-code:
+        https://github.com/citation-file-format/ruby-cff\nreferences:\n- type: software\n
+        \ title: Citation File Format\n  authors:\n  - family-names: Druskat\n    given-names:
+        Stephan\n    orcid: https://orcid.org/0000-0003-4925-7248\n  - family-names:
+        Spaaks\n    given-names: Jurriaan H.\n    orcid: https://orcid.org/0000-0002-7064-4069\n
+        \ - family-names: Chue Hong\n    given-names: Neil\n    orcid: https://orcid.org/0000-0002-8876-7606\n
+        \ - family-names: Haines\n    given-names: Robert\n    orcid: https://orcid.org/0000-0002-9538-7919\n
+        \ - family-names: Baker\n    given-names: James\n    orcid: https://orcid.org/0000-0002-2682-6922\n
+        \ - family-names: Bliven\n    given-names: Spencer\n    orcid: https://orcid.org/0000-0002-1200-1698\n
+        \   email: spencer.bliven@gmail.com\n  - family-names: Willighagen\n    given-names:
+        Egon\n    orcid: https://orcid.org/0000-0001-7542-0286\n  - family-names:
+        P\xE9rez-Su\xE1rez\n    given-names: David\n    orcid: https://orcid.org/0000-0003-0784-6909\n
+        \   website: https://dpshelio.github.io\n  - family-names: Konovalov\n    given-names:
+        Alexander\n    orcid: https://orcid.org/0000-0001-5299-3292\n  identifiers:\n
+        \ - type: doi\n    value: 10.5281/zenodo.1003149\n    description: The concept
+        DOI for the collection containing all versions of the Citation File Format.\n
+        \ - type: doi\n    value: 10.5281/zenodo.5171937\n    description: The versioned
+        DOI for the version 1.2.0 of the Citation File Format.\n  keywords:\n  - citation
+        file format\n  - CFF\n  - citation files\n  - software citation\n  - file
+        format\n  - YAML\n  - software sustainability\n  - research software\n  -
+        credit\n  abstract: CITATION.cff files are plain text files with human- and
+        machine-readable citation information for software. Code developers can include
+        them in their repositories to let others know how to correctly cite their
+        software. This is the specification for the Citation File Format.\n  date-released:
+        2021-08-09\n  license: CC-BY-4.0\n  version: 1.2.0\n"
     headers:
       Accept-Ranges:
       - bytes
@@ -55,11 +69,11 @@ interactions:
       Cross-Origin-Resource-Policy:
       - cross-origin
       Date:
-      - Mon, 06 Oct 2025 19:00:56 GMT
+      - Mon, 01 Dec 2025 17:16:56 GMT
       ETag:
       - W/"b707311b24cdde980e6f97a7176125c516b02f320216ac8d116815d7b9a04b56"
       Expires:
-      - Mon, 06 Oct 2025 19:05:56 GMT
+      - Mon, 01 Dec 2025 17:21:56 GMT
       Source-Age:
       - '0'
       Strict-Transport-Security:
@@ -69,21 +83,21 @@ interactions:
       Via:
       - 1.1 varnish
       X-Cache:
-      - HIT
+      - MISS
       X-Cache-Hits:
       - '0'
       X-Content-Type-Options:
       - nosniff
       X-Fastly-Request-ID:
-      - 4dff0fd9cd57b4beaf9a239bb98a0257212ae859
+      - 1c1241949cad43eabce19a130b510b01c3786cbb
       X-Frame-Options:
       - deny
       X-GitHub-Request-Id:
-      - 1519:368F28:27DF3A:2D263A:68E41093
+      - 0AE1:325237:84C2CE:902A29:692DCD88
       X-Served-By:
-      - cache-fra-etou8220085-FRA
+      - cache-fra-etou8220030-FRA
       X-Timer:
-      - S1759777256.403785,VS0,VE127
+      - S1764609417.604572,VS0,VE173
       X-XSS-Protection:
       - 1; mode=block
     status:

@@ -314,8 +314,10 @@ def is_rogue_scholar_doi(doi: str | None, ra: str = "crossref") -> bool:
         "10.59349",
         "10.59350",
         "10.63485",
+        "10.63517",
         "10.64000",
         "10.64395",
+        "10.65527",
     ]
     rogue_scholar_datacite_prefixes = [
         "10.5438",  # not managed by Front Matter

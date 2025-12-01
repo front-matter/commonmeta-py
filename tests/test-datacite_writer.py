@@ -237,7 +237,7 @@ def test_rdataone():
 
 def test_from_schema_org():
     """Schema.org"""
-    subject = Metadata("https://blog.front-matter.io/posts/eating-your-own-dog-food/")
+    subject = Metadata("https://blog.front-matter.de/posts/eating-your-own-dog-food/")
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
 
     datacite = subject.write(to="datacite")
@@ -246,7 +246,7 @@ def test_from_schema_org():
     assert datacite["doi"] == "10.53731/r79vxn1-97aq74v-ag58n"
     assert (
         datacite["url"]
-        == "https://blog.front-matter.io/posts/eating-your-own-dog-food/"
+        == "https://blog.front-matter.de/posts/eating-your-own-dog-food/"
     )
     assert datacite["titles"] == [{"title": "Eating your own Dog Food"}]
     assert datacite["creators"] == [

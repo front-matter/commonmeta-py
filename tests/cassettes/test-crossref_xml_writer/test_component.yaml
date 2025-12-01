@@ -14,25 +14,17 @@ interactions:
     uri: https://api.crossref.org/works/10.1371/journal.pmed.0030277.g001
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/42SQY/aMBCF/wryqSvFYWwTQnLdXiohddWllwKH4BjwbhJHttOCEP+9Y8J2o4VK
-        e7NmPM/ve54Tcb7wnSM5Ma8kIrVyrtgp6o+twtofY4fV38o6bRpssBhieO+Q/ER0U6qDKsOxLLyi
-        bWE96i6XHDiPRCTYeh31La/roB4aFAQVbMFFLnieiF+oGbroqm5JzqaTWTrNklTMGDtHxKqtsqqR
-        ikrTNZ7kEJG221Ta7ZVFxadwlqO53tjCHkdmO3qWOtwffXmam+cHVJem8arxtDR1oZuL2+tpifak
-        Nc7VhX2lFj1YLf2Fd1tUTuH7bm+sp0ECJ5RFEF+pfvLr928hF4iZSNlq/GI62xRV3NaqjAEE8DSN
-        dwAsAPbhSlO3pkEvwZVVGMzd8FgSMYg43KbHEsqAclhwyIHlLPuY3mSSoBmeZgAQ3KMnGUYfAyVm
-        ide1o/9CLenmOAh2ANfiHX1457v8fL25ZC4mcI31JhNj9U5jCsNaqVrj9P9YZ4GVZXdYZ4GVZQuO
-        oCKf8I+siciymZhyfmWVxuIkCzvzxn1CDo2fewzHnz/mKLz3vnX5arwal4e4rYyLjd2txp/4xnN4
-        pNsMyPrlGBS0c909zqarqvV6uM5uEPuNMaM/bSpIVkW/s6fe4IuSPtg5n/8ChGnQdewDAAA=
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,11,21]],"date-time":"2025-11-21T07:01:58Z","timestamp":1763708518882,"version":"3.45.0"},"reference-count":0,"publisher":"Public
+        Library of Science (PLoS)","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"DOI":"10.1371\/journal.pmed.0030277.g001","type":"component","created":{"date-parts":[[2015,10,20]],"date-time":"2015-10-20T16:01:19Z","timestamp":1445356879000},"source":"Crossref","is-referenced-by-count":0,"title":[],"prefix":"10.1371","member":"340","container-title":[],"original-title":[],"deposited":{"date-parts":[[2018,10,19]],"date-time":"2018-10-19T17:13:42Z","timestamp":1539969222000},"score":1,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.pmed.0030277.g001"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[null]]},"references-count":0,"URL":"https:\/\/doi.org\/10.1371\/journal.pmed.0030277.g001","relation":{},"subject":[]}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '509'
+      - '516'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:31 GMT
+      - Mon, 01 Dec 2025 17:18:09 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

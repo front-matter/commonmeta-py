@@ -40,14 +40,15 @@ interactions:
         "https://rogue-scholar.org/api/records/pevm6-kx104/access", "communities":
         "https://rogue-scholar.org/api/records/pevm6-kx104/communities", "communities-suggestions":
         "https://rogue-scholar.org/api/records/pevm6-kx104/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/pevm6-kx104/request-deletion",
         "requests": "https://rogue-scholar.org/api/records/pevm6-kx104/requests"},
         "revision_id": 5, "parent": {"id": "sfw0f-2fe65", "access": {"owned_by": {"user":
         "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests": false,
         "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["f34e2211-9904-4b58-97ab-0beeb79ef6f7", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
         "default": "f34e2211-9904-4b58-97ab-0beeb79ef6f7", "entries": [{"id": "f34e2211-9904-4b58-97ab-0beeb79ef6f7",
-        "created": "2024-10-02T21:49:29.951598+00:00", "updated": "2025-10-06T07:37:45.711839+00:00",
-        "links": {}, "revision_id": 406, "slug": "musings", "metadata": {"title":
+        "created": "2024-10-02T21:49:29.951598+00:00", "updated": "2025-12-01T14:11:05.076394+00:00",
+        "links": {}, "revision_id": 463, "slug": "musings", "metadata": {"title":
         "Aaron Tay''s Musings about librarianship", "description": "Aaron Tay''s thoughts
         about academic librarianship", "type": {"id": "blog"}, "website": "https://aarontay.substack.com/"},
         "access": {"visibility": "public", "members_visibility": "public", "member_policy":
@@ -55,9 +56,9 @@ interactions:
         {"rs:feed_url": "https://aarontay.substack.com/feed", "rs:prefix": "10.59350",
         "rs:joined": "October 12, 2023", "rs:feed_format": "application/atom+xml",
         "rs:generator": "Substack", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Other social sciences"}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
+        "rs:language": "English", "rs:category": "Information Systems and Management"},
+        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
         "updated": "2025-06-30T16:00:21.647937+00:00", "links": {}, "revision_id":
         6, "slug": "othersocialsciences", "metadata": {"title": "Other social sciences",
         "description": "Other social sciences subject area.", "type": {"id": "subject"}},
@@ -293,19 +294,20 @@ interactions:
         0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
         0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
         {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        11, "unique_views": 9, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 11, "unique_views": 9, "downloads": 0, "unique_downloads":
+        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
         0, "data_volume": 0.0}}}'
     headers:
       Content-Length:
-      - '30240'
+      - '30341'
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org www.youtube.com
-        player.vimeo.com www.blogger.com www.canva.com; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
+        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
+        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:57 GMT
+      - Mon, 01 Dec 2025 17:18:43 GMT
       Etag:
       - '"5"'
       Link:
@@ -315,7 +317,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '26'
+      - '19'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -329,7 +331,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '496'
       X-Ratelimit-Reset:
-      - '1759777404'
+      - '1764609543'
       X-Xss-Protection:
       - 1; mode=block
     status:

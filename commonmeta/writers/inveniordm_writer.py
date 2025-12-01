@@ -30,7 +30,6 @@ from ..constants import (
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
 from ..utils import (
-    FOS_MAPPINGS,
     get_language,
     id_from_url,
     normalize_url,
@@ -57,9 +56,9 @@ def write_inveniordm(metadata: Metadata) -> dict:
                 "provider": "crossref",
             },
         }
-    elif is_rogue_scholar_doi(metadata.id, ra="datacite"):
-        # DataCite DOIs should not be provided in the InvenioRDM writer
-        pids = None
+    # elif is_rogue_scholar_doi(metadata.id, ra="datacite"):
+    #     # DataCite DOIs should not be provided in the InvenioRDM writer
+    #     pids = None
     else:
         pids = {
             "doi": {"identifier": doi_from_url(metadata.id), "provider": "external"},
@@ -286,21 +285,27 @@ def to_inveniordm_contributor(contributor: dict) -> dict:
 
 
 def to_inveniordm_subject(sub: dict) -> dict | None:
-    """Convert subject to inveniordm subject"""
+    """Convert subject to inveniordm subject. Adds scheme based on id pattern."""
     if sub.get("subject", None) is None:
         return None
-    elif str(sub.get("subject")).startswith("FOS: "):
-        subject = str(sub.get("subject"))[5:]
-        id_ = FOS_MAPPINGS.get(subject, None)
-        return compact(
-            {
-                "id": id_,
-                "subject": subject,
-            }
-        )
+
+    if sub.get("id", "").startswith("https://openalex.org/domains/"):
+        scheme = "Domains"
+    elif sub.get("id", "").startswith("https://openalex.org/fields/"):
+        scheme = "Fields"
+    elif sub.get("id", "").startswith("https://openalex.org/subfields/"):
+        scheme = "Subfields"
+    elif sub.get("id", "").startswith("https://openalex.org/T"):
+        scheme = "Topics"
+    elif sub.get("id", "").startswith("http://www.oecd.org/science/inno/38235147.pdf"):
+        scheme = "FOS"
+    else:
+        scheme = None
     return compact(
         {
+            "id": sub.get("id", None),
             "subject": sub.get("subject"),
+            "scheme": scheme,
         }
     )
 

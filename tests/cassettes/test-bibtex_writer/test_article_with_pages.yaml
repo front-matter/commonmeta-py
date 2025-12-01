@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1371
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q2NzQyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        fpIZsjYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1371\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a7675bfc060b70-AMS
+      - 9a743c033fe2b8c0-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:00:48 GMT
+      - Mon, 01 Dec 2025 17:16:48 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=GAUj6AzRXeVh2dWNFsE1I8EP1zHNCMoh46KbYIVCji9lcPqanjdLG%2Fm31ydItxANbPHfcMI5h0bRWqjmxscFDDbKxVCZDhGmeXM5ylWPZqI2LQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=52NITxE5gqwh3Ijv%2FwWlSaAkUe4TQDLelgctQX0dctHBRfw8tQCPgmeSHmMUOPGKw7058dJDOK4gMjTeV3cDLIoPqtnc46SuqZ0hOroX2QUsPw%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,140 +63,197 @@ interactions:
     uri: https://api.crossref.org/works/10.1371/journal.ppat.1008184
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/91dWXPbOLb+Kyg9JXVNmTslv8lLEsd24rHdnV6cmoIoSELMrbnYUbry3+cckJQI
-        CqTMnntf7lR3x7EoEPhwlu8swPw9ynKaF9noZBQ/jY5GIcsyumJavkkY/O4lTpu/fWZpxuMIPjDG
-        +ljffTI6+XvEowX7zhb444LmTEtomsO4f/5p6qZzND0y9a9fj8qPch7i6PiBpk81U38w9RPLOzGM
-        P2BM/BRmFSajE8NzJrauu5ZhOtOj0e791tjyxtbo59GoSMohY3jV39Xf1JPQj4wjSzUJXdMNzdIf
-        dP1E/NOehDPRLduEecD/4I3nny8RAX1sWJ7xePwtLtKIBuMkofnY0PWJMbFxgBLBiL38u5720SiD
-        Z338dVLMA56tWQq/DOicBfC7T+yF1I/+hFmmbMlSFvlM8+MiykcnnnnU+OLJ6BZ/9sk1n6c03ZB4
-        Se59jl8gb26v4/u3MDbPsgLfZ+B7uM+ijAmcYGlp3omS4XWhZHjdKHlT05iaNUp+HOUsyhsy8xzj
-        ahcsoBuNR9qCbuCd+tHol7tr+HSd58nJ4/HjsZ8ymvNn5sdhGEfZOE5Xj8fV3LPH4/nm8dge64/H
-        AqNlAVKXiiU1tkW3po/Hjm4YOBfDdabw3oiKhZyzIs/8NSPv4hT+LKJVtmIh4xH8hS5znGDMNZpl
-        LAU50uab1mbRF5qCeP05+jQjIBKPx4aumSOYCV+IWeAf3ZPgi1qzcLYwWsd7fn7FxdUQLuKQ8kjs
-        VvXTn6OXl5dxEsQZCN06XrESJ5yHn8ZZFtL0SUtha1Lu5wL9JQ0yBtuSreM013BkGIilsL95gCIx
-        Qokht2I0HGaQkFefaiBG3IfhcBasVw97JcywTiwH7IFKwtwJTKiUsEQYnhHbTaeyBUkM4rKpZCoT
-        QgWbWgqSekV+nKZMIJX9u/p2Q1nPEFLQRqFP2lYtcddq1TSnONUKyllE7kA8ctjJMA5ZzlKygH2A
-        qWUkSeNFId6E+kpJxgAqQIrMqQ8PchqQPP4OewzwJPAq/n23DfD+5zgoBFyGi+JTwHaV0r8CjUEl
-        O1unPMs5RWuzpCEPEIeHF56DJK3jJa4hY38VOH/4YMnTDGWeLpc84LQUlT+//jzaDTiLInIFYpFy
-        acgPLI3xAWk4ulhwHIMG/WPe0zkMR5vj3TwWur7018HQMT/fnV2eS3sdpz5flLuNqqeh+mkTw/M0
-        y5zoFWygV9xHEdXE46OTPC3Y0XaGtyxPpfmdMzQX/wdTM7WJ45iaYxmvnNq7lEY/mlP7RNM5S9cU
-        vPjrp/cVfXc4F37EsvHVtfWB10YB2IZe3f3ZcE+l3Ws4micmrFnDVIzhYdgFnDVKnFap7sTBmZVG
-        o7ZEowehNhmYNB6tQBkIXXwrsryhIM88LQLh53gEKrQMQKEKWBo8ziL4MI5CwLCpLZOGsozuyH0O
-        Bj+kEYrahtFUmB/Dgr/VlqyezDsYLCc3HKzqnMfBCLe1XuqkZ6mm0pH4O0PSwgGf35pc23DBQJmG
-        ozvO1B7D1Ozx1NOn9rQLLgAFTXoaB2hVdvgsATPwc4hTDd8JmZF1nAOwCfebGDlNjD6TaxpK6NgK
-        dH6tXyThIkxTFzDWIGBM1zWayMBQ3uNxhho9AeWZwr82UDcFLNWWoTndyhMg0Vyw2zSho1NyBVL/
-        BJNqLlufKpZ9xoKA3ADW13zJkHNJy5/2rN4etHpgv568esMFxzWez4HLhCgXzlgHLqQfVqNnTglY
-        tChDpYc/GToi1AIt4AlfgICAcNDSA0puZmJLunMxI/eU51QSDUeB0SmP/TUPCfyZrDcZmYH/k2Cy
-        e2ByhgmJ48goWZPH4ygNUQJMz9IV4JxubUnLUWcnJIwD5hcBTckPniTwK0KjBcnAhQJtlMHRm9B8
-        JFdArfasiqkA5xPNyR177rArYtguaNxB0Ey9SYcArdKwNCy6NS5H3RMgFsLqIThMmbZI0fkAi1kK
-        m58jckA6GWHfgaRkSPDJfNMAU6FuxsSaNvG6vydXKf3GXrInftDSHBSnPmPsDcLMETq/hxkQ0YbG
-        2QrAcPXAuNEZASaEpuifYPnPDPULganASdkK5KvmgAq/hjONfY4cALWW5xKQptWE8eZX8h5XEmun
-        zGfpYc18gA1cZB2yZ/bAOGkjdfflDgywYUIAb3gdgDR1q+mGArKNXCSbLBkbch2vpfVMFOvZLoTc
-        J8DhU2k9Vs96psOM8VTvFQvDGJcQtVG4jVgBgSwE6klAVwU7EZKwgAgN4oKMLxgKwe8YJUdgpBOI
-        dri83bZEXs7JLfPXsSB7O2Dc1250BxjC5rweDK+lIuiVwdZohuZMPdvRIOzVnH+rlGS7UIYeJ/Yh
-        2EK2K2zsDoSMFYs4L4CegiWOMwHITuLH5F3KwCQ9gdRH2mwNQbEk9kLh95hcHC/mcQo265xnjGZg
-        yvvwMIYJB8SkEiIQp4ITWmLsD7YAJuavxxPbdcdGHyZ7xO2xQHsIUSJYPQzrRFgAlgXMK2jQMk6B
-        9oXzkvquYyDJCyDl8H1JgCRid09m+RMH4xwdlJ93OPu7CqdaoXq4nTGM9Bqln99hBv9DjTIs19HM
-        qTMZG9OpNc7nMDvbHn9XGZidIQXvc0bN/6kN7RbSIH7RxAewDUmM6a+usOD+DOKClAZss0MGZ6Ay
-        OWBsBttPYxj1nSionz6ZmJoNyvpmarydgtueajdq6re/7oZwCf9TOp91AYRFq00x2KhNBZyEk0x0
-        OoAyOm1znVZ6pb82hrHkMnBuIXWvT11Xm9jmb290/e1kMnV17TcFVBe7eBEUKowXDcfcJjhoomqk
-        GNgklLVazppoWa8A63/TMRvD6DLmy0zHkImhMslXPdXG7CwGIUqFISoDhjKTVXp6LaBzHlQyRsGG
-        CdgoKSL+V8HKOKOUtDZZ3Eaw++awU2evyKnIG7nrkB1k3c0MpwRtTyhiDOPb3lSX41XDBDfw8XQM
-        odzYtMf4uQb/mY4ry9JDukkduzXErKIHJ2UstxNVNHnXfvpO7MizgL2K7wjIaV6mCIJNvStsIWm3
-        J3mIT7fkQ8xGh2zgR1IFUS1B9SyjJwdkDOPihsgXtEM7AY8+tUxTgeB7FgHd1F6QWIXg5+FR1G5E
-        SRB0BmK2wHLJlqojwLDWTMoY2a4ncQ5yhdPNfkhSpqtjOxhTFrA+pzkZJmCm1fILnvV4nEQ0GxuO
-        aWE6xDggV1rlESCiw5U/c1A60oxdAD6ZkqrY2E56DMnevSN3fLVmeS7HdCp+cQv0jwBcAURzdIF5
-        FPLL/UwOhXuAG0jfbWPi7stSZhvOdKJhOskyHUvXNh3+1N/kMSbmfRIxeEfOf6BqljTtAFrkzdmn
-        d7+/RU30aZpyMJygtew76LDPgkCkGrZpmWfwLPDuDBOfgtHhIxLgkgGcXZGbOIoowHMwUEKA71gi
-        A9yDsDksJkC/Ynm2DLLSr1RPqWA+++9hZtGaIgUG4V4GNAxLIyniizgBghyA4IP6L4q0NK7LsvCD
-        DLKynpVRvVvH5P3DrQgVGvhLSYyPILbrFyZKg/2Z5C7vY/V4dnNYFGJajt2yl54N8M/98Q14orFt
-        T1xXZTP7UNd+J/MYBDHbYc+WiBlsSOmFYp+2AYRv31G/9kFSNDuR5PeGfIkDzA0cxO8j5n4CcrZm
-        4auzzebAiMTVTbcDP8uwHMeF2LJDcPsEs9d2VFKbsQDl8JkFWxRBhEEEZxJ6niR9Z+Cpl8t2ylFX
-        JdC64HN60BuYq/d0mVMK7nM5uxx7+hjYD3ysmZ6B9QxdJYR9CJZVU0yq9YLZhMqTYpYPM3Id+08h
-        lZFS0cRLYRHIZRgW0WudkTkwsW9IYmZZU/3xWJR9M2QV5cdDlLQ0ftlbjZJVGr+UhTMYjlRFwqYI
-        NWH5g1xFRSZVPJSk5kHMjbw5BWMYvH1tYGIOC0xKJrEfyJkTbWLa9hvdeot1H0NT6eCMpBQLGSJX
-        z8MkQPYHq1yILAmPGpbJXwPFibM4rJLY3YGc7GrJOUvnPJMCDV1ZNLy4uS/lh9yAs5cDunL0Ziqh
-        qjb4EJLD9E5AxiGGilNk8RsCEluIAu7ulYbkgI7IF3JPgT3EooGraytcadNuc9InzcNIutuymdPp
-        43HIfewQs62Jbir366YIco67FFBMOaC/reO/VQwOOmpG3lWEc4GNOyn312AkMHFI+DyZnZI1o7mW
-        rUG9SQwkN5b8jeFIPP76jLynxZyvJJHvTl3ArsWrjWwGRFKu120P4/Tt8lWZWP4G786Zj8llc6xj
-        clmVYi+rfCjF8HvQ+TgQzBHzzcJBN2s4LGHRAkOhdmKjkZaXoHMlE6oukCojbeFsYPLrqBUc9qTj
-        zWF8Htmmo7eSZDLbhGWOd0/tIYfcxU95kschF1QFGyTAPBxgmSl7ZjTAP+ErqxQIZvUllNCzNNlm
-        14AONeAXhqmIfJTtTDxH0ZuFEHaytJEtgYEyjNUxImvFWZIxuiGfikxmTaqckmCd71E8Xlt8tYax
-        fls3ZenVQXrR8qKbNzARrvL1M5jjBtGE5aYsEP1+e2K5oDklhUiBpEysCQLTvwoawSjlN27P7gSu
-        CL2pPRa6NbXL/549VOZfcn1SnuPqI7kGl/C0Z1v3LIEYSE6DGz28yRrG2i1n2q6mmCIPbru6Zuqe
-        g7kiG/Pgrut6yjz4DCDBbBFDqdFCttiWDisRF11AhGITWFHFN75fgCAuS/nLIWSC+J/OAxTUajCg
-        JDRdsVwkBxLK09I7RbusQZYXC9F3mgQ0C8H7Jpe3ji73qcnZUHIKc8ob/gzXpsD84ub0M/n4WqJh
-        DeP5doto7BUesIQ01h1vqi47vIPJ/oJ+OgJtDgg2QdbppWbPH8B0TwMwxRDBS4bVleTwgXyhwQKt
-        SNXC1V/H6q499InkMCrPXMdw+xLEsCbsGqieauNzjz2m5O7z/YUW8Ce212Ox9fSX4L9Jtongwyqf
-        fisMLmAG1jFLmM9Zd+6js4GgM/z+HLG+op81jMXbhqJR4B52zdXciTd9M5m8dW3dmWiqOujF9xzT
-        u8L7rvmcV0mKnVlsZnjBF+Vl7x7W+4A1fW81orhSjficfIDX/Wgq2URZOS8NG7mIfmzCV+vaMFLv
-        tkm9CXJE/Qx2HQR47M2BQjuqcOccRGJVNcnm6uylZN/goRSUiLbDQDlbcxdjvWCBMTPPD/cWzM7u
-        yT3Kp4ieZYh6CLQ1rGpgOq20A4jS4/GKLkDt7MlE2d51jblBLHbuxOSEYCICs16iA1T4Vj7HQAdC
-        nLjZehGiRi6YT6XI0JByCxju0Eiuq6sYxnsRQZ2z59eWia1h0QUzdduUGbLKFtVP7cUZJROuOFoP
-        891LCGYV9wCHRxc0KZ1jxkQlAW1vAdLGMh8I9RG2oMZp+RdBSCA6gXeWda5lIV71LFJm3c0u78gv
-        Afd/PMl5XBUfkUzZaxjdwBKDoSjLA8sFLmcpG1zOm11hjTbUnfMTIRpphmgZ0uNtBWYhJFK29C1h
-        POPhgkeH04T/zD0Oiz0cp9WUWhn+qalNXM9+o5tv4S+6ozT80uEAufKZtWLeXcV+m6a45lkprYBs
-        jKkw8YkcJ7S6Ej/GQO6yVsOHMvOFfa1yuNbTy2oPixMM27RbqO0qV7YBYToIu6o5ps2qtlipY9t2
-        C01L23/l85THxF/HAXxXbnKQI6z378kXNm8l9lVU9RVlLM/2eno67aFZ/lYFcFcThWhLmTpsVpVz
-        sEsr0YyHCSqwhs+0bt/8xDjOAKWLYSoKSMdCLvY5upQ+3G/QU6mkoiLao4v2QS5/gJRa3qRDjrSb
-        bWSk6MPEPhCN+n8VPCvZ2Fbp7tdgytGMLTaZaFvjlEndIGDl27mpTtY6OyVXcSFnEQ8z1lckUOyB
-        HF/Xbbsdu0PgGc5ja1x+0p0yqeJJhAB4SDvOlHHdopetiweEc9uRVJU4m92uuAmEPlMu2kh4vinj
-        +538dvrP30Fd5TBAGT01snrgieQE/0fQhx58h0UHnqnoSrdNz1KxlPdBRFyrLjpCALBgFOJpAQko
-        5l7is68IoknxtzWRGPB7rFfCyI0cHkTgKqQUWtvDMexhUYHd4hj61MI6G0jf89pwVAidxukC7L/Q
-        QtTdat1+VeeAiCjN67KHj3KTr9O4WK1bNV3MFJX5tbKyi3jL6QpJqGbkXfFUSGLVXV3zB9TW7GER
-        gu0oSiPfxj4LUpZUKeKutvQHTE9cXl7uyra/xskZqbJEaOAqD4CFkso/KkJvyTlekz+AVMhJ9C5G
-        sddz0AfLsNjgwpt2cgoIPCH4NgwlJGIqwPjLAyBaxv4iIBPxS5kQI+D1RKJW5La2AYEmUFkKSh9V
-        IQJaJwyytgncDMwcTep+3LJUULuJRsCKMZlMPqQIXpXeVSlpD/foQnhgMGDLOQ7DBsGjUQSm4Xk8
-        52MXBA+Y2xQPkViOpWw96vYOYNr82c2tQJHnmFP3WdJoXpOMvSkr5lUczEeHmtRmMFNx0kalnj1J
-        DntYQKDq1f02DvkcM4mTsW52V29AD31QJZ6FZQ2MpnPM8lAIN7E1nok6w4E6jVwQHJP6jLvEXXVV
-        fuOsSFPyGcS16yhSN0TOQP4/2msNCGFTxjo6Rk3Zs3Z7kFpInd5layS4Rh8vRUCxaotTWXZBWQsT
-        wBFzIsoWUyk9++ULuQb9ZYdPQ97AelpFgp4uZ2fvNKyKteKMeVT2PpRH0JrVpiw9FeuBH85EwUju
-        Fd0vXuHDWMTLSFRAIFCBWl4BgnRMCYeseFdkd/S73/iXZ2eFC6h6KjqErE/KhmX2nbL2quhBwa4z
-        XVPmL8r2vk6pOSJnd7dHRJT+IDjAbAV6ynmcrxvRJiK7X7EOYSOwzQBG2NYF99t5MZ30jE2ACE9e
-        SI7Bk/hI6XcPqvU/aWFxBnb7tB3DDmhv6mqGsuoHEfoG248F3Mi+6uJdn9JWTfkM00WALoYPHCS2
-        Bn23BT4FrUbqB+AXafza4EyO+h/IeRzBbhw+Gv6PQB4WQ7SEufIrGJci53PH6FuUZzcvm0lgXwnr
-        G5DJt3JaWJbmftMLdOleHLoByYbRrgI2z7ig50l13k3OrjhTqRD4kfxWyCGwqkMYc8uvhnZgs9Fo
-        r2flWxhizwpYiqnKFF+WZznrZnI1quiiOXYShGgkyt7TI7Lk4RzTKrvLP45QWjPR95PEwSajPrCA
-        FHvW4eu7ipiw1yxfUxEKC2UoMrGpSsAJrDwW5cgrA15Q5q+TTaUFovGV0HkGzqTnIPy/yOfiIPH8
-        qOhses0mua9yekpo67MLWQUC5tgj/qOCOIRgEEHagr0rg9MFgokPieaw0orkIgFY3SEhW4tbfCH4
-        w5CnIgkh22Mp53BNHjJ6OOug6rzuqZA4Aw9JjA72wHi2rgT67lYTcrwNBjOOBqDiGI0EfsM05MJi
-        Y95Ha5uIgD2zQKKmUlTzO7nAexMg6pIhU7mwjsaVPtSGRTbYQORNWtVJZbt69dR+x+HOcm5v8dl1
-        RIPkrvk36gPXagWIwLPqKklex+blABXJbyfIxBkA8R14oQSvxFRvyFWRhZylTOppMVRXWHR1oxs9
-        QZEz8MSF2Tol7BjO4/HpGcZEztiwVVmevU4BPERfXgSGwGBvz9zQhB6Lny1NWIdYFRZZE8ms9bRZ
-        dNxfoeiW7hE/d2A8NLEUZTYIr03NnJp4gti2lBwKE/g+EKBUHCnfK6whT4XwJk6BIeWCqO4ZPNDs
-        ZptFUuR8QauyJUhdWt1XENJo07xPB8Rc3SXYRHnQpQ4XUecVGD04DzyZfVi/bVfZ1X/XbvDbsvZl
-        Goe1RcSLdAjeEoKFOfgbsFVW9QiWuduqYaNsmnqOd/mmqtejO5K/IrNn7reYaGeT37AztiKbctAR
-        PyjKJGVpKPZj38cj6B/myZHoCdvK3F4FTrB0IDg8KpvLwCeJcGrroPHgCPxeq7oVUNAg5kXUM8yA
-        1FdaZfXhbkzcY0ugeGSZ0lCu4x0oUSmPonUgaPfUW9xhAZOBx0dGXQVQ3XQst6MAKsHf1FzK0mLF
-        ozhT3Bwg2k9f4qpFrW1XR911zxvy61i6UaR1pcg/LIGaPY7FHRYVOfpUBrI+ZAuxkGupc0l3YP3K
-        +xJ4ps388oSSOA7aki11VVkR2WP/esksnxm55quap5ZleqSuWQIEsjzxDIaEti5Wmkq+G/g0zbMi
-        oisZ7SEnb/tkdWDTljjPoio3BNWlQeZYVyZ7/yXac5cb0Tgzz2C1+faqqUanXyrIZt1KnaQcOGeC
-        px7FdZ5B+fVge7IMw636pCTsg7iXUUZT7vJ/r32BLTkotnv9Dn0yOqxg8wq3404cVTbqGgbEBeOx
-        sLK4pZUJwIV8oFFcyZT1ZvtA9Bq+yZebvSRm/oV8YDySA/JOVq6wk14PcMOCGcuy7X3lFoklY2p5
-        mvqqqgMHdLPSZR/KjIqH9mqt6IvQyW8vv2rKYhmjgrUtgAjQJ1YWGMEjkTRG0Yfv5dXkQBmkQFLS
-        /1Nyir+PMNSXuKkqnOzMPPUUaN1h0ZFZnp1UHeazx3iEz8RbnywdybxqR2biLGP/yUeDNAr/Lzxf
-        E4RMdRZabMzrU3qeJNsfz7DhIn6S7zPUVTSgE9g+JjUsKrJt1Q0RZeLU7ZLv3lPRIoY06oPNJZ3q
-        AvJgZnR7RgCvqo2DDbC/ZB1HBXwb5D1gxRN2nZU8LtxesShq7HWzBtbZ4px+b+VN5D25Ief0mWf/
-        fEd6IjFv6Ll121QcwHiBeYyrj1S9RFv2im3KeJ0Z2BKW1CF8A2JV0CR1BJ2TyxX2LT8fzCN94QHb
-        kEtkFFii5omobcJs5OCpR1q9YdHTxHRaKWhs1Iho+ni8ekotZXH9RrpER9jDvG7mqX7RSCwt8SyF
-        uBS7TVKlWL516P6OR9G+sVR2y35C2cXags8XGWlfZ2X2dDh6Ay9x3cMKxYhGvEzWwz+mSrf34boY
-        l6qYJvEH6QhZ1S0qTGWOWbeNzyKmzWmGYii6WqrLK1sXgMk3gM2APwIjPXyB3CxasReRBEGZIxcL
-        ceV6dcW+AOP/2Y37ymvRP9eMB68qhIewsZs3YPrzKw4YrYrKnOBbscYq0NndbV/dQ/5d3Nredxf5
-        bkH1/e/VwoqoakAR1/d03a+P8QaQ6IVGkyTgfnXj8ygDcw2UBZRQAwPtP4EDEUuGGCfGKPsfbqDh
-        nuiTE8dRbCDsnmM55QZmfpzCNw28Nbrekb9HwPtDmm7wx/8Cp584fjFv7AZY5rx1Lfr7Atnv7kJ0
-        cIvkV/j305ozrHa84k70r/Xl+Y03CTPSf8t986bsrPn/5FBrW2WK5OTXsMu4fx7tA9h/4f1OyMrj
-        l7jGv2GYy/v7Tyj2huNYmmeB1y5XGVVCCJBW0ijuqxBJSDQ1NKg6HuqvCbiK+Td4qIRqu6IDS/n5
-        H5XasDiTZAAA
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,29]],"date-time":"2025-10-29T19:38:19Z","timestamp":1761766699977,"version":"3.37.3"},"update-to":[{"updated":{"date-parts":[[2020,1,30]],"date-time":"2020-01-30T00:00:00Z","timestamp":1580342400000},"DOI":"10.1371\/journal.ppat.1008184","type":"new_version","source":"publisher","label":"New
+        version"}],"reference-count":72,"publisher":"Public Library of Science (PLoS)","issue":"1","license":[{"start":{"date-parts":[[2020,1,17]],"date-time":"2020-01-17T00:00:00Z","timestamp":1579219200000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"funder":[{"DOI":"10.13039\/501100001659","name":"Deutsche
+        Forschungsgemeinschaft","doi-asserted-by":"publisher","award":["NA 240\/10-2"],"id":[{"id":"10.13039\/501100001659","id-type":"DOI","asserted-by":"publisher"}]}],"content-domain":{"domain":["www.plospathogens.org"],"crossmark-restriction":false},"short-container-title":["PLoS
+        Pathog"],"DOI":"10.1371\/journal.ppat.1008184","type":"journal-article","created":{"date-parts":[[2020,1,17]],"date-time":"2020-01-17T13:35:37Z","timestamp":1579268137000},"page":"e1008184","update-policy":"https:\/\/doi.org\/10.1371\/journal.ppat.corrections_policy","source":"Crossref","is-referenced-by-count":29,"title":["An
+        RNA thermometer dictates production of a secreted bacterial toxin"],"prefix":"10.1371","volume":"16","author":[{"given":"Christian","family":"Twittenhoff","sequence":"first","affiliation":[]},{"given":"Ann
+        Kathrin","family":"Heroven","sequence":"additional","affiliation":[]},{"given":"Sabrina","family":"M\u00fchlen","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0001-8177-3280","authenticated-orcid":true,"given":"Petra","family":"Dersch","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-8552-5310","authenticated-orcid":true,"given":"Franz","family":"Narberhaus","sequence":"additional","affiliation":[]}],"member":"340","published-online":{"date-parts":[[2020,1,17]]},"reference":[{"issue":"1","key":"ppat.1008184.ref001","first-page":"85","article-title":"Thermosensing
+        to adjust bacterial virulence in a fluctuating environment","volume":"8","author":"R
+        Steinmann","year":"2013","journal-title":"Front Microbiol"},{"issue":"8","key":"ppat.1008184.ref002","doi-asserted-by":"crossref","first-page":"852","DOI":"10.4161\/21505594.2014.970949","article-title":"Thermal
+        control of virulence factors in bacteria: A hot topic","volume":"5","author":"O
+        Lam","year":"2014","journal-title":"Virulence"},{"issue":"16","key":"ppat.1008184.ref003","doi-asserted-by":"crossref","first-page":"2661","DOI":"10.1007\/s00018-009-0041-3","article-title":"Microbial
+        thermosensors","volume":"66","author":"B Klinkert","year":"2009","journal-title":"Cell
+        Mol Life Sci"},{"issue":"9","key":"ppat.1008184.ref004","doi-asserted-by":"crossref","first-page":"1757","DOI":"10.1016\/j.bbamem.2015.04.005","article-title":"Thermosensing
+        via transmembrane protein-lipid interactions","volume":"1848","author":"EA
+        Saita","year":"2015","journal-title":"Biochim Biophys Acta"},{"issue":"4","key":"ppat.1008184.ref005","doi-asserted-by":"crossref","first-page":"255","DOI":"10.1038\/nrmicro2730","article-title":"Bacterial
+        RNA thermometers: molecular zippers and switches","volume":"10","author":"J
+        Kortmann","year":"2012","journal-title":"Nat Rev Microbiol"},{"issue":"10","key":"ppat.1008184.ref006","doi-asserted-by":"crossref","first-page":"978","DOI":"10.1016\/j.bbagrm.2014.03.006","article-title":"Temperature-driven
+        differential gene expression by RNA thermosensors","volume":"1839","author":"SS
+        Krajewski","year":"2014","journal-title":"Biochim Biophys Acta"},{"issue":"8","key":"ppat.1008184.ref007","doi-asserted-by":"crossref","first-page":"509","DOI":"10.1016\/j.tim.2015.04.004","article-title":"RNA
+        structures are involved in the thermoregulation of bacterial virulence-associated
+        traits","volume":"23","author":"MV Grosso-Becera","year":"2015","journal-title":"Trends
+        Microbiol"},{"issue":"2","key":"ppat.1008184.ref008","first-page":"RWR-0012-2017","article-title":"RNA
+        thermometers in bacterial pathogens","volume":"6","author":"E Loh","year":"2018","journal-title":"Microbiol
+        Spectr"},{"issue":"3","key":"ppat.1008184.ref009","doi-asserted-by":"crossref","first-page":"190","DOI":"10.1016\/j.tim.2015.11.008","article-title":"Pneumonic
+        plague: the darker side of Yersinia pestis","volume":"24","author":"RD Pechous","year":"2016","journal-title":"Trends
+        Microbiol"},{"key":"ppat.1008184.ref010","doi-asserted-by":"crossref","first-page":"79","DOI":"10.1007\/978-1-59745-501-5_4","article-title":"Yersinia
+        enterocolitica and Yersinia pseudotuberculosis","author":"M. Fredriksson-Ahomaa","year":"2007","journal-title":"Foodborne
+        Diseases"},{"key":"ppat.1008184.ref011","doi-asserted-by":"crossref","first-page":"1370","DOI":"10.12688\/f1000research.8466.1","article-title":"Yersinia
+        virulence factors\u2014a sophisticated arsenal for combating host defences","volume":"5","author":"S
+        Atkinson","year":"2016","journal-title":"F1000Res"},{"issue":"6","key":"ppat.1008184.ref012","doi-asserted-by":"crossref","first-page":"1005","DOI":"10.1111\/j.1365-2958.1993.tb01644.x","article-title":"Regulation
+        by Ca2+ in the Yersinia low-Ca2+ response","volume":"8","author":"SC Straley","year":"1993","journal-title":"Mol
+        Microbiol"},{"issue":"2","key":"ppat.1008184.ref013","doi-asserted-by":"crossref","first-page":"87","DOI":"10.1016\/0882-4010(91)90069-M","article-title":"The
+        low-Ca2+ response virulence regulon of human-pathogenic yersiniae","volume":"10","author":"SC
+        Straley","year":"1991","journal-title":"Microb Pathog"},{"issue":"8","key":"ppat.1008184.ref014","doi-asserted-by":"crossref","first-page":"310","DOI":"10.1016\/S0966-842X(00)88960-X","article-title":"Environmental
+        modulation of gene expression and pathogenesis in Yersinia","volume":"3","author":"SC
+        Straley","year":"1995","journal-title":"Trends Microbiol"},{"issue":"2","key":"ppat.1008184.ref015","doi-asserted-by":"crossref","first-page":"e1002518","DOI":"10.1371\/journal.ppat.1002518","article-title":"Concerted
+        actions of a thermo-labile regulator and a unique intergenic RNA thermosensor
+        control Yersinia virulence","volume":"8","author":"K B\u00f6hme","year":"2012","journal-title":"PLoS
+        Pathog"},{"issue":"24","key":"ppat.1008184.ref016","doi-asserted-by":"crossref","first-page":"7901","DOI":"10.1128\/JB.175.24.7901-7909.1993","article-title":"Temperature
+        sensing in Yersinia pestis: translation of the LcrF activator protein is thermally
+        regulated","volume":"175","author":"NP Hoe","year":"1993","journal-title":"J
+        Bacteriol"},{"issue":"7311","key":"ppat.1008184.ref017","doi-asserted-by":"crossref","first-page":"103","DOI":"10.1038\/nature09322","article-title":"Genome-wide
+        measurement of RNA secondary structure in yeast","volume":"467","author":"M
+        Kertesz","year":"2010","journal-title":"Nature"},{"issue":"26","key":"ppat.1008184.ref018","doi-asserted-by":"crossref","first-page":"7237","DOI":"10.1073\/pnas.1523004113","article-title":"Temperature-responsive
+        in vitro RNA structurome of Yersinia pseudotuberculosis","volume":"113","author":"F
+        Righetti","year":"2016","journal-title":"Proc Natl Acad Sci USA"},{"issue":"1","key":"ppat.1008184.ref019","doi-asserted-by":"crossref","first-page":"14186","DOI":"10.1038\/s41598-018-32530-y","article-title":"The
+        cytotoxic necrotizing factor of Yersinia pseudotuberculosis (CNFY) is carried
+        on extracellular membrane vesicles to host cells","volume":"8","author":"AK
+        Monnappa","year":"2018","journal-title":"Sci Rep"},{"issue":"11","key":"ppat.1008184.ref020","doi-asserted-by":"crossref","first-page":"e1003746","DOI":"10.1371\/journal.ppat.1003746","article-title":"The
+        Cytotoxic necrotizing factor of Yersinia pseudotuberculosis (CNFY) enhances
+        inflammation and Yop delivery during infection by activation of Rho GTPases","volume":"9","author":"J
+        Schweer","year":"2013","journal-title":"PLoS Pathog"},{"issue":"32","key":"ppat.1008184.ref021","doi-asserted-by":"crossref","first-page":"23543","DOI":"10.1074\/jbc.M112.448662","article-title":"Cytotoxic
+        necrotizing factor-Y boosts Yersinia effector translocation by activating
+        Rac protein","volume":"288","author":"M Wolters","year":"2013","journal-title":"J
+        Biol Chem"},{"issue":"16","key":"ppat.1008184.ref022","doi-asserted-by":"crossref","first-page":"16026","DOI":"10.1074\/jbc.M313556200","article-title":"The
+        Yersinia pseudotuberculosis cytotoxic necrotizing factor (CNFY) selectively
+        activates RhoA","volume":"279","author":"C Hoffmann","year":"2004","journal-title":"J
+        Biol Chem"},{"issue":"5","key":"ppat.1008184.ref023","doi-asserted-by":"crossref","first-page":"2708","DOI":"10.1128\/IAI.70.5.2708-2714.2002","article-title":"Yersinia
+        pseudotuberculosis produces a cytotoxic necrotizing factor","volume":"70","author":"HA
+        Lockman","year":"2002","journal-title":"Infect Immun"},{"issue":"1","key":"ppat.1008184.ref024","doi-asserted-by":"crossref","first-page":"116","DOI":"10.3390\/toxins2010116","article-title":"Cytotoxic
+        necrotizing factors (CNFs)-a growing toxin family","volume":"2","author":"Z
+        Knust","year":"2010","journal-title":"Toxins (Basel)"},{"issue":"2","key":"ppat.1008184.ref025","doi-asserted-by":"crossref","first-page":"113","DOI":"10.1016\/S0928-8244(03)00181-0","article-title":"A
+        rapid and simple method for inactivating chromosomal genes in Yersinia","volume":"38","author":"A
+        Derbise","year":"2003","journal-title":"FEMS Immun Med Microbiol"},{"volume-title":"Molecular
+        cloning: a laboratory manual","year":"2001","author":"J, W Sambrook","key":"ppat.1008184.ref026"},{"issue":"Pt
+        1","key":"ppat.1008184.ref027","doi-asserted-by":"crossref","first-page":"66","DOI":"10.1099\/mic.0.043802-0","article-title":"Multiple
+        layers of control govern expression of the Escherichia coli ibpAB heat-shock
+        operon","volume":"157","author":"LC Gaubig","year":"2011","journal-title":"Microbiology"},{"issue":"1\u20132","key":"ppat.1008184.ref028","doi-asserted-by":"crossref","first-page":"55","DOI":"10.1016\/j.jbiotec.2012.01.007","article-title":"Thermogenetic
+        tools to monitor temperature-dependent gene expression in bacteria","volume":"160","author":"B
+        Klinkert","year":"2012","journal-title":"J Biotechnol"},{"issue":"3","key":"ppat.1008184.ref029","doi-asserted-by":"crossref","first-page":"e1005087","DOI":"10.1371\/journal.pgen.1005087","article-title":"Transcriptomic
+        profiling of Yersinia pseudotuberculosis reveals reprogramming of the Crp
+        regulon by temperature and uncovers Crp as a master regulator of small RNAs","volume":"11","author":"AM
+        Nuss","year":"2015","journal-title":"PLoS Genet"},{"issue":"4","key":"ppat.1008184.ref030","doi-asserted-by":"crossref","first-page":"402","DOI":"10.1006\/meth.2001.1262","article-title":"Analysis
+        of relative gene expression data using real-time quantitative PCR and the
+        2-\u0394\u0394CT method","volume":"25","author":"KJ Livak","year":"2001","journal-title":"Methods"},{"issue":"15","key":"ppat.1008184.ref031","doi-asserted-by":"crossref","first-page":"3599","DOI":"10.1002\/j.1460-2075.1994.tb06667.x","article-title":"Antisense
+        RNA-mediated transcriptional attenuation occurs faster than stable antisense\/target
+        RNA pairing: an in vitro study of plasmid pIP501","volume":"13","author":"S
+        Brantl","year":"1994","journal-title":"EMBO J"},{"issue":"2","key":"ppat.1008184.ref032","doi-asserted-by":"crossref","first-page":"413","DOI":"10.1111\/j.1365-2958.2007.05794.x","article-title":"FourU:
+        a novel type of RNA thermometer in Salmonella","volume":"65","author":"T Waldminghaus","year":"2007","journal-title":"Mol
+        Microbiol"},{"issue":"5","key":"ppat.1008184.ref033","doi-asserted-by":"crossref","first-page":"e65168","DOI":"10.1371\/journal.pone.0065168","article-title":"Short
+        ROSE-like RNA thermometers control IbpA synthesis in Pseudomonas species","volume":"8","author":"SS
+        Krajewski","year":"2013","journal-title":"PLoS One"},{"key":"ppat.1008184.ref034","doi-asserted-by":"crossref","first-page":"419","DOI":"10.1016\/S0076-6879(88)64058-4","article-title":"Extension
+        inhibition analysis of translation initiation complexes","volume":"164","author":"D
+        Hartz","year":"1988","journal-title":"Methods Enzym"},{"issue":"2","key":"ppat.1008184.ref035","doi-asserted-by":"crossref","first-page":"613","DOI":"10.1021\/acssynbio.7b00356","article-title":"Design
+        of a temperature-responsive transcription terminator","volume":"7","author":"J
+        Ro\u00dfmanith","year":"2018","journal-title":"ACS Synth Biol"},{"issue":"21","key":"ppat.1008184.ref036","doi-asserted-by":"crossref","first-page":"2526","DOI":"10.1101\/gad.1348805","article-title":"Lost
+        in translation: The influence of ribosomes on bacterial mRNA decay","volume":"19","author":"A
+        Deana","year":"2005","journal-title":"Genes Dev"},{"issue":"6","key":"ppat.1008184.ref037","doi-asserted-by":"crossref","first-page":"e20425","DOI":"10.1371\/journal.pone.0020425","article-title":"Monitoring
+        of gene expression in bacteria during infections using an adaptable set of
+        bioluminescent, fluorescent and colorigenic fusion vectors","volume":"6","author":"F
+        Uliczka","year":"2011","journal-title":"PLoS One"},{"issue":"4","key":"ppat.1008184.ref038","doi-asserted-by":"crossref","first-page":"715","DOI":"10.1111\/mmi.12308","article-title":"Differential
+        control of Salmonella heat shock operons by structured mRNAs","volume":"89","author":"A
+        Cimdins","year":"2013","journal-title":"Mol Microbiol"},{"issue":"5","key":"ppat.1008184.ref039","doi-asserted-by":"crossref","first-page":"551","DOI":"10.1016\/S0092-8674(02)00905-4","article-title":"An
+        RNA thermosensor controls expression of virulence genes in Listeria monocytogenes","volume":"110","author":"J
+        Johansson","year":"2002","journal-title":"Cell"},{"issue":"39","key":"ppat.1008184.ref040","doi-asserted-by":"crossref","first-page":"14241","DOI":"10.1073\/pnas.1411570111","article-title":"RNA
+        thermometer controls temperature-dependent virulence factor expression in
+        Vibrio cholerae","volume":"111","author":"GG Weber","year":"2014","journal-title":"Proc
+        Natl Acad Sci USA"},{"issue":"7470","key":"ppat.1008184.ref041","doi-asserted-by":"crossref","first-page":"237","DOI":"10.1038\/nature12616","article-title":"Temperature
+        triggers immune evasion by Neisseria meningitidis","volume":"502","author":"E
+        Loh","year":"2013","journal-title":"Nature"},{"issue":"5","key":"ppat.1008184.ref042","doi-asserted-by":"crossref","DOI":"10.1371\/journal.pone.0063781","article-title":"RNA-Mediated
+        thermoregulation of iron-acquisition genes in Shigella dysenteriae and pathogenic
+        Escherichia coli","volume":"8","author":"AB Kouse","year":"2013","journal-title":"PLoS
+        One"},{"issue":"3","key":"ppat.1008184.ref043","doi-asserted-by":"crossref","first-page":"e00442","DOI":"10.1002\/mbo3.442","article-title":"Transcriptional
+        and posttranscriptional regulation of Shigella shuT in response to host-associated
+        iron availability and temperature","volume":"6","author":"Y Wei","year":"2017","journal-title":"Microbiologyopen"},{"issue":"June","key":"ppat.1008184.ref044","doi-asserted-by":"crossref","first-page":"725","DOI":"10.1038\/42735","article-title":"Gln
+        63 of Rho is deamidated by Escherichia coli cytotoxic necrotizing factor-1","volume":"387","author":"G
+        Schmidt","year":"1997","journal-title":"Nature"},{"issue":"4","key":"ppat.1008184.ref045","doi-asserted-by":"crossref","first-page":"415","DOI":"10.1093\/jb\/mvh155","article-title":"Bordetella
+        dermonecrotic toxin exerting toxicity through activation of the small GTPase
+        Rho","volume":"136","author":"A Fukui","year":"2004","journal-title":"J Biochem"},{"issue":"5","key":"ppat.1008184.ref046","doi-asserted-by":"crossref","first-page":"453","DOI":"10.1016\/j.celrep.2012.04.004","article-title":"Type
+        III effector VopC mediates invasion for Vibrio species","volume":"1","author":"L
+        Zhang","year":"2012","journal-title":"Cell Rep"},{"issue":"5","key":"ppat.1008184.ref047","doi-asserted-by":"crossref","first-page":"E791","DOI":"10.1073\/pnas.1613405114","article-title":"Tissue
+        dual RNA-seq allows fast discovery of infection-specific functions and riboregulators
+        shaping host\u2013pathogen transcriptomes","volume":"114","author":"AM Nuss","year":"2017","journal-title":"Proc
+        Natl Acad Sci USA"},{"key":"ppat.1008184.ref048","doi-asserted-by":"crossref","first-page":"749","DOI":"10.1146\/annurev.bi.62.070193.003533","article-title":"Transcriptional
+        regulation by cAMP and its receptor protein","volume":"62","author":"A Kolb","year":"1993","journal-title":"Annu
+        Rev Biochem"},{"issue":"2","key":"ppat.1008184.ref049","doi-asserted-by":"crossref","first-page":"87","DOI":"10.1016\/j.mib.2008.02.007","article-title":"The
+        mechanisms of carbon catabolite repression in bacteria","volume":"11","author":"J.
+        Deutscher","year":"2008","journal-title":"Curr Opin Microbiol"},{"issue":"1","key":"ppat.1008184.ref050","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1128\/mBio.01038-13","article-title":"Posttranscriptional
+        regulation of the Yersinia pestis cyclic AMP receptor protein Crp and impact
+        on virulence","volume":"5","author":"WW Lathem","year":"2014","journal-title":"MBio"},{"issue":"158","key":"ppat.1008184.ref051","first-page":"1","article-title":"Crp
+        induces switching of the CsrB and CsrC RNAs in Yersinia pseudotuberculosis
+        and links nutritional status to virulence","volume":"2","author":"AK Heroven","year":"2012","journal-title":"Front
+        Cell Infect Microbiol"},{"issue":"11","key":"ppat.1008184.ref052","doi-asserted-by":"crossref","first-page":"5028","DOI":"10.1128\/IAI.00370-08","article-title":"The
+        cyclic AMP receptor protein, CRP, is required for both virulence and expression
+        of the minimal CRP regulon in Yersinia pestis biovar microtus","volume":"76","author":"L
+        Zhan","year":"2008","journal-title":"Infect Immun"},{"issue":"1","key":"ppat.1008184.ref053","doi-asserted-by":"crossref","first-page":"249","DOI":"10.1128\/IAI.00796-12","article-title":"Adenylate
+        cyclase and the cyclic AMP receptor protein modulate stress resistance and
+        virulence capacity of uropathogenic Escherichia coli","volume":"81","author":"GT
+        Donovan","year":"2013","journal-title":"Infect Immun"},{"issue":"1","key":"ppat.1008184.ref054","doi-asserted-by":"crossref","first-page":"28","DOI":"10.1016\/j.gene.2016.08.006","article-title":"Influence
+        of cAMP receptor protein (CRP) on bacterial virulence and transcriptional
+        regulation of allS by CRP in Klebsiella pneumoniae","volume":"593","author":"J
+        Xue","year":"2016","journal-title":"Gene"},{"issue":"1","key":"ppat.1008184.ref055","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1099\/jmm.0.000391","article-title":"Involvement
+        of cAMP receptor protein in biofilm formation, fimbria production, capsular
+        polysaccharide biosynthesis and lethality in mouse of Klebsiella pneumoniae
+        serotype K1 causing pyogenic liver abscess","volume":"66","author":"Q Ou","year":"2017","journal-title":"J
+        Med Microbiol"},{"issue":"1","key":"ppat.1008184.ref056","first-page":"1","article-title":"CAMP
+        receptor protein regulates mouse colonization, motility, fimbria-mediated
+        adhesion, and stress tolerance in uropathogenic Proteus mirabilis","volume":"7","author":"YL
+        Tsai","year":"2017","journal-title":"Sci Rep"},{"issue":"6","key":"ppat.1008184.ref057","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1371\/journal.pgen.1007401","article-title":"CRP-cAMP
+        mediates silencing of Salmonella virulence at the post-transcriptional level","volume":"14","author":"Y
+        El Mouali","year":"2018","journal-title":"PLoS Genet"},{"issue":"6","key":"ppat.1008184.ref058","doi-asserted-by":"crossref","first-page":"e1007813","DOI":"10.1371\/journal.ppat.1007813","article-title":"A
+        bacterial secreted translocator hijacks riboregulators to control type III
+        secretion in response to host cell contact","volume":"15","author":"M Kusmierek","year":"2019","journal-title":"PLoS
+        Pathog"},{"issue":"12","key":"ppat.1008184.ref059","doi-asserted-by":"crossref","first-page":"1279","DOI":"10.1515\/BC.2005.145","article-title":"RNA
+        thermometers are common in \u03b1- and \u03b3-proteobacteria","volume":"386","author":"T
+        Waldminghaus","year":"2005","journal-title":"Biol Chem"},{"issue":"6","key":"ppat.1008184.ref060","doi-asserted-by":"crossref","first-page":"1835","DOI":"10.1111\/1462-2920.12432","article-title":"A
+        tricistronic heat shock operon is important for stress tolerance of Pseudomonas
+        putida and conserved in many environmental bacteria","volume":"16","author":"SS
+        Krajewski","year":"2014","journal-title":"Env Microbiol"},{"issue":"1","key":"ppat.1008184.ref061","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1371\/journal.ppat.1004600","article-title":"Reprogramming
+        of Yersinia from virulent to persistent mode revealed by complex in vivo RNA-seq
+        analysis","volume":"11","author":"K Avican","year":"2015","journal-title":"PLoS
+        Pathog"},{"issue":"8","key":"ppat.1008184.ref062","first-page":"1","article-title":"Thermoregulation
+        of meningococcal fHbp, an important virulence factor and vaccine antigen,
+        is mediated by anti-ribosomal binding site sequences in the open reading frame","volume":"12","author":"E
+        Loh","year":"2016","journal-title":"PLoS Pathog"},{"issue":"43","key":"ppat.1008184.ref063","doi-asserted-by":"crossref","first-page":"15562","DOI":"10.1073\/pnas.1402536111","article-title":"Regulation
+        of Pseudomonas aeruginosa virulence factors by two novel RNA thermometers","volume":"111","author":"M
+        V. Grosso-Becerra","year":"2014","journal-title":"Proc Natl Acad Sci USA"},{"issue":"22","key":"ppat.1008184.ref064","doi-asserted-by":"crossref","first-page":"5092","DOI":"10.1128\/JB.00663-13","article-title":"Role
+        for cis-Acting RNA sequences in the temperature-dependent expression of the
+        multiadhesive Lig proteins in Leptospira interrogans","volume":"195","author":"J
+        Matsunaga","year":"2013","journal-title":"J Bacteriol"},{"issue":"3","key":"ppat.1008184.ref065","doi-asserted-by":"crossref","first-page":"624","DOI":"10.1016\/j.cell.2014.02.033","article-title":"Quantifying
+        absolute protein synthesis rates reveals principles underlying allocation
+        of cellular resources","volume":"157","author":"G-W Li","year":"2014","journal-title":"Cell"},{"issue":"2","key":"ppat.1008184.ref066","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1371\/journal.ppat.1006858","article-title":"Loss
+        of CNFY toxin-induced inflammation drives Yersinia pseudotuberculosis into
+        persistency","volume":"14","author":"W Heine","year":"2018","journal-title":"PLoS
+        Pathog"},{"issue":"7","key":"ppat.1008184.ref067","doi-asserted-by":"crossref","first-page":"3344","DOI":"10.1128\/IAI.01937-06","article-title":"The
+        cytotoxic necrotizing factors from Yersinia pseudotuberculosis and from Escherichia
+        coli bind to different cellular receptors but take the same route to the cytosol","volume":"75","author":"B
+        Blumenthal","year":"2007","journal-title":"Infect Immun"},{"issue":"4","key":"ppat.1008184.ref068","doi-asserted-by":"crossref","first-page":"2022","DOI":"10.1128\/IAI.74.4.2022-2030.2006","article-title":"Active
+        cytotoxic necrotizing factor 1 associated with outer membrane vesicles from
+        uropathogenic Escherichia coli","volume":"74","author":"JC Kouokam","year":"2006","journal-title":"Infect
+        Immun"},{"issue":"8","key":"ppat.1008184.ref069","doi-asserted-by":"crossref","first-page":"4401","DOI":"10.1128\/IAI.00637-06","article-title":"Cytotoxic
+        necrotizing factor type 1 delivered by outer membrane vesicles of uropathogenic
+        Escherichia coli attenuates polymorphonuclear leukocyte antimicrobial activity
+        and chemotaxis","volume":"74","author":"JM Davis","year":"2006","journal-title":"Infect
+        Immun"},{"issue":"6","key":"ppat.1008184.ref070","doi-asserted-by":"crossref","first-page":"e1429","DOI":"10.1002\/wrna.1429","article-title":"RNA-mediated
+        signal perception in pathogenic bacteria","volume":"8","author":"D Ignatov","year":"2017","journal-title":"Wiley
+        Interdiscip Rev RNA"},{"issue":"18","key":"ppat.1008184.ref071","doi-asserted-by":"crossref","first-page":"8258","DOI":"10.1093\/nar\/gkr314","article-title":"Modulation
+        of the stability of the Salmonella fourU-type RNA thermometer","volume":"39","author":"J
+        Rinnenthal","year":"2011","journal-title":"Nucleic Acids Res"},{"issue":"29","key":"ppat.1008184.ref072","doi-asserted-by":"crossref","first-page":"8258","DOI":"10.1002\/anie.201601626","article-title":"Modulation
+        of the E. coli rpoH temperature sensor with triptycene-based small molecules","volume":"55","author":"SA
+        Barros","year":"2016","journal-title":"Angew Chem Int Ed"}],"updated-by":[{"updated":{"date-parts":[[2020,1,30]],"date-time":"2020-01-30T00:00:00Z","timestamp":1580342400000},"DOI":"10.1371\/journal.ppat.1008184","type":"new_version","source":"publisher","label":"New
+        version"}],"container-title":["PLOS Pathogens"],"original-title":[],"language":"en","link":[{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.ppat.1008184","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2020,1,30]],"date-time":"2020-01-30T16:08:55Z","timestamp":1580400535000},"score":1,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.ppat.1008184"}},"subtitle":[],"editor":[{"given":"Guy","family":"Tran
+        Van Nhieu","sequence":"first","affiliation":[]}],"short-title":[],"issued":{"date-parts":[[2020,1,17]]},"references-count":72,"journal-issue":{"issue":"1","published-online":{"date-parts":[[2020,1,17]]}},"URL":"https:\/\/doi.org\/10.1371\/journal.ppat.1008184","relation":{},"ISSN":["1553-7374"],"issn-type":[{"type":"electronic","value":"1553-7374"}],"subject":[],"published":{"date-parts":[[2020,1,17]]}}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '7020'
+      - '7021'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:00:49 GMT
+      - Mon, 01 Dec 2025 17:16:48 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

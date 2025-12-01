@@ -15,7 +15,7 @@ interactions:
   response:
     body:
       string: '{"id": "49yb9-h8k11", "created": "2025-08-12T16:46:38.675189+00:00",
-        "updated": "2025-09-29T10:56:26.930107+00:00", "links": {"self": "https://rogue-scholar.org/api/records/49yb9-h8k11",
+        "updated": "2025-11-23T21:49:16.733087+00:00", "links": {"self": "https://rogue-scholar.org/api/records/49yb9-h8k11",
         "self_html": "https://rogue-scholar.org/records/49yb9-h8k11", "preview_html":
         "https://rogue-scholar.org/records/49yb9-h8k11?preview=1", "doi": "https://doi.org/10.64000/wd6rx-vpq73",
         "self_doi": "https://doi.org/10.64000/wd6rx-vpq73", "self_doi_html": "https://rogue-scholar.org/doi/10.64000/wd6rx-vpq73",
@@ -40,14 +40,15 @@ interactions:
         "https://rogue-scholar.org/api/records/49yb9-h8k11/access", "communities":
         "https://rogue-scholar.org/api/records/49yb9-h8k11/communities", "communities-suggestions":
         "https://rogue-scholar.org/api/records/49yb9-h8k11/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/49yb9-h8k11/request-deletion",
         "requests": "https://rogue-scholar.org/api/records/49yb9-h8k11/requests"},
-        "revision_id": 11, "parent": {"id": "2vyah-dc583", "access": {"owned_by":
+        "revision_id": 23, "parent": {"id": "2vyah-dc583", "access": {"owned_by":
         {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
         false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
         {"ids": ["093ada45-3a02-4007-b8b6-be28f221e01d", "d79fe364-6d96-40b6-b437-b93ca3493106"],
         "default": "093ada45-3a02-4007-b8b6-be28f221e01d", "entries": [{"id": "093ada45-3a02-4007-b8b6-be28f221e01d",
-        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2025-10-06T07:36:24.293820+00:00",
-        "links": {}, "revision_id": 208, "slug": "crossref", "metadata": {"title":
+        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2025-12-01T07:39:03.309996+00:00",
+        "links": {}, "revision_id": 267, "slug": "crossref", "metadata": {"title":
         "Crossref Blog", "description": "Recent content in Blog on Crossref", "type":
         {"id": "blog"}, "website": "https://www.crossref.org/blog/"}, "access": {"visibility":
         "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
@@ -95,7 +96,7 @@ interactions:
         12 August. Available at:  (Accessed: 12 August 2025)."}, {"identifier": "10.64000/4s2ee-wkr84",
         "scheme": "doi", "reference": "Bowman, S., Cousijn, H., Rittman, M., &amp;
         Stoll, L. (2025, April 8). The programs approach: our experiences during the
-        first quarter of 2025. <i>Front Matter</i>."}]}, "custom_fields": {"journal:journal":
+        first quarter of 2025. <i>Crossref Blog</i>."}]}, "custom_fields": {"journal:journal":
         {"title": "Crossref Blog"}, "rs:content_html": "<p>TLDR: We''ve successfully
         moved the main Crossref systems to the cloud! We''ve more to do, with several
         bugs identified and fixed, and a few still ongoing. However, it''s a step
@@ -239,21 +240,22 @@ interactions:
         "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
         {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
         "status": "published", "deletion_status": {"is_deleted": false, "status":
-        "P"}, "stats": {"this_version": {"views": 11, "unique_views": 9, "downloads":
-        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 11,
-        "unique_views": 9, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+        "P"}, "stats": {"this_version": {"views": 0, "unique_views": 0, "downloads":
+        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 0,
+        "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
     headers:
       Content-Length:
-      - '18843'
+      - '18932'
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org www.youtube.com
-        player.vimeo.com www.blogger.com www.canva.com; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
+        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
+        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:26 GMT
+      - Mon, 01 Dec 2025 17:18:06 GMT
       Etag:
-      - '"11"'
+      - '"23"'
       Link:
       - <https://rogue-scholar.org/api/records/49yb9-h8k11> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -261,7 +263,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '57'
+      - '56'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -275,7 +277,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '498'
       X-Ratelimit-Reset:
-      - '1759777404'
+      - '1764609543'
       X-Xss-Protection:
       - 1; mode=block
     status:

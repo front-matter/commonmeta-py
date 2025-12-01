@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1371
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q2NzQyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        fpIZsjYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1371\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a769358c7597fc-AMS
+      - 9a743d63bba62d36-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:02:04 GMT
+      - Mon, 01 Dec 2025 17:17:44 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=f7r6wk7cY4zK%2BDaD63gGw%2FSRQhfJx7RWK08UrfB9C2uOTj2M4DsLzb9NZ5Rd7OsuS0whXYs9eJTgyQqKci9KujJ5A%2BghN8TPp3Q3Ah%2F7t%2FDM3w%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=SFdRQ5xm5DMQsnHzTVIwXmynpBmsHDEPtNrm8vX5A6gfYYxQhO47cUn4E%2BmZOju8f%2Bnn%2FoAVEcL4aY%2FmlNzrBviqdq13tiUp9bU2QOfkKa81JA%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,143 +63,209 @@ interactions:
     uri: https://api.crossref.org/works/10.1371/journal.pone.0000030
   response:
     body:
-      string: !!binary |
-        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
-        DVibKR2ay9//BeSMD4xAXwAA
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,11,30]],"date-time":"2025-11-30T14:24:20Z","timestamp":1764512660297},"reference-count":73,"publisher":"Public
+        Library of Science (PLoS)","issue":"1","license":[{"start":{"date-parts":[[2006,12,20]],"date-time":"2006-12-20T00:00:00Z","timestamp":1166572800000},"content-version":"unspecified","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"content-domain":{"domain":["www.plosone.org"],"crossmark-restriction":false},"short-container-title":["PLoS
+        ONE"],"DOI":"10.1371\/journal.pone.0000030","type":"journal-article","created":{"date-parts":[[2006,12,20]],"date-time":"2006-12-20T19:38:57Z","timestamp":1166643537000},"page":"e30","update-policy":"http:\/\/dx.doi.org\/10.1371\/journal.pone.corrections_policy","source":"Crossref","is-referenced-by-count":72,"title":["Triose
+        Phosphate Isomerase Deficiency Is Caused by Altered Dimerization\u2013Not
+        Catalytic Inactivity\u2013of the Mutant Enzymes"],"prefix":"10.1371","volume":"1","author":[{"given":"Markus","family":"Ralser","sequence":"first","affiliation":[]},{"given":"Gino","family":"Heeren","sequence":"additional","affiliation":[]},{"given":"Michael","family":"Breitenbach","sequence":"additional","affiliation":[]},{"given":"Hans","family":"Lehrach","sequence":"additional","affiliation":[]},{"given":"Sylvia","family":"Krobitsch","sequence":"additional","affiliation":[]}],"member":"340","published-online":{"date-parts":[[2006,12,20]]},"reference":[{"key":"ref1","doi-asserted-by":"crossref","first-page":"229","DOI":"10.1056\/NEJM196502042720503","article-title":"Hereditary
+        Hemolytic Anemia with Triosephosphate Isomerase Deficiency.","volume":"272","author":"AS
+        Schneider","year":"1965","journal-title":"N Engl J Med"},{"key":"ref2","doi-asserted-by":"crossref","first-page":"119","DOI":"10.1053\/beha.2000.0061","article-title":"Triosephosphate
+        isomerase deficiency: historical perspectives and molecular aspects.","volume":"13","author":"AS
+        Schneider","year":"2000","journal-title":"Baillieres Best Pract Res Clin Haematol"},{"key":"ref3","doi-asserted-by":"crossref","first-page":"82","DOI":"10.1006\/bcmd.1996.0011","article-title":"Hematologically
+        important mutations: triosephosphate isomerase.","volume":"22","author":"A
+        Schneider","year":"1996","journal-title":"Blood Cells Mol Dis"},{"key":"ref4","doi-asserted-by":"crossref","first-page":"30","DOI":"10.1042\/bst0300030","article-title":"Triosephosphate
+        isomerase deficiency: a neurodegenerative misfolding disease.","volume":"30","author":"J
+        Olah","year":"2002","journal-title":"Biochem Soc Trans"},{"key":"ref5","first-page":"308","article-title":"Molecular
+        analysis of a series of alleles in humans with reduced activity at the triosephosphate
+        isomerase locus.","volume":"58","author":"M Watanabe","year":"1996","journal-title":"Am
+        J Hum Genet"},{"key":"ref6","doi-asserted-by":"crossref","first-page":"303","DOI":"10.1111\/j.1469-1809.1987.tb01065.x","article-title":"Frequency
+        and distribution of rare electrophoretic mobility variants in a population
+        of human newborns in Ann Arbor, Michigan.","volume":"51 ( Pt 4)","author":"HW
+        Mohrenweiser","year":"1987","journal-title":"Ann Hum Genet"},{"key":"ref7","doi-asserted-by":"crossref","first-page":"960","DOI":"10.1203\/00006450-198211000-00012","article-title":"Elevated
+        frequency of carriers for triosephosphate isomerase deficiency in newborn
+        infants.","volume":"16","author":"HW Mohrenweiser","year":"1982","journal-title":"Pediatr
+        Res"},{"key":"ref8","doi-asserted-by":"crossref","first-page":"336","DOI":"10.1007\/BF00291364","article-title":"Prevalence
+        of partial deficiency of red cell triosephosphate isomerase in Germany\u2013a
+        study of 3000 people.","volume":"67","author":"SW Eber","year":"1984","journal-title":"Hum
+        Genet"},{"key":"ref9","first-page":"663","article-title":"Search for mutations
+        altering protein charge and\/or function in children of atomic bomb survivors:
+        final report.","volume":"42","author":"JV Neel","year":"1988","journal-title":"Am
+        J Hum Genet"},{"key":"ref10","doi-asserted-by":"crossref","first-page":"5046","DOI":"10.1073\/pnas.78.8.5046","article-title":"Frequency
+        of enzyme deficiency variants in erythrocytes of newborn infants.","volume":"78","author":"HW
+        Mohrenweiser","year":"1981","journal-title":"Proc Natl Acad Sci U S A"},{"key":"ref11","doi-asserted-by":"crossref","first-page":"195","DOI":"10.1111\/j.1365-2362.1979.tb00923.x","article-title":"Hereditary
+        deficiency of triosephosphate isomerase in four unrelated families.","volume":"9","author":"SW
+        Eber","year":"1979","journal-title":"Eur J Clin Invest"},{"key":"ref12","doi-asserted-by":"crossref","first-page":"837","DOI":"10.1093\/genetics\/123.4.837","article-title":"Characterization
+        of triosephosphate isomerase mutants with reduced enzyme activity in Mus musculus.","volume":"123","author":"S
+        Merkle","year":"1989","journal-title":"Genetics"},{"key":"ref13","doi-asserted-by":"crossref","first-page":"437","DOI":"10.1006\/jtbi.1996.0184","article-title":"Triosephosphate
+        isomerase deficiency: predictions and facts.","volume":"182","author":"F Orosz","year":"1996","journal-title":"J
+        Theor Biol"},{"key":"ref14","doi-asserted-by":"crossref","first-page":"7903","DOI":"10.1073\/pnas.83.20.7903","article-title":"Human
+        triose-phosphate isomerase deficiency: a single amino acid substitution results
+        in a thermolabile enzyme.","volume":"83","author":"IO Daar","year":"1986","journal-title":"Proc
+        Natl Acad Sci U S A"},{"key":"ref15","doi-asserted-by":"crossref","first-page":"290","DOI":"10.1002\/(SICI)1098-1004(1997)10:4<290::AID-HUMU4>3.0.CO;2-L","article-title":"Evidence
+        for founder effect of the Glu104Asp substitution and identification of new
+        mutations in triosephosphate isomerase deficiency.","volume":"10","author":"R
+        Arya","year":"1997","journal-title":"Hum Mutat"},{"key":"ref16","doi-asserted-by":"crossref","first-page":"634","DOI":"10.1007\/BF02265287","article-title":"Human
+        triosephosphate isomerase: substitution of Arg for Gly at position 122 in
+        a thermolabile electromorph variant, TPI-Manchester.","volume":"88","author":"BA
+        Perry","year":"1992","journal-title":"Hum Genet"},{"key":"ref17","first-page":"1130","article-title":"Triose
+        phosphate isomerase deficiency in 3 French families: two novel null alleles,
+        a frameshift mutation (TPI Alfortville) and an alteration in the initiation
+        codon (TPI Paris).","volume":"96","author":"C Valentin","year":"2000","journal-title":"Blood"},{"key":"ref18","first-page":"1260","article-title":"Human
+        triosephosphate isomerase deficiency resulting from mutation of Phe-240.","volume":"52","author":"ML
+        Chang","year":"1993","journal-title":"Am J Hum Genet"},{"key":"ref19","doi-asserted-by":"crossref","first-page":"486","DOI":"10.1007\/BF00216456","article-title":"Hereditary
+        triosephosphate isomerase (TPI) deficiency: two severely affected brothers
+        one with and one without neurological symptoms.","volume":"92","author":"S
+        Hollan","year":"1993","journal-title":"Hum Genet"},{"key":"ref20","first-page":"929","article-title":"[Glycolytic
+        enzyme defects and neurodegeneration].","volume":"192","author":"S Hollan","year":"1998","journal-title":"C
+        R Seances Soc Biol Fil"},{"key":"ref21","doi-asserted-by":"crossref","first-page":"10362","DOI":"10.1073\/pnas.94.19.10362","article-title":"Search
+        for the pathogenesis of the differing phenotype in two compound heterozygote
+        Hungarian brothers with the same genotypic triosephosphate isomerase deficiency.","volume":"94","author":"S
+        Hollan","year":"1997","journal-title":"Proc Natl Acad Sci U S A"},{"key":"ref22","doi-asserted-by":"crossref","first-page":"268","DOI":"10.1073\/pnas.92.1.268","article-title":"Erythrocyte
+        lipids in triose-phosphate isomerase deficiency.","volume":"92","author":"S
+        Hollan","year":"1995","journal-title":"Proc Natl Acad Sci U S A"},{"key":"ref23","doi-asserted-by":"crossref","first-page":"1026","DOI":"10.1073\/pnas.97.3.1026","article-title":"Enhanced
+        association of mutant triosephosphate isomerase to red cell membranes and
+        to brain microtubules.","volume":"97","author":"F Orosz","year":"2000","journal-title":"Proc
+        Natl Acad Sci U S A"},{"key":"ref24","doi-asserted-by":"crossref","first-page":"119","DOI":"10.1016\/0378-1119(95)00037-7","article-title":"Yeast
+        vectors for the controlled expression of heterologous proteins in different
+        genetic backgrounds.","volume":"156","author":"D Mumberg","year":"1995","journal-title":"Gene"},{"key":"ref25","doi-asserted-by":"crossref","first-page":"747","DOI":"10.1016\/j.bbrc.2006.06.151","article-title":"An
+        efficient and economic enhancer mix for PCR.","volume":"347","author":"M Ralser","year":"2006","journal-title":"Biochem
+        Biophys Res Commun"},{"key":"ref26","doi-asserted-by":"crossref","first-page":"115","DOI":"10.1002\/(SICI)1097-0061(19980130)14:2<115::AID-YEA204>3.0.CO;2-2","article-title":"Designer
+        deletion strains derived from <italic>Saccharomyces cerevisiae<\/italic> S288C:
+        a useful set of strains and plasmids for PCR-mediated gene disruption and
+        other applications.","volume":"14","author":"CB Brachmann","year":"1998","journal-title":"Yeast"},{"key":"ref27","doi-asserted-by":"crossref","first-page":"853","DOI":"10.1016\/j.molcel.2004.09.016","article-title":"A
+        protein interaction network links GIT1, an enhancer of huntingtin aggregation,
+        to Huntington&apos;s disease.","volume":"15","author":"H Goehler","year":"2004","journal-title":"Mol
+        Cell"},{"key":"ref28","doi-asserted-by":"crossref","first-page":"339","DOI":"10.1007\/BF00340712","article-title":"High
+        efficiency transformation of intact yeast cells using single stranded nucleic
+        acids as a carrier.","volume":"16","author":"RH Schiestl","year":"1989","journal-title":"Curr
+        Genet"},{"key":"ref29","doi-asserted-by":"crossref","first-page":"591","DOI":"10.1021\/bp960043c","article-title":"Glycerol
+        production in a triose phosphate isomerase deficient mutant of <italic>Saccharomyces
+        cerevisiae<\/italic>.","volume":"12","author":"C Compagno","year":"1996","journal-title":"Biotechnol
+        Prog"},{"key":"ref30","doi-asserted-by":"crossref","first-page":"2814","DOI":"10.1128\/AEM.68.6.2814-2821.2002","article-title":"Metabolic
+        engineering of glycerol production in <italic>Saccharomyces cerevisiae<\/italic>.","volume":"68","author":"KM
+        Overkamp","year":"2002","journal-title":"Appl Environ Microbiol"},{"key":"ref31","doi-asserted-by":"crossref","first-page":"152","DOI":"10.1128\/JB.139.1.152-160.1979","article-title":"Physiological
+        effects of seven different blocks in glycolysis in <italic>Saccharomyces cerevisiae<\/italic>.","volume":"139","author":"M
+        Ciriacy","year":"1979","journal-title":"J Bacteriol"},{"key":"ref32","doi-asserted-by":"crossref","first-page":"332","DOI":"10.1016\/j.abb.2004.01.003","article-title":"Hypoxic
+        up-regulation of triosephosphate isomerase expression in mouse brain capillary
+        endothelial cells.","volume":"423","author":"R Yamaji","year":"2004","journal-title":"Arch
+        Biochem Biophys"},{"key":"ref33","doi-asserted-by":"crossref","first-page":"8","DOI":"10.1186\/1472-6750-4-8","article-title":"Rapid
+        isolation of yeast genomic DNA: Bust n&apos; Grab.","volume":"4","author":"S
+        Harju","year":"2004","journal-title":"BMC Biotechnol"},{"key":"ref34","doi-asserted-by":"crossref","first-page":"2893","DOI":"10.1093\/hmg\/ddi321","article-title":"Ataxin-2
+        and huntingtin interact with endophilin-A complexes to function in plastin-associated
+        pathways.","volume":"14","author":"M Ralser","year":"2005","journal-title":"Hum
+        Mol Genet"},{"key":"ref35","doi-asserted-by":"crossref","first-page":"157","DOI":"10.1016\/j.femsyr.2004.05.008","article-title":"The
+        role of respiration, reactive oxygen species and oxidative stress in mother
+        cell-specific ageing of yeast strains defective in the RAS signalling pathway.","volume":"5","author":"G
+        Heeren","year":"2004","journal-title":"FEMS Yeast Res"},{"key":"ref36","doi-asserted-by":"crossref","first-page":"165","DOI":"10.2144\/05392BM01","article-title":"Generation
+        of a yeast two-hybrid strain suitable for competitive protein binding analysis.","volume":"39","author":"M
+        Ralser","year":"2005","journal-title":"Biotechniques"},{"key":"ref37","doi-asserted-by":"crossref","first-page":"475","DOI":"10.1016\/S0021-9258(18)62514-1","article-title":"A
+        kinetic study of glycolytic enzyme synthesis in yeast.","volume":"246","author":"PK
+        Maitra","year":"1971","journal-title":"J Biol Chem"},{"key":"ref38","doi-asserted-by":"crossref","first-page":"346","DOI":"10.1107\/S1744309105008341","article-title":"Structure
+        of a high-resolution crystal form of human triosephosphate isomerase: improvement
+        of crystals using the gel-tube method.","volume":"61","author":"T Kinoshita","year":"2005","journal-title":"Acta
+        Crystallograph Sect F Struct Biol Cryst Commun"},{"key":"ref39","doi-asserted-by":"crossref","first-page":"41805","DOI":"10.1074\/jbc.M505181200","article-title":"Genetic
+        perturbation of glycolysis results in inhibition of de novo inositol biosynthesis.","volume":"280","author":"Y
+        Shi","year":"2005","journal-title":"J Biol Chem"},{"key":"ref40","doi-asserted-by":"crossref","first-page":"3106","DOI":"10.1182\/blood.V98.10.3106","article-title":"Distinct
+        behavior of mutant triosephosphate isomerase in hemolysate and in isolated
+        form: molecular basis of enzyme deficiency.","volume":"98","author":"F Orosz","year":"2001","journal-title":"Blood"},{"key":"ref41","doi-asserted-by":"crossref","first-page":"442","DOI":"10.1007\/s00438-003-0941-0","article-title":"Interrelations
+        between the efficiency of translation start sites and other sequence features
+        of yeast mRNAs.","volume":"270","author":"AV Kochetov","year":"2003","journal-title":"Mol
+        Genet Genomics"},{"key":"ref42","doi-asserted-by":"crossref","first-page":"2662","DOI":"10.1073\/pnas.92.7.2662","article-title":"Adherence
+        to the first-AUG rule when a second AUG codon follows closely upon the first.","volume":"92","author":"M
+        Kozak","year":"1995","journal-title":"Proc Natl Acad Sci U S A"},{"key":"ref43","doi-asserted-by":"crossref","first-page":"491","DOI":"10.1007\/s00438-005-1152-7","article-title":"The
+        role of alternative translation start sites in the generation of human protein
+        diversity.","volume":"273","author":"AV Kochetov","year":"2005","journal-title":"Mol
+        Genet Genomics"},{"key":"ref44","first-page":"226","article-title":"Neural
+        network prediction of translation initiation sites in eukaryotes: perspectives
+        for EST and genome analysis.","volume":"5","author":"AG Pedersen","year":"1997","journal-title":"Proc
+        Int Conf Intell Syst Mol Biol"},{"key":"ref45","doi-asserted-by":"crossref","first-page":"15","DOI":"10.1016\/S0378-1119(01)00552-2","article-title":"Nonsense-mediated
+        mRNA decay in <italic>Saccharomyces cerevisiae<\/italic>.","volume":"274","author":"CI
+        Gonzalez","year":"2001","journal-title":"Gene"},{"key":"ref46","doi-asserted-by":"crossref","first-page":"5820","DOI":"10.1128\/MCB.15.10.5820","article-title":"Correlation
+        of two-hybrid affinity data with in vitro measurements.","volume":"15","author":"J
+        Estojak","year":"1995","journal-title":"Mol Cell Biol"},{"key":"ref47","doi-asserted-by":"crossref","first-page":"1","DOI":"10.1006\/abio.2000.4672","article-title":"Uses
+        of lacZ to study gene function: evaluation of beta-galactosidase assays employed
+        in the yeast two-hybrid system.","volume":"285","author":"IG Serebriiskii","year":"2000","journal-title":"Anal
+        Biochem"},{"key":"ref48","doi-asserted-by":"crossref","first-page":"1166","DOI":"10.1111\/j.1365-2958.2001.02317.x","article-title":"Aged
+        mother cells of <italic>Saccharomyces cerevisiae<\/italic> show markers of
+        oxidative stress and apoptosis.","volume":"39","author":"P Laun","year":"2001","journal-title":"Mol
+        Microbiol"},{"key":"ref49","doi-asserted-by":"crossref","first-page":"757","DOI":"10.1083\/jcb.145.4.757","article-title":"Oxygen
+        stress: a regulator of apoptosis in yeast.","volume":"145","author":"F Madeo","year":"1999","journal-title":"J
+        Cell Biol"},{"key":"ref50","doi-asserted-by":"crossref","first-page":"236","DOI":"10.1046\/j.1525-1373.1999.d01-140.x","article-title":"Antioxidants,
+        oxidative stress, and degenerative neurological disorders.","volume":"222","author":"RA
+        Floyd","year":"1999","journal-title":"Proc Soc Exp Biol Med"},{"key":"ref51","doi-asserted-by":"crossref","first-page":"761","DOI":"10.1007\/BF02026706","article-title":"Triosephosphate
+        isomerase deficiency: haemolytic anaemia, myopathy with altered mitochondria
+        and mental retardation due to a new variant with accelerated enzyme catabolism
+        and diminished specific activity.","volume":"150","author":"SW Eber","year":"1991","journal-title":"Eur
+        J Pediatr"},{"key":"ref52","doi-asserted-by":"crossref","first-page":"48931","DOI":"10.1074\/jbc.M208806200","article-title":"Interaction
+        of cofilin with triose-phosphate isomerase contributes glycolytic fuel for
+        Na,K-ATPase via Rho-mediated signaling pathway.","volume":"277","author":"J
+        Jung","year":"2002","journal-title":"J Biol Chem"},{"key":"ref53","doi-asserted-by":"crossref","first-page":"6499","DOI":"10.1016\/S0021-9258(19)44720-0","article-title":"Studies
+        on human triosephosphate isomerase. II. Nature of the electrophoretic multiplicity
+        in erythrocytes.","volume":"247","author":"TH Sawyer","year":"1972","journal-title":"J
+        Biol Chem"},{"key":"ref54","doi-asserted-by":"crossref","first-page":"733","DOI":"10.1016\/0305-0491(74)90259-4","article-title":"Comparison
+        of the electrophoretic properties of triosephosphate isomerases of various
+        tissues and species.","volume":"49","author":"RM Snapka","year":"1974","journal-title":"Comp
+        Biochem Physiol B"},{"key":"ref55","doi-asserted-by":"crossref","first-page":"D46","DOI":"10.1093\/nar\/gkj031","article-title":"ASD:
+        a bioinformatics resource on alternative splicing.","volume":"34","author":"S
+        Stamm","year":"2006","journal-title":"Nucleic Acids Res"},{"key":"ref56","doi-asserted-by":"crossref","first-page":"114","DOI":"10.1111\/j.1471-4159.2004.02854.x","article-title":"Pathogenic
+        mutations inactivate parkin by distinct mechanisms.","volume":"92","author":"IH
+        Henn","year":"2005","journal-title":"J Neurochem"},{"key":"ref57","doi-asserted-by":"crossref","first-page":"865","DOI":"10.1016\/j.mehy.2005.06.006","article-title":"The
+        codon for the methionine at position 129 (M129) in the human prion protein
+        provides an alternative initiation site for translation and renders individuals
+        homozygous for M129 more susceptible to prion disease.","volume":"65","author":"GP
+        Concepcion","year":"2005","journal-title":"Med Hypotheses"},{"key":"ref58","doi-asserted-by":"crossref","first-page":"2767","DOI":"10.1038\/sj.onc.1203599","article-title":"Initiation
+        of translation from a downstream in-frame AUG codon on BRCA1 can generate
+        the novel isoform protein DeltaBRCA1(17aa).","volume":"19","author":"J Liu","year":"2000","journal-title":"Oncogene"},{"key":"ref59","doi-asserted-by":"crossref","first-page":"618","DOI":"10.1016\/j.tibs.2004.09.006","article-title":"The
+        power of two: protein dimerization in biology.","volume":"29","author":"NJ
+        Marianayagam","year":"2004","journal-title":"Trends Biochem Sci"},{"key":"ref60","doi-asserted-by":"crossref","first-page":"675","DOI":"10.1042\/BJ20050993","article-title":"Triosephosphate
+        isomerase deficiency: consequences of an inherited mutation at mRNA, protein
+        and metabolic levels.","volume":"392","author":"J Olah","year":"2005","journal-title":"Biochem
+        J"},{"key":"ref61","doi-asserted-by":"crossref","first-page":"593","DOI":"10.1016\/0006-291X(69)90850-X","article-title":"Diamide,
+        a new reagent for the intracellular oxidation of glutathione to the disulfide.","volume":"37","author":"NS
+        Kosower","year":"1969","journal-title":"Biochem Biophys Res Commun"},{"key":"ref62","doi-asserted-by":"crossref","first-page":"123","DOI":"10.1016\/0076-6879(95)51116-4","article-title":"Diamide:
+        an oxidant probe for thiols.","volume":"251","author":"NS Kosower","year":"1995","journal-title":"Methods
+        Enzymol"},{"key":"ref63","doi-asserted-by":"crossref","first-page":"6564","DOI":"10.1073\/pnas.0305888101","article-title":"Cells
+        have distinct mechanisms to maintain protection against different reactive
+        oxygen species: oxidative-stress-response genes.","volume":"101","author":"GW
+        Thorpe","year":"2004","journal-title":"Proc Natl Acad Sci U S A"},{"key":"ref64","doi-asserted-by":"crossref","first-page":"513","DOI":"10.1042\/bj20030414","article-title":"Protein
+        S-thiolation targets glycolysis and protein synthesis in response to oxidative
+        stress in the yeast <italic>Saccharomyces cerevisiae<\/italic>.","volume":"374","author":"D
+        Shenton","year":"2003","journal-title":"Biochem J"},{"key":"ref65","doi-asserted-by":"crossref","first-page":"2266","DOI":"10.1096\/fj.00-0074com","article-title":"H2O2-induced
+        block of glycolysis as an active ADP-ribosylation reaction protecting cells
+        from apoptosis.","volume":"14","author":"C Colussi","year":"2000","journal-title":"Faseb
+        J"},{"key":"ref66","doi-asserted-by":"crossref","first-page":"1507","DOI":"10.1016\/S0891-5849(02)01086-9","article-title":"Hydrogen
+        peroxide-induced carbonylation of key metabolic enzymes in <italic>Saccharomyces
+        cerevisiae<\/italic>: the involvement of the oxidative stress response regulators
+        Yap1 and Skn7.","volume":"33","author":"VM Costa","year":"2002","journal-title":"Free
+        Radic Biol Med"},{"key":"ref67","doi-asserted-by":"crossref","first-page":"2650","DOI":"10.1128\/MCB.19.4.2650","article-title":"Differential
+        protein S-thiolation of glyceraldehyde-3-phosphate dehydrogenase isoenzymes
+        influences sensitivity to oxidative stress.","volume":"19","author":"CM Grant","year":"1999","journal-title":"Mol
+        Cell Biol"},{"key":"ref68","doi-asserted-by":"crossref","first-page":"1033","DOI":"10.1111\/j.1432-1033.1994.tb18821.x","article-title":"S-thiolation
+        of human endothelial cell glyceraldehyde-3-phosphate dehydrogenase after hydrogen
+        peroxide treatment.","volume":"221","author":"I Schuppe-Koistinen","year":"1994","journal-title":"Eur
+        J Biochem"},{"key":"ref69","doi-asserted-by":"crossref","first-page":"25010","DOI":"10.1016\/S0021-9258(17)31491-6","article-title":"S-thiolation
+        of glyceraldehyde-3-phosphate dehydrogenase induced by the phagocytosis-associated
+        respiratory burst in blood monocytes.","volume":"269","author":"V Ravichandran","year":"1994","journal-title":"J
+        Biol Chem"},{"key":"ref70","doi-asserted-by":"crossref","first-page":"427","DOI":"10.1007\/BF00311211","article-title":"Mutants
+        of <italic>Saccharomyces cerevisiae<\/italic> sensitive to oxidative and osmotic
+        stress.","volume":"27","author":"B Krems","year":"1995","journal-title":"Curr
+        Genet"},{"key":"ref71","doi-asserted-by":"crossref","first-page":"187","DOI":"10.1146\/annurev.arplant.56.032604.144246","article-title":"Redox
+        regulation: a broadening horizon.","volume":"56","author":"BB Buchanan","year":"2005","journal-title":"Annu
+        Rev Plant Biol"},{"key":"ref72","doi-asserted-by":"crossref","first-page":"811","DOI":"10.1089\/ars.2000.2.4-811","article-title":"Antioxidant
+        function of thioredoxin and glutaredoxin systems.","volume":"2","author":"A
+        Holmgren","year":"2000","journal-title":"Antioxid Redox Signal"},{"key":"ref73","doi-asserted-by":"crossref","first-page":"769","DOI":"10.1056\/NEJM199109123251104","article-title":"Efficacy
+        of statewide neonatal screening for cystic fibrosis by assay of trypsinogen
+        concentrations.","volume":"325","author":"KB Hammond","year":"1991","journal-title":"N
+        Engl J Med"}],"container-title":["PLoS ONE"],"original-title":[],"language":"en","link":[{"URL":"http:\/\/dx.plos.org\/10.1371\/journal.pone.0000030","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2021,8,6]],"date-time":"2021-08-06T23:49:55Z","timestamp":1628293795000},"score":1,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.pone.0000030"}},"subtitle":[],"editor":[{"given":"Guilhem","family":"Janbon","sequence":"first","affiliation":[]}],"short-title":[],"issued":{"date-parts":[[2006,12,20]]},"references-count":73,"journal-issue":{"issue":"1","published-online":{"date-parts":[[2006,12,20]]}},"URL":"https:\/\/doi.org\/10.1371\/journal.pone.0000030","relation":{},"ISSN":["1932-6203"],"issn-type":[{"value":"1932-6203","type":"electronic"}],"subject":[],"published":{"date-parts":[[2006,12,20]]}}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '7200'
+      - '7198'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:04 GMT
+      - Mon, 01 Dec 2025 17:17:45 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

@@ -14,23 +14,18 @@ interactions:
     uri: https://info.orcid.org/orcid-2023-annual-report/
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/5RUXWvbMBR9H+w/ZKVUNrR2spZura3A1rTsIUkZC+xhjCJLN7aKIhlJSZY1+e+7
-        thM3BNrRB9u6uh9H594jp4Wfqf77d2kBTPRTL72C/kX3vHNnbCaFAJ3GzWYa1yEYmhmxqr4ctAfb
-        T4veYQbupPHWXdXGoK2lc6n/7Psct7L0/WA619xLo4PwabfscDQWzHYyyiJuMEP7geHzGX7X63br
-        p9TCLCOx9SRyGmRNnqBZxC0wD7cKKl9AGjgSJiKSWoP9NhkN6dGyKfHwcHN3zBfHJbNs5uiTvSZX
-        n9mnS/4xE5fTqx6/AnLqr8lownv3E34+/vu9O5YXy9HgS/VQskkqWEZ3Z3kRnUXaaA6UEFw6yymJ
-        udBnPJcxL5hSoHM4KxXzU2NncZPm4kcn4hmTOnp0JGkxcvBbAPd1NWH5mM0gINWwSPir+ztiZQla
-        3BRSiYCFyVGSvSlFhJsNtrSFq6bftPdlnnKKDYSaZwEyLzzt4XIphS/qlfMrBVFpnKzmTAnLnFFz
-        D6T1eVPSbmspmPo9MzNWgKUEe7iXspBOZlJJv6KkqIW416Tq1IedQFZEGSakzskH+kwGuYjVD4+E
-        QlRgAspBB2O3ImFC3C4wbCgdqg9s2OYdegIyuB/dNCIdIg4IcsqbenX/4BnS6BrUVaAoAJz+er13
-        IzbJK5G0DUTZA76S/7A6OQleKwenyBqHvtmEyD7dqg8v9O7ex/U/4x8AAAD//+LlAgAAAP//AwBv
-        E+nBPAQAAA==
+      string: "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403
+        Forbidden</h1></center>\r\n<hr><center>nginx</center>\r\n<script>(function(){function
+        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'9a7440b251c466db',t:'MTc2NDYwOTYwMC4wMDAwMDA='};var
+        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
+        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
+        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
+        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\r\n</html>\r\n"
     headers:
       CF-Cache-Status:
       - BYPASS
       CF-Ray:
-      - 98a76c2bbd3c1c9e-AMS
+      - 9a7440b23a6e66db-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -38,13 +33,16 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Mon, 06 Oct 2025 19:04:06 GMT
+      - Mon, 01 Dec 2025 17:20:00 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=sRZzFVJIfksqYYjiLAXDcadcynqOB_9R57r1a2EhlQk-1759777446-1.0.1.1-huuJ4reJ72TRRU4B5Ofp_oRS4yFQ7SCo1jDNzuSeCVk.g.QQY3bJMmJrXJMm_cBPhRhZQDzythYhFJL8GDraz3gexmi_5dQR76r.KZEjDpU;
-        HttpOnly; SameSite=None; Secure; Path=/; Domain=orcid.org; Expires=Mon, 06
-        Oct 2025 19:34:06 GMT
+      - __cf_bm=E.iFsh66bl1eWoKXb48qjDUJtJkLqA5pBUXH0eI6K2I-1764609600-1.0.1.1-JElHpYYDbjQW8vXVGINtJjraTKyydMFwwQF8f9CCLkbGb6OFDGotqawvL7QutlpsbVIZKaT5MorzdOgJwcbJc3g2oL4BGsshx9j1GTKiglU;
+        path=/; expires=Mon, 01-Dec-25 17:50:00 GMT; domain=.orcid.org; HttpOnly;
+        Secure; SameSite=None
+      - __cf_bm=me3hDBapaCCjlxUWShh2L.Usrvt64TQxKMCSPNyW1Mc-1764609600-1.0.1.1-6fCqKbtZpBI5O.eOD_bu0XULoyl2lRau0J2Kbs1grkh0_q.ZetJvu4L.BPYu40loxvPZaBc5QNEMqFdG.2.WdEAubI381XnqbvaJLK3vbN8;
+        path=/; expires=Mon, 01-Dec-25 17:50:00 GMT; domain=.orcid.org; HttpOnly;
+        Secure; SameSite=None
       Transfer-Encoding:
       - chunked
       Vary:

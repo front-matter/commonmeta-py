@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1109
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q0MDSyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        XRsdmjYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1109\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a7677918e21489-AMS
+      - 9a743c13ee359fed-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:00:53 GMT
+      - Mon, 01 Dec 2025 17:16:51 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=w0so0GcHd1o8%2BhPWrPSTrwDW1BqcFkznqthU69huSBCH4vQpyxY04O%2Fd%2FZoBwJFOKqTo802%2FPniu1HbVNVyi4GUr%2BfkOcyybrmysHWwm3okFtw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jpeYhbmyP1%2FpwS7%2BtN0BwcJsHzvmNqCZrD%2B0PVXzFOumfL6EdXlap3uoxRDamdCnoKZkT1Lq88Kbd1%2FPqzQGrgYO%2Bj7ZGLwMJT9BkBe2VrihDw%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,31 +63,18 @@ interactions:
     uri: https://api.crossref.org/works/10.1109/iccv.2007.4408927
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/6VW227jNhD9FUJPLSDZpC6mZKAosmlSpM1ekGR30cZ5YCTa4kYSVVLKxgny752R
-        nEh2kqLGwi8yKR3OnDkzPA+ObUTTWmfu6BvHdUpprVhJr1nXEta+azNevZXGKl3BBpvQCR12nPmD
-        o6pM3skMHzPRSK8WpgHcy0uf+pGbuCy5unL7rUaViI4bHk08llzQ2TyK5xH/GzBxF6Iqa2fOeBT7
-        s4gFPOTMdYbzg4kfQwCPrmPkUhpZpdJLdVs18E3oOnV7XSibSwOvnhwdHQFqqqtGVo2X6VKoqoty
-        83QJYaVGW1sKc+MZONuotOnOWYrCSjjE5to0HkLAF9JAAk0h+y+fjsq82ig8/2X6lF9dAchvH0+Q
-        OTphjCaLqUrT2wluTsKQxonPMfWe9troVMpMVSvrAYxK4TCMUQLwqwTT2GVu+JJfGnuUeTS8YNE8
-        COdRsMsvS5JwBqcHlFIIse5q6TAvhvesbk2Kfw+RHOAZ1pT1ngnPvOv1M+mcI3DPinNAziF8mZGT
-        EgDhz6oE6gVySo6NKCXqinyu1HINOZLfjahzctg2lhxUGTkTFZSGfBXFjTTka67SnPylZJHBNvkg
-        v5ODYqWNavLSQf4hHnU3EAtBiraBekEgD85K3UrUy0GhyJ+yFAVsL0WpijUsnqtK15io/KfFhGBp
-        qYxtEGK5VIUSvQouoXoD1KnUYxAIPltvg4gsU/hld9ou0hU2TXndSdOfBc5IwV3ENxJRYY1hf2Va
-        ecJaaZqObtTGs7THiqJ0tpiuSlVPoKLQGWGMzTFGY3uh8cX0OoljHnYoGw0+yd451OW1qkQDVRAF
-        +ViDotR9l+J8KI4lUEcCr9aFvFMNcrSWAtPGEEdlAtXVIgMI6DvdwsYQtP/q8afyVhagqoa8lwCR
-        9ScdCwsLwqQ5amqzs3XoWBtQryZXoto6LtjhLHyVs3Roh04u3qZr4jh2XnR5EE7iGfy6hHfy+KAN
-        KFLdQ6OkKH7MQnUdY0cdAx/e6qLtO9rfSiFXQ37Q7CiYb9C0ILznM3D6kQsjKkug+T4dvD/ZzvH1
-        FP+nyHi0DRbsqzHLGPSAB8AeT4LQ28Gb7YHXsX2BCeJQnU38YKea0b5gh18+nSFWBFjJNla8b6Lv
-        jillQRDxnbbkP5BhxLex/H2CSuhiek59DuQnPIErAi4KGkRe8GrHfZBNN7KPC/3dzslFLrVZu6Ne
-        dzvxHtR1odJOtdudF4xlK/L2m9jqu+08kn3yYCDJc0b5zItmnP5E6c8xMO17UDCYtDAo+iu5Ek83
-        IiddSzDW5OQELAF0Sz+rYVRVm0GMrYKDq4Vt8kXZvgvhzjRv3O8uoy4Lu1u+0Olm2DtnSpNMkj9E
-        JZXRLnlnxL3CO0FWr9/iHY7PAOexNyzbbuNHwgcyoFQrNZoN6F4KVd10187ns1OIOG+aer6YLqZ3
-        daHRCQn4YjVRUsqJNiswLbK4ixZTdCwxi58eQJd0Y2Imdbb8VZiqxSvul8HZPNmvjcNpK1vLVC0V
-        +Jlhc/B3txrrrHAZfIQnBmHh3IO7ohAgPLAfuUxvIMSu2pmstVVvWCTG3ZnL+EuPxLgH44fxC9+f
-        B8k8jHY9UphwHiQsjnqPZFNgBpbx4n6ySA9gQ2BymzU+7lCJ5PV0jnjMdNrihO8ZBIoWUweLbtvr
-        UXV62zlaUNa2bzjA3mM+ewk7tsNDRLYLCbqrD+M/zaiRxYbxhz6ybzJtdkzvm6E8Pv4L8Ji0llsM
-        AAA=
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,31]],"date-time":"2025-10-31T21:51:11Z","timestamp":1761947471646,"version":"3.28.0"},"reference-count":14,"publisher":"IEEE","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2007]]},"DOI":"10.1109\/iccv.2007.4408927","type":"proceedings-article","created":{"date-parts":[[2008,1,4]],"date-time":"2008-01-04T15:34:53Z","timestamp":1199460893000},"page":"1-8","source":"Crossref","is-referenced-by-count":177,"title":["A
+        Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker
+        Which Yields A New Algorithm"],"prefix":"10.1109","author":[{"given":"Ali
+        Kemal","family":"Sinop","sequence":"first","affiliation":[]},{"given":"Leo","family":"Grady","sequence":"additional","affiliation":[]}],"member":"263","reference":[{"key":"ref10","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0480"},{"key":"ref11","doi-asserted-by":"publisher","DOI":"10.1007\/b98874"},{"article-title":"Combinatorial
+        Optimization: Algorithms and Complexity","year":"1998","author":"papadimitriou","key":"ref12"},{"article-title":"Level
+        Set Methods and Fast Marching Methods","year":"1999","author":"sethian","key":"ref13"},{"key":"ref14","doi-asserted-by":"crossref","first-page":"888","DOI":"10.1109\/34.868688","article-title":"Normalized
+        cuts and image segmentation","volume":"22","author":"shi","year":"2000","journal-title":"IEEE
+        Trans on PAMI"},{"key":"ref4","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0475"},{"key":"ref3","doi-asserted-by":"publisher","DOI":"10.1007\/s11263-006-7934-5"},{"key":"ref6","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.233"},{"key":"ref5","doi-asserted-by":"publisher","DOI":"10.1109\/CVPR.2005.239"},{"key":"ref8","doi-asserted-by":"publisher","DOI":"10.1007\/BF00133570"},{"key":"ref7","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.57"},{"key":"ref2","doi-asserted-by":"publisher","DOI":"10.1090\/S0273-0979-04-01035-3"},{"article-title":"Network
+        Flows: Theory, Algorithms, and Applications","year":"1993","author":"ahuja","key":"ref1"},{"key":"ref9","doi-asserted-by":"publisher","DOI":"10.1016\/S1076-5670(00)80012-9"}],"event":{"name":"2007
+        IEEE 11th International Conference on Computer Vision","start":{"date-parts":[[2007,10,14]]},"location":"Rio
+        de Janeiro, Brazil","end":{"date-parts":[[2007,10,21]]}},"container-title":["2007
+        IEEE 11th International Conference on Computer Vision"],"original-title":[],"link":[{"URL":"http:\/\/xplorestaging.ieee.org\/ielx5\/4408818\/4408819\/04408927.pdf?arnumber=4408927","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2017,6,17]],"date-time":"2017-06-17T22:39:45Z","timestamp":1497739185000},"score":1,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/document\/4408927\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2007]]},"references-count":14,"URL":"https:\/\/doi.org\/10.1109\/iccv.2007.4408927","relation":{},"subject":[],"published":{"date-parts":[[2007]]}}}'
     headers:
       Connection:
       - keep-alive
@@ -98,7 +83,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:00:53 GMT
+      - Mon, 01 Dec 2025 17:16:51 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

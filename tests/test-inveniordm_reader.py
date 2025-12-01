@@ -318,7 +318,10 @@ def test_rogue_scholar():
         "platform": "Substack",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Other social sciences"},
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
+            "subject": "Other social sciences",
+        }
     ]
     assert subject.language == "en"
     assert subject.version == "v1"
@@ -355,9 +358,13 @@ def test_rogue_scholar_with_citations():
     assert subject.references is None
     assert subject.citations == [
         {
+            "id": "https://doi.org/10.59350/4q8j1-1ap35",
+            "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
+        },
+        {
             "id": "https://doi.org/10.59350/jtzzf-jfz50",
             "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
-        }
+        },
     ]
     assert (
         subject.descriptions[0]
@@ -372,41 +379,44 @@ def test_rogue_scholar_with_citations():
         "platform": "Blogger",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Social science"},
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?5",
+            "subject": "Social science",
+        }
     ]
     assert subject.language == "en"
-    assert subject.version is None
+    assert subject.version == "v1"
     assert subject.state == "findable"
 
 
 @pytest.mark.vcr
 def test_rogue_scholar_with_parent_doi():
     """Rogue Scholar with parent DOI"""
-    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
+    string = "https://rogue-scholar.org/api/records/74hx4-qp390"
     subject = Metadata(string)
     assert subject.is_valid
-    assert subject.id == "https://doi.org/10.53731/taha2-fvd76"
+    assert subject.id == "https://doi.org/10.59350/qsajq-6tn97"
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+        == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
     )
     assert subject.titles[0] == {
-        "title": "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+        "title": 'Video of the 2024 SSP debate: "The open access movement has failed"'
     }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "id": "https://orcid.org/0000-0003-1419-2405",
+        "id": "https://orcid.org/0000-0002-1003-5675",
         "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
+        "givenName": "Mike",
+        "familyName": "Taylor",
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date["published"] == "2025-09-24T10:32:00"
+    assert subject.date["published"] == "2025-10-18T15:34:59"
     # assert subject.relations == [
     #     {"id": "https://doi.org/10.59350/t3d89-8jj38", "type": "IsVersionOf"}
     # ]
@@ -417,21 +427,27 @@ def test_rogue_scholar_with_parent_doi():
     assert (
         subject.descriptions[0]
         .get("description")
-        .startswith("On April 16, 2025, the Rogue Scholar Advisory Board met")
+        .startswith(
+            "Readers with good memories will remember that back in May last year"
+        )
     )
     assert subject.container == {
         "type": "Blog",
-        "title": "Front Matter",
-        "identifier": "2749-9952",
+        "title": "Sauropod Vertebra Picture of the Week",
+        "identifier": "3033-3695",
         "identifierType": "ISSN",
-        "platform": "Ghost",
+        "platform": "WordPress.com",
     }
     assert subject.subjects == [
-        {"subject": "FOS: Computer and information sciences"},
-        {"subject": "Rogue Scholar"},
+        {"subject": "Conferences"},
+        {"subject": "Debate"},
+        {"subject": "Open Access"},
+        {"subject": "SSP"},
+        {"subject": "Stinkin' Publishers"},
+        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
     ]
     assert subject.language == "en"
-    assert subject.version is None
+    assert subject.version == "v1"
     assert subject.state == "findable"
 
 
@@ -460,3 +476,35 @@ def test_rogue_scholar_with_contributors():
         "givenName": "Steffi",
         "familyName": "LaZerte",
     }
+
+
+@pytest.mark.vcr
+def test_subfield_classification():
+    "subfield classification"
+    string = "https://rogue-scholar.org/api/records/23y6y-vh985"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/qsajq-6tn97"
+    assert subject.type == "BlogPost"
+    assert (
+        subject.url
+        == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
+    )
+    assert subject.titles[0] == {
+        "title": 'Video of the 2024 SSP debate: "The open access movement has failed"'
+    }
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith(
+            "Readers with good memories will remember that back in May last year"
+        )
+    )
+    assert subject.subjects == [
+        {"subject": "Conferences"},
+        {"subject": "Debate"},
+        {"subject": "Open Access"},
+        {"subject": "SSP"},
+        {"subject": "Stinkin' Publishers"},
+        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
+    ]

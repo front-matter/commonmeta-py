@@ -14,145 +14,18 @@ interactions:
     uri: https://staging.rogue-scholar.org/api/records/baq1p-0py32
   response:
     body:
-      string: '{"id": "baq1p-0py32", "created": "2025-09-24T16:11:42.565843+00:00",
-        "updated": "2025-09-27T19:34:45.113650+00:00", "links": {"self": "https://staging.rogue-scholar.org/api/records/baq1p-0py32",
-        "self_html": "https://staging.rogue-scholar.org/records/baq1p-0py32", "preview_html":
-        "https://staging.rogue-scholar.org/records/baq1p-0py32?preview=1", "doi":
-        "https://doi.org/10.53731/taha2-fvd76", "self_doi": "https://doi.org/10.53731/taha2-fvd76",
-        "self_doi_html": "https://staging.rogue-scholar.org/doi/10.53731/taha2-fvd76",
-        "reserve_doi": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/draft/pids/doi",
-        "parent": "https://staging.rogue-scholar.org/api/records/t3d89-8jj38", "parent_html":
-        "https://staging.rogue-scholar.org/records/t3d89-8jj38", "parent_doi": "https://doi.org/10.59350/t3d89-8jj38",
-        "parent_doi_html": "https://staging.rogue-scholar.org/doi/10.59350/t3d89-8jj38",
-        "self_iiif_manifest": "https://staging.rogue-scholar.org/api/iiif/record:baq1p-0py32/manifest",
-        "self_iiif_sequence": "https://staging.rogue-scholar.org/api/iiif/record:baq1p-0py32/sequence/default",
-        "files": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/files",
-        "media_files": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/media-files",
-        "archive": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/files-archive",
-        "archive_media": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/media-files-archive",
-        "latest": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/versions/latest",
-        "latest_html": "https://staging.rogue-scholar.org/records/baq1p-0py32/latest",
-        "versions": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/versions",
-        "draft": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/draft",
-        "access_links": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access/links",
-        "access_grants": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access/grants",
-        "access_users": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access/users",
-        "access_groups": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access/groups",
-        "access_request": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access/request",
-        "access": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/access",
-        "communities": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/communities",
-        "communities-suggestions": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/communities-suggestions",
-        "requests": "https://staging.rogue-scholar.org/api/records/baq1p-0py32/requests"},
-        "revision_id": 35, "parent": {"id": "t3d89-8jj38", "access": {"owned_by":
-        {"user": "1"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["9f88ce7e-fea3-4b79-b38b-b0d4c016fcae", "ddd86572-254d-4d8b-bec4-7afbaa668295"],
-        "default": "9f88ce7e-fea3-4b79-b38b-b0d4c016fcae", "entries": [{"id": "9f88ce7e-fea3-4b79-b38b-b0d4c016fcae",
-        "created": "2025-07-28T13:57:44.254946+00:00", "updated": "2025-07-28T13:57:44.290739+00:00",
-        "links": {}, "revision_id": 2, "slug": "computerandinformationsciences", "metadata":
-        {"title": "Computer and information sciences", "description": "Computer and
-        information sciences subject area.", "type": {"id": "subject"}}, "access":
-        {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "ddd86572-254d-4d8b-bec4-7afbaa668295", "created": "2025-07-29T20:01:52.389455+00:00",
-        "updated": "2025-07-29T20:01:52.706821+00:00", "links": {}, "revision_id":
-        3, "slug": "roguescholar", "metadata": {"title": "Rogue Scholar", "description":
-        "Blog posts about Rogue Scholar.", "type": {"id": "topic"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
-        {"doi": {"identifier": "10.59350/t3d89-8jj38", "provider": "crossref", "client":
-        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
-        true, "is_draft": false, "pids": {"doi": {"identifier": "10.53731/taha2-fvd76",
-        "provider": "external"}, "oai": {"identifier": "oai:invenio-rdm:baq1p-0py32",
-        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
-        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
-        "creators": [{"person_or_org": {"type": "personal", "name": "Fenner, Martin",
-        "given_name": "Martin", "family_name": "Fenner", "identifiers": [{"identifier":
-        "0000-0003-1419-2405", "scheme": "orcid"}]}}], "title": "Report Rogue Scholar
-        Advisory Board Meeting April 16, 2025", "publisher": "Front Matter", "publication_date":
-        "2025-09-24", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"subject":
-        "Rogue Scholar"}], "dates": [{"date": "2025-09-24T10:32:00", "type": {"id":
-        "issued", "title": {"cs": "Vyd\u00e1no", "de": "Ver\u00f6ffentlicht", "en":
-        "Issued", "sv": "Utf\u00e4rdad"}}}, {"date": "2025-09-24T10:32:00", "type":
-        {"id": "updated", "title": {"cs": "Aktualizov\u00e1no", "de": "Aktualisiert",
-        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
-        {"en": "English"}}], "identifiers": [{"identifier": "1f739c27-65c1-4498-8200-906cfcbfc80f",
-        "scheme": "uuid"}, {"identifier": "https://doi.org/10.53731/taha2-fvd76",
-        "scheme": "guid"}, {"identifier": "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/",
-        "scheme": "url"}], "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
-        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
-        Commons Attribution license allows re-distribution and re-use of a licensed
-        work on the condition that the creator is appropriately credited."}, "icon":
-        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "On April 16, 2025, the Rogue Scholar
-        Advisory Board met for the third time since it started in January 2024. Since
-        the last Advisory Board Meeting on October 24, Rogue Scholar has achieved
-        several important milestones."}, "custom_fields": {"journal:journal": {"title":
-        "Front Matter", "issn": "2749-9952"}, "rs:content_html": "<p>On April 16,
-        2025, the Rogue Scholar Advisory Board met for the third time since it <a
-        href=\"https://doi.org/10.53731/9yf86-p8541\"><u>started in January 202</u></a>4.
-        Since the last Advisory Board Meeting on October 24, Rogue Scholar has achieved
-        several important milestones.</p><p>In February, the Rogue Scholar Statistics
-        page was relaunched as <a href=\"https://docs.rogue-scholar.org/dashboard.html\"><u>Rogue
-        Scholar Dashboard</u></a>, displaying key indicators such as the number of
-        participating blogs and archived blog posts, as well as the percentage of
-        posts with ORCID and ROR identifiers, references, or funding. </p><figure
-        class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.io/content/images/2025/09/data-src-image-5130cdf2-4865-484f-90f0-1b9033ece85d.png\"
-        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1600\" height=\"336\"
-        srcset=\"https://blog.front-matter.io/content/images/size/w600/2025/09/data-src-image-5130cdf2-4865-484f-90f0-1b9033ece85d.png
-        600w, https://blog.front-matter.io/content/images/size/w1000/2025/09/data-src-image-5130cdf2-4865-484f-90f0-1b9033ece85d.png
-        1000w, https://blog.front-matter.io/content/images/2025/09/data-src-image-5130cdf2-4865-484f-90f0-1b9033ece85d.png
-        1600w\" sizes=\"(min-width: 720px) 720px\"></figure><p>The Advisory Board
-        suggested adding filters to better highlight more recent data.</p><p>In January
-        and February, Rogue Scholar improved the reference extraction and references
-        display, finding references in about 5% of posts. Using the <a href=\"https://www.crossref.org/services/cited-by/\"><u>Crossref
-        Cited-By</u></a> service, Rogue Scholar also started collecting and displaying
-        citations of Rogue Scholar posts. The <a href=\"https://wordpress.org/plugins/kcite/\"><u>kcite</u></a>
-        WordPress plugin that simplifies the generation of DOI references was very
-        helpful, but hasn''t been updated in many years. While the numbers of references
-        and citations are still small, linking to other scholarly content via references
-        and citations further integrates scholarly blogs into the broader scholarly
-        record.</p><p>The Advisory Board discussed archiving formats for the full-text
-        of blog posts. Rogue Scholar in 2024 started experimenting with PDF and ePub,
-        but this functionality is not yet integrated with the InvenioRDM repository
-        platform. The Advisory Board felt that the <a href=\"https://jats.nlm.nih.gov/\"><u>JATS</u></a>
-        format may not be necessary or beneficial for blog content.</p><p>The Advisory
-        Board next discussed starting a webinar series on best practices for science
-        blogs, focusing on specific blogging platforms. A first webinar for WordPress
-        bloggers in German was proposed.</p><p>Finally, the Advisory Board discussed
-        Rogue Scholar funding. Rogue Scholar is a Diamond Open Access infrastructure
-        with no costs to authors and readers. Seeking grant funding is an option,
-        and Rogue Scholar has so far archived more than 30,000 blog posts, including
-        some highly visible science blogs. One challenge with seeking grant funding
-        is the missing non-profit status for Front Matter, the organization behind
-        Rogue Scholar.</p>", "rs:image": "https://images.unsplash.com/photo-1525384197403-b43d320d748a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDMwfHxhcHJpbHxlbnwwfHx8fDE3NTg3MDk4MDV8MA&ixlib=rb-4.1.0&q=80&w=2000",
-        "rs:generator": "Ghost", "rs:stale": false}, "access": {"record": "public",
-        "files": "public", "embargo": {"active": false, "reason": null}, "status":
-        "metadata-only"}, "files": {"enabled": false, "order": [], "count": 0, "total_bytes":
-        0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        29, "unique_views": 14, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 29, "unique_views": 14, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: '{"status": 404, "message": "The persistent identifier does not exist."}'
     headers:
       Content-Length:
-      - '10593'
+      - '71'
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org www.youtube.com
-        player.vimeo.com www.blogger.com www.canva.com; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
+        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
+        www.canva.com video.ethz.ch; img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:37 GMT
-      Etag:
-      - '"35"'
-      Link:
-      - <https://staging.rogue-scholar.org/api/records/baq1p-0py32> ; rel="linkset"
-        ; type="application/linkset+json"
+      - Mon, 01 Dec 2025 17:18:16 GMT
       Permissions-Policy:
       - interest-cohort=()
       Referrer-Policy:
@@ -172,10 +45,10 @@ interactions:
       X-Ratelimit-Remaining:
       - '499'
       X-Ratelimit-Reset:
-      - '1759777418'
+      - '1764609557'
       X-Xss-Protection:
       - 1; mode=block
     status:
-      code: 200
-      message: OK
+      code: 404
+      message: Not Found
 version: 1

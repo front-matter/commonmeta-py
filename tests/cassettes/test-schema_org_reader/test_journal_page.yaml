@@ -136,19 +136,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:04:06 GMT
+      - Mon, 01 Dec 2025 17:20:01 GMT
       Expires:
       - Wed, 28 Jan 1976 11:52:00 GMT
       Keep-Alive:
       - timeout=5, max=100
       Last-Modified:
-      - Mon, 06 Oct 2025 19:04:06 GMT
+      - Mon, 01 Dec 2025 17:20:01 GMT
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=hhoq0spr2rjik1ihh9lovigil1; path=/
+      - PHPSESSID=bi7d3bsmu0q988iho1ntvevq47; path=/
       Transfer-Encoding:
       - chunked
     status:
@@ -169,12 +169,10 @@ interactions:
     uri: https://doi.org/ra/10.4202
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9EyMDIyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        xPvtwjYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.4202\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a76c315ed09ff5-AMS
+      - 9a7440b7dceddef8-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -182,11 +180,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:04:06 GMT
+      - Mon, 01 Dec 2025 17:20:01 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=038Qx5uwXG954w%2F9t6nUDzGZ3hZU4W6MmMh11TwzZsz4gB6rvxXTK5sSGGrQ2afarzmrj%2Brly%2FQ2AN696MQLnWgckc%2B0xRdQ6WG1ujPLfRSJEg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=rxe%2B1mwELsyvEkTQczF6CAPChfmIvGh%2BtMI29Kv5hYKACvT8rwd3O0gKMdXsOYz13ygBkSGUSPlDmJQmNBbF%2BR22zDhcRTWl5oM6IzYXQdSgDg%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -220,31 +218,20 @@ interactions:
     uri: https://api.crossref.org/works/10.4202/app.01105.2023
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/7VU0Y7iNhT9lchPrZSAk2GA8jZtX0banY46s1qpwINJHLiLE6e2A4MQ/77nBgbo
-        llGfKiHh3Gufe+65x94LH1RovZgIuxaxqLT3aqmTsGs0YlvrrqMb7TzZGom0J3vykhGTvaC60G+6
-        4GWhgk4a5QJwp9NMZvfxKM7m8/iYCVQxOMcTOUpk9poOJhl+8i9AchakqkZM0tF9OhgOs6Ec3w0O
-        sXC61E7XuU5y29ZBTGQsmnZhyK+0A+KzNX6tooe1KnRFKnpS7Tp6rH3YhTZEz8pouyBr7JIo+onj
-        hLiObHmd28URcAAZPeSMs+P8S05c1/8Mgrmtg65DUthKUd31e1pN0WHurPeVcuvEoQ1HeegUK5Xx
-        Gi34lXUhYQic0A5aBAMxpuLh+Vng+O9/PLK8sjeAPLO+apqeTFN538PnHatzHMw327pamQQaUw4A
-        rquh7W35B3EaZ4Mb+g8SmSbZ4FWOJ2mK37/0lyz9eJRKKZk8quZ89DduEtPAdvLJeSxFsti9j+aO
-        kU69PdmNNlFT67ZS4BuVoNpCnojqKKx05GjhWeVfncpXZL1qXesjZQAAudQbC9OgCr1dtEHpjTVt
-        18lwjC/V8maU24slbTS79DOtWZpSVWR2+H5VO4MtaET/3TJhxEpyPvDxsiRD6jit6fwQX8EokNxe
-        A33VhTb/xFFFQXxYmRtgc74p1aIzaTZKme67b4vE1gZWuDm4uzmIiFtuyYNi0yqNXOfoXLFtbY0F
-        y2UdLYkd8n4EMZRZd/p8+fMTiKxCaPxk1p/1t9ttj53WqLrXGLjOYQwbPeufSXZOHI67v86PTK7X
-        FOXVfThZs619o3MqCWa8JC9Px6abAHG4QPcANOB8lEp4gsLKUYCPVjpfU70UrF6hG+vpf/d3bh1O
-        pvzSvHt9D+cR7vOOl/8tXHcdZ31QrX4QaxUqIw5cpV1cDeX4IFwFyPv2gz6PdjhfN3/1DOKyaLwI
-        AWNLqGCLZBKF2Qo/ki4s9axbzvofvzJOm9NE9ij4+PLyxIjyfjhKRr9kUhxp1qeRw1EbZVrW/LLl
-        /FRBPnDkIaLxbzoPxzbP1vqw08PhO84rLr6eBgAA
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,11]],"date-time":"2025-10-11T21:28:05Z","timestamp":1760218085526},"reference-count":0,"publisher":"Polska
+        Akademia Nauk Instytut Paleobiologii (Institute of Paleobiology, Polish Academy
+        of Sciences)","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["APP"],"DOI":"10.4202\/app.01105.2023","type":"journal-article","created":{"date-parts":[[2024,1,24]],"date-time":"2024-01-24T08:11:11Z","timestamp":1706083871000},"source":"Crossref","is-referenced-by-count":14,"title":["Novel
+        pneumatic features in the ribs of Brachiosaurus altithorax"],"prefix":"10.4202","volume":"68","author":[{"given":"Mike","family":"Taylor","sequence":"first","affiliation":[]},{"given":"Mathew","family":"Wedel","sequence":"additional","affiliation":[]}],"member":"2718","published-online":{"date-parts":[[2023]]},"container-title":["Acta
+        Palaeontologica Polonica"],"original-title":[],"link":[{"URL":"https:\/\/www.app.pan.pl\/archive\/published\/app68\/app011052023.pdf","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2024,1,24]],"date-time":"2024-01-24T08:11:11Z","timestamp":1706083871000},"score":1,"resource":{"primary":{"URL":"https:\/\/www.app.pan.pl\/article\/item\/app011052023.html"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023]]},"references-count":0,"alternative-id":["20052"],"URL":"https:\/\/doi.org\/10.4202\/app.01105.2023","relation":{},"ISSN":["0567-7920"],"issn-type":[{"value":"0567-7920","type":"print"}],"subject":[],"published":{"date-parts":[[2023]]}}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '828'
+      - '832'
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:04:07 GMT
+      - Mon, 01 Dec 2025 17:20:01 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

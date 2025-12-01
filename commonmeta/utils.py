@@ -27,7 +27,7 @@ from .base_utils import (
     unique,
     wrap,
 )
-from .constants import DATACITE_CONTRIBUTOR_TYPES
+from .constants import DATACITE_CONTRIBUTOR_TYPES, OPENALEX_SUBFIELD_MAPPINGS
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
 
 NORMALIZED_LICENSES = {
@@ -1406,6 +1406,15 @@ def dict_to_fos(dct: dict) -> dict | None:
         return None
     if dct.get("subject", None) is not None:
         return name_to_fos(dct["subject"])
+    return None
+
+
+def dict_to_openalex(dct: dict) -> dict | None:
+    """Convert dict to OpenAlex subfield"""
+    if not isinstance(dct, dict):
+        return None
+    if dct.get("id", None) is not None:
+        return OPENALEX_SUBFIELD_MAPPINGS.get(dct["id"], None)
     return None
 
 

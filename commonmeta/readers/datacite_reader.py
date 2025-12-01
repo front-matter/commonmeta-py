@@ -106,6 +106,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         """format_subject"""
         return compact(
             {
+                "id": subject.get("valueURI", None),
                 "subject": subject.get("subject", None),
                 "language": subject.get("lang", None),
             }

@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1101
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q0MDQyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
-        XAVrojYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1101\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a7693dbc6af5b5-AMS
+      - 9a743d6b7c198ed2-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:02:05 GMT
+      - Mon, 01 Dec 2025 17:17:46 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=D6NReEPYQ2Qs0NMfNcvmPdMzwiJngKjYWpXhhAc5uvnXRxwyuLz93swzw%2FXqczGKVtbHqc0vnX3CJIqkgNToYJRI4ARUGEHHdQ98lAOQasQ%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Q%2FlaAvap%2B0V1hirq0LOlVFs%2FpK6XxEbCzw3VduIkGw%2FAvZ%2Fe%2FaHwtzF0fS%2BNhQYsOM5t4xsfTR1JeoXV%2BGOnc35tISjK42Kb2ZAhVs8lweS7Iw%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,78 +63,75 @@ interactions:
     uri: https://api.crossref.org/works/10.1101/2020.12.01.406702
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"bioRxiv"}],"indexed":{"date-parts":[[2025,2,21]],"date-time":"2025-02-21T00:26:50Z","timestamp":1740097610622,"version":"3.37.3"},"posted":{"date-parts":[[2020,12,1]]},"group-title":"Microbiology","reference-count":61,"publisher":"Cold
+        Spring Harbor Laboratory","license":[{"start":{"date-parts":[[2020,12,1]],"date-time":"2020-12-01T00:00:00Z","timestamp":1606780800000},"content-version":"vor","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by-nc-nd\/4.0\/"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"accepted":{"date-parts":[[2022,1,5]]},"abstract":"<jats:title>Abstract<\/jats:title><jats:p>Bacterial
+        membrane lipids are critical for membrane bilayer formation, cell division,
+        protein localization, stress responses, and pathogenesis. Despite their critical
+        roles, membrane lipids have not been fully elucidated for many pathogens.
+        Here, we report the discovery of a novel cationic glycolipid, Lysyl-Glucosyl-Diacylglycerol
+        (Lys-Glc-DAG) that is synthesized in high abundance by the bacterium<jats:italic>Streptococcus
+        agalactiae<\/jats:italic>(Group B<jats:italic>Streptococcus<\/jats:italic>,
+        GBS). To our knowledge, Lys-Glc-DAG is more positively charged than any other
+        known lipids. Lys-Glc-DAG carries two positive net charges per molecule, distinct
+        from the widely described lysylated phospholipid Lysyl-phosphatidylglycerol
+        (Lys-PG) which carries one positive net charge due to the presence of a negatively
+        charged phosphate moiety. We use normal phase liquid chromatography (NPLC)
+        coupled with electrospray ionization (ESI) high-resolution tandem mass spectrometry
+        (HRMS\/MS) and genetic approaches to determine that Lys-Glc-DAG is synthesized
+        by the enzyme MprF in GBS, which covalently modifies the neutral glycolipid
+        Glc-DAG with the cationic amino acid lysine. GBS is a leading cause of neonatal
+        meningitis, which requires traversal of the endothelial blood-brain barrier
+        (BBB). We demonstrate that GBS strains lacking<jats:italic>mprF<\/jats:italic>exhibit
+        a significant decrease in the ability to invade BBB endothelial cells. Further,
+        mice challenged with a GBS\u0394<jats:italic>mprF<\/jats:italic>mutant developed
+        bacteremia comparably to Wild-Type infected mice yet had less recovered bacteria
+        from brain tissue and a lower incidence of meningitis. Thus, our data suggest
+        that Lys-Glc-DAG may contribute to bacterial uptake into host cells and disease
+        progression. Importantly, our discovery provides a platform for further study
+        of cationic lipids at the host-pathogen interface.<\/jats:p>","DOI":"10.1101\/2020.12.01.406702","type":"posted-content","created":{"date-parts":[[2020,12,2]],"date-time":"2020-12-02T05:50:27Z","timestamp":1606888227000},"source":"Crossref","is-referenced-by-count":1,"title":["Identification
+        of a novel cationic glycolipid in<i>Streptococcus agalactiae<\/i>that contributes
+        to brain entry and meningitis"],"prefix":"10.1101","author":[{"ORCID":"https:\/\/orcid.org\/0000-0002-9346-671X","authenticated-orcid":false,"given":"Luke
+        R.","family":"Joyce","sequence":"first","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-2864-6212","authenticated-orcid":false,"given":"Haider
+        S.","family":"Manzer","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-2555-4582","authenticated-orcid":false,"given":"J\u00e9ssica
+        da C.","family":"Mendon\u00e7a","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0001-7641-4136","authenticated-orcid":false,"given":"Ricardo","family":"Villarreal","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0001-6007-0033","authenticated-orcid":false,"given":"Prescilla
+        E.","family":"Nagao","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0003-4232-6837","authenticated-orcid":false,"given":"Kelly
+        S.","family":"Doran","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-7343-9271","authenticated-orcid":false,"given":"Kelli
+        L.","family":"Palmer","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-8082-3423","authenticated-orcid":false,"given":"Ziqiang","family":"Guan","sequence":"additional","affiliation":[]}],"member":"246","reference":[{"key":"2024080502174202000_2020.12.01.406702v5.1","doi-asserted-by":"publisher","DOI":"10.1002\/iub.240"},{"key":"2024080502174202000_2020.12.01.406702v5.2","first-page":"e02552","article-title":"Streptococcus
+        mitis and S. oralis Lack a Requirement for CdsA, the Enzyme Required for Synthesis
+        of Major Membrane Phospholipids in Bacteria","volume":"61","year":"2017","journal-title":"Antimicrobial
+        agents and chemotherapy"},{"key":"2024080502174202000_2020.12.01.406702v5.3","first-page":"e00495","article-title":"Phosphatidylcholine
+        Biosynthesis in Mitis Group Streptococci via Host Metabolite Scavenging","volume":"201","year":"2019","journal-title":"Journal
+        of bacteriology"},{"key":"2024080502174202000_2020.12.01.406702v5.4","doi-asserted-by":"publisher","DOI":"10.1146\/annurev.mi.32.100178.000353"},{"key":"2024080502174202000_2020.12.01.406702v5.5","doi-asserted-by":"publisher","DOI":"10.1111\/j.1365-2958.2004.04266.x"},{"key":"2024080502174202000_2020.12.01.406702v5.6","doi-asserted-by":"publisher","DOI":"10.1093\/cid\/cix660"},{"key":"2024080502174202000_2020.12.01.406702v5.7","doi-asserted-by":"publisher","DOI":"10.1128\/CMR.11.3.497"},{"key":"2024080502174202000_2020.12.01.406702v5.8","doi-asserted-by":"publisher","DOI":"10.1016\/S0022-3476(85)80342-5"},{"key":"2024080502174202000_2020.12.01.406702v5.9","doi-asserted-by":"crossref","unstructured":"Ohlsson
+        A , Shah VS . Intrapartum antibiotics for known maternal Group B Streptococcal
+        colonization. The Cochrane database of systematic reviews. 2014:CD007467.","DOI":"10.1002\/14651858.CD007467.pub3"},{"key":"2024080502174202000_2020.12.01.406702v5.10","doi-asserted-by":"publisher","DOI":"10.1016\/j.jmb.2019.01.035"},{"key":"2024080502174202000_2020.12.01.406702v5.11","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.0931493100"},{"key":"2024080502174202000_2020.12.01.406702v5.12","doi-asserted-by":"publisher","DOI":"10.1016\/0005-2760(77)90046-7"},{"key":"2024080502174202000_2020.12.01.406702v5.13","doi-asserted-by":"crossref","unstructured":"Joyce
+        LR , Guan Z , Palmer KL . Streptococcus pneumoniae, S. pyogenes and S. agalactiae
+        membrane phospholipid remodelling in response to human serum. Microbiology
+        (Reading). 2021;167(5).","DOI":"10.1099\/mic.0.001048"},{"key":"2024080502174202000_2020.12.01.406702v5.14","doi-asserted-by":"publisher","DOI":"10.1172\/JCI23829"},{"key":"2024080502174202000_2020.12.01.406702v5.15","doi-asserted-by":"crossref","first-page":"1310","DOI":"10.1016\/j.bbalip.2016.11.013","article-title":"Bacterial
+        aminoacyl phospholipids - Biosynthesis and role in basic cellular processes
+        and pathogenicity","volume":"1862","year":"2017","journal-title":"Biochimica
+        et biophysica acta Molecular and cell biology of lipids"},{"key":"2024080502174202000_2020.12.01.406702v5.16","doi-asserted-by":"publisher","DOI":"10.1084\/jem.193.9.1067"},{"key":"2024080502174202000_2020.12.01.406702v5.17","doi-asserted-by":"publisher","DOI":"10.1128\/IAI.73.12.8033-8038.2005"},{"key":"2024080502174202000_2020.12.01.406702v5.18","doi-asserted-by":"publisher","DOI":"10.1128\/IAI.57.10.3058-3065.1989"},{"key":"2024080502174202000_2020.12.01.406702v5.19","doi-asserted-by":"publisher","DOI":"10.1084\/jem.142.1.165"},{"key":"2024080502174202000_2020.12.01.406702v5.20","doi-asserted-by":"crossref","first-page":"183","DOI":"10.1128\/jcm.6.2.183-184.1977","article-title":"Nontypable
+        Group B Streptococci isolated from human sources","volume":"6","year":"1977","journal-title":"Journal
+        of clinical microbiology"},{"key":"2024080502174202000_2020.12.01.406702v5.21","doi-asserted-by":"publisher","DOI":"10.1097\/01.ftd.0000179845.53213.39"},{"key":"2024080502174202000_2020.12.01.406702v5.22","doi-asserted-by":"publisher","DOI":"10.1093\/nar\/gkl838"},{"key":"2024080502174202000_2020.12.01.406702v5.23","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.0800006105"},{"key":"2024080502174202000_2020.12.01.406702v5.24","doi-asserted-by":"publisher","DOI":"10.1371\/journal.ppat.1007848"},{"key":"2024080502174202000_2020.12.01.406702v5.25","first-page":"1","article-title":"Cas9
+        contributes to Group B Streptococcal colonization and disease","volume":"10","year":"2019","journal-title":"Frontiers
+        in Microbiology"},{"key":"2024080502174202000_2020.12.01.406702v5.26","doi-asserted-by":"publisher","DOI":"10.1128\/mBio.00870-14"},{"key":"2024080502174202000_2020.12.01.406702v5.27","doi-asserted-by":"crossref","unstructured":"Spencer
+        BL , Chatterjee A , Duerkop BA , Baker CJ , Doran KS . Complete Genome Sequence
+        of Neonatal Clinical Group B Streptococcal Isolate CJB111. Microbiology resource
+        announcements. 2021;10.","DOI":"10.1128\/MRA.01268-20"},{"key":"2024080502174202000_2020.12.01.406702v5.28","doi-asserted-by":"publisher","DOI":"10.1371\/journal.pone.0153891"},{"key":"2024080502174202000_2020.12.01.406702v5.29","doi-asserted-by":"publisher","DOI":"10.3391\/mbi.2015.6.1.01"},{"key":"2024080502174202000_2020.12.01.406702v5.30","doi-asserted-by":"publisher","DOI":"10.1074\/jbc.M109.046367"},{"key":"2024080502174202000_2020.12.01.406702v5.31","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.1511167112"},{"key":"2024080502174202000_2020.12.01.406702v5.32","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.55.4.934"},{"key":"2024080502174202000_2020.12.01.406702v5.33","doi-asserted-by":"publisher","DOI":"10.1371\/journal.ppat.1002891"},{"key":"2024080502174202000_2020.12.01.406702v5.34","doi-asserted-by":"publisher","DOI":"10.1371\/journal.ppat.1005816"},{"key":"2024080502174202000_2020.12.01.406702v5.35","doi-asserted-by":"publisher","DOI":"10.4155\/tde-2016-0006"},{"key":"2024080502174202000_2020.12.01.406702v5.36","doi-asserted-by":"publisher","DOI":"10.1038\/sj.gt.3301506"},{"key":"2024080502174202000_2020.12.01.406702v5.37","doi-asserted-by":"publisher","DOI":"10.1128\/IAI.27.2.444-448.1980"},{"key":"2024080502174202000_2020.12.01.406702v5.38","doi-asserted-by":"publisher","DOI":"10.1371\/journal.ppat.1002190"},{"key":"2024080502174202000_2020.12.01.406702v5.39","doi-asserted-by":"publisher","DOI":"10.1016\/j.micpath.2009.05.003"},{"key":"2024080502174202000_2020.12.01.406702v5.40","doi-asserted-by":"publisher","DOI":"10.1128\/JB.182.6.1529-1540.2000"},{"key":"2024080502174202000_2020.12.01.406702v5.41","doi-asserted-by":"publisher","DOI":"10.1128\/JB.185.4.1208-1217.2003"},{"key":"2024080502174202000_2020.12.01.406702v5.42","doi-asserted-by":"publisher","DOI":"10.1128\/AEM.01882-18"},{"key":"2024080502174202000_2020.12.01.406702v5.43","doi-asserted-by":"publisher","DOI":"10.1128\/AEM.55.12.3119-3123.1989"},{"key":"2024080502174202000_2020.12.01.406702v5.44","doi-asserted-by":"crossref","first-page":"3539","DOI":"10.1128\/aem.63.9.3539-3547.1997","article-title":"New
+        genetic techniques for Group B Streptococci: High-efficiency transformation,
+        maintenance of temperature-sensitive pWV01 plasmids, and mutagenesis with
+        Tn917","volume":"63","year":"1997","journal-title":"Applied and Environmental
+        Microbiology"},{"key":"2024080502174202000_2020.12.01.406702v5.45","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.1212797109"},{"key":"2024080502174202000_2020.12.01.406702v5.46","doi-asserted-by":"publisher","DOI":"10.1074\/jbc.M116.762070"},{"key":"2024080502174202000_2020.12.01.406702v5.47","doi-asserted-by":"publisher","DOI":"10.1172\/JCI74159"},{"key":"2024080502174202000_2020.12.01.406702v5.48","doi-asserted-by":"crossref","first-page":"462","DOI":"10.1038\/ncomms1474","article-title":"Bacterial
+        Pili exploit integrin machinery to promote immune activation and efficient
+        blood-brain barrier penetration","volume":"2","year":"2011","journal-title":"Nature
+        communications"},{"key":"2024080502174202000_2020.12.01.406702v5.49","doi-asserted-by":"publisher","DOI":"10.1128\/IAI.57.10.3058-3065.1989"},{"key":"2024080502174202000_2020.12.01.406702v5.50","doi-asserted-by":"publisher","DOI":"10.1128\/mBio.00870-14"},{"key":"2024080502174202000_2020.12.01.406702v5.51","doi-asserted-by":"crossref","unstructured":"Spencer
+        BL , Chatterjee A , Duerkop BA , Baker CJ , Doran KS . Complete Genome Sequence
+        of Neonatal Clinical Group B Streptococcal Isolate CJB111. Microbiology resource
+        announcements. 2021;10.","DOI":"10.1128\/MRA.01268-20"},{"key":"2024080502174202000_2020.12.01.406702v5.52","doi-asserted-by":"publisher","DOI":"10.1084\/jem.142.1.165"},{"key":"2024080502174202000_2020.12.01.406702v5.53","first-page":"e01338","article-title":"Complete
+        Genome Sequence of Streptococcus agalactiae CNCTC 10\/84, a Hypervirulent
+        Sequence Type 26 Strain","volume":"2","year":"2014","journal-title":"Genome
+        announcements"},{"key":"2024080502174202000_2020.12.01.406702v5.54","doi-asserted-by":"crossref","first-page":"183","DOI":"10.1128\/jcm.6.2.183-184.1977","article-title":"Nontypable
+        Group B Streptococci isolated from human sources","volume":"6","year":"1977","journal-title":"Journal
+        of clinical microbiology"},{"key":"2024080502174202000_2020.12.01.406702v5.55","doi-asserted-by":"publisher","DOI":"10.1099\/00207713-39-4-471"},{"key":"2024080502174202000_2020.12.01.406702v5.56","doi-asserted-by":"publisher","DOI":"10.1093\/nar\/21.7.1677"},{"key":"2024080502174202000_2020.12.01.406702v5.57","doi-asserted-by":"publisher","DOI":"10.1016\/0022-2836(80)90283-1"},{"key":"2024080502174202000_2020.12.01.406702v5.58","doi-asserted-by":"publisher","DOI":"10.1128\/JB.00153-10"},{"key":"2024080502174202000_2020.12.01.406702v5.59","doi-asserted-by":"publisher","DOI":"10.1128\/JB.182.6.1529-1540.2000"},{"key":"2024080502174202000_2020.12.01.406702v5.60","doi-asserted-by":"publisher","DOI":"10.1128\/AEM.01882-18"},{"key":"2024080502174202000_2020.12.01.406702v5.61","doi-asserted-by":"publisher","DOI":"10.1128\/JB.185.4.1208-1217.2003"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/syndication.highwire.org\/content\/doi\/10.1101\/2020.12.01.406702","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2024,8,5]],"date-time":"2024-08-05T09:19:01Z","timestamp":1722849541000},"score":1,"resource":{"primary":{"URL":"http:\/\/biorxiv.org\/lookup\/doi\/10.1101\/2020.12.01.406702"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2020,12,1]]},"references-count":61,"URL":"https:\/\/doi.org\/10.1101\/2020.12.01.406702","relation":{},"subject":[],"published":{"date-parts":[[2020,12,1]]},"subtype":"preprint"}}'
     headers:
       Connection:
       - keep-alive
@@ -145,7 +140,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Oct 2025 19:02:06 GMT
+      - Mon, 01 Dec 2025 17:17:46 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

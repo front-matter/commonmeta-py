@@ -579,7 +579,6 @@ def test_peer_review():
     "peer review"
     string = "10.7554/elife.55167.sa2"
     subject = Metadata(string, via="openalex")
-    print(vars(subject))
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
@@ -1043,7 +1042,6 @@ def test_dataset_usda():
     assert subject.date == {"published": "2017-08-09"}
     assert subject.publisher is None
     assert len(subject.references) == 4
-    print(subject.references)
     assert subject.references[-1] == {
         "id": "https://doi.org/10.1674/0003-0031-178.1.47",
         "title": "Grassland Bird Productivity in Warm Season Grass Fields in Southwest Wisconsin",

@@ -16,7 +16,7 @@ from ..base_utils import (
     sanitize,
     unique,
 )
-from ..constants import Commonmeta
+from ..constants import OPENALEX_SUBFIELD_MAPPINGS, OPENALEX_TOPIC_MAPPINGS, Commonmeta
 from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
     doi_from_url,
@@ -32,7 +32,6 @@ from ..utils import (
     dict_to_spdx,
     from_jsonfeed,
     issn_as_url,
-    name_to_fos,
     normalize_url,
     validate_ror,
     validate_url,
@@ -148,19 +147,25 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         descriptions = [{"description": sanitize(description), "type": "Abstract"}]
     else:
         descriptions = None
-    category = dig(meta, "blog.category", None)
-    if category is not None:
-        # Convert from PascalCase to words with first letter capitalized
-        spaced_category = ""
-        for i, char in enumerate(category):
-            if i > 0 and char.isupper():
-                spaced_category += " "
-            spaced_category += char
-        # Capitalize first letter of the resulting string
-        formatted_category = spaced_category.capitalize()
-        subjects = [name_to_fos(formatted_category)]
+    subfield = OPENALEX_SUBFIELD_MAPPINGS.get(dig(meta, "blog.subfield"), None)
+    if subfield is not None:
+        subjects = [
+            {
+                "id": f"https://openalex.org/subfields/{dig(meta, 'blog.subfield')}",
+                "subject": subfield,
+            }
+        ]
     else:
         subjects = []
+    if meta.get("topic", None) and meta.get("topic_score", 0) >= 0.40:
+        topic = OPENALEX_TOPIC_MAPPINGS.get(meta.get("topic"))
+        if topic:
+            subjects.append(
+                {
+                    "id": f"https://openalex.org/T{meta.get('topic')}",
+                    "subject": topic,
+                }
+            )
     tags = wrap(dig(meta, "tags", None))
     if tags is not None:
         subjects += wrap([format_subject(i) for i in tags])

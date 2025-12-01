@@ -18,8 +18,7 @@ def test_dataset():
     """dataset"""
     string = "https://doi.org/10.5061/DRYAD.8515"
     subject = Metadata(string)
-    print(subject.errors)
-    # assert subject.is_valid
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.5061/dryad.8515"
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "Dryad"}
@@ -71,7 +70,6 @@ def test_blog_posting():
     """blog posting"""
     string = "https://doi.org/10.5438/zhyx-n122"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
@@ -116,8 +114,7 @@ def test_date():
     """dataset"""
     string = "https://doi.org/10.4230/lipics.tqc.2013.93"
     subject = Metadata(string)
-    print(subject.errors)
-    # assert subject.is_valid
+    assert subject.is_valid
     assert subject.id == "https://doi.org/10.4230/lipics.tqc.2013.93"
     assert subject.type == "ProceedingsArticle"
     assert (
@@ -154,7 +151,11 @@ def test_date():
         "name": "Schloss Dagstuhl – Leibniz-Zentrum für Informatik"
     }
     assert subject.references is None
-    assert subject.container is None
+    assert subject.container == {
+        "id": "10.4230/LIPIcs.TQC.2013",
+        "type": "Series",
+        "title": "LIPIcs, Volume 22, TQC 2013",
+    }
     assert (
         subject.descriptions[0]
         .get("description")
@@ -261,7 +262,6 @@ def test_multiple_identifiers():
     """multiple identifiers"""
     string = "https://doi.org/10.5281/ZENODO.48440"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.48440"
     assert subject.type == "Software"
@@ -303,7 +303,6 @@ def test_missing_description():
     """missing description"""
     string = "10.2312/geowissenschaften.1989.7.181"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
     assert subject.type == "JournalArticle"
@@ -323,7 +322,6 @@ def test_is_identical():
     """is_identical"""
     string = "https://doi.org/10.6084/M9.FIGSHARE.4234751.V1"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.type == "Dataset"
@@ -371,7 +369,6 @@ def test_subject_scheme_for():
     """subject scheme FOR"""
     string = "10.6084/m9.figshare.1449060"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1449060"
     assert subject.type == "Dataset"
@@ -420,7 +417,6 @@ def test_more_subject_scheme_for():
     """more subject scheme FOR"""
     string = "10.4225/03/5a6931f57c654"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a6931f57c654"
     assert subject.type == "Dissertation"
@@ -434,7 +430,6 @@ def test_even_more_subject_scheme_for():
     """even more subject scheme FOR"""
     string = "10.4225/03/5a31ec65634ef"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.4225/03/5a31ec65634ef"
     assert subject.type == "Presentation"
@@ -454,7 +449,6 @@ def test_cc_by():
     """CC-BY"""
     string = "10.6084/m9.figshare.1286826.v1"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1286826.v1"
     assert subject.license == {
@@ -467,7 +461,6 @@ def test_funding_schema_version_3():
     """funding schema version 3"""
     string = "https://doi.org/10.5281/ZENODO.1239"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5281/zenodo.1239"
     # assert subject.identifiers == [{'identifier': 'https://zenodo.org/records/1239',
@@ -599,7 +592,6 @@ def test_datacite_json():
     """datacite.json"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite.json")
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food/"
@@ -742,7 +734,6 @@ def test_geolocation_box():
     """geolocation_box"""
     string = "10.6071/z7wc73"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.6071/z7wc73"
     assert subject.type == "Dataset"
@@ -1918,7 +1909,6 @@ def test_geolocation():
     """geolocation"""
     string = "10.4121/UUID:7B900822-4EFE-42F1-9B6E-A099EDA4BA02"
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert (
         subject.id
@@ -1943,7 +1933,6 @@ def test_datacite_v45():
     """Dataset schema v4.5"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite-dataset_v4.5.json")
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/b09z-4k37"
     assert len(subject.contributors) == 2
@@ -1989,7 +1978,6 @@ def test_datacite_instrument():
     """Dataset instrument"""
     string = path.join(path.dirname(__file__), "fixtures", "datacite-instrument.json")
     subject = Metadata(string)
-    print(subject.errors)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.82433/08qf-ee96"
     assert subject.type == "Instrument"

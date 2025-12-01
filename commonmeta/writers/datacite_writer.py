@@ -109,6 +109,17 @@ def write_datacite(metadata: Metadata) -> dict | None:
         else None
     )
 
+    subjects = [
+        compact(
+            {
+                "valueURI": i.get("id", None),
+                "subject": i.get("subject", None),
+                "lang": i.get("language", None),
+            }
+        )
+        for i in wrap(metadata.subjects)
+    ]
+
     descriptions = [
         compact(
             {
@@ -129,7 +140,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "titles": metadata.titles,
             "publisher": metadata.publisher,
             "publicationYear": publication_year,
-            "subjects": metadata.subjects,
+            "subjects": subjects,
             "contributors": contributors,
             "dates": dates,
             "language": metadata.language,

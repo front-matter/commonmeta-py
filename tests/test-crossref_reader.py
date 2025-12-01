@@ -66,8 +66,8 @@ def test_doi_with_data_citation():
     }
     assert subject.relations == [
         {"type": "IsSupplementedBy", "id": "https://doi.org/10.5061/dryad.b835k"},
-        {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.017"},
-        {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.016"},
+        # {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.017"},
+        # {"type": "HasReview", "id": "https://doi.org/10.7554/elife.01567.016"},
         {"type": "IsPartOf", "id": "https://portal.issn.org/resource/ISSN/2050-084X"},
     ]
     assert subject.funding_references == [
@@ -447,7 +447,7 @@ def test_blog_post():
     assert subject.type == "BlogPost"
     assert (
         subject.url
-        == "https://blog.front-matter.io/posts/the-rise-of-the-science-newsletter/"
+        == "https://blog.front-matter.de/posts/the-rise-of-the-science-newsletter/"
     )
     assert subject.titles[0] == {"title": "The rise of the (science) newsletter"}
     assert len(subject.contributors) == 1
@@ -470,9 +470,10 @@ def test_blog_post():
         "key": "ref1",
         "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
     }
-    assert subject.relations == [
-        {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}
-    ]
+    assert subject.relations is None
+    #  == [
+    #     {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}
+    # ]
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Front Matter",
@@ -730,7 +731,6 @@ def test_date_in_future():
         "containerTitle": "HIV Med.",
     }
     assert subject.relations == [
-        {"type": "HasReview", "id": "https://doi.org/10.3410/f.725411277.793529613"},
         {"id": "https://portal.issn.org/resource/ISSN/0014-2999", "type": "IsPartOf"},
     ]
     assert subject.funding_references == [
@@ -889,7 +889,7 @@ def test_component():
     assert subject.titles is None
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {"published": "2015-10-20T20:01:19Z"}
+    assert subject.date == {"published": "2015-10-20T16:01:19Z"}
     assert subject.publisher == {"name": "Public Library of Science (PLoS)"}
     assert subject.references is None
     assert subject.funding_references is None

@@ -11,71 +11,6 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://rogue-scholar.org/api/records/74hx4-qp390
-  response:
-    body:
-      string: '<!doctype html>
-
-        <html lang=en>
-
-        <title>Redirecting...</title>
-
-        <h1>Redirecting...</h1>
-
-        <p>You should be redirected automatically to the target URL: <a href="/api/records/23y6y-vh985">/api/records/23y6y-vh985</a>.
-        If not, click the link.
-
-        '
-    headers:
-      Content-Length:
-      - '235'
-      Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
-      Content-Type:
-      - text/html; charset=utf-8
-      Date:
-      - Mon, 01 Dec 2025 17:18:44 GMT
-      Location:
-      - /api/records/23y6y-vh985
-      Permissions-Policy:
-      - interest-cohort=()
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Retry-After:
-      - '18'
-      Server:
-      - gunicorn
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - sameorigin
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Remaining:
-      - '494'
-      X-Ratelimit-Reset:
-      - '1764609543'
-      X-Xss-Protection:
-      - 1; mode=block
-    status:
-      code: 302
-      message: Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.5
-    method: GET
     uri: https://rogue-scholar.org/api/records/23y6y-vh985
   response:
     body:
@@ -245,7 +180,7 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '493'
+      - '491'
       X-Ratelimit-Reset:
       - '1764609543'
       X-Xss-Protection:

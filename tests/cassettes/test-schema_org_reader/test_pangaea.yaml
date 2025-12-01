@@ -14,12 +14,10 @@ interactions:
     uri: https://doi.org/ra/10.1594
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q1NLEyUdiGiQI0jQJbEk0TmzJFUJKFjLFQsA
-        YsL1lzYAAAA=
+      string: "[\n  {\n    \"DOI\": \"10.1594\",\n    \"RA\": \"DataCite\"\n  }\n]"
     headers:
       CF-RAY:
-      - 98a76c11f87a0b36-AMS
+      - 9a7440960f42c89b-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 06 Oct 2025 19:04:01 GMT
+      - Mon, 01 Dec 2025 17:19:55 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Y6PEKI06a%2BJFCG70qo%2BUlUvIWH%2BiYcVTPnv34WJw9EuhKGkR0v0ptJuQRViSoULWr71PF4qgrbPYjYxuN3T%2F%2FFLxB1v70gpg%2BooG2%2BoHFmdGCg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=KccKt3z7kUS2XTuPW7AxmBpojoiLs32t457jiJyxtLbR%2BxxEHMl4NKBe1Au5hKIx%2BlnsaHtNHZ6%2FYln7PwWn4bcJ8om2dxDx6bN8kBnPW3Jeag%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -65,113 +63,57 @@ interactions:
     uri: https://api.datacite.org/dois/10.1594/pangaea.836178?include=media,client
   response:
     body:
-      string: !!binary |
-        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
-        +/q/AAAA//8DAN0NCDNHOQAA
+      string: "{\"data\":{\"id\":\"10.1594/pangaea.836178\",\"type\":\"dois\",\"attributes\":{\"doi\":\"10.1594/pangaea.836178\",\"prefix\":\"10.1594\",\"suffix\":\"pangaea.836178\",\"identifiers\":[],\"alternateIdentifiers\":[],\"creators\":[{\"name\":\"Johansson,
+        Emma\",\"givenName\":\"Emma\",\"familyName\":\"Johansson\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Berglund,
+        Sten\",\"givenName\":\"Sten\",\"familyName\":\"Berglund\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Lindborg,
+        Tobias\",\"givenName\":\"Tobias\",\"familyName\":\"Lindborg\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Petrone,
+        Johannes\",\"givenName\":\"Johannes\",\"familyName\":\"Petrone\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"van
+        As, Dirk\",\"givenName\":\"Dirk\",\"familyName\":\"van As\",\"nameIdentifiers\":[{\"schemeUri\":\"https://orcid.org\",\"nameIdentifier\":\"https://orcid.org/0000-0002-6553-8982\",\"nameIdentifierScheme\":\"ORCID\"}],\"affiliation\":[]},{\"name\":\"Gustafsson,
+        Lars-G\xF6ran\",\"givenName\":\"Lars-G\xF6ran\",\"familyName\":\"Gustafsson\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"N\xE4slund,
+        Jens-Ove\",\"givenName\":\"Jens-Ove\",\"familyName\":\"N\xE4slund\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Laudon,
+        Hjalmar\",\"givenName\":\"Hjalmar\",\"familyName\":\"Laudon\",\"nameIdentifiers\":[{\"schemeUri\":\"https://orcid.org\",\"nameIdentifier\":\"https://orcid.org/0000-0001-6058-1466\",\"nameIdentifierScheme\":\"ORCID\"}],\"affiliation\":[]}],\"titles\":[{\"title\":\"Hydrological
+        and meteorological investigations in a lake near Kangerlussuaq, west Greenland\"}],\"publisher\":\"PANGAEA\",\"container\":{},\"publicationYear\":2014,\"subjects\":[{\"subject\":\"GReenland
+        Analogue Surface Project (GRASP)\",\"subjectScheme\":\"Project\"}],\"contributors\":[],\"dates\":[{\"date\":\"2014\",\"dateType\":\"Issued\"}],\"language\":\"en\",\"types\":{\"ris\":\"DATA\",\"bibtex\":\"misc\",\"citeproc\":\"dataset\",\"schemaOrg\":\"Dataset\",\"resourceType\":\"Supplementary
+        Dataset\",\"resourceTypeGeneral\":\"Dataset\"},\"relatedIdentifiers\":[{\"relationType\":\"IsSupplementTo\",\"relatedIdentifier\":\"10.5194/essd-7-93-2015\",\"relatedIdentifierType\":\"DOI\"},{\"relationType\":\"IsDocumentedBy\",\"relatedIdentifier\":\"https://store.pangaea.de/Publications/JohanssonE_et_al_2014/twoboatlake_greenland.jpg\",\"relatedIdentifierType\":\"URL\"},{\"relationType\":\"IsDocumentedBy\",\"relatedIdentifier\":\"https://store.pangaea.de/Publications/JohanssonE_et_al_2014/Timelapse_TBL.zip\",\"relatedIdentifierType\":\"URL\"}],\"relatedItems\":[],\"sizes\":[\"5.5
+        MBytes\"],\"formats\":[\"application/zip\"],\"version\":null,\"rightsList\":[{\"rights\":\"Creative
+        Commons Attribution 3.0 Unported\",\"rightsUri\":\"https://creativecommons.org/licenses/by/3.0/legalcode\",\"schemeUri\":\"https://spdx.org/licenses/\",\"rightsIdentifier\":\"cc-by-3.0\",\"rightsIdentifierScheme\":\"SPDX\"}],\"descriptions\":[{\"description\":\"Few
+        hydrological studies have been made in Greenland, other than on glacial hydrology
+        associated with the ice sheet. Understanding permafrost hydrology and hydroclimatic
+        change and variability, however, provides key information for understanding
+        climate change effects and feedbacks in the Arctic landscape. This paper presents
+        a new extensive and detailed hydrological and meteorological open access dataset,
+        with high temporal resolution from a 1.56 km**2 permafrost catchment with
+        a lake underlain by a through talik close to the ice sheet in the Kangerlussuaq
+        region, western Greenland. The paper describes the hydrological site investigations
+        and utilized equipment, as well as the data collection and processing. The
+        investigations were performed between 2010 and 2013. The high spatial resolution,
+        within the investigated area, of the dataset makes it highly suitable for
+        various detailed hydrological and ecological studies on catchment scale.\",\"descriptionType\":\"Abstract\"},{\"description\":\"The
+        dataset contains hydrological and meteorological data from a lake catchment
+        in the Kangerlussuaq region, Western Greenland. The investigations were performed
+        during 2010-2013 and the following parameters are included: Soil moisture,
+        Soil temperature, Hydraulic properties of the active layer, meteorological
+        parameters from a local weather station within the catchment, water levels
+        and discharge, sublimation and evaportation measurments, snow depth and snow
+        water content data and time lapse photos.\",\"descriptionType\":\"TechnicalInfo\"},{\"description\":\"Supplement
+        to: Johansson, Emma; Berglund, Sten; Lindborg, Tobias; Petrone, Johannes;
+        van As, Dirk; Gustafsson, Lars-G\xF6ran; N\xE4slund, Jens-Ove; Laudon, Hjalmar
+        (2015): Hydrological and meteorological investigations in a periglacial lake
+        catchment near Kangerlussuaq, west Greenland \u2013 presentation of a new
+        multi-parameter data set. Earth System Science Data, 7(1), 93-108\",\"descriptionType\":\"Other\"}],\"geoLocations\":[{\"geoLocationPoint\":{\"pointLatitude\":\"67.12594\",\"pointLongitude\":\"-50.18037\"}},{\"geoLocationPlace\":\"Two
+        Boat Lake, Kangerlussuaq, Greenland\"}],\"fundingReferences\":[],\"xml\":\"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00LjMvbWV0YWRhdGEueHNkIj4KICA8aWRlbnRpZmllciBpZGVudGlmaWVyVHlwZT0iRE9JIj4xMC4xNTk0L1BBTkdBRUEuODM2MTc4PC9pZGVudGlmaWVyPgogIDxjcmVhdG9ycz4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+Sm9oYW5zc29uLCBFbW1hPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5FbW1hPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkpvaGFuc3NvbjwvZmFtaWx5TmFtZT4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+QmVyZ2x1bmQsIFN0ZW48L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPlN0ZW48L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+QmVyZ2x1bmQ8L2ZhbWlseU5hbWU+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lPkxpbmRib3JnLCBUb2JpYXM8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPlRvYmlhczwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5MaW5kYm9yZzwvZmFtaWx5TmFtZT4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+UGV0cm9uZSwgSm9oYW5uZXM8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkpvaGFubmVzPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPlBldHJvbmU8L2ZhbWlseU5hbWU+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lPnZhbiBBcywgRGlyazwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+RGlyazwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT52YW4gQXM8L2ZhbWlseU5hbWU+CiAgICAgIDxuYW1lSWRlbnRpZmllciBuYW1lSWRlbnRpZmllclNjaGVtZT0iT1JDSUQiIHNjaGVtZVVSST0iaHR0cDovL29yY2lkLm9yZy8iPjAwMDAtMDAwMi02NTUzLTg5ODI8L25hbWVJZGVudGlmaWVyPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZT5HdXN0YWZzc29uLCBMYXJzLUfDtnJhbjwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+TGFycy1Hw7ZyYW48L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+R3VzdGFmc3NvbjwvZmFtaWx5TmFtZT4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+TsOkc2x1bmQsIEplbnMtT3ZlPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5KZW5zLU92ZTwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Ow6RzbHVuZDwvZmFtaWx5TmFtZT4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWU+TGF1ZG9uLCBIamFsbWFyPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5IamFsbWFyPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkxhdWRvbjwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwOi8vb3JjaWQub3JnLyI+MDAwMC0wMDAxLTYwNTgtMTQ2NjwvbmFtZUlkZW50aWZpZXI+CiAgICA8L2NyZWF0b3I+CiAgPC9jcmVhdG9ycz4KICA8dGl0bGVzPgogICAgPHRpdGxlPkh5ZHJvbG9naWNhbCBhbmQgbWV0ZW9yb2xvZ2ljYWwgaW52ZXN0aWdhdGlvbnMgaW4gYSBsYWtlIG5lYXIgS2FuZ2VybHVzc3VhcSwgd2VzdCBHcmVlbmxhbmQ8L3RpdGxlPgogIDwvdGl0bGVzPgogIDxwdWJsaXNoZXI+UEFOR0FFQTwvcHVibGlzaGVyPgogIDxwdWJsaWNhdGlvblllYXI+MjAxNDwvcHVibGljYXRpb25ZZWFyPgogIDxzdWJqZWN0cz4KICAgIDxzdWJqZWN0IHN1YmplY3RTY2hlbWU9IlByb2plY3QiPkdSZWVubGFuZCBBbmFsb2d1ZSBTdXJmYWNlIFByb2plY3QgKEdSQVNQKTwvc3ViamVjdD4KICA8L3N1YmplY3RzPgogIDxyZXNvdXJjZVR5cGUgcmVzb3VyY2VUeXBlR2VuZXJhbD0iRGF0YXNldCI+U3VwcGxlbWVudGFyeSBEYXRhc2V0PC9yZXNvdXJjZVR5cGU+CiAgPHJlbGF0ZWRJZGVudGlmaWVycz4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGlvblR5cGU9IklzU3VwcGxlbWVudFRvIiByZWxhdGVkSWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNTE5NC9lc3NkLTctOTMtMjAxNTwvcmVsYXRlZElkZW50aWZpZXI+CiAgICA8cmVsYXRlZElkZW50aWZpZXIgcmVsYXRpb25UeXBlPSJJc0RvY3VtZW50ZWRCeSIgcmVsYXRlZElkZW50aWZpZXJUeXBlPSJVUkwiPmh0dHBzOi8vc3RvcmUucGFuZ2FlYS5kZS9QdWJsaWNhdGlvbnMvSm9oYW5zc29uRV9ldF9hbF8yMDE0L3R3b2JvYXRsYWtlX2dyZWVubGFuZC5qcGc8L3JlbGF0ZWRJZGVudGlmaWVyPgogICAgPHJlbGF0ZWRJZGVudGlmaWVyIHJlbGF0aW9uVHlwZT0iSXNEb2N1bWVudGVkQnkiIHJlbGF0ZWRJZGVudGlmaWVyVHlwZT0iVVJMIj5odHRwczovL3N0b3JlLnBhbmdhZWEuZGUvUHVibGljYXRpb25zL0pvaGFuc3NvbkVfZXRfYWxfMjAxNC9UaW1lbGFwc2VfVEJMLnppcDwvcmVsYXRlZElkZW50aWZpZXI+CiAgPC9yZWxhdGVkSWRlbnRpZmllcnM+CiAgPHNpemVzPgogICAgPHNpemU+NS41IE1CeXRlczwvc2l6ZT4KICA8L3NpemVzPgogIDxmb3JtYXRzPgogICAgPGZvcm1hdD5hcHBsaWNhdGlvbi96aXA8L2Zvcm1hdD4KICA8L2Zvcm1hdHM+CiAgPHJpZ2h0c0xpc3Q+CiAgICA8cmlnaHRzIHJpZ2h0c1VSST0iaHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LzMuMC8iIHNjaGVtZVVSST0iaHR0cHM6Ly9zcGR4Lm9yZy9saWNlbnNlcy8iIHJpZ2h0c0lkZW50aWZpZXJTY2hlbWU9IlNQRFgiIHJpZ2h0c0lkZW50aWZpZXI9IkNDLUJZLTMuMCI+Q3JlYXRpdmUgQ29tbW9ucyBBdHRyaWJ1dGlvbiAzLjAgVW5wb3J0ZWQ8L3JpZ2h0cz4KICA8L3JpZ2h0c0xpc3Q+CiAgPGRlc2NyaXB0aW9ucz4KICAgIDxkZXNjcmlwdGlvbiBkZXNjcmlwdGlvblR5cGU9IkFic3RyYWN0Ij5GZXcgaHlkcm9sb2dpY2FsIHN0dWRpZXMgaGF2ZSBiZWVuIG1hZGUgaW4gR3JlZW5sYW5kLCBvdGhlciB0aGFuIG9uIGdsYWNpYWwgaHlkcm9sb2d5IGFzc29jaWF0ZWQgd2l0aCB0aGUgaWNlIHNoZWV0LiBVbmRlcnN0YW5kaW5nIHBlcm1hZnJvc3QgaHlkcm9sb2d5IGFuZCBoeWRyb2NsaW1hdGljIGNoYW5nZSBhbmQgdmFyaWFiaWxpdHksIGhvd2V2ZXIsIHByb3ZpZGVzIGtleSBpbmZvcm1hdGlvbiBmb3IgdW5kZXJzdGFuZGluZyBjbGltYXRlIGNoYW5nZSBlZmZlY3RzIGFuZCBmZWVkYmFja3MgaW4gdGhlIEFyY3RpYyBsYW5kc2NhcGUuIFRoaXMgcGFwZXIgcHJlc2VudHMgYSBuZXcgZXh0ZW5zaXZlIGFuZCBkZXRhaWxlZCBoeWRyb2xvZ2ljYWwgYW5kIG1ldGVvcm9sb2dpY2FsIG9wZW4gYWNjZXNzIGRhdGFzZXQsIHdpdGggaGlnaCB0ZW1wb3JhbCByZXNvbHV0aW9uIGZyb20gYSAxLjU2IGttKioyIHBlcm1hZnJvc3QgY2F0Y2htZW50IHdpdGggYSBsYWtlIHVuZGVybGFpbiBieSBhIHRocm91Z2ggdGFsaWsgY2xvc2UgdG8gdGhlIGljZSBzaGVldCBpbiB0aGUgS2FuZ2VybHVzc3VhcSByZWdpb24sIHdlc3Rlcm4gR3JlZW5sYW5kLiBUaGUgcGFwZXIgZGVzY3JpYmVzIHRoZSBoeWRyb2xvZ2ljYWwgc2l0ZSBpbnZlc3RpZ2F0aW9ucyBhbmQgdXRpbGl6ZWQgZXF1aXBtZW50LCBhcyB3ZWxsIGFzIHRoZSBkYXRhIGNvbGxlY3Rpb24gYW5kIHByb2Nlc3NpbmcuIFRoZSBpbnZlc3RpZ2F0aW9ucyB3ZXJlIHBlcmZvcm1lZCBiZXR3ZWVuIDIwMTAgYW5kIDIwMTMuIFRoZSBoaWdoIHNwYXRpYWwgcmVzb2x1dGlvbiwgd2l0aGluIHRoZSBpbnZlc3RpZ2F0ZWQgYXJlYSwgb2YgdGhlIGRhdGFzZXQgbWFrZXMgaXQgaGlnaGx5IHN1aXRhYmxlIGZvciB2YXJpb3VzIGRldGFpbGVkIGh5ZHJvbG9naWNhbCBhbmQgZWNvbG9naWNhbCBzdHVkaWVzIG9uIGNhdGNobWVudCBzY2FsZS48L2Rlc2NyaXB0aW9uPgogICAgPGRlc2NyaXB0aW9uIGRlc2NyaXB0aW9uVHlwZT0iVGVjaG5pY2FsSW5mbyI+VGhlIGRhdGFzZXQgY29udGFpbnMgaHlkcm9sb2dpY2FsIGFuZCBtZXRlb3JvbG9naWNhbCBkYXRhIGZyb20gYSBsYWtlIGNhdGNobWVudCBpbiB0aGUgS2FuZ2VybHVzc3VhcSByZWdpb24sIFdlc3Rlcm4gR3JlZW5sYW5kLiBUaGUgaW52ZXN0aWdhdGlvbnMgd2VyZSBwZXJmb3JtZWQgZHVyaW5nIDIwMTAtMjAxMyBhbmQgdGhlIGZvbGxvd2luZyBwYXJhbWV0ZXJzIGFyZSBpbmNsdWRlZDogU29pbCBtb2lzdHVyZSwgU29pbCB0ZW1wZXJhdHVyZSwgSHlkcmF1bGljIHByb3BlcnRpZXMgb2YgdGhlIGFjdGl2ZSBsYXllciwgbWV0ZW9yb2xvZ2ljYWwgcGFyYW1ldGVycyBmcm9tIGEgbG9jYWwgd2VhdGhlciBzdGF0aW9uIHdpdGhpbiB0aGUgY2F0Y2htZW50LCB3YXRlciBsZXZlbHMgYW5kIGRpc2NoYXJnZSwgc3VibGltYXRpb24gYW5kIGV2YXBvcnRhdGlvbiBtZWFzdXJtZW50cywgc25vdyBkZXB0aCBhbmQgc25vdyB3YXRlciBjb250ZW50IGRhdGEgYW5kIHRpbWUgbGFwc2UgcGhvdG9zLjwvZGVzY3JpcHRpb24+CiAgICA8ZGVzY3JpcHRpb24gZGVzY3JpcHRpb25UeXBlPSJPdGhlciI+U3VwcGxlbWVudCB0bzogSm9oYW5zc29uLCBFbW1hOyBCZXJnbHVuZCwgU3RlbjsgTGluZGJvcmcsIFRvYmlhczsgUGV0cm9uZSwgSm9oYW5uZXM7IHZhbiBBcywgRGlyazsgR3VzdGFmc3NvbiwgTGFycy1Hw7ZyYW47IE7DpHNsdW5kLCBKZW5zLU92ZTsgTGF1ZG9uLCBIamFsbWFyICgyMDE1KTogSHlkcm9sb2dpY2FsIGFuZCBtZXRlb3JvbG9naWNhbCBpbnZlc3RpZ2F0aW9ucyBpbiBhIHBlcmlnbGFjaWFsIGxha2UgY2F0Y2htZW50IG5lYXIgS2FuZ2VybHVzc3VhcSwgd2VzdCBHcmVlbmxhbmQg4oCTIHByZXNlbnRhdGlvbiBvZiBhIG5ldyBtdWx0aS1wYXJhbWV0ZXIgZGF0YSBzZXQuIEVhcnRoIFN5c3RlbSBTY2llbmNlIERhdGEsIDcoMSksIDkzLTEwODwvZGVzY3JpcHRpb24+CiAgPC9kZXNjcmlwdGlvbnM+CiAgPGdlb0xvY2F0aW9ucz4KICAgIDxnZW9Mb2NhdGlvbj4KICAgICAgPGdlb0xvY2F0aW9uUG9pbnQ+CiAgICAgICAgPHBvaW50TG9uZ2l0dWRlPi01MC4xODAzNzwvcG9pbnRMb25naXR1ZGU+CiAgICAgICAgPHBvaW50TGF0aXR1ZGU+NjcuMTI1OTQ8L3BvaW50TGF0aXR1ZGU+CiAgICAgIDwvZ2VvTG9jYXRpb25Qb2ludD4KICAgIDwvZ2VvTG9jYXRpb24+CiAgICA8Z2VvTG9jYXRpb24+CiAgICAgIDxnZW9Mb2NhdGlvblBsYWNlPlR3byBCb2F0IExha2UsIEthbmdlcmx1c3N1YXEsIEdyZWVubGFuZDwvZ2VvTG9jYXRpb25QbGFjZT4KICAgIDwvZ2VvTG9jYXRpb24+CiAgPC9nZW9Mb2NhdGlvbnM+CjwvcmVzb3VyY2U+\",\"url\":\"https://doi.pangaea.de/10.1594/PANGAEA.836178\",\"contentUrl\":null,\"metadataVersion\":15,\"schemaVersion\":\"http://datacite.org/schema/kernel-4\",\"source\":\"mds\",\"isActive\":true,\"state\":\"findable\",\"reason\":null,\"viewCount\":0,\"viewsOverTime\":[],\"downloadCount\":0,\"downloadsOverTime\":[],\"referenceCount\":0,\"citationCount\":1,\"citationsOverTime\":[{\"year\":\"2023\",\"total\":1}],\"partCount\":1,\"partOfCount\":0,\"versionCount\":0,\"versionOfCount\":0,\"created\":\"2014-11-05T03:07:53.000Z\",\"registered\":\"2014-11-05T03:07:54.000Z\",\"published\":\"2014\",\"updated\":\"2024-07-21T10:03:18.000Z\"},\"relationships\":{\"client\":{\"data\":{\"id\":\"pangaea.repository\",\"type\":\"clients\"}},\"provider\":{\"data\":{\"id\":\"pangaea\",\"type\":\"providers\"}},\"media\":{\"data\":{\"id\":\"10.1594/pangaea.836178\",\"type\":\"media\"}},\"references\":{\"data\":[]},\"citations\":{\"data\":[{\"id\":\"10.1029/2022jg007106\",\"type\":\"dois\"}]},\"parts\":{\"data\":[{\"id\":\"10.5194/egusphere-2024-4207\",\"type\":\"dois\"}]},\"partOf\":{\"data\":[]},\"versions\":{\"data\":[]},\"versionOf\":{\"data\":[]}}},\"included\":[{\"id\":\"pangaea.repository\",\"type\":\"clients\",\"attributes\":{\"name\":\"PANGAEA\",\"symbol\":\"PANGAEA.REPOSITORY\",\"year\":2020,\"alternateName\":\"Data
+        Publisher for Earth and Environmental Science\",\"description\":\"PANGAEA
+        is a data publisher for earth and environmental sciences. PANGAEA currently
+        keeps billions of data items comprised in hundred of thousands trans-disciplinary
+        data sets from all over the world. Since more than 25 years, PANGAEA is one
+        of the leading data centers for data curation, long-term data archiving and
+        publication. In contrast to generic data repositories, data curation at PANGAEA
+        includes editing of deposited data for accuracy by well-trained data editors
+        from the geological and biological domains. Since more than 10 years PANGAEA
+        assigns Digital Object Identifiers (DOI) to datasets. The PANGAEA team support
+        the further development of services for cross-linking data and paper publications
+        as well as evaluating the FAIR-ness of repositories according to the FAIR
+        principles.\",\"language\":[\"en\"],\"clientType\":\"repository\",\"domains\":\"pangaea.de,doi.pangaea.de\",\"re3data\":\"https://doi.org/10.17616/R3XS37\",\"opendoar\":null,\"issn\":{},\"url\":\"https://www.pangaea.de/\",\"created\":\"2020-03-11T13:58:41.000Z\",\"updated\":\"2023-04-24T19:21:25.000Z\",\"isActive\":true},\"relationships\":{\"provider\":{\"data\":{\"id\":\"pangaea\",\"type\":\"providers\"}},\"prefixes\":{\"data\":[{\"id\":\"10.1594\",\"type\":\"prefixes\"},{\"id\":\"10.25594\",\"type\":\"prefixes\"}]}}}]}"
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -190,13 +132,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 06 Oct 2025 19:04:02 GMT
+      - Mon, 01 Dec 2025 17:19:56 GMT
       ETag:
-      - W/"3887ce70465243e869be7e7cf10f7d24"
+      - W/"80fe4921cad50330face344305d58e47"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.18.0 + Phusion Passenger(R) 6.1.0
+      - nginx/1.24.0 + Phusion Passenger(R) 6.1.0
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -214,9 +156,9 @@ interactions:
       X-Powered-By:
       - Phusion Passenger(R) 6.1.0
       X-Request-Id:
-      - 7be33973-5c1b-40b7-b495-937ec596077f
+      - 584c4640-322e-458e-93c8-3ffdb03c02d6
       X-Runtime:
-      - '0.023104'
+      - '0.039712'
       X-XSS-Protection:
       - '0'
     status:
