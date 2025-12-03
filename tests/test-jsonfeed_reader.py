@@ -289,6 +289,13 @@ def test_another_post_with_citations():
     assert subject.titles[0] == {"title": "Ruby CDK for Newbies"}
     assert subject.citations == [
         {
+            "id": "https://doi.org/10.59350/mn0n8-p9m65",
+            "published_at": "2024-12-08",
+            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. "
+            "<i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65",
+            "updated_at": "2025-10-22T08:23:52.900151+00:00",
+        },
+        {
             "id": "https://doi.org/10.59350/myaw4-dtg76",
             "published_at": "2024-12-08",
             "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76",

@@ -16,7 +16,12 @@ from ..base_utils import (
     sanitize,
     unique,
 )
-from ..constants import OPENALEX_SUBFIELD_MAPPINGS, OPENALEX_TOPIC_MAPPINGS, Commonmeta
+from ..constants import (
+    OPENALEX_SUBFIELD_MAPPINGS,
+    OPENALEX_TOPIC_MAPPINGS,
+    OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
+    Commonmeta,
+)
 from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
     doi_from_url,
@@ -166,6 +171,22 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
                     "subject": topic,
                 }
             )
+            topic_subfield = OPENALEX_TOPIC_SUBFIELD_MAPPINGS.get(meta.get("topic"))
+            if topic_subfield is not None:
+                existing_ids = {
+                    s.get("id")
+                    for s in subjects
+                    if isinstance(s, dict) and s.get("id") is not None
+                }
+                topic_subfield_id = f"https://openalex.org/subfields/{topic_subfield}"
+                if topic_subfield_id not in existing_ids:
+                    subj = OPENALEX_SUBFIELD_MAPPINGS.get(topic_subfield, None)
+                    subjects.append(
+                        {
+                            "id": topic_subfield_id,
+                            "subject": subj,
+                        }
+                    )
     tags = wrap(dig(meta, "tags", None))
     if tags is not None:
         subjects += wrap([format_subject(i) for i in tags])

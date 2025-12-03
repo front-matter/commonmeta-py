@@ -14,35 +14,166 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/10.59350/rjt2m-2hy19
   response:
     body:
-      string: '<!doctype html>
-
-        <html lang=en>
-
-        <title>429 Too Many Requests</title>
-
-        <h1>Too Many Requests</h1>
-
-        <p>This user has exceeded an allotted request count. Try again later.</p>
+      string: '{"abstract":"(Please cite this post as https://doi.org/10.59350/rjt2m-2hy19)
+        A few things recently have made me think about how we support the core work
+        of maintaining research software and supporting its users.","archive_url":null,"authors":[{"contributor_roles":[],"family":"Katz","given":"Daniel
+        S.","url":"http://orcid.org/0000-0001-5934-7525"}],"blog":{"archive_collection":22131,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22131/20231101173440/","archive_timestamps":null,"authors":[{"name":"Daniel
+        S. Katz","url":"https://orcid.org/0000-0001-5934-7525"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"3ecea319-fd1a-492c-8745-f4f9ce29036f","created_at":1672790400,"current_feed_url":null,"description":null,"doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://danielskatzblog.wordpress.com/feed/atom\\n\\n","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://danielskatzblog.wordpress.com","id":"21c7640c-bd10-4f9d-ada7-41a3551b4ab0","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://fosstodon.org/@danielskatz","prefix":"10.59350","registered_at":1725104050,"relative_url":null,"ror":null,"secure":true,"slug":"danielskatz","status":"active","subfield":"1802","subfield_validated":null,"title":"Daniel
+        S. Katz''s blog","updated_at":1738857231,"use_api":true,"use_mastodon":true,"user_id":"028217ad-78fb-4c73-befd-a1a947eb745b"},"blog_name":"Daniel
+        S. Katz''s blog","blog_slug":"danielskatz","content_html":"\n<p>(Please cite
+        this post as <a href=\"https://doi.org/10.59350/rjt2m-2hy19\">https://doi.org/10.59350/rjt2m-2hy19</a>)</p>\n\n\n\n<p>A
+        few things recently have made me think about how we support the core work
+        of maintaining research software and supporting its users.</p>\n\n\n\n<ol
+        class=\"wp-block-list\">\n<li>I was interviewed by Georgia Iacovou for her
+        report, &#8220;<a href=\"https://geoiac.notion.site/Funding-Open-Source-Science-Software-b11741a8c9a24a91b8a367629092f674\">The
+        state of the open source ecosystem &amp; how to fund away \u2018software collapse\u2019</a>&#8220;.</li>\n\n\n\n<li>I&#8217;ve
+        been chairing some of the meetings of the <a href=\"https://www.researchsoft.org/\">Research
+        Software Alliance (ReSA)</a> <a href=\"https://www.researchsoft.org/funders-forum/\">Funders
+        Forum</a>, and co-organized part of a side meeting on research software at
+        the <a href=\"https://grc2024interlaken.ch/\">Global Research Council&#8217;s
+        2024 meeting</a>.</li>\n\n\n\n<li>I attended the <a href=\"https://confmeet.github.io/ccs2024/\">2024
+        NSF CSSI/Cyber Training/SCIPE PI Meeting</a>.</li>\n\n\n\n<li>We&#8217;re
+        getting towards the end of awards to Parsl for sustainability and maintenance
+        from NSF (<a href=\"https://www.nsf.gov/awardsearch/showAward?AWD_ID=2209919\">award1</a>,
+        <a href=\"https://www.nsf.gov/awardsearch/showAward?AWD_ID=2209920\">award2</a>)
+        and CZI (<a href=\"https://chanzuckerberg.com/eoss/proposals/sustaining-parsl-enabling-extreme-scale-biomedicine/\">award3</a>).</li>\n\n\n\n<li>I&#8217;ve
+        spent significant time planning and now working on the <a href=\"https://corsa.center/\">CORSA</a>
+        project.</li>\n\n\n\n<li>I&#8217;ve been chatting with Mike Woster from the
+        Linux Foundation.</li>\n</ol>\n\n\n\n<p>In these discussions and this work
+        on Parsl, it&#8217;s become clear to me that there are parts of a medium-size
+        open-source research software project like <a href=\"https://parsl-project.org/\">Parsl</a>
+        that can be sustained by a community. This includes adding new features and
+        some user support, which we can do through a combination of community contributions
+        and collaborations, funding from projects that use Parsl, and funding for
+        our own research that requires us to maintain Parsl.</p>\n\n\n\n<p>However,
+        as the project grows both in code and users and as it ages, ongoing core work
+        is needed, which we cannot always provide without some funding or voluntary
+        effort specifically for this purpose. This core work includes user support,
+        which grows with the number of users, though some of this can be done, and
+        for us, is now being done by advanced users. While some maintenance work also
+        will always be needed to avoid <a href=\"https://doi.ieeecomputersociety.org/10.1109/MCSE.2019.2900945\">software
+        collapse</a>, how its magnitude changes over time is less clear, as our goal
+        has been to pay down the technical debt that came with our initial &#8220;experimental&#8221;
+        code, and arguably, we are succeeding in doing this. The core work also includes
+        our community manager, who has provided tremendous value to helping Parsl
+        grow; however, this is a function that is very hard to convince existing users
+        to pay for.&nbsp; In both cases, volunteer effort alone isn&#8217;t really
+        sufficient: we don&#8217;t just need someone to do these things, but we need
+        someone specific with the right experience in the project to do them.</p>\n\n\n\n<p>My
+        thinking on this is probably specific to projects that are similar to Parsl
+        in size (of code and community) and in research orientation. I think there
+        are valid models to support the core work for other types of projects, such
+        as both smaller (e.g., a single researcher) and larger (e.g., 5+ core developers)
+        research projects as well as many open-source projects that are not research
+        focused, some of which have a large user community and a solid business and
+        financial model. But it&#8217;s not clear to me that we understand how to
+        support the core work for a project with a community and developers similar
+        in size to Parsl&#8217;s.</p>\n\n\n\n<p>About the time I finished working
+        at NSF, leading activities to fund sustainable research software, I was optimistic
+        and created <a href=\"https://github.com/danielskatz/sustaining-research-projects\">a
+        set of models</a> that I thought would be sufficient, based in very large
+        part on <a href=\"https://github.com/nayafia/lemonade-stand\">work done around
+        how developers in open source could fund their work</a>.&nbsp; Today, I think
+        that projects in Parsl&#8217;s position are going to remain dependent on grants,
+        at least for this core maintenance and community work. For Parsl in particular,
+        I think we really need about 0.5 FTE/year for core maintenance, and about
+        0.5 FTE/year for our community work.</p>\n\n\n\n<p>In the longer term, I could
+        imagine a few additional options. One would be institutional support from
+        universities and other research institutions. In the case of Parsl, this would
+        be the University of Chicago and University of Illinois Urbana-Champaign,
+        and perhaps other institutions that want to get involved and take more of
+        an ownership and governance stake in the project, by supporting the project
+        via internal (not grant) funds and treating the project as a part of the institution&#8217;s
+        assets rather than just a research project that happens to have some contributors
+        at the institution. This would be similar to how some non-research open-source
+        projects work, with multiple companies contributing time from their employees.</p>\n\n\n\n<p>Another
+        option would be more indirect funding from funders (government, philanthropic,
+        industry) who want to support the open-source research software ecosystem,
+        because doing so will support their overall goals. This might be similar to
+        what DOE is trying with the <a href=\"https://cass.community/\">Consortium
+        for the Advancement of Scientific Software (CASS)</a> (where I&#8217;m a co-PI
+        in one of the member organizations, <a href=\"https://corsa.center/\">CORSA</a>).
+        My interpretation of DOE&#8217;s future vision for this is that they provide
+        funding to sustain key software to CASS, which uses a decision-making process
+        that hasn&#8217;t yet been fully determined to in turn provide funds to maintain
+        the software that DOE research depends on, where DOE provides funding for
+        the ecosystem without directly deciding which projects it funds, leaving this
+        decision to be made by a set of software and user stakeholders. It seems that
+        this model could be expanded to include multiple global funders and their
+        goals, since most research software is developed, maintained, and used globally,
+        and typically is useful for more than one research project and research goal.</p>\n\n\n\n<p>I
+        should mention here that this discussion is fairly specific to projects like
+        Parsl (open-source research software, medium community size, most users are
+        publicly-funded research projects). There are many other situations where
+        other models might work, such as <a href=\"https://www.globus.org/\">Globus</a>
+        with its model of closed source software provided as a service and supported
+        by institutions, or <a href=\"https://charmplusplus.org/\">Charm++</a>, which
+        was free for non-commercial use, and has just <a href=\"https://www.linkedin.com/posts/laxmikant-sanjay-kale-964ab14_we-are-happy-to-announce-the-release-of-activity-7227375565291347968-e7Yj\">recently
+        switched</a> to an OSI-compliant license. There&#8217;s also software like
+        <a href=\"https://ambermd.org/\">Amber</a>, which continues to be free for
+        non-commercial use, but has a license fee for commercial use. These projects
+        all have used fees to support the core software work. Outside research software,
+        more general open source models, such as the <a href=\"https://www.opentech.fund/funds/free-and-open-source-software-sustainability-fund/\">Free
+        and Open Source Software (FOSS) Sustainability Fund</a> and <a href=\"https://github.com/sponsors\">GitHub
+        Sponsors</a>, seem promising, but I can&#8217;t see them helping research
+        software.&nbsp;</p>\n\n\n\n<p>In some sense, none of this thinking is new,
+        and it all goes back to the fact that while open-source research software
+        is typically seen as free because it is free to obtain, it is not free to
+        develop or maintain. As ReSA has expanded its work and impact, I think more
+        government and philanthropic funding agencies have started to recognize this
+        and create programs to address it, but these programs aren&#8217;t coordinated,
+        and they aren&#8217;t sufficient to support all of the software that research
+        needs. And industry overall hasn&#8217;t been brought into this discussion
+        about research software, though a small number of companies have proven willing
+        to support some of the software they use.</p>\n\n\n\n<p>To wrap up this discussion
+        for now, I think the open-source ecosystem has some types of projects that
+        can be successfully supported, while others currently don&#8217;t fit well
+        into these existing models, due at least in part to the size of the developer
+        and user communities, and the fact that they are primarily research software.
+        As discussed above, there are potentially two paths forward that I see:</p>\n\n\n\n<ol
+        class=\"wp-block-list\">\n<li>Institutions start to see open-source software
+        as reputational and operational important and invest in it. For institutions
+        that have a strong, well-resourced research software organization (e.g., an
+        RSE organization, a research computing center) this seems possible, although
+        given the current forces to reduce institutional spending, it seems relatively
+        unlikely to happen, at least in universities.</li>\n\n\n\n<li>The model of
+        CASS might provide hope for the future, particularly if it could be expanded
+        to more funders. I hope funders and the community will continue to talk about
+        this, in part via the <a href=\"https://www.researchsoft.org/\">ReSA Funders
+        Forum</a>.</li>\n</ol>\n\n\n\n<p>In addition, it&#8217;s clear to me that
+        part of the job of Parsl and similar projects is to raise awareness about
+        this, and to share lessons and successes. For Parsl, our successes do include
+        that the community growth has led to members who are willing to get more involved
+        in parts of the software project, and infrastructure providers (e.g., NERSC)
+        who make sure Parsl works with their resources and their users.</p>\n\n\n\n<p><strong>Acknowledgements</strong>:
+        My thinking on this has greatly benefited from many discussions, including
+        with Michelle Barker, Greg Watson, Addi Thakur Malviya, Elaine M. Raybourn,
+        Bill Hoffman, Dana Robinson, Mike Heroux, Neil Chue Hong, Ian Foster, Kyle
+        Chard, Ben Clifford, Mike Woster, Florian Mannseicher, Matthias Katerbow,
+        Maria Cruz, Kenton McHenry, Tom Honeyman, and many members of the <a href=\"https://researchsoftware.org/assoc.html\">RSE</a>
+        and <a href=\"https://www.software.ac.uk/\">SSI</a> communities.</p>\n","doi":"https://doi.org/10.59350/rjt2m-2hy19","funding_references":null,"guid":"https://danielskatzblog.wordpress.com/?p=1741","id":"bd69ca5e-7d40-4032-9ef8-b8e77db63b44","image":"","indexed_at":1764549402,"language":"en","parent_doi":null,"published_at":1724196270,"reference":[],"registered_at":0,"relationships":[],"rid":"k14ca-q4550","subfield":"1802","summary":"(Please
+        cite this post as https://doi.org/10.59350/rjt2m-2hy19)  A few things recently
+        have made me think about how we support the core work of maintaining research
+        software and supporting its users. I was interviewed by Georgia Iacovou for
+        her report, \u201cThe state of the open source ecosystem &amp;","tags":["RSE"],"title":"Supporting
+        the core work in research software","topic":"11986","topic_score":0.88,"updated_at":1725103239,"url":"https://danielskatzblog.wordpress.com/2024/08/20/supporting-core-research-softtware-work/","version":"v1"}
 
         '
     headers:
       content-encoding:
       - gzip
       content-type:
-      - text/html; charset=utf-8
+      - application/json
       date:
-      - Mon, 01 Dec 2025 17:18:53 GMT
+      - Wed, 03 Dec 2025 09:34:01 GMT
       fly-request-id:
-      - 01KBDES9GH5YE6KJSW2PFAQJ05-ams
+      - 01KBHRZGN8QTVRD2AKAQY9FTF4-ams
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '0'
+      - '14'
       ratelimit-reset:
-      - '57'
-      retry-after:
-      - '1'
-      - '1'
+      - '3'
       server:
       - Fly/0dca8e971 (2025-11-29)
       transfer-encoding:
@@ -52,6 +183,6 @@ interactions:
       via:
       - 1.1 fly.io, 1.1 fly.io
     status:
-      code: 429
+      code: 200
       message: ''
 version: 1

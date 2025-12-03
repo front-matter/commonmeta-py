@@ -1033,7 +1033,7 @@ def test_inveniordm_record_with_references():
     assert dig(crossref_xml, "citation_list.citation.1") == {
         "doi": "10.64000/4s2ee-wkr84",
         "key": "ref2",
-        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Front Matter</i>.",
+        "unstructured_citation": "Bowman, S., Cousijn, H., Rittman, M., &amp; Stoll, L. (2025, April 8). The programs approach: our experiences during the first quarter of 2025. <i>Crossref Blog</i>.",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "TLDR: We've successfully moved the main Crossref systems to the cloud!"

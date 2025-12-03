@@ -14,35 +14,137 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/10.59350/p000s-pth40
   response:
     body:
-      string: '<!doctype html>
-
-        <html lang=en>
-
-        <title>429 Too Many Requests</title>
-
-        <h1>Too Many Requests</h1>
-
-        <p>This user has exceeded an allotted request count. Try again later.</p>
+      string: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2017/11/24/thors-last-hurrah","authors":[{"affiliation":[{"id":"https://ror.org/04fa4r544","name":"ORCID"}],"name":"Ad\u00e8nik\u00e9
+        Deane-Pratt","url":"https://orcid.org/0000-0001-9940-9233"}],"blog":{"archive_collection":22143,"archive_host":"project-thor.eu","archive_prefix":"https://wayback.archive-it.org/22143/20231103191454/","archive_timestamps":[20231103192418],"authors":null,"canonical_url":null,"category":"computerAndInformationSciences","community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created_at":1695254400,"current_feed_url":null,"description":"Technical
+        and Human infrastructure for Open Research.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"funding":{"awardNumber":"654039","awardTitle":"THOR
+        \u2013 Technical and Human Infrastructure for Open Research","awardUri":"https://doi.org/10.3030/654039","funderIdentifier":"https://ror.org/019w4f821","funderName":"European
+        Union"},"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","id":"2a309edc-7a90-4735-807c-a81a7e5eb890","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1511522178,"relative_url":null,"ror":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","subfield_validated":null,"title":"Project
+        THOR","updated_at":1511522178,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Project
+        THOR","blog_slug":"thor","citations":[{"citation":"https://doi.org/10.53731/w6nzs-jta75","published_at":"2023-09-22","unstructured":"Fenner,
+        M. (2023, September 22). DOI registration workflow for a science blog. <i>Front
+        Matter</i>. https://doi.org/10.53731/w6nzs-jta75","updated_at":"2025-02-02T19:19:34.488472+00:00","validated":true}],"content_html":"<p><span
+        style=\"font-weight:400;\">Project THOR is coming to a close. Our\nfinal event
+        was held in Italy on 15 November at \u2018La Sapienza\u2019 \u2013 the\nUniversity
+        of Rome \u2013 just a stone\u2019s throw from Michelangelo\u2019s impressive\nsculpture
+        of Moses in the church of San Pietro in Vincoli. The day\ncombined a retrospective
+        review of THOR\u2019s achievements and impact with a\nforward-looking perspective
+        on the wider persistent identifier (PID)\nlandscape.</span></p>\n<p><span
+        style=\"font-weight:400;\">With help and advice from CINECA\u2019s\nPaola
+        Gargiulo the event attracted an audience of Italian researchers\nfrom a wide
+        range of disciplines, to join delegates from THOR partner\n</span><span style=\"font-weight:400;\">organisations.
+        Adam Farquhar of\nthe British Library followed Paola\u2019s welcome with an
+        overview of THOR\u2019s\nmission to embed PIDs within the heart of scholarly\ncommunications.</span></p>\n<h2
+        id=\"key-notes\"><span style=\"font-weight:400;\">Key notes</span></h2>\n<p><span
+        style=\"font-weight:400;\">Herbert van de Sompel, one of our two\nkeynote
+        speakers and Digital Library Research &amp; Prototyping Team\nlead at Los
+        Alamos National University, presented important research on\nmaintaining the
+        integrity of hyperlinks to managed collections such as\njournal repositories.
+        \u2018Link rot\u2019 \u2013 broken links \u2013 and \u2018content drift\u2019
+        \u2013\nwhere a link works but takes you to something other than the original\ncontent
+        \u2013 are both problems, albeit less so than for the web at large.\nSolutions
+        suggested for the scholarly web included using metadata that\ndescribes the
+        relationships between links using resources such as <a\nhref=\"http://signposting.org\">signposting.org</a></span><a\nhref=\"http://signposting.org\"><span\nstyle=\"font-weight:400;\">.</span></a></p>\n<p><img\nsrc=\"https://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=756&amp;h=426\"\nalt=\"Photo
+        1\" />{.alignnone .wp-image-1760 attachment-id=\u201c1760\u201d\npermalink=\u201chttp://project-thor.eu/2017/11/24/thors-last-hurrah/photo-1/\u201d\norig-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png\u201d\norig-size=\u201c1200,675\u201d
+        comments-opened=\u201c0\u201d\nimage-meta=\u201c{\"aperture\":\"0\",\"credit\":\"\",\"camera\":\"\",\"caption\":\"\",\"created_timestamp\":\"0\",\"copyright\":\"\",\"focal_length\":\"0\",\"iso\":\"0\",\"shutter_speed\":\"0\",\"title\":\"\",\"orientation\":\"0\"}\u201d\nimage-title=\u201cPhoto
+        1\u201d image-description=\u201c\u201c image-caption=\u201c\u201c\nmedium-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=300\u201d\nlarge-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=1024\u201d\nloading=\u201clazy\u201d
+        width=\u201c756\u201d height=\u201c426\u201d\nsrcset=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=756&amp;h=426\n756w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=150&amp;h=84\n150w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=300&amp;h=169\n300w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=768&amp;h=432\n768w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=1024&amp;h=576\n1024w,
+        https://thorproject2014.files.wordpress.com/2017/11/photo-1.png\n1200w\u201d
+        sizes=\u201c(max-width: 756px) 100vw, 756px\u201d}</p>\n<p><em><span style=\"font-weight:400;\">Photo:
+        Herbert van de Sompel\ngiving keynote on achieving link integrity</span></em></p>\n<p><span
+        style=\"font-weight:400;\">Our second keynote talk was given by\nFiona Murphy,
+        an independent research data and publishing consultant and\nexcellent THOR
+        Ambassador. She has been considering the question of what\nscholarship would
+        look like had it been digital from inception, with\nPIDs integral to the process.
+        The Matrix of the Commons \u2013 found\nat</span> <a href=\"http://www.scholarlycommons.org/\"><span\nstyle=\"font-weight:400;\">www.scholarlycommons.org</span></a><span\nstyle=\"font-weight:400;\">
+        \u2013 is the result of work on how to get us from\nhere to there, via a guiding
+        set of decision trees on how to treat a\nrange of digital entities appropriately
+        and consistently. Important take\nhome messages were that we should all assume
+        1) that our tools will be\nused in conjunction with other systems and 2) that
+        they should be built\nfor drivers, not mechanics.</span></p>\n<h2 id=\"thor-round-up\"><span
+        style=\"font-weight:400;\">THOR\nround-up</span></h2>\n<p><span style=\"font-weight:400;\">Between
+        keynote talks, THOR partners\npresented highlights from the project deliverables
+        over the course of\ntwo sessions. In the first, Maaike Duine (ORCID) summarised
+        THOR\u2019s\ncommunications activities and Ambassador programme. Elizabeth
+        Hull\npresented DRYAD\u2019s perspective on linking data and publications.
+        Martin\nFenner (DataCite) looked at claiming workflows to ORCID. Robin Dasler\nspoke
+        both about analysis preservation at CERN and THOR\u2019s analyses of\nPID
+        service adoption. Robert Petryszak (EMBL-EBI) talked on how to\nrealise the
+        full potential of PIDs in the biosciences, and the session\nclosed with a
+        demo of dynamic data identification in the earth and\nenvironmental sciences
+        from Markus Stocker (PANGAEA).</span></p>\n<p><img\nsrc=\"https://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=958&amp;h=581\"\nalt=\"Pic
+        2\" />{.alignnone .size-full .wp-image-1762 attachment-id=\u201c1762\u201d\npermalink=\u201chttp://project-thor.eu/2017/11/24/thors-last-hurrah/pic-2/\u201d\norig-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png\u201d\norig-size=\u201c958,581\u201d
+        comments-opened=\u201c0\u201d\nimage-meta=\u201c{\"aperture\":\"0\",\"credit\":\"\",\"camera\":\"\",\"caption\":\"\",\"created_timestamp\":\"0\",\"copyright\":\"\",\"focal_length\":\"0\",\"iso\":\"0\",\"shutter_speed\":\"0\",\"title\":\"\",\"orientation\":\"0\"}\u201d\nimage-title=\u201cPic
+        2\u201d image-description=\u201c\u201c image-caption=\u201c\u201c\nmedium-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=300\u201d\nlarge-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=958\u201d\nloading=\u201clazy\u201d
+        width=\u201c958\u201d height=\u201c581\u201d\nsrcset=\u201chttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png\n958w,\nhttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=150&amp;h=91\n150w,\nhttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=300&amp;h=182\n300w,\nhttps://thorproject2014.files.wordpress.com/2017/11/pic-2.png?w=768&amp;h=466\n768w\u201d
+        sizes=\u201c(max-width: 958px) 100vw, 958px\u201d}</p>\n<p><em><span style=\"font-weight:400;\">Image:
+        PID service adoption\nstudy</span></em></p>\n<p><span style=\"font-weight:400;\">After
+        lunch, Tom Demeranville (ORCID)\ngave updates on developing tools for federated
+        identity management and\nbetter use of organisation identifiers. Martin Fenner
+        returned to share\noutcomes from a joint THOR-OpenAIRE workshop on article-data
+        linking.\nAngela Dappert (British Library) considered the challenges of embedding\npersistent
+        identifier services within the humanities. S\u00fcnje\nDallmeier-Tiessen (CERN)
+        fed back from a high-energy physics community\nworkshop. Lastly, Maaike Duine
+        reported on insights gathered from a\nfocus group meeting to envision the
+        \u2018ideal PID world\u2019 for publishing\nworkflows.</span></p>\n<h2 id=\"points-for-discussion\"><span
+        style=\"font-weight:400;\">Points for\ndiscussion</span></h2>\n<p><span style=\"font-weight:400;\">It
+        wouldn\u2019t have been a THOR event\nwithout the opportunity for everyone
+        to participate, and the\nmid-afternoon panel session provided a dedicated
+        forum. Panellists\nHannah Hope (Wellcome Trust), Clifford Tatum (CWTS), Andres
+        Mori\n(Digital Sciences), Erika Bilicsi (Library and Information Centre of
+        the\nHungarian Academy of Sciences) and chair Adam Farquhar addressed\ncomments
+        and questions from the room.</span></p>\n<p><img\nsrc=\"https://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=1200&amp;h=447\"\nalt=\"Photo
+        3\" />{.alignnone .size-full .wp-image-1761\nattachment-id=\u201c1761\u201d\npermalink=\u201chttp://project-thor.eu/2017/11/24/thors-last-hurrah/photo-3/\u201d\norig-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png\u201d\norig-size=\u201c1200,447\u201d
+        comments-opened=\u201c0\u201d\nimage-meta=\u201c{\"aperture\":\"0\",\"credit\":\"\",\"camera\":\"\",\"caption\":\"\",\"created_timestamp\":\"0\",\"copyright\":\"\",\"focal_length\":\"0\",\"iso\":\"0\",\"shutter_speed\":\"0\",\"title\":\"\",\"orientation\":\"0\"}\u201d\nimage-title=\u201cPhoto
+        3\u201d image-description=\u201c\u201c image-caption=\u201c\u201c\nmedium-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=300\u201d\nlarge-file=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=1024\u201d\nloading=\u201clazy\u201d
+        width=\u201c1200\u201d height=\u201c447\u201d\nsrcset=\u201chttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png\n1200w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=150&amp;h=56\n150w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=300&amp;h=112\n300w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=768&amp;h=286\n768w,\nhttps://thorproject2014.files.wordpress.com/2017/11/photo-3.png?w=1024&amp;h=381\n1024w\u201d
+        sizes=\u201c(max-width: 1200px) 100vw, 1200px\u201d}</p>\n<p><em><span style=\"font-weight:400;\">Photo:
+        Discussion panel on PID use\nin different communities</span></em></p>\n<p><span
+        style=\"font-weight:400;\">Discussion points included the\nrelative underuse
+        of funder IDs, identifying a current difficulty in\ncapturing full information
+        for works involving multiple funders as a\npossible stumbling block. A question
+        on how best to approach differences\nof opinion, e.g. between co-authors faced
+        with article- or\ndata-retraction, provided useful food for thought. Changing
+        our general\nview was suggested as a potential way forward given that not
+        all\nretractions are equal and the reasons may well be mundane, rather than\nissues
+        of capability. Also covered were the concepts of PIDs as a\ncompromise between
+        the readability needs of human and machine, and of\nthe importance of working
+        out which features of an object are the most\ncritical to identify.</span></p>\n<p><span
+        style=\"font-weight:400;\">Important take-homes from the day were\nthat PID
+        space is developing at an active and encouraging pace and that\nwe should
+        stay alert to idea that, in terms of policy, one size may not\nfit all.</span></p>\n<p><span
+        style=\"font-weight:400;\">Finally, Simon Lambert (STFC) looked\nahead to
+        the FREYA project, which will follow on from THOR, starting on\n1 December
+        2017. One of its key strands is to achieve long-term\nsustainability for the
+        outstanding progress and development that began\nwith ODIN \u2013 THOR\u2019s
+        predecessor \u2013 and advanced significantly during the\n30 months of THOR.</span></p>\n<h2
+        id=\"want-to-know-more\"><span style=\"font-weight:400;\">Want to know\nmore?</span></h2>\n<p><span
+        style=\"font-weight:400;\">Presentation slides from the day are\navailable
+        for download:</span></p>\n<ul>\n<li><a\nhref=\"https://www.slideshare.net/hvdsomp/achieving-link-integrity-for-managed-collections\">Herbert\nvan
+        de Sompel\u2019s keynote</a></li>\n<li><a\nhref=\"https://zenodo.org/communities/2017-15-11-thor-final-event/?page=1&amp;size=20\">Fiona\nMurphy\u2019s
+        keynote and THOR partner presentation slides</a></li>\n</ul>\n","doi":"https://doi.org/10.59350/p000s-pth40","funding_references":null,"guid":"http://project-thor.eu/?p=1759","id":"4d51f3c9-151d-4030-9893-ddbca37f54bb","image":"https://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=756&h=426","indexed_at":1741474626,"language":"en","parent_doi":null,"published_at":1511522178,"reference":[],"registered_at":0,"relationships":[],"rid":"2y05e-e5z63","subfield":null,"summary":"Project
+        THOR is coming to a close. Our final event was held in Italy on 15 November
+        at \u2018La Sapienza\u2019 \u2013 the University of Rome \u2013 just a stone\u2019s
+        throw from Michelangelo\u2019s impressive sculpture of Moses in the church
+        of San Pietro in Vincoli. The day combined a retrospective review of THOR\u2019s
+        achievements and impact with a forward-looking perspective on the wider persistent
+        identifier (PID) landscape.","tags":[],"title":"THOR\u2019s last hurrah","topic":null,"topic_score":0,"updated_at":1511522178,"url":"https://project-thor.eu/2017/11/24/thors-last-hurrah","version":"v1"}
 
         '
     headers:
       content-encoding:
       - gzip
       content-type:
-      - text/html; charset=utf-8
+      - application/json
       date:
-      - Mon, 01 Dec 2025 17:18:53 GMT
+      - Wed, 03 Dec 2025 09:35:03 GMT
       fly-request-id:
-      - 01KBDES9KM13TFTXX48N551TTX-ams
+      - 01KBHS1E3QCFVS4JRF4MH2ZP5V-ams
       ratelimit-limit:
       - '15'
       ratelimit-remaining:
-      - '0'
+      - '14'
       ratelimit-reset:
-      - '57'
-      retry-after:
-      - '1'
-      - '1'
+      - '3'
       server:
       - Fly/0dca8e971 (2025-11-29)
       transfer-encoding:
@@ -52,6 +154,6 @@ interactions:
       via:
       - 1.1 fly.io, 1.1 fly.io
     status:
-      code: 429
+      code: 200
       message: ''
 version: 1
