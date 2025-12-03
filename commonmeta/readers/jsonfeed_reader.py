@@ -157,7 +157,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         ]
     else:
         subjects = []
-    if meta.get("topic", None) and meta.get("topic_score", 0) >= 0.40:
+    if meta.get("topic", None) and meta.get("topic_score", 0) >= 0.25:
         topic = OPENALEX_TOPIC_MAPPINGS.get(meta.get("topic"))
         if topic:
             subjects.append(

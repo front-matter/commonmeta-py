@@ -26,6 +26,7 @@ from ..constants import (
     COMMUNITY_TRANSLATIONS,
     CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
+    OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
 )
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
@@ -627,10 +628,26 @@ def add_record_to_communities(
         record = add_record_to_community(record, host, token, record["community_id"])
 
     # Add record to subject area community if subject area community is specified
-    # Subject area communities should exist for all OECD subject areas
+    # Subject area communities should exist for all OpenAlex subfields
 
     if metadata.subjects:
         for subject in metadata.subjects:
+            # OpenAlex subfield
+            if subject.get("id", "").startswith("https://openalex.org/subfields/"):
+                slug = subject.get("id").split("/")[-1]
+                community_id = search_by_slug(slug, "topic", host, token)
+                if community_id and community_id not in community_ids:
+                    record = add_record_to_community(record, host, token, community_id)
+            # OpenAlex subfield of topic
+            if subject.get("id", "").startswith("https://openalex.org/T"):
+                topic = subject.get("id").split("/")[-1]
+                slug = OPENALEX_TOPIC_SUBFIELD_MAPPINGS.get(topic[1:], None)
+                if slug is not None:
+                    community_id = search_by_slug(slug, "topic", host, token)
+                    if community_id and community_id not in community_ids:
+                        record = add_record_to_community(
+                            record, host, token, community_id
+                        )
             subject_name = subject.get("subject", "")
             slug = string_to_slug(subject_name)
             if slug in COMMUNITY_TRANSLATIONS:
