@@ -10,7 +10,7 @@ import orjson as json
 import requests
 from requests.exceptions import RequestException
 
-from ..api_utils import get_session_with_retry, http
+from ..api_utils import http
 from ..base_utils import (
     compact,
     dig,
@@ -916,20 +916,12 @@ def add_record_to_community(
     }
     json = {"communities": [{"id": community_id}]}
     try:
-        # Retry also on 400 status code
-        session = get_session_with_retry(
-            status_forcelist=[400, 429, 500, 502, 503, 504],
-            allowed_methods=["POST"],
-            total=3,
-            backoff_factor=2.0,
-        )
-        response = session.post(
+        # may return 400 if no logo is set for the community
+        http.post(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
             json=json,
         )
-        print(response.json())
-        response.raise_for_status()
         return record
     except RequestException as e:
         log.error(f"Error adding record to community: {str(e)}", exc_info=True)
