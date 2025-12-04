@@ -10,6 +10,7 @@ import orjson as json
 import requests
 from requests.exceptions import RequestException
 
+from ..api_utils import http
 from ..base_utils import (
     compact,
     dig,
@@ -692,9 +693,12 @@ def search_by_doi(doi, host, token) -> str | None:
     }
     params = {"q": f"doi:{doi}", "size": 1}
     try:
-        response = requests.get(
+        response = http.get(
             f"https://{host}/api/records", headers=headers, params=params
         )
+        if response.status_code == 429:
+            log.warning("Rate limit exceeded while searching by DOI")
+            return None
         response.raise_for_status()
         data = response.json()
         if dig(data, "hits.total", 0) > 0:
@@ -712,7 +716,7 @@ def create_draft_record(record: dict, host: str, token: str, output: dict) -> di
         "Content-Type": "application/json",
     }
     try:
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records", headers=headers, json=output
         )
         if response.status_code == 429:
@@ -743,10 +747,13 @@ def reserve_doi(record: dict, host: str, token: str) -> dict:
         "Content-Type": "application/json",
     }
     try:
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records/{record.get('id')}/draft/pids/doi",
             headers=headers,
         )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
         response.raise_for_status()
         data = response.json()
         record["doi"] = data.get("doi", None)
@@ -767,9 +774,12 @@ def edit_published_record(record: dict, host: str, token: str) -> dict:
         "Content-Type": "application/json",
     }
     try:
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records/{record['id']}/draft", headers=headers
         )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
         response.raise_for_status()
         data = response.json()
         record["updated"] = data.get("updated", None)
@@ -790,9 +800,12 @@ def create_new_version(record: dict, host: str, token: str) -> dict:
         "Content-Type": "application/json",
     }
     try:
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records/{record['id']}/versions", headers=headers
         )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
         response.raise_for_status()
         data = response.json()
         record["id"] = data.get("id", None)
@@ -816,11 +829,14 @@ def update_draft_record(
         "Content-Type": "application/json",
     }
     try:
-        response = requests.put(
+        response = http.put(
             f"https://{host}/api/records/{record['id']}/draft",
             headers=headers,
             json=inveniordm_data,
         )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
         response.raise_for_status()
         data = response.json()
         record["updated"] = data.get("updated", None)
@@ -842,7 +858,7 @@ def publish_draft_record(record: dict, host: str, token: str) -> dict:
         if not record.get("id", None):
             raise InvenioRDMError("Missing record id")
 
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records/{record['id']}/draft/actions/publish",
             headers=headers,
         )
@@ -873,10 +889,13 @@ def get_record_communities(record: dict, host: str, token: str) -> list | None:
         "Content-Type": "application/json",
     }
     try:
-        response = requests.get(
+        response = http.get(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
         )
+        if response.status_code == 429:
+            log.warning("Rate limit exceeded while getting communities")
+            return None
         response.raise_for_status()
         data = response.json()
         if dig(data, "hits.total", 0) > 0:
@@ -897,11 +916,14 @@ def add_record_to_community(
     }
     json = {"communities": [{"id": community_id}]}
     try:
-        response = requests.post(
+        response = http.post(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
             json=json,
         )
+        if response.status_code == 429:
+            record["status"] = "failed_rate_limited"
+            return record
         response.raise_for_status()
         return record
     except RequestException as e:
@@ -974,9 +996,12 @@ def search_by_slug(slug: str, type: str, host: str, token: str) -> str | None:
     }
     params = [("q", f"slug:{slug}"), ("type", type), ("type", "subject"), ("size", 1)]
     try:
-        response = requests.get(
+        response = http.get(
             f"https://{host}/api/communities", headers=headers, params=params
         )
+        if response.status_code == 429:
+            log.warning("Rate limit exceeded while searching for community by slug")
+            return None
         response.raise_for_status()
         data = response.json()
         if dig(data, "hits.total", 0) > 0:

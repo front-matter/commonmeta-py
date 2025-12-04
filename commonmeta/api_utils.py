@@ -7,6 +7,8 @@ from datetime import datetime as date
 import jwt
 import requests
 from furl import furl
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
 
@@ -16,6 +18,18 @@ from .doi_utils import doi_as_url, validate_doi
 COMMONMETA_USER_AGENT = (
     "commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)"
 )
+
+# Shared HTTP session with retry strategy for API calls
+retry_strategy = Retry(
+    total=3,
+    status_forcelist=[429, 502, 503, 504],
+    allowed_methods=["GET", "POST", "PUT"],
+    backoff_factor=2,
+)
+adapter = HTTPAdapter(max_retries=retry_strategy)
+http = requests.Session()
+http.mount("https://", adapter)
+http.mount("http://", adapter)
 
 
 def generate_ghost_token(key: str) -> str:

@@ -5,7 +5,7 @@ from __future__ import annotations
 import requests
 from requests.exceptions import ConnectionError, ReadTimeout
 
-from ..api_utils import COMMONMETA_USER_AGENT
+from ..api_utils import COMMONMETA_USER_AGENT, http
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, presence, sanitize, unique, wrap
 from ..constants import (
@@ -41,7 +41,7 @@ OA_IDENTIFIER_TYPES = {
 def get_openalex_list(query: dict, **kwargs) -> list[dict]:
     """get_openalex list from OpenAlex API."""
     url = openalex_api_query_url(query, **kwargs)
-    response = requests.get(url, timeout=30, **kwargs)
+    response = http.get(url, timeout=30, **kwargs)
     if response.status_code != 200:
         return []
     return response.json().get("results", [])
@@ -54,7 +54,7 @@ def get_openalex(pid: str, **kwargs) -> dict:
         return {"state": "not_found"}
     url = openalex_api_url(id, identifier_type, **kwargs)
     headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = requests.get(url, timeout=10, headers=headers, **kwargs)
+    response = http.get(url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     # OpenAlex returns record as list
@@ -210,7 +210,7 @@ def get_references(pids: list, **kwargs) -> list:
 
 def get_citations(citation_url: str, **kwargs) -> dict | list:
     headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = requests.get(citation_url, timeout=10, headers=headers, **kwargs)
+    response = http.get(citation_url, timeout=10, headers=headers, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     response = response.json()
@@ -247,7 +247,7 @@ def get_openalex_works(pids: list, **kwargs) -> list:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
         headers = {"User-Agent": COMMONMETA_USER_AGENT}
-        response = requests.get(url, timeout=10, headers=headers, **kwargs)
+        response = http.get(url, timeout=10, headers=headers, **kwargs)
         if response.status_code != 200:
             return []
         response = response.json()
@@ -268,7 +268,7 @@ def get_openalex_funders(pids: list, **kwargs) -> dict | list:
         ids = "|".join(pid_batch)
         url = f"https://api.openalex.org/funders?filter=ids.openalex:{ids}"
         headers = {"User-Agent": COMMONMETA_USER_AGENT}
-        response = requests.get(url, timeout=10, headers=headers, **kwargs)
+        response = http.get(url, timeout=10, headers=headers, **kwargs)
         if response.status_code != 200:
             return {"state": "not_found"}
         response = response.json()
@@ -379,7 +379,7 @@ def get_random_openalex_id(number: int = 1, **kwargs) -> list:
     number = min(number, 20)
     url = openalex_api_sample_url(number, **kwargs)
     try:
-        response = requests.get(url, timeout=10)
+        response = http.get(url, timeout=10)
         if response.status_code != 200:
             return []
 

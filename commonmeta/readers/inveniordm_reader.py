@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-import requests
 from furl import furl
 
+from ..api_utils import http
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, omit, presence, sanitize, scrub, wrap
 from ..constants import (
@@ -29,7 +29,7 @@ def get_inveniordm(pid: str, **kwargs) -> dict:
     if pid is None:
         return {"state": "not_found"}
     url = normalize_url(pid)
-    response = requests.get(url, timeout=10, allow_redirects=True, **kwargs)
+    response = http.get(url, timeout=10, allow_redirects=True, **kwargs)
     if response.status_code != 200:
         return {"state": "not_found"}
     return response.json()
