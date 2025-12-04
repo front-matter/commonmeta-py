@@ -17,7 +17,7 @@ interactions:
       string: "[\n  {\n    \"DOI\": \"10.7554\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - 9a743edd99a4fba6-AMS
+      - 9a8d5ae07e164b78-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -25,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:18:45 GMT
+      - Thu, 04 Dec 2025 18:26:56 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=QKEIDLt9vH%2FhTuV7jDjyC%2BXE%2B9AgPX311BEVXVU32FEK5hxuzZmMcTKIjXox9pR6X%2FGSrzUIWUZDf1Cc%2BkkJOQWmru8VO4QAJYT0wZ8GRYU%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=1L%2FwBsCs4VWftLnSvf%2Bj9TXH1dMWVA%2Bild%2Bh4JO%2FA%2B8xYp8YC33zfA8315ZQL2kdW0NTg02fqR0N%2F3PN%2FvMvkQAd67O0A7bK43CbLB1vnmTTZQ%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -156,7 +156,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:45 GMT
+      - Thu, 04 Dec 2025 18:26:57 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -174,10 +174,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
+      x-rate-limit:
+      - '10'
       x-rate-limit-interval:
       - 1s
-      x-rate-limit-limit:
-      - '50'
     status:
       code: 200
       message: OK
