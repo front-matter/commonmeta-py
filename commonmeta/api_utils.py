@@ -32,6 +32,32 @@ http.mount("https://", adapter)
 http.mount("http://", adapter)
 
 
+def get_session_with_retry(
+    *,
+    total: int = 3,
+    status_forcelist: list[int] | None = None,
+    allowed_methods: list[str] | None = None,
+    backoff_factor: float = 2.0,
+) -> requests.Session:
+    """Return a new requests.Session configured with a custom Retry.
+
+    Use this when a specific API call needs different retry behavior
+    (e.g., a different `status_forcelist`). It does not alter the shared
+    global session `http`.
+    """
+    retry = Retry(
+        total=total,
+        status_forcelist=status_forcelist or [429, 502, 503, 504],
+        allowed_methods=allowed_methods or ["GET", "POST", "PUT"],
+        backoff_factor=backoff_factor,
+    )
+    _adapter = HTTPAdapter(max_retries=retry)
+    _session = requests.Session()
+    _session.mount("https://", _adapter)
+    _session.mount("http://", _adapter)
+    return _session
+
+
 def generate_ghost_token(key: str) -> str:
     """Generate a short-lived JWT for the Ghost Admin API.
     From https://ghost.org/docs/admin-api/#token-authentication"""
