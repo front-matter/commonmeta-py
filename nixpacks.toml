@@ -2,7 +2,7 @@
 
 # Use Nix packages for required tooling
 [phases.setup]
-packages = ["quarto", "python3"]
+packages = ["quarto", "python3", "uv"]
 
 # Build phase: render the Quarto project located in docs/
 [phases.build]
@@ -11,4 +11,4 @@ cmds = ["quarto check", "quarto render docs"]
 # Start phase: serve the generated static site from docs/_site
 # Railway/Nixpacks will provide PORT; bind to 0.0.0.0 for external access
 [start]
-cmd = "sh -c 'python3 -m http.server ${PORT:-3000} --bind 0.0.0.0 --directory docs/_site'"
+cmd = "sh -c 'uv run python -m http.server ${PORT:-3000} --bind 0.0.0.0 --directory docs/_site'"

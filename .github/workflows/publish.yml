@@ -14,10 +14,8 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
-          version: pre-release
-      - name: Render and Publish 
+          version: 1.4.515
+      - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           path: docs
-          target: netlify
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
