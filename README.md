@@ -51,6 +51,20 @@ _Later_: we plan to implement this format in a later release.
 
 Documentation (work in progress) for using the library is available at the [commonmeta-py Documentation](https://python.commonmeta.org/) website and includes several interactive Jupyter Notebooks .
 
+This repository includes a Nixpacks configuration to build and serve the Quarto documentation site in the `docs/` folder.
+
+- Config file: [nixpacks.toml](nixpacks.toml)
+- Quarto project: [docs/_quarto.yml](docs/_quarto.yml)
+- Build output: [docs/_site](docs/_site)
+
+### Coolify setup
+
+- App type: Nixpacks
+- Repository/branch: this repo, `main`
+- Build: auto-detected via Nixpacks
+- Port: Coolify provides `PORT`. The start command respects `${PORT}` and falls back to `3000` for local runs.
+- Healthcheck: HTTP path `/`, interval 10s, timeout 5s, retries 3
+
 ## Meta
 
 Please note that this project is released with a [Contributor Code of Conduct](https://github.com/front-matter/commonmeta-py/blob/main/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.

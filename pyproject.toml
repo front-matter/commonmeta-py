@@ -63,7 +63,7 @@ commonmeta = "commonmeta.cli:cli"
 
 [dependency-groups]
 docs = [
-    "quartodoc>=0.7.1,<0.8",
+    "quartodoc>=0.11.1,<0.12",
     "jupyterlab>=4.0.9,<5",
     "jupyterlab-quarto>=0.2.8,<0.3",
 ]
