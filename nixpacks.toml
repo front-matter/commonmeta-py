@@ -6,10 +6,7 @@ packages = ["quarto", "python312", "uv"]
 
 [phases.install]
 # Create and use virtualenv, install Python deps with uv
-cmds = [
-  "uv venv /opt/invenio/.venv",
-  "uv sync --frozen --no-install-project --no-dev",
-]
+cmds = ["uv venv", "uv sync --frozen --no-install-project --no-dev"]
 
 # Build phase: render the Quarto project located in docs/
 [phases.build]
