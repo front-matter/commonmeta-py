@@ -2,13 +2,19 @@
 
 # Use Nix packages for required tooling
 [phases.setup]
-packages = ["quarto", "python3", "uv"]
+packages = ["quarto", "python312", "uv"]
+
+[phases.install]
+# Create and use virtualenv, install Python deps with uv
+cmds = [
+  "uv venv /opt/invenio/.venv",
+  "uv sync --frozen --no-install-project --no-dev",
+]
 
 # Build phase: render the Quarto project located in docs/
 [phases.build]
-cmds = ["quarto check", "quarto render docs"]
+cmds = ["uv run quarto check", "uv run quarto render docs"]
 
 # Start phase: serve the generated static site from docs/_site
-# Railway/Nixpacks will provide PORT; bind to 0.0.0.0 for external access
 [start]
 cmd = "sh -c 'uv run python -m http.server ${PORT:-3000} --bind 0.0.0.0 --directory docs/_site'"

@@ -2,12 +2,10 @@
 
 from __future__ import annotations
 
-import io
 from collections import defaultdict
 from datetime import datetime
 
 import orjson as json
-import pikepdf
 import requests
 from bs4 import BeautifulSoup
 from requests.exceptions import ConnectionError
@@ -31,7 +29,6 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import (
-    get_datetime_from_pdf_time,
     get_iso8601_date,
     strip_milliseconds,
 )
@@ -79,38 +76,38 @@ def get_schema_org(pid: str | None, **kwargs) -> dict:
         else:
             state = "bad_request"
         return {"@id": url, "@type": "WebPage", "state": state, "via": "schema_org"}
-    elif response.headers.get("content-type") == "application/pdf":
-        try:
-            pdf = pikepdf.open(io.BytesIO(response.content))
-            with pdf.open_metadata() as meta:
-                if meta.get("/doi", None) is not None:
-                    return get_doi_meta(meta.get("/doi"))
-                date_modified = (
-                    get_datetime_from_pdf_time(meta.get("/ModDate"))
-                    if meta.get("/ModDate", None)
-                    else None
-                )
-                name = meta.get("/Title", None)
-                return compact(
-                    {
-                        "@id": url,
-                        "@type": "DigitalDocument",
-                        "via": "schema_org",
-                        "name": str(name),
-                        "datePublished": date_modified,
-                        "dateAccessed": datetime.now().isoformat("T", "seconds")
-                        if date_modified is None
-                        else None,
-                    }
-                )
-        except Exception as error:
-            print(error)
-            return {
-                "@id": url,
-                "@type": "WebPage",
-                "state": "bad_request",
-                "via": "schema_org",
-            }
+    # elif response.headers.get("content-type") == "application/pdf":
+    #     try:
+    #         pdf = pikepdf.open(io.BytesIO(response.content))
+    #         with pdf.open_metadata() as meta:
+    #             if meta.get("/doi", None) is not None:
+    #                 return get_doi_meta(meta.get("/doi"))
+    #             date_modified = (
+    #                 get_datetime_from_pdf_time(meta.get("/ModDate"))
+    #                 if meta.get("/ModDate", None)
+    #                 else None
+    #             )
+    #             name = meta.get("/Title", None)
+    #             return compact(
+    #                 {
+    #                     "@id": url,
+    #                     "@type": "DigitalDocument",
+    #                     "via": "schema_org",
+    #                     "name": str(name),
+    #                     "datePublished": date_modified,
+    #                     "dateAccessed": datetime.now().isoformat("T", "seconds")
+    #                     if date_modified is None
+    #                     else None,
+    #                 }
+    #             )
+    #     except Exception as error:
+    #         print(error)
+    #         return {
+    #             "@id": url,
+    #             "@type": "WebPage",
+    #             "state": "bad_request",
+    #             "via": "schema_org",
+    #         }
 
     soup = BeautifulSoup(response.text, "html.parser")
 
