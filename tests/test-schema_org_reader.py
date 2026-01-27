@@ -532,7 +532,7 @@ def test_pdf_file():
     "PDF file"
     string = "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
     subject = Metadata(string)
-    assert subject.is_valid is False
+    assert subject.is_valid
     assert (
         subject.id
         == "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"

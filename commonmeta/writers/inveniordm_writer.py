@@ -32,6 +32,8 @@ from ..constants import (
 from ..date_utils import get_iso8601_date
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, normalize_doi
 from ..utils import (
+    FOS_MAPPINGS,
+    OPENALEX_TO_FOS_MAPPINGS,
     get_language,
     id_from_url,
     normalize_url,
@@ -140,7 +142,10 @@ def write_inveniordm(metadata: Metadata) -> dict:
             }
         )
 
-    subjects = [to_inveniordm_subject(i) for i in wrap(metadata.subjects)]
+    # Flatten subjects list since to_inveniordm_subject can return multiple subjects
+    subjects = [
+        s for i in wrap(metadata.subjects) for s in (to_inveniordm_subject(i) or [])
+    ]
     return compact(
         {
             "pids": pids,
@@ -286,8 +291,9 @@ def to_inveniordm_contributor(contributor: dict) -> dict:
     )
 
 
-def to_inveniordm_subject(sub: dict) -> dict | None:
-    """Convert subject to inveniordm subject. Adds scheme based on id pattern."""
+def to_inveniordm_subject(sub: dict) -> list | None:
+    """Convert subject to inveniordm subject. Adds scheme based on id pattern.
+    For subfields, also returns a FOS subject if a mapping exists."""
     if sub.get("subject", None) is None:
         return None
 
@@ -303,13 +309,36 @@ def to_inveniordm_subject(sub: dict) -> dict | None:
         scheme = "FOS"
     else:
         scheme = None
-    return compact(
-        {
-            "id": sub.get("id", None),
-            "subject": sub.get("subject"),
-            "scheme": scheme,
-        }
-    )
+
+    result = [
+        compact(
+            {
+                "id": sub.get("id", None),
+                "subject": sub.get("subject"),
+                "scheme": scheme,
+            }
+        )
+    ]
+
+    # If this is a subfield, also add a FOS subject if mapping exists
+    if sub.get("id", "").startswith("https://openalex.org/subfields/"):
+        # Extract subfield ID (last part of URL)
+        subfield_id = sub.get("id", "").split("/")[-1]
+        fos_name = OPENALEX_TO_FOS_MAPPINGS.get(subfield_id, None)
+        if fos_name:
+            fos_id = FOS_MAPPINGS.get(fos_name, None)
+            if fos_id:
+                result.append(
+                    compact(
+                        {
+                            "id": fos_id,
+                            "subject": f"FOS: {fos_name}",
+                            "scheme": "FOS",
+                        }
+                    )
+                )
+
+    return result
 
 
 def to_inveniordm_affiliations(creator: dict) -> list | None:

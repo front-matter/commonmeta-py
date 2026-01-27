@@ -192,6 +192,302 @@ FOS_TO_STRING_MAPPINGS = {
 }
 
 
+# Mapping from OpenAlex Subfield IDs to OECD FOS category names
+# See: https://www.oecd.org/sti/inno/frascati-manual.htm
+OPENALEX_TO_FOS_MAPPINGS = {
+    # 1.1 Mathematics
+    "1804": "Mathematics",  # Statistics, Probability and Uncertainty
+    "2602": "Mathematics",  # Algebra and Number Theory
+    "2604": "Mathematics",  # Applied Mathematics
+    "2605": "Mathematics",  # Computational Mathematics
+    "2607": "Mathematics",  # Discrete Mathematics and Combinatorics
+    "2608": "Mathematics",  # Geometry and Topology
+    "2610": "Mathematics",  # Mathematical Physics
+    "2611": "Mathematics",  # Modeling and Simulation
+    "2612": "Mathematics",  # Numerical Analysis
+    "2613": "Mathematics",  # Statistics and Probability
+    "2614": "Mathematics",  # Theoretical Computer Science
+    # 1.2 Computer and information sciences
+    "1702": "Computer and information sciences",  # Artificial Intelligence
+    "1703": "Computer and information sciences",  # Computational Theory and Mathematics
+    "1704": "Computer and information sciences",  # Computer Graphics and Computer-Aided Design
+    "1705": "Computer and information sciences",  # Computer Networks and Communications
+    "1706": "Computer and information sciences",  # Computer Science Applications
+    "1707": "Computer and information sciences",  # Computer Vision and Pattern Recognition
+    "1708": "Computer and information sciences",  # Hardware and Architecture
+    "1709": "Computer and information sciences",  # Human-Computer Interaction
+    "1710": "Computer and information sciences",  # Information Systems
+    "1711": "Computer and information sciences",  # Signal Processing
+    "1712": "Computer and information sciences",  # Software
+    # 1.3 Physical sciences
+    "1912": "Physical sciences",  # Space and Planetary Science
+    "3102": "Physical sciences",  # Acoustics and Ultrasonics
+    "3103": "Physical sciences",  # Astronomy and Astrophysics
+    "3104": "Physical sciences",  # Condensed Matter Physics
+    "3105": "Physical sciences",  # Instrumentation
+    "3106": "Physical sciences",  # Nuclear and High Energy Physics
+    "3107": "Physical sciences",  # Atomic and Molecular Physics, and Optics
+    "3108": "Physical sciences",  # Radiation
+    "3109": "Physical sciences",  # Statistical and Nonlinear Physics
+    # 1.4 Chemical sciences
+    "1602": "Chemical sciences",  # Analytical Chemistry
+    "1603": "Chemical sciences",  # Electrochemistry
+    "1604": "Chemical sciences",  # Inorganic Chemistry
+    "1605": "Chemical sciences",  # Organic Chemistry
+    "1606": "Chemical sciences",  # Physical and Theoretical Chemistry
+    "1607": "Chemical sciences",  # Spectroscopy
+    "2502": "Chemical sciences",  # Biomaterials
+    "2505": "Chemical sciences",  # Materials Chemistry
+    # 1.5 Earth and related environmental sciences
+    "1902": "Earth and related environmental sciences",  # Atmospheric Science
+    "1904": "Earth and related environmental sciences",  # Earth-Surface Processes
+    "1906": "Earth and related environmental sciences",  # Geochemistry and Petrology
+    "1907": "Earth and related environmental sciences",  # Geology
+    "1908": "Earth and related environmental sciences",  # Geophysics
+    "1910": "Earth and related environmental sciences",  # Oceanography
+    "1911": "Earth and related environmental sciences",  # Paleontology
+    "2302": "Earth and related environmental sciences",  # Ecological Modeling
+    "2303": "Earth and related environmental sciences",  # Ecology
+    "2306": "Earth and related environmental sciences",  # Global and Planetary Change
+    # 1.6 Biological sciences
+    "1105": "Biological sciences",  # Ecology, Evolution, Behavior and Systematics
+    "1109": "Biological sciences",  # Insect Science
+    "1110": "Biological sciences",  # Plant Science
+    "1307": "Biological sciences",  # Cell Biology
+    "1309": "Biological sciences",  # Developmental Biology
+    "1311": "Biological sciences",  # Genetics
+    "1312": "Biological sciences",  # Molecular Biology
+    # 2.1 Civil engineering
+    "2205": "Civil engineering",  # Civil and Structural Engineering
+    "2216": "Civil engineering",  # Architecture
+    # 2.2 Electrical engineering, electronic engineering, information engineering
+    "2207": "Electrical engineering, electronic engineering, information engineering",  # Control and Systems Engineering
+    "2208": "Electrical engineering, electronic engineering, information engineering",  # Electrical and Electronic Engineering
+    "2214": "Electrical engineering, electronic engineering, information engineering",  # Media Technology
+    # 2.3 Mechanical engineering
+    "2203": "Mechanical engineering",  # Automotive Engineering
+    "2206": "Mechanical engineering",  # Computational Mechanics
+    "2210": "Mechanical engineering",  # Mechanical Engineering
+    "2211": "Mechanical engineering",  # Mechanics of Materials
+    "2212": "Mechanical engineering",  # Ocean Engineering
+    # 2.4 Chemical engineering
+    "1506": "Chemical engineering",  # Filtration and Separation
+    "1508": "Chemical engineering",  # Process Chemistry and Technology
+    # 2.5 Materials engineering
+    "2215": "Materials engineering",  # Building and Construction
+    "2500": "Materials engineering",  # General Materials Science
+    "2503": "Materials engineering",  # Ceramics and Composites
+    "2504": "Materials engineering",  # Electronic, Optical and Magnetic Materials
+    "2506": "Materials engineering",  # Metals and Alloys
+    "2507": "Materials engineering",  # Polymers and Plastics
+    "2508": "Materials engineering",  # Surfaces, Coatings and Films
+    # 2.6 Medical engineering
+    "1502": "Medical engineering",  # Bioengineering
+    "2204": "Medical engineering",  # Biomedical Engineering
+    "3614": "Medical engineering",  # Radiological and Ultrasound Technology
+    # 2.7 Environmental engineering
+    "2304": "Environmental engineering",  # Environmental Chemistry
+    "2305": "Environmental engineering",  # Environmental Engineering
+    "2307": "Environmental engineering",  # Health, Toxicology and Mutagenesis
+    "2309": "Environmental engineering",  # Nature and Landscape Conservation
+    "2310": "Environmental engineering",  # Pollution
+    # 2.9 Industrial Biotechnology
+    "2402": "Industrial Biotechnology",  # Applied Microbiology and Biotechnology
+    # 2.11 Other engineering and technologies
+    "1503": "Other engineering and technologies",  # Catalysis
+    "1504": "Other engineering and technologies",  # Chemical Health and Safety
+    "1507": "Other engineering and technologies",  # Fluid Flow and Transfer Processes
+    "2100": "Other engineering and technologies",  # General Energy
+    "2102": "Other engineering and technologies",  # Energy Engineering and Power Technology
+    "2103": "Other engineering and technologies",  # Fuel Technology
+    "2104": "Other engineering and technologies",  # Nuclear Energy and Engineering
+    "2105": "Other engineering and technologies",  # Renewable Energy, Sustainability and the Environment
+    "2200": "Other engineering and technologies",  # General Engineering
+    "2202": "Other engineering and technologies",  # Aerospace Engineering
+    "2209": "Other engineering and technologies",  # Industrial and Manufacturing Engineering
+    "2213": "Other engineering and technologies",  # Safety, Risk, Reliability and Quality
+    "2308": "Other engineering and technologies",  # Management, Monitoring, Policy and Law
+    "2311": "Other engineering and technologies",  # Waste Management and Disposal
+    "2312": "Other engineering and technologies",  # Water Science and Technology
+    # 3.1 Basic medicine
+    "1303": "Basic medicine",  # Biochemistry
+    "1304": "Basic medicine",  # Biophysics
+    "1306": "Basic medicine",  # Cancer Research
+    "1308": "Basic medicine",  # Clinical Biochemistry
+    "1310": "Basic medicine",  # Endocrinology
+    "1313": "Basic medicine",  # Molecular Medicine
+    "1314": "Basic medicine",  # Physiology
+    "1315": "Basic medicine",  # Structural Biology
+    "2403": "Basic medicine",  # Immunology
+    "2404": "Basic medicine",  # Microbiology
+    "2405": "Basic medicine",  # Parasitology
+    "2406": "Basic medicine",  # Virology
+    "2702": "Basic medicine",  # Anatomy
+    "2704": "Basic medicine",  # Biochemistry
+    "2716": "Basic medicine",  # Genetics
+    "2726": "Basic medicine",  # Microbiology
+    "2737": "Basic medicine",  # Physiology
+    # 3.2 Clinical medicine
+    "2703": "Clinical medicine",  # Anesthesiology and Pain Medicine
+    "2705": "Clinical medicine",  # Cardiology and Cardiovascular Medicine
+    "2706": "Clinical medicine",  # Critical Care and Intensive Care Medicine
+    "2707": "Clinical medicine",  # Complementary and alternative medicine
+    "2708": "Clinical medicine",  # Dermatology
+    "2711": "Clinical medicine",  # Emergency Medicine
+    "2712": "Clinical medicine",  # Endocrinology, Diabetes and Metabolism
+    "2713": "Clinical medicine",  # Epidemiology
+    "2714": "Clinical medicine",  # Family Practice
+    "2715": "Clinical medicine",  # Gastroenterology
+    "2717": "Clinical medicine",  # Geriatrics and Gerontology
+    "2720": "Clinical medicine",  # Hematology
+    "2721": "Clinical medicine",  # Hepatology
+    "2723": "Clinical medicine",  # Immunology and Allergy
+    "2724": "Clinical medicine",  # Internal Medicine
+    "2725": "Clinical medicine",  # Infectious Diseases
+    "2727": "Clinical medicine",  # Nephrology
+    "2728": "Clinical medicine",  # Neurology
+    "2729": "Clinical medicine",  # Obstetrics and Gynecology
+    "2730": "Clinical medicine",  # Oncology
+    "2731": "Clinical medicine",  # Ophthalmology
+    "2732": "Clinical medicine",  # Orthopedics and Sports Medicine
+    "2733": "Clinical medicine",  # Otorhinolaryngology
+    "2734": "Clinical medicine",  # Pathology and Forensic Medicine
+    "2735": "Clinical medicine",  # Pediatrics, Perinatology and Child Health
+    "2736": "Clinical medicine",  # Pharmacology
+    "2738": "Clinical medicine",  # Psychiatry and Mental health
+    "2740": "Clinical medicine",  # Pulmonary and Respiratory Medicine
+    "2741": "Clinical medicine",  # Radiology, Nuclear Medicine and Imaging
+    "2742": "Clinical medicine",  # Rehabilitation
+    "2743": "Clinical medicine",  # Reproductive Medicine
+    "2745": "Clinical medicine",  # Rheumatology
+    "2746": "Clinical medicine",  # Surgery
+    "2747": "Clinical medicine",  # Transplantation
+    "2748": "Clinical medicine",  # Urology
+    "2802": "Clinical medicine",  # Behavioral Neuroscience
+    "2803": "Clinical medicine",  # Biological Psychiatry
+    "2804": "Clinical medicine",  # Cellular and Molecular Neuroscience
+    "2807": "Clinical medicine",  # Endocrine and Autonomic Systems
+    "2808": "Clinical medicine",  # Neurology
+    "2809": "Clinical medicine",  # Sensory Systems
+    # 3.3 Health sciences
+    "2718": "Health sciences",  # Health Informatics
+    "2739": "Health sciences",  # Public Health, Environmental and Occupational Health
+    "2916": "Health sciences",  # Nutrition and Dietetics
+    "3600": "Health sciences",  # General Health Professions
+    "3603": "Health sciences",  # Complementary and Manual Therapy
+    "3604": "Health sciences",  # Emergency Medical Services
+    "3605": "Health sciences",  # Health Information Management
+    "3607": "Health sciences",  # Medical Laboratory Technology
+    "3608": "Health sciences",  # Medical Terminology
+    "3609": "Health sciences",  # Occupational Therapy
+    "3611": "Health sciences",  # Pharmacy
+    "3612": "Health sciences",  # Physical Therapy, Sports Therapy and Rehabilitation
+    "3616": "Health sciences",  # Speech and Hearing
+    # 3.4 Health biotechnology
+    "1305": "Health biotechnology",  # Biotechnology
+    "3004": "Health biotechnology",  # Pharmacology
+    # 3.5 Other medical sciences
+    "1302": "Other medical sciences",  # Aging
+    "2910": "Other medical sciences",  # Issues, ethics and legal aspects
+    "2911": "Other medical sciences",  # Leadership and Management
+    "2922": "Other medical sciences",  # Research and Theory
+    "3002": "Other medical sciences",  # Drug Discovery
+    "3003": "Other medical sciences",  # Pharmaceutical Science
+    "3005": "Other medical sciences",  # Toxicology
+    "3500": "Other medical sciences",  # General Dentistry
+    "3504": "Other medical sciences",  # Oral Surgery
+    "3505": "Other medical sciences",  # Orthodontics
+    "3506": "Other medical sciences",  # Periodontics
+    # 4.1 Agriculture, forestry, and fisheries
+    "1100": "Agriculture, forestry, and fisheries",  # General Agricultural and Biological Sciences
+    "1102": "Agriculture, forestry, and fisheries",  # Agronomy and Crop Science
+    "1104": "Agriculture, forestry, and fisheries",  # Aquatic Science
+    "1107": "Agriculture, forestry, and fisheries",  # Forestry
+    "1108": "Agriculture, forestry, and fisheries",  # Horticulture
+    "1111": "Agriculture, forestry, and fisheries",  # Soil Science
+    # 4.2 Animal and dairy science
+    "1103": "Animal and dairy science",  # Animal Science and Zoology
+    # 4.3 Veterinary science
+    "3402": "Veterinary science",  # Equine
+    "3404": "Veterinary science",  # Small Animals
+    # 4.5 Other agricultural sciences
+    "1106": "Other agricultural sciences",  # Food Science
+    # 5.1 Psychology
+    "2805": "Psychology",  # Cognitive Neuroscience
+    "2806": "Psychology",  # Developmental Neuroscience
+    "3200": "Psychology",  # General Psychology
+    "3202": "Psychology",  # Applied Psychology
+    "3203": "Psychology",  # Clinical Psychology
+    "3204": "Psychology",  # Developmental and Educational Psychology
+    "3205": "Psychology",  # Experimental and Cognitive Psychology
+    "3206": "Psychology",  # Neuropsychology and Physiological Psychology
+    "3207": "Psychology",  # Social Psychology
+    # 5.2 Economics and business
+    "1402": "Economics and business",  # Accounting
+    "1403": "Economics and business",  # Business and International Management
+    "1404": "Economics and business",  # Management Information Systems
+    "1405": "Economics and business",  # Management of Technology and Innovation
+    "1406": "Economics and business",  # Marketing
+    "1407": "Economics and business",  # Organizational Behavior and Human Resource Management
+    "1408": "Economics and business",  # Strategy and Management
+    "1409": "Economics and business",  # Tourism, Leisure and Hospitality Management
+    "1410": "Economics and business",  # Industrial relations
+    "1800": "Economics and business",  # General Decision Sciences
+    "1802": "Economics and business",  # Information Systems and Management
+    "1803": "Economics and business",  # Management Science and Operations Research
+    "2000": "Economics and business",  # General Economics, Econometrics and Finance
+    "2002": "Economics and business",  # Economics and Econometrics
+    "2003": "Economics and business",  # Finance
+    # 5.3 Educational sciences
+    "3304": "Educational sciences",  # Education
+    # 5.4 Sociology
+    "3312": "Sociology",  # Sociology and Political Science
+    # 5.5 Law
+    "3308": "Law",  # Law
+    # 5.6 Political Science
+    "3320": "Political Science",  # Political Science and International Relations
+    # 5.7 Social and economic geography
+    "3305": "Social and economic geography",  # Geography, Planning and Development
+    # 5.8 Media and communications
+    "3315": "Media and communications",  # Communication
+    "3316": "Media and communications",  # Cultural Studies
+    # 5.9 Other social sciences
+    "3300": "Other social sciences",  # General Social Sciences
+    "3303": "Other social sciences",  # Development
+    "3306": "Other social sciences",  # Health
+    "3307": "Other social sciences",  # Human Factors and Ergonomics
+    "3311": "Other social sciences",  # Safety Research
+    "3313": "Other social sciences",  # Transportation
+    "3314": "Other social sciences",  # Anthropology
+    "3317": "Other social sciences",  # Demography
+    "3318": "Other social sciences",  # Gender Studies
+    "3319": "Other social sciences",  # Life-span and Life-course Studies
+    "3321": "Other social sciences",  # Public Administration
+    "3322": "Other social sciences",  # Urban Studies
+    # 6.1 History and archaeology
+    "1202": "History and archaeology",  # History
+    "1204": "History and archaeology",  # Archeology
+    "3302": "History and archaeology",  # Archeology
+    # 6.2 Languages and literature
+    "1203": "Languages and literature",  # Language and Linguistics
+    "1208": "Languages and literature",  # Literature and Literary Theory
+    "3310": "Languages and literature",  # Linguistics and Language
+    # 6.3 Philosophy, ethics and religion
+    "1211": "Philosophy, ethics and religion",  # Philosophy
+    "1212": "Philosophy, ethics and religion",  # Religious studies
+    # 6.4 Art (arts, history of arts, performing arts, music)
+    "1210": "Art (arts, history of arts, performing arts, music)",  # Music
+    "1213": "Art (arts, history of arts, performing arts, music)",  # Visual Arts and Performing Arts
+    # 6.5 Other humanities
+    "1200": "Other humanities",  # General Arts and Humanities
+    "1205": "Other humanities",  # Classics
+    "1206": "Other humanities",  # Conservation
+    "1207": "Other humanities",  # History and Philosophy of Science
+    "1209": "Other humanities",  # Museology
+    "3309": "Other humanities",  # Library and Information Sciences
+}
+
+
 def normalize_id(pid: str | bytes | None, **kwargs) -> str | None:
     """Check for valid DOI or HTTP(S) URL"""
     if pid is None:

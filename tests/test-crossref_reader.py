@@ -406,7 +406,7 @@ def test_posted_content():
     }
     assert subject.date["published"] == "2016-12-28"
     assert subject.publisher == {
-        "name": "Cold Spring Harbor Laboratory",
+        "name": "openRxiv",
     }
     assert len(subject.references) == 26
     assert subject.references[0] == {
@@ -429,7 +429,7 @@ def test_posted_content():
         subject.descriptions[0]
         .get("description")
         .startswith(
-            "AbstractThis article presents a practical roadmap for scholarly data repositories"
+            "Abstract This article presents a practical roadmap for scholarly data repositories"
         )
     )
     assert subject.version is None

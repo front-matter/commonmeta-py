@@ -200,6 +200,11 @@ def test_rogue_scholar():
             "subject": "Information Systems",
             "scheme": "Subfields",
         },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+            "scheme": "FOS",
+            "subject": "FOS: Computer and information sciences",
+        },
         {"subject": "Rogue Scholar"},
     ]
     assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
@@ -303,6 +308,11 @@ def test_from_jsonfeed():
             "subject": "Language and Linguistics",
             "scheme": "Subfields",
         },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?6.2",
+            "scheme": "FOS",
+            "subject": "FOS: Languages and literature",
+        },
         {"subject": "Linguistics"},
         {"subject": "Threads"},
     ]
@@ -383,6 +393,11 @@ def test_from_jsonfeed_affiliations():
             "id": "https://openalex.org/subfields/1710",
             "subject": "Information Systems",
             "scheme": "Subfields",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+            "scheme": "FOS",
+            "subject": "FOS: Computer and information sciences",
         },
         {"subject": "Lab Life"},
         {"subject": "Research"},
