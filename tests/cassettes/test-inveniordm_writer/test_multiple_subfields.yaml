@@ -1,0 +1,125 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/1srmw-yb311
+  response:
+    body:
+      string: '{"abstract":"We have a new paper out! This post is to explain what
+        it\u2019s about. Cancer cells often have gene fusions. This happens because
+        the DNA in cancer cells is really messed up. Sometimes, chromosomes can break
+        and get reattached to a different one in a strange way.","archive_url":null,"authors":[{"contributor_roles":[],"family":"Royle","given":"Stephen","url":"https://orcid.org/0000-0001-8927-6967"}],"blog":{"archive_collection":22145,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22145/20231106080607/","archive_timestamps":null,"authors":[{"name":"Stephen
+        Royle"}],"canonical_url":null,"category":"biologicalSciences","community_id":"141eca21-f9bb-44c7-aa0d-2ca0110390c6","created_at":1673740800,"current_feed_url":null,"description":"x
+        == (s || z). You say it kwontized","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327/logo","feed_format":"application/atom+xml","feed_url":"https://quantixed.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.7.1","home_page_url":"https://quantixed.org","id":"39d9ccfd-5461-49f3-a061-efaf066c19b6","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://fosstodon.org/@quantixed","prefix":"10.59350","registered_at":1729318765,"relative_url":null,"ror":null,"secure":true,"slug":"quantixed","status":"active","subfield":"1307","subfield_validated":null,"title":"quantixed","updated_at":1769441219,"use_api":true,"use_mastodon":true,"user_id":"4731ee99-7f23-4817-a2cd-8ee71d8f4c64"},"blog_name":"quantixed","blog_slug":"quantixed","content_html":"<p>We
+        have a <a href=\"http://dx.doi.org/10.1098/rsob.170080\">new paper out</a>!
+        This post is to explain what it&#8217;s about.</p>\n<p>Cancer cells often
+        have <em>gene fusions</em>. This happens because the DNA in cancer cells is
+        really messed up. Sometimes, chromosomes can break and get reattached to a
+        different one in a strange way. This means you get a fusion between one gene
+        and another which makes a new gene, called a gene fusion. There are famous
+        fusions that are known to cause cancer, such as the <em>Philadelphia chromosome</em>
+        in chronic myelogenous leukaemia. This rearrangement of chromosomes 9 and
+        22 result in a fusion called BCR-ABL. There are lots of different gene fusions
+        and a\u00a0few years ago, a new fusion was discovered in bladder and brain
+        cancers, called <a href=\"https://doi.org/10.1126/science.1220834\">FGFR3-TACC3</a>.</p>\n<p>Genes
+        encode proteins and proteins do jobs in cells. So the question is: how are
+        the proteins from gene fusions different to their normal versions, and how
+        do they cause cancer? Many of the gene fusions that scientists have found
+        result in a protein that continues to send a signal to the cell when it shouldn&#8217;t.
+        It&#8217;s thought that this transforms the cell to divide uncontrollably.
+        FGFR3-TACC3 is no different. FGFR3 can send signals and the TACC3 part probably
+        makes it do this uncontrollably. But, what about the TACC3 part? Does that
+        do anything, or is this all about FGFR3 going wrong?</p>\n<p><strong>What
+        is TACC3?</strong></p>\n<p><figure id=\"attachment_1206\" aria-describedby=\"caption-attachment-1206\"
+        style=\"width: 200px\" class=\"wp-caption alignright\"><a href=\"https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/imagej1-51nunitinch/\"
+        rel=\"attachment wp-att-1206\"><img loading=\"lazy\" decoding=\"async\" class=\"size-medium
+        wp-image-1206\" src=\"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg?w=200\"
+        alt=\"\" width=\"200\" height=\"300\" srcset=\"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg
+        591w, https://quantixed.org/wp-content/uploads/2017/08/sarkar-200x300.jpg
+        200w\" sizes=\"auto, (max-width: 200px) 100vw, 200px\" /></a><figcaption id=\"caption-attachment-1206\"
+        class=\"wp-caption-text\">Chromosomes getting shared to the two daughter cells</figcaption></figure></p>\n<p>TACC3,
+        or transforming acidic coiled-coil protein 3 to give it its full name, is
+        a protein <a href=\"http://dx.doi.org/10.4161/bioa.1.3.16518\">important for
+        cell division</a>. It helps to share the chromosomes to the two daughter cells
+        when a cell divides. Chromosomes are shared out by a machine built inside
+        the cell called the mitotic spindle. This is made up of tiny threads called
+        microtubules. TACC3 stabilises these microtubules and adds strength to this
+        machine.</p>\n<p>We wondered if cancer cells with FGFR3-TACC3 had problems
+        in cell division. If they did, this might be because the TACC3 part of FGFR3-TACC3
+        is changed.</p>\n<p>We weren&#8217;t the first people to have this idea. The
+        scientists that found the gene fusion suggested that FGFR3-TACC3 might bind
+        to the mitotic spindle but not be able to work properly. We decided to take
+        a closer look&#8230;</p>\n<p><strong>What did you find?</strong></p>\n<p>First
+        of all FGFR3-TACC3 is not actually bound to the mitotic spindle. It is at
+        the cells membrane and in small vesicles in the cell. So if it is not part
+        of the mitotic spindle, how can it affect cell division? One unusual thing
+        about TACC3 is that it is a dimer, meaning two TACC3s are stuck together.
+        Stranger than that, these dimers can stick to more dimers and multimerise
+        into a much bigger protein. When we looked at the normal TACC3 in the cell
+        we noticed that the amount bound to the spindle had decreased. We wondered
+        whether the FGFR3-TACC3 was hoovering the normal TACC3 off the spindle, preventing
+        normal cell division.</p>\n<p>We made the cancer cells express a bit more
+        normal TACC3 and this rescued the faulty division. We also got rid of the
+        FGFR3-TACC3 fusion, and that also put things back to normal. Finally, we made
+        a fake FGFR3-TACC3 which had a dummy part in place of FGFR3 and this was just
+        as good at hoovering up normal TACC3 and causing cell division problems. So
+        our idea seemed to be right!</p>\n<p><strong>What does this mean for cancer?</strong></p>\n<p>This
+        project was to look at what is going on inside cancer cells and it is a long
+        way from any cancer treatments. Drug companies can develop chemicals which
+        stop cell signalling from fusions, these could work as anti-cancer agents.
+        In the case of FGFR3-TACC3, what we are saying is: even if you stop the signalling
+        there will still be cell division problems in the cancer cells. So an ideal
+        treatment might be to block TACC3 interactions as well as stopping signalling.
+        This is very difficult to do and is far in the future. Doing work like this
+        is important to understand all the possible ways to tackle a specific cancer
+        and to find any problems with potential treatments.</p>\n<p><strong>The people</strong></p>\n<p>Sourav
+        Sarkar did virtually all the work for this paper and he is first author. Sourav
+        left the lab before we managed to submit this paper and so the revision experiments
+        requested by the peer reviewers were done by Ellis Ryan.</p>\n<p><strong>Why
+        didn&#8217;t we post this paper as a preprint?</strong></p>\n<p>My group have
+        generally been posting our new manuscripts as preprints while they undergo
+        peer review, but we didn&#8217;t post this one. I was reluctant because many
+        cancer journals at the time of submission did not allow preprints. This has
+        changed a bit in the last few months, but back in February several key cancer
+        journals did not accept papers that had appeared first as preprints.</p>\n<p>&#8212;</p>\n<p>The
+        title of the post comes from &#8220;Fusion Confusion&#8221; 4th track on the
+        Hazy EP by Dr Phibes &amp; The House of Wax Equations.</p>\n","doi":"https://doi.org/10.59350/1srmw-yb311","funding_references":null,"guid":"https://quantixed.wordpress.com/?p=1194","id":"efec0a8c-6acf-4c8b-8d3a-4965e3ffded2","image":null,"indexed_at":1769586523,"language":"en","parent_doi":null,"published_at":1504085261,"reference":[],"registered_at":0,"relationships":[],"rid":"nnx9s-74a78","subfield":null,"summary":"We
+        have a new paper out! This post is to explain what it\u2019s about. Cancer
+        cells often have\n<em>\n gene fusions\n</em>\n. This happens because the DNA
+        in cancer cells is really messed up. Sometimes, chromosomes can break and
+        get reattached to a different one in a strange way. This means you get a fusion
+        between one gene and another which makes a new gene, called a gene fusion.","tags":["Publishing","Science","Cancer","Cell
+        Biology","FGFR3"],"title":"Fusion confusion: new paper on FGFR3-TACC3 fusions
+        in cancer","topic":"12287","topic_score":0.55,"updated_at":1504085261,"url":"https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 28 Jan 2026 08:05:02 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -801,6 +801,50 @@ def test_post_with_interviewee_roles():
 
 
 @pytest.mark.vcr
+def test_multiple_subfields():
+    "post with multiple subfields"
+    string = "https://api.rogue-scholar.org/posts/10.59350/1srmw-yb311"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/1srmw-yb311"
+    assert subject.type == "BlogPost"
+
+    inveniordm = subject.write(to="inveniordm")
+    assert subject.is_valid
+    assert inveniordm is not None
+    inveniordm = json.loads(inveniordm)
+    assert dig(inveniordm, "pids.doi.identifier") == "10.59350/1srmw-yb311"
+    assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
+    assert dig(inveniordm, "metadata.subjects") == [
+        {
+            "id": "https://openalex.org/subfields/1307",
+            "subject": "Cell Biology",
+            "scheme": "Subfields",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.6",
+            "subject": "FOS: Biological sciences",
+            "scheme": "FOS",
+        },
+        {
+            "id": "https://openalex.org/T12287",
+            "subject": "Fibroblast Growth Factor Research",
+            "scheme": "Topics",
+        },
+        {
+            "id": "https://openalex.org/subfields/1312",
+            "subject": "Molecular Biology",
+            "scheme": "Subfields",
+        },
+        {"subject": "Publishing"},
+        {"subject": "Science"},
+        {"subject": "Cancer"},
+        {"subject": "Cell Biology"},
+        {"subject": "FGFR3"},
+    ]
+
+
+@pytest.mark.vcr
 def test_content_with_external_src():
     "external DOI used by Rogue Scholar"
     string = "https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85"

@@ -143,9 +143,19 @@ def write_inveniordm(metadata: Metadata) -> dict:
         )
 
     # Flatten subjects list since to_inveniordm_subject can return multiple subjects
-    subjects = [
+    # Deduplicate by ID to handle multiple subfields mapping to same FOS
+    all_subjects = [
         s for i in wrap(metadata.subjects) for s in (to_inveniordm_subject(i) or [])
     ]
+    seen_ids = set()
+    subjects = []
+    for subject in all_subjects:
+        subject_id = subject.get("id")
+        if subject_id is None or subject_id not in seen_ids:
+            subjects.append(subject)
+            if subject_id is not None:
+                seen_ids.add(subject_id)
+
     return compact(
         {
             "pids": pids,
@@ -327,7 +337,12 @@ def to_inveniordm_subject(sub: dict) -> list | None:
         fos_name = OPENALEX_TO_FOS_MAPPINGS.get(subfield_id, None)
         if fos_name:
             fos_id = FOS_MAPPINGS.get(fos_name, None)
-            if fos_id:
+            existing_ids = {
+                s.get("id")
+                for s in result
+                if isinstance(s, dict) and s.get("id") is not None
+            }
+            if fos_id and fos_id not in existing_ids:
                 result.append(
                     compact(
                         {
