@@ -972,7 +972,7 @@ def test_dataset():
     string = "10.2210/pdb4hhb/pdb"
     subject = Metadata(string, via="openalex")
     assert subject.is_valid
-    assert subject.id is None
+    assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Other"
     assert subject.url is None
     assert subject.titles is None

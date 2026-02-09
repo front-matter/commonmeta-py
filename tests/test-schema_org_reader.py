@@ -538,7 +538,7 @@ def test_pdf_file():
         == "https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf"
     )
     assert subject.type == "WebPage"
-    assert subject.state == "bad_request"
+    assert subject.state == "findable"
     assert subject.titles is None
     assert subject.date is None
 

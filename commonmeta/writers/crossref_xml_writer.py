@@ -371,7 +371,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     return data
 
 
-def write_crossref_xml(metadata: Metadata) -> bytes | None:
+def write_crossref_xml(metadata: Metadata) -> bytes:
     """Write Crossref XML"""
     if metadata is None:
         raise CrossrefError("No metadata provided for Crossref XML generation")
@@ -398,11 +398,14 @@ def write_crossref_xml(metadata: Metadata) -> bytes | None:
     }
 
     # Convert to XML
-    xml_bytes = unparse_xml(crossref_xml, dialect="crossref", head=head)
-    return xml_bytes
+    return tostring(
+        crossref_xml,
+        dialect="crossref",
+        head=head,
+    )
 
 
-def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
+def write_crossref_xml_list(metalist: MetadataList) -> bytes:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
         raise CrossrefError("Invalid metalist provided for Crossref XML generation")
@@ -433,8 +436,11 @@ def write_crossref_xml_list(metalist: MetadataList) -> bytes | None:
         "registrant": metalist.registrant,
     }
 
-    xml_bytes = unparse_xml_list(crossref_xml_list, dialect="crossref", head=head)
-    return xml_bytes
+    return tostring(
+        crossref_xml_list,
+        dialect="crossref",
+        head=head,
+    )
 
 
 def push_crossref_xml(
@@ -564,6 +570,16 @@ def push_crossref_xml_list(
 
     # Return JSON response
     return json.dumps(items, option=json.OPT_INDENT_2)
+
+
+def tostring(data: dict | list, **kwargs) -> bytes:
+    """Convert dictionary or list to Crossref XML as string."""
+    if isinstance(data, dict):
+        return unparse_xml(data, dialect="crossref", head=kwargs.get("head", None))
+    elif isinstance(data, list):
+        return unparse_xml_list(data, dialect="crossref", head=kwargs.get("head"))
+    else:
+        raise TypeError("Input data must be a dictionary or a list.")
 
 
 def get_attributes(obj, **kwargs) -> dict:

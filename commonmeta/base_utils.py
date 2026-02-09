@@ -323,10 +323,10 @@ def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
     return xmltodict.parse(xml_string, **kwargs)
 
 
-def unparse_xml(input: dict | None, **kwargs) -> bytes | None:
+def unparse_xml(input: dict | None, **kwargs) -> bytes:
     """Unparse (dump) dict into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
-        return None
+        return b""
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
         # add body and root element as wrapping elements
@@ -410,10 +410,10 @@ def unparse_xml(input: dict | None, **kwargs) -> bytes | None:
     return xmltodict.unparse(output, **kwargs).encode("utf-8")
 
 
-def unparse_xml_list(input: list | None, **kwargs) -> bytes | None:
+def unparse_xml_list(input: list | None, **kwargs) -> bytes:
     """Unparse (dump) list into XML using xmltodict. Set default options, and options for Crossref XML"""
     if input is None:
-        return None
+        return b""
     if kwargs.get("dialect", None) == "crossref":
         # Add additional logic for crossref dialect
         # add body and root element as wrapping elements

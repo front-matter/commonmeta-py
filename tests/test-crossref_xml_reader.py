@@ -398,8 +398,8 @@ def test_posted_content():
     }
     assert subject.date["published"] == "2016-12-29"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/246",
-        "name": "Cold Spring Harbor Laboratory",
+        "id": "https://api.crossref.org/members/54368",
+        "name": "openRxiv",
     }
     assert len(subject.references) == 26
     assert subject.references[0] == {
