@@ -8,7 +8,7 @@ from typing import Any
 import orjson as json
 import yaml
 
-from .base_utils import dig, parse_xml, wrap
+from .base_utils import dig, parse_xml, tostring, wrap
 from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -312,10 +312,16 @@ class Metadata:
             self.email = kwargs.get("email", None)
             self.registrant = kwargs.get("registrant", None)
             output = write_crossref_xml(self)
-            self.write_errors = xml_schema_errors(output, schema=to)
+            head = {
+                "depositor": self.depositor,
+                "email": self.email,
+                "registrant": self.registrant,
+            }
+            bytes = tostring(output, dialect="crossref", head=head)
+            self.write_errors = xml_schema_errors(bytes, schema=to)
             if self.write_errors is not None:
                 raise CrossrefError(self.write_errors)
-            return output
+            return bytes
         else:
             raise ValueError(f"Unsupported output format: {to}")
 
@@ -437,10 +443,16 @@ class MetadataList:
         elif to == "crossref_xml":
             try:
                 output = write_crossref_xml_list(self)
-                if self.file and output is not None:
-                    return write_output(self.file, output, [".xml"])
+                head = {
+                    "depositor": self.depositor,
+                    "email": self.email,
+                    "registrant": self.registrant,
+                }
+                bytes = tostring(output, dialect="crossref", head=head)
+                if self.file and bytes and len(bytes) > 0:
+                    return write_output(self.file, bytes, [".xml"])
                 else:
-                    return output
+                    return bytes
             except (ValueError, CrossrefError) as e:
                 self.write_errors = str(e)
                 self.is_valid = False

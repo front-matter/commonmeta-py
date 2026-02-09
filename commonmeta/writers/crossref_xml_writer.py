@@ -22,8 +22,7 @@ from ..base_utils import (
     dig,
     parse_xml,
     presence,
-    unparse_xml,
-    unparse_xml_list,
+    tostring,
     wrap,
 )
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
@@ -371,7 +370,7 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     return data
 
 
-def write_crossref_xml(metadata: Metadata) -> bytes:
+def write_crossref_xml(metadata: Metadata) -> dict:
     """Write Crossref XML"""
     if metadata is None:
         raise CrossrefError("No metadata provided for Crossref XML generation")
@@ -391,21 +390,10 @@ def write_crossref_xml(metadata: Metadata) -> bytes:
     field_order = [MARSHMALLOW_MAP.get(k, k) for k in list(data.keys())]
     crossref_xml = {k: crossref_xml[k] for k in field_order if k in crossref_xml}
 
-    head = {
-        "depositor": metadata.depositor,
-        "email": metadata.email,
-        "registrant": metadata.registrant,
-    }
-
-    # Convert to XML
-    return tostring(
-        crossref_xml,
-        dialect="crossref",
-        head=head,
-    )
+    return crossref_xml
 
 
-def write_crossref_xml_list(metalist: MetadataList) -> bytes:
+def write_crossref_xml_list(metalist: MetadataList) -> list:
     """Write crossref_xml list"""
     if metalist is None or not metalist.is_valid:
         raise CrossrefError("Invalid metalist provided for Crossref XML generation")
@@ -430,17 +418,7 @@ def write_crossref_xml_list(metalist: MetadataList) -> bytes:
     if presence(metalist.write_errors):
         raise CrossrefError(f"Validation errors in metalist: {metalist.write_errors}")
 
-    head = {
-        "depositor": metalist.depositor,
-        "email": metalist.email,
-        "registrant": metalist.registrant,
-    }
-
-    return tostring(
-        crossref_xml_list,
-        dialect="crossref",
-        head=head,
-    )
+    return crossref_xml_list
 
 
 def push_crossref_xml(
@@ -455,12 +433,18 @@ def push_crossref_xml(
     """Push crossref_xml to Crossref API, returns the API response."""
 
     try:
-        input_xml = write_crossref_xml(metadata)
+        output = write_crossref_xml(metadata)
+        head = {
+            "depositor": metadata.depositor,
+            "email": metadata.email,
+            "registrant": metadata.registrant,
+        }
+        bytes = tostring(output, dialect="crossref", head=head)
     except (ValueError, CrossrefError) as e:
         log.error(f"Failed to generate XML for upload: {e}")
         return "{}"
 
-    if not input_xml:
+    if len(bytes) == 0:
         log.error("Failed to generate XML for upload")
         return "{}"
 
@@ -469,7 +453,7 @@ def push_crossref_xml(
         password=login_passwd,
         test_mode=test_mode,
     )
-    status = client.post(input_xml)
+    status = client.post(bytes)
 
     if status != "SUCCESS":
         log.error("Failed to upload XML to Crossref")
@@ -517,12 +501,18 @@ def push_crossref_xml_list(
     """Push crossref_xml list to Crossref API, returns the API response."""
 
     try:
-        input_xml = write_crossref_xml_list(metalist)
+        output = write_crossref_xml_list(metalist)
+        head = {
+            "depositor": metalist.depositor,
+            "email": metalist.email,
+            "registrant": metalist.registrant,
+        }
+        bytes = tostring(output, dialect="crossref", head=head)
     except ValueError as e:
         log.error(f"Failed to generate XML for upload: {e}")
         return None
 
-    if not input_xml:
+    if len(bytes) == 0:
         log.error("Failed to generate XML for upload")
         return None
 
@@ -531,7 +521,7 @@ def push_crossref_xml_list(
         password=login_passwd,
         test_mode=test_mode,
     )
-    status = client.post(input_xml)
+    status = client.post(bytes)
 
     if status != "SUCCESS":
         log.error("Failed to upload XML to Crossref")
@@ -570,16 +560,6 @@ def push_crossref_xml_list(
 
     # Return JSON response
     return json.dumps(items, option=json.OPT_INDENT_2)
-
-
-def tostring(data: dict | list, **kwargs) -> bytes:
-    """Convert dictionary or list to Crossref XML as string."""
-    if isinstance(data, dict):
-        return unparse_xml(data, dialect="crossref", head=kwargs.get("head", None))
-    elif isinstance(data, list):
-        return unparse_xml_list(data, dialect="crossref", head=kwargs.get("head"))
-    else:
-        raise TypeError("Input data must be a dictionary or a list.")
 
 
 def get_attributes(obj, **kwargs) -> dict:

@@ -37,6 +37,7 @@ from .base_utils import (
     presence,
     sanitize,
     scrub,
+    tostring,
     unique,
     unparse_xml,
     unparse_xml_list,

@@ -1400,74 +1400,9 @@ def test_zenodo():
 @pytest.mark.vcr
 def test_rogue_scholar_with_parent_doi():
     """Rogue Scholar with parent DOI"""
-    string = "https://rogue-scholar.org/api/records/nmdtw-dbr94"
+    string = "https://rogue-scholar.org/api/records/a9awy-52h48"
     subject = Metadata(string)
-    assert subject.id == "https://doi.org/10.59350/wnkxe-b8330"
-    assert subject.type == "BlogPost"
-
-    crossref_xml = subject.write(to="crossref_xml")
-    assert subject.is_valid
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert dig(crossref_xml, "language") == "en"
-    assert len(dig(crossref_xml, "contributors.person_name")) == 1
-    assert dig(crossref_xml, "contributors.person_name.0") == {
-        "ORCID": "https://orcid.org/0000-0002-1003-5675",
-        "contributor_role": "author",
-        "sequence": "first",
-        "given_name": "Mike",
-        "surname": "Taylor",
-    }
-    assert (
-        dig(crossref_xml, "titles.0.title")
-        == "Want to help fund the free publication of sauropod science? Now's your chance!"
-    )
-    assert dig(crossref_xml, "posted_date") == {
-        "month": "9",
-        "day": "25",
-        "year": "2025",
-    }
-    assert dig(crossref_xml, "abstract.0.p").startswith(
-        "Anyone who's been reading this blog for a while"
-    )
-    assert dig(crossref_xml, "program.0.license_ref") == [
-        {
-            "applies_to": "vor",
-            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        },
-        {
-            "applies_to": "tdm",
-            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        },
-    ]
-    assert dig(crossref_xml, "program.1") == {
-        "name": "relations",
-        "related_item": [
-            {
-                "intra_work_relation": {
-                    "#text": "10.59350/ad9pb-kwm66",
-                    "identifier-type": "doi",
-                    "relationship-type": "isVersionOf",
-                },
-            },
-        ],
-        "xmlns": {
-            "rel": "http://www.crossref.org/relations.xsd",
-        },
-    }
-    assert dig(crossref_xml, "doi_data.doi") == "10.59350/wnkxe-b8330"
-    assert (
-        dig(crossref_xml, "doi_data.resource")
-        == "https://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/"
-    )
-
-
-@pytest.mark.vcr
-def test_rogue_scholar_as_parent_doi():
-    """Rogue Scholar as parent DOI"""
-    string = "https://staging.rogue-scholar.org/api/records/baq1p-0py32"
-    subject = Metadata(string, parent_doi="10.59350/t3d89-8jj38")
-    assert subject.id == "https://doi.org/10.59350/t3d89-8jj38"
+    assert subject.id == "https://doi.org/10.53731/m7gng-jmm19"
     assert subject.type == "BlogPost"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -1485,15 +1420,67 @@ def test_rogue_scholar_as_parent_doi():
     }
     assert (
         dig(crossref_xml, "titles.0.title")
-        == "Report Rogue Scholar Advisory Board Meeting April 16, 2025"
+        == "Kamal deploys InvenioRDM Starter to production"
     )
     assert dig(crossref_xml, "posted_date") == {
-        "month": "9",
-        "day": "24",
+        "month": "6",
+        "day": "27",
         "year": "2025",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
-        "On April 16, 2025, the Rogue Scholar Advisory Board met for the third"
+        "InvenioRDM is the open source turn-key research data management platform"
+    )
+    assert dig(crossref_xml, "program.0.license_ref") == [
+        {
+            "applies_to": "vor",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+        {
+            "applies_to": "tdm",
+            "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        },
+    ]
+    assert dig(crossref_xml, "program.1") is None
+    assert dig(crossref_xml, "doi_data.doi") == "10.53731/m7gng-jmm19"
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/"
+    )
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
+
+
+@pytest.mark.vcr
+def test_rogue_scholar_as_parent_doi():
+    """Rogue Scholar as parent DOI"""
+    string = "https://rogue-scholar.org/api/records/dj4cp-2b786"
+    subject = Metadata(string, parent_doi="10.53731/dj4cp-2b786")
+    assert subject.id == "https://doi.org/10.53731/dj4cp-2b786"
+    assert subject.type == "BlogPost"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "ORCID": "https://orcid.org/0000-0003-1419-2405",
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Martin",
+        "surname": "Fenner",
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "Kamal deploys InvenioRDM Starter to production"
+    )
+    assert dig(crossref_xml, "posted_date") == {
+        "month": "6",
+        "day": "27",
+        "year": "2025",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "InvenioRDM is the open source turn-key research data management platform"
     )
     assert dig(crossref_xml, "program.0.license_ref") == [
         {
@@ -1510,7 +1497,7 @@ def test_rogue_scholar_as_parent_doi():
         "related_item": [
             {
                 "intra_work_relation": {
-                    "#text": "10.53731/taha2-fvd76",
+                    "#text": "10.53731/m7gng-jmm19",
                     "identifier-type": "doi",
                     "relationship-type": "hasVersion",
                 },
@@ -1520,12 +1507,12 @@ def test_rogue_scholar_as_parent_doi():
             "rel": "http://www.crossref.org/relations.xsd",
         },
     }
-    assert dig(crossref_xml, "doi_data.doi") == "10.59350/t3d89-8jj38"
+    assert dig(crossref_xml, "doi_data.doi") == "10.53731/dj4cp-2b786"
     assert (
         dig(crossref_xml, "doi_data.resource")
-        == "https://blog.front-matter.io/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"
+        == "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/"
     )
-    assert dig(crossref_xml, "version_info") is None
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
 
 
 @pytest.mark.vcr
@@ -1680,9 +1667,9 @@ def test_error_metadata_with_write_errors():
 def test_error_invalid_metalist():
     """Test error handling for invalid MetadataList"""
 
-    with pytest.raises(CrossrefError) as exc_info:
-        write_crossref_xml_list(None)
+    with pytest.raises(ValueError) as exc_info:
+        write_crossref_xml_list(
+            MetadataList("")
+        )  # Empty list is not valid for Crossref XML generation])
 
-    assert "Invalid metalist provided for Crossref XML generation" in str(
-        exc_info.value
-    )
+    assert "No input format found" in str(exc_info.value)

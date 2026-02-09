@@ -51,4 +51,344 @@ interactions:
     status:
       code: 404
       message: Not Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://rogue-scholar.org/api/records/dj4cp-2b786
+  response:
+    body:
+      string: '<!doctype html>
+
+        <html lang=en>
+
+        <title>Redirecting...</title>
+
+        <h1>Redirecting...</h1>
+
+        <p>You should be redirected automatically to the target URL: <a href="/api/records/a9awy-52h48">/api/records/a9awy-52h48</a>.
+        If not, click the link.
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '235'
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
+        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
+        img-src *'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Mon, 09 Feb 2026 14:49:01 GMT
+      Location:
+      - /api/records/a9awy-52h48
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '59'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '498'
+      X-Ratelimit-Reset:
+      - '1770648601'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://rogue-scholar.org/api/records/a9awy-52h48
+  response:
+    body:
+      string: '{"id": "a9awy-52h48", "created": "2025-06-27T16:11:25.068847+00:00",
+        "updated": "2026-02-07T22:56:00.978669+00:00", "links": {"self": "https://rogue-scholar.org/api/records/a9awy-52h48",
+        "self_html": "https://rogue-scholar.org/records/a9awy-52h48", "preview_html":
+        "https://rogue-scholar.org/records/a9awy-52h48?preview=1", "doi": "https://doi.org/10.53731/m7gng-jmm19",
+        "self_doi": "https://doi.org/10.53731/m7gng-jmm19", "self_doi_html": "https://rogue-scholar.org/doi/10.53731/m7gng-jmm19",
+        "reserve_doi": "https://rogue-scholar.org/api/records/a9awy-52h48/draft/pids/doi",
+        "parent": "https://rogue-scholar.org/api/records/dj4cp-2b786", "parent_html":
+        "https://rogue-scholar.org/records/dj4cp-2b786", "parent_doi": "https://doi.org/10.53731/dj4cp-2b786",
+        "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/dj4cp-2b786", "self_iiif_manifest":
+        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/manifest", "self_iiif_sequence":
+        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/sequence/default",
+        "files": "https://rogue-scholar.org/api/records/a9awy-52h48/files", "media_files":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files", "archive":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/files-archive", "archive_media":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files-archive", "latest":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/versions/latest", "latest_html":
+        "https://rogue-scholar.org/records/a9awy-52h48/latest", "versions": "https://rogue-scholar.org/api/records/a9awy-52h48/versions",
+        "draft": "https://rogue-scholar.org/api/records/a9awy-52h48/draft", "access_links":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access/links", "access_grants":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access/grants", "access_users":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access/users", "access_groups":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access/groups", "access_request":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access/request", "access":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/access", "communities":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/communities", "communities-suggestions":
+        "https://rogue-scholar.org/api/records/a9awy-52h48/communities-suggestions",
+        "request_deletion": "https://rogue-scholar.org/api/records/a9awy-52h48/request-deletion",
+        "file_modification": "https://rogue-scholar.org/api/records/a9awy-52h48/file-modification",
+        "requests": "https://rogue-scholar.org/api/records/a9awy-52h48/requests"},
+        "revision_id": 207, "parent": {"id": "dj4cp-2b786", "access": {"owned_by":
+        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
+        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
+        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "40d93f0d-7c6b-44ee-83e1-971b099c2f54",
+        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "d79fe364-6d96-40b6-b437-b93ca3493106",
+        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
+        "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
+        "updated": "2026-01-28T07:42:11.199989+00:00", "links": {}, "revision_id":
+        854, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
+        "The Front Matter Blog covers the intersection of science and technology since
+        2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {"rs:issn": "2749-9952", "rs:feed_url": "https://blog.front-matter.de/atom",
+        "rs:prefix": "10.53731", "rs:joined": "January 1, 2023", "rs:feed_format":
+        "application/atom+xml", "rs:generator": "Ghost", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
+        "rs:language": "English", "rs:category": "Information Systems"}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "40d93f0d-7c6b-44ee-83e1-971b099c2f54", "created": "2024-10-08T13:08:59.074690+00:00",
+        "updated": "2026-01-25T12:37:39.092298+00:00", "links": {}, "revision_id":
+        39, "slug": "roguescholar", "metadata": {"title": "Rogue Scholar", "description":
+        "Blog posts about Rogue Scholar.", "type": {"id": "topic"}}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
+        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "created": "2024-10-06T07:37:39.965911+00:00",
+        "updated": "2026-01-25T12:36:58.222374+00:00", "links": {}, "revision_id":
+        14, "slug": "openinfrastructure", "metadata": {"title": "Open Infrastructure",
+        "description": "Blog posts about Open Infrastructure.", "type": {"id": "topic"}},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
+        "updated": "2025-12-02T20:56:15.845048+00:00", "links": {}, "revision_id":
+        11, "slug": "1710", "metadata": {"title": "Information Systems", "type": {"id":
+        "subject"}, "website": "https://openalex.org/subfields/1710"}, "access": {"visibility":
+        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
+        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
+        {"is_deleted": false, "status": "P"}, "children": {"allow": true}}, {"id":
+        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
+        "updated": "2025-12-02T20:56:11.605253+00:00", "links": {}, "revision_id":
+        11, "slug": "1802", "metadata": {"title": "Information Systems and Management",
+        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
+        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
+        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
+        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
+        true}}]}, "pids": {"doi": {"identifier": "10.53731/dj4cp-2b786", "provider":
+        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
+        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
+        "10.53731/m7gng-jmm19", "provider": "crossref", "client": "crossref"}, "oai":
+        {"identifier": "oai:invenio-rdm:a9awy-52h48", "provider": "oai"}}, "metadata":
+        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
+        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
+        {"type": "personal", "name": "Fenner, Martin", "given_name": "Martin", "family_name":
+        "Fenner", "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme":
+        "orcid"}]}, "affiliations": [{"name": "Front Matter"}]}], "title": "Kamal
+        deploys InvenioRDM Starter to production", "publisher": "Front Matter", "publication_date":
+        "2025-06-27", "subjects": [{"id": "https://openalex.org/subfields/1710", "subject":
+        "Information Systems", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+        "subject": "Computer and information sciences", "scheme": "FOS"}, {"id": "https://openalex.org/T11986",
+        "subject": "Scientific Computing and Data Management", "scheme": "Topics"},
+        {"id": "https://openalex.org/subfields/1802", "subject": "Information Systems
+        and Management", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
+        "subject": "Economics and business", "scheme": "FOS"}, {"subject": "Rogue
+        Scholar"}, {"subject": "Open Infrastructure"}], "dates": [{"date": "2025-06-27T17:51:11",
+        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
+        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-06-27T22:03:19", "type": {"id": "updated",
+        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
+        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
+        "7798debf-42f6-4dca-afcf-a7cdd80cf0ff", "scheme": "uuid"}, {"identifier":
+        "https://doi.org/10.53731/m7gng-jmm19", "scheme": "guid"}, {"identifier":
+        "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/",
+        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
+        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
+        "The Creative Commons Attribution license allows re-distribution and re-use
+        of a licensed work on the condition that the creator is appropriately credited."},
+        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
+        "scheme": "spdx"}}], "description": "InvenioRDM is the open source turn-key
+        research data management platform, with detailed documentation available here.
+        InvenioRDM Starter facilitates deployment and configuration of InvenioRDM,
+        allowing you to run InvenioRDM on your local computer within 15 min. This
+        is achieved by providing a) a prebuilt Invenio-App-RDM Docker image, and b)
+        a Docker Compose configuration file with sensible defaults.", "references":
+        [{"identifier": "10.53731/jxecm-0me48", "scheme": "doi", "reference": "Fenner,
+        M. (2024, June 17). Announcing InvenioRDM Starter Beta. Front Matter."}, {"identifier":
+        "10.53731/r294649-6f79289-8cvzn", "scheme": "doi", "reference": "Fenner, M.
+        (2015, July 29). Thank you PLOS. Front Matter."}]}, "custom_fields": {"journal:journal":
+        {"title": "Front Matter", "issn": "2749-9952"}, "rs:content_html": "<p>InvenioRDM
+        is the open source turn-key research data management platform, with detailed
+        documentation available <a href=\"https://inveniordm.docs.cern.ch\" rel=\"noreferrer\">here</a>.
+        <a href=\"https://starter.front-matter.io\" rel=\"noreferrer\">InvenioRDM
+        Starter</a> facilitates deployment and configuration of InvenioRDM, allowing
+        you to run InvenioRDM on your local computer within 15 min. This is achieved
+        by providing a) a prebuilt Invenio-App-RDM Docker image, and b) a Docker Compose
+        configuration file with sensible defaults. </p><p>Starting this week, InvenioRDM
+        starter can also be used to deploy InvenioRDM to production, using the <a
+        href=\"https://kamal-deploy.org/\" rel=\"noreferrer\">Kamal</a> tool. Kamal
+        is similar to Docker Compose, but adds important functionality, including
+        automatic remote builds, zero-downtime deployments, and deployments to multiple
+        servers. Kamal is a command-line utility with a YAML configuration file, and
+        much simpler to use than Kubernetes or commercial Docker container orchestration
+        services such as Amazon Elastic Container Service (Amazon ECS). </p><p>Kamal
+        can deploy InvenioRDM to your hardware or to a virtual machine provided by
+        your organization or a cloud provider. Whereas Kubernetes is a good option
+        for large InvenioRDM installations, smaller InvenioRDM instances benefit from
+        simpler deployment tools both in terms of cost and required maintenance.</p><p>The
+        science blog archive <a href=\"https://rogue-scholar.org\" rel=\"noreferrer\">Rogue
+        Scholar</a> managed by Front Matter is a good example of an InvenioRDM repository
+        that can benefit from simpler deployment options. As the next major release
+        of InvenioRDM (v13.0) will happen in the next few weeks, Rogue Scholar needs
+        to prepare for the upgrade, and I have this week launched a Rogue Scholar
+        staging instance at <a href=\"https://staging.rogue-scholar.org\" rel=\"noreferrer\">https://staging.rogue-scholar.org</a>
+        using Kamal and a virtual machine provisioned by <a href=\"https://www.hetzner.com/\"
+        rel=\"noreferrer\">Hetzner</a> and located in Germany.</p><p>The setup was
+        mostly straightforward, except for the integration with the Kamal proxy server,
+        which turned out to be very painful. In the end I had to set the InvenioRDM<code>APP_ALLOWED_HOSTS</code>
+        ENV variable to <code>None</code> and patch the REST API cross site request
+        forgery (CRSF) check to not check the request host. This needs more discussion
+        but appears safe, as all requests must go through the Kamal proxy, where the
+        host header is already checked.</p><p>More work is needed on the staging server,
+        including regular automatic backups of the database, and setting up monitoring
+        (logs and metrics). The instance is running the latest stable release (v12.1.0),
+        but I will soon be able to install the latest v13 release candidate \u2013
+        <a href=\"https://pypi.org/project/invenio-app-rdm/13.0.0rc2/\" rel=\"noreferrer\">v13.0.0rc2</a>
+        was released three days ago.</p><p>Kamal was <a href=\"https://world.hey.com/dhh/introducing-kamal-9330a267\"
+        rel=\"noreferrer\">released in 2023</a> by 37signals, the company behind the
+        Basecamp and Hey services, and one of the major contributors to the Rails
+        platform. Kamal is installed as a Ruby gem, but is not specific to Rails or
+        Ruby. Kamal can be seen as the successor to the <a href=\"https://capistranorb.com/\"
+        rel=\"noreferrer\">Capistrano</a> deployment tool, also originally written
+        by 37signals, but Kamal is working with Docker containers. When I <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\"
+        rel=\"noreferrer\">was the technical lead of the Article Level Metrics project</a>
+        at the publisher PLOS 2012-2015 (at the time Docker was not yet adopted for
+        production deployments), I made heavy use of Capistrano.</p><p><a href=\"https://starter.front-matter.io\"
+        rel=\"noreferrer\">InvenioRDM Starter</a> now includes a Kamal configuration
+        option, and I deployed an InvenioRDM instance to <a href=\"https://demo.front-matter.io\"
+        rel=\"noreferrer\">https://demo.front-matter.io</a> using Kamal. </p><figure
+        class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"2000\" height=\"1134\"
+        srcset=\"https://blog.front-matter.de/content/images/size/w600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
+        600w, https://blog.front-matter.de/content/images/size/w1000/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
+        1000w, https://blog.front-matter.de/content/images/size/w1600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
+        1600w, https://blog.front-matter.de/content/images/size/w2400/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
+        2400w\" sizes=\"(min-width: 720px) 720px\"></figure><p>Feel free to play around,
+        but only admin accounts can create records \u2013 use the official InvenioRDM
+        <a href=\"http://inveniordm.web.cern.ch/\" rel=\"noreferrer\">demo</a> instance
+        (also linked in the footer) if you want to create and/or update records. I
+        will spend the next few weeks refining the Kamal setup and documentation,
+        so that InvenioRDM Starter is ready for Kamal deployments when InvenioRDM
+        v13.0 is officially released.</p><h2 id=\"references\">References</h2><ol><li>Fenner,
+        M. (2024, June 17). Announcing InvenioRDM Starter Beta. <em>Front Matter</em>.
+        <a href=\"https://doi.org/10.53731/jxecm-0me48\">https://doi.org/10.53731/jxecm-0me48</a></li><li>Fenner,
+        M. (2015, July 29). Thank you PLOS. <em>Front Matter</em>. <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\">https://doi.org/10.53731/r294649-6f79289-8cvzn</a></li></ol>",
+        "rs:image": "https://images.unsplash.com/photo-1634638026221-4c1c4cf9f881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDU1fHxzaGlwJTIwY29udGFpbmVyfGVufDB8fHx8MTc1MTAzNDgzN3ww&ixlib=rb-4.1.0&q=80&w=2000",
+        "rs:generator": "Ghost", "rs:citations": [{"identifier": "10.53731/cysem-8fs56",
+        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
+        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/zh0af-01d30",
+        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
+        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/dd5h7-z5y55",
+        "scheme": "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM
+        v13. <i>Front Matter</i>."}, {"identifier": "10.53731/spbfb-7wx76", "scheme":
+        "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM v13.
+        <i>Front Matter</i>."}, {"identifier": "10.53731/5sce1-bre33", "scheme": "doi",
+        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
+        <i>Front Matter</i>."}, {"identifier": "10.53731/8dg89-gnc10", "scheme": "doi",
+        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
+        <i>Front Matter</i>."}, {"identifier": "10.53731/dzznx-zkn71", "scheme": "doi",
+        "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated to Coolify
+        Cloud. <i>Front Matter</i>."}, {"identifier": "10.59350/dkt3j-kh345", "scheme":
+        "doi", "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated
+        to Coolify Cloud. <i>Front Matter</i>."}], "rs:stale": false}, "access": {"record":
+        "public", "files": "public", "embargo": {"active": false, "reason": null},
+        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
+        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
+        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
+        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
+        3, "unique_views": 3, "downloads": 0, "unique_downloads": 0, "data_volume":
+        0.0}, "all_versions": {"views": 3, "unique_views": 3, "downloads": 0, "unique_downloads":
+        0, "data_volume": 0.0}}}'
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Security-Policy:
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
+        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
+        img-src *'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 09 Feb 2026 14:49:01 GMT
+      Etag:
+      - '"207"'
+      Link:
+      - <https://rogue-scholar.org/api/records/a9awy-52h48> ; rel="linkset" ; type="application/linkset+json"
+      Permissions-Policy:
+      - interest-cohort=()
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Retry-After:
+      - '59'
+      Server:
+      - gunicorn
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - sameorigin
+      X-Ratelimit-Limit:
+      - '500'
+      X-Ratelimit-Remaining:
+      - '497'
+      X-Ratelimit-Reset:
+      - '1770648601'
+      X-Xss-Protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
 version: 1

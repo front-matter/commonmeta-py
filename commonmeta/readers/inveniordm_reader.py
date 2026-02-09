@@ -53,6 +53,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         )
 
     # Rogue Scholar records use an external URL
+    # TODO: enable use of Rogue Scholar repository URL
     if is_rogue_scholar_doi(_id):
         url = next(
             (
@@ -195,7 +196,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         )
 
     funding_references = get_funding_references(wrap(dig(meta, "metadata.funding")))
-
+    version = dig(meta, "metadata.version")
     content = dig(meta, "custom_fields.rs:content_html")
     image = dig(meta, "custom_fields.rs:image")
     state = "findable"
@@ -217,7 +218,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             "subjects": presence(subjects),
             "identifiers": presence(identifiers),
             "language": get_language(language),
-            "version": dig(meta, "metadata.version"),
+            "version": version,
             "license": presence(license_),
             "descriptions": descriptions,
             "geoLocations": None,

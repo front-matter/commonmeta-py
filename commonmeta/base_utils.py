@@ -513,6 +513,16 @@ def get_crossref_xml_head(obj: dict) -> dict:
     }
 
 
+def tostring(data: dict | list, **kwargs) -> bytes:
+    """Convert dictionary or list to Crossref XML as string."""
+    if isinstance(data, dict):
+        return unparse_xml(data, dialect="crossref", head=kwargs.get("head", None))
+    elif isinstance(data, list):
+        return unparse_xml_list(data, dialect="crossref", head=kwargs.get("head"))
+    else:
+        raise TypeError("Input data must be a dictionary or a list.")
+
+
 def sanitize(text: str, **kwargs) -> str:
     """Sanitize text"""
     # default whitelisted HTML tags
