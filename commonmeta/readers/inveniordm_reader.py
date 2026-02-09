@@ -40,7 +40,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
 
-    url = normalize_url(dig(meta, "links.self_html"))
+    url = normalize_url(kwargs.get("url", None) or dig(meta, "links.self_html"))
 
     # if data is for a parent record
     if kwargs.get("parent_doi", None):

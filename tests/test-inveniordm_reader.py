@@ -203,6 +203,76 @@ def test_publication():
 
 
 @pytest.mark.vcr
+def test_publication_with_url():
+    """Publication with URL"""
+    string = "https://zenodo.org/api/records/5244404"
+    subject = Metadata(string, url="https://zenodo.org/records/5075888")
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.5281/zenodo.5244404"
+    assert subject.type == "JournalArticle"
+    assert subject.url == "https://zenodo.org/records/5075888"
+    assert subject.titles[0] == {
+        "title": "The Origins of SARS-CoV-2: A Critical Review"
+    }
+    assert len(subject.contributors) == 21
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Edward C",
+        "familyName": "Holmes",
+        "affiliations": [
+            {
+                "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
+            }
+        ],
+    }
+    assert subject.license == {
+        "id": "CC-BY-NC-ND-4.0",
+        "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
+    }
+
+    assert subject.date == {
+        "published": "2021-08-18",
+        "updated": "2024-07-18T18:54:12Z",
+    }
+    assert subject.relations == [
+        {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
+    ]
+    assert subject.publisher == {"name": "Zenodo"}
+    assert subject.funding_references is None
+    assert (
+        subject.descriptions[0]
+        .get("description")
+        .startswith("The Origins of SARS-CoV-2: A Critical Review Holmes et al.")
+    )
+    assert (
+        subject.descriptions[1]
+        .get("description")
+        .startswith("Authors' final peer-reviewed version.")
+    )
+    assert subject.subjects == [
+        {"subject": "sars-cov-2"},
+        {"subject": "covid-19"},
+        {"subject": "origins"},
+        {"subject": "zoonosis"},
+    ]
+    assert subject.container == {
+        "id": "https://www.re3data.org/repository/r3d100010468",
+        "type": "Repository",
+        "title": "Zenodo",
+    }
+    assert subject.language is None
+    assert subject.version == "Authors' final version"
+    assert len(subject.files) == 3
+    assert subject.files[0] == {
+        "key": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "checksum": "md5:bdb88fc94708d8fd7d87854031faa8ab",
+        "url": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content",
+        "size": 197003,
+    }
+
+
+@pytest.mark.vcr
 def test_dataset():
     """Dataset"""
     string = "https://zenodo.org/api/records/7834392"

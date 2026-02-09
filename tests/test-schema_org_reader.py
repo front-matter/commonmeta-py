@@ -540,7 +540,7 @@ def test_pdf_file():
     assert subject.type == "WebPage"
     assert subject.state == "findable"
     assert subject.titles is None
-    assert subject.date is None
+    assert subject.date is not None
 
 
 @pytest.mark.vcr
