@@ -820,6 +820,7 @@ INVENIORDM_IDENTIFIER_TYPES = {
     "ISTC": "istc",
     "LISSN": "lissn",
     "LSID": "lsid",
+    "OpenAlex": "openalex",
     "PMID": "pmid",
     "PURL": "purl",
     "UPC": "upc",
