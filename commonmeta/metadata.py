@@ -313,6 +313,12 @@ class Metadata:
             self.email = kwargs.get("email", None)
             self.registrant = kwargs.get("registrant", None)
             output = write_crossref_xml(self)
+
+            # Validate the intermediate dict against JSON schema before converting to XML.
+            # self.write_errors = json_schema_errors(output, schema=to)
+            # if self.write_errors is not None:
+            #     raise CrossrefError(self.write_errors)
+
             head = {
                 "depositor": self.depositor,
                 "email": self.email,
