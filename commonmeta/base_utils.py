@@ -192,6 +192,34 @@ def compact(obj: dict | None) -> dict:
     return {k: v for k, v in obj.items() if v is not None}
 
 
+def normalize_xml_dict(obj: Any) -> Any:
+    """Normalize xmltodict-style dicts for JSON schema validation.
+
+    Converts:
+    - attribute keys like '@name' -> 'name'
+    - text keys like '#text' -> 'text'
+
+    Recurses through nested dicts/lists and leaves other values unchanged.
+    """
+
+    if isinstance(obj, list):
+        return [normalize_xml_dict(i) for i in obj]
+
+    if isinstance(obj, dict):
+        out: dict[str, Any] = {}
+        for k, v in obj.items():
+            if k.startswith("@"):
+                nk = k[1:]
+            elif k == "#text":
+                nk = "text"
+            else:
+                nk = k
+            out[nk] = normalize_xml_dict(v)
+        return out
+
+    return obj
+
+
 def scrub(list_obj: Iterable[dict] | None) -> list | None:
     """Remove None values from list recursively"""
     if list_obj is None:
@@ -291,7 +319,8 @@ def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
     else:
         xml_string = string
 
-    if kwargs.get("dialect", None) == "crossref":
+    dialect = kwargs.get("dialect", None)
+    if dialect == "crossref":
         # remove namespaces from xml
         namespaces = {
             "http://www.crossref.org/schema/5.4.0": None,
@@ -320,7 +349,42 @@ def parse_xml(string: str | bytes | None, **kwargs) -> dict | list | None:
     kwargs["attr_prefix"] = ""
     kwargs["dict_constructor"] = dict
     kwargs.pop("dialect", None)
-    return xmltodict.parse(xml_string, **kwargs)
+    parsed = xmltodict.parse(xml_string, **kwargs)
+
+    if dialect == "crossref":
+
+        def _strip_xmlns(node: Any) -> Any:
+            if isinstance(node, list):
+                return [_strip_xmlns(i) for i in node]
+            if isinstance(node, dict):
+                node.pop("xmlns", None)
+                for k, v in list(node.items()):
+                    node[k] = _strip_xmlns(v)
+                return node
+            return node
+
+        def _normalize_orcid(node: Any) -> Any:
+            if isinstance(node, list):
+                return [_normalize_orcid(i) for i in node]
+            if isinstance(node, dict):
+                out: dict[str, Any] = {}
+                for k, v in node.items():
+                    if k == "ORCID" and isinstance(v, dict) and "#text" in v:
+                        authenticated = v.get("authenticated")
+                        other_keys = set(v.keys()) - {"#text", "authenticated"}
+                        if authenticated in (None, "false") and not other_keys:
+                            out[k] = v.get("#text")
+                        else:
+                            out[k] = _normalize_orcid(v)
+                    else:
+                        out[k] = _normalize_orcid(v)
+                return out
+            return node
+
+        parsed = _strip_xmlns(parsed)
+        parsed = _normalize_orcid(parsed)
+
+    return parsed
 
 
 def unparse_xml(input: dict | None, **kwargs) -> bytes:
@@ -511,16 +575,6 @@ def get_crossref_xml_head(obj: dict) -> dict:
         },
         "registrant": obj.get("registrant", None) or "test",
     }
-
-
-def tostring(data: dict | list, **kwargs) -> bytes:
-    """Convert dictionary or list to Crossref XML as string."""
-    if isinstance(data, dict):
-        return unparse_xml(data, dialect="crossref", head=kwargs.get("head", None))
-    elif isinstance(data, list):
-        return unparse_xml_list(data, dialect="crossref", head=kwargs.get("head"))
-    else:
-        raise TypeError("Input data must be a dictionary or a list.")
 
 
 def sanitize(text: str, **kwargs) -> str:

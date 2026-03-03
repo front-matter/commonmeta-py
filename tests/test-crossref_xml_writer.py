@@ -1409,7 +1409,6 @@ def test_zenodo():
     )
     assert dig(crossref_xml, "publication_date") == {
         "media_type": "online",
-        "xmlns": {"jats": "http://www.ncbi.nlm.nih.gov/JATS1"},
         "month": "8",
         "day": "18",
         "year": "2021",
@@ -1438,9 +1437,6 @@ def test_zenodo():
                 },
             },
         ],
-        "xmlns": {
-            "rel": "http://www.crossref.org/relations.xsd",
-        },
     }
     assert dig(crossref_xml, "doi_data.doi") == "10.5281/zenodo.5244404"
     assert (
@@ -1555,9 +1551,6 @@ def test_rogue_scholar_as_parent_doi():
                 },
             },
         ],
-        "xmlns": {
-            "rel": "http://www.crossref.org/relations.xsd",
-        },
     }
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/dj4cp-2b786"
     assert (
