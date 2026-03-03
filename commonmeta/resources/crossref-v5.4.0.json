@@ -1,0 +1,711 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "crossref_v5.4.0.json",
+  "title": "Crossref XML Writer v5.4.0",
+  "description": "JSON Schema for validating dictionary output before converting to Crossref XML.",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "contributor_role": {
+      "type": "string",
+      "enum": ["author", "editor", "chair", "reviewer", "reader", "translator"]
+    },
+    "date": {
+      "type": "object",
+      "properties": {
+        "year": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string"
+        },
+        "day": {
+          "type": "string"
+        }
+      },
+      "required": ["year"]
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "@contributor_role": {
+          "$ref": "#/definitions/contributor_role"
+        },
+        "@sequence": {
+          "type": "string",
+          "enum": ["first", "additional"]
+        },
+        "#text": {
+          "type": "string"
+        }
+      }
+    },
+    "person_name": {
+      "type": "object",
+      "properties": {
+        "@contributor_role": {
+          "$ref": "#/definitions/contributor_role"
+        },
+        "@sequence": {
+          "type": "string",
+          "enum": ["first", "additional"]
+        },
+        "given_name": {
+          "type": "string"
+        },
+        "surname": {
+          "type": "string"
+        },
+        "affiliations": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "ORCID": {
+          "type": "string",
+          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "properties": {
+        "@relationship-type": {
+          "type": "string"
+        },
+        "@identifier-type": {
+          "type": "string"
+        },
+        "#text": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "doi_batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "@xmlns": {
+          "type": "string"
+        },
+        "@xmlns:ai": {
+          "type": "string"
+        },
+        "@xmlns:rel": {
+          "type": "string"
+        },
+        "@xmlns:fr": {
+          "type": "string"
+        },
+        "@version": {
+          "type": "string"
+        },
+        "head": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "doi_batch_id": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "string"
+            },
+            "depositor": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "depositor_name": {
+                  "type": "string"
+                },
+                "email_address": {
+                  "type": "string"
+                }
+              },
+              "required": ["depositor_name", "email_address"]
+            },
+            "registrant": {
+              "type": "string"
+            }
+          },
+          "required": ["doi_batch_id", "timestamp", "depositor", "registrant"]
+        },
+        "body": {
+          "type": "object"
+        }
+      },
+      "required": ["@xmlns", "@xmlns:ai", "@xmlns:rel", "@xmlns:fr", "@version", "head", "body"]
+    },
+    "journal": {
+      "type": "object"
+    },
+    "journal_metadata": {
+      "type": "object"
+    },
+    "journal_issue": {
+      "type": "object",
+      "properties": {
+        "publication_date": {
+          "$ref": "#/definitions/date"
+        },
+        "journal_volume": {
+          "type": "object",
+          "properties": {
+            "volume": {
+              "type": "string"
+            }
+          }
+        },
+        "issue": {
+          "type": "string"
+        }
+      }
+    },
+    "journal_article": {
+      "type": "object",
+      "properties": {
+        "@language": {
+          "type": "string"
+        }
+      }
+    },
+    "posted_content": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "enum": ["preprint", "working_paper", "letter", "dissertation", "report", "review", "other"]
+        },
+        "@language": {
+          "type": "string"
+        }
+      }
+    },
+    "book": {
+      "type": "object"
+    },
+    "book_metadata": {
+      "type": "object"
+    },
+    "conference": {
+      "type": "object"
+    },
+    "event_metadata": {
+      "type": "object"
+    },
+    "proceedings_metadata": {
+      "type": "object"
+    },
+    "conference_paper": {
+      "type": "object",
+      "properties": {
+        "@language": {
+          "type": "string"
+        }
+      }
+    },
+    "dissertation": {
+      "type": "object",
+      "properties": {
+        "@language": {
+          "type": "string"
+        }
+      }
+    },
+    "report-paper": {
+      "type": "object"
+    },
+    "standard": {
+      "type": "object"
+    },
+    "database": {
+      "type": "object"
+    },
+    "database_metadata": {
+      "type": "object"
+    },
+    "peer_review": {
+      "type": "object"
+    },
+    "sa_component": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "@book_type": {
+          "type": "string"
+        },
+        "@language": {
+          "type": "string"
+        },
+        "@stage": {
+          "type": "string"
+        },
+        "@reg-agency": {
+          "type": "string"
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "@reg-agency": {
+          "type": "string"
+        },
+        "@parent_relation": {
+          "type": "string"
+        }
+      }
+    },
+    "titles": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "original_language_title": {
+          "type": "string"
+        }
+      }
+    },
+    "contributors": {
+      "type": "object",
+      "properties": {
+        "person_name": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/person_name"
+          }
+        },
+        "organization": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/organization"
+          }
+        }
+      }
+    },
+    "abstracts": {
+      "type": "object"
+    },
+    "publication_date": {
+      "$ref": "#/definitions/date"
+    },
+    "posted_date": {
+      "$ref": "#/definitions/date"
+    },
+    "review_date": {
+      "$ref": "#/definitions/date"
+    },
+    "approval_date": {
+      "$ref": "#/definitions/date"
+    },
+    "doi_data": {
+      "type": "object",
+      "required": ["doi", "resource"],
+      "properties": {
+        "doi": {
+          "type": "string",
+          "pattern": "^10\\.\\d{4,9}/.+$",
+          "description": "The DOI value (without https://doi.org/)"
+        },
+        "resource": {
+          "type": "string",
+          "format": "uri",
+          "description": "The primary resource URL for the DOI"
+        },
+        "collection": {
+          "type": "object"
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "properties": {
+        "citation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@key": {
+                "type": "string"
+              },
+              "doi": {
+                "type": "string",
+                "pattern": "^10\\.\\d{4,9}/.+$"
+              },
+              "journal_title": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "volume": {
+                "type": "string"
+              },
+              "first_page": {
+                "type": "string"
+              },
+              "cYear": {
+                "type": "string"
+              },
+              "article_title": {
+                "type": "string"
+              },
+              "unstructured_citation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "funding_references": {
+      "type": "object",
+      "properties": {
+        "@xmlns:fr": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "fr:assertion": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@name": {
+                "type": "string"
+              },
+              "#text": {
+                "type": "string"
+              },
+              "fr:assertion": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "@name": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "license": {
+      "type": "object",
+      "properties": {
+        "@xmlns:ai": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "ai:license_ref": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@applies_to": {
+                "type": "string"
+              },
+              "#text": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "relations": {
+      "type": "object",
+      "properties": {
+        "@xmlns:rel": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "rel:related_item": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "archive_locations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "version_info": {
+      "type": "object"
+    },
+    "crossmark": {
+      "type": "object"
+    },
+    "publisher": {
+      "type": "object",
+      "properties": {
+        "publisher_name": {
+          "type": "string"
+        }
+      }
+    },
+    "publisher_item": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        }
+      }
+    },
+    "isbn": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "#text": {
+            "type": "string"
+          },
+          "@media_type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "institution": {
+      "type": "object",
+      "properties": {
+        "institution_name": {
+          "type": "string"
+        },
+        "institution_id": {
+          "type": "object",
+          "properties": {
+            "#text": {
+              "type": "string"
+            },
+            "@type": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "item_number": {
+      "type": "object",
+      "properties": {
+        "@item_number_type": {
+          "type": "string"
+        },
+        "#text": {
+          "type": "string"
+        }
+      }
+    },
+    "group_title": {
+      "type": "string"
+    },
+    "degree": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "component_list": {
+      "type": "object",
+      "properties": {
+        "component": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@reg-agency": {
+                "type": "string"
+              },
+              "@parent_relation": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "titles": {
+                "$ref": "#/properties/titles"
+              },
+              "contributors": {
+                "$ref": "#/properties/contributors"
+              },
+              "publication_date": {
+                "$ref": "#/definitions/date"
+              },
+              "version_info": {
+                "$ref": "#/properties/version_info"
+              },
+              "doi_data": {
+                "$ref": "#/properties/doi_data"
+              },
+              "references": {
+                "$ref": "#/properties/references"
+              }
+            }
+          }
+        }
+      }
+    },
+    "citation_list": {
+      "type": "object",
+      "properties": {
+        "citation": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@key": {
+                "type": "string"
+              },
+              "doi": {
+                "type": "string",
+                "pattern": "^10\\.\\d{4,9}/.+$"
+              },
+              "journal_title": {
+                "type": "string"
+              },
+              "author": {
+                "type": "string"
+              },
+              "volume": {
+                "type": "string"
+              },
+              "first_page": {
+                "type": "string"
+              },
+              "cYear": {
+                "type": "string"
+              },
+              "article_title": {
+                "type": "string"
+              },
+              "unstructured_citation": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "jats:abstract": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "ai:program": {
+      "type": "object",
+      "properties": {
+        "@xmlns:ai": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "ai:license_ref": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@applies_to": {
+                "type": "string"
+              },
+              "#text": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "fr:program": {
+      "type": "object",
+      "properties": {
+        "@xmlns:fr": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "fr:assertion": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "@name": {
+                "type": "string"
+              },
+              "#text": {
+                "type": "string"
+              },
+              "fr:assertion": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "@name": {
+                      "type": "string"
+                    },
+                    "#text": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ct:program": {
+      "type": "object"
+    },
+    "rel:program": {
+      "type": "object",
+      "properties": {
+        "@xmlns:rel": {
+          "type": "string"
+        },
+        "@name": {
+          "type": "string"
+        },
+        "rel:related_item": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rel:inter_work_relation": {
+                "$ref": "#/definitions/relation"
+              },
+              "rel:intra_work_relation": {
+                "$ref": "#/definitions/relation"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
