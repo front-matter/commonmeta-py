@@ -8,7 +8,7 @@ from typing import Any
 import orjson as json
 import yaml
 
-from .base_utils import dig, parse_xml, tostring, wrap
+from .base_utils import dig, parse_xml, wrap
 from .file_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
@@ -54,6 +54,7 @@ from .writers.crossref_xml_writer import (
     CrossrefError,
     push_crossref_xml,
     push_crossref_xml_list,
+    tostring,
     write_crossref_xml,
     write_crossref_xml_list,
 )
@@ -317,7 +318,7 @@ class Metadata:
                 "email": self.email,
                 "registrant": self.registrant,
             }
-            bytes = tostring(output, dialect="crossref", head=head)
+            bytes = tostring(output, head=head)
             self.write_errors = xml_schema_errors(bytes, schema=to)
             if self.write_errors is not None:
                 raise CrossrefError(self.write_errors)
@@ -448,7 +449,7 @@ class MetadataList:
                     "email": self.email,
                     "registrant": self.registrant,
                 }
-                bytes = tostring(output, dialect="crossref", head=head)
+                bytes = tostring(output, head=head)
                 if self.file and bytes and len(bytes) > 0:
                     return write_output(self.file, bytes, [".xml"])
                 else:

@@ -437,6 +437,58 @@ def test_jsonfeed_upstream_blog():
 
 
 @pytest.mark.vcr
+def test_jsonfeed_upstream_blog_archived():
+    """jsonfeed upstream blog archived"""
+    string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
+    url = "https://rogue-scholar.org/records/thmsh-a1z89"
+    subject = Metadata(string, url=url)
+    assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"
+    assert subject.type == "BlogPost"
+    assert subject.url == "https://rogue-scholar.org/records/thmsh-a1z89"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "type") == "other"
+    assert dig(crossref_xml, "language") == "en"
+    assert len(dig(crossref_xml, "contributors.person_name")) == 1
+    assert dig(crossref_xml, "contributors.person_name.0") == {
+        "contributor_role": "author",
+        "sequence": "first",
+        "given_name": "Esha",
+        "surname": "Datta",
+        "ORCID": "https://orcid.org/0000-0001-9165-2757",
+    }
+    assert (
+        dig(crossref_xml, "titles.0.title")
+        == "Attempts at automating journal subject classification"
+    )
+    assert dig(crossref_xml, "item_number") == {
+        "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
+        "item_number_type": "uuid",
+    }
+    assert dig(crossref_xml, "abstract.0.p").startswith(
+        "Traditionally, journal subject classification was done manually at varying levels of granularity"
+    )
+    assert (
+        dig(crossref_xml, "doi_data.resource")
+        == "https://rogue-scholar.org/records/thmsh-a1z89"
+    )
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
+        "#text": "https://rogue-scholar.org/records/thmsh-a1z89",
+        "mime_type": "text/html",
+    }
+    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
+        "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
+        "mime_type": "text/markdown",
+    }
+    assert crossref_xml.get("group_title") == "Upstream"
+    assert dig(crossref_xml, "version_info") == {"version": "v1"}
+
+
+@pytest.mark.vcr
 def test_jsonfeed_with_references():
     """jsonfeed with references"""
     string = "https://api.rogue-scholar.org/posts/954f8138-0ecd-4090-87c5-cef1297f1470"

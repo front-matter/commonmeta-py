@@ -2,10 +2,111 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "crossref_v5.4.0.json",
   "title": "Crossref XML Writer v5.4.0",
-  "description": "JSON Schema for validating dictionary output before converting to Crossref XML.",
+  "description": "JSON Schema for validating output before converting to Crossref XML.",
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "depositor": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "depositor_name": {
+          "type": "string"
+        },
+        "email_address": {
+          "type": "string",
+          "format": "email"
+        }
+      },
+      "required": ["depositor_name", "email_address"]
+    },
+    "head": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "doi_batch_id": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+        },
+        "timestamp": {
+          "type": "string",
+          "pattern": "^\\d{14}$"
+        },
+        "depositor": {
+          "$ref": "#/definitions/depositor"
+        },
+        "registrant": {
+          "type": "string"
+        }
+      },
+      "required": ["doi_batch_id", "timestamp", "depositor", "registrant"]
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "book": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "conference": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "database": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "dissertation": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "journal": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "peer_review": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "posted_content": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "report-paper": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "sa_component": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "standard": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
     "contributor_role": {
       "type": "string",
       "enum": ["author", "editor", "chair", "reviewer", "reader", "translator"]
@@ -28,14 +129,14 @@
     "organization": {
       "type": "object",
       "properties": {
-        "@contributor_role": {
+        "contributor_role": {
           "$ref": "#/definitions/contributor_role"
         },
-        "@sequence": {
+        "sequence": {
           "type": "string",
           "enum": ["first", "additional"]
         },
-        "#text": {
+        "text": {
           "type": "string"
         }
       }
@@ -43,10 +144,10 @@
     "person_name": {
       "type": "object",
       "properties": {
-        "@contributor_role": {
+        "contributor_role": {
           "$ref": "#/definitions/contributor_role"
         },
-        "@sequence": {
+        "sequence": {
           "type": "string",
           "enum": ["first", "additional"]
         },
@@ -71,13 +172,13 @@
     "relation": {
       "type": "object",
       "properties": {
-        "@relationship-type": {
+        "relationship-type": {
           "type": "string"
         },
-        "@identifier-type": {
+        "identifier-type": {
           "type": "string"
         },
-        "#text": {
+        "text": {
           "type": "string"
         }
       }
@@ -88,55 +189,31 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "@xmlns": {
+        "xmlns": {
+          "type": "string",
+          "const": "http://www.crossref.org/schema/5.4.0"
+        },
+        "xmlns:ai": {
           "type": "string"
         },
-        "@xmlns:ai": {
+        "xmlns:rel": {
           "type": "string"
         },
-        "@xmlns:rel": {
+        "xmlns:fr": {
           "type": "string"
         },
-        "@xmlns:fr": {
-          "type": "string"
-        },
-        "@version": {
-          "type": "string"
+        "version": {
+          "type": "string",
+          "const": "5.4.0"
         },
         "head": {
-          "type": "object",
-          "additionalProperties": false,
-          "properties": {
-            "doi_batch_id": {
-              "type": "string"
-            },
-            "timestamp": {
-              "type": "string"
-            },
-            "depositor": {
-              "type": "object",
-              "additionalProperties": false,
-              "properties": {
-                "depositor_name": {
-                  "type": "string"
-                },
-                "email_address": {
-                  "type": "string"
-                }
-              },
-              "required": ["depositor_name", "email_address"]
-            },
-            "registrant": {
-              "type": "string"
-            }
-          },
-          "required": ["doi_batch_id", "timestamp", "depositor", "registrant"]
+          "$ref": "#/definitions/head"
         },
         "body": {
-          "type": "object"
+          "$ref": "#/definitions/body"
         }
       },
-      "required": ["@xmlns", "@xmlns:ai", "@xmlns:rel", "@xmlns:fr", "@version", "head", "body"]
+      "required": ["xmlns", "version", "head", "body"]
     },
     "journal": {
       "type": "object"
@@ -166,7 +243,7 @@
     "journal_article": {
       "type": "object",
       "properties": {
-        "@language": {
+        "language": {
           "type": "string"
         }
       }
@@ -174,11 +251,11 @@
     "posted_content": {
       "type": "object",
       "properties": {
-        "@type": {
+        "type": {
           "type": "string",
           "enum": ["preprint", "working_paper", "letter", "dissertation", "report", "review", "other"]
         },
-        "@language": {
+        "language": {
           "type": "string"
         }
       }
@@ -201,7 +278,7 @@
     "conference_paper": {
       "type": "object",
       "properties": {
-        "@language": {
+        "language": {
           "type": "string"
         }
       }
@@ -209,7 +286,7 @@
     "dissertation": {
       "type": "object",
       "properties": {
-        "@language": {
+        "language": {
           "type": "string"
         }
       }
@@ -232,19 +309,19 @@
     "sa_component": {
       "type": "object",
       "properties": {
-        "@type": {
+        "type": {
           "type": "string"
         },
-        "@book_type": {
+        "book_type": {
           "type": "string"
         },
-        "@language": {
+        "language": {
           "type": "string"
         },
-        "@stage": {
+        "stage": {
           "type": "string"
         },
-        "@reg-agency": {
+        "reg-agency": {
           "type": "string"
         }
       }
@@ -252,10 +329,10 @@
     "component": {
       "type": "object",
       "properties": {
-        "@reg-agency": {
+        "reg-agency": {
           "type": "string"
         },
-        "@parent_relation": {
+        "parent_relation": {
           "type": "string"
         }
       }
@@ -333,7 +410,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "@key": {
+              "key": {
                 "type": "string"
               },
               "doi": {
@@ -369,10 +446,10 @@
     "funding_references": {
       "type": "object",
       "properties": {
-        "@xmlns:fr": {
+        "xmlns:fr": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "fr:assertion": {
@@ -380,10 +457,10 @@
           "items": {
             "type": "object",
             "properties": {
-              "@name": {
+              "name": {
                 "type": "string"
               },
-              "#text": {
+              "text": {
                 "type": "string"
               },
               "fr:assertion": {
@@ -391,10 +468,10 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "@name": {
+                    "name": {
                       "type": "string"
                     },
-                    "#text": {
+                    "text": {
                       "type": "string"
                     }
                   }
@@ -408,10 +485,10 @@
     "license": {
       "type": "object",
       "properties": {
-        "@xmlns:ai": {
+        "xmlns:ai": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "ai:license_ref": {
@@ -419,10 +496,10 @@
           "items": {
             "type": "object",
             "properties": {
-              "@applies_to": {
+              "applies_to": {
                 "type": "string"
               },
-              "#text": {
+              "text": {
                 "type": "string"
               }
             }
@@ -433,10 +510,10 @@
     "relations": {
       "type": "object",
       "properties": {
-        "@xmlns:rel": {
+        "xmlns:rel": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "rel:related_item": {
@@ -480,10 +557,10 @@
       "items": {
         "type": "object",
         "properties": {
-          "#text": {
+          "text": {
             "type": "string"
           },
-          "@media_type": {
+          "media_type": {
             "type": "string"
           }
         }
@@ -498,10 +575,10 @@
         "institution_id": {
           "type": "object",
           "properties": {
-            "#text": {
+            "text": {
               "type": "string"
             },
-            "@type": {
+            "type": {
               "type": "string"
             }
           }
@@ -511,10 +588,10 @@
     "item_number": {
       "type": "object",
       "properties": {
-        "@item_number_type": {
+        "item_number_type": {
           "type": "string"
         },
-        "#text": {
+        "text": {
           "type": "string"
         }
       }
@@ -536,10 +613,10 @@
           "items": {
             "type": "object",
             "properties": {
-              "@reg-agency": {
+              "reg-agency": {
                 "type": "string"
               },
-              "@parent_relation": {
+              "parent_relation": {
                 "type": "string"
               },
               "description": {
@@ -576,7 +653,7 @@
           "items": {
             "type": "object",
             "properties": {
-              "@key": {
+              "key": {
                 "type": "string"
               },
               "doi": {
@@ -618,10 +695,10 @@
     "ai:program": {
       "type": "object",
       "properties": {
-        "@xmlns:ai": {
+        "xmlns:ai": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "ai:license_ref": {
@@ -629,10 +706,10 @@
           "items": {
             "type": "object",
             "properties": {
-              "@applies_to": {
+              "applies_to": {
                 "type": "string"
               },
-              "#text": {
+              "text": {
                 "type": "string"
               }
             }
@@ -643,10 +720,10 @@
     "fr:program": {
       "type": "object",
       "properties": {
-        "@xmlns:fr": {
+        "xmlns:fr": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "fr:assertion": {
@@ -654,10 +731,10 @@
           "items": {
             "type": "object",
             "properties": {
-              "@name": {
+              "name": {
                 "type": "string"
               },
-              "#text": {
+              "text": {
                 "type": "string"
               },
               "fr:assertion": {
@@ -665,10 +742,10 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "@name": {
+                    "name": {
                       "type": "string"
                     },
-                    "#text": {
+                    "text": {
                       "type": "string"
                     }
                   }
@@ -685,10 +762,10 @@
     "rel:program": {
       "type": "object",
       "properties": {
-        "@xmlns:rel": {
+        "xmlns:rel": {
           "type": "string"
         },
-        "@name": {
+        "name": {
           "type": "string"
         },
         "rel:related_item": {

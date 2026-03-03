@@ -9,6 +9,8 @@ import orjson as json
 import xmlschema
 from jsonschema import Draft202012Validator, ValidationError
 
+from .base_utils import normalize_xml_dict
+
 
 def json_schema_errors(
     instance: dict[str, Any], schema: str = "commonmeta"
@@ -22,7 +24,7 @@ def json_schema_errors(
     schema_map = {
         "cff": "cff_v1.2.0",
         "commonmeta": "commonmeta_v0.17",
-        "crossref": "crossref-v0.2",
+        "crossref_xml": "crossref-v5.4.0",
         "csl": "csl-data",
         "datacite": "datacite-v4.5",
         "inveniordm": "inveniordm-v0.1",
@@ -33,6 +35,13 @@ def json_schema_errors(
     try:
         if schema not in schema_map:
             raise ValueError("No schema found")
+
+        # The Crossref JSON schema uses a normalized representation without
+        # xmltodict's special keys ('@…', '#text'). Normalize instances before
+        # validation to keep writer output stable while tightening the schema.
+        if schema == "crossref_xml":
+            instance = normalize_xml_dict(instance)
+
         file_path = path.join(
             path.dirname(__file__), f"resources/{schema_map[schema]}.json"
         )

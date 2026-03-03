@@ -270,7 +270,6 @@ def get_relations(relations: dict | None) -> list:
         "IsIdenticalTo",
         "IsTranslationOf",
         "IsReviewOf",
-        "HasReview",
         "IsPreprintOf",
         "HasPreprint",
         "IsSupplementTo",
