@@ -986,7 +986,7 @@ def update_legacy_record(
                 "UPDATE posts SET "
                 "rid = %s, "
                 "doi = %s, "
-                "indexed_at = NOW(), "
+                "indexed_at = EXTRACT(EPOCH FROM NOW())::bigint, "
                 "indexed = %s, "
                 "archived = %s, "
                 "registered = %s "

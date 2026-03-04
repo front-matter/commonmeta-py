@@ -892,7 +892,7 @@ def test_update_legacy_record_rid_updates_via_postgres():
         mock_connect.assert_called_once_with(dsn, connect_timeout=10)
         (sql, params), _kwargs = mock_cur.execute.call_args
         assert "UPDATE posts SET" in sql
-        assert "indexed_at = NOW()" in sql
+        assert "indexed_at = EXTRACT(EPOCH FROM NOW())::bigint" in sql
         assert "WHERE id = %s" in sql
         assert params == ("123", "10.1234/abc", "true", "true", "false", record["uuid"])
         assert out["status"] == "updated_legacy"
