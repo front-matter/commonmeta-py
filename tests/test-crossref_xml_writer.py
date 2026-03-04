@@ -1540,18 +1540,7 @@ def test_rogue_scholar_as_parent_doi():
             "#text": "https://creativecommons.org/licenses/by/4.0/legalcode",
         },
     ]
-    assert dig(crossref_xml, "program.1") == {
-        "name": "relations",
-        "related_item": [
-            {
-                "intra_work_relation": {
-                    "#text": "10.53731/m7gng-jmm19",
-                    "identifier-type": "doi",
-                    "relationship-type": "hasVersion",
-                },
-            },
-        ],
-    }
+    assert dig(crossref_xml, "program.1") is None
     assert dig(crossref_xml, "doi_data.doi") == "10.53731/dj4cp-2b786"
     assert (
         dig(crossref_xml, "doi_data.resource")

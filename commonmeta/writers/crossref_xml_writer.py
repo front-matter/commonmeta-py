@@ -423,7 +423,6 @@ def tostring(data: dict | list, *, head: dict | None = None) -> bytes:
         )
 
     # Always expose ORCID authenticated attribute (defaults to false).
-    # This keeps the field extensible for future cases where it is true.
     if "<ORCID" in xml_str:
         import re
 
@@ -1469,7 +1468,7 @@ def get_relations(obj) -> Dict | None:
             "IsTranslationOf",
             "HasTranslation",
             "IsVersionOf",
-            "HasVersion",
+            # "HasVersion", # HasVersion is added implicity by Crossref when there is a IsVersionOf relation
         ]:
             group = "rel:intra_work_relation"
         else:
