@@ -80,7 +80,7 @@ def convert(
 @click.option("--test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
-@click.option("--legacy-key", type=str)
+@click.option("--legacy-conn", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 def put(
     input,
@@ -98,7 +98,7 @@ def put(
     test_mode,
     host,
     token,
-    legacy_key,
+    legacy_conn,
     show_errors,
 ):
     metadata = Metadata(
@@ -113,7 +113,7 @@ def put(
         test_mode=test_mode,
         host=host,
         token=token,
-        legacy_key=legacy_key,
+        legacy_conn=legacy_conn,
         prefix=prefix,
     )
     if show_errors and not metadata.is_valid:
@@ -191,7 +191,7 @@ def list(
 @click.option("--test_mode", type=bool, default=False)
 @click.option("--host", type=str)
 @click.option("--token", type=str)
-@click.option("--legacy-key", type=str)
+@click.option("--legacy-conn", type=str)
 @click.option("--file", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
@@ -210,7 +210,7 @@ def push(
     test_mode,
     host,
     token,
-    legacy_key,
+    legacy_conn,
     file,
     show_errors,
     show_timer,
@@ -228,7 +228,7 @@ def push(
         test_mode=test_mode,
         host=host,
         token=token,
-        legacy_key=legacy_key,
+        legacy_conn=legacy_conn,
         prefix=prefix,
     )
     end = time.time()
@@ -307,41 +307,6 @@ def update_ghost_post(id: str, api_key: str, api_url: str) -> None:
 def version() -> None:
     version = importlib.metadata.version("commonmeta-py")
     click.echo(f"commonmeta-py {version}")
-
-
-@cli.command("jsonschema")
-@click.option(
-    "--schema",
-    "schema_name",
-    type=click.Choice(["crossref_xml"], case_sensitive=False),
-    default="crossref_xml",
-    show_default=True,
-)
-@click.option(
-    "--output",
-    "output_path",
-    "-o",
-    type=click.Path(dir_okay=False, path_type=str),
-)
-def jsonschema(schema_name: str, output_path: str | None) -> None:
-    """Generate JSON Schema for a Marshmallow schema.
-
-    Prints to stdout by default, or writes to `--output`.
-    """
-
-    import os
-
-    from commonmeta.jsonschema_generator import generate_jsonschema
-
-    schema = generate_jsonschema(schema_name.lower())
-    payload = json.dumps(schema, option=json.OPT_INDENT_2 | json.OPT_SORT_KEYS)
-
-    if output_path:
-        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-        with open(output_path, "wb") as f:
-            f.write(payload)
-    else:
-        click.echo(payload.decode("utf-8"))
 
 
 if __name__ == "__main__":
