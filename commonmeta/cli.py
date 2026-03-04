@@ -309,5 +309,40 @@ def version() -> None:
     click.echo(f"commonmeta-py {version}")
 
 
+@cli.command("jsonschema")
+@click.option(
+    "--schema",
+    "schema_name",
+    type=click.Choice(["crossref_xml"], case_sensitive=False),
+    default="crossref_xml",
+    show_default=True,
+)
+@click.option(
+    "--output",
+    "output_path",
+    "-o",
+    type=click.Path(dir_okay=False, path_type=str),
+)
+def jsonschema(schema_name: str, output_path: str | None) -> None:
+    """Generate JSON Schema for a Marshmallow schema.
+
+    Prints to stdout by default, or writes to `--output`.
+    """
+
+    import os
+
+    from commonmeta.jsonschema_generator import generate_jsonschema
+
+    schema = generate_jsonschema(schema_name.lower())
+    payload = json.dumps(schema, option=json.OPT_INDENT_2 | json.OPT_SORT_KEYS)
+
+    if output_path:
+        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+        with open(output_path, "wb") as f:
+            f.write(payload)
+    else:
+        click.echo(payload.decode("utf-8"))
+
+
 if __name__ == "__main__":
     cli()
