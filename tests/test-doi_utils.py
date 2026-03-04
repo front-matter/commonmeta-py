@@ -43,6 +43,7 @@ def test_doi_from_url():
         "doi:10.1371/journal.pone.0042793"
     )
     assert None is doi_from_url("https://doi.org/10.1371")
+    assert None is doi_from_url("https://doi.org/")
     assert None is doi_from_url(None)
     assert "10.5438/55e5-t5c0" == doi_from_url(
         "https://handle.stage.datacite.org/10.5438/55e5-t5c0"
@@ -71,6 +72,7 @@ def test_short_doi_as_doi():
         "https://doi.org/10.1002/1521-3773(20000804)39:15%3C2756::AID-ANIE2756%3E3.0.CO;2-I"
         == short_doi_as_doi("https://doi.org/d8g2nw")
     )
+    assert None is short_doi_as_doi("https://doi.org/")
 
 
 def test_validate_doi():

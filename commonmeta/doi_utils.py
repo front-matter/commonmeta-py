@@ -61,7 +61,11 @@ def doi_from_url(url: str | None) -> str | None:
         return None
 
     # url is for a short DOI
-    if f.host == "doi.org" and not f.path.segments[0].startswith("10."):
+    if (
+        f.host == "doi.org"
+        and not f.path.segments[0].startswith("10.")
+        and len(f.path.segments[0]) > 2
+    ):
         return short_doi_as_doi(url)
 
     # special rules for specific hosts
@@ -93,7 +97,7 @@ def short_doi_as_doi(doi: str | None) -> str | None:
     if doi is None:
         return None
     doi_url = doi_as_url(doi)
-    if doi_url is None:
+    if doi_url is None or doi_url == "https://doi.org/":
         return None
     response = requests.head(doi_url, timeout=10)
     if response.status_code != 301:
