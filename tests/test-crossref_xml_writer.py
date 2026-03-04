@@ -1626,6 +1626,38 @@ def test_post_with_interviewee_roles():
 
 
 @pytest.mark.vcr
+def test_wrong_doi_reference():
+    "wrong DOI reference"
+    string = "https://api.rogue-scholar.org/posts/10.59350/sjrdz-3cm71"
+    subject = Metadata(string)
+    assert subject.is_valid
+    assert subject.id == "https://doi.org/10.59350/sjrdz-3cm71"
+    assert subject.type == "BlogPost"
+    assert subject.references == [
+        {
+            "id": "https://doi.org/",
+            "unstructured": "https://doi.org/\n",
+        },
+        {
+            "id": "https://doi.org/10.14469/hpc/14662",
+            "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024. '
+            "https://doi.org/10.14469/hpc/14662\n",
+        },
+    ]
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
+    assert dig(crossref_xml, "doi_data.doi") == "10.59350/sjrdz-3cm71"
+    assert len(dig(crossref_xml, "citation_list.citation")) == 2
+    assert dig(crossref_xml, "citation_list.citation.0") == {
+        "key": "ref1",
+        "unstructured_citation": "https://doi.org/\n https://doi.org/",
+    }
+
+
+@pytest.mark.vcr
 def test_doi_without_url():
     "DOI without URL"
     with pytest.raises(CrossrefError) as exc_info:

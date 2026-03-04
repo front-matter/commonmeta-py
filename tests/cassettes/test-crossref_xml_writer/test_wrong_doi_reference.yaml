@@ -1,0 +1,137 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/sjrdz-3cm71
+  response:
+    body:
+      string: '{"abstract":"In exploring one-electron carbon-carbon bonds, I had noted
+        previously that both hexafluoroethane and ethane itself could each lose an
+        electron to produce such species. A discussion developed in which a molecule
+        isoelectronic with ethane radical cation, namely the methyl-\u03bb1-borane
+        radical (H3B-CH3) was proposed by Jacob.","archive_url":"https://wayback.archive-it.org/22120/2025-05-01T17:20:19Z/https://www.ch.ic.ac.uk/rzepa/blog/?p=27944","authors":[{"affiliation":[{"id":"https://ror.org/041kmwe10","name":"Imperial
+        College London"}],"contributor_roles":[],"family":"Rzepa","given":"Henry","url":"https://orcid.org/0000-0002-8635-8390"}],"blog":{"archive_collection":22120,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20231101171932,20240501175652,20241101171933,20250501172019],"authors":[{"name":"Henry
+        Rzepa","url":"https://orcid.org/0000-0002-8635-8390"}],"canonical_url":true,"category":"chemicalSciences","community_id":"8fb94c86-e95f-41cf-aac2-a2877ffc1b5f","created_at":1693094400,"current_feed_url":null,"description":"Chemistry
+        with a twist","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/8fb94c86-e95f-41cf-aac2-a2877ffc1b5f/logo","feed_format":"application/atom+xml","feed_url":"https://www.ch.ic.ac.uk/rzepa/blog/?feed=atom","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.7.1","home_page_url":"https://www.ch.ic.ac.uk/rzepa/blog/","id":"c9448a63-f49d-4a20-9e85-ecb1dab2c450","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1728999859,"relative_url":null,"ror":null,"secure":true,"slug":"rzepa","status":"active","subfield":"1606","subfield_validated":null,"title":"Henry
+        Rzepa''s Blog","updated_at":1768040649,"use_api":true,"use_mastodon":false,"user_id":"d876eef7-660b-4934-ab47-fa52cca7ad5a"},"blog_name":"Henry
+        Rzepa''s Blog","blog_slug":"rzepa","citations":null,"content_html":"<div class=\"kcite-section\"
+        kcite-section-id=\"27944\">\n<p>In exploring one-electron carbon-carbon bonds,
+        I had noted previously<span id=\"cite_ITEM-27944-0\" name=\"citation\"><a
+        href=\"#ITEM-27944-0\">[1]</a></span> that both hexafluoroethane and ethane
+        itself could each lose an electron to produce such species. A discussion developed
+        in which a molecule isoelectronic with ethane radical cation, namely the methyl-\u03bb1-borane
+        radical (H<sub>3</sub>B-CH<sub>3</sub>) was <a href=\"https://www.ch.ic.ac.uk/rzepa/blog/?p=27870&amp;cpage=1#comment-813906\"
+        target=\"_blank\" rel=\"noopener\">proposed by Jacob</a>. The optimised structure
+        at the \u03c9B97XD/6-31G(d) level exhibited a B-C bond length of 1.57\u00c5,
+        with two of the B-H hydrogens forming a a 3c-3e bond with boron and so a one-electron
+        B-C bond was discounted. Here I take a closer look at this system.</p>\n<p>At
+        the \u03c9B97XD/Def2-TZVPP level, I located an alternative structure with
+        a longer B-C bond of 1.737\u00c5<span id=\"cite_ITEM-27944-1\" name=\"citation\"><a
+        href=\"#ITEM-27944-1\">[2]</a></span> and an &#8220;agostic&#8221; like interaction
+        between C and one B-H bond.</p>\n<p><img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27947\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BCH3.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>The electron density difference maps between
+        methyl-\u03bb1-borane and its mono cation is shown below and following it
+        the density difference map between the corresponding anion and methyl-\u03bb1-borane
+        radical. These are very similar to the maps obtained previously for hexafluoroethand
+        and ethane \u00a0and support the hypothesis that the differences between the
+        two-electron/zero-electron species and the one-electron radical originates
+        at least in part in the B-C bond.</p>\n<p><img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27948\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_sub.cub_.jpg\"
+        alt=\"\" width=\"500\" /><br />\n<img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27949\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_anion-sub.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>A contour map of the negative region of
+        the electron density Laplacian (-0.04 au) again shows that it lies along the
+        B-C bond, suggesting covalency. Note the -ve Laplacian in the region of the
+        agostic interaction! The NCI (non-covalent-interaction) plot is featureless.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27950\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_lap.cub_.jpg\"
+        alt=\"\" width=\"500&quot;\" /></p>\n<p>The computed methyl-\u03bb1-borane
+        radical has a B-C stretching vibration corresponding to 494 cm<sup>-1</sup>,
+        a Wiberg bond order of 0.660 and Wiberg bond index totals of 3.51 for carbon
+        and 3.28 for boron. These can all be reasonably interpreted as a one-electron
+        &#8220;half&#8221; bond between C and B. With a computed bond length of 1.737\u00c5,
+        it represents the shortest &#8220;one electron&#8221; bond thus far identified,
+        and hence extends the length range of such bonds to around 1.16\u00c5.</p>\n<hr
+        />\n<p><b>Postscript 1</b><br />\nI also looked at the radical anion of H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        which is isoelectronic to methyl-\u03bb1-borane, revealing r<sub>B-B</sub>
+        2.124\u00c5 and has a classic &#8220;ethane&#8221; D<sub>3d</sub> like structure.
+        The electron density difference map between H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        and the neutral H<sub>3</sub>B-BH<sub>3</sub> is shown below, revealing in
+        a considerable reorganisation of the electron density, only one aspect being
+        the B-B region and different from the reorganisation of the radical cation
+        of ethane itself. This reveals that simply talking about a two-atom region
+        for this sort of system is very simplistic and misleading. The Wiberg B-B
+        bond index is 0.383 and the B-B stretching vibration is 384 cm<sup>-1</sup>.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27975\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3-neutral.png\"
+        alt=\"\" width=\"500\" /></p>\n<p>The electron density Laplacian of H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        contoured for a -ve value of -0.04 au, again implying a covalent B-B bond.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27973\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3_lap.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p><b>Postscript 2</b></p>\n<p>Here I add hexamethylethane
+        radical cation to the list. Firstly the density difference map. Note the longer
+        C-C bond (2.31\u00c5) than for ethane radical cation (1.933\u00c5). In this
+        sense, the hexamethyl radical cation has a weaker C-C bond than does the unsubstituted
+        version (191 cm<sup>-1</sup>) vs 477 cm<sup>-1</sup>)</p>\n<p><img decoding=\"async\"
+        class=\"aligncenter size-full wp-image-27993\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den_sub.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>The Laplacian shows no -ve value in the
+        C-C region (isosurface value -0.01), again placing it in the weak bond category.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27994\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_lap_0.01.png\"
+        alt=\"\" width=\"500\" /></p>\n<p>Finally some NCI plots. Here the density
+        cut-off threshold is crucial. Typically a second period element covalent density
+        is taken as 0.05 au, and this is removed from the NCI analysis. The feature
+        seen along the C-C bond at this level is typical of weak covalent interactions
+        however.</p>\n<p><img decoding=\"async\" class=\"aligncenter size-full wp-image-27996\"
+        src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.05.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>Reducing the density to 0.023 (typical of
+        density in which one atom is of the third period, ie Si) removes the central
+        C-C feature, leaving only NCI effects between the hydrogen atoms of the methyl
+        groups. These in fact form a continuous weakly stabilizing surface between
+        the two halves.</p>\n<p><img decoding=\"async\" class=\"aligncenter size-full
+        wp-image-28019\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.023.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>So with hexamethylethane radical cation,
+        we get messages that the interaction between the two carbons is both weak,
+        but also not a non-covalent interaction. So this is a very weak covalent bond
+        perhaps, but in this strange region, it is difficult to ascribe a single description
+        to it.</p>\n<h2>References</h2>\n    <ol class=\"kcite-bibliography csl-bib-body\"><li
+        id=\"ITEM-27944-0\"><a href=\"https://doi.org/\">https://doi.org/</a>\n\n</li>\n<li
+        id=\"ITEM-27944-1\">H. Rzepa, \"A one-electron bond in methyl-\u03bb1-borane.\",
+        2024. <a href=\"https://doi.org/10.14469/hpc/14662\">https://doi.org/10.14469/hpc/14662</a>\n\n</li>\n</ol>\n\n</div>
+        <!-- kcite-section 27944 -->","doi":"https://doi.org/10.59350/sjrdz-3cm71","funding_references":null,"guid":"https://www.ch.ic.ac.uk/rzepa/blog/?p=27944","id":"51ad634e-3e89-4367-a419-7732c93291c5","image":"","indexed":true,"indexed_at":1772625141,"language":"en","parent_doi":null,"published_at":1728487163,"reference":[{"id":"https://doi.org/","unstructured":"https://doi.org/\n"},{"id":"https://doi.org/10.14469/hpc/14662","unstructured":"H.
+        Rzepa, \"A one-electron bond in methyl-\u03bb1-borane.\", 2024. https://doi.org/10.14469/hpc/14662\n"}],"registered_at":0,"relationships":[],"rid":"nz4pe-q7x23","summary":"In
+        exploring one-electron carbon-carbon bonds, I had noted previously[1] that
+        both hexafluoroethane and ethane itself could each lose an electron to produce
+        such species. A discussion developed in which a molecule isoelectronic with
+        ethane radical cation, namely the methyl-\u03bb1-borane radical (H\n<sub>\n
+        3\n</sub>\nB-CH\n<sub>\n 3\n</sub>\n) was proposed by Jacob.","tags":["Interesting
+        Chemistry"],"title":"A one-electron bond in methyl-\u03bb1-borane.","updated_at":1772618124,"url":"https://www.ch.ic.ac.uk/rzepa/blog/?p=27944","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 04 Mar 2026 12:06:26 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+version: 1
