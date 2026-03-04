@@ -149,7 +149,7 @@ class Metadata:
         # options needed for InvenioRDM registration
         self.host = kwargs.get("host", None)
         self.token = kwargs.get("token", None)
-        self.legacy_key = kwargs.get("legacy_key", None)
+        self.legacy_conn = kwargs.get("legacy_conn", None)
 
         # Catch errors in the reader, then validate against JSON schema for Commonmeta
         self.errors = meta.get("errors", None) or json_schema_errors(
@@ -343,13 +343,13 @@ class Metadata:
                 test_mode=self.test_mode,
                 host=self.host,
                 token=self.token,
-                legacy_key=self.legacy_key,
+                legacy_conn=self.legacy_conn,
             )
             return response
         elif to == "datacite":
             raise ValueError("Datacite not yet supported")
         elif to == "inveniordm":
-            kwargs = {"legacy_key": self.legacy_key}
+            kwargs = {"legacy_conn": self.legacy_conn}
             response = push_inveniordm(self, host=self.host, token=self.token, **kwargs)
             return response
         else:
@@ -390,7 +390,7 @@ class MetadataList:
         # options needed for InvenioRDM registration
         self.host = kwargs.get("host", None)
         self.token = kwargs.get("token", None)
-        self.legacy_key = kwargs.get("legacy_key", None)
+        self.legacy_conn = kwargs.get("legacy_conn", None)
 
         self.items = self.read_metadata_list(wrap(meta.get("items", None)), **kwargs)
         self.errors = [i.errors for i in self.items if i.errors is not None]
@@ -508,13 +508,13 @@ class MetadataList:
                 test_mode=self.test_mode,
                 host=self.host,
                 token=self.token,
-                legacy_key=self.legacy_key,
+                legacy_conn=self.legacy_conn,
             )
             return response
         elif to == "datacite":
             raise ValueError("Datacite not yet supported for metadata lists")
         elif to == "inveniordm":
-            kwargs = {"legacy_key": self.legacy_key}
+            kwargs = {"legacy_conn": self.legacy_conn}
             response = push_inveniordm_list(
                 self, host=self.host, token=self.token, **kwargs
             )

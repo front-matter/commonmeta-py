@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 import logging
-from time import time
 from typing import TYPE_CHECKING
 
 import orjson as json
-import requests
+import psycopg
 from requests.exceptions import RequestException
 
 from ..api_utils import http
@@ -721,9 +720,9 @@ def update_external_services(
     """Update external services with changes in InvenioRDM"""
 
     # optionally update rogue-scholar legacy record
-    if host == "rogue-scholar.org" and kwargs.get("legacy_key", None) is not None:
+    if host == "rogue-scholar.org" and kwargs.get("legacy_conn", None) is not None:
         record = update_legacy_record(
-            record, legacy_key=kwargs.get("legacy_key", None), field="rid"
+            record, legacy_conn=kwargs.get("legacy_conn", None), field="rid"
         )
 
     return record
@@ -973,57 +972,56 @@ def add_record_to_community(
 
 
 def update_legacy_record(
-    record, legacy_key: str | None, field: str | None = None
+    record, legacy_conn: str | None, field: str | None = None
 ) -> dict:
     """Update corresponding record in Rogue Scholar legacy database."""
-
-    legacy_host = "bosczcmeodcrajtcaddf.supabase.co"
     try:
-        if not legacy_key:
-            raise ValueError("no legacy key provided")
+        if not legacy_conn:
+            raise ValueError("no legacy connection provided")
         if not record.get("uuid", None):
             raise ValueError("no UUID provided")
 
-        now = f"{int(time())}"
         if field == "rid" and record.get("id", None) is not None:
-            output = {
-                "rid": record.get("id"),
-                "doi": record.get("doi", None),
-                "indexed_at": now,
-                "indexed": "true",
-                "archived": "true",
-                "registered": "false",
-            }
+            sql = (
+                "UPDATE posts SET "
+                "rid = %s, "
+                "doi = %s, "
+                "indexed_at = NOW(), "
+                "indexed = %s, "
+                "archived = %s, "
+                "registered = %s "
+                "WHERE id = %s"
+            )
+            params = (
+                record.get("id"),
+                record.get("doi", None),
+                "true",
+                "true",
+                "false",
+                record["uuid"],
+            )
         elif record.get("doi", None) is not None:
-            output = {
-                "registered": "true",
-            }
-            # output = {
-            #     "doi": record.get("doi"),
-            #     "indexed_at": now,
-            #     "indexed": "true",
-            #     "archived": "true",
-            #     "registered": "false",
-            # }
+            sql = "UPDATE posts SET registered = %s WHERE id = %s"
+            params = (
+                "true",
+                record["uuid"],
+            )
         else:
-            print(f"nothing to update for id {record.get('uuid')}")
+            log.info("nothing to update for id %s", record.get("uuid"))
             return record  # nothing to update
 
-        request_url = f"https://{legacy_host}/rest/v1/posts?id=eq.{record['uuid']}"
-        headers = {
-            "Content-Type": "application/json",
-            "apikey": legacy_key,
-            "Authorization": f"Bearer {legacy_key}",
-            "Prefer": "return=minimal",
-        }
-        response = requests.patch(request_url, json=output, headers=headers, timeout=30)
-        if response.status_code != 204:
-            raise Exception(f"Unexpected status code: {response.status_code}")
+        with psycopg.connect(legacy_conn, connect_timeout=10) as conn:
+            with conn.cursor() as cur:
+                cur.execute(sql, params)
+                if cur.rowcount != 1:
+                    raise ValueError(
+                        f"Legacy record not updated (rowcount={cur.rowcount})"
+                    )
 
         record["status"] = "updated_legacy"
         return record
 
-    except RequestException as e:
+    except Exception as e:
         log.error(f"Error updating legacy record: {str(e)}", exc_info=True)
         record["status"] = "error_update_legacy_record"
         return record

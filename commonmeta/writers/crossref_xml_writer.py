@@ -859,7 +859,7 @@ def push_crossref_xml(
     test_mode: bool,
     host: str,
     token: str,
-    legacy_key: str,
+    legacy_conn: str | None,
 ) -> str:
     """Push crossref_xml to Crossref API, returns the API response."""
 
@@ -909,12 +909,12 @@ def push_crossref_xml(
         if r["status"] != "error":
             record["status"] = "updated"
 
-    # update rogue-scholar legacy record if legacy_key is provided
-    if is_rogue_scholar_doi(metadata.id, ra="crossref") and legacy_key is not None:
+    # update rogue-scholar legacy record if legacy_conn is provided
+    if is_rogue_scholar_doi(metadata.id, ra="crossref") and legacy_conn is not None:
         uuid = dig(metadata, "identifiers.0.identifier")
         if uuid:
             record["uuid"] = uuid
-            record = update_legacy_record(record, legacy_key=legacy_key, field="doi")
+            record = update_legacy_record(record, legacy_conn=legacy_conn, field="doi")
 
     # Return JSON response
     return json.dumps(record, option=json.OPT_INDENT_2).decode("utf-8")
@@ -927,7 +927,7 @@ def push_crossref_xml_list(
     test_mode: bool,
     host: str,
     token: str,
-    legacy_key: str,
+    legacy_conn: str | None,
 ) -> bytes | None:
     """Push crossref_xml list to Crossref API, returns the API response."""
 
@@ -979,13 +979,13 @@ def push_crossref_xml_list(
             if r["status"] != "error":
                 record["status"] = "updated"
 
-        # update rogue-scholar legacy record if legacy_key is provided
-        if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_key is not None:
+        # update rogue-scholar legacy record if legacy_conn is provided
+        if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_conn is not None:
             uuid = dig(item, "identifiers.0.identifier")
             if uuid:
                 record["uuid"] = uuid
                 record = update_legacy_record(
-                    record, legacy_key=legacy_key, field="doi"
+                    record, legacy_conn=legacy_conn, field="doi"
                 )
         items.append(record)
 
