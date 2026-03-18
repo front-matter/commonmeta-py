@@ -14,90 +14,327 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.7554/elife.55167.sa2
   response:
     body:
-      string: '{"id":"https://openalex.org/W3027264027","doi":"https://doi.org/10.7554/elife.55167.sa2","title":"Author
-        response: SpikeForest, reproducible web-facing ground-truth validation of
-        automated neural spike sorters","display_name":"Author response: SpikeForest,
-        reproducible web-facing ground-truth validation of automated neural spike
-        sorters","publication_year":2020,"publication_date":"2020-04-29","ids":{"openalex":"https://openalex.org/W3027264027","doi":"https://doi.org/10.7554/elife.55167.sa2","mag":"3027264027"},"language":"en","primary_location":{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"},"type":"peer-review","indexed_in":["crossref"],"open_access":{"is_oa":true,"oa_status":"gold","oa_url":"https://doi.org/10.7554/elife.55167.sa2","any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5042248436","display_name":"Jeremy
-        F. Magland","orcid":"https://orcid.org/0000-0002-5286-4375"},"institutions":[{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
-        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]},{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
-        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Jeremy
-        Magland","raw_affiliation_strings":["Center for Computational Mathematics,
-        Flatiron Institute"],"affiliations":[{"raw_affiliation_string":"Center for
-        Computational Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5021902937","display_name":"James
-        J. Jun","orcid":null},"institutions":[{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
-        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]},{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
-        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"James
-        J Jun","raw_affiliation_strings":["Center for Computational Mathematics, Flatiron
-        Institute"],"affiliations":[{"raw_affiliation_string":"Center for Computational
-        Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5042446862","display_name":"Elizabeth
-        Lovero","orcid":"https://orcid.org/0000-0002-2642-603X"},"institutions":[{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
-        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]},{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
-        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Elizabeth
-        Lovero","raw_affiliation_strings":["Scientific Computing Core, Flatiron Institute"],"affiliations":[{"raw_affiliation_string":"Scientific
-        Computing Core, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5069887346","display_name":"Alexander
-        Morley","orcid":"https://orcid.org/0000-0002-4997-4063"},"institutions":[{"id":"https://openalex.org/I4210108304","display_name":"MRC
-        Brain Network Dynamics Unit","ror":"https://ror.org/01tfjyv98","country_code":"GB","type":"facility","lineage":["https://openalex.org/I40120149","https://openalex.org/I4210087105","https://openalex.org/I4210108304","https://openalex.org/I90344618"]},{"id":"https://openalex.org/I90344618","display_name":"Medical
-        Research Council","ror":"https://ror.org/03x94j517","country_code":"GB","type":"government","lineage":["https://openalex.org/I4210087105","https://openalex.org/I90344618"]}],"countries":["GB"],"is_corresponding":false,"raw_author_name":"Alexander
-        J Morley","raw_affiliation_strings":["Medical Research Council Brain Network
-        Dynamics Unit, University of Oxford"],"affiliations":[{"raw_affiliation_string":"Medical
-        Research Council Brain Network Dynamics Unit, University of Oxford","institution_ids":["https://openalex.org/I4210108304","https://openalex.org/I90344618"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5080697070","display_name":"Cole
-        Hurwitz","orcid":"https://orcid.org/0000-0002-2023-1653"},"institutions":[{"id":"https://openalex.org/I98677209","display_name":"University
-        of Edinburgh","ror":"https://ror.org/01nrxwf90","country_code":"GB","type":"education","lineage":["https://openalex.org/I98677209"]}],"countries":["GB"],"is_corresponding":false,"raw_author_name":"Cole
-        Lincoln Hurwitz","raw_affiliation_strings":["Institute for Adaptive and Neural
-        Computation Informatics, University of Edinburgh"],"affiliations":[{"raw_affiliation_string":"Institute
-        for Adaptive and Neural Computation Informatics, University of Edinburgh","institution_ids":["https://openalex.org/I98677209"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5022611002","display_name":"Alessio
-        Paolo Buccino","orcid":"https://orcid.org/0000-0003-3661-527X"},"institutions":[{"id":"https://openalex.org/I184942183","display_name":"University
-        of Oslo","ror":"https://ror.org/01xtthb56","country_code":"NO","type":"education","lineage":["https://openalex.org/I184942183"]}],"countries":["NO"],"is_corresponding":false,"raw_author_name":"Alessio
-        Paolo Buccino","raw_affiliation_strings":["Centre for IntegrativeNeuroplasticity
-        (CINPLA), University of Oslo"],"affiliations":[{"raw_affiliation_string":"Centre
-        for IntegrativeNeuroplasticity (CINPLA), University of Oslo","institution_ids":["https://openalex.org/I184942183"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5062048690","display_name":"Samuel
-        Garcia","orcid":"https://orcid.org/0000-0001-6389-9779"},"institutions":[{"id":"https://openalex.org/I4210095118","display_name":"Centre
-        de Recherche en Neurosciences de Lyon","ror":"https://ror.org/00pdd0432","country_code":"FR","type":"facility","lineage":["https://openalex.org/I100532134","https://openalex.org/I1294671590","https://openalex.org/I1294671590","https://openalex.org/I154526488","https://openalex.org/I203339264","https://openalex.org/I4210095118","https://openalex.org/I4210096427","https://openalex.org/I4412460541"]},{"id":"https://openalex.org/I100532134","display_name":"Universit\u00e9
-        Claude Bernard Lyon 1","ror":"https://ror.org/029brtt94","country_code":"FR","type":"education","lineage":["https://openalex.org/I100532134","https://openalex.org/I203339264"]}],"countries":["FR"],"is_corresponding":false,"raw_author_name":"Samuel
-        Garcia","raw_affiliation_strings":["Centre de Recherche en Neuroscience de
-        Lyon, Universit\u00e9 de Lyon"],"affiliations":[{"raw_affiliation_string":"Centre
-        de Recherche en Neuroscience de Lyon, Universit\u00e9 de Lyon","institution_ids":["https://openalex.org/I100532134","https://openalex.org/I4210095118"]}]},{"author_position":"last","author":{"id":"https://openalex.org/A5111977840","display_name":"Alex
-        H. Barnett","orcid":null},"institutions":[{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
-        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]},{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
-        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Alex
-        H Barnett","raw_affiliation_strings":["Center for Computational Mathematics,
-        Flatiron Institute"],"affiliations":[{"raw_affiliation_string":"Center for
-        Computational Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]}],"institutions":[],"countries_distinct_count":4,"institutions_distinct_count":8,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":1,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10581","display_name":"Neural
-        dynamics and brain function","score":0.995199978351593,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
-        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},"topics":[{"id":"https://openalex.org/T10581","display_name":"Neural
-        dynamics and brain function","score":0.995199978351593,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
-        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},{"id":"https://openalex.org/T11601","display_name":"Neuroscience
-        and Neural Engineering","score":0.9835000038146973,"subfield":{"id":"https://openalex.org/subfields/2804","display_name":"Cellular
-        and Molecular Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},{"id":"https://openalex.org/T10429","display_name":"EEG and Brain-Computer
-        Interfaces","score":0.9761999845504761,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
-        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/spike-sorting","display_name":"Spike
-        sorting","score":0.9409171342849731},{"id":"https://openalex.org/keywords/computer-science","display_name":"Computer
-        science","score":0.7431434392929077},{"id":"https://openalex.org/keywords/spike","display_name":"Spike
-        (software development)","score":0.7124596238136292},{"id":"https://openalex.org/keywords/ground-truth","display_name":"Ground
-        truth","score":0.6548522710800171},{"id":"https://openalex.org/keywords/python","display_name":"Python
-        (programming language)","score":0.5672343969345093},{"id":"https://openalex.org/keywords/suite","display_name":"Suite","score":0.5200164318084717},{"id":"https://openalex.org/keywords/artificial-intelligence","display_name":"Artificial
-        intelligence","score":0.4848952889442444},{"id":"https://openalex.org/keywords/sorting","display_name":"Sorting","score":0.453848272562027},{"id":"https://openalex.org/keywords/software","display_name":"Software","score":0.4444847106933594},{"id":"https://openalex.org/keywords/pattern-recognition","display_name":"Pattern
-        recognition (psychology)","score":0.383956640958786},{"id":"https://openalex.org/keywords/data-mining","display_name":"Data
-        mining","score":0.37241071462631226},{"id":"https://openalex.org/keywords/algorithm","display_name":"Algorithm","score":0.11071869730949402}],"concepts":[{"id":"https://openalex.org/C2777613131","wikidata":"https://www.wikidata.org/wiki/Q2003571","display_name":"Spike
-        sorting","level":3,"score":0.9409171342849731},{"id":"https://openalex.org/C41008148","wikidata":"https://www.wikidata.org/wiki/Q21198","display_name":"Computer
-        science","level":0,"score":0.7431434392929077},{"id":"https://openalex.org/C2781390188","wikidata":"https://www.wikidata.org/wiki/Q25203449","display_name":"Spike
-        (software development)","level":2,"score":0.7124596238136292},{"id":"https://openalex.org/C146849305","wikidata":"https://www.wikidata.org/wiki/Q370766","display_name":"Ground
-        truth","level":2,"score":0.6548522710800171},{"id":"https://openalex.org/C519991488","wikidata":"https://www.wikidata.org/wiki/Q28865","display_name":"Python
-        (programming language)","level":2,"score":0.5672343969345093},{"id":"https://openalex.org/C79581498","wikidata":"https://www.wikidata.org/wiki/Q1367530","display_name":"Suite","level":2,"score":0.5200164318084717},{"id":"https://openalex.org/C154945302","wikidata":"https://www.wikidata.org/wiki/Q11660","display_name":"Artificial
-        intelligence","level":1,"score":0.4848952889442444},{"id":"https://openalex.org/C111696304","wikidata":"https://www.wikidata.org/wiki/Q2303697","display_name":"Sorting","level":2,"score":0.453848272562027},{"id":"https://openalex.org/C2777904410","wikidata":"https://www.wikidata.org/wiki/Q7397","display_name":"Software","level":2,"score":0.4444847106933594},{"id":"https://openalex.org/C153180895","wikidata":"https://www.wikidata.org/wiki/Q7148389","display_name":"Pattern
-        recognition (psychology)","level":2,"score":0.383956640958786},{"id":"https://openalex.org/C124101348","wikidata":"https://www.wikidata.org/wiki/Q172491","display_name":"Data
-        mining","level":1,"score":0.37241071462631226},{"id":"https://openalex.org/C11413529","wikidata":"https://www.wikidata.org/wiki/Q8366","display_name":"Algorithm","level":1,"score":0.11071869730949402},{"id":"https://openalex.org/C111919701","wikidata":"https://www.wikidata.org/wiki/Q9135","display_name":"Operating
-        system","level":1,"score":0.0},{"id":"https://openalex.org/C95457728","wikidata":"https://www.wikidata.org/wiki/Q309","display_name":"History","level":0,"score":0.0},{"id":"https://openalex.org/C115903868","wikidata":"https://www.wikidata.org/wiki/Q80993","display_name":"Software
-        engineering","level":1,"score":0.0},{"id":"https://openalex.org/C199360897","wikidata":"https://www.wikidata.org/wiki/Q9143","display_name":"Programming
-        language","level":1,"score":0.0},{"id":"https://openalex.org/C166957645","wikidata":"https://www.wikidata.org/wiki/Q23498","display_name":"Archaeology","level":1,"score":0.0}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"}],"best_oa_location":{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"},"sustainable_development_goals":[{"score":0.6700000166893005,"id":"https://metadata.un.org/sdg/5","display_name":"Gender
-        equality"}],"grants":[],"awards":[],"funders":[],"has_content":{"pdf":false,"grobid_xml":false},"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W3178771700","https://openalex.org/W1968361507","https://openalex.org/W3136143059","https://openalex.org/W2037099207","https://openalex.org/W3035015922","https://openalex.org/W2124872530","https://openalex.org/W2990250786","https://openalex.org/W2366422659","https://openalex.org/W4377004198","https://openalex.org/W2092500599"],"abstract_inverted_index":{"Article":[0,18],"Figures":[1],"and":[2,9,19,60,115,133,151,160,168,215,261,301,484,497,516,559,601,646,661,683,720,868,874,947,953,965,1039,1092,1145,1179,1205,1213,1245,1255,1324,1340,1370,1397,1406,1412,1468,1504,1616,1619,1657,1669,1679,1698,1727,1778,1790,1818,1828,1839,1847,1863,1874,1877,1885,1888,1921,2037,2052,2068,2080,2092,2137,2172,2182,2201,2247,2267,2279,2309,2322,2416,2492,2526,2539,2677,2691,2758,2778,2892,2917,2932,2964,2969,2995,3042,3075,3129,3141,3257,3347,3443,3450,3465,3473,3535,3544,3637,3662,3721,3818,3838,3886,3919,3979,4000,4031,4042,4102,4108,4158,4189,4244,4339,4346,4357,4382,4409,4425,4430,4445],"data":[3,110,485,603,992,1036,2704,3560],"Abstract":[4,23],"Introduction":[5,171],"Results":[6,1548,4171],"Discussion":[7],"Materials":[8,2491,2690,4243],"methods":[10,811,2692],"Data":[11],"availability":[12],"References":[13],"Decision":[14],"letter":[15],"Author":[16],"response":[17,1497],"author":[20],"information":[21,2843],"Metrics":[22],"Spike":[24,393,3868],"sorting":[25,39,71,125,394,469,1000,1388,1446,1471,1489,1752,2135,2226,2245,2471,2537,2540,2645,3025,3375,3503,4223],"is":[26,44,57,185,198,395,470,668,673,755,806,834,845,857,866,911,1241,1319,1356,1398,1437,1462,1762,1783,2168,2440,2455,2555,2671,2695,2764,2911,2921,2925,3144,3284,3370,3422,3444,3466,3518,3547,3552,3582,3696,3699,3711,3745,3790,3944,4124,4136,4206,4306,4318,4332,4369,4419,4449,4470],"a":[27,86,130,136,163,345,449,506,609,678,743,775,859,1067,1086,1153,1166,1281,1502,1517,1522,1530,1544,1648,1718,1722,1768,2222,2241,2456,2473,2530,2585,2597,2622,2651,2666,2724,2751,2822,2888,2914,3007,3020,3046,3196,3417,3479,3594,3613,3618,3623,3639,3653,3708,3726,3799,3912,3934,3980,3993,3997,4013,4024,4114,4225,4278,4311,4389,4465,4471],"crucial":[28],"step":[29,399],"in":[30,129,147,268,348,448,481,487,663,908,1112,1293,1377,1441,1466,1495,1505,1581,1637,1692,1713,1756,1826,1909,1932,1977,2145,2221,2297,2477,2489,2569,2627,2665,2688,2782,2956,3058,3095,3163,3237,3249,3266,3291,3469,3564,3597,3676,3692,3752,3788,3878,3911,3974,3992,4027,4048,4061,4229,4241,4310,4460],"electrophysiological":[31,80,1157],"studies":[32,1699,3824,4131],"of":[33,68,78,120,158,166,176,187,213,220,257,308,367,371,405,475,508,693,702,712,721,737,774,777,863,904,973,986,1032,1047,1057,1070,1116,1156,1174,1188,1197,1199,1252,1261,1280,1304,1316,1326,1335,1372,1486,1520,1532,1630,1632,1642,1677,1750,1904,2125,2133,2179,2188,2215,2224,2244,2281,2316,2324,2360,2392,2458,2475,2508,2516,2551,2640,2647,2711,2717,2731,2754,2825,2879,2930,2945,2982,3056,3077,3228,3270,3278,3342,3352,3356,3365,3381,3406,3416,3439,3471,3482,3485,3525,3566,3605,3612,3620,3625,3642,3688,3732,3754,3771,3778,3785,3802,3830,3846,3915,3947,3969,4016,4058,4080,4145,4147,4161,4182,4209,4227,4260,4277,4327,4349,4375,4386,4414,4454,4468],"neuronal":[34],"activity.":[35],"While":[36,466,3333],"many":[37,418,527,654,1175,1278,1533,3037,4146],"spike":[38,70,124,149,468,595,656,741,752,850,999,1077,1177,1445,1470,1488,1537,1570,1644,1751,2107,2134,2225,2445,2858,2946,3230,3242,3644,4279,4403],"packages":[40],"are":[41,49,127,228,271,338,362,446,462,662,688,762,924,1102,1107,1265,1359,1415,1635,1694,1700,1737,2140,2192,2229,2263,2327,2482,2527,2542,2582,2625,2681,2804,3012,3212,3505,3987,4021,4098,4112,4234,4398,4412,4432],"available,":[42],"there":[43,667],"little":[45,669],"consensus":[46,670],"about":[47,671,3224],"which":[48,413,672,968,1525,1931,2562,2741,3018,3186,3952],"most":[50,122,189,3264,3454,3731,3753,3766,3855,4120,4325],"accurate":[51,3054,3265,3748],"under":[52,1940,4388],"different":[53],"experimental":[54,927,1295,1745],"conditions.":[55,1746,1943],"SpikeForest":[56,143,1136,1148,1151,1307,1354,1560,1693,1758,1793,1911,2217,2343,2519,2874,3427,3497,3627,3789,4051,4175,4282],"an":[58,74,140,155,396,443,1180,2379,2398,2465,2669,2697,2999,3610,3901,4217,4285],"open-source":[59],"reproducible":[61],"software":[62,1149,1447,1472,1523,1681,2430,3488],"suite":[63,1531],"that":[64,510,761,844,1170,1183,2674,2748,2834,3067,3109,3313,3372,3550,3559,3615,3697,3850,3984,4063,4093,4293,4395,4464],"benchmarks":[65,1129,1171],"the":[66,121,188,218,233,255,403,478,493,588,616,650,674,700,710,714,738,771,829,837,849,902,984,1030,1048,1061,1113,1140,1147,1164,1172,1189,1193,1200,1223,1227,1235,1242,1250,1301,1322,1327,1360,1365,1373,1378,1394,1401,1404,1407,1418,1423,1443,1508,1552,1559,1567,1667,1714,1734,1757,1765,1775,1781,1796,1801,1910,1941,2126,2131,2149,2153,2162,2169,2177,2204,2216,2252,2287,2306,2342,2361,2364,2390,2490,2505,2517,2534,2556,2605,2609,2614,2628,2632,2638,2644,2678,2689,2702,2706,2715,2760,2783,2795,2809,2851,2873,2899,2907,2918,2928,2933,2936,2940,2951,2979,3004,3078,3099,3103,3133,3138,3182,3190,3204,3225,3229,3234,3246,3263,3271,3337,3343,3357,3366,3379,3389,3398,3403,3412,3433,3440,3448,3483,3486,3496,3501,3511,3520,3526,3531,3540,3553,3567,3575,3584,3598,3603,3643,3677,3693,3713,3733,3755,3765,3779,3854,3879,3890,3916,3924,3945,3948,3985,4009,4017,4046,4049,4055,4077,4088,4091,4095,4106,4129,4134,4143,4156,4174,4179,4199,4207,4210,4242,4257,4275,4319,4335,4341,4350,4370,4373,4383,4402,4407,4450,4455],"performance":[67,696,1173,3668,3893],"automated":[69,141,148,500,503,655,740,1176],"algorithms":[72,504,1001,1490,1634,1753,2136,2350],"across":[73,724,2800,3507,4119],"extensive,":[75],"curated":[76],"database":[77,95,1155,1194],"ground-truth":[79,107,842,905,976,991,1218,1233,1269,1338,1689,2138,2160,2196,2374,2393,2535,2617,2831,2885,4344],"recordings,":[81,1198,1228,1336,2536],"displaying":[82],"results":[83,717,1049,1276,2246,2288,2339,2347,2503,2515,2558,2564,3187,3217,3694,3921,4047,4255],"interactively":[84,2637],"on":[85,135,254,312,425,587,691,699,1226,1400,1417,1539,2152,2203,2231,2254,2472,2529,2545,2613,2643,2662,2785,2791,2808,2817,2850,2992,3003,3027,3045,3165,3195,3233,3362,3530,3602,3923,3937,4008,4068,4224,4334,4401],"continuously-updating":[87],"website.":[88,2205,2875,3104],"With":[89],"contributions":[90],"from":[91,209,231,239,417,591,718,1163,1277,1343,1820,1849,1959,1996,2009,2021,2024,2341,2370,2428,2435,2705,2750,2872,2898,3411,3759,3826,3960,4173],"eleven":[92,1211],"laboratories,":[93],"our":[94,1097,1351,2142,3015,3068,3166,4281],"currently":[96,912,1754,1907,3424],"comprises":[97,1152,1926],"650":[98,3139],"recordings":[99,114,412,847,865,918,951,1158,1542,1686,1732,1936,2023,2128,2412,3140,3651],"(1.3":[100],"TB":[101],"total":[102,2986,3134],"size)":[103],"with":[104,202,251,472,523,583,841,1159,1420,1507,1551,1688,1739,1786,2049,2051,2234,2256,2376,2395,2413,2443,2590,2619,2721,2787,3169,3253,3652,3741,3823,3857],"around":[105],"35,000":[106],"units.":[108,1219,3332,3743],"These":[109,2502,4254],"include":[111,511,3909],"paired":[112,872,2022,2411,3288,3817,4089,4107],"intracellular/extracellular":[113],"state-of-the-art":[116,1206],"simulated":[117,950,2054,2441,2895,3449],"recordings.":[118,2154,2815,3289,3368,3452,3832,4164],"Ten":[119],"popular":[123,190,1569],"codes":[126,2227],"wrapped":[128],"Python":[131,1352,1546,1561,1769],"package":[132,1524,1562],"evaluated":[134],"compute":[137,3135,3167,3201],"cluster":[138,776,3016,3168],"using":[139,453,846,1792,2076,2088,2114,2484,2596,2683,3014,3626,3707,4054,4236],"pipeline.":[142,2219],"documents":[144],"community":[145,1128,2546],"progress":[146],"sorting,":[150],"guides":[152],"neuroscientists":[153,1440],"to":[154,200,216,274,343,369,401,579,750,756,764,807,835,926,996,1055,1075,1299,1320,1362,1385,1422,1438,1463,1482,1498,1528,1664,2239,2305,2352,2384,2403,2497,2584,2601,2673,2699,2812,2927,2950,2977,3023,3102,3157,3171,3320,3374,3495,3671,3739,3842,3889,3899,3908,3932,3954,4075,4083,4178,4249,4273,4288,4297,4441],"optimal":[156,1444],"choice":[157,676,1031],"sorter":[159,753,838,1078,1292,1782,2200,2567,2652,2890,3243,3614],"parameters":[161,1743,2541,3376,3504],"for":[162,192,267,495,619,677,769,852,983,1060,1126,1185,1231,1271,1290,1347,1451,1566,1671,1808,1830,2158,2198,2259,2330,2348,2565,2739,2746,2829,2833,2853,2883,2887,2906,2989,3001,3073,3082,3137,3203,3287,3328,3340,3437,3447,3513,3523,3539,3556,3587,3628,3633,3650,3702,3716,3722,3730,3793,4045,4128],"wide":[164,664],"range":[165],"probes":[167,303,337,876,3636],"brain":[169,681,1455],"regions.":[170],"Background":[172],"Direct":[173],"electrical":[174],"recording":[175,476,1283,2233,2310,2664,2938],"extracellular":[177,411,873,2415],"potentials":[178],"(Buzs\u00e1ki,":[179],"2004;":[180,319,380],"Seymour":[181],"et":[182,285,290,294,298,315,321,327,331,374,378,382,386,390,429,433,437,535,539,543,552,556,564,568,622,630,634,638,642,727,731,781,785,789,793,797,801,821,825,878,882,886,890,894,898,930,936,940,944,957,961,1006,1010,1014,1018,1022,1026,1083,1133,1512,1556,1574,1579,1585,1590,1595,1600,1605,1611,1622,1626,1660,1815,1824,1836,1844,1853,1860,1870,1882,1894,1898,2437,3570,3872,4364],"al.,":[183,286,291,295,299,316,322,328,332,375,379,383,387,391,430,434,438,536,540,544,553,557,565,569,623,631,635,639,643,728,732,782,786,790,794,798,802,822,826,879,883,887,891,895,899,931,937,941,945,958,962,1007,1011,1015,1019,1023,1027,1084,1134,1513,1557,1575,1580,1586,1591,1596,1601,1606,1612,1623,1627,1661,1816,1825,1837,1845,1854,1861,1871,1883,1895,1899,2438,3571,3873,4365],"2017)":[184,1662],"one":[186,853,1927,3364,3777],"modalities":[191],"studying":[193],"neural":[194],"activity":[195,219,404],"since":[196],"it":[197,3149,3492,3592,3681,3698,3763],"possible":[199,2805],"determine,":[201],"sub-millisecond":[203],"time":[204,2130,2988,3093,3136],"resolution,":[205],"individual":[206,221,406,2814,2854,2857],"firing":[207,778,922,1239,1341,2166,2320,3999,4019,4029,4157,4355,4417,4428,4447],"events":[208,779,923,4020],"hundreds":[210,1196],"(potentially":[211],"thousands)":[212],"cells,":[214],"track":[217],"neurons":[222,3986],"over":[223,2372,3117,3280,3461,3617],"hours":[224],"or":[225,238,324,408,456,548,695,704,706,816,854,1052,1106,1457,1744,1803,1928,1938,1962,1972,1999,2418,2469,2655,3060,3903,3941,3989,4003,4221,4299],"days.":[226],"Recordings":[227,1716,2262],"acquired":[229,1937],"either":[230,1103,2653,3939],"within":[232,410,1647,1717,1733,2939],"living":[234],"animal":[235],"(in":[236],"vivo)":[237],"extracted":[240],"tissue":[241,276],"(ex":[242],"vivo),":[243],"at":[244,2448,2524,2604,3267],"electrodes":[245,309,3829],"separated":[246,463],"by":[247,464,839,1143,1210,1473,2041,2100,2103,2290,2576,2728,2806,2848,3426],"typically":[248,305],"5\u201325":[249],"\u00b5m,":[250],"baseline":[252],"noise":[253,2442,4159],"order":[256,1298],"10":[258,2349,3142],"\u00b5V":[259],"RMS":[260],"10\u201330":[262],"kHz":[263],"sampling":[264],"rate.":[265,4213],"Probes":[266],"vivo":[269,352],"use\u2014which":[270],"usually":[272],"needle-like":[273],"minimize":[275],"damage":[277],"during":[278],"insertion\u2014include":[279],"microwire":[280],"monotrodes":[281],"(Hubel,":[282],"1957;":[283],"Nicolelis":[284],"1997),":[287],"tetrodes":[288,3661],"(Gray":[289],"1995;":[292],"Harris":[293,730],"2000;":[296,880],"Dhawale":[297],"2017),":[300,1576,1607,3874],"multi-shank":[302],"(with":[304,3031],"1\u20134":[306],"columns":[307,2359,2388],"per":[310,915,1268,2195,3179],"shank)":[311,1976],"silicon":[313,1832,1973],"(Csicsvari":[314],"2003;":[317,376],"Buzs\u00e1ki,":[318],"Jun":[320,1017,1823,1835],"2017b)":[323],"polymer":[325],"(Kuo":[326],"2013;":[329,541,955],"Chung":[330,800,824,1013,1869],"2019)":[333],"substrates.":[334],"Multiple":[335],"such":[336,530,812,864,990,2275,2313,3112,3126,3330],"often":[339,4133],"combined":[340,522],"into":[341,1696,1703,1764,1916,2265,2269,2293,2797],"arrays":[342,360],"cover":[344],"larger":[346],"volume":[347,486],"tandem.":[349],"For":[350,1795,2608,3085,3453,3665,4087,4105,4314,4405,4423,4443],"ex":[351],"use":[353,808,1059],"(e.g.,":[354,1725,1729,2837,2860,3307],"explanted":[355],"retina),":[356],"planar,":[357],"two-dimensional":[358],"multi-electrode":[359],"(MEAs)":[361],"common,":[363],"allowing":[364],"channel":[365,482,2066],"counts":[366,483],"up":[368,2821,3170],"tens":[370],"thousands":[372],"(Eversmann":[373],"Litke":[377],"Berdondini":[381],"2005;":[384,787],"Yuan":[385],"2016;":[388,640,799,888,938,942,1012],"Tsai":[389],"2017).":[392,803,827,3572],"essential":[397],"computational":[398],"needed":[400],"isolate":[402],"neurons,":[407],"units,":[409,977,2855],"combine":[414],"noisy":[415],"signals":[416],"neurons.":[419],"Historically,":[420],"this":[421,909,1317,1330,1499,2552,2997,3096,3159,3395,3421,3844,4069,4123,4461],"procedure":[422],"has":[423,1430,1479,3070,3458,3776],"relied":[424],"manual":[426,467,2123,4109],"steps":[427,509],"(Hazan":[428],"2006;":[431],"Prentice":[432],"2011;":[435,537,791,795],"Rossant":[436,935,1859],"2016):":[439],"putative":[440,4028],"waveforms":[441,2446,2859,2947],"crossing":[442],"amplitude":[444,2642],"threshold":[445,2624,2726,2763,2905,3235,4057],"visualized":[447],"low-dimensional":[450],"space":[451],"(either":[452],"peak":[454],"amplitudes":[455],"dimensionality":[457],"reduction":[458,4026],"techniques),":[459],"then":[460,1229,1266,1701,2156,2193,2635,2845],"clusters":[461],"eye.":[465],"manageable":[471],"small":[473,913,1068],"numbers":[474,1251,2178,3351],"channels,":[477],"rapid":[479],"growth":[480],"recent":[488,584,3123],"years":[489,574],"as":[490,492,531,813,1358,1484,2276,2314,2487,2533,2686,2780,2913,2998,3034,3053,3113,3127,3245,3622,3958,4239],"well":[491,3538,4198,4265],"requirement":[494],"reproducibility":[496,723,1325],"objectivity":[498],"demand":[499],"approaches.":[501],"Most":[502],"apply":[505],"sequence":[507],"filtering,":[512],"detection,":[513],"dimension":[514],"reduction,":[515],"clustering,":[517],"although":[518],"these":[519,581,1065,1099,1633,1643,2272,2478,3049,3086,4148,4230,4396],"may":[520,1390,2521,2634,2736,3192,3930,3972,3990,4151],"be":[521,1056,1391,2522,2737,2744,2846,3051,3116,3193,4154,4295],"(or":[524,4322],"replaced":[525],"by)":[526],"other":[528,1413,1797,3324,3358,3672,3678,3734,3750,3831,4010],"approaches":[529],"template":[532,1878],"matching":[533],"(Prentice":[534],"Pillow":[538],"Pachitariu":[542,939,1009,1843,1852,2436],"2016),":[545,1592,1602],"dictionary":[546],"learning":[547],"basis":[549,2532,3198],"pursuit":[550],"(Carlson":[551],"2014;":[554],"Ekanadham":[555],"2014),":[558],"independent":[560,1675],"component":[561],"analysis":[562,2218,2506,2520,3160,4258,4283],"(Takahashi":[563],"2002;":[566,783],"Buccino":[567,964],"2018).":[570,1028,1135],"The":[571,1434,1684,2283,2357,2386,2405,2423,2432,2451,2514,2548,2579,2708,2766,2903,3274,3783,4367,4457],"past":[572],"20":[573],"have":[575,658,978,993,1122,1138,1491,3391,3809,4094],"seen":[576],"major":[577],"efforts":[578,1121],"improve":[580],"algorithms,":[582,1798,2538,2983],"work":[585,747,1429],"focusing":[586],"challenges":[589],"arising":[590],"probe":[592,1974,2277],"drift":[593,2896],"(changing":[594],"waveform":[596],"shapes),":[597],"spatiotemporally":[598],"overlapping":[599],"spikes,":[600],"massive":[602],"volumes.":[604],"We":[605,1137,3065,3218,3814,3906,4071,4393],"will":[606,3089,4072],"not":[607,690,2328,3081,3090,3327,3392,3423,3548,3690,3810,3876,4073,4125,4152,4307,4439],"attempt":[608,4074],"full":[610],"review":[611],"here,":[612],"but":[613,697,2300,3326,3383,3420,3675,3724,3807,4435],"instead":[614],"refer":[615],"reader":[617,3101],"to,":[618],"example":[620,3611],"Fee":[621],"1996;":[624],"Lewicki,":[625],"1998;":[626],"Quiroga,":[627,954],"2012;":[628,632,932,1008],"Einevoll":[629],"Rey":[633],"2015;":[636,823,884,934,959,1131],"Lefebvre":[637],"Hennig":[641],"2019;":[644],"Carlson":[645],"Carin,":[647],"2019.":[648],"In":[649,1297,1382,1549,3397,4271],"last":[651,2452],"few":[652,1046,3208],"years,":[653],"sorters":[657,742,1225,1645,2151,2742,3111,3125,3143,3231,3586,3751,3834,4092],"been":[659,980,994,1123,3071],"released":[660],"use.":[665],"Yet,":[666,1111],"best":[675,1243,2170,3338,3585],"given":[679,3047],"probe,":[680,1454,1986],"region":[682],"experiment":[684],"type.":[685],"Often,":[686],"decisions":[687],"based":[689,2544,3232,4333],"evidence":[692],"accuracy":[694,754,1033,1262,1288,2189,2248,2366,2396,2611,2630,2675,2722,2762,2826,2880,3079,3215,3277,3301,3318,3460,3533,3729,3769,4345],"rather":[698,4192],"ease":[701],"installation":[703,3902],"usage,":[705],"historical":[707],"precedent.":[708],"Thus,":[709],"goals":[711],"extracting":[713],"highest":[715,3780,4096],"quality":[716,759,4267,4291,4320],"experiments":[719],"improving":[722],"laboratories":[725,1212,1527],"(Denker":[726],"2018;":[729,892,896,963,1624,1896],"2016)":[733],"make":[734,4084],"objective":[735,1519],"comparison":[736,1120,2255,2786,3216,3880],"available":[739,982,1346,4308],"pressing":[744],"concern.":[745],"Prior":[746],"One":[748,3686],"approach":[749,805],"assessing":[751],"devise":[757],"intrinsic":[758],"metrics":[760,1248,1264,2175,2191,2249,2775,4268,4292,4348,4469],"applied":[763,2351,3648],"each":[765,1232,1272,1291,1305,1631,1641,1672,2159,2199,2232,2566,2830,2884,2990,2993,3024,3260,4315],"sorted":[766,1236,2163,2756,4301,4351],"unit,":[767,1234,2161,2886,2955],"quantifying,":[768],"instance,":[770],"feature-space":[772],"isolation":[773],"(Pouzat":[780],"Schmitzer-Torbert":[784],"Hill":[788],"Neymotin":[792],"Barnett":[796],"Another":[804,3867],"biophysical":[809,1207],"validation":[810],"examining":[814],"cross-correlograms":[815],"discovered":[817],"place":[818,3490,3933],"fields":[819],"(Li":[820],"However,":[828,1029,3290,3591],"gold":[830],"standard,":[831],"when":[832,3161,4303],"possible,":[833],"evaluate":[836],"comparing":[840],"data,":[843],"where":[848,1780,2759,3207],"train":[851,1240,2167],"more":[855,975,1124,1215,1929,3122,3298],"units":[856,906,1279,2375,2394,2618,2720,2757,3299,3409,3767,3978,4302],"known":[858,920,2449],"priori.":[860],"Laboratory":[861],"acquisition":[862],"difficult":[867],"time-consuming,":[869],"demanding":[870],"simultaneous":[871,2414],"intra-/juxta-cellular":[875],"(Harris":[877],"Franke":[881],"Neto":[885],"Yger":[889,1025,1881],"Allen":[893],"Marques-Smith":[897],"2018a).":[900],"Since":[901,1640,2972,3036,3181],"number":[903,1069,2391,2716,2929,3380,3405,3968,4374,4385],"collected":[907],"way":[910],"(one":[914,1975],"recording),":[916],"hybrid":[917,1088],"(where":[919,4132],"synthetic":[921,3292,3399,3819,4130],"added":[925],"data)":[928],"(Marre":[929],"Steinmetz,":[933],"Wouters":[943],"2019),":[946,967,1514,1558,1597,1618],"biophysically":[948],"detailed":[949],"(Camu\u00f1as-Mesa":[952],"Hagen":[956],"Gratiy":[960],"Einevoll,":[966],"can":[969,2844,3115,3315,4065,4266,4294],"contain":[970,2410,2426],"1\u20132":[971],"orders":[972],"magnitude":[974],"also":[979,2301,2696,2768,2975,3467,3775,4032],"made":[981,1493],"purpose":[985],"method":[987],"validation.":[988],"Recently,":[989],"used":[995,1376,1800,2040,2745,3506,3563,3787,4296],"compare":[997,2978,4289],"new":[998,3800],"against":[1002],"preexisting":[1003],"ones":[1004],"(Einevoll":[1005],"2017;":[1016,1024],"2017a;":[1020],"Lee":[1021],"metrics,":[1034],"sorters,":[1035,1178,1364,1538,3325,3359,3674],"sets,":[1037,3252,3345,3442,3456,3680,3757],"parameters,":[1038],"code":[1040,1384,1405,1425],"versions":[1041,1668],"varies":[1042],"among":[1043,3262,3336,3432,3519,3583,3712],"studies,":[1044,1697,1930,3293,3509,4090,4110],"making":[1045],"reproducible,":[1050],"transparent,":[1051],"comprehensive":[1053],"enough":[1054],"long-term":[1058],"community.":[1062],"To":[1063,1096,1329],"alleviate":[1064],"issues,":[1066],"groups":[1071],"initiated":[1072],"web-facing":[1073],"projects":[1074,1101],"benchmark":[1076],"accuracy,":[1079,1410,2595,4415],"notably":[1080],"G-Node":[1081],"(Franke":[1082],"2012),":[1085],"phy":[1087],"study":[1089,1380,1704,1710,1719,1736,1905,1924,2294,2308,2355,2408,2453,2667,2810,2893,2901,3251,3272,3344,3441,3455,3527,3589,3679,3719,3756,3821,4338],"(Steinmetz,":[1090],"2015)":[1091],"spikesortingtest":[1093],"(Mitelut,":[1094],"2016).":[1095],"knowledge,":[1098],"unmaintained":[1100],"small-scale":[1104],"snapshots":[1105],"only":[1108,2616,3107,3151,3649,3791,3795,4082,4451],"partially":[1109],"realized.":[1110],"related":[1114],"area":[1115,2924],"calcium":[1117],"imaging,":[1118],"leaderboard-style":[1119],"useful":[1125,2738],"establishing":[1127],"(Freeman,":[1130],"Berens":[1132],"addressed":[1139],"above":[1141,1203,2378,2397,2621,2723,3300,3768],"needs":[1142],"creating":[1144],"deploying":[1146],"suite.":[1150],"large":[1154,2242,3703,4014],"ground":[1160,2235,2257,2420,2718,2788,2953,2959,3498,4304],"truth":[1161,2236,2258,2421,2719,2954,3499,4305],"(collected":[1162],"community),":[1165],"parallel":[1167,3164],"processing":[1168],"pipeline":[1169,1221,3069,3191],"interactive":[1181,1311],"website":[1182,2344,2767,3005],"allows":[1184,2302,2769],"in-depth":[1186],"exploration":[1187],"results.":[1190,1381],"At":[1191,3131],"present,":[1192,3132],"includes":[1195],"types":[1201],"specified":[1202],"(paired":[1204],"simulation),":[1208],"contributed":[1209],"containing":[1214,2032],"than":[1216,3121,3303,3323,3354,3749,3861,4117,4138,4193,4474],"30,000":[1217],"Our":[1220,1428],"runs":[1222],"various":[1224,1294,1310,1989,2429,4290],"finds,":[1230,2157],"unit":[1237,1270,2069,2081,2093,2164,2197,2641,2832,2920,3599,3998],"whose":[1238,2165],"match,":[1244,2171],"finally":[1246,2173],"computes":[1247,2174],"involving":[1249,2176],"correct,":[1253,2180],"missing,":[1254,2181],"false":[1256,2183,2962,2965,3407,3413,3949,3970,3982,3994,4035,4202,4211],"positive":[1257,2184,3408,3414],"spikes.":[1258,2185],"A":[1259,1313,1459,1771,2186,2943,3964,4005],"set":[1260,1334,1720,1925,2187,2383,2402,2454,2500,4079,4252],"evaluation":[1263,1476,2190,2774],"derived":[1267,2194],"sorter.":[1273,3773,4404],"By":[1274],"averaging":[1275,2371],"similar":[1282,1741,3670,4177],"type,":[1284],"we":[1285,1515,1652,1799,2984,3088,3106,3808],"provide":[1286,2996],"high-level":[1287],"summaries":[1289],"settings.":[1296,3064],"understand":[1300],"failure":[1302],"modes":[1303],"sorter,":[1306,4280,4316],"further":[1308],"provides":[1309,1563,4284],"plots.":[1312],"central":[1314,2549],"aim":[1315],"project":[1318,1510,1554],"maximize":[1321],"transparency":[1323],"analyses.":[1328],"end,":[1331],"all":[1332,1344,1363,1371,1709,2373,2648,3250,3329,3508],"data\u2014the":[1333],"their":[1337,1452,1540],"firings,":[1339],"outputs":[1342],"sorters\u2014are":[1345],"public":[1348],"download":[1349],"via":[1350,1393,1543,1767,1866,3006],"API.":[1353],"itself":[1355],"open-source,":[1357,1535],"wrappers":[1361,1565],"Docker":[1366,1654,1772],"(Merkel,":[1367,1655],"2014)":[1368,1656],"containers,":[1369],"parameter":[1374],"settings":[1375],"current":[1379,1467],"fact,":[1383],"rerun":[1386],"any":[1387,2663,2792,2818,3355,3772,4475],"task":[1389],"requested":[1392],"web":[1395,2284,2553],"interface,":[1396],"auto-generated":[1399],"fly.":[1402],"Both":[1403],"formulae":[1408,2573],"(for":[1409],"SNR,":[1411,2065,4353],"metrics)":[1414],"documented":[1416],"site,":[1419],"links":[1421],"source":[1424,3561],"repositories.":[1426],"Contribution":[1427],"three":[1431,1917,2773,4347],"main":[1432,2557,2908,4050],"objectives.":[1433],"primary":[1435],"goal":[1436,1461],"aid":[1439],"selecting":[1442],"(and":[1448,3794],"algorithm":[1449,1761,2991,3568,3737,4200],"parameters)":[1450],"particular":[1453,2889,2937],"region,":[1456],"application.":[1458],"second":[1460],"spur":[1464],"improvements":[1465,1494],"future":[1469,3913],"providing":[1474,1521],"standardized":[1475,1564],"criteria.":[1477],"This":[1478,2733,3608,3736],"already":[1480,1492],"begun":[1481],"happen":[1483],"developers":[1485],"some":[1487,3221,3961,4001],"direct":[1496],"project.":[1500],"As":[1501],"byproduct,":[1503],"collaboration":[1506],"SpikeInterface":[1509,1553],"(Buccino":[1511,1555],"achieve":[1516],"third":[1518],"enables":[1526],"run":[1529,2230,2507,2660,2970,3092,3162,3194,3796,4259],"popular,":[1534],"automatic":[1536],"own":[1541],"unified":[1545],"interface.":[1547],"conjunction":[1550],"following":[1568],"sorters:":[1571],"HerdingSpikes2":[1572,3630,3689],"(Hilgen":[1573],"IronClust":[1577,3430,3457,3487],"(Jun":[1578,1584],"preparation),":[1582],"JRCLUST":[1583],"2017a),":[1587],"KiloSort":[1588,3128,3283,3296,3346,4424],"(Pachitariu":[1589,1594],"KiloSort2":[1593,3279,3314,3334,3348,3401,4444],"Klusta":[1598,3114,3744],"(Rossant":[1599],"MountainSort4":[1603,3517,3551,3852],"(Chung":[1604,3569],"SpyKING":[1608,3258,3580,4103,4426],"CIRCUS":[1609,3259,3581],"(Yger":[1610],"2018),":[1613],"Tridesclous":[1614,3710],"(Garcia":[1615],"Pouzat,":[1617,1889],"WaveClus":[1620,3786,3803],"(Chaure":[1621],"Quiroga":[1625,1897,2101],"2004).":[1628],"Details":[1629],"provided":[1636],"Table":[1638,1706,1747,1749,1901,1903,2570],"1.":[1639],"operates":[1646],"unique":[1649],"computing":[1650],"environment,":[1651],"utilize":[1653],"Singularity":[1658],"(Kurtzer":[1659],"containers":[1663],"rigorously":[1665],"encapsulate":[1666],"prerequisites":[1670],"algorithm,":[1673,3865],"ensuring":[1674],"verifiability":[1676],"results,":[1678,3080,4081],"circumventing":[1680],"library":[1682],"conflicts.":[1683],"electrophysiology":[1685,4163],"(together":[1687],"information)":[1690],"registered":[1691,1763,2354],"organized":[1695],"grouped":[1702,2264],"sets.":[1705,2356,3273,3590],"1":[1707,1748,2207,2571],"details":[1708],"sets":[1711,1906,1914,2295,2409,3528,3720,3822],"presently":[1712],"system.":[1715],"share":[1721,2273,3040],"common":[1723],"origin":[1724],"laboratory)":[1726],"type":[1728,2278,3845],"paired),":[1730],"whereas":[1731,4204,4416],"same":[1735,1942,2127,3502],"associated":[1738],"very":[1740],"simulation":[1742,2031],"included":[1755,1908,2626,3815,3877],"analysis.":[1759,1912,3917],"Each":[1760,1923,2129,2220],"system":[1766,1777,3183],"wrapper.":[1770],"recipe":[1773],"defines":[1774],"operating":[1776],"environment":[1779],"run.":[1784],"Algorithms":[1785],"asterisks":[1787],"were":[1788,3840],"updated":[1789,2528],"optimized":[1791,3072],"data.":[1794,2461,3847],"default":[1802],"recommended":[1804],"parameters.":[1805],"Sorting":[1806],"algorithmLanguageNotesHerdingSpikes2*PythonDesigned":[1807],"large-scale,":[1809],"high-density":[1810,1831,3634],"multielectrode":[1811],"arrays.":[1812],"See":[1813,1822,1834,1842,1851,1858,1868,1880,1892,2251],"Hilgen":[1814],"2017.IronClust*MATLAB":[1817],"CUDADerived":[1819,1848],"JRCLUST.":[1821],"preparation.JRCLUSTMATLAB":[1827],"CUDADesigned":[1829],"probes.":[1833],"2017a.KiloSortMATLAB":[1838],"CUDATemplate":[1840],"matching.":[1841,1879],"2016.KiloSort2MATLAB":[1846],"KiloSort.":[1850],"2019.KlustaPythonExpectation-Maximization":[1855],"masked":[1856],"clustering.":[1857,1891],"2016.MountainSort4Python":[1862],"C++Density-based":[1864],"clustering":[1865,1876],"ISO-SPLIT.":[1867],"2017.SpyKING":[1872],"CIRCUS*Python":[1873],"MPIDensity-based":[1875],"2018.Tridesclous*Python":[1884],"OpenCLSee":[1886],"Garcia":[1887],"2019.WaveClusMATLABSuperparamagnetic":[1890],"Chaure":[1893],"2004.":[1900],"2":[1902,2333,2713,4184],"Study":[1913,1944],"fall":[1915],"categories:":[1918,2958],"paired,":[1919],"synthetic,":[1920],"curated.":[1922],"turn":[1933],"comprise":[1934],"multiple":[1935],"generated":[1939],"set#":[1945],"Rec.":[1946],"/":[1947,1950,1954,1956,1967,1969,1980,1982,1991,1993,2004,2006,2014,2016,2027,2029,2044,2046,2056,2058,2071,2073,2083,2085,2095,2097,2109,2111,2118,2120],"#":[1948],"Elec.":[1949],"Dur.Source":[1951],"lab.DescriptionPaired":[1952],"intra/extracellularPAIRED_BOYDEN19":[1953],"32ch":[1955,1992,2072],"6-10minE.":[1957],"BoydenSubselected":[1958],"64,":[1960],"128,":[1961],"256-ch.":[1963],"probes,":[1964,2001],"mouse":[1965,2002,2012],"cortexPAIRED_CRCNS_HC193":[1966],"4-6ch":[1968],"6-12minG.":[1970],"BuzsakiTetrodes":[1971],"rat":[1978],"hippocampusPAIRED_ENGLISH29":[1979],"4-32ch":[1981],"1-36minD.":[1983],"EnglishHybrid":[1984],"juxtacellular-Si":[1985],"behaving":[1987],"mouse,":[1988],"regionsPAIRED_KAMPFF15":[1990],"9-20minA.":[1994],"KampffSubselected":[1995],"374,":[1997],"127,":[1998],"32-ch.":[2000],"cortexPAIRED_MEA64C_YGER18":[2003],"64ch":[2005],"5minO.":[2007],"MarreSubselected":[2008],"252-ch.":[2010],"MEA,":[2011],"retinaPAIRED_MONOTRODE100":[2013],"1ch":[2015,2096],"5-20minBoyden,":[2017],"Kampff,":[2018],"Marre,":[2019],"BuzsakiSubselected":[2020],"four":[2025,2957],"labsSimulationSYNTH_BIONET36":[2026],"60ch":[2028],"15minAIBSBioNet":[2030],"no":[2033],"drift,":[2034,2036],"monotonic":[2035],"random":[2038],"jumps;":[2039],"JRCLUST,":[2042,3464,3836],"IronClustSYNTH_JANELIA60":[2043],"4-64ch":[2045],"5-20minM.":[2047],"PachitariuDistributed":[2048],"KiloSort2,":[2050,3255,4100],"without":[2053,3706],"driftSYNTH_MAGLAND80":[2055],"8ch":[2057],"10minFlatiron":[2059],"Inst.Synthetic":[2060],"waveforms,":[2061,2318],"Gaussian":[2062],"noise,":[2063],"varying":[2064,2078,2090],"count":[2067,3600],"countSYNTH_MEAREC_NEURONEX60":[2070],"10minA.":[2074,2086],"BuccinoSimulated":[2075,2087],"MEAREC,":[2077,2089],"SNR":[2079,2091,2326,2377,2620,2828,2882,2904,3322,4056,4408,4431],"countSYNTH_MEAREC_TETRODE40":[2082],"4ch":[2084,2119],"countSYNTH_MONOTRODE111":[2094],"10minQ.":[2098],"QuirogaSimulated":[2099],"lab":[2102],"mixing":[2104],"averaged":[2105],"real":[2106],"waveformsSYNTH_VISAPY6":[2108],"30ch":[2110],"5minG.":[2112],"EinevollGenerated":[2113],"VISAPy":[2115],"simulatorHuman":[2116],"curatedMANUAL_FRANKLAB21":[2117],"10-40minL.":[2121],"FrankThree":[2122],"curations":[2124],"collection":[2132,2223,2457],"datasets":[2139,3542],"updated,":[2141],"pipeline,":[2143,3017],"depicted":[2144],"Figure":[2146,2206,2298,2332,2712,2838,2861,2865,3238,3308,3606,4037,4165,4183,4330],"1,":[2147],"reruns":[2148],"ten":[2150,3588],"It":[2155,3369,3546,3774],"displayed":[2202],"Download":[2208,2334,2867,4167],"asset":[2209,2211,2335,2337,2868,2870,4168,4170],"Open":[2210,2336,2869,4169],"Simplified":[2212],"flow":[2213],"diagram":[2214],"(top)":[2228],"(left":[2237],"side)":[2238,3311],"yield":[2240,2753],"matrix":[2243,2559],"(right).":[2250],"section":[2253,2693,2784],"mathematical":[2260],"notations.":[2261],"''studies'',":[2266],"those":[2268,3849],"''study":[2270],"sets'';":[2271],"features":[2274],"laboratory":[2280,3063,4312],"origin.":[2282],"interface":[2285,2513],"summarizes":[2286,2563],"table":[2289,2340,2362,2612,2710,2735,2909,3577,3601,3695,4172],"grouping":[2291],"them":[2292],"(as":[2296],"2),":[2299],"drilling":[2303],"down":[2304,3319],"single":[2307,3021,3241,3418,3828],"level.":[2311],"Aspects":[2312],"extraction":[2315],"mean":[2317,4354],"representative":[2319],"events,":[2321,2931],"computation":[2323,2987],"per-unit":[2325],"shown,":[2329],"simplicity.":[2331],"Main":[2338],"showing":[2345,4186],"aggregated":[2346,4040,4187],"13":[2353],"left":[2358,2840,3310,3576,4180],"show":[2363,2389,3312],"average":[2365,2580,2610,2629,3276,3435,3532],"(see":[2367,3428,3515],"(5))":[2368],"obtained":[2369,2434,2847],"adjustable":[2380,2399],"threshold,":[2381,2400],"here":[2382,2401],"8.":[2385],"right":[2387,2709,2863,3604],"0.8.":[2404],"first":[2406],"five":[2407],"juxta-":[2417],"intra-cellular":[2419],"acquisitions.":[2422],"next":[2424],"six":[2425,3269,3341,3524],"simulations":[2427],"packages.":[2431],"SYNTH_JANELIA,":[2433],"2019,":[2439],"realistic":[2444],"superimposed":[2447],"times.":[2450],"human-curated":[2459],"tetrode":[2460,4337],"An":[2462,3863,4214],"asterisk":[2463,2670,4215],"indicates":[2464,2935,4216],"incomplete":[2466,4218],"(timed":[2467,4219],"out)":[2468,4220],"failed":[2470,4222],"subset":[2474,2944,4226],"results;":[2476,4228],"cases,":[2479,4231],"missing":[2480,2679,2703,4232],"accuracies":[2481,2581,2646,3436,3858,4233],"imputed":[2483,2682,4235],"linear":[2485,2684,3663,4237,4466],"regression":[2486,2685,4238],"described":[2488,2687,2781,4240],"methods.":[2493,4245],"Empty":[2494,4246],"cells":[2495,4247],"correspond":[2496,4248],"excluded":[2498,3660,4250],"sorter/study":[2499,4251],"pairs.":[2501,4253],"reflect":[2504,4256],"March":[2509,4261],"23rd,":[2510,4262],"2020.":[2511,4263],"Web":[2512],"latest":[2518],"found":[2523,3764],"https://spikeforest.flatironinstitute.org":[2525],"regular":[2531],"adjusted":[2543],"input.":[2547],"element":[2550],"page":[2554],"(Figure":[2560],"2)":[2561],"listed":[2568],"(using":[2572],"defined":[2574],"later":[2575],"Equation":[2577],"5).":[2578],"mapped":[2583],"color":[2586,2934],"scale":[2587],"(heat":[2588],"map),":[2589],"darker":[2591],"blue":[2592],"indicating":[2593,4140],"higher":[2594,3275,3350,3860,4137],"nonlinear":[2598],"mapping":[2599],"designed":[2600],"highlight":[2602]},"counts_by_year":[{"year":2019,"cited_by_count":1}],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"}
-
-        '
+      string: !!binary |
+        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
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
@@ -108,7 +345,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 9a8ddf634ae8a56e-AMS
+      - 9de5378e79a4fbdc-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -116,29 +353,42 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 04 Dec 2025 19:57:24 GMT
+      - Wed, 18 Mar 2026 15:19:40 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
-      RateLimit-Limit:
-      - '5'
-      RateLimit-Remaining:
-      - '9'
-      RateLimit-Reset:
-      - '1'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=PrBbgEapMETOabYvPCudAIP1SHH49angZGgD6fZbyec%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1764878244"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=pMnFd%2FnHMcfpgCFUo56bJly9SED%2F3OjAN0TjQwQUSPg%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1773847180"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=PrBbgEapMETOabYvPCudAIP1SHH49angZGgD6fZbyec%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764878244"
+      - heroku-nel="https://nel.heroku.com/reports?s=pMnFd%2FnHMcfpgCFUo56bJly9SED%2F3OjAN0TjQwQUSPg%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1773847180"
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - accept-encoding
       Via:
       - 1.1 heroku-router
+      X-RateLimit-Cost-USD:
+      - '0.0001'
+      X-RateLimit-Credits-Used:
+      - '1'
+      X-RateLimit-Limit:
+      - '10000'
+      X-RateLimit-Limit-USD:
+      - '1'
+      X-RateLimit-Onetime-Remaining:
+      - '0'
+      X-RateLimit-Prepaid-Remaining-USD:
+      - '0'
+      X-RateLimit-Remaining:
+      - '9977'
+      X-RateLimit-Remaining-USD:
+      - '0.9977'
+      X-RateLimit-Reset:
+      - '31220'
       access-control-expose-headers:
-      - Cache-Control, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After
+      - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
+        X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
     status:
       code: 200
       message: OK

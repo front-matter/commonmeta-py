@@ -14,10 +14,12 @@ interactions:
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        APmc72o3AAAA
     headers:
       CF-RAY:
-      - 9a743bf8cc2a6622-AMS
+      - 9de534657a92e18e-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -25,11 +27,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:16:46 GMT
+      - Wed, 18 Mar 2026 15:17:31 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=hETS8M%2Fm3ollML3LuZFHl4IPK5uNOWS%2BCKlbMYIGPMwGZFO5KCIFe5mIYLbaESgWyVGgw4VWZhhv1vAk%2BGjkvbptTb%2BKvI3WEe6Y2wggCnKOUg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=fMuT4Rde5vVRzDESaeGoA1SEPpH6sZZY3f1T9wjKthY7X%2BgAu8G6NUlsOg2VNFGNX0qxUy764JoxwsidpQ%2BXJmoNDCvxPo0d1%2F5f7VCxVHizPA%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -63,27 +65,38 @@ interactions:
     uri: https://api.crossref.org/works/10.53731/avg2ykg-gdxppcd
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-        Matter"}],"indexed":{"date-parts":[[2025,11,27]],"date-time":"2025-11-27T13:39:42Z","timestamp":1764250782615,"version":"3.46.0"},"posted":{"date-parts":[[2023,1,25]]},"group-title":"Front
-        Matter","reference-count":2,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Science
-        blogs have been around for at least 20 years and have become an important
-        part of science communication. So are there any fundamental issues that need
-        fixing? Barriers to Entry Blogging platforms are mature at this point, and
-        the technology is not imposing barriers to entry for most people.<\/jats:p>","DOI":"10.53731\/avg2ykg-gdxppcd","type":"posted-content","created":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T10:16:36Z","timestamp":1674641796000},"source":"Crossref","is-referenced-by-count":0,"title":["Do
-        we need to fix science blogs?"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","unstructured":"Fenner,
-        M. (2009). Author Identifiers: Interview with Geoffrey Bilder. In <i>Front
-        Matter<\/i> (Version v1). Crossref.","DOI":"10.53731\/r294649-6f79289-8cw1h"},{"key":"ref2","doi-asserted-by":"publisher","unstructured":"Fenner,
-        M. (2007, August 3). Open access may become mandatory for NIH-funded research.
-        <i>Front Matter<\/i>.","DOI":"10.53731\/r294649-6f79289-8cw1q"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/need-to-fix-science-blogs\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2025,11,27]],"date-time":"2025-11-27T13:35:24Z","timestamp":1764250524000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/need-to-fix-science-blogs\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,1,25]]},"references-count":2,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/avg2ykg-gdxppcd","relation":{},"subject":[],"published":{"date-parts":[[2023,1,25]]},"subtype":"other"}}'
+      string: !!binary |
+        H4sIAAAAAAAA/9VX227bOBD9FYKvK8q6+I5iC7TZBQpsUaCXl439QEuUzFoiVZJyrAb5952hFMeJ
+        6+ZhL+0GCeDwMnNmeObM+JZax11r6ZLqHQ1oLazlpWCuawSs3WhzuroXxkqtYCMOozB62KHLWyqV
+        ddK1zh+4vqWK12jid6OVI2+5c8LQu3UA53JxEDleybkTrOHGgf/r6yRKpkESJPM1nPJbTnoTuMGi
+        hCXzj9FsmU6X4/hP8I27gL5u6DKezZJkOk6iOErGAX3AmYaTKIzpXUAbbd0Fr2kQB8lkvYZTpdFt
+        A35ddYY9oEYUwgiVCZbpVjm6TMBsu6mk3cL+2fFKZkJZ4ZMBOI37rvOzkFMWxSyZfIyipf99GvJ0
+        Np5G43mEP4A8A99CuZM32mtEkYuKd0wqlvMOfEYB/fT+D9jdOtfY5Wq0GmVGcCf3ItN1rZUNtSlX
+        owG8XY023Wo0DiNYEiWvMp0LSOePicjl9b8V0frBX65rLpUPbfh0jbtGW1tzs2MGABuZ9UQveGUF
+        gLVbbRxDE3BDmHsK4U2+gfM8g2TRF5+5s8vm1w+ZRB6RTaVLS7Z8Dx+FUIQD/VROCm0Id6QS3DqS
+        RKQT3FjCYWc4CoEJ+J/IugG3HFiHD0B0QexgGUNvlcw4wgzJBw22BXFAVLzYkQL8QIEC3IpIa1th
+        YRN8KiHAvzxIVb4kr7gxErJPnCa/KWc68goAl7BHmoo7gFlbb7cGDUHDDoxISxotlQs8YPBInMi2
+        SsPNDlwRpZ3HbdHM5sSD8B4w9hpqlTRCN5UIX6xGQ9Lg6a/evUHxicJJOkvj1Yjvy6TblazMD02T
+        5cinXrj6amfDk1J8PqDEM/V/kbBxBOQE4fkWYcfxbDHtCWt1azK8+hq5AmoBx6VlR9nI2aa7l44I
+        LfUUoVea3Ig+85AGSP7xFT0/XlJA1oAVeRiCX6QTFF/eOmCd15d371+/uXpUA9pkMu+Zj/XE4C9l
+        8ThesGQcTYbbkBukCCDzxwc6gwxC8WDBvYUsQQEEtOC1rDrUOKGUVzcrvrSIEdYKaSzmmBeFrCQf
+        OsAaa6oW9cZrYwppmpxqqIe9E2gT1mKsay0Zt1YY5zOFr3gU14C20F5MmyHPACf9pHZK3yjSJ/Gc
+        GSZZwNss2LSYLZL5gs2zm3jrhevoM/kvfH45SsuZLmgjoZR4dbpWSbXzmXkqaciEsMAGw2rfYMJc
+        rEZIcxA0pA5zmgFD2EAd5qmzGtEHXRtKw4mDW422rq7o5a4hcTkHq7xpqkFFhruslgpK1+fyKUre
+        yNDoshUAY6srbnoCDjAv1m1Y55dwgs54Av4kQJu8OEd64hpMPDrxg+EKYPMzePHIL19l8/OAPjxi
+        5rcwH/4f3MVpIQfB+JtYsS8J7JeX+tcU+9eFqTn2U/N8OZ4vk/Rsap4uJguYmdOhf2XawM0YVfq+
+        l91C55EQSIcf/zFRukNv7eZE+Pr56WTBDyXPzuvHdmJPZvJjkm9Pvgns/beApxGA/vfP/L2ZwsDA
+        6QaD0M8Hm0wXXqllfv/qYAyfNH/UFJKv/KZhqZvNxtgiH/UavfksYC68W/fp8P/44O+b0LPxYxJ7
+        5xpnO0jsX7RAqjfSDQAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1277'
+      - '1212'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:16:47 GMT
+      - Wed, 18 Mar 2026 15:17:31 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -101,10 +114,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

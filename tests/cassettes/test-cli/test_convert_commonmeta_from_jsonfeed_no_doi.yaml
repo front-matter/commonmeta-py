@@ -18,29 +18,20 @@ interactions:
 
         '
     headers:
-      content-encoding:
-      - gzip
-      content-type:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '27'
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:17:04 GMT
-      fly-request-id:
-      - 01KBDENYZ8SG2E463SCXF7F272-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '14'
-      ratelimit-reset:
-      - '3'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
-      - chunked
-      vary:
+      Date:
+      - Wed, 18 Mar 2026 15:17:45 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 404
-      message: ''
+      message: Not Found
 version: 1

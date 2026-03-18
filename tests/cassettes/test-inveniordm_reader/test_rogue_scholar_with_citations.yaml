@@ -14,177 +14,110 @@ interactions:
     uri: https://rogue-scholar.org/api/records/n5tg4-5h654
   response:
     body:
-      string: '{"id": "n5tg4-5h654", "created": "2025-03-26T06:47:04.567993+00:00",
-        "updated": "2025-10-22T08:13:35.372218+00:00", "links": {"self": "https://rogue-scholar.org/api/records/n5tg4-5h654",
-        "self_html": "https://rogue-scholar.org/records/n5tg4-5h654", "preview_html":
-        "https://rogue-scholar.org/records/n5tg4-5h654?preview=1", "doi": "https://doi.org/10.63485/mppz2-19243",
-        "self_doi": "https://doi.org/10.63485/mppz2-19243", "self_doi_html": "https://rogue-scholar.org/doi/10.63485/mppz2-19243",
-        "reserve_doi": "https://rogue-scholar.org/api/records/n5tg4-5h654/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/enjv5-xh191", "parent_html":
-        "https://rogue-scholar.org/records/enjv5-xh191", "parent_doi": "https://doi.org/10.63485/enjv5-xh191",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.63485/enjv5-xh191", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:n5tg4-5h654/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:n5tg4-5h654/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/n5tg4-5h654/files", "media_files":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/media-files", "archive":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/n5tg4-5h654/latest", "versions": "https://rogue-scholar.org/api/records/n5tg4-5h654/versions",
-        "draft": "https://rogue-scholar.org/api/records/n5tg4-5h654/draft", "access_links":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access/request", "access":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/access", "communities":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/n5tg4-5h654/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/n5tg4-5h654/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/n5tg4-5h654/requests"},
-        "revision_id": 27, "parent": {"id": "enjv5-xh191", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["ae846881-a440-41ae-9c19-da3ea2b0dd60", "e31421de-c2b6-4ed8-8105-f749e28dc0c0"],
-        "default": "ae846881-a440-41ae-9c19-da3ea2b0dd60", "entries": [{"id": "ae846881-a440-41ae-9c19-da3ea2b0dd60",
-        "created": "2025-03-17T15:09:11.805332+00:00", "updated": "2025-12-01T14:10:06.283071+00:00",
-        "links": {}, "revision_id": 261, "slug": "oan", "metadata": {"title": "Open
-        Access News", "description": "How the internet is transforming scholarly research
-        and publication", "type": {"id": "blog"}, "website": "https://legacy.earlham.edu/~peters/fos/fosblog.html"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:feed_url": "https://www.blogger.com/feeds/3536726/posts/default", "rs:prefix":
-        "10.63485", "rs:joined": "March 17, 2025", "rs:feed_format": "application/atom+xml",
-        "rs:generator": "Blogger", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Information Systems and Management"},
-        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "e31421de-c2b6-4ed8-8105-f749e28dc0c0", "created": "2025-02-11T21:59:21.242481+00:00",
-        "updated": "2025-06-30T16:00:23.605285+00:00", "links": {}, "revision_id":
-        6, "slug": "socialscience", "metadata": {"title": "Social science", "description":
-        "Social science subject area.", "type": {"id": "subject"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
-        {"doi": {"identifier": "10.63485/enjv5-xh191", "provider": "crossref", "client":
-        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
-        true, "is_draft": false, "pids": {"doi": {"identifier": "10.63485/mppz2-19243",
-        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:n5tg4-5h654",
-        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
-        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
-        "creators": [{"person_or_org": {"type": "personal", "name": "Suber, Peter",
-        "given_name": "Peter", "family_name": "Suber"}}], "title": "Carl Zimmer contrasts
-        Wiley and PLoS", "publisher": "Front Matter", "publication_date": "2007-05-24",
-        "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5", "subject":
-        "Social science", "scheme": "FOS"}], "dates": [{"date": "2007-05-24T16:09:00",
-        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
-        "sv": "Utf\u00e4rdad"}}}, {"date": "2007-05-24T16:45:23", "type": {"id": "updated",
-        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
-        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
-        "1bc27f6b-9a12-43f6-983d-ec790ca0a58c", "scheme": "uuid"}, {"identifier":
-        "tag:blogger.com,1999:blog-3536726.post-6528603867120185583", "scheme": "guid"},
-        {"identifier": "https://www.earlham.edu/~peters/fos/2007/05/carl-zimmer-contrasts-wiley-and-plos.html",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "Carl Zimmer, An Open Mouse, <em> The
-        Loom </em> , May 24, 2007.&nbsp; Excerpt: PS:&nbsp; The Batts/Wiley story
-        broke in late April when I was traveling.&nbsp; If I''d been at my desk, I''d
-        have covered it or&nbsp;at least I''d have tried.&nbsp; But because the comments
-        proliferated explosively, I wasn''t at my desk, and I had a full load of other
-        work, I decided that I had to let it go.&nbsp; I''m glad to catch up a bit
-        with this post."}, "custom_fields": {"journal:journal": {"title": "Open Access
-        News"}, "rs:content_html": "<p>Carl Zimmer, <a href=\"http://scienceblogs.com/loom/2007/05/24/an_open_mouse.php\">An
-        Open Mouse</a>, <em>The Loom</em>, May 24, 2007.&nbsp; Excerpt:</p> <blockquote>
-        <p>[This] is also a chance to add my two cents to a discussion that''s been
-        bubbling for a few weeks: the clash between bloggers and scientific journal
-        publishers. Last month Shelley Batts at <a href=\"http://scienceblogs.com/retrospectacle\">Retrospectacle</a>
-        wrote a post about a paper, and included a chart that appeared in it. She
-        promptly got a letter from Wiley, the journal''s publisher, <a href=\"http://scienceblogs.com/retrospectacle/2007/04/when_fair_use_isnt_fair_1.php\">menacing
-        her with legal action</a> unless she took the chart down. A <a href=\"http://scienceblogs.com/seed/2007/04/blogging_and_fair_use.php\">long
-        discussion then unfolded</a> about fair use, a concept so mystical that I
-        get a headache every time I try to figure out whether it applies to some text
-        or image I''d like to use in my own work. Once the controversy reached Boing-Boing
-        proportions, Wiley sent Batts a note telling her that <a href=\"http://scienceblogs.com/retrospectacle/2007/04/victory_a_happy_resolution.php\">it
-        was all a big misunderstanding</a> and that they \"would typically grant permission
-        on request in order to ensure that figures and extracts are properly credited.\"</p>
-        <p>For us science writers, there''s a huge irony to this episode. Scientific
-        journals like attention. The better-funded ones will go to great lengths to
-        get stories written about their papers. They offer us science writers elaborately
-        appointed press packages offering sneak peeks at papers coming out in the
-        near future. They sometimes give us the cell phones of the authors of those
-        papers, in case we need to call them in the middle of the night....  <p>But
-        scientific journals also cling to conventions that block the news from spreading
-        --particularly through the online world. Wiley, for example, initially reacted
-        to Shelley not with enthusiasm, but with a menacing note. When Shelley responded
-        by politely asking for permission, she was told to contact another person
-        at Wiley. And when Wiley finally sort-of apologized, they still expected Shelley
-        to jump through conventional hoops to get permission. All this kerfuffle over
-        a little graph. It might have taken days to get permission to reprint it,
-        which in the blogosphere is a geological era. Wiley was, consciously or unconsciously,
-        going out of their way to squash interest in their papers.  <p>Compare Shelley''s
-        experience to what I''m about to do. I''m going to --shudder-- reprint a diagram
-        from a journal. Just lift it straight out.... <p>[<em>PS:&nbsp; Omitting chart
-        and discussion of it.</em>]  <p>[The chart is from] <a href=\"http://genetics.plosjournals.org/perlserv/?request=get-document&amp;doi=10.1371/journal.pgen.0020114\">a
-        paper they published last summer in the journal PLOS Genetics</a>....  <p>And
-        what do I now hear from PLOS? Do I hear the grinding of lawyerly knives?&nbsp;
-        No. I hear the blissful silence of Open Access, a slowly-spreading trend in
-        the journal world.&nbsp; PLOS makes it very clear on their web site that <a
-        href=\"http://www.plos.org/oa/index.html\">\"everything we publish is freely
-        available online throughout the world, for you to read, download, copy, distribute,
-        and use (with attribution) any way you wish.\"</a> No muss, no fuss. If I
-        want to blog about this paper right now, I can grab a relevant image right
-        now from it. In fact, I just did.  <p>I certainly appreciate the importance
-        of copyrights (as the owner of many for my articles and books), but in these
-        situations, keeping information behind a thick wall starts to seem a bit crazy,
-        like <a href=\"http://www.youtube.com/watch?v=ekw3XVq1uHs\">the loss of precious
-        bodily fluids</a>. Far from committing some sort of violation to the PLOS
-        paper, I have actually just spread the word about it. A few readers may even
-        go back to read the original. And it was so easy and straightforward for me
-        to do so that I will be very reluctant to bother with anything else. </p></blockquote>
-        <p>PS:&nbsp; The Batts/Wiley story broke in late April when I was traveling.&nbsp;
-        If I''d been at my desk, I''d have covered it or&nbsp;at least I''d have tried.&nbsp;
-        But because the comments proliferated explosively, I wasn''t at my desk, and
-        I had a full load of other work, I decided that I had to let it go.&nbsp;
-        I''m glad to catch up a bit with this post.&nbsp; I''m also glad to have the
-        chance to recommend comments by <a href=\"http://scienceblogs.com/goodmath/2007/04/legal_threats.php\">Mark
-        Chu-Carroll</a>, <a href=\"http://www.boingboing.net/2007/04/26/wiley_threatens_scie.html\">Cory
-        Doctorow</a>, <a href=\"http://journalology.blogspot.com/2007/04/open-access-and-reuse-of-images.html\">Matt
-        Hodgkinson</a>, <a href=\"http://www.sennoma.net/main/archives/2007/04/every_time_a_traditional_publi.php\">Bill
-        Hooker</a>, <a href=\"http://scienceblogs.com/interactions/2007/05/copyright_and_scientific_paper_1.php\">Rob
-        Knop</a>, <a href=\"http://chronicle.com/wiredcampus/index.php?id=2030\">Brock
-        Read</a>, <a href=\"http://sciencecommons.org/weblog/archives/2007/04/30/copyright-fair-use-in-the-blogosphere/\">Kaitlin
-        Thaney</a>, <a href=\"http://blogs.openaccesscentral.com/blogs/ccblog/entry/200704261\">Bryan
-        Vickery</a>, and <a href=\"http://copyfight.corante.com/archives/2007/05/01/fair_use_and_scientific_illustration.php\">Alan
-        Wexelblat</a>.&nbsp; Finally, Katherine Sharpe at <em>ScienceBlogs</em>, where
-        the controversy began, solicited&nbsp;<a href=\"http://scienceblogs.com/seed/2007/04/blogging_and_fair_use.php\">comments</a>
-        from five&nbsp;\"experts and stakeholders\" (Jan Velterop of Springer, John
-        Wilbanks of Science Commons, Mark Patterson of PLoS, Matt Cockerill of BMC,
-        and me.)</p>", "rs:generator": "Blogger", "rs:citations": [{"identifier":
-        "10.59350/4q8j1-1ap35", "scheme": "doi", "reference": "Willighagen, E. (2007,
-        May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>."}, {"identifier":
-        "10.59350/jtzzf-jfz50", "scheme": "doi", "reference": "Willighagen, E. (2007,
-        May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>."}], "rs:stale": false},
-        "access": {"record": "public", "files": "public", "embargo": {"active": false,
-        "reason": null}, "status": "metadata-only"}, "files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled":
-        false, "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "status":
-        "published", "deletion_status": {"is_deleted": false, "status": "P"}, "stats":
-        {"this_version": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads":
-        0, "unique_downloads": 0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
+        qf5Lw3/PWre3/zMAbvXJdeo1AAA=
     headers:
-      Content-Length:
-      - '13697'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
+        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
+        img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:43 GMT
+      - Wed, 18 Mar 2026 15:19:19 GMT
       Etag:
       - '"27"'
       Link:
@@ -194,11 +127,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '19'
+      - '21'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -206,9 +143,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '495'
+      - '493'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1773847181'
       X-Xss-Protection:
       - 1; mode=block
     status:

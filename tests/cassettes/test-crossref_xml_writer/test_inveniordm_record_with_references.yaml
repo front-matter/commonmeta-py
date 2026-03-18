@@ -14,248 +14,145 @@ interactions:
     uri: https://rogue-scholar.org/api/records/49yb9-h8k11
   response:
     body:
-      string: '{"id": "49yb9-h8k11", "created": "2025-08-12T16:46:38.675189+00:00",
-        "updated": "2025-11-23T21:49:16.733087+00:00", "links": {"self": "https://rogue-scholar.org/api/records/49yb9-h8k11",
-        "self_html": "https://rogue-scholar.org/records/49yb9-h8k11", "preview_html":
-        "https://rogue-scholar.org/records/49yb9-h8k11?preview=1", "doi": "https://doi.org/10.64000/wd6rx-vpq73",
-        "self_doi": "https://doi.org/10.64000/wd6rx-vpq73", "self_doi_html": "https://rogue-scholar.org/doi/10.64000/wd6rx-vpq73",
-        "reserve_doi": "https://rogue-scholar.org/api/records/49yb9-h8k11/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/2vyah-dc583", "parent_html":
-        "https://rogue-scholar.org/records/2vyah-dc583", "parent_doi": "https://doi.org/10.64000/2vyah-dc583",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.64000/2vyah-dc583", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:49yb9-h8k11/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:49yb9-h8k11/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/49yb9-h8k11/files", "media_files":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/media-files", "archive":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/49yb9-h8k11/latest", "versions": "https://rogue-scholar.org/api/records/49yb9-h8k11/versions",
-        "draft": "https://rogue-scholar.org/api/records/49yb9-h8k11/draft", "access_links":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access/request", "access":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/access", "communities":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/49yb9-h8k11/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/49yb9-h8k11/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/49yb9-h8k11/requests"},
-        "revision_id": 23, "parent": {"id": "2vyah-dc583", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["093ada45-3a02-4007-b8b6-be28f221e01d", "d79fe364-6d96-40b6-b437-b93ca3493106"],
-        "default": "093ada45-3a02-4007-b8b6-be28f221e01d", "entries": [{"id": "093ada45-3a02-4007-b8b6-be28f221e01d",
-        "created": "2025-03-19T18:43:14.713108+00:00", "updated": "2025-12-01T07:39:03.309996+00:00",
-        "links": {}, "revision_id": 267, "slug": "crossref", "metadata": {"title":
-        "Crossref Blog", "description": "Recent content in Blog on Crossref", "type":
-        {"id": "blog"}, "website": "https://www.crossref.org/blog/"}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {"rs:feed_url": "https://www.crossref.org/blog/feed.xml",
-        "rs:prefix": "10.64000", "rs:joined": "November 7, 2024", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "Hugo", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Computer and information sciences"},
-        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
-        "updated": "2025-06-30T16:00:16.024136+00:00", "links": {}, "revision_id":
-        6, "slug": "computerandinformationsciences", "metadata": {"title": "Computer
-        and information sciences", "description": "Computer and information sciences
-        subject area.", "type": {"id": "subject"}}, "access": {"visibility": "public",
-        "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
-        {"doi": {"identifier": "10.64000/2vyah-dc583", "provider": "crossref", "client":
-        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
-        true, "is_draft": false, "pids": {"doi": {"identifier": "10.64000/wd6rx-vpq73",
-        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:49yb9-h8k11",
-        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
-        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
-        "creators": [{"person_or_org": {"type": "personal", "name": "Bowman, Sara",
-        "given_name": "Sara", "family_name": "Bowman"}}], "title": "We''ve migrated
-        to the cloud; we hope you didn''t notice (but maybe you did)", "publisher":
-        "Front Matter", "publication_date": "2025-08-12", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"subject":
-        "Cloud"}, {"subject": "Crossref"}, {"subject": "Data Centre"}, {"subject":
-        "Infrastructure"}], "dates": [{"date": "2025-08-12T02:00:00", "type": {"id":
-        "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
-        {"date": "2025-08-12T02:00:00", "type": {"id": "updated", "title": {"de":
-        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
-        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "137b87a8-b485-4901-b9de-6398ecf90d8e",
-        "scheme": "uuid"}, {"identifier": "https://doi.org/10.64000/wd6rx-vpq73",
-        "scheme": "guid"}, {"identifier": "https://www.crossref.org/blog/weve-migrated-to-the-cloud-we-hope-you-didnt-notice-but-maybe-you-did/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "TLDR: We''ve successfully moved the main
-        Crossref systems to the cloud! We''ve more to do, with several bugs identified
-        and fixed, and a few still ongoing.", "references": [{"identifier": "https://en.wikipedia.org/wiki/Infrastructure_as_code",
-        "scheme": "url", "reference": "''Infrastructure as code'' (2025) Wikipedia,
-        12 August. Available at:  (Accessed: 12 August 2025)."}, {"identifier": "10.64000/4s2ee-wkr84",
-        "scheme": "doi", "reference": "Bowman, S., Cousijn, H., Rittman, M., &amp;
-        Stoll, L. (2025, April 8). The programs approach: our experiences during the
-        first quarter of 2025. <i>Crossref Blog</i>."}]}, "custom_fields": {"journal:journal":
-        {"title": "Crossref Blog"}, "rs:content_html": "<p>TLDR: We''ve successfully
-        moved the main Crossref systems to the cloud! We''ve more to do, with several
-        bugs identified and fixed, and a few still ongoing. However, it''s a step
-        in the right direction and a significant milestone, as, whilst it is a much
-        larger financial investment, it addresses several risks and limitations and
-        shores up the Crossref infrastructure for the future.</p>\n<h3 id=\"some-background\">Some
-        background</h3>\n<p>We have been doing a lot of thinking, planning, and working
-        on paying down our technical debt and modernising our systems. It''s not fun
-        and flashy work, but it is vital for sustaining our infrastructure, meeting
-        the demand on existing services, and developing new services.</p>\n<p>Just
-        about a year ago, we completed phase one, migrating our main database from
-        Oracle to PostgreSQL, an open-source database. This move brought us more in
-        line with our commitment to the <a href=\"https://www.crossref.org/categories/posi/\">POSI
-        principles</a>, reduced our dependencies on costly private licenses, and opened
-        up the possibility to use and offer additional and more contemporary features.
-        With the transition to PostgreSQL we made upgrades to the operating system,
-        the database software, and the underlying hardware, resulting in significant
-        improvements to the overall throughput and capacity of the deposit system.
-        Previously, we typically maintained a queue of more than 10,000 deposits waiting
-        to be processed; now, the queue holds fewer than 100 deposits on average.
-        Consequently, the average latency \u2013 the elapsed time from submission
-        to deposit \u2013 has reduced from hours to seconds.</p>\n<p>During phase
-        one, a total of 35 new servers were created, and for the first time, the entire
-        system configuration was defined through <a href=\"https://en.wikipedia.org/wiki/Infrastructure_as_code\"
-        target=\"_blank\">infrastructure-as-code</a>, enabling the infrastructure
-        to be recreated as necessary. This effort not only enabled the migration but
-        also established a solid foundation for our cloud migration strategy, as the
-        code was leveraged to configure our infrastructure on AWS. Additionally, it
-        serves as a critical component of our disaster recovery planning.</p>\n<p>Most
-        importantly, phase one set us up for phase two and our next migration: moving
-        the system into the cloud.</p>\n<h3 id=\"why-we-moved-to-the-cloud\">Why we
-        moved to the cloud</h3>\n<p>We had been running most of our services in a
-        physical data centre near Boston, MA, USA (there are a few exceptions: the
-        <a href=\"https://www.crossref.org/blog/weve-migrated-to-the-cloud-we-hope-you-didnt-notice-but-maybe-you-did//api.crossref.org\">REST
-        API</a> and our test system (test.crossref.org) were already in the cloud,
-        as was the Crossref website). We''ve been planning to move to the cloud for
-        <em>ahem</em> quite some time, but as always, competing priorities and limited
-        resources have thwarted us, and the data centre was mainly serving us well.</p>\n<p>But\u2026
-        with staff across 12 countries, and increased global use of our system, operating
-        our own hardware in a physical data centre was becoming increasingly challenging
-        and risky, not to mention, frustrating.</p>\n<p>Moving to the cloud has solved
-        several pain points for us:</p>\n<ul>\n<li>Physical access to the data centre
-        was required for various tasks (e.g., hardware upgrades, troubleshooting,
-        general maintenance), but as Crossref grew as an organisation and became more
-        distributed, we had fewer staff in the area. Hosting services in the cloud
-        means staff around the world can access our servers remotely from anywhere
-        (and we can leave the hardware upgrades to our vendor).</li>\n<li>Scalability
-        in the data centre required installing new hardware or upgrading connections,
-        which also meant a good amount of time. In the cloud, we can scale up almost
-        instantly.</li>\n<li>We can maintain copies of our databases and services
-        in distributed places, providing insurance against natural or other disasters.\nUpgrades
-        now don''t involve buying physical hardware and installing it; it''s a much
-        quicker and more straightforward process.</li>\n</ul>\n<p>Moving from a physical
-        data centre to the cloud also has some trade-offs; for instance, the cost
-        will be approximately five times higher than running the system in the data
-        centre; with initial data, it''s not unlikely the annual cost may be up to
-        2,000,000 USD. We aim to optimise and control this cost going forward.</p>\n<h3
-        id=\"what-we-did\">What we did</h3>\n<p>The size of the undertaking was partly
-        due to leaving it so long; technical debt has accumulated over many years
-        of running the system in the data centre.</p>\n<p>The whole plan was hugely
-        detailed, but we can distil it to a few bullets:</p>\n<ul>\n<li>We conducted
-        an analysis of components, considered risks and sequencing, and created a
-        test plan and timeline, including comms.</li>\n<li>While most of the drive
-        and work was on the shoulders of two infrastructure services colleagues, our
-        software engineers were heavily involved too, and we had weekly check-ins
-        with a cross-team group to review progress, reassess risks, and adjust timelines
-        as we got closer to the migration date (or decided to move it once or twice).</li>\n<li>We
-        first created the deposit system in the cloud.</li>\n<li>We then created other
-        parts of our services that aren''t in the deposit system code base, but run
-        alongside it, such as reports, querying, and other tools.\nWe replicated our
-        databases (of which there are several, in a few different flavours - PostgreSQL,
-        MySQL).</li>\n<li>We gave 14 days'' notice to our members, via email, and
-        kept this maintenance notice up to date.</li>\n<li>We commenced the migration
-        on 8th July, which involved taking the whole system down and rejecting deposits
-        for up to 24 hours.</li>\n<li>In the process, we scripted the process to create
-        CS and the other services using Terraform and Ansible, so that going forward,
-        bringing up a whole new instance of CS (should we need to) won''t be a manual
-        process.</li>\n<li>We moved the DNS to point at our new system in the cloud,
-        rather than the data centre. We brought the system back up on 9th July, after
-        14 hours of downtime, and watched the first few deposits come in, while testing
-        thoroughly.</li>\n<li>Alongside the technical team, the membership and support
-        team was at the ready to work through the testing in the new live production
-        environment.</li>\n</ul>\n<p>The message we sent to members, Metadata Plus
-        subscribers, and key integrators like PKP and Turnitin, listed which services
-        would be down and described what changes they might see, such as:</p>\n<ul>\n<li>The
-        system timezone shifted from EST to UTC (universal coordinated time), which
-        would be noticeable in the timestamps reported back to members after metadata
-        deposits</li>\n<li>Our IP address became dynamic and is no longer static.
-        If members had hardcoded our previous IP static address to connect to our
-        services, that would no longer work.</li>\n<li>We previously allowed connections
-        using the HTTP/1.0 protocol, but now require HTTP/1.1.\nLikewise, we previously
-        allowed TLS version 1.1, but now require at least version 1.2. Older ciphers
-        will not work. A list of accepted ciphers can be found on <a href=\"https://docs.aws.amazon.com/elasticloadbalancing/latest/application/describe-ssl-policies.html#tls-security-policies\"
-        target=\"_blank\">this page</a> for \"ELBSecurityPolicy-TLS13-1-2-2021-06\".</li>\n</ul>\n<h3
-        id=\"how-it-went-and-whats-next\">How it went and what''s next</h3>\n<p>We
-        still have more to do, with both expected and unexpected issues arising from
-        the migration. There are a couple of functions that still route through the
-        data centre, configuration changes to wrangle, and processes to iron out,
-        so we''ll be keeping that open for another couple of months.</p>\n<p>Those
-        were the known issues\u2026</p>\n<p>\u2026we also uncovered a few bugs along
-        the way, and we''ve been reporting those (and our progress toward fixing them)
-        on our status page. <a href=\"https://status.crossref.org/history\" target=\"_blank\">See
-        history</a>.</p>\n<p>A few diligent members also alerted us to problems they
-        were having. In some cases, we could tell why, and in many cases, their systems
-        needed to be upgraded to work with ours. Thanks go to mEDRA, Spandidos Publications,
-        and Stichting SciPost who helped us identify gaps that resulted in configuration
-        improvements and lessons learned (that we then shared with other members).</p>\n<p>There
-        were three issues that we were contacted about more than others:</p>\n<ol>\n<li><a
-        href=\"https://status.crossref.org/incidents/scr3rtr8f4pm\" target=\"_blank\">Delayed
-        delivery of notification emails</a> which is partly due to the volume of backlogged
-        notification emails in the system.\n<ul>\n<li>Mostly solved: We have repaired
-        delivery of notification emails for all metadata deposits and are working
-        on a fix for the delivery of messages associated with very large queries.</li>\n</ul>\n</li>\n<li><a
-        href=\"https://status.crossref.org/incidents/nyr3g5b3h05v\" target=\"_blank\">A
-        small percentage of registered records not being indexed in the REST API</a>
-        - this can cause downstream issues for a number of other services (e.g., Crossref
-        metadata search - search.crossref.org, Participation Reports, ORCID auto-update,
-        and for external services that make use of the metadata from our REST API).\n<ul>\n<li>Mostly
-        solved: All records in July are now indexed in the REST API, albeit we have
-        new reports of a few records missing in the last week, which we are actively
-        investigating.</li>\n</ul>\n</li>\n<li><a href=\"https://status.crossref.org/incidents/9cdhzzvt1xt3\"
-        target=\"_blank\">Delayed delivery of July''s resolution reports</a>.\n<ul>\n<li>Solved
-        - not only has July''s resolution report run completed, but we also completed
-        August''s ahead of schedule.</li>\n</ul>\n</li>\n</ol>\n<p>This migration
-        was a significant effort, and 2025''s top priority project for the Open and
-        Sustainable Operations (OSO) <a href=\"https://doi.org/10.64000/4s2ee-wkr84\"
-        target=\"_blank\">program</a> team. Overall, we''re happy with our progress
-        toward making Crossref infrastructure more robust, reliable, and future-proof.
-        And judging by the messages of support we received, you are too! Onwards to
-        the next infrastructure project\u2026 <a href=\"https://roadmap.productboard.com/e6fdeba8-a5b3-4aef-8104-d48863ba975e\"
-        target=\"_blank\">check out our roadmap to see what''s up next</a>.</p>\n<h3
-        id=\"references\">References</h3>\n<ol>\n<li>''Infrastructure as code'' (2025)
-        <em>Wikipedia</em>, 12 August. Available at: <a href=\"https://en.wikipedia.org/wiki/Infrastructure_as_code\"
-        target=\"_blank\">https://en.wikipedia.org/wiki/Infrastructure_as_code</a>
-        (Accessed: 12 August 2025).</li>\n<li>''The programs approach: our experiences
-        during the first quarter of 2025'' (2025) <em>Crossref</em>. Available at:
-        <a href=\"https://doi.org/10.64000/4s2ee-wkr84\" target=\"_blank\">https://doi.org/10.64000/4s2ee-wkr84</a>
-        (Accessed: 12 August 2025).</li>\n</ol>", "rs:generator": "Hugo", "rs:stale":
-        false}, "access": {"record": "public", "files": "public", "embargo": {"active":
-        false, "reason": null}, "status": "metadata-only"}, "files": {"enabled": false,
-        "order": [], "count": 0, "total_bytes": 0, "entries": {}}, "media_files":
-        {"enabled": false, "order": [], "count": 0, "total_bytes": 0, "entries": {}},
-        "status": "published", "deletion_status": {"is_deleted": false, "status":
-        "P"}, "stats": {"this_version": {"views": 0, "unique_views": 0, "downloads":
-        0, "unique_downloads": 0, "data_volume": 0.0}, "all_versions": {"views": 0,
-        "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
+        aan0tf2/Zq3Hx/8zAC9m9RO6TAAA
     headers:
-      Content-Length:
-      - '18932'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
+        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
+        img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:06 GMT
+      - Wed, 18 Mar 2026 15:18:42 GMT
       Etag:
-      - '"23"'
+      - '"33"'
       Link:
       - <https://rogue-scholar.org/api/records/49yb9-h8k11> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -263,11 +160,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '56'
+      - '58'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -277,7 +178,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '498'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1773847181'
       X-Xss-Protection:
       - 1; mode=block
     status:

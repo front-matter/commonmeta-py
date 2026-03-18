@@ -14,10 +14,12 @@ interactions:
     uri: https://doi.org/ra/10.4230
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.4230\",\n    \"RA\": \"DataCite\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9EyNjAyUdiGiQI0jQJbEk0TmzJFUJKFjLFQsA
+        whgrWTYAAAA=
     headers:
       CF-RAY:
-      - 9a743e63b833b90c-AMS
+      - 9de5369a8ae1a018-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -25,11 +27,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:18:25 GMT
+      - Wed, 18 Mar 2026 15:19:01 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=i7OPMNWCcUjegjiyp9QzOANLn4MU9qODLGvzj%2FcAl85jvV3RaCMu%2Bzqlr4bnFbzDUdwsbNSlK2%2BTdWhGbt0Ey8GvnKJsxf9ieYo6lvyHyZn%2B7Q%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=CiL%2F%2BqEm68Lms9bAh5uS5%2FlYZGqFKM1goCHyCNrKSkYRtXntg2jCq77fUPIvrctTHzrl42zl1ncVXDUvrKxwIQskdYMR8uSjN7mFyGW5eUWQnQ%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -63,44 +65,96 @@ interactions:
     uri: https://api.datacite.org/dois/10.4230/lipics.tqc.2013.93?include=media,client
   response:
     body:
-      string: "{\"data\":{\"id\":\"10.4230/lipics.tqc.2013.93\",\"type\":\"dois\",\"attributes\":{\"doi\":\"10.4230/lipics.tqc.2013.93\",\"prefix\":\"10.4230\",\"suffix\":\"lipics.tqc.2013.93\",\"identifiers\":[{\"identifier\":\"urn:nbn:de:0030-drops-43173\",\"identifierType\":\"URN\"}],\"alternateIdentifiers\":[{\"alternateIdentifierType\":\"URN\",\"alternateIdentifier\":\"urn:nbn:de:0030-drops-43173\"}],\"creators\":[{\"name\":\"Johnston,
-        Nathaniel\",\"nameType\":\"Personal\",\"givenName\":\"Nathaniel\",\"familyName\":\"Johnston\",\"affiliation\":[],\"nameIdentifiers\":[]}],\"titles\":[{\"lang\":\"en\",\"title\":\"The
-        Minimum Size of Qubit Unextendible Product Bases\"}],\"publisher\":\"Schloss
-        Dagstuhl \u2013 Leibniz-Zentrum f\xFCr Informatik\",\"container\":{\"type\":\"Series\",\"identifier\":\"10.4230/LIPIcs.TQC.2013\",\"identifierType\":\"DOI\",\"title\":\"LIPIcs,
-        Volume 22, TQC 2013\",\"volume\":\"22\",\"number\":\"6\",\"firstPage\":\"93\",\"lastPage\":\"105\"},\"publicationYear\":2013,\"subjects\":[{\"lang\":\"en\",\"subject\":\"unextendible
-        product basis; quantum entanglement; graph factorization\"}],\"contributors\":[{\"name\":\"Severini,
-        Simone\",\"nameType\":\"Personal\",\"givenName\":\"Simone\",\"familyName\":\"Severini\",\"contributorType\":\"Editor\",\"affiliation\":[],\"nameIdentifiers\":[]},{\"name\":\"Brandao,
-        Fernando\",\"nameType\":\"Personal\",\"givenName\":\"Fernando\",\"familyName\":\"Brandao\",\"contributorType\":\"Editor\",\"affiliation\":[],\"nameIdentifiers\":[]}],\"dates\":[{\"date\":\"2013\",\"dateType\":\"Issued\"},{\"date\":\"2013-11-13\",\"dateType\":\"Available\"},{\"date\":\"2013-11-13\",\"dateType\":\"Created\"},{\"date\":\"2013-11-13\",\"dateType\":\"Copyrighted\"}],\"language\":\"en\",\"types\":{\"ris\":\"CPAPER\",\"bibtex\":\"inproceedings\",\"citeproc\":\"\",\"schemaOrg\":\"Article\",\"resourceTypeGeneral\":\"ConferencePaper\"},\"relatedIdentifiers\":[{\"relationType\":\"IsPartOf\",\"relatedIdentifier\":\"10.4230/LIPIcs.TQC.2013\",\"relatedIdentifierType\":\"DOI\"},{\"relationType\":\"IsPartOf\",\"relatedIdentifier\":\"978-3-939897-55-2\",\"relatedIdentifierType\":\"ISBN\"},{\"relationType\":\"IsPartOf\",\"relatedIdentifier\":\"1868-8969\",\"relatedIdentifierType\":\"ISSN\"}],\"relatedItems\":[{\"number\":\"6\",\"titles\":[{\"title\":\"LIPIcs,
-        Volume 22, TQC 2013\"},{\"title\":\"8th Conference on the Theory of Quantum
-        Computation, Communication and Cryptography (TQC 2013)\",\"titleType\":\"Subtitle\"}],\"volume\":\"22\",\"lastPage\":\"105\",\"firstPage\":\"93\",\"publisher\":\"Schloss
-        Dagstuhl \u2013 Leibniz-Zentrum f\xFCr Informatik\",\"contributors\":[{\"name\":\"Severini,
-        Simone\",\"nameType\":\"Personal\",\"givenName\":\"Simone\",\"familyName\":\"Severini\",\"contributorType\":\"Editor\"},{\"name\":\"Brandao,
-        Fernando\",\"nameType\":\"Personal\",\"givenName\":\"Fernando\",\"familyName\":\"Brandao\",\"contributorType\":\"Editor\"}],\"relationType\":\"IsPublishedIn\",\"publicationYear\":\"2013\",\"relatedItemType\":\"ConferenceProceeding\",\"relatedItemIdentifier\":{\"relatedItemIdentifier\":\"10.4230/LIPIcs.TQC.2013\",\"relatedItemIdentifierType\":\"DOI\"}},{\"titles\":[{\"title\":\"Leibniz
-        International Proceedings in Informatics (LIPIcs)\"}],\"volume\":\"22\",\"publisher\":\"Schloss
-        Dagstuhl \u2013 Leibniz-Zentrum f\xFCr Informatik\",\"relationType\":\"IsPublishedIn\",\"publicationYear\":\"2013\",\"relatedItemType\":\"Collection\",\"relatedItemIdentifier\":{\"relatedItemIdentifier\":\"1868-8969\",\"relatedItemIdentifierType\":\"ISSN\"}}],\"sizes\":[\"13
-        pages\",\"527385 bytes\"],\"formats\":[\"application/pdf\"],\"version\":null,\"rightsList\":[{\"lang\":\"en\",\"rights\":\"Creative
-        Commons Attribution 3.0 Unported license\",\"rightsUri\":\"https://creativecommons.org/licenses/by/3.0/legalcode\",\"rightsIdentifier\":\"cc
-        by 3.0\"},{\"rights\":\"info:eu-repo/semantics/openAccess\"}],\"descriptions\":[{\"lang\":\"en\",\"description\":\"We
-        investigate the problem of constructing unextendible product bases in the
-        qubit case - that is, when each local dimension equals 2. The cardinality
-        of the smallest unextendible product basis is known in all qubit cases except
-        when the number of parties is a multiple of 4 greater than 4 itself. We construct
-        small unextendible product bases in all of the remaining open cases, and we
-        use graph theory techniques to produce a computer-assisted proof that our
-        constructions are indeed the smallest possible.\",\"descriptionType\":\"Abstract\"},{\"lang\":\"en\",\"description\":\"LIPIcs,
-        Vol. 22, 8th Conference on the Theory of Quantum Computation, Communication
-        and Cryptography (TQC 2013), pages 93-105\",\"descriptionType\":\"SeriesInformation\"}],\"geoLocations\":[],\"fundingReferences\":[],\"xml\":\"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNDIzMC9MSVBJQ1MuVFFDLjIwMTMuOTM8L2lkZW50aWZpZXI+CiAgPGNyZWF0b3JzPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkpvaG5zdG9uLCBOYXRoYW5pZWw8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPk5hdGhhbmllbDwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Kb2huc3RvbjwvZmFtaWx5TmFtZT4KICAgIDwvY3JlYXRvcj4KICA8L2NyZWF0b3JzPgogIDx0aXRsZXM+CiAgICA8dGl0bGUgeG1sOmxhbmc9ImVuIj5UaGUgTWluaW11bSBTaXplIG9mIFF1Yml0IFVuZXh0ZW5kaWJsZSBQcm9kdWN0IEJhc2VzPC90aXRsZT4KICA8L3RpdGxlcz4KICA8cHVibGlzaGVyPlNjaGxvc3MgRGFnc3R1aGwg4oCTIExlaWJuaXotWmVudHJ1bSBmw7xyIEluZm9ybWF0aWs8L3B1Ymxpc2hlcj4KICA8cHVibGljYXRpb25ZZWFyPjIwMTM8L3B1YmxpY2F0aW9uWWVhcj4KICA8cmVzb3VyY2VUeXBlIHJlc291cmNlVHlwZUdlbmVyYWw9IkNvbmZlcmVuY2VQYXBlciIvPgogIDxzdWJqZWN0cz4KICAgIDxzdWJqZWN0IHhtbDpsYW5nPSJlbiI+dW5leHRlbmRpYmxlIHByb2R1Y3QgYmFzaXM7IHF1YW50dW0gZW50YW5nbGVtZW50OyBncmFwaCBmYWN0b3JpemF0aW9uPC9zdWJqZWN0PgogIDwvc3ViamVjdHM+CiAgPGNvbnRyaWJ1dG9ycz4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5TZXZlcmluaSwgU2ltb25lPC9jb250cmlidXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+U2ltb25lPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPlNldmVyaW5pPC9mYW1pbHlOYW1lPgogICAgPC9jb250cmlidXRvcj4KICAgIDxjb250cmlidXRvciBjb250cmlidXRvclR5cGU9IkVkaXRvciI+CiAgICAgIDxjb250cmlidXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5CcmFuZGFvLCBGZXJuYW5kbzwvY29udHJpYnV0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkZlcm5hbmRvPC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkJyYW5kYW88L2ZhbWlseU5hbWU+CiAgICA8L2NvbnRyaWJ1dG9yPgogIDwvY29udHJpYnV0b3JzPgogIDxkYXRlcz4KICAgIDxkYXRlIGRhdGVUeXBlPSJJc3N1ZWQiPjIwMTM8L2RhdGU+CiAgICA8ZGF0ZSBkYXRlVHlwZT0iQXZhaWxhYmxlIj4yMDEzLTExLTEzPC9kYXRlPgogICAgPGRhdGUgZGF0ZVR5cGU9IkNyZWF0ZWQiPjIwMTMtMTEtMTM8L2RhdGU+CiAgICA8ZGF0ZSBkYXRlVHlwZT0iQ29weXJpZ2h0ZWQiPjIwMTMtMTEtMTM8L2RhdGU+CiAgPC9kYXRlcz4KICA8bGFuZ3VhZ2U+ZW48L2xhbmd1YWdlPgogIDxhbHRlcm5hdGVJZGVudGlmaWVycz4KICAgIDxhbHRlcm5hdGVJZGVudGlmaWVyIGFsdGVybmF0ZUlkZW50aWZpZXJUeXBlPSJVUk4iPnVybjpuYm46ZGU6MDAzMC1kcm9wcy00MzE3MzwvYWx0ZXJuYXRlSWRlbnRpZmllcj4KICA8L2FsdGVybmF0ZUlkZW50aWZpZXJzPgogIDxyZWxhdGVkSWRlbnRpZmllcnM+CiAgICA8cmVsYXRlZElkZW50aWZpZXIgcmVsYXRlZElkZW50aWZpZXJUeXBlPSJET0kiIHJlbGF0aW9uVHlwZT0iSXNQYXJ0T2YiPjEwLjQyMzAvTElQSWNzLlRRQy4yMDEzPC9yZWxhdGVkSWRlbnRpZmllcj4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGVkSWRlbnRpZmllclR5cGU9IklTQk4iIHJlbGF0aW9uVHlwZT0iSXNQYXJ0T2YiPjk3OC0zLTkzOTg5Ny01NS0yPC9yZWxhdGVkSWRlbnRpZmllcj4KICAgIDxyZWxhdGVkSWRlbnRpZmllciByZWxhdGVkSWRlbnRpZmllclR5cGU9IklTU04iIHJlbGF0aW9uVHlwZT0iSXNQYXJ0T2YiPjE4NjgtODk2OTwvcmVsYXRlZElkZW50aWZpZXI+CiAgPC9yZWxhdGVkSWRlbnRpZmllcnM+CiAgPHJlbGF0ZWRJdGVtcz4KICAgIDxyZWxhdGVkSXRlbSByZWxhdGVkSXRlbVR5cGU9IkNvbmZlcmVuY2VQcm9jZWVkaW5nIiByZWxhdGlvblR5cGU9IklzUHVibGlzaGVkSW4iPgogICAgICA8cmVsYXRlZEl0ZW1JZGVudGlmaWVyIHJlbGF0ZWRJdGVtSWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNDIzMC9MSVBJY3MuVFFDLjIwMTM8L3JlbGF0ZWRJdGVtSWRlbnRpZmllcj4KICAgICAgPHRpdGxlcz4KICAgICAgICA8dGl0bGU+TElQSWNzLCBWb2x1bWUgMjIsIFRRQyAyMDEzPC90aXRsZT4KICAgICAgICA8dGl0bGUgdGl0bGVUeXBlPSJTdWJ0aXRsZSI+OHRoIENvbmZlcmVuY2Ugb24gdGhlIFRoZW9yeSBvZiBRdWFudHVtIENvbXB1dGF0aW9uLCBDb21tdW5pY2F0aW9uIGFuZCBDcnlwdG9ncmFwaHkgKFRRQyAyMDEzKTwvdGl0bGU+CiAgICAgIDwvdGl0bGVzPgogICAgICA8cHVibGljYXRpb25ZZWFyPjIwMTM8L3B1YmxpY2F0aW9uWWVhcj4KICAgICAgPHZvbHVtZT4yMjwvdm9sdW1lPgogICAgICA8bnVtYmVyPjY8L251bWJlcj4KICAgICAgPGZpcnN0UGFnZT45MzwvZmlyc3RQYWdlPgogICAgICA8bGFzdFBhZ2U+MTA1PC9sYXN0UGFnZT4KICAgICAgPHB1Ymxpc2hlcj5TY2hsb3NzIERhZ3N0dWhsIOKAkyBMZWlibml6LVplbnRydW0gZsO8ciBJbmZvcm1hdGlrPC9wdWJsaXNoZXI+CiAgICAgIDxjb250cmlidXRvcnM+CiAgICAgICAgPGNvbnRyaWJ1dG9yIGNvbnRyaWJ1dG9yVHlwZT0iRWRpdG9yIj4KICAgICAgICAgIDxjb250cmlidXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5TZXZlcmluaSwgU2ltb25lPC9jb250cmlidXRvck5hbWU+CiAgICAgICAgICA8Z2l2ZW5OYW1lPlNpbW9uZTwvZ2l2ZW5OYW1lPgogICAgICAgICAgPGZhbWlseU5hbWU+U2V2ZXJpbmk8L2ZhbWlseU5hbWU+CiAgICAgICAgPC9jb250cmlidXRvcj4KICAgICAgICA8Y29udHJpYnV0b3IgY29udHJpYnV0b3JUeXBlPSJFZGl0b3IiPgogICAgICAgICAgPGNvbnRyaWJ1dG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkJyYW5kYW8sIEZlcm5hbmRvPC9jb250cmlidXRvck5hbWU+CiAgICAgICAgICA8Z2l2ZW5OYW1lPkZlcm5hbmRvPC9naXZlbk5hbWU+CiAgICAgICAgICA8ZmFtaWx5TmFtZT5CcmFuZGFvPC9mYW1pbHlOYW1lPgogICAgICAgIDwvY29udHJpYnV0b3I+CiAgICAgIDwvY29udHJpYnV0b3JzPgogICAgPC9yZWxhdGVkSXRlbT4KICAgIDxyZWxhdGVkSXRlbSByZWxhdGVkSXRlbVR5cGU9IkNvbGxlY3Rpb24iIHJlbGF0aW9uVHlwZT0iSXNQdWJsaXNoZWRJbiI+CiAgICAgIDxyZWxhdGVkSXRlbUlkZW50aWZpZXIgcmVsYXRlZEl0ZW1JZGVudGlmaWVyVHlwZT0iSVNTTiI+MTg2OC04OTY5PC9yZWxhdGVkSXRlbUlkZW50aWZpZXI+CiAgICAgIDx0aXRsZXM+CiAgICAgICAgPHRpdGxlPkxlaWJuaXogSW50ZXJuYXRpb25hbCBQcm9jZWVkaW5ncyBpbiBJbmZvcm1hdGljcyAoTElQSWNzKTwvdGl0bGU+CiAgICAgIDwvdGl0bGVzPgogICAgICA8cHVibGljYXRpb25ZZWFyPjIwMTM8L3B1YmxpY2F0aW9uWWVhcj4KICAgICAgPHZvbHVtZT4yMjwvdm9sdW1lPgogICAgICA8cHVibGlzaGVyPlNjaGxvc3MgRGFnc3R1aGwg4oCTIExlaWJuaXotWmVudHJ1bSBmw7xyIEluZm9ybWF0aWs8L3B1Ymxpc2hlcj4KICAgIDwvcmVsYXRlZEl0ZW0+CiAgPC9yZWxhdGVkSXRlbXM+CiAgPHNpemVzPgogICAgPHNpemU+MTMgcGFnZXM8L3NpemU+CiAgICA8c2l6ZT41MjczODUgYnl0ZXM8L3NpemU+CiAgPC9zaXplcz4KICA8Zm9ybWF0cz4KICAgIDxmb3JtYXQ+YXBwbGljYXRpb24vcGRmPC9mb3JtYXQ+CiAgPC9mb3JtYXRzPgogIDx2ZXJzaW9uLz4KICA8cmlnaHRzTGlzdD4KICAgIDxyaWdodHMgcmlnaHRzVVJJPSJodHRwczovL2NyZWF0aXZlY29tbW9ucy5vcmcvbGljZW5zZXMvYnkvMy4wL2xlZ2FsY29kZSIgcmlnaHRzSWRlbnRpZmllcj0iQ0MgQlkgMy4wIiB4bWw6bGFuZz0iZW4iPkNyZWF0aXZlIENvbW1vbnMgQXR0cmlidXRpb24gMy4wIFVucG9ydGVkIGxpY2Vuc2U8L3JpZ2h0cz4KICAgIDxyaWdodHM+aW5mbzpldS1yZXBvL3NlbWFudGljcy9vcGVuQWNjZXNzPC9yaWdodHM+CiAgPC9yaWdodHNMaXN0PgogIDxkZXNjcmlwdGlvbnM+CiAgICA8ZGVzY3JpcHRpb24geG1sOmxhbmc9ImVuIiBkZXNjcmlwdGlvblR5cGU9IkFic3RyYWN0Ij5XZSBpbnZlc3RpZ2F0ZSB0aGUgcHJvYmxlbSBvZiBjb25zdHJ1Y3RpbmcgdW5leHRlbmRpYmxlIHByb2R1Y3QgYmFzZXMgaW4gdGhlIHF1Yml0IGNhc2UgLSB0aGF0IGlzLCB3aGVuIGVhY2ggbG9jYWwgZGltZW5zaW9uIGVxdWFscyAyLiBUaGUgY2FyZGluYWxpdHkgb2YgdGhlIHNtYWxsZXN0IHVuZXh0ZW5kaWJsZSBwcm9kdWN0IGJhc2lzIGlzIGtub3duIGluIGFsbCBxdWJpdCBjYXNlcyBleGNlcHQgd2hlbiB0aGUgbnVtYmVyIG9mIHBhcnRpZXMgaXMgYSBtdWx0aXBsZSBvZiA0IGdyZWF0ZXIgdGhhbiA0IGl0c2VsZi4gV2UgY29uc3RydWN0IHNtYWxsIHVuZXh0ZW5kaWJsZSBwcm9kdWN0IGJhc2VzIGluIGFsbCBvZiB0aGUgcmVtYWluaW5nIG9wZW4gY2FzZXMsIGFuZCB3ZSB1c2UgZ3JhcGggdGhlb3J5IHRlY2huaXF1ZXMgdG8gcHJvZHVjZSBhIGNvbXB1dGVyLWFzc2lzdGVkIHByb29mIHRoYXQgb3VyIGNvbnN0cnVjdGlvbnMgYXJlIGluZGVlZCB0aGUgc21hbGxlc3QgcG9zc2libGUuPC9kZXNjcmlwdGlvbj4KICAgIDxkZXNjcmlwdGlvbiB4bWw6bGFuZz0iZW4iIGRlc2NyaXB0aW9uVHlwZT0iU2VyaWVzSW5mb3JtYXRpb24iPkxJUEljcywgVm9sLiAyMiwgOHRoIENvbmZlcmVuY2Ugb24gdGhlIFRoZW9yeSBvZiBRdWFudHVtIENvbXB1dGF0aW9uLCBDb21tdW5pY2F0aW9uIGFuZCBDcnlwdG9ncmFwaHkgKFRRQyAyMDEzKSwgcGFnZXMgOTMtMTA1PC9kZXNjcmlwdGlvbj4KICA8L2Rlc2NyaXB0aW9ucz4KPC9yZXNvdXJjZT4K\",\"url\":\"https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93\",\"contentUrl\":null,\"metadataVersion\":1,\"schemaVersion\":\"http://datacite.org/schema/kernel-4\",\"source\":\"api\",\"isActive\":true,\"state\":\"findable\",\"reason\":null,\"viewCount\":0,\"viewsOverTime\":[],\"downloadCount\":0,\"downloadsOverTime\":[],\"referenceCount\":0,\"citationCount\":0,\"citationsOverTime\":[],\"partCount\":0,\"partOfCount\":1,\"versionCount\":0,\"versionOfCount\":0,\"created\":\"2013-11-13T13:42:17.000Z\",\"registered\":\"2013-11-13T13:42:17.000Z\",\"published\":\"2013\",\"updated\":\"2023-12-21T12:03:17.000Z\"},\"relationships\":{\"client\":{\"data\":{\"id\":\"lzi.drops\",\"type\":\"clients\"}},\"provider\":{\"data\":{\"id\":\"lzi\",\"type\":\"providers\"}},\"media\":{\"data\":{\"id\":\"10.4230/lipics.tqc.2013.93\",\"type\":\"media\"}},\"references\":{\"data\":[]},\"citations\":{\"data\":[]},\"parts\":{\"data\":[]},\"partOf\":{\"data\":[{\"id\":\"10.4230/lipics.tqc.2013\",\"type\":\"dois\"}]},\"versions\":{\"data\":[]},\"versionOf\":{\"data\":[]}}},\"included\":[{\"id\":\"lzi.drops\",\"type\":\"clients\",\"attributes\":{\"name\":\"Dagstuhl
-        Research Online Publication Server\",\"symbol\":\"LZI.DROPS\",\"year\":2020,\"alternateName\":\"DROPS\",\"description\":\"Schloss
-        Dagstuhl - Leibniz Center for Informatics has been operating the Dagstuhl
-        Research Online Publication Server (short: DROPS) since 2004. DROPS enables
-        publication of the latest research findings in a fast, uncomplicated manner,
-        in addition to providing unimpeded, open access to them. All the requisite
-        metadata on each publication is administered in accordance with general guidelines
-        pertaining to online publications (cf. Dublin Core). This enables the online
-        publications to be authorized for citation and made accessible to a wide readership
-        on a permanent basis. Access is free of charge for readers following the open
-        access idea which fosters unimpeded access to scientific publications.  All
-        publication formats of Schloss Dagstuhl are published via  the server.\",\"language\":[\"en\"],\"clientType\":\"repository\",\"domains\":\"*\",\"re3data\":null,\"opendoar\":null,\"issn\":{},\"url\":\"https://drops.dagstuhl.de/\",\"created\":\"2020-06-15T09:57:59.000Z\",\"updated\":\"2020-06-15T10:00:16.000Z\",\"isActive\":true},\"relationships\":{\"provider\":{\"data\":{\"id\":\"lzi\",\"type\":\"providers\"}},\"prefixes\":{\"data\":[{\"id\":\"10.4230\",\"type\":\"prefixes\"}]}}}]}"
+      string: !!binary |
+        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
+        E4RANAAA
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -119,13 +173,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 01 Dec 2025 17:18:26 GMT
+      - Wed, 18 Mar 2026 15:19:01 GMT
       ETag:
-      - W/"163e543f8392e7418752739a3d27b8c0"
+      - W/"b0c756e3d277475d848d5ef302e9856a"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.24.0 + Phusion Passenger(R) 6.1.0
+      - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -141,11 +195,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.1.0
+      - Phusion Passenger(R) 6.1.2
       X-Request-Id:
-      - 730b6cab-4e24-46db-8548-891e4765f3ab
+      - 3c1cd150-8341-4128-ad78-f6e1a15c69b4
       X-Runtime:
-      - '0.031881'
+      - '0.033194'
       X-XSS-Protection:
       - '0'
     status:

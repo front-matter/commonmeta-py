@@ -14,170 +14,103 @@ interactions:
     uri: https://api.crossref.org/works/10.1145/3448016.3452841
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,1]],"date-time":"2025-10-01T15:29:35Z","timestamp":1759332575345,"version":"3.41.0"},"publisher-location":"New
-        York, NY, USA","reference-count":56,"publisher":"ACM","license":[{"start":{"date-parts":[[2021,6,9]],"date-time":"2021-06-09T00:00:00Z","timestamp":1623196800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"funder":[{"DOI":"10.13039\/100000001","name":"NSF
-        (National Science Foundation)","doi-asserted-by":"publisher","award":["CCF
-        805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII
-        1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680,
-        CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680"],"id":[{"id":"10.13039\/100000001","id-type":"DOI","asserted-by":"publisher"}]},{"DOI":"10.13039\/100000015","name":"DOE
-        U.S. Department of Energy","doi-asserted-by":"publisher","award":["DE-AC02-05CH11231,17-SC-20-SC"],"id":[{"id":"10.13039\/100000015","id-type":"DOI","asserted-by":"publisher"}]}],"content-domain":{"domain":["dl.acm.org"],"crossmark-restriction":true},"short-container-title":[],"published-print":{"date-parts":[[2021,6,9]]},"DOI":"10.1145\/3448016.3452841","type":"proceedings-article","created":{"date-parts":[[2021,6,18]],"date-time":"2021-06-18T17:22:39Z","timestamp":1624036959000},"page":"1386-1399","update-policy":"https:\/\/doi.org\/10.1145\/crossmark-policy","source":"Crossref","is-referenced-by-count":34,"title":["Vector
-        Quotient Filters"],"prefix":"10.1145","author":[{"given":"Prashant","family":"Pandey","sequence":"first","affiliation":[{"name":"Lawrence
-        Berkeley National Lab &amp; University of California, Berkeley, Berkeley,
-        CA, USA"}]},{"given":"Alex","family":"Conway","sequence":"additional","affiliation":[{"name":"VMware
-        Research, Palo Alto, CA, USA"}]},{"given":"Joe","family":"Durie","sequence":"additional","affiliation":[{"name":"Rutgers
-        University, New Brunswick, NJ, USA"}]},{"given":"Michael A.","family":"Bender","sequence":"additional","affiliation":[{"name":"Stony
-        Brook University, Stony Brook, NY, USA"}]},{"given":"Martin","family":"Farach-Colton","sequence":"additional","affiliation":[{"name":"Rutgers
-        University, New Brunswick, NJ, USA"}]},{"given":"Rob","family":"Johnson","sequence":"additional","affiliation":[{"name":"VMware
-        Research, Palo Alto, CA, USA"}]}],"member":"320","published-online":{"date-parts":[[2021,6,18]]},"reference":[{"key":"e_1_3_2_2_1_1","doi-asserted-by":"publisher","DOI":"10.5555\/1224252.1224501"},{"key":"e_1_3_2_2_2_1","doi-asserted-by":"publisher","DOI":"10.1007\/978-3-030-17083-7_1"},{"key":"e_1_3_2_2_3_1","doi-asserted-by":"publisher","DOI":"10.1089\/cmb.2019.0322"},{"key":"e_1_3_2_2_4_1","doi-asserted-by":"publisher","DOI":"10.14778\/2732951.2732958"},{"key":"e_1_3_2_2_5_1","doi-asserted-by":"publisher","DOI":"10.1145\/2254756.2254766"},{"key":"e_1_3_2_2_6_1","doi-asserted-by":"publisher","DOI":"10.1137\/S0097539795288490"},{"key":"e_1_3_2_2_7_1","doi-asserted-by":"publisher","DOI":"10.14778\/2350229.2350275"},{"key":"e_1_3_2_2_8_1","doi-asserted-by":"publisher","DOI":"10.1137\/S009753970444435X"},{"key":"e_1_3_2_2_9_1","doi-asserted-by":"publisher","DOI":"10.1145\/362686.362692"},{"key":"e_1_3_2_2_10_1","doi-asserted-by":"publisher","DOI":"10.1007\/11841036_61"},{"key":"e_1_3_2_2_11_1","volume-title":"Eduardo
-        PC Rocha, Gil McVean, and Zamin Iqbal.","author":"Bradley Phelim","year":"2019","unstructured":"Phelim
-        Bradley , Henk C Den Bakker , Eduardo PC Rocha, Gil McVean, and Zamin Iqbal.
-        2019 . Ultrafast search of all deposited bacterial and viral genomic data.
-        Nature biotechnology 37, 2 (2019), 152--159. Phelim Bradley, Henk C Den Bakker,
-        Eduardo PC Rocha, Gil McVean, and Zamin Iqbal. 2019. Ultrafast search of all
-        deposited bacterial and viral genomic data. Nature biotechnology 37, 2 (2019),
-        152--159."},{"key":"e_1_3_2_2_12_1","volume-title":"Morton Filter source code
-        in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter. [Online","author":"Breslow
-        Alex D","year":"2020","unstructured":"Alex D Breslow . 2018. Morton Filter
-        source code in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter.
-        [Online ; accessed 19- July - 2020 ]. Alex D Breslow. 2018. Morton Filter
-        source code in C++. https:\/\/github.com\/ AMDComputeLibraries\/morton_filter.
-        [Online; accessed 19-July-2020]."},{"key":"e_1_3_2_2_13_1","doi-asserted-by":"publisher","DOI":"10.14778\/3213880.3213884"},{"key":"e_1_3_2_2_14_1","doi-asserted-by":"publisher","DOI":"10.1080\/15427951.2004.10129096"},{"key":"e_1_3_2_2_15_1","volume-title":"Proceedings
-        of the InternationalWorkshop on Accelerating Analytics and Data Management
-        Systems Using Modern Processor and Storage Architectures (ADMS). 1--8.","author":"Canim
-        Mustafa","year":"2010","unstructured":"Mustafa Canim , George A Mihaila ,
-        Bishwaranjan Bhattacharjee , Christian A Lang , andKennethARoss. 2010 . Buffered
-        BloomFiltersonSolid State Storage .. In Proceedings of the InternationalWorkshop
-        on Accelerating Analytics and Data Management Systems Using Modern Processor
-        and Storage Architectures (ADMS). 1--8. Mustafa Canim, George A Mihaila, Bishwaranjan
-        Bhattacharjee, Christian A Lang, andKennethARoss. 2010. Buffered BloomFiltersonSolid
-        State Storage.. In Proceedings of the InternationalWorkshop on Accelerating
-        Analytics and Data Management Systems Using Modern Processor and Storage Architectures
-        (ADMS). 1--8."},{"key":"e_1_3_2_2_16_1","doi-asserted-by":"publisher","DOI":"10.5555\/3386691.3386712"},{"key":"e_1_3_2_2_17_1","doi-asserted-by":"publisher","DOI":"10.1145\/800133.804332"},{"key":"e_1_3_2_2_18_1","doi-asserted-by":"publisher","DOI":"10.1109\/SFCS.1985.48"},{"key":"e_1_3_2_2_19_1","doi-asserted-by":"publisher","DOI":"10.1186\/1748-7188-8-22"},{"key":"e_1_3_2_2_20_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btu558"},{"key":"e_1_3_2_2_21_1","first-page":"1","article-title":"Optimal
-        Hashing in External Memory. In ICALP (LIPIcs), Vol. 107","volume":"39","author":"Conway
-        Alexander","year":"2018","unstructured":"Alexander Conway , Martin Farach-Colton
-        , and Philip Shilane . 2018 . Optimal Hashing in External Memory. In ICALP
-        (LIPIcs), Vol. 107 . Schloss Dagstuhl - Leibniz-Zentrum f\u00fcr Informatik
-        , 39 : 1 -- 39 :14. Alexander Conway, Martin Farach-Colton, and Philip Shilane.
-        2018. Optimal Hashing in External Memory. In ICALP (LIPIcs), Vol. 107. Schloss
-        Dagstuhl - Leibniz-Zentrum f\u00fcr Informatik, 39:1--39:14.","journal-title":"Schloss
-        Dagstuhl - Leibniz-Zentrum f\u00fcr Informatik"},{"key":"e_1_3_2_2_22_1","volume-title":"SplinterDB:
-        Closing the Bandwidth Gap for NVMe Key-Value Stores. In USENIX Annual Technical
-        Conference. USENIX Association, 49--63","author":"Conway Alexander","year":"2020","unstructured":"Alexander
-        Conway , Abhishek Gupta , Vijay Chidambaram , Martin Farach-Colton , Richard
-        P. Spillane , Amy Tai , and Rob Johnson . 2020 . SplinterDB: Closing the Bandwidth
-        Gap for NVMe Key-Value Stores. In USENIX Annual Technical Conference. USENIX
-        Association, 49--63 . Alexander Conway, Abhishek Gupta, Vijay Chidambaram,
-        Martin Farach-Colton, Richard P. Spillane, Amy Tai, and Rob Johnson. 2020.
-        SplinterDB: Closing the Bandwidth Gap for NVMe Key-Value Stores. In USENIX
-        Annual Technical Conference. USENIX Association, 49--63."},{"key":"e_1_3_2_2_23_1","doi-asserted-by":"publisher","DOI":"10.1145\/3035918.3064054"},{"key":"e_1_3_2_2_24_1","doi-asserted-by":"publisher","DOI":"10.1145\/2883591.2883597"},{"key":"e_1_3_2_2_25_1","doi-asserted-by":"publisher","DOI":"10.1109\/ICDCS.2011.44"},{"key":"e_1_3_2_2_26_1","volume-title":"Proceedings
-        of the USENIX Annual Technical Conference (ATC).","author":"Debnath Biplob
-        K","year":"2010","unstructured":"Biplob K Debnath , Sudipta Sengupta , and
-        Jin Li . 2010 . ChunkStash: Speeding Up Inline Storage Deduplication Using
-        Flash Memory .. In Proceedings of the USENIX Annual Technical Conference (ATC).
-        Biplob K Debnath, Sudipta Sengupta, and Jin Li. 2010. ChunkStash: Speeding
-        Up Inline Storage Deduplication Using Flash Memory.. In Proceedings of the
-        USENIX Annual Technical Conference (ATC)."},{"volume-title":"Proceedings of
-        the 16th International SPIN Workshop on Model Checking Software. Springer-Verlag","author":"Peter","key":"e_1_3_2_2_27_1","unstructured":"Peter
-        C. Dillinger and Panagiotis (Pete) Manolios. 2009. Fast, All-Purpose State
-        Storage . In Proceedings of the 16th International SPIN Workshop on Model
-        Checking Software. Springer-Verlag , Berlin, Heidelberg, 12--31. https:\/\/doi.org\/10.1007\/978--3--642-02652--2_6
-        10.1007\/978--3--642-02652--2_6 Peter C. Dillinger and Panagiotis (Pete) Manolios.
-        2009. Fast, All-Purpose State Storage. In Proceedings of the 16th International
-        SPIN Workshop on Model Checking Software. Springer-Verlag, Berlin, Heidelberg,
-        12--31. https:\/\/doi.org\/10.1007\/978--3--642-02652--2_6"},{"key":"e_1_3_2_2_28_1","doi-asserted-by":"publisher","DOI":"10.1145\/2833312.2833449"},{"volume-title":"Proc.
-        4th USENIXWorkshop on Hot Topics in Storage (HotStorage)","author":"Esmet
-        John","key":"e_1_3_2_2_29_1","unstructured":"John Esmet , Michael A. Bender
-        , Martin Farach-Colton , and Bradley C. Kuszmaul . 2012. The TokuFS Streaming
-        File System . In Proc. 4th USENIXWorkshop on Hot Topics in Storage (HotStorage)
-        . Boston, MA, USA. John Esmet, Michael A. Bender, Martin Farach-Colton, and
-        Bradley C. Kuszmaul. 2012. The TokuFS Streaming File System. In Proc. 4th
-        USENIXWorkshop on Hot Topics in Storage (HotStorage). Boston, MA, USA."},{"key":"e_1_3_2_2_30_1","volume-title":"Cuckoo
-        Filter source code in C++. https:\/\/github.com\/efficient\/ cuckoofilter.
-        [Online","author":"Fan Bin","year":"2014","unstructured":"Bin Fan . 2014.
-        Cuckoo Filter source code in C++. https:\/\/github.com\/efficient\/ cuckoofilter.
-        [Online ; accessed 19- July - 2014 ]. Bin Fan. 2014. Cuckoo Filter source
-        code in C++. https:\/\/github.com\/efficient\/ cuckoofilter. [Online; accessed
-        19-July-2014]."},{"key":"e_1_3_2_2_31_1","doi-asserted-by":"publisher","DOI":"10.1145\/2674005.2674994"},{"key":"e_1_3_2_2_32_1","doi-asserted-by":"publisher","DOI":"10.1109\/90.851975"},{"key":"e_1_3_2_2_33_1","volume-title":"Perfect
-        Hashing for Strings: Formalization and Algorithms. In CPM (Lecture Notes in
-        Computer Science)","volume":"1075","author":"Farach Martin","unstructured":"Martin
-        Farach and S. Muthukrishnan . 1996 . Perfect Hashing for Strings: Formalization
-        and Algorithms. In CPM (Lecture Notes in Computer Science) , Vol. 1075 . Springer,
-        130--140. Martin Farach and S. Muthukrishnan. 1996. Perfect Hashing for Strings:
-        Formalization and Algorithms. In CPM (Lecture Notes in Computer Science),
-        Vol. 1075. Springer, 130--140."},{"key":"e_1_3_2_2_34_1","doi-asserted-by":"publisher","DOI":"10.1145\/1597036.1597040"},{"key":"e_1_3_2_2_35_1","doi-asserted-by":"publisher","DOI":"10.1109\/IPDPS.2018.00055"},{"key":"e_1_3_2_2_36_1","volume-title":"Golnaz
-        Jahesh, Hamza Khan, Lauren Coombe, Rene L Warren, et al.","author":"Jackman
-        Shaun D","year":"2017","unstructured":"Shaun D Jackman , Benjamin P Vandervalk
-        , Hamid Mohamadi , Justin Chu , Sarah Yeo , S Austin Hammond , Golnaz Jahesh,
-        Hamza Khan, Lauren Coombe, Rene L Warren, et al. 2017 . ABySS 2.0: resource-efficient
-        assembly of large genomes using a Bloom filter. Genome research 27, 5 (2017),
-        768--777. Shaun D Jackman, Benjamin P Vandervalk, Hamid Mohamadi, Justin Chu,
-        Sarah Yeo, S Austin Hammond, Golnaz Jahesh, Hamza Khan, Lauren Coombe, Rene
-        L Warren, et al. 2017. ABySS 2.0: resource-efficient assembly of large genomes
-        using a Bloom filter. Genome research 27, 5 (2017), 768--777."},{"key":"e_1_3_2_2_37_1","volume-title":"Proceedings
-        of the 27th Symposium on Mass Storage Systems and Technologies (MSST). 1--6.","author":"Lu
-        Guanlin","year":"2011","unstructured":"Guanlin Lu , Biplob Debnath , and David
-        HC Du . 2011 . A Forest-structured Bloom Filter with flash memory . In Proceedings
-        of the 27th Symposium on Mass Storage Systems and Technologies (MSST). 1--6.
-        Guanlin Lu, Biplob Debnath, and David HC Du. 2011. A Forest-structured Bloom
-        Filter with flash memory. In Proceedings of the 27th Symposium on Mass Storage
-        Systems and Technologies (MSST). 1--6."},{"key":"e_1_3_2_2_38_1","doi-asserted-by":"publisher","DOI":"10.5555\/1070432.1070548"},{"key":"e_1_3_2_2_39_1","doi-asserted-by":"publisher","DOI":"10.1007\/3-540-44676-1_10"},{"key":"e_1_3_2_2_40_1","volume-title":"Mantis:
-        A fast, small, and exact large-scale sequence-search index. Cell systems 7,
-        2","author":"Pandey Prashant","year":"2018","unstructured":"Prashant Pandey
-        , Fatemeh Almodaresi , Michael A Bender , Michael Ferdman , Rob Johnson ,
-        and Rob Patro . 2018 . Mantis: A fast, small, and exact large-scale sequence-search
-        index. Cell systems 7, 2 (2018), 201--207. Prashant Pandey, Fatemeh Almodaresi,
-        Michael A Bender, Michael Ferdman, Rob Johnson, and Rob Patro. 2018. Mantis:
-        A fast, small, and exact large-scale sequence-search index. Cell systems 7,
-        2 (2018), 201--207."},{"key":"e_1_3_2_2_41_1","volume-title":"A fast x86 implementation
-        of select. arXiv preprint arXiv:1706.00990","author":"Pandey Prashant","year":"2017","unstructured":"Prashant
-        Pandey , Michael A Bender , and Rob Johnson . 2017. A fast x86 implementation
-        of select. arXiv preprint arXiv:1706.00990 ( 2017 ). Prashant Pandey, Michael
-        A Bender, and Rob Johnson. 2017. A fast x86 implementation of select. arXiv
-        preprint arXiv:1706.00990 (2017)."},{"key":"e_1_3_2_2_42_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btx261"},{"key":"e_1_3_2_2_43_1","doi-asserted-by":"publisher","DOI":"10.1145\/3035918.3035963"},{"key":"e_1_3_2_2_44_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btx636"},{"key":"e_1_3_2_2_45_1","doi-asserted-by":"publisher","DOI":"10.1145\/3318464.3380598"},{"key":"e_1_3_2_2_46_1","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.1121464109"},{"key":"e_1_3_2_2_47_1","doi-asserted-by":"publisher","DOI":"10.1007\/978-3-540-72845-0_9"},{"key":"e_1_3_2_2_48_1","doi-asserted-by":"publisher","DOI":"10.1109\/TPDS.2013.46"},{"key":"e_1_3_2_2_49_1","doi-asserted-by":"publisher","DOI":"10.1145\/3132747.3132765"},{"key":"e_1_3_2_2_50_1","volume-title":"Weightless:
-        Lossy weight encoding for deep neural network compression. arXiv preprint
-        arXiv:1711.04686","author":"Reagen Brandon","year":"2017","unstructured":"Brandon
-        Reagen , Udit Gupta , RobertAdolf, MichaelMMitzenmacher, Alexander M Rush
-        , Gu-YeonWei, and David Brooks . 2017 . Weightless: Lossy weight encoding
-        for deep neural network compression. arXiv preprint arXiv:1711.04686 (2017).
-        Brandon Reagen, Udit Gupta, RobertAdolf, MichaelMMitzenmacher, AlexanderM
-        Rush, Gu-YeonWei, and David Brooks. 2017. Weightless: Lossy weight encoding
-        for deep neural network compression. arXiv preprint arXiv:1711.04686 (2017)."},{"key":"e_1_3_2_2_51_1","volume-title":"Last
-        Accessed","author":"DB","year":"2018","unstructured":"Rocks DB [n. d.]. RocksDB.
-        https:\/\/rocksdb.org\/ , Last Accessed Sep. 26, 2018 . RocksDB [n. d.]. RocksDB.
-        https:\/\/rocksdb.org\/, Last Accessed Sep. 26, 2018."},{"key":"e_1_3_2_2_52_1","volume-title":"Fast
-        search of thousands of short-read sequencing experiments. Nature biotechnology
-        34, 3","author":"Solomon Brad","year":"2016","unstructured":"Brad Solomon
-        and Carl Kingsford . 2016. Fast search of thousands of short-read sequencing
-        experiments. Nature biotechnology 34, 3 ( 2016 ), 300. Brad Solomon and Carl
-        Kingsford. 2016. Fast search of thousands of short-read sequencing experiments.
-        Nature biotechnology 34, 3 (2016), 300."},{"key":"e_1_3_2_2_53_1","doi-asserted-by":"publisher","DOI":"10.1093\/bioinformatics\/btq230"},{"key":"e_1_3_2_2_54_1","volume-title":"Proceedings
-        of the 9th European Conference on Computer Systems (EuroSys). 16:1--16:14","author":"Sun
-        Guangyu","year":"2014","unstructured":"PengWang, Guangyu Sun , Song Jiang
-        , Jian Ouyang , Shiding Lin , Chen Zhang , and Jason Cong . 2014 . An efficient
-        design and implementation of LSM-tree based key-value store on open-channel
-        SSD . In Proceedings of the 9th European Conference on Computer Systems (EuroSys).
-        16:1--16:14 . PengWang, Guangyu Sun, Song Jiang, Jian Ouyang, Shiding Lin,
-        Chen Zhang, and Jason Cong. 2014. An efficient design and implementation of
-        LSM-tree based key-value store on open-channel SSD. In Proceedings of the
-        9th European Conference on Computer Systems (EuroSys). 16:1--16:14."},{"key":"e_1_3_2_2_55_1","unstructured":"Maysam
-        Yabandeh. 2017. Partitioned Index\/Filters. https:\/\/rocksdb.org\/blog\/2017\/
-        05\/12\/partitioned-index-filter.html.  Maysam Yabandeh. 2017. Partitioned
-        Index\/Filters. https:\/\/rocksdb.org\/blog\/2017\/ 05\/12\/partitioned-index-filter.html."},{"key":"e_1_3_2_2_56_1","doi-asserted-by":"publisher","DOI":"10.5555\/1364813.1364831"}],"event":{"name":"SIGMOD\/PODS
-        ''21: International Conference on Management of Data","sponsor":["SIGMOD ACM
-        Special Interest Group on Management of Data"],"location":"Virtual Event China","acronym":"SIGMOD\/PODS
-        ''21"},"container-title":["Proceedings of the 2021 International Conference
-        on Management of Data"],"original-title":[],"link":[{"URL":"https:\/\/dl.acm.org\/doi\/10.1145\/3448016.3452841","content-type":"unspecified","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/dl.acm.org\/doi\/pdf\/10.1145\/3448016.3452841","content-type":"application\/pdf","content-version":"vor","intended-application":"syndication"},{"URL":"https:\/\/dl.acm.org\/doi\/pdf\/10.1145\/3448016.3452841","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2025,6,17]],"date-time":"2025-06-17T21:28:05Z","timestamp":1750195685000},"score":1,"resource":{"primary":{"URL":"https:\/\/dl.acm.org\/doi\/10.1145\/3448016.3452841"}},"subtitle":["Overcoming
-        the Time\/Space Trade-Off in Filter Design"],"short-title":[],"issued":{"date-parts":[[2021,6,9]]},"references-count":56,"alternative-id":["10.1145\/3448016.3452841","10.1145\/3448016"],"URL":"https:\/\/doi.org\/10.1145\/3448016.3452841","relation":{},"subject":[],"published":{"date-parts":[[2021,6,9]]},"assertion":[{"value":"2021-06-18","order":2,"name":"published","label":"Published","group":{"name":"publication_history","label":"Publication
-        History"}}]}}'
+      string: !!binary |
+        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
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '4918'
+      - '4944'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:05 GMT
+      - Wed, 18 Mar 2026 15:18:42 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -195,10 +128,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

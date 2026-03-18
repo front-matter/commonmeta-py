@@ -14,66 +14,38 @@ interactions:
     uri: https://zenodo.org/api/records/3871094
   response:
     body:
-      string: '{"created": "2020-06-01T04:43:51.061750+00:00", "modified": "2024-07-19T19:49:55.245734+00:00",
-        "id": 3871094, "conceptrecid": "3862788", "doi": "10.5281/zenodo.3871094",
-        "conceptdoi": "10.5281/zenodo.3862788", "doi_url": "https://doi.org/10.5281/zenodo.3871094",
-        "metadata": {"title": "An open letter to Mehra et al and The Lancet", "doi":
-        "10.5281/zenodo.3871094", "publication_date": "2020-05-28", "description":
-        "<p>Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel, authors
-        of</p>\n\n<p><strong>&ldquo;Hydroxychloroquine or chloroquine with or without
-        a macrolide for treatment of COVID-19: a multinational registry analysis&rdquo;.
-        Lancet. 2020 May 22:S0140-6736(20)31180-6. doi: 10.1016/S0140-6736(20)31180-6.
-        PMID: 32450107</strong></p>\n\n<p>and to Richard Horton (editor of The Lancet).</p>",
-        "access_right": "open", "creators": [{"name": "James Watson on the behalf
-        of 201 signatories", "affiliation": "Mahidol Oxford Tropical Medicine Research
-        Unit", "orcid": "0000-0001-5524-0325"}], "keywords": ["Hydroxychloroquine",
-        "The Lancet", "Open Science"], "version": "4", "language": "eng", "resource_type":
-        {"title": "Report", "type": "publication", "subtype": "report"}, "license":
-        {"id": "cc-by-4.0"}, "relations": {"version": [{"index": 3, "is_last": true,
-        "parent": {"pid_type": "recid", "pid_value": "3862788"}}]}}, "title": "An
-        open letter to Mehra et al and The Lancet", "links": {"self": "https://zenodo.org/api/records/3871094",
-        "self_html": "https://zenodo.org/records/3871094", "preview_html": "https://zenodo.org/records/3871094?preview=1",
-        "doi": "https://doi.org/10.5281/zenodo.3871094", "self_doi": "https://doi.org/10.5281/zenodo.3871094",
-        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.3871094", "reserve_doi":
-        "https://zenodo.org/api/records/3871094/draft/pids/doi", "parent": "https://zenodo.org/api/records/3862788",
-        "parent_html": "https://zenodo.org/records/3862788", "parent_doi": "https://doi.org/10.5281/zenodo.3862788",
-        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.3862788", "self_iiif_manifest":
-        "https://zenodo.org/api/iiif/record:3871094/manifest", "self_iiif_sequence":
-        "https://zenodo.org/api/iiif/record:3871094/sequence/default", "files": "https://zenodo.org/api/records/3871094/files",
-        "media_files": "https://zenodo.org/api/records/3871094/media-files", "thumbnails":
-        {"10": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E10,/0/default.jpg",
-        "50": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E50,/0/default.jpg",
-        "100": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E100,/0/default.jpg",
-        "250": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E250,/0/default.jpg",
-        "750": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E750,/0/default.jpg",
-        "1200": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E1200,/0/default.jpg"},
-        "archive": "https://zenodo.org/api/records/3871094/files-archive", "archive_media":
-        "https://zenodo.org/api/records/3871094/media-files-archive", "latest": "https://zenodo.org/api/records/3871094/versions/latest",
-        "latest_html": "https://zenodo.org/records/3871094/latest", "versions": "https://zenodo.org/api/records/3871094/versions",
-        "draft": "https://zenodo.org/api/records/3871094/draft", "access_links": "https://zenodo.org/api/records/3871094/access/links",
-        "access_grants": "https://zenodo.org/api/records/3871094/access/grants", "access_users":
-        "https://zenodo.org/api/records/3871094/access/users", "access_request": "https://zenodo.org/api/records/3871094/access/request",
-        "access": "https://zenodo.org/api/records/3871094/access", "communities":
-        "https://zenodo.org/api/records/3871094/communities", "communities-suggestions":
-        "https://zenodo.org/api/records/3871094/communities-suggestions", "request_deletion":
-        "https://zenodo.org/api/records/3871094/request-deletion", "file_modification":
-        "https://zenodo.org/api/records/3871094/file-modification", "requests": "https://zenodo.org/api/records/3871094/requests"},
-        "updated": "2024-07-19T19:49:55.245734+00:00", "recid": "3871094", "revision":
-        5, "files": [{"id": "735c18c3-8ecd-41bf-826b-4d719f94b334", "key": "Open Letter
-        V4.pdf", "size": 130482, "checksum": "md5:8d686fae168ff94e45e59c076d2fb209",
-        "links": {"self": "https://zenodo.org/api/records/3871094/files/Open Letter
-        V4.pdf/content"}}], "swh": {}, "owners": [{"id": "103835"}], "status": "published",
-        "stats": {"downloads": 104392, "unique_downloads": 96303, "views": 194370,
-        "unique_views": 165579, "version_downloads": 10235, "version_unique_downloads":
-        9369, "version_unique_views": 18041, "version_views": 20250}, "state": "done",
-        "submitted": true}'
+      string: !!binary |
+        H4sIAAAAAAAAA6xXbW/bNhD+K4SBFS0WWaTeLHtZh2Ld0A7NWiRd96EtDFqiLK6ypJJUUrfwf98d
+        JVtK6qR2kCCBY/Ke51555H0bJUpwI9LRjIw86lGHRg5lb2kwC/xZyMY0YpOQ/kzpjNLRCRmtqlRm
+        cicfOHTisOlbNp0F01kYjr0gnPhBLy9R0o8njE4D+JpUZSJqo0RiN0Z+HHmTOEbJtJK4wug49GLm
+        fhVllVbjDjrqsbfJDYnmjSpQKDem1jPXhaVxpZbu7eQrYXjKDQfUt5GRphCIf1aSqhYlKYQxQhFT
+        kTORK06EIbwgvEzJ21yQVxwMMwf5UDeLQibcyKqcgzrRhz10vNZ6oRMla5TAzdP66esbFpy3RpyQ
+        iwvyXGguT8if5LzRSS7N10+wjnY9+5u8Af4CvjUmr5QmVXbq1k8/lB9K4DzVRlXl8umjIv3cVL+8
+        WKeq+rJO8qJS1edGloJUigy/XkmT4xp+Vg24T1Y8UVUhU0EyWDdYRitRGtBDfn/97uVzKIsZijWF
+        kaX1GEKmxFKC6jXYyIu1lvqRsgaMuyCOCUaDnPE18bzZBWUBdaKJHz326BOfsRi+jQlEeUYgxoyy
+        yL1F5s3Zy+dQeFCOlNHJqdv5OwgBRgnCeS6TnKuUvKiUqUryWKTSgD/gRZ/aJ2PEYXZ4kgit50ou
+        c4PpweqwtYnuQ5Rh7f23UclXNrN/wacm/3KjgRl+DTAuRM6LDPk9yoiWyxKBUmhLn2WykHyb/DOe
+        y7QqyOsvEGKoNVXVUDwF5D+VCWblXGjBVZKTf0ppC7BS3cGi8OPAH3PCEE+p74WjzUeQ+CTWV0Bm
+        LR19n3ckuV7TtvwuEilgYYQMl0LpzkBb0wUvlw1fWo9FucQlJXTVqETMzboW14/Uuagh0ijU7Q3P
+        BC7rZrHdUa3sBpXIRJS65Wo9TBJnsXaCMbX7ShSWQVuJ3kTIhixT8QW7ELYjPS+4xtQZ1Qg8kFxB
+        0VpQLdN5rxnjiPuweMmLRgy71WbzcYNK790nCll+ai3VosiGnaprGdiseC1dsAOT5Q5aCCLmuVkV
+        t8D2QGolLqW4OgL1Wwf5lQ3a2uHd1Np4b9RddsL2HQxQd0Jdipuq7w6qmyqeGRcyrZF+NKyKH1Ps
+        rp0Wc1iMb4IODdUe3NHB2nHYcEsps/mKlzIT+i6HUa5zYLaN2w52jUyLz43tFceRbWFuKjIOdwaS
+        QjMU+qAstByt/Ane5qnk82PhFuXsSEzerBYll0V7Uhk9zqMZNs6fPPrK9gT4510wrtPMzZqicH8K
+        /2D0xKVbb8f/1bZxhg+sJNynhNEH1gKEe9R4D+2Mt9ebyUOrmewPmvfgUfO+DxveKnihy8u7zs/e
+        une2uJ5ibiv6CKLBCRjSwdV6d3e4ydPdv9rtkDuOw9pjS9Jjt3T3sMBeX9jfj8C28ie71972tj4U
+        38LcFtbTLBUvzT14OlxP1MAldw+eFtbTKOy4R6W1I9oCd1RHUyA0qVarBp6t8qgePURdJ3F0s1yC
+        WUcWym0M9jVh/ZynAt513Yv3QNYO6uyg3W02b+fnhB/Jh1jnGra37xhvdxBsNE2dDkb/H47yqh/a
+        Bw+uS9m9tMPBhf1++0if+GHC4sR3YpGkTsAWmRN70cIJ0gmbZtNg4fuWB6YSFLezRtsvSdst7dtC
+        fsVuyHwaxB4mPRfJJ92sELFKw1mcRnGUccGiOANOEYQinCZ0EqVetvDo1Lafe764297qfm8YFE5p
+        8JG4sWOVvsqRHcNaXZVCXYsCo37sd/OXNtw0NmV27tG5sHMGLrf2pYAvKm4nNEaDiEWYqlJC4ubD
+        vWkUMowGPtOt7DQMWdDL7tajKIqDvovOryvw2XBvn54g2COxY499nw62t+sehblz0zlm77K0aqdL
+        mO9W0rR1h0PY5n8AAAD//wMADT07E4QSAAA=
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      cache-control:
-      - private
       content-encoding:
       - gzip
       content-security-policy:
@@ -83,7 +55,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 01 Dec 2025 17:20:11 GMT
+      - Wed, 18 Mar 2026 15:20:23 GMT
       etag:
       - W/"5"
       link:
@@ -93,15 +65,11 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '43'
+      - '48'
       server:
       - nginx
-      set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=611cdb20f4a24e727216245e7a64854d; path=/;
-        HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      - max-age=15768000
       transfer-encoding:
       - chunked
       vary:
@@ -115,9 +83,9 @@ interactions:
       x-ratelimit-remaining:
       - '129'
       x-ratelimit-reset:
-      - '1764609655'
-      x-request-id:
-      - 10561b8d58ca76bf1a4b5b5a5bea143b
+      - '1773847272'
+      x-source:
+      - api
       x-xss-protection:
       - 1; mode=block
     status:

@@ -14,119 +14,86 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647
   response:
     body:
-      string: '{"abstract":"A preprint claims that \u201cideas from theoretical linguistics
-        have played no role in [NLP]\u201d. Outside the confines of Chomskyan linguistics
-        folks have long been working on  incorporating storage, retrieval, gating
-        and attention in theories of language, with direct relevance to computational
-        models. The only way to give any content to the claim is by giving the notion
-        \u201ctheoretical linguistics\u201d the narrowest conceivable reading.","archive_url":null,"authors":[{"name":"Mark
-        Dingemanse"}],"blog":{"archive_collection":24087,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"languagesAndLiterature","community_id":"ac7a6214-f166-416e-9500-caa8343d6285","created_at":1706627953,"current_feed_url":null,"description":"Sounding
-        out ideas on language, interaction, and iconicity","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/ac7a6214-f166-416e-9500-caa8343d6285/logo","feed_format":"application/atom+xml","feed_url":"https://ideophone.org/feed/atom/","filter":"category:98","funding":null,"generator":"WordPress","generator_raw":"WordPress
-        6.7.1","home_page_url":"https://ideophone.org/","id":"191184bc-efcf-4f0f-a1ee-09436542d408","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://scholar.social/@dingemansemark","prefix":"10.59350","registered_at":1728774318,"relative_url":null,"ror":null,"secure":true,"slug":"ideophone","status":"active","subfield":"1203","subfield_validated":null,"title":"The
-        Ideophone","updated_at":1764078313,"use_api":true,"use_mastodon":false,"user_id":"e1f022f2-7d98-4b1e-81cc-81d8e8416403"},"blog_name":"The
-        Ideophone","blog_slug":"ideophone","content_html":"\n<p>This <a rel=\"noreferrer
-        noopener\" href=\"https://ling.auf.net/lingbuzz/006031\" target=\"_blank\">Lingbuzz
-        preprint by Baroni</a> is a nice read if you&#8217;re interested in linguistically
-        oriented deep net analysis. I did feel it&#8217;s a bit hampered by the near-exclusive
-        equation of linguistic theory with generative/Chomskyan aps. (I know it makes
-        a point of claiming a &#8220;very broad notion of theoretical linguistics&#8221;,
-        but it doesn&#8217;t really demonstrate this, and throughout the implicit
-        notion of theory is near-exclusively aligned with GG and its associated concerns
-        of competence, poverty of the stimulus, et cetera).</p>\n\n\n\n<figure class=\"wp-block-image\"><img
-        decoding=\"async\" src=\"https://pbs.twimg.com/media/E4FDxONXwAMFvCh.png\"
-        alt=\"\"/></figure>\n\n\n\n<p>For instance, it notes (citing Lappin) that
-        theoretical linguistics &#8220;played no role&#8221; in deep learning for
-        NLP, but while this may hold for generative grammar (GG), linguistic theorizing
-        was much broader than that right at the start of connectionism and RNNs, e.g.
-        in <a href=\"http://doi.org/10.1023/A:1022699029236\" target=\"_blank\" rel=\"noreferrer
-        noopener\">Elman 1991</a>.</p>\n\n\n\n<p>In fact, just look at the bibliography
-        of Elman&#8217;s classic RNN work and tell us again how exactly theoretical
-        linguistics &#8220;played no role&#8221; \u2014  Bates &amp; Macwhinney, Chomsky,
-        Fillmore, Fodor, Givon, Hopper &amp; Thompson, Lakoff, Langacker, they&#8217;re
-        all there. Elman&#8217;s bibliography is a virtual <em>Who is Who</em> of
-        big tent linguistics at the start of the 1990s. The only way to give any content
-        to Lappin&#8217;s claim (and by extension, Baroni&#8217;s generalization)
-        is to give the notion of &#8220;theoretical linguistics&#8221; the narrowest
-        conceivable reading.</p>\n\n\n\n<figure class=\"wp-block-gallery has-nested-images
-        columns-default is-cropped wp-block-gallery-3 is-layout-flex wp-block-gallery-is-layout-flex\">\n<figure
-        class=\"wp-block-image size-large\"><a href=\"https://ideophone.org/files/E4FEkLuWUAI6IwO.png\"><img
-        loading=\"lazy\" decoding=\"async\" width=\"696\" height=\"1024\" data-id=\"5640\"
-        src=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png\" alt=\"\"
-        class=\"wp-image-5640\" srcset=\"https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png
-        696w, https://ideophone.org/files/E4FEkLuWUAI6IwO-204x300.png 204w, https://ideophone.org/files/E4FEkLuWUAI6IwO.png
-        754w\" sizes=\"auto, (max-width: 696px) 100vw, 696px\" /></a></figure>\n</figure>\n\n\n\n<p>However,
-        Baroni&#8217;s point may generalize: perhaps modern-day usage-based, functional,
-        and cognitive approaches to ling theory aren&#8217;t drawing as heavily on
-        current NLP/ML/DL work as they could either. Might a lack of reciprocity play
-        a role? After all, the well known ahistoricism and lack of interdisciplinary
-        engagement of NLP today does not exactly invite productive exchange. (Though
-        some of us try.)</p>\n\n\n\n<p>The theory=Chomsky equation also makes it appearance
-        at the end, where Baroni muses about  incorporating storage, retrieval, gating
-        and attention in theories of language. Outside the confines of Chomskyan linguistics
-        folks have long been working on precisely such things. One might think work
-        by Joan Bybee, Maryellen MacDonald, Morten Christiansen, and others might
-        merit a mention!</p>\n\n\n\n<figure class=\"wp-block-image\"><img decoding=\"async\"
-        src=\"https://pbs.twimg.com/media/E4FH0LUXwAY9NfF.png\" alt=\"\"/></figure>\n\n\n\n<p>In
-        sum, Baroni&#8217;s piece provides an informative if partial review of recent
-        work and includes bold proposals (e.g., deep nets as algorithmic linguistic
-        theories), worth reading if you&#8217;re interested in a particular kind of
-        linguistics. Consider pairing it with this <a href=\"http://doi.org/10.1023/A:1022699029236\"
-        target=\"_blank\" rel=\"noreferrer noopener\">well-aged bottle of Elman 1991</a>!</p>\n\n\n\n<h2
-        class=\"heading\" class=\"wp-block-heading\">References</h2>\n\n\n\n<ul class=\"wp-block-list\">\n<li>Baroni,
-        M. (2021, June). <em>On the proper role of linguistically-oriented deep net
-        analysis in linguistic theorizing</em>. LingBuzz. Retrieved from <a href=\"https://ling.auf.net/lingbuzz/006031\">https://ling.auf.net/lingbuzz/006031</a></li>\n\n\n\n<li>Bybee,
-        J. L. (2010). <em>Language, Usage, and Cognition</em>. Cambridge: Cambridge
-        University Press.</li>\n\n\n\n<li>Christiansen, M. H., &amp; Chater, N. (2017).
-        Towards an integrated science of language. <em>Nature Human Behaviour</em>,
-        <em>1</em>, s41562-017-0163\u2013017. doi: <a href=\"https://doi.org/10.1038/s41562-017-0163\">10.1038/s41562-017-0163</a></li>\n\n\n\n<li>Elman,
-        J. L. (1991). Distributed Representations, Simple Recurrent Networks, And
-        Grammatical Structure. <em>Machine Learning</em>, <em>7</em>, 195\u2013225.
-        doi: <a href=\"https://doi.org/10.1023/A:1022699029236\">10.1023/A:1022699029236</a></li>\n\n\n\n<li>Lappin,
-        S. (2021). <em>Deep learning and linguistic representation</em>. Boca Raton:
-        CRC Press.</li>\n\n\n\n<li>MacDonald, M. C., &amp; Christiansen, M. H. (2002).
-        Reassessing working memory: Comment on Just and Carpenter (1992) and Waters
-        and Caplan (1996). <em>Psychological Review</em>, <em>109</em>(1), 35\u201354.
-        doi: <a href=\"https://doi.org/10.1037/0033-295X.109.1.35\">10.1037/0033-295X.109.1.35</a></li>\n</ul>\n\n\n\n<p><em>Originally
-        tweeted by <a rel=\"mention\" class=\"u-url mention\" href=\"https://scholar.social/@dingemansemark\">@<span>dingemansemark</span></a>
-        (<a href=\"https://twitter.com/DingemanseMark\">@DingemanseMark</a>) on <a
-        href=\"https://twitter.com/DingemanseMark/status/1405488247057391616\">June
-        17, 2021</a>.</em></p>\n\n\n\n<p></p>\n","doi":"https://doi.org/10.59350/dn2mm-m9q51","funding_references":null,"guid":"https://ideophone.org/?p=5639","id":"525a7d13-fe07-4cab-ac54-75d7b7005647","image":null,"indexed_at":1741120300,"language":"en","parent_doi":null,"published_at":1626939547,"reference":[{"id":"https://ling.auf.net/lingbuzz/006031","unstructured":"Baroni,
-        M. (2021, June). On the proper role of linguistically-oriented deep net analysis
-        in linguistic theorizing. LingBuzz. Retrieved from https://ling.auf.net/lingbuzz/006031"},{"unstructured":"Bybee,
-        J. L. (2010). Language, Usage, and Cognition. Cambridge: Cambridge University
-        Press."},{"id":"https://doi.org/10.1038/s41562-017-0163","type":"JournalArticle","unstructured":"Christiansen,
-        M. H., &amp; Chater, N. (2017). Towards an integrated science of language.
-        <i>Nature Human Behaviour</i>, <i>1</i>(8). https://doi.org/10.1038/s41562-017-0163"},{"id":"https://doi.org/10.1023/A:1022699029236","unstructured":"Elman,
-        J. L. (1991). Distributed Representations, Simple Recurrent Networks, And
-        Grammatical Structure. Machine Learning, 7, 195\u2013225. https://doi.org/10.1023/A:1022699029236"},{"unstructured":"Lappin,
-        S. (2021). Deep learning and linguistic representation. Boca Raton: CRC Press."},{"id":"https://doi.org/10.1037/0033-295x.109.1.35","type":"JournalArticle","unstructured":"MacDonald,
-        M. C., &amp; Christiansen, M. H. (2002). Reassessing working memory: Comment
-        on Just and Carpenter (1992) and Waters and Caplan (1996). <i>Psychological
-        Review</i>, <i>109</i>(1), 35\u201354. https://doi.org/10.1037/0033-295x.109.1.35"}],"registered_at":0,"relationships":[],"rid":"7tatc-wh557","subfield":null,"summary":"This
-        Lingbuzz preprint by Baroni is a nice read if you\u2019re interested in linguistically
-        oriented deep net analysis. I did feel it\u2019s a bit hampered by the near-exclusive
-        equation of linguistic theory with generative/Chomskyan aps.","tags":["Linguistics","Threads"],"title":"Linguistic
-        roots of connectionism","topic":null,"topic_score":0,"updated_at":1707080736,"url":"https://ideophone.org/linguistic-roots-of-connectionism","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Thu, 04 Dec 2025 18:26:59 GMT
-      fly-request-id:
-      - 01KBN9W4JX4QYNJ4XY93XEZFSV-ams
-      server:
-      - Fly/340afcba (2025-12-03)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:19:21 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

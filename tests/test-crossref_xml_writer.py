@@ -191,7 +191,7 @@ def test_write_crossref_xml_posted_content():
     }
     assert (
         dig(crossref_xml, "titles.0.title")
-        == "Identification of a novel cationic glycolipid in<i>Streptococcus agalactiae</i>that contributes to brain entry and meningitis"
+        == "Identification of a novel cationic glycolipid in <i>Streptococcus agalactiae</i> that contributes to brain entry and meningitis"
     )
     assert dig(crossref_xml, "posted_date") == {
         "day": "1",
@@ -1635,13 +1635,9 @@ def test_wrong_doi_reference():
     assert subject.type == "BlogPost"
     assert subject.references == [
         {
-            "id": "https://doi.org/",
-            "unstructured": "https://doi.org/\n",
-        },
-        {
             "id": "https://doi.org/10.14469/hpc/14662",
             "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024. '
-            "https://doi.org/10.14469/hpc/14662\n",
+            "https://doi.org/10.14469/hpc/14662",
         },
     ]
 

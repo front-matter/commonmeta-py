@@ -14,136 +14,101 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/10.53731/r79v4e1-97aq74v-ag578
   response:
     body:
-      string: '{"abstract":"One of the first tasks for DataCite in the European Commission-funded
-        THOR project, which started in June, was to contribute to a comparison of
-        the ORCID and DataCite metadata standards.","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/differences-between-orcid-and-datacite-metadata/","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1764202472,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","content_html":"<p>One of the first tasks
-        for DataCite in the European Commission-funded <a href=\"http://project-thor.eu/\">THOR
-        project</a>, which started in June, was to contribute to a comparison of the
-        ORCID and DataCite metadata standards. Together with ORCID, CERN, the British
-        Library and Dryad we looked at how contributors, organizations and artefacts
-        - and the relations between them - are described in the respective metadata
-        schemata, and how they are implemented in two example data repositories, <a
-        href=\"http://archaeologydataservice.ac.uk/\">Archaeology Data Service</a>
-        and <a href=\"https://www.datadryad.org/\">Dryad Digital Repository</a>.</p><p>The
-        focus of our work was on identifying major gaps. Our report was finished and
-        made publicly available last week (Fenner et al., <a href=\"https://blog.datacite.org/differences-between-orcid-and-datacite-metadata/#ref-https://doi.org/10.5281/ZENODO.30799\">2015</a>).
-        The key findings are summarized below:</p><ul><li>Common Approach to Personal
-        Names</li><li>Standardized Contributor Roles</li><li>Standardized Relation
-        Types</li><li>Metadata for Organisations</li><li>Persistent Identifiers for
-        Projects</li><li>Harmonization of ORCID and DataCite Metadata</li></ul><h3
-        id=\"common-approach-to-personal-names\">Common Approach to Personal Names</h3><p>While
-        a single input field for contributor names is common, separate fields for
-        given and family names are required for <a href=\"http://docs.citationstyles.org/en/stable/specification.html#names\">proper
-        formatting of citations</a>. As long as citations to scholarly content rely
-        on properly formatted text rather than persistent identifiers, services holding
-        bibliographic information have to support these separate fields. Further work
-        is needed to help with the transition to separate input fields for given and
-        famliy names, and to handle contributors that are organizations or groups
-        of people.</p><h3 id=\"standardized-contributor-roles\">Standardized Contributor
-        Roles</h3><p>The currently existing vocabularies for <strong>contributor type</strong>
-        (DataCite) and <strong>contributor role</strong> (ORCID) provide a high-level
-        description, but fall short when trying to describe the author/creator contribution
-        in more detail. <a href=\"http://docs.casrai.org/CRediT\">Project CRediT</a>
-        is a multi-stakeholder initiative that has developed a common vocabulary with
-        14 different contributor roles, and this vocabulary can be used to provide
-        this detail, e.g. who provided resources such as reagents or samples, who
-        did the statistical analysis, or who contributed to the methodology of a study.</p><p>CRediT
-        is complementary to existing contributor role vocabularies such as those by
-        ORCID and DataCite. For contributor roles it is particularly important that
-        the same vocabulary is used across stakeholders, so that the roles described
-        in the data center can be forwarded first to DataCite, then to ORCID, and
-        then also to other places such as institutional repositories.</p><h3 id=\"standardized-relation-types\">Standardized
-        Relation Types</h3><p>Capturing relations between scholarly works such as
-        datasets in a standardized way is important, as these relations are used for
-        citations and thus the basis for many indicators of scholarly impact. Currently
-        used vocabularies for relation types between scholarly works, e.g. by CrossRef
-        and DataCite, only partly overlap. In addition we see differences in community
-        practices, e.g. some scholars but not others reserve the term citation for
-        links between two scholarly articles. The term data citation is sometimes
-        used for all links from scholarly works to datasets, but other times reserved
-        for formal citations appearing in reference lists.</p><h3 id=\"metadata-for-organisations\">Metadata
-        for Organisations</h3><p>Both ORCID and DataCite not only provide persistent
-        identifiers for people and data, but they also collect metadata around these
-        persistent identifiers, in particular links to other identifiers. The use
-        of persistent identifiers for organizations lags behind the use of persistent
-        identifiers for research outputs and people, and more work is needed.</p><h3
-        id=\"persistent-identifiers-for-projects\">Persistent Identifiers for Projects</h3><p>Research
-        projects are collaborative activities among contributors that may change over
-        time. Projects have a start and end date and are often funded by a grant.
-        The existing persistent identifier (PID) infrastructure does support artefacts,
-        contributors and organisations, but there is no first-class PID support for
-        projects. This creates a major gap that becomes obvious when we try to describe
-        the relationships between funders, contributors and research outputs.</p><p>Both
-        the ORCID and DataCite metadata support funding information, but only as direct
-        links to contributors or research outputs, respectively. This not only makes
-        it difficult to exchange funding information between DataCite and ORCID, but
-        also fails to adequately model the sometimes complex relationships, e.g. when
-        multiple funders and grants were involved in supporting a research output.
-        We therefore not only need persistent identifiers for projects, but also infrastructure
-        for collecting and aggregating links to contributors and artefacts.</p><h3
-        id=\"harmonization-of-orcid-and-datacite-metadata\">Harmonization of ORCID
-        and DataCite Metadata</h3><p>We identified significant differences between
-        the ORCID and DataCite metadata schema, and these differences hinder the flow
-        of information between the two services. Several different approaches to overcome
-        these differences are conceivable:</p><ol><li>only use a common subset, relying
-        on linked persistent identifiers to get the full metadata</li><li>harmonize
-        the ORCID and DataCite metadata schemata</li><li>common API exchange formats
-        for metadata</li></ol><p>The first approach is the linked open data approach,
-        and was designed specifically for scenarios like this. One limitation is that
-        it requires persistent identifiers for all relevant attributes (e.g. for every
-        creator/contributor in the DataCite metadata). One major objective for THOR
-        is therefore to increase the use of persistent identifiers, both by THOR partners,
-        and by the community at large.</p><p>A common metadata schema between ORCID
-        and DataCite is neither feasible nor necessarily needed. In addition, we have
-        to also consider interoperability with other metadata standards (e.g. CASRAI,
-        OpenAIRE, COAR), and with other artifacts, such as those having CrossRef DOIs.
-        What is more realistic is harmonization across a limited set essential metadata.</p><p>The
-        third approach to improve interoperability uses a common API format that includes
-        all the metadata that need to be exchanged, but doesn\u2019t require the metadata
-        schema itself to change. This approach was <a href=\"https://www.crossref.org/blog/crossref-and-datacite-unify-support-for-http-content-negotiation/\">taken
-        by DataCite and CrossRef a few years ago</a> to provide metadata for DOIs
-        in a consistent way despite significant differences in the CrossRef and DataCite
-        metadata schema. Using HTTP content negotiation, metadata are provided in
-        a variety of formats.</p><h2 id=\"acknowledgments\">Acknowledgments</h2><p>This
-        blog post was <a href=\"https://doi.org/10.5438/bc11-cqw1\">originally published</a>
-        on the DataCite Blog. This work was funded by the European Union\u2019s Horizon
-        2020 research and innovation programme under <a href=\"https://doi.org/10.3030/654039\"
-        rel=\"noreferrer\">grant agreement No.&nbsp;654039</a>.</p><h2 id=\"references\">References</h2><ol><li>Fenner
-        M, Demeranville T, Kotarski R, et al. <em>D2.1: Artefact, Contributor, And
-        Organisation Relationship Data Schema</em>. Zenodo; 2015. doi:<a href=\"https://doi.org/10.5281/ZENODO.30799\">10.5281/ZENODO.30799</a></li></ol>","doi":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","funding_references":null,"guid":"https://doi.org/10.53731/r79v4e1-97aq74v-ag578","id":"8a4de443-3347-4b82-b57d-e3c82b6485fc","image":"https://blog.front-matter.de/content/images/2023/09/cat_and_dog-1.png","indexed_at":1764616013,"language":"en","parent_doi":null,"published_at":1442534400,"reference":[{"id":"https://doi.org/10.5281/zenodo.30799","type":"Report","unstructured":"Fenner,
-        M., Demeranville, T., Kotarski, R., Vision, T., Rueda, L., Dasler, R., Haak,
-        L., &amp; Cruse, P. (2015). <i>D2.1: Artefact, Contributor, And Organisation
-        Relationship Data Schema</i>. Zenodo. https://doi.org/10.5281/zenodo.30799"}],"registered_at":0,"relationships":[{"type":"IsIdenticalTo","urls":["https://doi.org/10.5438/bc11-cqw1"]},{"type":"HasAward","urls":["https://doi.org/10.3030/654039"]}],"rid":"trhz1-s0336","subfield":null,"summary":"One
-        of the first tasks for DataCite in the European Commission-funded THOR project,
-        which started in June, was to contribute to a comparison of the ORCID and
-        DataCite metadata standards.","tags":["Metadata"],"title":"Differences between
-        ORCID and DataCite Metadata","topic":"11937","topic_score":0.63,"updated_at":1746637479,"url":"https://blog.front-matter.de/posts/differences-between-orcid-and-datacite-metadata/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
+        AAA=
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Thu, 04 Dec 2025 18:27:06 GMT
-      fly-request-id:
-      - 01KBN9WB35K61ND4YQ699YTGQ7-ams
-      server:
-      - Fly/340afcba (2025-12-03)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:19:21 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

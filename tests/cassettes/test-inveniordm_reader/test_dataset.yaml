@@ -14,187 +14,97 @@ interactions:
     uri: https://zenodo.org/api/records/7834392
   response:
     body:
-      string: '{"created": "2023-04-17T12:14:31.538682+00:00", "modified": "2023-04-17T14:26:45.792430+00:00",
-        "id": 7834392, "conceptrecid": "3723939", "doi": "10.5281/zenodo.7834392",
-        "conceptdoi": "10.5281/zenodo.3723939", "doi_url": "https://doi.org/10.5281/zenodo.7834392",
-        "metadata": {"title": "A large-scale COVID-19 Twitter chatter dataset for
-        open scientific research - an international collaboration", "doi": "10.5281/zenodo.7834392",
-        "publication_date": "2023-04-16", "description": "<p><em><strong>Version 162&nbsp;of
-        the dataset. NOTES: Data for 3/15 - 3/18 was not extracted due to unexpected
-        and unannounced downtime of our university infrastructure. We will try to
-        backfill those days by next release.&nbsp;</strong></em><em><strong>FUTURE
-        CHANGES: Due to the imminent&nbsp;paywalling of Twitter&#39;s API access&nbsp;this
-        might be the last full update of this dataset. If the API access is not blocked,
-        we will be stopping updates for this dataset with release 165 - a bit more
-        than 3 years after our initial release. It&#39;s been a joy seeing all the
-        work that uses this resource and we are glad that so many found it useful.&nbsp;</strong></em></p>\n\n<p><em><strong>The
-        dataset files: full_dataset.tsv.gz and&nbsp;full_dataset_clean.tsv.gz have&nbsp;been
-        split in 1 GB&nbsp;parts using the Linux utility called Split. So make sure
-        to join the&nbsp;parts before unzipping. We had to make this change as we
-        had huge issues uploading files larger than 2GB&#39;s&nbsp;(hence the delay
-        in the dataset releases).&nbsp;The peer-reviewed publication for this dataset
-        has now been published&nbsp; in&nbsp;Epidemiologia an&nbsp;MDPI journal, and
-        can be accessed here:&nbsp;<a href=\"https://doi.org/10.3390/epidemiologia2030024\">https://doi.org/10.3390/epidemiologia2030024</a>.
-        Please cite this when using the dataset.</strong></em></p>\n\n<p><strong>Due
-        to the relevance of the COVID-19 global pandemic, we are releasing our dataset
-        of tweets acquired from the Twitter Stream related to COVID-19 chatter. Since
-        our first release we have received additional data from our new collaborators,
-        allowing this resource to grow to its current size. Dedicated data gathering
-        started from March 11th yielding over 4 million tweets a day. We have added
-        additional data provided by our new collaborators from January 27th to March
-        27th, to provide extra longitudinal coverage. Version 10 added&nbsp;~1.5 million
-        tweets in the Russian language collected between January 1st and May 8th,
-        gracefully provided to us by:&nbsp;Katya Artemova (NRU HSE) and Elena Tutubalina
-        (KFU). From version 12 we have included daily hashtags, mentions and emoijis
-        and their frequencies the respective zip files. From version 14&nbsp;<em>we</em>&nbsp;have
-        included the tweet identifiers and their respective language for the clean
-        version of the dataset. Since&nbsp;version 20 we have included language and
-        place location for all tweets.</strong></p>\n\n<p><strong>The data collected
-        from the stream captures all languages, but the higher prevalence are:&nbsp;
-        English, Spanish, and French. We release all tweets and retweets on the full_dataset.tsv
-        file (1,395,222,801 unique tweets), and a cleaned version with no retweets
-        on the full_dataset-clean.tsv file (361,748,721 unique tweets). There are
-        several practical reasons for us to leave the retweets, tracing important
-        tweets and their dissemination is one of them. For NLP tasks we provide the
-        top 1000 frequent terms in frequent_terms.csv, the top 1000 bigrams in frequent_bigrams.csv,
-        and the top 1000 trigrams in frequent_trigrams.csv. Some general statistics
-        per day are included for both datasets in the full_dataset-statistics.tsv
-        and full_dataset-clean-statistics.tsv files. For more statistics and some
-        visualizations visit:&nbsp;<a href=\"http://www.panacealab.org/covid19/\">http://www.panacealab.org/covid19/</a>&nbsp;</strong></p>\n\n<p><strong>More
-        details can be found (and will be updated faster at: <a href=\"https://github.com/thepanacealab/covid19_twitter\">https://github.com/thepanacealab/covid19_twitter</a>)
-        and our pre-print about the dataset (<a href=\"https://arxiv.org/abs/2004.03688\">https://arxiv.org/abs/2004.03688</a>)&nbsp;</strong></p>\n\n<p><strong>As
-        always, the tweets distributed here are only tweet identifiers (with date
-        and time added) due to the terms and conditions of Twitter to re-distribute
-        Twitter data ONLY for research purposes. They need to be hydrated to be used.</strong></p>",
-        "access_right": "open", "creators": [{"name": "Banda, Juan M.", "affiliation":
-        "Georgia State University", "orcid": "0000-0001-8499-824X"}, {"name": "Tekumalla,
-        Ramya", "affiliation": "Georgia State University", "orcid": "0000-0002-1606-4856"},
-        {"name": "Wang, Guanyu", "affiliation": "University of Missouri"}, {"name":
-        "Yu, Jingyuan", "affiliation": "Universitat Aut\u00f2noma de Barcelona"},
-        {"name": "Liu, Tuo", "affiliation": "Carl von Ossietzky Universit\u00e4t Oldenburg"},
-        {"name": "Ding, Yuning", "affiliation": "Universit\u00e4t Duisburg-Essen"},
-        {"name": "Artemova, Katya", "affiliation": "NRU HSE"}, {"name": "Tutubalina,
-        Elena", "affiliation": "KFU"}, {"name": "Chowell, Gerardo", "affiliation":
-        "Georgia State University", "orcid": "0000-0003-2194-2251"}], "keywords":
-        ["social media", "twitter", "nlp", "covid-19", "covid19"], "related_identifiers":
-        [{"identifier": "http://www.panacealab.org/covid19/", "relation": "isContinuedBy",
-        "resource_type": "other", "scheme": "url"}, {"identifier": "https://arxiv.org/abs/2004.03688",
-        "relation": "isSupplementTo", "resource_type": "publication-preprint", "scheme":
-        "url"}], "version": "162", "language": "eng", "resource_type": {"title": "Dataset",
-        "type": "dataset"}, "journal": {"issue": "3", "pages": "315-324", "title":
-        "Epidemiologia", "volume": "2"}, "alternate_identifiers": [{"identifier":
-        "10.3390/epidemiologia2030024"}, {"identifier": "https://github.com/thepanacealab/covid19_twitter"}],
-        "license": {"id": "other-pd"}, "communities": [{"id": "covid-19"}, {"id":
-        "biohackathon"}], "relations": {"version": [{"index": 162, "is_last": true,
-        "parent": {"pid_type": "recid", "pid_value": "3723939"}}]}, "notes": "This
-        dataset will be updated bi-weekly at least with additional tweets, look at
-        the github repo for these updates.\nRelease: We have standardized the name
-        of the resource to match our pre-print manuscript and to not have to update
-        it every week."}, "title": "A large-scale COVID-19 Twitter chatter dataset
-        for open scientific research - an international collaboration", "links": {"self":
-        "https://zenodo.org/api/records/7834392", "self_html": "https://zenodo.org/records/7834392",
-        "preview_html": "https://zenodo.org/records/7834392?preview=1", "doi": "https://doi.org/10.5281/zenodo.7834392",
-        "self_doi": "https://doi.org/10.5281/zenodo.7834392", "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.7834392",
-        "reserve_doi": "https://zenodo.org/api/records/7834392/draft/pids/doi", "parent":
-        "https://zenodo.org/api/records/3723939", "parent_html": "https://zenodo.org/records/3723939",
-        "parent_doi": "https://doi.org/10.5281/zenodo.3723939", "parent_doi_html":
-        "https://zenodo.org/doi/10.5281/zenodo.3723939", "self_iiif_manifest": "https://zenodo.org/api/iiif/record:7834392/manifest",
-        "self_iiif_sequence": "https://zenodo.org/api/iiif/record:7834392/sequence/default",
-        "files": "https://zenodo.org/api/records/7834392/files", "media_files": "https://zenodo.org/api/records/7834392/media-files",
-        "archive": "https://zenodo.org/api/records/7834392/files-archive", "archive_media":
-        "https://zenodo.org/api/records/7834392/media-files-archive", "latest": "https://zenodo.org/api/records/7834392/versions/latest",
-        "latest_html": "https://zenodo.org/records/7834392/latest", "versions": "https://zenodo.org/api/records/7834392/versions",
-        "draft": "https://zenodo.org/api/records/7834392/draft", "access_links": "https://zenodo.org/api/records/7834392/access/links",
-        "access_grants": "https://zenodo.org/api/records/7834392/access/grants", "access_users":
-        "https://zenodo.org/api/records/7834392/access/users", "access_request": "https://zenodo.org/api/records/7834392/access/request",
-        "access": "https://zenodo.org/api/records/7834392/access", "communities":
-        "https://zenodo.org/api/records/7834392/communities", "communities-suggestions":
-        "https://zenodo.org/api/records/7834392/communities-suggestions", "request_deletion":
-        "https://zenodo.org/api/records/7834392/request-deletion", "file_modification":
-        "https://zenodo.org/api/records/7834392/file-modification", "requests": "https://zenodo.org/api/records/7834392/requests"},
-        "updated": "2023-04-17T14:26:45.792430+00:00", "recid": "7834392", "revision":
-        2, "files": [{"id": "8679868a-d9b3-4d96-9ddd-34aa6585cfc7", "key": "frequent_trigrams.csv",
-        "size": 24991, "checksum": "md5:b1f7edcfd008053c53659131f654f17d", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/frequent_trigrams.csv/content"}},
-        {"id": "c8800509-7e66-4c84-92b5-d5445457cf0f", "key": "full_dataset_clean.tsv.gz.part-aa",
-        "size": 1073741824, "checksum": "md5:ea207d3062720eeff3e0f1e493e02537", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-aa/content"}},
-        {"id": "8bc113d1-aa9a-4b77-ab12-375ddfe871ad", "key": "frequent_terms.csv",
-        "size": 11212, "checksum": "md5:bfa25849251420d474671f6ba8dae969", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/frequent_terms.csv/content"}},
-        {"id": "382a2545-caff-4b83-8783-c907efa73903", "key": "frequent_bigrams.csv",
-        "size": 17865, "checksum": "md5:c7019423b59057512d7c65777efa2067", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/frequent_bigrams.csv/content"}},
-        {"id": "a2c66235-0245-45cd-b592-de77df9d5a07", "key": "full_dataset_clean-statistics.tsv",
-        "size": 21108, "checksum": "md5:63a025e5ffa16d66cfa7c6071efbfcd2", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean-statistics.tsv/content"}},
-        {"id": "750ed341-ca96-4814-8841-54740ed35ec5", "key": "emojis.zip", "size":
-        15058751, "checksum": "md5:794aa07e49f5edf3ed72d552321bb2f5", "links": {"self":
-        "https://zenodo.org/api/records/7834392/files/emojis.zip/content"}}, {"id":
-        "6a27a0b5-3973-40f0-94c9-dba941a2d676", "key": "full_dataset.tsv.gz.part-ak",
-        "size": 1073741824, "checksum": "md5:c5c8dc3df4d88cbe414db1882423a6e0", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ak/content"}},
-        {"id": "8541f2a0-6725-4a62-8267-154db4a85263", "key": "mentions.zip", "size":
-        341061233, "checksum": "md5:edafb832160d345c08f623dea7cc5525", "links": {"self":
-        "https://zenodo.org/api/records/7834392/files/mentions.zip/content"}}, {"id":
-        "7222a068-722d-465b-8939-03820bd6437e", "key": "hashtags.zip", "size": 202789390,
-        "checksum": "md5:897a691748af47dcf3a62165130c7811", "links": {"self": "https://zenodo.org/api/records/7834392/files/hashtags.zip/content"}},
-        {"id": "2f646b9d-7483-4ba0-8e82-267896d2cc32", "key": "full_dataset.tsv.gz.part-al",
-        "size": 253477831, "checksum": "md5:1d58cf56e30b6e1a1da6eea0b343c2e7", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-al/content"}},
-        {"id": "1bb17b2e-2552-4bf9-aef6-018b31221d08", "key": "full_dataset.tsv.gz.part-aj",
-        "size": 1073741824, "checksum": "md5:9b394695b196566fcdd13f14ab2fd3f0", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-aj/content"}},
-        {"id": "4a887aa1-952f-4219-9765-9396f353c382", "key": "full_dataset.tsv.gz.part-ai",
-        "size": 1073741824, "checksum": "md5:725e4bd57e45cf42525224ff5fe642e3", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ai/content"}},
-        {"id": "09ab2517-7881-4edc-8622-65d2113e96a5", "key": "full_dataset.tsv.gz.part-ah",
-        "size": 1073741824, "checksum": "md5:a570c8240acbad68ed295d8253bd1400", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ah/content"}},
-        {"id": "c26defb1-f061-478f-9174-5605675fb4de", "key": "full_dataset.tsv.gz.part-ag",
-        "size": 1073741824, "checksum": "md5:3876d43286e718e86e47fb86ebc9f647", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ag/content"}},
-        {"id": "abc1546a-aa88-40ad-9378-0675d2128321", "key": "full_dataset.tsv.gz.part-af",
-        "size": 1073741824, "checksum": "md5:72107f23843969a96c1291cc14e57c23", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-af/content"}},
-        {"id": "678b4695-6ebd-4676-a23a-8d6af779187a", "key": "full_dataset.tsv.gz.part-ae",
-        "size": 1073741824, "checksum": "md5:b6bd17bf6d19a6231a18dc85f0720ef6", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ae/content"}},
-        {"id": "feb41c2d-8b6e-4eba-9031-4dd4d9cd27ba", "key": "full_dataset.tsv.gz.part-ad",
-        "size": 1073741824, "checksum": "md5:0b52698f94ad1aae76c8085a731b4404", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ad/content"}},
-        {"id": "dbc0fe86-2f68-457e-91c6-eb3523ed6dd2", "key": "full_dataset.tsv.gz.part-ac",
-        "size": 1073741824, "checksum": "md5:d81418788e8ff43d193cb57c17d2d968", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ac/content"}},
-        {"id": "254ed9db-3ad9-405b-bf0d-e9ff3581f749", "key": "full_dataset.tsv.gz.part-ab",
-        "size": 1073741824, "checksum": "md5:fd1ff1613d8788b28b089e056537260e", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-ab/content"}},
-        {"id": "b18355cb-1404-4f50-beb9-ea3cf74a7e30", "key": "full_dataset.tsv.gz.part-aa",
-        "size": 1073741824, "checksum": "md5:5c1300e5894a2018e4fa9f69ea8ed66a", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset.tsv.gz.part-aa/content"}},
-        {"id": "6a8fbf8e-53cd-4e66-a4bc-70490f232b0b", "key": "full_dataset-statistics.tsv",
-        "size": 21985, "checksum": "md5:40b364ad6d337ec59d7fd2641cdd77f3", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset-statistics.tsv/content"}},
-        {"id": "acd7a2ec-0b0c-4aa5-bf4e-7c6fddacf967", "key": "full_dataset_clean.tsv.gz.part-ad",
-        "size": 274702134, "checksum": "md5:ad529a8172a557582c3144e28677289f", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-ad/content"}},
-        {"id": "d26910dd-3357-44ff-8877-1f5cfc5c1d98", "key": "full_dataset_clean.tsv.gz.part-ac",
-        "size": 1073741824, "checksum": "md5:b67f3a9ab518fb275b66eac4abc2e29c", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-ac/content"}},
-        {"id": "d4753050-1836-49c1-a946-968c46a07137", "key": "full_dataset_clean.tsv.gz.part-ab",
-        "size": 1073741824, "checksum": "md5:222e3a9b3758c119db0a0e75c8f7d582", "links":
-        {"self": "https://zenodo.org/api/records/7834392/files/full_dataset_clean.tsv.gz.part-ab/content"}}],
-        "swh": {}, "owners": [{"id": "95208"}], "status": "published", "stats": {"downloads":
-        320562, "unique_downloads": 150411, "views": 350901, "unique_views": 322616,
-        "version_downloads": 47897, "version_unique_downloads": 40209, "version_unique_views":
-        57777, "version_views": 58789}, "state": "done", "submitted": true}'
+      string: !!binary |
+        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
+        GDsAAA==
     headers:
       access-control-allow-origin:
       - '*'
       access-control-expose-headers:
       - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
-      cache-control:
-      - private
       content-encoding:
       - gzip
       content-security-policy:
@@ -204,7 +114,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 01 Dec 2025 17:18:43 GMT
+      - Wed, 18 Mar 2026 15:19:18 GMT
       etag:
       - W/"2"
       link:
@@ -214,15 +124,11 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '31'
+      - '32'
       server:
       - nginx
-      set-cookie:
-      - 5569e5a730cade8ff2b54f1e815f3670=520717c7667366ab568635606890d152; path=/;
-        HttpOnly; Secure; SameSite=None
       strict-transport-security:
       - max-age=31556926; includeSubDomains
-      - max-age=15768000
       transfer-encoding:
       - chunked
       vary:
@@ -234,11 +140,11 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '128'
+      - '127'
       x-ratelimit-reset:
-      - '1764609555'
-      x-request-id:
-      - e22b2fad33ce1c1fbb250b0ca9325f87
+      - '1773847191'
+      x-source:
+      - api
       x-xss-protection:
       - 1; mode=block
     status:

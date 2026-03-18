@@ -14,18 +14,23 @@ interactions:
     uri: https://info.orcid.org/orcid-2023-annual-report/
   response:
     body:
-      string: "<html>\r\n<head><title>403 Forbidden</title></head>\r\n<body>\r\n<center><h1>403
-        Forbidden</h1></center>\r\n<hr><center>nginx</center>\r\n<script>(function(){function
-        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'9a7440b251c466db',t:'MTc2NDYwOTYwMC4wMDAwMDA='};var
-        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
-        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
-        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
-        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\r\n</html>\r\n"
+      string: !!binary |
+        H4sIAAAAAAAAAwAAAP//lFRba9swFH4v9D9kpVQSpHaydvRiy7ClLRsk7cMKexijyNKxrSJLRlKT
+        pon/+7CduKHQjj0IXb7znU/nIsWFL1WyvxcXwEQSe+kVJKejk8GNsakUAnQcdodx2Jrs78WpEctm
+        5qA92CQuxm8ZxTiJww3c+LbJ1ljnUj/vYo5bWfkEZ0+ae2k0JqvtcsAxWc2ZHaSUBdxoD9pfGf5U
+        gvbrdX/0S2phFoHYIJHMcNrxBE0DboF5uFbQYBh1cohEIpBag/1+P5vSg0Xn4uFhcnPI54cVs6x0
+        dGUv0YWALyfnZ+z87PNZejEGNPSXaHbPT2Yv+ej25cfz3eR0Mbv62gyK6qiRZXR7l3fVWaCN5kAR
+        iljgLKco5EIf81yGvGBKgc7huFLMZ8aWYUdz4aMTYcmkDh4dinqNHPxGwH1b3rP8lpWAUVMsRH6P
+        /gSsqkCLSSGVwIxEB1H6XxRB6lpmuJdrqt+l9/04ZWZZCW2cBci88HQcsWAhhS/alfNLBUFlnGzq
+        TBFLnVFPHlCPeVPRUb9TkPmdbWqsAEuRNnqHMpdOplJJv6SoaBtxJ0nNrd9mQmYYKcOE1Dn6RF+D
+        scDE8qdnHgjHJALlYCAzvGkSJsT1HLSfSudBgyU97y2C0dXdbNI16dQwAQINeeevzR+8ShrdirpG
+        lBdM57Be77yIOvrAkvaGKVkBTkn0j6iOjvBH7mDIMSF1XdcEkyjedF8Sh9t3H7Z/xl8AAAD//+Ll
+        AgAAAP//AwCrRZIHPAQAAA==
     headers:
       CF-Cache-Status:
       - BYPASS
       CF-Ray:
-      - 9a7440b23a6e66db-AMS
+      - 9de5387a59feb91e-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -33,15 +38,15 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Mon, 01 Dec 2025 17:20:00 GMT
+      - Wed, 18 Mar 2026 15:20:18 GMT
       Server:
       - cloudflare
       Set-Cookie:
-      - __cf_bm=E.iFsh66bl1eWoKXb48qjDUJtJkLqA5pBUXH0eI6K2I-1764609600-1.0.1.1-JElHpYYDbjQW8vXVGINtJjraTKyydMFwwQF8f9CCLkbGb6OFDGotqawvL7QutlpsbVIZKaT5MorzdOgJwcbJc3g2oL4BGsshx9j1GTKiglU;
-        path=/; expires=Mon, 01-Dec-25 17:50:00 GMT; domain=.orcid.org; HttpOnly;
+      - __cf_bm=9hlvn90WlQsFkRjWeG7yV4Jo.R9YVC20ooKA7ywygxM-1773847218-1.0.1.1-mPugoKd4BRFLQMELSKhbD1Td5NCmVlqUeZEYykf1j18Uy4PF1skqm4hPdlz3s4x1A1sXZJ_PyPZYa5yP3fC486mGpu8iv8nOimD8m3rttpM;
+        path=/; expires=Wed, 18-Mar-26 15:50:18 GMT; domain=.orcid.org; HttpOnly;
         Secure; SameSite=None
-      - __cf_bm=me3hDBapaCCjlxUWShh2L.Usrvt64TQxKMCSPNyW1Mc-1764609600-1.0.1.1-6fCqKbtZpBI5O.eOD_bu0XULoyl2lRau0J2Kbs1grkh0_q.ZetJvu4L.BPYu40loxvPZaBc5QNEMqFdG.2.WdEAubI381XnqbvaJLK3vbN8;
-        path=/; expires=Mon, 01-Dec-25 17:50:00 GMT; domain=.orcid.org; HttpOnly;
+      - __cf_bm=JOIfajIklhWlpLV2Y_4C1K3wq15rbhRpEJHofbd77nw-1773847218-1.0.1.1-zZIHq9GcKSqL.H6BQr1HBDfekiRK1mGI2Yf7iBGj1IGrtGN1ZoYPxqdohEHkD1blQeW_5fv7Mh8RYzr3Jqo01IsEmS2RquqrMqmNRZRACSI;
+        path=/; expires=Wed, 18-Mar-26 15:50:18 GMT; domain=.orcid.org; HttpOnly;
         Secure; SameSite=None
       Transfer-Encoding:
       - chunked

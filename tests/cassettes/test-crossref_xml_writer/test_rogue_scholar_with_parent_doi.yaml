@@ -11,415 +11,103 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://rogue-scholar.org/api/records/nmdtw-dbr94
-  response:
-    body:
-      string: '{"id": "nmdtw-dbr94", "created": "2025-09-25T08:13:17.310517+00:00",
-        "updated": "2025-10-18T20:40:12.774347+00:00", "links": {"self": "https://rogue-scholar.org/api/records/nmdtw-dbr94",
-        "self_html": "https://rogue-scholar.org/records/nmdtw-dbr94", "preview_html":
-        "https://rogue-scholar.org/records/nmdtw-dbr94?preview=1", "doi": "https://doi.org/10.59350/wnkxe-b8330",
-        "self_doi": "https://doi.org/10.59350/wnkxe-b8330", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/wnkxe-b8330",
-        "reserve_doi": "https://rogue-scholar.org/api/records/nmdtw-dbr94/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/ad9pb-kwm66", "parent_html":
-        "https://rogue-scholar.org/records/ad9pb-kwm66", "parent_doi": "https://doi.org/10.59350/ad9pb-kwm66",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/ad9pb-kwm66", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:nmdtw-dbr94/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:nmdtw-dbr94/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/nmdtw-dbr94/files", "media_files":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/media-files", "archive":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/nmdtw-dbr94/latest", "versions": "https://rogue-scholar.org/api/records/nmdtw-dbr94/versions",
-        "draft": "https://rogue-scholar.org/api/records/nmdtw-dbr94/draft", "access_links":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access/request", "access":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/access", "communities":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/nmdtw-dbr94/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/nmdtw-dbr94/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/nmdtw-dbr94/requests"},
-        "revision_id": 11, "parent": {"id": "ad9pb-kwm66", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["0e13541f-417e-46c0-a859-65927249df72", "346efb91-f134-4f0b-bd6a-30e2094d2c40",
-        "ce85b38a-7acb-4a36-a274-4e026646af48"], "default": "0e13541f-417e-46c0-a859-65927249df72",
-        "entries": [{"id": "0e13541f-417e-46c0-a859-65927249df72", "created": "2024-10-05T08:57:03.365247+00:00",
-        "updated": "2025-12-01T07:41:52.312575+00:00", "links": {}, "revision_id":
-        422, "slug": "svpow", "metadata": {"title": "Sauropod Vertebra Picture of
-        the Week", "description": "SV-POW!  ...  All sauropod vertebrae, except when
-        we''re talking about Open Access. ISSN 3033-3695", "type": {"id": "blog"},
-        "website": "https://svpow.com"}, "access": {"visibility": "public", "members_visibility":
-        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
-        "open"}, "custom_fields": {"rs:issn": "3033-3695", "rs:feed_url": "https://svpow.com/feed/atom/",
-        "rs:prefix": "10.59350", "rs:joined": "February 1, 2023", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "WordPress.com", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Earth and related environmental
-        sciences"}, "deletion_status": {"is_deleted": false, "status": "P"}, "children":
-        {"allow": false}}, {"id": "346efb91-f134-4f0b-bd6a-30e2094d2c40", "created":
-        "2024-10-02T19:02:40.195535+00:00", "updated": "2025-07-15T19:21:07.796032+00:00",
-        "links": {}, "revision_id": 13, "slug": "openaccess", "metadata": {"title":
-        "Open Access", "description": "Blog posts about Open Access.", "type": {"id":
-        "topic"}}, "access": {"visibility": "public", "members_visibility": "public",
-        "member_policy": "open", "record_submission_policy": "open", "review_policy":
-        "open"}, "custom_fields": {}, "deletion_status": {"is_deleted": false, "status":
-        "P"}, "children": {"allow": false}}, {"id": "ce85b38a-7acb-4a36-a274-4e026646af48",
-        "created": "2025-02-10T08:10:20.634480+00:00", "updated": "2025-06-30T16:00:16.467890+00:00",
-        "links": {}, "revision_id": 6, "slug": "earthandrelatedenvironmentalsciences",
-        "metadata": {"title": "Earth and related environmental sciences", "description":
-        "Earth and related environmental sciences subject area.", "type": {"id": "subject"}},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}]}, "pids": {"doi": {"identifier": "10.59350/ad9pb-kwm66", "provider":
-        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
-        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
-        "10.59350/wnkxe-b8330", "provider": "crossref", "client": "crossref"}, "oai":
-        {"identifier": "oai:invenio-rdm:nmdtw-dbr94", "provider": "oai"}}, "metadata":
-        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
-        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
-        {"type": "personal", "name": "Taylor, Mike", "given_name": "Mike", "family_name":
-        "Taylor", "identifiers": [{"identifier": "0000-0002-1003-5675", "scheme":
-        "orcid"}]}, "affiliations": [{"id": "0524sp257", "name": "University of Bristol",
-        "identifiers": [{"identifier": "0524sp257", "scheme": "ror"}]}]}], "title":
-        "Want to help fund the free publication of sauropod science? Now''s your chance!",
-        "publisher": "Front Matter", "publication_date": "2025-09-25", "subjects":
-        [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.5", "subject": "Earth
-        and related environmental sciences", "scheme": "FOS"}, {"subject": "Diplodocids"},
-        {"subject": "Gold Open Access"}, {"subject": "Help SV-POW!"}, {"subject":
-        "Open Access"}], "dates": [{"date": "2025-09-25T08:02:15", "type": {"id":
-        "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
-        {"date": "2025-10-18T20:38:47", "type": {"id": "updated", "title": {"de":
-        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
-        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "c211b98f-e821-49b3-83ec-bfb929b32c16",
-        "scheme": "uuid"}, {"identifier": "https://svpow.com/?p=24258", "scheme":
-        "guid"}, {"identifier": "https://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "Anyone who''s been reading this blog
-        for a while knows that Matt and I are both all in on open access. What is
-        the point of \"publishing\" something that not everyone can read?"}, "custom_fields":
-        {"journal:journal": {"title": "Sauropod Vertebra Picture of the Week", "issn":
-        "3033-3695"}, "rs:content_html": "<p>Anyone who&#8217;s been reading this
-        blog for a while knows that Matt and I are both <a href=\"https://svpow.com/the-digital-future/\">all
-        in on open access</a>. What is the point of &#8220;publishing&#8221; something
-        that not everyone can read? We always want our work to be available to the
-        widest possible audience, so it&#8217;s a no-brainer that we won&#8217;t let
-        it moulder behind a paywall.</p>\n<p>But the process of scholarly publication
-        does cost money. Nowhere near as much as commercial publishers charge, sure,
-        but there <em>is</em> an irreducible cost which has to be paid somehow.</p>\n<p>And
-        now, here comes <em>Diplodocoidea (Dinosauria, Sauropoda): Systematics, Phylogeny,
-        Biogeography</em>!</p>\n<p><a href=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"><img
-        loading=\"lazy\" data-attachment-id=\"24261\" data-permalink=\"http://svpow.com/2025/09/25/want-to-help-fund-the-free-publication-of-sauropod-science-nows-your-chance/crowdfunder/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"
-        data-orig-size=\"640,360\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
-        data-image-title=\"crowdfunder\" data-image-description=\"\" data-image-caption=\"\"
-        data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg?w=640\"
-        class=\"alignnone size-full wp-image-24261\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/09/crowdfunder.jpg\"
-        alt=\"\" width=\"480\" height=\"270\" /></a></p>\n<p>This is the snappy title
-        of a &#8220;virtual edited volume&#8221; on Diplodocoids, which is being published
-        a chapter at a time at the venerable open-access journal <a href=\"https://palaeo-electronica.org/content/\"><em>Palaeontologia
-        Electronica</em></a> (<em>PE</em> for short). Each chapter comes out as soon
-        as it&#8217;s ready, and you&#8217;ve probably already seen the first two:</p>\n<ul>\n<li><a
-        href=\"https://palaeo-electronica.org/content/2024/5327-new-diplodocine-sauropod\">A
-        new diplodocine sauropod from the Morrison Formation, Wyoming, USA</a> (<em>Ardetosaurus
-        viator</em>)</li>\n<li><a href=\"https://palaeo-electronica.org/content/2025/5554-introduction-to-diplodocoidea\">Introduction
-        to Diplodocoidea</a> (I was an author on this one: see <a href=\"https://svpow.com/2025/07/01/baffled-by-diplodocoids-need-a-comprehensive-introduction-youre-in-luck/\">the
-        introduction to the introduction</a>.)</li>\n</ul>\n<p>Two more chapters have
-        already been accepted and are in press; and a fifth is in review. There are
-        plenty more in preparation, including at least one more new diplodocoid. A
-        link to each paper will appear in <a href=\"https://palaeo-electronica.org/content/diplodocoidea-dinosauria-sauropoda\">the
-        Table of Contents page</a>, so that page will always be an index to all the
-        available content.</p>\n<p>To cover their costs for this volume, <em>PE</em>
-        needs $3000. That comes out crazy cheap \u2014 we&#8217;re looking at a double-digit
-        number of papers, so the cost to make each one freely available to the whole
-        world in perpetuity is less than $300.</p>\n<p>To raise this money, the group
-        has kicked off a crowdfunding effort. It has a little under a month to raise
-        the necessary $3000, and as I write this it&#8217;s 20% of the way to that
-        goal. <a href=\"https://experiment.com/projects/reassessing-the-evolutionary-family-tree-and-biogeography-of-the-iconic-sauropod-group-diplodocoidea\"><strong>If
-        you can afford to chip in, please do get yourself over there and make a contribution.</strong></a>
-        You&#8217;ll have the satisfaction of knowing that you helped increase the
-        world&#8217;s access to knowledge of diplodocoids.</p>\n<p>&nbsp;</p>\n<hr
-        />\n<p><a href=\"https://doi.org/10.59350/wnkxe-b8330\">doi:10.59350/wnkxe-b8330</a></p>",
-        "rs:generator": "WordPress.com", "rs:stale": false}, "access": {"record":
-        "public", "files": "public", "embargo": {"active": false, "reason": null},
-        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
-    headers:
-      Content-Length:
-      - '12733'
-      Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 01 Dec 2025 17:18:15 GMT
-      Etag:
-      - '"11"'
-      Link:
-      - <https://rogue-scholar.org/api/records/nmdtw-dbr94> ; rel="linkset" ; type="application/linkset+json"
-      Permissions-Policy:
-      - interest-cohort=()
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Retry-After:
-      - '47'
-      Server:
-      - gunicorn
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - sameorigin
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Remaining:
-      - '497'
-      X-Ratelimit-Reset:
-      - '1764609543'
-      X-Xss-Protection:
-      - 1; mode=block
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.5
-    method: GET
     uri: https://rogue-scholar.org/api/records/a9awy-52h48
   response:
     body:
-      string: '{"id": "a9awy-52h48", "created": "2025-06-27T16:11:25.068847+00:00",
-        "updated": "2026-02-07T22:56:00.978669+00:00", "links": {"self": "https://rogue-scholar.org/api/records/a9awy-52h48",
-        "self_html": "https://rogue-scholar.org/records/a9awy-52h48", "preview_html":
-        "https://rogue-scholar.org/records/a9awy-52h48?preview=1", "doi": "https://doi.org/10.53731/m7gng-jmm19",
-        "self_doi": "https://doi.org/10.53731/m7gng-jmm19", "self_doi_html": "https://rogue-scholar.org/doi/10.53731/m7gng-jmm19",
-        "reserve_doi": "https://rogue-scholar.org/api/records/a9awy-52h48/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/dj4cp-2b786", "parent_html":
-        "https://rogue-scholar.org/records/dj4cp-2b786", "parent_doi": "https://doi.org/10.53731/dj4cp-2b786",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/dj4cp-2b786", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/a9awy-52h48/files", "media_files":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files", "archive":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/a9awy-52h48/latest", "versions": "https://rogue-scholar.org/api/records/a9awy-52h48/versions",
-        "draft": "https://rogue-scholar.org/api/records/a9awy-52h48/draft", "access_links":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/request", "access":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access", "communities":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/a9awy-52h48/request-deletion",
-        "file_modification": "https://rogue-scholar.org/api/records/a9awy-52h48/file-modification",
-        "requests": "https://rogue-scholar.org/api/records/a9awy-52h48/requests"},
-        "revision_id": 207, "parent": {"id": "dj4cp-2b786", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "40d93f0d-7c6b-44ee-83e1-971b099c2f54",
-        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "d79fe364-6d96-40b6-b437-b93ca3493106",
-        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
-        "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
-        "updated": "2026-01-28T07:42:11.199989+00:00", "links": {}, "revision_id":
-        854, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
-        "The Front Matter Blog covers the intersection of science and technology since
-        2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:issn": "2749-9952", "rs:feed_url": "https://blog.front-matter.de/atom",
-        "rs:prefix": "10.53731", "rs:joined": "January 1, 2023", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "Ghost", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Information Systems"}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "40d93f0d-7c6b-44ee-83e1-971b099c2f54", "created": "2024-10-08T13:08:59.074690+00:00",
-        "updated": "2026-01-25T12:37:39.092298+00:00", "links": {}, "revision_id":
-        39, "slug": "roguescholar", "metadata": {"title": "Rogue Scholar", "description":
-        "Blog posts about Rogue Scholar.", "type": {"id": "topic"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "created": "2024-10-06T07:37:39.965911+00:00",
-        "updated": "2026-01-25T12:36:58.222374+00:00", "links": {}, "revision_id":
-        14, "slug": "openinfrastructure", "metadata": {"title": "Open Infrastructure",
-        "description": "Blog posts about Open Infrastructure.", "type": {"id": "topic"}},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
-        "updated": "2025-12-02T20:56:15.845048+00:00", "links": {}, "revision_id":
-        11, "slug": "1710", "metadata": {"title": "Information Systems", "type": {"id":
-        "subject"}, "website": "https://openalex.org/subfields/1710"}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": true}}, {"id":
-        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
-        "updated": "2025-12-02T20:56:11.605253+00:00", "links": {}, "revision_id":
-        11, "slug": "1802", "metadata": {"title": "Information Systems and Management",
-        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        true}}]}, "pids": {"doi": {"identifier": "10.53731/dj4cp-2b786", "provider":
-        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
-        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
-        "10.53731/m7gng-jmm19", "provider": "crossref", "client": "crossref"}, "oai":
-        {"identifier": "oai:invenio-rdm:a9awy-52h48", "provider": "oai"}}, "metadata":
-        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
-        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
-        {"type": "personal", "name": "Fenner, Martin", "given_name": "Martin", "family_name":
-        "Fenner", "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme":
-        "orcid"}]}, "affiliations": [{"name": "Front Matter"}]}], "title": "Kamal
-        deploys InvenioRDM Starter to production", "publisher": "Front Matter", "publication_date":
-        "2025-06-27", "subjects": [{"id": "https://openalex.org/subfields/1710", "subject":
-        "Information Systems", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"id": "https://openalex.org/T11986",
-        "subject": "Scientific Computing and Data Management", "scheme": "Topics"},
-        {"id": "https://openalex.org/subfields/1802", "subject": "Information Systems
-        and Management", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
-        "subject": "Economics and business", "scheme": "FOS"}, {"subject": "Rogue
-        Scholar"}, {"subject": "Open Infrastructure"}], "dates": [{"date": "2025-06-27T17:51:11",
-        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
-        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-06-27T22:03:19", "type": {"id": "updated",
-        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
-        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
-        "7798debf-42f6-4dca-afcf-a7cdd80cf0ff", "scheme": "uuid"}, {"identifier":
-        "https://doi.org/10.53731/m7gng-jmm19", "scheme": "guid"}, {"identifier":
-        "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "InvenioRDM is the open source turn-key
-        research data management platform, with detailed documentation available here.
-        InvenioRDM Starter facilitates deployment and configuration of InvenioRDM,
-        allowing you to run InvenioRDM on your local computer within 15 min. This
-        is achieved by providing a) a prebuilt Invenio-App-RDM Docker image, and b)
-        a Docker Compose configuration file with sensible defaults.", "references":
-        [{"identifier": "10.53731/jxecm-0me48", "scheme": "doi", "reference": "Fenner,
-        M. (2024, June 17). Announcing InvenioRDM Starter Beta. Front Matter."}, {"identifier":
-        "10.53731/r294649-6f79289-8cvzn", "scheme": "doi", "reference": "Fenner, M.
-        (2015, July 29). Thank you PLOS. Front Matter."}]}, "custom_fields": {"journal:journal":
-        {"title": "Front Matter", "issn": "2749-9952"}, "rs:content_html": "<p>InvenioRDM
-        is the open source turn-key research data management platform, with detailed
-        documentation available <a href=\"https://inveniordm.docs.cern.ch\" rel=\"noreferrer\">here</a>.
-        <a href=\"https://starter.front-matter.io\" rel=\"noreferrer\">InvenioRDM
-        Starter</a> facilitates deployment and configuration of InvenioRDM, allowing
-        you to run InvenioRDM on your local computer within 15 min. This is achieved
-        by providing a) a prebuilt Invenio-App-RDM Docker image, and b) a Docker Compose
-        configuration file with sensible defaults. </p><p>Starting this week, InvenioRDM
-        starter can also be used to deploy InvenioRDM to production, using the <a
-        href=\"https://kamal-deploy.org/\" rel=\"noreferrer\">Kamal</a> tool. Kamal
-        is similar to Docker Compose, but adds important functionality, including
-        automatic remote builds, zero-downtime deployments, and deployments to multiple
-        servers. Kamal is a command-line utility with a YAML configuration file, and
-        much simpler to use than Kubernetes or commercial Docker container orchestration
-        services such as Amazon Elastic Container Service (Amazon ECS). </p><p>Kamal
-        can deploy InvenioRDM to your hardware or to a virtual machine provided by
-        your organization or a cloud provider. Whereas Kubernetes is a good option
-        for large InvenioRDM installations, smaller InvenioRDM instances benefit from
-        simpler deployment tools both in terms of cost and required maintenance.</p><p>The
-        science blog archive <a href=\"https://rogue-scholar.org\" rel=\"noreferrer\">Rogue
-        Scholar</a> managed by Front Matter is a good example of an InvenioRDM repository
-        that can benefit from simpler deployment options. As the next major release
-        of InvenioRDM (v13.0) will happen in the next few weeks, Rogue Scholar needs
-        to prepare for the upgrade, and I have this week launched a Rogue Scholar
-        staging instance at <a href=\"https://staging.rogue-scholar.org\" rel=\"noreferrer\">https://staging.rogue-scholar.org</a>
-        using Kamal and a virtual machine provisioned by <a href=\"https://www.hetzner.com/\"
-        rel=\"noreferrer\">Hetzner</a> and located in Germany.</p><p>The setup was
-        mostly straightforward, except for the integration with the Kamal proxy server,
-        which turned out to be very painful. In the end I had to set the InvenioRDM<code>APP_ALLOWED_HOSTS</code>
-        ENV variable to <code>None</code> and patch the REST API cross site request
-        forgery (CRSF) check to not check the request host. This needs more discussion
-        but appears safe, as all requests must go through the Kamal proxy, where the
-        host header is already checked.</p><p>More work is needed on the staging server,
-        including regular automatic backups of the database, and setting up monitoring
-        (logs and metrics). The instance is running the latest stable release (v12.1.0),
-        but I will soon be able to install the latest v13 release candidate \u2013
-        <a href=\"https://pypi.org/project/invenio-app-rdm/13.0.0rc2/\" rel=\"noreferrer\">v13.0.0rc2</a>
-        was released three days ago.</p><p>Kamal was <a href=\"https://world.hey.com/dhh/introducing-kamal-9330a267\"
-        rel=\"noreferrer\">released in 2023</a> by 37signals, the company behind the
-        Basecamp and Hey services, and one of the major contributors to the Rails
-        platform. Kamal is installed as a Ruby gem, but is not specific to Rails or
-        Ruby. Kamal can be seen as the successor to the <a href=\"https://capistranorb.com/\"
-        rel=\"noreferrer\">Capistrano</a> deployment tool, also originally written
-        by 37signals, but Kamal is working with Docker containers. When I <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\"
-        rel=\"noreferrer\">was the technical lead of the Article Level Metrics project</a>
-        at the publisher PLOS 2012-2015 (at the time Docker was not yet adopted for
-        production deployments), I made heavy use of Capistrano.</p><p><a href=\"https://starter.front-matter.io\"
-        rel=\"noreferrer\">InvenioRDM Starter</a> now includes a Kamal configuration
-        option, and I deployed an InvenioRDM instance to <a href=\"https://demo.front-matter.io\"
-        rel=\"noreferrer\">https://demo.front-matter.io</a> using Kamal. </p><figure
-        class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png\"
-        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"2000\" height=\"1134\"
-        srcset=\"https://blog.front-matter.de/content/images/size/w600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        600w, https://blog.front-matter.de/content/images/size/w1000/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        1000w, https://blog.front-matter.de/content/images/size/w1600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        1600w, https://blog.front-matter.de/content/images/size/w2400/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        2400w\" sizes=\"(min-width: 720px) 720px\"></figure><p>Feel free to play around,
-        but only admin accounts can create records \u2013 use the official InvenioRDM
-        <a href=\"http://inveniordm.web.cern.ch/\" rel=\"noreferrer\">demo</a> instance
-        (also linked in the footer) if you want to create and/or update records. I
-        will spend the next few weeks refining the Kamal setup and documentation,
-        so that InvenioRDM Starter is ready for Kamal deployments when InvenioRDM
-        v13.0 is officially released.</p><h2 id=\"references\">References</h2><ol><li>Fenner,
-        M. (2024, June 17). Announcing InvenioRDM Starter Beta. <em>Front Matter</em>.
-        <a href=\"https://doi.org/10.53731/jxecm-0me48\">https://doi.org/10.53731/jxecm-0me48</a></li><li>Fenner,
-        M. (2015, July 29). Thank you PLOS. <em>Front Matter</em>. <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\">https://doi.org/10.53731/r294649-6f79289-8cvzn</a></li></ol>",
-        "rs:image": "https://images.unsplash.com/photo-1634638026221-4c1c4cf9f881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDU1fHxzaGlwJTIwY29udGFpbmVyfGVufDB8fHx8MTc1MTAzNDgzN3ww&ixlib=rb-4.1.0&q=80&w=2000",
-        "rs:generator": "Ghost", "rs:citations": [{"identifier": "10.53731/cysem-8fs56",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
-        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/zh0af-01d30",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
-        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/dd5h7-z5y55",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM
-        v13. <i>Front Matter</i>."}, {"identifier": "10.53731/spbfb-7wx76", "scheme":
-        "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM v13.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/5sce1-bre33", "scheme": "doi",
-        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/8dg89-gnc10", "scheme": "doi",
-        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/dzznx-zkn71", "scheme": "doi",
-        "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated to Coolify
-        Cloud. <i>Front Matter</i>."}, {"identifier": "10.59350/dkt3j-kh345", "scheme":
-        "doi", "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated
-        to Coolify Cloud. <i>Front Matter</i>."}], "rs:stale": false}, "access": {"record":
-        "public", "files": "public", "embargo": {"active": false, "reason": null},
-        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        3, "unique_views": 3, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 3, "unique_views": 3, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
@@ -433,9 +121,9 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 09 Feb 2026 14:49:00 GMT
+      - Wed, 18 Mar 2026 15:18:51 GMT
       Etag:
-      - '"207"'
+      - '"209"'
       Link:
       - <https://rogue-scholar.org/api/records/a9awy-52h48> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -443,7 +131,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '60'
+      - '49'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -459,9 +147,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '499'
+      - '497'
       X-Ratelimit-Reset:
-      - '1770648601'
+      - '1773847181'
       X-Xss-Protection:
       - 1; mode=block
     status:

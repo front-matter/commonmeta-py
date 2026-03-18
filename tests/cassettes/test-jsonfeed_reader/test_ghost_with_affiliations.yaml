@@ -14,114 +14,89 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
   response:
     body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated_at":1764202472,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"citation":"https://doi.org/10.53731/5dyq7-25d23","published_at":"2014-03-10","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2025-10-22T08:19:03.371309+00:00","validated":true},{"citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","published_at":"2014-03-10","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2025-02-02T19:19:49.930728+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","indexed_at":1764253321,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","subfield":null,"summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","topic":null,"topic_score":0,"updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:18:52 GMT
-      fly-request-id:
-      - 01KBDES85HPV41XS5VET584DPX-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '4'
-      ratelimit-reset:
-      - '41'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:19:24 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

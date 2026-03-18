@@ -14,137 +14,101 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/57ed3097-a397-491e-90c0843d1e0102ac
   response:
     body:
-      string: '{"abstract":"We will follow up with a blog post later this week explaining
-        the DataCite auto-update implementation. Since ORCID\u2019s inception, our
-        key goal has been to unambiguously identify researchers and provide tools
-        to automate the connection between researchers and their creative works. We
-        are taking a big step towards achieving this goal today, with the launch of
-        Auto-Update functionality in collaboration with Crossref and DataCite.","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-update-has-arrived/","authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated_at":1764202472,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","content_html":"<p><em>We will follow up
-        with a blog post later this week explaining the DataCite auto-update implementation.</em></p>\n<p>Since
-        ORCID\u2019s inception, our key goal has been to unambiguously identify researchers
-        and provide tools to automate the connection between researchers and their
-        creative works. We are taking a big step towards achieving this goal today,
-        with the launch of <a href=\"http://orcid.org/blog/2014/11/21/new-functionality-friday-auto-update-your-orcid-record\">Auto-Update</a>
-        functionality in collaboration with <a href=\"http://www.crossref.org/\">Crossref</a>
-        and <a href=\"https://www.datacite.org/\">DataCite</a>.</p>\n<p>There\u2019s
-        already been a lot of excitement about Auto-Update: <a href=\"https://www.crossref.org/blog/crossref-to-auto-update-orcid-records/\">Crossref\u2019s
-        recent announcement</a> about the imminent launch generated a flurry of discussion
-        and celebration on social media. Our own <a href=\"https://twitter.com/ORCID_Org/status/647020600192581633\">tweet</a>
-        on the topic was viewed over 10,500 times and retweeted by 60 other accounts.</p>\n<p>So
-        why all the fuss? We think Auto-Update will transform the way researchers
-        manage their scholarly record. Until now, researchers have had to manually
-        maintain their record, connecting new activities as they are made public.
-        In ORCID, that meant using <a href=\"https://support.orcid.org/hc/en-us/articles/360006973653-Add-works-by-direct-import-from-other-systems\">Search
-        &amp; Link</a> tools developed by our member organizations to claim works
-        manually. Researchers frequently ask, \u201cWhy, if I include my ORCID iD
-        when I submit a manuscript or dataset, isn\u2019t my ORCID record \u201cautomagically\u201d
-        updated when the work is published?\u201d</p>\n<p>With the launch of Auto-Update,
-        that is just what will happen.</p>\n<p><strong>It might seem like magic but
-        there are a few steps to make it work</strong>:</p>\n<ul><li><strong>Researchers</strong>.
-        You need to do two things: (1) use your ORCID iD when submitting a paper or
-        dataset, and (2) authorize Crossref and DataCite to update your ORCID record.
-        In keeping with our commitment to ensuring that researchers maintain full
-        control of their ORCID record, you may revoke this permission at any time,
-        and may also choose privacy settings for the information posted on your record.</li><li><strong>Publishers
-        and data centers</strong>. These organizations also have two things to do:
-        (1) collect ORCID identifiers during the submission workflow, using a process
-        that involves authentication (not a type-in field!), and (2) embed the iD
-        in the published paper and include the iD when submitting information to Crossref
-        or DataCite.</li><li><strong>Crossref and DataCite</strong>. Upon receipt
-        of data from a publisher or data center with a valid identifier, Crossref
-        or DataCite can automatically push that information to the researcher\u2019s
-        ORCID record. More information about how to opt out of this service can be
-        found here: <a href=\"https://support.orcid.org/hc/en-us/articles/360006972953\">the
-        ORCID Inbox</a>.</li></ul>\n<h3 id=\"why-is-this-so-revolutionary\">Why is
-        this so revolutionary?</h3>\n<p>A bit of background, first. Crossref and DataCite,
-        both non-profit organizations, are leaders in minting DOIs (Digital Object
-        Identifiers) for research publications and datasets. A <a href=\"http://www.crossref.org/01company/16fastfacts.html#sthash.o7NGwOnP.dpuf\">DOI</a>
-        is a unique alphanumeric string assigned to a digital object \u2013 in this
-        case, an electronic journal article, book chapter, or a dataset. Each DOI
-        is associated with a set of basic metadata and a URL pointer to the full text,
-        so that it uniquely identifies the content item and provides a persistent
-        link to its location on the internet.</p>\n<p>Crossref, working with over
-        a thousand scholarly publishers, has generated well over 75 million DOIs for
-        journal articles and book chapters. DataCite works with nearly 600 data centers
-        worldwide and has generated over 6.5 million DOIs to date. Between them, Crossref
-        and DataCite have already received almost half a million works from publishers
-        and data centers that include an ORCID iD validated by the author/contributor.
-        With Auto-Update functionality in place, information about these articles
-        can transit (with the author\u2019s permission) to the author\u2019s ORCID
-        record.</p>\n<p>Auto-Update doesn\u2019t stop at a researcher\u2019s ORCID
-        record. Systems that have integrated ORCID APIs and have a researcher\u2019s
-        ORCID record connected to that system -- their faculty profile system, library
-        repository, webpage, funder reporting system -- can receive alerts from ORCID.
-        Information can move easily and unambiguously across systems.</p>\n<p>This
-        is the beginning of the end for the endless rekeying of information that plagues
-        researchers -- and anyone involved in research reporting. Surely something
-        to celebrate!</p>\n<p><strong>Questions you may have</strong>:</p>\n<h4 id=\"q-what-do-i-need-to-do-to-sign-up-for-auto-update\">Q.
-        What do I need to do to sign up for auto-update?</h4>\n<p>You need to grant
-        permission to Crossref and DataCite to post information to your ORCID record.
-        You can do this today by using the Search and Link wizard for DataCite available
-        through the ORCID Registry or the <a href=\"https://search.datacite.org/\">DataCite
-        Search</a> page. We also have added a new ORCID Inbox, so that you can receive
-        a message from Crossref or DataCite if they receive a datafile with your iD,
-        and you can grant permission directly. See <a href=\"https://support.orcid.org/hc/en-us/articles/360006972953\">more
-        on the ORCID Inbox</a>.</p>\n<h4 id=\"q-will-crossref-and-datacite-be-able-to-update-my-orcid-record-with-already-published-works-for-which-i-did-not-use-my-orcid-id\">Q.
-        Will Crossref and DataCite be able to update my ORCID record with already
-        published works for which I did not use my ORCID iD?</h4>\n<p>No. The auto-update
-        process only applies to those works that these organizations receive that
-        include your ORCID iD. For previous works that did not include your ORCID
-        iD, you will need to use the DataCite and Crossref Search and Link wizards
-        to connect information with your iD.</p>\n<h4 id=\"q-what-information-will-be-posted-to-my-record\">Q.
-        What information will be posted to my record?</h4>\n<p>With your permission,
-        basic information about the article (such as title, list of contributors,
-        journal, or publisher) or dataset (such as data center name and date of publication)
-        will be posted, along with a DOI that allows users to navigate to the source
-        paper or dataset landing page.</p>\n<h4 id=\"q-what-if-my-journal-or-data-center-doesn%E2%80%99t-collect-orcid-ids\">Q.
-        What if my journal or data center doesn\u2019t collect ORCID iDs?</h4>\n<p>Ask
-        them too! This simple step can be accomplished using either the Public or
-        Member ORCID APIs. Information about integrating ORCID iDs in <a href=\"http://members.orcid.org/publisher-workflow\">publishing</a>
-        and <a href=\"http://members.orcid.org/repository-systems\">repository</a>
-        workflows is publicly available.</p>\n<h3 id=\"acknowledgments\">Acknowledgments</h3>\n<p>This
-        blog post was <a href=\"https://doi.org/10.5438/ferw-cwhq\">originally published</a>
-        on the DataCite blog and has been cross-posted from the <a href=\"https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/\"
-        rel=\"noreferrer\">ORCID blog</a>. </p>","doi":"https://doi.org/10.53731/r796hz1-97aq74v-ag4f3","funding_references":null,"guid":"https://doi.org/10.53731/r796hz1-97aq74v-ag4f3","id":"57ed3097-a397-491e-90c0-843d1e0102ac","image":"https://blog.front-matter.de/content/images/2022/08/graph.png","indexed_at":1764251304,"language":"en","parent_doi":null,"published_at":1445817600,"reference":[],"registered_at":0,"relationships":[{"type":"IsIdenticalTo","urls":["https://doi.org/10.5438/ferw-cwhq","https://info.orcid.org/auto-update-has-arrived-orcid-records-move-to-the-next-level/"]}],"rid":"nvp78-k5915","subfield":null,"summary":"<em>\n
-        We will follow up with a blog post later this week explaining the DataCite
-        auto-update implementation.\n</em>\nSince ORCID\u2019s inception, our key
-        goal has been to unambiguously identify researchers and provide tools to automate
-        the connection between researchers and their creative works. We are taking
-        a big step towards achieving this goal today, with the launch of Auto-Update
-        functionality in collaboration with Crossref and DataCite.","tags":["News"],"title":"Auto-Update
-        Has Arrived!","topic":null,"topic_score":0,"updated_at":1695197353,"url":"https://blog.front-matter.de/posts/auto-update-has-arrived/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
+        AAA=
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:17:59 GMT
-      fly-request-id:
-      - 01KBDEQMCHZB6NKJ16GW0A7DEW-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
-      - '12'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:18:36 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

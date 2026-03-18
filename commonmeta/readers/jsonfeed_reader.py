@@ -419,8 +419,16 @@ def get_funding_references(meta: dict | None) -> list | None:
             for i in funding_references
             if i.get("funderName", None)
         ]
+    blog_funding = dig(meta, "blog.funding")
+    if blog_funding is not None and blog_funding.get("awardUri", None) not in [
+        a.get("awardUri") for a in awards if isinstance(a, dict)
+    ]:
+        if not blog_funding.get("funder_identifier_type", None) and validate_ror(
+            blog_funding.get("funderIdentifier", None)
+        ):
+            blog_funding["funder_identifier_type"] = "ROR"
 
-    awards += wrap(dig(meta, "blog.funding"))
+        awards += wrap(blog_funding)
     return unique(awards)
 
 

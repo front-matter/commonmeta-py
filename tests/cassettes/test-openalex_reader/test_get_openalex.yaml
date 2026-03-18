@@ -14,55 +14,83 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.1017/9781108348843
   response:
     body:
-      string: '{"id":"https://openalex.org/W97658052","doi":"https://doi.org/10.1017/9781108348843","title":"The
-        Politics of the Past in Early China","display_name":"The Politics of the Past
-        in Early China","publication_year":2019,"publication_date":"2019-07-01","ids":{"openalex":"https://openalex.org/W97658052","doi":"https://doi.org/10.1017/9781108348843","mag":"97658052"},"language":"en","primary_location":{"id":"doi:10.1017/9781108348843","is_oa":true,"landing_page_url":"https://doi.org/10.1017/9781108348843","pdf_url":"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/64EA64CE425951C77D90340A7F5AE534/9781108425728c1_20-74.pdf/time_out_of_joint.pdf","source":{"id":"https://openalex.org/S4306462995","display_name":"Cambridge
-        University Press eBooks","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/P4310311721","host_organization_name":"Cambridge
-        University Press","host_organization_lineage":["https://openalex.org/P4310311721"],"host_organization_lineage_names":[],"type":"ebook
-        platform"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"monograph"},"type":"book","indexed_in":["crossref"],"open_access":{"is_oa":true,"oa_status":"bronze","oa_url":"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/64EA64CE425951C77D90340A7F5AE534/9781108425728c1_20-74.pdf/time_out_of_joint.pdf","any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5051500272","display_name":"Vincent
-        S. Leung","orcid":"https://orcid.org/0000-0001-5516-8714"},"institutions":[],"countries":[],"is_corresponding":true,"raw_author_name":"Vincent
-        Sueh Han Leung","raw_affiliation_strings":["Lingnan University, Hong Kong,"],"affiliations":[{"raw_affiliation_string":"Lingnan
-        University, Hong Kong,","institution_ids":[]}]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":1,"corresponding_author_ids":["https://openalex.org/A5051500272"],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":1.51539551,"has_fulltext":false,"cited_by_count":6,"citation_normalized_percentile":{"value":0.85473938,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":{"min":89,"max":97},"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10893","display_name":"Chinese
-        history and philosophy","score":1.0,"subfield":{"id":"https://openalex.org/subfields/3312","display_name":"Sociology
-        and Political Science"},"field":{"id":"https://openalex.org/fields/33","display_name":"Social
-        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},"topics":[{"id":"https://openalex.org/T10893","display_name":"Chinese
-        history and philosophy","score":1.0,"subfield":{"id":"https://openalex.org/subfields/3312","display_name":"Sociology
-        and Political Science"},"field":{"id":"https://openalex.org/fields/33","display_name":"Social
-        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T11198","display_name":"Japanese History
-        and Culture","score":0.9987000226974487,"subfield":{"id":"https://openalex.org/subfields/3316","display_name":"Cultural
-        Studies"},"field":{"id":"https://openalex.org/fields/33","display_name":"Social
-        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T10628","display_name":"China''s Socioeconomic
-        Reforms and Governance","score":0.9962000250816345,"subfield":{"id":"https://openalex.org/subfields/3320","display_name":"Political
-        Science and International Relations"},"field":{"id":"https://openalex.org/fields/33","display_name":"Social
-        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/politics","display_name":"Politics","score":0.7090850472450256},{"id":"https://openalex.org/keywords/china","display_name":"China","score":0.6849268674850464},{"id":"https://openalex.org/keywords/ideology","display_name":"Ideology","score":0.6179841756820679},{"id":"https://openalex.org/keywords/historiography","display_name":"Historiography","score":0.6041286587715149},{"id":"https://openalex.org/keywords/aristocracy","display_name":"Aristocracy
-        (class)","score":0.6016066074371338},{"id":"https://openalex.org/keywords/power","display_name":"Power
-        (physics)","score":0.5778862237930298},{"id":"https://openalex.org/keywords/history","display_name":"History","score":0.5347221493721008},{"id":"https://openalex.org/keywords/embodied-cognition","display_name":"Embodied
-        cognition","score":0.5058996081352234},{"id":"https://openalex.org/keywords/capital","display_name":"Capital
-        (architecture)","score":0.49155840277671814},{"id":"https://openalex.org/keywords/literature","display_name":"Literature","score":0.3367959260940552},{"id":"https://openalex.org/keywords/political-economy","display_name":"Political
-        economy","score":0.32761746644973755},{"id":"https://openalex.org/keywords/political-science","display_name":"Political
-        science","score":0.3265794515609741},{"id":"https://openalex.org/keywords/aesthetics","display_name":"Aesthetics","score":0.3218766152858734},{"id":"https://openalex.org/keywords/ancient-history","display_name":"Ancient
-        history","score":0.3058461546897888},{"id":"https://openalex.org/keywords/sociology","display_name":"Sociology","score":0.29538094997406006},{"id":"https://openalex.org/keywords/law","display_name":"Law","score":0.24091199040412903},{"id":"https://openalex.org/keywords/art","display_name":"Art","score":0.18543162941932678},{"id":"https://openalex.org/keywords/archaeology","display_name":"Archaeology","score":0.1792944073677063},{"id":"https://openalex.org/keywords/philosophy","display_name":"Philosophy","score":0.12979960441589355},{"id":"https://openalex.org/keywords/epistemology","display_name":"Epistemology","score":0.12650412321090698}],"concepts":[{"id":"https://openalex.org/C94625758","wikidata":"https://www.wikidata.org/wiki/Q7163","display_name":"Politics","level":2,"score":0.7090850472450256},{"id":"https://openalex.org/C191935318","wikidata":"https://www.wikidata.org/wiki/Q148","display_name":"China","level":2,"score":0.6849268674850464},{"id":"https://openalex.org/C158071213","wikidata":"https://www.wikidata.org/wiki/Q7257","display_name":"Ideology","level":3,"score":0.6179841756820679},{"id":"https://openalex.org/C29598333","wikidata":"https://www.wikidata.org/wiki/Q50675","display_name":"Historiography","level":2,"score":0.6041286587715149},{"id":"https://openalex.org/C10314817","wikidata":"https://www.wikidata.org/wiki/Q2478141","display_name":"Aristocracy
-        (class)","level":3,"score":0.6016066074371338},{"id":"https://openalex.org/C163258240","wikidata":"https://www.wikidata.org/wiki/Q25342","display_name":"Power
-        (physics)","level":2,"score":0.5778862237930298},{"id":"https://openalex.org/C95457728","wikidata":"https://www.wikidata.org/wiki/Q309","display_name":"History","level":0,"score":0.5347221493721008},{"id":"https://openalex.org/C100609095","wikidata":"https://www.wikidata.org/wiki/Q1335050","display_name":"Embodied
-        cognition","level":2,"score":0.5058996081352234},{"id":"https://openalex.org/C83646750","wikidata":"https://www.wikidata.org/wiki/Q193893","display_name":"Capital
-        (architecture)","level":2,"score":0.49155840277671814},{"id":"https://openalex.org/C124952713","wikidata":"https://www.wikidata.org/wiki/Q8242","display_name":"Literature","level":1,"score":0.3367959260940552},{"id":"https://openalex.org/C138921699","wikidata":"https://www.wikidata.org/wiki/Q47555","display_name":"Political
-        economy","level":1,"score":0.32761746644973755},{"id":"https://openalex.org/C17744445","wikidata":"https://www.wikidata.org/wiki/Q36442","display_name":"Political
-        science","level":0,"score":0.3265794515609741},{"id":"https://openalex.org/C107038049","wikidata":"https://www.wikidata.org/wiki/Q35986","display_name":"Aesthetics","level":1,"score":0.3218766152858734},{"id":"https://openalex.org/C195244886","wikidata":"https://www.wikidata.org/wiki/Q41493","display_name":"Ancient
-        history","level":1,"score":0.3058461546897888},{"id":"https://openalex.org/C144024400","wikidata":"https://www.wikidata.org/wiki/Q21201","display_name":"Sociology","level":0,"score":0.29538094997406006},{"id":"https://openalex.org/C199539241","wikidata":"https://www.wikidata.org/wiki/Q7748","display_name":"Law","level":1,"score":0.24091199040412903},{"id":"https://openalex.org/C142362112","wikidata":"https://www.wikidata.org/wiki/Q735","display_name":"Art","level":0,"score":0.18543162941932678},{"id":"https://openalex.org/C166957645","wikidata":"https://www.wikidata.org/wiki/Q23498","display_name":"Archaeology","level":1,"score":0.1792944073677063},{"id":"https://openalex.org/C138885662","wikidata":"https://www.wikidata.org/wiki/Q5891","display_name":"Philosophy","level":0,"score":0.12979960441589355},{"id":"https://openalex.org/C111472728","wikidata":"https://www.wikidata.org/wiki/Q9471","display_name":"Epistemology","level":1,"score":0.12650412321090698},{"id":"https://openalex.org/C62520636","wikidata":"https://www.wikidata.org/wiki/Q944","display_name":"Quantum
-        mechanics","level":1,"score":0.0},{"id":"https://openalex.org/C121332964","wikidata":"https://www.wikidata.org/wiki/Q413","display_name":"Physics","level":0,"score":0.0}],"mesh":[],"locations_count":2,"locations":[{"id":"doi:10.1017/9781108348843","is_oa":true,"landing_page_url":"https://doi.org/10.1017/9781108348843","pdf_url":"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/64EA64CE425951C77D90340A7F5AE534/9781108425728c1_20-74.pdf/time_out_of_joint.pdf","source":{"id":"https://openalex.org/S4306462995","display_name":"Cambridge
-        University Press eBooks","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/P4310311721","host_organization_name":"Cambridge
-        University Press","host_organization_lineage":["https://openalex.org/P4310311721"],"host_organization_lineage_names":[],"type":"ebook
-        platform"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"monograph"},{"id":"mag:97658052","is_oa":false,"landing_page_url":"https://openlibrary.org/books/OL29479226M/Politics_of_the_Past_in_Early_China","pdf_url":null,"source":null,"license":null,"license_id":null,"version":null,"is_accepted":false,"is_published":null,"raw_source_name":null,"raw_type":null}],"best_oa_location":{"id":"doi:10.1017/9781108348843","is_oa":true,"landing_page_url":"https://doi.org/10.1017/9781108348843","pdf_url":"https://www.cambridge.org/core/services/aop-cambridge-core/content/view/64EA64CE425951C77D90340A7F5AE534/9781108425728c1_20-74.pdf/time_out_of_joint.pdf","source":{"id":"https://openalex.org/S4306462995","display_name":"Cambridge
-        University Press eBooks","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/P4310311721","host_organization_name":"Cambridge
-        University Press","host_organization_lineage":["https://openalex.org/P4310311721"],"host_organization_lineage_names":[],"type":"ebook
-        platform"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"monograph"},"sustainable_development_goals":[{"id":"https://metadata.un.org/sdg/16","display_name":"Peace,
-        Justice and strong institutions","score":0.550000011920929}],"grants":[],"awards":[],"funders":[],"has_content":{"pdf":true,"grobid_xml":true},"referenced_works_count":107,"referenced_works":["https://openalex.org/W4236408217","https://openalex.org/W6882364494","https://openalex.org/W1503255084","https://openalex.org/W4388345103","https://openalex.org/W4211238990","https://openalex.org/W2315151334","https://openalex.org/W4388351319","https://openalex.org/W4213456678","https://openalex.org/W770396259","https://openalex.org/W4252632441","https://openalex.org/W6718744420","https://openalex.org/W2060705709","https://openalex.org/W100899984","https://openalex.org/W2239920650","https://openalex.org/W4250572228","https://openalex.org/W6726344552","https://openalex.org/W2217750261","https://openalex.org/W2472716719","https://openalex.org/W2617001608","https://openalex.org/W4205113342","https://openalex.org/W2160671257","https://openalex.org/W2613240934","https://openalex.org/W2084954094","https://openalex.org/W2797008342","https://openalex.org/W4248552450","https://openalex.org/W4244663078","https://openalex.org/W2334683295","https://openalex.org/W1600192779","https://openalex.org/W2483619659","https://openalex.org/W4388174267","https://openalex.org/W4241596667","https://openalex.org/W2740726632","https://openalex.org/W4254900663","https://openalex.org/W2481094532","https://openalex.org/W2151833263","https://openalex.org/W4251942796","https://openalex.org/W4299347386","https://openalex.org/W2485682926","https://openalex.org/W4238882248","https://openalex.org/W2278199319","https://openalex.org/W598975656","https://openalex.org/W2318482833","https://openalex.org/W15275446","https://openalex.org/W2142960852","https://openalex.org/W2047422145","https://openalex.org/W4246222175","https://openalex.org/W173678002","https://openalex.org/W1494675607","https://openalex.org/W6726761283","https://openalex.org/W2085777290","https://openalex.org/W3038387193","https://openalex.org/W4300613885","https://openalex.org/W4211128201","https://openalex.org/W4300264429","https://openalex.org/W2191185181","https://openalex.org/W2508772393","https://openalex.org/W2211165456","https://openalex.org/W1545774453","https://openalex.org/W2120394179","https://openalex.org/W4387794417","https://openalex.org/W6720312052","https://openalex.org/W2982236059","https://openalex.org/W2044702556","https://openalex.org/W4243751170","https://openalex.org/W6600034093","https://openalex.org/W3134339813","https://openalex.org/W1586701520","https://openalex.org/W2343400336","https://openalex.org/W1487587585","https://openalex.org/W2516033024","https://openalex.org/W4248206304","https://openalex.org/W2279151889","https://openalex.org/W4247397918","https://openalex.org/W2586983626","https://openalex.org/W2008564237","https://openalex.org/W2071648544","https://openalex.org/W2476571651","https://openalex.org/W4400603922","https://openalex.org/W1986659124","https://openalex.org/W2315318904","https://openalex.org/W4236859915","https://openalex.org/W2626431481","https://openalex.org/W2904967708","https://openalex.org/W4229958477","https://openalex.org/W2490697961","https://openalex.org/W3041502736","https://openalex.org/W1968319346","https://openalex.org/W2775651277","https://openalex.org/W4248695773","https://openalex.org/W325224244","https://openalex.org/W2026084676","https://openalex.org/W645755136","https://openalex.org/W2297090372","https://openalex.org/W4210952091","https://openalex.org/W1865867048","https://openalex.org/W100080754","https://openalex.org/W2088297292","https://openalex.org/W1985758891","https://openalex.org/W4301016964","https://openalex.org/W2589423723","https://openalex.org/W2887982628","https://openalex.org/W2970439834","https://openalex.org/W2099129638","https://openalex.org/W2461280929","https://openalex.org/W2516973451","https://openalex.org/W2522032238","https://openalex.org/W782808"],"related_works":["https://openalex.org/W2516020071","https://openalex.org/W1588163391","https://openalex.org/W3121649934","https://openalex.org/W1978635569","https://openalex.org/W1512308242","https://openalex.org/W2090680617","https://openalex.org/W3132840701","https://openalex.org/W1579903508","https://openalex.org/W2499328341","https://openalex.org/W2319090013","https://openalex.org/W2003400269","https://openalex.org/W567663140","https://openalex.org/W2500111275","https://openalex.org/W202347113","https://openalex.org/W2889506145","https://openalex.org/W2112201724","https://openalex.org/W349835369","https://openalex.org/W2167808530","https://openalex.org/W2259135336","https://openalex.org/W3012545050"],"abstract_inverted_index":{"Why":[0],"did":[1,11],"the":[2,24,29,40,43,49,54,79,85,102,138,141],"past":[3,25,86,103],"matter":[4,13,111],"so":[5],"greatly":[6],"in":[7,28,34,93,104,137],"ancient":[8],"China?":[9],"How":[10],"it":[12],"and":[14,48,71,82,97,126],"to":[15,101],"whom?":[16],"This":[17],"is":[18],"an":[19],"innovative":[20],"study":[21],"of":[22,32,42,51,63,112,122,132,140],"how":[23,84],"was":[26,87],"implicated":[27],"long":[30],"transition":[31],"power":[33,135],"early":[35,105],"China,":[36],"as":[37,89],"embodied":[38],"by":[39],"decline":[41],"late":[44],"Bronze":[45],"Age":[46],"aristocracy":[47],"rise":[50],"empires":[52],"over":[53],"first":[55],"millenium":[56],"BCE.":[57],"Engaging":[58],"with":[59],"a":[60,110],"wide":[61],"array":[62],"historical":[64],"materials,":[65],"including":[66],"inscriptional":[67],"records,":[68],"excavated":[69],"manuscripts,":[70],"transmitted":[72],"texts,":[73],"Vincent":[74],"S.":[75],"Leung":[76,115],"moves":[77],"beyond":[78],"historiographical":[80],"canon":[81],"explores":[83],"mobilized":[88],"powerful":[90],"ideological":[91],"capital":[92],"diverse":[94],"political":[95,124],"debate":[96],"ethical":[98,128],"dialogue.":[99],"Appeals":[100],"China":[106],"were":[107,118],"more":[108],"than":[109],"cultural":[113],"attitude,":[114],"argues,":[116],"but":[117],"rather":[119],"deliberate":[120],"ways":[121],"articulating":[123],"thought":[125],"challenging":[127],"debates":[129],"during":[130],"periods":[131],"crisis.":[133],"Significant":[134],"lies":[136],"retelling":[139],"past.":[142]},"counts_by_year":[{"year":2021,"cited_by_count":4},{"year":2020,"cited_by_count":1},{"year":2019,"cited_by_count":1}],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"}
-
-        '
+      string: !!binary |
+        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
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
@@ -73,7 +101,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 9a8de0086a3fdf76-AMS
+      - 9de538352e0366e4-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -81,29 +109,42 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 04 Dec 2025 19:57:50 GMT
+      - Wed, 18 Mar 2026 15:20:07 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
-      RateLimit-Limit:
-      - '5'
-      RateLimit-Remaining:
-      - '9'
-      RateLimit-Reset:
-      - '1'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=YCty9ckUHfAf6AZTZmQR1QAdMT%2B6Fp8xV1pj9uf3dAg%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1764878270"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=T%2FpTExrh87TUW3eDwbD1yMNtIUhHd8nUeGz%2BHtAbx0g%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1773847207"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=YCty9ckUHfAf6AZTZmQR1QAdMT%2B6Fp8xV1pj9uf3dAg%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764878270"
+      - heroku-nel="https://nel.heroku.com/reports?s=T%2FpTExrh87TUW3eDwbD1yMNtIUhHd8nUeGz%2BHtAbx0g%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1773847207"
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - accept-encoding
       Via:
       - 1.1 heroku-router
+      X-RateLimit-Cost-USD:
+      - '0.0001'
+      X-RateLimit-Credits-Used:
+      - '1'
+      X-RateLimit-Limit:
+      - '10000'
+      X-RateLimit-Limit-USD:
+      - '1'
+      X-RateLimit-Onetime-Remaining:
+      - '0'
+      X-RateLimit-Prepaid-Remaining-USD:
+      - '0'
+      X-RateLimit-Remaining:
+      - '9935'
+      X-RateLimit-Remaining-USD:
+      - '0.9935'
+      X-RateLimit-Reset:
+      - '31193'
       access-control-expose-headers:
-      - Cache-Control, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After
+      - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
+        X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
     status:
       code: 200
       message: OK

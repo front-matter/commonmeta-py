@@ -14,324 +14,172 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9
   response:
     body:
-      string: '{"abstract":null,"archive_url":null,"authors":[{"name":"James Azam"},{"name":"Hugo
-        Gruson"},{"name":"Adam Kucharski"}],"blog":{"archive_collection":null,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"otherMedicalSciences","community_id":"d52c2a61-9adc-4b9a-88ef-8c5f5092ad96","created_at":1718804394,"current_feed_url":null,"description":"A
-        place for Epiverse-TRACE to share their reflections, learnings, and showcase
-        available tools.","doi_as_guid":false,"favicon":null,"feed_format":"application/rss+xml","feed_url":"https://epiverse-trace.github.io/blog-doi.xml","filter":null,"funding":null,"generator":"Quarto","generator_raw":"Quarto
-        1.7.2","home_page_url":"https://epiverse-trace.github.io/","id":"1785eb29-afdf-4241-adfa-5045eaacf230","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1727090118,"relative_url":null,"ror":null,"secure":true,"slug":"epiverse_trace","status":"active","subfield":"2611","subfield_validated":null,"title":"Epiverse-TRACE
-        developer space","updated_at":1756080000,"use_api":null,"use_mastodon":false,"user_id":"b8b00f76-18b4-408d-97b9-9735605f0aa8"},"blog_name":"Epiverse-TRACE
-        developer space","blog_slug":"epiverse_trace","content_html":"<p>There are
-        ongoing outbreaks of mpox globally. The Democratic Republic of Congo (DRC)
-        is so far the worst hit with a total of 7,851 cases and 384 deaths reported
-        between January 1 and May 26, 2024 <sup>1</sup>. Before 2022, there were few
-        reports of sustained mpox transmission globally. However, during the following
-        year (Jan 1, 2022, and Jan 29, 2023), 110 countries in all six WHO Regions
-        had reported a total of 85,473 confirmed cases and 89 deaths between them
-        <span class=\"citation\" data-cites=\"laurenson2023description\">(Laurenson-Schafer
-        et al. 2023)</span>.</p>\n<p>Mpox is transmitted through respiratory droplets
-        and direct contact with infected persons. The disease is characterized by
-        fever, cough, and a rash, with the mean incubation period estimated to be
-        about 7.8 days <span class=\"citation\" data-cites=\"ward2022transmission\">(Ward
-        et al. 2022)</span>. Infected individuals may experience severe symptoms leading
-        to hospitalisation or death. There are two genetic clades: clade I and clade
-        II, which also has subclades IIa and IIb <span class=\"citation\" data-cites=\"laurenson2023description\">(Laurenson-Schafer
-        et al. 2023)</span>.</p>\n<p>Several analyses of the potential impact of outbreaks
-        at country level have already emerged in 2024. The US CDC, for example, has
-        analysed the potential size of outbreaks resulting from transmission within
-        and between households <sup>2</sup> and the risk of Clade 1 mpox outbreaks
-        among some key populations associated with key transmission routes <sup>3</sup>.
-        Another group of researchers have estimated the transmissibility of mpox in
-        the DRC from more recent (2010 - 2019) surveillance data to update existing
-        estimates, which are based on old data <span class=\"citation\" data-cites=\"charniga2024updating\">(Charniga,
-        McCollum, et al. 2024)</span>. However, tackling ongoing outbreaks around
-        the world will require a coordinated response from the global health community.</p>\n<p>The
-        Epiverse-TRACE team is developing a set of analytical tools that could help
-        support decision-makers during outbreaks. This post provides an overview of
-        the tasks that such tools can be applied to in the context of the ongoing
-        mpox outbreaks.</p>\n<section class=\"level2\" id=\"common-outbreak-analytics-tasks\">\n<h2
-        class=\"anchored\" data-anchor-id=\"common-outbreak-analytics-tasks\">Common
-        outbreak analytics tasks</h2>\n<p>Outbreak analytics in the context of the
-        ongoing mpox outbreak involves several tasks that can be handled by existing
-        and emerging R tools. Some of the tasks include estimating the transmission
-        potential, forecasting infection dynamics, estimating severity, and assessing
-        the impact of interventions.</p>\n<p>Here, we briefly describe some common
-        tasks, data required, and the ready R tools/packages developed by the Epiverse-TRACE
-        team and the wider community.</p>\n<section class=\"level3\" id=\"cleaning-and-validating-data\">\n<h3
-        class=\"anchored\" data-anchor-id=\"cleaning-and-validating-data\">Cleaning
-        and validating data</h3>\n<div class=\"callout callout-style-simple callout-none
-        no-icon\">\n<div class=\"callout-body d-flex\">\n<div class=\"callout-icon-container\">\n<i
-        class=\"callout-icon no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>Data
-        cleaning is often the first task in outbreak analytics. This usually involves
-        identifying and correcting errors in the data, standardizing the format of
-        key variables, and ensuring that the data is in a format that is fit for analysis.
-        Data validation is also important to ensure that the data is accurate.</p>\n</div>\n</div>\n</div>\n<p><a
-        href=\"https://epiverse-trace.github.io/cleanepi/\"><code>{cleanepi}</code></a>
-        is useful for cleaning individual-level datasets, and <a href=\"https://epiverse-trace.github.io/linelist/\"><code>{linelist}</code></a>
-        can be used to tag and validate key variables in datasets that might change
-        over time. The <a href=\"https://epiverse-trace.github.io/numberize/\"><code>{numberize}</code></a>
-        package can also be used to convert numbers written as text. It currently
-        has functionality for English, Spanish, and French.</p>\n</section>\n<section
-        class=\"level3\" id=\"estimating-transmission-potential\">\n<h3 class=\"anchored\"
-        data-anchor-id=\"estimating-transmission-potential\">Estimating transmission
-        potential</h3>\n<div class=\"callout callout-style-simple callout-none no-icon\">\n<div
-        class=\"callout-body d-flex\">\n<div class=\"callout-icon-container\">\n<i
-        class=\"callout-icon no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>A
-        key initial question during emerging outbreaks is the transmission potential
-        of the disease. This is typically quantified using parameters such as: the
-        basic reproduction number, <img src=\"https://latex.codecogs.com/png.latex?R_0\"/>;
-        the time-varying reproduction number, <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>;
-        and <img src=\"https://latex.codecogs.com/png.latex?k\"/>, which captures
-        individual heterogeneity in transmission (i.e.\u00a0\u201csuperspreading\u201d
-        potential). These quantities are useful to assess the potential for further
-        spread of the disease and the impact of interventions.</p>\n</div>\n</div>\n</div>\n<section
-        class=\"level4\" id=\"population-level-transmissibility-r_0-and-r_t\">\n<h4
-        class=\"anchored\" data-anchor-id=\"population-level-transmissibility-r_0-and-r_t\">Population-level
-        transmissibility (<img src=\"https://latex.codecogs.com/png.latex?R_0\"/>
-        and <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>)</h4>\n<p>The
-        basic reproduction number, <img src=\"https://latex.codecogs.com/png.latex?R_0\"/>,
-        is the average number of secondary cases produced by a single infected individual
-        in a completely susceptible population. The time-varying reproduction number,
-        <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>, on the other hand,
-        is the average number of secondary cases produced by a single infected individual
-        at time <img src=\"https://latex.codecogs.com/png.latex?t\"/> in a partially
-        susceptible population. <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>
-        is a more useful quantity during an outbreak as it accounts for the impact
-        of interventions and changes in population immunity.</p>\n<p>If data is available
-        on the daily number of reported cases, <a href=\"https://epiforecasts.io/EpiNow2/\"><code>{EpiNow2}</code></a>
-        and <a href=\"https://mrc-ide.github.io/EpiEstim/\"><code>{EpiEstim}</code></a>
-        can be used to estimate <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>.
-        These packages require data on the time scale of transmission (i.e.\u00a0the
-        generation time, or the serial interval, which is <a href=\"https://royalsocietypublishing.org/doi/10.1098/rsif.2020.0756\">commonly
-        used as a proxy</a> for this). While <code>{EpiEstim}</code> focuses on retrospective
-        estimation of <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>, <code>{EpiNow2}</code>
-        is designed for both retrospective and real-time estimation.</p>\n<p>In estimating
-        <img src=\"https://latex.codecogs.com/png.latex?R_t\"/>, one practical consideration
-        is the impact of various delays (biological and reporting) on the estimates
-        <span class=\"citation\" data-cites=\"charniga2024best park2024estimating
-        gostic2020practical\">(Charniga, Park, et al. 2024; Park et al. 2024; Katelyn
-        M. Gostic 2020)</span>. <code>{EpiNow2}</code> adjusts for these delays in
-        various ways. For example, it accounts for the symptom onset and reporting
-        delays by taking the incubation period and reporting delay as inputs. Moreover,
-        <code>{EpiNow2}</code> can estimate the reporting delay from the data if data
-        on incidence by date of onset and report are available.</p>\n<p>Furthermore,
-        dedicated packages have emerged for estimating epidemiological delays from
-        data using best practices. <a href=\"https://epidist.epinowcast.org/articles/epidist.html\"><code>{epidist}</code></a>
-        offers the ability to estimate delay distributions, accounting for issues
-        such as truncation (i.e., not all disease outcomes will yet be known in real-time).</p>\n<p>If
-        delay data are not available, published estimates of the incubation period
-        and serial interval can be used. The <a href=\"https://epiverse-trace.github.io/epiparameter/\"><code>{epiparameter}</code></a>
-        package collates a database of epidemiological distributions from the literature
-        and provides functions for interacting with the database. You can view the
-        <a href=\"https://epiverse-trace.github.io/epiparameter/dev/articles/database\">database</a>
-        for currently available parameters (more entries are planned). Additionally,
-        if only summary statistics are available (e.g.\u00a0range and median), <code>{epiparameter}</code>
-        can be used to extract the distribution parameters.</p>\n</section>\n<section
-        class=\"level4\" id=\"individual-level-transmissibility-superspreading\">\n<h4
-        class=\"anchored\" data-anchor-id=\"individual-level-transmissibility-superspreading\">Individual-level
-        transmissibility (superspreading)</h4>\n<div class=\"callout callout-style-simple
-        callout-none no-icon\">\n<div class=\"callout-body d-flex\">\n<div class=\"callout-icon-container\">\n<i
-        class=\"callout-icon no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>The
-        individual-level transmission heterogeneity (superspreading), often denoted
-        as <img src=\"https://latex.codecogs.com/png.latex?k\"/>, is an important
-        measure for tailoring interventions at the individual level.</p>\n</div>\n</div>\n</div>\n<p>If
-        we have data on the distribution of sizes of transmission clusters, the <a
-        href=\"https://epiverse-trace.github.io/epichains/\"><code>{epichains}</code></a>
-        package provides functions to set up the likelihood function to estimate <img
-        src=\"https://latex.codecogs.com/png.latex?R_0\"/> and <img src=\"https://latex.codecogs.com/png.latex?k\"/>.
-        The user inputs the negative binomial offspring, which assumes individuals
-        exhibit heterogeneity in transmission. The parameters of the negative offspring
-        distribution can then be estimated using existing maximum likelihood or bayesian
-        frameworks.</p>\n<p>Furthermore, if we have individual-level transmission
-        chain data, the <a href=\"https://epiverse-trace.github.io/superspreading/\"><code>{superspreading}</code></a>
-        package can be used to estimate <img src=\"https://latex.codecogs.com/png.latex?R_0\"/>
-        and <img src=\"https://latex.codecogs.com/png.latex?k\"/> from the offspring
-        distribution. This package also provides functions to estimate the probability
-        that an outbreak will not go extinct in its early stages because of randomness
-        in transmission (e.g.\u00a0if the primary spillover case(s) does not infect
-        others).</p>\n<p>If we have data on sexual contacts and the secondary attack
-        rate, then we can also use <code>{superspreading}</code> to <a href=\"https://epiverse-trace.github.io/superspreading/articles/heterogeneous_network_outbreaks.html\">calculate
-        <img src=\"https://latex.codecogs.com/png.latex?R_0\"/> accounting for network
-        effects</a>.</p>\n</section>\n</section>\n<section class=\"level3\" id=\"forecasting-and-nowcasting-infection-dynamics\">\n<h3
-        class=\"anchored\" data-anchor-id=\"forecasting-and-nowcasting-infection-dynamics\">Forecasting
-        and nowcasting infection dynamics</h3>\n<div class=\"callout callout-style-simple
-        callout-none no-icon\">\n<div class=\"callout-body d-flex\">\n<div class=\"callout-icon-container\">\n<i
-        class=\"callout-icon no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>Forecasting
-        and nowcasting of infections are crucial for planning and resource allocation
-        during an outbreak. Forecasting is the prediction of future cases, deaths,
-        or other outcomes, while nowcasting is the prediction of the current outbreak
-        situation. These predictions can help public health authorities to anticipate
-        the trajectory of the outbreak and to implement timely interventions.</p>\n</div>\n</div>\n</div>\n<p><a
-        href=\"https://epiforecasts.io/EpiNow2/\"><code>{EpiNow2}</code></a> and <a
-        href=\"https://package.epinowcast.org/\"><code>{epinowcast}</code></a> provide
-        functions to forecast and nowcast the number of cases. The data required for
-        <code>{EpiNow2}</code> has already been described in the previous section.
-        The <code>{epinowcast}</code> package similarly requires data on the number
-        of cases reported per date. <code>{epinowcast}</code> does not currently support
-        forecasting but there are plans to add this functionality in future versions.</p>\n</section>\n<section
-        class=\"level3\" id=\"estimating-disease-severity\">\n<h3 class=\"anchored\"
-        data-anchor-id=\"estimating-disease-severity\">Estimating disease severity</h3>\n<div
-        class=\"callout callout-style-simple callout-none no-icon\">\n<div class=\"callout-body
-        d-flex\">\n<div class=\"callout-icon-container\">\n<i class=\"callout-icon
-        no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>The case
-        fatality risk (CFR) is often used to assess the severity of a disease. CFR
-        here refers to the proportion of deaths among confirmed cases.</p>\n</div>\n</div>\n</div>\n<p>With
-        incidence data on the number of cases reported and the number of deaths reported,
-        the <a href=\"https://epiverse-trace.github.io/cfr/\"><code>{cfr}</code></a>
-        package can be used to estimate the case fatality rate and its uncertainty.
-        Importantly, it accounts for the delay between the onset of symptoms and death,
-        which is crucial for accurate estimation of the case fatality rate.</p>\n<p>Here
-        again, <code>{EpiNow2}</code> can be used to estimate the time-varying case
-        fatality ratio using the same data as for the reproduction number. <code>{EpiNow2}</code>
-        can estimate other severity metrics, such as the case hospitalisation ratio,
-        given data on cases and hospitalisations, and the hospitalisation fatality
-        ratio, if data on hospitalisations and associated deaths are available.</p>\n</section>\n<section
-        class=\"level3\" id=\"assessing-the-impact-of-interventions\">\n<h3 class=\"anchored\"
-        data-anchor-id=\"assessing-the-impact-of-interventions\">Assessing the impact
-        of interventions</h3>\n<div class=\"callout callout-style-simple callout-none
-        no-icon\">\n<div class=\"callout-body d-flex\">\n<div class=\"callout-icon-container\">\n<i
-        class=\"callout-icon no-icon\"></i>\n</div>\n<div class=\"callout-body-container\">\n<p>mpox
-        can be mitigated with behaviour change, treatment, and vaccination. Here,
-        a few tools are available to assess the impact of intervention scenarios.</p>\n</div>\n</div>\n</div>\n<p><a
-        href=\"https://epiverse-trace.github.io/epidemics/\"><code>{epidemics}</code></a>
-        provides ready compartmental models to estimate the impact of vaccination
-        and non-pharmaceutical interventions like behaviour change, which can conceptually
-        be modelled as a reduction in the transmission rate through changes in the
-        population contact structure.</p>\n<p>If we want to explore population-level
-        outbreak dynamics, <code>{epidemics}</code> allows for stratifying the population
-        into arbitrary groups, specifying the contact structure between these groups,
-        and rates of interventions. The data required to run these models include:
-        population structure, contact structure, and timing and magnitude of interventions.
-        Data on social contact matrices can be obtained from the <a href=\"https://github.com/epiforecasts/socialmixr\"><code>{socialmixr}</code></a>
-        package.</p>\n</section>\n</section>\n<section class=\"level2\" id=\"summary\">\n<h2
-        class=\"anchored\" data-anchor-id=\"summary\">Summary</h2>\n<p>In this post,
-        we have outlined common outbreak analytics tasks relevant to the mpox outbreak,
-        the data required, and R packages/tools that are currently available to facilitate
-        these tasks. The tools described here are being developed by the Epiverse-TRACE
-        team and the wider community, with the aim of ensuring high standards of research
-        software development, and validation from end users, including epidemiologists,
-        clinicians, and policy makers. The tools are designed to be user-friendly
-        and well integrated, enabling one analysis task to easily feed into another.
-        We <a href=\"https://epiverse-trace.github.io/get-involved.html\">would therefore
-        be keen to hear</a> from other groups interested in potentially collaborating
-        or contributing on this growing ecosystem of tools.</p>\n<p><em>Thanks to
-        <a href=\"https://github.com/Karim-Mane\">Karim Mane</a> and <a href=\"https://github.com/chartgerink\">Chris
-        Hartgerink</a> for their valuable comments on earlier drafts of this post.</em></p>\n</section>\n<div
-        class=\"default\" id=\"quarto-appendix\"><section class=\"quarto-appendix-contents\"
-        id=\"quarto-bibliography\"><h2 class=\"anchored quarto-appendix-heading\">References</h2><div
-        class=\"references csl-bib-body hanging-indent\" data-entry-spacing=\"0\"
-        id=\"refs\">\n<div class=\"csl-entry\" id=\"ref-charniga2024updating\">\nCharniga,
-        Kelly, Andrea M McCollum, Christine M Hughes, Benjamin Monroe, Joelle Kabamba,
-        Robert Shongo Lushima, Toutou Likafi, et al. 2024. <span>\u201cUpdating Reproduction
-        Number Estimates for Mpox in the Democratic Republic of Congo Using Surveillance
-        Data.\u201d</span> <em>The American Journal of Tropical Medicine and Hygiene</em>
-        110 (3): 561. https://doi.org/<a href=\"https://doi.org/10.4269/ajtmh.23-0215\">https://doi.org/10.4269/ajtmh.23-0215</a>.\n</div>\n<div
-        class=\"csl-entry\" id=\"ref-charniga2024best\">\nCharniga, Kelly, Sang Woo
-        Park, Andrei R Akhmetzhanov, Anne Cori, Jonathan Dushoff, Sebastian Funk,
-        Katelyn M Gostic, et al. 2024. <span>\u201cBest Practices for Estimating and
-        Reporting Epidemiological Delay Distributions of Infectious Diseases Using
-        Public Health Surveillance and Healthcare Data.\u201d</span> <em>arXiv Preprint
-        arXiv:2405.08841</em>. https://doi.org/<a href=\"https://epiverse-trace.github.io/posts/mpox-preparedness/\nhttps://doi.org/10.48550/arXiv.2405.08841\">
-        https://doi.org/10.48550/arXiv.2405.08841</a>.\n</div>\n<div class=\"csl-entry\"
-        id=\"ref-gostic2020practical\">\nKatelyn M. Gostic, Edward B. Baskerville,
-        Lauren McGough. 2020. <span>\u201cPractical Considerations for Measuring the
-        Effective Reproductive Number, Rt.\u201d</span> <em>PLoS Computational Biology</em>
-        16 (12): e1008409. https://doi.org/<a href=\"https://doi.org/10.1371/journal.pcbi.1008409\">https://doi.org/10.1371/journal.pcbi.1008409</a>.\n</div>\n<div
-        class=\"csl-entry\" id=\"ref-laurenson2023description\">\nLaurenson-Schafer,
-        Henry, Nikola Sklenovsk\u00e1, Ana Hoxha, Steven M Kerr, Patricia Ndumbi,
-        Julia Fitzner, Maria Almiron, et al. 2023. <span>\u201cDescription of the
-        First Global Outbreak of Mpox: An Analysis of Global Surveillance Data.\u201d</span>
-        <em>The Lancet Global Health</em> 11 (7): e1012\u201323. https://doi.org/<a
-        href=\"https://doi.org/10.1016/S2214-109X(23)00198-5\">https://doi.org/10.1016/S2214-109X(23)00198-5</a>.\n</div>\n<div
-        class=\"csl-entry\" id=\"ref-park2024estimating\">\nPark, Sang Woo, Andrei
-        R Akhmetzhanov, Kelly Charniga, Anne Cori, Nicholas G Davies, Jonathan Dushoff,
-        Sebastian Funk, et al. 2024. <span>\u201cEstimating Epidemiological Delay
-        Distributions for Infectious Diseases.\u201d</span> <em>medRxiv</em>, 2024\u201301.
-        https://doi.org/<a href=\"https://doi.org/10.1101/2024.01.12.24301247\">https://doi.org/10.1101/2024.01.12.24301247</a>.\n</div>\n<div
-        class=\"csl-entry\" id=\"ref-ward2022transmission\">\nWard, Thomas, Rachel
-        Christie, Robert S Paton, Fergus Cumming, and Christopher E Overton. 2022.
-        <span>\u201cTransmission Dynamics of Monkeypox in the United Kingdom: Contact
-        Tracing Study.\u201d</span> <em>Bmj</em> 379. https://doi.org/<a href=\"http://dx.doi.org/10.1136/
-        bmj-2022-073153\">http://dx.doi.org/10.1136/ bmj-2022-073153</a>.\n</div>\n</div></section><section
-        class=\"footnotes footnotes-end-of-document\" id=\"footnotes\"><h2 class=\"anchored
-        quarto-appendix-heading\">Footnotes</h2>\n<ol>\n<li id=\"fn1\"><p><a href=\"https://www.who.int/emergencies/disease-outbreak-news/item/2024-DON522\">WHO
-        Disease Outbreak News</a>\u21a9\ufe0e</p></li>\n<li id=\"fn2\"><p><a href=\"https://www.cdc.gov/forecast-outbreak-analytics/about/modeling-forecasting/mpox-transmission.html\">Modeling
-        Household Transmission of Clade I Mpox in the United States</a>\u21a9\ufe0e</p></li>\n<li
-        id=\"fn3\"><p><a href=\"https://www.cdc.gov/forecast-outbreak-analytics/about/modeling-forecasting/mpox-gbmsm-technical-brief.html\">Risk
-        of Clade 1 Mpox Outbreaks Among Gay, Bisexual, and Other Men Who Have Sex
-        With Men in the United States</a>\u21a9\ufe0e</p></li>\n</ol>\n</section><section
-        class=\"quarto-appendix-contents\" id=\"quarto-reuse\"><h2 class=\"anchored
-        quarto-appendix-heading\">Reuse</h2><div class=\"quarto-appendix-contents\"><div><a
-        href=\"https://creativecommons.org/licenses/by/4.0/\" rel=\"license\">CC BY
-        4.0</a></div></div></section><section class=\"quarto-appendix-contents\" id=\"quarto-citation\"><h2
-        class=\"anchored quarto-appendix-heading\">Citation</h2><div><div class=\"quarto-appendix-secondary-label\">BibTeX
-        citation:</div><pre class=\"sourceCode code-with-copy quarto-appendix-bibtex\"><code
-        class=\"sourceCode bibtex\">@online{azam2024,\n  author = {Azam, James and
-        Gruson, Hugo and Kucharski, Adam},\n  title = {2024 Mpox Outbreak: Common
-        Analytics Tasks and Available {R}\n    Tools},\n  date = {2024-07-04},\n  url
-        = {https://epiverse-trace.github.io/posts/mpox-preparedness/},\n  doi = {10.59350/z78kb-qrz59},\n  langid
-        = {en}\n}\n</code></pre><div class=\"quarto-appendix-secondary-label\">For
-        attribution, please cite this work as:</div><div class=\"csl-entry quarto-appendix-citeas\"
-        id=\"ref-azam2024\">\nAzam, James, Hugo Gruson, and Adam Kucharski. 2024.
-        <span>\u201c2024 Mpox\nOutbreak: Common Analytics Tasks and Available R Tools.\u201d</span>
-        July 4,\n2024. <a href=\"https://doi.org/10.59350/z78kb-qrz59\">https://doi.org/10.59350/z78kb-qrz59</a>.\n</div></div></section></div>","doi":"https://doi.org/10.59350/z78kb-qrz59","funding_references":null,"guid":"https://epiverse-trace.github.io/posts/mpox-preparedness/","id":"340de361-9628-481e-9204-527c679446b9","image":null,"indexed_at":1741034029,"language":"en","parent_doi":null,"published_at":1720051200,"reference":[{"id":"https://doi.org/10.4269/ajtmh.23-0215","type":"JournalArticle","unstructured":"Charniga,
-        K., McCollum, A. M., Hughes, C. M., Monroe, B., Kabamba, J., Lushima, R. S.,
-        Likafi, T., Nguete, B., Pukuta, E., Muyamuna, E., Muyembe Tamfum, J.-J., Karhemere,
-        S., Kaba, D., &amp; Nakazawa, Y. (2024). Updating Reproduction Number Estimates
-        for Mpox in the Democratic Republic of Congo Using Surveillance Data. <i>The
-        American Journal of Tropical Medicine and Hygiene</i>, <i>110</i>(3), 561\u2013568.
-        https://doi.org/10.4269/ajtmh.23-0215"},{"id":"https://doi.org/10.48550/arxiv.2405.08841","type":"Article","unstructured":"Charniga,
-        K., Park, S. W., Akhmetzhanov, A. R., Cori, A., Dushoff, J., Funk, S., Gostic,
-        K. M., Linton, N. M., Lison, A., Overton, C. E., Pulliam, J. R. C., Ward,
-        T., Cauchemez, S., &amp; Abbott, S. (2024). <i>Best practices for estimating
-        and reporting epidemiological delay distributions of infectious diseases using
-        public health surveillance and healthcare data</i> (Version 1). arXiv. https://doi.org/10.48550/arxiv.2405.08841"},{"id":"https://doi.org/10.1371/journal.pcbi.1008409","type":"JournalArticle","unstructured":"Gostic,
-        K. M., McGough, L., Baskerville, E. B., Abbott, S., Joshi, K., Tedijanto,
-        C., Kahn, R., Niehus, R., Hay, J. A., De Salazar, P. M., Hellewell, J., Meakin,
-        S., Munday, J. D., Bosse, N. I., Sherrat, K., Thompson, R. N., White, L. F.,
-        Huisman, J. S., Scire, J., \u2026 Pitzer, V. E. (2020). Practical considerations
-        for measuring the effective reproductive number, Rt. <i>PLOS Computational
-        Biology</i>, <i>16</i>(12), e1008409. https://doi.org/10.1371/journal.pcbi.1008409"},{"id":"https://doi.org/10.1016/s2214-109x(23)00198-5","type":"JournalArticle","unstructured":"Laurenson-Schafer,
-        H., Sklenovsk\u00e1, N., Hoxha, A., Kerr, S. M., Ndumbi, P., Fitzner, J.,
-        Almiron, M., de Sousa, L. A., Briand, S., Cenciarelli, O., Colombe, S., Doherty,
-        M., Fall, I. S., Garc\u00eda-Calavaro, C., Haussig, J. M., Kato, M., Mahamud,
-        A. R., Morgan, O. W., Nabeth, P., \u2026 Biaukula, V. (2023). Description
-        of the first global outbreak of mpox: an analysis of global surveillance data.
-        <i>The Lancet Global Health</i>, <i>11</i>(7), e1012\u2013e1023. https://doi.org/10.1016/s2214-109x(23)00198-5"},{"id":"https://doi.org/10.1101/2024.01.12.24301247","type":"Article","unstructured":"Park,
-        S. W., Akhmetzhanov, A. R., Charniga, K., Cori, A., Davies, N. G., Dushoff,
-        J., Funk, S., Gostic, K., Grenfell, B., Linton, N. M., Lipsitch, M., Lison,
-        A., Overton, C. E., Ward, T., &amp; Abbott, S. (2024). Estimating epidemiological
-        delay distributions for infectious diseases. In <i>medRxiv</i>. Cold Spring
-        Harbor Laboratory. https://doi.org/10.1101/2024.01.12.24301247"},{"id":"http://dx.doi.org/10.1136/%20bmj-2022-073153","unstructured":"\nWard,
-        Thomas, Rachel Christie, Robert S Paton, Fergus Cumming, and Christopher E
-        Overton. 2022. \u201cTransmission Dynamics of Monkeypox in the United Kingdom:
-        Contact Tracing Study.\u201d Bmj 379. https://doi.org/http://dx.doi.org/10.1136/
-        bmj-2022-073153.\n"}],"registered_at":0,"relationships":[],"rid":"jehpc-qpc91","subfield":null,"summary":"There
-        are ongoing outbreaks of mpox globally. The Democratic Republic of Congo (DRC)
-        is so far the worst hit with a total of 7,851 cases and 384 deaths reported
-        between January 1 and May 26, 2024\n<sup>\n 1\n</sup>\n. Before 2022, there
-        were few reports of sustained mpox transmission globally.","tags":["Mpox","Outbreak","Outbreak
-        Analytics","DOI"],"title":"2024 mpox outbreak: common analytics tasks and
-        available R tools","topic":null,"topic_score":0,"updated_at":1720051200,"url":"https://epiverse-trace.github.io/posts/mpox-preparedness","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Thu, 04 Dec 2025 18:27:12 GMT
-      fly-request-id:
-      - 01KBN9WH1JTK4YBD13Z76JW4TX-ams
-      server:
-      - Fly/340afcba (2025-12-03)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:19:22 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

@@ -14,10 +14,12 @@ interactions:
     uri: https://doi.org/ra/10.1109
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.1109\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9Q0MDSyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        XRsdmjYAAAA=
     headers:
       CF-RAY:
-      - 9a743c13ee359fed-AMS
+      - 9de5347d0fe78069-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -25,11 +27,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:16:51 GMT
+      - Wed, 18 Mar 2026 15:17:34 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jpeYhbmyP1%2FpwS7%2BtN0BwcJsHzvmNqCZrD%2B0PVXzFOumfL6EdXlap3uoxRDamdCnoKZkT1Lq88Kbd1%2FPqzQGrgYO%2Bj7ZGLwMJT9BkBe2VrihDw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=r%2FCKShmBjduuBXkdTddwaxBob%2FIvyah7Jfgu9mw4bnwUXgGUd8ep%2FQs%2Fnuuyfcoc9JY%2F3IrqXEaYfdpQG7QEQOKGVLSN1lCHzJMNvga%2BKaZu6w%3D%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -63,27 +65,39 @@ interactions:
     uri: https://api.crossref.org/works/10.1109/iccv.2007.4408927
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,31]],"date-time":"2025-10-31T21:51:11Z","timestamp":1761947471646,"version":"3.28.0"},"reference-count":14,"publisher":"IEEE","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2007]]},"DOI":"10.1109\/iccv.2007.4408927","type":"proceedings-article","created":{"date-parts":[[2008,1,4]],"date-time":"2008-01-04T15:34:53Z","timestamp":1199460893000},"page":"1-8","source":"Crossref","is-referenced-by-count":177,"title":["A
-        Seeded Image Segmentation Framework Unifying Graph Cuts And Random Walker
-        Which Yields A New Algorithm"],"prefix":"10.1109","author":[{"given":"Ali
-        Kemal","family":"Sinop","sequence":"first","affiliation":[]},{"given":"Leo","family":"Grady","sequence":"additional","affiliation":[]}],"member":"263","reference":[{"key":"ref10","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0480"},{"key":"ref11","doi-asserted-by":"publisher","DOI":"10.1007\/b98874"},{"article-title":"Combinatorial
-        Optimization: Algorithms and Complexity","year":"1998","author":"papadimitriou","key":"ref12"},{"article-title":"Level
-        Set Methods and Fast Marching Methods","year":"1999","author":"sethian","key":"ref13"},{"key":"ref14","doi-asserted-by":"crossref","first-page":"888","DOI":"10.1109\/34.868688","article-title":"Normalized
-        cuts and image segmentation","volume":"22","author":"shi","year":"2000","journal-title":"IEEE
-        Trans on PAMI"},{"key":"ref4","doi-asserted-by":"publisher","DOI":"10.1006\/gmip.1998.0475"},{"key":"ref3","doi-asserted-by":"publisher","DOI":"10.1007\/s11263-006-7934-5"},{"key":"ref6","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.233"},{"key":"ref5","doi-asserted-by":"publisher","DOI":"10.1109\/CVPR.2005.239"},{"key":"ref8","doi-asserted-by":"publisher","DOI":"10.1007\/BF00133570"},{"key":"ref7","doi-asserted-by":"publisher","DOI":"10.1109\/TPAMI.2006.57"},{"key":"ref2","doi-asserted-by":"publisher","DOI":"10.1090\/S0273-0979-04-01035-3"},{"article-title":"Network
-        Flows: Theory, Algorithms, and Applications","year":"1993","author":"ahuja","key":"ref1"},{"key":"ref9","doi-asserted-by":"publisher","DOI":"10.1016\/S1076-5670(00)80012-9"}],"event":{"name":"2007
-        IEEE 11th International Conference on Computer Vision","start":{"date-parts":[[2007,10,14]]},"location":"Rio
-        de Janeiro, Brazil","end":{"date-parts":[[2007,10,21]]}},"container-title":["2007
-        IEEE 11th International Conference on Computer Vision"],"original-title":[],"link":[{"URL":"http:\/\/xplorestaging.ieee.org\/ielx5\/4408818\/4408819\/04408927.pdf?arnumber=4408927","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2017,6,17]],"date-time":"2017-06-17T22:39:45Z","timestamp":1497739185000},"score":1,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/document\/4408927\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2007]]},"references-count":14,"URL":"https:\/\/doi.org\/10.1109\/iccv.2007.4408927","relation":{},"subject":[],"published":{"date-parts":[[2007]]}}}'
+      string: !!binary |
+        H4sIAAAAAAAA/6VWXU/rRhD9Kys/tZLt7NqOPyJVFZdCRcv9EHDvVUt4WOxNvGB73V0bCIj/3hk7
+        EMeEqtFVXpxd+8zM2TOz58kyDW9aY80sdWvZVimM4UvhNKtawNq90sPVO6GNVBVsMJe6dLNjzZ4s
+        WWXiQWT4mPFGODXXDeBeXnrUC21me8nVld1vNbJEdNxwKHO85MLzZjSc0eRvwMRdyKqsrRmLwiTy
+        Aj9MWBDa1ia+7wYJJPBsW1oshBZVKpxUtVUD3wS2VbfXhTS50PDqydHREaCmqmpE1TiZKrmsuizX
+        T5eQVqqVMSXXt46G2FqmTRdnwQsjIIjJlW4chIAvhIYCmkL0X76EypxaS4z/tnwaXV0ByG+fT5A5
+        6jJGk/lEpumdi5tuENA48SIsvae91ioVIpPV0jgAI1MIhjkKAN5JMI2B4OAtvzRGfmlwwaYzP5hN
+        /TG/LEmCEKL7lFJIse7O0mJODO8Z1eoU/x4iOcAzrEnjvBKeOderV9KjGIF7VqwDcg7pi4yclAAI
+        f5YlUM+RU3KseSlQV+RrJRcrqJH8rnmdk8O2MeSgysgZr+BoyHde3ApNvucyzclfUhQZbJNP4p4c
+        FEulZZOXFvIP+ciHDbGQJG8bOC9I5MlayjuBejkoJPlTlLyA7QUvZbGCxXNZqRoLFf+0WBAsLaQ2
+        DUIsFrKQvFfBJZzeBupUqCEIJJ+ttkF4lkn8sos2RrrCpimvO2l6oW8NFNxlfCsQFdYY9lempMON
+        Ebrp6EZtvEp7qChKw/lkWcrahRONXRrE2BxDNLYXWjSfXCdxHAUjFA8r6hX50gTWoSqvZcUbOBNe
+        kM816Es+dgXPNkdlCJwqgVfrQjzIZjU4JlBdzTP4CPpOtbCxEhyXsZJReH9H+FNxJwrQWEM+CgDM
+        +kjH3MAC12mOClvvDIMaWJK82gqXjMIFOzlLN+3QycVZd00cx9abLvcDNw7hF+/I/JPSoEj5CI2S
+        ovgxb9l1jBl0DHx4p4q272hvq4RcbtKHZkfB3EDTgvBeY+D0IxeaV4ZA8305+HiyXePuEv+nyKLp
+        Npi/r8YMY9ADDgA7UeIHzggv3AOvY/sCC8ShGrqe72+DTfcFO/z25QyxpoA1Uka8b6Efjillvj+N
+        Rm0Z/UCF02gby9snqYTOJ+fUi4D8JErgioCLgvpTZ0Qa2yVb0XTz+7hQ92ZGLnKh9MoetLrdKfmg
+        rguZdhLeajyetzd8q+1GMZN96mAgyXNGo9CZhhH9idKfY2Dac+DAYNLCaOiv5Iq/3IgR6VqCsSYn
+        J2AJoFv6WQ3DqVoPYmwVHFUtbJNv0vRdWKh0PcatM6lIJsgfvBJSK5t80PxR4rSHe1W/4wFsRm0W
+        dE5AVLtv8e4dj8E7z71h2XYbP5I+kAGns5SD2YDupZDVbXftfD07hbrypqln88l88lAXCp0Qhy+W
+        rhRCuEovwbSI4mE6n6BjiVn88gC6pGsT49bZ4leuqxavuF82zubFfq0dTluZWqRyIcHPbDY3/u5O
+        4TlLXAYf4fCNlnDuwV1RcNAa2I9cpLeQYnfamaiVke9YJBbZ4EKjtx6JRQ6MHxahB/WTWTAde6Qg
+        iSI/YfG090gmBWZgGS/uF4v0BDYEJrde4eOISiSvp3PAY6bSFid8zyBQNJ9YeOimvR6cTm87BwvS
+        mPYdB9h7zFcvYYZ2eJOR6VKC7urT+E8zqkWxZvypz+xGpM3I9L6byvPzv1xvC1VbDAAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1313'
+      - '1305'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:16:51 GMT
+      - Wed, 18 Mar 2026 15:17:35 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -101,10 +115,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

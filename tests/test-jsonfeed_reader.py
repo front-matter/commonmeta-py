@@ -995,7 +995,7 @@ def test_post_with_contributor_roles():
     assert subject.contributors[1] == {
         "id": "https://orcid.org/0000-0002-7690-8360",
         "type": "Person",
-        "contributorRoles": ["Editor"],
+        "contributorRoles": ["Author"],
         "givenName": "Steffi",
         "familyName": "LaZerte",
     }
@@ -1096,10 +1096,6 @@ def test_post_topic_classification():
             "id": "https://openalex.org/subfields/1802",
             "subject": "Information Systems and Management",
         },
-        {
-            "id": "https://openalex.org/T11986",
-            "subject": "Scientific Computing and Data Management",
-        },
         {"subject": "RSE"},
     ]
 
@@ -1119,6 +1115,7 @@ def test_funded_project():
             "awardTitle": "THOR – Technical and Human Infrastructure for Open Research",
             "awardUri": "https://doi.org/10.3030/654039",
             "funderIdentifier": "https://ror.org/019w4f821",
+            "funderIdentifierType": "ROR",
             "funderName": "European Union",
         },
     ]

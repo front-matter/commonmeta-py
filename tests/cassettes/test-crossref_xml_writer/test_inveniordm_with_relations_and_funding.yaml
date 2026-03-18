@@ -14,201 +14,109 @@ interactions:
     uri: https://rogue-scholar.org/api/records/ddhjk-a8f36
   response:
     body:
-      string: '{"id": "ddhjk-a8f36", "created": "2024-10-13T22:40:41.789375+00:00",
-        "updated": "2025-11-27T13:43:21.231854+00:00", "links": {"self": "https://rogue-scholar.org/api/records/ddhjk-a8f36",
-        "self_html": "https://rogue-scholar.org/records/ddhjk-a8f36", "preview_html":
-        "https://rogue-scholar.org/records/ddhjk-a8f36?preview=1", "doi": "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1",
-        "self_doi": "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1", "self_doi_html":
-        "https://rogue-scholar.org/doi/10.53731/r79s4nh-97aq74v-ag4t1", "reserve_doi":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/draft/pids/doi", "parent":
-        "https://rogue-scholar.org/api/records/jn1h8-m3m07", "parent_html": "https://rogue-scholar.org/records/jn1h8-m3m07",
-        "parent_doi": "https://doi.org/10.53731/jn1h8-m3m07", "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/jn1h8-m3m07",
-        "self_iiif_manifest": "https://rogue-scholar.org/api/iiif/record:ddhjk-a8f36/manifest",
-        "self_iiif_sequence": "https://rogue-scholar.org/api/iiif/record:ddhjk-a8f36/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/ddhjk-a8f36/files", "media_files":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/media-files", "archive":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/ddhjk-a8f36/latest", "versions": "https://rogue-scholar.org/api/records/ddhjk-a8f36/versions",
-        "draft": "https://rogue-scholar.org/api/records/ddhjk-a8f36/draft", "access_links":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access/request", "access":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/access", "communities":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/ddhjk-a8f36/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/ddhjk-a8f36/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/ddhjk-a8f36/requests"},
-        "revision_id": 77, "parent": {"id": "jn1h8-m3m07", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "d79fe364-6d96-40b6-b437-b93ca3493106",
-        "f5585376-cf4d-4ba8-b423-16834e1f708f"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
-        "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
-        "updated": "2025-12-01T07:39:27.094388+00:00", "links": {}, "revision_id":
-        795, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
-        "The Front Matter Blog covers the intersection of science and technology since
-        2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:issn": "2749-9952", "rs:feed_url": "https://blog.front-matter.de/atom",
-        "rs:prefix": "10.53731", "rs:joined": "January 1, 2023", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "Ghost", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Computer and information sciences"},
-        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
-        "updated": "2025-06-30T16:00:16.024136+00:00", "links": {}, "revision_id":
-        6, "slug": "computerandinformationsciences", "metadata": {"title": "Computer
-        and information sciences", "description": "Computer and information sciences
-        subject area.", "type": {"id": "subject"}}, "access": {"visibility": "public",
-        "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "f5585376-cf4d-4ba8-b423-16834e1f708f", "created": "2024-10-08T16:22:44.009032+00:00",
-        "updated": "2025-07-15T19:20:59.530029+00:00", "links": {}, "revision_id":
-        8, "slug": "metadata", "metadata": {"title": "Metadata", "description": "Blog
-        posts about metadata.", "type": {"id": "topic"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
-        {"doi": {"identifier": "10.53731/jn1h8-m3m07", "provider": "crossref", "client":
-        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
-        true, "is_draft": false, "pids": {"doi": {"identifier": "10.53731/r79s4nh-97aq74v-ag4t1",
-        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:ddhjk-a8f36",
-        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
-        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
-        "creators": [{"person_or_org": {"type": "personal", "name": "Fenner, Martin",
-        "given_name": "Martin", "family_name": "Fenner", "identifiers": [{"identifier":
-        "0000-0003-1419-2405", "scheme": "orcid"}]}, "affiliations": [{"id": "04wxnsj81",
-        "name": "DataCite", "identifiers": [{"identifier": "04wxnsj81", "scheme":
-        "ror"}]}]}], "title": "Tracking the Growth of the PID Graph", "publisher":
-        "Front Matter", "publication_date": "2019-07-01", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"subject":
-        "Metadata"}], "dates": [{"date": "2019-07-01T02:00:00", "type": {"id": "issued",
-        "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}},
-        {"date": "2025-01-10T00:49:29", "type": {"id": "updated", "title": {"de":
-        "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id":
-        "eng", "title": {"en": "English"}}], "identifiers": [{"identifier": "e58dc9c8-b870-4db2-8896-238b3246c551",
-        "scheme": "uuid"}, {"identifier": "https://doi.org/10.53731/r79s4nh-97aq74v-ag4t1",
-        "scheme": "guid"}, {"identifier": "https://blog.front-matter.de/posts/tracking-the-growth-of-the-pid-graph/",
-        "scheme": "url"}], "related_identifiers": [{"identifier": "10.5438/bv9z-dc66",
-        "scheme": "doi", "relation_type": {"id": "isidenticalto", "title": {"de":
-        "Ist identisch mit", "en": "Is identical to", "sv": "\u00c4r identisk med"}}}],
-        "version": "v1", "rights": [{"id": "cc-by-4.0", "title": {"en": "Creative
-        Commons Attribution 4.0 International"}, "description": {"en": "The Creative
-        Commons Attribution license allows re-distribution and re-use of a licensed
-        work on the condition that the creator is appropriately credited."}, "icon":
-        "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "The connections between scholarly resources
-        generated by persistent identifiers (PIDs) and associated metadata form a
-        graph: the PID Graph [Fenner &amp; Aryani (2019)]. We developed this PID Graph
-        concept in the EC-funded FREYA project, and have identified important use
-        cases and technical requirements. In May, DataCite introduced a GraphQL API
-        to standardize and simplify how users can contribute to and consume the PID
-        Graph [Fenner (2019b)].", "funding": [{"funder": {"id": "00k4n6c32", "name":
-        "European Commission"}, "award": {"number": "777523", "identifiers": [{"identifier":
-        "10.3030/777523", "scheme": "doi"}]}}], "references": [{"identifier": "10.14454/3bpw-w381",
-        "scheme": "doi", "reference": "Fenner, M. (2019). <i>Jupyter Notebook FREYA
-        PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite."}, {"identifier":
-        "10.53731/r79sa71-97aq74v-ag4vc", "scheme": "doi", "reference": "Fenner, M.
-        (2019). The DataCite GraphQL API is now open for (pre-release) business. In
-        <i>Front Matter</i> (Version v1). Crossref."}, {"identifier": "10.5438/jwvf-8a66",
-        "scheme": "doi", "reference": "Fenner, M., &amp; Aryani, A. (2019). <i>Introducing
-        the PID Graph</i>."}]}, "custom_fields": {"journal:journal": {"title": "Front
-        Matter", "issn": "2749-9952"}, "rs:content_html": "<p>The connections between
-        scholarly resources generated by persistent identifiers (PIDs) and associated
-        metadata form a graph: the PID Graph [Fenner &amp; Aryani (<a href=\"https://blog.datacite.org/tracking-the-growth-of-the-pid-graph/#ref-https://doi.org/10.5438/jwvf-8a66\">2019</a>)].
-        We developed this PID Graph concept in the EC-funded <a href=\"https://www.project-freya.eu/en\">FREYA
-        project</a>, and have identified important use cases and technical requirements.
-        In May, DataCite introduced a GraphQL API to standardize and simplify how
-        users can contribute to and consume the PID Graph [Fenner (<a href=\"https://blog.datacite.org/tracking-the-growth-of-the-pid-graph/#ref-https://doi.org/10.5438/qab1-n315\">2019b</a>)].
-        Today we are announcing another important milestone: we added the required
-        functionality to the DataCite GraphQL API that allows us to keep track of
-        the growth of the PID Graph in terms of nodes (resources) and edges (connections).
-        As before, we are using a Jupyter notebook to analyze and visualize the data.</p><p>The
-        graph visualizes the main resources currently available via the DataCite GraphQL
-        API, and their connections. The required data are fetched via a single GraphQL
-        API call:</p><pre><code>{\n  publications {\n    totalCount\n    publicationConnectionCount\n    datasetConnectionCount\n    softwareConnectionCount\n    researcherConnectionCount\n    funderConnectionCount\n  }\n  datasets
-        {\n    totalCount\n    datasetConnectionCount\n    softwareConnectionCount\n    researcherConnectionCount\n    funderConnectionCount\n  }\n  softwares
-        {\n    totalCount\n    softwareConnectionCount\n    researcherConnectionCount\n    funderConnectionCount\n  }\n  researchers
-        {\n    totalCount\n  }\n  funders {\n    totalCount\n  }\n}</code></pre><p>The
-        numbers reflect what is currently available via the DataCite GraphQL API,
-        not the total number of publications, datasets, etc. with persistent identifiers
-        and linking metadata. This includes all publications, datasets and software
-        with DataCite DOIs, all funders in the <a href=\"https://support.crossref.org/hc/en-us/articles/214360886-The-Open-Funder-Registry\">Crossref
-        Open Funder Registry</a>, publications with Crossref DOIs linked to at least
-        one DataCite DOI, and all researchers with an ORCID identifier linked to at
-        least one DataCite DOI. A lot of work remains to be done to include the other
-        resources with persistent identifiers made available by FREYA partners, including
-        Crossref, ORCID and EMBL-EBI, as well as their connections. With this new
-        API functionality we can now track the growth of the PID Graph with the key
-        performance indicators (KPIs) number of <strong>nodes</strong> and number
-        of <strong>connections</strong>.</p><p>A few interesting observations can
-        be made from the visualization: not surprisingly, given that datasets currently
-        make up the largest number of resources in the PID Graph, by far the largest
-        number of connections (9.4 million) is between datasets and other datasets.
-        Looking at the relation type of these connections in the Event Data API, most
-        of them (8.5 million) don''t describe versioning or granularity (HasPart/IsPartOf
-        relations), but use the relation type <strong>references</strong> between
-        two <a href=\"https://www.gbif.org/en/\">GBIF</a> DOIs. This reflects the
-        main <a href=\"https://www.gbif.org/en/document/81771/gbif-overview-powerpoint-slides\">use
-        case for DOIs at GBIF</a>, tracking occurrences of species.</p><p>The graph
-        shows 1.5 million connections between publications and datasets, representing
-        the data citations made available via the <a href=\"https://www.eventdata.crossref.org/guide/app-scholix/\">Crossref/DataCite
-        Event Data Scholix API endpoint</a>. Twenty-five percent of datasets with
-        DataCite DOIs have been referenced in the scholarly literature, according
-        to this graph. We also see the number of software citations using DataCite
-        DOIs for software found in the scholarly literature, and we can use this API
-        call to keep track of them. Similarly, we can track the number of datasets,
-        publications, and software linked to researchers (via their ORCID ID), and
-        funding (via the Crossref Funder ID), but keep in mind that connections to
-        researchers and funding via Crossref are still missing.</p><p>The Jupyter
-        notebook used to generate the visualization shown here is available via GitHub,
-        where we store all PID Graph notebooks in a <a href=\"https://github.com/datacite/notebooks\">central
-        repository</a>. Starting with this notebook [Fenner (<a href=\"https://blog.datacite.org/tracking-the-growth-of-the-pid-graph/#ref-https://doi.org/10.14454/3bpw-w381\">2019a</a>)]
-        we are also issuing DOIs for the notebooks, which we generate using a <a href=\"https://codemeta.github.io/\">codemeta</a>
-        file hosted in the same folder as the notebook. This should make these notebooks
-        easier to discover, and they also become part of the PID Graph.</p><p>Going
-        forward we want to refine the GraphQL API to provide the numbers of <strong>nodes</strong>
-        and <strong>connections</strong> as they change over time, making it easier
-        to track progress. And of course, we will be adding more resource types and
-        information from other FREYA partners. Keep an eye on this blog for further
-        updates!</p><h2 id=\"acknowledgments\">Acknowledgments</h2><p>This blog post
-        was <a href=\"https://doi.org/10.5438/bv9z-dc66\">originally published</a>
-        on the DataCite Blog. This work was funded by the European Union''s Horizon
-        2020 research and innovation programme under <a href=\"https://doi.org/10.3030/777523\"
-        rel=\"noreferrer\">grant agreement No.&nbsp;777523</a>.</p><h2 id=\"references\">References</h2><p>Fenner
-        M. Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs). Published
-        online June 30, 2019. doi:<a href=\"https://doi.org/10.14454/3BPW-W381\">10.14454/3BPW-W381</a></p><p>Fenner
-        M. The DataCite GraphQL API is now open for (pre-release) business. Published
-        online May 15, 2019. doi:<a href=\"https://doi.org/10.53731/r79sa71-97aq74v-ag4vc\">10.53731/r79sa71-97aq74v-ag4vc</a></p><p>Fenner
-        M, Aryani A. Introducing the PID Graph. Published online 2019. doi:<a href=\"https://doi.org/10.5438/JWVF-8A66\">10.5438/JWVF-8A66</a></p>",
-        "rs:image": "https://blog.front-matter.de/content/images/2022/08/download-19-.jpeg",
-        "rs:generator": "Ghost", "rs:stale": false}, "access": {"record": "public",
-        "files": "public", "embargo": {"active": false, "reason": null}, "status":
-        "metadata-only"}, "files": {"enabled": false, "order": [], "count": 0, "total_bytes":
-        0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
+        FDTPm62aV/n/nL1ub/9rAKACnQxaPQAA
     headers:
-      Content-Length:
-      - '15743'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
+        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
+        img-src *'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:03 GMT
+      - Wed, 18 Mar 2026 15:18:40 GMT
       Etag:
-      - '"77"'
+      - '"81"'
       Link:
       - <https://rogue-scholar.org/api/records/ddhjk-a8f36> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -216,11 +124,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '59'
+      - '60'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -230,7 +142,7 @@ interactions:
       X-Ratelimit-Remaining:
       - '499'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1773847181'
       X-Xss-Protection:
       - 1; mode=block
     status:

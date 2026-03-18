@@ -14,111 +14,82 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
   response:
     body:
-      string: '{"abstract":null,"archive_url":"https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea","authors":[{"affiliation":[{"id":"https://ror.org/04ers2y35","name":"University
-        of Bremen"}],"name":"Markus Stocker","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"archive_collection":22143,"archive_host":"project-thor.eu","archive_prefix":"https://wayback.archive-it.org/22143/20231103191454/","archive_timestamps":[20231103192418],"authors":null,"canonical_url":null,"category":"computerAndInformationSciences","community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created_at":1695254400,"current_feed_url":null,"description":"Technical
-        and Human infrastructure for Open Research.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"funding":{"awardNumber":"654039","awardTitle":"THOR
-        \u2013 Technical and Human Infrastructure for Open Research","awardUri":"https://doi.org/10.3030/654039","funderIdentifier":"https://ror.org/019w4f821","funderName":"European
-        Union"},"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","id":"2a309edc-7a90-4735-807c-a81a7e5eb890","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1511522178,"relative_url":null,"ror":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
-        THOR","updated_at":1511522178,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Project
-        THOR","blog_slug":"thor","content_html":"<p><span style=\"font-weight:400;\">This
-        is the first in a <a\nhref=\"http://wp.me/p5O69U-aF\">series of posts</a></span><span\nstyle=\"font-weight:400;\">\u00a0describing
-        how THOR partners have recently\nintegrated <a href=\"http://orcid.org/\">ORCID</a>
-        in their disciplinary\ndata repositories. This post describes ORCID integration
-        in <a\nhref=\"https://www.pangaea.de/\">PANGAEA</a>, the Data Publisher for
-        Earth\n&amp; Environmental Science.</span></p>\n<p><span style=\"font-weight:400;\">PANGAEA
-        is rolling out a new version\nof its website. Developers and designers are
-        currently ironing out a few\nremaining open issues. The release is expected
-        for autumn 2016. Among\nmajor improvements in search, design, and usability,
-        a key new feature\nis the integration of ORCID.</span></p>\n<p><span style=\"font-weight:400;\">The
-        new feature enables existing\nPANGAEA users to connect their PANGAEA profile
-        with their ORCID iD, as\ndemonstrated in the video below.\u00a0</span></p>\n<p><span
-        class=\"embed-youtube\"\nstyle=\"text-align:center; display: block;\"></span></p>\n<p><span
-        style=\"font-weight:400;\">With this connection, PANGAEA obtains\nthe </span><em><span
-        style=\"font-weight:400;\">validated</span></em><span\nstyle=\"font-weight:400;\">
-        ORCID iD of its users from ORCID. By\nconnecting their ORCID iD, users can
-        also choose to sign in to PANGAEA\nusing ORCID, as an alternative to signing
-        in using PANGAEA user\ncredentials. This can be handy when a user is already
-        signed in to\nORCID, or it is quicker to recall ORCID credentials.</span></p>\n<p><span
-        style=\"font-weight:400;\">Obtaining the validated ORCID iDs of\nits users
-        is significant for PANGAEA as, contrary to a researcher\u2019s\nname, the
-        iD is unambiguous: two researchers with the same name can be\ndistinguished
-        by their respective iDs. The iD is also persistent through\npossible changes
-        in a person\u2019s name: the same researcher may change\nmarital status, or
-        their name may appear in different permutations, at\ntimes appear with full
-        name, initials for first name, and with or\nwithout middle name (initial).
-        Furthermore, the iD is actionable and can\nbe used to discover information
-        about the researcher.</span></p>\n<p><span style=\"font-weight:400;\">For
-        researchers, the greatest\nadvantage of connecting their ORCID iD to their
-        PANGAEA profile is that\nPANGAEA can then record the relationships between
-        dataset publication\nDOIs and contributor ORCID iDs. This information is then
-        shared with the\nglobal network of PID infrastructures, and researchers benefit
-        from\nautomated updates to their ORCID Record for data published at PANGAEA,\ngaining
-        unambiguous attribution for published datasets and benefiting\nfrom greater
-        credit for sharing data early.</span></p>\n<p><span style=\"font-weight:400;\">Let\u2019s
-        take a look at how the ORCID\nintegration in PANGAEA is making a difference
-        to <a\nhref=\"https://www.marum.de/en/Alice_Lefebvre.html\">Dr Alice\nLefebvre</a>,
-        <a href=\"https://www.marum.de/en/GLOMAR.html\">GLOMAR</a>\nAssociate Scientist
-        at the <a\nhref=\"https://www.marum.de/en/index.html\">MARUM</a> Center for
-        Marine\nEnvironmental Sciences of the <a\nhref=\"http://www.uni-bremen.de/en.html\">University
-        of Bremen</a>.\n</span></p>\n<p><span style=\"font-weight:400;\">Alice has
-        recently joined ORCID and\ndecided to claim the 14 data publications deposited
-        at PANGAEA that she\nhas authored. As a consequence, Alice gains a more complete
-        <a\nhref=\"http://orcid.org/0000-0002-9234-8279\">ORCID Record</a>, one that\ndoes
-        not just include her journal article publications but also her\nauthorship
-        in data publications </span><span\nstyle=\"font-weight:400;\">\u2212</span><span
-        style=\"font-weight:400;\"> a\nrecord that better reflects her true contribution
-        to the scientific\nrecord. Alice was also surprised to learn about <a\nhref=\"http://datacite.org\">DataCite</a>
-        and the <a\nhref=\"http://search.datacite.org/contributors/0000-0002-9234-8279\">overview</a>\nDataCite
-        provides about her contributions. </span></p>\n<p><span style=\"font-weight:400;\">The
-        upcoming release of the PANGAEA\nwebsite automates the sharing of information
-        with the global network of\nPID infrastructures. Authors of datasets published
-        at PANGAEA who have\nconnected their ORCID iD, like Alice, will benefit from
-        a workflow that\nensures information appears automatically and accurately
-        on their ORCID\nRecord.</span></p>\n<p><span style=\"font-weight:400;\">This
-        shows how far the integration\nbetween disciplinary repositories and the global
-        network of PID\ninfrastructures has come over the past years, and how the
-        persistent\nidentification of contributors and research artefacts together
-        with\ninfrastructures that aggregate, process, and share information about\npersistently
-        identified resources are driving and shaping 21st-century\nattribution, credit,
-        communication, and measurement of scholarly\nactivity.</span></p>\n<p>**Want
-        to Know More?<br />\n**<span style=\"font-weight:400;\">Readers interested
-        in performing an\nORCID integration in their own disciplinary repository can
-        find more\ninformation in our recent report, \u2018<a\nhref=\"http://doi.org/10.5281/zenodo.58971\">Demonstration
-        of Services to\nIntegrate ORCIDs into Data Records and Database Systems</a>\u2019</span><span\nstyle=\"font-weight:400;\">.
-        </span></p>\n","doi":"https://doi.org/10.59350/faeph-x4x84","funding_references":null,"guid":"http://project-thor.eu/?p=664","id":"570c8129-e867-49e6-8517-bd783627e76e","image":null,"indexed_at":1741474769,"language":"en","parent_doi":null,"published_at":1470819639,"reference":[],"registered_at":0,"relationships":[],"rid":"ewn0f-f5a52","subfield":null,"summary":"This
-        is the first in a series of posts\u00a0describing how THOR partners have recently
-        integrated ORCID in their disciplinary data repositories. This post describes
-        ORCID integration in PANGAEA, the Data Publisher for Earth &amp; Environmental
-        Science. PANGAEA is rolling out a new version of its website. Developers and
-        designers are currently ironing out a few remaining open issues. The release
-        is expected for autumn 2016.","tags":[],"title":"ORCID Integration Series:
-        PANGAEA","topic":null,"topic_score":0,"updated_at":1470819639,"url":"https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:18:00 GMT
-      fly-request-id:
-      - 01KBDEQNSH4N97WBF5D0ZGVFHT-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '11'
-      ratelimit-reset:
-      - '15'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:18:38 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

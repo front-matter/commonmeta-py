@@ -14,143 +14,99 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/a080e9d7-20a1-4a0c-b550-0c39d4423868
   response:
     body:
-      string: '{"abstract":null,"archive_url":null,"authors":[{"family":"Herb","given":"Ulrich"}],"blog":{"archive_collection":null,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Ulrich
-        Herb","url":"https://orcid.org/0000-0002-3500-3119"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"3a801730-cdab-4800-9441-715e83183144","created_at":1702027153,"current_feed_url":null,"description":"Scholcomm
-        & More by Ulrich Herb","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/3a801730-cdab-4800-9441-715e83183144/logo","feed_format":"application/atom+xml","feed_url":"https://pulse49.com/feed/atom/","filter":"tag:-261","funding":null,"generator":"WordPress","generator_raw":"WordPress
-        6.7.2","home_page_url":"https://pulse49.com","id":"ccddd342-bfbe-44d3-913b-5e1754956bbb","indexed":true,"issn":null,"language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"pulse49","status":"active","subfield":"1802","title":"pulse49.com","updated_at":1763547032,"use_api":true,"use_mastodon":false,"user_id":null},"blog_name":"pulse49.com","blog_slug":"pulse49","content_html":"<div
-        class=\"wp-block-image\">\n<figure class=\"alignleft size-full\"><img loading=\"lazy\"
-        decoding=\"async\" width=\"300\" height=\"200\" src=\"https://pulse49.com/wp-content/uploads/2025/05/Library-Spending-in-Transition-Open-Access-Surges-Closed-Access-Remains-Steady.png\"
-        alt=\"Library Spending in Transition: Open Access Surges, Closed Access Remains
-        Steady\" class=\"wp-image-8307\"/></figure></div>\n\n\n<p>The data from the
-        <a href=\"https://www.bibliotheksstatistik.de/\" target=\"_blank\" rel=\"noreferrer
-        noopener\">German Library Statistics (DBS)</a> reveals a clear trend: while
-        spending on Closed Access content in university libraries in Germany has remained
-        relatively stable, investments in Open Access have surged dramatically. Please
-        note that not all universities reported all values consistently, making it
-        impossible to quantify the trends with complete precision. However, clear
-        trends can still be identified.<br>At the end of the post, you will also find
-        a link to the Excel file I used for the analysis.</p>\n\n\n\n<p>Let\u2019s
-        look at the numbers:</p>\n\n\n\n<p><strong>Spending on digital Closed Access
-        content</strong></p>\n\n\n\n<ul class=\"wp-block-list\">\n<li>2018: \u20ac153,818,679</li>\n\n\n\n<li>2024:
-        \u20ac157,462,777<br><strong>= an increase of 2.37%</strong></li>\n</ul>\n\n\n\n<p>The
-        data on subscription licenses are recorded in field 151, where, <a href=\"https://service-wiki.hbz-nrw.de/spaces/DBS/pages/84541474/Frageb%C3%B6gen+f%C3%BCr+die+DBS+und+%C3%96BS?preview=/84541474/1089536355/WB_vorab_Stand-Dezember-2024_final.pdf\"
-        data-type=\"link\" data-id=\"https://service-wiki.hbz-nrw.de/spaces/DBS/pages/84541474/Frageb%C3%B6gen+f%C3%BCr+die+DBS+und+%C3%96BS?preview=/84541474/1089536355/WB_vorab_Stand-Dezember-2024_final.pdf\"
-        target=\"_blank\" rel=\"noreferrer noopener\">according to the documentation</a>,
-        the following values are collected:<br>&#8222;Digital / electronic media include
-        the documents listed under (110) to (121) and (131) to (138). The expenditures
-        for these media are to be reported here if they were incurred for the purchase
-        or licensing of content, or for institutional shares in consortial and/or
-        lump-sum agreements without an Open Access component. However, if the expenditures
-        were related to Open Access publications, they are to be reported under (151.1)
-        and (151.2). Fields (151.1) and (151.2) also include all expenditures arising
-        from<strong> </strong>transformative agreements.&#8220;</p>\n\n\n\n<p><strong>Spending
-        on Open Access (OA)</strong><br>This includes Gold OA, transformative Hybrid
-        OA, Diamond OA (consortially funded and outside the institution), and support
-        for Open Access infrastructures (such as the <a href=\"https://www.bibliotheksstatistik.de/\"
-        target=\"_blank\" rel=\"noopener\">Directory of Open Access Journals</a>):</p>\n\n\n\n<ul
-        class=\"wp-block-list\">\n<li>2018: \u20ac6,213,409</li>\n\n\n\n<li>2024:
-        \u20ac100,445,670<br><strong>= an increase of <strong>1,516.6</strong>%</strong></li>\n</ul>\n\n\n\n<p>These
-        data are recorded in field 151.1, which is defined in the documentation as
-        follows:<br>&#8222;This includes expenditures for Open Access publications
-        and transformation efforts not published at the institution itself<strong>
-        </strong>(e.g., via a repository or institutionally operated publishing platforms):
-        all expenditures for Gold or Hybrid APCs and BPCs (excluding printing, translation,
-        and incidental costs), crowdfunding for journal or book packages (e.g., pledging
-        via Knowledge Unlatched), Subscribe-to-Open models, Open Access consortia
-        (e.g., SCOAP3, KOALA, PLOS Community Action Publishing). Also to be reported
-        are expenditures for external Open Access / Open Science infrastructures (e.g.,
-        DOAJ, arXiv, SciPost, Open Library of Humanities) that are not necessarily
-        tied to specific publications, but excluding expenditures for Open Access
-        / Open Science infrastructures operated by the institution itself. This category
-        also includes all expenditures related to transformative agreements / publisher
-        contracts with both subscription and Open Access components / Publish &amp;
-        Read agreements (regardless of whether they involve hybrid or gold OA, and
-        regardless of whether they include reading or publishing fees). Transformative
-        agreements include all contracts listed in the<strong> </strong>ESAC Transformative
-        Agreement Registry<strong> </strong>(<a>https://esac-initiative.org/about/transformative-agreements/agreement-registry</a>)
-        under which expenditures were incurred in the reporting year, as well as other
-        comparable agreements with an OA component.&#8220;</p>\n\n\n\n<p>Since 2024,
-        a new field 151.2 has also included the following expenditures, which I am
-        not analyzing here in order to maintain comparability across the time series:
-        &#8222;This question is a subset of question 151.1. It does NOT refer to question
-        151. This includes all expenditures related to DEAL agreements that are invoiced
-        by the DEAL consortium office (MPDL Services), including costs for Gold Open
-        Access, service fees, and VAT. Expenditures from all other transformative
-        agreements are recorded under field (151.1).&#8220;</p>\n\n\n\n<p>However,
-        this sharp rise in Open Access spending must be interpreted in context. While
-        the increase in subscription (Closed Access) costs has been moderate, the
-        explosion in OA-related expenditures is closely tied to transformative agreements,
-        fueled by the first DEAL agreements (the first one with Wiley started in 2019),
-        followed by others with the same and other publishers. These high-volume contracts
-        shifted large parts of the cost from the Closed Access side to the Open Access
-        side of the accounting. </p>\n\n\n\n<p>As the graph below shows, Open Access
-        expenditures rose sharply in 2024,<a href=\"https://pulse49.com/2023/12/28/the-german-deal-contracts/\"
-        data-type=\"post\" data-id=\"7136\"> most likely due to the renewal of the
-        DEAL agreements with Springer Nature and Wiley, and especially the conclusion
-        of the contract with Elsevier</a>, which marked the end of the boycott by
-        German universities.</p>\n\n\n\n<figure class=\"wp-block-image size-full\"><img
-        loading=\"lazy\" decoding=\"async\" width=\"661\" height=\"397\" src=\"https://pulse49.com/wp-content/uploads/2025/05/Expenditures-of-German-University-Libraries-for-Closed-Access-digital-content-and-Open-Access-1.png\"
-        alt=\"\" class=\"wp-image-8301\" srcset=\"https://pulse49.com/wp-content/uploads/2025/05/Expenditures-of-German-University-Libraries-for-Closed-Access-digital-content-and-Open-Access-1.png
-        661w, https://pulse49.com/wp-content/uploads/2025/05/Expenditures-of-German-University-Libraries-for-Closed-Access-digital-content-and-Open-Access-1-300x180.png
-        300w\" sizes=\"auto, (max-width: 661px) 100vw, 661px\" /></figure>\n\n\n\n<p>This
-        development illustrates a major transformation in scholarly publishing: Open
-        Access is no longer a peripheral issue. It has become a central, structured
-        element in the financial and strategic planning of academic libraries in Germany.
-        Nevertheless, Closed Access expenditures still significantly outweigh Open
-        Access expenditures in 2024.</p>\n\n\n\n<p>It would have been interesting
-        to analyze the full-time series starting in 2016 to explore the extent to
-        which the Elsevier boycott, initiated in 2016 with the first contract cancellations
-        and by 2018 embraced by nearly all universities, affected Closed Access expenditures.
-        However, querying the database for this period was not straightforward, so
-        I am now providing the figures for Closed Access subscriptions for the years
-        2015\u20132017.</p>\n\n\n\n<p>According to the DBS data, the expenditures
-        reported in this field changed little between 2015 and 2017.</p>\n\n\n\n<ul
-        class=\"wp-block-list\">\n<li>2015: \u20ac144,764,563.00 </li>\n\n\n\n<li>2016:
-        \u20ac159,736,477.00</li>\n\n\n\n<li>2017: \u20ac149,876,569.00</li>\n</ul>\n\n\n\n<p>As
-        mentioned above, the value in 2018 was \u20ac153,818,679, indicating that
-        the Elsevier boycott had no significant impact on subscription expenditures.</p>\n\n\n\n<p>Data:</p>\n\n\n\n<p>Original
-        data from the DBS (including missing values):<br><a href=\"https://pulse49.com/wp-content/uploads/2025/05/Open-Access-Closed-Access-2018-2025-Deutsche-Bibliotheksstatistik-original-data-DBS.xlsx\"
-        target=\"_blank\" data-type=\"attachment\" data-id=\"8304\" rel=\"noreferrer
-        noopener\">Open Access and Closed Access 2018-2025</a><br><a href=\"https://pulse49.com/wp-content/uploads/2025/05/Closed-Access-2015-2017-original-data-DBS.xlsx\"
-        target=\"_blank\" data-type=\"attachment\" data-id=\"8303\" rel=\"noreferrer
-        noopener\">Closed Access 2015-2017</a></p>\n\n\n\n<p>DBS data used for the
-        analysis:<br><a href=\"https://pulse49.com/wp-content/uploads/2025/05/Open-Access-Closed-Access-2018-2025-Deutsche-Bibliotheksstatistik.xlsx\"
-        target=\"_blank\" rel=\"noreferrer noopener\">Open Access and Closed Access
-        2018-2025</a><br><a href=\"https://pulse49.com/wp-content/uploads/2025/05/Closed-Access-2015-2017.xlsx\"
-        target=\"_blank\" rel=\"noreferrer noopener\">Closed Access 2015-2017</a></p>\n\n\n\n<p></p>\n\n\n\n<p></p>\n","doi":"https://doi.org/10.59350/pulse49.8297","funding_references":null,"guid":"https://pulse49.com/?p=8297","id":"a080e9d7-20a1-4a0c-b550-0c39d4423868","image":"https://pulse49.com/wp-content/uploads/2025/05/Library-Spending-in-Transition-Open-Access-Surges-Closed-Access-Remains-Steady.png","indexed_at":1748014190,"language":"en","parent_doi":null,"published_at":1748013280,"reference":[],"registered_at":0,"relationships":[],"rid":"bst4k-keq37","subfield":null,"summary":"The
-        data from the German Library Statistics (DBS) reveals a clear trend: while
-        spending on Closed Access content in university libraries in Germany has remained
-        relatively stable, investments in Open Access have surged dramatically. Please
-        note that not all universities reported all values consistently, making it
-        impossible to quantify the trends with complete precision. However, clear
-        trends can still be identified.","tags":["Libraries","Open Access","ScholComm"],"title":"Library
-        Spending in Transition: Open Access Surges, Closed Access Remains Steady","topic":null,"topic_score":0,"updated_at":1748013316,"url":"https://pulse49.com/2025/05/23/library-spending-in-transition-open-access-surges-closed-access-remains-steady/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
+        PagHiHstAAA=
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:17:04 GMT
-      fly-request-id:
-      - 01KBDENZ5ZH80M7QYCEQBE13G8-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '12'
-      ratelimit-reset:
-      - '10'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
+      Date:
+      - Wed, 18 Mar 2026 15:17:45 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

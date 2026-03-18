@@ -14,54 +14,112 @@ interactions:
     uri: https://api.datacite.org/dois/10.5063/f1m61h5x?include=media,client
   response:
     body:
-      string: '{"data":{"id":"10.5063/f1m61h5x","type":"dois","attributes":{"doi":"10.5063/f1m61h5x","prefix":"10.5063","suffix":"f1m61h5x","identifiers":[{"identifier":"swh:1:dir:247168dd727c19cef2ce885476d3e4102d2ca7de","identifierType":"https://registry.identifiers.org/registry/swh"}],"alternateIdentifiers":[{"alternateIdentifierType":"https://registry.identifiers.org/registry/swh","alternateIdentifier":"swh:1:dir:247168dd727c19cef2ce885476d3e4102d2ca7de"}],"creators":[{"name":"Jones,
-        Matthew","nameType":"Personal","givenName":"Matthew","familyName":"Jones","affiliation":["National
-        Center for Ecological Analysis and Synthesis"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0003-0077-4738","nameIdentifierScheme":"ORCID"}]},{"name":"Slaughter,
-        Peter","nameType":"Personal","givenName":"Peter","familyName":"Slaughter","affiliation":["Arctic
-        Data Center"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0002-2192-403X","nameIdentifierScheme":"ORCID"}]},{"name":"Boettiger,
-        Carl","nameType":"Personal","givenName":"Carl","familyName":"Boettiger","affiliation":["rOpenSci"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0002-1642-628X","nameIdentifierScheme":"ORCID"}]},{"name":"Jones,
-        Chris","nameType":"Personal","givenName":"Chris","familyName":"Jones","affiliation":["Arctic
-        Data Center"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0002-8121-2341","nameIdentifierScheme":"ORCID"}]},{"name":"Mecum,
-        Bryce","nameType":"Personal","givenName":"Bryce","familyName":"Mecum","affiliation":["Arctic
-        Data Center"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0002-0381-3766","nameIdentifierScheme":"ORCID"}]},{"name":"Clark,
-        Jeanette","nameType":"Personal","givenName":"Jeanette","familyName":"Clark","affiliation":["National
-        Center for Ecological Analysis and Synthesis"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0003-4703-1974","nameIdentifierScheme":"ORCID"}]},{"name":"Read,
-        Jordan","nameType":"Personal","givenName":"Jordan","familyName":"Read","affiliation":["Consortium
-        of Universities for the Advancement of Hydrologic Science"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0002-3888-6631","nameIdentifierScheme":"ORCID"}]},{"name":"Walker,
-        Lauren","nameType":"Personal","givenName":"Lauren","familyName":"Walker","affiliation":["Arctic
-        Data Center"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0003-2192-431X","nameIdentifierScheme":"ORCID"}]},{"name":"Hart,
-        Edmund","nameType":"Personal","givenName":"Edmund","familyName":"Hart","affiliation":["University
-        of Vermont"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0001-7367-7969","nameIdentifierScheme":"ORCID"}]},{"name":"Chamberlain,
-        Scott","nameType":"Personal","givenName":"Scott","familyName":"Chamberlain","affiliation":["rOpenSci"],"nameIdentifiers":[{"schemeUri":"https://orcid.org","nameIdentifier":"https://orcid.org/0000-0003-1444-9135","nameIdentifierScheme":"ORCID"}]}],"titles":[{"title":"dataone:
-        R interface to the DataONE network of data repositories (version 2.2.2)"}],"publisher":"KNB
-        Data Repository","container":{},"publicationYear":2022,"subjects":[{"subject":"data
-        management"}],"contributors":[],"dates":[{"date":"2022-06-10","dateType":"Created"},{"date":"2022","dateType":"Issued"}],"language":null,"types":{"ris":"COMP","bibtex":"misc","citeproc":"article","schemaOrg":"SoftwareSourceCode","resourceType":"Software","resourceTypeGeneral":"Software"},"relatedIdentifiers":[],"relatedItems":[],"sizes":[],"formats":[],"version":"2.2.2","rightsList":[{"rights":"Copyright
-        [2013] [Regents of the University of California]  Licensed under the Apache
-        License, Version 2.0 (the \"License\"); you may not use this file except in
-        compliance with the License.","rightsUri":"http://www.apache.org/licenses/LICENSE-2.0"}],"descriptions":[{"description":"dataone:
-        R interface to the DataONE network of data repositories; Provides read and
-        write access to data and metadata from the DataONE network of data repositories,
-        including the KNB Data Repository, Dryad, and the NSF Arctic Data Center.","descriptionType":"Abstract"}],"geoLocations":[{"geoLocationPlace":"Santa
-        Barbara, CA","geoLocationPoint":{"pointLatitude":"34.422972","pointLongitude":"-119.701927"}}],"fundingReferences":[{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=0830944","awardTitle":"DataNet
-        Full Proposal: DataNetONE (Observation Network for Earth)","funderName":"National
-        Science Foundation","awardNumber":"0830944","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"},{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=1262458","awardTitle":"Collaborative
-        Research: ABI Development: A toolbox for analysis of long-term ecological
-        dynamics using the Kepler Workflow System","funderName":"National Science
-        Foundation","awardNumber":"1262458","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"},{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=1430508","awardTitle":"DataONE
-        (Data Observation Network for Earth)","funderName":"National Science Foundation","awardNumber":"1430508","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"},{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=1443062","awardTitle":"Beyond
-        Data Discovery: Shared Services for Community Metadata Improvement","funderName":"National
-        Science Foundation","awardNumber":"1443062","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"},{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=1546024","awardTitle":"Scientia
-        Arctica: A Knowledge Archive for Discovery and Reproducible Science in the
-        Arctic","funderName":"National Science Foundation","awardNumber":"1546024","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"},{"awardUri":"https://www.nsf.gov/awardsearch/showAward?AWD_ID=2042102","awardTitle":"Advancing
-        Arctic research and education through data preservation and reuse at the Arctic
-        Data Center","funderName":"National Science Foundation","awardNumber":"2042102","funderIdentifier":"https://doi.org/10.13039/100000001","funderIdentifierType":"Crossref
-        Funder ID"}],"xml":"PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHJlc291cmNlIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCIgeHNpOnNjaGVtYUxvY2F0aW9uPSJodHRwOi8vZGF0YWNpdGUub3JnL3NjaGVtYS9rZXJuZWwtNCBodHRwOi8vc2NoZW1hLmRhdGFjaXRlLm9yZy9tZXRhL2tlcm5lbC00L21ldGFkYXRhLnhzZCI+CiAgPGlkZW50aWZpZXIgaWRlbnRpZmllclR5cGU9IkRPSSI+MTAuNTA2My9GMU02MUg1WDwvaWRlbnRpZmllcj4KICA8Y3JlYXRvcnM+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+TWF0dGhldyBCLiBKb25lczwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+TWF0dGhldzwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Kb25lczwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZy8iPjAwMDAtMDAwMy0wMDc3LTQ3Mzg8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDE0Nno0cjE5IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmcvIj5OYXRpb25hbCBDZW50ZXIgZm9yIEVjb2xvZ2ljYWwgQW5hbHlzaXMgYW5kIFN5bnRoZXNpczwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+UGV0ZXIgU2xhdWdodGVyPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5QZXRlcjwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5TbGF1Z2h0ZXI8L2ZhbWlseU5hbWU+CiAgICAgIDxuYW1lSWRlbnRpZmllciBuYW1lSWRlbnRpZmllclNjaGVtZT0iT1JDSUQiIHNjaGVtZVVSST0iaHR0cHM6Ly9vcmNpZC5vcmcvIj4wMDAwLTAwMDItMjE5Mi00MDNYPC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzA1NWhyaDI4NiIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnLyI+QXJjdGljIERhdGEgQ2VudGVyPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5DYXJsIEJvZXR0aWdlcjwvY3JlYXRvck5hbWU+CiAgICAgIDxnaXZlbk5hbWU+Q2FybDwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Cb2V0dGlnZXI8L2ZhbWlseU5hbWU+CiAgICAgIDxuYW1lSWRlbnRpZmllciBuYW1lSWRlbnRpZmllclNjaGVtZT0iT1JDSUQiIHNjaGVtZVVSST0iaHR0cHM6Ly9vcmNpZC5vcmcvIj4wMDAwLTAwMDItMTY0Mi02MjhYPC9uYW1lSWRlbnRpZmllcj4KICAgICAgPGFmZmlsaWF0aW9uIGFmZmlsaWF0aW9uSWRlbnRpZmllcj0iaHR0cHM6Ly9yb3Iub3JnLzAxOWp5d205NiIgYWZmaWxpYXRpb25JZGVudGlmaWVyU2NoZW1lPSJST1IiIHNjaGVtZVVSST0iaHR0cHM6Ly9yb3Iub3JnLyI+ck9wZW5TY2k8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkNocmlzIEpvbmVzPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5DaHJpczwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5Kb25lczwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZy8iPjAwMDAtMDAwMi04MTIxLTIzNDE8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDU1aHJoMjg2IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmcvIj5BcmN0aWMgRGF0YSBDZW50ZXI8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkJyeWNlIE1lY3VtPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5CcnljZTwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5NZWN1bTwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZy8iPjAwMDAtMDAwMi0wMzgxLTM3NjY8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDU1aHJoMjg2IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmcvIj5BcmN0aWMgRGF0YSBDZW50ZXI8L2FmZmlsaWF0aW9uPgogICAgPC9jcmVhdG9yPgogICAgPGNyZWF0b3I+CiAgICAgIDxjcmVhdG9yTmFtZSBuYW1lVHlwZT0iUGVyc29uYWwiPkplYW5ldHRlIENsYXJrPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5KZWFuZXR0ZTwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5DbGFyazwvZmFtaWx5TmFtZT4KICAgICAgPG5hbWVJZGVudGlmaWVyIG5hbWVJZGVudGlmaWVyU2NoZW1lPSJPUkNJRCIgc2NoZW1lVVJJPSJodHRwczovL29yY2lkLm9yZy8iPjAwMDAtMDAwMy00NzAzLTE5NzQ8L25hbWVJZGVudGlmaWVyPgogICAgICA8YWZmaWxpYXRpb24gYWZmaWxpYXRpb25JZGVudGlmaWVyPSJodHRwczovL3Jvci5vcmcvMDE0Nno0cjE5IiBhZmZpbGlhdGlvbklkZW50aWZpZXJTY2hlbWU9IlJPUiIgc2NoZW1lVVJJPSJodHRwczovL3Jvci5vcmcvIj5OYXRpb25hbCBDZW50ZXIgZm9yIEVjb2xvZ2ljYWwgQW5hbHlzaXMgYW5kIFN5bnRoZXNpczwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+Sm9yZGFuIFMuIFJlYWQ8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkpvcmRhbjwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5SZWFkPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnLyI+MDAwMC0wMDAyLTM4ODgtNjYzMTwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wNHMyYngzNTUiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZy8iPkNvbnNvcnRpdW0gb2YgVW5pdmVyc2l0aWVzIGZvciB0aGUgQWR2YW5jZW1lbnQgb2YgSHlkcm9sb2dpYyBTY2llbmNlPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICAgIDxjcmVhdG9yPgogICAgICA8Y3JlYXRvck5hbWUgbmFtZVR5cGU9IlBlcnNvbmFsIj5MYXVyZW4gV2Fsa2VyPC9jcmVhdG9yTmFtZT4KICAgICAgPGdpdmVuTmFtZT5MYXVyZW48L2dpdmVuTmFtZT4KICAgICAgPGZhbWlseU5hbWU+V2Fsa2VyPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnLyI+MDAwMC0wMDAzLTIxOTItNDMxWDwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wNTVocmgyODYiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZy8iPkFyY3RpYyBEYXRhIENlbnRlcjwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+RWRtdW5kIEhhcnQ8L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPkVkbXVuZDwvZ2l2ZW5OYW1lPgogICAgICA8ZmFtaWx5TmFtZT5IYXJ0PC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnLyI+MDAwMC0wMDAxLTczNjctNzk2OTwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMTU1enRhMTEiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZy8iPlVuaXZlcnNpdHkgb2YgVmVybW9udDwvYWZmaWxpYXRpb24+CiAgICA8L2NyZWF0b3I+CiAgICA8Y3JlYXRvcj4KICAgICAgPGNyZWF0b3JOYW1lIG5hbWVUeXBlPSJQZXJzb25hbCI+U2NvdHQgQ2hhbWJlcmxhaW48L2NyZWF0b3JOYW1lPgogICAgICA8Z2l2ZW5OYW1lPlNjb3R0PC9naXZlbk5hbWU+CiAgICAgIDxmYW1pbHlOYW1lPkNoYW1iZXJsYWluPC9mYW1pbHlOYW1lPgogICAgICA8bmFtZUlkZW50aWZpZXIgbmFtZUlkZW50aWZpZXJTY2hlbWU9Ik9SQ0lEIiBzY2hlbWVVUkk9Imh0dHBzOi8vb3JjaWQub3JnLyI+MDAwMC0wMDAzLTE0NDQtOTEzNTwvbmFtZUlkZW50aWZpZXI+CiAgICAgIDxhZmZpbGlhdGlvbiBhZmZpbGlhdGlvbklkZW50aWZpZXI9Imh0dHBzOi8vcm9yLm9yZy8wMTlqeXdtOTYiIGFmZmlsaWF0aW9uSWRlbnRpZmllclNjaGVtZT0iUk9SIiBzY2hlbWVVUkk9Imh0dHBzOi8vcm9yLm9yZy8iPnJPcGVuU2NpPC9hZmZpbGlhdGlvbj4KICAgIDwvY3JlYXRvcj4KICA8L2NyZWF0b3JzPgogIDx0aXRsZXM+CiAgICA8dGl0bGU+ZGF0YW9uZTogUiBpbnRlcmZhY2UgdG8gdGhlIERhdGFPTkUgbmV0d29yayBvZiBkYXRhIHJlcG9zaXRvcmllcyAodmVyc2lvbiAyLjIuMik8L3RpdGxlPgogIDwvdGl0bGVzPgogIDxwdWJsaXNoZXI+S05CIERhdGEgUmVwb3NpdG9yeTwvcHVibGlzaGVyPgogIDxwdWJsaWNhdGlvblllYXI+MjAyMjwvcHVibGljYXRpb25ZZWFyPgogIDxyZXNvdXJjZVR5cGUgcmVzb3VyY2VUeXBlR2VuZXJhbD0iU29mdHdhcmUiPlNvZnR3YXJlPC9yZXNvdXJjZVR5cGU+CiAgPHN1YmplY3RzPgogICAgPHN1YmplY3Q+ZGF0YSBtYW5hZ2VtZW50PC9zdWJqZWN0PgogIDwvc3ViamVjdHM+CiAgPGRhdGVzPgogICAgPGRhdGUgZGF0ZVR5cGU9IkNyZWF0ZWQiPjIwMjItMDYtMTA8L2RhdGU+CiAgPC9kYXRlcz4KICA8YWx0ZXJuYXRlSWRlbnRpZmllcnM+CiAgICA8YWx0ZXJuYXRlSWRlbnRpZmllciBhbHRlcm5hdGVJZGVudGlmaWVyVHlwZT0iaHR0cHM6Ly9yZWdpc3RyeS5pZGVudGlmaWVycy5vcmcvcmVnaXN0cnkvc3doIj5zd2g6MTpkaXI6MjQ3MTY4ZGQ3MjdjMTljZWYyY2U4ODU0NzZkM2U0MTAyZDJjYTdkZTwvYWx0ZXJuYXRlSWRlbnRpZmllcj4KICAgIDxhbHRlcm5hdGVJZGVudGlmaWVyIGFsdGVybmF0ZUlkZW50aWZpZXJUeXBlPSJET0kiPgkxMC4zMjYxNC9DUkFOLnBhY2thZ2UuZGF0YW9uZTwvYWx0ZXJuYXRlSWRlbnRpZmllcj4KICA8L2FsdGVybmF0ZUlkZW50aWZpZXJzPgogIDx2ZXJzaW9uPjIuMi4yPC92ZXJzaW9uPgogIDxyaWdodHNMaXN0PgogICAgPHJpZ2h0cyByaWdodHNVUkk9Imh0dHA6Ly93d3cuYXBhY2hlLm9yZy9saWNlbnNlcy9MSUNFTlNFLTIuMCI+Q29weXJpZ2h0IFsyMDEzXSBbUmVnZW50cyBvZiB0aGUgVW5pdmVyc2l0eSBvZiBDYWxpZm9ybmlhXSAgTGljZW5zZWQgdW5kZXIgdGhlIEFwYWNoZSBMaWNlbnNlLCBWZXJzaW9uIDIuMCAodGhlICJMaWNlbnNlIik7IHlvdSBtYXkgbm90IHVzZSB0aGlzIGZpbGUgZXhjZXB0IGluIGNvbXBsaWFuY2Ugd2l0aCB0aGUgTGljZW5zZS48L3JpZ2h0cz4KICA8L3JpZ2h0c0xpc3Q+CiAgPGRlc2NyaXB0aW9ucz4KICAgIDxkZXNjcmlwdGlvbiBkZXNjcmlwdGlvblR5cGU9IkFic3RyYWN0Ij5kYXRhb25lOiBSIGludGVyZmFjZSB0byB0aGUgRGF0YU9ORSBuZXR3b3JrIG9mIGRhdGEgcmVwb3NpdG9yaWVzOyBQcm92aWRlcyByZWFkIGFuZCB3cml0ZSBhY2Nlc3MgdG8gZGF0YSBhbmQgbWV0YWRhdGEgZnJvbSB0aGUgRGF0YU9ORSBuZXR3b3JrIG9mIGRhdGEgcmVwb3NpdG9yaWVzLCBpbmNsdWRpbmcgdGhlIEtOQiBEYXRhIFJlcG9zaXRvcnksIERyeWFkLCBhbmQgdGhlIE5TRiBBcmN0aWMgRGF0YSBDZW50ZXIuPC9kZXNjcmlwdGlvbj4KICA8L2Rlc2NyaXB0aW9ucz4KICA8Z2VvTG9jYXRpb25zPgogICAgPGdlb0xvY2F0aW9uPgogICAgICA8Z2VvTG9jYXRpb25QbGFjZT5TYW50YSBCYXJiYXJhLCBDQTwvZ2VvTG9jYXRpb25QbGFjZT4KICAgICAgPGdlb0xvY2F0aW9uUG9pbnQ+CiAgICAgICAgPHBvaW50TG9uZ2l0dWRlPi0xMTkuNzAxOTI3PC9wb2ludExvbmdpdHVkZT4KICAgICAgICA8cG9pbnRMYXRpdHVkZT4zNC40MjI5NzI8L3BvaW50TGF0aXR1ZGU+CiAgICAgIDwvZ2VvTG9jYXRpb25Qb2ludD4KICAgIDwvZ2VvTG9jYXRpb24+CiAgPC9nZW9Mb2NhdGlvbnM+CiAgPGZ1bmRpbmdSZWZlcmVuY2VzPgogICAgPGZ1bmRpbmdSZWZlcmVuY2U+CiAgICAgIDxmdW5kZXJOYW1lPk5hdGlvbmFsIFNjaWVuY2UgRm91bmRhdGlvbjwvZnVuZGVyTmFtZT4KICAgICAgPGZ1bmRlcklkZW50aWZpZXIgZnVuZGVySWRlbnRpZmllclR5cGU9IkNyb3NzcmVmIEZ1bmRlciBJRCI+aHR0cHM6Ly9kb2kub3JnLzEwLjEzMDM5LzEwMDAwMDAwMTwvZnVuZGVySWRlbnRpZmllcj4KICAgICAgPGF3YXJkTnVtYmVyIGF3YXJkVVJJPSJodHRwczovL3d3dy5uc2YuZ292L2F3YXJkc2VhcmNoL3Nob3dBd2FyZD9BV0RfSUQ9MDgzMDk0NCI+MDgzMDk0NDwvYXdhcmROdW1iZXI+CiAgICAgIDxhd2FyZFRpdGxlPkRhdGFOZXQgRnVsbCBQcm9wb3NhbDogRGF0YU5ldE9ORSAoT2JzZXJ2YXRpb24gTmV0d29yayBmb3IgRWFydGgpPC9hd2FyZFRpdGxlPgogICAgPC9mdW5kaW5nUmVmZXJlbmNlPgogICAgPGZ1bmRpbmdSZWZlcmVuY2U+CiAgICAgIDxmdW5kZXJOYW1lPk5hdGlvbmFsIFNjaWVuY2UgRm91bmRhdGlvbjwvZnVuZGVyTmFtZT4KICAgICAgPGZ1bmRlcklkZW50aWZpZXIgZnVuZGVySWRlbnRpZmllclR5cGU9IkNyb3NzcmVmIEZ1bmRlciBJRCI+aHR0cHM6Ly9kb2kub3JnLzEwLjEzMDM5LzEwMDAwMDAwMTwvZnVuZGVySWRlbnRpZmllcj4KICAgICAgPGF3YXJkTnVtYmVyIGF3YXJkVVJJPSJodHRwczovL3d3dy5uc2YuZ292L2F3YXJkc2VhcmNoL3Nob3dBd2FyZD9BV0RfSUQ9MTI2MjQ1OCI+MTI2MjQ1ODwvYXdhcmROdW1iZXI+CiAgICAgIDxhd2FyZFRpdGxlPkNvbGxhYm9yYXRpdmUgUmVzZWFyY2g6IEFCSSBEZXZlbG9wbWVudDogQSB0b29sYm94IGZvciBhbmFseXNpcyBvZiBsb25nLXRlcm0gZWNvbG9naWNhbCBkeW5hbWljcyB1c2luZyB0aGUgS2VwbGVyIFdvcmtmbG93IFN5c3RlbTwvYXdhcmRUaXRsZT4KICAgIDwvZnVuZGluZ1JlZmVyZW5jZT4KICAgIDxmdW5kaW5nUmVmZXJlbmNlPgogICAgICA8ZnVuZGVyTmFtZT5OYXRpb25hbCBTY2llbmNlIEZvdW5kYXRpb248L2Z1bmRlck5hbWU+CiAgICAgIDxmdW5kZXJJZGVudGlmaWVyIGZ1bmRlcklkZW50aWZpZXJUeXBlPSJDcm9zc3JlZiBGdW5kZXIgSUQiPmh0dHBzOi8vZG9pLm9yZy8xMC4xMzAzOS8xMDAwMDAwMDE8L2Z1bmRlcklkZW50aWZpZXI+CiAgICAgIDxhd2FyZE51bWJlciBhd2FyZFVSST0iaHR0cHM6Ly93d3cubnNmLmdvdi9hd2FyZHNlYXJjaC9zaG93QXdhcmQ/QVdEX0lEPTE0MzA1MDgiPjE0MzA1MDg8L2F3YXJkTnVtYmVyPgogICAgICA8YXdhcmRUaXRsZT5EYXRhT05FIChEYXRhIE9ic2VydmF0aW9uIE5ldHdvcmsgZm9yIEVhcnRoKTwvYXdhcmRUaXRsZT4KICAgIDwvZnVuZGluZ1JlZmVyZW5jZT4KICAgIDxmdW5kaW5nUmVmZXJlbmNlPgogICAgICA8ZnVuZGVyTmFtZT5OYXRpb25hbCBTY2llbmNlIEZvdW5kYXRpb248L2Z1bmRlck5hbWU+CiAgICAgIDxmdW5kZXJJZGVudGlmaWVyIGZ1bmRlcklkZW50aWZpZXJUeXBlPSJDcm9zc3JlZiBGdW5kZXIgSUQiPmh0dHBzOi8vZG9pLm9yZy8xMC4xMzAzOS8xMDAwMDAwMDE8L2Z1bmRlcklkZW50aWZpZXI+CiAgICAgIDxhd2FyZE51bWJlciBhd2FyZFVSST0iaHR0cHM6Ly93d3cubnNmLmdvdi9hd2FyZHNlYXJjaC9zaG93QXdhcmQ/QVdEX0lEPTE0NDMwNjIiPjE0NDMwNjI8L2F3YXJkTnVtYmVyPgogICAgICA8YXdhcmRUaXRsZT5CZXlvbmQgRGF0YSBEaXNjb3Zlcnk6IFNoYXJlZCBTZXJ2aWNlcyBmb3IgQ29tbXVuaXR5IE1ldGFkYXRhIEltcHJvdmVtZW50PC9hd2FyZFRpdGxlPgogICAgPC9mdW5kaW5nUmVmZXJlbmNlPgogICAgPGZ1bmRpbmdSZWZlcmVuY2U+CiAgICAgIDxmdW5kZXJOYW1lPk5hdGlvbmFsIFNjaWVuY2UgRm91bmRhdGlvbjwvZnVuZGVyTmFtZT4KICAgICAgPGZ1bmRlcklkZW50aWZpZXIgZnVuZGVySWRlbnRpZmllclR5cGU9IkNyb3NzcmVmIEZ1bmRlciBJRCI+aHR0cHM6Ly9kb2kub3JnLzEwLjEzMDM5LzEwMDAwMDAwMTwvZnVuZGVySWRlbnRpZmllcj4KICAgICAgPGF3YXJkTnVtYmVyIGF3YXJkVVJJPSJodHRwczovL3d3dy5uc2YuZ292L2F3YXJkc2VhcmNoL3Nob3dBd2FyZD9BV0RfSUQ9MTU0NjAyNCI+MTU0NjAyNDwvYXdhcmROdW1iZXI+CiAgICAgIDxhd2FyZFRpdGxlPlNjaWVudGlhIEFyY3RpY2E6IEEgS25vd2xlZGdlIEFyY2hpdmUgZm9yIERpc2NvdmVyeSBhbmQgUmVwcm9kdWNpYmxlIFNjaWVuY2UgaW4gdGhlIEFyY3RpYzwvYXdhcmRUaXRsZT4KICAgIDwvZnVuZGluZ1JlZmVyZW5jZT4KICAgIDxmdW5kaW5nUmVmZXJlbmNlPgogICAgICA8ZnVuZGVyTmFtZT5OYXRpb25hbCBTY2llbmNlIEZvdW5kYXRpb248L2Z1bmRlck5hbWU+CiAgICAgIDxmdW5kZXJJZGVudGlmaWVyIGZ1bmRlcklkZW50aWZpZXJUeXBlPSJDcm9zc3JlZiBGdW5kZXIgSUQiPmh0dHBzOi8vZG9pLm9yZy8xMC4xMzAzOS8xMDAwMDAwMDE8L2Z1bmRlcklkZW50aWZpZXI+CiAgICAgIDxhd2FyZE51bWJlciBhd2FyZFVSST0iaHR0cHM6Ly93d3cubnNmLmdvdi9hd2FyZHNlYXJjaC9zaG93QXdhcmQ/QVdEX0lEPTIwNDIxMDIiPjIwNDIxMDI8L2F3YXJkTnVtYmVyPgogICAgICA8YXdhcmRUaXRsZT5BZHZhbmNpbmcgQXJjdGljIHJlc2VhcmNoIGFuZCBlZHVjYXRpb24gdGhyb3VnaCBkYXRhIHByZXNlcnZhdGlvbiBhbmQgcmV1c2UgYXQgdGhlIEFyY3RpYyBEYXRhIENlbnRlcjwvYXdhcmRUaXRsZT4KICAgIDwvZnVuZGluZ1JlZmVyZW5jZT4KICA8L2Z1bmRpbmdSZWZlcmVuY2VzPgo8L3Jlc291cmNlPg==","url":"https://archive.softwareheritage.org/swh:1:dir:247168dd727c19cef2ce885476d3e4102d2ca7de","contentUrl":null,"metadataVersion":2,"schemaVersion":"http://datacite.org/schema/kernel-4","source":"mds","isActive":true,"state":"findable","reason":null,"viewCount":0,"viewsOverTime":[],"downloadCount":0,"downloadsOverTime":[],"referenceCount":0,"citationCount":0,"citationsOverTime":[],"partCount":0,"partOfCount":0,"versionCount":0,"versionOfCount":0,"created":"2016-03-12T03:15:03.000Z","registered":"2016-03-12T03:15:04.000Z","published":"2022","updated":"2024-11-26T19:27:10.000Z"},"relationships":{"client":{"data":{"id":"cdl.ucsb","type":"clients"}},"provider":{"data":{"id":"njqd","type":"providers"}},"media":{"data":{"id":"10.5063/f1m61h5x","type":"media"}},"references":{"data":[]},"citations":{"data":[]},"parts":{"data":[]},"partOf":{"data":[]},"versions":{"data":[]},"versionOf":{"data":[]}}},"included":[{"id":"cdl.ucsb","type":"clients","attributes":{"name":"UC
-        Santa Barbara","symbol":"CDL.UCSB","year":2011,"alternateName":null,"description":null,"language":null,"clientType":"repository","domains":"*","re3data":null,"opendoar":null,"issn":null,"url":null,"created":"2011-12-13T04:30:53.000Z","updated":"2025-08-08T22:09:10.000Z","isActive":true},"relationships":{"provider":{"data":{"id":"njqd","type":"providers"}},"consortium":{"data":{"id":"CDLCO","type":"providers"}},"prefixes":{"data":[{"id":"10.5062","type":"prefixes"},{"id":"10.5063","type":"prefixes"},{"id":"10.6085","type":"prefixes"},{"id":"10.7919","type":"prefixes"},{"id":"10.7940","type":"prefixes"},{"id":"10.15780","type":"prefixes"},{"id":"10.17915","type":"prefixes"},{"id":"10.18739","type":"prefixes"},{"id":"10.21229","type":"prefixes"},{"id":"10.21431","type":"prefixes"},{"id":"10.21424","type":"prefixes"},{"id":"10.21972","type":"prefixes"},{"id":"10.21983","type":"prefixes"},{"id":"10.25436","type":"prefixes"},{"id":"10.25349","type":"prefixes"},{"id":"10.25496","type":"prefixes"},{"id":"10.25494","type":"prefixes"},{"id":"10.25497","type":"prefixes"},{"id":"10.26081","type":"prefixes"},{"id":"10.34796","type":"prefixes"},{"id":"10.34958","type":"prefixes"},{"id":"10.48522","type":"prefixes"},{"id":"10.57902","type":"prefixes"},{"id":"10.60635","type":"prefixes"},{"id":"10.71485","type":"prefixes"},{"id":"10.71489","type":"prefixes"},{"id":"10.82105","type":"prefixes"},{"id":"10.82104","type":"prefixes"}]}}}]}'
+      string: !!binary |
+        H4sIAGDCumkAA+xc+XPbRrL+V1j6Kfti2ThISdTW1ivxBk2CIgleyKZe4RIIEgcXAA8w5f/9fY2D
+        BCTZkpKNYlclKdvAoGemp/vra8DBbxe6EioXt79dWPrF7QXLfKwwV/ynB9a5YpeVw8WHizDaGHii
+        e1aAOyUMfUvdhkZAfdD4fKeNbzxYh/MzNAXbh6QpR2bphhtaD5bhY7hffsvdgy7YL2/ZW93yb7ny
+        NXt1o+vX3LXGVjXjgdOMm5tK+fpK540yy3A6pynXulEYUUr4XobhJrj99Mk3TCsI/ehjbs6Pnm+e
+        HnzCfBdffsUS7dDwXSU0hEfcPfPgd03y7BS/b8HEr+YbSuilPLqKQwx1PdcIPpT6UNfS2GNGak+Z
+        vQdTnqvYaDWtneGKSZcz7YPiWHYk5kYilqE921JCy3Mx0YUYXyl2qY4FGH7pwfNLTc2zPdPS0HqH
+        R1FgBSXF1UvjyMXIuLv4NWHksWADbWk4xsS3cqL0fM3SSXYXj/s8R/SJwX+X+MPjr+vry/I1f/Ok
+        4zieBt0Ho7rQgOy+fDgJbGwrW3OJlXwo3Rv451UiyygLAjuN9FRod74WWlqpAYtL5fYOEuEuObbK
+        XZYZfv4midQ8IwwtkyRSV3z7VQJJCQvyOI3zVB7+YGO4Y816FymwV2Xu8oq7eZsUUkOqL/3Y/b1C
+        BCnla4zoL8LDDcuxlxxfZt8kib6hbZ0PpZofacarJJFRFiQRj/LdSILhb9hL/vrq6k2SqNuKv/5Q
+        6hqKC2i/Thg54oI84rF+JPdavsZfbPW6/CaRjQxFh8Q8X1fc18krIy1Ii4Z5Kqy65waeH1pbp+Q9
+        lCYuhvEDK7SMIJYbhFO603eKq4E9NySaTqT7iTBLcD8GnrwL3Pibm5vLqyv+bYY3U+w1eeGesvWN
+        10nvRFqQXjLQd2J8fBqWePZtDrmj+OGHUlN3tq7+KlmcSAuyoGGeSuKEnYhQMjV8x3PDdxAGe3nN
+        X11fXlevqm/zREvFUQ3fViz3A5DsheGrRJJRFj3Reay/NFLDu5TL5csqy1deIQvwE1qhbSRsxJdU
+        rADKCLm3pVHJIjw/KJpRCr3YFRDMB2KzBHe89/w1KZrIS76x8aB5zye/8VMMA88tcR/x/z/iPHuz
+        VW0rWMbsfxZrib2Msl4RmNWAFoiPKH77knbQYhkuDAWNHMNxVAipK0MLU8ElNynPJUdxFTN2U0lq
+        jwHjcitJ79ECqnStdIVuNOYlc3XJMhfJ01T1daoKDP2C0JIjLRIJQbAlGgxsK665xdwXt+7WtpOy
+        L67xKJ3BcIP+PfqqlhoaVMQ5VqDRiq3Q2PiehhYYlKXZFOBiMCgDKB5Q8x7CveIbY2/ra0bdi4s0
+        3wji25SLjObRk7YBSQK7OYIvRGHTuooA/PXcHhpO2hJYRyO9RBhwlDC9SVVLAiHl0qwWEvaghwot
+        lmxyS4v2NlF8U/qFY1j+19IvI8PEvAGBhrBU9Bd1xbYwk2spv5ZKPUsz3MDQS3A+RhqENgokkz35
+        QP4lxRhT+okI/n2RPvv3xT/+WYq8LfAQlVwvLG0D4HeJgA+rNErGQTM2IaBd0jxnAzNFACvtrXAZ
+        T5OO8fG0sLNZwuD2+/1HJWYktjo7IQ4+9YR6Uxw3L8FMjAfdCDTf2hB4U7ydG/4LFvbP0r3v7VAm
+        B2hW9DiR2ftAU0nRNCMIaKy4Ez1wjFCJbx58z3n1FB/AmWZvdcs14z7P2OyHUsOPKDOhWYhGHLdK
+        T8MhiTK3/BS2dyoqekVLLNU0vJ6X2HoirlzDvQ3hEIwVuIdSTfFVxVdQU9xdFPrde5AkWdyGLnpo
+        C7c69ePLH8scV70mqCbPPNfMHl6ybPXjNYNYen3xhTh5AOCw5JHxYPiU2aR7F7AfveifCQlu8PDR
+        9Haf4scBnJS2/BQsvf0d3f/v3azxf0LjX8wNz1TLlPDFZFLqZElAohGWWvAXpE0IVbFvS2kzaeen
+        gRoY/i5eXUlMVRWnsnAWy39cJMwafhqBTklvmpOVWh4eJzEonVvcUowC7ZmnZIhng4vuWTHIWeYj
+        yzN8FRfJf+wz/U5+0wsC33jAsmLDpTDz4Y/Jj+WuuHLl5rH86p5tK6rnY4E7A6BMut+W7mpCqWHs
+        DNvbUCBAA4zBs1XvEMtOyXJ/YN4GEC4BUKdknIsDPULQtLQATuMEfWNjYy0zyP/B9vYoGQL4yT8i
+        //OafgD5l3mmwjyRf+ZDfoot/c+D6nn6H0FUYPaKeyyqmhF58JCxoBqI/B6iXnRbGi8RlFGAQnAI
+        I0m1Vfcc5NsUEfuZ1xYcpAi7JKv5Q3LMePsB5FgpXzHcE5cZrzK0lDTGKGTbn11vbxu6aVDjklwB
+        ifEk5Tg0jSjJ0reapSL6Z6JC+I+zinioPyTYE7Pfv2A5psyxzBOAJvU9ubs0evupO43FZ0B0iWWH
+        S9/bmsskWdgQUWbzROcblGcpYU6uhar4D8j4zPc7yBhZwMGhxPm+US2rs72pO9NI4+ydumKs/ri8
+        F6yarTriTm7bW/nIWNPpqN2TTOv+WP583+naGldlNUe0hc4yVNuV48BdHhWJsZTOiNEa3q7H67we
+        Vfh+VNlpjrbrr+72/XF1IU0O0oJb2uqsGSqzylFvt7YLbmJl49yPu57eGe0H1g3mbjGLmbjR25Ot
+        ynfdHi+ulPY0XIyrvjzvbuXZPhTrgml0xM3ATZ9NDrsF12KUWXX79rFqJ3qNEz15xi57zmgJHlfK
+        fGT3nGokR9VQno+WPS60Nadiq3WG6XGsDZr1gtohB7ku/Fy37sz7tr2WZxXwIm/kuWAqs5GtuqON
+        7Ni2Zo8qWntSFdaj+/FY+Lkv3W1F6Y7rR9V2f8Jw/YnJzhr7XaHPqvxZqN/dLPiujbl2mtuP5ym0
+        JTTUhvnFSJ61GKx3sJixttCuLNXZdGLMazZkM8S6jyqHNvArgU5vL209qtV7Vu0z2m3tuN+dxl1T
+        30k2nyk0Dq4yl201bT/1Rx+ZszmsO57z3vTMlJ8b2WlB54eKhH9lqXKao9ie5z/mtyu3p1u9bTvK
+        bBoJz7RNEl3Rmu4na7GLyt9M9WdPp91uhgPtCFxy1WjB2etElzfWPeGycRfiz74fMbjW+J405PtH
+        86bHPZ0rv57FTEbbYQP5bFSubBbvK8V+eR747k6zUrtoNBnR9Rht1azA5payI2/Utg3MwRbXefx0
+        U7sBZmys0/rGGnPjCyvoIeEHeq41aDzCooz1C83pSuUOpK/VAj5gOANNxz4q8z7WUlkLLbEC7Hny
+        XNzEWCiu94S9HpfhTPiv4XHSnsZ8TrjDUp/pnt6GDOvVleZMIZtq9BQr+gY+bJtiC2ONYC+vxqKk
+        tluszC1pTqxHBl92YEyeYH5L44zzNmnVnrbZiW+R4Q8lttsYT4bwb2nbdDoeZ36y07/qRVXoSdzI
+        9UxfZcLjvicRLoWwD1z0LYbpN8QF1v90roJ8Ww7aAmWW+D/h0X2xX4GHCLpL/OLxjhVny0hpCGUR
+        GPsWpnN2N5ZY4VtrPI8fCT8P590VxlgJTfKtTXPI0Zixfov4z9bWyPmhU9vhhIWCTRb9lamSfqep
+        r7VrtuaKO7QFsIvGYt4NhGZ3B6xAPnqMl9f6uyHXitTGq/FVV7kp/KPtfnf4khYM8MX1V8v3wtdh
+        MNtUdI6p/Fn40tbVPXQCf7mGrIs8ZjrK+5JTW/uJHyvgLNblONHHtGPvSf7wU8ibSG57634teppj
+        H4XmBhibHt/grxpKpxv72B82dlpMuS8Jh54kHMVG851i54SF3Lz+yuT+pNhZg+1gjL45ovxxfIqf
+        74yrbmTMkGs3WXvBT8M34KquufZKll6NK1GeiawqfVe42iMXA676yNgXf+Pqv4qrjY08zwaPwJYY
+        IB76b8DWZ8y9pdj5Bnw1kGdFyvfktyKGEY93x57UrIjH4d85/1+Y849JP+3WVmj18QdjzYa5ebpP
+        sZXH3HqDtY+W6utz/jHGXQPvDug2kMET+jh3nBRr+KdtOR2tq+MhYzeh02PSNp1O1uuq4CwZvVM7
+        0r4C1rFSZsNTrhJjsE51510EH1ceNMwQfu7Yh009M3/ezou4+SaOhAIPGuSc2sJe7PSjhWseRQno
+        +lY+l8s5J1jnt9aYG59yop2KnFvDOPqMMVVuYU5nlU2634R5pkehLQO7NUZpT4DHEQccrgjjqjuM
+        6ccde40xA5XTN4uoBnnbtDdlv3O90F/Mp8Bi2ZxyrUDh3lSPZn2B53x7nr5YE+Tm+F7wCR8pHAaS
+        EIqN/oH2pt4Fn9IUObUZDRqLPwmfrWjBjwhXTdq/QxykMZNa8B1932g2CnXyv83lUnPf4vema3U+
+        3cqvr0UFxHnmO8IVcjvtKK60UDyuucE7+b2+NGENd7TsS80/B1f2dEv7BfAfG72zTvwefJ6K8fXG
+        O++lceJO7wzNIbcETdfWnMNSiX3RKzEGGaj8iDBT2APJ6aSIJdTB+NcCD8FiZm+/I6xRnseIjWE4
+        kJqIee+FNfs/xlzHnH+SD3O79xryTuh584aYmNf/MdZJ48Ao81Egz8/vFTAGo7YnPyfvT6pbWfLM
+        iVXbxD7SkZcLbmLq7RuT9v6T/bzWvbSmODpldOTdSlTbyVYtfjci0HujdhW5Jnig9UZ33um9k4X8
+        ZyVs+9b6pgd/rLcPCU7Ad8LDNONxr8+6gTJHHgxdjZlKPdtHnDjTvcrTO55qZEC3WmdqQQ5HpZ3m
+        8FnfmZjIxrYhD+BjdRf1Vyf6VZo7y5BN1i9CPrzT591VmhuYiPtHlZ+irkhsbsTBB8+7S7UB3XFV
+        R+/oS82ZwA+IO9kd8fC5lK88Hid5T9QR2YWDWowfHU+13altmMh+XAuRFy1lDvgA5jDWEWv5D+p1
+        JpOTxk8txZmu9E4/ff9Ecpmex4zvJyaNd8px1gkG5NkQdZGw768E1EWLsC8RPmL6ZKx6lXRoa8f0
+        HdTswNB7M2orYDj/TuprNLAjtUP4qRB/hZopq1Pze3vyTN9o/CgyxpVNnlZL3y1CF/BLIqO5a8hA
+        95CrHXXOvOpLm7UyF676qyHflxZluY1/V/oK9oj8cgHdTZBvT1D/yes+N2Gw5khudFcLSV9TTftV
+        /s855VfXATsPaE8b/oV55MsyH92UmLV1b64P/Xr52F8tDmK92pisW4OeW4NdhdD1ZHu2uxf5ob2D
+        r82Z2Q5H1/G+QmxrZcovz20p1hV639IR+yTTMx67G3o/okW17HnOJ92Rnnid18Ab8b7M3pWSrYFP
+        EbZe7Y8nYkuyxRbyyG0fcWnIVffGPBlXaAUR6uLjfFxTYccu8a4lviOuC/I1gzGO2xuQx4ZqWtWx
+        l/PxnSm1Sa+VI7BsUi5FsSTxS639YgZ/Ma71M3569dosW7fQIH7gi4i23j3RCNb6WujYO51sb44Y
+        7lQZoTM9YhzwZFPdAj8Le5ovV/K8xghteyu0US/Ma+Tft7FvpBqnnqzhxN8YsZdP5Zna0+meOQDr
+        w8x+bdT7kYKxic+UlnSEtSFjcux9GpeK96d3yy2L7AZrZ2ATsQ+mfeOBVRsTr4QV5IYrWo8aJTzG
+        +1GT6mA0rtHeDo/Y4AvtqiO0Ex+r5Xws1W6DqDZELOLoPTVhg2pqYH8r12s8+GEwNvAA/fP9OE6k
+        vmypOqjtZlNgOxlXdrs7dfz7eIAuN6gHA30Gv+1oqc7DwdBKc/pWLu646wDxIjLAJ/rFfCT0FWlk
+        1b62L0c5TFHGJ5t7VkfIn6Y7qV3NYknOB+u2yuR+o1DIuQp9hmobupEqEvw+8VJHDLHwZwm+G8N4
+        z+05+kINWphr0q4ibg/P+U1s17WdgvExzhY5HwMZ2vcWc+hL661I72okgcfa9yoHvDQPyJdQv3am
+        6/w8xLsWjz3qEy/p86NYLzOIJxXxKADf2TwtyjFYuZ3PH59ZC83XOOcuxeflLCbBT1T7KpfGczeL
+        ezKrOoQFfSzPkIOj3kaczunguefFfDbxH2levK4k49M+QAs52iymN0dOlcZJ8yzw6CIHgE09U9sT
+        na0V80Uzox8/+7sQMQLGj+DNEZppf6tG+5w/52LjWuXW6Xu15r63ah77jX6FruOcl/5IZ76+8V6P
+        8pO15E7DhRPHrvj+6R5j/JuercYtgJUqh3gT02ncFLmO6PV40VN5vaZzLcTRam3KjB7Gk2G13zDB
+        15oR65SLp9eUj84pRxoN9LhWKObd8RitNA9cx3nlQJ4PzZE7DdR67HPIByDf8lJ/UbH1JvmMO0/i
+        ukfojsv2aKVzLuqgrjJHyOv0thnnyoV5znvtsf6BVxexyMFYyX7T3/j5a/AjCRxyOHZA+Mmu34Qf
+        xOT2YblArhD7J2dCtcKR8vsF8kTkB/XxuNaUqbZtA1fQjw5cDSkuctUA/crpHuWSdGjQ3niSmwTw
+        VW6P8mKHMZGLYx7UyKgvgNG1QXvrM3sFWhZ5y1ZOY+yYQ/yCPIWWjtw1dNCHp313xGqb3r2l65rE
+        tZiU84GxHjAO27Vlh/YTK2d/n2Lua5iN40sBX4V3BKc9VWBlR+OktkO/VUix97TmTzH+KO99Dqun
+        nLcBuz1qqEMhu3aWo9HvF+5zta2MWJLWtpQbH/rHu+NgjOsMk/H75Wdt4ikGmhU23vOA7hJMPPnt
+        QJy3It9zeo6+063UJ3RE1IbdlYI6S4F+hrFOhp+GU705Z+zmvdRkwBcLf4a66XR9k2E6s4XCXnNB
+        r5U4N5GYSkuoL9O9x6oFW4h0J/19RZPezRFGguzdzVJzR97nvzHyw2BEbPT34kqIMZJevwUjdXlO
+        cWOY5aNN1GQrlad9xfUVfIZH+wrItSWKd1S3aGmMQ20V0r4wxqnQ7way36cKTTvUOt0daqlsH+Hv
+        GPhDxMAJI67uojiHyq7fEgPtROaQMzCQvvPgmoh9TcSjyk7nDraMeiF+xi3jGJn4nNFGo/1jrMlI
+        6zbaZ4ONrvWZuFk4BzuvT2VWzmruZI7j377qx/BVwl5sCOBJiPcB0+u3+Kqa3JGBDzGuwU+/8YzP
+        CiTYTvcFbLkzzeo4wgpsdOoq9WyPuEZ7pPBv8mnPnTAHG0YONTEX82ERX8+9t3s73jL5P1cz0t7M
+        6bzDvfmvf118uNj6du5UhpIcy/kYpKeQl4ZvhYqZnJ/9XR+pomPdhhtOaJrktHV2wnWanU3msmPU
+        p5bsAC+R0bHrZPqY5tPa8F3DvqQjPMn5aTqhrdMXZ6zgTqPzhRe3ob818DhMzoI/WK6uqHZy5loJ
+        aIKEk51l7Ovelk6iMsldMNgZvmTRkZf4BLq3d21P0c9EWcsjQj87gXqmBN/x8ZinLY/6bhQ/PBPR
+        3eAhx1UikycNeRotPf9OR2/Yq0v6rAAnMfwtW7ll+I8Mw8jx0umzXODyebpyRpcd/dfPp+i3G/00
+        Ple+ZNlL7kpiq7fc9S3LJP2y0+q0vKW1iU/TazadAIu/nZb/7pqm2x+3WqCev7eWEAYXX+hDAslR
+        af9JN3f1H/3cJSNLOjmGbilPenz9A28J/ZcvOcUF5+6//Polp6xH7aSf59oGD48aUz09pj2pr9BO
+        rCQnuEnMv7woqccfp0u/kTGplwoHr8lGIkf1yMTrjd7HSX1cQ1uUfqGBZXOfZ0sOeiWGUTj/njQ9
+        /mZCwkl6MMvPfxlC9xzFonVf/E8MOz5ZZdLN2xiu7tH0yb0VBKcptmcfUUA0C5hesrzElG955rZy
+        QnQBloAziBiJZW/58i1zkxEVncJzMP1diNNO3+F50g2Crg++1i/5WGABbQW0cvmOKSmdI8wD+gWS
+        K+am8gLJdZWtvkhSZl4gYSvXNy/SYKqXuGFvrvmX2OFYjnuZphx/bugFmvj057dpku8PvEBz85Ii
+        uEqZv3qRhi+/uK5KufryOOXqi+sCzfVLNEDPSzLky9cv8oNVxSfmv0VTvqlwL+L9usq8RHMFm3gR
+        8Wz5ZasAzUu6uOFY5qVxiOYlXdxwX1kXxYJfv/w/AAAA//8DANICOumrVAAA
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -80,13 +138,13 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Date:
-      - Mon, 01 Dec 2025 17:18:19 GMT
+      - Wed, 18 Mar 2026 15:18:56 GMT
       ETag:
-      - W/"17e66c8bbcf119e704c638c9a8bb60ee"
+      - W/"f13791817806f71f6f29175d9b2a1009"
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Server:
-      - nginx/1.24.0 + Phusion Passenger(R) 6.1.0
+      - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
       - 200 OK
       Transfer-Encoding:
@@ -102,11 +160,11 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Powered-By:
-      - Phusion Passenger(R) 6.1.0
+      - Phusion Passenger(R) 6.1.2
       X-Request-Id:
-      - cc3b55af-a8f8-4223-845c-9cb8fb73f4f1
+      - 088b98ac-225b-425e-a56a-24ff54f7fb04
       X-Runtime:
-      - '0.036560'
+      - '0.030624'
       X-XSS-Protection:
       - '0'
     status:
