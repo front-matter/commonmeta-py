@@ -1,7 +1,6 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Optional
 
 __NAMESPACE__ = "http://www.crossref.org/clinicaltrials.xsd"
 
@@ -12,7 +11,7 @@ class ClinicalTrialNumberType(Enum):
     POST_RESULTS = "postResults"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ClinicalTrialNumber:
     """
     :ivar registry: The clinical trial identifier related to the
@@ -26,15 +25,17 @@ class ClinicalTrialNumber:
         name = "clinical-trial-number"
         namespace = "http://www.crossref.org/clinicaltrials.xsd"
 
-    registry: str = field(
+    registry: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
+            "required": True,
             "min_length": 12,
             "max_length": 200,
             "pattern": r"10.18810/[a-z-]+",
-        }
+        },
     )
-    type_value: None | ClinicalTrialNumberType = field(
+    type_value: Optional[ClinicalTrialNumberType] = field(
         default=None,
         metadata={
             "name": "type",
@@ -51,16 +52,15 @@ class ClinicalTrialNumber:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Program:
-    """
-    Accommodates deposit of linked clincal trials metadata.
+    """Accommodates deposit of linked clincal trials metadata.
 
     The clinical-trial-number value will be a string that must match a
-    specific pattern appropriate for a given clinical trial registry. The
-    registry is identified in the required attribute 'registry' and must be
-    the DOI of a recognized registry (see
-    http://dx.doi.org/10.18810/registries).
+    specific pattern appropriate for a given clinical trial registry.
+    The registry is identified in the required attribute 'registry' and
+    must be the DOI of a recognized registry (see
+    http://dx.doi.org/10.18810/registries)
     """
 
     class Meta:

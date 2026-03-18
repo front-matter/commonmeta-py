@@ -2,7 +2,7 @@
 <Config xmlns="http://pypi.org/project/xsdata" version="26.2">
   <Output maxLineLength="79" genericCollections="false">
     <Package>commonmeta.resources.crossref.models</Package>
-    <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="true">dataclasses</Format>
+    <Format repr="true" eq="true" order="false" unsafeHash="false" frozen="false" slots="false" kwOnly="false">dataclasses</Format>
     <Structure>namespaces</Structure>
     <DocstringStyle>reStructuredText</DocstringStyle>
     <RelativeImports>true</RelativeImports>

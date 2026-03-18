@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import ForwardRef
+from typing import ForwardRef, Optional
 
 __NAMESPACE__ = "http://www.crossref.org/relations.xsd"
 
@@ -283,7 +281,7 @@ class IntraWorkRelationRelationshipType(Enum):
     HAS_FORMAT = "hasFormat"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class XrefFaces:
     class Meta:
         name = "xrefFaces"
@@ -355,35 +353,35 @@ class XrefFaces:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class B(XrefFaces):
     class Meta:
         name = "b"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Em(XrefFaces):
     class Meta:
         name = "em"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Font(XrefFaces):
     class Meta:
         name = "font"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class I(XrefFaces):
     class Meta:
         name = "i"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InterWorkRelation:
     """
     :ivar relationship_type: Used to describe relations between items
@@ -399,19 +397,23 @@ class InterWorkRelation:
         name = "inter_work_relation"
         namespace = "http://www.crossref.org/relations.xsd"
 
-    relationship_type: InterWorkRelationRelationshipType = field(
+    relationship_type: Optional[InterWorkRelationRelationshipType] = field(
+        default=None,
         metadata={
             "name": "relationship-type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    identifier_type: InterWorkRelationIdentifierType = field(
+    identifier_type: Optional[InterWorkRelationIdentifierType] = field(
+        default=None,
         metadata={
             "name": "identifier-type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    namespace: None | str = field(
+    namespace: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -429,7 +431,7 @@ class InterWorkRelation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class IntraWorkRelation:
     """
     :ivar relationship_type: Used to define relations between items that
@@ -449,19 +451,23 @@ class IntraWorkRelation:
         name = "intra_work_relation"
         namespace = "http://www.crossref.org/relations.xsd"
 
-    relationship_type: IntraWorkRelationRelationshipType = field(
+    relationship_type: Optional[IntraWorkRelationRelationshipType] = field(
+        default=None,
         metadata={
             "name": "relationship-type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    identifier_type: IntraWorkRelationIdentifierType = field(
+    identifier_type: Optional[IntraWorkRelationIdentifierType] = field(
+        default=None,
         metadata={
             "name": "identifier-type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    namespace: None | str = field(
+    namespace: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -479,56 +485,56 @@ class IntraWorkRelation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Ovl(XrefFaces):
     class Meta:
         name = "ovl"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Scp(XrefFaces):
     class Meta:
         name = "scp"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Strong(XrefFaces):
     class Meta:
         name = "strong"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Sub(XrefFaces):
     class Meta:
         name = "sub"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Sup(XrefFaces):
     class Meta:
         name = "sup"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Tt(XrefFaces):
     class Meta:
         name = "tt"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class U(XrefFaces):
     class Meta:
         name = "u"
         namespace = "http://www.crossref.org/relations.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Description:
     """
     A narrative description of the relationship target item.
@@ -538,7 +544,7 @@ class Description:
         name = "description"
         namespace = "http://www.crossref.org/relations.xsd"
 
-    language: None | DescriptionLanguage = field(
+    language: Optional[DescriptionLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -600,25 +606,25 @@ class Description:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class RelatedItem:
     class Meta:
         name = "related_item"
         namespace = "http://www.crossref.org/relations.xsd"
 
-    description: None | Description = field(
+    description: Optional[Description] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    inter_work_relation: None | InterWorkRelation = field(
+    inter_work_relation: Optional[InterWorkRelation] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    intra_work_relation: None | IntraWorkRelation = field(
+    intra_work_relation: Optional[IntraWorkRelation] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -626,7 +632,7 @@ class RelatedItem:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Program:
     """
     Wrapper element for relationship metadata.

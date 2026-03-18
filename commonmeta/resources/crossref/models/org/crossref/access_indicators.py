@@ -1,26 +1,25 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Optional
 
 from xsdata.models.datatype import XmlDate
 
 __NAMESPACE__ = "http://www.crossref.org/AccessIndicators.xsd"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class FreeToRead:
     class Meta:
         name = "free_to_read"
         namespace = "http://www.crossref.org/AccessIndicators.xsd"
 
-    end_date: None | XmlDate = field(
+    end_date: Optional[XmlDate] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    start_date: None | XmlDate = field(
+    start_date: Optional[XmlDate] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -34,7 +33,7 @@ class LicenseRefAppliesTo(Enum):
     TDM = "tdm"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LicenseRef:
     class Meta:
         name = "license_ref"
@@ -43,17 +42,18 @@ class LicenseRef:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 10,
             "pattern": r"([hH][tT][tT][pP]|[hH][tT][tT][pP][sS]|[fF][tT][pP])://.*",
         },
     )
-    start_date: None | XmlDate = field(
+    start_date: Optional[XmlDate] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    applies_to: None | LicenseRefAppliesTo = field(
+    applies_to: Optional[LicenseRefAppliesTo] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -61,21 +61,20 @@ class LicenseRef:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Program:
-    """
-    Accommodates deposit of license metadata.
+    """Accommodates deposit of license metadata.
 
     The license_ref value will be a URL. Values for the "applies_to"
-    attribute are vor (version of record),am (accepted manuscript), and tdm
-    (text and data mining).
+    attribute are vor (version of record),am (accepted manuscript), and
+    tdm (text and data mining).
     """
 
     class Meta:
         name = "program"
         namespace = "http://www.crossref.org/AccessIndicators.xsd"
 
-    free_to_read: None | FreeToRead = field(
+    free_to_read: Optional[FreeToRead] = field(
         default=None,
         metadata={
             "type": "Element",

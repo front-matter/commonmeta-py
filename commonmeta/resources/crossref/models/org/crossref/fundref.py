@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import ForwardRef
+from typing import ForwardRef, Optional
 
 __NAMESPACE__ = "http://www.crossref.org/fundref.xsd"
 
@@ -20,18 +18,14 @@ class AssertionProvider(Enum):
     CROSSREF = "crossref"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Assertion:
-    """
-    Funding data attributes included in assertion are: * fundgroup: used to
-    group funding info for items with multiple funding sources.
-
-    Required for items with multiple award_number assertions, optional for
-    items with a single award_number * funder_identifier: funding agency
-    identifier, must be nested within the funder_name assertion * ror: ROR
-    ID of a funder * funder_name: name of the funding agency (required) *
-    award_number: grant number or other fund identifier.
-    """
+    """Funding data attributes included in assertion are:
+    * fundgroup: used to group funding info for items with multiple funding sources. Required for items with multiple award_number assertions, optional for items with a single award_number
+    * funder_identifier: funding agency identifier, must be nested within the funder_name assertion
+    * ror: ROR ID of a funder
+    * funder_name: name of the funding agency (required)
+    * award_number: grant number or other fund identifier"""
 
     class Meta:
         name = "assertion"
@@ -43,10 +37,12 @@ class Assertion:
             "type": "Attribute",
         },
     )
-    name: AssertionName = field(
+    name: Optional[AssertionName] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
     content: list[object] = field(
         default_factory=list,
@@ -64,13 +60,9 @@ class Assertion:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Program:
-    """
-    Information about registering funding data is available in our
-    documentation:
-    https://www.crossref.org/documentation/funder-registry/funding-data-deposits/.
-    """
+    """Information about registering funding data is available in our documentation: https://www.crossref.org/documentation/funder-registry/funding-data-deposits/"""
 
     class Meta:
         name = "program"

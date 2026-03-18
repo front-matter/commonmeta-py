@@ -1,7 +1,6 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Optional, Union
 
 from .xml import LangValue
 
@@ -32,7 +31,7 @@ class TypeType(Enum):
     ARC = "arc"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ArcType:
     """
     :ivar type_value:
@@ -57,7 +56,7 @@ class ArcType:
             "required": True,
         },
     )
-    arcrole: None | str = field(
+    arcrole: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -65,28 +64,28 @@ class ArcType:
             "min_length": 1,
         },
     )
-    title: None | str = field(
+    title: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    show: None | ShowType = field(
+    show: Optional[ShowType] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    actuate: None | ActuateType = field(
+    actuate: Optional[ActuateType] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    from_value: None | str = field(
+    from_value: Optional[str] = field(
         default=None,
         metadata={
             "name": "from",
@@ -94,7 +93,7 @@ class ArcType:
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    to: None | str = field(
+    to: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -103,15 +102,14 @@ class ArcType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Extended:
-    """
-    Intended for use as the type of user-declared elements to make them
-    extended links.
+    """Intended for use as the type of user-declared elements to make them extended
+    links.
 
     Note that the elements referenced in the content model are all
-    abstract. The intention is that by simply declaring elements with these
-    as their substitutionGroup, all the right things will happen.
+    abstract. The intention is that by simply declaring elements with
+    these as their substitutionGroup, all the right things will happen.
     """
 
     class Meta:
@@ -127,7 +125,7 @@ class Extended:
             "required": True,
         },
     )
-    role: None | str = field(
+    role: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -135,7 +133,7 @@ class Extended:
             "min_length": 1,
         },
     )
-    title: None | str = field(
+    title: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -144,7 +142,7 @@ class Extended:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LocatorType:
     """
     :ivar type_value:
@@ -168,13 +166,15 @@ class LocatorType:
             "required": True,
         },
     )
-    href: str = field(
+    href: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
-        }
+            "required": True,
+        },
     )
-    role: None | str = field(
+    role: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -182,14 +182,14 @@ class LocatorType:
             "min_length": 1,
         },
     )
-    title: None | str = field(
+    title: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    label: None | str = field(
+    label: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -198,7 +198,7 @@ class LocatorType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ResourceType:
     class Meta:
         name = "resourceType"
@@ -213,7 +213,7 @@ class ResourceType:
             "required": True,
         },
     )
-    role: None | str = field(
+    role: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221,14 +221,14 @@ class ResourceType:
             "min_length": 1,
         },
     )
-    title: None | str = field(
+    title: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    label: None | str = field(
+    label: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -245,11 +245,11 @@ class ResourceType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Simple:
     """
-    Intended for use as the type of user-declared elements to make them
-    simple links.
+    Intended for use as the type of user-declared elements to make them simple
+    links.
     """
 
     class Meta:
@@ -264,22 +264,14 @@ class Simple:
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    href: None | str = field(
+    href: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    role: None | str = field(
-        default=None,
-        metadata={
-            "type": "Attribute",
-            "namespace": "http://www.w3.org/1999/xlink",
-            "min_length": 1,
-        },
-    )
-    arcrole: None | str = field(
+    role: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -287,21 +279,29 @@ class Simple:
             "min_length": 1,
         },
     )
-    title: None | str = field(
+    arcrole: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Attribute",
+            "namespace": "http://www.w3.org/1999/xlink",
+            "min_length": 1,
+        },
+    )
+    title: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    show: None | ShowType = field(
+    show: Optional[ShowType] = field(
         default=None,
         metadata={
             "type": "Attribute",
             "namespace": "http://www.w3.org/1999/xlink",
         },
     )
-    actuate: None | ActuateType = field(
+    actuate: Optional[ActuateType] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -318,7 +318,7 @@ class Simple:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class TitleEltType:
     """
     :ivar type_value:
@@ -341,7 +341,7 @@ class TitleEltType:
             "required": True,
         },
     )
-    lang: None | str | LangValue = field(
+    lang: Optional[Union[str, LangValue]] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -358,28 +358,28 @@ class TitleEltType:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Arc(ArcType):
     class Meta:
         name = "arc"
         namespace = "http://www.w3.org/1999/xlink"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Locator(LocatorType):
     class Meta:
         name = "locator"
         namespace = "http://www.w3.org/1999/xlink"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Resource(ResourceType):
     class Meta:
         name = "resource"
         namespace = "http://www.w3.org/1999/xlink"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Title(TitleEltType):
     class Meta:
         name = "title"

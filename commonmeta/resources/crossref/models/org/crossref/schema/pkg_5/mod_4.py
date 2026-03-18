@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import ForwardRef
+from typing import ForwardRef, Optional, Union
 
 from xsdata.models.datatype import XmlDate, XmlPeriod
 
@@ -17,7 +15,7 @@ from ...relations import Program as RelationsProgram
 __NAMESPACE__ = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Orcid:
     """
     The ORCID iD for an author.
@@ -30,6 +28,7 @@ class Orcid:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "pattern": r"https?://orcid.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[X0-9]{1}",
         },
     )
@@ -41,18 +40,23 @@ class Orcid:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class A:
     """
-    content is "Inline" except that anchors shouldn't be nested.
+    Content is "Inline" except that anchors shouldn't be nested.
     """
 
     class Meta:
         name = "a"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
-    href: None | str = field(
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
+    href: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -60,10 +64,9 @@ class A:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class AbbrevTitle:
-    """
-    Common abbreviation or abbreviations used when citing a journal.
+    """Common abbreviation or abbreviations used when citing a journal.
 
     It is recommended that periods be included after abbreviated words
     within the title.
@@ -8238,7 +8241,7 @@ class ArchiveName(Enum):
     TNA = "TNA"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ArticleTitle:
     """
     Article title in a citation.
@@ -8248,10 +8251,15 @@ class ArticleTitle:
         name = "article_title"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Author:
     """
     First author in a citation.
@@ -8261,7 +8269,12 @@ class Author:
         name = "author"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
 class BookBookType(Enum):
@@ -32601,7 +32614,7 @@ class BookSetMetadataLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CYear:
     """
     Year of publication in citation.
@@ -32611,7 +32624,12 @@ class CYear:
         name = "cYear"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
 class CitationType(Enum):
@@ -32654,7 +32672,7 @@ class CmUpdateType(Enum):
     WITHDRAWAL = "withdrawal"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Coden:
     """
     The coden assigned to a journal or conference proceedings.
@@ -48908,13 +48926,12 @@ class ComponentLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ComponentNumber:
-    """
-    The chapter, section, part, etc. number for a content item in a book.
+    """The chapter, section, part, etc. number for a content item in a book.
 
-    Unlike volume and edition_number, component_number should include any
-    additional text that helps identify the type of component.
+    Unlike volume and edition_number, component_number should include
+    any additional text that helps identify the type of component.
     """
 
     class Meta:
@@ -48937,15 +48954,14 @@ class ComponentParentRelation(Enum):
     IS_TRANSLATION_OF = "isTranslationOf"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceAcronym:
-    """
-    The popularly known as or jargon name (e.g.
+    """The popularly known as or jargon name (e.g. SIGGRAPH for "Special Interest
+    Group on Computer Graphics").
 
-    SIGGRAPH for "Special Interest Group on Computer Graphics"). Authors
-    commonly cite the conference acronym rather than the full conference or
-    proceedings name, so it is best to include this element when it is
-    available.
+    Authors commonly cite the conference acronym rather than the full
+    conference or proceedings name, so it is best to include this
+    element when it is available.
     """
 
     class Meta:
@@ -48961,21 +48977,15 @@ class ConferenceAcronym:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceDate:
-    """
-    The start and end dates of a conference event. conference_date may be
-    used in three ways: 1.
+    """The start and end dates of a conference event.
 
-    If publishers that do not have parsed date values, provide just text
-    with the conference dates. The date text should be taken from the
-    proceedings title page. 2. If publishers have parsed date values,
-    provide them in the attributes. 3. If both parsed date values and the
-    date text are available, both should be provided. This is the preferred
-    tagging for conference_date. For example: <ns1:conference_date
-    xmlns:ns1="http://www.crossref.org/schema/5.4.0" start_month="01"
-    start_year="1997" start_day="15" end_year="1997" end_month="01"
-    end_day="17">Jan. 15-17, 1997</ns1:conference_date>.
+    conference_date may be used in three ways:
+    1. If publishers that do not have parsed date values, provide just text with the conference dates. The date text should be taken from the proceedings title page.
+    2. If publishers have parsed date values, provide them in the attributes.
+    3. If both parsed date values and the date text are available, both should be provided. This is the preferred tagging for conference_date. For example:
+    <ns1:conference_date xmlns:ns1="http://www.crossref.org/schema/5.4.0" start_month="01" start_year="1997" start_day="15" end_year="1997" end_month="01" end_day="17">Jan. 15-17, 1997</ns1:conference_date>
     """
 
     class Meta:
@@ -48985,11 +48995,12 @@ class ConferenceDate:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 0,
             "max_length": 100,
         },
     )
-    start_day: None | int = field(
+    start_day: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -48998,7 +49009,7 @@ class ConferenceDate:
             "total_digits": 2,
         },
     )
-    start_month: None | int = field(
+    start_month: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -49007,7 +49018,7 @@ class ConferenceDate:
             "total_digits": 2,
         },
     )
-    start_year: None | int = field(
+    start_year: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -49016,7 +49027,7 @@ class ConferenceDate:
             "total_digits": 4,
         },
     )
-    end_day: None | int = field(
+    end_day: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -49025,7 +49036,7 @@ class ConferenceDate:
             "total_digits": 2,
         },
     )
-    end_month: None | int = field(
+    end_month: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -49034,7 +49045,7 @@ class ConferenceDate:
             "total_digits": 2,
         },
     )
-    end_year: None | int = field(
+    end_year: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -49045,13 +49056,12 @@ class ConferenceDate:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceLocation:
-    """
-    The location of the conference.
+    """The location of the conference.
 
-    The city, state, province or country of the conference may be provided
-    as appropriate.
+    The city, state, province or country of the conference may be
+    provided as appropriate.
     """
 
     class Meta:
@@ -49067,11 +49077,11 @@ class ConferenceLocation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceName:
     """
-    The official name of the conference, excluding numbers commonly
-    provided in conference.
+    The official name of the conference, excluding numbers commonly provided in
+    conference.
     """
 
     class Meta:
@@ -49087,11 +49097,12 @@ class ConferenceName:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceNumber:
-    """
-    The number of a conference. conference_number should include only the
-    number of the conference without any extra text.
+    """The number of a conference.
+
+    conference_number should include only the number of the conference
+    without any extra text
     """
 
     class Meta:
@@ -57223,13 +57234,12 @@ class ConferencePaperPublicationType(Enum):
     BIBLIOGRAPHIC_RECORD = "bibliographic_record"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceSponsor:
-    """
-    The sponsoring organization(s) of a conference.
+    """The sponsoring organization(s) of a conference.
 
-    Multiple sponsors may be given if a conference is hosted by more than
-    one organization.
+    Multiple sponsors may be given if a conference is hosted by more
+    than one organization.
     """
 
     class Meta:
@@ -57245,17 +57255,16 @@ class ConferenceSponsor:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferenceTheme:
-    """
-    The theme is the slogan or special emphasis of a conference in a
-    particular year.
+    """The theme is the slogan or special emphasis of a conference in a particular
+    year.
 
     It differs from the subject of a conference in that the subject is
-    stable over the years while the theme may vary from year to year. For
-    example, the American Society for Information Science and Technology
-    conference theme was "Knowledge: Creation, Organization and Use" in
-    1999 and "Defining Information Architecture" in 2000.
+    stable over the years while the theme may vary from year to year.
+    For example, the American Society for Information Science and
+    Technology conference theme was "Knowledge: Creation, Organization
+    and Use" in 1999 and "Defining Information Architecture" in 2000.
     """
 
     class Meta:
@@ -65396,7 +65405,7 @@ class ContentItemPublicationType(Enum):
     BIBLIOGRAPHIC_RECORD = "bibliographic_record"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ContractNumber:
     """
     The contract number under which a report or paper was written.
@@ -65415,19 +65424,23 @@ class ContractNumber:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CrossmarkDomainExclusive:
     class Meta:
         name = "crossmark_domain_exclusive"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: bool = field()
+    value: Optional[bool] = field(
+        default=None,
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CrossmarkPolicy:
-    """
-    A DOI which points to a publisher's CrossMark policy document.
+    """A DOI which points to a publisher's CrossMark policy document.
 
     Publishers might have different policies for different publications.
     """
@@ -65439,6 +65452,7 @@ class CrossmarkPolicy:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 6,
             "max_length": 2048,
             "pattern": r"10\.[0-9]{4,9}/.{1,200}",
@@ -65446,13 +65460,18 @@ class CrossmarkPolicy:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CrossmarkVersion:
     class Meta:
         name = "crossmark_version"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
 class DatabaseMetadataLanguage(Enum):
@@ -73578,10 +73597,9 @@ class DateTMediaType(Enum):
     OTHER = "other"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Day:
-    """
-    Day of publication.
+    """Day of publication.
 
     The day must be expressed with a leading zero if it is less than 10
     (e.g. submit "05", not "5").
@@ -73591,16 +73609,18 @@ class Day:
         name = "day"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: int = field(
+    value: Optional[int] = field(
+        default=None,
         metadata={
+            "required": True,
             "min_inclusive": 1,
             "max_inclusive": 31,
             "total_digits": 2,
-        }
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Degree:
     """
     The degree(s) awarded for a dissertation.
@@ -81729,7 +81749,7 @@ class DegreesLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DepositorName:
     """
     Name of the organization registering the DOIs.
@@ -97974,7 +97994,7 @@ class DissertationPublicationType(Enum):
     BIBLIOGRAPHIC_RECORD = "bibliographic_record"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Doi:
     """
     DOI for an entity being registered with Crossref.
@@ -97994,11 +98014,10 @@ class Doi:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DoiBatchId:
     """
-    Publisher generated ID that uniquely identifies the DOI submission
-    batch.
+    Publisher generated ID that uniquely identifies the DOI submission batch.
     """
 
     class Meta:
@@ -98014,14 +98033,13 @@ class DoiBatchId:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Domain:
-    """
-    A domain name or subdomain name (e.g. www.psychoceramics.org or
+    """A domain name or subdomain name (e.g. www.psychoceramics.org or
     psychoceramics.org).
 
-    It is used to identify when a referring URL is coming from a Crossmark
-    domain.
+    It is used to identify when a referring URL is coming from a
+    Crossmark domain.
     """
 
     class Meta:
@@ -98031,6 +98049,7 @@ class Domain:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 4,
             "max_length": 1024,
             "pattern": r"[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*\.[A-Za-z0-9_]+([-.][A-Za-z0-9_]+)*",
@@ -98038,14 +98057,13 @@ class Domain:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class EditionNumber:
-    """
-    The edition number of a book. edition_number should include only a
-    number and not additional text such as "edition".
+    """The edition number of a book.
 
-    For example, you should submit "3", not "third edition" or "3rd
-    edition". Roman numerals are acceptable.
+    edition_number should include only a number and not additional text
+    such as "edition". For example, you should submit "3", not "third
+    edition" or "3rd edition". Roman numerals are acceptable.
     """
 
     class Meta:
@@ -98061,23 +98079,28 @@ class EditionNumber:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ElocationId:
     """
-    article identifier or e-location id of the item.
+    Article identifier or e-location id of the item.
     """
 
     class Meta:
         name = "elocation_id"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class EmailAddress:
     """
-    e-mail address to which batch success and/or error messages are sent.
+    E-mail address to which batch success and/or error messages are sent.
     """
 
     class Meta:
@@ -98093,28 +98116,31 @@ class EmailAddress:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Filter:
-    """
-    The filter element is used to disambiguate content in situations where
-    multiple publishers share the same host (e.g. when on an aggregated
-    platform).
+    """The filter element is used to disambiguate content in situations where
+    multiple publishers share the same host (e.g. when on an aggregated platform).
 
-    It should contain a substring of the path that can be used to uniquely
-    identify a publisher's or publication's content. For instance, using
-    the string "alpsp" here would help the CrossMark system distinguish
-    between ALPSP publications on the ingentaconnect host and other
-    publications on the same host.
+    It should contain a substring of the path that can be used to
+    uniquely identify a publisher's or publication's content. For
+    instance, using the string "alpsp" here would help the CrossMark
+    system distinguish between ALPSP publications on the ingentaconnect
+    host and other publications on the same host.
     """
 
     class Meta:
         name = "filter"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class FirstPage:
     """
     First page number of an item.
@@ -101004,7 +101030,7 @@ class FormatMimeType(Enum):
     VIDEO_X_MS_WMV = "video/x-ms-wmv"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class FullTitle:
     """
     The full title by which a journal is commonly known or cited.
@@ -101023,7 +101049,7 @@ class FullTitle:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class GivenName:
     """
     A contributor's given name.
@@ -101044,15 +101070,13 @@ class GivenName:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class GroupTitle:
-    """
-    Posted content may be organized into groupings within a given
-    publisher.
+    """Posted content may be organized into groupings within a given publisher.
 
     This element provides for naming the group. It is expected that
-    publishers will have a small number of groups each of which reflect a
-    topic or subject area.
+    publishers will have a small number of groups each of which reflect
+    a topic or subject area.
     """
 
     class Meta:
@@ -101081,7 +101105,7 @@ class IdentifierIdType(Enum):
     OTHER = "other"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InstitutionAcronym:
     """
     The acronym of the institution.
@@ -101100,7 +101124,7 @@ class InstitutionAcronym:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InstitutionDepartment:
     """
     The department within an institution.
@@ -101125,7 +101149,7 @@ class InstitutionIdType(Enum):
     WIKIDATA = "wikidata"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InstitutionName:
     """
     The full name of an institution.
@@ -101144,16 +101168,15 @@ class InstitutionName:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InstitutionPlace:
-    """
-    The primary city location of the institution. institution_place gives
-    the primary city location of the institution.
+    """The primary city location of the institution.
 
-    When the location is a major city (e.g. New York, Amsterdam), no
-    qualifying country or U.S. state need be given. If the city is not a
-    major city, the appropriate country and/or state or province should be
-    added.
+    institution_place gives the primary city location of the
+    institution. When the location is a major city (e.g. New York,
+    Amsterdam), no qualifying country or U.S. state need be given. If
+    the city is not a major city, the appropriate country and/or state
+    or province should be added.
     """
 
     class Meta:
@@ -109289,14 +109312,13 @@ class IssnMediaType(Enum):
     ELECTRONIC = "electronic"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Issue:
-    """
-    The issue number or name in which an article is published.
+    """The issue number or name in which an article is published.
 
-    The issue number takes precedence over any other name. For example, if
-    an issue has only a seasonal name, then the season should be listed in
-    issue.
+    The issue number takes precedence over any other name. For example,
+    if an issue has only a seasonal name, then the season should be
+    listed in issue.
     """
 
     class Meta:
@@ -109578,11 +109600,10 @@ class ItemLinkHeaderRelationship(Enum):
     DUL = "dul"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ItemNumber:
     """
-    A publisher-assigned number that uniquely identifies the item being
-    registered.
+    A publisher-assigned number that uniquely identifies the item being registered.
     """
 
     class Meta:
@@ -109592,11 +109613,12 @@ class ItemNumber:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 32,
         },
     )
-    item_number_type: None | str = field(
+    item_number_type: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -125830,7 +125852,7 @@ class JournalMetadataLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class JournalTitle:
     """
     Journal title in a citation.
@@ -125840,10 +125862,15 @@ class JournalTitle:
         name = "journal_title"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class LastPage:
     """
     Last page number of an item.
@@ -125862,41 +125889,43 @@ class LastPage:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Month:
-    """
-    Month of publication.
+    """Month of publication.
 
-    The month must be expressed in numeric format rather spelling out the
-    name (e.g. submit "10", not "October"). The month must be expressed
-    with a leading zero if it is less than 10 (e.g. submit "05", not "5").
-    When a journal issue has both an issue number and a season, the issue
-    number should be placed in issue. If the month of publication is not
-    known, the season should be placed in month as a two-digit value as
-    follows: Season Value Spring 21 Summer 22 Autumn 23 Winter 24 First
-    Quarter 31 Second Quarter 32 Third Quarter 33 Fourth Quarter 34 In
-    cases when an issue covers multiple months, e.g. "March-April", include
-    only the digits for the first month of the range.
+    The month must be expressed in numeric format rather spelling out
+    the name (e.g. submit "10", not "October"). The month must be
+    expressed with a leading zero if it is less than 10 (e.g. submit
+    "05", not "5"). When a journal issue has both an issue number and a
+    season, the issue number should be placed in issue. If the month of
+    publication is not known, the season should be placed in month as a
+    two-digit value as follows: Season Value Spring 21 Summer 22 Autumn
+    23 Winter 24 First Quarter 31 Second Quarter 32 Third Quarter 33
+    Fourth Quarter 34 In cases when an issue covers multiple months,
+    e.g. "March-April", include only the digits for the first month of
+    the range.
     """
 
     class Meta:
         name = "month"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: int = field(
+    value: Optional[int] = field(
+        default=None,
         metadata={
+            "required": True,
             "min_inclusive": 1,
             "max_inclusive": 34,
             "total_digits": 2,
-        }
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Name:
     """
-    Full name of a contributor (includes family names, middle names, given
-    names) Should represent name as it appears in citations.
+    Full name of a contributor (includes family names, middle names, given names)
+    Should represent name as it appears in citations.
     """
 
     class Meta:
@@ -142164,11 +142193,10 @@ class OriginalLanguageTitleLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class OtherPages:
-    """
-    When an item has non-contiguous page information, capture the first
-    page range in first_page and last_page.
+    """When an item has non-contiguous page information, capture the first page
+    range in first_page and last_page.
 
     Any additional page information should be captured in other_pages.
     """
@@ -142186,14 +142214,13 @@ class OtherPages:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PartNumber:
-    """
-    The part number of a given volume.
+    """The part number of a given volume.
 
     In some cases, a book set will have multiple parts, and then one or
-    more volumes within each part. The part number of a given volume should
-    be deposited in this element.
+    more volumes within each part. The part number of a given volume
+    should be deposited in this element.
     """
 
     class Meta:
@@ -190927,11 +190954,11 @@ class ProceedingsMetadataLanguage(Enum):
     ZU = "zu"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProceedingsSubject:
     """
-    The subject of the conference proceeding, e.g. "Computer Graphics" is
-    the subject matter of SIGGRAPH.
+    The subject of the conference proceeding, e.g. "Computer Graphics" is the
+    subject matter of SIGGRAPH.
     """
 
     class Meta:
@@ -190947,7 +190974,7 @@ class ProceedingsSubject:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProceedingsTitle:
     """
     The undifferentiated title of a conference proceeding.
@@ -190966,10 +190993,9 @@ class ProceedingsTitle:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PublisherName:
-    """
-    The name of the publisher of a book or conference proceedings.
+    """The name of the publisher of a book or conference proceedings.
 
     This name may differ from that of the organization registering or
     maintaining the metadata record.
@@ -190988,10 +191014,9 @@ class PublisherName:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PublisherPlace:
-    """
-    publisher_place gives the primary city location of the publisher.
+    """publisher_place gives the primary city location of the publisher.
 
     If the city is not a major city, the appropriate country, state, or
     province should be added.
@@ -191010,7 +191035,7 @@ class PublisherPlace:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Registrant:
     """
     The organization responsible for the information being registered.
@@ -210131,20 +210156,25 @@ class ResourceMimeType(Enum):
     VIDEO_X_MS_WMV = "video/x-ms-wmv"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class RunningNumber:
     """
-    Running numbers to specify the various reports (ex: RC1 to RC4).
+    Running numbers to specify the various reports (ex: RC1 to RC4)
     """
 
     class Meta:
         name = "running_number"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ScnPolicyRef:
     """
     An individual SCN policy.
@@ -210157,6 +210187,7 @@ class ScnPolicyRef:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 2048,
             "pattern": r"([hH][tT][tT][pP]|[hH][tT][tT][pP][sS]|[fF][tT][pP])://.*",
@@ -210164,7 +210195,7 @@ class ScnPolicyRef:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SeriesNumber:
     """
     The series number within a specific published conference discipline.
@@ -210183,7 +210214,7 @@ class SeriesNumber:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SeriesTitle:
     """
     Book series title in a citation.
@@ -210193,13 +210224,17 @@ class SeriesTitle:
         name = "series_title"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SpecialNumbering:
-    """
-    Issue level numbering for supplements or special issues.
+    """Issue level numbering for supplements or special issues.
 
     Text defining the type of special issue (e.g. "suppl") should be
     included in this element along with the number.
@@ -218339,7 +218374,7 @@ class StandardPublicationType(Enum):
     BIBLIOGRAPHIC_RECORD = "bibliographic_record"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StandardsBodyAcronym:
     """
     Acronym for standards body.
@@ -218350,7 +218385,7 @@ class StandardsBodyAcronym:
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StandardsBodyName:
     """
     Name of the standards organization / publisher.
@@ -218366,7 +218401,7 @@ class StatusType(Enum):
     REMOVED = "removed"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdAdoptedFrom:
     """
     Designator for standard from which the current deposit is adopted.
@@ -218379,6 +218414,7 @@ class StdAdoptedFrom:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
@@ -218393,7 +218429,7 @@ class StdAltAsPublishedValue(Enum):
     AMENDMENT = "amendment"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdAltScript:
     class Meta:
         name = "std_alt_script"
@@ -218402,13 +218438,14 @@ class StdAltScript:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdDesignator:
     class Meta:
         name = "std_designator"
@@ -218417,18 +218454,19 @@ class StdDesignator:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdRevisionOf:
-    """
-    Designator for the previous revision of the standard being deposited.
+    """Designator for the previous revision of the standard being deposited.
+
     (note: use alt_as_published for revisions within designators having
-    common stem).
+    common stem)
     """
 
     class Meta:
@@ -218438,13 +218476,14 @@ class StdRevisionOf:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdSupersedes:
     """
     Designator for standard being replaced by the standard being deposited.
@@ -218457,13 +218496,14 @@ class StdSupersedes:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdVariantForm:
     class Meta:
         name = "std_variant_form"
@@ -218472,13 +218512,14 @@ class StdVariantForm:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 2,
             "max_length": 150,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Suffix:
     """
     The suffix of an author name, e.g. junior, senior, III.
@@ -218497,7 +218538,7 @@ class Suffix:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Surname:
     """
     The family_name of a contributor.
@@ -218518,27 +218559,31 @@ class Surname:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Timestamp:
     """
-    An integer representation of date and time that serves as a version
-    number for the record that is being deposited, used to uniquely
-    identify batch files and DOI values when a DOI has been updated one or
-    more times.
+    An integer representation of date and time that serves as a version number for
+    the record that is being deposited, used to uniquely identify batch files and
+    DOI values when a DOI has been updated one or more times.
     """
 
     class Meta:
         name = "timestamp"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: int = field()
+    value: Optional[int] = field(
+        default=None,
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Volume:
     """
-    The volume number of a published journal, or the number of a printed
-    volume for a book or conference proceedings.
+    The volume number of a published journal, or the number of a printed volume for
+    a book or conference proceedings.
     """
 
     class Meta:
@@ -218554,7 +218599,7 @@ class Volume:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class VolumeTitle:
     """
     Book volume title in a citation.
@@ -218564,10 +218609,15 @@ class VolumeTitle:
         name = "volume_title"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: str = field(default="")
+    value: str = field(
+        default="",
+        metadata={
+            "required": True,
+        },
+    )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Year:
     """
     Year of publication.
@@ -218577,16 +218627,18 @@ class Year:
         name = "year"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    value: int = field(
+    value: Optional[int] = field(
+        default=None,
         metadata={
+            "required": True,
             "min_inclusive": 1400,
             "max_inclusive": 2200,
             "total_digits": 4,
-        }
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Archive:
     """
     Used to indicate the designated archiving organization(s) for an item.
@@ -218596,38 +218648,42 @@ class Archive:
         name = "archive"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    name: ArchiveName = field(
+    name: Optional[ArchiveName] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CrossmarkDomain:
-    """
-    This should be a simple Internet domain name or subdomain name (e.g.
+    """This should be a simple Internet domain name or subdomain name (e.g.
     www.psychoceramics.org or psychoceramics.org).
 
-    It is used to identify when a referring URL is coming from a Crossmark
-    domain. A "crossmark_domain" is made up of two sub-elements; a "domain"
-    and a "filter". The filter is only needed for use in situations where
-    content from multiple publishers/publications is on the same host with
-    the same domain name (e.g. an aggregator) and one needs to use the
-    referrer's URI "path" to further determine whether the content in a
-    crossmark domain.
+    It is used to identify when a referring URL is coming from a
+    Crossmark domain. A "crossmark_domain" is made up of two sub-
+    elements; a "domain" and a "filter". The filter is only needed for
+    use in situations where content from multiple
+    publishers/publications is on the same host with the same domain
+    name (e.g. an aggregator) and one needs to use the referrer's URI
+    "path" to further determine whether the content in a crossmark
+    domain.
     """
 
     class Meta:
         name = "crossmark_domain"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    domain: Domain = field(
+    domain: Optional[Domain] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    filter: None | Filter = field(
+    filter: Optional[Filter] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -218635,30 +218691,32 @@ class CrossmarkDomain:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DateT:
     class Meta:
         name = "date_t"
 
-    month: None | Month = field(
+    month: Optional[Month] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    day: None | Day = field(
+    day: Optional[Day] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    year: Year = field(
+    year: Optional[Year] = field(
+        default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
-        }
+            "required": True,
+        },
     )
     media_type: DateTMediaType = field(
         default=DateTMediaType.PRINT,
@@ -218668,27 +218726,27 @@ class DateT:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Degrees:
     class Meta:
         name = "degrees"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    content_type: None | object = field(
+    content_type: Optional[object] = field(
         default=None,
         metadata={
             "name": "content-type",
             "type": "Attribute",
         },
     )
-    specific_use: None | object = field(
+    specific_use: Optional[object] = field(
         default=None,
         metadata={
             "name": "specific-use",
             "type": "Attribute",
         },
     )
-    language: None | DegreesLanguage = field(
+    language: Optional[DegreesLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -218704,7 +218762,7 @@ class Degrees:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Depositor:
     """
     Information about the organization submitting DOI metadata to Crossref.
@@ -218714,43 +218772,48 @@ class Depositor:
         name = "depositor"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    depositor_name: DepositorName = field(
+    depositor_name: Optional[DepositorName] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    email_address: EmailAddress = field(
+    email_address: Optional[EmailAddress] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class EventMetadata:
-    """
-    A container for all information that applies to a conference event.
-    event_metadata captures information about a conference event.
+    """A container for all information that applies to a conference event.
 
-    Data about conference proceedings is captured in proceedings_metadata.
+    event_metadata captures information about a conference event. Data
+    about conference proceedings is captured in proceedings_metadata.
     """
 
     class Meta:
         name = "event_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    conference_name: ConferenceName = field(
+    conference_name: Optional[ConferenceName] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    conference_theme: None | ConferenceTheme = field(
+    conference_theme: Optional[ConferenceTheme] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    conference_acronym: None | ConferenceAcronym = field(
+    conference_acronym: Optional[ConferenceAcronym] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -218763,19 +218826,19 @@ class EventMetadata:
             "max_occurs": 10,
         },
     )
-    conference_number: None | ConferenceNumber = field(
+    conference_number: Optional[ConferenceNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    conference_location: None | ConferenceLocation = field(
+    conference_location: Optional[ConferenceLocation] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    conference_date: None | ConferenceDate = field(
+    conference_date: Optional[ConferenceDate] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -218783,11 +218846,10 @@ class EventMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Format:
     """
-    A narrative description of a component's file format and/or file
-    extension.
+    A narrative description of a component's file format and/or file extension.
     """
 
     class Meta:
@@ -218797,11 +218859,12 @@ class Format:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 0,
             "max_length": 130,
         },
     )
-    mime_type: None | FormatMimeType = field(
+    mime_type: Optional[FormatMimeType] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -218809,11 +218872,11 @@ class Format:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Identifier:
     """
-    A public standard identifier that can be used to uniquely identify the
-    item being registered.
+    A public standard identifier that can be used to uniquely identify the item
+    being registered.
     """
 
     class Meta:
@@ -218823,24 +218886,26 @@ class Identifier:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 255,
         },
     )
-    id_type: IdentifierIdType = field(
+    id_type: Optional[IdentifierIdType] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class InstitutionId:
-    """
-    Identifier for an institution or organization (currently supported:
-    ROR, ISNI, Wikidata).
+    """Identifier for an institution or organization (currently supported: ROR,
+    ISNI, Wikidata).
 
-    Identifiers must be included as a URI.
+    Identifiers must be included as a URI
     """
 
     class Meta:
@@ -218850,18 +218915,21 @@ class InstitutionId:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "pattern": r"[hH][tT][tT][pP][sS]://.{1,50}",
         },
     )
-    type_value: InstitutionIdType = field(
+    type_value: Optional[InstitutionIdType] = field(
+        default=None,
         metadata={
             "name": "type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Isbn:
     """
     The ISBN assigned to an entity.
@@ -218874,6 +218942,7 @@ class Isbn:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 10,
             "max_length": 17,
             "pattern": r"(97(8|9)-)?\d[\d \-]+[\dX]",
@@ -218887,7 +218956,7 @@ class Isbn:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Issn:
     """
     The ISSN assigned to the title being registered.
@@ -218900,6 +218969,7 @@ class Issn:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 8,
             "max_length": 9,
             "pattern": r"\d{4}-?\d{3}[\dX]",
@@ -218913,7 +218983,7 @@ class Issn:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Noisbn:
     """
     Identifies books or conference proceedings that have no ISBN assigned.
@@ -218923,18 +218993,19 @@ class Noisbn:
         name = "noisbn"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    reason: NoisbnReason = field(
+    reason: Optional[NoisbnReason] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Organization:
-    """
-    The name of an organization (as opposed to a person) that contributed
-    to an item.
+    """The name of an organization (as opposed to a person) that contributed to an
+    item.
 
     If an item was authored by individuals in addition to one or more
     organizations, person_name and organization may be freely intermixed
@@ -218948,29 +219019,34 @@ class Organization:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 511,
             "white_space": "collapse",
         },
     )
-    sequence: OrganizationSequence = field(
+    sequence: Optional[OrganizationSequence] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    contributor_role: OrganizationContributorRole = field(
+    contributor_role: Optional[OrganizationContributorRole] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    name_style: None | OrganizationNameStyle = field(
+    name_style: Optional[OrganizationNameStyle] = field(
         default=None,
         metadata={
             "name": "name-style",
             "type": "Attribute",
         },
     )
-    language: None | OrganizationLanguage = field(
+    language: Optional[OrganizationLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -218978,7 +219054,7 @@ class Organization:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Pages:
     """
     The container for information about page ranges.
@@ -218988,18 +219064,20 @@ class Pages:
         name = "pages"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    first_page: FirstPage = field(
+    first_page: Optional[FirstPage] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    last_page: None | LastPage = field(
+    last_page: Optional[LastPage] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    other_pages: None | OtherPages = field(
+    other_pages: Optional[OtherPages] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -219007,27 +219085,27 @@ class Pages:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Prefix:
     class Meta:
         name = "prefix"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    content_type: None | object = field(
+    content_type: Optional[object] = field(
         default=None,
         metadata={
             "name": "content-type",
             "type": "Attribute",
         },
     )
-    specific_use: None | object = field(
+    specific_use: Optional[object] = field(
         default=None,
         metadata={
             "name": "specific-use",
             "type": "Attribute",
         },
     )
-    language: None | PrefixLanguage = field(
+    language: Optional[PrefixLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219043,23 +219121,24 @@ class Prefix:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Publisher:
     """
-    A container for information about the publisher of the item being
-    registered.
+    A container for information about the publisher of the item being registered.
     """
 
     class Meta:
         name = "publisher"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    publisher_name: PublisherName = field(
+    publisher_name: Optional[PublisherName] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    publisher_place: None | PublisherPlace = field(
+    publisher_place: Optional[PublisherPlace] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -219067,7 +219146,7 @@ class Publisher:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Resource:
     """
     The URI associated with a DOI.
@@ -219080,18 +219159,19 @@ class Resource:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 2048,
             "pattern": r"([hH][tT][tT][pP]|[hH][tT][tT][pP][sS]|[fF][tT][pP])://.*",
         },
     )
-    mime_type: None | ResourceMimeType = field(
+    mime_type: Optional[ResourceMimeType] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    content_version: None | ResourceContentVersion = field(
+    content_version: Optional[ResourceContentVersion] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219099,7 +219179,7 @@ class Resource:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ReviewDate:
     """
     The date a review was published to a repository.
@@ -219109,24 +219189,30 @@ class ReviewDate:
         name = "review_date"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    month: Month = field(
+    month: Optional[Month] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    day: Day = field(
+    day: Optional[Day] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    year: Year = field(
+    year: Optional[Year] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ScnPolicySet:
     """
     A group of related SCN policies.
@@ -219142,7 +219228,7 @@ class ScnPolicySet:
             "type": "Element",
         },
     )
-    start_date: None | XmlDate = field(
+    start_date: Optional[XmlDate] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219150,7 +219236,7 @@ class ScnPolicySet:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StandardsBody:
     """
     A wrapper for standards body information.
@@ -219160,28 +219246,34 @@ class StandardsBody:
         name = "standards_body"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    standards_body_name: StandardsBodyName = field(
+    standards_body_name: Optional[StandardsBodyName] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    standards_body_acronym: StandardsBodyAcronym = field(
+    standards_body_acronym: Optional[StandardsBodyAcronym] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdDesignatorT:
     class Meta:
         name = "std_designator_t"
 
-    std_designator: StdDesignator = field(
+    std_designator: Optional[StdDesignator] = field(
+        default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
-        }
+            "required": True,
+        },
     )
     std_alt_script: list[StdAltScript] = field(
         default_factory=list,
@@ -219199,14 +219291,15 @@ class StdDesignatorT:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Update:
-    """
-    The DOI of the content being updated (e.g. corrected, retracted, etc.)
-    In the CrossMark Terms and Conditions "updates" are defined as changes
-    that are likely to "change the reader’s interpretation or crediting of
-    the work." That is, *editorially significant* changes. "Updates" should
-    not include minor changes to spelling, punctuation, formatting, etc.
+    """The DOI of the content being updated (e.g. corrected, retracted, etc.) In
+    the CrossMark Terms and Conditions "updates" are defined as changes that are
+    likely to "change the reader’s interpretation or crediting of the work." That
+    is, *editorially significant* changes.
+
+    "Updates" should not include minor changes to spelling, punctuation,
+    formatting, etc.
 
     :ivar value:
     :ivar type_value: This attribute should be used to list the update
@@ -219228,25 +219321,30 @@ class Update:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 6,
             "max_length": 2048,
             "pattern": r"10\.[0-9]{4,9}/.{1,200}",
         },
     )
-    type_value: CmUpdateType = field(
+    type_value: Optional[CmUpdateType] = field(
+        default=None,
         metadata={
             "name": "type",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    date: XmlDate = field(
+    date: Optional[XmlDate] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Version:
     class Meta:
         name = "version"
@@ -219255,11 +219353,12 @@ class Version:
     value: str = field(
         default="",
         metadata={
+            "required": True,
             "min_length": 1,
             "max_length": 100,
         },
     )
-    lang: None | str | LangValue = field(
+    lang: Optional[Union[str, LangValue]] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219268,7 +219367,7 @@ class Version:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class XrefFaces:
     class Meta:
         name = "xrefFaces"
@@ -219345,7 +219444,7 @@ class XrefFaces:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class AcceptanceDate(DateT):
     """
     The date a manuscript was accepted for publication.
@@ -219356,11 +219455,11 @@ class AcceptanceDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ApprovalDate(DateT):
     """
-    The date on which a dissertation was accepted by the institution
-    awarding the degree, a report was approved, or a standard was accepted.
+    The date on which a dissertation was accepted by the institution awarding the
+    degree, a report was approved, or a standard was accepted.
     """
 
     class Meta:
@@ -219368,7 +219467,7 @@ class ApprovalDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ArchiveLocations:
     """
     Container element for archive information.
@@ -219386,14 +219485,14 @@ class ArchiveLocations:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class B(XrefFaces):
     class Meta:
         name = "b"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ContentDate(DateT):
     """
     The date a piece of content was created.
@@ -219404,7 +219503,7 @@ class ContentDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CreationDate(DateT):
     """
     The date a database or dataset item was created.
@@ -219415,17 +219514,16 @@ class CreationDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CrossmarkDomains:
-    """
-    Container element for crossmark_domain.
+    """Container element for crossmark_domain.
 
-    A list of domains where the publisher maintains updates and corrections
-    to their content. Minimally, one of these should include the Internet
-    domain name of the publisher's web site(s), but the publisher might
-    also decide to include 3rd party aggregators (e.g. Ebsco,
-    IngentaConnect) or archives with which the publisher has agreements to
-    update the content.
+    A list of domains where the publisher maintains updates and
+    corrections to their content. Minimally, one of these should include
+    the Internet domain name of the publisher's web site(s), but the
+    publisher might also decide to include 3rd party aggregators (e.g.
+    Ebsco, IngentaConnect) or archives with which the publisher has
+    agreements to update the content
     """
 
     class Meta:
@@ -219441,64 +219539,71 @@ class CrossmarkDomains:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Em(XrefFaces):
     class Meta:
         name = "em"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Font(XrefFaces):
     class Meta:
         name = "font"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Head:
-    """
-    Container for information related to the DOI batch submission.
+    """Container for information related to the DOI batch submission.
 
     This element uniquely identifies the batch deposit to Crossref and
-    contains information that will be used as a reference in error messages
-    triggered during submission processing.
+    contains information that will be used as a reference in error
+    messages triggered during submission processing.
     """
 
     class Meta:
         name = "head"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    doi_batch_id: DoiBatchId = field(
+    doi_batch_id: Optional[DoiBatchId] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    timestamp: Timestamp = field(
+    timestamp: Optional[Timestamp] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    depositor: Depositor = field(
+    depositor: Optional[Depositor] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    registrant: Registrant = field(
+    registrant: Optional[Registrant] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class I(XrefFaces):
     class Meta:
         name = "i"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Institution:
     """
     Container element for information about an institution or organization
@@ -219509,16 +219614,19 @@ class Institution:
         name = "institution"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    institution_name: None | InstitutionName = field(
+    institution_name: Optional[InstitutionName] = field(
         default=None,
         metadata={
             "type": "Element",
+            "required": True,
         },
     )
     institution_id: list[InstitutionId] = field(
         default_factory=list,
         metadata={
             "type": "Element",
+            "min_occurs": 1,
+            "sequence": 1,
         },
     )
     institution_acronym: list[InstitutionAcronym] = field(
@@ -219544,7 +219652,7 @@ class Institution:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Item:
     """
     A container used to associate a URI with the DOI being registered.
@@ -219554,25 +219662,25 @@ class Item:
         name = "item"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    doi: None | Doi = field(
+    doi: Optional[Doi] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    resource: None | Resource = field(
+    resource: Optional[Resource] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crawler: None | ItemCrawler = field(
+    crawler: Optional[ItemCrawler] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    label: None | str = field(
+    label: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219580,13 +219688,13 @@ class Item:
             "max_length": 128,
         },
     )
-    country: None | ItemCountry = field(
+    country: Optional[ItemCountry] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    link_header_relationship: None | ItemLinkHeaderRelationship = field(
+    link_header_relationship: Optional[ItemLinkHeaderRelationship] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219594,14 +219702,14 @@ class Item:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Ovl(XrefFaces):
     class Meta:
         name = "ovl"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PostedDate(DateT):
     """
     The date a pre-print was posted to a repository.
@@ -219612,13 +219720,13 @@ class PostedDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Publication:
-    """
-    Used to define a publication (book, journal, etc.) for pending
-    publication content.
+    """Used to define a publication (book, journal, etc.) for pending publication
+    content.
 
-    A title must be supplied, as well as an ISSN, ISBN, or title-level DOI.
+    A title must be supplied, as well as an ISSN, ISBN, or title-level
+    DOI
     """
 
     class Meta:
@@ -219647,7 +219755,7 @@ class Publication:
             "max_occurs": 2,
         },
     )
-    doi: None | Doi = field(
+    doi: Optional[Doi] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -219655,13 +219763,12 @@ class Publication:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PublicationDate(DateT):
-    """
-    The date of publication.
+    """The date of publication.
 
-    Multiple dates are allowed to allow for different dates of publication
-    for online and print versions.
+    Multiple dates are allowed to allow for different dates of
+    publication for online and print versions.
     """
 
     class Meta:
@@ -219669,7 +219776,7 @@ class PublicationDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PublisherItem:
     """
     A container for item identification numbers set by a publisher.
@@ -219695,7 +219802,7 @@ class PublisherItem:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ScnPolicies:
     """
     A wrapper for Scholarly Sharing Network (SCN) policy information.
@@ -219713,14 +219820,14 @@ class ScnPolicies:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Scp(XrefFaces):
     class Meta:
         name = "scp"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdAltAsPublished(StdDesignatorT):
     class Meta:
         name = "std_alt_as_published"
@@ -219733,7 +219840,7 @@ class StdAltAsPublished(StdDesignatorT):
             "tokens": True,
         },
     )
-    approved_month: None | int = field(
+    approved_month: Optional[int] = field(
         default=None,
         metadata={
             "name": "approvedMonth",
@@ -219743,38 +219850,39 @@ class StdAltAsPublished(StdDesignatorT):
             "total_digits": 2,
         },
     )
-    approved_year: XmlPeriod = field(
+    approved_year: Optional[XmlPeriod] = field(
+        default=None,
         metadata={
             "name": "approvedYear",
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdAsPublished(StdDesignatorT):
     """
-    Designator or other primary identifier for the standard being
-    deposited.
+    Designator or other primary identifier for the standard being deposited.
     """
 
     class Meta:
         name = "std_as_published"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    family: None | str = field(
+    family: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    set: None | str = field(
+    set: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    undated: None | str = field(
+    undated: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219782,7 +219890,7 @@ class StdAsPublished(StdDesignatorT):
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdFamilyDesignator(StdDesignatorT):
     """
     Provides for defining a DOI for a broad grouping of standards.
@@ -219793,18 +219901,18 @@ class StdFamilyDesignator(StdDesignatorT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdSetDesignator(StdDesignatorT):
     """
-    Provides for defining a DOI for a set of standards (sometimes know as
-    truncated form).
+    Provides for defining a DOI for a set of standards (sometimes know as truncated
+    form).
     """
 
     class Meta:
         name = "std_set_designator"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    family: None | str = field(
+    family: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219812,24 +219920,24 @@ class StdSetDesignator(StdDesignatorT):
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StdUndatedDesignator(StdDesignatorT):
     """
-    Provides for defining a DOI for a group of closely related standard
-    documents (undated form is a stem for any dated form).
+    Provides for defining a DOI for a group of closely related standard documents
+    (undated form is a stem for any dated form)
     """
 
     class Meta:
         name = "std_undated_designator"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    family: None | str = field(
+    family: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    set: None | str = field(
+    set: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219837,42 +219945,42 @@ class StdUndatedDesignator(StdDesignatorT):
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Strong(XrefFaces):
     class Meta:
         name = "strong"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Sub(XrefFaces):
     class Meta:
         name = "sub"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Sup(XrefFaces):
     class Meta:
         name = "sup"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Tt(XrefFaces):
     class Meta:
         name = "tt"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class U(XrefFaces):
     class Meta:
         name = "u"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class UpdateDate(DateT):
     """
     The date a dataset or database was last updated.
@@ -219883,10 +219991,9 @@ class UpdateDate(DateT):
         namespace = "http://www.crossref.org/schema/5.4.0"
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Updates:
-    """
-    A document might provide updates (e.g. corrections, clarifications,
+    """A document might provide updates (e.g. corrections, clarifications,
     retractions) to several other documents.
 
     When this is the case, the DOIs of the documents that are being
@@ -219906,7 +220013,7 @@ class Updates:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Affiliations:
     class Meta:
         name = "affiliations"
@@ -219921,7 +220028,7 @@ class Affiliations:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Assertion:
     """
     An assertion is a piece of custom, non-bibliographic metadata that the
@@ -219964,21 +220071,13 @@ class Assertion:
         name = "assertion"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    explanation: None | str = field(
+    explanation: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    group_label: None | str = field(
-        default=None,
-        metadata={
-            "type": "Attribute",
-            "min_length": 2,
-            "max_length": 150,
-        },
-    )
-    group_name: None | str = field(
+    group_label: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219986,7 +220085,7 @@ class Assertion:
             "max_length": 150,
         },
     )
-    label: None | str = field(
+    group_name: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -219994,20 +220093,30 @@ class Assertion:
             "max_length": 150,
         },
     )
-    name: str = field(
+    label: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
             "min_length": 2,
             "max_length": 150,
-        }
+        },
     )
-    order: None | int = field(
+    name: Optional[str] = field(
+        default=None,
+        metadata={
+            "type": "Attribute",
+            "required": True,
+            "min_length": 2,
+            "max_length": 150,
+        },
+    )
+    order: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    href: None | str = field(
+    href: Optional[str] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220074,26 +220183,26 @@ class Assertion:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Collection:
-    """
-    Container for item elements containing non-primary URIs associated with
-    the item being registered.
+    """Container for item elements containing non-primary URIs associated with the
+    item being registered.
 
     Collections are supported for the following (defined in the property
-    attribute): <ul xmlns=""> <li>list-based: Multiple Resolution, more
+    attribute): <ul xmlns=""> <li>list-based:  Multiple Resolution, more
     info:
     https://www.crossref.org/education/content-registration/creating-and-managing-dois/multiple-resolution/</li>
-    <li>country-based: more info:
+     <li>country-based: more info:
     https://www.crossref.org/education/content-registration/creating-and-managing-dois/multiple-resolution/#00130</li>
-    <li>crawler-based: for Similarity Check URLs, more info:
+     <li>crawler-based: for Similarity Check URLs, more info:
     https://www.crossref.org/education/similarity-check/participate/urls-for-new-deposits/</li>
-    <li>text-mining: supply specific URLs for text and data mining, more
-    info:
+     <li>text-mining: supply specific URLs for text and data mining,
+    more info:
     https://www.crossref.org/education/retrieve-metadata/rest-api/text-and-data-mining-for-members/</li>
-    <li>unspecified: can be used for additional URLs</li> <li>syndication:
-    identifies resources to be used for syndication</li> <li>link-header:
-    identifies resources to be used as an endpoint</li> </ul>.
+    <li>unspecified: can be used for additional URLs</li>
+    <li>syndication: identifies resources to be used for syndication</li>
+    <li>link-header: identifies resources to be used as an endpoint</li>
+    </ul>
     """
 
     class Meta:
@@ -220106,12 +220215,14 @@ class Collection:
             "type": "Element",
         },
     )
-    property: CollectionProperty = field(
+    property: Optional[CollectionProperty] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    multi_resolution: None | CollectionMultiResolution = field(
+    multi_resolution: Optional[CollectionMultiResolution] = field(
         default=None,
         metadata={
             "name": "multi-resolution",
@@ -220120,18 +220231,18 @@ class Collection:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CompetingInterestStatement:
     """
-    Statement of competing interest supplied by a review author during the
-    review process.
+    Statement of competing interest supplied by a review author during the review
+    process.
     """
 
     class Meta:
         name = "competing_interest_statement"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    language: None | CompetingInterestStatementLanguage = field(
+    language: Optional[CompetingInterestStatementLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220198,7 +220309,7 @@ class CompetingInterestStatement:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DatabaseDate:
     """
     Container for key dates in the life of a database or dataset.
@@ -220208,19 +220319,19 @@ class DatabaseDate:
         name = "database_date"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    creation_date: None | CreationDate = field(
+    creation_date: Optional[CreationDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publication_date: None | PublicationDate = field(
+    publication_date: Optional[PublicationDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    update_date: None | UpdateDate = field(
+    update_date: Optional[UpdateDate] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -220228,24 +220339,23 @@ class DatabaseDate:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Description:
     """
-    A narrative description of a file (e.g. a figure caption or video
-    description).
+    A narrative description of a file (e.g. a figure caption or video description).
     """
 
     class Meta:
         name = "description"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    language: None | DescriptionLanguage = field(
+    language: Optional[DescriptionLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    lang: None | str | LangValue = field(
+    lang: Optional[Union[str, LangValue]] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220313,7 +220423,7 @@ class Description:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Designators:
     """
     A wrapper for designators or other primary identifiers for a standard.
@@ -220323,25 +220433,25 @@ class Designators:
         name = "designators"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    std_family_designator: None | StdFamilyDesignator = field(
+    std_family_designator: Optional[StdFamilyDesignator] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    std_set_designator: None | StdSetDesignator = field(
+    std_set_designator: Optional[StdSetDesignator] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    std_undated_designator: None | StdUndatedDesignator = field(
+    std_undated_designator: Optional[StdUndatedDesignator] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    std_as_published: None | StdAsPublished = field(
+    std_as_published: Optional[StdAsPublished] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -220373,18 +220483,18 @@ class Designators:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class IntentStatement:
     """
-    Member's custom statement of intent to publish content for which a
-    pending publication DOI has been created.
+    Member's custom statement of intent to publish content for which a pending
+    publication DOI has been created.
     """
 
     class Meta:
         name = "intent_statement"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    language: None | IntentStatementLanguage = field(
+    language: Optional[IntentStatementLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220418,18 +220528,18 @@ class IntentStatement:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class OriginalLanguageTitle:
     """
-    The title of an item in its original language if the registration is
-    for a translation of a work.
+    The title of an item in its original language if the registration is for a
+    translation of a work.
     """
 
     class Meta:
         name = "original_language_title"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    language: None | OriginalLanguageTitleLanguage = field(
+    language: Optional[OriginalLanguageTitleLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220496,7 +220606,7 @@ class OriginalLanguageTitle:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Subtitle:
     """
     The sub-title portion of a title.
@@ -220567,7 +220677,7 @@ class Subtitle:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Title:
     """
     The title of the item being registered.
@@ -220638,12 +220748,13 @@ class Title:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class UnstructuredCitation:
-    """
-    A citation to an item that is not structured with the Crossref citation
-    model. 'unstructured_citation' supports deposit of references for which
-    no structural information is available.
+    """A citation to an item that is not structured with the Crossref citation
+    model.
+
+    'unstructured_citation' supports deposit of references for which no
+    structural information is available.
     """
 
     class Meta:
@@ -220711,7 +220822,7 @@ class UnstructuredCitation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Anonymous:
     """
     Used to capture anonymous contributors.
@@ -220721,30 +220832,34 @@ class Anonymous:
         name = "anonymous"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    affiliations: None | Affiliations = field(
+    affiliations: Optional[Affiliations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    sequence: AnonymousSequence = field(
+    sequence: Optional[AnonymousSequence] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    contributor_role: AnonymousContributorRole = field(
+    contributor_role: Optional[AnonymousContributorRole] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    name_style: None | AnonymousNameStyle = field(
+    name_style: Optional[AnonymousNameStyle] = field(
         default=None,
         metadata={
             "name": "name-style",
             "type": "Attribute",
         },
     )
-    language: None | AnonymousLanguage = field(
+    language: Optional[AnonymousLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -220752,61 +220867,61 @@ class Anonymous:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CitationT:
     class Meta:
         name = "citation_t"
 
-    issn: None | Issn = field(
+    issn: Optional[Issn] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    journal_title: None | JournalTitle = field(
+    journal_title: Optional[JournalTitle] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    author: None | Author = field(
+    author: Optional[Author] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    volume: None | Volume = field(
+    volume: Optional[Volume] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    issue: None | Issue = field(
+    issue: Optional[Issue] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    first_page: None | FirstPage = field(
+    first_page: Optional[FirstPage] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    elocation_id: None | ElocationId = field(
+    elocation_id: Optional[ElocationId] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    c_year: None | CYear = field(
+    c_year: Optional[CYear] = field(
         default=None,
         metadata={
             "name": "cYear",
@@ -220814,70 +220929,70 @@ class CitationT:
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    doi: None | Doi = field(
+    doi: Optional[Doi] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    isbn: None | Isbn = field(
+    isbn: Optional[Isbn] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    series_title: None | SeriesTitle = field(
+    series_title: Optional[SeriesTitle] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    volume_title: None | VolumeTitle = field(
+    volume_title: Optional[VolumeTitle] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    component_number: None | ComponentNumber = field(
+    component_number: Optional[ComponentNumber] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    article_title: None | ArticleTitle = field(
+    article_title: Optional[ArticleTitle] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    std_designator: None | StdDesignator = field(
+    std_designator: Optional[StdDesignator] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    standards_body: None | StandardsBody = field(
+    standards_body: Optional[StandardsBody] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/schema/5.4.0",
         },
     )
-    unstructured_citation: None | UnstructuredCitation = field(
+    unstructured_citation: Optional[UnstructuredCitation] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -220886,16 +221001,15 @@ class CitationT:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CustomMetadata:
-    """
-    Publishers are encouraged to provide any non-bibliographical metadata
-    that they feel might help the researcher evaluate and make better use
-    of the content that the Crossmark record refers to.
+    """Publishers are encouraged to provide any non-bibliographical metadata that
+    they feel might help the researcher evaluate and make better use of the content
+    that the Crossmark record refers to.
 
     For example, publishers might want to provide funding information,
-    clinical trial numbers, information about the peer-review process or a
-    summary of the publication history of the document.
+    clinical trial numbers, information about the peer-review process or
+    a summary of the publication history of the document.
     """
 
     class Meta:
@@ -220906,6 +221020,7 @@ class CustomMetadata:
         default_factory=list,
         metadata={
             "type": "Element",
+            "min_occurs": 1,
         },
     )
     program: list[FundrefProgram] = field(
@@ -220931,12 +221046,12 @@ class CustomMetadata:
             "name": "program",
             "type": "Element",
             "namespace": "http://www.crossref.org/clinicaltrials.xsd",
-            "max_occurs": 3,
+            "max_occurs": 4,
         },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DoiData:
     """
     The container for elements related directly to a DOI.
@@ -220946,21 +221061,25 @@ class DoiData:
         name = "doi_data"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    doi: Doi = field(
+    doi: Optional[Doi] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    timestamp: None | Timestamp = field(
+    timestamp: Optional[Timestamp] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    resource: Resource = field(
+    resource: Optional[Resource] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     collection: list[Collection] = field(
         default_factory=list,
@@ -220970,21 +221089,22 @@ class DoiData:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PersonName:
     """
-    The name of a person (as opposed to an organization) that contributed
-    to an item.
+    The name of a person (as opposed to an organization) that contributed to an
+    item.
     """
 
     class Meta:
         name = "person_name"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    given_name: None | GivenName = field(
+    given_name: Optional[GivenName] = field(
         default=None,
         metadata={
             "type": "Element",
+            "required": True,
         },
     )
     surname: list[Surname] = field(
@@ -221000,43 +221120,47 @@ class PersonName:
             "type": "Element",
         },
     )
-    suffix: None | Suffix = field(
+    suffix: Optional[Suffix] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    affiliations: None | Affiliations = field(
+    affiliations: Optional[Affiliations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    orcid: None | Orcid = field(
+    orcid: Optional[Orcid] = field(
         default=None,
         metadata={
             "name": "ORCID",
             "type": "Element",
         },
     )
-    sequence: PersonNameSequence = field(
+    sequence: Optional[PersonNameSequence] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    contributor_role: PersonNameContributorRole = field(
+    contributor_role: Optional[PersonNameContributorRole] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    name_style: None | PersonNameNameStyle = field(
+    name_style: Optional[PersonNameNameStyle] = field(
         default=None,
         metadata={
             "name": "name-style",
             "type": "Attribute",
         },
     )
-    language: None | PersonNameLanguage = field(
+    language: Optional[PersonNameLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221044,7 +221168,7 @@ class PersonName:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Status:
     class Meta:
         name = "status"
@@ -221057,14 +221181,14 @@ class Status:
             "min_occurs": 1,
         },
     )
-    type_value: None | StatusType = field(
+    type_value: Optional[StatusType] = field(
         default=None,
         metadata={
             "name": "type",
             "type": "Attribute",
         },
     )
-    date: None | XmlDate = field(
+    date: Optional[XmlDate] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221072,7 +221196,7 @@ class Status:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Titles:
     """
     A container for the title and original language title elements.
@@ -221082,10 +221206,12 @@ class Titles:
         name = "titles"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    title: Title = field(
+    title: Optional[Title] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     subtitle: list[Subtitle] = field(
         default_factory=list,
@@ -221094,7 +221220,7 @@ class Titles:
             "max_occurs": 2,
         },
     )
-    original_language_title: None | OriginalLanguageTitle = field(
+    original_language_title: Optional[OriginalLanguageTitle] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221102,16 +221228,18 @@ class Titles:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class VersionInfo:
     class Meta:
         name = "version_info"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    version: Version = field(
+    version: Optional[Version] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     description: list[Description] = field(
         default_factory=list,
@@ -221121,38 +221249,39 @@ class VersionInfo:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Citation(CitationT):
-    """
-    citation is used to deposit each reference in the reference list of the
-    item for which the DOI is being deposited.
+    """Citation is used to deposit each reference in the reference list of the item
+    for which the DOI is being deposited.
 
     For details see:
-    https://www.crossref.org/education/metadata-stewardship/maintaining-your-metadata/add-references/.
+    https://www.crossref.org/education/metadata-stewardship/maintaining-your-metadata/add-references/
     """
 
     class Meta:
         name = "citation"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    type_value: None | CitationType = field(
+    type_value: Optional[CitationType] = field(
         default=None,
         metadata={
             "name": "type",
             "type": "Attribute",
         },
     )
-    key: str = field(
+    key: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
+            "required": True,
             "min_length": 1,
             "max_length": 128,
             "white_space": "collapse",
-        }
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Contributors:
     """
     The container for all who contributed to authoring or editing an item.
@@ -221182,7 +221311,7 @@ class Contributors:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Crossmark:
     """
     Container element for CrossMark data.
@@ -221206,13 +221335,13 @@ class Crossmark:
         name = "crossmark"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    crossmark_version: None | CrossmarkVersion = field(
+    crossmark_version: Optional[CrossmarkVersion] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark_policy: None | CrossmarkPolicy = field(
+    crossmark_policy: Optional[CrossmarkPolicy] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221224,19 +221353,19 @@ class Crossmark:
             "type": "Element",
         },
     )
-    crossmark_domain_exclusive: None | CrossmarkDomainExclusive = field(
+    crossmark_domain_exclusive: Optional[CrossmarkDomainExclusive] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    updates: None | Updates = field(
+    updates: Optional[Updates] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    custom_metadata: None | CustomMetadata = field(
+    custom_metadata: Optional[CustomMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221244,7 +221373,7 @@ class Crossmark:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class JournalMetadata:
     """
     Container for metadata that defines a journal.
@@ -221276,25 +221405,25 @@ class JournalMetadata:
             "max_occurs": 6,
         },
     )
-    coden: None | Coden = field(
+    coden: Optional[Coden] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | JournalMetadataLanguage = field(
+    language: Optional[JournalMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221302,10 +221431,9 @@ class JournalMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class JournalVolume:
-    """
-    Container for the journal volume and DOI assigned to an entire journal
+    """Container for the journal volume and DOI assigned to an entire journal
     volume.
 
     You may register a DOI for an entire volume by including doi_data in
@@ -221316,24 +221444,26 @@ class JournalVolume:
         name = "journal_volume"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    volume: Volume = field(
+    volume: Optional[Volume] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221341,7 +221471,7 @@ class JournalVolume:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProceedingsMetadata:
     """
     Container for all information that applies to a non-series conference
@@ -221352,12 +221482,14 @@ class ProceedingsMetadata:
         name = "proceedings_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    proceedings_title: ProceedingsTitle = field(
+    proceedings_title: Optional[ProceedingsTitle] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    proceedings_subject: None | ProceedingsSubject = field(
+    proceedings_subject: Optional[ProceedingsSubject] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221386,31 +221518,31 @@ class ProceedingsMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | ProceedingsMetadataLanguage = field(
+    language: Optional[ProceedingsMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221418,7 +221550,7 @@ class ProceedingsMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class CitationList:
     """
     A list of articles, books, and other content cited by the item being
@@ -221437,10 +221569,9 @@ class CitationList:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Component:
-    """
-    Container for component metadata.
+    """Container for component metadata.
 
     Supplemental materials, figures, tables, and other items that can be
     considered a citeable part of a registered item may be registered as
@@ -221451,74 +221582,76 @@ class Component:
         name = "component"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publication_date: None | PublicationDate = field(
+    publication_date: Optional[PublicationDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    description: None | Description = field(
+    description: Optional[Description] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    format: None | Format = field(
+    format: Optional[Format] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | AccessIndicatorsProgram = field(
+    program: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi: None | Doi = field(
+    doi: Optional[Doi] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    parent_relation: ComponentParentRelation = field(
+    parent_relation: Optional[ComponentParentRelation] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
-    reg_agency: None | str = field(
+    reg_agency: Optional[str] = field(
         default=None,
         metadata={
             "name": "reg-agency",
             "type": "Attribute",
         },
     )
-    language: None | ComponentLanguage = field(
+    language: Optional[ComponentLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    component_size: None | int = field(
+    component_size: Optional[int] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221526,7 +221659,7 @@ class Component:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DatabaseMetadata:
     """
     database_metadata contains metadata about the database.
@@ -221536,18 +221669,20 @@ class DatabaseMetadata:
         name = "database_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    description: None | Description = field(
+    description: Optional[Description] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221560,7 +221695,7 @@ class DatabaseMetadata:
             "max_occurs": 10,
         },
     )
-    publisher: None | Publisher = field(
+    publisher: Optional[Publisher] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221573,38 +221708,38 @@ class DatabaseMetadata:
             "max_occurs": 10,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | RelationsProgram = field(
+    program: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    language: None | DatabaseMetadataLanguage = field(
+    language: Optional[DatabaseMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221612,7 +221747,7 @@ class DatabaseMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class JournalIssue:
     """
     Container for metadata that defines a single issue of a journal.
@@ -221622,13 +221757,13 @@ class JournalIssue:
         name = "journal_issue"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221642,31 +221777,31 @@ class JournalIssue:
             "max_occurs": 10,
         },
     )
-    journal_volume: None | JournalVolume = field(
+    journal_volume: Optional[JournalVolume] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    issue: None | Issue = field(
+    issue: Optional[Issue] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    special_numbering: None | SpecialNumbering = field(
+    special_numbering: Optional[SpecialNumbering] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221674,12 +221809,11 @@ class JournalIssue:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PeerReview:
     """
-    The peer_review content type is intended for assigning DOIs to the
-    reports and other artifacts associated with the review of published
-    content.
+    The peer_review content type is intended for assigning DOIs to the reports and
+    other artifacts associated with the review of published content.
 
     :ivar contributors:
     :ivar titles:
@@ -221703,21 +221837,25 @@ class PeerReview:
         name = "peer_review"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    review_date: ReviewDate = field(
+    review_date: Optional[ReviewDate] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     institution: list[Institution] = field(
         default_factory=list,
@@ -221726,70 +221864,74 @@ class PeerReview:
             "max_occurs": 5,
         },
     )
-    competing_interest_statement: None | CompetingInterestStatement = field(
+    competing_interest_statement: Optional[CompetingInterestStatement] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    running_number: None | RunningNumber = field(
+    running_number: Optional[RunningNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | AccessIndicatorsProgram = field(
+    program: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    crossref_org_relations_program: RelationsProgram = field(
+    crossref_org_relations_program: Optional[RelationsProgram] = field(
+        default=None,
         metadata={
             "name": "program",
             "type": "Element",
             "namespace": "http://www.crossref.org/relations.xsd",
-        }
+            "required": True,
+        },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    stage: None | PeerReviewStage = field(
+    stage: Optional[PeerReviewStage] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    type_value: None | PeerReviewType = field(
+    type_value: Optional[PeerReviewType] = field(
         default=None,
         metadata={
             "name": "type",
             "type": "Attribute",
         },
     )
-    recommendation: None | PeerReviewRecommendation = field(
+    recommendation: Optional[PeerReviewRecommendation] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    revision_round: None | int = field(
+    revision_round: Optional[int] = field(
         default=None,
         metadata={
             "name": "revision-round",
             "type": "Attribute",
         },
     )
-    language: None | PeerReviewLanguage = field(
+    language: Optional[PeerReviewLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221797,10 +221939,9 @@ class PeerReview:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PendingPublication:
-    """
-    Container for 'pending publication' metadata.
+    """Container for 'pending publication' metadata.
 
     Pending publication DOIs are used to create a DOI for a content item
     that is not yet available online or in print.
@@ -221810,27 +221951,31 @@ class PendingPublication:
         name = "pending_publication"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publication: Publication = field(
+    publication: Optional[Publication] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    acceptance_date: AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     institution: list[Institution] = field(
         default_factory=list,
@@ -221846,7 +221991,7 @@ class PendingPublication:
             "max_occurs": 3,
         },
     )
-    intent_statement: None | IntentStatement = field(
+    intent_statement: Optional[IntentStatement] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -221859,20 +222004,20 @@ class PendingPublication:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -221880,7 +222025,7 @@ class PendingPublication:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -221888,12 +222033,14 @@ class PendingPublication:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    doi: Doi = field(
+    doi: Optional[Doi] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    language: None | PendingPublicationLanguage = field(
+    language: Optional[PendingPublicationLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -221901,7 +222048,7 @@ class PendingPublication:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SeriesMetadata:
     """
     Container for metadata about a series publication.
@@ -221926,16 +222073,18 @@ class SeriesMetadata:
         name = "series_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     abstract: list[Abstract] = field(
         default_factory=list,
@@ -221952,54 +222101,54 @@ class SeriesMetadata:
             "max_occurs": 6,
         },
     )
-    coden: None | Coden = field(
+    coden: Optional[Coden] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    series_number: None | SeriesNumber = field(
+    series_number: Optional[SeriesNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    crossref_org_access_indicators_program: None | AccessIndicatorsProgram = (
-        field(
-            default=None,
-            metadata={
-                "name": "program",
-                "type": "Element",
-                "namespace": "http://www.crossref.org/AccessIndicators.xsd",
-            },
-        )
+    crossref_org_access_indicators_program: Optional[
+        AccessIndicatorsProgram
+    ] = field(
+        default=None,
+        metadata={
+            "name": "program",
+            "type": "Element",
+            "namespace": "http://www.crossref.org/AccessIndicators.xsd",
+        },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222007,22 +222156,24 @@ class SeriesMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SetMetadata:
     """
     When a book consists of multiple volumes that are not part of a serial
-    publication (series), set_metadata is used to describe information
-    about the entire set.
+    publication (series), set_metadata is used to describe information about the
+    entire set.
     """
 
     class Meta:
         name = "set_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     isbn: list[Isbn] = field(
         default_factory=list,
@@ -222031,37 +222182,37 @@ class SetMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    part_number: None | PartNumber = field(
+    part_number: Optional[PartNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222069,27 +222220,29 @@ class SetMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class BookMetadata:
     """
-    A container for all title-level metadata for a single book that is not
-    part of a series or set.
+    A container for all title-level metadata for a single book that is not part of
+    a series or set.
     """
 
     class Meta:
         name = "book_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     abstract: list[Abstract] = field(
         default_factory=list,
@@ -222098,7 +222251,7 @@ class BookMetadata:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222112,7 +222265,7 @@ class BookMetadata:
             "max_occurs": 10,
         },
     )
-    acceptance_date: None | AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222125,7 +222278,7 @@ class BookMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222138,26 +222291,26 @@ class BookMetadata:
             "min_occurs": 1,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222165,7 +222318,7 @@ class BookMetadata:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222173,25 +222326,25 @@ class BookMetadata:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | BookMetadataLanguage = field(
+    language: Optional[BookMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222199,29 +222352,31 @@ class BookMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class BookSeriesMetadata:
     """
-    A container for all information that applies to an individual volume of
-    a book series.
+    A container for all information that applies to an individual volume of a book
+    series.
     """
 
     class Meta:
         name = "book_series_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    series_metadata: SeriesMetadata = field(
+    series_metadata: Optional[SeriesMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222234,13 +222389,16 @@ class BookSeriesMetadata:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    volume: None | Volume = field(
-        default=None,
+    volume: list[Volume] = field(
+        default_factory=list,
         metadata={
             "type": "Element",
+            "min_occurs": 1,
+            "max_occurs": 2,
+            "sequence": 1,
         },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222250,7 +222408,7 @@ class BookSeriesMetadata:
         default_factory=list,
         metadata={
             "type": "Element",
-            "max_occurs": 10,
+            "max_occurs": 20,
         },
     )
     isbn: list[Isbn] = field(
@@ -222260,37 +222418,39 @@ class BookSeriesMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher: Publisher = field(
+    publisher: Optional[Publisher] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222298,7 +222458,7 @@ class BookSeriesMetadata:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222306,25 +222466,25 @@ class BookSeriesMetadata:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | BookSeriesMetadataLanguage = field(
+    language: Optional[BookSeriesMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222332,29 +222492,31 @@ class BookSeriesMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class BookSetMetadata:
     """
-    A container for all information that applies to an individual volume of
-    a book set.
+    A container for all information that applies to an individual volume of a book
+    set.
     """
 
     class Meta:
         name = "book_set_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    set_metadata: SetMetadata = field(
+    set_metadata: Optional[SetMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222367,13 +222529,16 @@ class BookSetMetadata:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    volume: None | Volume = field(
-        default=None,
+    volume: list[Volume] = field(
+        default_factory=list,
         metadata={
             "type": "Element",
+            "min_occurs": 1,
+            "max_occurs": 2,
+            "sequence": 1,
         },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222394,37 +222559,39 @@ class BookSetMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher: Publisher = field(
+    publisher: Optional[Publisher] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222432,7 +222599,7 @@ class BookSetMetadata:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222440,25 +222607,25 @@ class BookSetMetadata:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | BookSetMetadataLanguage = field(
+    language: Optional[BookSetMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222466,7 +222633,7 @@ class BookSetMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ComponentList:
     """
     Container for a group of components.
@@ -222484,7 +222651,7 @@ class ComponentList:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class PostedContent:
     """
     Container for posted content metadata.
@@ -222494,29 +222661,33 @@ class PostedContent:
         name = "posted_content"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    group_title: None | GroupTitle = field(
+    group_title: Optional[GroupTitle] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    posted_date: PostedDate = field(
+    posted_date: Optional[PostedDate] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    acceptance_date: None | AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222549,14 +222720,14 @@ class PostedContent:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222564,7 +222735,7 @@ class PostedContent:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222572,24 +222743,26 @@ class PostedContent:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222602,7 +222775,7 @@ class PostedContent:
             "type": "Attribute",
         },
     )
-    language: None | PostedContentLanguage = field(
+    language: Optional[PostedContentLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222610,32 +222783,38 @@ class PostedContent:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ProceedingsSeriesMetadata:
     """
-    Container for all information that applies to a specific conference
-    proceeding that is part of a series.
+    Container for all information that applies to a specific conference proceeding
+    that is part of a series.
     """
 
     class Meta:
         name = "proceedings_series_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    series_metadata: SeriesMetadata = field(
-        metadata={
-            "type": "Element",
-        }
-    )
-    proceedings_title: None | ProceedingsTitle = field(
+    series_metadata: Optional[SeriesMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
+            "required": True,
         },
     )
-    volume: None | Volume = field(
+    proceedings_title: Optional[ProceedingsTitle] = field(
         default=None,
         metadata={
             "type": "Element",
+            "required": True,
+        },
+    )
+    volume: list[Volume] = field(
+        default_factory=list,
+        metadata={
+            "type": "Element",
+            "min_occurs": 1,
+            "max_occurs": 2,
+            "sequence": 1,
         },
     )
     proceedings_subject: list[ProceedingsSubject] = field(
@@ -222666,25 +222845,25 @@ class ProceedingsSeriesMetadata:
             "max_occurs": 100,
         },
     )
-    noisbn: None | Noisbn = field(
+    noisbn: Optional[Noisbn] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222692,29 +222871,30 @@ class ProceedingsSeriesMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ReportPaperMetadata:
     """
-    Container for the metadata related to a Technical Report or Working
-    Paper.
+    Container for the metadata related to a Technical Report or Working Paper.
     """
 
     class Meta:
         name = "report-paper_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222749,7 +222929,7 @@ class ReportPaperMetadata:
             "max_occurs": 100,
         },
     )
-    publisher: None | Publisher = field(
+    publisher: Optional[Publisher] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222762,32 +222942,32 @@ class ReportPaperMetadata:
             "max_occurs": 5,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    contract_number: None | ContractNumber = field(
+    contract_number: Optional[ContractNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222795,7 +222975,7 @@ class ReportPaperMetadata:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -222803,37 +222983,37 @@ class ReportPaperMetadata:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    language: None | ReportPaperMetadataLanguage = field(
+    language: Optional[ReportPaperMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222841,29 +223021,31 @@ class ReportPaperMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ReportPaperSeriesMetadata:
     """
-    Container for the metadata related to a technical report or working
-    paper that is part of a series.
+    Container for the metadata related to a technical report or working paper that
+    is part of a series.
     """
 
     class Meta:
         name = "report-paper_series_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    series_metadata: SeriesMetadata = field(
+    series_metadata: Optional[SeriesMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222876,13 +223058,16 @@ class ReportPaperSeriesMetadata:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    volume: None | Volume = field(
-        default=None,
+    volume: list[Volume] = field(
+        default_factory=list,
         metadata={
             "type": "Element",
+            "min_occurs": 1,
+            "max_occurs": 2,
+            "sequence": 1,
         },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222910,7 +223095,7 @@ class ReportPaperSeriesMetadata:
             "max_occurs": 100,
         },
     )
-    publisher: None | Publisher = field(
+    publisher: Optional[Publisher] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -222923,50 +223108,50 @@ class ReportPaperSeriesMetadata:
             "max_occurs": 5,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    contract_number: None | ContractNumber = field(
+    contract_number: Optional[ContractNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: None | DoiData = field(
+    doi_data: Optional[DoiData] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | RelationsProgram = field(
+    program: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    language: None | ReportPaperSeriesMetadataLanguage = field(
+    language: Optional[ReportPaperSeriesMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -222974,27 +223159,28 @@ class ReportPaperSeriesMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class StandardMetadata:
     """
-    Container for the metadata related to a Standard that is not part of a
-    series.
+    Container for the metadata related to a Standard that is not part of a series.
     """
 
     class Meta:
         name = "standard_metadata"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     abstract: list[Abstract] = field(
         default_factory=list,
@@ -223003,18 +223189,20 @@ class StandardMetadata:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    designators: Designators = field(
+    designators: Optional[Designators] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    edition_number: None | EditionNumber = field(
+    edition_number: Optional[EditionNumber] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    approval_date: None | ApprovalDate = field(
+    approval_date: Optional[ApprovalDate] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223027,37 +223215,39 @@ class StandardMetadata:
             "max_occurs": 100,
         },
     )
-    publisher: None | Publisher = field(
+    publisher: Optional[Publisher] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    standards_body: StandardsBody = field(
+    standards_body: Optional[StandardsBody] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223065,7 +223255,7 @@ class StandardMetadata:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223073,36 +223263,38 @@ class StandardMetadata:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publication_status: None | StandardMetadataPublicationStatus = field(
+    publication_status: Optional[StandardMetadataPublicationStatus] = field(
         default=None,
         metadata={
             "type": "Attribute",
         },
     )
-    language: None | StandardMetadataLanguage = field(
+    language: Optional[StandardMetadataLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -223110,7 +223302,7 @@ class StandardMetadata:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ConferencePaper:
     """
     Container for all information about a single conference paper.
@@ -223120,16 +223312,18 @@ class ConferencePaper:
         name = "conference_paper"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     abstract: list[Abstract] = field(
         default_factory=list,
@@ -223145,38 +223339,38 @@ class ConferencePaper:
             "max_occurs": 10,
         },
     )
-    acceptance_date: None | AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    pages: None | Pages = field(
+    pages: Optional[Pages] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223184,7 +223378,7 @@ class ConferencePaper:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | ClinicaltrialsProgram = field(
+    program_2: Optional[ClinicaltrialsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223192,7 +223386,7 @@ class ConferencePaper:
             "namespace": "http://www.crossref.org/clinicaltrials.xsd",
         },
     )
-    program_3: None | RelationsProgram = field(
+    program_3: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223200,36 +223394,38 @@ class ConferencePaper:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223241,7 +223437,7 @@ class ConferencePaper:
             "type": "Attribute",
         },
     )
-    language: None | ConferencePaperLanguage = field(
+    language: Optional[ConferencePaperLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -223249,10 +223445,9 @@ class ConferencePaper:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ContentItem:
-    """
-    A segment of a book, report, or standard for which a DOI is being
+    """A segment of a book, report, or standard for which a DOI is being
     registered.
 
     Most commonly used for book chapters.
@@ -223262,13 +223457,13 @@ class ContentItem:
         name = "content_item"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223281,7 +223476,7 @@ class ContentItem:
             "namespace": "http://www.ncbi.nlm.nih.gov/JATS1",
         },
     )
-    component_number: None | ComponentNumber = field(
+    component_number: Optional[ComponentNumber] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223294,38 +223489,38 @@ class ContentItem:
             "max_occurs": 10,
         },
     )
-    acceptance_date: None | AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    pages: None | Pages = field(
+    pages: Optional[Pages] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223333,7 +223528,7 @@ class ContentItem:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | ClinicaltrialsProgram = field(
+    program_2: Optional[ClinicaltrialsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223341,7 +223536,7 @@ class ContentItem:
             "namespace": "http://www.crossref.org/clinicaltrials.xsd",
         },
     )
-    program_3: None | RelationsProgram = field(
+    program_3: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223349,45 +223544,49 @@ class ContentItem:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_type: ContentItemComponentType = field(
+    component_type: Optional[ContentItemComponentType] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
     level_sequence_number: int = field(
         default=1,
@@ -223404,7 +223603,7 @@ class ContentItem:
             "type": "Attribute",
         },
     )
-    language: None | ContentItemLanguage = field(
+    language: Optional[ContentItemLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -223412,24 +223611,24 @@ class ContentItem:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Dataset:
     """
-    dataset is used to capture information about one or more database
-    records or collections.
+    Dataset is used to capture information about one or more database records or
+    collections.
     """
 
     class Meta:
         name = "dataset"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: None | Titles = field(
+    titles: Optional[Titles] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223442,38 +223641,38 @@ class Dataset:
             "max_occurs": 10,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    description: None | Description = field(
+    description: Optional[Description] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    format: None | Format = field(
+    format: Optional[Format] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223481,7 +223680,7 @@ class Dataset:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223489,30 +223688,32 @@ class Dataset:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223526,11 +223727,11 @@ class Dataset:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Dissertation:
     """
-    dissertation is the top level element for deposit of metadata about one
-    or more dissertations.
+    Dissertation is the top level element for deposit of metadata about one or more
+    dissertations.
     """
 
     class Meta:
@@ -223543,16 +223744,18 @@ class Dissertation:
             "type": "Element",
         },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    titles: Titles = field(
+    titles: Optional[Titles] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     abstract: list[Abstract] = field(
         default_factory=list,
@@ -223591,26 +223794,26 @@ class Dissertation:
             "max_occurs": 100,
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223618,7 +223821,7 @@ class Dissertation:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | RelationsProgram = field(
+    program_2: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223626,36 +223829,38 @@ class Dissertation:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223667,7 +223872,7 @@ class Dissertation:
             "type": "Attribute",
         },
     )
-    language: None | DissertationLanguage = field(
+    language: Optional[DissertationLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -223675,7 +223880,7 @@ class Dissertation:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class JournalArticle:
     """
     Container for all information about a single journal article.
@@ -223693,7 +223898,7 @@ class JournalArticle:
             "max_occurs": 20,
         },
     )
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223714,38 +223919,38 @@ class JournalArticle:
             "max_occurs": 10,
         },
     )
-    acceptance_date: None | AcceptanceDate = field(
+    acceptance_date: Optional[AcceptanceDate] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    pages: None | Pages = field(
+    pages: Optional[Pages] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    publisher_item: None | PublisherItem = field(
+    publisher_item: Optional[PublisherItem] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    crossmark: None | Crossmark = field(
+    crossmark: Optional[Crossmark] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    program: None | FundrefProgram = field(
+    program: Optional[FundrefProgram] = field(
         default=None,
         metadata={
             "type": "Element",
             "namespace": "http://www.crossref.org/fundref.xsd",
         },
     )
-    program_1: None | AccessIndicatorsProgram = field(
+    program_1: Optional[AccessIndicatorsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223753,7 +223958,7 @@ class JournalArticle:
             "namespace": "http://www.crossref.org/AccessIndicators.xsd",
         },
     )
-    program_2: None | ClinicaltrialsProgram = field(
+    program_2: Optional[ClinicaltrialsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223761,7 +223966,7 @@ class JournalArticle:
             "namespace": "http://www.crossref.org/clinicaltrials.xsd",
         },
     )
-    program_3: None | RelationsProgram = field(
+    program_3: Optional[RelationsProgram] = field(
         default=None,
         metadata={
             "name": "program",
@@ -223769,36 +223974,38 @@ class JournalArticle:
             "namespace": "http://www.crossref.org/relations.xsd",
         },
     )
-    archive_locations: None | ArchiveLocations = field(
+    archive_locations: Optional[ArchiveLocations] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    scn_policies: None | ScnPolicies = field(
+    scn_policies: Optional[ScnPolicies] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    version_info: None | VersionInfo = field(
+    version_info: Optional[VersionInfo] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    doi_data: DoiData = field(
+    doi_data: Optional[DoiData] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    citation_list: None | CitationList = field(
+    citation_list: Optional[CitationList] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223810,7 +224017,7 @@ class JournalArticle:
             "type": "Attribute",
         },
     )
-    language: None | JournalArticleLanguage = field(
+    language: Optional[JournalArticleLanguage] = field(
         default=None,
         metadata={
             "type": "Attribute",
@@ -223818,32 +224025,36 @@ class JournalArticle:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class SaComponent:
     """
-    Container for component metadata if the component is being registered
-    after the parent record/DOI is created.
+    Container for component metadata if the component is being registered after the
+    parent record/DOI is created.
     """
 
     class Meta:
         name = "sa_component"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    component_list: ComponentList = field(
+    component_list: Optional[ComponentList] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    parent_doi: str = field(
+    parent_doi: Optional[str] = field(
+        default=None,
         metadata={
             "type": "Attribute",
+            "required": True,
             "min_length": 6,
             "max_length": 2048,
-        }
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Book:
     """
     Container for all information about a single book.
@@ -223853,19 +224064,19 @@ class Book:
         name = "book"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    book_metadata: None | BookMetadata = field(
+    book_metadata: Optional[BookMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    book_series_metadata: None | BookSeriesMetadata = field(
+    book_series_metadata: Optional[BookSeriesMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    book_set_metadata: None | BookSetMetadata = field(
+    book_set_metadata: Optional[BookSetMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223877,45 +224088,47 @@ class Book:
             "type": "Element",
         },
     )
-    book_type: BookBookType = field(
+    book_type: Optional[BookBookType] = field(
+        default=None,
         metadata={
             "type": "Attribute",
-        }
+            "required": True,
+        },
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Conference:
-    """
-    Container for all information about a single conference and its
-    proceedings.
+    """Container for all information about a single conference and its proceedings.
 
-    If a conference proceedings spans multiple volumes, each volume must be
-    contained in a unique conference element.
+    If a conference proceedings spans multiple volumes, each volume must
+    be contained in a unique conference element.
     """
 
     class Meta:
         name = "conference"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    contributors: None | Contributors = field(
+    contributors: Optional[Contributors] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    event_metadata: EventMetadata = field(
+    event_metadata: Optional[EventMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    proceedings_series_metadata: None | ProceedingsSeriesMetadata = field(
+    proceedings_series_metadata: Optional[ProceedingsSeriesMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
         },
     )
-    proceedings_metadata: None | ProceedingsMetadata = field(
+    proceedings_metadata: Optional[ProceedingsMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223929,21 +224142,23 @@ class Conference:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Database:
     """
-    database is the top level element for deposit of metadata about one or
-    more datasets or records in a database.
+    Database is the top level element for deposit of metadata about one or more
+    datasets or records in a database.
     """
 
     class Meta:
         name = "database"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    database_metadata: DatabaseMetadata = field(
+    database_metadata: Optional[DatabaseMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     dataset: list[Dataset] = field(
         default_factory=list,
@@ -223951,7 +224166,7 @@ class Database:
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223959,28 +224174,29 @@ class Database:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Journal:
-    """
-    Container for all information about a single journal and the volumes,
+    """Container for all information about a single journal and the volumes,
     issues, and articles being registered within the journal.
 
     Within a journal instance you may register articles from a single
     issue, detailed in journal_issue. If you want to register items from
-    more than one issue you must use multiple journal instances within your
-    XML file.
+    more than one issue you must use multiple journal instances within
+    your XML file.
     """
 
     class Meta:
         name = "journal"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    journal_metadata: JournalMetadata = field(
+    journal_metadata: Optional[JournalMetadata] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    journal_issue: None | JournalIssue = field(
+    journal_issue: Optional[JournalIssue] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -223994,25 +224210,25 @@ class Journal:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class ReportPaper:
     """
-    report-paper is the top level element for deposit of metadata about one
-    or more reports or working papers.
+    Report-paper is the top level element for deposit of metadata about one or more
+    reports or working papers.
     """
 
     class Meta:
         name = "report-paper"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    report_paper_metadata: None | ReportPaperMetadata = field(
+    report_paper_metadata: Optional[ReportPaperMetadata] = field(
         default=None,
         metadata={
             "name": "report-paper_metadata",
             "type": "Element",
         },
     )
-    report_paper_series_metadata: None | ReportPaperSeriesMetadata = field(
+    report_paper_series_metadata: Optional[ReportPaperSeriesMetadata] = field(
         default=None,
         metadata={
             "name": "report-paper_series_metadata",
@@ -224025,7 +224241,7 @@ class ReportPaper:
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -224039,22 +224255,22 @@ class ReportPaper:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Standard:
     """
-    standard is the top level element for deposit of metadata about
-    standards developed by Standards Development Organizations (SDOs) or
-    Consortia.
+    Standard is the top level element for deposit of metadata about standards
+    developed by Standards Development Organizations (SDOs) or Consortia.
     """
 
     class Meta:
         name = "standard"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    standard_metadata: None | StandardMetadata = field(
+    standard_metadata: Optional[StandardMetadata] = field(
         default=None,
         metadata={
             "type": "Element",
+            "required": True,
         },
     )
     content_item: list[ContentItem] = field(
@@ -224063,7 +224279,7 @@ class Standard:
             "type": "Element",
         },
     )
-    component_list: None | ComponentList = field(
+    component_list: Optional[ComponentList] = field(
         default=None,
         metadata={
             "type": "Element",
@@ -224077,14 +224293,14 @@ class Standard:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Body:
-    """
-    Container for the main body of a DOI record submission.
+    """Container for the main body of a DOI record submission.
 
-    While it is possible to include records for multiple journals, books,
-    conferences, or other types of content in a single submission, it is
-    not possible to mix content types within a single DOI submission.
+    While it is possible to include records for multiple journals,
+    books, conferences, or other types of content in a single
+    submission, it is not possible to mix content types within a single
+    DOI submission.
     """
 
     class Meta:
@@ -224160,28 +224376,31 @@ class Body:
     )
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class DoiBatch:
-    """
-    Top level element for a metadata record submission.
+    """Top level element for a metadata record submission.
 
-    This element indicates the start and end of the XML file. The version
-    number is fixed to the version of the schema.
+    This element indicates the start and end of the XML file. The
+    version number is fixed to the version of the schema.
     """
 
     class Meta:
         name = "doi_batch"
         namespace = "http://www.crossref.org/schema/5.4.0"
 
-    head: Head = field(
+    head: Optional[Head] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
-    body: Body = field(
+    body: Optional[Body] = field(
+        default=None,
         metadata={
             "type": "Element",
-        }
+            "required": True,
+        },
     )
     version: str = field(
         init=False,
