@@ -1,0 +1,139 @@
+[project]
+name = "commonmeta-py"
+dynamic = ["version"]
+description = "Library for conversions to/from the Commonmeta scholarly metadata format"
+authors = [{ name = "Martin Fenner", email = "martin@front-matter.de" }]
+requires-python = ">=3.9,<4.0"
+readme = "README.md"
+license = { text = "MIT" }
+keywords = [
+    "science",
+    "metadata",
+    "commonmeta",
+    "bibtex",
+    "csl",
+    "crossref",
+    "datacite",
+    "openalex",
+    "schemaorg",
+    "inveniordm",
+]
+dependencies = [
+    "requests>=2.31.0",
+    "dateparser>=1.1.7,<2",
+    "types-dateparser~=1.1",
+    "PyYAML>=5.4",
+    "types-PyYAML>=5.4",
+    "beautifulsoup4>=4.11,<5",
+    "types-beautifulsoup4>=4.11,<5",
+    "bibtexparser~=1.4",
+    "citeproc-py-styles>=0.1.2,<1",
+    "citeproc-py>=0.6,<1",
+    "jsonschema~=4.21",
+    "base32_lib~=1.0",
+    "datacite>=1.1.1,<2",
+    "xmltodict>=0.12,<0.20",
+    "types-xmltodict>=0.13,<0.20",
+    "nameparser>=1.1.1,<2",
+    "pycountry>=22.3.5",
+    "click>=8.1.7,<9",
+    "furl>=2.1.3,<3",
+    "lxml>=4.8",
+    "python-dateutil>=2.8.2,<3",
+    "nh3>=0.2.14,<0.3",
+    "pyjwt>=2.8.0,<3",
+    "orjson>=3.9.14,<4",
+    "orjsonl>=1.0.0,<2",
+    "edtf>=5.0.0,<6",
+    "requests>=2.32.3",
+    "requests-toolbelt>=1.0.0",
+    "psycopg[binary]>=3.2,<4",
+    "marshmallow-utils>=0.10.0",
+    "xmlschema>=4.0.1",
+    "xsdata[cli]>=25.7,<26",
+    "isbnlib>=3.10.14",
+]
+
+[project.urls]
+Homepage = "https://python.commonmeta.org"
+Repository = "https://github.com/front-matter/commonmeta-py"
+Documentation = "https://python.commonmeta.org"
+
+[project.scripts]
+commonmeta = "commonmeta.cli:cli"
+
+[dependency-groups]
+docs = [
+    "quartodoc>=0.11.1,<0.12",
+    "jupyterlab>=4.0.9,<5",
+    "jupyterlab-quarto>=0.2.8,<0.3",
+]
+dev = [
+    "coverage",
+    "ruff>=0.9.3,<1",
+    "pytest~=8.3",
+    "pytest-cov>=4.1.0,<5",
+    "pytest-recording>=0.13.1,<0.14",
+    "pytest-black",
+    "vcrpy>=6.02",
+]
+
+[tool.uv]
+default-groups = ["docs", "dev"]
+
+[tool.hatch.build.targets.sdist]
+include = ["commonmeta"]
+
+[tool.hatch.build.targets.wheel]
+include = ["commonmeta"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+python_files = "test-*.py"
+testpaths = ["tests"]
+
+[tool.mypy]
+exclude = ["build"]
+
+[tool.ruff]
+# Enable autofix for all enabled rules (when `--fix` is passed)
+fix = true
+# Enable Pycodestyle (`E`), Pyflakes (`F`), and import sorting (`I`)
+select = ["E", "F", "I", "F401", "F403"]
+# Exclude a variety of commonly ignored directories
+exclude = [".git", ".ruff_cache", "__pypackages__", "_build", "build", "dist"]
+# Allow unused variables when underscore-prefixed
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+# Allow autofix for all enabled rules
+fixable = ["ALL"]
+unfixable = []
+# Sort imports
+ignore = ["E501"]
+
+[tool.hatch.version]
+path = "commonmeta/__init__.py"
+
+[tool.tox]
+legacy_tox_ini = """
+    [tox]
+    min_version = 4.0
+    env_list =
+        py39
+        py310
+        py311
+        py312
+        py313
+
+    [testenv]
+    deps =
+        pytest
+        pytest-cov
+    commands = pytest --cov=commonmeta --cov-report=xml
+
+    [coverage:run]
+    relative_files = True
+    branch = True
+"""

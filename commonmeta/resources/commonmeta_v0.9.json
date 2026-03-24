@@ -1,0 +1,798 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://commonmeta.org/commonmeta_v0.9.json",
+  "title": "Commonmeta v0.9",
+  "description": "JSON representation of the Commonmeta schema. Designed for bulk ETL and ClickHouse storage. Snake_case throughout. Scalar fields map 1:1 to ClickHouse works table columns. Arrays map to child tables defined in $defs.",
+
+  "x-clickhouse": {
+    "table": "works",
+    "engine": "ReplacingMergeTree(updated_date)",
+    "partition_by": "toYear(publication_date)",
+    "order_by": ["doi", "source"],
+    "settings": { "index_granularity": 8192 },
+    "indexes": [
+      { "name": "idx_work_id",  "expr": "work_id",   "type": "bloom_filter(0.01)", "granularity": 4 },
+      { "name": "idx_pmid",     "expr": "pmid",       "type": "bloom_filter(0.01)", "granularity": 4 },
+      { "name": "idx_arxiv",    "expr": "arxiv_id",   "type": "bloom_filter(0.01)", "granularity": 4 }
+    ],
+    "note": "ReplacingMergeTree deduplicates on (doi, source) during merges. Use FINAL or max(updated_date) for consistent reads."
+  },
+
+  "type": "object",
+  "required": ["doi", "type", "source"],
+  "additionalProperties": false,
+
+  "properties": {
+
+    "doi": {
+      "description": "DOI, lowercased, without resolver prefix. Primary key and join key across all tables.",
+      "type": "string",
+      "pattern": "^10\\.",
+      "examples": ["10.7554/elife.01567", "10.1038/nature12373"],
+      "x-clickhouse": {
+        "column": "doi",
+        "type": "String",
+        "note": "Part of ORDER BY. Always lowercase. Never null — if no DOI exists use the work_id value."
+      }
+    },
+
+    "work_id": {
+      "description": "Source-native identifier URI. OpenAlex W-id, DataCite DOI URL, InvenioRDM record URL, etc. Distinct from doi — a work may have a work_id but no DOI.",
+      "type": ["string", "null"],
+      "format": "uri",
+      "examples": [
+        "https://openalex.org/W2741809807",
+        "https://doi.org/10.7554/elife.01567"
+      ],
+      "x-clickhouse": { "column": "work_id", "type": "String" }
+    },
+
+    "url": {
+      "description": "Canonical landing page URL. Distinct from DOI resolver URL.",
+      "type": ["string", "null"],
+      "format": "uri",
+      "x-clickhouse": { "column": "url", "type": "String" }
+    },
+
+    "type": {
+      "description": "Resource type. Controlled vocabulary aligned with DataCite resourceTypeGeneral and Schema.org.",
+      "type": "string",
+      "enum": [
+        "journal-article",
+        "proceedings-article",
+        "review-article",
+        "editorial",
+        "letter",
+        "erratum",
+        "book",
+        "book-chapter",
+        "book-series",
+        "reference-entry",
+        "proceedings",
+        "report",
+        "standard",
+        "dissertation",
+        "preprint",
+        "dataset",
+        "software",
+        "web-page",
+        "grant",
+        "peer-review",
+        "component",
+        "collection",
+        "other"
+      ],
+      "x-clickhouse": { "column": "type", "type": "LowCardinality(String)" }
+    },
+
+    "subtype": {
+      "description": "Source-specific subtype. Not normalised — preserves original value (Crossref type, DataCite resourceType string, OpenAlex type).",
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "subtype", "type": "LowCardinality(String)" }
+    },
+
+    "title": {
+      "description": "Primary title, plain text. HTML and LaTeX stripped by reader.",
+      "type": ["string", "null"],
+      "maxLength": 2000,
+      "x-clickhouse": { "column": "title", "type": "String" }
+    },
+
+    "subtitle": {
+      "description": "Subtitle, if distinct from title in source.",
+      "type": ["string", "null"],
+      "maxLength": 1000,
+      "x-clickhouse": { "column": "subtitle", "type": "String" }
+    },
+
+    "abstract": {
+      "description": "Abstract or primary description, plain text. HTML stripped.",
+      "type": ["string", "null"],
+      "x-clickhouse": {
+        "column": "abstract",
+        "type": "String",
+        "codec": "ZSTD(3)",
+        "note": "ZSTD compression effective on text fields. Excluded from ORDER BY and indexes."
+      }
+    },
+
+    "language": {
+      "description": "Primary language. BCP 47 tag, lowercase.",
+      "type": ["string", "null"],
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2,4})?$",
+      "examples": ["en", "de", "zh-CN"],
+      "x-clickhouse": { "column": "language", "type": "LowCardinality(String)" }
+    },
+
+    "publication_year": {
+      "description": "Publication year. Derived from publication_date at read time. Denormalised — stored explicitly as it is the partition key.",
+      "type": ["integer", "null"],
+      "minimum": 1000,
+      "maximum": 9999,
+      "x-clickhouse": {
+        "column": "publication_year",
+        "type": "UInt16",
+        "role": "denormalised",
+        "derived_from": "publication_date"
+      }
+    },
+
+    "publication_date": {
+      "description": "Full publication date, ISO 8601 date. Time component stripped — use updated_date for timestamps.",
+      "type": ["string", "null"],
+      "format": "date",
+      "examples": ["2024-01-15", "2014-02-11"],
+      "x-clickhouse": { "column": "publication_date", "type": "Nullable(Date)" }
+    },
+
+    "updated_date": {
+      "description": "Date record was last updated in source system. Used as ReplacingMergeTree version column.",
+      "type": ["string", "null"],
+      "format": "date",
+      "x-clickhouse": {
+        "column": "updated_date",
+        "type": "Nullable(Date)",
+        "role": "version_column"
+      }
+    },
+
+    "accepted_date": {
+      "description": "Date manuscript accepted for publication.",
+      "type": ["string", "null"],
+      "format": "date",
+      "x-clickhouse": { "column": "accepted_date", "type": "Nullable(Date)" }
+    },
+
+    "submitted_date": {
+      "description": "Date manuscript submitted.",
+      "type": ["string", "null"],
+      "format": "date",
+      "x-clickhouse": { "column": "submitted_date", "type": "Nullable(Date)" }
+    },
+
+    "publisher_id": {
+      "description": "Publisher identifier. ROR URL preferred. Crossref member URL accepted.",
+      "type": ["string", "null"],
+      "format": "uri",
+      "x-clickhouse": { "column": "publisher_id", "type": "LowCardinality(String)" }
+    },
+
+    "publisher_name": {
+      "description": "Publisher display name.",
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "publisher_name", "type": "LowCardinality(String)" }
+    },
+
+    "container_type": {
+      "description": "Type of the containing work. Controlled vocabulary.",
+      "type": ["string", "null"],
+      "enum": ["journal", "book", "book-series", "proceedings", "repository", "archive", "database", "other", null],
+      "x-clickhouse": { "column": "container_type", "type": "LowCardinality(String)" }
+    },
+
+    "container_title": {
+      "description": "Journal name, book series title, or proceedings name.",
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "container_title", "type": "String" }
+    },
+
+    "container_id": {
+      "description": "Container identifier. ISSN-L for journals (preferred), ISBN for books, OpenAlex source ID, etc.",
+      "type": ["string", "null"],
+      "examples": ["2167-8359", "9780262046824", "https://openalex.org/S2764455111"],
+      "x-clickhouse": { "column": "container_id", "type": "LowCardinality(String)" }
+    },
+
+    "container_id_type": {
+      "description": "Type of container_id value.",
+      "type": ["string", "null"],
+      "enum": ["issn-l", "issn", "isbn", "openalex", "url", "other", null],
+      "x-clickhouse": { "column": "container_id_type", "type": "LowCardinality(String)" }
+    },
+
+    "volume": {
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "volume", "type": "String" }
+    },
+
+    "issue": {
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "issue", "type": "String" }
+    },
+
+    "first_page": {
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "first_page", "type": "String" }
+    },
+
+    "last_page": {
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "last_page", "type": "String" }
+    },
+
+    "article_number": {
+      "description": "Article number or e-locator, used instead of page range in many modern journals.",
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "article_number", "type": "String" }
+    },
+
+    "version": {
+      "description": "Version string. '1', '2', 'v3', 'accepted', 'published', etc.",
+      "type": ["string", "null"],
+      "x-clickhouse": { "column": "version", "type": "String" }
+    },
+
+    "license_id": {
+      "description": "SPDX license identifier for primary license. Normalised from source URL or name by reader.",
+      "type": ["string", "null"],
+      "examples": ["CC-BY-4.0", "CC-BY-NC-4.0", "MIT", "Apache-2.0"],
+      "x-clickhouse": { "column": "license_id", "type": "LowCardinality(String)" }
+    },
+
+    "license_url": {
+      "description": "Canonical license URL. May differ from SPDX URL.",
+      "type": ["string", "null"],
+      "format": "uri",
+      "x-clickhouse": { "column": "license_url", "type": "String" }
+    },
+
+    "is_oa": {
+      "description": "Open access flag. True if any legal free-to-read version exists.",
+      "type": "boolean",
+      "default": false,
+      "x-clickhouse": { "column": "is_oa", "type": "Bool" }
+    },
+
+    "oa_status": {
+      "description": "OA colour category.",
+      "type": ["string", "null"],
+      "enum": ["gold", "green", "bronze", "hybrid", "closed", null],
+      "x-clickhouse": { "column": "oa_status", "type": "LowCardinality(String)" }
+    },
+
+    "oa_url": {
+      "description": "Best available OA URL (PDF or HTML).",
+      "type": ["string", "null"],
+      "format": "uri",
+      "x-clickhouse": { "column": "oa_url", "type": "String" }
+    },
+
+    "cited_by_count": {
+      "description": "Citation count at time of last snapshot ingest. Not updated incrementally — refresh on snapshot reload.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "x-clickhouse": { "column": "cited_by_count", "type": "UInt32" }
+    },
+
+    "reference_count": {
+      "description": "Number of references this work cites. Denormalised from len(references) by reader.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "x-clickhouse": {
+        "column": "reference_count",
+        "type": "UInt16",
+        "role": "denormalised",
+        "derived_from": "references"
+      }
+    },
+
+    "creator_count": {
+      "description": "Number of creators (authors + contributors). Denormalised from len(creators) by reader.",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "x-clickhouse": {
+        "column": "creator_count",
+        "type": "UInt8",
+        "role": "denormalised",
+        "derived_from": "creators"
+      }
+    },
+
+    "pmid": {
+      "description": "PubMed ID. Promoted from identifiers array — frequent enough to warrant a dedicated indexed column.",
+      "type": ["string", "null"],
+      "pattern": "^[0-9]+$",
+      "x-clickhouse": {
+        "column": "pmid",
+        "type": "String",
+        "index": { "type": "bloom_filter(0.01)", "granularity": 4 }
+      }
+    },
+
+    "pmcid": {
+      "description": "PubMed Central ID, without PMC prefix.",
+      "type": ["string", "null"],
+      "pattern": "^[0-9]+$",
+      "x-clickhouse": { "column": "pmcid", "type": "String" }
+    },
+
+    "arxiv_id": {
+      "description": "arXiv identifier. New-style only: YYMM.NNNNN. No 'arXiv:' prefix.",
+      "type": ["string", "null"],
+      "pattern": "^[0-9]{4}\\.[0-9]{4,5}(v[0-9]+)?$",
+      "examples": ["2310.01234", "2310.01234v2"],
+      "x-clickhouse": { "column": "arxiv_id", "type": "String" }
+    },
+
+    "source": {
+      "description": "Primary data source for this record. Part of ORDER BY — one row per (doi, source) pair.",
+      "type": "string",
+      "enum": ["crossref", "openalex", "datacite", "pubmed", "inveniordm", "jsonfeed", "other"],
+      "x-clickhouse": {
+        "column": "source",
+        "type": "LowCardinality(String)",
+        "note": "Part of ORDER BY. Enables multi-source records for the same DOI."
+      }
+    },
+
+    "state": {
+      "description": "Record lifecycle state.",
+      "type": "string",
+      "enum": ["active", "withdrawn", "not_found"],
+      "default": "active",
+      "x-clickhouse": { "column": "state", "type": "LowCardinality(String)" }
+    },
+
+    "schema_version": {
+      "description": "Version of this schema used to produce the record. Allows future migrations to filter by version.",
+      "type": "string",
+      "examples": ["2.0.0"],
+      "x-clickhouse": { "column": "schema_version", "type": "LowCardinality(String)" }
+    },
+
+    "creators": {
+      "description": "Authors and contributors. 1:N → works_creators child table.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Creator" },
+      "x-clickhouse": { "child_table": "works_creators" }
+    },
+
+    "funders": {
+      "description": "Funding references. 1:N → works_funders child table.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Funder" },
+      "x-clickhouse": { "child_table": "works_funders" }
+    },
+
+    "references": {
+      "description": "Works cited by this work. 1:N → works_references child table. This is the citation graph edge list.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Reference" },
+      "x-clickhouse": { "child_table": "works_references" }
+    },
+
+    "subjects": {
+      "description": "Subject classifications, topics, concepts, keywords. 1:N → works_subjects child table.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Subject" },
+      "x-clickhouse": { "child_table": "works_subjects" }
+    },
+
+    "identifiers": {
+      "description": "Additional identifiers beyond doi, pmid, pmcid, arxiv_id. Overflow for less-frequent ID types. 1:N → works_identifiers child table.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Identifier" },
+      "x-clickhouse": { "child_table": "works_identifiers" }
+    },
+
+    "related": {
+      "description": "Related works with typed relationships (versions, supplements, continuations). 1:N → works_related child table. Note: citations go in references, not here.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/RelatedWork" },
+      "x-clickhouse": { "child_table": "works_related" }
+    },
+
+    "geo_locations": {
+      "description": "Geographic locations associated with the work. Primarily for datasets. 1:N → works_geo_locations child table.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/GeoLocation" },
+      "x-clickhouse": { "child_table": "works_geo_locations" }
+    }
+  },
+
+  "$defs": {
+
+    "Creator": {
+      "title": "Creator",
+      "description": "One row per creator per work. Position is 0-based. Primary affiliation only — multiple affiliations not modelled at row level.",
+      "$id": "#/$defs/Creator",
+      "type": "object",
+      "required": ["doi", "source", "position"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_creators",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["doi", "source", "position"],
+        "indexes": [
+          { "name": "idx_orcid",          "expr": "orcid",          "type": "bloom_filter(0.01)", "granularity": 4 },
+          { "name": "idx_institution_id", "expr": "institution_id", "type": "bloom_filter(0.01)", "granularity": 4 }
+        ],
+        "note": "publication_year and country_code denormalised for partition pruning and filtering without joining works."
+      },
+
+      "properties": {
+        "doi": {
+          "description": "Foreign key → works.doi.",
+          "type": "string",
+          "x-clickhouse": { "column": "doi", "type": "String", "role": "foreign_key" }
+        },
+        "source": {
+          "description": "Denormalised from parent work. Required to identify the correct works row.",
+          "type": "string",
+          "x-clickhouse": { "column": "source", "type": "LowCardinality(String)", "role": "denormalised" }
+        },
+        "publication_year": {
+          "description": "Denormalised from parent work for filtering without join.",
+          "type": ["integer", "null"],
+          "x-clickhouse": { "column": "publication_year", "type": "UInt16", "role": "denormalised" }
+        },
+        "position": {
+          "description": "0-based position in creator list. Preserves author order.",
+          "type": "integer",
+          "minimum": 0,
+          "x-clickhouse": { "column": "position", "type": "UInt8" }
+        },
+        "creator_type": {
+          "description": "Person or organization.",
+          "type": "string",
+          "enum": ["person", "organization"],
+          "default": "person",
+          "x-clickhouse": { "column": "creator_type", "type": "LowCardinality(String)" }
+        },
+        "role": {
+          "description": "Contributor role. 'author' for standard authorship.",
+          "type": "string",
+          "enum": [
+            "author", "editor", "chair", "reviewer",
+            "translator", "data-collector", "data-manager",
+            "contact-person", "funder", "other"
+          ],
+          "default": "author",
+          "x-clickhouse": { "column": "role", "type": "LowCardinality(String)" }
+        },
+        "given_name": {
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "given_name", "type": "String" }
+        },
+        "family_name": {
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "family_name", "type": "String" }
+        },
+        "name": {
+          "description": "Full name (persons) or organization name. Always populated — derived from given_name + family_name if not supplied.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "name", "type": "String" }
+        },
+        "orcid": {
+          "description": "ORCID iD. 16-digit format without URL prefix: 0000-0001-2345-6789.",
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$",
+          "x-clickhouse": { "column": "orcid", "type": "String" }
+        },
+        "institution_id": {
+          "description": "Primary affiliation ROR identifier. ROR ID only, no URL prefix: 04pp8hn57.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "institution_id", "type": "LowCardinality(String)" }
+        },
+        "institution_name": {
+          "description": "Primary affiliation display name.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "institution_name", "type": "String" }
+        },
+        "country_code": {
+          "description": "ISO 3166-1 alpha-2 country code of primary affiliation. Denormalised for filtering.",
+          "type": ["string", "null"],
+          "pattern": "^[A-Z]{2}$",
+          "x-clickhouse": { "column": "country_code", "type": "LowCardinality(String)", "role": "denormalised" }
+        },
+        "institution_type": {
+          "description": "ROR institution type.",
+          "type": ["string", "null"],
+          "enum": ["education", "healthcare", "company", "archive", "nonprofit", "government", "facility", "funder", "other", null],
+          "x-clickhouse": { "column": "institution_type", "type": "LowCardinality(String)" }
+        }
+      }
+    },
+
+    "Funder": {
+      "title": "Funder",
+      "$id": "#/$defs/Funder",
+      "type": "object",
+      "required": ["doi", "source"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_funders",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["doi", "source", "funder_id"]
+      },
+
+      "properties": {
+        "doi":          { "type": "string",          "x-clickhouse": { "column": "doi",          "type": "String" } },
+        "source":       { "type": "string",          "x-clickhouse": { "column": "source",       "type": "LowCardinality(String)" } },
+        "funder_id": {
+          "description": "Funder identifier. ROR URL preferred. Crossref Funder ID (DOI) accepted.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "funder_id", "type": "LowCardinality(String)" }
+        },
+        "funder_id_type": {
+          "type": ["string", "null"],
+          "enum": ["ror", "crossref-funder-id", "isni", "other", null],
+          "x-clickhouse": { "column": "funder_id_type", "type": "LowCardinality(String)" }
+        },
+        "funder_name":   { "type": ["string", "null"], "x-clickhouse": { "column": "funder_name",   "type": "String" } },
+        "award_number":  { "type": ["string", "null"], "x-clickhouse": { "column": "award_number",  "type": "String" } },
+        "award_title":   { "type": ["string", "null"], "x-clickhouse": { "column": "award_title",   "type": "String" } },
+        "award_uri":     { "type": ["string", "null"], "format": "uri", "x-clickhouse": { "column": "award_uri", "type": "String" } }
+      }
+    },
+
+    "Reference": {
+      "title": "Reference",
+      "description": "Citation graph edge. One row per reference per work. citing_doi → ref_doi is the directed edge.",
+      "$id": "#/$defs/Reference",
+      "type": "object",
+      "required": ["citing_doi", "source"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_references",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["citing_doi", "source", "ref_doi"],
+        "indexes": [
+          { "name": "idx_ref_doi", "expr": "ref_doi", "type": "bloom_filter(0.01)", "granularity": 4,
+            "note": "Enables efficient reverse lookup: all works that cite a given DOI." }
+        ]
+      },
+
+      "properties": {
+        "citing_doi": {
+          "description": "DOI of the citing work. Foreign key → works.doi.",
+          "type": "string",
+          "x-clickhouse": { "column": "citing_doi", "type": "String", "role": "foreign_key" }
+        },
+        "source": {
+          "type": "string",
+          "x-clickhouse": { "column": "source", "type": "LowCardinality(String)" }
+        },
+        "ref_key": {
+          "description": "Source-assigned reference key (e.g. Crossref 'bib1'). Preserves ordering when ref_doi absent.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "ref_key", "type": "String" }
+        },
+        "ref_doi": {
+          "description": "DOI of cited work, lowercased, no prefix. Null for unresolved references.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "ref_doi", "type": "String" }
+        },
+        "ref_work_id": {
+          "description": "Resolved source-native identifier (OpenAlex W-id etc.) of cited work, if known.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "ref_work_id", "type": "String" }
+        },
+        "ref_year": {
+          "description": "Publication year of cited work.",
+          "type": ["integer", "null"],
+          "x-clickhouse": { "column": "ref_year", "type": "UInt16" }
+        },
+        "unstructured": {
+          "description": "Raw reference string. Populated when structured fields unavailable.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "unstructured", "type": "String", "codec": "ZSTD(3)" }
+        }
+      }
+    },
+
+    "Subject": {
+      "title": "Subject",
+      "description": "Subject classification, topic, concept, or keyword. One row per subject per work. The scheme field distinguishes vocabulary sources.",
+      "$id": "#/$defs/Subject",
+      "type": "object",
+      "required": ["doi", "source", "subject"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_subjects",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["scheme", "subject_id", "doi"]
+      },
+
+      "properties": {
+        "doi":    { "type": "string", "x-clickhouse": { "column": "doi",    "type": "String" } },
+        "source": { "type": "string", "x-clickhouse": { "column": "source", "type": "LowCardinality(String)" } },
+        "subject": {
+          "description": "Subject label or keyword string.",
+          "type": "string",
+          "x-clickhouse": { "column": "subject", "type": "String" }
+        },
+        "subject_id": {
+          "description": "Vocabulary-specific identifier URI. OpenAlex topic/concept URL, Wikidata QID, etc.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "subject_id", "type": "LowCardinality(String)" }
+        },
+        "scheme": {
+          "description": "Controlled vocabulary or classification system.",
+          "type": "string",
+          "enum": [
+            "openalex-topic",
+            "openalex-concept",
+            "openalex-keyword",
+            "crossref-subject",
+            "meshterms",
+            "dewey",
+            "jel",
+            "for",
+            "keyword",
+            "other"
+          ],
+          "default": "keyword",
+          "x-clickhouse": { "column": "scheme", "type": "LowCardinality(String)" }
+        },
+        "score": {
+          "description": "Relevance score from source. OpenAlex topic score (0.0–1.0), etc.",
+          "type": ["number", "null"],
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "x-clickhouse": { "column": "score", "type": "Nullable(Float32)" }
+        },
+        "level": {
+          "description": "Hierarchical level within scheme. OpenAlex concept level (0=domain, 1=field, 2=subfield, 3=topic, 4=concept).",
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "x-clickhouse": { "column": "level", "type": "UInt8" }
+        }
+      }
+    },
+
+    "Identifier": {
+      "title": "Identifier",
+      "description": "Overflow identifiers not promoted to top-level scalar columns. PMID, PMCID, arXiv go in works directly.",
+      "$id": "#/$defs/Identifier",
+      "type": "object",
+      "required": ["doi", "source", "identifier", "identifier_type"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_identifiers",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["identifier_type", "identifier"]
+      },
+
+      "properties": {
+        "doi":            { "type": "string", "x-clickhouse": { "column": "doi",            "type": "String" } },
+        "source":         { "type": "string", "x-clickhouse": { "column": "source",         "type": "LowCardinality(String)" } },
+        "identifier":     { "type": "string", "x-clickhouse": { "column": "identifier",     "type": "String" } },
+        "identifier_type": {
+          "type": "string",
+          "enum": ["isbn", "issn", "openalex", "wikidata", "mag", "hal", "handle", "url", "other"],
+          "x-clickhouse": { "column": "identifier_type", "type": "LowCardinality(String)" }
+        }
+      }
+    },
+
+    "RelatedWork": {
+      "title": "RelatedWork",
+      "description": "Typed relationship to another work. Not for citations — those belong in references.",
+      "$id": "#/$defs/RelatedWork",
+      "type": "object",
+      "required": ["doi", "source", "related_id", "relation_type"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_related",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["doi", "source", "relation_type"]
+      },
+
+      "properties": {
+        "doi":          { "type": "string", "x-clickhouse": { "column": "doi",          "type": "String" } },
+        "source":       { "type": "string", "x-clickhouse": { "column": "source",       "type": "LowCardinality(String)" } },
+        "related_id": {
+          "description": "Identifier of the related work. DOI preferred.",
+          "type": "string",
+          "x-clickhouse": { "column": "related_id", "type": "String" }
+        },
+        "related_id_type": {
+          "type": ["string", "null"],
+          "enum": ["doi", "url", "arxiv", "pmid", "openalex", "other", null],
+          "x-clickhouse": { "column": "related_id_type", "type": "LowCardinality(String)" }
+        },
+        "related_type": {
+          "description": "Resource type of the related work, if known.",
+          "type": ["string", "null"],
+          "x-clickhouse": { "column": "related_type", "type": "LowCardinality(String)" }
+        },
+        "relation_type": {
+          "description": "Relationship from this work to the related work. Controlled vocabulary from DataCite relationType.",
+          "type": "string",
+          "enum": [
+            "is-new-version-of",
+            "is-previous-version-of",
+            "is-preprint-of",
+            "is-published-version-of",
+            "is-part-of",
+            "has-part",
+            "is-supplement-to",
+            "is-supplemented-by",
+            "is-identical-to",
+            "is-derived-from",
+            "is-source-of",
+            "reviews",
+            "is-reviewed-by",
+            "documents",
+            "is-documented-by",
+            "compiles",
+            "is-compiled-by",
+            "obsoletes",
+            "is-obsoleted-by",
+            "continues",
+            "is-continued-by",
+            "is-described-by",
+            "describes",
+            "other"
+          ],
+          "x-clickhouse": { "column": "relation_type", "type": "LowCardinality(String)" }
+        }
+      }
+    },
+
+    "GeoLocation": {
+      "title": "GeoLocation",
+      "description": "Geographic location associated with the work. Primarily for datasets.",
+      "$id": "#/$defs/GeoLocation",
+      "type": "object",
+      "required": ["doi", "source"],
+      "additionalProperties": false,
+
+      "x-clickhouse": {
+        "table": "works_geo_locations",
+        "engine": "ReplacingMergeTree()",
+        "order_by": ["doi", "source"]
+      },
+
+      "properties": {
+        "doi":            { "type": "string",          "x-clickhouse": { "column": "doi",            "type": "String" } },
+        "source":         { "type": "string",          "x-clickhouse": { "column": "source",         "type": "LowCardinality(String)" } },
+        "place_name":     { "type": ["string", "null"], "x-clickhouse": { "column": "place_name",     "type": "String" } },
+        "longitude": {
+          "type": ["number", "null"],
+          "minimum": -180, "maximum": 180,
+          "x-clickhouse": { "column": "longitude", "type": "Nullable(Float32)" }
+        },
+        "latitude": {
+          "type": ["number", "null"],
+          "minimum": -90, "maximum": 90,
+          "x-clickhouse": { "column": "latitude", "type": "Nullable(Float32)" }
+        },
+        "bbox_west":  { "type": ["number", "null"], "x-clickhouse": { "column": "bbox_west",  "type": "Nullable(Float32)" } },
+        "bbox_east":  { "type": ["number", "null"], "x-clickhouse": { "column": "bbox_east",  "type": "Nullable(Float32)" } },
+        "bbox_south": { "type": ["number", "null"], "x-clickhouse": { "column": "bbox_south", "type": "Nullable(Float32)" } },
+        "bbox_north": { "type": ["number", "null"], "x-clickhouse": { "column": "bbox_north", "type": "Nullable(Float32)" } }
+      }
+    }
+  }
+}

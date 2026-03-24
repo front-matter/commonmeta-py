@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://www.crossref.org/doi_resources_schema/5.4.0"
+	targetNamespace="http://www.crossref.org/doi_resources_schema/5.4.0"
+	xmlns:fr5.4.0="http://www.crossref.org/fundingdata5.4.0.xsd"
+	xmlns:fr="http://www.crossref.org/fundref.xsd"
+	xmlns:ai="http://www.crossref.org/AccessIndicators.xsd"
+	xmlns:rel="http://www.crossref.org/relations.xsd"
+	xmlns:ct="http://www.crossref.org/clinicaltrials.xsd">
+
+<!-- =============================================================
+This is version 5.4.0 of the Crossref resource schema. It supports appending or updating select pieces of metadata to an existing DOI metadata record. Supported metadata includes:
+
+- reference lists
+- Crossmark metadata
+- clinical trial data
+- funding data
+- multiple resolution URLs
+- relationships
+- license metadata
+
+All changes are noted in the release notes for the schema repository in GitLab:  https://gitlab.com/crossref/schema/-/releases
+
+     ============================================================= -->
+	<xsd:include schemaLocation="common5.4.0.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/fundingdata5.4.0.xsd" schemaLocation="fundingdata5.4.0.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/fundref.xsd" schemaLocation="fundref.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/AccessIndicators.xsd" schemaLocation="AccessIndicators.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/relations.xsd" schemaLocation="relations.xsd"/>
+	<xsd:import namespace="http://www.crossref.org/clinicaltrials.xsd" schemaLocation="clinicaltrials.xsd"/>
+	<xsd:element name="doi_batch">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="head"/>
+				<xsd:element ref="body"/>
+			</xsd:sequence>
+			<xsd:attribute name="version" type="xsd:string" fixed="5.4.0"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="head">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi_batch_id"/>
+				<xsd:element ref="depositor"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="body">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi_citations" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="doi_resources" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="crossmark_data" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="fundref_data" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="lic_ref_data" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="doi_relations" minOccurs="0" maxOccurs="unbounded"/>
+				<xsd:element ref="clinicaltrial_data" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="doi_citations">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>
+				<xsd:element ref="citation_list"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="doi_resources">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>
+				<xsd:element ref="collection"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="crossmark_data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>
+				<xsd:element ref="crossmark"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="fundref_data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>
+				<xsd:element ref="fr:program"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="lic_ref_data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>
+				<xsd:element ref="ai:program"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="doi_relations">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>  
+				<xsd:element ref="rel:program"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="clinicaltrial_data">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="doi"/>  
+				<xsd:element ref="ct:program"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

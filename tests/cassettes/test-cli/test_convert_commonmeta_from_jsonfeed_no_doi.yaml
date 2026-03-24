@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0
+  response:
+    body:
+      string: '{"error":"Post not found"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 18 Mar 2026 15:17:45 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 404
+      message: Not Found
+version: 1

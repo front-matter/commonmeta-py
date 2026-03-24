@@ -1,0 +1,79 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.openalex.org/works/https://doi.org/10.1371/journal.pmed.0030277.g001
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/03MPQ7CMAwF4L2neFygBaljyIiEhBgQHCBq3R+ROiFxQLk9iViYrPf82Wo3ukGy
+        JyyyWd2oOmANz0fiEmUVS7rf97g6wcklHlX3K4s96L+2pEZ5fV8IgV6JotCIx+2Cj4ng4qbq4BhS
+        SKTwptDiPCG7BGKhUHxd1ZvNcDLWZnhLJhKGhYZnlQHRk7UrzzDlm4QMM5uVW9V53XwBiYsC988A
+        AAA=
+    headers:
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST, OPTIONS
+      Access-Control-Allow-Origin:
+      - '*'
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 9de537e6bd854464-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Wed, 18 Mar 2026 15:19:55 GMT
+      Nel:
+      - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
+      Report-To:
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=6Ao30TZxH1q3Bh%2B1%2F%2Bf6DCPIS6vGb5qDdHAEB%2FC4jdQ%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1773847194"}],"max_age":3600}'
+      Reporting-Endpoints:
+      - heroku-nel="https://nel.heroku.com/reports?s=6Ao30TZxH1q3Bh%2B1%2F%2Bf6DCPIS6vGb5qDdHAEB%2FC4jdQ%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1773847194"
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      Via:
+      - 1.1 heroku-router
+      X-RateLimit-Cost-USD:
+      - '0.0001'
+      X-RateLimit-Credits-Used:
+      - '1'
+      X-RateLimit-Limit:
+      - '10000'
+      X-RateLimit-Limit-USD:
+      - '1'
+      X-RateLimit-Onetime-Remaining:
+      - '0'
+      X-RateLimit-Prepaid-Remaining-USD:
+      - '0'
+      X-RateLimit-Remaining:
+      - '9959'
+      X-RateLimit-Remaining-USD:
+      - '0.9959'
+      X-RateLimit-Reset:
+      - '31205'
+      access-control-expose-headers:
+      - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
+        X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
+    status:
+      code: 404
+      message: Not Found
+version: 1

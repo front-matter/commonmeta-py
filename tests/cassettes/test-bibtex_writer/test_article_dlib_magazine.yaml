@@ -1,0 +1,119 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://doi.org/ra/10.1045
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QwMTUyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        ki+tmTYAAAA=
+    headers:
+      CF-RAY:
+      - 9de534727a0ff5ae-AMS
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 18 Mar 2026 15:17:33 GMT
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=uFthev%2BpEM7wyYX8VxahmxgZ3gG26icKbP1jAP8p5dtnnhuUBaTNhCIg%2FuRau06A5xQxngjav7IEbKxI5aQh5mifC09Zei%2B6kuRQ5%2BE1pPU%3D"}]}'
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      permissions-policy:
+      - interest-cohort=(),browsing-topics=()
+      vary:
+      - Origin
+      - accept-encoding
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/works/10.1045/january2017-burton
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VVwXLbNhD9FQ7OpARCksnw5sTN1FM77UTOpZIOILmSYIEAC4CWZY3/vQtSkukk
+        9jTqDcQCb/c9LN/uiXXcNZZkRG9ISCqwlq8gcrsacG+rTX/3AYwVWmEgHtABfYmQbE+EKuERSr8s
+        uYOo5sYh7mzGKLsIWcjSxSLsQk5UHt0HIsoilt7ROBtNMnbxN2L6KFZV1SSLk4SxMZuwi2Q0CclL
+        /tFgQgcxeQ6JgSUYUAVEhW6UIxkNSd3kUtg1GDz56cvX6+CyKBwiC2sbnzieDxl+Flo5UC4qdcWF
+        ags/rGZYaWG0tRU3m8hgOUYUrk295NIC5rVrbVzkIfAGGOTkJGLPyFV0I/Lglq/4EwYIIl39ee2T
+        YsF0PJkP77lquNkxGidR3hiHqEi6E/xeN0ZxGaF2okA8XwagZD+VNU7COIzZj7IiMI2jmN3FaTZJ
+        skn6vazjdMzGyThJKaWeC2Yt/NVPnjMq2moVnaQto3x3lHf0wUMduN6tIZgWay3FY/DZ8Ap8wwRL
+        bYJrlNboGgzPhRRuFwgVXHHHURwMYMsZwDN4suJe1+C3x2LN1arVq8bE4vFFMqzmQcumIzfCL944
+        VB8L2JOVeADfEJelEdwLueSVkDvc+XiU1sI/jWeBe0thrG8EvlxiVbx70dniOewBVcL0YS7Njivx
+        GoaXpfB3uXwf6/ed3EAf7A+NHXwe1l9cS93HukW51mcWNuWqNK/Qbnjw0TRPT/o8wFv8TxrbB5w6
+        XWzAnAknsBtA9vGuBNSgcqNhcx7mt+2rp8C2RceSZ1fo/9BX/fYZlPoltIW3zypvXSrxfnS0rTLS
+        SnrveOOfX2Al5D85jzZiJbyfHM/gnsS+aVrPJuAJlFBrK/6XxaQZpW9YjHeY1mIKbfBm7A37aDd7
+        /NMFOuzOL799vUHgtXN1Nh/Oh9vtdlBKkQ+0Wc2HfnUyzjiZDzvfnA9p3K0Ga1dJ8uwTNXmPbOfS
+        vY12BLxJtVX2ZHu2N1KOxnwYIfvvZ8kvvB2meCFrW7alFh3R94eEAXlonz2CXE+nX/yzxzRl0Yc0
+        GZGOnzpMb3THBy67Ik9HTpMGJBTOaCUK4jsRZbvHjU6kE5n3WDz/C+0J7zk8CAAA
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '846'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 18 Mar 2026 15:17:33 GMT
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      content-encoding:
+      - gzip
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - polite
+      x-concurrency-limit:
+      - '3'
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '10'
+    status:
+      code: 200
+      message: OK
+version: 1

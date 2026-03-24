@@ -1,0 +1,557 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schema.org/",
+  "title": "Schema.org Creative Work",
+  "description": "JSON schema for Schema.org CreativeWork and its subtypes",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "string",
+      "enum": ["http://schema.org", "https://schema.org"],
+      "description": "The JSON-LD context for Schema.org"
+    },
+    "@type": {
+      "type": "string",
+      "enum": [
+        "ArchiveComponent",
+        "Article",
+        "Atlas",
+        "AudioObject",
+        "Blog",
+        "BlogPosting",
+        "Book",
+        "BookSeries",
+        "Chapter",
+        "Claim",
+        "Clip",
+        "Collection",
+        "Comment",
+        "Conversation",
+        "Course",
+        "CreativeWork",
+        "CreativeWorkSeason",
+        "CreativeWorkSeries",
+        "DataCatalog",
+        "Dataset",
+        "DefinedTermSet",
+        "Diet",
+        "DigitalDocument",
+        "Drawing",
+        "Episode",
+        "ExercisePlan",
+        "Game",
+        "Guide",
+        "HowTo",
+        "HowToDirection",
+        "HowToSection",
+        "HowToStep",
+        "HowToTip",
+        "ImageObject",
+        "LearningResource",
+        "Legislation",
+        "Manuscript",
+        "Map",
+        "MathSolver",
+        "MediaObject",
+        "Menu",
+        "MenuSection",
+        "Message",
+        "Movie",
+        "MusicComposition",
+        "MusicPlaylist",
+        "MusicRecording",
+        "NewsArticle",
+        "Painting",
+        "Periodical",
+        "Photograph",
+        "Play",
+        "Poster",
+        "PresentationDigitalDocument",
+        "Product",
+        "PublicationIssue",
+        "PublicationVolume",
+        "Quotation",
+        "Recipe",
+        "Report",
+        "Review",
+        "ScholarlyArticle",
+        "Sculpture",
+        "Season",
+        "Series",
+        "ShortStory",
+        "SoftwareApplication",
+        "SoftwareSourceCode",
+        "SpecialAnnouncement",
+        "Statement",
+        "TechArticle",
+        "Thesis",
+        "TVSeason",
+        "TVSeries",
+        "VideoGame",
+        "VideoObject",
+        "VisualArtwork",
+        "WebContent",
+        "WebPage",
+        "WebPageElement",
+        "WebSite"
+      ],
+      "description": "The type of the creative work"
+    },
+    "@id": {
+      "type": "string",
+      "format": "uri",
+      "description": "The identifier of the creative work (typically a DOI or URL)"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name/title of the creative work"
+    },
+    "alternateName": {
+      "type": "string",
+      "description": "An alias or alternative title for the creative work"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description or abstract of the creative work"
+    },
+    "author": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/person"
+        },
+        {
+          "$ref": "#/definitions/organization"
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/person"
+              },
+              {
+                "$ref": "#/definitions/organization"
+              }
+            ]
+          }
+        }
+      ],
+      "description": "The author(s) of the creative work"
+    },
+    "creator": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/person"
+        },
+        {
+          "$ref": "#/definitions/organization"
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/person"
+              },
+              {
+                "$ref": "#/definitions/organization"
+              }
+            ]
+          }
+        }
+      ],
+      "description": "The creator(s) of the creative work"
+    },
+    "contributor": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/person"
+        },
+        {
+          "$ref": "#/definitions/organization"
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "#/definitions/person"
+              },
+              {
+                "$ref": "#/definitions/organization"
+              }
+            ]
+          }
+        }
+      ],
+      "description": "A contributor to the creative work"
+    },
+    "editor": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/person"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/person"
+          }
+        }
+      ],
+      "description": "The editor(s) of the creative work"
+    },
+    "publisher": {
+      "$ref": "#/definitions/organization",
+      "description": "The publisher of the creative work"
+    },
+    "datePublished": {
+      "type": "string",
+      "description": "Date of publication in ISO 8601 format"
+    },
+    "dateCreated": {
+      "type": "string",
+      "description": "Date of creation in ISO 8601 format"
+    },
+    "dateModified": {
+      "type": "string",
+      "description": "Date of modification in ISO 8601 format"
+    },
+    "inLanguage": {
+      "type": "string",
+      "description": "The language of the content (BCP 47 language code)"
+    },
+    "license": {
+      "type": "string",
+      "format": "uri",
+      "description": "A license document that applies to this content"
+    },
+    "version": {
+      "type": "string",
+      "description": "The version of the creative work"
+    },
+    "identifier": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/propertyValue"
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/definitions/propertyValue"
+              }
+            ]
+          }
+        }
+      ],
+      "description": "Any kind of identifier for the creative work"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the creative work"
+    },
+    "sameAs": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      ],
+      "description": "URL of a reference web page that unambiguously indicates the item's identity"
+    },
+    "keywords": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ],
+      "description": "Keywords or tags used to describe the creative work"
+    },
+    "isPartOf": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/creativeWork"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/creativeWork"
+          }
+        }
+      ],
+      "description": "A creative work or publication that this work is part of"
+    },
+    "hasPart": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/creativeWork"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/creativeWork"
+          }
+        }
+      ],
+      "description": "A creative work that is part of this work"
+    },
+    "citation": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/creativeWork"
+        },
+        {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "$ref": "#/definitions/creativeWork"
+              }
+            ]
+          }
+        }
+      ],
+      "description": "A citation or reference to another creative work"
+    },
+    "funding": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/grant"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/grant"
+          }
+        }
+      ],
+      "description": "A grant that directly or indirectly funded this work"
+    },
+    "spatialCoverage": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/place"
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/place"
+          }
+        }
+      ],
+      "description": "The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content"
+    },
+    "temporalCoverage": {
+      "type": "string",
+      "description": "The temporalCoverage of a CreativeWork indicates the period that the content applies to"
+    },
+    "encodingFormat": {
+      "type": "string",
+      "description": "Media type (MIME type) of the content"
+    },
+    "contentSize": {
+      "type": "string",
+      "description": "File size in bytes"
+    },
+    "pageStart": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer"
+        }
+      ],
+      "description": "The page on which the work starts"
+    },
+    "pageEnd": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer"
+        }
+      ],
+      "description": "The page on which the work ends"
+    },
+    "pagination": {
+      "type": "string",
+      "description": "Any description of pages that is not separated into pageStart and pageEnd"
+    }
+  },
+  "definitions": {
+    "person": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Person"
+        },
+        "@id": {
+          "type": "string",
+          "format": "uri",
+          "description": "Identifier for the person (e.g., ORCID)"
+        },
+        "name": {
+          "type": "string",
+          "description": "The full name of the person"
+        },
+        "givenName": {
+          "type": "string",
+          "description": "Given name. In the U.S., the first name of a Person"
+        },
+        "familyName": {
+          "type": "string",
+          "description": "Family name. In the U.S., the last name of a Person"
+        },
+        "affiliation": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/organization"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/organization"
+              }
+            }
+          ],
+          "description": "An organization that this person is affiliated with"
+        }
+      }
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Organization"
+        },
+        "@id": {
+          "type": "string",
+          "format": "uri",
+          "description": "Identifier for the organization (e.g., ROR ID)"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the organization"
+        }
+      },
+      "required": ["name"]
+    },
+    "propertyValue": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "PropertyValue"
+        },
+        "propertyID": {
+          "type": "string",
+          "description": "The identifier scheme (e.g., DOI, ISBN, ISSN)"
+        },
+        "value": {
+          "type": "string",
+          "description": "The value of the identifier"
+        }
+      },
+      "required": ["value"]
+    },
+    "creativeWork": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "@id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "grant": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Grant"
+        },
+        "@id": {
+          "type": "string",
+          "format": "uri"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the grant"
+        },
+        "identifier": {
+          "type": "string",
+          "description": "The grant number or identifier"
+        },
+        "funder": {
+          "$ref": "#/definitions/organization",
+          "description": "The organization funding the grant"
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string",
+          "const": "Place"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the place"
+        },
+        "geo": {
+          "type": "object",
+          "properties": {
+            "@type": {
+              "type": "string",
+              "const": "GeoCoordinates"
+            },
+            "latitude": {
+              "type": "number"
+            },
+            "longitude": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    }
+  }
+}

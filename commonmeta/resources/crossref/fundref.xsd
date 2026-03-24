@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://www.crossref.org/fundref.xsd"
+    xmlns="http://www.crossref.org/fundref.xsd">
+
+    <!--=========Change History===========
+    10/9/24 (PDF) added ror identifier
+    5/2/13 (PDF) changed funding_identifier to award_number
+    04/10/24 (PDF) added ror and grant_doi
+    -->
+
+    <xsd:element name="program">
+        <xsd:annotation>
+            <xsd:documentation>Information about registering funding data is available in our documentation: https://www.crossref.org/documentation/funder-registry/funding-data-deposits/</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="assertion" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string" fixed="fundref"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="assertion">
+        <xsd:annotation>
+            <xsd:documentation>Funding data attributes included in assertion are:
+* fundgroup: used to group funding info for items with multiple funding sources. Required for items with multiple award_number assertions, optional for items with a single award_number
+* funder_identifier: funding agency identifier, must be nested within the funder_name assertion
+* ror: ROR ID of a funder
+* funder_name: name of the funding agency (required)
+* award_number: grant number or other fund identifier
+            </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType mixed="true">
+            <xsd:sequence>
+                <xsd:element ref="assertion" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="provider" default="publisher">
+                <xsd:simpleType>
+                <xsd:restriction base="xsd:NMTOKEN">
+                    <xsd:enumeration value="publisher"/>
+                    <xsd:enumeration value="crossref"/>
+                </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+            <xsd:attribute name="name" use="required">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:NMTOKEN">
+                        <xsd:enumeration value="fundgroup"/>
+                        <xsd:enumeration value="funder_identifier"/>
+                        <xsd:enumeration value="ror"/>
+                        <xsd:enumeration value="funder_name"/>
+                        <xsd:enumeration value="award_number"/>
+                        <!--<xsd:enumeration value="grant_doi"/>  -->
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

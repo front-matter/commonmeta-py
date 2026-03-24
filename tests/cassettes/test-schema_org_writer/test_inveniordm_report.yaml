@@ -1,0 +1,94 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.5
+    method: GET
+    uri: https://zenodo.org/api/records/3871094
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA6xXbW/bNhD+K4SBFS0WWaTeLHtZh2Ld0A7NWiRd96EtDFqiLK6ypJJUUrfwf98d
+        JVtK6qR2kCCBY/Ke51555H0bJUpwI9LRjIw86lGHRg5lb2kwC/xZyMY0YpOQ/kzpjNLRCRmtqlRm
+        cicfOHTisOlbNp0F01kYjr0gnPhBLy9R0o8njE4D+JpUZSJqo0RiN0Z+HHmTOEbJtJK4wug49GLm
+        fhVllVbjDjrqsbfJDYnmjSpQKDem1jPXhaVxpZbu7eQrYXjKDQfUt5GRphCIf1aSqhYlKYQxQhFT
+        kTORK06EIbwgvEzJ21yQVxwMMwf5UDeLQibcyKqcgzrRhz10vNZ6oRMla5TAzdP66esbFpy3RpyQ
+        iwvyXGguT8if5LzRSS7N10+wjnY9+5u8Af4CvjUmr5QmVXbq1k8/lB9K4DzVRlXl8umjIv3cVL+8
+        WKeq+rJO8qJS1edGloJUigy/XkmT4xp+Vg24T1Y8UVUhU0EyWDdYRitRGtBDfn/97uVzKIsZijWF
+        kaX1GEKmxFKC6jXYyIu1lvqRsgaMuyCOCUaDnPE18bzZBWUBdaKJHz326BOfsRi+jQlEeUYgxoyy
+        yL1F5s3Zy+dQeFCOlNHJqdv5OwgBRgnCeS6TnKuUvKiUqUryWKTSgD/gRZ/aJ2PEYXZ4kgit50ou
+        c4PpweqwtYnuQ5Rh7f23UclXNrN/wacm/3KjgRl+DTAuRM6LDPk9yoiWyxKBUmhLn2WykHyb/DOe
+        y7QqyOsvEGKoNVXVUDwF5D+VCWblXGjBVZKTf0ppC7BS3cGi8OPAH3PCEE+p74WjzUeQ+CTWV0Bm
+        LR19n3ckuV7TtvwuEilgYYQMl0LpzkBb0wUvlw1fWo9FucQlJXTVqETMzboW14/Uuagh0ijU7Q3P
+        BC7rZrHdUa3sBpXIRJS65Wo9TBJnsXaCMbX7ShSWQVuJ3kTIhixT8QW7ELYjPS+4xtQZ1Qg8kFxB
+        0VpQLdN5rxnjiPuweMmLRgy71WbzcYNK790nCll+ai3VosiGnaprGdiseC1dsAOT5Q5aCCLmuVkV
+        t8D2QGolLqW4OgL1Wwf5lQ3a2uHd1Np4b9RddsL2HQxQd0Jdipuq7w6qmyqeGRcyrZF+NKyKH1Ps
+        rp0Wc1iMb4IODdUe3NHB2nHYcEsps/mKlzIT+i6HUa5zYLaN2w52jUyLz43tFceRbWFuKjIOdwaS
+        QjMU+qAstByt/Ane5qnk82PhFuXsSEzerBYll0V7Uhk9zqMZNs6fPPrK9gT4510wrtPMzZqicH8K
+        /2D0xKVbb8f/1bZxhg+sJNynhNEH1gKEe9R4D+2Mt9ebyUOrmewPmvfgUfO+DxveKnihy8u7zs/e
+        une2uJ5ibiv6CKLBCRjSwdV6d3e4ydPdv9rtkDuOw9pjS9Jjt3T3sMBeX9jfj8C28ie71972tj4U
+        38LcFtbTLBUvzT14OlxP1MAldw+eFtbTKOy4R6W1I9oCd1RHUyA0qVarBp6t8qgePURdJ3F0s1yC
+        WUcWym0M9jVh/ZynAt513Yv3QNYO6uyg3W02b+fnhB/Jh1jnGra37xhvdxBsNE2dDkb/H47yqh/a
+        Bw+uS9m9tMPBhf1++0if+GHC4sR3YpGkTsAWmRN70cIJ0gmbZtNg4fuWB6YSFLezRtsvSdst7dtC
+        fsVuyHwaxB4mPRfJJ92sELFKw1mcRnGUccGiOANOEYQinCZ0EqVetvDo1Lafe764297qfm8YFE5p
+        8JG4sWOVvsqRHcNaXZVCXYsCo37sd/OXNtw0NmV27tG5sHMGLrf2pYAvKm4nNEaDiEWYqlJC4ubD
+        vWkUMowGPtOt7DQMWdDL7tajKIqDvovOryvw2XBvn54g2COxY499nw62t+sehblz0zlm77K0aqdL
+        mO9W0rR1h0PY5n8AAAD//wMADT07E4QSAAA=
+    headers:
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Content-Type, ETag, Link, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset
+      content-encoding:
+      - gzip
+      content-security-policy:
+      - 'default-src ''self'' fonts.googleapis.com *.gstatic.com data: ''unsafe-inline''
+        ''unsafe-eval'' blob: zenodo-broker.web.cern.ch zenodo-broker-qa.web.cern.ch
+        maxcdn.bootstrapcdn.com cdnjs.cloudflare.com ajax.googleapis.com webanalytics.web.cern.ch'
+      content-type:
+      - application/json
+      date:
+      - Wed, 18 Mar 2026 15:20:23 GMT
+      etag:
+      - W/"5"
+      link:
+      - <https://zenodo.org/api/records/3871094> ; rel="linkset" ; type="application/linkset+json"
+      permissions-policy:
+      - interest-cohort=()
+      referrer-policy:
+      - strict-origin-when-cross-origin
+      retry-after:
+      - '48'
+      server:
+      - nginx
+      strict-transport-security:
+      - max-age=31556926; includeSubDomains
+      transfer-encoding:
+      - chunked
+      vary:
+      - Accept-Encoding
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - sameorigin
+      x-ratelimit-limit:
+      - '133'
+      x-ratelimit-remaining:
+      - '129'
+      x-ratelimit-reset:
+      - '1773847272'
+      x-source:
+      - api
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1

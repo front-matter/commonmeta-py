@@ -1,0 +1,68 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/works/10.2210/pdb4hhb/pdb
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/4VUa0/jMBD8K5E/J8F5lLSRTqcC5SEBQSXVHQfVyY1d6qOJc7ZD6KH+91snpS2P
+        glSpzno9np2d9TNSmuhKoRiJB2SjnClF7pmjFyWDWC3kdvSRScVFARuei1282UHxM+KF0lxXukm4
+        hW+6/kMzrUsV3+3d7UkhXSHv7/ZwGP1ddKKwCyicvlw4TIbwTZRiUjPqTBYQK6vJnKsZk2g5tlFB
+        cpP4Q8g5rTll1pUUmvHCOiKaWAekMIRJJkWxyIEAquurowM0Nkd5QdkTo4YsJZo5JZEaKr+99bHf
+        sTu2H4whq9nSvLnFbDi44/hBisO4g+Ow9wvgzS7olpco9qIw6kWdbtgLop6NNgoFbggioSUAMpVJ
+        XrbCoCdHkoVF+XQqSWZiltKyynQlGSBLNmWSFRlzMlEVGsXY3qr/q7IzUWhWaIeKnPCiqXO1uoXC
+        QBOlciIfHAnsJc9aRlMyVwxoqpmQ2jEQcIJJkEDP2erkCrcqjTgfCxgaAf3xeLkhTJ1SclPE23Sv
+        1w3tyPaiJv0oOTOOwq7ve/hur6STcDabNAujdWsMACCKaVOkZLtI4H3bszvvm4j3HexBH1OM4wD6
+        2H3bRC/YD33P73UxxkYKUcnMHD00kkFPjEeVs26OMeZLgzyD1CqF0tOBdTi8uU7759Z1OhwdpqPh
+        wEqOrdPRRf/SOhokP29O+4OL5OQ8OTi7tPqp5blRaPUvTyA9ubi2hoPr5HyUniWXCKoo4Ub+tBHH
+        OLvS0Kdmsu75IzOOOnEhPiU5n5tpOWYy5xBQ7G9luEJoyqUyypHplM85WU0oSL/BuHCPX6FcMVnp
+        f69hCKXcnCXzD7DG5i3IJ41Jo2g/2HLjzoY1Ngjs1gXvjfep2eE+Ifk9BzbbTqWsFIrv8mhn5dEd
+        Q+6nXhT78As+GvIg7IbByh+ZgGk1rYdJWnnlGbrFYboWZjkanr969eq6dusaDN2+fbD4zuk3+PsN
+        gNjYHS0NbjVZF98Exy9juVUiV6r6Us21VdXWQ/KWFRW85bNr9iSbrzr83LL7wzLdsljP+KdElsv/
+        mVKcdmEGAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '806'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 18 Mar 2026 15:18:45 GMT
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      content-encoding:
+      - gzip
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - polite
+      x-concurrency-limit:
+      - '3'
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '10'
+    status:
+      code: 200
+      message: OK
+version: 1

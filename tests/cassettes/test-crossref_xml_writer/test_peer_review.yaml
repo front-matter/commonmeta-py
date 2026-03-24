@@ -1,0 +1,76 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/works/10.7554/elife.55167.sa2
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/81XXW/bNhT9K4KeNkCyJVnyh95St13TOUnRtMC22A+0dO1wlUWNpJKogf97DynH
+        VpqkSPqwLUgAmaQvzzk8ujy5dZVmulZu6oovruduSCm2Jl83FWHsWsju6BVJxUWJibAX9ILDjJve
+        urzM6YZy85gzTX7FpEbdi4soiBIv8qJwsfDaKc03prqZ8IPIj8JPUZCGcZqEf6GmmQWqTeWm4SgO
+        wuF4PAlHUeC5h/0HvcGoN3C3nitpRZLKjPxM1KV2U6yr6mXB1SVJrKQZX5FznnGzRjkfzFTGNMoo
+        z5npHBtigEoFRBe3Rg6pH+UQeLEXTR7hEPhB7EeTT0GQ2t/vOSTjcRiO48D8AHAmSk2l7ohZl6qi
+        jK84GTQ5FazxeennrFGWzuePM6y61LpK5/15P5ME/FeUic0GLHpCruf9HQc17y+beT/uBfO+u10c
+        dsvFhvHSEts9XSwARl0KqX2zCGMkwUoXRojFQcTcryQvf6wJKr0+Oza+CHqjJInnfSogey9JwuGo
+        p1hkJGktVRG2kXTF6RqDlssTpgm8xAufEDzxw4kxzWCQDpKHgk8mURCHSSu4ErXMzFenUigFv2A5
+        V/7eOLm/bO7ME5pKrQTuUa2hjiNJVZCZUue84l/orcCA9jBcSZHXGV8W5FzT0l+xjJdrZy1RKfe1
+        xLedK1bw3JrNESuH1Rrag65TUi1Z4ShT0FE4AnjBNZoDFL856AikzKKw3jz7OD1+vXOCslYQMuN5
+        awDjLh9/kZ9E46EfD0bJ7ts4fuN48LTL3RTYyHPXsJBx33uosGmwdsU2vGgwcsLWBSuNFxX9UxuJ
+        MLjiUmlTcbXiBbecLKiS2WOZYheSzgqCTcWmqrVdAY4nDAjAmmd4394WeJBQ47hU0LnWhIpVwTIr
+        +CldO3+i43jO55Ibmc5RhSDMFga7PQDGjsp530X8vi7vo2V5zlsA/ynkZ55YNIwjfxgM/njeib0p
+        +Fe2JH3ZlWAm0FDEy1WwnVGj+WQ7FYyJpzD5v0M9nkxGfhwMB8+jflTQDayJY7t3/idCFtS8nPwJ
+        5ditcD6SIiazSxCvy4wXziuJfuickjY3oPO6wXq4wTK1fG3z1o15q89u4KC8q0w7stfldyiKpvtS
+        TwTRwA+HyTOFmQq0oRkvM1GUXWXe1fKa668vl2Z/5vYFOcpZZe4cB+JDFtu9Oi8NHIJVd6/MfX3e
+        5Lxc1nJ92ZVoP/iUSp0DV7gmnQ9MFKJL7FWdod/+hOHNay9bVsdoAGtpL1PDSQAeSGcG+C/T49MP
+        s6NfH5y2sjAOZ43PnnMq5DVrvsd+zjY1FV3Qv8FknP005pzg1Ay5Bn8OlfYghGqjjZmcNaLsAJ7X
+        QUCTu4ku6nbhW8kMhIeK3zjv7knNZEla//867MIE0M3S5jxceOa6fDTK7OIGQsYuhLSXqm8SFCAa
+        YtqmWHMB+9UhIpqAKSRfc4DuFsypEoo/FVxik4qGjwSX2CbF4adwnMZJmowfpN0QoWWE/LILLhna
+        sM0kiBy7EHMLiHzDZGMeD8GwbSQ2dO38sMuFgMWzwuRCm8Wuwnm/k8CUuzX71MsOtzYSdga4UvWT
+        EW2f//ZxSnWC+PcAc8FbWD/IiZKKnZFu25hmgPpiZY3F87t/TVDK5Lj8Xuic7YsZUypFUtt4h0Ug
+        +Tdl2t0uWsb2w/2g+2OK2+03K+tQNy0NAAA=
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1280'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 18 Mar 2026 15:18:46 GMT
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      content-encoding:
+      - gzip
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - polite
+      x-concurrency-limit:
+      - '3'
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '10'
+    status:
+      code: 200
+      message: OK
+version: 1

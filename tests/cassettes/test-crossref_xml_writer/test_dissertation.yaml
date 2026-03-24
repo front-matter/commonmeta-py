@@ -1,0 +1,67 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+    method: GET
+    uri: https://api.crossref.org/works/10.14264/uql.2020.791
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAA/6VUy47bMAz8FUNn25FjOw9fu5cCLdp9XbrJQZGZRK0sefXYbRDk30vaaTdoN6cC
+        QSCIIoczHPrIfBAhetYw+4OlrAPvxQ6ycOgB716tu7x9AeeVNRgocp7ztwhrjkwZH1SIYXjwdGRG
+        dFTiYQ/Jo1FDajgkdpvcRgDjtTAtFmihFy50YAImsXu5t1bTo3srldDJvVRgJLD1aZ0iQgs/oSWw
+        VgTIKBM7f3qa8mmd1mlRrfHVEApqAKdAxuusqB541ZTTppx/Q1CKIu+uZ00xr+bFcl7U86riKXtj
+        WOYVz2t2SpmDLTjqIpM2Up/4ro8brfweHL68xi75pDZOuAMCSmsCUsxa2wllBgLn0xN2LJ31vhPu
+        R+awLafkqOFWaA+I7/fWhYxKYAY45BY0jJk3Xz7SMHheVNNZtZrEZ50jZ57PlwXxHKfYKu/B4Zyp
+        LMEBSvS+jDydpYt3VOQZn2V88cDrhi+aevG3ivUSf9NlueCcY8ui7519uYpRp9N6vSZqNjpJEB9I
+        AhQayyqf/VG8zTaHC9V/M//tk+CiMPKQkNhbZfBMniGb9IB/WCBpo1Nml0AHbkcH0UYdMLltEpFo
+        a3Zo2RZTNRYR+uCVpyE6kKD6QEeq7UArQdWsSaTwewQWxmOPnqFUPbarfl7MAUmIiCBu2IMvdx8+
+        3mB0H0Lvm9VkNbFOqja3breaoFwoLedlVvLFLKuqqjxno12UpDllw3PWIFlI2Q69Rvb8KsgoSiSf
+        hQPAnK3olD6QlFZrZPqKHPHaw3McNqhhW+V8oOrbrUI+50UdNquDbjN4uS4X87Nf/zGbdWpHSl3e
+        odIWnf9/blpec9NydJOX1mFmQXA7YosO+Lq/SfDTgvOiEeDenJ10xHGojrYOj493n87CD7qD74WE
+        XI9rmcfnHNqYi7iavCh4XU0eb5tpKQqYV+xEsHFzwXTcwosLXKr4Hm8TtR7M/cfF/sLCby2NXmit
+        Gp1wdYnRfOdZHcemvoMMw+BOvwBEv/22vgUAAA==
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '769'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 18 Mar 2026 15:18:47 GMT
+      access-control-allow-headers:
+      - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
+        Accept-Ranges, Cache-Control
+      access-control-allow-origin:
+      - '*'
+      access-control-expose-headers:
+      - Link
+      content-encoding:
+      - gzip
+      permissions-policy:
+      - interest-cohort=()
+      server:
+      - Jetty(9.4.40.v20210413)
+      vary:
+      - Accept-Encoding
+      x-api-pool:
+      - polite
+      x-concurrency-limit:
+      - '3'
+      x-rate-limit-interval:
+      - 1s
+      x-rate-limit-limit:
+      - '10'
+    status:
+      code: 200
+      message: OK
+version: 1

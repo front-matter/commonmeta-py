@@ -1,0 +1,559 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://commonmeta.org/commonmeta_v0.13.json",
+  "title": "Commonmeta v0.13",
+  "description": "JSON representation of the Commonmeta schema.",
+  "additionalProperties": false,
+  "definitions": {
+    "affiliations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "organization": { "$ref": "#/definitions/organization" }
+        }
+      }
+    },
+    "contributorRole": {
+      "description": "The type of contribution made by a contributor",
+      "enum": [
+        "Author",
+        "Editor",
+        "Chair",
+        "Reviewer",
+        "ReviewAssistant",
+        "StatsReviewer",
+        "ReviewerExternal",
+        "Reader",
+        "Translator",
+        "ContactPerson",
+        "DataCollector",
+        "DataManager",
+        "Distributor",
+        "HostingInstitution",
+        "Producer",
+        "ProjectLeader",
+        "ProjectManager",
+        "ProjectMember",
+        "RegistrationAgency",
+        "RegistrationAuthority",
+        "RelatedPerson",
+        "ResearchGroup",
+        "RightsHolder",
+        "Researcher",
+        "Sponsor",
+        "WorkPackageLeader",
+        "Conceptualization",
+        "DataCuration",
+        "FormalAnalysis",
+        "FundingAcquisition",
+        "Investigation",
+        "Methodology",
+        "ProjectAdministration",
+        "Resources",
+        "Software",
+        "Supervision",
+        "Validation",
+        "Visualization",
+        "WritingOriginalDraft",
+        "WritingReviewEditing",
+        "Maintainer",
+        "Other"
+      ],
+      "type": "string"
+    },
+    "geoLocationBox": {
+      "type": "object",
+      "properties": {
+        "westBoundLongitude": { "$ref": "#/definitions/longitude" },
+        "eastBoundLongitude": { "$ref": "#/definitions/longitude" },
+        "southBoundLatitude": { "$ref": "#/definitions/latitude" },
+        "northBoundLatitude": { "$ref": "#/definitions/latitude" }
+      }
+    },
+    "geoLocationPoint": {
+      "type": "object",
+      "properties": {
+        "pointLongitude": { "$ref": "#/definitions/longitude" },
+        "pointLatitude": { "$ref": "#/definitions/latitude" }
+      }
+    },
+    "id": {
+      "description": "The unique identifier for the resource.",
+      "type": "string",
+      "format": "uri"
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "organization": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "The unique identifier for the organization.",
+          "type": "string",
+          "format": "uri"
+        },
+        "type": { "type": "string", "const": "Organization" },
+        "name": {
+          "description": "The name of the organization.",
+          "type": "string"
+        }
+      },
+      "required": ["name", "type"]
+    },
+    "person": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "format": "uri" },
+        "type": { "type": "string", "const": "Person" },
+        "givenName": {
+          "description": "The given name of the person.",
+          "type": "string"
+        },
+        "familyName": {
+          "description": "The family name of the person.",
+          "type": "string"
+        },
+        "affiliation": { "$ref": "#/definitions/affiliations" }
+      },
+      "required": ["familyName", "type"]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "Article",
+        "Audiovisual",
+        "BookChapter",
+        "BookPart",
+        "BookSection",
+        "BookSeries",
+        "BookSet",
+        "Book",
+        "Collection",
+        "Component",
+        "Database",
+        "Dataset",
+        "Dissertation",
+        "Document",
+        "Entry",
+        "Event",
+        "Grant",
+        "Image",
+        "Instrument",
+        "InteractiveResource",
+        "JournalArticle",
+        "JournalIssue",
+        "JournalVolume",
+        "Journal",
+        "PeerReview",
+        "PhysicalObject",
+        "Presentation",
+        "ProceedingsArticle",
+        "ProceedingsSeries",
+        "Proceedings",
+        "ReportComponent",
+        "ReportSeries",
+        "Report",
+        "Software",
+        "Standard",
+        "StudyRegistration",
+        "WebPage",
+        "Other"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "id": { "$ref": "#/definitions/id" },
+    "type": { "$ref": "#/definitions/type" },
+    "additionalType": {
+      "description": "The additional type of the resource.",
+      "type": "string"
+    },
+    "archiveLocations": {
+      "description": "The location where content is archived.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "CLOCKSS",
+          "LOCKSS",
+          "Portico",
+          "KB",
+          "Internet Archive",
+          "DWT"
+        ]
+      }
+    },
+    "container": {
+      "description": "The container of the resource.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "description": "The identifier for the container.",
+          "type": "string"
+        },
+        "identifierType": {
+          "description": "The identifierType for the container.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the container.",
+          "type": "string",
+          "enum": [
+            "Book",
+            "BookSeries",
+            "Journal",
+            "Proceedings",
+            "ProceedingsSeries",
+            "Repository",
+            "DataRepository",
+            "Periodical",
+            "Series"
+          ]
+        },
+        "title": {
+          "description": "The title of the container.",
+          "type": "string"
+        },
+        "firstPage": {
+          "description": "The first page of the resource.",
+          "type": "string"
+        },
+        "lastPage": {
+          "description": "The last page of the resource.",
+          "type": "string"
+        },
+        "volume": {
+          "description": "The volume of the resource.",
+          "type": "string"
+        },
+        "issue": {
+          "description": "The issue of the resource.",
+          "type": "string"
+        }
+      }
+    },
+    "contributors": {
+      "description": "The contributors to the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "organization": { "$ref": "#/definitions/organization" },
+          "person": { "$ref": "#/definitions/person" },
+          "contributorRoles": {
+            "description": "List of roles assumed by the contributor when working on the resource.",
+            "items": {
+              "$ref": "#/definitions/contributorRole"
+            },
+            "type": "array"
+          }
+        }
+      },
+      "minItems": 1
+    },
+    "date": {
+      "description": "The dates for the resource.",
+      "$comment": "The date fields are not required. Dates should be formatted as ISO 8601 dates.",
+      "type": "object",
+      "properties": {
+        "created": {
+          "description": "The date the resource was created.",
+          "type": "string"
+        },
+        "submitted": {
+          "description": "The date the resource was submitted.",
+          "type": "string"
+        },
+        "accepted": {
+          "description": "The date the resource was accepted.",
+          "type": "string"
+        },
+        "published": {
+          "description": "The date the resource was published.",
+          "type": "string"
+        },
+        "updated": {
+          "description": "The date the resource was updated.",
+          "type": "string"
+        },
+        "accessed": {
+          "description": "The date the resource was accessed.",
+          "type": "string"
+        },
+        "available": {
+          "description": "The date the resource was made available.",
+          "type": "string"
+        },
+        "withdrawn": {
+          "description": "The date the resource was withdrawn.",
+          "type": "string"
+        }
+      }
+    },
+    "descriptions": {
+      "description": "The descriptions of the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "The description of the resource.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the description.",
+            "type": "string",
+            "enum": ["Abstract", "Summary", "Methods", "TechnicalInfo", "Other"]
+          },
+          "language": {
+            "description": "The language of the title. Use one of the language codes from the IETF BCP 47 standard.",
+            "type": "string"
+          }
+        },
+        "required": ["description"]
+      }
+    },
+    "files": {
+      "description": "The downloadable files for the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bucket": { "type": "string" },
+          "key": { "type": "string" },
+          "checksum": { "type": "string" },
+          "url": { "type": "string", "format": "uri" },
+          "size": { "type": "integer" },
+          "mimeType": { "type": "string" }
+        },
+        "required": ["url"]
+      },
+      "minItems": 1
+    },
+    "fundingReferences": {
+      "description": "The funding references for the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "funderIdentifier": { "type": "string" },
+          "funderIdentifierType": {
+            "type": "string",
+            "enum": [
+              "Crossref Funder ID",
+              "ROR",
+              "GRID",
+              "ISNI",
+              "Ringgold",
+              "Other"
+            ]
+          },
+          "funderName": { "type": "string" },
+          "awardNumber": { "type": "string" },
+          "awardUri": { "type": "string", "format": "uri" }
+        },
+        "required": ["funderName"]
+      }
+    },
+    "geoLocations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "geoLocationPlace": { "type": "string" },
+          "geoLocationPoint": { "$ref": "#/definitions/geoLocationPoint" },
+          "geoLocationBox": { "$ref": "#/definitions/geoLocationBox" },
+          "geoLocationPolygons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "polygonPoints": {
+                  "type": "array",
+                  "items": { "$ref": "#/definitions/geoLocationPoint" },
+                  "minItems": 4
+                },
+                "inPolygonPoint": { "$ref": "#/definitions/geoLocationPoint" }
+              },
+              "required": ["polygonPoints"]
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "uniqueItems": true
+    },
+    "identifiers": {
+      "description": "Identifiers for the resource, including the id.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "identifier": { "type": "string" },
+          "identifierType": {
+            "type": "string",
+            "enum": [
+              "ARK",
+              "arXiv",
+              "Bibcode",
+              "DOI",
+              "Handle",
+              "ISBN",
+              "ISSN",
+              "PMID",
+              "PMCID",
+              "PURL",
+              "URL",
+              "URN",
+              "UUID",
+              "Other"
+            ]
+          }
+        },
+        "required": ["identifier", "identifierType"]
+      }
+    },
+    "language": {
+      "description": "The language of the resource. Use one of the language codes from the IETF BCP 47 standard.",
+      "type": "string"
+    },
+    "license": {
+      "description": "The license for the resource. Use one of the SPDX license identifiers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "provider": {
+      "description": "The provider of the resource. This can be a DOI registration agency or a repository.",
+      "type": "string",
+      "enum": ["Crossref", "DataCite", "GitHub", "JaLC", "KISTI", "mEDRA", "OP"]
+    },
+    "publisher": {
+      "description": "The publisher of the resource.",
+      "type": "object",
+      "properties": {
+        "organization": { "$ref": "#/definitions/organization" }
+      }
+    },
+    "relations": {
+      "description": "Other resolvable persistent unique IDs related to the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uri"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "IsNewVersionOf",
+              "IsPreviousVersionOf",
+              "IsVersionOf",
+              "HasVersion",
+              "IsPartOf",
+              "HasPart",
+              "IsVariantFormOf",
+              "IsOriginalFormOf",
+              "IsIdenticalTo",
+              "IsTranslationOf",
+              "HasTranslation",
+              "IsReviewedBy",
+              "Reviews",
+              "HasReview",
+              "IsPreprintOf",
+              "HasPreprint",
+              "IsSupplementTo",
+              "IsSupplementedBy"
+            ]
+          }
+        },
+        "required": ["id", "type"]
+      },
+      "minItems": 1
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "$ref": "#/definitions/id" },
+          "type": { "$ref": "#/definitions/type" },
+          "key": { "type": "string" },
+          "contributor": { "type": "string" },
+          "title": { "type": "string" },
+          "publisher": { "type": "string" },
+          "publicationYear": { "type": "string" },
+          "volume": { "type": "string" },
+          "issue": { "type": "string" },
+          "firstPage": { "type": "string" },
+          "lastPage": { "type": "string" },
+          "containerTitle": { "type": "string" },
+          "edition": { "type": "string" },
+          "unstructured": { "type": "string" }
+        },
+        "required": ["key"]
+      }
+    },
+    "subjects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject": { "type": "string" },
+          "language": {
+            "description": "The language of the subject. Use one of the language codes from the IETF BCP 47 standard.",
+            "type": "string"
+          }
+        },
+        "required": ["subject"]
+      }
+    },
+    "titles": {
+      "description": "The titles of the resource.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "description": "The title of the resource.",
+            "type": "string"
+          },
+          "type": {
+            "description": "The type of the title.",
+            "type": "string",
+            "enum": ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+          },
+          "language": {
+            "description": "The language of the title. Use one of the language codes from the IETF BCP 47 standard.",
+            "type": "string"
+          }
+        },
+        "required": ["title"]
+      }
+    },
+    "url": {
+      "description": "The URL of the resource.",
+      "type": "string",
+      "format": "uri"
+    },
+    "version": {
+      "description": "The version of the resource.",
+      "type": "string"
+    }
+  },
+  "required": ["id", "type"]
+}
