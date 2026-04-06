@@ -110,4 +110,559 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935
+  response:
+    body:
+      string: '{"abstract":"Egon Willighagen, at Uppsala University, has pioneered
+        the use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations.","archive_url":"https://wayback.archive-it.org/22125/2025-05-05T11:03:02Z/https://opencitations.hypotheses.org/31","authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"archive_collection":22125,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22125/20231105110316/","archive_timestamps":[20231105110316,20240505181542,20241105110224,20250505110302],"authors":[{"name":"OpenCitations
+        Team"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"84fbaf60-5174-43f6-976e-5f0b6f1da9a1","created_at":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://opencitations.hypotheses.org","id":"1e1a0f67-e922-4977-b5b8-c5ec19c2f43a","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://@scicomm.xyz/@opencitations","prefix":"10.59350","registered_at":1727299025,"relative_url":null,"ror":"https://ror.org/00wb4mk85","secure":true,"slug":"opencitations","status":"active","subfield":"1802","subfield_validated":null,"title":"OpenCitations
+        blog","updated_at":1775462901.219275,"use_api":true,"use_mastodon":true,"user_id":"13119f55-bbed-46a9-9338-80103d8c6b05"},"blog_name":"OpenCitations
+        blog","blog_slug":"opencitations","citations":[{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1007/s11192-013-1108-3","citation":"https://doi.org/10.1007/s11192-013-1108-3","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2013-08-10","type":"JournalArticle","unstructured":"Parinov,
+        S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943. https://doi.org/10.1007/s11192-013-1108-3","updated_at":"2026-04-05T05:17:45.09562+00:00","validated":true},{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1134/s0361768814060139","citation":"https://doi.org/10.1134/s0361768814060139","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2014-11","type":"JournalArticle","unstructured":"Kogalovsky,
+        M. R., &amp; Parinov, S. I. (2014). Social network technologies for semantic
+        linking of information objects in scientific digital library. <i>Programming
+        and Computer Software</i>, <i>40</i>(6), 314\u2013322. https://doi.org/10.1134/s0361768814060139","updated_at":"2026-04-05T05:17:42.260745+00:00","validated":true}],"content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>\n","doi":"https://doi.org/10.59350/dcw3y-7em87","funding_references":null,"guid":"http://opencitations.wordpress.com/?p=31","id":"6d0f1603-4081-4a4c-9bdf-1f0146558935","image":null,"images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"indexed":true,"indexed_at":1761288317,"language":"en","parent_doi":null,"published_at":1287671563,"reference":[],"registered_at":0,"relationships":[],"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1659621126,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 08:29:11 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935
+  response:
+    body:
+      string: '{"abstract":"Egon Willighagen, at Uppsala University, has pioneered
+        the use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations.","archive_url":"https://wayback.archive-it.org/22125/2025-05-05T11:03:02Z/https://opencitations.hypotheses.org/31","authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"archive_collection":22125,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22125/20231105110316/","archive_timestamps":[20231105110316,20240505181542,20241105110224,20250505110302],"authors":[{"name":"OpenCitations
+        Team"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"84fbaf60-5174-43f6-976e-5f0b6f1da9a1","created_at":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://opencitations.hypotheses.org","id":"1e1a0f67-e922-4977-b5b8-c5ec19c2f43a","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://@scicomm.xyz/@opencitations","prefix":"10.59350","registered_at":1727299025,"relative_url":null,"ror":"https://ror.org/00wb4mk85","secure":true,"slug":"opencitations","status":"active","subfield":"1802","subfield_validated":null,"title":"OpenCitations
+        blog","updated_at":1775462901.219275,"use_api":true,"use_mastodon":true,"user_id":"13119f55-bbed-46a9-9338-80103d8c6b05"},"blog_name":"OpenCitations
+        blog","blog_slug":"opencitations","citations":[{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1007/s11192-013-1108-3","citation":"https://doi.org/10.1007/s11192-013-1108-3","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2013-08-10","type":"JournalArticle","unstructured":"Parinov,
+        S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943. https://doi.org/10.1007/s11192-013-1108-3","updated_at":"2026-04-05T05:17:45.09562+00:00","validated":true},{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1134/s0361768814060139","citation":"https://doi.org/10.1134/s0361768814060139","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2014-11","type":"JournalArticle","unstructured":"Kogalovsky,
+        M. R., &amp; Parinov, S. I. (2014). Social network technologies for semantic
+        linking of information objects in scientific digital library. <i>Programming
+        and Computer Software</i>, <i>40</i>(6), 314\u2013322. https://doi.org/10.1134/s0361768814060139","updated_at":"2026-04-05T05:17:42.260745+00:00","validated":true}],"content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>\n","doi":"https://doi.org/10.59350/dcw3y-7em87","funding_references":null,"guid":"http://opencitations.wordpress.com/?p=31","id":"6d0f1603-4081-4a4c-9bdf-1f0146558935","image":null,"images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"indexed":true,"indexed_at":1761288317,"language":"en","parent_doi":null,"published_at":1287671563,"reference":[],"registered_at":0,"relationships":[],"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1659621126,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:09:43 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935
+  response:
+    body:
+      string: '{"abstract":"Egon Willighagen, at Uppsala University, has pioneered
+        the use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations.","archive_url":"https://wayback.archive-it.org/22125/2025-05-05T11:03:02Z/https://opencitations.hypotheses.org/31","authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"archive_collection":22125,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22125/20231105110316/","archive_timestamps":[20231105110316,20240505181542,20241105110224,20250505110302],"authors":[{"name":"OpenCitations
+        Team"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"84fbaf60-5174-43f6-976e-5f0b6f1da9a1","created_at":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://opencitations.hypotheses.org","id":"1e1a0f67-e922-4977-b5b8-c5ec19c2f43a","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://@scicomm.xyz/@opencitations","prefix":"10.59350","registered_at":1727299025,"relative_url":null,"ror":"https://ror.org/00wb4mk85","secure":true,"slug":"opencitations","status":"active","subfield":"1802","subfield_validated":null,"title":"OpenCitations
+        blog","updated_at":1775462901.219275,"use_api":true,"use_mastodon":true,"user_id":"13119f55-bbed-46a9-9338-80103d8c6b05"},"blog_name":"OpenCitations
+        blog","blog_slug":"opencitations","citations":[{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1007/s11192-013-1108-3","citation":"https://doi.org/10.1007/s11192-013-1108-3","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2013-08-10","type":"JournalArticle","unstructured":"Parinov,
+        S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943. https://doi.org/10.1007/s11192-013-1108-3","updated_at":"2026-04-05T05:17:45.09562+00:00","validated":true},{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1134/s0361768814060139","citation":"https://doi.org/10.1134/s0361768814060139","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2014-11","type":"JournalArticle","unstructured":"Kogalovsky,
+        M. R., &amp; Parinov, S. I. (2014). Social network technologies for semantic
+        linking of information objects in scientific digital library. <i>Programming
+        and Computer Software</i>, <i>40</i>(6), 314\u2013322. https://doi.org/10.1134/s0361768814060139","updated_at":"2026-04-05T05:17:42.260745+00:00","validated":true}],"content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>\n","doi":"https://doi.org/10.59350/dcw3y-7em87","funding_references":null,"guid":"http://opencitations.wordpress.com/?p=31","id":"6d0f1603-4081-4a4c-9bdf-1f0146558935","image":null,"images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"indexed":true,"indexed_at":1761288317,"language":"en","parent_doi":null,"published_at":1287671563,"reference":[],"registered_at":0,"relationships":[],"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1659621126,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:11:54 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935
+  response:
+    body:
+      string: '{"abstract":"Egon Willighagen, at Uppsala University, has pioneered
+        the use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations.","archive_url":"https://wayback.archive-it.org/22125/2025-05-05T11:03:02Z/https://opencitations.hypotheses.org/31","authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"archive_collection":22125,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22125/20231105110316/","archive_timestamps":[20231105110316,20240505181542,20241105110224,20250505110302],"authors":[{"name":"OpenCitations
+        Team"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"84fbaf60-5174-43f6-976e-5f0b6f1da9a1","created_at":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://opencitations.hypotheses.org","id":"1e1a0f67-e922-4977-b5b8-c5ec19c2f43a","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://@scicomm.xyz/@opencitations","prefix":"10.59350","registered_at":1727299025,"relative_url":null,"ror":"https://ror.org/00wb4mk85","secure":true,"slug":"opencitations","status":"active","subfield":"1802","subfield_validated":null,"title":"OpenCitations
+        blog","updated_at":1775462901.219275,"use_api":true,"use_mastodon":true,"user_id":"13119f55-bbed-46a9-9338-80103d8c6b05"},"blog_name":"OpenCitations
+        blog","blog_slug":"opencitations","citations":[{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1007/s11192-013-1108-3","citation":"https://doi.org/10.1007/s11192-013-1108-3","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2013-08-10","type":"JournalArticle","unstructured":"Parinov,
+        S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943. https://doi.org/10.1007/s11192-013-1108-3","updated_at":"2026-04-05T05:17:45.09562+00:00","validated":true},{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1134/s0361768814060139","citation":"https://doi.org/10.1134/s0361768814060139","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2014-11","type":"JournalArticle","unstructured":"Kogalovsky,
+        M. R., &amp; Parinov, S. I. (2014). Social network technologies for semantic
+        linking of information objects in scientific digital library. <i>Programming
+        and Computer Software</i>, <i>40</i>(6), 314\u2013322. https://doi.org/10.1134/s0361768814060139","updated_at":"2026-04-05T05:17:42.260745+00:00","validated":true}],"content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>\n","doi":"https://doi.org/10.59350/dcw3y-7em87","funding_references":null,"guid":"http://opencitations.wordpress.com/?p=31","id":"6d0f1603-4081-4a4c-9bdf-1f0146558935","image":null,"images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"indexed":true,"indexed_at":1761288317,"language":"en","parent_doi":null,"published_at":1287671563,"reference":[],"registered_at":0,"relationships":[],"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1659621126,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:18:03 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935
+  response:
+    body:
+      string: '{"abstract":"Egon Willighagen, at Uppsala University, has pioneered
+        the use of object properties from CiTO, the Citation Typing Ontology, to characterize
+        bibliographic citations in CiteULike, the free service for managing and discovering
+        scholarly references.\u00a0 Indeed, it was his use case that persuaded me
+        of the need to generalize CiTO to include indirect citations.","archive_url":"https://wayback.archive-it.org/22125/2025-05-05T11:03:02Z/https://opencitations.hypotheses.org/31","authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"archive_collection":22125,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22125/20231105110316/","archive_timestamps":[20231105110316,20240505181542,20241105110224,20250505110302],"authors":[{"name":"OpenCitations
+        Team"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"84fbaf60-5174-43f6-976e-5f0b6f1da9a1","created_at":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://opencitations.hypotheses.org","id":"1e1a0f67-e922-4977-b5b8-c5ec19c2f43a","indexed":false,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://@scicomm.xyz/@opencitations","prefix":"10.59350","registered_at":1727299025,"relative_url":null,"ror":"https://ror.org/00wb4mk85","secure":true,"slug":"opencitations","status":"active","subfield":"1802","subfield_validated":null,"title":"OpenCitations
+        blog","updated_at":1775462901.219275,"use_api":true,"use_mastodon":true,"user_id":"13119f55-bbed-46a9-9338-80103d8c6b05"},"blog_name":"OpenCitations
+        blog","blog_slug":"opencitations","citations":[{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1007/s11192-013-1108-3","citation":"https://doi.org/10.1007/s11192-013-1108-3","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2013-08-10","type":"JournalArticle","unstructured":"Parinov,
+        S., &amp; Kogalovsky, M. (2013). Semantic linkages in research information
+        systems as a new data source for scientometric studies. <i>Scientometrics</i>,
+        <i>98</i>(2), 927\u2013943. https://doi.org/10.1007/s11192-013-1108-3","updated_at":"2026-04-05T05:17:45.09562+00:00","validated":true},{"blog_slug":"opencitations","cid":"10.59350/dcw3y-7em87::10.1134/s0361768814060139","citation":"https://doi.org/10.1134/s0361768814060139","cito":[],"doi":"https://doi.org/10.59350/dcw3y-7em87","published_at":"2014-11","type":"JournalArticle","unstructured":"Kogalovsky,
+        M. R., &amp; Parinov, S. I. (2014). Social network technologies for semantic
+        linking of information objects in scientific digital library. <i>Programming
+        and Computer Software</i>, <i>40</i>(6), 314\u2013322. https://doi.org/10.1134/s0361768814060139","updated_at":"2026-04-05T05:17:42.260745+00:00","validated":true}],"content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>\n","doi":"https://doi.org/10.59350/dcw3y-7em87","funding_references":null,"guid":"http://opencitations.wordpress.com/?p=31","id":"6d0f1603-4081-4a4c-9bdf-1f0146558935","image":null,"images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"indexed":true,"indexed_at":1761288317,"language":"en","parent_doi":null,"published_at":1287671563,"reference":[],"registered_at":0,"relationships":[],"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1659621126,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:51:34 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
 version: 1

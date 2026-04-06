@@ -69,4 +69,319 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7
+  response:
+    body:
+      string: '{"abstract":"I am happy that I got my first research grant awarded
+        (EU FP7), which should start after all the contracts are signed, etc, somewhere
+        early 2014. The project is about setting up data needs for the analysis of
+        nanosafety studies. And for this, I have the below two position vacancies
+        available now.","archive_url":"https://wayback.archive-it.org/24077/2025-03-09T09:51:02Z/https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
+        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
+        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1775462803.977698,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","citations":null,"content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","id":"6f2b7003-a77d-4b7b-a88a-8ce78546ddf7","image":null,"images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"indexed":true,"indexed_at":1774862623,"language":"en","parent_doi":null,"published_at":1383868800,"reference":[],"registered_at":0,"relationships":[],"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1739577600,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1833'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 08:29:12 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7
+  response:
+    body:
+      string: '{"abstract":"I am happy that I got my first research grant awarded
+        (EU FP7), which should start after all the contracts are signed, etc, somewhere
+        early 2014. The project is about setting up data needs for the analysis of
+        nanosafety studies. And for this, I have the below two position vacancies
+        available now.","archive_url":"https://wayback.archive-it.org/24077/2025-03-09T09:51:02Z/https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
+        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
+        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1775462803.977698,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","citations":null,"content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","id":"6f2b7003-a77d-4b7b-a88a-8ce78546ddf7","image":null,"images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"indexed":true,"indexed_at":1774862623,"language":"en","parent_doi":null,"published_at":1383868800,"reference":[],"registered_at":0,"relationships":[],"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1739577600,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1833'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:09:44 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7
+  response:
+    body:
+      string: '{"abstract":"I am happy that I got my first research grant awarded
+        (EU FP7), which should start after all the contracts are signed, etc, somewhere
+        early 2014. The project is about setting up data needs for the analysis of
+        nanosafety studies. And for this, I have the below two position vacancies
+        available now.","archive_url":"https://wayback.archive-it.org/24077/2025-03-09T09:51:02Z/https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
+        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
+        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1775462803.977698,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","citations":null,"content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","id":"6f2b7003-a77d-4b7b-a88a-8ce78546ddf7","image":null,"images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"indexed":true,"indexed_at":1774862623,"language":"en","parent_doi":null,"published_at":1383868800,"reference":[],"registered_at":0,"relationships":[],"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1739577600,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1833'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:11:55 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7
+  response:
+    body:
+      string: '{"abstract":"I am happy that I got my first research grant awarded
+        (EU FP7), which should start after all the contracts are signed, etc, somewhere
+        early 2014. The project is about setting up data needs for the analysis of
+        nanosafety studies. And for this, I have the below two position vacancies
+        available now.","archive_url":"https://wayback.archive-it.org/24077/2025-03-09T09:51:02Z/https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
+        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
+        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1775462803.977698,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","citations":null,"content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","id":"6f2b7003-a77d-4b7b-a88a-8ce78546ddf7","image":null,"images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"indexed":true,"indexed_at":1774862623,"language":"en","parent_doi":null,"published_at":1383868800,"reference":[],"registered_at":0,"relationships":[],"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1739577600,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1833'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:18:04 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7
+  response:
+    body:
+      string: '{"abstract":"I am happy that I got my first research grant awarded
+        (EU FP7), which should start after all the contracts are signed, etc, somewhere
+        early 2014. The project is about setting up data needs for the analysis of
+        nanosafety studies. And for this, I have the below two position vacancies
+        available now.","archive_url":"https://wayback.archive-it.org/24077/2025-03-09T09:51:02Z/https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
+        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
+        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1775462803.977698,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","citations":null,"content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","id":"6f2b7003-a77d-4b7b-a88a-8ce78546ddf7","image":null,"images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"indexed":true,"indexed_at":1774862623,"language":"en","parent_doi":null,"published_at":1383868800,"reference":[],"registered_at":0,"relationships":[],"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1739577600,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Length:
+      - '1833'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:51:35 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
 version: 1

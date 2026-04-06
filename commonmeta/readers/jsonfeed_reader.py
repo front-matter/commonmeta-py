@@ -24,7 +24,6 @@ from ..constants import (
 )
 from ..date_utils import get_date_from_unix_timestamp
 from ..doi_utils import (
-    doi_from_url,
     encode_doi,
     is_rogue_scholar_doi,
     normalize_doi,
@@ -214,7 +213,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     ]
     content = dig(meta, "content_html", "")
     image = dig(meta, "image", None)
-    files = get_files(_id)
+    files = get_files(meta)
     state = "stale" if meta or read_options else "not_found"
 
     return {
@@ -241,7 +240,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         "relations": presence(relations),
         "content": presence(content),
         "image": presence(image),
-        "files": files,
+        "files": presence(files),
         # other properties
         "container": presence(container),
         "provider": "Crossref" if is_rogue_scholar_doi(_id) else None,
@@ -467,29 +466,21 @@ def get_relations(relations: list) -> list:
     )
 
 
-def get_files(pid: str | None) -> list | None:
-    """get json feed file links"""
-    doi = doi_from_url(pid)
-    if not is_rogue_scholar_doi(doi):
-        return None
-    return [
-        {
-            "mimeType": "text/markdown",
-            "url": f"https://api.rogue-scholar.org/posts/{doi}.md",
-        },
-        {
-            "mimeType": "application/pdf",
-            "url": f"https://api.rogue-scholar.org/posts/{doi}.pdf",
-        },
-        {
-            "mimeType": "application/epub+zip",
-            "url": f"https://api.rogue-scholar.org/posts/{doi}.epub",
-        },
-        {
-            "mimeType": "application/xml",
-            "url": f"https://api.rogue-scholar.org/posts/{doi}.xml",
-        },
+def get_files(meta: dict) -> list:
+    """get json feed files"""
+    image = meta.get("image", None)
+    if validate_url(image) == "URL":
+        files = [{"url": str(image)}]
+    else:
+        files = []
+    files += [
+        {"url": i.get("src")}
+        for i in wrap(meta.get("images", None))
+        if i.get("src", None)
     ]
+    if len(files) == 0:
+        return []
+    return unique(files)
 
 
 def get_jsonfeed_uuid(id: str | None) -> dict | None:

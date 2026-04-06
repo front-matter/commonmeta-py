@@ -82,10 +82,9 @@ def test_wordpress_with_references():
         .get("description")
         .startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae.")
     )
-    assert len(subject.files) == 4
+    assert len(subject.files) == 8
     assert subject.files[0] == {
-        "mimeType": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.59350/hke8v-d1e66.md",
+        "url": "https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480",
     }
     assert subject.subjects == [
         {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
@@ -715,10 +714,9 @@ def test_ghost_with_institutional_author():
     assert (
         subject.descriptions[0].get("description").startswith("After a couple of years")
     )
-    assert len(subject.files) == 4
+    assert len(subject.files) == 1
     assert subject.files[0] == {
-        "mimeType": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.59350/tfahc-rp566.md",
+        "url": "https://blog.oa.works/content/images/2023/01/nature-website-v2.png",
     }
     assert subject.subjects == [
         {
@@ -809,10 +807,9 @@ def test_ghost_with_affiliations():
         .get("description")
         .startswith("A few weeks ago Kafkas et al. (2013) published a paper")
     )
-    assert len(subject.files) == 4
+    assert len(subject.files) == 1
     assert subject.files[0] == {
-        "mimeType": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16.md",
+        "url": "https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png",
     }
     assert subject.subjects == [
         {"id": "https://openalex.org/subfields/1710", "subject": "Information Systems"},
@@ -889,10 +886,9 @@ def test_ghost_with_personal_name_parsing():
         .get("description")
         .startswith("As residents within the healthcare profession,")
     )
-    assert len(subject.files) == 4
+    assert len(subject.files) == 1
     assert subject.files[0] == {
-        "mimeType": "text/markdown",
-        "url": "https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45.md",
+        "url": "https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg",
     }
     assert subject.subjects == [
         {"id": "https://openalex.org/subfields/2746", "subject": "Surgery"},

@@ -9,17 +9,17 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.33.1
     method: GET
     uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
   response:
     body:
       string: '{"abstract":null,"archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/05167c961","name":"Western
-        University of Health Sciences"}],"family":"Wedel","given":"Matt","url":"https://orcid.org/0000-0001-6082-3103"}],"blog":{"archive_collection":22153,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22153/20231105213934/","archive_timestamps":null,"authors":[{"name":"Mike
+        University of Health Sciences"}],"contributor_roles":[],"family":"Wedel","given":"Matt","url":"https://orcid.org/0000-0001-6082-3103"}],"blog":{"archive_collection":22153,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22153/20231105213934/","archive_timestamps":null,"authors":[{"name":"Mike
         Taylor"}],"canonical_url":null,"category":"earthAndRelatedEnvironmentalSciences","community_id":"0e13541f-417e-46c0-a859-65927249df72","created_at":1675209600,"current_feed_url":null,"description":"SV-POW!  ...  All
-        sauropod vertebrae, except when we''re talking about Open Access. ISSN 3033-3695","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://svpow.com/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://svpow.com","id":"c6cbbd2e-4675-4680-8a3f-784388009821","indexed":false,"issn":"3033-3695","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729882329,"relative_url":null,"ror":null,"secure":true,"slug":"svpow","status":"active","subfield":"1911","title":"Sauropod
-        Vertebra Picture of the Week","updated_at":1764496226,"use_api":true,"use_mastodon":false,"user_id":"04d03585-c8bb-40f2-9619-5076a5e0aed2"},"blog_name":"Sauropod
-        Vertebra Picture of the Week","blog_slug":"svpow","content_html":"\r\n<div
+        sauropod vertebrae, except when we''re talking about Open Access. ISSN 3033-3695","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://svpow.com/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://svpow.com","id":"c6cbbd2e-4675-4680-8a3f-784388009821","indexed":false,"issn":"3033-3695","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729882329,"relative_url":null,"ror":null,"secure":true,"slug":"svpow","status":"active","subfield":"1911","subfield_validated":true,"title":"Sauropod
+        Vertebra Picture of the Week","updated_at":1775462946.507849,"use_api":true,"use_mastodon":false,"user_id":"04d03585-c8bb-40f2-9619-5076a5e0aed2"},"blog_name":"Sauropod
+        Vertebra Picture of the Week","blog_slug":"svpow","citations":null,"content_html":"\r\n<div
         data-shortcode=\"caption\" id=\"attachment_21038\" style=\"width: 1034px\"
         class=\"wp-caption aligncenter\"><a href=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg\"><img
         aria-describedby=\"caption-attachment-21038\" loading=\"lazy\" data-attachment-id=\"21038\"
@@ -218,7 +218,27 @@ interactions:
         Mathew; Atterholt, Jessie; Dooley, Jr., Alton C.; Farooq, Saad; Macalino,
         Jeff; Nalley, Thierra K.; Wisser, Gary; and Yasmer, John. 2021. Expanded neural
         canals in the caudal vertebrae of a specimen of\u00a0<em>Haplocanthosaurus</em>.
-        Academia Letters, Article 911, 10pp. DOI: 10.20935/AL911</a></li>\r\n</ul>\r\n","doi":"https://doi.org/10.59350/hke8v-d1e66","funding_references":null,"guid":"https://svpow.com/?p=20992","id":"4e4bf150-751f-4245-b4ca-fe69e3c3bb24","image":"","indexed_at":1760216456,"language":"en","parent_doi":null,"published_at":1686340463,"reference":[{"unstructured":"Bilbey,
+        Academia Letters, Article 911, 10pp. DOI: 10.20935/AL911</a></li>\r\n</ul>\r\n","doi":"https://doi.org/10.59350/hke8v-d1e66","funding_references":null,"guid":"https://svpow.com/?p=20992","id":"4e4bf150-751f-4245-b4ca-fe69e3c3bb24","image":"","images":[{"height":"199","sizes":"(max-width:
+        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=960,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=150,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=768","width":"480"},{"height":"452","sizes":"(max-width:
+        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480,
+        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=960,
+        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=150,
+        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300,
+        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=768","width":"480"},{"height":"360","sizes":"(max-width:
+        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480,
+        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=960,
+        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=150,
+        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300,
+        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=768","width":"480"},{"height":"141","sizes":"(max-width:
+        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=960,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=150,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=300,
+        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=768","width":"480"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg"}],"indexed":true,"indexed_at":1764898592,"language":"en","parent_doi":null,"published_at":1686340463,"reference":[{"unstructured":"Bilbey,
         S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid
         sauropod dinosaur from the lower Morrison Formation of northeastern Utah.
         Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A."},{"id":"https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf","unstructured":"Foster,
@@ -233,40 +253,33 @@ interactions:
         Mathew; Atterholt, Jessie; Dooley, Jr., Alton C.; Farooq, Saad; Macalino,
         Jeff; Nalley, Thierra K.; Wisser, Gary; and Yasmer, John. 2021. Expanded neural
         canals in the caudal vertebrae of a specimen of\u00a0Haplocanthosaurus. Academia
-        Letters, Article 911, 10pp. https://doi.org/10.20935/AL911"}],"registered_at":0,"relationships":[],"rid":"9mhef-ewr61","subfield":null,"summary":"<em>\n
+        Letters, Article 911, 10pp. https://doi.org/10.20935/AL911"}],"registered_at":0,"relationships":[],"rid":"9mhef-ewr61","summary":"<em>\n
         Haplocanthosaurus\n</em>\ntibiae and dorsal vertebrae. Curtice et al. (2023:
         fig. 1).  Brian Curtice and Colin Boisvert are presenting our talk on this
         project at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic Terrestrial
         Ecosystems and Biota (MTE14) in Salt Lake City, and the related paper is in
         the MTE14 volume in The Anatomical Record.","tags":["MTE14","Barosaurus","Cervical","Conferences","Diplodocids"],"title":"New
         paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry
-        Mesa","topic":null,"topic_score":0,"updated_at":1686340463,"url":"https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/","version":"v1"}
+        Mesa","updated_at":1686340463,"url":"https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/","version":"v1"}
 
         '
     headers:
-      content-encoding:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:18:49 GMT
-      fly-request-id:
-      - 01KBDES5WQX7XN924YXS163CWJ-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '6'
-      ratelimit-reset:
-      - '32'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
+      Date:
+      - Mon, 06 Apr 2026 20:38:47 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
       - chunked
-      vary:
+      Vary:
+      - Accept-Encoding
       - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

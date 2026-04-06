@@ -53,4 +53,179 @@ interactions:
     status:
       code: 429
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: '{"error":"An error occured."}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 08:29:14 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: '{"error":"An error occured."}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:09:46 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: '{"error":"An error occured."}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:11:57 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: '{"error":"An error occured."}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:18:06 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 400
+      message: Bad Request
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/notfound
+  response:
+    body:
+      string: '{"error":"An error occured."}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '30'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:51:37 GMT
+      Server:
+      - hypercorn-h11
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 400
+      message: Bad Request
 version: 1

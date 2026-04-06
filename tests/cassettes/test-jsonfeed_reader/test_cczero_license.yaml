@@ -202,4 +202,999 @@ interactions:
     status:
       code: 200
       message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
+  response:
+    body:
+      string: '{"abstract":"Consider this yet another commitment to trying to write
+        here a little more regularly. Lots of thinking has been going on but not much
+        writing! At least not writing as I\u2019m going\u2026 Three things colliding
+        over the past few weeks have led me to want to try and get some ideas down.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"archive_collection":24078,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created_at":1707720206,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://cameronneylon.net/","id":"5ecd6011-822b-42d7-bb03-b799295373be","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1709436734,"relative_url":null,"ror":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","subfield_validated":null,"title":"Science
+        in the Open","updated_at":1775462803.806135,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Science
+        in the Open","blog_slug":"cameronneylon","citations":null,"content_html":"\n<p><em>Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u00e2\u20ac\u201c and in most cases involving disadvantaged groups
+        (which is practically everyone in comparison to a professional, permanently
+        employed, western academic) it is at the very least a significant burden and
+        frequently significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9
+        wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\"
+        title=\"Cameron Neylon - Network Enabled Scholarship: Connectivity, groups
+        and growth in the production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>\n","doi":"https://doi.org/10.59350/xgwqt-1sq35","funding_references":null,"guid":"http://cameronneylon.net/?p=20035","id":"fcaadcf6-5511-4f6e-b346-090faf10c5c9","image":null,"images":[],"indexed":true,"indexed_at":1765190483,"language":"en","parent_doi":null,"published_at":1540284134,"reference":[],"registered_at":0,"relationships":[],"rid":"8x3ev-zgm51","summary":"<em>\n
+        Consider this yet another commitment to trying to write here a little more
+        regularly. Lots of thinking has been going on but not much writing! At least
+        not writing as I\u2019m going\u2026\n</em>\nThree things colliding over the
+        past few weeks have led me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1730428328,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 08:29:13 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
+  response:
+    body:
+      string: '{"abstract":"Consider this yet another commitment to trying to write
+        here a little more regularly. Lots of thinking has been going on but not much
+        writing! At least not writing as I\u2019m going\u2026 Three things colliding
+        over the past few weeks have led me to want to try and get some ideas down.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"archive_collection":24078,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created_at":1707720206,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://cameronneylon.net/","id":"5ecd6011-822b-42d7-bb03-b799295373be","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1709436734,"relative_url":null,"ror":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","subfield_validated":null,"title":"Science
+        in the Open","updated_at":1775462803.806135,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Science
+        in the Open","blog_slug":"cameronneylon","citations":null,"content_html":"\n<p><em>Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u00e2\u20ac\u201c and in most cases involving disadvantaged groups
+        (which is practically everyone in comparison to a professional, permanently
+        employed, western academic) it is at the very least a significant burden and
+        frequently significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9
+        wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\"
+        title=\"Cameron Neylon - Network Enabled Scholarship: Connectivity, groups
+        and growth in the production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>\n","doi":"https://doi.org/10.59350/xgwqt-1sq35","funding_references":null,"guid":"http://cameronneylon.net/?p=20035","id":"fcaadcf6-5511-4f6e-b346-090faf10c5c9","image":null,"images":[],"indexed":true,"indexed_at":1765190483,"language":"en","parent_doi":null,"published_at":1540284134,"reference":[],"registered_at":0,"relationships":[],"rid":"8x3ev-zgm51","summary":"<em>\n
+        Consider this yet another commitment to trying to write here a little more
+        regularly. Lots of thinking has been going on but not much writing! At least
+        not writing as I\u2019m going\u2026\n</em>\nThree things colliding over the
+        past few weeks have led me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1730428328,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:09:45 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
+  response:
+    body:
+      string: '{"abstract":"Consider this yet another commitment to trying to write
+        here a little more regularly. Lots of thinking has been going on but not much
+        writing! At least not writing as I\u2019m going\u2026 Three things colliding
+        over the past few weeks have led me to want to try and get some ideas down.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"archive_collection":24078,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created_at":1707720206,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://cameronneylon.net/","id":"5ecd6011-822b-42d7-bb03-b799295373be","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1709436734,"relative_url":null,"ror":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","subfield_validated":null,"title":"Science
+        in the Open","updated_at":1775462803.806135,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Science
+        in the Open","blog_slug":"cameronneylon","citations":null,"content_html":"\n<p><em>Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u00e2\u20ac\u201c and in most cases involving disadvantaged groups
+        (which is practically everyone in comparison to a professional, permanently
+        employed, western academic) it is at the very least a significant burden and
+        frequently significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9
+        wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\"
+        title=\"Cameron Neylon - Network Enabled Scholarship: Connectivity, groups
+        and growth in the production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>\n","doi":"https://doi.org/10.59350/xgwqt-1sq35","funding_references":null,"guid":"http://cameronneylon.net/?p=20035","id":"fcaadcf6-5511-4f6e-b346-090faf10c5c9","image":null,"images":[],"indexed":true,"indexed_at":1765190483,"language":"en","parent_doi":null,"published_at":1540284134,"reference":[],"registered_at":0,"relationships":[],"rid":"8x3ev-zgm51","summary":"<em>\n
+        Consider this yet another commitment to trying to write here a little more
+        regularly. Lots of thinking has been going on but not much writing! At least
+        not writing as I\u2019m going\u2026\n</em>\nThree things colliding over the
+        past few weeks have led me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1730428328,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:11:55 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
+  response:
+    body:
+      string: '{"abstract":"Consider this yet another commitment to trying to write
+        here a little more regularly. Lots of thinking has been going on but not much
+        writing! At least not writing as I\u2019m going\u2026 Three things colliding
+        over the past few weeks have led me to want to try and get some ideas down.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"archive_collection":24078,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created_at":1707720206,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://cameronneylon.net/","id":"5ecd6011-822b-42d7-bb03-b799295373be","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1709436734,"relative_url":null,"ror":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","subfield_validated":null,"title":"Science
+        in the Open","updated_at":1775462803.806135,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Science
+        in the Open","blog_slug":"cameronneylon","citations":null,"content_html":"\n<p><em>Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u00e2\u20ac\u201c and in most cases involving disadvantaged groups
+        (which is practically everyone in comparison to a professional, permanently
+        employed, western academic) it is at the very least a significant burden and
+        frequently significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9
+        wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\"
+        title=\"Cameron Neylon - Network Enabled Scholarship: Connectivity, groups
+        and growth in the production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>\n","doi":"https://doi.org/10.59350/xgwqt-1sq35","funding_references":null,"guid":"http://cameronneylon.net/?p=20035","id":"fcaadcf6-5511-4f6e-b346-090faf10c5c9","image":null,"images":[],"indexed":true,"indexed_at":1765190483,"language":"en","parent_doi":null,"published_at":1540284134,"reference":[],"registered_at":0,"relationships":[],"rid":"8x3ev-zgm51","summary":"<em>\n
+        Consider this yet another commitment to trying to write here a little more
+        regularly. Lots of thinking has been going on but not much writing! At least
+        not writing as I\u2019m going\u2026\n</em>\nThree things colliding over the
+        past few weeks have led me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1730428328,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:18:04 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.33.1
+    method: GET
+    uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
+  response:
+    body:
+      string: '{"abstract":"Consider this yet another commitment to trying to write
+        here a little more regularly. Lots of thinking has been going on but not much
+        writing! At least not writing as I\u2019m going\u2026 Three things colliding
+        over the past few weeks have led me to want to try and get some ideas down.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"archive_collection":24078,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"canonical_url":null,"category":"otherSocialSciences","community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created_at":1707720206,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"funding":null,"generator":"WordPress","generator_raw":"WordPress
+        6.6.2","home_page_url":"https://cameronneylon.net/","id":"5ecd6011-822b-42d7-bb03-b799295373be","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1709436734,"relative_url":null,"ror":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","subfield_validated":null,"title":"Science
+        in the Open","updated_at":1775462803.806135,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Science
+        in the Open","blog_slug":"cameronneylon","citations":null,"content_html":"\n<p><em>Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u00e2\u20ac\u201c and in most cases involving disadvantaged groups
+        (which is practically everyone in comparison to a professional, permanently
+        employed, western academic) it is at the very least a significant burden and
+        frequently significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9
+        wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\"
+        title=\"Cameron Neylon - Network Enabled Scholarship: Connectivity, groups
+        and growth in the production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>\n","doi":"https://doi.org/10.59350/xgwqt-1sq35","funding_references":null,"guid":"http://cameronneylon.net/?p=20035","id":"fcaadcf6-5511-4f6e-b346-090faf10c5c9","image":null,"images":[],"indexed":true,"indexed_at":1765190483,"language":"en","parent_doi":null,"published_at":1540284134,"reference":[],"registered_at":0,"relationships":[],"rid":"8x3ev-zgm51","summary":"<em>\n
+        Consider this yet another commitment to trying to write here a little more
+        regularly. Lots of thinking has been going on but not much writing! At least
+        not writing as I\u2019m going\u2026\n</em>\nThree things colliding over the
+        past few weeks have led me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1730428328,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
+    headers:
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 06 Apr 2026 09:51:36 GMT
+      Server:
+      - hypercorn-h11
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      - Origin
+    status:
+      code: 200
+      message: OK
 version: 1
