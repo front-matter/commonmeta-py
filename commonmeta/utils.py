@@ -5,17 +5,20 @@ from __future__ import annotations
 import os
 import re
 import time
+from io import BytesIO
 from typing import Any
 from urllib.parse import urlparse
 
 import bibtexparser
 import orjson as json
 import pycountry
+import requests
 import yaml
 from bs4 import BeautifulSoup
 from furl import furl
 from idutils import validators
 from isbnlib import canonical, is_isbn10, is_isbn13
+from PIL import Image, ImageOps
 
 from .base_utils import (
     compact,
@@ -1335,6 +1338,8 @@ def find_from_format_by_id(pid: str) -> str:
         return "cff"
     if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/posts/(.+)\Z", pid) is not None:
         return "jsonfeed"
+    if re.match(r"\Ahttps:/(/)?api\.rogue-scholar\.org/blogs/(.+)\Z", pid) is not None:
+        return "jsonfeed"
     if re.match(r"\Ahttps:/(/)(.+)/api/records/(.+)\Z", pid) is not None:
         return "inveniordm"
     return "schema_org"
@@ -1867,3 +1872,17 @@ def is_chain_object(string: Any) -> bool:
     if string is None:
         return False
     return hasattr(string, "_child") and hasattr(string, "_parent")
+
+
+def fetch_feature_image(url: str) -> Image.Image | None:
+    """Fetch a feature image and return the normalized JPEG image with dimensions
+    1200x630 pixels. Returns None if the image cannot be fetched or processed."""
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        img = Image.open(BytesIO(response.content))
+        feature_image = ImageOps.fit(img.convert("RGB"), (1200, 630), Image.LANCZOS)
+        feature_image.filename = "feature.jpg"
+        return feature_image
+    except (requests.RequestException, IOError):
+        return None

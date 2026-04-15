@@ -10,6 +10,7 @@ from commonmeta.utils import (
     dict_to_spdx,
     extract_curie,
     extract_urls,
+    fetch_feature_image,
     find_from_format_by_ext,
     find_from_format_by_filename,
     find_from_format_by_id,
@@ -487,9 +488,13 @@ def test_find_from_format_by_id():
     assert "schema_org" == find_from_format_by_id(
         "https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GAOC03"
     )
-    # json_feed
+    # jsonfeed
     assert "jsonfeed" == find_from_format_by_id(
         "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
+    )  # noqa: E501
+    # jsonfeed blog
+    assert "jsonfeed" == find_from_format_by_id(
+        "https://api.rogue-scholar.org/blogs/upstream"
     )  # noqa: E501
 
 
@@ -1142,3 +1147,13 @@ def test_string_to_slug():
     assert string_to_slug("FOS: Law") == "law"
     assert string_to_slug("FOS: Other social sciences") == "othersocialsciences"
     assert string_to_slug("Investigación-Digital💿") == "investigacióndigital"
+
+
+def test_fetch_feature_image():
+    """fetch_feature_image"""
+    image = fetch_feature_image(
+        "https://blog.front-matter.de/content/images/2022/08/pid_graph_image-1.webp"
+    )
+    assert image.filename == "feature.jpg"
+    assert image.size == (1200, 630)
+    assert fetch_feature_image(None) is None

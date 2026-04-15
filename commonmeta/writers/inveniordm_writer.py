@@ -159,7 +159,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
         {
             "pids": pids,
             "access": {"record": "public", "files": "public"},
-            "files": {"enabled": False},
+            "files": {"enabled": len(wrap(metadata.files)) > 0},
             "metadata": compact(
                 {
                     "resource_type": {"id": _type},
@@ -512,6 +512,27 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
             ),
         }
     )
+
+
+def to_files(metadata: Metadata) -> list | None:
+    """Convert metadata files to inveniordm files"""
+    if metadata.files is None:
+        return None
+
+    def format_file(file):
+        return compact(
+            {
+                "key": file.get("key", None),
+                "bucket": file.get("bucket", None),
+                "size": file.get("size", None),
+                "checksum": file.get("checksum", None),
+                "checksum_algorithm": file.get("checksumAlgorithm", None),
+                "filename": file.get("filename", None),
+                "description": file.get("description", None),
+            }
+        )
+
+    return [format_file(i) for i in wrap(metadata.files)]
 
 
 def write_inveniordm_list(metalist: MetadataList) -> list | None:
