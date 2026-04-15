@@ -1366,7 +1366,7 @@ def find_from_format_by_dict(dct: dict) -> str | None:
         "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
     ]:
         return "codemeta"
-    if dct.get("guid", None) is not None:
+    if dct.get("guid", None) is not None or dct.get("feed_url", None) is not None:
         return "jsonfeed"
     if dct.get("schemaVersion", "").startswith("http://datacite.org/schema/kernel"):
         return "datacite"

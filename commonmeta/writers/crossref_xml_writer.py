@@ -873,8 +873,8 @@ def push_crossref_xml(
     login_id: str,
     login_passwd: str,
     test_mode: bool,
-    host: str,
-    token: str,
+    host: str | None,
+    token: str | None,
     legacy_conn: str | None,
 ) -> str:
     """Push crossref_xml to Crossref API, returns the API response."""
@@ -941,8 +941,8 @@ def push_crossref_xml_list(
     login_id: str,
     login_passwd: str,
     test_mode: bool,
-    host: str,
-    token: str,
+    host: str | None,
+    token: str | None,
     legacy_conn: str | None,
 ) -> bytes | None:
     """Push crossref_xml list to Crossref API, returns the API response."""
