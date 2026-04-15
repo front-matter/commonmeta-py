@@ -65,6 +65,11 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     meta = data
     read_options = kwargs or {}
     url = None
+
+    # jsonfeed is the whole feed and not an individual post
+    if meta.get("posts", None) is not None:
+        return read_jsonfeed_blog(meta, **kwargs)
+
     if dig(meta, "blog.status", None) in ["active", "expired"]:
         url = normalize_url(meta.get("url", None))
     elif dig(meta, "blog.status", None) == "archived" and meta.get("archive_url", None):
@@ -243,6 +248,107 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         "files": presence(files),
         # other properties
         "container": presence(container),
+        "provider": "Crossref" if is_rogue_scholar_doi(_id) else None,
+        "state": state,
+        "schema_version": None,
+    } | read_options
+
+
+def read_jsonfeed_blog(meta: dict | None, **kwargs) -> Commonmeta:
+    """read_jsonfeed_blog. The JSON Feed blog metadata."""
+    read_options = kwargs or {}
+
+    # Fetch DOI from jsonfeed
+    _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
+
+    # Generate DOI from prefix and slug if not provided
+    if _id is None and meta.get("prefix", None) and meta.get("slug", None):
+        _id = f"https://doi.org/{meta.get('prefix')}/{meta.get('slug')}"
+
+    # fall back to url if no DOI can be generated
+    url = normalize_url(meta.get("home_page_url", None))
+    if _id is None:
+        _id = url
+    _type = "Blog"
+
+    if meta.get("authors", None):
+        contributors = get_authors(from_jsonfeed(wrap(meta.get("authors"))))
+    else:
+        contributors = None
+
+    title = first(parse_attributes(meta.get("title", None)))
+    titles = [{"title": sanitize(title)}] if title else None
+
+    date: dict = {}
+    date["created"] = (
+        get_date_from_unix_timestamp(meta.get("created_at", None))
+        if meta.get("created_at", None)
+        else None
+    )
+    date["updated"] = (
+        get_date_from_unix_timestamp(meta.get("updated_at", None))
+        if meta.get("updated_at", None)
+        else None
+    )
+    license_ = dig(meta, "license", None)
+    if license_ is not None:
+        license_ = dict_to_spdx({"url": license_})
+    publisher = {"name": "Front Matter"} if is_rogue_scholar_doi(_id) else None
+    description = meta.get("description", None)
+    if description is not None:
+        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
+    else:
+        descriptions = None
+    subfield = OPENALEX_SUBFIELD_MAPPINGS.get(dig(meta, "subfield"), None)
+    if subfield is not None:
+        subjects = [
+            {
+                "id": f"https://openalex.org/subfields/{dig(meta, 'subfield')}",
+                "subject": subfield,
+            }
+        ]
+    else:
+        subjects = []
+    if meta.get("feed_url", None):
+        identifiers = [{"identifier": meta.get("feed_url"), "identifierType": "URL"}]
+    else:
+        identifiers = []
+    issn = dig(meta, "issn")
+    if issn is not None:
+        identifiers.append({"identifier": issn, "identifierType": "ISSN"})
+    if meta.get("favicon", None):
+        image = meta.get("favicon")
+    else:
+        image = None
+    state = "stale" if meta or read_options else "not_found"
+
+    return {
+        # required properties
+        "id": _id,
+        "type": _type,
+        "url": url,
+        "contributors": presence(contributors),
+        "titles": presence(titles),
+        "publisher": publisher,
+        "date": compact(date),
+        # recommended and optional properties
+        "additional_type": None,
+        "subjects": presence(subjects),
+        "language": meta.get("language", None),
+        "identifiers": presence(identifiers),
+        "version": meta.get("version", None) or "v1",
+        "license": license_,
+        "descriptions": descriptions,
+        "geoLocations": None,
+        "fundingReferences": None,
+        "references": None,
+        "citations": None,
+        "relations": None,
+        "content": None,
+        "image": presence(image),
+        "files": None,
+        # other properties
+        "container": None,
         "provider": "Crossref" if is_rogue_scholar_doi(_id) else None,
         "state": state,
         "schema_version": None,

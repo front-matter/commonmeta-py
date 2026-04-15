@@ -325,6 +325,7 @@ class Metadata:
                 "registrant": self.registrant,
             }
             bytes = tostring(output, head=head)
+            print(bytes)
             self.write_errors = xml_schema_errors(bytes, schema=to)
             if self.write_errors is not None:
                 raise CrossrefError(self.write_errors)

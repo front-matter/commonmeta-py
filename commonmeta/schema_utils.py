@@ -23,7 +23,7 @@ def json_schema_errors(
     """
     schema_map = {
         "cff": "cff_v1.2.0",
-        "commonmeta": "commonmeta_v0.17",
+        "commonmeta": "commonmeta_v0.18",
         "crossref_xml": "crossref-v5.4.0",
         "csl": "csl-data",
         "datacite": "datacite-v4.5",

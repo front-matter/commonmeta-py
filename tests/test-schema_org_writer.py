@@ -835,9 +835,8 @@ def test_jsonfeed_upstream_blog():
         schema_org.get("name")
         == "Attempts at automating journal subject classification"
     )
-    assert len(schema_org.get("encoding")) == 4
-    assert schema_org.get("encoding")[1] == {
+    assert len(schema_org.get("encoding")) == 1
+    assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.pdf",
-        "encodingFormat": "application/pdf",
+        "contentUrl": "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg",
     }

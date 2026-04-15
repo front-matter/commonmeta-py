@@ -122,6 +122,7 @@ CSL_TO_CM_TRANSLATIONS = {
 
 CM_TO_CSL_TRANSLATIONS = {
     "Article": "article",
+    "Blog": "periodical",
     "BlogPost": "post-weblog",
     "Book": "book",
     "BookChapter": "chapter",
@@ -186,7 +187,9 @@ CR_TO_CM_TRANSLATIONS = {
 
 CM_TO_CR_TRANSLATIONS = {
     "Article": "PostedContent",
+    "Blog": "Journal",
     "BlogPost": "PostedContent",
+    "BlogVolume": "JournalVolume",
     "BookChapter": "BookChapter",
     "BookSeries": "BookSeries",
     "Book": "Book",
@@ -441,6 +444,7 @@ CM_TO_RIS_TRANSLATIONS = {
 
 SO_TO_CM_TRANSLATIONS = {
     "Article": "Article",
+    "Blog": "Blog",
     "BlogPosting": "BlogPost",
     "Book": "Book",
     "BookChapter": "BookChapter",
@@ -480,7 +484,9 @@ OG_TO_SO_TRANSLATIONS = {
 CM_TO_SO_TRANSLATIONS = {
     "Article": "Article",
     "Audiovisual": "CreativeWork",
+    "Blog": "Blog",
     "BlogPost": "BlogPosting",
+    "BlogVolume": "PeriodicalVolume",
     "Book": "Book",
     "BookChapter": "BookChapter",
     "Collection": "CreativeWork",

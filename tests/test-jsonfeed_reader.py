@@ -1147,3 +1147,51 @@ def test_get_jsonfeed():
 def test_get_jsonfeed_item_not_found():
     """Test get_json_feed_item_id not found"""
     assert get_jsonfeed_uuid("notfound") is None
+
+
+@pytest.mark.vcr
+def test_get_jsonfeed_blog():
+    """Test get_jsonfeed_blog"""
+    string = "https://api.rogue-scholar.org/blogs/front_matter"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.53731/front_matter"
+    assert subject.type == "Blog"
+    assert subject.url == "https://blog.front-matter.de"
+    assert subject.titles[0] == {"title": "Front Matter"}
+    assert subject.identifiers == [
+        {
+            "identifier": "https://blog.front-matter.de/atom",
+            "identifierType": "URL",
+        },
+        {
+            "identifier": "2749-9952",
+            "identifierType": "ISSN",
+        },
+    ]
+    assert subject.descriptions[0] == {
+        "description": "The Front Matter Blog covers the intersection of science and technology since 2007.",
+        "type": "Abstract",
+    }
+    assert len(subject.contributors) == 1
+    assert subject.contributors[0] == {
+        "id": "https://orcid.org/0000-0003-1419-2405",
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Martin",
+        "familyName": "Fenner",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {
+        "created": "2023-01-01T09:19:13",
+        "updated": "2026-04-15T10:09:22",
+    }
+    assert subject.publisher == {
+        "name": "Front Matter",
+    }
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1710", "subject": "Information Systems"},
+    ]
+    assert subject.language == "en"

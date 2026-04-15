@@ -90,18 +90,21 @@ def _wrap_crossref_body(item: dict[str, Any]) -> dict[str, Any]:
 
     if item_type == "journal":
         journal_metadata = dig(input_obj, "journal_metadata") or {}
-        journal_issue = dig(input_obj, "journal_issue") or {}
-        journal_article = dig(input_obj, "journal_article") or {}
+        journal_issue = dig(input_obj, "journal_issue")
+        journal_article = dig(input_obj, "journal_article")
         input_obj.pop("journal_metadata", None)
         input_obj.pop("journal_issue", None)
         input_obj.pop("journal_article", None)
-        return {
-            "journal": {
-                "journal_metadata": journal_metadata,
-                "journal_issue": journal_issue,
-                "journal_article": journal_article | input_obj,
-            }
+        journal_payload: dict[str, Any] = {
+            "journal_metadata": journal_metadata,
         }
+        if journal_issue is not None:
+            journal_payload["journal_issue"] = journal_issue
+        if journal_article is not None:
+            journal_payload["journal_article"] = journal_article | input_obj
+        else:
+            journal_payload |= input_obj
+        return {"journal": compact(journal_payload)}
 
     if item_type == "proceedings_article":
         proceedings_metadata = dig(input_obj, "proceedings_metadata") or {}
@@ -159,18 +162,21 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
             payload = wrapped["database"]
         elif item_type == "journal":
             journal_metadata = dig(input_obj, "journal_metadata") or {}
-            journal_issue = dig(input_obj, "journal_issue") or {}
-            journal_article = dig(input_obj, "journal_article") or {}
+            journal_issue = dig(input_obj, "journal_issue")
+            journal_article = dig(input_obj, "journal_article")
             input_obj.pop("journal_metadata", None)
             input_obj.pop("journal_issue", None)
             input_obj.pop("journal_article", None)
-            wrapped = {
-                "journal": {
-                    "journal_metadata": journal_metadata,
-                    "journal_issue": journal_issue,
-                    "journal_article": journal_article | input_obj,
-                }
+            journal_payload: dict[str, Any] = {
+                "journal_metadata": journal_metadata,
             }
+            if journal_issue is not None:
+                journal_payload["journal_issue"] = journal_issue
+            if journal_article is not None:
+                journal_payload["journal_article"] = journal_article | input_obj
+            else:
+                journal_payload |= input_obj
+            wrapped = {"journal": compact(journal_payload)}
             item_type_key = "journal"
             payload = wrapped["journal"]
         elif item_type == "sa_component":
@@ -535,7 +541,9 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
     # raise error if type is not supported by Crossref
     if metadata.type not in [
         "Article",
+        "Blog",
         "BlogPost",
+        "BlogVolume",
         "Book",
         "BookChapter",
         "Component",
@@ -587,6 +595,14 @@ def convert_crossref_xml(metadata: Metadata) -> dict | None:
                 "version_info": get_version_info(metadata),
                 "doi_data": doi_data,
                 "references": references,
+            }
+        )
+    elif metadata.type == "Blog":
+        kwargs["language"] = metadata.language
+        data = compact(
+            {
+                "journal": {},
+                "journal_metadata": get_journal_metadata(metadata),
             }
         )
     elif metadata.type == "BlogPost":
@@ -1008,16 +1024,12 @@ def get_attributes(obj, **kwargs) -> dict:
 
 def get_journal_metadata(obj) -> dict | None:
     """get journal metadata"""
-    issn = (
-        dig(obj, "container.identifier")
-        if dig(obj, "container.identifierType") == "ISSN"
-        else None
-    )
     return compact(
         {
             "@language": dig(obj, "language"),
-            "full_title": dig(obj, "container.title"),
-            "issn": issn,
+            "full_title": dig(obj, "container.title") or dig(obj, "titles.0.title"),
+            "issn": get_issn(obj),
+            "doi_data": get_doi_data(obj),
         }
     )
 
@@ -1614,9 +1626,14 @@ def normalize_isbn_crossref(isbn: str) -> str | None:
 
 def get_issn(obj):
     """get issn"""
-    if dig(obj, "container.identifierType") != "ISSN":
-        return None
-    return dig(obj, "container.identifier")
+    if dig(obj, "container.identifierType") == "ISSN":
+        return dig(obj, "container.identifier")
+
+    for identifier in wrap(dig(obj, "identifiers")):
+        if identifier.get("identifierType") == "ISSN":
+            return identifier.get("identifier")
+
+    return None
 
 
 class CrossrefXMLClient:

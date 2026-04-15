@@ -423,14 +423,10 @@ def test_jsonfeed_upstream_blog():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Traditionally, journal subject classification was done manually at varying levels of granularity"
     )
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://upstream.force11.org/attempts-at-automating-journal-subject-classification/",
         "mime_type": "text/html",
-    }
-    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
-        "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
-        "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "Upstream"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
@@ -475,14 +471,10 @@ def test_jsonfeed_upstream_blog_archived():
         dig(crossref_xml, "doi_data.resource")
         == "https://rogue-scholar.org/records/thmsh-a1z89"
     )
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://rogue-scholar.org/records/thmsh-a1z89",
         "mime_type": "text/html",
-    }
-    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
-        "#text": "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48.md",
-        "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "Upstream"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
@@ -593,14 +585,10 @@ def test_jsonfeed_with_doi():
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Die EU-Wissenschaftsministerien haben sich auf ihrer heutigen Sitzung in Brüssel unter dem Titel “Council conclusions on high-quality, transparent, open, trustworthy and equitable scholarly publishing"
     )
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://wisspub.net/2023/05/23/eu-mitgliedstaaten-betonen-die-rolle-von-wissenschaftsgeleiteten-open-access-modellen-jenseits-von-apcs/",
         "mime_type": "text/html",
-    }
-    assert dig(crossref_xml, "doi_data.collection.item.1.resource") == {
-        "#text": "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58.md",
-        "mime_type": "text/markdown",
     }
     assert crossref_xml.get("group_title") == "wisspub.net"
     assert dig(crossref_xml, "version_info") == {"version": "v1"}
@@ -749,7 +737,7 @@ def test_jsonfeed_with_organizational_author():
         {"#text": "Liberate Science", "contributor_role": "author", "sequence": "first"}
     ]
     assert dig(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "#text": "https://libscie.org/ku-leuven-supports-researchequals",
         "mime_type": "text/html",
@@ -792,7 +780,7 @@ def test_jsonfeed_with_archived_content():
         },
     }
     assert dig(crossref_xml, "titles.0.title") == "ORCID Integration Series: PANGAEA"
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 5
+    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
     assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
         "mime_type": "text/html",
         "#text": "https://wayback.archive-it.org/22143/2023-11-03T19:24:18Z/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea",
@@ -1739,3 +1727,23 @@ def test_error_invalid_metalist():
         )  # Empty list is not valid for Crossref XML generation])
 
     assert "No input format found" in str(exc_info.value)
+
+
+@pytest.mark.vcr
+def test_write_blog():
+    """Write crossref_xml blog"""
+    string = "https://api.rogue-scholar.org/blogs/front_matter"
+    subject = Metadata(string)
+    assert subject.id == "https://doi.org/10.53731/front_matter"
+    assert subject.type == "Blog"
+    assert subject.url == "https://blog.front-matter.de"
+
+    crossref_xml = subject.write(to="crossref_xml")
+    assert subject.is_valid
+    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_metadata", {})
+    assert dig(crossref_xml, "language") == "en"
+    assert dig(crossref_xml, "full_title") == "Front Matter"
+    assert dig(crossref_xml, "issn") == "2749-9952"
+    assert dig(crossref_xml, "doi_data.doi") == "10.53731/front_matter"
+    assert dig(crossref_xml, "doi_data.resource") == "https://blog.front-matter.de"
