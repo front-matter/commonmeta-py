@@ -155,11 +155,13 @@ def write_inveniordm(metadata: Metadata) -> dict:
             if subject_id is not None:
                 seen_ids.add(subject_id)
 
+    # files = to_files(metadata)
+
     return compact(
         {
             "pids": pids,
             "access": {"record": "public", "files": "public"},
-            "files": {"enabled": len(wrap(metadata.files)) > 0},
+            "files": {"enabled": False},
             "metadata": compact(
                 {
                     "resource_type": {"id": _type},
@@ -514,10 +516,8 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
     )
 
 
-def to_files(metadata: Metadata) -> list | None:
+def to_files(metadata: Metadata) -> list:
     """Convert metadata files to inveniordm files"""
-    if metadata.files is None:
-        return None
 
     def format_file(file):
         return compact(

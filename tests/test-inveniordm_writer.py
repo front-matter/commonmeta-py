@@ -65,7 +65,7 @@ def test_publication():
     assert dig(inveniordm, "metadata.funding") is None
     assert dig(inveniordm, "custom_fields.rs:content_html") is None
     assert dig(inveniordm, "custom_fields.rs:image") is None
-    assert dig(inveniordm, "files.enabled")
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -152,7 +152,7 @@ def test_journal_article():
     ]
     assert dig(inveniordm, "custom_fields.rs:content_html") is None
     assert dig(inveniordm, "custom_fields.rs:image") is None
-    assert dig(inveniordm, "files.enabled")
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -230,7 +230,7 @@ def test_rogue_scholar():
     assert dig(inveniordm, "custom_fields.journal:journal.issn") == "2749-9952"
     # assert dig(inveniordm, "custom_fields.rs:content_html").startswith("a")
     # assert dig(inveniordm, "custom_fields.rs:image") == 2
-    assert dig(inveniordm, "files.enabled")
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
@@ -424,7 +424,7 @@ def test_from_jsonfeed_affiliations():
         dig(inveniordm, "custom_fields.rs:image")
         == "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg"
     )
-    assert dig(inveniordm, "files.enabled")
+    assert not dig(inveniordm, "files.enabled")
 
 
 @pytest.mark.vcr
