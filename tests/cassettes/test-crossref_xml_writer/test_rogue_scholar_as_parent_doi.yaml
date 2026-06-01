@@ -11,58 +11,6 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://staging.rogue-scholar.org/api/records/baq1p-0py32
-  response:
-    body:
-      string: '{"status": 404, "message": "The persistent identifier does not exist."}'
-    headers:
-      Content-Length:
-      - '71'
-      Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        www.canva.com video.ethz.ch; img-src *'
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 01 Dec 2025 17:18:16 GMT
-      Permissions-Policy:
-      - interest-cohort=()
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Retry-After:
-      - '60'
-      Server:
-      - gunicorn
-      Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - sameorigin
-      X-Ratelimit-Limit:
-      - '500'
-      X-Ratelimit-Remaining:
-      - '499'
-      X-Ratelimit-Reset:
-      - '1764609557'
-      X-Xss-Protection:
-      - 1; mode=block
-    status:
-      code: 404
-      message: Not Found
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.32.5
-    method: GET
     uri: https://rogue-scholar.org/api/records/dj4cp-2b786
   response:
     body:
@@ -85,13 +33,13 @@ interactions:
       - '235'
       Content-Security-Policy:
       - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
-        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
-        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
-        img-src *'
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Mon, 09 Feb 2026 14:49:01 GMT
+      - Mon, 01 Jun 2026 13:22:47 GMT
       Location:
       - /api/records/a9awy-52h48
       Permissions-Policy:
@@ -99,7 +47,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '59'
+      - '49'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -113,9 +61,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '498'
+      - '496'
       X-Ratelimit-Reset:
-      - '1770648601'
+      - '1780320217'
       X-Xss-Protection:
       - 1; mode=block
     status:
@@ -136,214 +84,101 @@ interactions:
     uri: https://rogue-scholar.org/api/records/a9awy-52h48
   response:
     body:
-      string: '{"id": "a9awy-52h48", "created": "2025-06-27T16:11:25.068847+00:00",
-        "updated": "2026-02-07T22:56:00.978669+00:00", "links": {"self": "https://rogue-scholar.org/api/records/a9awy-52h48",
-        "self_html": "https://rogue-scholar.org/records/a9awy-52h48", "preview_html":
-        "https://rogue-scholar.org/records/a9awy-52h48?preview=1", "doi": "https://doi.org/10.53731/m7gng-jmm19",
-        "self_doi": "https://doi.org/10.53731/m7gng-jmm19", "self_doi_html": "https://rogue-scholar.org/doi/10.53731/m7gng-jmm19",
-        "reserve_doi": "https://rogue-scholar.org/api/records/a9awy-52h48/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/dj4cp-2b786", "parent_html":
-        "https://rogue-scholar.org/records/dj4cp-2b786", "parent_doi": "https://doi.org/10.53731/dj4cp-2b786",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.53731/dj4cp-2b786", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:a9awy-52h48/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/a9awy-52h48/files", "media_files":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files", "archive":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/a9awy-52h48/latest", "versions": "https://rogue-scholar.org/api/records/a9awy-52h48/versions",
-        "draft": "https://rogue-scholar.org/api/records/a9awy-52h48/draft", "access_links":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access/request", "access":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/access", "communities":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/a9awy-52h48/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/a9awy-52h48/request-deletion",
-        "file_modification": "https://rogue-scholar.org/api/records/a9awy-52h48/file-modification",
-        "requests": "https://rogue-scholar.org/api/records/a9awy-52h48/requests"},
-        "revision_id": 207, "parent": {"id": "dj4cp-2b786", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["15a362ea-8138-42b8-917f-1840a92addf8", "40d93f0d-7c6b-44ee-83e1-971b099c2f54",
-        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "d79fe364-6d96-40b6-b437-b93ca3493106",
-        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"], "default": "15a362ea-8138-42b8-917f-1840a92addf8",
-        "entries": [{"id": "15a362ea-8138-42b8-917f-1840a92addf8", "created": "2024-08-30T15:03:16.250133+00:00",
-        "updated": "2026-01-28T07:42:11.199989+00:00", "links": {}, "revision_id":
-        854, "slug": "front_matter", "metadata": {"title": "Front Matter", "description":
-        "The Front Matter Blog covers the intersection of science and technology since
-        2007.", "type": {"id": "blog"}, "website": "https://blog.front-matter.de"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:issn": "2749-9952", "rs:feed_url": "https://blog.front-matter.de/atom",
-        "rs:prefix": "10.53731", "rs:joined": "January 1, 2023", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "Ghost", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Information Systems"}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "40d93f0d-7c6b-44ee-83e1-971b099c2f54", "created": "2024-10-08T13:08:59.074690+00:00",
-        "updated": "2026-01-25T12:37:39.092298+00:00", "links": {}, "revision_id":
-        39, "slug": "roguescholar", "metadata": {"title": "Rogue Scholar", "description":
-        "Blog posts about Rogue Scholar.", "type": {"id": "topic"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "5e9a020e-21d4-4515-8a70-bb942b08a59d", "created": "2024-10-06T07:37:39.965911+00:00",
-        "updated": "2026-01-25T12:36:58.222374+00:00", "links": {}, "revision_id":
-        14, "slug": "openinfrastructure", "metadata": {"title": "Open Infrastructure",
-        "description": "Blog posts about Open Infrastructure.", "type": {"id": "topic"}},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
-        "updated": "2025-12-02T20:56:15.845048+00:00", "links": {}, "revision_id":
-        11, "slug": "1710", "metadata": {"title": "Information Systems", "type": {"id":
-        "subject"}, "website": "https://openalex.org/subfields/1710"}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": true}}, {"id":
-        "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
-        "updated": "2025-12-02T20:56:11.605253+00:00", "links": {}, "revision_id":
-        11, "slug": "1802", "metadata": {"title": "Information Systems and Management",
-        "type": {"id": "subject"}, "website": "https://openalex.org/subfields/1802"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        true}}]}, "pids": {"doi": {"identifier": "10.53731/dj4cp-2b786", "provider":
-        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
-        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
-        "10.53731/m7gng-jmm19", "provider": "crossref", "client": "crossref"}, "oai":
-        {"identifier": "oai:invenio-rdm:a9awy-52h48", "provider": "oai"}}, "metadata":
-        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
-        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
-        {"type": "personal", "name": "Fenner, Martin", "given_name": "Martin", "family_name":
-        "Fenner", "identifiers": [{"identifier": "0000-0003-1419-2405", "scheme":
-        "orcid"}]}, "affiliations": [{"name": "Front Matter"}]}], "title": "Kamal
-        deploys InvenioRDM Starter to production", "publisher": "Front Matter", "publication_date":
-        "2025-06-27", "subjects": [{"id": "https://openalex.org/subfields/1710", "subject":
-        "Information Systems", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"id": "https://openalex.org/T11986",
-        "subject": "Scientific Computing and Data Management", "scheme": "Topics"},
-        {"id": "https://openalex.org/subfields/1802", "subject": "Information Systems
-        and Management", "scheme": "Subfields"}, {"id": "http://www.oecd.org/science/inno/38235147.pdf?5.2",
-        "subject": "Economics and business", "scheme": "FOS"}, {"subject": "Rogue
-        Scholar"}, {"subject": "Open Infrastructure"}], "dates": [{"date": "2025-06-27T17:51:11",
-        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
-        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-06-27T22:03:19", "type": {"id": "updated",
-        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
-        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
-        "7798debf-42f6-4dca-afcf-a7cdd80cf0ff", "scheme": "uuid"}, {"identifier":
-        "https://doi.org/10.53731/m7gng-jmm19", "scheme": "guid"}, {"identifier":
-        "https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "InvenioRDM is the open source turn-key
-        research data management platform, with detailed documentation available here.
-        InvenioRDM Starter facilitates deployment and configuration of InvenioRDM,
-        allowing you to run InvenioRDM on your local computer within 15 min. This
-        is achieved by providing a) a prebuilt Invenio-App-RDM Docker image, and b)
-        a Docker Compose configuration file with sensible defaults.", "references":
-        [{"identifier": "10.53731/jxecm-0me48", "scheme": "doi", "reference": "Fenner,
-        M. (2024, June 17). Announcing InvenioRDM Starter Beta. Front Matter."}, {"identifier":
-        "10.53731/r294649-6f79289-8cvzn", "scheme": "doi", "reference": "Fenner, M.
-        (2015, July 29). Thank you PLOS. Front Matter."}]}, "custom_fields": {"journal:journal":
-        {"title": "Front Matter", "issn": "2749-9952"}, "rs:content_html": "<p>InvenioRDM
-        is the open source turn-key research data management platform, with detailed
-        documentation available <a href=\"https://inveniordm.docs.cern.ch\" rel=\"noreferrer\">here</a>.
-        <a href=\"https://starter.front-matter.io\" rel=\"noreferrer\">InvenioRDM
-        Starter</a> facilitates deployment and configuration of InvenioRDM, allowing
-        you to run InvenioRDM on your local computer within 15 min. This is achieved
-        by providing a) a prebuilt Invenio-App-RDM Docker image, and b) a Docker Compose
-        configuration file with sensible defaults. </p><p>Starting this week, InvenioRDM
-        starter can also be used to deploy InvenioRDM to production, using the <a
-        href=\"https://kamal-deploy.org/\" rel=\"noreferrer\">Kamal</a> tool. Kamal
-        is similar to Docker Compose, but adds important functionality, including
-        automatic remote builds, zero-downtime deployments, and deployments to multiple
-        servers. Kamal is a command-line utility with a YAML configuration file, and
-        much simpler to use than Kubernetes or commercial Docker container orchestration
-        services such as Amazon Elastic Container Service (Amazon ECS). </p><p>Kamal
-        can deploy InvenioRDM to your hardware or to a virtual machine provided by
-        your organization or a cloud provider. Whereas Kubernetes is a good option
-        for large InvenioRDM installations, smaller InvenioRDM instances benefit from
-        simpler deployment tools both in terms of cost and required maintenance.</p><p>The
-        science blog archive <a href=\"https://rogue-scholar.org\" rel=\"noreferrer\">Rogue
-        Scholar</a> managed by Front Matter is a good example of an InvenioRDM repository
-        that can benefit from simpler deployment options. As the next major release
-        of InvenioRDM (v13.0) will happen in the next few weeks, Rogue Scholar needs
-        to prepare for the upgrade, and I have this week launched a Rogue Scholar
-        staging instance at <a href=\"https://staging.rogue-scholar.org\" rel=\"noreferrer\">https://staging.rogue-scholar.org</a>
-        using Kamal and a virtual machine provisioned by <a href=\"https://www.hetzner.com/\"
-        rel=\"noreferrer\">Hetzner</a> and located in Germany.</p><p>The setup was
-        mostly straightforward, except for the integration with the Kamal proxy server,
-        which turned out to be very painful. In the end I had to set the InvenioRDM<code>APP_ALLOWED_HOSTS</code>
-        ENV variable to <code>None</code> and patch the REST API cross site request
-        forgery (CRSF) check to not check the request host. This needs more discussion
-        but appears safe, as all requests must go through the Kamal proxy, where the
-        host header is already checked.</p><p>More work is needed on the staging server,
-        including regular automatic backups of the database, and setting up monitoring
-        (logs and metrics). The instance is running the latest stable release (v12.1.0),
-        but I will soon be able to install the latest v13 release candidate \u2013
-        <a href=\"https://pypi.org/project/invenio-app-rdm/13.0.0rc2/\" rel=\"noreferrer\">v13.0.0rc2</a>
-        was released three days ago.</p><p>Kamal was <a href=\"https://world.hey.com/dhh/introducing-kamal-9330a267\"
-        rel=\"noreferrer\">released in 2023</a> by 37signals, the company behind the
-        Basecamp and Hey services, and one of the major contributors to the Rails
-        platform. Kamal is installed as a Ruby gem, but is not specific to Rails or
-        Ruby. Kamal can be seen as the successor to the <a href=\"https://capistranorb.com/\"
-        rel=\"noreferrer\">Capistrano</a> deployment tool, also originally written
-        by 37signals, but Kamal is working with Docker containers. When I <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\"
-        rel=\"noreferrer\">was the technical lead of the Article Level Metrics project</a>
-        at the publisher PLOS 2012-2015 (at the time Docker was not yet adopted for
-        production deployments), I made heavy use of Capistrano.</p><p><a href=\"https://starter.front-matter.io\"
-        rel=\"noreferrer\">InvenioRDM Starter</a> now includes a Kamal configuration
-        option, and I deployed an InvenioRDM instance to <a href=\"https://demo.front-matter.io\"
-        rel=\"noreferrer\">https://demo.front-matter.io</a> using Kamal. </p><figure
-        class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png\"
-        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"2000\" height=\"1134\"
-        srcset=\"https://blog.front-matter.de/content/images/size/w600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        600w, https://blog.front-matter.de/content/images/size/w1000/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        1000w, https://blog.front-matter.de/content/images/size/w1600/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        1600w, https://blog.front-matter.de/content/images/size/w2400/2025/06/Bildschirmfoto-2025-06-27-um-17.49.37.png
-        2400w\" sizes=\"(min-width: 720px) 720px\"></figure><p>Feel free to play around,
-        but only admin accounts can create records \u2013 use the official InvenioRDM
-        <a href=\"http://inveniordm.web.cern.ch/\" rel=\"noreferrer\">demo</a> instance
-        (also linked in the footer) if you want to create and/or update records. I
-        will spend the next few weeks refining the Kamal setup and documentation,
-        so that InvenioRDM Starter is ready for Kamal deployments when InvenioRDM
-        v13.0 is officially released.</p><h2 id=\"references\">References</h2><ol><li>Fenner,
-        M. (2024, June 17). Announcing InvenioRDM Starter Beta. <em>Front Matter</em>.
-        <a href=\"https://doi.org/10.53731/jxecm-0me48\">https://doi.org/10.53731/jxecm-0me48</a></li><li>Fenner,
-        M. (2015, July 29). Thank you PLOS. <em>Front Matter</em>. <a href=\"https://doi.org/10.53731/r294649-6f79289-8cvzn\">https://doi.org/10.53731/r294649-6f79289-8cvzn</a></li></ol>",
-        "rs:image": "https://images.unsplash.com/photo-1634638026221-4c1c4cf9f881?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDU1fHxzaGlwJTIwY29udGFpbmVyfGVufDB8fHx8MTc1MTAzNDgzN3ww&ixlib=rb-4.1.0&q=80&w=2000",
-        "rs:generator": "Ghost", "rs:citations": [{"identifier": "10.53731/cysem-8fs56",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
-        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/zh0af-01d30",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 2). Rogue Scholar Newsletter
-        June 2025. <i>Front Matter</i>."}, {"identifier": "10.53731/dd5h7-z5y55",
-        "scheme": "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM
-        v13. <i>Front Matter</i>."}, {"identifier": "10.53731/spbfb-7wx76", "scheme":
-        "doi", "reference": "Fenner, M. (2025, July 7). Upgrading to InvenioRDM v13.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/5sce1-bre33", "scheme": "doi",
-        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/8dg89-gnc10", "scheme": "doi",
-        "reference": "Fenner, M. (2025, July 23). Rogue Scholar relaunches today.
-        <i>Front Matter</i>."}, {"identifier": "10.53731/dzznx-zkn71", "scheme": "doi",
-        "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated to Coolify
-        Cloud. <i>Front Matter</i>."}, {"identifier": "10.59350/dkt3j-kh345", "scheme":
-        "doi", "reference": "Fenner, M. (2026, January 22). Rogue Scholar migrated
-        to Coolify Cloud. <i>Front Matter</i>."}], "rs:stale": false}, "access": {"record":
-        "public", "files": "public", "embargo": {"active": false, "reason": null},
-        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        3, "unique_views": 3, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 3, "unique_views": 3, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
     headers:
       Alt-Svc:
       - h3=":443"; ma=2592000
@@ -351,15 +186,15 @@ interactions:
       - gzip
       Content-Security-Policy:
       - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
-        wayback.archive-it.org www.youtube.com www.youtube-nocookie.com player.vimeo.com
-        av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch *.streamlit.app;
-        img-src *'
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Mon, 09 Feb 2026 14:49:01 GMT
+      - Mon, 01 Jun 2026 13:22:47 GMT
       Etag:
-      - '"207"'
+      - '"217"'
       Link:
       - <https://rogue-scholar.org/api/records/a9awy-52h48> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -367,7 +202,7 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '59'
+      - '49'
       Server:
       - gunicorn
       Strict-Transport-Security:
@@ -383,9 +218,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '497'
+      - '495'
       X-Ratelimit-Reset:
-      - '1770648601'
+      - '1780320217'
       X-Xss-Protection:
       - 1; mode=block
     status:

@@ -18,29 +18,21 @@ interactions:
 
         '
     headers:
-      content-encoding:
-      - gzip
-      content-type:
+      Access-Control-Allow-Origin:
+      - '*'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Length:
+      - '27'
+      Content-Type:
       - application/json
-      date:
-      - Mon, 01 Dec 2025 17:17:04 GMT
-      fly-request-id:
-      - 01KBDENYZ8SG2E463SCXF7F272-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '14'
-      ratelimit-reset:
-      - '3'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
+      Date:
+      - Mon, 01 Jun 2026 13:21:50 GMT
+      Server:
+      - gunicorn
+      Vary:
+      - Accept-Encoding
     status:
       code: 404
-      message: ''
+      message: Not Found
 version: 1

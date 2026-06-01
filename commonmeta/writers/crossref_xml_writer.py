@@ -4,29 +4,23 @@ from __future__ import annotations
 
 import io
 import logging
-import warnings
-from dataclasses import fields as dataclass_fields
 from datetime import datetime
 from time import time
 from typing import TYPE_CHECKING, Any, Dict
 
 import orjson as json
 import requests
+import xmltodict
 from dateutil.parser import parse as date_parse
 from furl import furl
 from isbnlib import canonical, is_isbn10, is_isbn13
 from marshmallow import Schema, fields
 from requests.exceptions import RequestException
 from requests_toolbelt.multipart.encoder import MultipartEncoder
-from xsdata.formats.converter import converter
-from xsdata.formats.dataclass.context import XmlContext
-from xsdata.formats.dataclass.serializers import XmlSerializer
-from xsdata.formats.dataclass.serializers.config import SerializerConfig
 
 from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presence, wrap
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
-from ..resources.crossref.models.org.crossref.schema.pkg_5.mod_4 import DoiBatch
 from ..utils import validate_url
 from .inveniordm_writer import push_inveniordm, update_legacy_record
 
@@ -217,17 +211,12 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
 
 
 def tostring(data: dict | list, *, head: dict | None = None) -> str:
-    """Serialize Crossref XML using xsdata.
-
-    Uses xsdata models for the final XML rendering.
-    """
-
+    """Serialize Crossref XML using xmltodict."""
     if not isinstance(data, (dict, list)):
         raise TypeError("Input data must be a dictionary or a list.")
 
     head = head or {}
 
-    body: dict[str, Any]
     if isinstance(data, dict):
         body = _wrap_crossref_body(dict(data))
     else:
@@ -245,247 +234,11 @@ def tostring(data: dict | list, *, head: dict | None = None) -> str:
         }
     }
 
-    def _to_xsdata_dict(node: Any) -> Any:
-        if isinstance(node, list):
-            return [_to_xsdata_dict(v) for v in node]
-        if isinstance(node, dict):
-            out: dict[str, Any] = {}
-            for k, v in node.items():
-                if k == "#text":
-                    nk = "value"
-                elif isinstance(k, str) and k.startswith("@"):
-                    nk = k[1:]
-                else:
-                    nk = k
-                out[nk] = _to_xsdata_dict(v)
-            return out
-        return node
-
-    normalized = _to_xsdata_dict(output)
-    doi_batch_data = (
-        normalized.get("doi_batch") if isinstance(normalized, dict) else None
+    return (
+        xmltodict.unparse(output, pretty=True, indent="  ")
+        .encode("utf-8")
+        .decode("utf-8")
     )
-    if not isinstance(doi_batch_data, dict):
-        raise ValueError("Invalid Crossref XML structure for xsdata")
-
-    for key in list(doi_batch_data.keys()):
-        if isinstance(key, str) and key.startswith("xmlns"):
-            doi_batch_data.pop(key, None)
-
-    # `DoiBatch.version` is init=False; keep the attribute via the model default.
-    doi_batch_data.pop("version", None)
-
-    context = XmlContext()
-
-    prefix_ns = {
-        "ai": "http://www.crossref.org/AccessIndicators.xsd",
-        "rel": "http://www.crossref.org/relations.xsd",
-        "fr": "http://www.crossref.org/fundref.xsd",
-        "jats": "http://www.ncbi.nlm.nih.gov/JATS1",
-        "xlink": "http://www.w3.org/1999/xlink",
-    }
-
-    def _init_field_names(clazz: type) -> set[str]:
-        return {f.name for f in dataclass_fields(clazz) if f.init}
-
-    def _coerce_primitive(val: Any, types: tuple[type, ...]) -> Any:
-        if val is None:
-            return None
-        if isinstance(val, (dict, list)):
-            return val
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore")
-            try:
-                return converter.deserialize(val, types)
-            except Exception:
-                return val
-
-    def _bind_model(val: Any, clazz: type) -> Any:
-        if val is None:
-            return None
-
-        fields_map = getattr(clazz, "__dataclass_fields__", {})
-
-        # Scalar -> bind to simple-content or wildcard-content models.
-        if not isinstance(val, dict):
-            if "value" in fields_map:
-                target_type = fields_map["value"].type
-                coerced = _coerce_primitive(
-                    val, (target_type,) if isinstance(target_type, type) else (str,)
-                )
-                return clazz(value=coerced)
-            if "content" in fields_map:
-                return clazz(content=[val])
-            return val
-
-        # Special-case: dict contains only a simple text value for wildcard-content models.
-        if "content" in fields_map and set(val.keys()) == {"value"}:
-            return clazz(content=[val.get("value")])
-
-        meta = context.build(clazz)
-        xml_vars = meta.get_all_vars()
-
-        qname_map: dict[str, Any] = {}
-        local_map: dict[str, list[Any]] = {}
-        for var in xml_vars:
-            if getattr(var, "qname", None):
-                qname_map[var.qname] = var
-            if var.local_name:
-                local_map.setdefault(var.local_name, []).append(var)
-
-        init_names = _init_field_names(clazz)
-        params: dict[str, Any] = {}
-
-        for key, raw in val.items():
-            if isinstance(key, str) and key.startswith("xmlns"):
-                continue
-
-            var = None
-            if isinstance(key, str) and ":" in key:
-                prefix, local = key.split(":", 1)
-                ns = prefix_ns.get(prefix)
-                if ns:
-                    var = qname_map.get(f"{{{ns}}}{local}")
-            elif isinstance(key, str):
-                class_ns = getattr(getattr(clazz, "Meta", None), "namespace", None)
-                if class_ns:
-                    var = qname_map.get(f"{{{class_ns}}}{key}")
-                if var is None:
-                    # Attributes use plain qname values like "type".
-                    var = qname_map.get(key)
-
-            if var is None and isinstance(key, str):
-                cands = local_map.get(key, [])
-                if len(cands) == 1:
-                    var = cands[0]
-
-            if var is None:
-                # Preserve unknown content for wildcard-content JATS models.
-                if "content" in fields_map:
-                    params.setdefault("content", []).append(
-                        str(raw) if not isinstance(raw, (dict, list)) else raw
-                    )
-                continue
-
-            expected_list = bool(var.list_element or var.tokens)
-            if expected_list and not isinstance(raw, list):
-                raw = [raw]
-            if not expected_list and isinstance(raw, list):
-                raw = raw[0] if len(raw) == 1 else raw
-
-            target_clazz = getattr(var, "clazz", None)
-            is_model = bool(target_clazz and context.class_type.is_model(target_clazz))
-
-            def bind_one(x: Any) -> Any:
-                if is_model:
-                    return _bind_model(x, target_clazz)
-                return _coerce_primitive(x, var.types)
-
-            bound = (
-                [bind_one(x) for x in raw] if isinstance(raw, list) else bind_one(raw)
-            )
-            if var.name in init_names:
-                params[var.name] = bound
-
-        try:
-            return clazz(**params)
-        except TypeError as exc:
-            raise ValueError(f"Failed to instantiate {clazz.__name__}: {exc}") from exc
-
-    doi_batch = _bind_model(doi_batch_data, DoiBatch)
-
-    serializer = XmlSerializer(
-        config=SerializerConfig(
-            encoding="utf-8",
-            xml_version="1.0",
-            xml_declaration=True,
-            indent="  ",
-            ignore_default_attributes=True,
-        )
-    )
-
-    # Keep the root namespace declarations stable and minimal for tests.
-    ns_map = {
-        None: "http://www.crossref.org/schema/5.4.0",
-        "ai": "http://www.crossref.org/AccessIndicators.xsd",
-        "rel": "http://www.crossref.org/relations.xsd",
-        "fr": "http://www.crossref.org/fundref.xsd",
-    }
-    xml_str = serializer.render(doi_batch, ns_map=ns_map)
-
-    # xsdata may omit defaulted attributes (eg. doi_batch@version) when
-    # ignore_default_attributes=True. We still want them present in output.
-    if "<doi_batch" in xml_str:
-        import re
-
-        def _doi_batch_version_repl(match):
-            start = match.group(1)
-            end = match.group(2)
-            return (
-                match.group(0)
-                if 'version="' in start
-                else f'{start} version="5.4.0"{end}'
-            )
-
-        xml_str = re.sub(
-            r"(<doi_batch\b[^>]*)(>)", _doi_batch_version_repl, xml_str, count=1
-        )
-
-    # Always expose ORCID authenticated attribute (defaults to false).
-    if "<ORCID" in xml_str:
-        import re
-
-        def _orcid_repl(match):
-            tag = match.group(0)
-            return (
-                tag if "authenticated=" in tag else tag[:-1] + ' authenticated="false">'
-            )
-
-        xml_str = re.sub(r"<ORCID(\s[^>]*)?>", _orcid_repl, xml_str)
-
-    # `posted_content@type` defaults to "preprint" in the generated models and
-    # can be omitted when ignore_default_attributes=True.
-    if "<posted_content" in xml_str:
-        import re
-
-        def _posted_content_type_repl(match):
-            tag = match.group(0)
-            return tag if 'type="' in tag else tag[:-1] + ' type="preprint">'
-
-        xml_str = re.sub(
-            r"<posted_content(\s[^>]*)?>", _posted_content_type_repl, xml_str
-        )
-
-    # Program elements also have defaulted name attributes that may be omitted
-    # when ignore_default_attributes=True.
-    if "<ai:program" in xml_str:
-        import re
-
-        def _ai_program_name(match):
-            tag = match.group(0)
-            return tag if 'name="' in tag else tag[:-1] + ' name="AccessIndicators">'
-
-        xml_str = re.sub(r"<ai:program(\s[^>]*)?>", _ai_program_name, xml_str)
-
-    if "<fr:program" in xml_str:
-        import re
-
-        def _fr_program_name(match):
-            tag = match.group(0)
-            return tag if 'name="' in tag else tag[:-1] + ' name="fundref">'
-
-        xml_str = re.sub(r"<fr:program(\s[^>]*)?>", _fr_program_name, xml_str)
-
-    if "<rel:program" in xml_str:
-        import re
-
-        def _rel_program_name(match):
-            tag = match.group(0)
-            return tag if 'name="' in tag else tag[:-1] + ' name="relations">'
-
-        xml_str = re.sub(r"<rel:program(\s[^>]*)?>", _rel_program_name, xml_str)
-
-    return xml_str
 
 
 class CrossrefXMLSchema(Schema):

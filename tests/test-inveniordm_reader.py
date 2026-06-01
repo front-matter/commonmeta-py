@@ -385,12 +385,12 @@ def test_rogue_scholar():
         "title": "Aaron Tay's Musings about librarianship",
         "identifier": "https://rogue-scholar.org/communities/musings",
         "identifierType": "URL",
-        "platform": "Substack",
+        "platform": {"id": "Substack", "title": {"en": "Substack"}},
     }
     assert subject.subjects == [
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
-            "subject": "Other social sciences",
+            "id": "https://openalex.org/subfields/3309",
+            "subject": "Library and Information Sciences",
         }
     ]
     assert subject.language == "en"
@@ -446,7 +446,7 @@ def test_rogue_scholar_with_citations():
         "title": "Open Access News",
         "identifier": "https://rogue-scholar.org/communities/oan",
         "identifierType": "URL",
-        "platform": "Blogger",
+        "platform": {"id": "Blogger", "title": {"en": "Blogger"}},
     }
     assert subject.subjects == [
         {
@@ -506,15 +506,22 @@ def test_rogue_scholar_with_parent_doi():
         "title": "Sauropod Vertebra Picture of the Week",
         "identifier": "3033-3695",
         "identifierType": "ISSN",
-        "platform": "WordPress.com",
+        "platform": {"id": "WordPress.com", "title": {"en": "WordPress.com"}},
     }
     assert subject.subjects == [
+        {
+            "id": "https://openalex.org/subfields/1911",
+            "subject": "Paleontology",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.5",
+            "subject": "Earth and related environmental sciences",
+        },
         {"subject": "Conferences"},
         {"subject": "Debate"},
         {"subject": "Open Access"},
         {"subject": "SSP"},
         {"subject": "Stinkin' Publishers"},
-        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
     ]
     assert subject.language == "en"
     assert subject.version == "v1"
@@ -571,10 +578,17 @@ def test_subfield_classification():
         )
     )
     assert subject.subjects == [
+        {
+            "id": "https://openalex.org/subfields/1911",
+            "subject": "Paleontology",
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.5",
+            "subject": "Earth and related environmental sciences",
+        },
         {"subject": "Conferences"},
         {"subject": "Debate"},
         {"subject": "Open Access"},
         {"subject": "SSP"},
         {"subject": "Stinkin' Publishers"},
-        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
     ]

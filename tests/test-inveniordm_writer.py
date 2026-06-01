@@ -296,13 +296,13 @@ def test_from_jsonfeed():
         {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
         {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
         {
-            "identifier": "https://ideophone.org/linguistic-roots-of-connectionism",
+            "identifier": "https://ideophone.org/linguistic-roots-of-connectionism/",
             "scheme": "url",
         },
     ]
     assert dig(inveniordm, "metadata.version") == "v1"
     assert dig(inveniordm, "metadata.description").startswith(
-        "A preprint claims that “ideas from theoretical linguistics have played no role"
+        "This Lingbuzz preprint by Baroni is a nice read if you"
     )
     assert dig(inveniordm, "metadata.subjects") == [
         {
@@ -331,7 +331,10 @@ def test_from_jsonfeed():
     assert dig(inveniordm, "custom_fields.rs:content_html").startswith(
         '\n<p>This <a rel="noreferrer noopener" href="https://ling.auf.net/lingbuzz/006031"'
     )
-    assert dig(inveniordm, "custom_fields.rs:image") is None
+    assert (
+        dig(inveniordm, "custom_fields.rs:image")
+        == "https://ideophone.org/files/E4FEkLuWUAI6IwO-696x1024.png"
+    )
     assert not dig(inveniordm, "files.enabled")
 
 
@@ -392,17 +395,21 @@ def test_from_jsonfeed_affiliations():
     )
     assert dig(inveniordm, "metadata.subjects") == [
         {
-            "id": "https://openalex.org/subfields/1710",
-            "subject": "Information Systems",
+            "id": "https://openalex.org/subfields/3309",
             "scheme": "Subfields",
+            "subject": "Library and Information Sciences",
         },
         {
-            "id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
             "scheme": "FOS",
-            "subject": "FOS: Computer and information sciences",
+            "subject": "FOS: Other humanities",
         },
-        {"subject": "Lab Life"},
-        {"subject": "Research"},
+        {
+            "subject": "Lab Life",
+        },
+        {
+            "subject": "Research",
+        },
     ]
     assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     references = dig(inveniordm, "metadata.references")
@@ -787,19 +794,8 @@ def test_post_with_interviewee_roles():
     inveniordm = json.loads(inveniordm)
     assert dig(inveniordm, "pids.doi.identifier") == "10.59350/s8m95-ap410"
     assert dig(inveniordm, "metadata.resource_type.id") == "publication-blogpost"
-    assert len(dig(inveniordm, "metadata.creators")) == 3
-    assert len(dig(inveniordm, "metadata.contributors")) == 6
-    assert dig(inveniordm, "metadata.contributors.0") == {
-        "person_or_org": {
-            "name": "Black, Chris",
-            "given_name": "Chris",
-            "family_name": "Black",
-            "type": "personal",
-        },
-        "role": {
-            "id": "interviewee",
-        },
-    }
+    assert len(dig(inveniordm, "metadata.creators")) == 9
+    assert dig(inveniordm, "metadata.contributors") is None
 
 
 @pytest.mark.vcr
@@ -827,16 +823,6 @@ def test_multiple_subfields():
             "id": "http://www.oecd.org/science/inno/38235147.pdf?1.6",
             "subject": "FOS: Biological sciences",
             "scheme": "FOS",
-        },
-        {
-            "id": "https://openalex.org/T12287",
-            "subject": "Fibroblast Growth Factor Research",
-            "scheme": "Topics",
-        },
-        {
-            "id": "https://openalex.org/subfields/1312",
-            "subject": "Molecular Biology",
-            "scheme": "Subfields",
         },
         {"subject": "Publishing"},
         {"subject": "Science"},

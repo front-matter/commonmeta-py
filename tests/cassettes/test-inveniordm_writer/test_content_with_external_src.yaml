@@ -14,104 +14,88 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/10.59350/vwd81-p8z85
   response:
     body:
-      string: '{"abstract":"Mike Taylor wrote up a post about the various things a
-        journal article is doing, the first being a scientific report. We put a lot
-        of money in establishing a scientific track record. In the past 30 years how
-        we publish our research and how we archive it has changed significantly. If
-        you read my blog more often, you know I have been critical of the performance
-        of many publishers.","archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
-        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"archive_collection":24077,"archive_host":null,"archive_prefix":null,"archive_timestamps":[20250309095102],"authors":[{"name":"Egon
-        Willighagen"}],"canonical_url":null,"category":"chemicalSciences","community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created_at":1710339716,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
-        (pronounced chem-bla-ics) is the science that uses open science and computers
-        to solve problems in chemistry, biochemistry and related fields.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"funding":null,"generator":"Jekyll","generator_raw":"Jekyll
-        4.3.4","home_page_url":"https://chem-bla-ics.linkedchemistry.info","id":"0bf0d06a-a707-417d-81eb-65b6c060d7e4","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729769435,"relative_url":null,"ror":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","subfield_validated":null,"title":"chem-bla-ics","updated_at":1764460800,"use_api":true,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","content_html":"<p><a
-        href=\"https://sauropods.win/@mike\">Mike Taylor</a> wrote up <a href=\"https://doi.org/10.59350/svpow.24000\">a
-        post</a> about the various things a journal article is doing,\nthe first being
-        <em>a scientific report</em>. We put a lot of money in establishing a scientific
-        track record. In the past 30 years\nhow we publish our research and how we
-        archive it has changed significantly. If you read my blog more often, you
-        know I have\nbeen critical of the performance of many publishers. Springer
-        Nature was so disappointing that after 5 years I\n<a href=\"https://chem-bla-ics.linkedchemistry.info/2021/06/11/conflict-of-interest-or-why-i-am.html\">stepped
-        down</a>\nas Editor-in-Chief (of two) of the <a href=\"https://en.wikipedia.org/wiki/Journal_of_Cheminformatics\">Journal
-        of Cheminformatics</a>.\nThere is so much that must be <a href=\"https://chem-bla-ics.linkedchemistry.info/2024/09/16/publishing.html\">done
-        better</a>.</p>\n<p>But in the most recent iteration, triggered by some work
-        for <a href=\"https://www.wikipathways.org/\">WikiPathways</a>, I was using\n<a
-        href=\"https://europepmc.org/\">Europe PMC</a> to find articles that\nmention
-        <em>WikiPathways</em> and then search in the full text for the string <code
-        class=\"language-plaintext highlighter-rouge\">WP</code>, as a trigger for
-        the possible mention of\nWikiPathways pathway identifiers, which look like
-        <code class=\"language-plaintext highlighter-rouge\">WP4846</code>. The use
-        of <em>compact (resource) identifiers</em>\n(see doi:<a href=\"https://doi.org/10.1038/sdata.2018.29\">10.1038/sdata.2018.29</a>)
-        is minimal, but at least some articles use identifiers.</p>\n<p>That allows
-        me to extend our WikiPathways knowledge graph of <a href=\"https://www.wikipathways.org/browse/citedin\">articles
-        citing specific pathways</a>.\nAt the time of writing, we collected 2509 citations
-        from 440 different articles to 883 different pathways. Now,\nI want to blog
-        about that more, but it\u2019s related to an observation.</p>\n<h2 id=\"information-loss\">Information
-        loss</h2>\n<p>Now, back in the late ninities I learned about GNU/Linux and
-        after playing with Red Hat and Suse, I settled for Debian.\nOne of the things
-        I learned is that, generally, information corruption (like data loss) is an
-        absolute red flag, a no-go,\na total showstopper.</p>\n<p>And then we have
-        this in publishing, the one area where data corruption must also be a no-go:</p>\n<p><img
-        alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png\"/></p>\n<p>In
-        this image, the left side shows a screenshot of the publisher version of the
-        article and on the right side\nthe version in <a href=\"https://pmc.ncbi.nlm.nih.gov/\">Pubmed
-        Central</a> (PMC). PMC has been an important project to archive full text
-        versions of articles:</p>\n<blockquote>\n<p>11.2 million articles are archived
-        in PMC.</p>\n</blockquote>\n<p>So, this is <strong>really bad</strong>! The
-        archived version is not really useful. As a human I already struggle to read
-        the\ndegraded image, let alone an algorithm.</p>\n<p>Does that matter? Yes,
-        projects like the awesome\n<a href=\"https://pfocr.wikipathways.org/\">Pathway
-        Figure OCR</a> (see doi:<a href=\"https://doi.org/10.1186/s13059-020-02181-2\">10.1186/s13059-020-02181-2</a>)\ndepend
-        on images to be FAIR enough to extract information. (Side note: yes, these
-        images should be vector\ngraphics, but commercial publishers decided about
-        twenty years ago that they could not care enough.)</p>\n<p>At this moment,
-        I do not know where the information is lost. Maybe PubMed Central is storing
-        the images in a low\nresolution. Maybe the publisher provides PMC with a low
-        resolution image. But to me, this must be solved as soon\nas possible. This
-        is utterly unacceptable.</p>\n<p>I wonder what the authors of the article
-        (doi:<a href=\"https://doi.org/10.1186/s13287-025-04166-z\">10.1186/s13287-025-04166-z</a>)\nI
-        took as example think of this.</p>","doi":"https://doi.org/10.59350/vwd81-p8z85","funding_references":null,"guid":"https://doi.org/10.59350/vwd81-p8z85","id":"e69262cd-6c5f-476e-8cca-0213f6eab980","image":null,"indexed_at":1764765591,"language":"en","parent_doi":null,"published_at":1754438400,"reference":[{"cito":["cito:citesAsRecommendedReading"],"id":"https://doi.org/10.59350/svpow.24000","type":"BlogPost","unstructured":"Taylor,
-        M. (2025, August 1). Journal articles are trying to do six things at once
-        \u2014 no wonder they''re unreadable. <i>Sauropod Vertebra Picture of the
-        Week</i>. https://doi.org/10.59350/svpow.24000 <b>[cito:citesAsRecommendedReading]</b>"},{"cito":["cito:citesAsRecommendedReading"],"id":"https://doi.org/10.1186/s13059-020-02181-2","type":"JournalArticle","unstructured":"Hanspers,
-        K., Riutta, A., Summer-Kutmon, M., &amp; Pico, A. R. (2020). Pathway information
-        extracted from 25 years of pathway figures. <i>Genome Biology</i>, <i>21</i>(1).
-        https://doi.org/10.1186/s13059-020-02181-2 <b>[cito:citesAsRecommendedReading]</b>"},{"cito":["cito:describes"],"id":"https://doi.org/10.1186/s13287-025-04166-z","type":"JournalArticle","unstructured":"Yuan,
-        F., Liu, J., Zhong, L., Liu, P., Li, T., Yang, K., Gao, W., Zhang, G., Sun,
-        J., &amp; Zou, X. (2025). Enhanced therapeutic effects of hypoxia-preconditioned
-        mesenchymal stromal cell-derived extracellular vesicles in renal ischemic
-        injury. <i>Stem Cell Research & Therapy</i>, <i>16</i>(1). https://doi.org/10.1186/s13287-025-04166-z
-        <b>[cito:describes]</b>"},{"cito":["cito:obtainsBackgroundFrom"],"id":"https://doi.org/10.1038/sdata.2018.29","type":"JournalArticle","unstructured":"Wimalaratne,
-        S. M., Juty, N., Kunze, J., Jan\u00e9e, G., McMurry, J. A., Beard, N., Jimenez,
-        R., Grethe, J. S., Hermjakob, H., Martone, M. E., &amp; Clark, T. (2018).
-        Uniform resolution of compact identifiers for biomedical data. <i>Scientific
-        Data</i>, <i>5</i>(1). https://doi.org/10.1038/sdata.2018.29 <b>[cito:obtainsBackgroundFrom]</b>"}],"registered_at":0,"relationships":[],"rid":"xtmqd-gwg60","subfield":null,"summary":"Mike
-        Taylor wrote up a post about the various things a journal article is doing,
-        the first being\n<em>\n a scientific report\n</em>\n. We put a lot of money
-        in establishing a scientific track record. In the past 30 years how we publish
-        our research and how we archive it has changed significantly. If you read
-        my blog more often, you know I have been critical of the performance of many
-        publishers.","tags":["Publishing"],"title":"Archiving, but not really","topic":"13607","topic_score":0.12,"updated_at":1754438400,"url":"https://chem-bla-ics.linkedchemistry.info/2025/08/06/archiving-but-not-really.html","version":"v1"}
-
-        '
+      string: !!binary |
+        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
+        hs40i1hfo7IFuxuz3/7pvwcAZ6Th38YhAAA=
     headers:
-      content-encoding:
+      Access-Control-Allow-Origin:
+      - '*'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
       - gzip
-      content-type:
+      Content-Type:
       - application/json
-      date:
-      - Thu, 04 Dec 2025 18:27:14 GMT
-      fly-request-id:
-      - 01KBN9WKRA7BHD7BG00S3K8E6C-ams
-      server:
-      - Fly/340afcba (2025-12-03)
-      transfer-encoding:
+      Date:
+      - Mon, 01 Jun 2026 13:21:02 GMT
+      Server:
+      - gunicorn
+      Transfer-Encoding:
       - chunked
-      vary:
-      - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
+      Vary:
+      - Accept-Encoding
     status:
       code: 200
-      message: ''
+      message: OK
 version: 1

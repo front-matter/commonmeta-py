@@ -14,302 +14,177 @@ interactions:
     uri: https://rogue-scholar.org/api/records/pevm6-kx104
   response:
     body:
-      string: '{"id": "pevm6-kx104", "created": "2025-09-27T07:00:02.600301+00:00",
-        "updated": "2025-09-28T10:45:23.117669+00:00", "links": {"self": "https://rogue-scholar.org/api/records/pevm6-kx104",
-        "self_html": "https://rogue-scholar.org/records/pevm6-kx104", "preview_html":
-        "https://rogue-scholar.org/records/pevm6-kx104?preview=1", "doi": "https://doi.org/10.59350/5cj54-ha154",
-        "self_doi": "https://doi.org/10.59350/5cj54-ha154", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/5cj54-ha154",
-        "reserve_doi": "https://rogue-scholar.org/api/records/pevm6-kx104/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/sfw0f-2fe65", "parent_html":
-        "https://rogue-scholar.org/records/sfw0f-2fe65", "parent_doi": "https://doi.org/10.59350/sfw0f-2fe65",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/sfw0f-2fe65", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:pevm6-kx104/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:pevm6-kx104/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/pevm6-kx104/files", "media_files":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/media-files", "archive":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/pevm6-kx104/latest", "versions": "https://rogue-scholar.org/api/records/pevm6-kx104/versions",
-        "draft": "https://rogue-scholar.org/api/records/pevm6-kx104/draft", "access_links":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access/request", "access":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/access", "communities":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/pevm6-kx104/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/pevm6-kx104/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/pevm6-kx104/requests"},
-        "revision_id": 5, "parent": {"id": "sfw0f-2fe65", "access": {"owned_by": {"user":
-        "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests": false,
-        "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["f34e2211-9904-4b58-97ab-0beeb79ef6f7", "fbc3bd5a-137e-4366-94ae-92a6e9d744e3"],
-        "default": "f34e2211-9904-4b58-97ab-0beeb79ef6f7", "entries": [{"id": "f34e2211-9904-4b58-97ab-0beeb79ef6f7",
-        "created": "2024-10-02T21:49:29.951598+00:00", "updated": "2025-12-01T14:11:05.076394+00:00",
-        "links": {}, "revision_id": 463, "slug": "musings", "metadata": {"title":
-        "Aaron Tay''s Musings about librarianship", "description": "Aaron Tay''s thoughts
-        about academic librarianship", "type": {"id": "blog"}, "website": "https://aarontay.substack.com/"},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:feed_url": "https://aarontay.substack.com/feed", "rs:prefix": "10.59350",
-        "rs:joined": "October 12, 2023", "rs:feed_format": "application/atom+xml",
-        "rs:generator": "Substack", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Information Systems and Management"},
-        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "fbc3bd5a-137e-4366-94ae-92a6e9d744e3", "created": "2025-02-11T17:20:32.633964+00:00",
-        "updated": "2025-06-30T16:00:21.647937+00:00", "links": {}, "revision_id":
-        6, "slug": "othersocialsciences", "metadata": {"title": "Other social sciences",
-        "description": "Other social sciences subject area.", "type": {"id": "subject"}},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}]}, "pids": {"doi": {"identifier": "10.59350/sfw0f-2fe65", "provider":
-        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
-        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
-        "10.59350/5cj54-ha154", "provider": "crossref", "client": "crossref"}, "oai":
-        {"identifier": "oai:invenio-rdm:pevm6-kx104", "provider": "oai"}}, "metadata":
-        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
-        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
-        {"type": "personal", "name": "Tay, Aaron", "given_name": "Aaron", "family_name":
-        "Tay", "identifiers": [{"identifier": "0000-0003-0159-013X", "scheme": "orcid"}]},
-        "affiliations": [{"id": "050qmg959", "name": "Singapore Management University",
-        "identifiers": [{"identifier": "050qmg959", "scheme": "ror"}]}]}], "title":
-        "The Petrol Tank for AI Discovery Might be Running Dry as Publishers close
-        access to scholarly content such as abstracts due to AI incentives", "publisher":
-        "Front Matter", "publication_date": "2025-09-27", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?5.9",
-        "subject": "Other social sciences", "scheme": "FOS"}], "dates": [{"date":
-        "2025-09-27T08:53:26", "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht",
-        "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date": "2025-09-27T08:53:26",
-        "type": {"id": "updated", "title": {"de": "Aktualisiert", "en": "Updated",
-        "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title": {"en": "English"}}],
-        "identifiers": [{"identifier": "0e3b9d19-1c60-4834-9e7f-f4818bb31440", "scheme":
-        "uuid"}, {"identifier": "172147764", "scheme": "guid"}, {"identifier": "https://aarontay.substack.com/p/the-petrol-tank-for-ai-discovery",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "Elicit.com, Consensus, and Undermind.ai
-        are among the new leading comprehensive cross-disciplinary \"AI-powered academic
-        search engines\" today. Thanks for reading Aaron Tay''s Musings about Librarianship!
-        Subscribe for free to receive new posts and support my work."}, "custom_fields":
-        {"journal:journal": {"title": "Aaron Tay''s Musings about librarianship"},
-        "rs:content_html": "<p><a href=\"http://elicit.com\">Elicit.com</a>, <a href=\"http://consensus.app\">Consensus</a>,
-        and <a href=\"http://undermind.ai\">Undermind.ai</a> are among the new leading
-        comprehensive cross-disciplinary \"AI-powered academic search engines\" today.
-        </p><blockquote><p>Traditional databases like Web of Science, Scopus have
-        also added AI features, such as Web of Science Research Assistant, Scopus
-        AI, but in my view, they are still playing catch up, with Scopus AI only recently
-        adding Deep Research.</p></blockquote><p> </p><div class=\"subscription-widget-wrap-editor\"
-        data-attrs=\"{&quot;url&quot;:&quot;https://aarontay.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe&quot;,&quot;language&quot;:&quot;en&quot;}\"
-        data-component-name=\"SubscribeWidgetToDOM\"><div class=\"subscription-widget
-        show-subscribe\"><div class=\"preamble\"><p class=\"cta-caption\">Thanks for
-        reading Aaron Tay''s Musings about Librarianship! Subscribe for free to receive
-        new posts and support my work.</p></div><form class=\"subscription-widget-subscribe\"><input
-        type=\"email\" class=\"email-input\" name=\"email\" placeholder=\"Type your
-        email\u2026\" tabindex=\"-1\"><input type=\"submit\" class=\"button primary\"
-        value=\"Subscribe\"><div class=\"fake-input-wrapper\"><div class=\"fake-input\"></div><div
-        class=\"fake-button\"></div></div></form></div></div><p>Yet, these tools,
-        alongside many others, have depended heavily on open scholarly metadata\u2014especially
-        Open Abstracts and full text\u2014typically sourced from aggregators like
-        <a href=\"https://www.semanticscholar.org/product/api\">Semantic Scholar Academic
-        Graph</a>/<a href=\"https://github.com/allenai/s2orc\">Semantic Scholar Open
-        Research Corpus</a>, <a href=\"http://openalex.org\">OpenAlex</a>, and to
-        a lesser extent <a href=\"http://lens.org\">Lens.org</a> and <a href=\"https://core.ac.uk/\">Core</a>.
-        Even other AI-powered search tools like <a href=\"http://scispace.com\">SciSpace</a>
-        and <a href=\"http://scite.ai\">Scite.ai</a>, which emphasize their own proprietary
-        indexes, likely derive a significant portion of their data from open sources,
-        complemented by specific publisher agreements.</p><p>For years, this reliance
-        on open metadata functioned as a kind of \"free ride.\" While the <a href=\"https://i4oa.org/\">Initiative
-        for Open Abstracts (I4OA)</a> has not matched<a href=\"https://direct.mit.edu/qss/article/2/2/433/102175/A-tipping-point-for-open-citation-data\">
-        the success of its older sibling</a>, the <a href=\"https://i4oc.org/\">Initiative
-        for Open Citations</a>, in persuading major publishers like Elsevier or Springer
-        Nature to deposit abstracts directly into Crossref (see l<a href=\"https://i4oa.org/#publishers\">ist
-        of committed publishers for abstracts</a>), open aggregators found other means.
-        </p><p>A <a href=\"https://bmkramer.github.io/SesameOpenScience_site/thought/202411_open_abstracts/\">November
-        2024 analysis by Bianca Kramer</a>, for instance, revealed that OpenAlex had
-        obtained substantially more abstracts from these very publishers, often achieved
-        through multiple methods including web scraping.</p><p>  </p><div class=\"captioned-image-container\"><figure><a
-        class=\"image-link image2 is-viewable-img\" target=\"_blank\" href=\"https://substackcdn.com/image/fetch/$s_!DgBd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png\"
-        data-component-name=\"Image2ToDOM\"><div class=\"image2-inset\"><picture><source
-        type=\"image/webp\" srcset=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        424w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        848w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        1272w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        1456w\" sizes=\"100vw\"><img src=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png\"
-        width=\"1115\" height=\"919\" data-attrs=\"{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:919,&quot;width&quot;:1115,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:138370,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:false,&quot;topImage&quot;:true,&quot;internalRedirect&quot;:&quot;https://aarontay.substack.com/i/172147764?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}\"
-        class=\"sizing-normal\" alt=\"\" srcset=\"https://substackcdn.com/image/fetch/$s_!DgBd!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        424w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        848w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        1272w, https://substackcdn.com/image/fetch/$s_!DgBd!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png
-        1456w\" sizes=\"100vw\" fetchpriority=\"high\"></picture><div class=\"image-link-expand\"><div
-        class=\"pencraft pc-display-flex pc-gap-8 pc-reset\"><div class=\"pencraft
-        pc-reset icon-container restack-image\"><svg xmlns=\"http://www.w3.org/2000/svg\"
-        width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"
-        stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide
-        lucide-refresh-cw\"><path d=\"M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21
-        8\"></path><path d=\"M21 3v5h-5\"></path><path d=\"M21 12a9 9 0 0 1-9 9 9.75
-        9.75 0 0 1-6.74-2.74L3 16\"></path><path d=\"M8 16H3v5\"></path></svg></div><div
-        class=\"pencraft pc-reset icon-container view-image\"><svg xmlns=\"http://www.w3.org/2000/svg\"
-        width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\"
-        stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"lucide
-        lucide-maximize2 lucide-maximize-2\"><polyline points=\"15 3 21 3 21 9\"></polyline><polyline
-        points=\"9 21 3 21 3 15\"></polyline><line x1=\"21\" x2=\"14\" y1=\"3\" y2=\"10\"></line><line
-        x1=\"3\" x2=\"10\" y1=\"21\" y2=\"14\"></line></svg></div></div></div></div></a></figure></div><p>As
-        of November 2024, Bianca reported:</p><ul><li><p><strong>Overall, the proportion
-        of journal articles from 2022\u20132024 with Crossref DOIs for which abstracts
-        from Elsevier articles that are available is 82% in OpenAlex.</strong></p></li><li><p>Crucially,
-        even though Elsevier, IEEE, ACS did not deposit abstracts in Crossref, OpenAlex
-        at all, you can see the % of abstracts in OpenAlex is much higher than 0%
-        in these publishers. It is likely that other open sources (e.g., Semantic
-        Scholar''s Open Corpus) and proprietary indexes (e.g., SciSpace) achieved
-        similar coverage.</p></li></ul><p></p><h2>The Rise of AI Changes the Game:
-        The End of the \"Free Ride\"</h2><p>In November 2024, Bianca sounded the alarm:</p><blockquote><p>In
-        November 2022, OpenAlex removed abstracts for Springer Nature''s non-Open
-        Access content (see <a href=\"http://9b971b24d1a1af9cbe2c01f368a6408f0d1f69df0f7a0f1f23bc652d7c4f0abaR851\">GitHub
-        commit</a>).</p></blockquote><p>and</p><blockquote><p>Now, two years later
-        (in November 2024) Elsevier seems to have taken similar steps to have abstracts
-        from closed articles removed from OpenAlex (see <a href=\"https://github.com/ourresearch/openalex-guts/commit/b85b3bc77cf9c0f3bd162426a2ba0dacdc951065\">GitHub
-        commit</a>). The effect of this step is already visible in the OpenAlex web
-        UI and API, and is expected to affect the data snapshot from November 2024
-        forward. With previous abstract coverage for Elsevier at 82% in OpenAlex,
-        this will result in the loss of approximately 1,1M abstracts for <a href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage%3Ap4310320990,open_access.is_oa%3Afalse,type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal,publication_year%3A2022-2024\">current
-        closed journal articles</a>, and up to 11.5M abstracts for <a href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage%3Ap4310320990,open_access.is_oa%3Afalse,type%3Atypes%2Farticle,primary_location.source.type%3Asource-types%2Fjournal\">closed
-        journal articles of all years</a>.</p></blockquote><h2><strong>September 2025:
-        what''s changed?</strong></h2><p>Taking Elsevier as an example, I ran a query
-        on the OpenAlex API to verify the situation:</p><blockquote><p><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024&amp;group_by=has_abstract\">https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,</a><a
-        href=\"https://openalex.org/works?page=1&amp;filter=primary_location.source.publisher_lineage:p4310320990,type:types/article,publication_year:2022-2024,has_abstract:false,has_doi:true\">has_doi:true</a><a
-        href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024&amp;group_by=has_abstract\">&amp;group_by=has_abstract</a></p></blockquote><p>At
-        the time of writing, OpenAlex returns:</p><div class=\"captioned-image-container\"><figure><a
-        class=\"image-link image2\" target=\"_blank\" href=\"https://substackcdn.com/image/fetch/$s_!KP-h!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png\"
-        data-component-name=\"Image2ToDOM\"><div class=\"image2-inset\"><picture><source
-        type=\"image/webp\" srcset=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_424,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        424w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_848,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        848w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1272,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        1272w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        1456w\" sizes=\"100vw\"><img src=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png\"
-        width=\"1456\" height=\"82\" data-attrs=\"{&quot;src&quot;:&quot;https://substack-post-media.s3.amazonaws.com/public/images/55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png&quot;,&quot;srcNoWatermark&quot;:null,&quot;fullscreen&quot;:null,&quot;imageSize&quot;:null,&quot;height&quot;:82,&quot;width&quot;:1456,&quot;resizeWidth&quot;:null,&quot;bytes&quot;:18138,&quot;alt&quot;:null,&quot;title&quot;:null,&quot;type&quot;:&quot;image/png&quot;,&quot;href&quot;:null,&quot;belowTheFold&quot;:true,&quot;topImage&quot;:false,&quot;internalRedirect&quot;:&quot;https://aarontay.substack.com/i/172147764?img=https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png&quot;,&quot;isProcessing&quot;:false,&quot;align&quot;:null,&quot;offset&quot;:false}\"
-        class=\"sizing-normal\" alt=\"\" srcset=\"https://substackcdn.com/image/fetch/$s_!KP-h!,w_424,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        424w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_848,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        848w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1272,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        1272w, https://substackcdn.com/image/fetch/$s_!KP-h!,w_1456,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F55292dda-c110-432b-81b1-fcb9a701e5ae_1584x89.png
-        1456w\" sizes=\"100vw\" loading=\"lazy\"></picture><div></div></div></a></figure></div><p></p><ul><li><p>With
-        abstracts (2022\u20132024): <strong>533,080</strong> works</p></li><li><p>Without
-        abstracts (2022\u20132024): <strong>1,833,524 </strong>works</p></li></ul><p>
-        That''s <strong>533,080 / 2,366,604 = 22.5% </strong>with abstracts in OpenAlex\u2014a
-        dramatic fall from the ~83% Bianca reported in November 2024.</p><p>More tellingly,
-        when <a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">filtering
-        for works with abstracts that are </a><em><a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">not</a></em><a
-        href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310320990,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">
-        Open Access, the result is empty</a>. In other words, the only Elsevier works
-        in OpenAlex with abstracts now appear to be Open Access.</p><p>A <a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310319965,publication_year:2022-2024,has_doi:true&amp;group_by=has_abstract\">similar
-        query for Springer Nature</a> shows:</p><ul><li><p>With abstracts: <strong>483,478
-        </strong>works</p></li><li><p>Without abstracts: <strong>865,304</strong>
-        works</p></li><li><p>Coverage: 483,478 / 1,348,782 = 35.8% - compared to slightly
-        under 50% in Nov 2024</p></li></ul><p>Again, the<a href=\"https://api.openalex.org/works?filter=type:types/article,primary_location.source.publisher_lineage:p4310319965,publication_year:2022-2024,open_access.is_oa:false&amp;group_by=has_abstract\">
-        Springer Nature works in OpenAlex with abstracts appear to be exclusively
-        Open Access</a>.</p><p> </p><h3>Implications for AI Search Tools and the Broader
-        Research Ecosystem</h3><p>Assuming the analysis above is mostly correct,  OpenAlex
-        (and likely other open sources) are no longer permitted to display abstracts
-        from Elsevier and Springer Nature unless the articles are Open Access. While
-        I have not verified other sources like the Semantic Scholar Open Corpus, I
-        suspect similar pressure on indexes exposing abstracts from non-Open Access
-        articles.</p><p>The impact of this shift is profoundly negative, extending
-        beyond just AI search tools:</p><ul><li><p><strong>Degraded AI Discovery:</strong>
-        Semantic Scholar''s corpus, OpenAlex, and\u2014to a degree\u2014Lens.org or
-        CORE are the key repositories of titles and abstracts that many \"AI-powered
-        search\" tools (e.g., Undermind.ai, Consensus, Elicit) rely on. If abstracts
-        from Elsevier and Springer Nature are taken down, incumbents that previously
-        ingested them <em>may</em> continue to function for a while (unless explicitly
-        asked to purge), but going forward, their effectiveness will be severely constrained.
-        New entrants will be hit harder, limited to roughly ~22% OpenAlex abstract
-        coverage (for Elsevier 2022\u20132024) instead of 80%+ just months ago\u2014significantly
-        degrading discovery effectiveness.</p></li><li><p><strong>Reduced Searchability
-        in general:</strong> Beyond AI, researchers using any platform that relies
-        on these open aggregators will find that even normal keyword searches within
-        these databases will no longer effectively retrieve closed-access articles
-        from these major publishers, even if the abstract itself would have matched
-        their query. This fundamentally compromises the ability to efficiently scope
-        and filter literature.</p></li><li><p><strong>Hinders Bibliometric and Scientometric
-        Research:</strong> Open metadata, including abstracts, is a cornerstone for
-        researchers studying the structure and evolution of science using tools like
-        VOSViewer, CiteSpace, Bibliometrix, pyBibx etc. The systematic loss of this
-        data compromises the ability to conduct reproducible, large-scale analyses
-        of scientific literature without resorting to expensive, proprietary tools.</p></li><li><p><strong>Non-academic
-        deep research might still work:</strong> Interestingly, because the abstracts
-        still remain on Elsevier and SpringerNature pages, LLMs that search websites
-        directly (e.g., ChatGPT+web search, OpenAI/Gemini/Perplexity Deep Research)
-        could <em>theoretically</em> still access them. However, this is a less efficient,
-        less structured, and potentially unstable approach. Also, publishers could
-        block these AI agents, and relying on direct scraping is not a sustainable,
-        scalable solution for building comprehensive academic knowledge graphs.</p></li></ul><p></p><h3>Conclusion
-        \u2014 where this leaves libraries, vendors, and our students</h3><p>If AI-powered
-        discovery is the shiny sports car, open abstracts are the petrol. We''ve just
-        learned what happens when the tank runs dry. The sudden collapse from ~80%
-        abstract coverage to ~20\u201335% for two of the largest publishers doesn''t
-        just ding recall metrics; it quietly shifts the playing field. Incumbents
-        that cached content early will coast for a while; newcomers will stall at
-        the start line. More importantly, researchers\u2014our users\u2014lose signal
-        at precisely the stage where LLM-assisted search ought to shine: scoping,
-        filtering, and \"is this worth my time?\"</p><p>We, of course, understand
-        why publishers are doing this\u2014mostly due to the rising value of abstracts
-        for training and discovery as AI companies are now hungry for data for training
-        and are willing to pay publishers for it (See <a href=\"http://Ithaka''s list
-        of Generative AI Licensing Agreement Tracker).\">Ithaka''s list of Generative
-        AI Licensing Agreement Tracker</a>). Abstracts, once a mere summary, are now
-        a strategic asset.</p><p><strong>The solution is less clear, but our collective
-        response must be robust.</strong> This critical juncture calls for:</p><ul><li><p><strong>Advocacy</strong>:
-        Libraries, institutions, open science advocates must redouble efforts to push
-        for genuinely open metadata policies. We need to explore linking this advocacy
-        to subscription renewal negotiations, making the value of open abstracts part
-        of the conversation with publishers. See also <a href=\"https://barcelona-declaration.org/\">Barcelona
-        Declaration on Open Research Information</a></p></li><li><p><strong>Educating
-        Researchers:</strong> Librarians must take the lead in educating faculty and
-        students about the changing landscape of AI search tools. This includes explaining
-        the data sources that underpin these tools, their new limitations, and the
-        potential biases introduced by restricted access to abstracts. Researchers
-        need to understand why some AI tools may now miss significant portions of
-        the literature and how to navigate these challenges. They may also be the
-        best advocates to publishers for keeping abstracts open as they care profoundly
-        about making their papers discoverable.</p></li><li><p><strong>Achieving high
-        Open Access rates : </strong>Of course, if every article is Open Access, this
-        makes the concern over Open Abstracts pretty much moot. While we have seen
-        great strides in Open Access rates in the last decade, I think this will take
-        a while before we can achieve near universal rates of Open Access.</p></li></ul><p><em>Gemini
-        2.5 Pro and GPT-5 helped with clean-up.</em></p><div class=\"subscription-widget-wrap-editor\"
-        data-attrs=\"{&quot;url&quot;:&quot;https://aarontay.substack.com/subscribe?&quot;,&quot;text&quot;:&quot;Subscribe&quot;,&quot;language&quot;:&quot;en&quot;}\"
-        data-component-name=\"SubscribeWidgetToDOM\"><div class=\"subscription-widget
-        show-subscribe\"><div class=\"preamble\"><p class=\"cta-caption\">Thanks for
-        reading Aaron Tay''s Musings about Librarianship! Subscribe for free to receive
-        new posts and support my work.</p></div><form class=\"subscription-widget-subscribe\"><input
-        type=\"email\" class=\"email-input\" name=\"email\" placeholder=\"Type your
-        email\u2026\" tabindex=\"-1\"><input type=\"submit\" class=\"button primary\"
-        value=\"Subscribe\"><div class=\"fake-input-wrapper\"><div class=\"fake-input\"></div><div
-        class=\"fake-button\"></div></div></form></div></div>", "rs:image": "https://substackcdn.com/image/fetch/$s_!DgBd!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F2f11b244-47c5-4dfe-96c5-81b18273fe59_1115x919.png",
-        "rs:generator": "Substack", "rs:stale": false}, "access": {"record": "public",
-        "files": "public", "embargo": {"active": false, "reason": null}, "status":
-        "metadata-only"}, "files": {"enabled": false, "order": [], "count": 0, "total_bytes":
-        0, "entries": {}}, "media_files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        H4sIAAAJbogA/+x9f3fbNrLoV8HqPd82Z0WJoiRb0ibucdO063ObJqfxbt87Vz06EDkkUZMAC4CW
+        1RzvZ79nBiBFyXISZ7Pb7L37RxuLBAbAYH5hZjB82xNJb8F6FdyUp8H17Sic9PqsF2vgFuhNFEbT
+        IJwH0dlVeLYIw0UYDU7DcByO/og/QmxeV8le81EUhNOrKFpgj9PB6XQynZztmhdCXpvegr3tGShS
+        HCS3tjKL4VCrrIbAxLkquB4onQ15JYYaYqUTMzyYJHZe5bYs3g3hgd6VhhsBm48D8JXv/WyE60mU
+        6EJIlKB+o3AwnY+n4XAa/zKdBDkfTXfz/sg+HzDdRIkHh9ZgQN/A4egfjPZhonlqh5VIDI6DICuu
+        Qdp3T6m7iSbdhGkQpXA63XV/xC4c7/++LXiw12MRegCIaFAIka5KLkUK5gMwgc09VS46RDlsITT7
+        jQ1XBn6tQcbw8XAbCMMEUl4XBD8VBZj3gzxC+kPXtc96JSSCr/4OSAQgaOFxHefi5gMW+uCsggbE
+        DtqKBvk4mJ35dSEX3H7QPh+b5g1oI5Q0Qw+kBfcIDujC24FpIH/cUtveKM6Qxz8OjOuK2I9jMGbV
+        SPqPIA4HYegg7CBmmkv7kYv0ID2IHczagP77QDoI3Vmquvp7Z0kgdjA1svHH0p1fegOjhfr3QEMo
+        sSrLWgorPlaadAHswwtMnWVg7McT9UPA+qznEbFKoAB8+HGT91CCFoqXrKtSJSIVMf940Agm2AOz
+        m/VHotrP1vTuCNSNQI5fkf03bzUxmWX0rHeg6vym43u1kZCs1lv6gbSPE5oQXAPWCpnhFN/2eFGo
+        DbFXQ734POWFAQRIbzOc09HXcQyVXcVKJgLxaFYWbnF+si4KUpGxBksiZgW3ldANtsO7u31K8mvC
+        f/+rl44nEEWjUTCfh5Ngsp7OgvkZXwfhGmB9Nof0ND1DXKenZ+PZJOLB2dl0FExGSRzM0+k4mMez
+        eTrnM0jHZ72fUVx6rbpgHwwbpNWOY/6rMcA/tOu+ZT4JRmEQRlfRaDGZL6L5YD4dTeezhyzz0yA8
+        DcLRVThfROPFeDqYT2bzcH7EMr9PIqfRFJFe1BmutKwN7TKZAZYn3KKOfduzwhakwS+4VpJd8e0X
+        hr10jRlfq9qy78Vacy24NLmoEEACJtai8ru319Pmqs5y23TlMU+gFDErDmHYbQV+m3H0daEyIscN
+        rI2wezYFx5lZvh2Yem0sj68HsSp7d/sUjitfi0JYpPFeVa8LEeM4JZRr0Gb17verShUipleqAs+6
+        KD5Wpl6XwhDjHWuDZ4rDFzizuDZWlatUQEFk/LanzeJ9Nm9nj7RZpADJqtbFe1ExxJY0ZbOoNKTi
+        toPYBjjNSpvFL0pIR16vYqvWoNko6rMojMYeAgJbpUqXvCtatPFSyCwykKC5Vbrz+o3fmaZNIWKQ
+        prvBcRyst8Fk0E6k4DKredZtAzJr3pp6TbjrclxDD7hDvIBbQl7T0AzH43Deu/vZ97fc1o0cQQzy
+        2KKpSpKmkf6rbivjVAskHYHXvu+9ponFuSgSDXInK3sLZnUNCLYVDB8ih44c2fEMHl1F4WJ8uohG
+        g1F4Npm858hOzafTxXQ8mM/m49nprvk7BMO4IxYIaQ/KBMf5W8Zlwi6lIwqhJHsTCzzhmCOMbOr1
+        LxDbh3j5nXvndci/CEd/ekoisru7+xkb4ImdXjqhgcQF0opUgO6y9b1zslY3InFtYq2M0ZDi87gQ
+        /tDfPr27u9s/hRATtGclJOs+6wmZAMqTETYWZkX7YHJIOk3MqjmBNJbCh87+wGnymNn3WU/xY8AV
+        Fwshb0AKFeik7J7YD8dAAISFPfLXYFStY1gd6ChaurPtAtRXlXJH/0aFvu0l2Lz3daGyNQireYYD
+        krigh6zpYW4anZcJWSzrMIRJlrmpkFhQ2tsaFWij5ErpldLIsG8bxenf8AKHkLykka/4ts9IHePT
+        TNyAXDXv2scpL0WxbZ9f8S023m1Qa+V0kRqGYRiEYTgOwtF0HoSj8f/DXibOwYFROhZJz9EuT1NR
+        CN4cBFqTKZyGv5bZfDrvzvmNkBmvlAb2kkueQQnSsr9IQYRpP2huXbC7GWmlcT4/3/3c2aPeVQ7s
+        NVitCnbF5TVLlWYXl+wbYWJ1A3rLXoost2wN7MdaSiEz9g0KQMNee8LXhsWFMsCcqGJWMX9sKrYs
+        VtLi/E0d54yjFWSs5rE1LKkBm15cMiFjnP2NE58NPxHpfouGDnvJrQXdvnQUt0KzcN+92+u34tY8
+        Vk/uun6onN8h9k0jtp22xYn58e/P8SqcLabjRXR6RFUIY2pIjnHQX0EjU6SnaQrSFiLO7Y6TLttu
+        jo3+YlNsDBOd8MRJtcfOpNGtR6ZycW1rXggjQHfm8JddBz+Jip5oNwOkuMa+2dsatHD2BnHC4YXM
+        kAh6d3c/fwC5w3g9T0bzYBSfhsFkNp4EczhLg3QyG83W6/FoMgn3OaGukTX798XwWTSanJ2dTvab
+        Zw80f6c9PqyGNoegItYKLJfXQap0wEWQNKx1MCldOPrxnixc2g155zVy4B7adsbjEeQ9R4EpboA9
+        V2WppGEX1mqxrlH8sMkgZJfSgpbERbzo3d07wDSAUDS8E5i3ahmdgw3TgGvbjYXcoyGoDTCVMt40
+        T9hG6WumJLM5sPZ0zGzOrXuEYyrNhGG8qrSqtOAWUJpoSISFZECTFrGSO2TQLxQRWpHf6m3v4KgQ
+        +5XgsVpJQ8ayn5EZrrfDySAc7u+IqZJbT4IHJ7wXhYiFxWNXnz1X0oA0tenTgv8iE9ClkMmAC8Y1
+        MF4qmdG6JGxYATxBIRqrstKQgzS4U6TbEXmxqAohud6yZe/iMqjUBjQku2OjAXTjMpCZkGCWPWZV
+        wrcDdpVzeW1IeGs/wgeeX//A8KwSa7EG6p5qIMGsIQacGk4a1bSh1Zm6qpS2rNzSJg4eONv9omot
+        ebHw/37owXr/UOxPPl6FtO7lp9X5U85yDemzJW3uYjiEdj+WvfPd5jwd8vM+u9c6bnZswKtq2Ttv
+        d9C1x3Xe61N3tnXZO+/uMvb65+3002F1/nRdqPj611pZOH9anV9p7liIFwz9GGtuwLBCXAP7CdbI
+        e/580mdvYlXVhuX8BrnWKMaTBBLUwilwW2sw/VZX7/dlP4InvgtjhLFc2hbcxWWfrWvLhETCwAND
+        Hwl+S1gxVhQFqwq+RaqMuY1zVld9thE23wFgShZbIjppiy1OC1t/A1C1Aw9o6cP9tTt8JOKGxQU3
+        5tkSLYCWV4ONSDKwwUbzKkDZofSyRzgKuLUam7/9D8Tjn2pduD8W7p93y3Y/xhq+cq377h8Lt3YP
+        Sstae80aTbjXFKT7eddMEOlGSZA2QMv02bLXAvuJFnWlvnn1ctl77+KZydUmaGd82KPSwMt1Qc+r
+        Fk5seRBzArPsnf9e0oX2dpiIm/OnaIO9a5X7CxSyqi1Do+bZsgclF8Wy1/am3wE1WfaYR27TqCp4
+        DLkqEtDPlr2rbQVsq2rN3PsaXZDIi3xN58Bny14wujcguchsZ8R1ba2SrNKi5Hq77LEbXtR7W3q4
+        Kym/BjdFot0K9MMt8I1DUpcSCIIbeNfANRsiMvcfVef/HywxrUHprwrUZoWSmREJsJLLLVM2B236
+        TnYkUIFEyZEDvxHFFrU5egY6pn9zhESkjSZgKogFL4ote4XtLtqDAIrbtC4KhtzjGtttJWJq6w6e
+        CUu1KhnPMg0ZHQaddNuX0uga3Ww2AwMll1bEfiqk6Cutkjq2GFlY9s7f+BbsjWvCLhqp+53mVY4C
+        fXgfdiZsXq9Rrwx5UYDkYmgipeNjAGmNjeBiz5WuGu2yD/fgVLLsnWPPiwJud7rIKrSdwBjQDG5R
+        F94HUoCzaJa98+/9nwjgiC5DLMVKw4DHg/p6SOpPAzYesBc3IN0+s45K8osgqjiG98VwaGJhKh6D
+        18BvYvEGfz4wBdfBglOlb/yf2LjPNrmIcwZllXMjfgOkSKGZ2iD3oCEIFo0jYj7UVTidYssS0Gir
+        cGZEJingJC1DQwXtSpV6KChWHSUhzj1tmT7ZYgWdsyFh6y0jUk1FzNqzKOOZBmphnFCqzr9Vmm2B
+        I0fYXKDxWwguY2g5oaF/ltYyxomgHWcYZ9dCJjipZY9sLS0SGCx77KdcFLTeA2zhhomJ4rinuF2X
+        GKx0Njnaawfc9OXl5NXFE8Qly7lhUllWosqF5D7URGiI7aAUdgBJPfzVmCHXVsQFDKNhNJyMx8NR
+        GI3OpsOLwIqqEjILKiWkpZMM4jCIhaVzRIC4XfbOaf6mdp4AlTJhDSNhyoxYF0ISVfYfXmX8rlU+
+        94N5ThKSoc+ndmZWyX9RerdjnlJfFAZDEpopzd5UWsgMNPuBLB1mFYoxZYTtuiUIJ8WWCWkVe+69
+        a+xLA8CKo1N2G/N/diMve+fCWFw9HjWERarqzAs3rR0PV/Kk7wimK95SVSORoMhlJXBpvOFXnV8c
+        IY91ea15CXrgRZRQwzdgeAlIHN72W2EUaejDUcMojCaj0QrHXbWTQer6Qd1QgAgjIBPGJS+2Rhjk
+        iq+RvDn7TxoJ592npQiJtmAMfabhBngBiTvINXKM5Txham05hlkYamk0HZ0mKNHL1Q7vWNOpIPI8
+        7ZDWZyq1iKI4F3BDQ2iMq7GyLqyoCkBuy1Vi0JlU1EQQG1gzE2uOZNswLbtvLnorB5JAlDyDAI8b
+        OFdSuKnIag143mjUrmtUCHnN6M+ICROgxcvXBQSizMg60BnYZ8veal1web3sHVJNY0vGiUSJOSRI
+        wxRsnA//r1n94Zvs6+QP/XTFa6v6v9I/i0yppJ8Wq0qrTIPBw8TCWIBqSOxzMr44ib49ib5tYAd4
+        aAsoAWhgxgNe8t+U5BuDA55E3xJu45PoWxrbnETfRulotI4mk2ByFk+DSZJCMD+Np8FstB7NorNx
+        CtP5ajQaTW/no/mgktmDhuolgoyO2qc0WhQIaYDslkrEyIvnT50wbkw2ajbcwLpa9pjRsQH7aPRt
+        VpNo0o9XhSiF7acrhPb5IpNNosmmzx5HIZvVbDL711nibDL7iCWOorPoX2eNONuPWeRkevovtMjJ
+        9HSDnCl+AzyLjMLwZoPsLMoM2fXRou4eAj57ybcRic1x6aPRFAU8oI/22bI3H80f8DAYHe8d+A9Z
+        /V37NnS75hSFGT5aVO+5H4yOf1A/cQu65Praz4lSktzfeBgzsQaQ99/RBN6I3+B+N4cC/3w+mvvH
+        hCj/FJHlH2tA4vmp87Izg/XWgmn6jGfjs9D34oW935r830ceb6vmqfuH5j48xAaq5iMzgEJtrnL4
+        VhWJf+tCud7RoypScv4VxX39IM63XvwIzpJ8hFNJDNv4w1eizJ79XtS9RyzCvNYKrXkhsyOI4IXI
+        jpCJSlMDzdoJcXcdd4gRv+FRQmL6BDpmeIGc8+k0/ectPD6Jpv/Ml/hJNP1nvsZPo+k/90Ue1/SM
+        Nq/SQmlht8iwIsvRABi2Bn3XF7k7NAVwW3GZHB4LKpAxZsywKsYoWFXwbZAWcIu/M14FM/wDr/7Q
+        ocG7UztO2BBPXc7b27g8j8ImEKwdDWOGuwMf00A76A6COJC5ydhtWUjjDRrvYNyM6cgfhWE4NDdd
+        ayAKu7YA/cKz4dcKPcUhC1k0YdFk2WOpKIpny55UElDuWa2u8eQU1xovEz1XBQUq3POgsTWi3aNC
+        SIh59WzZ0+gp2H+BKY2dNw0iijpGZ677J9CQajB5EJPhVnGbs+TZsvdyzEYRn7M5w+mO2DyYs/ng
+        bOr+556dDs4mLBqcTb6PRmyG3YfYvwslGrHxzTQPpg+97Q6CQxwOEuAgAQ0yZqPTo2BmbHT65/FN
+        dwzcD4wRERH84ygFN/V/B5mU/FaU4jeIDh8EES69UsUWYTHyCyICRlM2Zrj9+L85thk2jY41n7dt
+        x2w0PWiO/2e3I1zTaNljtxHCR7xs8dkY/6BHIQ2Drbt9xm2XsOlCYLYNmLbPAdV0AyP+b37+dNg4
+        g5qIyYVBH9+ew6zfeMk0oPcZkgX5m+oC54VRlqe4VzI7f3UDmuMlAPSEYsrCzlftY+bMu2K9WywK
+        o4iCI2McxwVPW+/kN68unV/Rec8PPGqtD7SFSA46jM3yGy4K9FxhrsUsOkGfauO4Gzwd+snSGoaF
+        aBbxXNculNNngBED51Rsx+mzyxcvXvTZxfM3LBEJ+aDvO1qFbOff3zkLucVkkj7G3FjMJUO3K6Lo
+        BDGz17ntIgwrMbsMVRBoXJtkIa3EuRJ3XsQBu7TY3AcNCAvOxdqNB7AvYZAN+uwwSPSFoTF9MOcJ
+        hVaOxCTa7j4G8mTntDSiFBhtosQ6noGPbyJih0gi+KM6f5pH51c5sB+Fy5u5uGTPcy4z2jdg3/ES
+        FgwbvJCJj22wZe9bDCX8KBJY9p4O8whp7VI+QJwGOZ6cqJgEwHW5OJJUcNA76myShlLhenb7kd53
+        r3+BwQcZEMouXDygSQYkZ/q+F3sxHM7X87PROpokIz7i6TxeQxSHo3R8OuOnk3CWhskoPZ0naZie
+        8TAdpdF4HZ9Oo+QsnqQhX/MfZ9PRsnf+nbB/rtfe9Y5u6icezfvL4zI5sugfFGYubJSL7DDM/dXs
+        S7GPismTHUsZgJJSHikqavk1yHabjYVq966DLORnSplMdizZ4JRetpg+gqmDSKRCi8FF6NpIYpDV
+        1tDdMWGH69l0PV7HZ2dxOo/DdLxORqfRJDrl0ZqHCY+TeD4dhafT46gjQoM0hZgCGhTpwnUhG/EC
+        U422jPLOC/Act5s8OuD/ckl8cvH60mVHCcPgtoIYYyIY13SQkRDRZcKM5JXJlXVo2EM60tiG62TA
+        fsLEEbq+rupdRmnLVdhwt0HcHso1H6/bYFaKBlMXtpl5oVzQipLObkXpks5G/dHLdhQnZu/vSIN6
+        Mgw3Sl+bryqewbPRf/Cy+lMqCgv6mY//rwrlUlgHzuk9aCUUXgUDnsHJ+KKajEfhOArn87CPwFcu
+        u3YgzErxk/EFHar7aMmcjC/wH7TvPTX1HxrIN3fDBk0vr3D6nXTuFdL/yfgCGT9A7C975942bSj3
+        UE3t4tV1hVs7Gg2m/yvwhqg5jhLkGF4UTpggfo5IIhTVXs2+gcq2Qma6YJuc2y8Mi0n4J1911HEe
+        dW2JiL2KLUr4Kasp6ZYFRM5t8C4HDWzDDUuUBMxCURp36HgQFhP5B3vk3PwINGy0sBAA+rhMsAbL
+        g5M0PJmnJzM4mc2HnfQF9hMvEpDMJQYPf3RdEQl+do71DCuUuma/1sICS0SaAtEYt5g+ZyymjKuU
+        uRVucpBkGFi9pcn7IXAeDbgDo6U6v+LXGAzcyQPMY2RwyzHk32eXTHPJOPu1xoCjT0ltJdjF60tE
+        1A1okbohjbA1ccgxlXlfLPBK7OPSiQYvD5AKF/g/M3wf594j9UVXQBxy7qLlWxI/mVZ1tVpvn+Xc
+        tNHeZe/8s5llH+niHy1U9+ZybFEPIrHfxZv3A+OjRAly/SIqOz+PL+bzJoWH6YRWc8SAurDEEFaU
+        ZKUiewuZ7VmJttbSLD55xP1TRNj/83WQ/9Mj7NNpNI+ShAfxaBQGk3G0Js9bkMbrOT8LRzDlsBpN
+        Z5Pb2ecdYHfY+10D7I/F5SO97s0Kf8f4+qNX+Dine7PC3zO8/uglPtLn3q7xd4yuP36Nny64/sD6
+        /6kxh8euv+NNR0x0/emz6B8fWn/sdP/pkfVZdCywjhv82MD6bDSefQZx9U7w/CCs3o24f35x9b+L
+        Uj7vsPpx/f5Zi41Pot8/7xV+Ev3+eS/x0+j3z3yND4TUC0WJ7BiB479t7wXTPyAgdRBrIj9pc9w3
+        7Mv9ENKTBWscT9PxuB/OwtZ1QpevzC44gf85cHhJ80Mgjvqz8bg/jSasBXoA0wc82JVzch1MhQ1Z
+        1B+fnvZPwwl7xqJoMD3pgNpfWMe3S5OZcJZojjf2Y6y/UbR55exvs/HJYYSOHXr3m1zxl5icbqHA
+        WwvFFm+mgGSf4bn+vnvYqYZ3un6c8wQ9Y+iXpb1hB2htg4TkAYDy/H/K2qXyTo3/QWvy14AoRtDv
+        +Fcp4FJWdosrHrDL5nrXBssYuoZ08bb1jzpS6LDUIVlItcEACXDyIa+hO3LDOhfsd/B/jebz0+m7
+        nIxdH907maMJ4Dmn8JHYJiKTrtWaxTtl7k4gTmbj/uRs9qA4fEDE7gDMTqf9cTh5j4x+7mNgC9YM
+        OGSj/ngy65/NIvaMjaeD2QkL6MYbx+vmWKylwNNFsWUYFNZs6mLnP6gbDClM7knsi4wLSZTzO8iD
+        9+7xx8jCexfD3ssDe/QPt3FRo13RXm2l4XfxnuaSej4+vyyrxsdsmko7byh4y67oeiWXLiz/tVY8
+        Ab27QvoiVmZrLJRPh/kYt/rCmLoUMtsP9fC1uqFkjlIZ3NNYaTwt9dluLV/iGD4F4n72wxPKC5GK
+        FYruylVY5sD6cK1PzetIg4MEE5ncQ2Yt8eoqLcrvuqEhumLD3328dFF0zBehkIuA5gpck5qB0yZQ
+        927wdlIzMKpjarzEadtYfIW2X63pdqa/PIqBaIVpzYfLOUxbaKbdSDcMiYuy4t2QeC4wScxgQghd
+        3Su2TOJVZXEDfXdpF207toatkgn7pTYW8zq6N2sfyhT6BjLNfY2GtijTYicHjqSpxB4NzZZT6N3f
+        rMa7xAngbVb3oLktjBckn7/68QXtDWL4GrAcA2LIKiz1iU5+yrR3RLrDGdkJdEN8r2SJW9uy5+8N
+        +6yYbt2MvdIprmjHE7xGi5fJB+wyfRSZ0bQp/SJRG9nHe4B1uQbZGDJNvgDd7MQ6ukjROZQMLZuS
+        b8kaoAwVIV1lqubaLvEpx9SqAtiXnpzhFhlZIItxc42wFKtqncETVwkjU962wpSFvr9/7PIosAgZ
+        gqAEhDUwAzdAq8ayJFZjgmEyYD/AhmGRVawV3TbNhWU51wnoPiNnnhuYrkIWW/a3KDrZ8fn9xIgv
+        9zIjDox3usgJeFczZbPw5I+OSEslbW4Yz5Qjl879arp2jbSJK21rGu0v0ge8d6ljjTr7EZI6hsQL
+        P+7KGqLZ4YppFh0C/9rxDNYYaTJdsOYYFY5hXG6xZIPFigaOEjUURK1N+te9q7WEzBTvYFN7ymBz
+        VxGQ5tEw8rQL2NbmbSLZrrQKgdjJyHbJBbKM1XhF1adJBHxfhnTvuB7eWPbZdALTbHb5QniFGoqU
+        bVRdJE5A+gvdnqrISsFEHWGQZhOO19Tpei1qea1KYXzqWINmq3DKAu8F4y6aWFWoQhJMN7WgWSGw
+        cBdK7wf3788oRLVhX+OtblXiomMCQbeNbfOkUV+d7XzVvRvf79zXbRZs+qi/OEoxCdpYzFlAwu1u
+        vrF1sm2Un7G6piAXTQBuVFE3uZTG165xxNKpYPDXV2/+KmCDjPRcWKBqBf3uam77rNp+Lda3DGyM
+        2AXm9C8dK5tMIRL+SBfvwjVWuKpji9KUqlBgslSfFXhJODAxL5pMDaRaP2UsbhZ39oEIEQ/fGgxm
+        itJiUAi5+lH9vUREWuaDO/eDkkFbTirB+joNYlmJhqCv14M2UGfXqGQYljJ3Z+E1xBzLenUJ1fie
+        GkulSGTAo3aBl9cVz8D02fffv/QC2s/Bl0jtXMT3muN5zu13r6/+iFllrq1XcJfD76AUUgxfg64K
+        uEWs79UNesJi4h2U9DYHpcG66iJO5rtZN8ULcygH7M9qg0LZZ4oRNZIR03JN3/1uKS8hFcsqhfmN
+        lBrLarwXj2lxlE3G43zALgqj+h2G9/OiJBIvEy4uGc9Qa/V99bSCyFxJj4/2RjvOCg0ljqYOhs9x
+        rD5DesK/mGm4AFlnXYviSNWxlgyupdoUkGTAMqx/Ygb3/DRETfkYS2WRtaskcwqBbSi7iBihAH5D
+        haeweKLA7b0BmSjtF4NldJBxcXmNFXuZdiuN7LSIQKoAZnIhsR6H0tawmOumUkJLco214srsDdhP
+        8MUNONVVANcSi80hdeVoskuDs5XUwWKtS11LwxInPbFsRYLpRLEqCl4ZcKL6b7Pw5EiOoVXsb1FI
+        KBiPpyeEZcwb9fm4xNzGdvc6UWDkF9bNjTZDA1IhykItYvMnJizmQQGJZLQnHQqawllUXW3ALg/s
+        mpiTKmhSa4FK75B+ihUmUHWMlz9hLbdYldAoQYNqgvmie8ZybRkm0g0Yub5EiWjn0iLDd4QvLXqi
+        as1q0/7EBDgqvsIJYKUhFgb1oQedgSeU779/GXAqILarLIPmi0WU4nbDghQS5ZK0XipHQMsekYUw
+        KJ1sjmWirCjhK0x5Jsv8J8BCEchWGqvu0oEWy00gEWy7m4Fkk5CJhuDcEvyJydclxXlrQWqDijXt
+        558jVslUw/dcdimXUzUzVAdcCn/WQZ9JXsvMexNIYdwDgQ1xW7xwr/jejLG5sOzLN8dSpy9tzq/5
+        F8h6rvDId2RFoRWGk/meqhwi3IumjA270jy+Bv1ksOydf3x3POQ+GeyKOfWZQnXLWYl7beoS08T6
+        LQ44SkxuIUNjwRiwzZGqUU5XeUdyYaY+St0YOdmZ1Uh1yJ/O3EKqrPAIwUo8UK2BabWujd0lATqr
+        KMbcpJgX7Bc06VH7IOPRLj506rpIblTM420LadHUNUOxhqaysGRlGC+SGkuDU0cLeCnBoM5PVI3y
+        GNKUhBidE0yOY6OtWwuJXKK6RhGj8vkCDIozJsEZ+XjiQLYshLxuCNePFpNJ1617xzRI2PACD6HK
+        +srDfVZy3xV2RH0gUCuUAl6KxUpiLVLqTRZIhyAHDCmRSgje9wOtuY6hUJIHCcQFR1JSsqns83Xz
+        kn2ze4kabr9mVqe8+i4F7f5B4kVSo7dPZq2tCdp0DBe/a1z6DcEzIjE3FuLEAwe0AFIe14XdEjM2
+        esrXtMMOlIeLAxVcJibmVXM7w1suzuxyFOesWjC0a15M7JLcvTODjh8koyoh90uvOcsei+PRMa/Z
+        v8Y71NoZbC042o1CWjItXf0qNNS0oBz7xqxRO/N60MVUS14HstKokkQHLYqVfEsyrBRo9NwvsWUa
+        iulYrDjXXG1waMlvRMYteBsnzql8WoYEfpXDlsATJa2pCVuj6twxklWdQxIxzjVAte+4cVSM2gG2
+        aChA1xPj9nBH/EKzimPpqFZso8n0oMV8QUWHsC9eMeo6rhgKM8MWO7fuq532ESme51AjOP8RyrNO
+        X29clvzan85iFJ1aMlQjvmG7vEqDtVt3z6lUyjYesw24E6EBkCzDArcoYUUCrQt/f6bNRQe0DBJA
+        8w+dZXjGvfaKFS0H4pHG47GGFMXOBug+lr/LxCT6P2tXlJwXHg8q7S7wiBEJ5bmz1Vk0mLLXWhGV
+        fPf6KpiyHIoKrTUMQqHEl0FdDchCv5dA2pV0/67w+e8Kn/+u8Pn+Cp/+YzaUJdKtif++NJJ/jVJk
+        fnXv/BLPkUrpu6/0+FrTvghy+8mbgy+wuE8g7X99pf165O6DK1Cuuc4UTcJ/ZsfDw1GAGyoijml5
+        d3vf1GkqRgYYku3ddYBjRXbUUd1v8Sj0A2NReKxPHquavmYS4iqV5cWKauj4J7uvdb29u7v33ctP
+        DHz3jaBGa9N3BD76G0PYnqD3UEOtdtXx8RtXsMFX+AGfWopfa1h1H2EkALNqGjT4JoePURav0GtI
+        398IByGughdFM1Tz9Z1/zFh3d/89AG3nfBvCeAAA
     headers:
-      Content-Length:
-      - '30341'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:43 GMT
+      - Mon, 01 Jun 2026 13:20:58 GMT
       Etag:
-      - '"5"'
+      - '"9"'
       Link:
       - <https://rogue-scholar.org/api/records/pevm6-kx104> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -317,11 +192,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '19'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -329,9 +208,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '496'
+      - '499'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1780320118'
       X-Xss-Protection:
       - 1; mode=block
     status:

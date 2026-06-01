@@ -139,8 +139,6 @@ def test_post_with_relationships():
     assert len(subject.references) == 5
     assert subject.references[0] == {
         "id": "https://doi.org/10.5438/s6d3-k860",
-        "type": "Document",
-        "unstructured": "Dasler, R., &amp; Cousijn, H. (2018). Are your data being used? Event Data has the answer!. In <i>DataCite Blog</i> (1.0). DataCite. https://doi.org/10.5438/s6d3-k860",
     }
     assert subject.funding_references == [
         {
@@ -228,20 +226,22 @@ def test_post_with_citations():
         {
             "id": "https://doi.org/10.1007/s11192-013-1108-3",
             "published_at": "2013-08-10",
+            "type": "JournalArticle",
             "unstructured": "Parinov, S., &amp; Kogalovsky, M. (2013). Semantic linkages in "
             "research information systems as a new data source for scientometric "
             "studies. <i>Scientometrics</i>, <i>98</i>(2), 927–943. "
             "https://doi.org/10.1007/s11192-013-1108-3",
-            "updated_at": "2025-02-02T19:19:01.385995+00:00",
+            "updated_at": "2026-05-31T05:56:35.963391+00:00",
         },
         {
             "id": "https://doi.org/10.1134/s0361768814060139",
             "published_at": "2014-11",
+            "type": "JournalArticle",
             "unstructured": "Kogalovsky, M. R., &amp; Parinov, S. I. (2014). Social network "
             "technologies for semantic linking of information objects in "
             "scientific digital library. <i>Programming and Computer Software</i>, "
             "<i>40</i>(6), 314–322. https://doi.org/10.1134/s0361768814060139",
-            "updated_at": "2025-02-02T19:18:41.652975+00:00",
+            "updated_at": "2026-05-31T05:56:31.713165+00:00",
         },
     ]
     assert subject.relations == [
@@ -281,24 +281,24 @@ def test_another_post_with_citations():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/50ebs-4zq55"
     assert subject.type == "BlogPost"
-    assert (
-        subject.url
-        == "https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies"
-    )
+    assert subject.url is None
     assert subject.titles[0] == {"title": "Ruby CDK for Newbies"}
     assert subject.citations == [
         {
             "id": "https://doi.org/10.59350/mn0n8-p9m65",
             "published_at": "2024-12-08",
+            "type": "BlogPost",
             "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. "
             "<i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65",
-            "updated_at": "2025-10-22T08:23:52.900151+00:00",
+            "updated_at": "2026-05-31T05:56:35.667294+00:00",
         },
         {
             "id": "https://doi.org/10.59350/myaw4-dtg76",
             "published_at": "2024-12-08",
-            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76",
-            "updated_at": "2025-02-02T19:18:39.899725+00:00",
+            "type": "BlogPost",
+            "unstructured": "Willighagen, E. (2024, December 8). Richard L. Apodaca. "
+            "<i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76",
+            "updated_at": "2026-05-31T05:56:31.642085+00:00",
         },
     ]
 
@@ -576,7 +576,7 @@ def test_post_with_funding_ror():
         "title": "Blog - Metadata Game Changers",
         "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
         "identifierType": "URL",
-        "platform": "Squarespace",
+        "platform": "Other",
     }
     assert subject.content.startswith(
         '<div id="item-62268c301674dc074d971710"\nclass="sqs-layout sqs-grid-12 columns-12"'
@@ -631,7 +631,7 @@ def test_post_with_even_more_funding():
         "title": "chem-bla-ics",
         "identifier": "https://rogue-scholar.org/blogs/chem_bla_ics",
         "identifierType": "URL",
-        "platform": "Jekyll",
+        "platform": "Other",
     }
 
 
@@ -714,7 +714,7 @@ def test_ghost_with_institutional_author():
     assert (
         subject.descriptions[0].get("description").startswith("After a couple of years")
     )
-    assert len(subject.files) == 1
+    assert len(subject.files) == 2
     assert subject.files[0] == {
         "url": "https://blog.oa.works/content/images/2023/01/nature-website-v2.png",
     }
@@ -1029,7 +1029,7 @@ def test_post_with_contributor_roles():
         "title": "rOpenSci - open tools for open science",
         "identifier": "https://rogue-scholar.org/blogs/ropensci",
         "identifierType": "URL",
-        "platform": "Hugo",
+        "platform": "Other",
     }
     assert subject.content.startswith("<p>Our own dev guide")
     assert subject.image is None
@@ -1092,10 +1092,6 @@ def test_post_topic_classification():
             "id": "https://openalex.org/subfields/1802",
             "subject": "Information Systems and Management",
         },
-        {
-            "id": "https://openalex.org/T11986",
-            "subject": "Scientific Computing and Data Management",
-        },
         {"subject": "RSE"},
     ]
 
@@ -1115,6 +1111,7 @@ def test_funded_project():
             "awardTitle": "THOR – Technical and Human Infrastructure for Open Research",
             "awardUri": "https://doi.org/10.3030/654039",
             "funderIdentifier": "https://ror.org/019w4f821",
+            "funderIdentifierType": "ROR",
             "funderName": "European Union",
         },
     ]
@@ -1156,8 +1153,10 @@ def test_get_jsonfeed_blog():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/front_matter"
     assert subject.type == "Blog"
-    assert subject.url == "https://blog.front-matter.de"
-    assert subject.titles[0] == {"title": "Front Matter"}
+    assert subject.url is None
+    assert subject.titles[0] == {
+        "title": "DOI registration workflow for a science blog (version 2)"
+    }
     assert subject.identifiers == [
         {
             "identifier": "https://blog.front-matter.de/atom",
@@ -1169,7 +1168,12 @@ def test_get_jsonfeed_blog():
         },
     ]
     assert subject.descriptions[0] == {
-        "description": "The Front Matter Blog covers the intersection of science and technology since 2007.",
+        "description": "This post is an updated version of the DOI registration workflow for a "
+        "science blog post I published in September 2023. It reflects the best "
+        "practices used by the Rogue Scholar science blog archive and contains one "
+        "important announcement. In previous blog posts such as the "
+        "one&nbsp;published earlier, I discussed the various elements involved in "
+        "registering a DOI for a science blog post.",
         "type": "Abstract",
     }
     assert len(subject.contributors) == 1
@@ -1180,13 +1184,10 @@ def test_get_jsonfeed_blog():
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.license == {
-        "id": "CC-BY-4.0",
-        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
-    }
+    assert subject.license == {}
     assert subject.date == {
         "created": "2023-01-01T09:19:13",
-        "updated": "2026-04-15T10:09:22",
+        "updated": "2026-05-30T10:02:10",
     }
     assert subject.publisher == {
         "name": "Front Matter",

@@ -267,7 +267,7 @@ def test_inveniordm_report():
     assert len(schema_org.get("encoding")) == 1
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/records/3871094/files/Open Letter V4.pdf/content",
+        "contentUrl": "https://zenodo.org/api/records/3871094/files/Open%20Letter%20V4.pdf/content",
         "name": "Open Letter V4.pdf",
         "size": 130482,
     }
@@ -319,7 +319,7 @@ def test_inveniordm_preprint():
     assert len(schema_org.get("encoding")) == 2
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
-        "contentUrl": "https://zenodo.org/api/records/8120771/files/(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf/content",
+        "contentUrl": "https://zenodo.org/api/records/8120771/files/(Zenodo)%20AUTOPSY%20REVIEW%20MANUSCRIPT.pdf/content",
         "name": "(Zenodo) AUTOPSY REVIEW MANUSCRIPT.pdf",
         "size": 832057,
     }
@@ -835,7 +835,7 @@ def test_jsonfeed_upstream_blog():
         schema_org.get("name")
         == "Attempts at automating journal subject classification"
     )
-    assert len(schema_org.get("encoding")) == 1
+    assert len(schema_org.get("encoding")) == 3
     assert schema_org.get("encoding")[0] == {
         "@type": "MediaObject",
         "contentUrl": "https://upstream.force11.org/content/images/2023/05/esha-subject-blog.jpg",

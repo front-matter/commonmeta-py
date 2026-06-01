@@ -14,803 +14,369 @@ interactions:
     uri: https://upstream.force11.org/welcome-to-upstream/
   response:
     body:
-      string: "<!doctype html>\n<html lang='en' class=' is-darkModeAdminSetting-enabled
-        '>\n\n  <head>\n  <meta charset='utf-8'>\n  <title>Welcome to Upstream: the
-        new space for scholarly community discussion on all things open</title>\n
-        \ <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n\n
-        \ <link rel='preconnect' href='https://fonts.gstatic.com'>\n<link rel='preconnect'
-        href='https://fonts.gstatic.com' crossorigin>\n\n<link rel='preload' as='style'
-        href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'>\n<link
-        rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
-        media='print' onload=\"this.media='all'\">\n\n<link rel='preload' as='style'
-        href='https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap'>\n<link
-        rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap'
-        media='print' onload=\"this.media='all'\">  <style>\n@charset \"UTF-8\";:root{--color-headerCard-light:#FFF;--color-headerCard-dark:#000;--color-text-headerCardStyleLight:var(--color-headerCard-dark);--color-background-headerCardStyleLight:var(--color-headerCard-light);--color-text-button-headerCardStyleLight:var(--color-headerCard-light);--color-background-button-headerCardStyleLight:var(--color-headerCard-dark);--color-text-button-hover-headerCardStyleLight:var(--color-headerCard-light);--color-background-button-hover-headerCardStyleLight:var(--color-headerCard-dark);--color-text-headerCardStyleDark:var(--color-headerCard-light);--color-background-headerCardStyleDark:var(--color-headerCard-dark);--color-text-button-headerCardStyleDark:var(--color-headerCard-dark);--color-background-button-headerCardStyleDark:var(--color-headerCard-light);--color-text-button-hover-headerCardStyleDark:var(--color-headerCard-dark);--color-background-button-hover-headerCardStyleDark:var(--color-headerCard-light);--color-text-headerCardStyleAccent:var(--color-background-primary);--color-background-headerCardStyleAccent:var(--color-accent);--color-text-button-headerCardStyleAccent:var(--color-text-primary);--color-background-button-headerCardStyleAccent:var(--color-background-primary);--color-text-button-hover-headerCardStyleAccent:var(--color-text-primary);--color-background-button-hover-headerCardStyleAccent:var(--color-background-primary);--color-text-headerCardStyleImage:var(--color-headerCard-light);--color-background-headerCardStyleImage:var(--color-headerCard-dark);--color-text-button-headerCardStyleImage:var(--color-headerCard-light);--color-background-button-headerCardStyleImage:var(--color-headerCard-dark);--color-text-button-hover-headerCardStyleImage:var(--color-headerCard-dark);--color-background-button-hover-headerCardStyleImage:var(--color-headerCard-light)}:root{--color-text-button:var(--color-background-primary);--color-background-button:var(--color-accent);--color-text-button-hover:var(--color-background-primary);--color-background-button-hover:var(--color-text-primary)}:root{--content-width:708px;--content-flow:var(--space-32)}:root{--html-symbol-dark:\"\u263E\";--html-symbol-light:\"\u263C\";--html-symbol-em-dash:\"\u2014\";--html-symbol-checkmark:\"\u2713\";--html-symbol-multiplication:\"\u2715\"}:root{--motion-duration-slow:.5s;--motion-duration-fast:.25s}:root{--ratio-1:1;--ratio-3x2:3/2;--ratio-16x9:16/9}:root{--focus-outline-size:var(--space-2);--focus-outline-style:solid;--focus-outline-color:currentColor;--focus-outline-offset:var(--space-2)}:root{--border-radius:var(--space-4);--border-radius-circle:50%}:root{--border-width:.5px;--border-style:solid;--border-vertical-offset:calc(calc(var(--grid-gap)
-        / 2) * -1)}:root{--grid-width:1400px;--grid-gap:var(--space-32);--grid-margin:var(--space-20);--grid-margin-large:var(--space-32)}:root{--space-2:2px;--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;--space-40:40px;--space-48:48px;--space-56:56px;--space-64:64px;--space-80:80px;--space-96:96px;--space-128:128px;--space-160:160px;--space-168:168px}:root{--font-size-scale-0:12px;--line-height-scale-0:16px;--font-size-scale-1:14px;--line-height-scale-1:16px;--font-size-scale-2:16px;--line-height-scale-2:20px;--font-size-scale-3:18px;--line-height-scale-3:20px;--font-size-scale-4:20px;--line-height-scale-4:24px;--font-size-scale-5:24px;--line-height-scale-5:28px;--font-size-scale-6:28px;--line-height-scale-6:32px;--font-size-scale-7:32px;--line-height-scale-7:32px;--font-size-scale-8:40px;--line-height-scale-8:40px;--font-size-scale-9:48px;--line-height-scale-9:48px;--font-size-scale-10:72px;--line-height-scale-10:72px;--font-size-scale-body-copy:20px;--line-height-scale-body-copy:32px;--line-height-scale-tight:1;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-letter-spacing-brevier:.7px;--font-letter-spacing-long-primer:.25px;--font-letter-spacing-tiny:.6px;--font-letter-spacing-small:1.2px;--font-letter-spacing-base:1.6px;--font-letter-spacing-large:2.8px;--font-letter-spacing-negative:-.5px;--font-family-serif:\"Source
-        Serif Pro\",Georgia,serif;--font-family-sansSerif:\"Inter\",-apple-system,BlinkMacSystemFont,\"Segoe
-        UI\",Helvetica,Arial,sans-serif}:root{--color-mode:\"light\";--color-accent:var(--ghost-accent-color);--color-text-primary:#000000;--color-text-secondary:#4E5965;--color-border-primary:#000000;--color-border-secondary:#D9D9D9;--color-background-primary:#FFFFFF;--color-background-secondary:#EFF8FA}@media
-        (prefers-color-scheme:dark){:root.is-darkModeAdminSetting-enabled{--color-mode:\"dark\"}:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled{--color-mode:\"dark\";--color-accent:var(--dark-mode-accent-color);--color-text-primary:#FFFFFF;--color-text-secondary:#B3B3B3;--color-border-primary:#525252;--color-border-secondary:#303030;--color-background-primary:#181818;--color-background-secondary:#212121}}[data-user-color-scheme=dark]{--color-mode:\"dark\";--color-accent:var(--dark-mode-accent-color);--color-text-primary:#FFFFFF;--color-text-secondary:#B3B3B3;--color-border-primary:#525252;--color-border-secondary:#303030;--color-background-primary:#181818;--color-background-secondary:#212121}/*!
-        modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize
-        */*,::after,::before{box-sizing:border-box}html{-moz-tab-size:4;-o-tab-size:4;tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,\"Segoe
-        UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline
-        dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,\"Liberation
-        Mono\",Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px
-        dotted ButtonText}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}code[class*=language-],pre[class*=language-]{color:#000;background:0
-        0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,\"Andale Mono\",\"Ubuntu
-        Mono\",monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;hyphens:none}code[class*=language-]
-        ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-]
-        ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]
-        ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-]
-        ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]
-        ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{text-shadow:none;background:#b3d4fc}@media
-        print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em
-        0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css
-        .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}body
-        .fslightbox-image-wrap{display:block}body .fslightbox-container{font-family:var(--font-family-sansSerif);background:var(--color-background-primary)}body
-        .fslightbox-nav{height:var(--space-48)}body .fslightbox-toolbar{right:var(--space-12)}body
-        [data-fslightbox] img{cursor:zoom-in}body .fslightbox-invalid-file-wrapper{color:var(--color-text-secondary)}body
-        .fslightbox-slide-number-container{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);left:var(--space-12);color:var(--color-text-secondary)}body
-        .fslightbox-slash{background:var(--color-text-secondary)}body .fslightbox-toolbar>.fslightbox-toolbar-button:first-child{display:none}body
-        .fslightbox-svg-path{fill:var(--color-text-secondary)}body .fslightbox-toolbar{background:var(--color-background-primary)}body
-        .fslightbox-toolbar:hover .fslightbox-svg-path{fill:var(--color-text-secondary)}body
-        .fslightbox-slide-btn{background:var(--color-background-primary)}body .fslightbox-slide-btn-container{padding-left:var(--space-16)}body
-        .fslightbox-slide-btn-container:hover .fslightbox-svg-path{fill:var(--color-text-secondary)}body
-        .fslightbox-slide-btn-container-next{padding-right:var(--space-16)}@keyframes
-        spin{100%{transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(.5px,-.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner
-        .icon__spinner,.icon--ei-spinner-2 .icon__spinner{animation:spin 1s steps(12)
-        infinite}.icon--ei-spinner-3 .icon__spinner{animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon{width:var(--space-24);height:var(--space-24)}.icon--m{width:var(--space-48);height:var(--space-48)}:where(body,h1,h2,h3,h4,h5,h6,blockquote,p,pre,dl,dd,ol,ul,figure,hr,fieldset,legend){margin:0;padding:0}li>ol,li>ul{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}:is(a,button,input,textarea,summary):focus-visible{outline:var(--focus-outline-size)
-        var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}@media
-        (prefers-reduced-motion:reduce){*{animation:none;transition:none}}.o-grid{width:100%;margin:auto;display:grid;max-width:var(--grid-width);padding:0
-        var(--grid-margin)}@media (min-width:64em){.o-grid{padding:0 var(--grid-margin-large)}}.o-grid[class*=-columns]{grid-gap:var(--grid-gap)}@media
-        (min-width:40em){.o-grid--2-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--3-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--3-columns{grid-template-columns:repeat(3,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--4-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--4-columns{grid-template-columns:repeat(4,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--2-1-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--2-1-columns{grid-template-columns:2fr 1fr}}.u-font-size-scale-0{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0)}.u-font-size-scale-1{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1)}.u-font-size-scale-2{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}.u-font-size-scale-3{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}.u-font-size-scale-4{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4)}.u-font-size-scale-5{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}.u-font-size-scale-6{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}.u-font-size-scale-7{font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-7)}.u-font-size-scale-8{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8)}.u-font-size-scale-9{font-size:var(--font-size-scale-9);line-height:var(--line-height-scale-9)}.u-font-size-scale-10{font-size:var(--font-size-scale-10);line-height:var(--line-height-scale-10)}.u-font-family-serif{font-family:var(--font-family-serif)!important}.u-font-family-sansSerif{font-family:var(--font-family-sansSerif)!important}.u-font-weight-normal{font-weight:var(--font-weight-normal)}.u-font-weight-medium{font-weight:var(--font-weight-medium)}.u-font-weight-semibold{font-weight:var(--font-weight-semibold)}.u-font-weight-bold{font-weight:var(--font-weight-bold)}.kg-header-card-header,.u-font-headline{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-medium)}@media
-        (min-width:64em){.kg-header-card-header,.u-font-headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8);letter-spacing:var(--font-letter-spacing-negative)}}.kg-header-card-subheader,.u-font-standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-normal)}@media
-        (min-width:64em){.kg-header-card-subheader,.u-font-standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-6)}}.u-font-uppercase{text-transform:uppercase}.u-link{text-decoration:underline}.u-link:hover{text-decoration:none}.u-link:focus-visible{text-decoration:none}.u-align-auto{margin:auto}.u-align-center{text-align:center}.u-color-text-brand{color:var(--color-accent)}.u-color-text-secondary{color:var(--color-text-secondary)}.u-color-background-secondary{background-color:var(--color-background-secondary)}.u-drop-cap-large:first-letter,.u-drop-cap-small:first-letter{float:left;margin-top:var(--space-8);margin-right:var(--space-8);color:var(--color-accent);font-weight:var(--font-weight-semibold)}.u-drop-cap-small::first-letter{font-size:70px;line-height:52px}.u-drop-cap-large::first-letter{font-size:118px;line-height:86px}.js-on
-        .lazyload,.js-on .lazyloading{opacity:0}.js-on .lazyloaded{opacity:1;transition:opacity
-        var(--motion-duration-slow) ease}.u-hidden{display:none}.u-block{display:block}.u-screenreader{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0
-        0 0 0);border:0}@media (max-width:63.99em){.u-visible-on-desktop{display:none!important}}.u-mt-8{margin-top:var(--space-8)}.u-mr-8{margin-right:var(--space-8)}.u-mt-16{margin-top:var(--space-16)}.u-mb-16{margin-bottom:var(--space-16)}.u-p-32{padding:var(--space-32)}.u-plain-list{margin:0;padding:0;list-style:none}.u-flex{display:flex}body,html{height:100%}body{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-normal);direction:ltr;color:var(--color-text-primary);background-color:var(--color-background-primary);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}a{color:inherit;text-decoration:none}:where(dd,ol,ul){margin-left:var(--space-16)}img{height:auto;display:block;max-width:100%;font-style:italic}hr{border:0;height:auto;border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}:where(h1,h2,h3,strong){font-weight:var(--font-weight-semibold)}:where(h1){font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}@media
-        (min-width:64em){:where(h1){font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-7)}}:where(h1)+h2,:where(h1)+h3{margin-top:var(--space-16)}:where(h2){font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}@media
-        (min-width:64em){:where(h2){font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}}:where(h2)+h3{margin-top:var(--space-16)}:where(h3){font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4)}@media
-        (min-width:64em){:where(h3){font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}}blockquote{font-style:italic}blockquote:not(.kg-blockquote-alt){padding-left:var(--space-20);border-left:var(--space-2)
-        solid var(--color-accent)}li code,p code{padding:var(--space-4) var(--space-8);border-radius:var(--border-radius);border:var(--border-width)
-        var(--border-style) var(--color-border-secondary);background-color:var(--color-background-secondary)}code,code[class*=language-]{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);text-shadow:none;color:var(--color-text-primary)}.kg-code-card,pre,pre[class*=language-]{width:100%;overflow-x:auto;border-radius:var(--border-radius)}pre,pre[class*=language-]{margin-bottom:0;margin-top:var(--content-flow);padding:var(--space-32);background-color:var(--color-background-secondary)}.kg-code-card
-        pre{margin-top:0}.token.operator{background-color:transparent}input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select,textarea{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-medium);width:100%;display:block;color:var(--color-text-primary);padding:var(--space-12)
-        var(--space-24);background:0 0;border:var(--border-width) var(--border-style)
-        var(--color-border-secondary)}input[type=color]::-moz-placeholder,input[type=date]::-moz-placeholder,input[type=datetime-local]::-moz-placeholder,input[type=datetime]::-moz-placeholder,input[type=email]::-moz-placeholder,input[type=month]::-moz-placeholder,input[type=number]::-moz-placeholder,input[type=password]::-moz-placeholder,input[type=search]::-moz-placeholder,input[type=tel]::-moz-placeholder,input[type=text]::-moz-placeholder,input[type=time]::-moz-placeholder,input[type=url]::-moz-placeholder,input[type=week]::-moz-placeholder,select::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:var(--color-text-secondary)}input[type=color]::placeholder,input[type=date]::placeholder,input[type=datetime-local]::placeholder,input[type=datetime]::placeholder,input[type=email]::placeholder,input[type=month]::placeholder,input[type=number]::placeholder,input[type=password]::placeholder,input[type=search]::placeholder,input[type=tel]::placeholder,input[type=text]::placeholder,input[type=time]::placeholder,input[type=url]::placeholder,input[type=week]::placeholder,select::placeholder,textarea::placeholder{opacity:1;color:var(--color-text-secondary)}table{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);width:100%;max-width:100%;background-color:var(--color-background-secondary)}table
-        caption{padding:var(--space-16);border-style:var(--border-style);border-width:var(--border-width)
-        var(--border-width) 0 var(--border-width);border-color:var(--color-border-secondary);background-color:var(--color-background-secondary)}table
-        td,table th{text-align:left;padding:var(--space-16);white-space:nowrap;border:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}table tbody+tbody{border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.responsive-table{display:block;width:100%;overflow-x:auto;word-break:initial}:lang(ar)
-        *{letter-spacing:initial}.c-skip{position:absolute;top:calc(var(--space-96)
-        * -1);left:var(--space-32);padding:var(--space-4) var(--space-16);background-color:var(--color-background-primary)}.c-skip:focus{z-index:10;top:var(--space-32)}.c-header{margin-bottom:var(--space-32);box-shadow:rgba(0,0,0,.08)
-        0 0 var(--space-4) var(--space-2)}[data-user-color-scheme=dark] .c-header{border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}@media (prefers-color-scheme:dark){:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-header{border-bottom:var(--border-width) var(--border-style) var(--color-border-secondary)}}.c-header__top{padding:var(--space-20)
-        0;border-bottom:var(--border-width) var(--border-style) var(--color-border-secondary)}.c-header__top-block{display:flex;align-items:center;gap:var(--space-8)}@media
-        (min-width:64em){.c-header__top-block{gap:var(--space-16)}}.c-header__top-inner{display:grid;gap:var(--space-16);align-items:center;grid-template-columns:auto
-        2fr auto}@media (min-width:40em){.c-header__top-inner{grid-template-columns:1fr
-        2fr 1fr}}@media (max-width:39.99em){.c-header__top-left{order:2;margin-left:auto}.c-header__top-center{order:1}.c-header__top-right{order:3}}.c-header__top-right{justify-self:end}.c-header__button{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);padding:0;border:none;cursor:pointer;background:0
-        0;color:var(--color-text-primary);display:flex;align-items:center;gap:var(--space-4)}.c-header__button:hover{text-decoration:underline}.c-header__button
-        svg{width:var(--space-16);height:var(--space-16);fill:var(--color-text-primary)}.c-footer{position:sticky;top:100vh;padding:var(--space-64)
-        0;margin-top:var(--space-64);background-color:var(--color-background-secondary)}.c-footer__content{display:flex;flex-direction:column;align-items:center}.c-footer__content>*+*{margin-top:var(--space-32)}.c-footer-nav{display:flex;flex-wrap:wrap;justify-content:center}.c-footer-nav
-        .c-nav__item{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-normal);text-transform:initial;color:var(--color-text-secondary)}.c-footer-nav
-        .c-nav__item:not(:first-child)::before{display:none}.c-footer-nav li:not(:last-child){margin:0}.c-footer-nav
-        a{text-decoration:underline}.c-footer-nav a:hover{text-decoration:none}.c-footer-nav
-        a:focus-visible{text-decoration:none}.c-footer-copy{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);text-align:center;color:var(--color-text-secondary)}.c-footer-copy
-        a{text-decoration:underline}.c-footer-copy a:hover{text-decoration:none}.c-footer-copy
-        a:focus-visible{text-decoration:none}@media (min-width:40em){.c-logo{margin:auto}}.c-logo__link{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-medium)}@media
-        (min-width:40em){.c-logo__link{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8)}}.c-logo__img{max-height:var(--space-32)}@media
-        (min-width:40em){.c-logo__img{max-height:var(--space-48)}}.c-logo__dark{display:none}@media
-        (prefers-color-scheme:dark){:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-logo__dark{display:block}:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-logo__light{display:none}}[data-user-color-scheme=dark] .c-logo__dark{display:block}[data-user-color-scheme=dark]
-        .c-logo__light{display:none}.c-nav-wrap{min-width:0}.c-nav{display:flex;gap:var(--space-16);padding:var(--space-16)
-        0;overflow-x:scroll;-ms-overflow-style:none;scrollbar-width:none}.c-nav::-webkit-scrollbar{display:none}@media
-        (min-width:64em){.c-nav--main{justify-content:center}}.c-nav__item{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);white-space:nowrap}.c-nav__item:not(:first-child){padding-left:var(--space-16);position:relative}.c-nav__item:not(:first-child):before{border-left:var(--border-width)
-        var(--border-style) var(--color-accent);content:\"\";height:var(--space-16);left:0;width:1px;overflow:hidden;position:absolute}.c-nav__link{display:block}.c-nav__link--current{text-decoration:underline}.c-nav__link--current:hover{text-decoration:none}.c-nav__link--current:focus-visible{text-decoration:none}.home-template
-        .c-nav__link--current{text-decoration:none}.c-nav__link:hover{text-decoration:underline}.c-author__media{width:var(--space-96);height:var(--space-96);border-radius:var(--border-radius-circle);background-color:var(--color-background-secondary)}.c-author__image{-o-object-fit:cover;object-fit:cover;width:var(--space-96);height:var(--space-96);min-width:var(--space-96);border-radius:var(--border-radius-circle)}.c-btn,.c-content
-        .kg-product-card .kg-product-card-button,.kg-btn,.kg-btn-accent,.kg-header-card-button{--focus-outline-offset:calc(var(--space-4)
-        * -1);font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-medium);height:auto;width:-moz-fit-content;width:fit-content;min-width:-moz-fit-content;min-width:fit-content;text-align:center;border:none;cursor:pointer;overflow:hidden;padding:var(--space-16)
-        var(--space-24);border-radius:var(--space-4);color:var(--color-text-button);background-color:var(--color-background-button)}.c-btn:is(:hover,:active,:focus),.c-content
-        .kg-product-card .kg-product-card-button:is(:hover,:active,:focus),.kg-btn-accent:is(:hover,:active,:focus),.kg-btn:is(:hover,:active,:focus),.kg-header-card-button:is(:hover,:active,:focus){color:var(--color-text-button-hover);background-color:var(--color-background-button-hover)}.c-btn--disabled{opacity:.5;cursor:not-allowed}.c-btn--full{width:100%}.c-btn--small{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-medium);letter-spacing:var(--font-letter-spacing-brevier);padding:var(--space-8)
-        var(--space-16)}.c-btn--uppercase{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-btn--fit-content{width:-moz-fit-content;width:fit-content}.c-btn--loading,.c-btn.loading,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button,.c-content .kg-product-card
-        .loading.kg-product-card-button,.c-subscribe-form .c-btn,.c-subscribe-form
-        .c-content .kg-product-card .kg-product-card-button,.c-subscribe-form .kg-btn,.c-subscribe-form
-        .kg-btn-accent,.c-subscribe-form .kg-header-card-button,.loading.kg-btn,.loading.kg-btn-accent,.loading.kg-header-card-button{display:flex;align-items:center;justify-content:center}@keyframes
-        spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.c-btn--loading:after,.c-btn.loading:after,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button:after,.c-content
-        .kg-product-card .loading.kg-product-card-button:after,.c-subscribe-form .c-btn:after,.c-subscribe-form
-        .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form
-        .kg-btn-accent:after,.c-subscribe-form .kg-btn:after,.c-subscribe-form .kg-header-card-button:after,.loading.kg-btn-accent:after,.loading.kg-btn:after,.loading.kg-header-card-button:after{margin-left:var(--space-12);content:\"\";display:block;height:var(--space-16);width:var(--space-16);border-width:1px;border-style:var(--border-style);border-top-color:transparent;border-right-color:transparent;border-bottom-color:var(--color-text-button);border-left-color:var(--color-text-button);border-radius:var(--border-radius-circle);animation:spin
-        var(--motion-duration-slow) infinite linear}.c-btn--loading:is(:hover,:active,:focus):after,.c-btn.loading:is(:hover,:active,:focus):after,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button:is(:hover,:active,:focus):after,.c-content
-        .kg-product-card .loading.kg-product-card-button:is(:hover,:active,:focus):after,.c-subscribe-form
-        .c-btn:is(:hover,:active,:focus):after,.c-subscribe-form .c-content .kg-product-card
-        .kg-product-card-button:is(:hover,:active,:focus):after,.c-subscribe-form
-        .kg-btn-accent:is(:hover,:active,:focus):after,.c-subscribe-form .kg-btn:is(:hover,:active,:focus):after,.c-subscribe-form
-        .kg-header-card-button:is(:hover,:active,:focus):after,.loading.kg-btn-accent:is(:hover,:active,:focus):after,.loading.kg-btn:is(:hover,:active,:focus):after,.loading.kg-header-card-button:is(:hover,:active,:focus):after{border-bottom-color:var(--color-background-primary);border-left-color:var(--color-background-primary)}.c-post{margin:0
-        auto;padding:0 var(--grid-margin);max-width:var(--content-width)}.c-post>*+*{margin-top:var(--content-flow)}.c-content{display:flex;align-items:center;flex-direction:column}.c-content:empty{display:none}.c-content--has-shadow{-webkit-mask-image:linear-gradient(to
-        bottom,var(--color-text-primary) 30%,transparent 100%);mask-image:linear-gradient(to
-        bottom,var(--color-text-primary) 30%,transparent 100%)}.c-content>*{min-width:100%}.c-content>*+*{margin-top:var(--content-flow)}.c-content
-        :where(p,ol,ul,blockquote){font-family:var(--font-family-serif);font-size:var(--font-size-scale-body-copy);line-height:var(--line-height-scale-body-copy)}.c-content
-        :where(h1,h2,h3)+*{margin-top:calc(var(--content-flow)/ 2)}.c-content a:not([class]){text-decoration:underline;color:var(--color-accent)}.c-content
-        a:not([class]):hover{text-decoration:none}.c-content a:not([class]):focus-visible{text-decoration:none}.c-content
-        :where(hr){margin:var(--content-flow) 0}.c-content :where(hr)+*{margin-top:0}.c-content
-        :is(dd,ol,ul){padding-left:var(--space-16);padding-right:var(--space-16)}.c-content
-        .gh-post-upgrade-cta{display:none;visibility:hidden}.c-section{margin-top:var(--space-64)}.c-section--editors-pick{padding-top:var(--space-64);padding-bottom:var(--space-64);background:var(--color-background-secondary)}.c-section-heading{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:var(--space-8);margin-bottom:var(--space-24);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-primary)}.c-section-heading__title{font-family:var(--font-family-serif);font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-8);font-weight:var(--font-weight-bold)}.c-section-heading__title
-        a:hover{text-decoration:underline}.c-section-heading__title--small{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}.c-section-heading__all{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-section-heading__all:hover{text-decoration:underline}.c-subscribe-form
-        .c-alert{display:none}.c-content .kg-product-card .c-subscribe-form .kg-product-card-button:after,.c-subscribe-form
-        .c-btn:after,.c-subscribe-form .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form
-        .kg-btn-accent:after,.c-subscribe-form .kg-btn:after,.c-subscribe-form .kg-header-card-button:after{display:none}.c-content
-        .kg-product-card .c-subscribe-form.loading .kg-product-card-button:after,.c-subscribe-form.loading
-        .c-btn:after,.c-subscribe-form.loading .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form.loading
-        .kg-btn-accent:after,.c-subscribe-form.loading .kg-btn:after,.c-subscribe-form.loading
-        .kg-header-card-button:after{display:block}.c-subscribe-form.error .c-alert--error,.c-subscribe-form.invalid
-        .c-alert--invalid,.c-subscribe-form.success .c-alert--success{display:block}.c-form-group{display:flex;gap:var(--space-16)}.c-alert{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-medium);margin-top:var(--space-16)}.c-alert:empty{display:none}.c-alert:before{font-weight:var(--font-weight-bold);margin-right:var(--space-8)}.c-alert--success:before{content:var(--html-symbol-checkmark)}.c-alert--error:before,.c-alert--invalid:before{content:var(--html-symbol-multiplication)}.c-teaser{display:flex}.c-teaser--large{display:grid;grid-template-columns:1fr
-        2fr;-moz-column-gap:var(--grid-gap);column-gap:var(--grid-gap)}.c-teaser__media{width:var(--space-80);height:var(--space-64);flex-basis:var(--space-80);margin-left:var(--space-16);position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-secondary)}.c-teaser__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-teaser__media:hover:after{opacity:1}@media
-        (min-width:64em){.c-teaser--large .c-teaser__media{width:auto;height:auto;flex-basis:auto;margin:0}}.c-teaser__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-teaser__content{flex:1}.c-teaser__content>*+*{margin-top:var(--space-8)}.c-teaser--large
-        .c-teaser__content{order:2}.c-teaser__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-semibold)}.c-teaser__headline:hover{text-decoration:underline}@media
-        (min-width:64em){.c-teaser--large .c-teaser__headline{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-semibold)}}.c-teaser__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}.c-teaser__meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8)}.c-teaser__timestamp{white-space:nowrap}.c-card--center
-        *{text-align:center;justify-content:center}.c-card__media{display:block;position:relative;padding-bottom:66%;aspect-ratio:var(--ratio-3x2);margin-bottom:var(--space-16);background-color:var(--color-background-secondary)}.c-card__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-card__media:hover:after{opacity:1}.c-card__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-card__content>*+*{margin-top:var(--space-8)}@media
-        (min-width:64em){.c-card--center .c-card__content{padding:0 var(--space-32)}}.c-card__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-semibold)}.c-card__headline:hover{text-decoration:underline}@media
-        (min-width:64em){.c-card--large .c-card__headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-9)}}.c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-3)}.c-card--large
-        .c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}@media
-        (min-width:64em){.c-card--large .c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-5)}}.c-card__meta{display:flex;flex-direction:column;gap:var(--space-8)}.c-hero{display:grid}@media
-        (max-width:63.99em){.c-hero>*{margin-top:var(--content-flow)}.c-hero .center{margin-top:0}.c-hero
-        .left{order:2}.c-hero .center{order:1}.c-hero .right{order:3}}@media (min-width:64em){.c-hero{-moz-column-gap:var(--grid-gap);column-gap:var(--grid-gap);grid-template-columns:repeat(12,1fr);grid-template-rows:minmax(2rem,auto)
-        repeat(2,1fr)}.c-hero .left{grid-column:1/span 3;grid-row-start:1;position:relative}.c-hero
-        .left:after{content:\"\";position:absolute;top:0;bottom:0;left:auto;right:var(--border-vertical-offset);border-right:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-hero .center{grid-column:4/span
-        6}.c-hero .right{grid-column:10/span 3;position:relative}.c-hero .right:after{content:\"\";position:absolute;top:0;bottom:0;right:auto;left:var(--border-vertical-offset);border-right:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}}.c-tag{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);color:var(--color-text-secondary)}.c-tag
-        a{color:var(--color-accent)}.c-tag a:hover{text-decoration:underline}.c-tag-card{display:block;padding:var(--space-24);border-radius:var(--border-radius);background-color:var(--color-background-secondary);border-left:var(--space-4)
-        solid var(--color-accent-tag,var(--color-accent))}.c-tag-card__name{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}.c-card-archive{position:relative;padding-top:var(--space-24);margin-top:var(--space-24)}@media
-        (min-width:64em){.c-card-archive{padding-top:var(--space-40);margin-top:var(--space-40)}}.c-card-archive:before{content:\"\";display:block;width:100%;height:1px;position:absolute;top:0;background-color:var(--color-border-secondary)}.c-card-archive:first-child{margin-top:0;padding-top:0}.c-card-archive:first-child:before{background-color:transparent}.c-card-archive:last-child{margin-bottom:var(--space-32)}@media
-        (min-width:40em){.c-card-archive{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:1fr;grid-column-gap:var(--space-40);grid-template-areas:\"meta
-        meta content content content content content content\"}.c-card-archive__meta{grid-area:meta}.c-card-archive__content{grid-area:content}}.c-card-archive--date-1+.c-card-archive--date-1,.c-card-archive--date-10+.c-card-archive--date-10,.c-card-archive--date-11+.c-card-archive--date-11,.c-card-archive--date-12+.c-card-archive--date-12,.c-card-archive--date-2+.c-card-archive--date-2,.c-card-archive--date-3+.c-card-archive--date-3,.c-card-archive--date-4+.c-card-archive--date-4,.c-card-archive--date-5+.c-card-archive--date-5,.c-card-archive--date-6+.c-card-archive--date-6,.c-card-archive--date-7+.c-card-archive--date-7,.c-card-archive--date-8+.c-card-archive--date-8,.c-card-archive--date-9+.c-card-archive--date-9,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669{padding-top:0;margin-top:0}.c-card-archive--date-1+.c-card-archive--date-1:before,.c-card-archive--date-10+.c-card-archive--date-10:before,.c-card-archive--date-11+.c-card-archive--date-11:before,.c-card-archive--date-12+.c-card-archive--date-12:before,.c-card-archive--date-2+.c-card-archive--date-2:before,.c-card-archive--date-3+.c-card-archive--date-3:before,.c-card-archive--date-4+.c-card-archive--date-4:before,.c-card-archive--date-5+.c-card-archive--date-5:before,.c-card-archive--date-6+.c-card-archive--date-6:before,.c-card-archive--date-7+.c-card-archive--date-7:before,.c-card-archive--date-8+.c-card-archive--date-8:before,.c-card-archive--date-9+.c-card-archive--date-9:before,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661:before,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660:before,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661:before,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662:before,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662:before,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663:before,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664:before,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665:before,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666:before,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667:before,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668:before,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669:before{background-color:transparent}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__meta,.c-card-archive--date-10+.c-card-archive--date-10 .c-card-archive__meta,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__meta,.c-card-archive--date-12+.c-card-archive--date-12 .c-card-archive__meta,.c-card-archive--date-2+.c-card-archive--date-2
-        .c-card-archive__meta,.c-card-archive--date-3+.c-card-archive--date-3 .c-card-archive__meta,.c-card-archive--date-4+.c-card-archive--date-4
-        .c-card-archive__meta,.c-card-archive--date-5+.c-card-archive--date-5 .c-card-archive__meta,.c-card-archive--date-6+.c-card-archive--date-6
-        .c-card-archive__meta,.c-card-archive--date-7+.c-card-archive--date-7 .c-card-archive__meta,.c-card-archive--date-8+.c-card-archive--date-8
-        .c-card-archive__meta,.c-card-archive--date-9+.c-card-archive--date-9 .c-card-archive__meta,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__meta,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__meta,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__meta,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__meta,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__meta,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__meta,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__meta,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__meta,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__meta{display:none}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__content,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content,.c-card-archive--date-2+.c-card-archive--date-2 .c-card-archive__content,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content,.c-card-archive--date-4+.c-card-archive--date-4 .c-card-archive__content,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content,.c-card-archive--date-6+.c-card-archive--date-6 .c-card-archive__content,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content,.c-card-archive--date-8+.c-card-archive--date-8 .c-card-archive__content,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content{position:relative;padding-top:var(--space-16);margin-top:var(--space-16)}@media
-        (min-width:64em){.c-card-archive--date-1+.c-card-archive--date-1 .c-card-archive__content,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content,.c-card-archive--date-2+.c-card-archive--date-2 .c-card-archive__content,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content,.c-card-archive--date-4+.c-card-archive--date-4 .c-card-archive__content,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content,.c-card-archive--date-6+.c-card-archive--date-6 .c-card-archive__content,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content,.c-card-archive--date-8+.c-card-archive--date-8 .c-card-archive__content,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content{padding-top:var(--space-24);margin-top:var(--space-24)}}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__content:before,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content:before,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content:before,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content:before,.c-card-archive--date-2+.c-card-archive--date-2
-        .c-card-archive__content:before,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content:before,.c-card-archive--date-4+.c-card-archive--date-4
-        .c-card-archive__content:before,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content:before,.c-card-archive--date-6+.c-card-archive--date-6
-        .c-card-archive__content:before,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content:before,.c-card-archive--date-8+.c-card-archive--date-8
-        .c-card-archive__content:before,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content:before,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content:before,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content:before,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content:before,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content:before,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content:before,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content:before,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content:before,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content:before,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content:before{content:\"\";display:block;width:100%;height:1px;position:absolute;top:0;background-color:var(--color-border-secondary)}@media
-        (max-width:39.99em){.c-card-archive__meta{margin-bottom:var(--space-16)}}@media
-        (max-width:39.99em){.c-card-archive__content{padding-left:var(--space-16)}}.c-card-archive__date{color:var(--color-text-secondary)}.c-card-archive__title{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-medium)}.c-card-archive__date-mini{display:none;font-weight:var(--font-weight-normal);color:var(--color-text-secondary)}.c-card-archive__url:hover{text-decoration:underline}.c-timestamp{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary)}.c-reading-time{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary)}.c-byline{display:flex;flex-wrap:wrap;color:var(--color-text-secondary)}.c-byline
-        a{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-byline
-        a:hover{text-decoration:underline}.c-byline span{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium)}.c-topper{margin:0
-        auto;margin-top:var(--space-40);padding:0 var(--grid-margin);max-width:var(--content-width);margin-bottom:var(--space-32)}.c-topper__content{padding-bottom:var(--space-32);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-topper__content>*+*{margin-top:var(--space-8)}.c-topper__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-bold)}@media
-        (min-width:64em){.c-topper__headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-9);font-weight:var(--font-weight-semibold)}}.c-topper__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-5)}@media
-        (min-width:64em){.c-topper__standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-6)}}.c-topper__meta{display:flex;flex-direction:column;margin-top:var(--space-16)}@media
-        (min-width:64em){.c-topper__meta{flex-direction:row}}.c-topper__timestamp{display:inline-block;margin-top:var(--space-8)}.c-topper__timestamp:after{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary);content:var(--html-symbol-em-dash)}.c-topper__reading-time{display:inline}.c-feature-image-figure{margin-top:var(--space-32)}.c-feature-image-wrap{position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-secondary)}.c-feature-image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-feature-image-caption{width:100%;padding-top:var(--space-8);color:var(--color-text-secondary);background-color:var(--color-background-primary);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);letter-spacing:var(--font-letter-spacing-long-primer)}.c-feature-image-caption
-        a{text-decoration:underline}.c-feature-image-caption a:hover{text-decoration:none}.c-feature-image-caption
-        a:focus-visible{text-decoration:none}.c-stack-stories>:not(:last-child){margin-bottom:var(--space-16);padding-bottom:var(--space-16);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-stack-stories--large>:not(:last-child){margin-bottom:var(--space-32);padding-bottom:var(--space-32)}.c-editors-pick{display:grid;grid-template-rows:auto
-        1fr;grid-template-columns:var(--space-80) 2fr;grid-template-areas:\"number
-        media\" \"content content\"}.c-editors-pick__media{grid-area:media;position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-primary)}.c-editors-pick__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-editors-pick__media:hover:after{opacity:1}.c-editors-pick__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-editors-pick__content{grid-area:content}.c-editors-pick__content>*+*{margin-top:var(--space-8)}.c-editors-pick__content{margin-top:var(--space-24)}.c-editors-pick__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-semibold)}.c-editors-pick__headline:hover{text-decoration:underline}.c-editors-picks-wrapper{counter-reset:list-items}.c-editors-picks-wrapper
-        .c-editors-pick::before{font-size:var(--font-size-scale-10);line-height:var(--line-height-scale-10);font-weight:var(--font-weight-bold);grid-area:number;counter-increment:list-items;content:counter(list-items);-webkit-text-stroke-width:1px;-webkit-text-fill-color:transparent;margin-top:auto;margin-bottom:calc(var(--space-8)
-        * -1)}.c-page-header{margin-bottom:var(--space-32)}.c-color-mode-btn:before{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}@media
-        (max-width:39.99em){.c-color-mode-btn:before{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}}.c-color-mode-btn:hover{text-decoration:none}.c-color-mode-btn:hover
-        span{text-decoration:underline}[title=Dark]:before{content:var(--html-symbol-dark)}[title=Light]:before{content:var(--html-symbol-light)}.c-card-author{width:100%;padding:var(--space-32);border-radius:var(--border-radius);background-color:var(--color-background-secondary)}.c-card-author>*+*{margin-top:var(--space-20);padding-top:var(--space-20);border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-card-author__url{display:block}.c-card-author__url:hover{text-decoration:underline}.c-card-author__media{display:block;margin-bottom:var(--space-16);width:var(--space-96);height:var(--space-96);border-radius:var(--border-radius-circle);background-color:var(--color-background-primary)}.c-card-author__image{-o-object-fit:cover;object-fit:cover;width:var(--space-96);height:var(--space-96);min-width:var(--space-96);border-radius:var(--border-radius-circle)}.c-card-author__name{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-card-author__bio{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);margin-top:var(--space-8);color:var(--color-text-secondary)}.c-card-author__posts>*+*{margin-top:var(--space-8)}.c-card-author__posts
-        a:hover{text-decoration:underline}.c-card-author__posts-title{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-medium);position:relative;padding-left:var(--space-24)}.c-card-author__posts-title:before{position:absolute;left:0;content:var(--html-symbol-em-dash);color:var(--color-text-secondary)}.c-social-icons{display:flex;flex-wrap:wrap;gap:var(--space-16)}.c-social-icons__link{display:flex;align-items:center;justify-content:center;width:var(--space-40);height:var(--space-40);border-radius:var(--border-radius-circle);background-color:var(--color-background-primary)}.c-social-icons__link:is(:hover,:active,:focus)
-        .c-social-icons__icon{fill:var(--color-text-primary)}.c-social-icons__icon{fill:var(--color-text-secondary)}.c-share{display:flex;gap:var(--space-16)}@media
-        (max-width:39.99em){.c-share{margin-top:var(--space-16);justify-content:flex-start}}@media
-        (min-width:40em){.c-share{margin-left:auto}}.c-share__link{display:flex;align-items:center;justify-content:center;width:var(--space-40);height:var(--space-40);border-radius:var(--border-radius-circle);background-color:var(--color-background-secondary)}.c-share__link:is(:hover,:active,:focus)
-        .c-share__icon{fill:var(--color-text-primary)}.c-share__icon{fill:var(--color-text-secondary)}.instagram-media{margin-top:var(--content-flow)!important;margin-bottom:0!important}.instagram-media:before{content:\"\"}.c-newsletters-labels{margin-bottom:var(--space-32)}.c-newsletters-label__input{position:absolute;top:0;left:0;opacity:0}.c-newsletters-label__input+label{display:flex;flex-direction:row;cursor:pointer;padding:var(--space-32);background-color:var(--color-background-secondary);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-newsletters-label:first-child
-        .c-newsletters-label__input+label{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}.c-newsletters-label:last-child
-        .c-newsletters-label__input+label{border-bottom:none;border-bottom-left-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}.c-newsletters-label__input+label
-        .c-newsletters-label__checkbox{--focus-outline-color:var(--color-accent);cursor:pointer;display:inline-block;text-align:center;width:var(--space-24);height:var(--space-24);min-width:var(--space-24);margin-right:var(--space-12);border-radius:var(--border-radius);border:var(--space-2)
-        var(--border-style) var(--color-border-primary)}.c-newsletters-label__input:checked+label
-        .c-newsletters-label__checkbox{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3);font-weight:var(--font-weight-bold);border-color:var(--color-accent)}.c-newsletters-label__input:checked+label
-        .c-newsletters-label__checkbox:after{color:var(--color-accent);content:var(--html-symbol-checkmark)}.c-newsletters-label__input:focus-visible+label
-        .c-newsletters-label__checkbox{outline:var(--focus-outline-size) var(--focus-outline-style)
-        var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}.c-newsletters-label__title{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-semibold)}.c-newsletters-label__description{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-3);margin-top:var(--space-4)}.kg-card
-        figcaption{width:100%;padding-top:var(--space-8);color:var(--color-text-secondary);background-color:var(--color-background-primary);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);letter-spacing:var(--font-letter-spacing-long-primer)}.kg-card
-        figcaption a{text-decoration:underline}.kg-card figcaption a:hover{text-decoration:none}.kg-card
-        figcaption a:focus-visible{text-decoration:none}.kg-width-wide{width:100%}@media
-        (min-width:40em){.kg-width-wide{width:calc(100vw - calc(var(--grid-margin)
-        * 2));max-width:calc(var(--grid-width) - calc(var(--grid-margin) * 2))}}.kg-width-full
-        figcaption{padding-left:var(--space-16)}.kg-width-full :is(video,.kg-image){max-width:100vw}.c-content
-        .kg-toggle-card{padding:0;border-radius:var(--border-radius);background-color:var(--color-background-secondary);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-toggle-card
-        .kg-toggle-heading{align-items:center;padding:var(--space-32)}.c-content .kg-toggle-card
-        h4.kg-toggle-heading-text{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-toggle-card .kg-toggle-card-icon{margin-top:0}.c-content .kg-toggle-card
-        .kg-toggle-heading svg{color:var(--color-text-primary)}.c-content .kg-toggle-card[data-kg-toggle-state=open]
-        .kg-toggle-content{padding:0 var(--space-32) var(--space-32) var(--space-32)}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content{transition:none}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content>*+*{margin-top:var(--space-16)!important}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content p,.c-content .kg-toggle-card[data-kg-toggle-state]
-        .kg-toggle-content ul{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-5);margin-top:0}.kg-image{margin:auto}.kg-image-card{min-width:-moz-min-content;min-width:min-content;background-color:var(--color-background-secondary)}.kg-gallery-container{display:flex;flex-direction:column}.kg-gallery-row{display:flex;flex-direction:row;justify-content:center}.kg-gallery-row:not(:first-of-type){margin-top:var(--content-flow)}.kg-gallery-image{background-color:var(--color-background-secondary)}.kg-gallery-image:not(:first-of-type){margin-left:var(--content-flow)}.kg-gallery-image
-        img{width:100%;height:100%}.kg-embed-card{display:flex;align-items:center;flex-direction:column}iframe[src*=\"pinterest.com\"]{min-width:auto;max-width:100%}.c-content
-        .kg-nft-card{border-bottom-left-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}.c-content
-        .kg-nft-card a.kg-nft-card-container{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-normal);max-width:100%;color:var(--color-text-primary);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-ntf-image-container{background-color:var(--color-background-secondary)}.c-content
-        .kg-nft-image{aspect-ratio:var(--ratio-3x2);border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}.c-content
-        .kg-nft-metadata{padding:var(--space-32)}.c-content .kg-nft-header h4.kg-nft-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold);color:var(--color-text-primary)}.c-content
-        .kg-nft-creator{margin:var(--space-8) 0 0}.c-content .kg-nft-creator span{font-weight:var(--font-weight-medium);color:var(--color-text-primary)}.c-content
-        .kg-nft-creator{color:var(--color-text-secondary)}.c-content .kg-nft-card
-        p.kg-nft-description{color:var(--color-text-primary)}.c-content .kg-nft-creator{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1)}.c-content
-        .kg-nft-card p.kg-nft-description{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4)}.c-content
-        .kg-audio-card{padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}@media (max-width:39.99em){.c-content
-        .kg-audio-card{flex-wrap:wrap}}.c-content .kg-audio-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-audio-player *{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}@media
-        (max-width:63.99em){.c-content .kg-audio-seek-slider{display:none}}.c-content
-        .kg-audio-time{color:var(--color-text-secondary)}.c-content .kg-audio-thumbnail{width:var(--space-96);min-width:var(--space-96);margin:0
-        var(--space-8) 0 0;border-radius:var(--border-radius)}.c-content .kg-video-player
-        *{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}.c-content
-        .kg-file-card a.kg-file-card-container{border:0;transition:none;padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-file-card
-        a.kg-file-card-container:hover{border:0;box-shadow:inset 0 0 0 var(--space-2)
-        var(--color-border-secondary)}.c-content .kg-file-card .kg-file-card-contents{margin:0;margin-right:var(--space-8)}.c-content
-        .kg-file-card .kg-file-card-contents>*+*{margin-top:var(--space-4)}.c-content
-        .kg-file-card .kg-file-card-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-file-card :is(.kg-file-card-caption,.kg-file-card-metadata,.kg-file-card-filename,.kg-file-card-filesize){font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-normal)}.c-content
-        .kg-file-card :is(.kg-file-card-caption,.kg-file-card-filesize){opacity:1}.c-content
-        .kg-file-card .kg-file-card-metadata{color:var(--color-text-secondary)}.c-content
-        .kg-file-card .kg-file-card-icon svg{color:var(--color-text-primary)}.twitter-tweet{min-width:auto;margin-bottom:0!important;margin-top:var(--content-flow)!important}.kg-embed-card
-        .twitter-tweet{margin-top:0!important}.twitter-tweet iframe{max-width:100%!important}.kg-button-card{display:flex}.kg-button-card.kg-align-center{justify-content:center}.kg-button-card.kg-align-left{justify-content:start}.c-content
-        .kg-callout-card{padding:var(--space-32);border-radius:var(--border-radius);background:var(--color-background-secondary)}.c-content
-        .kg-callout-card+.kg-callout-card{margin-top:var(--content-flow)}.c-content
-        .kg-callout-card div.kg-callout-emoji{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);padding-right:var(--space-16)}.c-content
-        .kg-callout-card .kg-callout-text{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-5)}.c-content
-        .kg-callout-card-white{box-shadow:inset 0 0 0 var(--border-width) var(--color-border-secondary)}.c-content
-        .kg-product-card .kg-product-card-container{padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-product-card
-        h4.kg-product-card-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-product-card .kg-product-card-rating-star{text-align:right;width:var(--space-24);height:var(--space-32)}.c-content
-        .kg-product-card .kg-product-card-description *{font-family:var(--font-family-sansSerif);opacity:1}.c-content
-        .kg-product-card .kg-product-card-button{width:100%}.kg-header-card{width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.kg-header-card+.kg-header-card{margin-top:0}.kg-header-card>*{max-width:var(--content-width)}.kg-header-card:not(.kg-style-light)
-        a:not([class]){color:inherit}.kg-header-card :is(.kg-header-card-header,.kg-header-card-subheader){padding-left:var(--grid-margin);padding-right:var(--grid-margin)}.kg-header-card
-        :is(.kg-header-card-button){margin-left:var(--grid-margin);margin-right:var(--grid-margin)}.kg-header-card-subheader{margin-top:var(--space-16)}.kg-header-card-button{margin-top:var(--space-32)}.kg-size-small{padding:var(--space-64)
-        0}.kg-size-medium{padding:var(--space-96) 0}.kg-size-large{padding:var(--space-128)
-        0}.kg-style-light{--color-text-button:var(--color-text-button-headerCardStyleLight);--color-background-button:var(--color-background-button-headerCardStyleLight);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleLight);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleLight);color:var(--color-text-headerCardStyleLight);background-color:var(--color-background-headerCardStyleLight)}.kg-style-dark{--color-text-button:var(--color-text-button-headerCardStyleDark);--color-background-button:var(--color-background-button-headerCardStyleDark);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleDark);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleDark);color:var(--color-text-headerCardStyleDark);background-color:var(--color-background-headerCardStyleDark)}.kg-style-accent{--color-text-button:var(--color-text-button-headerCardStyleAccent);--color-background-button:var(--color-background-button-headerCardStyleAccent);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleAccent);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleAccent);color:var(--color-text-headerCardStyleAccent);background-color:var(--color-background-headerCardStyleAccent)}.kg-style-image{--color-text-button:var(--color-text-button-headerCardStyleImage);--color-background-button:var(--color-background-button-headerCardStyleImage);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleImage);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleImage);color:var(--color-text-headerCardStyleImage);background-color:var(--color-background-headerCardStyleImage);background-size:cover;background-position:center;position:relative}.kg-style-image:before{position:absolute;content:\"\";inset:0;background:linear-gradient(0,transparent,rgba(0,0,0,.5))}.kg-style-image
-        *{z-index:1}.kg-bookmark-card{width:100%}.kg-bookmark-container{display:flex;min-height:144px;text-decoration:none;color:var(--color-text-primary);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.kg-bookmark-container:hover
-        .kg-bookmark-title{text-decoration:underline}.kg-bookmark-content{display:flex;flex-grow:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:var(--space-24)}@media
-        (min-width:64em){.kg-bookmark-content{padding:var(--space-32)}}.kg-bookmark-title{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-semibold)}.kg-bookmark-description{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);margin-top:var(--space-4);max-height:var(--space-48);overflow-y:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.kg-bookmark-metadata{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);display:flex;flex-wrap:wrap;align-items:center;margin-top:var(--space-8);color:var(--color-text-secondary)}.kg-bookmark-icon{width:var(--space-24);height:var(--space-24);margin-right:var(--space-8);border-radius:var(--border-radius-circle)}.kg-bookmark-author{color:var(--color-text-secondary)}.kg-bookmark-publisher{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}.kg-bookmark-publisher:before{content:\"\u2022\";margin:0
-        var(--space-8)}.kg-bookmark-thumbnail{position:relative;min-width:33%;max-height:100%}.kg-bookmark-thumbnail
-        img{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}@media
-        (max-width:39.99em){.kg-bookmark-thumbnail img{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}}@media
-        (min-width:40em){.kg-bookmark-thumbnail img{border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}}@media
-        (max-width:39.99em){.kg-bookmark-container{flex-direction:column}.kg-bookmark-thumbnail{order:1;width:100%;min-height:160px}.kg-bookmark-content{order:2}}.kg-blockquote-alt{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-8);font-weight:var(--font-weight-medium);text-align:center;font-style:italic;padding:0
-        var(--space-20)}\n</style>\n    <style>\n  :root {\n    --dark-mode-accent-color:
-        #8cbfd0;\n  }\n</style>    <script>\n  // =====================\n  // Dark
-        Mode Toogle \U0001F312 \u2600\uFE0F - Inspired by:\n  // Thttps://hankchizljaw.com/wrote/create-a-user-controlled-dark-or-light-mode/\n
-        \ // =====================\n\n  var user_color_scheme = localStorage.getItem('user-color-scheme');\n\n
-        \ function initial_mode_set(mode) {\n    if (mode) {\n      document.documentElement.setAttribute('data-user-color-scheme',
-        mode);\n    }\n  }\n\n  initial_mode_set(user_color_scheme);\n\n  window.addEventListener('DOMContentLoaded',
-        (event) => {\n    var STORAGE_KEY = 'user-color-scheme';\n    var COLOR_MODE_KEY
-        = '--color-mode';\n    var modeToggleButton = document.querySelector('.js-mode-toggle');\n
-        \   var modeToggleText = document.querySelector('.js-mode-toggle-text');\n
-        \   var modeToggleTitle = document.querySelector('.js-mode-toggle-title');\n\n
-        \   var getCSSCustomProp = function getCSSCustomProp(propKey) {\n      var
-        response = getComputedStyle(document.documentElement).getPropertyValue(propKey);\n\n
-        \     if (response.length) {\n        response = response.replace(/\\\"/g,
-        '').trim();\n      }\n\n      return response;\n    };\n\n    var applySetting
-        = function applySetting(passedSetting) {\n      var currentSetting = passedSetting
-        || localStorage.getItem(STORAGE_KEY);\n\n      if (currentSetting) {\n        document.documentElement.setAttribute('data-user-color-scheme',
-        currentSetting);\n        setButtonLabelAndStatus(currentSetting);\n      }
-        else {\n        setButtonLabelAndStatus(getCSSCustomProp(COLOR_MODE_KEY));\n
-        \     }\n    };\n\n    var setButtonLabelAndStatus = function setButtonLabelAndStatus(currentSetting)
-        {\n      modeToggleText.innerText = currentSetting === 'dark' ? 'Light' :
-        'Dark';\n      modeToggleTitle.title = currentSetting === 'dark' ? 'Light'
-        : 'Dark';\n    };\n\n    var toggleSetting = function toggleSetting() {\n
-        \     var currentSetting = localStorage.getItem(STORAGE_KEY);\n\n      switch
-        (currentSetting) {\n        case null:\n          currentSetting = getCSSCustomProp(COLOR_MODE_KEY)
-        === 'dark' ? 'light' : 'dark';\n          break;\n\n        case 'light':\n
-        \         currentSetting = 'dark';\n          break;\n\n        case 'dark':\n
-        \         currentSetting = 'light';\n          break;\n      }\n\n      localStorage.setItem(STORAGE_KEY,
-        currentSetting);\n      return currentSetting;\n    };\n\n    modeToggleButton.addEventListener('click',
-        function (evt) {\n      evt.preventDefault();\n      applySetting(toggleSetting());\n
-        \   });\n    applySetting();\n  });\n</script>\n  <script>\n    var pagination_next_page_number
-        \      = '',\n        pagination_available_pages_number = '',\n        pagination_loading_text
-        \          = 'Loading',\n        pagination_more_posts_text        = 'Load
-        More';\n\n    document.documentElement.classList.add('js-on');\n  </script>\n\n
-        \ <meta name=\"citation_doi\" content=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">\n
-        \ <meta name=\"citation_title\" content=\"Welcome to Upstream: the new space
-        for scholarly community discussion on all things open\">\n  <meta name=\"citation_abstract\"
-        content=\"Today we are announcing Upstream. And if you\u2019re reading this,
-        you\u2019re already a part of it!\n\nUpstream is a community blogging platform
-        designed for Open enthusiasts to discuss\u2026 you guessed it: all things
-        Open. It\u2019s a space for the whole community to voice opinions, discuss
-        open approaches\">\n  <meta name=\"citation_author\" content=\"John Chodacki\">\n
-        \ <meta name=\"citation_author\" content=\"Ginny Hendricks\">\n  <meta name=\"citation_author\"
-        content=\"Christine Ferguson\">\n  <meta name=\"citation_author\" content=\"Martin
-        Fenner\">\n  <meta name=\"citation_date\" content=\"2021-11-22\"/>\n  <meta
-        name=\"citation_keywords\" content=\"News\"/>\n  <meta name=\"citation_journal_title\"
-        content=\"Upstream\"/>\n  <meta name=\"citation_language\" content=\"en\">\n\n
-        \ <meta name=\"dc.identifier\" content=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">\n
-        \ <meta name=\"dc.creator\" content=\"John Chodacki\" />\n  <meta name=\"dc.creator\"
-        content=\"Ginny Hendricks\" />\n  <meta name=\"dc.creator\" content=\"Christine
-        Ferguson\" />\n  <meta name=\"dc.creator\" content=\"Martin Fenner\" />\n
-        \ <meta name=\"dc.title\" content=\"Welcome to Upstream: the new space for
-        scholarly community discussion on all things open\" />\n  <meta name=\"dc.description\"
-        content=\"Today we are announcing Upstream. And if you\u2019re reading this,
-        you\u2019re already a part of it!\n\nUpstream is a community blogging platform
-        designed for Open enthusiasts to discuss\u2026 you guessed it: all things
-        Open. It\u2019s a space for the whole community to voice opinions, discuss
-        open approaches\" />\n  <meta name=\"dc.date\" content=\"2021-11-22\" />\n
-        \ <meta name=\"dc.subject\" content=\"News\" />\n  <meta name=\"dc.language\"
-        content=\"en\" />   \n  <meta name=\"dc.format\" content=\"text/html\" />
-        \n  <meta name=\"dc.source\" content=\"Upstream\" />\n  <meta name=\"dc.type\"
-        content=\"article\" />\n  <meta name=\"dc.rights\" content=\"https://creativecommons.org/licenses/by/4.0/legalcode\"
-        />\n\n  <link rel=\"icon\" href=\"https://upstream.force11.org/content/images/size/w256h256/2022/09/force11-avatar.png\"
-        type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">\n
-        \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    \n
-        \   <meta property=\"og:site_name\" content=\"Upstream\">\n    <meta property=\"og:type\"
-        content=\"article\">\n    <meta property=\"og:title\" content=\"Welcome to
-        Upstream: the new space for scholarly community discussion on all things open\">\n
-        \   <meta property=\"og:description\" content=\"Today we are announcing Upstream.
-        And if you\u2019re reading this, you\u2019re already a part of it!\n\nUpstream
-        is a community blogging platform designed for Open enthusiasts to discuss\u2026
-        you guessed it: all things Open. It\u2019s a space for the whole community
-        to voice opinions, discuss open approaches\">\n    <meta property=\"og:url\"
-        content=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">\n    <meta property=\"og:image\"
-        content=\"https://upstream.force11.org/content/images/2022/08/force_11_group_photo_2018_1_of_1-1.jpeg\">\n
-        \   <meta property=\"article:published_time\" content=\"2021-11-22T05:06:00.000Z\">\n
-        \   <meta property=\"article:modified_time\" content=\"2025-01-24T17:36:46.000Z\">\n
-        \   <meta property=\"article:tag\" content=\"News\">\n    \n    <meta name=\"twitter:card\"
-        content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Welcome
-        to Upstream: the new space for scholarly community discussion on all things
-        open\">\n    <meta name=\"twitter:description\" content=\"Today we are announcing
-        Upstream. And if you\u2019re reading this, you\u2019re already a part of it!\n\nUpstream
-        is a community blogging platform designed for Open enthusiasts to discuss\u2026
-        you guessed it: all things Open. It\u2019s a space for the whole community
-        to voice opinions, discuss open approaches\">\n    <meta name=\"twitter:url\"
-        content=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">\n    <meta name=\"twitter:image\"
-        content=\"https://upstream.force11.org/content/images/2022/08/force_11_group_photo_2018_1_of_1-1.jpeg\">\n
-        \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
-        content=\"John Chodacki\">\n    <meta name=\"twitter:label2\" content=\"Filed
-        under\">\n    <meta name=\"twitter:data2\" content=\"News\">\n    <meta name=\"twitter:creator\"
-        content=\"@Chodacki\">\n    <meta property=\"og:image:width\" content=\"800\">\n
-        \   <meta property=\"og:image:height\" content=\"534\">\n    \n    <script
-        type=\"application/ld+json\">\n{\n    \"@context\": \"https://schema.org\",\n
-        \   \"@type\": \"Article\",\n    \"publisher\": {\n        \"@type\": \"Organization\",\n
-        \       \"name\": \"Upstream\",\n        \"url\": \"https://upstream.force11.org/\",\n
-        \       \"logo\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
-        \"https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png\"\n
-        \       }\n    },\n    \"author\": {\n        \"@type\": \"Person\",\n        \"name\":
-        \"John Chodacki\",\n        \"image\": {\n            \"@type\": \"ImageObject\",\n
-        \           \"url\": \"https://upstream.force11.org/content/images/2024/09/1517660892033.jpeg\",\n
-        \           \"width\": 100,\n            \"height\": 100\n        },\n        \"url\":
-        \"https://upstream.force11.org/author/john/\",\n        \"sameAs\": [\n            \"https://orcid.org/0000-0002-7378-2408\",\n
-        \           \"https://x.com/Chodacki\"\n        ]\n    },\n    \"contributor\":
-        [\n        {\n            \"@type\": \"Person\",\n            \"name\": \"Ginny
-        Hendricks\",\n            \"image\": {\n                \"@type\": \"ImageObject\",\n
-        \               \"url\": \"https://upstream.force11.org/content/images/2022/09/C4A77A9E-758A-402B-B088-966A5BB564A8.jpeg\"\n
-        \           },\n            \"url\": \"https://upstream.force11.org/author/ginny/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0002-0353-2702\"\n
-        \           ]\n        },\n        {\n            \"@type\": \"Person\",\n
-        \           \"name\": \"Christine Ferguson\",\n            \"url\": \"https://upstream.force11.org/author/christine/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0002-9317-6819\",\n
-        \               \"https://x.com/ChrisVFerg\"\n            ]\n        },\n
-        \       {\n            \"@type\": \"Person\",\n            \"name\": \"Martin
-        Fenner\",\n            \"image\": {\n                \"@type\": \"ImageObject\",\n
-        \               \"url\": \"https://upstream.force11.org/content/images/2022/11/mfenner.jpg\"\n
-        \           },\n            \"url\": \"https://upstream.force11.org/author/mfenner/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0003-1419-2405\"\n
-        \           ]\n        }\n    ],\n    \"headline\": \"Welcome to Upstream:
-        the new space for scholarly community discussion on all things open\",\n    \"url\":
-        \"https://upstream.force11.org/welcome-to-upstream/\",\n    \"datePublished\":
-        \"2021-11-22T05:06:00.000Z\",\n    \"dateModified\": \"2025-01-24T17:36:46.000Z\",\n
-        \   \"image\": {\n        \"@type\": \"ImageObject\",\n        \"url\": \"https://upstream.force11.org/content/images/2022/08/force_11_group_photo_2018_1_of_1-1.jpeg\",\n
-        \       \"width\": 800,\n        \"height\": 534\n    },\n    \"keywords\":
-        \"News\",\n    \"description\": \"Today we are announcing Upstream. And if
-        you\u2019re reading this, you\u2019re already a part of it!\\n\\nUpstream
-        is a community blogging platform designed for Open enthusiasts to discuss\u2026
-        you guessed it: all things Open. It\u2019s a space for the whole community
-        to voice opinions, discuss open approaches to scholarly communication, and
-        showcase research.\\n\\nA central place to exchange in writing ideas about
-        open research and all that it encompasses\\n\\nSupported by FORCE11, this
-        is a global and inclusive blog, bringi\",\n    \"mainEntityOfPage\": \"https://upstream.force11.org/welcome-to-upstream/\"\n}\n
-        \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 6.5\">\n    <link
-        rel=\"alternate\" type=\"application/rss+xml\" title=\"Upstream\" href=\"https://upstream.force11.org/latest/rss/\">\n
-        \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.56/umd/portal.min.js\"
-        data-i18n=\"true\" data-ghost=\"https://upstream.force11.org/\" data-key=\"5c1b6ee01f44f70c7feb624aab\"
-        data-api=\"https://upstream.force11.org/ghost/api/content/\" data-locale=\"en\"
-        crossorigin=\"anonymous\"></script><style id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
-        {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
-        \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
-        center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
-        {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
-        h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
-        \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
-        20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
-        16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
-        #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
-        \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
-        #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
-        a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
-        none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
-        \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
-        {\n    opacity: 0.92;\n}</style>\n    <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js\"
-        data-key=\"5c1b6ee01f44f70c7feb624aab\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css\"
-        data-sodo-search=\"https://upstream.force11.org/\" data-locale=\"en\" crossorigin=\"anonymous\"></script>\n
-        \   \n    <link href=\"https://upstream.force11.org/webmentions/receive/\"
-        rel=\"webmention\">\n    <script defer src=\"/public/cards.min.js?v=1e7be1d94a\"></script>\n
-        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=1e7be1d94a\">\n
-        \   <script defer src=\"/public/comment-counts.min.js?v=1e7be1d94a\" data-ghost-comments-counts-api=\"https://upstream.force11.org/members/api/comments/counts/\"></script><style>:root
-        {--ghost-accent-color: #8cbfd0;}</style>\n    <script defer data-domain=\"upstream.force11.org\"
-        src=\"https://plausible.rogue-scholar.org/js/script.js\"></script>\n<meta
-        name=\"google-site-verification\" content=\"tgdG-l0VLD_a7_ynV70J-Se5UV5uETjBxaFAsQos39o\"
-        />\n</head>\n  <body class='post-template tag-news'>\n    <a href='#main'
-        class='c-skip'>Skip to content</a>\n    <header class='c-header'>\n\n  <div
-        class='c-header__top'>\n    <div class='o-grid c-header__top-inner'>\n\n      <div
-        class='c-header__top-block c-header__top-left'>\n          <button class='c-header__button
-        c-header__button--colorMode c-color-mode-btn js-mode-toggle js-mode-toggle-title'
-        title='Dark'>\n          <span class='js-mode-toggle-text u-visible-on-desktop'>Dark</span>\n
-        \         </button>\n          <button class='c-header__button c-header__button--search'
-        data-ghost-search><svg fill=\"\" xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0
-        0 30 30\" width=\"30px\" height=\"30px\"><path d=\"M 13 3 C 7.4889971 3 3
-        7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986
-        19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031
-        25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C
-        23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C
-        21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774
-        8.5698774 5 13 5 z\"/></svg><span class='u-visible-on-desktop'>Search</span></button>\n
-        \     </div>\n\n      <div class='c-header__top-block c-header__top-center'>\n
-        \       <div class='c-logo'>\n    <div class='c-logo__dark'>\n        <a href='https://upstream.force11.org'
-        class='u-block'>\n          <img class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--dark-mode-.png'
-        alt='Upstream' width='' height=''>\n        </a>\n    </div>\n\n  <div class='c-logo__light'>\n
-        \     <a href='https://upstream.force11.org' class='u-block'>\n        <img
-        class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png'
-        alt='Upstream' width='' height=''>\n      </a>\n  </div>\n</div>      </div>\n\n
-        \     <div class='c-header__top-block c-header__top-right'>\n            <a
-        href='#/portal/signin' class='c-header__button u-visible-on-desktop'>Sign
-        In</a>\n              <a href='#/portal/signup' class='c-btn c-btn--small'>Subscribe</a>\n
-        \     </div>\n\n    </div>\n  </div>\n\n  <div class='c-header__bottom'>\n
-        \   <div class='o-grid'>\n      <nav class='c-nav-wrap'>\n        <ul class='c-nav
-        c-nav--main u-plain-list'>\n            <li class='c-nav__item c-nav__item--primary'>\n
-        \   <a href='https://upstream.force11.org/about/' class='c-nav__link '>About</a>\n
-        \ </li>\n  <li class='c-nav__item c-nav__item--primary'>\n    <a href='https://upstream.force11.org/author-guidelines/'
-        class='c-nav__link '>Submission guidelines</a>\n  </li>\n  <li class='c-nav__item
-        c-nav__item--primary'>\n    <a href='https://upstream.force11.org/authors/'
-        class='c-nav__link '>Authors</a>\n  </li>\n  <li class='c-nav__item c-nav__item--primary'>\n
-        \   <a href='https://upstream.force11.org/latest/' class='c-nav__link '>Latest
-        Posts</a>\n  </li>\n\n        </ul>\n      </nav>\n    </div>\n  </div>\n\n</header>\n
-        \   <main id='main'>\n      \n\n\n  \n<div class='c-topper'>\n\n  <div class='c-topper__content'>\n
-        \     <div class='c-topper__tag c-tag'>\n        <a href=\"/tag/news/\">News</a>\n
-        \     </div>\n\n    <h1 class='c-topper__headline'>Welcome to Upstream: the
-        new space for scholarly community discussion on all things open</h1>\n\n\n
-        \     <div class='c-topper__meta'>\n        <div>\n          <div class='c-byline
-        c-topper__byline'>\n    <span class='u-hidden '>,&nbsp;</span>\n    <span
-        class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/john/'>John
-        Chodacki</a>\n    <span class=' '>,&nbsp;</span>\n    <span class='u-hidden
-        '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/ginny/'>Ginny Hendricks</a>\n
-        \   <span class=' '>,&nbsp;</span>\n    <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/christine/'>Christine Ferguson</a>\n    <span class='
-        u-hidden'>,&nbsp;</span>\n    <span class='u-hidden u-block'>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/mfenner/'>Martin Fenner</a>\n</div>          <time class='c-timestamp
-        c-topper__timestamp' datetime='2021-11-22'>\n  November 22, 2021\n\n    <span
-        class='c-timestamp__detail'> . 5:06 AM</span>\n</time>          <div class='c-reading-time
-        c-topper__reading-time'>2 min read</div>            <a class=\"c-nav\" href=\"https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf\">https://doi.org/10.54900/rckn8ey-1fm76va-qsrnf</a>
-        \       </div>\n\n        <ul class='c-share u-plain-list'>\n  <li class='c-share__item'>\n
-        \   <a class='c-share__link'\n       href=\"https://twitter.com/share?text=Welcome%20to%20Upstream%3A%20the%20new%20space%20for%20scholarly%20community%20discussion%20on%20all%20things%20open&amp;url=https://upstream.force11.org/welcome-to-upstream/\"\n
-        \      onclick=\"window.open(this.href, 'twitter-share', 'width=550, height=235');
-        return false;\">\n      <span data-icon='ei-sc-twitter' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Twitter</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n       href=\"https://www.facebook.com/sharer/sharer.php?u=https://upstream.force11.org/welcome-to-upstream/\"\n
-        \      onclick=\"window.open(this.href, 'facebook-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-facebook' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Facebook</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n      href=\"http://pinterest.com/pin/create/button/?url=https://upstream.force11.org/welcome-to-upstream/&media=https://upstream.force11.org/content/images/2022/08/force_11_group_photo_2018_1_of_1-1.jpeg&description=Welcome%20to%20Upstream%3A%20the%20new%20space%20for%20scholarly%20community%20discussion%20on%20all%20things%20open\"\n
-        \     onclick=\"window.open(this.href, 'pinterest-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-pinterest' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Pinterest</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n      href=\"https://www.linkedin.com/shareArticle?mini=true&url=https://upstream.force11.org/welcome-to-upstream/&title=Welcome%20to%20Upstream%3A%20the%20new%20space%20for%20scholarly%20community%20discussion%20on%20all%20things%20open\"\n
-        \     onclick=\"window.open(this.href, 'linkedin-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-linkedin' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on LinkedIn</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link' href=\"whatsapp://send?text=Welcome%20to%20Upstream%3A%20the%20new%20space%20for%20scholarly%20community%20discussion%20on%20all%20things%20open
-        https://upstream.force11.org/welcome-to-upstream/\">\n      <svg xmlns=\"http://www.w3.org/2000/svg\"
-        class='c-share__icon icon' enable-background=\"new 0 0 20 20\" viewBox=\"0
-        0 24 24\"><path d=\"M16.6 14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8
-        1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.2-.5-.5-1-1.1-1.4-1.7-.1-.2 0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.1.1-.3
-        0-.4-.1-.1-.6-1.3-.8-1.8-.1-.7-.3-.7-.5-.7h-.5c-.2 0-.5.2-.6.3-.6.6-.9 1.3-.9
-        2.1.1.9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.5.2.9.4 1.4.5.5.2 1 .2 1.6.1.7-.1
-        1.3-.6 1.7-1.2.2-.4.2-.8.1-1.2l-.4-.2m2.5-9.1C15.2 1 8.9 1 5 4.9c-3.2 3.2-3.8
-        8.1-1.6 12L2 22l5.3-1.4c1.5.8 3.1 1.2 4.7 1.2 5.5 0 9.9-4.4 9.9-9.9.1-2.6-1-5.1-2.8-7m-2.7
-        14c-1.3.8-2.8 1.3-4.4 1.3-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3c-2.4-4-1.2-9
-        2.7-11.5S16.6 3.7 19 7.5c2.4 3.9 1.3 9-2.6 11.4\"/></svg>      <span class='u-screenreader'>Share
-        on WhatsApp</span>\n    </a>\n  </li>\n\n  <li class='c-share__item'>\n    <a
-        class='c-share__link'\n       href=\"mailto:?subject=Welcome%20to%20Upstream%3A%20the%20new%20space%20for%20scholarly%20community%20discussion%20on%20all%20things%20open&body=https://upstream.force11.org/welcome-to-upstream/\">\n
-        \     <span data-icon='ei-envelope' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share via Email</span>\n    </a>\n  </li>\n</ul>
-        \     </div>\n  </div>\n\n    <figure class='c-feature-image-figure'>\n      <div
-        class='c-feature-image-wrap'>\n        <img\n          alt=\"\"\n          class='c-feature-image
-        lazyload'\n          data-src='/content/images/size/w1304/2022/08/force_11_group_photo_2018_1_of_1-1.jpeg'\n
-        \       >\n      </div>\n    </figure>\n</div>\n  <article class='c-post post
-        tag-news'>\n    <div class='c-content '>\n      <p>Today we are announcing
-        <strong>Upstream</strong>. And if you\u2019re reading this, you\u2019re already
-        a part of it! </p><p>Upstream is a community blogging platform designed for
-        Open enthusiasts to discuss\u2026 you guessed it: all things Open. It\u2019s
-        a space for the whole community to voice opinions, discuss open approaches
-        to scholarly communication, and showcase research. </p><blockquote><strong>A
-        central place to exchange in writing ideas about open research and all that
-        it encompasses</strong></blockquote><p>Supported by <a href=\"https://force11.org\">FORCE11</a>,
-        this is a global and inclusive blog, bringing together diverse perspectives
-        from all corners of scholarly communications from institutions to libraries
-        to researchers to publishers to funders and policy-makers. Of course, there
-        are lots of niche blogs out there, for example, at the university level or
-        the stakeholder level, but our wider community has never had a central place
-        to exchange in writing ideas about open research and all that it encompasses:
-        open metadata; open code; open research data; open infrastructure; the culture
-        of open; social justice and diversity in our community; open metrics; open
-        citations; open access... You get the picture. </p><h2 id=\"open-is-now-the-default-and-extends-to-the-way-we-plan-to-run-this-blog\">Open
-        is now the default and extends to the way we plan to run this blog </h2><p>With
-        the <a href=\"https://council.science/current/news/unesco-science-commission-adopts-open-science-recommendation/\">recent
-        unanimous adoption</a> by UNESCO of the Open Science Recommendation, there
-        could not be a better time to start this blog. The Recommendation was announced
-        along with the acknowledgment \u2013 to quote ISC Science Officer, Megha Sud
-        \u2013 that \u201C<em>the implementation will need to be undertaken with the
-        science community at the centre</em>.\u201D So let\u2019s use Upstream to
-        have such discussions!</p><figure class=\"kg-card kg-image-card kg-card-hascaption\"><img
-        src=\"https://upstream.force11.org/content/images/2022/08/open-science.jpeg\"
-        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1000\" height=\"500\"
-        srcset=\"https://upstream.force11.org/content/images/size/w600/2022/08/open-science.jpeg
-        600w, https://upstream.force11.org/content/images/2022/08/open-science.jpeg
-        1000w\" sizes=\"(min-width: 720px) 720px\"><figcaption><a href=\"https://council.science/current/news/unesco-science-commission-adopts-open-science-recommendation/\"><span
-        style=\"white-space: pre-wrap;\">UNESCO Science Commission adopts Open Science
-        Recommendation</span></a></figcaption></figure><p>While we have invited some
-        individuals to get this started with some posts already in draft, there will
-        be no special treatment for selected writers, nobody is a guest here; Upstream
-        is all yours. We promise to strive for openness in everything we do from our
-        process, planning, moderation, treatment of concerns/complaints, and of course,
-        in our <a href=\"https://upstream.force11.org/open-source\">completely open-source
-        code</a> for this very platform itself. We also promise to be open to new
-        voices (and to long-established ones too) and open to ideas, about running
-        this blog and about the future of research communications. </p><p>In time,
-        we will have several categories, including original research, opinion, news,
-        interviews, digests (of important published research), &amp; book reviews.
-        We want the content to be accessible and valuable, written by and for experienced
-        scholcomm veterans as well as by and for those just setting out in their careers.</p><p>Like
-        us, you likely have several blog posts in your head that just need an opportunity
-        and a home, so let Upstream be that for you!</p><p>Are you with us? <a href=\"mailto:upstream@force11.org\">Get
-        in touch</a> with <a href=\"https://upstream.force11.org/team\">Team Upstream</a>
-        :-) </p>\n\n        <p>\n          Copyright \xA9 2021 John Chodacki, Ginny
-        Hendricks, Christine Ferguson, Martin Fenner. \n          Distributed under
-        the terms of the <a href=\"https://creativecommons.org/licenses/by/4.0/legalcode\">Creative
-        Commons Attribution 4.0 License.</a>\n        </p>\n    </div>\n\n\n      <div
-        class='c-section-heading'>\n    <h2 class='c-section-heading__title'>Comments
-        <script\n    data-ghost-comment-count=\"629e22b88f64636ea48d3384\"\n    data-ghost-comment-count-empty=\"\"\n
-        \   data-ghost-comment-count-singular=\"\"\n    data-ghost-comment-count-plural=\"\"\n
-        \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"u-font-size-scale-5\"\n
-        \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script></h2>\n  </div>\n
-        \ \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~1.2/umd/comments-ui.min.js\"
-        data-locale=\"en\" data-ghost-comments=\"https://upstream.force11.org/\" data-api=\"https://upstream.force11.org/ghost/api/content/\"
-        data-admin=\"https://upstream.force11.org/ghost/\" data-key=\"5c1b6ee01f44f70c7feb624aab\"
-        data-title=\"\" data-count=\"false\" data-post-id=\"629e22b88f64636ea48d3384\"
-        data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#8cbfd0\"
-        data-comments-enabled=\"all\" data-publication=\"Upstream\" crossorigin=\"anonymous\"></script>\n
-        \   \n  </article>\n\n\n    <div class='c-section c-section--related'>\n      <div
-        class='o-grid'>\n        <div class='c-section-heading'>\n          <h2 class='c-section-heading__title'>Related</h2>\n
-        \       </div>\n      </div>\n\n      <div class='o-grid o-grid--4-columns'>\n
-        \         <article class='js-card c-card c-card-- c-card-- post tag-news featured'>\n
-        \   <a href='/the-collaborative-metadata-enrichment-taskforce-comet-releases-their-community-call-to-action/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"The Collaborative Metadata Enrichment Taskforce (COMET) releases
-        their Community Call to Action\"\n        data-src='https://images.unsplash.com/photo-1455849318743-b2233052fcff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIwfHxDb2xsYWJvcmF0aXZlJTIwTWV0YWRhdGElMjBFbnJpY2htZW50JTIwVGFza2ZvcmNlJTIwJTI4Q09NRVQlMjklMjByZWxlYXNlcyUyMHRoZWlyJTIwQ29tbXVuaXR5JTIwQ2FsbCUyMHRvJTIwQWN0aW9ufGVufDB8fHx8MTc0MTAyNTA4OHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1304'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/the-collaborative-metadata-enrichment-taskforce-comet-releases-their-community-call-to-action/'
-        class='c-card__link'>The Collaborative Metadata Enrichment Taskforce (COMET)
-        releases their Community Call to Action</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/adam-buttrick/'>Adam
-        Buttrick</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-03-04'>\n
-        \ March 4, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news tag-thought-pieces'>\n
-        \   <a href='/cultivating-openness-from-community-resources-to-institutional-acceptance/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"Cultivating Openness: From Community Resources to Institutional
-        Acceptance\"\n        data-src='/content/images/size/w1304/2024/11/Screenshot-2024-11-09-at-14-07-25-All-sizes-2024-10-22-Open-Science-Festival-Maastricht---291-Flickr---Photo-Sharing-.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/cultivating-openness-from-community-resources-to-institutional-acceptance/'
-        class='c-card__link'>Cultivating Openness: From Community Resources to Institutional
-        Acceptance</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden '>,&nbsp;</span>\n    <span class='u-hidden
-        '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/chris/'>Chris Hartgerink</a>\n
-        \   <span class=' '>,&nbsp;</span>\n    <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/lena/'>Lena Karvovskaya</a>\n    <span class=' '>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/esther/'>Esther
-        Plomp</a>\n    <span class=' u-hidden'>,&nbsp;</span>\n    <span class='u-hidden
-        u-block'>&nbsp;and&nbsp;</span>\n\n    <a href='/author/dorienhuijser/'>Dorien
-        Huijser</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2024-11-19'>\n
-        \ November 19, 2024\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news'>\n    <a href='/fair-principle-for-research-software-fair4rs-2-year-review/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"FAIR principle for Research Software (FAIR4RS) 2-year review\"\n
-        \       data-src='/content/images/size/w1304/2024/11/Bildschirmfoto-2024-11-13-um-23.06.38.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/fair-principle-for-research-software-fair4rs-2-year-review/'
-        class='c-card__link'>FAIR principle for Research Software (FAIR4RS) 2-year
-        review</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span
-        class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/danielskatz/'>Daniel
-        S. Katz</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2024-11-14'>\n
-        \ November 14, 2024\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news featured'>\n    <a href='/advancing-metadata-quality-an-open-call/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"Advancing Metadata Quality: An Open Call to Collaborate\"\n
-        \       data-src='https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDF8fGNvbWV0fGVufDB8fHx8MTcyODM0MjA5Nnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1304'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/advancing-metadata-quality-an-open-call/'
-        class='c-card__link'>Advancing Metadata Quality: An Open Call to Collaborate</a></h3>\n\n\n
-        \   <div class='c-card__meta'>\n      <div class='c-byline c-card__byline'>\n
-        \   <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span class='u-hidden
-        '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/adam-buttrick/'>Adam Buttrick</a>\n</div>\n
-        \     <time class='c-timestamp c-card__timestamp' datetime='2024-10-08'>\n
-        \ October 8, 2024\n\n</time>    </div>\n  </div>\n</article>      </div>\n
-        \   </div>\n\n    <div class='c-section c-section--latest'>\n      <div class='o-grid'>\n
-        \       <div class='c-section-heading'>\n          <h2 class='c-section-heading__title'>Latest</h2>\n
-        \       </div>\n      </div>\n\n      <div class='o-grid o-grid--4-columns'>\n
-        \         <article class='js-card c-card c-card-- c-card-- post tag-thought-pieces
-        featured'>\n    <a href='/research-fast-and-slow/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"&quot;SLOW
-        DOWN&quot; in big font text\"\n        data-src='/content/images/size/w1304/2025/10/Dagstuhl-25381_-Lightning-Talks--one-slide-per-participant-.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/research-fast-and-slow/' class='c-card__link'>Research
-        Fast and Slow, in the Age of AI</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/min/'>Min-Yen
-        Kan</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-10-28'>\n
-        \ October 28, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-thought-pieces featured'>\n
-        \   <a href='/from-promise-to-precarity-plight-international-postdocs/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"From Promise
-        to Precarity: The Plight of International Postdocs \u2014 When Will Academia
-        Act?\"\n        data-src='/content/images/size/w1304/2025/09/laboratory-2815641_1280.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/from-promise-to-precarity-plight-international-postdocs/'
-        class='c-card__link'>From Promise to Precarity: The Plight of International
-        Postdocs \u2014 When Will Academia Act?</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/riya/'>Riya
-        Thomas</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-09-30'>\n
-        \ September 30, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-thought-pieces'>\n    <a
-        href='/my-response-to-nih-request-for-information-on-proposed-apc-caps/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"My Response
-        to the NIH Request for Information on Proposed APC Caps\"\n        data-src='/content/images/size/w1304/2025/08/1000015512.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/my-response-to-nih-request-for-information-on-proposed-apc-caps/'
-        class='c-card__link'>My Response to the NIH Request for Information on Proposed
-        APC Caps</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span
-        class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/marcum/'>Christopher
-        Steven Marcum</a>\n</div>\n      <time class='c-timestamp c-card__timestamp'
-        datetime='2025-08-26'>\n  August 26, 2025\n\n</time>    </div>\n  </div>\n</article>
-        \         <article class='js-card c-card c-card-- c-card-- post tag-thought-pieces'>\n
-        \   <a href='/capping-apcs-may-not-work/' class='c-card__media'>\n      <img\n
-        \       class='c-card__image lazyload'\n        alt=\"Capping APCs May Backfire
-        on NIH\"\n        data-src='/content/images/size/w1304/2025/07/nih-apc.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/capping-apcs-may-not-work/' class='c-card__link'>Capping
-        APCs May Backfire on NIH</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div
-        class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/marcum/'>Christopher
-        Steven Marcum</a>\n</div>\n      <time class='c-timestamp c-card__timestamp'
-        datetime='2025-07-22'>\n  July 22, 2025\n\n</time>    </div>\n  </div>\n</article>
-        \     </div>\n    </div>\n\n    </main>\n\n    <footer class='c-footer'>\n
-        \ <div class='o-grid c-footer__content'>\n    <div class='c-logo'>\n    <div
-        class='c-logo__dark'>\n        <a href='https://upstream.force11.org' class='u-block'>\n
-        \         <img class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--dark-mode-.png'
-        alt='Upstream' width='' height=''>\n        </a>\n    </div>\n\n  <div class='c-logo__light'>\n
-        \     <a href='https://upstream.force11.org' class='u-block'>\n        <img
-        class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png'
-        alt='Upstream' width='' height=''>\n      </a>\n  </div>\n</div>\n    <ul
-        class='c-social-icons u-plain-list'>\n\n\n\n\n\n\n  <li class='c-social-icons__item'>\n
-        \   <a href='/latest/rss/' class='c-social-icons__link'>\n      <span class='c-social-icons__icon'><svg
-        xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24
-        24'><path d='M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248
-        0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062
-        10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046
-        19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z'/></svg></span>\n
-        \     <span class='u-screenreader'>RSS</span>\n    </a>\n  </li>\n</ul>\n\n
-        \   <div class='c-footer-copy'>\n      &copy; 2025 Upstream\n      <span>
-        \u2013 Published with <a href='https://ghost.org'>Ghost</a> & <a href='https://aspirethemes.com/themes/tripoli'>Tripoli</a></span>\n
-        \   </div>\n  </div>\n</footer>\n    <script src='/assets/js/app.min.js?v=1e7be1d94a'></script>\n
-        \   \n  </body>\n</html>"
+      string: !!binary |
+        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
     headers:
       Cache-Control:
       - public, max-age=0
@@ -821,9 +387,9 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Mon, 01 Dec 2025 17:16:47 GMT
+      - Mon, 01 Jun 2026 13:21:37 GMT
       ETag:
-      - W/"1b140-qjaBx2aTLoxSiJ0X8uDduYSS+ss"
+      - W/"1b779-n5D7s9ZbGnGhObJf2Y+kA6Db1rM"
       Server:
       - nginx/1.18.0 (Ubuntu)
       Transfer-Encoding:
@@ -850,10 +416,12 @@ interactions:
     uri: https://doi.org/ra/10.54900
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.54900\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9UxNLAwMlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        ADCXIW83AAAA
     headers:
       CF-RAY:
-      - 9a743bfebaad661c-AMS
+      - a04e85c28f1a8b40-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -861,11 +429,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:16:47 GMT
+      - Mon, 01 Jun 2026 13:21:37 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=cznD%2Ffkyy71Xo0ahRynYxVhSEWb%2BlUgGRNG5usZ8pTEiY6bZMxKzAWerhei91c2gqS6l02YxfaYxNNi6t%2FgXyP9bCp7Bwh78Ov8jzE%2FI%2BtBoMA%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=nEcee%2FPAuLshXjmqvqRqcb9tPSOXZ%2BWV9Tpw8uTjY1KvKdMcBz99PP9R%2B%2BNuW8sgUdgGkLBGtOyEIPsRbE6DLCnUqvNeLhy9udVYcsJlaVmhRQ9lnEWuti5z152vQtR5L2lI3Ac%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -899,25 +467,39 @@ interactions:
     uri: https://api.crossref.org/works/10.54900/rckn8ey-1fm76va-qsrnf
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-        Matter"}],"indexed":{"date-parts":[[2025,11,23]],"date-time":"2025-11-23T22:13:59Z","timestamp":1763936039153,"version":"3.45.0"},"posted":{"date-parts":[[2021,11,22]]},"group-title":"Upstream","reference-count":0,"publisher":"Front
-        Matter","license":[{"start":{"date-parts":[[2021,11,22]],"date-time":"2021-11-22T00:00:00Z","timestamp":1637539200000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2021,11,22]],"date-time":"2021-11-22T00:00:00Z","timestamp":1637539200000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Today
-        we are announcing Upstream. And if you''re reading this, you''re already a
-        part of it! Upstream is a community blogging platform designed for Open enthusiasts
-        to discuss\u2026 you guessed it: all things Open. It''s a space for the whole
-        community to voice opinions, discuss open approaches to scholarly communication,
-        and showcase research.<\/jats:p>","DOI":"10.54900\/rckn8ey-1fm76va-qsrnf","type":"posted-content","created":{"date-parts":[[2021,12,23]],"date-time":"2021-12-23T04:49:48Z","timestamp":1640234988000},"source":"Crossref","is-referenced-by-count":0,"title":["Welcome
-        to Upstream: the new space for scholarly community discussion on all things
-        open"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0002-7378-2408","authenticated-orcid":false,"given":"John","family":"Chodacki","sequence":"first","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-0353-2702","authenticated-orcid":false,"given":"Ginny","family":"Hendricks","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0002-9317-6819","authenticated-orcid":false,"given":"Christine","family":"Ferguson","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"additional","affiliation":[]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/upstream.force11.org\/welcome-to-upstream\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rckn8ey-1fm76va-qsrnf.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rckn8ey-1fm76va-qsrnf.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rckn8ey-1fm76va-qsrnf.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rckn8ey-1fm76va-qsrnf.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2025,11,23]],"date-time":"2025-11-23T22:11:37Z","timestamp":1763935897000},"score":1,"resource":{"primary":{"URL":"https:\/\/upstream.force11.org\/welcome-to-upstream\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2021,11,22]]},"references-count":0,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.54900\/rckn8ey-1fm76va-qsrnf","relation":{},"subject":[],"published":{"date-parts":[[2021,11,22]]},"subtype":"other"}}'
+      string: !!binary |
+        H4sIAAAAAAAA/81XbW/bNhD+K5y+9MNMWy9+k1AMGFp067CiQJFiwGJ/oCnKYiORKknFcYP8991R
+        UqK8LQGKbgkcwObbPffc8bnjZWAdc60NskCfBZOgFtayvaDu2AgYO2gzHj0XxkqtYCKahtPwZibI
+        LgOprJOudX7B6WWgWI1HvDNaOfKBOSdMcLWdwLpcXIgct+TMCdow48D+6WkcxstJPInXW1jlp5z0
+        R+AEDWMar0/CVZas4fM32MZZQF83QRatVnG8nCfROk7nk+AGZzJdhNMouJoEjbbuEavRJIomcbzd
+        wrK90W0Dhl2Flj831hnBarBmRCGMUFxQrlvlgiyEM9tdJW0Jjt3xcxJUkgtlhWcCQBr375bvORzR
+        KKJxfBKGmf/cdXiZrBZJGof4B7A5GBfKjSJ0rhFGLip2pFLRnB2tx/z5058wWzrX2Gwz28w4+Ofk
+        ueC6rrWyU232m1mP3m5mu+NmNp+GMCT2rOI6F0Dm/+SSy+sf5dL2xl6uayaV963/doqzRltbM3NG
+        DQA2knd5XrDKCgBrS20cxSNghzBDAuFOtoP1jANbwesvzNms+eVEA3ZyEIQZ+FcKEopLtSdDuk3J
+        ryonsiBH3b6CJTCW47wrpZ0Mg6zC4SNhBOknuiDS/XR9BJEWZpCBVkl3JLtK7/d4RlMxV2hTk1xY
+        uVciJ/CLfGyEIuB92VrJrLPEaZJLy1trNy3eP7RK9i1cd9ghXQbmK8Sj9tZvnpL37hWatA3jwp/p
+        SkEOpa7ECAYce64hEkQ3UgGD4E5vBkYAAmsaoxkvhUdgOWxnpjoOJ3CGtE+As5wA5QfOLLJjBTO8
+        nL7ezHqCIU3efnyPOhVOF/M0hGAbfqbW4kijol4tzxn9ao0qMAM7pevkgfZJEGDAIYkeFwzQqeTh
+        HAedSk7CeTZPs/k9nVrOwziZp+t1l+NWt4bj1jeYXiAxsFxaeq01Od0dR3ozZFXwl4C8rQVyNAQ8
+        83wrcRhF4B5/EIGebqCRwGcUReQ/AI8asC4veu7SZIEyz1oHCe7F7OOnN+/f3rpu2nCZd5cMry6F
+        /5iuktWaxvNw3e8GUjF64JFf3t8c0Fu4p3i3/9ClgqUFq2V1REJKuCP8TMKYFV9bJANGC2ksBocV
+        hawk62sNgDa66rS2+zIAhlKgOdu1QAIeygeWr7YoYs90JUwWCY1XYfxMV36TSh3HvvwuVA6KcWZv
+        O8PyXKIHrPqvPUqTaEWX6yh9pkdvSiOhuCsx9uqdMPvWavUynEpoNI9SzLjFM536ABdaqtseKeWL
+        9w/0Z4s9U73zLQNEIUW0D5YNbSToNavGY5VUZ97c3YrXDoUDbj0XUdRxc+hUgjpNhwWbWXBT6Xrp
+        c+LCbWalq6vg8UZC4nAOZIJCV70O93tpDVKu9r4vuAuMNXJqNNQN2mtRhwzVFirxE+o8rfPH0EIV
+        87F7UXCbvLiPdwQADrq14kWAFtDEPoEal/z8TTYvDfrFrYx9CPnFd+c0lngBeORjvcByAu1u+vCT
+        Bdrd9CRcZ3GULeJ7T5ZlulzN0yjuWwGuDeyM8KUxtAWXUIxl7UXk++78FRpodyMp6RrW0YC0tn3G
+        ++i6NbGjvuSa2MvR0+vcP7vuos617IA+3ZkZaPRdfyw0Rf3JVBdeAmU+RByOxGDmt9q9NBXYgISH
+        pe9AoG01zrdT+NLdfRHQj2N1QVb8D8/B8J57mgYks7OuHb7/rq7+ASVCNGxKDwAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1217'
+      - '1302'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:16:48 GMT
+      - Mon, 01 Jun 2026 13:21:38 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -935,10 +517,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

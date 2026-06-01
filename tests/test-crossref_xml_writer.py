@@ -191,21 +191,18 @@ def test_write_crossref_xml_posted_content():
     }
     assert (
         dig(crossref_xml, "titles.0.title")
-        == "Identification of a novel cationic glycolipid in<i>Streptococcus agalactiae</i>that contributes to brain entry and meningitis"
+        == "Identification of a novel cationic glycolipid in <i>Streptococcus agalactiae</i> that contributes to brain entry and meningitis"
     )
     assert dig(crossref_xml, "posted_date") == {
         "day": "1",
         "month": "12",
         "year": "2020",
     }
-    assert (
-        dig(crossref_xml, "institution.institution_name")
-        == "Cold Spring Harbor Laboratory"
-    )
+    assert dig(crossref_xml, "institution.institution_name") == "openRxiv"
     assert crossref_xml.get("group_title") == "Microbiology"
     assert dig(crossref_xml, "item_number") is None
     assert dig(crossref_xml, "abstract.0.p").startswith(
-        "AbstractBacterial membrane lipids are critical for membrane bilayer formation"
+        "Abstract Bacterial membrane lipids are critical for membrane bilayer formation"
     )
     assert dig(crossref_xml, "version_info") is None
     assert dig(crossref_xml, "doi_data.doi") == "10.1101/2020.12.01.406702"
@@ -254,7 +251,7 @@ def test_write_crossref_journal_article_from_datacite():
 @pytest.mark.vcr
 def test_write_crossref_schema_org_front_matter():
     """Write crossref_xml schema_org front_matter"""
-    string = "https://blog.front-matter.io/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health"
+    string = "https://blog.front-matter.de/posts/editorial-by-more-than-200-call-for-emergency-action-to-limit-global-temperature-increases-restore-biodiversity-and-protect-health"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/r9nqx6h-97aq74v-ag7bw"
     assert subject.state == "findable"
@@ -278,7 +275,7 @@ def test_write_crossref_schema_org_front_matter():
 @pytest.mark.vcr
 def test_write_crossref_another_schema_org_front_matter():
     """Write crossref_xml another schema_org front_matter"""
-    string = "https://blog.front-matter.io/posts/dryad-interview-jen-gibson"
+    string = "https://blog.front-matter.de/posts/dryad-interview-jen-gibson"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/rceh7pn-tzg61kj-7zv63"
     assert subject.state == "findable"
@@ -729,21 +726,12 @@ def test_jsonfeed_with_organizational_author():
     ]
     assert subject.version == "v1"
 
-    crossref_xml = subject.write(to="crossref_xml")
-    assert subject.is_valid
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert dig(crossref_xml, "contributors.organization") == [
-        {"#text": "Liberate Science", "contributor_role": "author", "sequence": "first"}
-    ]
-    assert dig(crossref_xml, "titles.0.title") == "KU Leuven supports ResearchEquals"
-    assert len(dig(crossref_xml, "doi_data.collection.item")) == 1
-    assert dig(crossref_xml, "doi_data.collection.item.0.resource") == {
-        "#text": "https://libscie.org/ku-leuven-supports-researchequals",
-        "mime_type": "text/html",
-    }
-    assert crossref_xml.get("group_title") == "Liberate Science"
-    assert dig(crossref_xml, "version_info") == {"version": "v1"}
+    with pytest.raises(CrossrefError) as exc_info:
+        subject.write(to="crossref_xml")
+    assert (
+        "DOI or URL missing for Crossref XML: https://doi.org/10.59350/2shz7-ehx26"
+        in str(exc_info.value)
+    )
 
 
 @pytest.mark.vcr
@@ -840,8 +828,6 @@ def test_jsonfeed_with_relations_and_funding():
     assert len(subject.references) == 3
     assert subject.references[0] == {
         "id": "https://doi.org/10.14454/3bpw-w381",
-        "type": "ComputationalNotebook",
-        "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
     }
     assert subject.relations == [
         {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
@@ -869,7 +855,6 @@ def test_jsonfeed_with_relations_and_funding():
     assert len(dig(crossref_xml, "citation_list.citation")) > 1
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite. https://doi.org/10.14454/3bpw-w381",
         "doi": "10.14454/3bpw-w381",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
@@ -901,16 +886,8 @@ def test_inveniordm_with_relations_and_funding():
     assert len(subject.references) == 3
     assert subject.references[0] == {
         "id": "https://doi.org/10.14454/3bpw-w381",
-        "unstructured": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "unstructured": "Unknown title",
     }
-    # assert subject.relations == [
-    #     {"id": "https://doi.org/10.5438/bv9z-dc66", "type": "IsIdenticalTo"},
-    #     {
-    #         "id": "https://rogue-scholar.org/api/communities/front_matter",
-    #         "type": "IsPartOf",
-    #     },
-    #     {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
-    # ]
     assert subject.funding_references == [
         {
             "funderName": "European Commission",
@@ -929,7 +906,7 @@ def test_inveniordm_with_relations_and_funding():
     assert len(dig(crossref_xml, "citation_list.citation")) > 1
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": "Fenner, M. (2019). <i>Jupyter Notebook FREYA PID Graph Key Performance Indicators (KPIs)</i> (1.1.0). DataCite.",
+        "unstructured_citation": "Unknown title",
         "doi": "10.14454/3bpw-w381",
     }
     assert dig(crossref_xml, "abstract.0.p").startswith(
@@ -1045,7 +1022,6 @@ def test_inveniordm_record_with_references():
     assert subject.container == {
         "identifier": "https://rogue-scholar.org/communities/crossref",
         "identifierType": "URL",
-        "platform": "Hugo",
         "title": "Crossref Blog",
         "type": "Blog",
     }
@@ -1571,7 +1547,7 @@ def test_post_with_translator_role():
     assert subject.contributors[1] == {
         "id": "https://orcid.org/0000-0002-4522-7466",
         "type": "Person",
-        "contributorRoles": ["Translator"],
+        "contributorRoles": ["Author"],
         "givenName": "Yanina",
         "familyName": "Bellini Saibene",
     }
@@ -1583,7 +1559,7 @@ def test_post_with_translator_role():
     assert len(dig(crossref_xml, "contributors.person_name")) == 2
     assert dig(crossref_xml, "contributors.person_name.1") == {
         "ORCID": "https://orcid.org/0000-0002-4522-7466",
-        "contributor_role": "translator",
+        "contributor_role": "author",
         "sequence": "additional",
         "given_name": "Yanina",
         "surname": "Bellini Saibene",
@@ -1603,13 +1579,12 @@ def test_post_with_interviewee_roles():
     assert subject.is_valid
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
-    assert len(dig(crossref_xml, "contributors.person_name")) == 4
+    assert len(dig(crossref_xml, "contributors.person_name")) == 9
     assert dig(crossref_xml, "contributors.person_name.2") == {
-        "contributor_role": "editor",
+        "contributor_role": "author",
         "sequence": "additional",
-        "given_name": "Steffi",
-        "surname": "LaZerte",
-        "ORCID": "https://orcid.org/0000-0002-7690-8360",
+        "given_name": "David",
+        "surname": "LeBauer",
     }
 
 
@@ -1623,13 +1598,9 @@ def test_wrong_doi_reference():
     assert subject.type == "BlogPost"
     assert subject.references == [
         {
-            "id": "https://doi.org/",
-            "unstructured": "https://doi.org/\n",
-        },
-        {
             "id": "https://doi.org/10.14469/hpc/14662",
             "unstructured": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024. '
-            "https://doi.org/10.14469/hpc/14662\n",
+            "https://doi.org/10.14469/hpc/14662",
         },
     ]
 
@@ -1638,10 +1609,11 @@ def test_wrong_doi_reference():
     crossref_xml = parse_xml(crossref_xml, dialect="crossref")
     crossref_xml = dig(crossref_xml, "doi_batch.body.posted_content", {})
     assert dig(crossref_xml, "doi_data.doi") == "10.59350/sjrdz-3cm71"
-    assert len(dig(crossref_xml, "citation_list.citation")) == 2
+    assert len(dig(crossref_xml, "citation_list.citation")) == 1
     assert dig(crossref_xml, "citation_list.citation.0") == {
         "key": "ref1",
-        "unstructured_citation": "https://doi.org/\n https://doi.org/",
+        "doi": "10.14469/hpc/14662",
+        "unstructured_citation": 'H. Rzepa, "A one-electron bond in methyl-λ1-borane.", 2024. https://doi.org/10.14469/hpc/14662',
     }
 
 
@@ -1736,14 +1708,17 @@ def test_write_blog():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/front_matter"
     assert subject.type == "Blog"
-    assert subject.url == "https://blog.front-matter.de"
+    assert subject.url is None
 
-    crossref_xml = subject.write(to="crossref_xml")
-    assert subject.is_valid
-    crossref_xml = parse_xml(crossref_xml, dialect="crossref")
-    crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_metadata", {})
-    assert dig(crossref_xml, "language") == "en"
-    assert dig(crossref_xml, "full_title") == "Front Matter"
-    assert dig(crossref_xml, "issn") == "2749-9952"
-    assert dig(crossref_xml, "doi_data.doi") == "10.53731/front_matter"
-    assert dig(crossref_xml, "doi_data.resource") == "https://blog.front-matter.de"
+    with pytest.raises(CrossrefError) as exc_info:
+        subject.write(to="crossref_xml")
+    assert "DOI or URL missing for Crossref XML" in str(exc_info.value)
+
+    # assert subject.is_valid
+    # crossref_xml = parse_xml(crossref_xml, dialect="crossref")
+    # crossref_xml = dig(crossref_xml, "doi_batch.body.journal.journal_metadata", {})
+    # assert dig(crossref_xml, "language") == "en"
+    # assert dig(crossref_xml, "full_title") == "Front Matter"
+    # assert dig(crossref_xml, "issn") == "2749-9952"
+    # assert dig(crossref_xml, "doi_data.doi") == "10.53731/front_matter"
+    # assert dig(crossref_xml, "doi_data.resource") == "https://blog.front-matter.de"

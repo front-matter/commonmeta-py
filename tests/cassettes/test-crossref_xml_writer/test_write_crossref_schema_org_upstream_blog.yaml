@@ -14,984 +14,420 @@ interactions:
     uri: https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/
   response:
     body:
-      string: "<!doctype html>\n<html lang='en' class=' is-darkModeAdminSetting-enabled
-        '>\n\n  <head>\n  <meta charset='utf-8'>\n  <title>Deep dive into ethics of
-        Contributor Roles: report of a FORCE11 workshop</title>\n  <meta name='viewport'
-        content='width=device-width, initial-scale=1.0'>\n\n  <link rel='preconnect'
-        href='https://fonts.gstatic.com'>\n<link rel='preconnect' href='https://fonts.gstatic.com'
-        crossorigin>\n\n<link rel='preload' as='style' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'>\n<link
-        rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap'
-        media='print' onload=\"this.media='all'\">\n\n<link rel='preload' as='style'
-        href='https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap'>\n<link
-        rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap'
-        media='print' onload=\"this.media='all'\">  <style>\n@charset \"UTF-8\";:root{--color-headerCard-light:#FFF;--color-headerCard-dark:#000;--color-text-headerCardStyleLight:var(--color-headerCard-dark);--color-background-headerCardStyleLight:var(--color-headerCard-light);--color-text-button-headerCardStyleLight:var(--color-headerCard-light);--color-background-button-headerCardStyleLight:var(--color-headerCard-dark);--color-text-button-hover-headerCardStyleLight:var(--color-headerCard-light);--color-background-button-hover-headerCardStyleLight:var(--color-headerCard-dark);--color-text-headerCardStyleDark:var(--color-headerCard-light);--color-background-headerCardStyleDark:var(--color-headerCard-dark);--color-text-button-headerCardStyleDark:var(--color-headerCard-dark);--color-background-button-headerCardStyleDark:var(--color-headerCard-light);--color-text-button-hover-headerCardStyleDark:var(--color-headerCard-dark);--color-background-button-hover-headerCardStyleDark:var(--color-headerCard-light);--color-text-headerCardStyleAccent:var(--color-background-primary);--color-background-headerCardStyleAccent:var(--color-accent);--color-text-button-headerCardStyleAccent:var(--color-text-primary);--color-background-button-headerCardStyleAccent:var(--color-background-primary);--color-text-button-hover-headerCardStyleAccent:var(--color-text-primary);--color-background-button-hover-headerCardStyleAccent:var(--color-background-primary);--color-text-headerCardStyleImage:var(--color-headerCard-light);--color-background-headerCardStyleImage:var(--color-headerCard-dark);--color-text-button-headerCardStyleImage:var(--color-headerCard-light);--color-background-button-headerCardStyleImage:var(--color-headerCard-dark);--color-text-button-hover-headerCardStyleImage:var(--color-headerCard-dark);--color-background-button-hover-headerCardStyleImage:var(--color-headerCard-light)}:root{--color-text-button:var(--color-background-primary);--color-background-button:var(--color-accent);--color-text-button-hover:var(--color-background-primary);--color-background-button-hover:var(--color-text-primary)}:root{--content-width:708px;--content-flow:var(--space-32)}:root{--html-symbol-dark:\"\u263E\";--html-symbol-light:\"\u263C\";--html-symbol-em-dash:\"\u2014\";--html-symbol-checkmark:\"\u2713\";--html-symbol-multiplication:\"\u2715\"}:root{--motion-duration-slow:.5s;--motion-duration-fast:.25s}:root{--ratio-1:1;--ratio-3x2:3/2;--ratio-16x9:16/9}:root{--focus-outline-size:var(--space-2);--focus-outline-style:solid;--focus-outline-color:currentColor;--focus-outline-offset:var(--space-2)}:root{--border-radius:var(--space-4);--border-radius-circle:50%}:root{--border-width:.5px;--border-style:solid;--border-vertical-offset:calc(calc(var(--grid-gap)
-        / 2) * -1)}:root{--grid-width:1400px;--grid-gap:var(--space-32);--grid-margin:var(--space-20);--grid-margin-large:var(--space-32)}:root{--space-2:2px;--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;--space-40:40px;--space-48:48px;--space-56:56px;--space-64:64px;--space-80:80px;--space-96:96px;--space-128:128px;--space-160:160px;--space-168:168px}:root{--font-size-scale-0:12px;--line-height-scale-0:16px;--font-size-scale-1:14px;--line-height-scale-1:16px;--font-size-scale-2:16px;--line-height-scale-2:20px;--font-size-scale-3:18px;--line-height-scale-3:20px;--font-size-scale-4:20px;--line-height-scale-4:24px;--font-size-scale-5:24px;--line-height-scale-5:28px;--font-size-scale-6:28px;--line-height-scale-6:32px;--font-size-scale-7:32px;--line-height-scale-7:32px;--font-size-scale-8:40px;--line-height-scale-8:40px;--font-size-scale-9:48px;--line-height-scale-9:48px;--font-size-scale-10:72px;--line-height-scale-10:72px;--font-size-scale-body-copy:20px;--line-height-scale-body-copy:32px;--line-height-scale-tight:1;--font-weight-normal:400;--font-weight-medium:500;--font-weight-semibold:600;--font-weight-bold:700;--font-letter-spacing-brevier:.7px;--font-letter-spacing-long-primer:.25px;--font-letter-spacing-tiny:.6px;--font-letter-spacing-small:1.2px;--font-letter-spacing-base:1.6px;--font-letter-spacing-large:2.8px;--font-letter-spacing-negative:-.5px;--font-family-serif:\"Source
-        Serif Pro\",Georgia,serif;--font-family-sansSerif:\"Inter\",-apple-system,BlinkMacSystemFont,\"Segoe
-        UI\",Helvetica,Arial,sans-serif}:root{--color-mode:\"light\";--color-accent:var(--ghost-accent-color);--color-text-primary:#000000;--color-text-secondary:#4E5965;--color-border-primary:#000000;--color-border-secondary:#D9D9D9;--color-background-primary:#FFFFFF;--color-background-secondary:#EFF8FA}@media
-        (prefers-color-scheme:dark){:root.is-darkModeAdminSetting-enabled{--color-mode:\"dark\"}:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled{--color-mode:\"dark\";--color-accent:var(--dark-mode-accent-color);--color-text-primary:#FFFFFF;--color-text-secondary:#B3B3B3;--color-border-primary:#525252;--color-border-secondary:#303030;--color-background-primary:#181818;--color-background-secondary:#212121}}[data-user-color-scheme=dark]{--color-mode:\"dark\";--color-accent:var(--dark-mode-accent-color);--color-text-primary:#FFFFFF;--color-text-secondary:#B3B3B3;--color-border-primary:#525252;--color-border-secondary:#303030;--color-background-primary:#181818;--color-background-secondary:#212121}/*!
-        modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize
-        */*,::after,::before{box-sizing:border-box}html{-moz-tab-size:4;-o-tab-size:4;tab-size:4}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}body{font-family:system-ui,-apple-system,\"Segoe
-        UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"}hr{height:0;color:inherit}abbr[title]{-webkit-text-decoration:underline
-        dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,\"Liberation
-        Mono\",Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}::-moz-focus-inner{border-style:none;padding:0}:-moz-focusring{outline:1px
-        dotted ButtonText}:-moz-ui-invalid{box-shadow:none}legend{padding:0}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}code[class*=language-],pre[class*=language-]{color:#000;background:0
-        0;text-shadow:0 1px #fff;font-family:Consolas,Monaco,\"Andale Mono\",\"Ubuntu
-        Mono\",monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;hyphens:none}code[class*=language-]
-        ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-]
-        ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]
-        ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-]
-        ::-moz-selection,pre[class*=language-]::-moz-selection{text-shadow:none;background:#b3d4fc}code[class*=language-]
-        ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{text-shadow:none;background:#b3d4fc}@media
-        print{code[class*=language-],pre[class*=language-]{text-shadow:none}}pre[class*=language-]{padding:1em;margin:.5em
-        0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#f5f2f0}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#708090}.token.punctuation{color:#999}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#905}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string{color:#690}.language-css
-        .token.string,.style .token.string,.token.entity,.token.operator,.token.url{color:#9a6e3a;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.keyword{color:#07a}.token.class-name,.token.function{color:#dd4a68}.token.important,.token.regex,.token.variable{color:#e90}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}body
-        .fslightbox-image-wrap{display:block}body .fslightbox-container{font-family:var(--font-family-sansSerif);background:var(--color-background-primary)}body
-        .fslightbox-nav{height:var(--space-48)}body .fslightbox-toolbar{right:var(--space-12)}body
-        [data-fslightbox] img{cursor:zoom-in}body .fslightbox-invalid-file-wrapper{color:var(--color-text-secondary)}body
-        .fslightbox-slide-number-container{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);left:var(--space-12);color:var(--color-text-secondary)}body
-        .fslightbox-slash{background:var(--color-text-secondary)}body .fslightbox-toolbar>.fslightbox-toolbar-button:first-child{display:none}body
-        .fslightbox-svg-path{fill:var(--color-text-secondary)}body .fslightbox-toolbar{background:var(--color-background-primary)}body
-        .fslightbox-toolbar:hover .fslightbox-svg-path{fill:var(--color-text-secondary)}body
-        .fslightbox-slide-btn{background:var(--color-background-primary)}body .fslightbox-slide-btn-container{padding-left:var(--space-16)}body
-        .fslightbox-slide-btn-container:hover .fslightbox-svg-path{fill:var(--color-text-secondary)}body
-        .fslightbox-slide-btn-container-next{padding-right:var(--space-16)}@keyframes
-        spin{100%{transform:rotate(360deg)}}.icon{position:relative;display:inline-block;width:25px;height:25px;overflow:hidden;fill:currentColor}.icon__cnt{width:100%;height:100%;background:inherit;fill:inherit;pointer-events:none;transform:translateX(0);-ms-transform:translate(.5px,-.3px)}.icon--m{width:50px;height:50px}.icon--l{width:100px;height:100px}.icon--xl{width:150px;height:150px}.icon--xxl{width:200px;height:200px}.icon__spinner{position:absolute;top:0;left:0;width:100%;height:100%}.icon--ei-spinner
-        .icon__spinner,.icon--ei-spinner-2 .icon__spinner{animation:spin 1s steps(12)
-        infinite}.icon--ei-spinner-3 .icon__spinner{animation:spin 1.5s linear infinite}.icon--ei-sc-facebook{fill:#3b5998}.icon--ei-sc-github{fill:#333}.icon--ei-sc-google-plus{fill:#dd4b39}.icon--ei-sc-instagram{fill:#3f729b}.icon--ei-sc-linkedin{fill:#0976b4}.icon--ei-sc-odnoklassniki{fill:#ed812b}.icon--ei-sc-skype{fill:#00aff0}.icon--ei-sc-soundcloud{fill:#f80}.icon--ei-sc-tumblr{fill:#35465c}.icon--ei-sc-twitter{fill:#55acee}.icon--ei-sc-vimeo{fill:#1ab7ea}.icon--ei-sc-vk{fill:#45668e}.icon--ei-sc-youtube{fill:#e52d27}.icon--ei-sc-pinterest{fill:#bd081c}.icon--ei-sc-telegram{fill:#08c}.icon{width:var(--space-24);height:var(--space-24)}.icon--m{width:var(--space-48);height:var(--space-48)}:where(body,h1,h2,h3,h4,h5,h6,blockquote,p,pre,dl,dd,ol,ul,figure,hr,fieldset,legend){margin:0;padding:0}li>ol,li>ul{margin-bottom:0}table{border-collapse:collapse;border-spacing:0}:is(a,button,input,textarea,summary):focus-visible{outline:var(--focus-outline-size)
-        var(--focus-outline-style) var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}@media
-        (prefers-reduced-motion:reduce){*{animation:none;transition:none}}.o-grid{width:100%;margin:auto;display:grid;max-width:var(--grid-width);padding:0
-        var(--grid-margin)}@media (min-width:64em){.o-grid{padding:0 var(--grid-margin-large)}}.o-grid[class*=-columns]{grid-gap:var(--grid-gap)}@media
-        (min-width:40em){.o-grid--2-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--3-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--3-columns{grid-template-columns:repeat(3,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--4-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--4-columns{grid-template-columns:repeat(4,minmax(0,1fr))}}@media
-        (min-width:40em){.o-grid--2-1-columns{grid-template-columns:repeat(2,minmax(0,1fr))}}@media
-        (min-width:64em){.o-grid--2-1-columns{grid-template-columns:2fr 1fr}}.u-font-size-scale-0{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0)}.u-font-size-scale-1{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1)}.u-font-size-scale-2{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}.u-font-size-scale-3{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}.u-font-size-scale-4{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4)}.u-font-size-scale-5{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}.u-font-size-scale-6{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}.u-font-size-scale-7{font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-7)}.u-font-size-scale-8{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8)}.u-font-size-scale-9{font-size:var(--font-size-scale-9);line-height:var(--line-height-scale-9)}.u-font-size-scale-10{font-size:var(--font-size-scale-10);line-height:var(--line-height-scale-10)}.u-font-family-serif{font-family:var(--font-family-serif)!important}.u-font-family-sansSerif{font-family:var(--font-family-sansSerif)!important}.u-font-weight-normal{font-weight:var(--font-weight-normal)}.u-font-weight-medium{font-weight:var(--font-weight-medium)}.u-font-weight-semibold{font-weight:var(--font-weight-semibold)}.u-font-weight-bold{font-weight:var(--font-weight-bold)}.kg-header-card-header,.u-font-headline{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-medium)}@media
-        (min-width:64em){.kg-header-card-header,.u-font-headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8);letter-spacing:var(--font-letter-spacing-negative)}}.kg-header-card-subheader,.u-font-standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-normal)}@media
-        (min-width:64em){.kg-header-card-subheader,.u-font-standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-6)}}.u-font-uppercase{text-transform:uppercase}.u-link{text-decoration:underline}.u-link:hover{text-decoration:none}.u-link:focus-visible{text-decoration:none}.u-align-auto{margin:auto}.u-align-center{text-align:center}.u-color-text-brand{color:var(--color-accent)}.u-color-text-secondary{color:var(--color-text-secondary)}.u-color-background-secondary{background-color:var(--color-background-secondary)}.u-drop-cap-large:first-letter,.u-drop-cap-small:first-letter{float:left;margin-top:var(--space-8);margin-right:var(--space-8);color:var(--color-accent);font-weight:var(--font-weight-semibold)}.u-drop-cap-small::first-letter{font-size:70px;line-height:52px}.u-drop-cap-large::first-letter{font-size:118px;line-height:86px}.js-on
-        .lazyload,.js-on .lazyloading{opacity:0}.js-on .lazyloaded{opacity:1;transition:opacity
-        var(--motion-duration-slow) ease}.u-hidden{display:none}.u-block{display:block}.u-screenreader{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0
-        0 0 0);border:0}@media (max-width:63.99em){.u-visible-on-desktop{display:none!important}}.u-mt-8{margin-top:var(--space-8)}.u-mr-8{margin-right:var(--space-8)}.u-mt-16{margin-top:var(--space-16)}.u-mb-16{margin-bottom:var(--space-16)}.u-p-32{padding:var(--space-32)}.u-plain-list{margin:0;padding:0;list-style:none}.u-flex{display:flex}body,html{height:100%}body{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-normal);direction:ltr;color:var(--color-text-primary);background-color:var(--color-background-primary);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}a{color:inherit;text-decoration:none}:where(dd,ol,ul){margin-left:var(--space-16)}img{height:auto;display:block;max-width:100%;font-style:italic}hr{border:0;height:auto;border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}:where(h1,h2,h3,strong){font-weight:var(--font-weight-semibold)}:where(h1){font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}@media
-        (min-width:64em){:where(h1){font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-7)}}:where(h1)+h2,:where(h1)+h3{margin-top:var(--space-16)}:where(h2){font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}@media
-        (min-width:64em){:where(h2){font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6)}}:where(h2)+h3{margin-top:var(--space-16)}:where(h3){font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4)}@media
-        (min-width:64em){:where(h3){font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5)}}blockquote{font-style:italic}blockquote:not(.kg-blockquote-alt){padding-left:var(--space-20);border-left:var(--space-2)
-        solid var(--color-accent)}li code,p code{padding:var(--space-4) var(--space-8);border-radius:var(--border-radius);border:var(--border-width)
-        var(--border-style) var(--color-border-secondary);background-color:var(--color-background-secondary)}code,code[class*=language-]{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);text-shadow:none;color:var(--color-text-primary)}.kg-code-card,pre,pre[class*=language-]{width:100%;overflow-x:auto;border-radius:var(--border-radius)}pre,pre[class*=language-]{margin-bottom:0;margin-top:var(--content-flow);padding:var(--space-32);background-color:var(--color-background-secondary)}.kg-code-card
-        pre{margin-top:0}.token.operator{background-color:transparent}input[type=color],input[type=date],input[type=datetime-local],input[type=datetime],input[type=email],input[type=month],input[type=number],input[type=password],input[type=search],input[type=tel],input[type=text],input[type=time],input[type=url],input[type=week],select,textarea{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-medium);width:100%;display:block;color:var(--color-text-primary);padding:var(--space-12)
-        var(--space-24);background:0 0;border:var(--border-width) var(--border-style)
-        var(--color-border-secondary)}input[type=color]::-moz-placeholder,input[type=date]::-moz-placeholder,input[type=datetime-local]::-moz-placeholder,input[type=datetime]::-moz-placeholder,input[type=email]::-moz-placeholder,input[type=month]::-moz-placeholder,input[type=number]::-moz-placeholder,input[type=password]::-moz-placeholder,input[type=search]::-moz-placeholder,input[type=tel]::-moz-placeholder,input[type=text]::-moz-placeholder,input[type=time]::-moz-placeholder,input[type=url]::-moz-placeholder,input[type=week]::-moz-placeholder,select::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:var(--color-text-secondary)}input[type=color]::placeholder,input[type=date]::placeholder,input[type=datetime-local]::placeholder,input[type=datetime]::placeholder,input[type=email]::placeholder,input[type=month]::placeholder,input[type=number]::placeholder,input[type=password]::placeholder,input[type=search]::placeholder,input[type=tel]::placeholder,input[type=text]::placeholder,input[type=time]::placeholder,input[type=url]::placeholder,input[type=week]::placeholder,select::placeholder,textarea::placeholder{opacity:1;color:var(--color-text-secondary)}table{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);width:100%;max-width:100%;background-color:var(--color-background-secondary)}table
-        caption{padding:var(--space-16);border-style:var(--border-style);border-width:var(--border-width)
-        var(--border-width) 0 var(--border-width);border-color:var(--color-border-secondary);background-color:var(--color-background-secondary)}table
-        td,table th{text-align:left;padding:var(--space-16);white-space:nowrap;border:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}table tbody+tbody{border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.responsive-table{display:block;width:100%;overflow-x:auto;word-break:initial}:lang(ar)
-        *{letter-spacing:initial}.c-skip{position:absolute;top:calc(var(--space-96)
-        * -1);left:var(--space-32);padding:var(--space-4) var(--space-16);background-color:var(--color-background-primary)}.c-skip:focus{z-index:10;top:var(--space-32)}.c-header{margin-bottom:var(--space-32);box-shadow:rgba(0,0,0,.08)
-        0 0 var(--space-4) var(--space-2)}[data-user-color-scheme=dark] .c-header{border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}@media (prefers-color-scheme:dark){:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-header{border-bottom:var(--border-width) var(--border-style) var(--color-border-secondary)}}.c-header__top{padding:var(--space-20)
-        0;border-bottom:var(--border-width) var(--border-style) var(--color-border-secondary)}.c-header__top-block{display:flex;align-items:center;gap:var(--space-8)}@media
-        (min-width:64em){.c-header__top-block{gap:var(--space-16)}}.c-header__top-inner{display:grid;gap:var(--space-16);align-items:center;grid-template-columns:auto
-        2fr auto}@media (min-width:40em){.c-header__top-inner{grid-template-columns:1fr
-        2fr 1fr}}@media (max-width:39.99em){.c-header__top-left{order:2;margin-left:auto}.c-header__top-center{order:1}.c-header__top-right{order:3}}.c-header__top-right{justify-self:end}.c-header__button{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);padding:0;border:none;cursor:pointer;background:0
-        0;color:var(--color-text-primary);display:flex;align-items:center;gap:var(--space-4)}.c-header__button:hover{text-decoration:underline}.c-header__button
-        svg{width:var(--space-16);height:var(--space-16);fill:var(--color-text-primary)}.c-footer{position:sticky;top:100vh;padding:var(--space-64)
-        0;margin-top:var(--space-64);background-color:var(--color-background-secondary)}.c-footer__content{display:flex;flex-direction:column;align-items:center}.c-footer__content>*+*{margin-top:var(--space-32)}.c-footer-nav{display:flex;flex-wrap:wrap;justify-content:center}.c-footer-nav
-        .c-nav__item{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-normal);text-transform:initial;color:var(--color-text-secondary)}.c-footer-nav
-        .c-nav__item:not(:first-child)::before{display:none}.c-footer-nav li:not(:last-child){margin:0}.c-footer-nav
-        a{text-decoration:underline}.c-footer-nav a:hover{text-decoration:none}.c-footer-nav
-        a:focus-visible{text-decoration:none}.c-footer-copy{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);text-align:center;color:var(--color-text-secondary)}.c-footer-copy
-        a{text-decoration:underline}.c-footer-copy a:hover{text-decoration:none}.c-footer-copy
-        a:focus-visible{text-decoration:none}@media (min-width:40em){.c-logo{margin:auto}}.c-logo__link{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-medium)}@media
-        (min-width:40em){.c-logo__link{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-8)}}.c-logo__img{max-height:var(--space-32)}@media
-        (min-width:40em){.c-logo__img{max-height:var(--space-48)}}.c-logo__dark{display:none}@media
-        (prefers-color-scheme:dark){:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-logo__dark{display:block}:root:not([data-user-color-scheme]).is-darkModeAdminSetting-enabled
-        .c-logo__light{display:none}}[data-user-color-scheme=dark] .c-logo__dark{display:block}[data-user-color-scheme=dark]
-        .c-logo__light{display:none}.c-nav-wrap{min-width:0}.c-nav{display:flex;gap:var(--space-16);padding:var(--space-16)
-        0;overflow-x:scroll;-ms-overflow-style:none;scrollbar-width:none}.c-nav::-webkit-scrollbar{display:none}@media
-        (min-width:64em){.c-nav--main{justify-content:center}}.c-nav__item{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-semibold);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);white-space:nowrap}.c-nav__item:not(:first-child){padding-left:var(--space-16);position:relative}.c-nav__item:not(:first-child):before{border-left:var(--border-width)
-        var(--border-style) var(--color-accent);content:\"\";height:var(--space-16);left:0;width:1px;overflow:hidden;position:absolute}.c-nav__link{display:block}.c-nav__link--current{text-decoration:underline}.c-nav__link--current:hover{text-decoration:none}.c-nav__link--current:focus-visible{text-decoration:none}.home-template
-        .c-nav__link--current{text-decoration:none}.c-nav__link:hover{text-decoration:underline}.c-author__media{width:var(--space-96);height:var(--space-96);border-radius:var(--border-radius-circle);background-color:var(--color-background-secondary)}.c-author__image{-o-object-fit:cover;object-fit:cover;width:var(--space-96);height:var(--space-96);min-width:var(--space-96);border-radius:var(--border-radius-circle)}.c-btn,.c-content
-        .kg-product-card .kg-product-card-button,.kg-btn,.kg-btn-accent,.kg-header-card-button{--focus-outline-offset:calc(var(--space-4)
-        * -1);font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-medium);height:auto;width:-moz-fit-content;width:fit-content;min-width:-moz-fit-content;min-width:fit-content;text-align:center;border:none;cursor:pointer;overflow:hidden;padding:var(--space-16)
-        var(--space-24);border-radius:var(--space-4);color:var(--color-text-button);background-color:var(--color-background-button)}.c-btn:is(:hover,:active,:focus),.c-content
-        .kg-product-card .kg-product-card-button:is(:hover,:active,:focus),.kg-btn-accent:is(:hover,:active,:focus),.kg-btn:is(:hover,:active,:focus),.kg-header-card-button:is(:hover,:active,:focus){color:var(--color-text-button-hover);background-color:var(--color-background-button-hover)}.c-btn--disabled{opacity:.5;cursor:not-allowed}.c-btn--full{width:100%}.c-btn--small{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-medium);letter-spacing:var(--font-letter-spacing-brevier);padding:var(--space-8)
-        var(--space-16)}.c-btn--uppercase{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-btn--fit-content{width:-moz-fit-content;width:fit-content}.c-btn--loading,.c-btn.loading,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button,.c-content .kg-product-card
-        .loading.kg-product-card-button,.c-subscribe-form .c-btn,.c-subscribe-form
-        .c-content .kg-product-card .kg-product-card-button,.c-subscribe-form .kg-btn,.c-subscribe-form
-        .kg-btn-accent,.c-subscribe-form .kg-header-card-button,.loading.kg-btn,.loading.kg-btn-accent,.loading.kg-header-card-button{display:flex;align-items:center;justify-content:center}@keyframes
-        spin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}.c-btn--loading:after,.c-btn.loading:after,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button:after,.c-content
-        .kg-product-card .loading.kg-product-card-button:after,.c-subscribe-form .c-btn:after,.c-subscribe-form
-        .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form
-        .kg-btn-accent:after,.c-subscribe-form .kg-btn:after,.c-subscribe-form .kg-header-card-button:after,.loading.kg-btn-accent:after,.loading.kg-btn:after,.loading.kg-header-card-button:after{margin-left:var(--space-12);content:\"\";display:block;height:var(--space-16);width:var(--space-16);border-width:1px;border-style:var(--border-style);border-top-color:transparent;border-right-color:transparent;border-bottom-color:var(--color-text-button);border-left-color:var(--color-text-button);border-radius:var(--border-radius-circle);animation:spin
-        var(--motion-duration-slow) infinite linear}.c-btn--loading:is(:hover,:active,:focus):after,.c-btn.loading:is(:hover,:active,:focus):after,.c-content
-        .kg-product-card .c-subscribe-form .kg-product-card-button:is(:hover,:active,:focus):after,.c-content
-        .kg-product-card .loading.kg-product-card-button:is(:hover,:active,:focus):after,.c-subscribe-form
-        .c-btn:is(:hover,:active,:focus):after,.c-subscribe-form .c-content .kg-product-card
-        .kg-product-card-button:is(:hover,:active,:focus):after,.c-subscribe-form
-        .kg-btn-accent:is(:hover,:active,:focus):after,.c-subscribe-form .kg-btn:is(:hover,:active,:focus):after,.c-subscribe-form
-        .kg-header-card-button:is(:hover,:active,:focus):after,.loading.kg-btn-accent:is(:hover,:active,:focus):after,.loading.kg-btn:is(:hover,:active,:focus):after,.loading.kg-header-card-button:is(:hover,:active,:focus):after{border-bottom-color:var(--color-background-primary);border-left-color:var(--color-background-primary)}.c-post{margin:0
-        auto;padding:0 var(--grid-margin);max-width:var(--content-width)}.c-post>*+*{margin-top:var(--content-flow)}.c-content{display:flex;align-items:center;flex-direction:column}.c-content:empty{display:none}.c-content--has-shadow{-webkit-mask-image:linear-gradient(to
-        bottom,var(--color-text-primary) 30%,transparent 100%);mask-image:linear-gradient(to
-        bottom,var(--color-text-primary) 30%,transparent 100%)}.c-content>*{min-width:100%}.c-content>*+*{margin-top:var(--content-flow)}.c-content
-        :where(p,ol,ul,blockquote){font-family:var(--font-family-serif);font-size:var(--font-size-scale-body-copy);line-height:var(--line-height-scale-body-copy)}.c-content
-        :where(h1,h2,h3)+*{margin-top:calc(var(--content-flow)/ 2)}.c-content a:not([class]){text-decoration:underline;color:var(--color-accent)}.c-content
-        a:not([class]):hover{text-decoration:none}.c-content a:not([class]):focus-visible{text-decoration:none}.c-content
-        :where(hr){margin:var(--content-flow) 0}.c-content :where(hr)+*{margin-top:0}.c-content
-        :is(dd,ol,ul){padding-left:var(--space-16);padding-right:var(--space-16)}.c-content
-        .gh-post-upgrade-cta{display:none;visibility:hidden}.c-section{margin-top:var(--space-64)}.c-section--editors-pick{padding-top:var(--space-64);padding-bottom:var(--space-64);background:var(--color-background-secondary)}.c-section-heading{display:flex;align-items:baseline;justify-content:space-between;padding-bottom:var(--space-8);margin-bottom:var(--space-24);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-primary)}.c-section-heading__title{font-family:var(--font-family-serif);font-size:var(--font-size-scale-7);line-height:var(--line-height-scale-8);font-weight:var(--font-weight-bold)}.c-section-heading__title
-        a:hover{text-decoration:underline}.c-section-heading__title--small{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}.c-section-heading__all{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-section-heading__all:hover{text-decoration:underline}.c-subscribe-form
-        .c-alert{display:none}.c-content .kg-product-card .c-subscribe-form .kg-product-card-button:after,.c-subscribe-form
-        .c-btn:after,.c-subscribe-form .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form
-        .kg-btn-accent:after,.c-subscribe-form .kg-btn:after,.c-subscribe-form .kg-header-card-button:after{display:none}.c-content
-        .kg-product-card .c-subscribe-form.loading .kg-product-card-button:after,.c-subscribe-form.loading
-        .c-btn:after,.c-subscribe-form.loading .c-content .kg-product-card .kg-product-card-button:after,.c-subscribe-form.loading
-        .kg-btn-accent:after,.c-subscribe-form.loading .kg-btn:after,.c-subscribe-form.loading
-        .kg-header-card-button:after{display:block}.c-subscribe-form.error .c-alert--error,.c-subscribe-form.invalid
-        .c-alert--invalid,.c-subscribe-form.success .c-alert--success{display:block}.c-form-group{display:flex;gap:var(--space-16)}.c-alert{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-medium);margin-top:var(--space-16)}.c-alert:empty{display:none}.c-alert:before{font-weight:var(--font-weight-bold);margin-right:var(--space-8)}.c-alert--success:before{content:var(--html-symbol-checkmark)}.c-alert--error:before,.c-alert--invalid:before{content:var(--html-symbol-multiplication)}.c-teaser{display:flex}.c-teaser--large{display:grid;grid-template-columns:1fr
-        2fr;-moz-column-gap:var(--grid-gap);column-gap:var(--grid-gap)}.c-teaser__media{width:var(--space-80);height:var(--space-64);flex-basis:var(--space-80);margin-left:var(--space-16);position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-secondary)}.c-teaser__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-teaser__media:hover:after{opacity:1}@media
-        (min-width:64em){.c-teaser--large .c-teaser__media{width:auto;height:auto;flex-basis:auto;margin:0}}.c-teaser__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-teaser__content{flex:1}.c-teaser__content>*+*{margin-top:var(--space-8)}.c-teaser--large
-        .c-teaser__content{order:2}.c-teaser__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-semibold)}.c-teaser__headline:hover{text-decoration:underline}@media
-        (min-width:64em){.c-teaser--large .c-teaser__headline{font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-semibold)}}.c-teaser__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}.c-teaser__meta{display:flex;flex-wrap:wrap;align-items:center;gap:var(--space-8)}.c-teaser__timestamp{white-space:nowrap}.c-card--center
-        *{text-align:center;justify-content:center}.c-card__media{display:block;position:relative;padding-bottom:66%;aspect-ratio:var(--ratio-3x2);margin-bottom:var(--space-16);background-color:var(--color-background-secondary)}.c-card__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-card__media:hover:after{opacity:1}.c-card__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-card__content>*+*{margin-top:var(--space-8)}@media
-        (min-width:64em){.c-card--center .c-card__content{padding:0 var(--space-32)}}.c-card__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-semibold)}.c-card__headline:hover{text-decoration:underline}@media
-        (min-width:64em){.c-card--large .c-card__headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-9)}}.c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-3)}.c-card--large
-        .c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-4)}@media
-        (min-width:64em){.c-card--large .c-card__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-5)}}.c-card__meta{display:flex;flex-direction:column;gap:var(--space-8)}.c-hero{display:grid}@media
-        (max-width:63.99em){.c-hero>*{margin-top:var(--content-flow)}.c-hero .center{margin-top:0}.c-hero
-        .left{order:2}.c-hero .center{order:1}.c-hero .right{order:3}}@media (min-width:64em){.c-hero{-moz-column-gap:var(--grid-gap);column-gap:var(--grid-gap);grid-template-columns:repeat(12,1fr);grid-template-rows:minmax(2rem,auto)
-        repeat(2,1fr)}.c-hero .left{grid-column:1/span 3;grid-row-start:1;position:relative}.c-hero
-        .left:after{content:\"\";position:absolute;top:0;bottom:0;left:auto;right:var(--border-vertical-offset);border-right:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-hero .center{grid-column:4/span
-        6}.c-hero .right{grid-column:10/span 3;position:relative}.c-hero .right:after{content:\"\";position:absolute;top:0;bottom:0;right:auto;left:var(--border-vertical-offset);border-right:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}}.c-tag{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier);color:var(--color-text-secondary)}.c-tag
-        a{color:var(--color-accent)}.c-tag a:hover{text-decoration:underline}.c-tag-card{display:block;padding:var(--space-24);border-radius:var(--border-radius);background-color:var(--color-background-secondary);border-left:var(--space-4)
-        solid var(--color-accent-tag,var(--color-accent))}.c-tag-card__name{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}.c-card-archive{position:relative;padding-top:var(--space-24);margin-top:var(--space-24)}@media
-        (min-width:64em){.c-card-archive{padding-top:var(--space-40);margin-top:var(--space-40)}}.c-card-archive:before{content:\"\";display:block;width:100%;height:1px;position:absolute;top:0;background-color:var(--color-border-secondary)}.c-card-archive:first-child{margin-top:0;padding-top:0}.c-card-archive:first-child:before{background-color:transparent}.c-card-archive:last-child{margin-bottom:var(--space-32)}@media
-        (min-width:40em){.c-card-archive{display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:1fr;grid-column-gap:var(--space-40);grid-template-areas:\"meta
-        meta content content content content content content\"}.c-card-archive__meta{grid-area:meta}.c-card-archive__content{grid-area:content}}.c-card-archive--date-1+.c-card-archive--date-1,.c-card-archive--date-10+.c-card-archive--date-10,.c-card-archive--date-11+.c-card-archive--date-11,.c-card-archive--date-12+.c-card-archive--date-12,.c-card-archive--date-2+.c-card-archive--date-2,.c-card-archive--date-3+.c-card-archive--date-3,.c-card-archive--date-4+.c-card-archive--date-4,.c-card-archive--date-5+.c-card-archive--date-5,.c-card-archive--date-6+.c-card-archive--date-6,.c-card-archive--date-7+.c-card-archive--date-7,.c-card-archive--date-8+.c-card-archive--date-8,.c-card-archive--date-9+.c-card-archive--date-9,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669{padding-top:0;margin-top:0}.c-card-archive--date-1+.c-card-archive--date-1:before,.c-card-archive--date-10+.c-card-archive--date-10:before,.c-card-archive--date-11+.c-card-archive--date-11:before,.c-card-archive--date-12+.c-card-archive--date-12:before,.c-card-archive--date-2+.c-card-archive--date-2:before,.c-card-archive--date-3+.c-card-archive--date-3:before,.c-card-archive--date-4+.c-card-archive--date-4:before,.c-card-archive--date-5+.c-card-archive--date-5:before,.c-card-archive--date-6+.c-card-archive--date-6:before,.c-card-archive--date-7+.c-card-archive--date-7:before,.c-card-archive--date-8+.c-card-archive--date-8:before,.c-card-archive--date-9+.c-card-archive--date-9:before,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661:before,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660:before,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661:before,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662:before,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662:before,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663:before,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664:before,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665:before,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666:before,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667:before,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668:before,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669:before{background-color:transparent}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__meta,.c-card-archive--date-10+.c-card-archive--date-10 .c-card-archive__meta,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__meta,.c-card-archive--date-12+.c-card-archive--date-12 .c-card-archive__meta,.c-card-archive--date-2+.c-card-archive--date-2
-        .c-card-archive__meta,.c-card-archive--date-3+.c-card-archive--date-3 .c-card-archive__meta,.c-card-archive--date-4+.c-card-archive--date-4
-        .c-card-archive__meta,.c-card-archive--date-5+.c-card-archive--date-5 .c-card-archive__meta,.c-card-archive--date-6+.c-card-archive--date-6
-        .c-card-archive__meta,.c-card-archive--date-7+.c-card-archive--date-7 .c-card-archive__meta,.c-card-archive--date-8+.c-card-archive--date-8
-        .c-card-archive__meta,.c-card-archive--date-9+.c-card-archive--date-9 .c-card-archive__meta,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__meta,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__meta,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__meta,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__meta,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__meta,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__meta,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__meta,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__meta,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__meta,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__meta{display:none}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__content,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content,.c-card-archive--date-2+.c-card-archive--date-2 .c-card-archive__content,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content,.c-card-archive--date-4+.c-card-archive--date-4 .c-card-archive__content,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content,.c-card-archive--date-6+.c-card-archive--date-6 .c-card-archive__content,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content,.c-card-archive--date-8+.c-card-archive--date-8 .c-card-archive__content,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content{position:relative;padding-top:var(--space-16);margin-top:var(--space-16)}@media
-        (min-width:64em){.c-card-archive--date-1+.c-card-archive--date-1 .c-card-archive__content,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content,.c-card-archive--date-2+.c-card-archive--date-2 .c-card-archive__content,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content,.c-card-archive--date-4+.c-card-archive--date-4 .c-card-archive__content,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content,.c-card-archive--date-6+.c-card-archive--date-6 .c-card-archive__content,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content,.c-card-archive--date-8+.c-card-archive--date-8 .c-card-archive__content,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content{padding-top:var(--space-24);margin-top:var(--space-24)}}.c-card-archive--date-1+.c-card-archive--date-1
-        .c-card-archive__content:before,.c-card-archive--date-10+.c-card-archive--date-10
-        .c-card-archive__content:before,.c-card-archive--date-11+.c-card-archive--date-11
-        .c-card-archive__content:before,.c-card-archive--date-12+.c-card-archive--date-12
-        .c-card-archive__content:before,.c-card-archive--date-2+.c-card-archive--date-2
-        .c-card-archive__content:before,.c-card-archive--date-3+.c-card-archive--date-3
-        .c-card-archive__content:before,.c-card-archive--date-4+.c-card-archive--date-4
-        .c-card-archive__content:before,.c-card-archive--date-5+.c-card-archive--date-5
-        .c-card-archive__content:before,.c-card-archive--date-6+.c-card-archive--date-6
-        .c-card-archive__content:before,.c-card-archive--date-7+.c-card-archive--date-7
-        .c-card-archive__content:before,.c-card-archive--date-8+.c-card-archive--date-8
-        .c-card-archive__content:before,.c-card-archive--date-9+.c-card-archive--date-9
-        .c-card-archive__content:before,.c-card-archive--date-\u0661+.c-card-archive--date-\u0661
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0660+.c-card-archive--date-\u0661\u0660
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0661+.c-card-archive--date-\u0661\u0661
-        .c-card-archive__content:before,.c-card-archive--date-\u0661\u0662+.c-card-archive--date-\u0661\u0662
-        .c-card-archive__content:before,.c-card-archive--date-\u0662+.c-card-archive--date-\u0662
-        .c-card-archive__content:before,.c-card-archive--date-\u0663+.c-card-archive--date-\u0663
-        .c-card-archive__content:before,.c-card-archive--date-\u0664+.c-card-archive--date-\u0664
-        .c-card-archive__content:before,.c-card-archive--date-\u0665+.c-card-archive--date-\u0665
-        .c-card-archive__content:before,.c-card-archive--date-\u0666+.c-card-archive--date-\u0666
-        .c-card-archive__content:before,.c-card-archive--date-\u0667+.c-card-archive--date-\u0667
-        .c-card-archive__content:before,.c-card-archive--date-\u0668+.c-card-archive--date-\u0668
-        .c-card-archive__content:before,.c-card-archive--date-\u0669+.c-card-archive--date-\u0669
-        .c-card-archive__content:before{content:\"\";display:block;width:100%;height:1px;position:absolute;top:0;background-color:var(--color-border-secondary)}@media
-        (max-width:39.99em){.c-card-archive__meta{margin-bottom:var(--space-16)}}@media
-        (max-width:39.99em){.c-card-archive__content{padding-left:var(--space-16)}}.c-card-archive__date{color:var(--color-text-secondary)}.c-card-archive__title{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-medium)}.c-card-archive__date-mini{display:none;font-weight:var(--font-weight-normal);color:var(--color-text-secondary)}.c-card-archive__url:hover{text-decoration:underline}.c-timestamp{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary)}.c-reading-time{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary)}.c-byline{display:flex;flex-wrap:wrap;color:var(--color-text-secondary)}.c-byline
-        a{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium);text-transform:uppercase;letter-spacing:var(--font-letter-spacing-brevier)}.c-byline
-        a:hover{text-decoration:underline}.c-byline span{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);font-weight:var(--font-weight-medium)}.c-topper{margin:0
-        auto;margin-top:var(--space-40);padding:0 var(--grid-margin);max-width:var(--content-width);margin-bottom:var(--space-32)}.c-topper__content{padding-bottom:var(--space-32);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-topper__content>*+*{margin-top:var(--space-8)}.c-topper__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-6);line-height:var(--line-height-scale-6);font-weight:var(--font-weight-bold)}@media
-        (min-width:64em){.c-topper__headline{font-size:var(--font-size-scale-8);line-height:var(--line-height-scale-9);font-weight:var(--font-weight-semibold)}}.c-topper__standfirst{font-family:var(--font-family-serif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-5)}@media
-        (min-width:64em){.c-topper__standfirst{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-6)}}.c-topper__meta{display:flex;flex-direction:column;margin-top:var(--space-16)}@media
-        (min-width:64em){.c-topper__meta{flex-direction:row}}.c-topper__timestamp{display:inline-block;margin-top:var(--space-8)}.c-topper__timestamp:after{font-size:var(--font-size-scale-0);line-height:var(--line-height-scale-0);color:var(--color-text-secondary);content:var(--html-symbol-em-dash)}.c-topper__reading-time{display:inline}.c-feature-image-figure{margin-top:var(--space-32)}.c-feature-image-wrap{position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-secondary)}.c-feature-image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-feature-image-caption{width:100%;padding-top:var(--space-8);color:var(--color-text-secondary);background-color:var(--color-background-primary);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);letter-spacing:var(--font-letter-spacing-long-primer)}.c-feature-image-caption
-        a{text-decoration:underline}.c-feature-image-caption a:hover{text-decoration:none}.c-feature-image-caption
-        a:focus-visible{text-decoration:none}.c-stack-stories>:not(:last-child){margin-bottom:var(--space-16);padding-bottom:var(--space-16);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-stack-stories--large>:not(:last-child){margin-bottom:var(--space-32);padding-bottom:var(--space-32)}.c-editors-pick{display:grid;grid-template-rows:auto
-        1fr;grid-template-columns:var(--space-80) 2fr;grid-template-areas:\"number
-        media\" \"content content\"}.c-editors-pick__media{grid-area:media;position:relative;aspect-ratio:var(--ratio-3x2);background-color:var(--color-background-primary)}.c-editors-pick__media:after{content:\"\";position:absolute;top:0;right:0;bottom:0;left:0;background-color:rgba(0,0,0,.1);opacity:0;transition:ease
-        opacity var(--motion-duration-fast)}.c-editors-pick__media:hover:after{opacity:1}.c-editors-pick__image{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}.c-editors-pick__content{grid-area:content}.c-editors-pick__content>*+*{margin-top:var(--space-8)}.c-editors-pick__content{margin-top:var(--space-24)}.c-editors-pick__headline{font-family:var(--font-family-serif);font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-5);font-weight:var(--font-weight-semibold)}.c-editors-pick__headline:hover{text-decoration:underline}.c-editors-picks-wrapper{counter-reset:list-items}.c-editors-picks-wrapper
-        .c-editors-pick::before{font-size:var(--font-size-scale-10);line-height:var(--line-height-scale-10);font-weight:var(--font-weight-bold);grid-area:number;counter-increment:list-items;content:counter(list-items);-webkit-text-stroke-width:1px;-webkit-text-fill-color:transparent;margin-top:auto;margin-bottom:calc(var(--space-8)
-        * -1)}.c-page-header{margin-bottom:var(--space-32)}.c-color-mode-btn:before{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}@media
-        (max-width:39.99em){.c-color-mode-btn:before{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3)}}.c-color-mode-btn:hover{text-decoration:none}.c-color-mode-btn:hover
-        span{text-decoration:underline}[title=Dark]:before{content:var(--html-symbol-dark)}[title=Light]:before{content:var(--html-symbol-light)}.c-card-author{width:100%;padding:var(--space-32);border-radius:var(--border-radius);background-color:var(--color-background-secondary)}.c-card-author>*+*{margin-top:var(--space-20);padding-top:var(--space-20);border-top:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-card-author__url{display:block}.c-card-author__url:hover{text-decoration:underline}.c-card-author__media{display:block;margin-bottom:var(--space-16);width:var(--space-96);height:var(--space-96);border-radius:var(--border-radius-circle);background-color:var(--color-background-primary)}.c-card-author__image{-o-object-fit:cover;object-fit:cover;width:var(--space-96);height:var(--space-96);min-width:var(--space-96);border-radius:var(--border-radius-circle)}.c-card-author__name{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-card-author__bio{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);margin-top:var(--space-8);color:var(--color-text-secondary)}.c-card-author__posts>*+*{margin-top:var(--space-8)}.c-card-author__posts
-        a:hover{text-decoration:underline}.c-card-author__posts-title{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-medium);position:relative;padding-left:var(--space-24)}.c-card-author__posts-title:before{position:absolute;left:0;content:var(--html-symbol-em-dash);color:var(--color-text-secondary)}.c-social-icons{display:flex;flex-wrap:wrap;gap:var(--space-16)}.c-social-icons__link{display:flex;align-items:center;justify-content:center;width:var(--space-40);height:var(--space-40);border-radius:var(--border-radius-circle);background-color:var(--color-background-primary)}.c-social-icons__link:is(:hover,:active,:focus)
-        .c-social-icons__icon{fill:var(--color-text-primary)}.c-social-icons__icon{fill:var(--color-text-secondary)}.c-share{display:flex;gap:var(--space-16)}@media
-        (max-width:39.99em){.c-share{margin-top:var(--space-16);justify-content:flex-start}}@media
-        (min-width:40em){.c-share{margin-left:auto}}.c-share__link{display:flex;align-items:center;justify-content:center;width:var(--space-40);height:var(--space-40);border-radius:var(--border-radius-circle);background-color:var(--color-background-secondary)}.c-share__link:is(:hover,:active,:focus)
-        .c-share__icon{fill:var(--color-text-primary)}.c-share__icon{fill:var(--color-text-secondary)}.instagram-media{margin-top:var(--content-flow)!important;margin-bottom:0!important}.instagram-media:before{content:\"\"}.c-newsletters-labels{margin-bottom:var(--space-32)}.c-newsletters-label__input{position:absolute;top:0;left:0;opacity:0}.c-newsletters-label__input+label{display:flex;flex-direction:row;cursor:pointer;padding:var(--space-32);background-color:var(--color-background-secondary);border-bottom:var(--border-width)
-        var(--border-style) var(--color-border-secondary)}.c-newsletters-label:first-child
-        .c-newsletters-label__input+label{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}.c-newsletters-label:last-child
-        .c-newsletters-label__input+label{border-bottom:none;border-bottom-left-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}.c-newsletters-label__input+label
-        .c-newsletters-label__checkbox{--focus-outline-color:var(--color-accent);cursor:pointer;display:inline-block;text-align:center;width:var(--space-24);height:var(--space-24);min-width:var(--space-24);margin-right:var(--space-12);border-radius:var(--border-radius);border:var(--space-2)
-        var(--border-style) var(--color-border-primary)}.c-newsletters-label__input:checked+label
-        .c-newsletters-label__checkbox{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-3);font-weight:var(--font-weight-bold);border-color:var(--color-accent)}.c-newsletters-label__input:checked+label
-        .c-newsletters-label__checkbox:after{color:var(--color-accent);content:var(--html-symbol-checkmark)}.c-newsletters-label__input:focus-visible+label
-        .c-newsletters-label__checkbox{outline:var(--focus-outline-size) var(--focus-outline-style)
-        var(--focus-outline-color);outline-offset:var(--focus-outline-offset)}.c-newsletters-label__title{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-semibold)}.c-newsletters-label__description{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-3);margin-top:var(--space-4)}.kg-card
-        figcaption{width:100%;padding-top:var(--space-8);color:var(--color-text-secondary);background-color:var(--color-background-primary);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);letter-spacing:var(--font-letter-spacing-long-primer)}.kg-card
-        figcaption a{text-decoration:underline}.kg-card figcaption a:hover{text-decoration:none}.kg-card
-        figcaption a:focus-visible{text-decoration:none}.kg-width-wide{width:100%}@media
-        (min-width:40em){.kg-width-wide{width:calc(100vw - calc(var(--grid-margin)
-        * 2));max-width:calc(var(--grid-width) - calc(var(--grid-margin) * 2))}}.kg-width-full
-        figcaption{padding-left:var(--space-16)}.kg-width-full :is(video,.kg-image){max-width:100vw}.c-content
-        .kg-toggle-card{padding:0;border-radius:var(--border-radius);background-color:var(--color-background-secondary);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-toggle-card
-        .kg-toggle-heading{align-items:center;padding:var(--space-32)}.c-content .kg-toggle-card
-        h4.kg-toggle-heading-text{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-toggle-card .kg-toggle-card-icon{margin-top:0}.c-content .kg-toggle-card
-        .kg-toggle-heading svg{color:var(--color-text-primary)}.c-content .kg-toggle-card[data-kg-toggle-state=open]
-        .kg-toggle-content{padding:0 var(--space-32) var(--space-32) var(--space-32)}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content{transition:none}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content>*+*{margin-top:var(--space-16)!important}.c-content
-        .kg-toggle-card[data-kg-toggle-state] .kg-toggle-content p,.c-content .kg-toggle-card[data-kg-toggle-state]
-        .kg-toggle-content ul{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-5);margin-top:0}.kg-image{margin:auto}.kg-image-card{min-width:-moz-min-content;min-width:min-content;background-color:var(--color-background-secondary)}.kg-gallery-container{display:flex;flex-direction:column}.kg-gallery-row{display:flex;flex-direction:row;justify-content:center}.kg-gallery-row:not(:first-of-type){margin-top:var(--content-flow)}.kg-gallery-image{background-color:var(--color-background-secondary)}.kg-gallery-image:not(:first-of-type){margin-left:var(--content-flow)}.kg-gallery-image
-        img{width:100%;height:100%}.kg-embed-card{display:flex;align-items:center;flex-direction:column}iframe[src*=\"pinterest.com\"]{min-width:auto;max-width:100%}.c-content
-        .kg-nft-card{border-bottom-left-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}.c-content
-        .kg-nft-card a.kg-nft-card-container{font-family:var(--font-family-sansSerif);font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1);font-weight:var(--font-weight-normal);max-width:100%;color:var(--color-text-primary);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-ntf-image-container{background-color:var(--color-background-secondary)}.c-content
-        .kg-nft-image{aspect-ratio:var(--ratio-3x2);border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}.c-content
-        .kg-nft-metadata{padding:var(--space-32)}.c-content .kg-nft-header h4.kg-nft-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold);color:var(--color-text-primary)}.c-content
-        .kg-nft-creator{margin:var(--space-8) 0 0}.c-content .kg-nft-creator span{font-weight:var(--font-weight-medium);color:var(--color-text-primary)}.c-content
-        .kg-nft-creator{color:var(--color-text-secondary)}.c-content .kg-nft-card
-        p.kg-nft-description{color:var(--color-text-primary)}.c-content .kg-nft-creator{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-1)}.c-content
-        .kg-nft-card p.kg-nft-description{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-4)}.c-content
-        .kg-audio-card{padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}@media (max-width:39.99em){.c-content
-        .kg-audio-card{flex-wrap:wrap}}.c-content .kg-audio-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-audio-player *{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}@media
-        (max-width:63.99em){.c-content .kg-audio-seek-slider{display:none}}.c-content
-        .kg-audio-time{color:var(--color-text-secondary)}.c-content .kg-audio-thumbnail{width:var(--space-96);min-width:var(--space-96);margin:0
-        var(--space-8) 0 0;border-radius:var(--border-radius)}.c-content .kg-video-player
-        *{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2)}.c-content
-        .kg-file-card a.kg-file-card-container{border:0;transition:none;padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-file-card
-        a.kg-file-card-container:hover{border:0;box-shadow:inset 0 0 0 var(--space-2)
-        var(--color-border-secondary)}.c-content .kg-file-card .kg-file-card-contents{margin:0;margin-right:var(--space-8)}.c-content
-        .kg-file-card .kg-file-card-contents>*+*{margin-top:var(--space-4)}.c-content
-        .kg-file-card .kg-file-card-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-file-card :is(.kg-file-card-caption,.kg-file-card-metadata,.kg-file-card-filename,.kg-file-card-filesize){font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-normal)}.c-content
-        .kg-file-card :is(.kg-file-card-caption,.kg-file-card-filesize){opacity:1}.c-content
-        .kg-file-card .kg-file-card-metadata{color:var(--color-text-secondary)}.c-content
-        .kg-file-card .kg-file-card-icon svg{color:var(--color-text-primary)}.twitter-tweet{min-width:auto;margin-bottom:0!important;margin-top:var(--content-flow)!important}.kg-embed-card
-        .twitter-tweet{margin-top:0!important}.twitter-tweet iframe{max-width:100%!important}.kg-button-card{display:flex}.kg-button-card.kg-align-center{justify-content:center}.kg-button-card.kg-align-left{justify-content:start}.c-content
-        .kg-callout-card{padding:var(--space-32);border-radius:var(--border-radius);background:var(--color-background-secondary)}.c-content
-        .kg-callout-card+.kg-callout-card{margin-top:var(--content-flow)}.c-content
-        .kg-callout-card div.kg-callout-emoji{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);padding-right:var(--space-16)}.c-content
-        .kg-callout-card .kg-callout-text{font-size:var(--font-size-scale-3);line-height:var(--line-height-scale-5)}.c-content
-        .kg-callout-card-white{box-shadow:inset 0 0 0 var(--border-width) var(--color-border-secondary)}.c-content
-        .kg-product-card .kg-product-card-container{padding:var(--space-32);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.c-content .kg-product-card
-        h4.kg-product-card-title{font-size:var(--font-size-scale-4);line-height:var(--line-height-scale-4);font-weight:var(--font-weight-bold)}.c-content
-        .kg-product-card .kg-product-card-rating-star{text-align:right;width:var(--space-24);height:var(--space-32)}.c-content
-        .kg-product-card .kg-product-card-description *{font-family:var(--font-family-sansSerif);opacity:1}.c-content
-        .kg-product-card .kg-product-card-button{width:100%}.kg-header-card{width:100vw;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.kg-header-card+.kg-header-card{margin-top:0}.kg-header-card>*{max-width:var(--content-width)}.kg-header-card:not(.kg-style-light)
-        a:not([class]){color:inherit}.kg-header-card :is(.kg-header-card-header,.kg-header-card-subheader){padding-left:var(--grid-margin);padding-right:var(--grid-margin)}.kg-header-card
-        :is(.kg-header-card-button){margin-left:var(--grid-margin);margin-right:var(--grid-margin)}.kg-header-card-subheader{margin-top:var(--space-16)}.kg-header-card-button{margin-top:var(--space-32)}.kg-size-small{padding:var(--space-64)
-        0}.kg-size-medium{padding:var(--space-96) 0}.kg-size-large{padding:var(--space-128)
-        0}.kg-style-light{--color-text-button:var(--color-text-button-headerCardStyleLight);--color-background-button:var(--color-background-button-headerCardStyleLight);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleLight);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleLight);color:var(--color-text-headerCardStyleLight);background-color:var(--color-background-headerCardStyleLight)}.kg-style-dark{--color-text-button:var(--color-text-button-headerCardStyleDark);--color-background-button:var(--color-background-button-headerCardStyleDark);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleDark);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleDark);color:var(--color-text-headerCardStyleDark);background-color:var(--color-background-headerCardStyleDark)}.kg-style-accent{--color-text-button:var(--color-text-button-headerCardStyleAccent);--color-background-button:var(--color-background-button-headerCardStyleAccent);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleAccent);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleAccent);color:var(--color-text-headerCardStyleAccent);background-color:var(--color-background-headerCardStyleAccent)}.kg-style-image{--color-text-button:var(--color-text-button-headerCardStyleImage);--color-background-button:var(--color-background-button-headerCardStyleImage);--color-text-button-hover:var(--color-text-button-hover-headerCardStyleImage);--color-background-button-hover:var(--color-background-button-hover-headerCardStyleImage);color:var(--color-text-headerCardStyleImage);background-color:var(--color-background-headerCardStyleImage);background-size:cover;background-position:center;position:relative}.kg-style-image:before{position:absolute;content:\"\";inset:0;background:linear-gradient(0,transparent,rgba(0,0,0,.5))}.kg-style-image
-        *{z-index:1}.kg-bookmark-card{width:100%}.kg-bookmark-container{display:flex;min-height:144px;text-decoration:none;color:var(--color-text-primary);border-radius:var(--border-radius);box-shadow:inset
-        0 0 0 var(--border-width) var(--color-border-secondary)}.kg-bookmark-container:hover
-        .kg-bookmark-title{text-decoration:underline}.kg-bookmark-content{display:flex;flex-grow:1;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:var(--space-24)}@media
-        (min-width:64em){.kg-bookmark-content{padding:var(--space-32)}}.kg-bookmark-title{font-size:var(--font-size-scale-2);line-height:var(--line-height-scale-2);font-weight:var(--font-weight-semibold)}.kg-bookmark-description{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);margin-top:var(--space-4);max-height:var(--space-48);overflow-y:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.kg-bookmark-metadata{font-size:var(--font-size-scale-1);line-height:var(--line-height-scale-2);display:flex;flex-wrap:wrap;align-items:center;margin-top:var(--space-8);color:var(--color-text-secondary)}.kg-bookmark-icon{width:var(--space-24);height:var(--space-24);margin-right:var(--space-8);border-radius:var(--border-radius-circle)}.kg-bookmark-author{color:var(--color-text-secondary)}.kg-bookmark-publisher{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:240px}.kg-bookmark-publisher:before{content:\"\u2022\";margin:0
-        var(--space-8)}.kg-bookmark-thumbnail{position:relative;min-width:33%;max-height:100%}.kg-bookmark-thumbnail
-        img{position:absolute;inset:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover}@media
-        (max-width:39.99em){.kg-bookmark-thumbnail img{border-top-left-radius:var(--border-radius);border-top-right-radius:var(--border-radius)}}@media
-        (min-width:40em){.kg-bookmark-thumbnail img{border-top-right-radius:var(--border-radius);border-bottom-right-radius:var(--border-radius)}}@media
-        (max-width:39.99em){.kg-bookmark-container{flex-direction:column}.kg-bookmark-thumbnail{order:1;width:100%;min-height:160px}.kg-bookmark-content{order:2}}.kg-blockquote-alt{font-size:var(--font-size-scale-5);line-height:var(--line-height-scale-8);font-weight:var(--font-weight-medium);text-align:center;font-style:italic;padding:0
-        var(--space-20)}\n</style>\n    <style>\n  :root {\n    --dark-mode-accent-color:
-        #8cbfd0;\n  }\n</style>    <script>\n  // =====================\n  // Dark
-        Mode Toogle \U0001F312 \u2600\uFE0F - Inspired by:\n  // Thttps://hankchizljaw.com/wrote/create-a-user-controlled-dark-or-light-mode/\n
-        \ // =====================\n\n  var user_color_scheme = localStorage.getItem('user-color-scheme');\n\n
-        \ function initial_mode_set(mode) {\n    if (mode) {\n      document.documentElement.setAttribute('data-user-color-scheme',
-        mode);\n    }\n  }\n\n  initial_mode_set(user_color_scheme);\n\n  window.addEventListener('DOMContentLoaded',
-        (event) => {\n    var STORAGE_KEY = 'user-color-scheme';\n    var COLOR_MODE_KEY
-        = '--color-mode';\n    var modeToggleButton = document.querySelector('.js-mode-toggle');\n
-        \   var modeToggleText = document.querySelector('.js-mode-toggle-text');\n
-        \   var modeToggleTitle = document.querySelector('.js-mode-toggle-title');\n\n
-        \   var getCSSCustomProp = function getCSSCustomProp(propKey) {\n      var
-        response = getComputedStyle(document.documentElement).getPropertyValue(propKey);\n\n
-        \     if (response.length) {\n        response = response.replace(/\\\"/g,
-        '').trim();\n      }\n\n      return response;\n    };\n\n    var applySetting
-        = function applySetting(passedSetting) {\n      var currentSetting = passedSetting
-        || localStorage.getItem(STORAGE_KEY);\n\n      if (currentSetting) {\n        document.documentElement.setAttribute('data-user-color-scheme',
-        currentSetting);\n        setButtonLabelAndStatus(currentSetting);\n      }
-        else {\n        setButtonLabelAndStatus(getCSSCustomProp(COLOR_MODE_KEY));\n
-        \     }\n    };\n\n    var setButtonLabelAndStatus = function setButtonLabelAndStatus(currentSetting)
-        {\n      modeToggleText.innerText = currentSetting === 'dark' ? 'Light' :
-        'Dark';\n      modeToggleTitle.title = currentSetting === 'dark' ? 'Light'
-        : 'Dark';\n    };\n\n    var toggleSetting = function toggleSetting() {\n
-        \     var currentSetting = localStorage.getItem(STORAGE_KEY);\n\n      switch
-        (currentSetting) {\n        case null:\n          currentSetting = getCSSCustomProp(COLOR_MODE_KEY)
-        === 'dark' ? 'light' : 'dark';\n          break;\n\n        case 'light':\n
-        \         currentSetting = 'dark';\n          break;\n\n        case 'dark':\n
-        \         currentSetting = 'light';\n          break;\n      }\n\n      localStorage.setItem(STORAGE_KEY,
-        currentSetting);\n      return currentSetting;\n    };\n\n    modeToggleButton.addEventListener('click',
-        function (evt) {\n      evt.preventDefault();\n      applySetting(toggleSetting());\n
-        \   });\n    applySetting();\n  });\n</script>\n  <script>\n    var pagination_next_page_number
-        \      = '',\n        pagination_available_pages_number = '',\n        pagination_loading_text
-        \          = 'Loading',\n        pagination_more_posts_text        = 'Load
-        More';\n\n    document.documentElement.classList.add('js-on');\n  </script>\n\n
-        \ <meta name=\"citation_doi\" content=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">\n
-        \ <meta name=\"citation_title\" content=\"Deep dive into ethics of Contributor
-        Roles: report of a FORCE11 workshop\">\n  <meta name=\"citation_abstract\"
-        content=\"The FORCE11 attribution working group held a workshop during the
-        2021 FORCE conference to explore some ethical aspects of using Contributor
-        Roles (CRs). This workshop provided an overview of various CRs and their practical
-        values in terms of providing a better recognition of the wide range of scholarly
-        contributions.\n\nAmong\">\n  <meta name=\"citation_author\" content=\"Mohammad
-        Hosseini\">\n  <meta name=\"citation_author\" content=\"Violeta Ilik\">\n
-        \ <meta name=\"citation_author\" content=\"Nicole Vasilevsky\">\n  <meta name=\"citation_author\"
-        content=\"Kristi Holmes\">\n  <meta name=\"citation_date\" content=\"2022-01-20\"/>\n
-        \ <meta name=\"citation_keywords\" content=\"News\"/>\n  <meta name=\"citation_journal_title\"
-        content=\"Upstream\"/>\n  <meta name=\"citation_language\" content=\"en\">\n\n
-        \ <meta name=\"dc.identifier\" content=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">\n
-        \ <meta name=\"dc.creator\" content=\"Mohammad Hosseini\" />\n  <meta name=\"dc.creator\"
-        content=\"Violeta Ilik\" />\n  <meta name=\"dc.creator\" content=\"Nicole
-        Vasilevsky\" />\n  <meta name=\"dc.creator\" content=\"Kristi Holmes\" />\n
-        \ <meta name=\"dc.title\" content=\"Deep dive into ethics of Contributor Roles:
-        report of a FORCE11 workshop\" />\n  <meta name=\"dc.description\" content=\"The
-        FORCE11 attribution working group held a workshop during the 2021 FORCE conference
-        to explore some ethical aspects of using Contributor Roles (CRs). This workshop
-        provided an overview of various CRs and their practical values in terms of
-        providing a better recognition of the wide range of scholarly contributions.\n\nAmong\"
-        />\n  <meta name=\"dc.date\" content=\"2022-01-20\" />\n  <meta name=\"dc.subject\"
-        content=\"News\" />\n  <meta name=\"dc.language\" content=\"en\" />   \n  <meta
-        name=\"dc.format\" content=\"text/html\" /> \n  <meta name=\"dc.source\" content=\"Upstream\"
-        />\n  <meta name=\"dc.type\" content=\"article\" />\n  <meta name=\"dc.rights\"
-        content=\"https://creativecommons.org/licenses/by/4.0/legalcode\" />\n\n  <link
-        rel=\"icon\" href=\"https://upstream.force11.org/content/images/size/w256h256/2022/09/force11-avatar.png\"
-        type=\"image/png\">\n    <link rel=\"canonical\" href=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">\n
-        \   <meta name=\"referrer\" content=\"no-referrer-when-downgrade\">\n    \n
-        \   <meta property=\"og:site_name\" content=\"Upstream\">\n    <meta property=\"og:type\"
-        content=\"article\">\n    <meta property=\"og:title\" content=\"Deep dive
-        into ethics of Contributor Roles: report of a FORCE11 workshop\">\n    <meta
-        property=\"og:description\" content=\"The FORCE11 attribution working group
-        held a workshop during the 2021 FORCE conference to explore some ethical aspects
-        of using Contributor Roles (CRs). This workshop provided an overview of various
-        CRs and their practical values in terms of providing a better recognition
-        of the wide range of scholarly contributions.\n\nAmong\">\n    <meta property=\"og:url\"
-        content=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">\n    <meta property=\"og:image\"
-        content=\"https://upstream.force11.org/content/images/2022/08/nick-fewings-GoXNygZlftg-unsplash.jpg\">\n
-        \   <meta property=\"article:published_time\" content=\"2022-01-20T09:00:00.000Z\">\n
-        \   <meta property=\"article:modified_time\" content=\"2024-01-21T18:28:30.000Z\">\n
-        \   <meta property=\"article:tag\" content=\"News\">\n    \n    <meta name=\"twitter:card\"
-        content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"Deep
-        dive into ethics of Contributor Roles: report of a FORCE11 workshop\">\n    <meta
-        name=\"twitter:description\" content=\"The FORCE11 attribution working group
-        held a workshop during the 2021 FORCE conference to explore some ethical aspects
-        of using Contributor Roles (CRs). This workshop provided an overview of various
-        CRs and their practical values in terms of providing a better recognition
-        of the wide range of scholarly contributions.\n\nAmong\">\n    <meta name=\"twitter:url\"
-        content=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">\n    <meta name=\"twitter:image\"
-        content=\"https://upstream.force11.org/content/images/2022/08/nick-fewings-GoXNygZlftg-unsplash.jpg\">\n
-        \   <meta name=\"twitter:label1\" content=\"Written by\">\n    <meta name=\"twitter:data1\"
-        content=\"Mohammad Hosseini\">\n    <meta name=\"twitter:label2\" content=\"Filed
-        under\">\n    <meta name=\"twitter:data2\" content=\"News\">\n    <meta name=\"twitter:creator\"
-        content=\"@mhmd_hosseini\">\n    <meta property=\"og:image:width\" content=\"1200\">\n
-        \   <meta property=\"og:image:height\" content=\"800\">\n    \n    <script
-        type=\"application/ld+json\">\n{\n    \"@context\": \"https://schema.org\",\n
-        \   \"@type\": \"Article\",\n    \"publisher\": {\n        \"@type\": \"Organization\",\n
-        \       \"name\": \"Upstream\",\n        \"url\": \"https://upstream.force11.org/\",\n
-        \       \"logo\": {\n            \"@type\": \"ImageObject\",\n            \"url\":
-        \"https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png\"\n
-        \       }\n    },\n    \"author\": {\n        \"@type\": \"Person\",\n        \"name\":
-        \"Mohammad Hosseini\",\n        \"image\": {\n            \"@type\": \"ImageObject\",\n
-        \           \"url\": \"https://upstream.force11.org/content/images/2024/09/1666106405749.jpeg\",\n
-        \           \"width\": 100,\n            \"height\": 100\n        },\n        \"url\":
-        \"https://upstream.force11.org/author/mohammad/\",\n        \"sameAs\": [\n
-        \           \"https://orcid.org/0000-0002-2385-985X\",\n            \"https://x.com/mhmd_hosseini\"\n
-        \       ]\n    },\n    \"contributor\": [\n        {\n            \"@type\":
-        \"Person\",\n            \"name\": \"Violeta Ilik\",\n            \"image\":
-        {\n                \"@type\": \"ImageObject\",\n                \"url\": \"https://upstream.force11.org/content/images/2025/02/1723943640494.jpeg\"\n
-        \           },\n            \"url\": \"https://upstream.force11.org/author/violeta/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0003-2588-3084\",\n
-        \               \"https://x.com/azraiekv\"\n            ]\n        },\n        {\n
-        \           \"@type\": \"Person\",\n            \"name\": \"Nicole Vasilevsky\",\n
-        \           \"image\": {\n                \"@type\": \"ImageObject\",\n                \"url\":
-        \"https://upstream.force11.org/content/images/2022/07/HFBY5hRq_400x400.jpeg\"\n
-        \           },\n            \"url\": \"https://upstream.force11.org/author/nicole/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0001-5208-3432\",\n
-        \               \"https://x.com/n_vasilevsky\"\n            ]\n        },\n
-        \       {\n            \"@type\": \"Person\",\n            \"name\": \"Kristi
-        Holmes\",\n            \"image\": {\n                \"@type\": \"ImageObject\",\n
-        \               \"url\": \"https://upstream.force11.org/content/images/2022/07/j9cKyKAA_400x400.jpg\"\n
-        \           },\n            \"url\": \"https://upstream.force11.org/author/kristi/\",\n
-        \           \"sameAs\": [\n                \"https://orcid.org/0000-0001-8420-5254\",\n
-        \               \"https://x.com/kristiholmes\"\n            ]\n        }\n
-        \   ],\n    \"headline\": \"Deep dive into ethics of Contributor Roles: report
-        of a FORCE11 workshop\",\n    \"url\": \"https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\",\n
-        \   \"datePublished\": \"2022-01-20T09:00:00.000Z\",\n    \"dateModified\":
-        \"2024-01-21T18:28:30.000Z\",\n    \"image\": {\n        \"@type\": \"ImageObject\",\n
-        \       \"url\": \"https://upstream.force11.org/content/images/2022/08/nick-fewings-GoXNygZlftg-unsplash.jpg\",\n
-        \       \"width\": 1200,\n        \"height\": 800\n    },\n    \"keywords\":
-        \"News\",\n    \"description\": \"The FORCE11 attribution working group held
-        a workshop during the 2021 FORCE conference to explore some ethical aspects
-        of using Contributor Roles (CRs). This workshop provided an overview of various
-        CRs and their practical values in terms of providing a better recognition
-        of the wide range of scholarly contributions.\\n\\nAmong developed CRs, the
-        CRediT taxonomy has been the most successful in terms of adoption by journals
-        and prominence among the scholarly community. CASRAI and its community engage\",\n
-        \   \"mainEntityOfPage\": \"https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\"\n}\n
-        \   </script>\n\n    <meta name=\"generator\" content=\"Ghost 6.5\">\n    <link
-        rel=\"alternate\" type=\"application/rss+xml\" title=\"Upstream\" href=\"https://upstream.force11.org/latest/rss/\">\n
-        \   <script defer src=\"https://cdn.jsdelivr.net/ghost/portal@~2.56/umd/portal.min.js\"
-        data-i18n=\"true\" data-ghost=\"https://upstream.force11.org/\" data-key=\"5c1b6ee01f44f70c7feb624aab\"
-        data-api=\"https://upstream.force11.org/ghost/api/content/\" data-locale=\"en\"
-        crossorigin=\"anonymous\"></script><style id=\"gh-members-styles\">.gh-post-upgrade-cta-content,\n.gh-post-upgrade-cta
-        {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n
-        \   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;\n    text-align:
-        center;\n    width: 100%;\n    color: #ffffff;\n    font-size: 16px;\n}\n\n.gh-post-upgrade-cta-content
-        {\n    border-radius: 8px;\n    padding: 40px 4vw;\n}\n\n.gh-post-upgrade-cta
-        h2 {\n    color: #ffffff;\n    font-size: 28px;\n    letter-spacing: -0.2px;\n
-        \   margin: 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta p {\n    margin:
-        20px 0 0;\n    padding: 0;\n}\n\n.gh-post-upgrade-cta small {\n    font-size:
-        16px;\n    letter-spacing: -0.2px;\n}\n\n.gh-post-upgrade-cta a {\n    color:
-        #ffffff;\n    cursor: pointer;\n    font-weight: 500;\n    box-shadow: none;\n
-        \   text-decoration: underline;\n}\n\n.gh-post-upgrade-cta a:hover {\n    color:
-        #ffffff;\n    opacity: 0.8;\n    box-shadow: none;\n    text-decoration: underline;\n}\n\n.gh-post-upgrade-cta
-        a.gh-btn {\n    display: block;\n    background: #ffffff;\n    text-decoration:
-        none;\n    margin: 28px 0 0;\n    padding: 8px 18px;\n    border-radius: 4px;\n
-        \   font-size: 16px;\n    font-weight: 600;\n}\n\n.gh-post-upgrade-cta a.gh-btn:hover
-        {\n    opacity: 0.92;\n}</style>\n    <script defer src=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/sodo-search.min.js\"
-        data-key=\"5c1b6ee01f44f70c7feb624aab\" data-styles=\"https://cdn.jsdelivr.net/ghost/sodo-search@~1.8/umd/main.css\"
-        data-sodo-search=\"https://upstream.force11.org/\" data-locale=\"en\" crossorigin=\"anonymous\"></script>\n
-        \   \n    <link href=\"https://upstream.force11.org/webmentions/receive/\"
-        rel=\"webmention\">\n    <script defer src=\"/public/cards.min.js?v=1e7be1d94a\"></script>\n
-        \   <link rel=\"stylesheet\" type=\"text/css\" href=\"/public/cards.min.css?v=1e7be1d94a\">\n
-        \   <script defer src=\"/public/comment-counts.min.js?v=1e7be1d94a\" data-ghost-comments-counts-api=\"https://upstream.force11.org/members/api/comments/counts/\"></script><style>:root
-        {--ghost-accent-color: #8cbfd0;}</style>\n    <script defer data-domain=\"upstream.force11.org\"
-        src=\"https://plausible.rogue-scholar.org/js/script.js\"></script>\n<meta
-        name=\"google-site-verification\" content=\"tgdG-l0VLD_a7_ynV70J-Se5UV5uETjBxaFAsQos39o\"
-        />\n</head>\n  <body class='post-template tag-news'>\n    <a href='#main'
-        class='c-skip'>Skip to content</a>\n    <header class='c-header'>\n\n  <div
-        class='c-header__top'>\n    <div class='o-grid c-header__top-inner'>\n\n      <div
-        class='c-header__top-block c-header__top-left'>\n          <button class='c-header__button
-        c-header__button--colorMode c-color-mode-btn js-mode-toggle js-mode-toggle-title'
-        title='Dark'>\n          <span class='js-mode-toggle-text u-visible-on-desktop'>Dark</span>\n
-        \         </button>\n          <button class='c-header__button c-header__button--search'
-        data-ghost-search><svg fill=\"\" xmlns=\"http://www.w3.org/2000/svg\"  viewBox=\"0
-        0 30 30\" width=\"30px\" height=\"30px\"><path d=\"M 13 3 C 7.4889971 3 3
-        7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986
-        19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031
-        25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C
-        23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C
-        21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774
-        8.5698774 5 13 5 z\"/></svg><span class='u-visible-on-desktop'>Search</span></button>\n
-        \     </div>\n\n      <div class='c-header__top-block c-header__top-center'>\n
-        \       <div class='c-logo'>\n    <div class='c-logo__dark'>\n        <a href='https://upstream.force11.org'
-        class='u-block'>\n          <img class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--dark-mode-.png'
-        alt='Upstream' width='' height=''>\n        </a>\n    </div>\n\n  <div class='c-logo__light'>\n
-        \     <a href='https://upstream.force11.org' class='u-block'>\n        <img
-        class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png'
-        alt='Upstream' width='' height=''>\n      </a>\n  </div>\n</div>      </div>\n\n
-        \     <div class='c-header__top-block c-header__top-right'>\n            <a
-        href='#/portal/signin' class='c-header__button u-visible-on-desktop'>Sign
-        In</a>\n              <a href='#/portal/signup' class='c-btn c-btn--small'>Subscribe</a>\n
-        \     </div>\n\n    </div>\n  </div>\n\n  <div class='c-header__bottom'>\n
-        \   <div class='o-grid'>\n      <nav class='c-nav-wrap'>\n        <ul class='c-nav
-        c-nav--main u-plain-list'>\n            <li class='c-nav__item c-nav__item--primary'>\n
-        \   <a href='https://upstream.force11.org/about/' class='c-nav__link '>About</a>\n
-        \ </li>\n  <li class='c-nav__item c-nav__item--primary'>\n    <a href='https://upstream.force11.org/author-guidelines/'
-        class='c-nav__link '>Submission guidelines</a>\n  </li>\n  <li class='c-nav__item
-        c-nav__item--primary'>\n    <a href='https://upstream.force11.org/authors/'
-        class='c-nav__link '>Authors</a>\n  </li>\n  <li class='c-nav__item c-nav__item--primary'>\n
-        \   <a href='https://upstream.force11.org/latest/' class='c-nav__link '>Latest
-        Posts</a>\n  </li>\n\n        </ul>\n      </nav>\n    </div>\n  </div>\n\n</header>\n
-        \   <main id='main'>\n      \n\n\n  \n<div class='c-topper'>\n\n  <div class='c-topper__content'>\n
-        \     <div class='c-topper__tag c-tag'>\n        <a href=\"/tag/news/\">News</a>\n
-        \     </div>\n\n    <h1 class='c-topper__headline'>Deep dive into ethics of
-        Contributor Roles: report of a FORCE11 workshop</h1>\n\n\n      <div class='c-topper__meta'>\n
-        \       <div>\n          <div class='c-byline c-topper__byline'>\n    <span
-        class='u-hidden '>,&nbsp;</span>\n    <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/mohammad/'>Mohammad Hosseini</a>\n    <span class=' '>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/violeta/'>Violeta
-        Ilik</a>\n    <span class=' '>,&nbsp;</span>\n    <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/nicole/'>Nicole Vasilevsky</a>\n    <span class=' u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden u-block'>&nbsp;and&nbsp;</span>\n\n    <a href='/author/kristi/'>Kristi
-        Holmes</a>\n</div>          <time class='c-timestamp c-topper__timestamp'
-        datetime='2022-01-20'>\n  January 20, 2022\n\n    <span class='c-timestamp__detail'>
-        . 9:00 AM</span>\n</time>          <div class='c-reading-time c-topper__reading-time'>4
-        min read</div>            <a class=\"c-nav\" href=\"https://doi.org/10.54900/rf84ag3-98f00rt-0phta\">https://doi.org/10.54900/rf84ag3-98f00rt-0phta</a>
-        \       </div>\n\n        <ul class='c-share u-plain-list'>\n  <li class='c-share__item'>\n
-        \   <a class='c-share__link'\n       href=\"https://twitter.com/share?text=Deep%20dive%20into%20ethics%20of%20Contributor%20Roles%3A%20report%20of%20a%20FORCE11%20workshop&amp;url=https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\"\n
-        \      onclick=\"window.open(this.href, 'twitter-share', 'width=550, height=235');
-        return false;\">\n      <span data-icon='ei-sc-twitter' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Twitter</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n       href=\"https://www.facebook.com/sharer/sharer.php?u=https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\"\n
-        \      onclick=\"window.open(this.href, 'facebook-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-facebook' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Facebook</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n      href=\"http://pinterest.com/pin/create/button/?url=https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/&media=https://upstream.force11.org/content/images/2022/08/nick-fewings-GoXNygZlftg-unsplash.jpg&description=Deep%20dive%20into%20ethics%20of%20Contributor%20Roles%3A%20report%20of%20a%20FORCE11%20workshop\"\n
-        \     onclick=\"window.open(this.href, 'pinterest-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-pinterest' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on Pinterest</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link'\n      href=\"https://www.linkedin.com/shareArticle?mini=true&url=https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/&title=Deep%20dive%20into%20ethics%20of%20Contributor%20Roles%3A%20report%20of%20a%20FORCE11%20workshop\"\n
-        \     onclick=\"window.open(this.href, 'linkedin-share', 'width=580, height=296');
-        return false;\">\n      <span data-icon='ei-sc-linkedin' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share on LinkedIn</span>\n    </a>\n  </li>\n\n
-        \ <li class='c-share__item'>\n    <a class='c-share__link' href=\"whatsapp://send?text=Deep%20dive%20into%20ethics%20of%20Contributor%20Roles%3A%20report%20of%20a%20FORCE11%20workshop
-        https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\">\n
-        \     <svg xmlns=\"http://www.w3.org/2000/svg\" class='c-share__icon icon'
-        enable-background=\"new 0 0 20 20\" viewBox=\"0 0 24 24\"><path d=\"M16.6
-        14c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.2-.5-.5-1-1.1-1.4-1.7-.1-.2
-        0-.4.1-.5.1-.1.2-.3.4-.4.1-.1.2-.3.2-.4.1-.1.1-.3 0-.4-.1-.1-.6-1.3-.8-1.8-.1-.7-.3-.7-.5-.7h-.5c-.2
-        0-.5.2-.6.3-.6.6-.9 1.3-.9 2.1.1.9.4 1.8 1 2.6 1.1 1.6 2.5 2.9 4.2 3.7.5.2.9.4
-        1.4.5.5.2 1 .2 1.6.1.7-.1 1.3-.6 1.7-1.2.2-.4.2-.8.1-1.2l-.4-.2m2.5-9.1C15.2
-        1 8.9 1 5 4.9c-3.2 3.2-3.8 8.1-1.6 12L2 22l5.3-1.4c1.5.8 3.1 1.2 4.7 1.2 5.5
-        0 9.9-4.4 9.9-9.9.1-2.6-1-5.1-2.8-7m-2.7 14c-1.3.8-2.8 1.3-4.4 1.3-1.5 0-2.9-.4-4.2-1.1l-.3-.2-3.1.8.8-3-.2-.3c-2.4-4-1.2-9
-        2.7-11.5S16.6 3.7 19 7.5c2.4 3.9 1.3 9-2.6 11.4\"/></svg>      <span class='u-screenreader'>Share
-        on WhatsApp</span>\n    </a>\n  </li>\n\n  <li class='c-share__item'>\n    <a
-        class='c-share__link'\n       href=\"mailto:?subject=Deep%20dive%20into%20ethics%20of%20Contributor%20Roles%3A%20report%20of%20a%20FORCE11%20workshop&body=https://upstream.force11.org/deep-dive-into-ethics-of-contributor-roles/\">\n
-        \     <span data-icon='ei-envelope' data-size='s' class='c-share__icon'></span>\n
-        \     <span class='u-screenreader'>Share via Email</span>\n    </a>\n  </li>\n</ul>
-        \     </div>\n  </div>\n\n    <figure class='c-feature-image-figure'>\n      <div
-        class='c-feature-image-wrap'>\n        <img\n          alt=\"\"\n          class='c-feature-image
-        lazyload'\n          data-src='/content/images/size/w1304/2022/08/nick-fewings-GoXNygZlftg-unsplash.jpg'\n
-        \       >\n      </div>\n    </figure>\n</div>\n  <article class='c-post post
-        tag-news'>\n    <div class='c-content '>\n      <p>The FORCE11 attribution
-        working group held a workshop during the 2021 FORCE conference to explore
-        some ethical aspects of using Contributor Roles (CRs). This workshop provided
-        an overview of various CRs and their practical values in terms of providing
-        a better recognition of the wide range of scholarly contributions.</p><p>Among
-        developed CRs, the CRediT taxonomy has been the most successful in terms of
-        adoption by journals and prominence among the scholarly community. CASRAI
-        and its community engagement efforts played a vital role in stressing the
-        importance of CRs and articulating their function within scholarly publishing
-        systems. Recently formalized as a NISO (National Information Standards Organization)
-        standard and launched as a <a href=\"https://credit.niso.org/\">formal initiative</a>,
-        the adoption and use of CRediT can now benefit from NISO\u2019s long term
-        project management and support mechanisms, including:</p><ul><li>Support for
-        adoption and use of CRediT, particularly through implementation.</li><li>Ensuring
-        that CRediT is tied to ORCID and included in the Crossref metadata capture.</li><li>Establishing
-        a foundation for community engagement and support through community-building
-        activities such as an Interest Group, outreach and communications, and providing
-        mechanisms for feedback.</li></ul><p>After providing a brief overview of CRediT
-        <a href=\"https://credit.niso.org/implementing-credit/\">implementation recommendations
-        for scholars</a>, the DataCite contributorTypes model was introduced. This
-        model is developed and maintained by the DataCite Metadata Working Group for
-        the DataCite metadata schema. In <a href=\"https://doi.org/10.14454/3w3z-sa82
-        \">the DataCite schema</a>, a contributor is defined as: \u201CThe institution
-        or person responsible for collecting, managing, distributing, or otherwise
-        contributing to the development of the resource\u201D. Based on community
-        feedback and suggestions, DataCite\u2019s latest metadata schema iteration
-        includes new contributorTypes such as DataManager, DataCurator, ResearchGroup,
-        and HostingInstitution. Furthermore, in the new iteration, if the <em>Contributor</em>
-        field is used, then contributorType too becomes a mandatory field to fill
-        with one of the provided items in the controlled list. These important additions
-        further clarify the role of individual and institutional contributors.</p><p>Next,
-        the preliminary results of an ongoing scoping review about the ethics of CRs
-        were shared with workshop attendees. In particular, ethical issues about the
-        attribution of credit and responsibilities when attempting to employ CRs in
-        the acknowledgment section of publications were discussed. Using a <a href=\"https://doi.org/10.1186/s41073-021-00117-3
-        \">recently published manuscript</a> (about gender disparity in publication
-        records) that had a detailed explanation of contributions in the acknowledgment
-        section, it was argued that:</p><ol><li>Not all the contributions that are
-        <em>vital</em> for the success of a project could be captured with CRs. For
-        example, the contribution of a r<em>esearch officer</em> who had connected
-        researchers to the HR office, thereby facilitating access to (anonymized)
-        information of a department\u2019s employees would be challenging to capture
-        using CRs. Similarly, educational contributions which may have been necessary
-        for the project\u2019s success are not always easy to capture with CRs.</li><li>Assigning
-        the same roles to both author and non-author contributors has ethical implications
-        in terms of the attribution of responsibilities and accountabilities. In the
-        acknowledgment section of the example manuscript shared in this session, three
-        names were mentioned who had helped improve the questionnaire used in the
-        study. It was argued that although these specific contributions can be captured
-        with CRs (e.g., CRediT\u2019s Methodology role), since acknowledged persons
-        could be unaware of the full methodological approach and might also not see
-        the final version of the questionnaire/manuscript, they cannot be held accountable
-        for their contributions. On that basis, solely relying on CRs for describing
-        acknowledges <em>who could not be held accountable</em> or <em>are not willing
-        to be accountable</em> for their contributions, is an ethical challenge.</li></ol><p>In
-        order to engage the participants, an in-session survey about CRs was conducted
-        to learn more about participants\u2019 usage of, and challenges with CRs.
-        Responses showed that CRediT and DataCite were more well-known than other
-        models among the participants \u2014 59% of respondents had used the CRediT
-        taxonomy and DataCite was used by approximately 32% (Figure 1).</p><figure
-        class=\"kg-card kg-image-card\"><img src=\"https://lh6.googleusercontent.com/EnkTW_FTQ_sYpQHfCizM6lBsfMQ7u83HlZwoOeiEYd7uEw7hYKLEb0rkpHoYxqFq1L7mkj3KrhJW8OnCKLkWraMm_0-IazBjda95ZfFWZSpCZPM7LTjVSppQFPx5Jg\"
-        class=\"kg-image\" alt loading=\"lazy\"></figure><p><em>Figure 1: Workshop
-        participants indicated which contributor role (CRs) they have used. (22 responses).</em></p><p>When
-        asked about the challenges of using CRs in their context, respondents mentioned
-        the generality of roles (i.e., roles are too general and do not always align
-        with specific domains) and difficulties of capturing contributions with CRediT
-        roles, which speaks to the need for extension with perhaps more domain-specific
-        roles in CR models. Some workshop attendees also expressed a lack of knowledge
-        about CRs and how to implement them \u2014 32% of respondents noted that they
-        had never used any CRs. This may reflect a lack of awareness about CRs outside
-        the scholarly communication and publication circles. Furthermore, the workshop's
-        Q&amp;A discussions showed a lack of clarity about practical questions, such
-        as roles that qualify one as an author versus roles that should only be mentioned
-        in the acknowledgment sections. Accordingly, there seem to be opportunities
-        for experts to document best practices guidelines on how to use CRs and guidelines
-        for authorship in different fields. Increased support and requirements from
-        publishers and journals would also help address some challenges if they were
-        to provide structured CRs for the authors in the manuscript submission workflows.
-        Some respondents also mentioned positive experiences with additional/complementary
-        solutions which enhance the application of CRs such as <a href=\"https://marton-balazs-kovacs.github.io/tenzing/\">Tenzing</a>,
-        <a href=\"https://rescognito.com/\">Rescognito</a>, and <a href=\"https://jats4r.org/credit-taxonomy/\">JATS4R
-        Recommendations for CRediT</a>.</p><p>When asked about what functionality/tools
-        would improve their use of CRs, respondents noted best practice guidelines
-        across disciplines would be valuable; templating systems to capture contributions,
-        including support in LaTeX and other non-standard word processing formats;
-        buy-in from journals to provide structured questions about CRs embedded in
-        their submission systems; and institutional buy-in, such as from universities.
-        Lastly, respondents highlighted output types that are currently not credited,
-        which are outlined in Table 1.</p><p><em>Table 1: Outputs or scholarly products
-        that are produced by workshop attendees but that are currently not credited
-        for (15 responses).</em></p><!--kg-card-begin: html--><table style=\"border:none;border-collapse:collapse;\"><colgroup><col
-        width=\"350\"><col width=\"99\"></colgroup><tbody><tr style=\"height:26.25pt\"><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;background-color:#c9daf8;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Output
-        type</span></p></td><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;background-color:#c9daf8;padding:2pt 2pt 2pt
-        2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Number
-        of respondents</span></p></td></tr><tr style=\"height:15.75pt\"><td style=\"border-left:solid
-        #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000
-        0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt 2pt
-        2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Datasets</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">9</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Project
-        management templates</span></p></td><td style=\"border-left:solid #000000
-        0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid
-        #000000 0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">8</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Curated
-        data</span></p></td><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">8</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Websites</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Databases</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Code</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">6</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">GitHub
-        commits</span></p></td><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">4</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Videos</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Software</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">3</span></p></td></tr><tr
-        style=\"height:26.25pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;background-color:#ffffff;padding:2pt 2pt 2pt
-        2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Preservation
-        of primary sources (e.g., in cultural heritage organizations)</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Presentations</span></p></td><td
-        style=\"border-left:solid #000000 0.75pt;border-right:solid #000000 0.75pt;border-bottom:solid
-        #000000 0.75pt;border-top:solid #000000 0.75pt;vertical-align:bottom;padding:2pt
-        2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p dir=\"ltr\" style=\"line-height:1.38;text-align:
-        center;margin-top:0pt;margin-bottom:0pt;\"><span style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td></tr><tr
-        style=\"height:15.75pt\"><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">Community
-        engagement protocol</span></p></td><td style=\"border-left:solid #000000 0.75pt;border-right:solid
-        #000000 0.75pt;border-bottom:solid #000000 0.75pt;border-top:solid #000000
-        0.75pt;vertical-align:bottom;padding:2pt 2pt 2pt 2pt;overflow:hidden;overflow-wrap:break-word;\"><p
-        dir=\"ltr\" style=\"line-height:1.38;text-align: center;margin-top:0pt;margin-bottom:0pt;\"><span
-        style=\"font-size:10pt;font-family:Arial;color:#000000;background-color:transparent;font-weight:400;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;\">1</span></p></td></tr></tbody></table><!--kg-card-end:
-        html--><p><br>We thank all the participants for attending our session and
-        contributing to an outstanding discussion! \_We also thank FORCE11 for the
-        opportunity to continue the discussion around CRs. Our team plans to continue
-        work in this area and welcomes input and collaboration from the FORCE11 community.
-        We encourage you to view the entire workshop on <a href=\"https://www.youtube.com/watch?v=HKnnB-jaTYk\">YouTube</a>.</p><figure
-        class=\"kg-card kg-embed-card kg-card-hascaption\"><iframe width=\"200\" height=\"113\"
-        src=\"https://www.youtube.com/embed/HKnnB-jaTYk?feature=oembed\" frameborder=\"0\"
-        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-        picture-in-picture\" allowfullscreen></iframe><figcaption>Deep Dive: Ethics
-        of Contributor Roles at Force2021.</figcaption></figure><p><em>This work is
-        supported by a Pilot/Exploratory Grant from Northwestern University Center
-        for Bioethics and Medical Humanities and the Northwestern University Clinical
-        and Translational Sciences Institute (NUCATS, UL1TR001422).</em></p>\n\n        <p>\n
-        \         Copyright \xA9 2022 Mohammad Hosseini, Violeta Ilik, Nicole Vasilevsky,
-        Kristi Holmes. \n          Distributed under the terms of the <a href=\"https://creativecommons.org/licenses/by/4.0/legalcode\">Creative
-        Commons Attribution 4.0 License.</a>\n        </p>\n    </div>\n\n\n      <div
-        class='c-section-heading'>\n    <h2 class='c-section-heading__title'>Comments
-        <script\n    data-ghost-comment-count=\"629e22b88f64636ea48d338b\"\n    data-ghost-comment-count-empty=\"\"\n
-        \   data-ghost-comment-count-singular=\"\"\n    data-ghost-comment-count-plural=\"\"\n
-        \   data-ghost-comment-count-tag=\"span\"\n    data-ghost-comment-count-class-name=\"u-font-size-scale-5\"\n
-        \   data-ghost-comment-count-autowrap=\"true\"\n>\n</script></h2>\n  </div>\n
-        \ \n        <script defer src=\"https://cdn.jsdelivr.net/ghost/comments-ui@~1.2/umd/comments-ui.min.js\"
-        data-locale=\"en\" data-ghost-comments=\"https://upstream.force11.org/\" data-api=\"https://upstream.force11.org/ghost/api/content/\"
-        data-admin=\"https://upstream.force11.org/ghost/\" data-key=\"5c1b6ee01f44f70c7feb624aab\"
-        data-title=\"\" data-count=\"false\" data-post-id=\"629e22b88f64636ea48d338b\"
-        data-color-scheme=\"auto\" data-avatar-saturation=\"60\" data-accent-color=\"#8cbfd0\"
-        data-comments-enabled=\"all\" data-publication=\"Upstream\" crossorigin=\"anonymous\"></script>\n
-        \   \n  </article>\n\n\n    <div class='c-section c-section--related'>\n      <div
-        class='o-grid'>\n        <div class='c-section-heading'>\n          <h2 class='c-section-heading__title'>Related</h2>\n
-        \       </div>\n      </div>\n\n      <div class='o-grid o-grid--4-columns'>\n
-        \         <article class='js-card c-card c-card-- c-card-- post tag-news featured'>\n
-        \   <a href='/the-collaborative-metadata-enrichment-taskforce-comet-releases-their-community-call-to-action/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"The Collaborative Metadata Enrichment Taskforce (COMET) releases
-        their Community Call to Action\"\n        data-src='https://images.unsplash.com/photo-1455849318743-b2233052fcff?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDIwfHxDb2xsYWJvcmF0aXZlJTIwTWV0YWRhdGElMjBFbnJpY2htZW50JTIwVGFza2ZvcmNlJTIwJTI4Q09NRVQlMjklMjByZWxlYXNlcyUyMHRoZWlyJTIwQ29tbXVuaXR5JTIwQ2FsbCUyMHRvJTIwQWN0aW9ufGVufDB8fHx8MTc0MTAyNTA4OHww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1304'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/the-collaborative-metadata-enrichment-taskforce-comet-releases-their-community-call-to-action/'
-        class='c-card__link'>The Collaborative Metadata Enrichment Taskforce (COMET)
-        releases their Community Call to Action</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/adam-buttrick/'>Adam
-        Buttrick</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-03-04'>\n
-        \ March 4, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news tag-thought-pieces'>\n
-        \   <a href='/cultivating-openness-from-community-resources-to-institutional-acceptance/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"Cultivating Openness: From Community Resources to Institutional
-        Acceptance\"\n        data-src='/content/images/size/w1304/2024/11/Screenshot-2024-11-09-at-14-07-25-All-sizes-2024-10-22-Open-Science-Festival-Maastricht---291-Flickr---Photo-Sharing-.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/cultivating-openness-from-community-resources-to-institutional-acceptance/'
-        class='c-card__link'>Cultivating Openness: From Community Resources to Institutional
-        Acceptance</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden '>,&nbsp;</span>\n    <span class='u-hidden
-        '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/chris/'>Chris Hartgerink</a>\n
-        \   <span class=' '>,&nbsp;</span>\n    <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n
-        \   <a href='/author/lena/'>Lena Karvovskaya</a>\n    <span class=' '>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/esther/'>Esther
-        Plomp</a>\n    <span class=' u-hidden'>,&nbsp;</span>\n    <span class='u-hidden
-        u-block'>&nbsp;and&nbsp;</span>\n\n    <a href='/author/dorienhuijser/'>Dorien
-        Huijser</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2024-11-19'>\n
-        \ November 19, 2024\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news'>\n    <a href='/fair-principle-for-research-software-fair4rs-2-year-review/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"FAIR principle for Research Software (FAIR4RS) 2-year review\"\n
-        \       data-src='/content/images/size/w1304/2024/11/Bildschirmfoto-2024-11-13-um-23.06.38.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/fair-principle-for-research-software-fair4rs-2-year-review/'
-        class='c-card__link'>FAIR principle for Research Software (FAIR4RS) 2-year
-        review</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span
-        class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/danielskatz/'>Daniel
-        S. Katz</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2024-11-14'>\n
-        \ November 14, 2024\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-news featured'>\n    <a href='/advancing-metadata-quality-an-open-call/'
-        class='c-card__media'>\n      <img\n        class='c-card__image lazyload'\n
-        \       alt=\"Advancing Metadata Quality: An Open Call to Collaborate\"\n
-        \       data-src='https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?crop&#x3D;entropy&amp;cs&#x3D;tinysrgb&amp;fit&#x3D;max&amp;fm&#x3D;jpg&amp;ixid&#x3D;M3wxMTc3M3wwfDF8c2VhcmNofDF8fGNvbWV0fGVufDB8fHx8MTcyODM0MjA5Nnww&amp;ixlib&#x3D;rb-4.0.3&amp;q&#x3D;80&amp;w&#x3D;1304'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/news/\">News</a>\n      </div>\n\n    <h3
-        class='c-card__headline'><a href='/advancing-metadata-quality-an-open-call/'
-        class='c-card__link'>Advancing Metadata Quality: An Open Call to Collaborate</a></h3>\n\n\n
-        \   <div class='c-card__meta'>\n      <div class='c-byline c-card__byline'>\n
-        \   <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span class='u-hidden
-        '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/adam-buttrick/'>Adam Buttrick</a>\n</div>\n
-        \     <time class='c-timestamp c-card__timestamp' datetime='2024-10-08'>\n
-        \ October 8, 2024\n\n</time>    </div>\n  </div>\n</article>      </div>\n
-        \   </div>\n\n    <div class='c-section c-section--latest'>\n      <div class='o-grid'>\n
-        \       <div class='c-section-heading'>\n          <h2 class='c-section-heading__title'>Latest</h2>\n
-        \       </div>\n      </div>\n\n      <div class='o-grid o-grid--4-columns'>\n
-        \         <article class='js-card c-card c-card-- c-card-- post tag-thought-pieces
-        featured'>\n    <a href='/research-fast-and-slow/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"&quot;SLOW
-        DOWN&quot; in big font text\"\n        data-src='/content/images/size/w1304/2025/10/Dagstuhl-25381_-Lightning-Talks--one-slide-per-participant-.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/research-fast-and-slow/' class='c-card__link'>Research
-        Fast and Slow, in the Age of AI</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/min/'>Min-Yen
-        Kan</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-10-28'>\n
-        \ October 28, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-thought-pieces featured'>\n
-        \   <a href='/from-promise-to-precarity-plight-international-postdocs/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"From Promise
-        to Precarity: The Plight of International Postdocs \u2014 When Will Academia
-        Act?\"\n        data-src='/content/images/size/w1304/2025/09/laboratory-2815641_1280.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/from-promise-to-precarity-plight-international-postdocs/'
-        class='c-card__link'>From Promise to Precarity: The Plight of International
-        Postdocs \u2014 When Will Academia Act?</a></h3>\n\n\n    <div class='c-card__meta'>\n
-        \     <div class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/riya/'>Riya
-        Thomas</a>\n</div>\n      <time class='c-timestamp c-card__timestamp' datetime='2025-09-30'>\n
-        \ September 30, 2025\n\n</time>    </div>\n  </div>\n</article>          <article
-        class='js-card c-card c-card-- c-card-- post tag-thought-pieces'>\n    <a
-        href='/my-response-to-nih-request-for-information-on-proposed-apc-caps/' class='c-card__media'>\n
-        \     <img\n        class='c-card__image lazyload'\n        alt=\"My Response
-        to the NIH Request for Information on Proposed APC Caps\"\n        data-src='/content/images/size/w1304/2025/08/1000015512.jpg'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/my-response-to-nih-request-for-information-on-proposed-apc-caps/'
-        class='c-card__link'>My Response to the NIH Request for Information on Proposed
-        APC Caps</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div class='c-byline
-        c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n    <span
-        class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/marcum/'>Christopher
-        Steven Marcum</a>\n</div>\n      <time class='c-timestamp c-card__timestamp'
-        datetime='2025-08-26'>\n  August 26, 2025\n\n</time>    </div>\n  </div>\n</article>
-        \         <article class='js-card c-card c-card-- c-card-- post tag-thought-pieces'>\n
-        \   <a href='/capping-apcs-may-not-work/' class='c-card__media'>\n      <img\n
-        \       class='c-card__image lazyload'\n        alt=\"Capping APCs May Backfire
-        on NIH\"\n        data-src='/content/images/size/w1304/2025/07/nih-apc.png'\n
-        \     >\n    </a>\n\n  <div class='c-card__content'>\n      <div class='c-card__tag
-        c-tag'>\n        <a href=\"/tag/thought-pieces/\">Thought Pieces</a>\n      </div>\n\n
-        \   <h3 class='c-card__headline'><a href='/capping-apcs-may-not-work/' class='c-card__link'>Capping
-        APCs May Backfire on NIH</a></h3>\n\n\n    <div class='c-card__meta'>\n      <div
-        class='c-byline c-card__byline'>\n    <span class='u-hidden u-hidden'>,&nbsp;</span>\n
-        \   <span class='u-hidden '>&nbsp;and&nbsp;</span>\n\n    <a href='/author/marcum/'>Christopher
-        Steven Marcum</a>\n</div>\n      <time class='c-timestamp c-card__timestamp'
-        datetime='2025-07-22'>\n  July 22, 2025\n\n</time>    </div>\n  </div>\n</article>
-        \     </div>\n    </div>\n\n    </main>\n\n    <footer class='c-footer'>\n
-        \ <div class='o-grid c-footer__content'>\n    <div class='c-logo'>\n    <div
-        class='c-logo__dark'>\n        <a href='https://upstream.force11.org' class='u-block'>\n
-        \         <img class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--dark-mode-.png'
-        alt='Upstream' width='' height=''>\n        </a>\n    </div>\n\n  <div class='c-logo__light'>\n
-        \     <a href='https://upstream.force11.org' class='u-block'>\n        <img
-        class='c-logo__img' src='https://upstream.force11.org/content/images/2022/06/Upstream-logo--light-mode-.png'
-        alt='Upstream' width='' height=''>\n      </a>\n  </div>\n</div>\n    <ul
-        class='c-social-icons u-plain-list'>\n\n\n\n\n\n\n  <li class='c-social-icons__item'>\n
-        \   <a href='/latest/rss/' class='c-social-icons__link'>\n      <span class='c-social-icons__icon'><svg
-        xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24
-        24'><path d='M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248
-        0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062
-        10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046
-        19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z'/></svg></span>\n
-        \     <span class='u-screenreader'>RSS</span>\n    </a>\n  </li>\n</ul>\n\n
-        \   <div class='c-footer-copy'>\n      &copy; 2025 Upstream\n      <span>
-        \u2013 Published with <a href='https://ghost.org'>Ghost</a> & <a href='https://aspirethemes.com/themes/tripoli'>Tripoli</a></span>\n
-        \   </div>\n  </div>\n</footer>\n    <script src='/assets/js/app.min.js?v=1e7be1d94a'></script>\n
-        \   \n  </body>\n</html>"
+      string: !!binary |
+        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
+        g4byg4byw4byw4by+w3l9xvKjxrKjxrKjxvKjxvK/9t/bKjwb/+xsca//XNjnX/75+ZazS2tautf
+        mmv9S1OtxjqNNf5TU43/1FTjPzfV+M9NNf5LU43/0lTjvzbV+K9NNf5bU43/1lTjvzfV+O9NNf61
+        qca/FuRpIQhFRdysY2LaydN2vGxNxWaWtqZiM2dbXbGRwa2u1sjnVldrZHerqzVyvdXVGpnf6mqN
+        PHB1tUZWuLpaI0dcXW0Fu1pXcSV/XFt5FZtcW3kVt1xTuZlprqnYzDvXVGxmoWsqNnPSNRWbGeqa
+        is18dU3FZva6pmIzl72Odr6O3aLSe6m0bs99t4PTzIy3g9PMm7eC08iqt4LSyLm3gtLIyLeC0sjX
+        t4LSyOa3gtLI9beC0igEtoLSKBO2grKCVW8JZ6XE2BbWKgGyLaxV8mQ7WM3iZTs4zdJmOzjNwmc7
+        OM2yaDs4zaJpOzjNkmo7OM2Cazs4zXKsHk7V6/NGYkwZUXYhydaA2kaYrQG1jTxbDWoLkbYa0BZS
+        bTWgLQTbakBbyLbVgLYQb6sBbSHhVgPaQsitBrSFnFsNaCtRtw7UltJuLbjtBN5acNvJvDXgthF7
+        a0BtI/nWgNpG+K0BtY38WwNqGxG4BtQ2UnANqG0E4RpQ28jCzC9p4zMxcExb4YS+4ZnYnYi9E7F3
+        IvZOxN6J2DsR+z+LiL2ek8nONqfXPuu6LsRryNFrn45dE+L2UvWa52nXhLe9jL3mCdw14W0vca95
+        ZndNeNvL32ue8l0T3nWk8Y3OBa8P9Vqy+UYnideFeg1Jfe2zx+tCvIbcvvZp5XUhXkOKX/t887oQ
+        ryHTr30iug7iz+SYuTqpUBFhYfpeeelsXZKi1bpNbY73qhciDGhTLNtml9MNQ6nsPH7z2swraSKK
+        2n4aSxrQYvyezfK4XGN8kmijGCL5bcndOd1vhG0kg50IBD5229MLcaNs1bXTLeAg/Cu+sKB3YxN6
+        UWXhEsrH7rUgVwZdLQXYa/abv0nsvRUXclWaKIlMlfM1Jk28lWR8JSw2uLqvKuz2bumu7qrLe6Wr
+        rtXXor+Li6Hb3aJXaPx81yA3GKMycje/Gzws9n7TC5jXOyUotFICHLGzAia5IEvRoYFAX6pdG62I
+        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
+        JhmDWkSYm5rAG8S5bPRBW8HtAA3x0OQtBgIA
     headers:
       Cache-Control:
       - public, max-age=0
@@ -1002,9 +438,9 @@ interactions:
       Content-Type:
       - text/html; charset=utf-8
       Date:
-      - Mon, 01 Dec 2025 17:17:54 GMT
+      - Mon, 01 Jun 2026 13:22:29 GMT
       ETag:
-      - W/"20058-RlvgXIAoeUBirA6qwoqaxkA7fDE"
+      - W/"2062d-fyyl755BUrGSNvIdClP83Li223Q"
       Server:
       - nginx/1.18.0 (Ubuntu)
       Transfer-Encoding:
@@ -1031,10 +467,12 @@ interactions:
     uri: https://doi.org/ra/10.54900
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.54900\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9UxNLAwMlHYhwkCNI1Lkov7i4KDVNCShYyxUL
+        ADCXIW83AAAA
     headers:
       CF-RAY:
-      - 9a743da1fb2ad5a3-AMS
+      - a04e870a0e416608-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1042,11 +480,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:17:54 GMT
+      - Mon, 01 Jun 2026 13:22:30 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ciEaU7LrgkOW80S1hLE%2B27OlW07HY0%2FWr%2BMCbwxKNfGQ1CtYkCpROs7lpFCRuDPK%2BAFEV83spR79emw9xtfpWe8U%2BJxNiTXxhxYqxx8Ip0FVGQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=P3gDQ5vm2YlL9eaK9KEDj6kEyypsLZWUQuSWC1l0XPdRIMAo8aPURSclC8MgF6aIUkOpBivjynlOL7KllM740INigjnJMfNGKChPvR%2BujsYphkD0078ChHn4ZmFLtQ6Vvknj87M%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -1080,23 +518,39 @@ interactions:
     uri: https://api.crossref.org/works/10.54900/rf84ag3-98f00rt-0phta
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
-        Matter"}],"indexed":{"date-parts":[[2025,11,23]],"date-time":"2025-11-23T22:13:56Z","timestamp":1763936036704,"version":"3.45.0"},"posted":{"date-parts":[[2022,1,20]]},"group-title":"Upstream","reference-count":0,"publisher":"Front
-        Matter","license":[{"start":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T00:00:00Z","timestamp":1642636800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T00:00:00Z","timestamp":1642636800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>The
-        FORCE11 attribution working group held a workshop during the 2021 FORCE conference
-        to explore some ethical aspects of using Contributor Roles (CRs). This workshop
-        provided an overview of various CRs and their practical values in terms of
-        providing a better recognition of the wide range of scholarly contributions.<\/jats:p>","DOI":"10.54900\/rf84ag3-98f00rt-0phta","type":"posted-content","created":{"date-parts":[[2022,1,20]],"date-time":"2022-01-20T04:18:58Z","timestamp":1642652338000},"source":"Crossref","is-referenced-by-count":0,"title":["Deep
-        dive into ethics of Contributor Roles: report of a FORCE11 workshop"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0002-2385-985X","authenticated-orcid":false,"given":"Mohammad","family":"Hosseini","sequence":"first","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0003-2588-3084","authenticated-orcid":false,"given":"Violeta","family":"Ilik","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0001-5208-3432","authenticated-orcid":false,"given":"Nicole","family":"Vasilevsky","sequence":"additional","affiliation":[]},{"ORCID":"https:\/\/orcid.org\/0000-0001-8420-5254","authenticated-orcid":false,"given":"Kristi","family":"Holmes","sequence":"additional","affiliation":[]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/upstream.force11.org\/deep-dive-into-ethics-of-contributor-roles\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.54900\/rf84ag3-98f00rt-0phta.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2025,11,23]],"date-time":"2025-11-23T22:11:27Z","timestamp":1763935887000},"score":1,"resource":{"primary":{"URL":"https:\/\/upstream.force11.org\/deep-dive-into-ethics-of-contributor-roles\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2022,1,20]]},"references-count":0,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.54900\/rf84ag3-98f00rt-0phta","relation":{},"subject":[],"published":{"date-parts":[[2022,1,20]]},"subtype":"other"}}'
+      string: !!binary |
+        H4sIAAAAAAAA/81XXW/bNhT9K4KeNsy09WVHFoq9JCtWbG2BIC2GxX6gJcpmI4kqSbnxgvz3nUvJ
+        iZM0S4AhW4wYcPhx7zn3Xh5eXvnGctsZP/PVhT/ya2EMXwtmd63A2DelD0e3QhupGkyE42Ac3M74
+        2ZUvG2Ol7axbcH7lN7wmE2+1aqz3nlsrtH+9HGFdIS5FQVsKbgVrubbwf34eBdFsFI2idIlVbspK
+        Z4ImWBCxKD0LjrL4KEuiP+GbZoG+bv0sPDqKolkSzaJ0Go78W5zxeBqMQ/965LfK2Ee8RqNwFAXL
+        JVattepa+LUVOf7UGqsFr+FMi1Jo0eSC5aprrJ8FMNmtKmk24HWP5sivZC4aI1wggFHbf3T8gG7E
+        gpBFwVkQZO7vPl2iGs/SgD5AncO3aOxBfraKUBSi4jsmG1bwnXGQP53+jtmNta3JFpPFJAc9K7ci
+        V3WtGjNWer2YDODNYrLaLSbJOMCQWPMqV4VAKP8fRraoX4rR8tZfoWouG0dt+HVOs1oZU3N9wTQA
+        a5n3RV7yygiANRulLSMT2CH0vnxoJ19hPc8RLP/NF25N1v58thHe24+nx7+EoYdy0XLlzoxHZ002
+        a8+VoLcRVeFxNwjzrVd0miYtNiOaYW/Bg8+hLD2rPHHZVkoLz6haeMJuZM4rj5tW5NZ4qvQ6QyaO
+        gdM5Vdo7VZUw3g/Hp+bHsXe2kebWYavVVhYCIBpPIQ1bKb6RkS3XUnXGwx5MFYRIaqwGSedvy6sO
+        NmXj4STUzm9vinxzbyXohHga+Vk30hHHCqL1Dd48zZu1oBGTb1TFdbUjjjdBMuM3i8kQR1TDycd3
+        pEXBeJrMA+RUl2nC1zGbp2UQICVBu7GcCq1Xs14C2JBrn/KKWnlCFB6v5CQL02yafq+Sp1Ecp30l
+        G9XpnLYeUxFBRrBcGnajJwVb7Q40ZV87/okQyDoKGaGk3FI6XTQf5C9DNFtUIE3ym9LaJ9IHgxbe
+        5OUQqnk8JeXmnUXZOoHCjncndw6R0rks+qNDB5LhC/mN0ylCO/1j2I0YIuMUUbd8OA/QUICmE/te
+        bXhd8wLLS17LaoexXxEDIRuJMSO+dhQAjJZSG8oHL0tZST5cIQCuVdVraP9jDxoKr3K+6lAgZDTf
+        R/Z6Ser0LDoxi6ZpyuIgTZ5J57MEBldON2zeVfLiLhNeFK6oefXf0gnZNApAJ4mjZ9L5IHMCccDm
+        MzeyEltzsXstnNIkCkBs+twU/aYlepC79VbhZL4snyW1QfXKtQFxeDSf+v198uAyUFquJdwejlWy
+        uXDu7t9j3dB7jEtwFWHYx6aAKjBSBUaqwHpVYKpk+a0qMEKOq86/vdYGAbTi0i4mG1tX/uNNg6Rh
+        CD/jbVtRuIf7F3tZjaPbrF0PcB8vb+VYq3Un2CDdPWDSXGB5QqPHdfEY2raia/iVwW2L8iHeAwAw
+        dGfFqwAt0K8+gZqW/PSXbF8b9Ms7Ffs95Jf/uqbppsc9auRjHcGMOoL59x8n6AjmZ0GaRWGWJA8e
+        J7P57Aj0kqEjyNGkYZgeFfvu4Ap3tKydtryIFFyT3251IDx903owII3pnn4g3fQt5qBpuQn31cHT
+        a+ueXfe5FEr28J/u2jR6fTuYRcc0WAZDp5ey2NcBTFKKizut4Hzbll9Z8iWOXbODrkNb12vRS3f1
+        BS2xu4ooKO4fF4L9g+7JKFAoe+fK0vvv+vpvA6skV0kPAAA=
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1210'
+      - '1289'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:17:55 GMT
+      - Mon, 01 Jun 2026 13:22:30 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -1114,10 +568,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

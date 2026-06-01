@@ -14,214 +14,172 @@ interactions:
     uri: https://api.crossref.org/works?rows=20&filter=prefix%3A10.5555%2Ctype%3Ajournal-article
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1088,"items":[{"indexed":{"date-parts":[[2022,4,5]],"date-time":"2022-04-05T12:48:06Z","timestamp":1649162886468},"reference-count":0,"publisher":"Test
-        accounts","issue":"1","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["J.
-        of Syst. Eng. Electron."],"published-print":{"date-parts":[[2010,2]]},"DOI":"10.3969\/j.issn.1004-4132.2010.01.020","type":"journal-article","created":{"date-parts":[[2014,8,19]],"date-time":"2014-08-19T16:11:02Z","timestamp":1408464662000},"page":"127-133","source":"Crossref","is-referenced-by-count":5,"title":["Image
-        retrieval based on color features integrated with anisotropic directionality"],"prefix":"10.5555","volume":"21","author":[{"given":"Jing","family":"Bai","sequence":"first","affiliation":[]},{"given":"Xiaohua","family":"Wang","sequence":"additional","affiliation":[]},{"given":"Licheng","family":"Jiao","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Systems Engineering and Electronics"],"deposited":{"date-parts":[[2017,10,5]],"date-time":"2017-10-05T09:45:04Z","timestamp":1507196704000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/lpdocs\/epic03\/wrapper.htm?arnumber=6073062"}},"issued":{"date-parts":[[2010,2]]},"references-count":0,"journal-issue":{"issue":"1"},"URL":"https:\/\/doi.org\/10.3969\/j.issn.1004-4132.2010.01.020","ISSN":["1004-4132"],"issn-type":[{"value":"1004-4132","type":"electronic"}],"published":{"date-parts":[[2010,2]]}},{"indexed":{"date-parts":[[2022,4,3]],"date-time":"2022-04-03T18:40:26Z","timestamp":1649011226931},"reference-count":0,"publisher":"Test
-        accounts","issue":"2","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["J.
-        of Syst. Eng. Electron."],"published-print":{"date-parts":[[2011,4]]},"DOI":"10.3969\/j.issn.1004-4132.2011.02.019","type":"journal-article","created":{"date-parts":[[2014,8,19]],"date-time":"2014-08-19T16:11:02Z","timestamp":1408464662000},"page":"314-321","source":"Crossref","is-referenced-by-count":3,"title":["Robust
-        dissipative control for time-delay stochastic jump systems"],"prefix":"10.5555","volume":"22","author":[{"given":"Lijuan","family":"Xu","sequence":"first","affiliation":[]},{"given":"Tianping","family":"Zhang","sequence":"additional","affiliation":[]},{"given":"Yang","family":"Yi","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Systems Engineering and Electronics"],"deposited":{"date-parts":[[2017,10,5]],"date-time":"2017-10-05T09:45:04Z","timestamp":1507196704000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/lpdocs\/epic03\/wrapper.htm?arnumber=6077640"}},"issued":{"date-parts":[[2011,4]]},"references-count":0,"journal-issue":{"issue":"2"},"URL":"https:\/\/doi.org\/10.3969\/j.issn.1004-4132.2011.02.019","ISSN":["1004-4132"],"issn-type":[{"value":"1004-4132","type":"electronic"}],"published":{"date-parts":[[2011,4]]}},{"indexed":{"date-parts":[[2022,3,30]],"date-time":"2022-03-30T06:54:14Z","timestamp":1648623254805},"reference-count":0,"publisher":"Test
-        accounts","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2014]]},"DOI":"10.5555\/alias","type":"journal-article","created":{"date-parts":[[2014,9,3]],"date-time":"2014-09-03T16:56:42Z","timestamp":1409763402000},"source":"Crossref","is-referenced-by-count":0,"title":["alias"],"prefix":"10.5555","author":[{"given":"v","family":"p","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Test Deposit"],"deposited":{"date-parts":[[2014,9,3]],"date-time":"2014-09-03T16:56:43Z","timestamp":1409763403000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/doi.crossref.org\/servlet\/submissionAdmin?sf=content&clobID=169562967"}},"issued":{"date-parts":[[2014]]},"references-count":0,"URL":"https:\/\/doi.org\/10.5555\/alias","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2014]]}},{"indexed":{"date-parts":[[2022,3,30]],"date-time":"2022-03-30T15:31:39Z","timestamp":1648654299991},"reference-count":0,"publisher":"Test
-        accounts","issue":"19","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2020,1,5]]},"DOI":"10.5555\/canary-19","type":"journal-article","created":{"date-parts":[[2019,8,31]],"date-time":"2019-08-31T19:41:22Z","timestamp":1567280482000},"page":"1-3","source":"Crossref","is-referenced-by-count":0,"title":["Canary:
-        c84fd7ba-4ceb-4176-a1c2-bfe03a1ce216"],"prefix":"10.5555","volume":"2020","author":[{"given":"Zuleika","family":"Dogson","sequence":"first","affiliation":[]}],"member":"7822","published-online":{"date-parts":[[2020,1,5]]},"container-title":["Journal
-        of Test Deposits"],"language":"en","deposited":{"date-parts":[[2020,1,5]],"date-time":"2020-01-05T19:43:23Z","timestamp":1578253403000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/c84fd7ba-4ceb-4176-a1c2-bfe03a1ce216"}},"issued":{"date-parts":[[2020,1,5]]},"references-count":0,"journal-issue":{"issue":"19","published-online":{"date-parts":[[2020,1,5]]},"published-print":{"date-parts":[[2020,1,5]]}},"URL":"https:\/\/doi.org\/10.5555\/canary-19","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2020,1,5]]}},{"indexed":{"date-parts":[[2022,4,2]],"date-time":"2022-04-02T23:32:25Z","timestamp":1648942345199},"reference-count":0,"publisher":"Test
-        accounts","issue":"12","content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2000,12]]},"DOI":"10.5555\/s0005-1098(00)00106-0","type":"journal-article","created":{"date-parts":[[2002,7,27]],"date-time":"2002-07-27T08:41:45Z","timestamp":1027759305000},"page":"1879-1887","source":"Crossref","is-referenced-by-count":0,"title":["Adaptive
-        estimation of discrete-time systems with nonlinear parameterization"],"prefix":"10.5555","volume":"36","author":[{"given":"F","family":"Skantze","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Automatica"],"deposited":{"date-parts":[[2015,6,25]],"date-time":"2015-06-25T05:05:12Z","timestamp":1435208712000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/linkinghub.elsevier.com\/retrieve\/pii\/S0005109800001060"}},"issued":{"date-parts":[[2000,12]]},"references-count":0,"journal-issue":{"issue":"12"},"alternative-id":["S0005-1098(00)00106-0"],"URL":"https:\/\/doi.org\/10.5555\/s0005-1098(00)00106-0","ISSN":["0005-1098"],"issn-type":[{"value":"0005-1098","type":"print"}],"published":{"date-parts":[[2000,12]]}},{"indexed":{"date-parts":[[2022,3,29]],"date-time":"2022-03-29T17:21:21Z","timestamp":1648574481203},"reference-count":0,"publisher":"Test
-        accounts","issue":"24","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2013,6,9]]},"DOI":"10.5555\/2013test_conflict_three","type":"journal-article","created":{"date-parts":[[2013,6,10]],"date-time":"2013-06-10T16:47:32Z","timestamp":1370882852000},"page":"19","source":"Crossref","is-referenced-by-count":0,"title":["Test
-        environment test two"],"prefix":"10.5555","volume":"12","author":[{"given":"va","family":"el","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Test Deposits"],"deposited":{"date-parts":[[2013,6,10]],"date-time":"2013-06-10T16:47:33Z","timestamp":1370882853000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/help"}},"issued":{"date-parts":[[2013,6,9]]},"references-count":0,"journal-issue":{"issue":"24","published-print":{"date-parts":[[2013,6,10]]}},"URL":"https:\/\/doi.org\/10.5555\/2013test_conflict_three","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2013,6,9]]}},{"indexed":{"date-parts":[[2022,3,31]],"date-time":"2022-03-31T01:54:37Z","timestamp":1648691677634},"reference-count":0,"publisher":"Test
-        accounts","issue":"111","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2011,9,23]]},"DOI":"10.5555\/test_09232011_a","type":"journal-article","created":{"date-parts":[[2011,9,23]],"date-time":"2011-09-23T18:10:04Z","timestamp":1316801404000},"page":"123","source":"Crossref","is-referenced-by-count":0,"title":["Test
-        article 0923"],"prefix":"10.5555","volume":"34","author":[{"given":"vaishali","family":"patel","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Test Deposits"],"deposited":{"date-parts":[[2011,9,23]],"date-time":"2011-09-23T18:10:37Z","timestamp":1316801437000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/"}},"issued":{"date-parts":[[2011,9,23]]},"references-count":0,"journal-issue":{"issue":"111","published-print":{"date-parts":[[2010,9,1]]}},"URL":"https:\/\/doi.org\/10.5555\/test_09232011_a","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2011,9,23]]},"article-number":"AID1555"},{"indexed":{"date-parts":[[2025,3,17]],"date-time":"2025-03-17T14:40:35Z","timestamp":1742222435180,"version":"3.38.0"},"reference-count":0,"publisher":"Test
-        accounts","issue":"4","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["cs167"],"published-print":{"date-parts":[[1995,1,1]]},"abstract":"<jats:p>hola<\/jats:p>","DOI":"10.5555\/cs167art2","type":"journal-article","created":{"date-parts":[[2025,3,17]],"date-time":"2025-03-17T14:02:38Z","timestamp":1742220158000},"source":"Crossref","is-referenced-by-count":0,"title":["My
-        article is here"],"prefix":"10.5555","author":[{"given":"Sara","family":"Bowman","sequence":"first","affiliation":[]}],"member":"7822","published-online":{"date-parts":[[1995,1,1]]},"container-title":["CS167"],"deposited":{"date-parts":[[2025,3,17]],"date-time":"2025-03-17T14:02:40Z","timestamp":1742220160000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.trucks.com\/journal\/1\/1\/1"}},"issued":{"date-parts":[[1995,1,1]]},"references-count":0,"journal-issue":{"issue":"4","published-online":{"date-parts":[[1995,1,1]]},"published-print":{"date-parts":[[1995,1,1]]}},"URL":"https:\/\/doi.org\/10.5555\/cs167art2","published":{"date-parts":[[1995,1,1]]}},{"indexed":{"date-parts":[[2022,4,1]],"date-time":"2022-04-01T05:49:55Z","timestamp":1648792195204},"reference-count":0,"publisher":"Test
-        accounts","issue":"1","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JRT"],"DOI":"10.5555\/pubdate2","type":"journal-article","created":{"date-parts":[[2010,8,25]],"date-time":"2010-08-25T15:32:38Z","timestamp":1282750358000},"page":"1-4","source":"Crossref","is-referenced-by-count":0,"title":["NEW
-        TITLE added 10-05-10"],"prefix":"10.5555","volume":"1","author":[{"given":"Dov","family":"Frede","sequence":"first","affiliation":[]}],"member":"7822","published-online":{"date-parts":[[2010]]},"container-title":["Journal
-        of Test Deposits"],"language":"en","deposited":{"date-parts":[[2019,1,15]],"date-time":"2019-01-15T16:32:22Z","timestamp":1547569942000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/help\/"}},"issued":{"date-parts":[[2010]]},"references-count":0,"journal-issue":{"issue":"1","published-print":{"date-parts":[[2010]]}},"URL":"https:\/\/doi.org\/10.5555\/pubdate2","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2010]]}},{"indexed":{"date-parts":[[2024,1,18]],"date-time":"2024-01-18T02:29:12Z","timestamp":1705544952770},"reference-count":0,"publisher":"Test
-        accounts","issue":"4","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["J.
-        of Syst. Eng. Electron."],"published-print":{"date-parts":[[2011,8]]},"DOI":"10.3969\/j.issn.1004-4132.2011.04.001","type":"journal-article","created":{"date-parts":[[2014,8,19]],"date-time":"2014-08-19T20:11:02Z","timestamp":1408479062000},"page":"547-556","source":"Crossref","is-referenced-by-count":3,"title":["Rate-distortion
-        weighted SPIHT algorithm for interferometer data processing"],"prefix":"10.5555","volume":"22","author":[{"given":"Jing","family":"Ma","sequence":"first","affiliation":[]},{"given":"Jindong","family":"Fei","sequence":"additional","affiliation":[]},{"given":"Dong","family":"Chen","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Systems Engineering and Electronics"],"deposited":{"date-parts":[[2017,10,5]],"date-time":"2017-10-05T13:45:04Z","timestamp":1507211104000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/lpdocs\/epic03\/wrapper.htm?arnumber=6077679"}},"issued":{"date-parts":[[2011,8]]},"references-count":0,"journal-issue":{"issue":"4"},"URL":"https:\/\/doi.org\/10.3969\/j.issn.1004-4132.2011.04.001","ISSN":["1004-4132"],"issn-type":[{"value":"1004-4132","type":"electronic"}],"published":{"date-parts":[[2011,8]]}},{"indexed":{"date-parts":[[2024,2,11]],"date-time":"2024-02-11T11:20:31Z","timestamp":1707650431415},"reference-count":0,"publisher":"Test
-        accounts","issue":"1","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2010,9,1]]},"DOI":"10.5555\/test_20101004-100","type":"journal-article","created":{"date-parts":[[2010,10,12]],"date-time":"2010-10-12T14:34:37Z","timestamp":1286894077000},"page":"7","source":"Crossref","is-referenced-by-count":0,"title":["Test
-        article F"],"prefix":"10.5555","volume":"34","author":[{"given":"Dov","family":"Frede","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Test Deposits"],"deposited":{"date-parts":[[2010,10,12]],"date-time":"2010-10-12T14:34:51Z","timestamp":1286894091000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/"}},"issued":{"date-parts":[[2010,9,1]]},"references-count":0,"journal-issue":{"issue":"1","published-print":{"date-parts":[[2010,9,1]]}},"URL":"https:\/\/doi.org\/10.5555\/test_20101004-100","ISSN":["0198-8220"],"issn-type":[{"value":"0198-8220","type":"print"}],"published":{"date-parts":[[2010,9,1]]},"article-number":"AID1555"},{"indexed":{"date-parts":[[2024,9,18]],"date-time":"2024-09-18T04:02:32Z","timestamp":1726632152610},"reference-count":0,"publisher":"Test
-        accounts","content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2024,4,2]]},"DOI":"10.5555\/1233sara","type":"journal-article","created":{"date-parts":[[2024,4,30]],"date-time":"2024-04-30T20:39:25Z","timestamp":1714509565000},"source":"Crossref","is-referenced-by-count":0,"title":["Sara
-        Test 43024"],"prefix":"10.5555","member":"7822","container-title":["Journal
-        of Hello"],"deposited":{"date-parts":[[2024,9,17]],"date-time":"2024-09-17T16:39:10Z","timestamp":1726591150000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.crossref.org\/12345"}},"issued":{"date-parts":[[2024,4,2]]},"references-count":0,"URL":"https:\/\/doi.org\/10.5555\/1233sara","published":{"date-parts":[[2024,4,2]]}},{"indexed":{"date-parts":[[2024,7,18]],"date-time":"2024-07-18T16:38:13Z","timestamp":1721320693459},"reference-count":0,"publisher":"Test
-        accounts","license":[{"start":{"date-parts":[[2018,1,1]],"date-time":"2018-01-01T00:00:00Z","timestamp":1514764800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/legal\/tdmrep-license"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JOMPer"],"published-print":{"date-parts":[[2018]]},"abstract":"<jats:p>sadfaa<\/jats:p>","DOI":"10.5555\/1234111222","type":"journal-article","created":{"date-parts":[[2021,4,14]],"date-time":"2021-04-14T19:23:14Z","timestamp":1618428194000},"page":"1-2","source":"Crossref","is-referenced-by-count":0,"title":["carlos
-        deposit"],"prefix":"10.5555","member":"7822","container-title":["Journal of
-        Metadata Perfection"],"deposited":{"date-parts":[[2024,5,13]],"date-time":"2024-05-13T23:20:36Z","timestamp":1715642436000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.google.com"}},"issued":{"date-parts":[[2018]]},"references-count":0,"URL":"https:\/\/doi.org\/10.5555\/1234111222","published":{"date-parts":[[2018]]}},{"indexed":{"date-parts":[[2025,2,21]],"date-time":"2025-02-21T11:06:41Z","timestamp":1740136001666,"version":"3.37.3"},"reference-count":37,"publisher":"Test
-        accounts","issue":"1","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTD"],"published-print":{"date-parts":[[2010,9,1]]},"DOI":"10.5555\/test_20101004100","type":"journal-article","created":{"date-parts":[[2010,10,4]],"date-time":"2010-10-04T17:09:56Z","timestamp":1286212196000},"page":"33","source":"Crossref","is-referenced-by-count":1,"title":["Test
-        article AF"],"prefix":"10.5555","volume":"34","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1750-3395","authenticated-orcid":false,"given":"Rainer","family":"Kaiser","sequence":"first","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"given":"Raphael","family":"Escaig","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-9928-4132","authenticated-orcid":false,"given":"Jan","family":"Kranich","sequence":"additional","affiliation":[{"name":"Institute
-        for Immunology, LMU Munich, Planegg, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-5894-0308","authenticated-orcid":false,"given":"Marie-Louise","family":"Hoffknecht","sequence":"additional","affiliation":[{"name":"Department
-        of Medicine I, University Hospital, LMU Munich, Munich, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-1976-4102","authenticated-orcid":false,"given":"Afra","family":"Anjum","sequence":"additional","affiliation":[{"name":"Department
-        of Medicine I, University Hospital, LMU Munich, Munich, Germany"}]},{"given":"Vivien","family":"Polewka","sequence":"additional","affiliation":[{"name":"Department
-        of Medicine I, University Hospital, LMU Munich, Munich, Germany"}]},{"given":"Magdalena","family":"Mader","sequence":"additional","affiliation":[{"name":"University
-        Hospital, LMU Munich, Munich, Germany"}]},{"given":"Wenbo","family":"Hu","sequence":"additional","affiliation":[{"name":"Institute
-        for Immunology, LMU Munich, Planegg, Germany"}]},{"given":"Larissa","family":"Belz","sequence":"additional","affiliation":[{"name":"Department
-        of Medicine I, University Hospital, LMU Munich, Munich, Germany"}]},{"given":"Christoph","family":"Gold","sequence":"additional","affiliation":[{"name":"University
-        Hospital, LMU Munich, Munich, Germany"}]},{"given":"Anna","family":"Titova","sequence":"additional","affiliation":[{"name":"University
-        Hospital, LMU Munich, Munich, Germany"}]},{"given":"Michael","family":"Lorenz","sequence":"additional","affiliation":[{"name":"Medizinische
-        Klinik und Poliklinik I, Klinikum der Universit\u00e4t, Ludwig-Maximilians-Universit\u00e4t,
-        Mun, M\u00fcnchen, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0003-4040-650X","authenticated-orcid":false,"given":"Kami","family":"Pekayvaz","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0001-8824-3581","authenticated-orcid":false,"given":"Stefan","family":"K\u00e4\u00e4b","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0001-6120-3723","authenticated-orcid":false,"given":"Florian","family":"Gaertner","sequence":"additional","affiliation":[{"name":"Institute
-        of Science and Technology Austria, Klosterneuburg, Austria"}]},{"given":"Konstantin","family":"Stark","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0001-7060-5433","authenticated-orcid":false,"given":"Thomas","family":"Brocker","sequence":"additional","affiliation":[{"name":"Institute
-        for Immunology, LMU Munich, Planegg, Germany"}]},{"given":"Steffen","family":"Massberg","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]},{"ORCID":"https:\/\/orcid.org\/0000-0003-0776-5885","authenticated-orcid":false,"given":"Leo","family":"Nicolai","sequence":"additional","affiliation":[{"name":"DZHK
-        (German Centre for Cardiovascular Research), partner site Munich Heart Alliance,
-        Germany, Germany"}]}],"member":"7822","reference":[{"issue":"2","key":"10.1520\/GTJ20170332_r1","doi-asserted-by":"crossref","first-page":"103","DOI":"10.1680\/gein.14.00002","article-title":"Model
-        Tests on Single and Groups of Stone Columns with Different Geosynthetic Reinforcement
-        Arrangement","volume":"21","author":"Ali","year":"2014","journal-title":"Geosynth.
-        Int."},{"issue":"3","key":"10.1520\/GTJ20170332_r2","doi-asserted-by":"crossref","first-page":"04014116","DOI":"10.1061\/(ASCE)GT.1943-5606.0001256","article-title":"Behavior
-        of Geotextile-Encased Granular Columns Supporting Test Embankment on Soft
-        Deposit","volume":"141","author":"Almeida","year":"2015","journal-title":"J.
-        Geotech. Geoenviron. Eng."},{"key":"10.1520\/GTJ20170332_r3","unstructured":"Al-Joulani,
-        N. M. A., 1995, \u201cLaboratory and Analytical Investigation of Sleeve Reinforced
-        Stone Columns,\u201d Ph.D. dissertation, Carleton University, Ottawa, ON,
-        Canada."},{"issue":"6","key":"10.1520\/GTJ20170332_r4","doi-asserted-by":"crossref","first-page":"433","DOI":"10.1680\/gein.2009.16.6.433","article-title":"Behaviour
-        of Geosynthetic- Encased Granular Columns in Porous Collapsible Soil","volume":"16","author":"Araujo","year":"2009","journal-title":"Geosynth.
-        Int."},{"key":"10.1520\/GTJ20170332_r5","unstructured":"Ashmawy, A. K. and
-        Bourdeau, P. L., 1998, \u201cEffect of Geotextile Reinforcement on the Stress-Strain
-        and Volumetric Response of Sand,\u201d presented at the Sixth International
-        Conference on Geosynthetics, Atlanta, GA, Industrial Fabrics Association International,
-        Roseville, MN, Vol.\u00a02, pp.\u00a01079\u20131082."},{"key":"10.1520\/GTJ20170332_r6","unstructured":"ASTM
-        D4595 2011, Standard Test Method for Tensile Properties of Geotextiles by
-        the Wide-Width Strip Method (Superseded), ASTM International, West Conshohocken,
-        PA, www.astm.org"},{"key":"10.1520\/GTJ20170332_r7","unstructured":"ASTM D6241
-        2009, Standard Test Method for the Static Puncture Strength of Geotextiles
-        and Geotextile-Related Products Using a 50-mm Probe (Superseded), ASTM International,
-        West Conshohocken, PA, www.astm.org"},{"key":"10.1520\/GTJ20170332_r8","unstructured":"Ayadat,
-        T. and Hanna, T. H., 1991, \u201cPerformance of Vibro Columns in Collapsible
-        Soils,\u201d presented at the IGC-91, Geotechnical Analysis Practice and Performances,
-        Surat, India, Indian Geotechnical Society, New Delhi, India, pp.\u00a0383\u2013386."},{"key":"10.1520\/GTJ20170332_r9","first-page":"143","article-title":"The
-        Granular Pile: Its Present State and Future Prospects for Improvement of Soft
-        Bangkok Clay","volume":"22","author":"Bergado","year":"1991","journal-title":"Geotech.
-        Eng., Southeast Asian Geotech. Soc."},{"key":"10.1520\/GTJ20170332_r10","unstructured":"Bergado,
-        D. T., Chai, J. C., Alfaro, M. C., and Balasubramaniam, A. S., 1994, \u201cGround
-        Improvement Using Granular Piles,\u201d Chapter 3, Improvement Techniques
-        of Soft Ground in Subsiding and Lowland Environment, Balkema, Rotterdam, the
-        Netherlands, pp.\u00a056\u201396."},{"issue":"5","key":"10.1520\/GTJ20170332_r11","doi-asserted-by":"crossref","first-page":"299","DOI":"10.1016\/S0266-1144(01)00010-3","article-title":"Interaction
-        of Nonwoven Needle-Punched Geotextiles under Axisymmetric Loading Conditions","volume":"19","author":"Bergado","year":"2001","journal-title":"Geotext.
-        Geomembr."},{"issue":"4","key":"10.1520\/GTJ20170332_r12","doi-asserted-by":"crossref","first-page":"345","DOI":"10.1103\/PhysRev.4.345","article-title":"On
-        Physically Similar Systems; Illustrations of the Use of Dimensional Equations","volume":"4","author":"Buckingham","year":"1914","journal-title":"Phys.
-        Rev."},{"key":"10.1520\/GTJ20170332_r13","unstructured":"Cai, F. and Li, G.-X.,
-        1994, \u201cGranular Piles Reinforced with Geosynthetics,\u201d presented
-        at the Fifth International Conference on Geotextiles, Geomembranes and Related
-        Products, Singapore, International Geotechnical Society, Southeast Asia Chapter,
-        Singapore, Vol.\u00a01, pp.\u00a0347\u2013350."},{"issue":"7","key":"10.1520\/GTJ20170332_r14","doi-asserted-by":"crossref","first-page":"754","DOI":"10.1139\/cgj-2012-0437","article-title":"Influence
-        of Geosynthetic Encasement on the Performance of Stone Columns Floating in
-        Soft Clay","volume":"50","author":"Dash","year":"2013","journal-title":"Can.
-        Geotech. J."},{"key":"10.1520\/GTJ20170332_r15","unstructured":"Greenwood,
-        D. A., 1970, \u201cMechanical Improvement of Soils below Ground Surface,\u201d
-        presented at the International Conference on Ground Engineering, London, UK,
-        Institution of Civil Engineers, London, UK, pp.\u00a09\u201320."},{"issue":"6","key":"10.1520\/GTJ20170332_r16","doi-asserted-by":"crossref","first-page":"438","DOI":"10.1680\/gein.12.00029","article-title":"Performance
-        of Encased Granular Columns Considering Shear-Induced Volumetric Dilation
-        of the Fill Material","volume":"19","author":"Hong","year":"2012","journal-title":"Geosynth.
-        Int."},{"key":"10.1520\/GTJ20170332_r17","doi-asserted-by":"crossref","first-page":"36","DOI":"10.1016\/j.geotexmem.2013.10.002","article-title":"The
-        Performance of a Sand Column Internally Reinforced with Horizontal Reinforcement
-        Layers","volume":"41","author":"Hong","year":"2013","journal-title":"Geotext.
-        Geomembr."},{"issue":"1","key":"10.1520\/GTJ20170332_r18","doi-asserted-by":"crossref","first-page":"13","DOI":"10.1016\/j.geotexmem.2015.06.006","article-title":"Model
-        Tests on Geotextile-Encased Granular Columns under 1-g and Undrained Conditions","volume":"44","author":"Hong","year":"2016","journal-title":"Geotext.
-        Geomembr."},{"issue":"5","key":"10.1520\/GTJ20170332_r19","doi-asserted-by":"crossref","first-page":"391","DOI":"10.1016\/j.geotexmem.2017.05.002","article-title":"A
-        Numerical Analysis of a Fully Penetrated Encased Granular Column","volume":"45","author":"Hong","year":"2017","journal-title":"Geotext.
-        Geomembr."},{"issue":"3","key":"10.1520\/GTJ20170332_r20","first-page":"42","article-title":"Reinforcing
-        of Soft Cohesive Soils with Stone Columns","volume":"7","author":"Hughes","year":"1974","journal-title":"Ground
-        Eng."},{"issue":"1","key":"10.1520\/GTJ20170332_r21","doi-asserted-by":"crossref","first-page":"31","DOI":"10.1680\/geot.1975.25.1.31","article-title":"A
-        Field Trial of the Reinforcing Effect of a Stone Column in Soil","volume":"25","author":"Hughes","year":"1975","journal-title":"G\u00e9otechnique"},{"key":"10.1520\/GTJ20170332_r22","unstructured":"Kempfert,
-        H. G., 2003, \u201cGround Improvement Methods with Special Emphasis on Column-Type
-        Techniques,\u201d presented at the International Workshop on Geotechnics of
-        Soft Soils-Theory and Practice, Noordwijkerhout, the Netherlands, VGE Verlag,
-        Essen, Germany, pp.\u00a0101\u2013112."},{"key":"10.1520\/GTJ20170332_r23","unstructured":"Madhav,
-        M. R. and Miura, N., 1994, \u201cSoil Improvement: Panel Report on Stone Columns,\u201d
-        presented at the 13th International Conference on Soil Mechanics and Foundation
-        Engineering, New Delhi, India, CRC Press, Boca Raton, FL, Vol.\u00a05, pp.\u00a0163\u2013164."},{"issue":"5","key":"10.1520\/GTJ20170332_r24","doi-asserted-by":"crossref","first-page":"873","DOI":"10.3208\/sandf.47.873","article-title":"Comparative
-        Study on the Behavior of Encased Stone Column and Conventional Stone Column","volume":"47","author":"Malarvizhi","year":"2007","journal-title":"Soils
-        Found."},{"issue":"1","key":"10.1520\/GTJ20170332_r25","doi-asserted-by":"crossref","first-page":"129","DOI":"10.1061\/(ASCE)GT.1943-5606.0000187","article-title":"Studies
-        on the Behavior of Single and Group of Geosynthetic Encased Stone Columns","volume":"136","author":"Murugesan","year":"2010","journal-title":"J.
-        Geotech. Geoenviron. Eng."},{"key":"10.1520\/GTJ20170332_r26","first-page":"25","article-title":"Put
-        a Sock in It: Geotextile Encased Sand Columns are Preventing Settlement of
-        a High-Speed Railway Embankment in the Netherlands","volume":"35","author":"Nods","year":"2002","journal-title":"Ground
-        Eng."},{"issue":"3","key":"10.1520\/GTJ20170332_r27","first-page":"242","article-title":"Characteristics
-        of the Stress and Deformation of Geosynthetic-Encased Stone Column Composite
-        Ground Based on Large-Scale Model Tests","volume":"24","author":"Ou Yang","year":"2017","journal-title":"Geosynth.
-        Int."},{"key":"10.1520\/GTJ20170332_r28","unstructured":"Raithel, M., Kempfert,
-        H.-G., and Kirchner, A., 2002, \u201cGeotextiles Encased Columns (GEC) for
-        Foundation of a Dike on Very Soft Soils,\u201d presented at the Seventh International
-        Conference on Geosynthetics, Nice, France, Balkema, Leiden, the Netherlands,
-        Vol.\u00a03, pp.\u00a01025\u20131030."},{"key":"10.1520\/GTJ20170332_r29","unstructured":"Rao,
-        B. G. and Bhandari, R. K., 1979, \u201cReinforcing of Non-cohesive Soil by
-        Granular Piles,\u201d presented at the Sixth Asian Regional Conference on
-        Soil Mechanics and Foundation Engineering, Singapore, Toppan Printing, Singapore,
-        Vol.\u00a01, pp.\u00a0175\u2013178."},{"issue":"1","key":"10.1520\/GTJ20170332_r30","doi-asserted-by":"crossref","first-page":"187","DOI":"10.1139\/t03-075","article-title":"Compressive
-        Load Response of Granular Piles Reinforced with Geogrids","volume":"41","author":"Sharma","year":"2004","journal-title":"Can.
-        Geotech. J."},{"issue":"2","key":"10.1520\/GTJ20170332_r31","doi-asserted-by":"crossref","first-page":"299","DOI":"10.1139\/t03-097","article-title":"Triaxial
-        Tests on Model Sand Columns in Clay","volume":"41","author":"Sivakumar","year":"2004","journal-title":"Can.
-        Geotech. J."},{"issue":"4","key":"10.1520\/GTJ20170332_r32","doi-asserted-by":"crossref","first-page":"302","DOI":"10.1016\/j.geotexmem.2007.12.003","article-title":"The
-        Behavior of a Laminated Reinforced Granular Column","volume":"26","author":"Wu","year":"2008","journal-title":"Geotext.
-        Geomembr."},{"issue":"2","key":"10.1520\/GTJ20170332_r33","doi-asserted-by":"crossref","first-page":"107","DOI":"10.1016\/j.geotexmem.2008.09.003","article-title":"Laboratory
-        Tests on Geosynthetic-Encapsulated Sand Columns","volume":"27","author":"Wu","year":"2009","journal-title":"Geotext.
-        Geomembr."},{"issue":"1\u20132","key":"10.1520\/GTJ20170332_r34","doi-asserted-by":"crossref","first-page":"226","DOI":"10.1016\/j.compgeo.2008.01.003","article-title":"Axial
-        Stress\u2013Strain Relation of Encapsulated Granular Column","volume":"36","author":"Wu","year":"2009","journal-title":"Comput.
-        Geotech."},{"issue":"4","key":"10.1520\/GTJ20170332_r35","doi-asserted-by":"crossref","first-page":"339","DOI":"10.1016\/j.geotexmem.2014.05.006","article-title":"A
-        Simplified Approach for Evaluating the Bearing Performance of Encased Granular
-        Columns","volume":"42","author":"Wu","year":"2014","journal-title":"Geotext.
-        Geomembr."},{"issue":"3","key":"10.1520\/GTJ20170332_r36","doi-asserted-by":"crossref","first-page":"116","DOI":"10.1680\/gein.2009.16.3.116","article-title":"Numerical
-        Modeling of Geosynthetic-Encased Stone Column-Reinforced Ground","volume":"16","author":"Yoo","year":"2009","journal-title":"Geosynth.
-        Int."},{"issue":"6","key":"10.1520\/GTJ20170332_r37","doi-asserted-by":"crossref","first-page":"480","DOI":"10.1680\/gein.12.00033","article-title":"Performance
-        of Geogrid-Encased Stone Columns in Soft Ground: Full-Scale Load Tests","volume":"19","author":"Yoo","year":"2012","journal-title":"Geosynth.
-        Int."}],"container-title":["Journal of Test Deposits"],"deposited":{"date-parts":[[2024,9,17]],"date-time":"2024-09-17T10:11:48Z","timestamp":1726567908000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/"}},"issued":{"date-parts":[[2010,9,1]]},"references-count":37,"journal-issue":{"issue":"1","published-print":{"date-parts":[[2010,9,1]]}},"URL":"https:\/\/doi.org\/10.5555\/test_20101004100","ISSN":["0198-8220"],"issn-type":[{"type":"print","value":"0198-8220"}],"published":{"date-parts":[[2010,9,1]]},"article-number":"AID1555"},{"indexed":{"date-parts":[[2025,2,22]],"date-time":"2025-02-22T05:22:00Z","timestamp":1740201720286,"version":"3.37.3"},"reference-count":0,"publisher":"Test
-        accounts","issue":"5","funder":[{"name":"Test Funder"}],"content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2019,5,17]]},"DOI":"10.5555\/282513480_v","type":"journal-article","created":{"date-parts":[[2025,2,21]],"date-time":"2025-02-21T08:36:32Z","timestamp":1740126992000},"source":"Crossref","is-referenced-by-count":0,"title":["Record
-        registration form - test article"],"prefix":"10.5555","volume":"14","author":[{"given":"Lena","family":"Stoll","sequence":"first","affiliation":[{"id":[{"id":"https:\/\/ror.org\/03a1kwz48","id-type":"ROR","asserted-by":"publisher"}],"name":"University
-        of T\u00fcbingen"}]},{"given":"Toyonobu","family":"Usuki","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Testing
-        new deposit code"],"deposited":{"date-parts":[[2025,2,21]],"date-time":"2025-02-21T08:36:36Z","timestamp":1740126996000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.crossref.org\/test-doi\/_v"}},"issued":{"date-parts":[[2019,5,17]]},"references-count":0,"journal-issue":{"issue":"5","published-print":{"date-parts":[[2019,5,17]]}},"URL":"https:\/\/doi.org\/10.5555\/282513480_v","ISSN":["0037-7333","0037-7333"],"issn-type":[{"value":"0037-7333","type":"print"},{"value":"0037-7333","type":"electronic"}],"published":{"date-parts":[[2019,5,17]]}},{"indexed":{"date-parts":[[2024,9,20]],"date-time":"2024-09-20T04:26:29Z","timestamp":1726806389395},"reference-count":0,"publisher":"Test
-        accounts","content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2023]]},"DOI":"10.5555\/buttons2345","type":"journal-article","created":{"date-parts":[[2024,9,19]],"date-time":"2024-09-19T17:18:30Z","timestamp":1726766310000},"source":"Crossref","is-referenced-by-count":0,"title":["why
-        don''t the buttons work"],"prefix":"10.5555","member":"7822","container-title":["Metadata
-        Management"],"language":"en","deposited":{"date-parts":[[2024,9,19]],"date-time":"2024-09-19T17:18:31Z","timestamp":1726766311000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.crossref.org\/12345"}},"issued":{"date-parts":[[2023]]},"references-count":0,"URL":"https:\/\/doi.org\/10.5555\/buttons2345","archive":["LOCKSS"],"published":{"date-parts":[[2023]]}},{"indexed":{"date-parts":[[2025,11,1]],"date-time":"2025-11-01T21:26:47Z","timestamp":1762032407630},"reference-count":0,"publisher":"Test
-        accounts","issue":"4","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["jcen"],"published-print":{"date-parts":[[1999]]},"DOI":"10.5555\/jcen.21.4.572.882","type":"journal-article","created":{"date-parts":[[2003,3,24]],"date-time":"2003-03-24T14:42:43Z","timestamp":1048516963000},"page":"572-582","source":"Crossref","is-referenced-by-count":2,"title":["Further
-        Crossvalidation of Regression-Based Neuropsychological Norms\nwith an Update
-        for the Boston Naming Test"],"prefix":"10.5555","volume":"21","author":[{"given":"Robert
-        K.","family":"Heaton","sequence":"first","affiliation":[]},{"given":"Nanci","family":"Avitable","sequence":"additional","affiliation":[]},{"given":"Igor","family":"Grant","sequence":"additional","affiliation":[]},{"given":"Charles
-        G.","family":"Matthews","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Clinical and Experimental Neuropsychology"],"language":"en","deposited":{"date-parts":[[2015,4,9]],"date-time":"2015-04-09T23:48:45Z","timestamp":1428623325000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.extenza-eps.com\/extenza\/loadHTML?objectIDValue=10932&type=abstract"}},"issued":{"date-parts":[[1999]]},"references-count":0,"journal-issue":{"issue":"4","published-print":{"date-parts":[[1999]]}},"alternative-id":["1380-3395\/99\/2104-572$15.00","10.5555\/jcen.21.4.572.882"],"URL":"https:\/\/doi.org\/10.5555\/jcen.21.4.572.882","ISSN":["1380-3395"],"issn-type":[{"value":"1380-3395","type":"print"}],"published":{"date-parts":[[1999]]}},{"indexed":{"date-parts":[[2025,5,14]],"date-time":"2025-05-14T13:38:05Z","timestamp":1747229885898,"version":"3.40.5"},"reference-count":0,"publisher":"Test
-        accounts","license":[{"start":{"date-parts":[[2020,9,25]],"date-time":"2020-09-25T00:00:00Z","timestamp":1600992000000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JIB"],"abstract":"<jats:p>The
-        Initiative for Open Abstracts (I4OA) launched this week. The initiative calls
-        on scholarly publishers to make the abstracts of their publications openly
-        available. More specifically, publishers that work with Crossref to register
-        DOIs for their publications are requested to include abstracts in the metadata
-        they deposit in Crossref. These abstracts will then be made openly available
-        by Crossref. 39 publishers have already agreed to join I4OA and to open their
-        abstracts...<\/jats:p>","DOI":"10.5555\/6vs5en6","type":"journal-article","created":{"date-parts":[[2020,9,28]],"date-time":"2020-09-28T14:18:13Z","timestamp":1601302693000},"source":"Crossref","is-referenced-by-count":1,"title":["Open
-        Abstracts: Where are we?"],"prefix":"10.5555","author":[{"ORCID":"https:\/\/orcid.org\/0000-0001-8249-1752","authenticated-orcid":false,"given":"Ludo","family":"Waltman","sequence":"first","affiliation":[]}],"member":"7822","published-online":{"date-parts":[[2020,9,25]]},"container-title":["Jamon
-        Iberico"],"language":"aa","deposited":{"date-parts":[[2024,9,30]],"date-time":"2024-09-30T20:21:51Z","timestamp":1727727711000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.crossref.org\/blog\/open-abstracts-where-are-we\/"}},"issued":{"date-parts":[[2020,9,25]]},"references-count":0,"URL":"https:\/\/doi.org\/10.5555\/6vs5en6","archive":["KB"],"published":{"date-parts":[[2020,9,25]]}},{"indexed":{"date-parts":[[2025,4,19]],"date-time":"2025-04-19T04:50:27Z","timestamp":1745038227436},"reference-count":0,"publisher":"Test
-        accounts","issue":"6","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["J.
-        of Syst. Eng. Electron."],"published-print":{"date-parts":[[2010,12]]},"DOI":"10.3969\/j.issn.1004-4132.2010.06.003","type":"journal-article","created":{"date-parts":[[2014,8,19]],"date-time":"2014-08-19T20:11:02Z","timestamp":1408479062000},"page":"941-947","source":"Crossref","is-referenced-by-count":2,"title":["SRV
-        constraint based FIB design for wideband linear array"],"prefix":"10.5555","volume":"21","author":[{"given":"Peng","family":"Chen","sequence":"first","affiliation":[]},{"given":"Yihui","family":"Liang","sequence":"additional","affiliation":[]},{"given":"Chaohuan","family":"Hou","sequence":"additional","affiliation":[]},{"given":"Xiaochuan","family":"Ma","sequence":"additional","affiliation":[]},{"given":"Oapeng","family":"Liu","sequence":"additional","affiliation":[]}],"member":"7822","container-title":["Journal
-        of Systems Engineering and Electronics"],"deposited":{"date-parts":[[2017,10,5]],"date-time":"2017-10-05T13:45:04Z","timestamp":1507211104000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/ieeexplore.ieee.org\/lpdocs\/epic03\/wrapper.htm?arnumber=6077541"}},"issued":{"date-parts":[[2010,12]]},"references-count":0,"journal-issue":{"issue":"6"},"URL":"https:\/\/doi.org\/10.3969\/j.issn.1004-4132.2010.06.003","ISSN":["1004-4132"],"issn-type":[{"value":"1004-4132","type":"electronic"}],"published":{"date-parts":[[2010,12]]}},{"indexed":{"date-parts":[[2025,4,18]],"date-time":"2025-04-18T20:40:02Z","timestamp":1745008802032,"version":"3.40.4"},"reference-count":0,"publisher":"Test
-        accounts","issue":"16","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["JTL"],"published-print":{"date-parts":[[1999]]},"DOI":"10.50505\/issntest_0703_3","type":"journal-article","created":{"date-parts":[[2012,7,3]],"date-time":"2012-07-03T12:36:54Z","timestamp":1341319014000},"page":"2268","source":"Crossref","is-referenced-by-count":1,"title":["Test
-        article"],"prefix":"10.5555","volume":"74","author":[{"given":"Ann P.","family":"Shirakawa","sequence":"first","affiliation":[]}],"member":"7822","container-title":["Crossref
-        Journal Of Test Deposits A"],"language":"en","deposited":{"date-parts":[[2025,4,18]],"date-time":"2025-04-18T19:58:00Z","timestamp":1745006280000},"score":0.0,"resource":{"primary":{"URL":"http:\/\/www.crossref.org\/help"}},"issued":{"date-parts":[[1999]]},"references-count":0,"aliases":["10.50505\/issntest_0703","10.50505\/issntest","10.50505\/issntest_0703_2"],"journal-issue":{"issue":"16","published-print":{"date-parts":[[1999]]}},"URL":"https:\/\/doi.org\/10.50505\/issntest_0703_3","ISSN":["1090-7505"],"issn-type":[{"type":"print","value":"1090-7505"}],"published":{"date-parts":[[1999]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
+      string: !!binary |
+        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
+        JSryphw9E8kM2onyMPzzzz//GxlWdj1MsAAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '8614'
+      - '8862'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:17:28 GMT
+      - Mon, 01 Jun 2026 13:22:09 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -239,10 +197,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

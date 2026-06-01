@@ -14,204 +14,75 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
   response:
     body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","title":"Depth-First","updated_at":1716592500,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"citation":"https://doi.org/10.59350/mn0n8-p9m65","published_at":"2024-12-08","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2025-10-22T08:23:52.900151+00:00","validated":true},{"citation":"https://doi.org/10.59350/myaw4-dtg76","published_at":"2024-12-08","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2025-02-02T19:18:39.899725+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","indexed_at":1761121434,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","subfield":null,"summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","topic":null,"topic_score":0,"updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 01 Dec 2025 17:18:50 GMT
-      fly-request-id:
-      - 01KBDES6F5AJ2FZPVCCWHTE0X6-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '6'
-      ratelimit-reset:
-      - '35'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
-  response:
-    body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","subfield_validated":null,"title":"Depth-First","updated_at":1775462911.056145,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/mn0n8-p9m65","citation":"https://doi.org/10.59350/mn0n8-p9m65","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2026-04-05T05:17:44.880218+00:00","validated":true},{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/myaw4-dtg76","citation":"https://doi.org/10.59350/myaw4-dtg76","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2026-04-05T05:17:42.220167+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","images":[],"indexed":true,"indexed_at":1764896879,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
-    headers:
+      Access-Control-Allow-Origin:
+      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
       Content-Encoding:
@@ -219,462 +90,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Apr 2026 08:29:11 GMT
+      - Mon, 01 Jun 2026 13:21:02 GMT
       Server:
-      - hypercorn-h11
+      - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
-  response:
-    body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","subfield_validated":null,"title":"Depth-First","updated_at":1775462911.056145,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/mn0n8-p9m65","citation":"https://doi.org/10.59350/mn0n8-p9m65","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2026-04-05T05:17:44.880218+00:00","validated":true},{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/myaw4-dtg76","citation":"https://doi.org/10.59350/myaw4-dtg76","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2026-04-05T05:17:42.220167+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","images":[],"indexed":true,"indexed_at":1764896879,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:09:43 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
-  response:
-    body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","subfield_validated":null,"title":"Depth-First","updated_at":1775462911.056145,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/mn0n8-p9m65","citation":"https://doi.org/10.59350/mn0n8-p9m65","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2026-04-05T05:17:44.880218+00:00","validated":true},{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/myaw4-dtg76","citation":"https://doi.org/10.59350/myaw4-dtg76","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2026-04-05T05:17:42.220167+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","images":[],"indexed":true,"indexed_at":1764896879,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:11:54 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
-  response:
-    body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","subfield_validated":null,"title":"Depth-First","updated_at":1775462911.056145,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/mn0n8-p9m65","citation":"https://doi.org/10.59350/mn0n8-p9m65","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2026-04-05T05:17:44.880218+00:00","validated":true},{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/myaw4-dtg76","citation":"https://doi.org/10.59350/myaw4-dtg76","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2026-04-05T05:17:42.220167+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","images":[],"indexed":true,"indexed_at":1764896879,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:18:03 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db
-  response:
-    body:
-      string: '{"abstract":null,"archive_url":null,"authors":[],"blog":{"archive_collection":23759,"archive_host":null,"archive_prefix":null,"archive_timestamps":null,"authors":null,"canonical_url":null,"category":"chemicalSciences","community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created_at":1734159605,"current_feed_url":null,"description":"Recent
-        content on Depth-First","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/atom+xml","feed_url":"http://localhost:3000/articles.atom","filter":null,"funding":null,"generator":"Other","generator_raw":"Other","home_page_url":"https://depth-first.com","id":"e6ce3892-f058-4f65-9ca4-55bafbd11906","indexed":true,"issn":null,"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":0,"relative_url":null,"ror":null,"secure":true,"slug":"rapodaca","status":"expired","subfield":"1606","subfield_validated":null,"title":"Depth-First","updated_at":1775462911.056145,"use_api":null,"use_mastodon":false,"user_id":"dead81b3-8a8b-45c9-85fe-f01bb3948c77"},"blog_name":"Depth-First","blog_slug":"rapodaca","citations":[{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/mn0n8-p9m65","citation":"https://doi.org/10.59350/mn0n8-p9m65","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/mn0n8-p9m65","updated_at":"2026-04-05T05:17:44.880218+00:00","validated":true},{"blog_slug":"rapodaca","cid":"10.59350/50ebs-4zq55::10.59350/myaw4-dtg76","citation":"https://doi.org/10.59350/myaw4-dtg76","cito":[],"doi":"https://doi.org/10.59350/50ebs-4zq55","published_at":"2024-12-08","type":"BlogPost","unstructured":"Willighagen,
-        E. (2024, December 8). Richard L. Apodaca. <i>Chem-bla-ics</i>. https://doi.org/10.59350/myaw4-dtg76","updated_at":"2026-04-05T05:17:42.220167+00:00","validated":true}],"content_html":"<p>Scripting
-        languages and cheminformatics can be a highly-effective\ncombination. With
-        their relaxed syntax, compilation-free execution, and\ninteractive testing
-        environments, scripting languages offer fast\ndevelopment iteration cycles.
-        And scripting languages\u2019 support for\nmanipulating libraries written
-        in other languages can be key in today\u2019s\nheterogeneous cheminformatics
-        software environment.</p>\n<p>Although there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
-        environments</a> to choose from, Ruby offers some important\nadvantages. Number
-        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
-        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
-        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
-        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
-        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
-        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
-        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
-        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
-        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
-        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
-        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
-        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
-        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
-        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
-        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
-        one of CDK\u2019s creators, got me thinking about\ncentralizing this documentation.
-        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
-        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
-        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
-        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
-        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
-        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
-        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
-        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
-        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
-        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
-        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
-        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
-        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
-        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
-        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
-        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
-        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
-        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
-        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
-        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
-        and useless by themselves to chemists - why not convert\nthem into HTML and
-        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
-        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
-        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
-        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
-        master: \u201cIt\u2019s just that easy.\u201d</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
-        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
-        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
-        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
-        The structure editor <em>can</em> be lean, mean,\nand still highly functional
-        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
-        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
-        target=\"_blank\">Peter\nCorbett\u2019s</a> awesome OPSIN Library plays nice
-        with Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
-        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
-        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
-        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
-        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
-        Strings</a> Extremely short library for solving a very common\ncheminformatics
-        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
-        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
-        documentation.</li>\n</ul>\n","doi":"https://doi.org/10.59350/50ebs-4zq55","funding_references":null,"guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","id":"7314152e-cac7-4bc1-ae99-b73ef67ea7db","image":"https://depth-first.com/","images":[],"indexed":true,"indexed_at":1764896879,"language":"en","parent_doi":null,"published_at":1191456000,"reference":[],"registered_at":0,"relationships":[],"rid":"vtvqg-j3285","summary":"Scripting
-        languages and cheminformatics can be a highly-effective combination. With
-        their relaxed syntax, compilation-free execution, and interactive testing
-        environments, scripting languages offer fast development iteration cycles.
-        And scripting languages\u2019 support for manipulating libraries written in
-        other languages can be key in today\u2019s heterogeneous cheminformatics software
-        environment.","tags":[],"title":"Ruby CDK for Newbies","updated_at":1191456000,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:51:35 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
     status:
       code: 200
       message: OK

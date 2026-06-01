@@ -14,153 +14,89 @@ interactions:
     uri: https://rogue-scholar.org/api/records/23y6y-vh985
   response:
     body:
-      string: '{"id": "23y6y-vh985", "created": "2025-10-18T13:41:09.977701+00:00",
-        "updated": "2025-12-01T13:40:15.889795+00:00", "links": {"self": "https://rogue-scholar.org/api/records/23y6y-vh985",
-        "self_html": "https://rogue-scholar.org/records/23y6y-vh985", "preview_html":
-        "https://rogue-scholar.org/records/23y6y-vh985?preview=1", "doi": "https://doi.org/10.59350/qsajq-6tn97",
-        "self_doi": "https://doi.org/10.59350/qsajq-6tn97", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/qsajq-6tn97",
-        "reserve_doi": "https://rogue-scholar.org/api/records/23y6y-vh985/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/74hx4-qp390", "parent_html":
-        "https://rogue-scholar.org/records/74hx4-qp390", "parent_doi": "https://doi.org/10.59350/74hx4-qp390",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/74hx4-qp390", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:23y6y-vh985/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:23y6y-vh985/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/23y6y-vh985/files", "media_files":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/media-files", "archive":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/23y6y-vh985/latest", "versions": "https://rogue-scholar.org/api/records/23y6y-vh985/versions",
-        "draft": "https://rogue-scholar.org/api/records/23y6y-vh985/draft", "access_links":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access/request", "access":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/access", "communities":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/23y6y-vh985/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/23y6y-vh985/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/23y6y-vh985/requests"},
-        "revision_id": 13, "parent": {"id": "74hx4-qp390", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["0e13541f-417e-46c0-a859-65927249df72", "346efb91-f134-4f0b-bd6a-30e2094d2c40",
-        "ce85b38a-7acb-4a36-a274-4e026646af48"], "default": "0e13541f-417e-46c0-a859-65927249df72",
-        "entries": [{"id": "0e13541f-417e-46c0-a859-65927249df72", "created": "2024-10-05T08:57:03.365247+00:00",
-        "updated": "2025-12-01T07:41:52.312575+00:00", "links": {}, "revision_id":
-        422, "slug": "svpow", "metadata": {"title": "Sauropod Vertebra Picture of
-        the Week", "description": "SV-POW!  ...  All sauropod vertebrae, except when
-        we''re talking about Open Access. ISSN 3033-3695", "type": {"id": "blog"},
-        "website": "https://svpow.com"}, "access": {"visibility": "public", "members_visibility":
-        "public", "member_policy": "open", "record_submission_policy": "open", "review_policy":
-        "open"}, "custom_fields": {"rs:issn": "3033-3695", "rs:feed_url": "https://svpow.com/feed/atom/",
-        "rs:prefix": "10.59350", "rs:joined": "February 1, 2023", "rs:feed_format":
-        "application/atom+xml", "rs:generator": "WordPress.com", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Earth and related environmental
-        sciences"}, "deletion_status": {"is_deleted": false, "status": "P"}, "children":
-        {"allow": false}}, {"id": "346efb91-f134-4f0b-bd6a-30e2094d2c40", "created":
-        "2024-10-02T19:02:40.195535+00:00", "updated": "2025-07-15T19:21:07.796032+00:00",
-        "links": {}, "revision_id": 13, "slug": "openaccess", "metadata": {"title":
-        "Open Access", "description": "Blog posts about Open Access.", "type": {"id":
-        "topic"}}, "access": {"visibility": "public", "members_visibility": "public",
-        "member_policy": "open", "record_submission_policy": "open", "review_policy":
-        "open"}, "custom_fields": {}, "deletion_status": {"is_deleted": false, "status":
-        "P"}, "children": {"allow": false}}, {"id": "ce85b38a-7acb-4a36-a274-4e026646af48",
-        "created": "2025-02-10T08:10:20.634480+00:00", "updated": "2025-06-30T16:00:16.467890+00:00",
-        "links": {}, "revision_id": 6, "slug": "earthandrelatedenvironmentalsciences",
-        "metadata": {"title": "Earth and related environmental sciences", "description":
-        "Earth and related environmental sciences subject area.", "type": {"id": "subject"}},
-        "access": {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {}, "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}]}, "pids": {"doi": {"identifier": "10.59350/74hx4-qp390", "provider":
-        "crossref", "client": "crossref"}}}, "versions": {"is_latest": true, "index":
-        1}, "is_published": true, "is_draft": false, "pids": {"doi": {"identifier":
-        "10.59350/qsajq-6tn97", "provider": "crossref", "client": "crossref"}, "oai":
-        {"identifier": "oai:invenio-rdm:23y6y-vh985", "provider": "oai"}}, "metadata":
-        {"resource_type": {"id": "publication-blogpost", "title": {"de": "Blogbeitrag",
-        "en": "Blog post", "sv": "blogginl\u00e4gg"}}, "creators": [{"person_or_org":
-        {"type": "personal", "name": "Taylor, Mike", "given_name": "Mike", "family_name":
-        "Taylor", "identifiers": [{"identifier": "0000-0002-1003-5675", "scheme":
-        "orcid"}]}, "affiliations": [{"id": "0524sp257", "name": "University of Bristol",
-        "identifiers": [{"identifier": "0524sp257", "scheme": "ror"}]}]}], "title":
-        "Video of the 2024 SSP debate: \"The open access movement has failed\"", "publisher":
-        "Front Matter", "publication_date": "2025-10-18", "subjects": [{"subject":
-        "Conferences"}, {"subject": "Debate"}, {"subject": "Open Access"}, {"subject":
-        "SSP"}, {"subject": "Stinkin'' Publishers"}, {"id": "https://openalex.org/subfields/1911",
-        "subject": "Paleontology", "scheme": "Subfields"}], "dates": [{"date": "2025-10-18T15:34:59",
-        "type": {"id": "issued", "title": {"de": "Ver\u00f6ffentlicht", "en": "Issued",
-        "sv": "Utf\u00e4rdad"}}}, {"date": "2025-10-18T22:42:34", "type": {"id": "updated",
-        "title": {"de": "Aktualisiert", "en": "Updated", "sv": "Uppdaterad"}}}], "languages":
-        [{"id": "eng", "title": {"en": "English"}}], "identifiers": [{"identifier":
-        "b6d6fdfc-fc36-4a6b-968d-2c9795ad4cf1", "scheme": "uuid"}, {"identifier":
-        "https://svpow.com/?p=24424", "scheme": "guid"}, {"identifier": "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "Readers with good memories will remember
-        that back in May last year I announced I would be one of the two participants
-        in the plenary debate that closes the annual meeting of the Society for Scholarly
-        Publishing."}, "custom_fields": {"journal:journal": {"title": "Sauropod Vertebra
-        Picture of the Week", "issn": "3033-3695"}, "rs:content_html": "<p>Readers
-        with good memories will remember that back in May last year <a href=\"https://svpow.com/2024/05/29/westin-whats-coming-up-wednesday-wrangle-over-whether-oa-is-a-washout/\">I
-        announced I would be one of the two participants</a> in the plenary debate
-        that closes the annual meeting of the Society for Scholarly Publishing. I
-        was cast against type, proposing the motion &#8220;The open access movement
-        has failed&#8221;, with preprint advocate Jessica Polka providing the honorable
-        opposition.</p>\n<p>I posted <a href=\"https://svpow.com/2024/06/05/the-ssp-debate-on-the-open-access-movement-has-failed-part-1-speech-for-the-motion/\">the
-        full text of my opening argument</a> and <a href=\"https://svpow.com/2024/06/08/ssp-debate-part-2-jessica-polka-opposing-the-open-access-movement-has-failed/\">of
-        Jessica&#8217;s argument in opposition</a> \u2014 but not of the shorter rebuttals
-        that each of us gave, or of course the unscripted Q&amp;A that followed the
-        formal part of the debate.</p>\n<p>Now, only a year and a bit late, comes
-        <a href=\"https://ondemand.sspnet.org/Title/c5d378c1-9202-4fe4-b5a0-f501d430536f\">the
-        video of the debate</a>! My apologies for the delay: it wasn&#8217;t available
-        straight after the meeting, and then I forgot to check back a month later.</p>\n<p><a
-        href=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"><img
-        data-attachment-id=\"24430\" data-permalink=\"http://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/mike-at-ssp-debate/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
-        data-orig-size=\"1950,1219\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
-        data-image-title=\"mike-at-ssp-debate\" data-image-description=\"\" data-image-caption=\"\"
-        data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=1024\"
-        loading=\"lazy\" class=\"alignnone size-full wp-image-24430\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
-        alt=\"\" width=\"480\" height=\"300\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=480&amp;h=300
-        480w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=960&amp;h=600
-        960w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=150&amp;h=94
-        150w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=300&amp;h=188
-        300w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=768&amp;h=480
-        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a></p>\n<p>I&#8217;d
-        like to embed the video in this page, but WordPress won&#8217;t let me (not
-        unreasonably \u2014 I wouldn&#8217;t let people embed arbitrary JavaScript
-        in my site, either). So you&#8217;ll have to link through to <a href=\"https://ondemand.sspnet.org/Title/c5d378c1-9202-4fe4-b5a0-f501d430536f\">the
-        SSP&#8217;s page with the video</a>.</p>\n<p>It&#8217;s the only way to find
-        out who won the debate, after all!</p>\n<p>&nbsp;</p>\n<hr />\n<p><a href=\"https://doi.org/10.59350/qsajq-6tn97\">doi:10.59350/qsajq-6tn97</a></p>",
-        "rs:image": "https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg",
-        "rs:generator": "WordPress.com", "rs:stale": false}, "access": {"record":
-        "public", "files": "public", "embargo": {"active": false, "reason": null},
-        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        5, "unique_views": 4, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 5, "unique_views": 4, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
     headers:
-      Content-Length:
-      - '12254'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:44 GMT
+      - Mon, 01 Jun 2026 13:20:58 GMT
       Etag:
-      - '"13"'
+      - '"17"'
       Link:
       - <https://rogue-scholar.org/api/records/23y6y-vh985> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -168,11 +104,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '18'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -180,9 +120,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '491'
+      - '494'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1780320118'
       X-Xss-Protection:
       - 1; mode=block
     status:

@@ -3,7 +3,7 @@ name = "commonmeta-py"
 dynamic = ["version"]
 description = "Library for conversions to/from the Commonmeta scholarly metadata format"
 authors = [{ name = "Martin Fenner", email = "martin@front-matter.de" }]
-requires-python = ">=3.10,<4.0"
+requires-python = ">=3.9,<4.0"
 readme = "README.md"
 license = { text = "MIT" }
 keywords = [
@@ -28,7 +28,7 @@ dependencies = [
     "types-beautifulsoup4>=4.11,<5",
     "bibtexparser~=1.4",
     "citeproc-py-styles>=0.1.2,<1",
-    "citeproc-py>=0.6,<1",
+    "citeproc-py>=0.9,<1",
     "jsonschema~=4.21",
     "base32_lib~=1.0",
     "datacite>=1.1.1,<2",
@@ -50,9 +50,8 @@ dependencies = [
     "psycopg[binary]>=3.2,<4",
     "marshmallow-utils>=0.10.0",
     "xmlschema>=4.0.1",
-    "xsdata[cli]>=26,<27",
     "isbnlib>=3.10.14",
-    "pillow>=12.2.0",
+    "pillow>=11.0.0",
 ]
 
 [project.urls]
@@ -95,6 +94,7 @@ build-backend = "hatchling.build"
 [tool.pytest.ini_options]
 python_files = "test-*.py"
 testpaths = ["tests"]
+filterwarnings = ["ignore::pyparsing.core.PyparsingDeprecationWarning"]
 
 [tool.mypy]
 exclude = ["build"]

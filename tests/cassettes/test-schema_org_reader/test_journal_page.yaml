@@ -17,7 +17,7 @@ interactions:
       string: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html
         xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">\n<head>\n<!--\n\n\tThis
         website is powered by Contao Open Source CMS :: Licensed under GNU/LGPL\n\tCopyright
-        \xA92005-2025 by Leo Feyer :: Extensions are copyright of their respective
+        \xA92005-2026 by Leo Feyer :: Extensions are copyright of their respective
         owners\n\tVisit the project website at http://www.contao.org for more information\n\n//-->\n<base
         href=\"https://app.pan.pl/\"></base>\n<title>Novel pneumatic features in the
         ribs of the sauropod dinosaur <em>Brachiosaurus altithorax</em> - Acta Palaeontologica
@@ -116,7 +116,7 @@ interactions:
         /> Full text  (1,061.8 kB)</a></span>\n</div>\n\n<!--<p class=\"back\"><a
         href=\"https://app.pan.pl\" title=\"Go back\">Go back</a></p>-->\n</div>\n\n</div>\n
         \n</div>\n \n<div id=\"clear\"></div>\n</div>\n\n</div>\n\n<div id=\"footer\">\n<div
-        class=\"inside\">\n\r\n<div style=\"text-align:center;\">\xA9 1997-2025 <a
+        class=\"inside\">\n\r\n<div style=\"text-align:center;\">\xA9 1997-2026 <a
         href=\"http://www.paleo.pan.pl/\" target=\"_blank\">Instytut Paleobiologii
         PAN</a> :: <a href=\"copyright-policy.html\">Publication Policies and Ethics</a>
         :: <a href=\"https://www.facebook.com/pages/category/Nonprofit-Organization/Acta-Palaeontologica-Polonica-266909440044736/\"><img
@@ -136,19 +136,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:20:01 GMT
+      - Mon, 01 Jun 2026 13:23:47 GMT
       Expires:
       - Wed, 28 Jan 1976 11:52:00 GMT
       Keep-Alive:
       - timeout=5, max=100
       Last-Modified:
-      - Mon, 01 Dec 2025 17:20:01 GMT
+      - Mon, 01 Jun 2026 13:23:47 GMT
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - PHPSESSID=bi7d3bsmu0q988iho1ntvevq47; path=/
+      - PHPSESSID=hdboc1mejadp2d4n6ai4fl6810; path=/
       Transfer-Encoding:
       - chunked
     status:
@@ -169,10 +169,12 @@ interactions:
     uri: https://doi.org/ra/10.4202
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.4202\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9EyMDIyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        xPvtwjYAAAA=
     headers:
       CF-RAY:
-      - 9a7440b7dceddef8-AMS
+      - a04e88f15ededb60-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -180,11 +182,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:20:01 GMT
+      - Mon, 01 Jun 2026 13:23:48 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=rxe%2B1mwELsyvEkTQczF6CAPChfmIvGh%2BtMI29Kv5hYKACvT8rwd3O0gKMdXsOYz13ygBkSGUSPlDmJQmNBbF%2BR22zDhcRTWl5oM6IzYXQdSgDg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=bGl3ErSiCojtVM9ZqFPbb3GAGURTr0z4SLUZtWnTrSbMpUYTQiebSKvZ%2FbeLA7CmeKGh7l%2BKEPS%2F5nQjxrHIsDzqN2IBDIFkolEC3RjPGtKl0CG8C9AVwUD6sJW1oJ71GaN8w5M%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -218,20 +220,32 @@ interactions:
     uri: https://api.crossref.org/works/10.4202/app.01105.2023
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,10,11]],"date-time":"2025-10-11T21:28:05Z","timestamp":1760218085526},"reference-count":0,"publisher":"Polska
-        Akademia Nauk Instytut Paleobiologii (Institute of Paleobiology, Polish Academy
-        of Sciences)","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["APP"],"DOI":"10.4202\/app.01105.2023","type":"journal-article","created":{"date-parts":[[2024,1,24]],"date-time":"2024-01-24T08:11:11Z","timestamp":1706083871000},"source":"Crossref","is-referenced-by-count":14,"title":["Novel
-        pneumatic features in the ribs of Brachiosaurus altithorax"],"prefix":"10.4202","volume":"68","author":[{"given":"Mike","family":"Taylor","sequence":"first","affiliation":[]},{"given":"Mathew","family":"Wedel","sequence":"additional","affiliation":[]}],"member":"2718","published-online":{"date-parts":[[2023]]},"container-title":["Acta
-        Palaeontologica Polonica"],"original-title":[],"link":[{"URL":"https:\/\/www.app.pan.pl\/archive\/published\/app68\/app011052023.pdf","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2024,1,24]],"date-time":"2024-01-24T08:11:11Z","timestamp":1706083871000},"score":1,"resource":{"primary":{"URL":"https:\/\/www.app.pan.pl\/article\/item\/app011052023.html"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023]]},"references-count":0,"alternative-id":["20052"],"URL":"https:\/\/doi.org\/10.4202\/app.01105.2023","relation":{},"ISSN":["0567-7920"],"issn-type":[{"value":"0567-7920","type":"print"}],"subject":[],"published":{"date-parts":[[2023]]}}}'
+      string: !!binary |
+        H4sIAAAAAAAA/7VUy27rNhD9FYGrFpBkSlZsx7u03QRo06BJUaCxFzRF2XNNkSofdgzD/35n5Gdv
+        E6CLFjBgikPOOXPODPfMBxGiZ1Nm1yxlrfJeLFUWdp3Cva11t7sb5TxYg4Ei5zm/Rth0z8DU6l3V
+        tKxFUFknXMC8b28lL0dplRbVfJ4eQwFayk6BjFdZUb2WfFqV+PsTc1IUWbUdmxbj8ai4vx+OSn5f
+        peyKP8zveF6wQ8qcapRTRqpM2mgCm/KUdXGhwa+Uw5PPVvu1SB7WolYtiORJxHXyaHzYhRiSZ6GV
+        XYDVdgmQfEf7gPsqsc1tbJcmmAdTJg+S8uwo/iKBcP33yFlaE5QJWW1bAabX4LR6w6Kls963wq0z
+        h5U5kKGvohHaKyzBr6wLGaXAG8qhPEGjPm/s4fmZ4fWffn0kyXleoWKzgei6nBcFv8vxc0iCHc36
+        YqMzQmeoO0hMQLgK5f7YEjQkLT+ypMp4kZXVK59MiwJ//7CEj/hkOBkXnHMij6iSrv5IRaIbeBx8
+        drGlzha7szXFHaU6FfdkN0onnVGxFUg4aZBrRH0SMElYqcTBwpPMPzghV2C9iC76RGhMgHqJd1Km
+        Qxh4v4qD2BurY1/KaIJfItJhhNuzJWwUtc4vsCZtGtGC3uH3q9hpPIKVqL8iMca9BpwPdL1pQIM4
+        2kVOOtuT358W5/wEK8UiauEopTxLcZgf0htkgXVtb7H/ULXSf4cWdQ2EJ/R/gz+nIW0X/SyU44JE
+        OY9HnVmjseM+7I/hHLmzj5pSBkGzIRTG+sGRgqbDGlyQKdbBEqgRz1dwD2HWPe/ff/sZiaxC6Px0
+        NpgNttttTg3dCZN3GpvbodkbNRtcSPYNP5r0f33bE7m8q5ubsTtNQDS+UxIawJ6/Bq+vxqaXCmi7
+        xuoxoUbOR3WZBzRFOAjYrisl12CWjNSrVWc9/O9jJK3DmwU9aOeR2mN/Q9tb+m+E66d+NkCq7Tdi
+        rUKr2YFQ4uLGlOO7c7MB3sdP6jy2w2Wq/c1riyOp8OEJaFsGNbVIyRGYWuFb0rWF3LrlbPD5Y+aU
+        PjmyR8DHl5cnysjvRuNsfF9ydqRpTpZjR22EjqT59cjlRUT5kCOZiIV/UTIcy7y01qeVHg5fAZZb
+        4ksZBwAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '832'
+      - '861'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:20:01 GMT
+      - Mon, 01 Jun 2026 13:23:48 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -249,10 +263,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

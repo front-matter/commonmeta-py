@@ -14,10 +14,12 @@ interactions:
     uri: https://doi.org/ra/10.1045
   response:
     body:
-      string: "[\n  {\n    \"DOI\": \"10.1045\",\n    \"RA\": \"Crossref\"\n  }\n]"
+      string: !!binary |
+        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QwMTUyUdiGiQI0jQuSi/uLgoNU0JKFjLFQsA
+        ki+tmTYAAAA=
     headers:
       CF-RAY:
-      - 9a743c06fca6b8ed-AMS
+      - a04e85c91e8c1c7a-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -25,11 +27,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Dec 2025 17:16:49 GMT
+      - Mon, 01 Jun 2026 13:21:38 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=7FKrnmTxpQ9YkPGQVzu7R8cRb%2B5SpVbUMCBTrG98bt49fvxkZwHRWPe%2BR1%2Fi9KCoewSQnd3oyvLGmhD8IlfujcpWyCvw0xPUmfKufeS4%2FY9lbQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=TfstcJeoApss53%2BBJqOD6MlGUY5R63myFoo4Fst%2FYWJeVsQMoR4gHPZEhPsSC1ja0Inq9qv0NJNqVxgzR6EHQs2OFCDyyyURg70qubQEI0Aql5F66ktkoNPSQFhLk4ezCXvAlBY%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -63,21 +65,32 @@ interactions:
     uri: https://api.crossref.org/works/10.1045/january2017-burton
   response:
     body:
-      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,11,13]],"date-time":"2025-11-13T02:00:40Z","timestamp":1762999240974},"reference-count":0,"publisher":"CNRI
-        Acct","issue":"1\/2","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["D-Lib
-        Magazine"],"DOI":"10.1045\/january2017-burton","type":"journal-article","created":{"date-parts":[[2017,1,12]],"date-time":"2017-01-12T18:57:58Z","timestamp":1484247478000},"source":"Crossref","is-referenced-by-count":38,"title":["The
-        Scholix Framework for Interoperability in Data-Literature Information Exchange"],"prefix":"10.1045","volume":"23","author":[{"given":"Adrian","family":"Burton","sequence":"first","affiliation":[]},{"given":"Amir","family":"Aryani","sequence":"additional","affiliation":[]},{"given":"Hylke","family":"Koers","sequence":"additional","affiliation":[]},{"given":"Paolo","family":"Manghi","sequence":"additional","affiliation":[]},{"given":"Sandro","family":"La
-        Bruzzo","sequence":"additional","affiliation":[]},{"given":"Markus","family":"Stocker","sequence":"additional","affiliation":[]},{"given":"Michael","family":"Diepenbroek","sequence":"additional","affiliation":[]},{"given":"Uwe","family":"Schindler","sequence":"additional","affiliation":[]},{"given":"Martin","family":"Fenner","sequence":"additional","affiliation":[]}],"member":"72","published-online":{"date-parts":[[2017,1]]},"container-title":["D-Lib
-        Magazine"],"original-title":[],"language":"en","deposited":{"date-parts":[[2017,1,12]],"date-time":"2017-01-12T18:58:00Z","timestamp":1484247480000},"score":1,"resource":{"primary":{"URL":"http:\/\/www.dlib.org\/dlib\/january17\/burton\/01burton.html"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2017,1]]},"references-count":0,"journal-issue":{"issue":"1\/2","published-online":{"date-parts":[[2017,1]]}},"URL":"https:\/\/doi.org\/10.1045\/january2017-burton","relation":{},"ISSN":["1082-9873"],"issn-type":[{"value":"1082-9873","type":"electronic"}],"subject":[],"published":{"date-parts":[[2017,1]]}}}'
+      string: !!binary |
+        H4sIAAAAAAAA/71WTXPaOhT9Kx6tbZDAPBPv0qadZpq0nZJuXmAh2xdQkCU/SQ4hDP/9XdlAnLbp
+        tNOWnX0l3/MhWUdbYh13tSUp0SsSkhKs5QuI3KYCrK216VbvwVihFQ6wHu3RpxGSbolQBTxA4R8L
+        7iCquHHY9/Z2QAf/hKMwns3CdsSJ0jf39YiOIhrfsDgdDlM6/Bdb+lEkVVYkZUmSnNERGw9H7Cwk
+        T/DD3oj1YrILiYE5GFA5RLmulSMpDUlVZ1LYJRic+frD58vgPM8ddhbW1h6YTfsDfM21cqBcVOiS
+        C9Xw3j/dItPcaGtLblaRQTpG5K6BnnNpAXHtUhsX+Rb4BRjU5CT2viUX0ZXIgmu+4I84QLDTxcdL
+        D0p7jMajaf+Oq5qbzYCyJMpq47Arim79vtO1UVxGaJ3IsZ+nAWjZd11lSchCNvjWVmxMWcQGN2yc
+        jpJ0NP7a1ngcD+IkTsaUUq8FUXP/6WuvGR1tvIqO1hZRtjnYG1Pfaq/1ZgnBJF9qKR6Ct4aX4PdL
+        MNcmuERrja7A8ExI4TaBUMEFdxzNwQHccQZwDs4sufc1ePOQL7laNH5VCCwenixDNvda1q24Ib7x
+        2qH7SGBLFuIe/IY4L4zg3sg5L4XcYOXVwVoL/9VeBdbmwli/Efh8jqx4u6J+sY1uBG33DwcED5zz
+        rJa4XljND/bsZruwg10K00U+NxuuxHNkXhTCw3H5x+HfbeQKuvjvNf4nJ4P/xLXUXfhrXMfl6eRP
+        uCrMMwJXPHhl6sdHfTIO13hM1LbLYeJ0vgJzOgYC/x+QXQoXAipQmdGwOhmNL+tnOxHPBkwFeUof
+        /Mn57Bx4C0r9bQIzH4Rl1gRO4qPlkEBFpJX0MfDC8T1D8uSnQkQbsRA+Gg5zsCbxT6ub9CXgNRdQ
+        aSt+Ky3GKaUvpIUPiyYtcm3wS+az95AcWzy0RdkYsyVfPl9h46VzVTrtT/vr9bpXSJH1tFlM+/7p
+        mIEsmfbbCJz2KWufektXSrLzQHXWEdsGbqfQpPmLUhtnjwlmO7eDQ8bubwPbr68Fv7B2CPEk1jZq
+        Cy1aoT/OewNyv+O22ORyMvngl53R8SA6GydD0upT+3sY7sV7LluSxynHSwNIyJ3RSuTE70S07Q4L
+        rUlHMT9Ssfsf+IdyEgYKAAA=
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '834'
+      - '872'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:16:49 GMT
+      - Mon, 01 Jun 2026 13:21:39 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -95,10 +108,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

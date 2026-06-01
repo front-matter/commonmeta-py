@@ -14,19 +14,30 @@ interactions:
     uri: https://api.crossref.org/works?sample=1
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":1,"items":[{"indexed":{"date-parts":[[2025,11,24]],"date-time":"2025-11-24T15:26:12Z","timestamp":1763997972327,"version":"3.45.0"},"publisher-location":"Philadelphia","reference-count":0,"publisher":"Blakiston","content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[1945]]},"DOI":"10.1037\/10784-011","type":"book-chapter","created":{"date-parts":[[2005,8,8]],"date-time":"2005-08-08T10:10:35Z","timestamp":1123495835000},"page":"251-277","source":"Crossref","is-referenced-by-count":0,"title":["Psychosomatic
-        states."],"prefix":"10.1037","author":[{"given":"Roy R.","family":"Grinker","sequence":"first","affiliation":[]},{"given":"John
-        P.","family":"Spiegel","sequence":"additional","affiliation":[]}],"member":"15","container-title":["Men
-        under stress."],"language":"en","link":[{"URL":"https:\/\/psycnet.apa.org\/books\/10784\/011.pdf","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2025,11,24]],"date-time":"2025-11-24T15:20:07Z","timestamp":1763997607000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/content.apa.org\/books\/10784-011"}},"issued":{"date-parts":[[1945]]},"references-count":0,"alternative-id":["2005-06682-011","2005-06682-000"],"URL":"https:\/\/doi.org\/10.1037\/10784-011","published":{"date-parts":[[1945]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
+      string: !!binary |
+        H4sIAAAAAAAA/81VTY/aMBD9K8jnOMQJKR+3dtvDStUu6tJLgYNxDIxw7NR2+BDiv3cc6MIu7FY9
+        VOohkuUZj9+b53nZE+e5rx0ZELMiESmlc3whqd9VEvc2xq6oAucvQmtpHRiNURYncXKOkMGezLmQ
+        HqvtDxHxxnNFrXS1ClssIuBliavxnoAu5FYW4UjBvaQVtyFnPE6TNI+6UTqdRseIhzIgCfs06dIk
+        HSWdQdIb5PkPvDpEkUFZYf1uzjppP8vyPssicoaZxR1EShCRlXNppRaSClNrTwZJRKp6hgSX0mLm
+        0AIGvdGt7xqaAn7XGiIDh1eBm+lTX5DAqUFSSeGt0SAwY81VHTb73R7rJEkv7+RpRg7IRBjtpfa0
+        MCUH3bA+rcYhao1zJcdW41XegvAN8DlXTh7OCAtaIT5/3TPW732IWBplbDrF/M+P90GcJGY5yyft
+        F2hibwLSE/qZMSsqlrzySD/gkFj3pigsj1jEsmtVGKrCKMtGKQuqZFeqdFLGelnG8iRJApnmoZA1
+        AMUPMNmZ2oqwdxfagBI1vabPWhV0trvQy4NXQQJy9/gw+vIweiKIqcJs2J5ZN4+ynDWiZt0OOSqA
+        DZeWPhcYKi5AL1pDpAnStUC3PpYS2891a2gUeBAuFFegV43m3799xXpL76vBpD1pbzabuJALW++w
+        fbEw5aS9BrmZtENb3avG39Dhxla8LRU5P5eTTF5u/aS99C9i5/e9NkE8CNsFdotXlUIOxzfUnKUl
+        aCSKE3DJwV2TmFlQ6sikMKIu8Z6wgkn77dc0ad/EfIHidcb/g7wq5tfIa+0qKWAOOAl/DdpBCYpb
+        9A2cKylWDfgwNLIy6CbvOB570/HYCAeL9Qad7IbjZXm3n2bH2XLCWDyJphys7vdc7XE6AN1lF5b/
+        oInNuzwcwtC6+hbBV/Z0//TpIYzfS5ecXrizuxh3rhCYxvauJYUinHvX2G4HQ/XXzJFXbOziPW7k
+        wnv/QCto3PzdaIUWczS5FOH/rOWx8SiZ9bT57TW8nORWLCmSC39EXSt1OBx+AaeqFsyOBwAA
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '761'
+      - '795'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:17:24 GMT
+      - Mon, 01 Jun 2026 13:22:06 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -44,10 +55,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK
@@ -66,119 +79,124 @@ interactions:
     uri: https://api.crossref.org/works?sample=5
   response:
     body:
-      string: '{"status":"ok","message-type":"work-list","message-version":"1.0.0","message":{"facets":{},"total-results":5,"items":[{"indexed":{"date-parts":[[2022,4,6]],"date-time":"2022-04-06T01:52:33Z","timestamp":1649209953238},"reference-count":22,"publisher":"Elsevier
-        BV","issue":"4","license":[{"start":{"date-parts":[[1977,4,1]],"date-time":"1977-04-01T00:00:00Z","timestamp":228700800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.elsevier.com\/tdm\/userlicense\/1.0\/"},{"start":{"date-parts":[[2019,12,20]],"date-time":"2019-12-20T00:00:00Z","timestamp":1576800000000},"content-version":"vor","delay-in-days":15603,"URL":"http:\/\/www.elsevier.com\/open-access\/userlicense\/1.0\/"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["The
-        Journal of Thoracic and Cardiovascular Surgery"],"published-print":{"date-parts":[[1977,4]]},"DOI":"10.1016\/s0022-5223(19)39907-6","type":"journal-article","created":{"date-parts":[[2019,12,20]],"date-time":"2019-12-20T22:23:34Z","timestamp":1576880614000},"page":"647-650","source":"Crossref","is-referenced-by-count":1,"title":["Increased
-        cardiac output by downstream pumping with a reversed unidirectional intra-aortic
-        balloon"],"prefix":"10.1016","volume":"73","author":[{"given":"Richard W.","family":"Pooley","sequence":"first","affiliation":[]},{"given":"Nestor
-        J.","family":"Truccone","sequence":"additional","affiliation":[]},{"given":"Henry
-        M.","family":"Spotnitz","sequence":"additional","affiliation":[]},{"given":"Eduardo
-        N.","family":"Parodi","sequence":"additional","affiliation":[]},{"given":"David","family":"Bregman","sequence":"additional","affiliation":[]},{"given":"James
-        R.","family":"Malm","sequence":"additional","affiliation":[]},{"given":"Keith","family":"Reemtsma","sequence":"additional","affiliation":[]}],"member":"78","reference":[{"key":"10.1016\/S0022-5223(19)39907-6_bib1","doi-asserted-by":"crossref","first-page":"659","DOI":"10.7326\/0003-4819-76-4-659","article-title":"Editorial:
-        Intra-aortic Balloon Counterpulsation","volume":"76","author":"Braunwald","year":"1972","journal-title":"An
-        Assessment. Ann. Intern. Med."},{"key":"10.1016\/S0022-5223(19)39907-6_bib2","doi-asserted-by":"crossref","first-page":"577","DOI":"10.1016\/S0022-5223(19)42027-8","article-title":"Clinical
-        Experience With a New Cardiac Assist Device: The Dual-Chambered Intra-aortic
-        Balloon Assist","volume":"62","author":"Bregman","year":"1971","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib3","doi-asserted-by":"crossref","first-page":"1010","DOI":"10.1016\/S0022-5223(19)39649-7","article-title":"Intraoperative
-        Unidirectional Intra-aortic Balloon Pumping in the Management of Left Ventricular
-        Power Failure","volume":"70","author":"Bregman","year":"1975","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"issue":"Suppl. III","key":"10.1016\/S0022-5223(19)39907-6_bib4","first-page":"90","article-title":"Intra-aortic
-        Balloon Pump Assist for Cardiogenic Shock After Cardiopulmonary Bypass","volume":"47,
-        48","author":"Buckley","year":"1973","journal-title":"Circulation"},{"key":"10.1016\/S0022-5223(19)39907-6_bib5","doi-asserted-by":"crossref","first-page":"447","DOI":"10.1016\/S0022-5223(20)31674-3","article-title":"Assisted
-        Circulation. I. The Arterial Counterpulsator","volume":"41","author":"Clauss","year":"1961","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib6","doi-asserted-by":"crossref","first-page":"669","DOI":"10.1016\/0002-8703(62)90012-1","article-title":"Diastolic
-        Balloon Pumping (With Carbon Dioxide) in the Aorta: A Mechanical Assistance
-        to the Failing Circulation","volume":"63","author":"Moulopoulos","year":"1962","journal-title":"Am.
-        Heart J."},{"key":"10.1016\/S0022-5223(19)39907-6_bib7","doi-asserted-by":"crossref","first-page":"979","DOI":"10.1056\/NEJM197305102881901","article-title":"Intra-aortic
-        balloon counterpulsation in Cardiogenic Shock","volume":"288","author":"Scheidt","year":"1973","journal-title":"N.
-        Engl. J. Med."},{"key":"10.1016\/S0022-5223(19)39907-6_bib8","first-page":"122","article-title":"Hemodynamics
-        and Coronary Blood Flow During Intra-aortic Balloon Pumping","volume":"19","author":"Talpins","year":"1968","journal-title":"Surg.
-        Forum"},{"key":"10.1016\/S0022-5223(19)39907-6_bib9","doi-asserted-by":"crossref","first-page":"818","DOI":"10.1016\/S0022-5223(19)42296-4","article-title":"A
-        comparative Study of Arterio-arterial and Intra-aortic Balloon Counterpulsation
-        in the Therapy of Cardiogenic Shock","volume":"60","author":"Fleming","year":"1970","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib10","first-page":"57","article-title":"The
-        Use of Synchronized Counterpulsation and post-extrasystolic Potentiation in
-        the Treatment of Experimental Cardiogenic Shock","volume":"12","author":"Mantini","year":"1966","journal-title":"Trans.
-        Am. Soc. Artif. Intern. Organs"},{"key":"10.1016\/S0022-5223(19)39907-6_bib11","doi-asserted-by":"crossref","first-page":"243","DOI":"10.1016\/S0022-5223(19)42989-9","article-title":"Cardiovascular
-        Responses to Diastolic Augmentation in the Intact Canine Circulation and After
-        Ligation of the Anterior Descending Coronary Artery","volume":"55","author":"Goldfarb","year":"1968","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib12","first-page":"150","article-title":"Coronary
-        Sinus Blood Flow in Counterpulsation","volume":"18","author":"Goldstein","year":"1967","journal-title":"Surg.
-        Forum"},{"key":"10.1016\/S0022-5223(19)39907-6_bib13","doi-asserted-by":"crossref","first-page":"366","DOI":"10.1016\/S0022-5223(19)43337-0","article-title":"The
-        Hemodynamics of Counterpulsation","volume":"51","author":"Hahnloser","year":"1966","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib14","doi-asserted-by":"crossref","first-page":"314","DOI":"10.1016\/S0022-4804(64)80092-5","article-title":"Failure
-        of Counterpulsation to Assist Circulation in Canine Hemorrhagic Shock","volume":"4","author":"Brief","year":"1964","journal-title":"J.
-        Surg. Res."},{"key":"10.1016\/S0022-5223(19)39907-6_bib15","doi-asserted-by":"crossref","first-page":"789","DOI":"10.1016\/S0022-5223(19)43132-2","article-title":"Diastolic
-        Augmentation by intra-aortic Balloon","volume":"53","author":"Brown","year":"1967","journal-title":"J.
-        Thorac. Cardiovasc. Surg"},{"key":"10.1016\/S0022-5223(19)39907-6_bib16","first-page":"311","article-title":"Hemodynamics
-        and Coronary Blood Flow With Counterpulsation","volume":"65","author":"Dormandy","year":"1969","journal-title":"Surgery"},{"key":"10.1016\/S0022-5223(19)39907-6_bib17","doi-asserted-by":"crossref","first-page":"991","DOI":"10.1001\/archsurg.1968.01340060169020","article-title":"Counterpulsation
-        and Intra-aortic Balloon Pumping in Cardiogenic Shock","volume":"97","author":"Talpins","year":"1968","journal-title":"Arch
-        Surg."},{"key":"10.1016\/S0022-5223(19)39907-6_bib18","first-page":"63","article-title":"A
-        Vasomotor Reflex Contribution to Systolic Pressure Reduction During Diastolic
-        Augmentation","volume":"12","author":"Brown","year":"1966","journal-title":"Trans.
-        Am. Soc. Artif. Intern. Organs"},{"key":"10.1016\/S0022-5223(19)39907-6_bib19","doi-asserted-by":"crossref","first-page":"396","DOI":"10.1016\/0022-4804(71)90146-6","article-title":"Arterial
-        Baroreceptor Responses to Intra-aortic Balloon Assistance","volume":"11","author":"Normann","year":"1971","journal-title":"J.
-        Surg. Res."},{"key":"10.1016\/S0022-5223(19)39907-6_bib20","unstructured":"Spotnitz,
-        H. M., Beach, P. M., Bregman, D., Truccone, N. J., Parodi, E. N., Manger,
-        W. M., and Malm, J. R.: Oxygen Conservation by Propranolol and Intra-aortic
-        Balloon Pumping in the Normal Canine Heart, J. Surg. Res. In press."},{"key":"10.1016\/S0022-5223(19)39907-6_bib21","unstructured":"Calvert,
-        N. G., and Drabble, J. M.: Proceedings of the National Engineering Laboratory
-        Symposium on Flow Measurement in closed conduits, vol. 2, Edinburg, 1962,
-        Her Majesty''s Stationery Office, p. 667."},{"key":"10.1016\/S0022-5223(19)39907-6_bib22","doi-asserted-by":"crossref","first-page":"261","DOI":"10.1136\/thx.19.3.261","article-title":"Principles
-        of Fluid Mechanics Applied to Some Situations in the Human Circulation and
-        Particularly to the Testing of Valves in a Pulse Duplicator","volume":"19","author":"Temple","year":"1964","journal-title":"Thorax"}],"container-title":["The
-        Journal of Thoracic and Cardiovascular Surgery"],"language":"en","link":[{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0022522319399076?httpAccept=text\/xml","content-type":"text\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.elsevier.com\/content\/article\/PII:S0022522319399076?httpAccept=text\/plain","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2021,2,13]],"date-time":"2021-02-13T19:12:30Z","timestamp":1613243550000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/linkinghub.elsevier.com\/retrieve\/pii\/S0022522319399076"}},"issued":{"date-parts":[[1977,4]]},"references-count":22,"journal-issue":{"issue":"4","published-print":{"date-parts":[[1977,4]]}},"alternative-id":["S0022522319399076"],"URL":"https:\/\/doi.org\/10.1016\/s0022-5223(19)39907-6","ISSN":["0022-5223"],"issn-type":[{"value":"0022-5223","type":"print"}],"published":{"date-parts":[[1977,4]]}},{"institution":[{"name":"American
-        Association for Cancer Research"}],"indexed":{"date-parts":[[2024,3,2]],"date-time":"2024-03-02T10:20:52Z","timestamp":1709374852396},"posted":{"date-parts":[[2023,3,30]]},"reference-count":0,"publisher":"American
-        Association for Cancer Research (AACR)","license":[{"start":{"date-parts":[[2023,3,30]],"date-time":"2023-03-30T00:00:00Z","timestamp":1680134400000},"content-version":"unspecified","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"content-domain":{"domain":[],"crossmark-restriction":false},"abstract":"<jats:p>&lt;p&gt;PDF
-        file - 1009K, Data showing that the Notch signaling is required for Notch3-induced
-        senescence and p21 expression in WS1 cells.&lt;\/p&gt;<\/jats:p>","DOI":"10.1158\/0008-5472.22395689.v1","type":"posted-content","created":{"date-parts":[[2023,3,31]],"date-time":"2023-03-31T01:32:13Z","timestamp":1680226333000},"source":"Crossref","is-referenced-by-count":0,"title":["Supplementary
-        Figure 5 from Notch3 Functions as a Tumor Suppressor by Controlling Cellular
-        Senescence"],"prefix":"10.1158","author":[{"given":"Hang","family":"Cui","sequence":"first","affiliation":[]},{"given":"Yahui","family":"Kong","sequence":"first","affiliation":[]},{"given":"Mei","family":"Xu","sequence":"first","affiliation":[]},{"given":"Hong","family":"Zhang","sequence":"first","affiliation":[]}],"member":"1086","deposited":{"date-parts":[[2024,2,20]],"date-time":"2024-02-20T13:36:13Z","timestamp":1708436173000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/aacr.figshare.com\/articles\/journal_contribution\/Supplementary_Figure_5_from_Notch3_Functions_as_a_Tumor_Suppressor_by_Controlling_Cellular_Senescence\/22395689\/1"}},"issued":{"date-parts":[[2023,3,30]]},"references-count":0,"URL":"https:\/\/doi.org\/10.1158\/0008-5472.22395689.v1","relation":{"is-supplement-to":[{"id-type":"doi","id":"10.1158\/0008-5472.CAN-12-3902","asserted-by":"subject"}]},"published":{"date-parts":[[2023,3,30]]},"subtype":"other"},{"indexed":{"date-parts":[[2022,3,31]],"date-time":"2022-03-31T07:49:23Z","timestamp":1648712963014},"reference-count":6,"publisher":"Cambridge
-        University Press (CUP)","issue":"3-4","license":[{"start":{"date-parts":[[2014,8,1]],"date-time":"2014-08-01T00:00:00Z","timestamp":1406851200000},"content-version":"unspecified","delay-in-days":11354,"URL":"https:\/\/www.cambridge.org\/core\/terms"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Acta
-        genet. med. gemellol.: twin res."],"published-print":{"date-parts":[[1983,7]]},"abstract":"<jats:p>Nutritional
-        status of 19 pairs of twins and 17 singleton controls was assessed by measuring
-        dietary intake and selected anthropometric and biochemical parameters. The
-        results indicated no significant variations between first and second twins
-        and singleton controls and between all twins and controls for all parameters
-        studied. Significant variations were found in serum \u03b1-globulin and protein
-        and energy intake when male and female twins were compared with male and female
-        controls.<\/jats:p>","DOI":"10.1017\/s0001566000005134","type":"journal-article","created":{"date-parts":[[2016,7,27]],"date-time":"2016-07-27T09:57:36Z","timestamp":1469613456000},"page":"261-263","source":"Crossref","is-referenced-by-count":1,"title":["Nutritional
-        Status of Nigerian Village Twins"],"prefix":"10.1017","volume":"32","author":[{"given":"A.O.","family":"Salisu","sequence":"first","affiliation":[]},{"given":"M.A.","family":"Hussain","sequence":"additional","affiliation":[]}],"member":"56","published-online":{"date-parts":[[2014,8,1]]},"reference":[{"key":"S0001566000005134_ref003","doi-asserted-by":"publisher","DOI":"10.1016\/0019-2791(65)90004-2"},{"key":"S0001566000005134_ref006","first-page":"146","volume-title":"Paper
-        and Thin Layer Chromatography and Electrophoresis, A Teaching Manual","author":"Smith","year":"1965"},{"key":"S0001566000005134_ref002","volume-title":"The
-        Assessment of the Nutritional Status of the Community","author":"Jelliffe","year":"1966"},{"key":"S0001566000005134_ref005","doi-asserted-by":"publisher","DOI":"10.1042\/bj0580426"},{"key":"S0001566000005134_ref004","first-page":"70","volume":"8","author":"Omololu","year":"1981","journal-title":"A
-        transverse longitudinal study of heights and weights of children in Nigerian
-        village"},{"key":"S0001566000005134_ref001","volume-title":"Food Composition
-        Table for Africa","year":"1968"}],"container-title":["Acta geneticae medicae
-        et gemellologiae: twin research"],"language":"en","link":[{"URL":"https:\/\/www.cambridge.org\/core\/services\/aop-cambridge-core\/content\/view\/S0001566000005134","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2019,5,23]],"date-time":"2019-05-23T22:48:52Z","timestamp":1558651732000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.cambridge.org\/core\/product\/identifier\/S0001566000005134\/type\/journal_article"}},"issued":{"date-parts":[[1983,7]]},"references-count":6,"journal-issue":{"issue":"3-4","published-print":{"date-parts":[[1983,7]]}},"alternative-id":["S0001566000005134"],"URL":"https:\/\/doi.org\/10.1017\/s0001566000005134","ISSN":["0001-5660","2059-6324"],"issn-type":[{"value":"0001-5660","type":"print"},{"value":"2059-6324","type":"electronic"}],"published":{"date-parts":[[1983,7]]}},{"indexed":{"date-parts":[[2024,5,17]],"date-time":"2024-05-17T17:43:45Z","timestamp":1715967825085},"reference-count":53,"publisher":"Informa
-        UK Limited","issue":"6","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":["Aging
-        Health"],"published-print":{"date-parts":[[2007,12]]},"DOI":"10.2217\/1745509x.3.6.767","type":"journal-article","created":{"date-parts":[[2007,12,12]],"date-time":"2007-12-12T17:30:50Z","timestamp":1197480650000},"page":"767-776","source":"Crossref","is-referenced-by-count":2,"title":["Current
-        Understanding of the Concept of Frailty in Later Life"],"prefix":"10.2217","volume":"3","author":[{"given":"David
-        B","family":"Hogan","sequence":"first","affiliation":[{"name":"University
-        of Calgary, Department of Medicine, HSC-3330 Hospital Dr. NW, Calgary, AlbertaT2N
-        4N1, Canada Tel.: ; Fax: ;"}]}],"member":"301","published-online":{"date-parts":[[2007,12,12]]},"reference":[{"key":"e_1_3_2_3_1_1","doi-asserted-by":"crossref","unstructured":"Hogan
-        DB : Models definitions and criteria of frailty. In: Handbook of Models for
-        Human Aging. Conn PM (Ed.). Elsevier Amsterdam The Netherlands 619\u2013629(2006).","DOI":"10.1016\/B978-012369391-4\/50051-5"},{"issue":"3","key":"e_1_3_2_3_2_1","first-page":"3","article-title":"Models,
-        definitions, and criteria of frailty.","volume":"15","author":"Hogan DB","year":"2003","unstructured":"Hogan
-        DB , MacKnightC, BergmanH: Models, definitions, and criteria of frailty.Aging
-        Clin. Exp. Res.15(3), 3\u201329(2003).","journal-title":"Aging Clin. Exp.
-        Res."},{"key":"e_1_3_2_3_3_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/62.7.731"},{"key":"e_1_3_2_3_4_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/56.3.M146"},{"key":"e_1_3_2_3_5_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/62.7.722"},{"key":"e_1_3_2_3_6_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2007.01155.x"},{"key":"e_1_3_2_3_7_1","doi-asserted-by":"publisher","DOI":"10.1046\/j.1532-5415.2002.50268.x"},{"key":"e_1_3_2_3_8_1","doi-asserted-by":"publisher","DOI":"10.1001\/jama.289.18.2387"},{"key":"e_1_3_2_3_9_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/59.8.M859"},{"key":"e_1_3_2_3_10_1","doi-asserted-by":"publisher","DOI":"10.1002\/1098-2272(200010)19:3<202::AID-GEPI2>3.0.CO;2-Q"},{"key":"e_1_3_2_3_11_1","doi-asserted-by":"publisher","DOI":"10.1016\/j.exger.2005.01.012"},{"key":"e_1_3_2_3_12_1","doi-asserted-by":"publisher","DOI":"10.1016\/j.exger.2004.06.009"},{"key":"e_1_3_2_3_13_1","doi-asserted-by":"publisher","DOI":"10.1093\/ageing\/31.6.468"},{"key":"e_1_3_2_3_14_1","doi-asserted-by":"publisher","DOI":"10.1016\/S0140-6736(98)07131-1"},{"key":"e_1_3_2_3_15_1","doi-asserted-by":"publisher","DOI":"10.1016\/S0140-6736(02)08024-8"},{"key":"e_1_3_2_3_16_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2004.52265.x"},{"key":"e_1_3_2_3_17_1","doi-asserted-by":"publisher","DOI":"10.1038\/nature02661"},{"key":"e_1_3_2_3_18_1","doi-asserted-by":"publisher","DOI":"10.1016\/S0895-4356(02)00399-2"},{"key":"e_1_3_2_3_19_1","doi-asserted-by":"publisher","DOI":"10.1016\/j.exger.2004.08.007"},{"key":"e_1_3_2_3_20_1","doi-asserted-by":"publisher","DOI":"10.1016\/0531-5565(92)90054-4"},{"key":"e_1_3_2_3_21_1","doi-asserted-by":"publisher","DOI":"10.1093\/geronb\/53B.1.S9"},{"key":"e_1_3_2_3_22_1","doi-asserted-by":"publisher","DOI":"10.1093\/aje\/kwf099"},{"key":"e_1_3_2_3_23_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/59.9.M930"},{"key":"e_1_3_2_3_24_1","doi-asserted-by":"publisher","DOI":"10.1126\/science.1092556"},{"key":"e_1_3_2_3_25_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2005.53250.x"},{"key":"e_1_3_2_3_26_1","doi-asserted-by":"publisher","DOI":"10.2105\/AJPH.91.2.277"},{"key":"e_1_3_2_3_27_1","doi-asserted-by":"publisher","DOI":"10.1677\/joe.1.07017"},{"key":"e_1_3_2_3_28_1","doi-asserted-by":"publisher","DOI":"10.2174\/138945007781386866"},{"key":"e_1_3_2_3_29_1","doi-asserted-by":"publisher","DOI":"10.1001\/jama.291.13.1596"},{"key":"e_1_3_2_3_30_1","doi-asserted-by":"publisher","DOI":"10.1016\/j.archger.2006.03.005"},{"key":"e_1_3_2_3_31_1","doi-asserted-by":"publisher","DOI":"10.1503\/cmaj.050051"},{"key":"e_1_3_2_3_32_1","doi-asserted-by":"publisher","DOI":"10.1136\/pgmj.2006.048587"},{"key":"e_1_3_2_3_33_1","doi-asserted-by":"publisher","DOI":"10.1016\/S0140-6736(07)60613-8"},{"key":"e_1_3_2_3_34_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2006.00745.x"},{"key":"e_1_3_2_3_35_1","doi-asserted-by":"publisher","DOI":"10.1046\/j.1532-5415.2003.51101.x"},{"key":"e_1_3_2_3_36_1","doi-asserted-by":"publisher","DOI":"10.1016\/j.apmr.2006.04.005"},{"key":"e_1_3_2_3_37_1","doi-asserted-by":"publisher","DOI":"10.1001\/jama.296.18.2245"},{"key":"e_1_3_2_3_38_1","doi-asserted-by":"publisher","DOI":"10.2190\/Y2GE-BVYQ-NF0E-83VR"},{"key":"e_1_3_2_3_39_1","doi-asserted-by":"publisher","DOI":"10.1037\/0882-7974.19.3.495"},{"key":"e_1_3_2_3_40_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.1999.tb07437.x"},{"key":"e_1_3_2_3_41_1","doi-asserted-by":"publisher","DOI":"10.1136\/bmj.319.7205.309"},{"key":"e_1_3_2_3_42_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2007.01156.x"},{"key":"e_1_3_2_3_43_1","doi-asserted-by":"publisher","DOI":"10.4065\/77.7.681"},{"key":"e_1_3_2_3_44_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2005.53008.x"},{"key":"e_1_3_2_3_45_1","doi-asserted-by":"publisher","DOI":"10.1111\/j.1532-5415.2004.52423.x"},{"key":"e_1_3_2_3_46_1","doi-asserted-by":"publisher","DOI":"10.1001\/jama.286.7.815"},{"key":"e_1_3_2_3_47_1","doi-asserted-by":"publisher","DOI":"10.1177\/089198879400700405"},{"key":"e_1_3_2_3_48_1","doi-asserted-by":"publisher","DOI":"10.1073\/pnas.95.3.1336"},{"key":"e_1_3_2_3_49_1","doi-asserted-by":"publisher","DOI":"10.1177\/014107680109400508"},{"key":"e_1_3_2_3_50_1","first-page":"E4","article-title":"Frailty
-        \u2013 the search for underlying causes.","volume":"4","author":"Walston J","year":"2004","unstructured":"Walston
-        J : Frailty \u2013 the search for underlying causes.Sci. Aging Knowl. Environ.4,
-        E4 (2004).","journal-title":"Sci. Aging Knowl. Environ."},{"key":"e_1_3_2_3_51_1","doi-asserted-by":"publisher","DOI":"10.1093\/gerona\/59.3.M255"},{"key":"e_1_3_2_3_52_1","doi-asserted-by":"publisher","DOI":"10.1097\/00019442-200401000-00008"},{"key":"e_1_3_2_3_53_1","doi-asserted-by":"publisher","DOI":"10.1097\/00019442-200401000-00001"}],"container-title":["Aging
-        Health"],"language":"en","link":[{"URL":"https:\/\/www.tandfonline.com\/doi\/pdf\/10.2217\/1745509X.3.6.767","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2024,5,17]],"date-time":"2024-05-17T17:09:00Z","timestamp":1715965740000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/www.tandfonline.com\/doi\/full\/10.2217\/1745509X.3.6.767"}},"issued":{"date-parts":[[2007,12]]},"references-count":53,"journal-issue":{"issue":"6","published-print":{"date-parts":[[2007,12]]}},"alternative-id":["10.2217\/1745509X.3.6.767"],"URL":"https:\/\/doi.org\/10.2217\/1745509x.3.6.767","ISSN":["1745-509X","1745-5103"],"issn-type":[{"value":"1745-509X","type":"print"},{"value":"1745-5103","type":"electronic"}],"published":{"date-parts":[[2007,12]]}},{"indexed":{"date-parts":[[2024,5,7]],"date-time":"2024-05-07T09:59:22Z","timestamp":1715075962227},"edition-number":"1","reference-count":2,"publisher":"Wiley","isbn-type":[{"value":"9781119120780","type":"print"},{"value":"9781119120810","type":"electronic"}],"content-domain":{"domain":[],"crossmark-restriction":false},"published-print":{"date-parts":[[2017,3,29]]},"DOI":"10.1002\/9781119120810.ch2","type":"other","created":{"date-parts":[[2017,2,25]],"date-time":"2017-02-25T04:50:14Z","timestamp":1487998214000},"page":"23-35","source":"Crossref","is-referenced-by-count":0,"title":["Coordinate
-        Systems"],"prefix":"10.1002","member":"311","published-online":{"date-parts":[[2017,2,24]]},"reference":[{"key":"e_1_2_1_2_1","volume-title":"Elements
-        of Electromagnetics","author":"Sadiku M.N.O.","year":"2010"},{"key":"e_1_2_1_3_1","volume-title":"Introduction
-        to Electromagnetic Compatibility","author":"Paul C.R.","year":"2006"}],"container-title":["Foundations
-        of Electromagnetic Compatibility"],"language":"en","link":[{"URL":"https:\/\/api.wiley.com\/onlinelibrary\/tdm\/v1\/articles\/10.1002%2F9781119120810.ch2","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/onlinelibrary.wiley.com\/doi\/pdf\/10.1002\/9781119120810.ch2","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,8,22]],"date-time":"2023-08-22T15:52:40Z","timestamp":1692719560000},"score":0.0,"resource":{"primary":{"URL":"https:\/\/onlinelibrary.wiley.com\/doi\/10.1002\/9781119120810.ch2"}},"issued":{"date-parts":[[2017,2,24]]},"ISBN":["9781119120780","9781119120810"],"references-count":2,"alternative-id":["10.1002\/9781119120810.ch2","10.1002\/9781119120810"],"URL":"https:\/\/doi.org\/10.1002\/9781119120810.ch2","archive":["Portico"],"published":{"date-parts":[[2017,2,24]]}}],"items-per-page":20,"query":{"start-index":0,"search-terms":null}}}'
+      string: !!binary |
+        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
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '6409'
+      - '6153'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:17:25 GMT
+      - Mon, 01 Jun 2026 13:22:07 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -196,10 +214,12 @@ interactions:
       - Accept-Encoding
       x-api-pool:
       - polite
+      x-concurrency-limit:
+      - '3'
       x-rate-limit-interval:
       - 1s
       x-rate-limit-limit:
-      - '50'
+      - '10'
     status:
       code: 200
       message: OK

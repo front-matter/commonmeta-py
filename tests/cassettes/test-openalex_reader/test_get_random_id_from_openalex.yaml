@@ -14,30 +14,38 @@ interactions:
     uri: https://api.openalex.org/works?sample=1
   response:
     body:
-      string: '{"meta":{"count":1,"db_response_time_ms":129,"page":1,"per_page":25,"groups_count":null},"results":[{"id":"https://openalex.org/W4243766097","doi":"https://doi.org/10.1001/jama.2016.0085","title":"Opioid
-        Overdoses Continue to Climb","display_name":"Opioid Overdoses Continue to
-        Climb","relevance_score":0.99999994,"publication_year":2016,"publication_date":"2016-02-09","ids":{"openalex":"https://openalex.org/W4243766097","doi":"https://doi.org/10.1001/jama.2016.0085"},"language":"en","primary_location":{"id":"doi:10.1001/jama.2016.0085","is_oa":false,"landing_page_url":"https://doi.org/10.1001/jama.2016.0085","pdf_url":null,"source":{"id":"https://openalex.org/S172573765","display_name":"JAMA","issn_l":"0098-7484","issn":["0098-7484","1538-3598"],"is_oa":false,"is_in_doaj":false,"is_core":true,"host_organization":"https://openalex.org/P4310320259","host_organization_name":"American
-        Medical Association","host_organization_lineage":["https://openalex.org/P4310320259"],"host_organization_lineage_names":[],"type":"journal"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"JAMA","raw_type":"journal-article"},"type":"article","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":0,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":0.30726336,"has_fulltext":false,"cited_by_count":1,"citation_normalized_percentile":{"value":0.75836015,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":{"min":90,"max":94},"biblio":{"volume":"315","issue":"6","first_page":"550","last_page":"550"},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10576","display_name":"Opioid
-        Use Disorder Treatment","score":0.8937000036239624,"subfield":{"id":"https://openalex.org/subfields/2739","display_name":"Public
-        Health, Environmental and Occupational Health"},"field":{"id":"https://openalex.org/fields/27","display_name":"Medicine"},"domain":{"id":"https://openalex.org/domains/4","display_name":"Health
-        Sciences"}},"topics":[{"id":"https://openalex.org/T10576","display_name":"Opioid
-        Use Disorder Treatment","score":0.8937000036239624,"subfield":{"id":"https://openalex.org/subfields/2739","display_name":"Public
-        Health, Environmental and Occupational Health"},"field":{"id":"https://openalex.org/fields/27","display_name":"Medicine"},"domain":{"id":"https://openalex.org/domains/4","display_name":"Health
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/medicine","display_name":"Medicine","score":0.9807466268539429},{"id":"https://openalex.org/keywords/climb","display_name":"Climb","score":0.7828817367553711},{"id":"https://openalex.org/keywords/opioid-overdose","display_name":"Opioid
-        overdose","score":0.5349295139312744},{"id":"https://openalex.org/keywords/opioid","display_name":"Opioid","score":0.5233204364776611},{"id":"https://openalex.org/keywords/medical-emergency","display_name":"Medical
-        emergency","score":0.45155346393585205},{"id":"https://openalex.org/keywords/opioid-epidemic","display_name":"Opioid
-        epidemic","score":0.4392741918563843},{"id":"https://openalex.org/keywords/intensive-care-medicine","display_name":"Intensive
-        care medicine","score":0.4270639419555664},{"id":"https://openalex.org/keywords/naloxone","display_name":"(+)-Naloxone","score":0.198550283908844},{"id":"https://openalex.org/keywords/internal-medicine","display_name":"Internal
-        medicine","score":0.15855422616004944}],"concepts":[{"id":"https://openalex.org/C71924100","wikidata":"https://www.wikidata.org/wiki/Q11190","display_name":"Medicine","level":0,"score":0.9807466268539429},{"id":"https://openalex.org/C2778168010","wikidata":"https://www.wikidata.org/wiki/Q1499786","display_name":"Climb","level":2,"score":0.7828817367553711},{"id":"https://openalex.org/C2779148768","wikidata":"https://www.wikidata.org/wiki/Q17154378","display_name":"Opioid
-        overdose","level":5,"score":0.5349295139312744},{"id":"https://openalex.org/C2781063702","wikidata":"https://www.wikidata.org/wiki/Q427523","display_name":"Opioid","level":3,"score":0.5233204364776611},{"id":"https://openalex.org/C545542383","wikidata":"https://www.wikidata.org/wiki/Q2751242","display_name":"Medical
-        emergency","level":1,"score":0.45155346393585205},{"id":"https://openalex.org/C2777170798","wikidata":"https://www.wikidata.org/wiki/Q65087481","display_name":"Opioid
-        epidemic","level":4,"score":0.4392741918563843},{"id":"https://openalex.org/C177713679","wikidata":"https://www.wikidata.org/wiki/Q679690","display_name":"Intensive
-        care medicine","level":1,"score":0.4270639419555664},{"id":"https://openalex.org/C2778750930","wikidata":"https://www.wikidata.org/wiki/Q4540629","display_name":"(+)-Naloxone","level":4,"score":0.198550283908844},{"id":"https://openalex.org/C126322002","wikidata":"https://www.wikidata.org/wiki/Q11180","display_name":"Internal
-        medicine","level":1,"score":0.15855422616004944},{"id":"https://openalex.org/C170493617","wikidata":"https://www.wikidata.org/wiki/Q208467","display_name":"Receptor","level":2,"score":0.0},{"id":"https://openalex.org/C127413603","wikidata":"https://www.wikidata.org/wiki/Q11023","display_name":"Engineering","level":0,"score":0.0},{"id":"https://openalex.org/C146978453","wikidata":"https://www.wikidata.org/wiki/Q3798668","display_name":"Aerospace
-        engineering","level":1,"score":0.0}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.1001/jama.2016.0085","is_oa":false,"landing_page_url":"https://doi.org/10.1001/jama.2016.0085","pdf_url":null,"source":{"id":"https://openalex.org/S172573765","display_name":"JAMA","issn_l":"0098-7484","issn":["0098-7484","1538-3598"],"is_oa":false,"is_in_doaj":false,"is_core":true,"host_organization":"https://openalex.org/P4310320259","host_organization_name":"American
-        Medical Association","host_organization_lineage":["https://openalex.org/P4310320259"],"host_organization_lineage_names":[],"type":"journal"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"JAMA","raw_type":"journal-article"}],"best_oa_location":null,"sustainable_development_goals":[],"grants":[],"awards":[],"funders":[],"has_content":{"pdf":false,"grobid_xml":false},"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W2549024706","https://openalex.org/W1541584887","https://openalex.org/W4299318445","https://openalex.org/W2923861908","https://openalex.org/W4281489214","https://openalex.org/W4226389396","https://openalex.org/W3177241792","https://openalex.org/W2791107764","https://openalex.org/W2803216007","https://openalex.org/W2182517725"],"abstract_inverted_index":null,"counts_by_year":[{"year":2017,"cited_by_count":1}],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"}],"group_by":[]}
-
-        '
+      string: !!binary |
+        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
+        AA==
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
@@ -48,7 +56,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 9a8ddffdbab1ef02-AMS
+      - a04e88b2a92cfe9a-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -56,29 +64,42 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 04 Dec 2025 19:57:49 GMT
+      - Mon, 01 Jun 2026 13:23:38 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
-      RateLimit-Limit:
-      - '5'
-      RateLimit-Remaining:
-      - '9'
-      RateLimit-Reset:
-      - '1'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=dNf4xivULeOafcD4Co942NfX9%2FvHE8kUNrcs93KP53I%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1764878269"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=4YgjxKwY2vvV00E%2BrSmBgcbSTQsHfj8CKeSCv8CexEA%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1780320218"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=dNf4xivULeOafcD4Co942NfX9%2FvHE8kUNrcs93KP53I%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764878269"
+      - heroku-nel="https://nel.heroku.com/reports?s=4YgjxKwY2vvV00E%2BrSmBgcbSTQsHfj8CKeSCv8CexEA%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1780320218"
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - accept-encoding
       Via:
       - 1.1 heroku-router
+      X-RateLimit-Cost-USD:
+      - '0.0001'
+      X-RateLimit-Credits-Used:
+      - '1'
+      X-RateLimit-Limit:
+      - '10000'
+      X-RateLimit-Limit-USD:
+      - '1'
+      X-RateLimit-Onetime-Remaining:
+      - '0'
+      X-RateLimit-Prepaid-Remaining-USD:
+      - '0'
+      X-RateLimit-Remaining:
+      - '9934'
+      X-RateLimit-Remaining-USD:
+      - '0.9934'
+      X-RateLimit-Reset:
+      - '38182'
       access-control-expose-headers:
-      - Cache-Control, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After
+      - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
+        X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
     status:
       code: 200
       message: OK
@@ -97,205 +118,156 @@ interactions:
     uri: https://api.openalex.org/works?sample=5
   response:
     body:
-      string: '{"meta":{"count":5,"db_response_time_ms":512,"page":1,"per_page":25,"groups_count":null},"results":[{"id":"https://openalex.org/W3211646066","doi":"https://doi.org/10.1101/2021.11.13.468487","title":"V\u03b3
-        usage distinguishes pro- and anti-tumor intestinal \u03b3\u03b4 T cell subsets","display_name":"V\u03b3
-        usage distinguishes pro- and anti-tumor intestinal \u03b3\u03b4 T cell subsets","relevance_score":0.99999994,"publication_year":2021,"publication_date":"2021-11-13","ids":{"openalex":"https://openalex.org/W3211646066","doi":"https://doi.org/10.1101/2021.11.13.468487","mag":"3211646066"},"language":"en","primary_location":{"id":"doi:10.1101/2021.11.13.468487","is_oa":true,"landing_page_url":"https://doi.org/10.1101/2021.11.13.468487","pdf_url":"https://www.biorxiv.org/content/biorxiv/early/2021/11/13/2021.11.13.468487.full.pdf","source":{"id":"https://openalex.org/S4306402567","display_name":"bioRxiv
-        (Cold Spring Harbor Laboratory)","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I2750212522","host_organization_name":"Cold
-        Spring Harbor Laboratory","host_organization_lineage":["https://openalex.org/I2750212522"],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"acceptedVersion","is_accepted":true,"is_published":false,"raw_source_name":null,"raw_type":"posted-content"},"type":"preprint","indexed_in":["crossref"],"open_access":{"is_oa":true,"oa_status":"green","oa_url":"https://www.biorxiv.org/content/biorxiv/early/2021/11/13/2021.11.13.468487.full.pdf","any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5072744658","display_name":"Bernardo
-        Sgarbi Reis","orcid":"https://orcid.org/0000-0002-6841-116X"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":true,"raw_author_name":"Bernardo
-        S. Reis","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5072191803","display_name":"Patrick
-        W. Darcy","orcid":null},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Patrick
-        W. Darcy","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5026950133","display_name":"Iasha
-        Z. Khan","orcid":"https://orcid.org/0000-0002-8994-9110"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Iasha
-        Z. Khan","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5019374675","display_name":"Olawale
-        Eleso","orcid":"https://orcid.org/0000-0002-9210-9585"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Olawale
-        Eleso","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The Rockefeller
-        University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5100975306","display_name":"Caixia
-        Zhu","orcid":null},"institutions":[{"id":"https://openalex.org/I133868755","display_name":"Shanghai
-        Medical College of Fudan University","ror":"https://ror.org/01zntxs11","country_code":"CN","type":"education","lineage":["https://openalex.org/I133868755","https://openalex.org/I24943067"]},{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["CN","US"],"is_corresponding":false,"raw_author_name":"Caixia
-        Zhu","raw_affiliation_strings":["Key Laboratory of Medical Molecular Virology,
-        School of Basic Medical Sciences, Shanghai Medical College, Fudan University,
-        Shanghai, 0003 China","Laboratory of Mucosal Immunology, The Rockefeller University,
-        New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Key Laboratory
-        of Medical Molecular Virology, School of Basic Medical Sciences, Shanghai
-        Medical College, Fudan University, Shanghai, 0003 China","institution_ids":["https://openalex.org/I133868755"]},{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5057041992","display_name":"Marina
-        Schernthanner","orcid":"https://orcid.org/0000-0002-6394-6050"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Marina
-        Schernthanner","raw_affiliation_strings":["Laboratory of Mucosal Immunology,
-        The Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5012308682","display_name":"Ainsley
-        Lockhart","orcid":"https://orcid.org/0000-0003-0304-4618"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Ainsley
-        Lockhart","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5035100497","display_name":"Aubrey
-        Reed","orcid":"https://orcid.org/0000-0002-8613-3167"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Aubrey
-        Reed","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The Rockefeller
-        University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5064377054","display_name":"Juliana
-        Bortolatto","orcid":"https://orcid.org/0000-0001-8779-5464"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Juliana
-        Bortolatto","raw_affiliation_strings":["Laboratory of Mucosal Immunology,
-        The Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5031964366","display_name":"Tiago
-        B. R. Castro","orcid":"https://orcid.org/0000-0002-0359-0611"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Tiago
-        B. R. Castro","raw_affiliation_strings":["Laboratory of Mucosal Immunology,
-        The Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5067216235","display_name":"Angelina
-        M. Bilate","orcid":"https://orcid.org/0000-0003-4575-786X"},"institutions":[{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Angelina
-        M. Bilate","raw_affiliation_strings":["Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5039606560","display_name":"Sergei
-        I. Grivennikov","orcid":"https://orcid.org/0000-0003-2987-0555"},"institutions":[{"id":"https://openalex.org/I1282927834","display_name":"Cedars-Sinai
-        Medical Center","ror":"https://ror.org/02pammg90","country_code":"US","type":"healthcare","lineage":["https://openalex.org/I1282927834"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Sergei
-        Grivennikov","raw_affiliation_strings":["Department of Medicine and Department
-        of Biomedical Sciences, Samuel Oschin Comprehensive Cancer Institute, Cedars-Sinai
-        Medical Center, Los Angeles, CA, 90048, USA"],"affiliations":[{"raw_affiliation_string":"Department
-        of Medicine and Department of Biomedical Sciences, Samuel Oschin Comprehensive
-        Cancer Institute, Cedars-Sinai Medical Center, Los Angeles, CA, 90048, USA","institution_ids":["https://openalex.org/I1282927834"]}]},{"author_position":"last","author":{"id":"https://openalex.org/A5089852258","display_name":"Daniel
-        Mucida","orcid":"https://orcid.org/0000-0002-0000-0452"},"institutions":[{"id":"https://openalex.org/I1344073410","display_name":"Howard
-        Hughes Medical Institute","ror":"https://ror.org/006w34k90","country_code":"US","type":"facility","lineage":["https://openalex.org/I1344073410"]},{"id":"https://openalex.org/I83399316","display_name":"Rockefeller
-        University","ror":"https://ror.org/0420db125","country_code":"US","type":"education","lineage":["https://openalex.org/I83399316"]}],"countries":["US"],"is_corresponding":true,"raw_author_name":"Daniel
-        Mucida","raw_affiliation_strings":["Howard Hughes Medical Institute, The Rockefeller
-        University, New York, NY, 10065, USA","Laboratory of Mucosal Immunology, The
-        Rockefeller University, New York, NY, 0065, USA"],"affiliations":[{"raw_affiliation_string":"Howard
-        Hughes Medical Institute, The Rockefeller University, New York, NY, 10065,
-        USA","institution_ids":["https://openalex.org/I1344073410","https://openalex.org/I83399316"]},{"raw_affiliation_string":"Laboratory
-        of Mucosal Immunology, The Rockefeller University, New York, NY, 0065, USA","institution_ids":["https://openalex.org/I83399316"]}]}],"institutions":[],"countries_distinct_count":2,"institutions_distinct_count":13,"corresponding_author_ids":["https://openalex.org/A5089852258","https://openalex.org/A5072744658"],"corresponding_institution_ids":["https://openalex.org/I1344073410","https://openalex.org/I83399316"],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":true,"cited_by_count":0,"citation_normalized_percentile":{"value":0.14131714,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T11020","display_name":"Immune
-        Cell Function and Interaction","score":1.0,"subfield":{"id":"https://openalex.org/subfields/2403","display_name":"Immunology"},"field":{"id":"https://openalex.org/fields/24","display_name":"Immunology
-        and Microbiology"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},"topics":[{"id":"https://openalex.org/T11020","display_name":"Immune
-        Cell Function and Interaction","score":1.0,"subfield":{"id":"https://openalex.org/subfields/2403","display_name":"Immunology"},"field":{"id":"https://openalex.org/fields/24","display_name":"Immunology
-        and Microbiology"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},{"id":"https://openalex.org/T10031","display_name":"T-cell and
-        B-cell Immunology","score":0.9998999834060669,"subfield":{"id":"https://openalex.org/subfields/2403","display_name":"Immunology"},"field":{"id":"https://openalex.org/fields/24","display_name":"Immunology
-        and Microbiology"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}},{"id":"https://openalex.org/T10580","display_name":"Immunotherapy
-        and Immune Responses","score":0.9972000122070312,"subfield":{"id":"https://openalex.org/subfields/2403","display_name":"Immunology"},"field":{"id":"https://openalex.org/fields/24","display_name":"Immunology
-        and Microbiology"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/cytotoxic-t-cell","display_name":"Cytotoxic
-        T cell","score":0.688963770866394},{"id":"https://openalex.org/keywords/colorectal-cancer","display_name":"Colorectal
-        cancer","score":0.5902794599533081},{"id":"https://openalex.org/keywords/t-cell","display_name":"T
-        cell","score":0.5703745484352112},{"id":"https://openalex.org/keywords/carcinogenesis","display_name":"Carcinogenesis","score":0.5455384850502014},{"id":"https://openalex.org/keywords/cancer-research","display_name":"Cancer
-        research","score":0.5313661098480225},{"id":"https://openalex.org/keywords/cell","display_name":"Cell","score":0.480185866355896},{"id":"https://openalex.org/keywords/biology","display_name":"Biology","score":0.460734099149704},{"id":"https://openalex.org/keywords/rar-related-orphan-receptor-gamma","display_name":"RAR-related
-        orphan receptor gamma","score":0.4244963228702545},{"id":"https://openalex.org/keywords/cancer","display_name":"Cancer","score":0.3341969847679138},{"id":"https://openalex.org/keywords/cell-biology","display_name":"Cell
-        biology","score":0.3306007981300354},{"id":"https://openalex.org/keywords/chemistry","display_name":"Chemistry","score":0.32898950576782227},{"id":"https://openalex.org/keywords/immunology","display_name":"Immunology","score":0.32652747631073},{"id":"https://openalex.org/keywords/immune-system","display_name":"Immune
-        system","score":0.1555567979812622},{"id":"https://openalex.org/keywords/genetics","display_name":"Genetics","score":0.1306503415107727},{"id":"https://openalex.org/keywords/in-vitro","display_name":"In
-        vitro","score":0.1274544894695282},{"id":"https://openalex.org/keywords/foxp3","display_name":"FOXP3","score":0.058291107416152954}],"concepts":[{"id":"https://openalex.org/C154317977","wikidata":"https://www.wikidata.org/wiki/Q376266","display_name":"Cytotoxic
-        T cell","level":3,"score":0.688963770866394},{"id":"https://openalex.org/C526805850","wikidata":"https://www.wikidata.org/wiki/Q188874","display_name":"Colorectal
-        cancer","level":3,"score":0.5902794599533081},{"id":"https://openalex.org/C2776090121","wikidata":"https://www.wikidata.org/wiki/Q193529","display_name":"T
-        cell","level":3,"score":0.5703745484352112},{"id":"https://openalex.org/C555283112","wikidata":"https://www.wikidata.org/wiki/Q1637543","display_name":"Carcinogenesis","level":3,"score":0.5455384850502014},{"id":"https://openalex.org/C502942594","wikidata":"https://www.wikidata.org/wiki/Q3421914","display_name":"Cancer
-        research","level":1,"score":0.5313661098480225},{"id":"https://openalex.org/C1491633281","wikidata":"https://www.wikidata.org/wiki/Q7868","display_name":"Cell","level":2,"score":0.480185866355896},{"id":"https://openalex.org/C86803240","wikidata":"https://www.wikidata.org/wiki/Q420","display_name":"Biology","level":0,"score":0.460734099149704},{"id":"https://openalex.org/C74737994","wikidata":"https://www.wikidata.org/wiki/Q18031207","display_name":"RAR-related
-        orphan receptor gamma","level":4,"score":0.4244963228702545},{"id":"https://openalex.org/C121608353","wikidata":"https://www.wikidata.org/wiki/Q12078","display_name":"Cancer","level":2,"score":0.3341969847679138},{"id":"https://openalex.org/C95444343","wikidata":"https://www.wikidata.org/wiki/Q7141","display_name":"Cell
-        biology","level":1,"score":0.3306007981300354},{"id":"https://openalex.org/C185592680","wikidata":"https://www.wikidata.org/wiki/Q2329","display_name":"Chemistry","level":0,"score":0.32898950576782227},{"id":"https://openalex.org/C203014093","wikidata":"https://www.wikidata.org/wiki/Q101929","display_name":"Immunology","level":1,"score":0.32652747631073},{"id":"https://openalex.org/C8891405","wikidata":"https://www.wikidata.org/wiki/Q1059","display_name":"Immune
-        system","level":2,"score":0.1555567979812622},{"id":"https://openalex.org/C54355233","wikidata":"https://www.wikidata.org/wiki/Q7162","display_name":"Genetics","level":1,"score":0.1306503415107727},{"id":"https://openalex.org/C202751555","wikidata":"https://www.wikidata.org/wiki/Q221681","display_name":"In
-        vitro","level":2,"score":0.1274544894695282},{"id":"https://openalex.org/C2779727006","wikidata":"https://www.wikidata.org/wiki/Q426188","display_name":"FOXP3","level":3,"score":0.058291107416152954}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.1101/2021.11.13.468487","is_oa":true,"landing_page_url":"https://doi.org/10.1101/2021.11.13.468487","pdf_url":"https://www.biorxiv.org/content/biorxiv/early/2021/11/13/2021.11.13.468487.full.pdf","source":{"id":"https://openalex.org/S4306402567","display_name":"bioRxiv
-        (Cold Spring Harbor Laboratory)","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I2750212522","host_organization_name":"Cold
-        Spring Harbor Laboratory","host_organization_lineage":["https://openalex.org/I2750212522"],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"acceptedVersion","is_accepted":true,"is_published":false,"raw_source_name":null,"raw_type":"posted-content"}],"best_oa_location":{"id":"doi:10.1101/2021.11.13.468487","is_oa":true,"landing_page_url":"https://doi.org/10.1101/2021.11.13.468487","pdf_url":"https://www.biorxiv.org/content/biorxiv/early/2021/11/13/2021.11.13.468487.full.pdf","source":{"id":"https://openalex.org/S4306402567","display_name":"bioRxiv
-        (Cold Spring Harbor Laboratory)","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I2750212522","host_organization_name":"Cold
-        Spring Harbor Laboratory","host_organization_lineage":["https://openalex.org/I2750212522"],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"acceptedVersion","is_accepted":true,"is_published":false,"raw_source_name":null,"raw_type":"posted-content"},"sustainable_development_goals":[{"score":0.6000000238418579,"id":"https://metadata.un.org/sdg/3","display_name":"Good
-        health and well-being"}],"grants":[],"awards":[],"funders":[],"has_content":{"grobid_xml":true,"pdf":true},"referenced_works_count":46,"referenced_works":["https://openalex.org/W2516341826","https://openalex.org/W2409075447","https://openalex.org/W2691941774","https://openalex.org/W2801856149","https://openalex.org/W2161269427","https://openalex.org/W1107917109","https://openalex.org/W2082626794","https://openalex.org/W2118278569","https://openalex.org/W2142127071","https://openalex.org/W2910570709","https://openalex.org/W2041769554","https://openalex.org/W2113724152","https://openalex.org/W2038078260","https://openalex.org/W2520176593","https://openalex.org/W3045993680","https://openalex.org/W2899542051","https://openalex.org/W2959497269","https://openalex.org/W2969400643","https://openalex.org/W2088624964","https://openalex.org/W2799881184","https://openalex.org/W2053388673","https://openalex.org/W2960044378","https://openalex.org/W3124687622","https://openalex.org/W3196908377","https://openalex.org/W2142017607","https://openalex.org/W2912967789","https://openalex.org/W2000543898","https://openalex.org/W2122500192","https://openalex.org/W2980303761","https://openalex.org/W2986929420","https://openalex.org/W2950477675","https://openalex.org/W1975521617","https://openalex.org/W2912947431","https://openalex.org/W2085605492","https://openalex.org/W2127282925","https://openalex.org/W2044748328","https://openalex.org/W1836263069","https://openalex.org/W2790582149","https://openalex.org/W2003460362","https://openalex.org/W1526404082","https://openalex.org/W2323326409","https://openalex.org/W2620721366","https://openalex.org/W2146512944","https://openalex.org/W1978518799","https://openalex.org/W2132548846","https://openalex.org/W2148495628"],"related_works":["https://openalex.org/W2091451666","https://openalex.org/W2133737057","https://openalex.org/W2593499442","https://openalex.org/W2217689665","https://openalex.org/W4313359851","https://openalex.org/W4237913220","https://openalex.org/W4313366225","https://openalex.org/W3087470930","https://openalex.org/W2292414706","https://openalex.org/W4235654911"],"abstract_inverted_index":{"Abstract":[0],"\u03b3\u03b4":[1,35,56,66,94,127,142],"T":[2,36,57,67,95,128,143],"cells":[3,37,129],"physiologically":[4],"scan":[5],"the":[6],"intestinal":[7],"epithelium,":[8],"representing":[9],"a":[10,51],"substantial":[11],"fraction":[12],"of":[13,73,112],"infiltrating":[14],"lymphocytes":[15],"in":[16,23,38,130],"colorectal":[17],"cancer":[18],"(CRC),":[19],"albeit":[20],"their":[21],"role":[22],"CRC":[24,29,108],"remains":[25],"unclear.":[26],"Using":[27],"murine":[28],"models,":[30],"we":[31],"found":[32],"that":[33],"most":[34],"pre-":[39],"or":[40,46,114],"non-tumor":[41],"colon":[42],"express":[43],"V\u03b31":[44,84],"+":[45,48,85,88,93,100,104,123,126],"V\u03b37":[47,87],"and":[49,86,101,124,138],"exhibit":[50],"cytotoxic":[52],"profile.":[53],"Targeting":[54],"these":[55],"cell":[58,68,96,144],"subsets,":[59,97],"as":[60,62],"well":[61],"conditionally":[63],"interfering":[64],"with":[65],"function":[69],"at":[70],"early":[71],"stages":[72],"tumorigenesis":[74],"led":[75],"to":[76],"heightened":[77],"tumor":[78,132],"development,":[79],"suggesting":[80],"anti-CRC":[81],"functions":[82],"for":[83,120,141],"subsets.":[89,145],"In":[90],"contrast,":[91],"ROR\u03b3t":[92,113],"including":[98],"V\u03b34":[99,122],"microbiotadependent":[102],"V\u03b36":[103,125],",":[105],"accumulated":[106],"during":[107],"progression.":[109],"Conditional":[110],"deletion":[111],"V\u03b3":[115],"chains":[116],"revealed":[117],"redundant":[118],"roles":[119,140],"IL-17\u2013producing":[121],"promoting":[131],"growth.":[133],"Our":[134],"results":[135],"uncover":[136],"pro-":[137],"anti-tumor":[139]},"counts_by_year":[],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"},{"id":"https://openalex.org/W4250153519","doi":"https://doi.org/10.1097/00004703-198912000-00011","title":"Journal
-        Article Reviews","display_name":"Journal Article Reviews","relevance_score":0.99999994,"publication_year":1989,"publication_date":"1989-12-01","ids":{"openalex":"https://openalex.org/W4250153519","doi":"https://doi.org/10.1097/00004703-198912000-00011"},"language":"en","primary_location":{"id":"doi:10.1097/00004703-198912000-00011","is_oa":false,"landing_page_url":"https://doi.org/10.1097/00004703-198912000-00011","pdf_url":null,"source":{"id":"https://openalex.org/S116305490","display_name":"Journal
-        of Developmental & Behavioral Pediatrics","issn_l":"0196-206X","issn":["0196-206X","1536-7312"],"is_oa":false,"is_in_doaj":false,"is_core":true,"host_organization":"https://openalex.org/P4310315671","host_organization_name":"Lippincott
-        Williams & Wilkins","host_organization_lineage":["https://openalex.org/P4310315671"],"host_organization_lineage_names":[],"type":"journal"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Journal
-        of Developmental &amp; Behavioral Pediatrics","raw_type":"journal-article"},"type":"article","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5032863768","display_name":"W.
-        SAM YANCY","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"W.
-        SAM YANCY","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5010594926","display_name":"DANIEL
-        J. BURBACH","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"DANIEL
-        J. BURBACH","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5073296976","display_name":"MUKI
-        FAIRCHILD","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"MUKI
-        FAIRCHILD","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"last","author":{"id":"https://openalex.org/A5034626049","display_name":"Gordon
-        Worley","orcid":"https://orcid.org/0000-0001-5127-2514"},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"GORDON
-        WORLEY","raw_affiliation_strings":[],"affiliations":[]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":4,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":0.0,"has_fulltext":false,"cited_by_count":0,"citation_normalized_percentile":{"value":0.54383914,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":null,"biblio":{"volume":"10","issue":"6","first_page":"337???339","last_page":"337???339"},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T13143","display_name":"Child
-        Therapy and Development","score":0.04560000076889992,"subfield":{"id":"https://openalex.org/subfields/3203","display_name":"Clinical
-        Psychology"},"field":{"id":"https://openalex.org/fields/32","display_name":"Psychology"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},"topics":[{"id":"https://openalex.org/T13143","display_name":"Child
-        Therapy and Development","score":0.04560000076889992,"subfield":{"id":"https://openalex.org/subfields/3203","display_name":"Clinical
-        Psychology"},"field":{"id":"https://openalex.org/fields/32","display_name":"Psychology"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/psychology","display_name":"Psychology","score":0.480476051568985},{"id":"https://openalex.org/keywords/medicine","display_name":"Medicine","score":0.3537619411945343}],"concepts":[{"id":"https://openalex.org/C15744967","wikidata":"https://www.wikidata.org/wiki/Q9418","display_name":"Psychology","level":0,"score":0.480476051568985},{"id":"https://openalex.org/C71924100","wikidata":"https://www.wikidata.org/wiki/Q11190","display_name":"Medicine","level":0,"score":0.3537619411945343}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.1097/00004703-198912000-00011","is_oa":false,"landing_page_url":"https://doi.org/10.1097/00004703-198912000-00011","pdf_url":null,"source":{"id":"https://openalex.org/S116305490","display_name":"Journal
-        of Developmental & Behavioral Pediatrics","issn_l":"0196-206X","issn":["0196-206X","1536-7312"],"is_oa":false,"is_in_doaj":false,"is_core":true,"host_organization":"https://openalex.org/P4310315671","host_organization_name":"Lippincott
-        Williams & Wilkins","host_organization_lineage":["https://openalex.org/P4310315671"],"host_organization_lineage_names":[],"type":"journal"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Journal
-        of Developmental &amp; Behavioral Pediatrics","raw_type":"journal-article"}],"best_oa_location":null,"sustainable_development_goals":[],"grants":[],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W2748952813","https://openalex.org/W3031052312","https://openalex.org/W4389568370","https://openalex.org/W3032375762","https://openalex.org/W1995515455","https://openalex.org/W2080531066","https://openalex.org/W2586801360","https://openalex.org/W3108674512","https://openalex.org/W1506200166","https://openalex.org/W1489783725"],"abstract_inverted_index":{"Journal":[0],"of":[1],"Developmental":[2],"&":[3],"Behavioral":[4],"Pediatrics:":[5],"December":[6],"1989":[7],"-":[8,11,14],"Volume":[9],"10":[10],"Issue":[12],"6":[13],"p":[15],"337-339":[16]},"counts_by_year":[],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"},{"id":"https://openalex.org/W2513472201","doi":null,"title":"Escroto
-        agudo: revisi\u00f3n de la semiolog\u00eda","display_name":"Escroto agudo:
-        revisi\u00f3n de la semiolog\u00eda","relevance_score":0.99999994,"publication_year":2012,"publication_date":"2012-05-24","ids":{"openalex":"https://openalex.org/W2513472201","mag":"2513472201"},"language":"es","primary_location":{"id":"mag:2513472201","is_oa":false,"landing_page_url":"https://epos.myesr.org/poster/esr/seram2012/S-0141","pdf_url":null,"source":null,"license":null,"license_id":null,"version":null,"is_accepted":false,"is_published":false,"raw_source_name":null,"raw_type":null},"type":"article","indexed_in":[],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5017494358","display_name":"M.
-        Gonz\u00e1lez de Cabo","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.
-        Gonz\u00e1lez de Cabo","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5004708809","display_name":"S.
-        Pardo Barro","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"S.
-        Pardo Barro","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5008450341","display_name":"M.
-        Dorao Mart\u00ednez-Romillo","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.
-        Dorao Mart\u00ednez-Romillo","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5037261419","display_name":"M.
-        Cuadra Coll","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.
-        Cuadra Coll","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"middle","author":{"id":"https://openalex.org/A5022996399","display_name":"M.
-        Jofre Guasch","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.
-        Jofre Guasch","raw_affiliation_strings":[],"affiliations":[]},{"author_position":"last","author":{"id":"https://openalex.org/A5056847690","display_name":"M.
-        Mas Gelabert","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.
-        Mas Gelabert","raw_affiliation_strings":[],"affiliations":[]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":6,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":0.0,"has_fulltext":false,"cited_by_count":0,"citation_normalized_percentile":{"value":0.45470018,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T12743","display_name":"Spanish
-        Culture and Identity","score":0.7696999907493591,"subfield":{"id":"https://openalex.org/subfields/1211","display_name":"Philosophy"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},"topics":[{"id":"https://openalex.org/T12743","display_name":"Spanish
-        Culture and Identity","score":0.7696999907493591,"subfield":{"id":"https://openalex.org/subfields/1211","display_name":"Philosophy"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T13466","display_name":"Comparative
-        Literary Analysis and Criticism","score":0.7160999774932861,"subfield":{"id":"https://openalex.org/subfields/1208","display_name":"Literature
-        and Literary Theory"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T13427","display_name":"Latin American
-        Literature Analysis","score":0.7020999789237976,"subfield":{"id":"https://openalex.org/subfields/1208","display_name":"Literature
-        and Literary Theory"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/humanities","display_name":"Humanities","score":0.4248819649219513},{"id":"https://openalex.org/keywords/philosophy","display_name":"Philosophy","score":0.20619842410087585}],"concepts":[{"id":"https://openalex.org/C15708023","wikidata":"https://www.wikidata.org/wiki/Q80083","display_name":"Humanities","level":1,"score":0.4248819649219513},{"id":"https://openalex.org/C138885662","wikidata":"https://www.wikidata.org/wiki/Q5891","display_name":"Philosophy","level":0,"score":0.20619842410087585}],"mesh":[],"locations_count":1,"locations":[{"id":"mag:2513472201","is_oa":false,"landing_page_url":"https://epos.myesr.org/poster/esr/seram2012/S-0141","pdf_url":null,"source":null,"license":null,"license_id":null,"version":null,"is_accepted":false,"is_published":null,"raw_source_name":null,"raw_type":null}],"best_oa_location":null,"sustainable_development_goals":[],"grants":[],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"referenced_works_count":0,"referenced_works":[],"related_works":[],"abstract_inverted_index":{"Poster:":[0],"SERAM":[1],"2012":[2],"/":[4,6],"S-0141":[5],"Escroto":[7],"agudo:":[8],"revision":[9],"de":[10,19,43],"la":[11],"semiologia":[12],"":[13,15],"by:":[14],"M.":[16,26,30,34,38],"Gonzalez":[18],"Cabo":[20],",":[21],"S.":[22],"Pardo":[24],"Barro,":[25],"Dorao":[28],"Martinez-Romillo,":[29],"Cuadra":[32],"Coll,":[33],"Jofre":[36],"Guasch,":[37],"Mas":[40],"Gelabert;":[41],"Palma":[42],"Mallorca/ES":[44]},"counts_by_year":[],"updated_date":"2025-11-06T04:12:42.849631","created_date":"2025-10-10T00:00:00"},{"id":"https://openalex.org/W3160893647","doi":"https://doi.org/10.13173/9783447115483.165","title":"Gattung
-        &amp; Geheimnis. Zum Begriff des Mysterienspiels","display_name":"Gattung
-        &amp; Geheimnis. Zum Begriff des Mysterienspiels","relevance_score":0.99999994,"publication_year":2021,"publication_date":"2021-01-01","ids":{"openalex":"https://openalex.org/W3160893647","doi":"https://doi.org/10.13173/9783447115483.165","mag":"3160893647"},"language":"de","primary_location":{"id":"doi:10.13173/9783447115483.165","is_oa":false,"landing_page_url":"https://doi.org/10.13173/9783447115483.165","pdf_url":null,"source":{"id":"https://openalex.org/S4210233571","display_name":"Episteme
-        in Bewegung","issn_l":"2365-5666","issn":["2365-5666","2701-2522"],"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/P4310320080","host_organization_name":"Harrassowitz
-        Publishing House","host_organization_lineage":["https://openalex.org/P4310320080"],"host_organization_lineage_names":[],"type":"book
-        series"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Episteme
-        in Bewegung Beitr\u00e4ge zu einer transdisziplin\u00e4ren Wissensgeschichte","raw_type":"book-chapter"},"type":"book-chapter","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5062070343","display_name":"Glenn
-        Ehrstine","orcid":null},"institutions":[],"countries":[],"is_corresponding":true,"raw_author_name":"Glenn
-        Ehrstine","raw_affiliation_strings":[],"affiliations":[]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":1,"corresponding_author_ids":["https://openalex.org/A5062070343"],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":0.0,"has_fulltext":false,"cited_by_count":0,"citation_normalized_percentile":{"value":0.07277988,"is_in_top_1_percent":false,"is_in_top_10_percent":true},"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":"165","last_page":"184"},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T11893","display_name":"German
-        Literature and Culture Studies","score":0.9868000149726868,"subfield":{"id":"https://openalex.org/subfields/1208","display_name":"Literature
-        and Literary Theory"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},"topics":[{"id":"https://openalex.org/T11893","display_name":"German
-        Literature and Culture Studies","score":0.9868000149726868,"subfield":{"id":"https://openalex.org/subfields/1208","display_name":"Literature
-        and Literary Theory"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T13167","display_name":"Historical,
-        Literary, and Cultural Studies","score":0.9846000075340271,"subfield":{"id":"https://openalex.org/subfields/1205","display_name":"Classics"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}},{"id":"https://openalex.org/T12768","display_name":"Linguistics
-        and language evolution","score":0.9355000257492065,"subfield":{"id":"https://openalex.org/subfields/1203","display_name":"Language
-        and Linguistics"},"field":{"id":"https://openalex.org/fields/12","display_name":"Arts
-        and Humanities"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
-        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/philosophy","display_name":"Philosophy","score":0.35281845927238464}],"concepts":[{"id":"https://openalex.org/C138885662","wikidata":"https://www.wikidata.org/wiki/Q5891","display_name":"Philosophy","level":0,"score":0.35281845927238464}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.13173/9783447115483.165","is_oa":false,"landing_page_url":"https://doi.org/10.13173/9783447115483.165","pdf_url":null,"source":{"id":"https://openalex.org/S4210233571","display_name":"Episteme
-        in Bewegung","issn_l":"2365-5666","issn":["2365-5666","2701-2522"],"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/P4310320080","host_organization_name":"Harrassowitz
-        Publishing House","host_organization_lineage":["https://openalex.org/P4310320080"],"host_organization_lineage_names":[],"type":"book
-        series"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Episteme
-        in Bewegung Beitr\u00e4ge zu einer transdisziplin\u00e4ren Wissensgeschichte","raw_type":"book-chapter"}],"best_oa_location":null,"sustainable_development_goals":[],"grants":[],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W2899084033","https://openalex.org/W2748952813","https://openalex.org/W2912137438","https://openalex.org/W2803307177","https://openalex.org/W1494974852","https://openalex.org/W1030430500","https://openalex.org/W2346533055","https://openalex.org/W3214635344","https://openalex.org/W3166162583","https://openalex.org/W1930884650"],"abstract_inverted_index":null,"counts_by_year":[],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"},{"id":"https://openalex.org/W4406000776","doi":"https://doi.org/10.1142/9789819807314_fmatter","title":"FRONT
-        MATTER","display_name":"FRONT MATTER","relevance_score":0.99999994,"publication_year":2025,"publication_date":"2025-01-01","ids":{"openalex":"https://openalex.org/W4406000776","doi":"https://doi.org/10.1142/9789819807314_fmatter"},"language":"en","primary_location":{"id":"doi:10.1142/9789819807314_fmatter","is_oa":false,"landing_page_url":"https://doi.org/10.1142/9789819807314_fmatter","pdf_url":null,"source":null,"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Heart
-        of Service","raw_type":"other"},"type":"paratext","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":0,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":0,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":"i","last_page":"xxii"},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":null,"topics":[],"keywords":[{"id":"https://openalex.org/keywords/front","display_name":"Front
-        (military)","score":0.6319890022277832},{"id":"https://openalex.org/keywords/geology","display_name":"Geology","score":0.37425631284713745},{"id":"https://openalex.org/keywords/computer-science","display_name":"Computer
-        science","score":0.3307730257511139},{"id":"https://openalex.org/keywords/oceanography","display_name":"Oceanography","score":0.11872142553329468}],"concepts":[{"id":"https://openalex.org/C2777551076","wikidata":"https://www.wikidata.org/wiki/Q842332","display_name":"Front
-        (military)","level":2,"score":0.6319890022277832},{"id":"https://openalex.org/C127313418","wikidata":"https://www.wikidata.org/wiki/Q1069","display_name":"Geology","level":0,"score":0.37425631284713745},{"id":"https://openalex.org/C41008148","wikidata":"https://www.wikidata.org/wiki/Q21198","display_name":"Computer
-        science","level":0,"score":0.3307730257511139},{"id":"https://openalex.org/C111368507","wikidata":"https://www.wikidata.org/wiki/Q43518","display_name":"Oceanography","level":1,"score":0.11872142553329468}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.1142/9789819807314_fmatter","is_oa":false,"landing_page_url":"https://doi.org/10.1142/9789819807314_fmatter","pdf_url":null,"source":null,"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Heart
-        of Service","raw_type":"other"}],"best_oa_location":null,"sustainable_development_goals":[],"grants":[],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W4391375266","https://openalex.org/W2899084033","https://openalex.org/W2748952813","https://openalex.org/W2074777875","https://openalex.org/W2324615561","https://openalex.org/W2086120259","https://openalex.org/W2390279801","https://openalex.org/W2245170124","https://openalex.org/W2076393078","https://openalex.org/W4391913857"],"abstract_inverted_index":null,"counts_by_year":[],"updated_date":"2025-11-06T03:46:38.306776","created_date":"2025-10-10T00:00:00"}],"group_by":[]}
-
-        '
+      string: !!binary |
+        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
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
@@ -306,7 +278,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 9a8de002494ec23f-AMS
+      - a04e88b67edbfe9a-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -314,29 +286,42 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 04 Dec 2025 19:57:50 GMT
+      - Mon, 01 Jun 2026 13:23:38 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
-      RateLimit-Limit:
-      - '5'
-      RateLimit-Remaining:
-      - '9'
-      RateLimit-Reset:
-      - '1'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=dNf4xivULeOafcD4Co942NfX9%2FvHE8kUNrcs93KP53I%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1764878269"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=4YgjxKwY2vvV00E%2BrSmBgcbSTQsHfj8CKeSCv8CexEA%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1780320218"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=dNf4xivULeOafcD4Co942NfX9%2FvHE8kUNrcs93KP53I%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1764878269"
+      - heroku-nel="https://nel.heroku.com/reports?s=4YgjxKwY2vvV00E%2BrSmBgcbSTQsHfj8CKeSCv8CexEA%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1780320218"
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      Vary:
-      - accept-encoding
       Via:
       - 1.1 heroku-router
+      X-RateLimit-Cost-USD:
+      - '0.0001'
+      X-RateLimit-Credits-Used:
+      - '1'
+      X-RateLimit-Limit:
+      - '10000'
+      X-RateLimit-Limit-USD:
+      - '1'
+      X-RateLimit-Onetime-Remaining:
+      - '0'
+      X-RateLimit-Prepaid-Remaining-USD:
+      - '0'
+      X-RateLimit-Remaining:
+      - '9933'
+      X-RateLimit-Remaining-USD:
+      - '0.9933'
+      X-RateLimit-Reset:
+      - '38182'
       access-control-expose-headers:
-      - Cache-Control, RateLimit-Limit, RateLimit-Remaining, RateLimit-Reset, Retry-After
+      - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
+        X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
+        X-RateLimit-Limit-USD, X-RateLimit-Remaining-USD, X-RateLimit-Prepaid-Remaining-USD,
+        X-RateLimit-Cost-USD, X-RateLimit-Cost-Required-USD, Retry-After
     status:
       code: 200
       message: OK

@@ -9,261 +9,143 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.33.1
+      - python-requests/2.32.5
     method: GET
     uri: https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24
   response:
     body:
-      string: '{"abstract":null,"archive_url":null,"authors":[{"affiliation":[{"id":"https://ror.org/05167c961","name":"Western
-        University of Health Sciences"}],"contributor_roles":[],"family":"Wedel","given":"Matt","url":"https://orcid.org/0000-0001-6082-3103"}],"blog":{"archive_collection":22153,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22153/20231105213934/","archive_timestamps":null,"authors":[{"name":"Mike
-        Taylor"}],"canonical_url":null,"category":"earthAndRelatedEnvironmentalSciences","community_id":"0e13541f-417e-46c0-a859-65927249df72","created_at":1675209600,"current_feed_url":null,"description":"SV-POW!  ...  All
-        sauropod vertebrae, except when we''re talking about Open Access. ISSN 3033-3695","doi_as_guid":false,"favicon":null,"feed_format":"application/atom+xml","feed_url":"https://svpow.com/feed/atom/","filter":null,"funding":null,"generator":"WordPress.com","generator_raw":"WordPress.com","home_page_url":"https://svpow.com","id":"c6cbbd2e-4675-4680-8a3f-784388009821","indexed":false,"issn":"3033-3695","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":null,"prefix":"10.59350","registered_at":1729882329,"relative_url":null,"ror":null,"secure":true,"slug":"svpow","status":"active","subfield":"1911","subfield_validated":true,"title":"Sauropod
-        Vertebra Picture of the Week","updated_at":1775462946.507849,"use_api":true,"use_mastodon":false,"user_id":"04d03585-c8bb-40f2-9619-5076a5e0aed2"},"blog_name":"Sauropod
-        Vertebra Picture of the Week","blog_slug":"svpow","citations":null,"content_html":"\r\n<div
-        data-shortcode=\"caption\" id=\"attachment_21038\" style=\"width: 1034px\"
-        class=\"wp-caption aligncenter\"><a href=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg\"><img
-        aria-describedby=\"caption-attachment-21038\" loading=\"lazy\" data-attachment-id=\"21038\"
-        data-permalink=\"http://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg\"
-        data-orig-size=\"1822,757\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
-        data-image-title=\"Haplocanthosaurus from across the Morrison &#8211; Curtice
-        et al 2023 fig 1\" data-image-description=\"\" data-image-caption=\"\" data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=1024\"
-        class=\"wp-image-21038 size-large\" src=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480\"
-        alt=\"\" width=\"480\" height=\"199\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480
-        480w, https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=960
-        960w, https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=150
-        150w, https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300
-        300w, https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=768
-        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a><p id=\"caption-attachment-21038\"
-        class=\"wp-caption-text\"><em>Haplocanthosaurus</em> tibiae and dorsal vertebrae.
-        Curtice et al. (2023: fig. 1).</p></div>\r\n<p>Brian Curtice and Colin Boisvert
-        are presenting our talk on this project at 2:00 pm MDT this afternoon, at
-        the 14th Symposium on Mesozoic Terrestrial Ecosystems and Biota (MTE14) in
-        Salt Lake City, and the related paper is in the MTE14 volume in The Anatomical
-        Record. Here&#8217;s the citation and a direct link to the paper:</p>\r\n<p
-        style=\"padding-left: 40px\"><a href=\"https://sauroposeidon.files.wordpress.com/2010/04/curtice-et-al-2023-haplocanthosaurus-from-dry-mesa.pdf\">Curtice,
-        B., Wedel, M.J., Wilhite, D.R., and Boisvert, C. 2023. New material of <em>Haplocanthosaurus</em>
-        (Hatcher 1903) from the Dry Mesa Dinosaur Quarry and a comment on sauropod
-        diversity. In Hunt-Foster, R.K., Kirkland, J.I., and Loewen, M.A. (eds), 14th
-        Symposium on Mesozoic Terrestrial Ecosystems and Biota. The Anatomical Record
-        306(S1):79-81.</a></p>\r\n<p>This one is exciting to me for several reasons,
-        both personal and scientific. I&#8217;ve been friends with Brian Curtice and
-        Ray Wilhite since the late 90s, but I&#8217;ve never published with them before
-        now. It&#8217;s nice to have Colin Boisvert on board as well &#8212; he&#8217;s
-        working on his Master&#8217;s at BYU, just like Brian and Ray did back when,
-        and he&#8217;s a keen observer of the sauropod scene.</p>\r\n<p>Turning to
-        the science, the number of known <em>Haplo</em> individuals in the entire
-        Morrison is small, probably fewer than a dozen, so any new <em>Haplo</em>
-        material is nice to get. Also, Dry Mesa is a big, famous, productive, diverse
-        quarry, and having <em>Haplo</em> in that quarry is interesting and important.\u00a0</p>\r\n<p>But
-        to me the most exciting thing about this is that Dry Mesa now has the highest
-        diversity of sauropod genera of any locality in the world. At least six valid,
-        impossible-to-confuse sauropod genera are known from Dry Mesa (listed alphabetically
-        here; we provide specimen numbers of diagnostic elements for each genus in
-        the paper):</p>\r\n<ol>\r\n<li><em>Apatosaurus</em></li>\r\n<li><em>Brachiosaurus</em></li>\r\n<li><em>Camarasaurus</em></li>\r\n<li><em>Diplodocus</em></li>\r\n<li><em>Haplocanthosaurus</em></li>\r\n<li><em>Supersaurus</em></li>\r\n</ol>\r\n<div
-        data-shortcode=\"caption\" id=\"attachment_8007\" style=\"width: 1034px\"
-        class=\"wp-caption aligncenter\"><a href=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg\"><img
-        aria-describedby=\"caption-attachment-8007\" loading=\"lazy\" data-attachment-id=\"8007\"
-        data-permalink=\"http://svpow.com/papers-by-sv-powsketeers/wedel-and-taylor-2013-on-sauropod-neural-spine-bifurcation/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical-2/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg\"
-        data-orig-size=\"2220,2089\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;}\"
-        data-image-title=\"Wedel and Taylor 2013 bifurcation Figure 7 &#8211; small
-        Diplodocus cervical\" data-image-description=\"\" data-image-caption=\"&lt;p&gt;Wedel
-        and Taylor (2013), Figure 7. BYU 12613, a posterior cervical of Diplodocus,
-        in dorsal (top), left lateral (left), and posterior (right) views. It compares
-        most favourably with C14 of D. carnegii CM 84/94 (Hatcher, 1901: plate 3)
-        despite being only 42% as large, with a centrum length of 270 mm compared
-        to 642 mm for C14 of D. carnegii.&lt;/p&gt;\n\" data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=1024\"
-        class=\"size-large wp-image-8007\" src=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480\"
-        alt=\"\" width=\"480\" height=\"452\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480
-        480w, https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=960
-        960w, https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=150
-        150w, https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300
-        300w, https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=768
-        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a><p id=\"caption-attachment-8007\"
-        class=\"wp-caption-text\">BYU 12613, a posterior cervical of a diplodocid,
-        in dorsal (top), left lateral (left), and posterior (right) views. The centrum
-        length is 270 mm, compared to 642 mm for C14 of <em>D. carnegii</em>. Wedel
-        and Taylor (2013), Figure 7.</p></div>\r\n<p>Alert readers may also recall
-        BYU 12613, a posterior cervical that Mike and I called <em>Diplodocus</em>
-        in our 2013 neural spine bifurcation paper, but which may actually pertain
-        to <em>Kaatedocus</em>. All the <em>Diplodocus</em> material from Dry Mesa
-        is small, and I&#8217;m not at all confident that I could tell small <em>Diplodocus</em>
-        vertebrae from <em>Kaatedocus</em>, so out of an abundance of caution we&#8217;re
-        calling it all <em>Diplodocus</em> for the purposes of counting genera.</p>\r\n<div
-        data-shortcode=\"caption\" id=\"attachment_13451\" style=\"width: 1034px\"
-        class=\"wp-caption aligncenter\"><a href=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg\"><img
-        aria-describedby=\"caption-attachment-13451\" loading=\"lazy\" data-attachment-id=\"13451\"
-        data-permalink=\"http://svpow.com/2016/05/17/whats-up-with-your-irregular-ventral-ridges-diplodocines/2005-07-29-byu-11617-barosaurus-right-lateral/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg\"
-        data-orig-size=\"2272,1704\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;2.6&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;E4500&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;1122636630&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;7.85&quot;,&quot;iso&quot;:&quot;100&quot;,&quot;shutter_speed&quot;:&quot;0.045871559633028&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;1&quot;}\"
-        data-image-title=\"2005-07-29 BYU 11617 Barosaurus right lateral\" data-image-description=\"\"
-        data-image-caption=\"\" data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=1024\"
-        class=\"wp-image-13451 size-large\" src=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480\"
-        alt=\"\" width=\"480\" height=\"360\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480
-        480w, https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=960
-        960w, https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=150
-        150w, https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300
-        300w, https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=768
-        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a><p id=\"caption-attachment-13451\"
-        class=\"wp-caption-text\">BYU 11617, which sure as heck looks like <em>Barosaurus</em>
-        to me, with a loooong swoopy centrum, big posterolateral flanges, and prezygs
-        that overhang the condyle.</p></div>\r\n<p>There are also vertebrae in the
-        quarry that I&#8217;ve always considered to belong to <em>Barosaurus</em>,
-        like BYU 11617 from <a href=\"https://svpow.com/2016/05/17/whats-up-with-your-irregular-ventral-ridges-diplodocines/\">this
-        post</a>. If Brian Curtice is right about BYU 9024 (<a href=\"https://svpow.com/2016/09/16/how-horrifying-was-the-neck-of-barosaurus/\">this
-        monster</a>) belonging to <em>Supersaurus</em> rather than <em>Barosaurus</em>,
-        then I&#8217;m no longer certain that we can distinguish <em>Supes</em> and
-        <em>Baro</em> based on cervical vertebrae. So maybe those <em>Baro</em> verts
-        actually belong to <em>Supersaurus</em>. But if they don&#8217;t &#8212; or
-        if BYU 9024 itself belong to <em>Barosaurus</em>, as Mike and I have argued
-        (in <a href=\"http://www.miketaylor.org.uk/dino/pubs/svpca2016/TaylorWedel2016-how-big-did-barosaurus-get.pdf\">our
-        2016 SVPCA talk</a>, and <a href=\"https://svpow.com/2019/06/15/supersaurus-ultrasaurus-and-dystylosaurus-in-2019-part-2-what-we-found-in-utah/\">this
-        post</a> and <a href=\"https://svpow.com/2019/06/16/supersaurus-ultrasaurus-and-dystylosaurus-in-2019-part-2b-the-size-of-the-byu-9024-animal/\">this
-        post</a>) &#8212; then <em>Barosaurus</em> is a seventh sauropod genus from
-        Dry Mesa.</p>\r\n<p>The high sauropod diversity at Dry Mesa is exciting for
-        a couple of reasons. One, it emphasizes the ridiculous productivity of the
-        Morrison paleoenvironment. Yes, there were droughts and fires and landslides
-        and whatnot &#8212; at least periodically, even at Dry Mesa (Richmond and
-        Morris 1998). But there was also an environment &#8212; or rather, a series
-        of environments &#8212; fecund enough to support many coexisting genera of
-        whale-sized herbivores. That&#8217;s part of the Morrison story, too.</p>\r\n<p>And
-        two, this is relevant to the &#8220;problem&#8221; of Morrison sauropod diversity
-        &#8212; the idea that there are just too darned many sauropods in the Morrison,
-        no environment could have supported so many, and therefore Morrison sauropod
-        taxonomy has to be messed up, buncha dumb paleontologists oversplitting genera
-        and species because they don&#8217;t know any better. (For more on this idea,
-        see Darren&#8217;s brilliant series of posts at Tetrapod Zoology; the concluding
-        post, with links to all the rest, is <a href=\"https://tetzoo.com/blog/2020/5/20/stop-saying-that-there-are-too-many-sauropod-dinosaurs-part-8-the-last-part\">here</a>.)</p>\r\n<p>I
-        put &#8220;problem&#8221; in scare quotes because I think it&#8217;s illusory.
-        In addition to Dry Mesa with its six or seven sauropod genera, there are a
-        handful of Morrison localities with five sauropod genera, more with four,
-        and gobs with three. Not surprisingly, the diverse localities tend to be the
-        big ones, which at least hints that more quarries would have more sauropods
-        if they were bigger &#8212; maybe only the biggest quarries did a decent job
-        of capturing the diversity of sauropods on the landscape.</p>\r\n<div data-shortcode=\"caption\"
-        id=\"attachment_21047\" style=\"width: 1034px\" class=\"wp-caption aligncenter\"><a
-        href=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg\"><img
-        aria-describedby=\"caption-attachment-21047\" loading=\"lazy\" data-attachment-id=\"21047\"
-        data-permalink=\"http://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/engh-brushy-basin-dinos/\"
-        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg\"
-        data-orig-size=\"2357,693\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
-        data-image-title=\"Engh &#8211; Brushy Basin dinos\" data-image-description=\"\"
-        data-image-caption=\"\" data-medium-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=300\"
-        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=1024\"
-        class=\"wp-image-21047 size-large\" src=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480\"
-        alt=\"\" width=\"480\" height=\"141\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480
-        480w, https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=960
-        960w, https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=150
-        150w, https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=300
-        300w, https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=768
-        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a><p id=\"caption-attachment-21047\"
-        class=\"wp-caption-text\"><a href=\"https://dontmesswithdinosaurs.com/?p=2397\">Brian
-        Engh&#8217;s</a> assemblage of large-bodied Brushy Basin dinos for <a href=\"https://www.youtube.com/watch?v=JC3aCs5f4-I\">Jurassic
-        Reimagined Part 1</a>. Coincidentally, though, if you swap in <em>Supersaurus</em>
-        for <em>Barosaurus</em> &#8212; or maybe just add <em>Supersaurus</em> alongside
-        <em>Barosaurus</em> &#8212; you&#8217;ll have the known sauropod diversity
-        of the Dry Mesa Dinosaur Quarry.</p></div>\r\n<p>One you have five or six
-        sauropod genera coexisting closely enough to get buried in the same hole,
-        I think the &#8220;problem&#8221; of Morrison sauropod diversity goes away.
-        The Morrison Formation outcrops from New Mexico to Canada, from the Oklahoma
-        panhandle and the Black Hills of South Dakota to central Utah, and spans probably
-        7 or 8 million years. Even four or five distinct habitats or communities across
-        all that space and time (which might be unrealistically conservative &#8212;
-        it could easily be several communities at a time, turning over every 2 or
-        3 million years*), each with four to six sauropod species, gets the species
-        count waaay up there.</p>\r\n<p>*But wait &#8212; doesn&#8217;t our figure
-        up top show that <em>Haplocanthosaurus</em> persisted from the lower part
-        of the <a href=\"https://svpow.com/2020/01/29/a-haplocanthosaurus-in-the-salt-wash/\">Salt
-        Wash</a> to the upper part of the Brushy Basin? Sure, but not as the same
-        species right the way through. There were probably something like half a dozen
-        species of haplocanthosaurs in the Morrison &#8212; <em>H. priscus</em>, <em>H.
-        delfsi</em>, the as-yet-unnamed-but-definitely-distinct Bilbey <em>Haplo </em>(Bilbey
-        et al. 2000), the as-yet-unnamed-but-definitely-distinct Snowmass <em>Haplo</em>
-        (Foster and Wedel 2014, Wedel et al. 2021), plus I assume a couple more when
-        and if we get better material of the more fragmentary specimens. That would
-        be consistent with the multiple known species of <em>Apatosaurus</em>, <em>Brontosaurus</em>,
-        <em>Camarasaurus</em>, <em>Diplodocus</em>, etc. So sequential communities
-        of Morrison sauropods probably had a lot of the same genera &#8212; there&#8217;s
-        nearly always a <em>Cam</em> of some kind, some apatosaurine lurking around,
-        etc. &#8212; but with different species across time, space, and paleoenvironmental
-        conditions.</p>\r\n<p>I think a big part of the problem is that it&#8217;s
-        (maybe too) easy to think of the Morrison Formation as a single thing &#8212;
-        like most formations &#8212; and to think that we can hold all of it in our
-        heads at once. But the Morrison is a monster, more comparable to a group than
-        to other formations, and not really comparable to any other dinosaur-bearing
-        formation in terms of extent, productivity, and likely diversity of environments
-        and habitats. (For an overview of Morrison environments through time, see
-        <a href=\"https://www.youtube.com/watch?v=JC3aCs5f4-I\">Jurassic Reimagined
-        Part 1</a>.)</p>\r\n<p>So, yeah. Morrison sauropod diversity was high, and
-        we just have to deal with that. Plus, hey, now we have more <em>Haplo</em>
-        to play with. Happy days all around!</p>\r\n<h2>References</h2>\r\n<ul>\r\n<li>Bilbey,
-        S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid
-        sauropod dinosaur from the lower Morrison Formation of northeastern Utah.
-        Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A.</li>\r\n<li><a
-        href=\"https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf\">Foster,
-        J.R., and Wedel, M.J. 2014.\u00a0<i>Haplocanthosaurus\u00a0</i>(Saurischia:
-        Sauropoda) from the lower Morrison Formation (Upper Jurassic) near Snowmass,
-        Colorado.\u00a0Volumina Jurassica 12(2): 197\u2013210.\u00a0DOI: 10.5604/17313708
-        .1130144</a></li>\r\n<li>Richmond, D.R., and Morris, T.H. 1998. Stratigraphy
-        and cataclysmic deposition of the Dry Mesa Dinosaur Quarry, Mesa County, Colorado.
-        Modern Geology 22:121-143.</li>\r\n<li><a href=\"https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf\">Wedel,
-        Mathew J., and Michael P. Taylor. 2013. Neural spine bifurcation in sauropod
-        dinosaurs of the Morrison Formation: ontogenetic and phylogenetic implications.\u00a0<em>Palarch\u2019s
-        Journal of Vertebrate Palaeontology</em>\u00a0<strong>10(1)</strong>:1-34.
-        ISSN 1567-2158.</a></li>\r\n<li><a href=\"https://svpow.wordpress.com/wp-content/uploads/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf\">Wedel,
-        Mathew; Atterholt, Jessie; Dooley, Jr., Alton C.; Farooq, Saad; Macalino,
-        Jeff; Nalley, Thierra K.; Wisser, Gary; and Yasmer, John. 2021. Expanded neural
-        canals in the caudal vertebrae of a specimen of\u00a0<em>Haplocanthosaurus</em>.
-        Academia Letters, Article 911, 10pp. DOI: 10.20935/AL911</a></li>\r\n</ul>\r\n","doi":"https://doi.org/10.59350/hke8v-d1e66","funding_references":null,"guid":"https://svpow.com/?p=20992","id":"4e4bf150-751f-4245-b4ca-fe69e3c3bb24","image":"","images":[{"height":"199","sizes":"(max-width:
-        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=480,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=960,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=150,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=300,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg?w=768","width":"480"},{"height":"452","sizes":"(max-width:
-        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=480,
-        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=960,
-        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=150,
-        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=300,
-        https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg?w=768","width":"480"},{"height":"360","sizes":"(max-width:
-        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=480,
-        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=960,
-        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=150,
-        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=300,
-        https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg?w=768","width":"480"},{"height":"141","sizes":"(max-width:
-        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480","srcset":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=480,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=960,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=150,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=300,
-        https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg?w=768","width":"480"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/haplocanthosaurus-from-across-the-morrison-curtice-et-al-2023-fig-1.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2013/03/wedel-and-taylor-2013-bifurcation-figure-7-small-diplodocus-cervical1.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2016/05/2005-07-29-byu-11617-barosaurus-right-lateral.jpg"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2023/06/engh-brushy-basin-dinos.jpg"}],"indexed":true,"indexed_at":1764898592,"language":"en","parent_doi":null,"published_at":1686340463,"reference":[{"unstructured":"Bilbey,
-        S.A., Hall, J.E., and Hall, D.A. 2000. Preliminary results on a new haplocanthosaurid
-        sauropod dinosaur from the lower Morrison Formation of northeastern Utah.
-        Journal of Vertebrate Paleontology 20(supp. to no. 3): 30A."},{"id":"https://sauroposeidon.files.wordpress.com/2010/04/foster-and-wedel-2014-haplocanthosaurus-from-snowmass-colorado.pdf","unstructured":"Foster,
-        J.R., and Wedel, M.J. 2014.\u00a0Haplocanthosaurus\u00a0(Saurischia: Sauropoda)
-        from the lower Morrison Formation (Upper Jurassic) near Snowmass, Colorado.\u00a0Volumina
-        Jurassica 12(2): 197\u2013210.\u00a0https://doi.org/10.5604/17313708 .1130144"},{"unstructured":"Richmond,
-        D.R., and Morris, T.H. 1998. Stratigraphy and cataclysmic deposition of the
-        Dry Mesa Dinosaur Quarry, Mesa County, Colorado. Modern Geology 22:121-143."},{"id":"https://sauroposeidon.files.wordpress.com/2010/04/wedel-taylor-2013-neural-spine-bifurcation-in-sauropods.pdf","unstructured":"Wedel,
-        Mathew J., and Michael P. Taylor. 2013. Neural spine bifurcation in sauropod
-        dinosaurs of the Morrison Formation: ontogenetic and phylogenetic implications.\u00a0Palarch\u2019s
-        Journal of Vertebrate Palaeontology\u00a010(1):1-34. ISSN 1567-2158."},{"id":"https://svpow.wordpress.com/wp-content/uploads/2022/03/wedel-et-al-2021-expanded-neural-canals-in-caudal-vertebrae-of-haplocanthosaurus.pdf","unstructured":"Wedel,
-        Mathew; Atterholt, Jessie; Dooley, Jr., Alton C.; Farooq, Saad; Macalino,
-        Jeff; Nalley, Thierra K.; Wisser, Gary; and Yasmer, John. 2021. Expanded neural
-        canals in the caudal vertebrae of a specimen of\u00a0Haplocanthosaurus. Academia
-        Letters, Article 911, 10pp. https://doi.org/10.20935/AL911"}],"registered_at":0,"relationships":[],"rid":"9mhef-ewr61","summary":"<em>\n
-        Haplocanthosaurus\n</em>\ntibiae and dorsal vertebrae. Curtice et al. (2023:
-        fig. 1).  Brian Curtice and Colin Boisvert are presenting our talk on this
-        project at 2:00 pm MDT this afternoon, at the 14th Symposium on Mesozoic Terrestrial
-        Ecosystems and Biota (MTE14) in Salt Lake City, and the related paper is in
-        the MTE14 volume in The Anatomical Record.","tags":["MTE14","Barosaurus","Cervical","Conferences","Diplodocids"],"title":"New
-        paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry
-        Mesa","updated_at":1686340463,"url":"https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
+      Access-Control-Allow-Origin:
+      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
       Content-Encoding:
@@ -271,14 +153,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Apr 2026 20:38:47 GMT
+      - Mon, 01 Jun 2026 13:21:02 GMT
       Server:
-      - hypercorn-h11
+      - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      - Origin
     status:
       code: 200
       message: OK

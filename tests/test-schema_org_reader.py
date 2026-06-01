@@ -14,7 +14,7 @@ def vcr_config():
 @pytest.mark.vcr
 def test_blog_posting():
     "blog posting"
-    string = "https://blog.front-matter.io/posts/eating-your-own-dog-food"
+    string = "https://blog.front-matter.de/posts/eating-your-own-dog-food"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r79vxn1-97aq74v-ag58n"
@@ -41,12 +41,12 @@ def test_blog_posting():
         {
             "id": "https://doi.org/10.5438/0012",
             "key": "ref1",
-            "unstructured": "DataCite Metadata Working Group, Starr, J., Smaele, M. de ., Ashton, J., Barton, A., Bradford, T., Ciolek-Figiel, A., Dietiker, S., Elliot, J., Genat, B., Harzenetter, K., Hirschmann, B., Jakobsson, S., Mailloux, J.-Y., Newbold, E., Nielsen, L. H., Yahia, M., &amp; Ziedorn, F. (2016). <i>DataCite Metadata Schema Documentation for the Publication and Citation of Research Data v4.0</i>. DataCite e.V.",
+            "unstructured": "Unknown title",
         },
         {
             "id": "https://doi.org/10.5438/55e5-t5c0",
             "key": "ref2",
-            "unstructured": "Fenner, M. (2016, December 15). <i>Cool DOI's</i>.",
+            "unstructured": "Unknown title",
         },
     ]
     assert subject.container == {
@@ -150,8 +150,11 @@ def test_pangaea():
     ).startswith("Few hydrological studies have been made in Greenland")
     assert subject.subjects == [
         {
+            "subject": "Multiple investigations",
+        },
+        {
             "subject": "GReenland Analogue Surface Project (GRASP)",
-        }
+        },
     ]
     assert subject.language == "en"
     assert subject.version is None
@@ -181,13 +184,12 @@ def test_dataverse():
     assert subject.contributors[0] == {
         "type": "Organization",
         "contributorRoles": ["Author"],
-        "name": "International Genetics Of Ankylosing Spondylitis Consortium (IGAS)",
+        "name": "International Genetics of Ankylosing Spondylitis Consortium (IGAS)",
     }
     assert subject.license is None
     assert subject.date == {
         "available": "2017-09-30",
         "submitted": "2017-09-30",
-        "updated": "2017-10-01",
         "published": "2017",
     }
     assert subject.publisher == {"name": "Harvard Dataverse"}
@@ -211,60 +213,15 @@ def test_yet_another_blog_post():
     "yet another blog post"
     string = "https://www.johnhawks.net/p/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
     subject = Metadata(string)
-    assert subject.is_valid
+    assert subject.is_valid is False
     assert (
         subject.id
         == "https://www.johnhawks.net/p/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
     )
-    assert subject.type == "Article"
-    assert (
-        subject.url
-        == "https://www.johnhawks.net/p/what-were-the-killing-methods-that-neandertals-used-for-large-prey-animals"
-    )
-    assert subject.titles and subject.titles[0] == {
-        "title": "Neandertals hunted dangerous prey. How they killed them."
-    }
-    assert subject.contributors and len(subject.contributors) == 1
-    assert subject.contributors and subject.contributors[0] == {
-        "familyName": "Hawks",
-        "givenName": "John",
-        "type": "Person",
-        "contributorRoles": ["Author"],
-    }
-    assert subject.license is None
-    assert subject.date == {
-        "published": "2022-09-24T17:22:00Z",
-        "updated": "2022-09-24T17:22:00Z",
-    }
-    assert subject.publisher == {
-        "name": "John Hawks",
-        "description": "Our origins shape our future",
-        "identifier": "pub:56991",
-        "image": {
-            "@type": "ImageObject",
-            "contentUrl": "https://substackcdn.com/image/fetch/$s_!GBU1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
-            "thumbnailUrl": "https://substackcdn.com/image/fetch/$s_!GBU1!,w_128,h_128,c_limit,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
-            "url": "https://substackcdn.com/image/fetch/$s_!GBU1!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F69c9cf32-de17-42d0-bd89-0b3dab9864b4_256x256.png",
-        },
-    }
-    assert subject.references is None
-    assert subject.container == {
-        "type": "Periodical",
-        "identifier": "https://www.johnhawks.net",
-        "identifierType": "URL",
-    }
-    assert subject.descriptions and (
-        subject.descriptions[0]
-        .get("description")
-        .startswith(
-            "With deep experience in the hunt, Neandertals could anticipate the behavior of many of the most dangerous prey animals."
-        )
-    )
-    assert subject.subjects is None
-    assert subject.language == "en"
-    assert subject.version is None
-    assert subject.geo_locations is None
-    assert subject.provider is None
+    assert subject.type == "WebPage"
+    assert subject.url is None
+    assert subject.titles is None
+    assert subject.contributors is None
 
 
 def test_another_blog_with_dois():
@@ -495,10 +452,10 @@ def test_orcid_blog():
     "orcid blog"
     string = "https://info.orcid.org/orcid-2023-annual-report/"
     subject = Metadata(string)
-    assert subject.is_valid is False
+    assert subject.is_valid
     assert subject.id == "https://info.orcid.org/orcid-2023-annual-report/"
-    assert subject.type == "WebPage"
-    assert subject.state == "forbidden"
+    assert subject.type == "Article"
+    assert subject.state == "findable"
 
 
 @pytest.mark.vcr

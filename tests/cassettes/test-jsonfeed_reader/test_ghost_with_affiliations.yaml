@@ -14,216 +14,73 @@ interactions:
     uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
   response:
     body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
-        Matter","updated_at":1764202472,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"citation":"https://doi.org/10.53731/5dyq7-25d23","published_at":"2014-03-10","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2025-10-22T08:19:03.371309+00:00","validated":true},{"citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","published_at":"2014-03-10","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2025-02-02T19:19:49.930728+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","indexed_at":1764253321,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","subfield":null,"summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","topic":null,"topic_score":0,"updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
+      string: !!binary |
+        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
     headers:
-      content-encoding:
-      - gzip
-      content-type:
-      - application/json
-      date:
-      - Mon, 01 Dec 2025 17:18:52 GMT
-      fly-request-id:
-      - 01KBDES85HPV41XS5VET584DPX-ams
-      ratelimit-limit:
-      - '15'
-      ratelimit-remaining:
-      - '4'
-      ratelimit-reset:
-      - '41'
-      server:
-      - Fly/0dca8e971 (2025-11-29)
-      transfer-encoding:
-      - chunked
-      vary:
-      - Origin
-      via:
-      - 1.1 fly.io, 1.1 fly.io
-    status:
-      code: 200
-      message: ''
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
-  response:
-    body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1775462838.882176,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/r294649-6f79289-8cw0g","citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2026-04-05T05:17:46.273708+00:00","validated":true},{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/5dyq7-25d23","citation":"https://doi.org/10.53731/5dyq7-25d23","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2026-04-05T05:17:44.281247+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","images":[],"indexed":true,"indexed_at":1764616876,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
-    headers:
+      Access-Control-Allow-Origin:
+      - '*'
       Alt-Svc:
       - h3=":443"; ma=2592000
       Content-Encoding:
@@ -231,486 +88,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 06 Apr 2026 08:29:13 GMT
+      - Mon, 01 Jun 2026 13:21:04 GMT
       Server:
-      - hypercorn-h11
+      - gunicorn
       Transfer-Encoding:
       - chunked
       Vary:
       - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
-  response:
-    body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1775462838.882176,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/r294649-6f79289-8cw0g","citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2026-04-05T05:17:46.273708+00:00","validated":true},{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/5dyq7-25d23","citation":"https://doi.org/10.53731/5dyq7-25d23","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2026-04-05T05:17:44.281247+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","images":[],"indexed":true,"indexed_at":1764616876,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:09:45 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
-  response:
-    body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1775462838.882176,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/r294649-6f79289-8cw0g","citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2026-04-05T05:17:46.273708+00:00","validated":true},{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/5dyq7-25d23","citation":"https://doi.org/10.53731/5dyq7-25d23","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2026-04-05T05:17:44.281247+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","images":[],"indexed":true,"indexed_at":1764616876,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:11:55 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
-  response:
-    body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1775462838.882176,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/r294649-6f79289-8cw0g","citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2026-04-05T05:17:46.273708+00:00","validated":true},{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/5dyq7-25d23","citation":"https://doi.org/10.53731/5dyq7-25d23","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2026-04-05T05:17:44.281247+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","images":[],"indexed":true,"indexed_at":1764616876,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:18:04 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Connection:
-      - keep-alive
-      User-Agent:
-      - python-requests/2.33.1
-    method: GET
-    uri: https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a
-  response:
-    body:
-      string: '{"abstract":"A few weeks ago Kafkas et al. (2013) published a paper
-        looking at current patterns of how datasets o biological databases are cited
-        in research articles, based on an analysis of the full text Open Access articles
-        available from Europe PMC. They identified data citations by:  1. Accession
-        numbers available in articles as publisher-supplied, structured content; 2.
-        Accession numbers identified in articles by text mining;","archive_url":"https://wayback.archive-it.org/22096/2024-11-01T17:26:01Z/https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
-        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"archive_collection":22096,"archive_host":null,"archive_prefix":"https://wayback.archive-it.org/22096/20231101172748/","archive_timestamps":[20231101172748,20240501180447,20241101172601],"authors":[{"name":"Martin
-        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"canonical_url":null,"category":"computerAndInformationSciences","community_id":"91dd2c24-5248-4510-9c2b-30b772bf8b60","created_at":1672561153,"current_feed_url":"","description":"The
-        Front Matter Blog covers the intersection of science and technology since
-        2007.","doi_as_guid":false,"favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"funding":null,"generator":"Ghost","generator_raw":"Ghost
-        5.52","home_page_url":"https://blog.front-matter.de","id":"74659bc5-e36e-4a27-901f-f0c8d5769cb8","indexed":null,"issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","mastodon":"https://hachyderm.io/@mfenner","prefix":"10.53731","registered_at":1729685319,"relative_url":null,"ror":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","subfield_validated":null,"title":"Front
-        Matter","updated_at":1775462838.882176,"use_api":true,"use_mastodon":true,"user_id":"8498eaf6-8c58-4b58-bc15-27eda292b1aa"},"blog_name":"Front
-        Matter","blog_slug":"front_matter","citations":[{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/r294649-6f79289-8cw0g","citation":"https://doi.org/10.53731/r294649-6f79289-8cw0g","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/r294649-6f79289-8cw0g","updated_at":"2026-04-05T05:17:46.273708+00:00","validated":true},{"blog_slug":"front_matter","cid":"10.53731/r294649-6f79289-8cw16::10.53731/5dyq7-25d23","citation":"https://doi.org/10.53731/5dyq7-25d23","cito":[],"doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","published_at":"2014-03-10","type":"BlogPost","unstructured":"Fenner,
-        M. (2014, March 10). Continuous Publishing. <i>Front Matter</i>. https://doi.org/10.53731/5dyq7-25d23","updated_at":"2026-04-05T05:17:44.281247+00:00","validated":true}],"content_html":"<p>A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC. They identified data citations by:</p><ol><li>Accession numbers available
-        in articles as publisher-supplied, structured content;</li><li>Accession numbers
-        identified in articles by text mining;</li><li>References to articles from
-        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
-        doubles the number of structured annotations available in journal articles
-        (from 2.26% to 5.15%), and that these structured annotations should be extended
-        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
-        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
-        the largest group, with 160,112 identifiers found in the 410,364 articles
-        that were analyzed.</p><p>Another result in the paper is that references to
-        articles in these databases show little overlap with database links found
-        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
-        can be used to extend structured data citation, and could be a basis for the
-        development of services to help authors or editors to add structured content
-        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
-        structured data citations during the authoring phase of a manuscript requires
-        tools that make this process easier, providing auto-linking and verification
-        without requiring extra input from the author. Scholarly Markdown is an ideal
-        platform for these tools, as it is easier to extend than traditional word
-        processors such as Microsoft Word. During a small workshop around persistent
-        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
-        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
-        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
-        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
-        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
-        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
-        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
-        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
-        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
-        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
-        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
-        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
-        for genetically altered mice. In the life sciences there is a long tradition
-        - and requirement by journals - to use database identifiers for data, but
-        identifiers for resources such as genetically modified mice are unfortunately
-        not in common use.</p><p>This blog uses the Pandoc markdown processor and
-        the Jekyll static website generator. The easiest way to implement this functionality
-        was by writing a filter for the liquid templating engine used by Jekyll, and
-        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
-        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
-        The plugin expects the name of the identifier, followed by a colon and optional
-        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
-        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
-        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
-        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
-        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
-        is generated in a similar fashion.</p><p>The plugin was written in a few hours
-        today, and is my first Jekyll plugin. There is room for improvement, e.g.
-        support for more identifiers, better regex matching, validation of the resulting
-        links, and automated tag generation if an identifier is found. Ideally the
-        auto-linking should happen in the markdown and not the HTML output, so that
-        these structured database links are also available in other markdown outputs
-        such as PDF. But this is another example how Scholarly Markdown can make it
-        easier for researchers to author documents without requiring a fancy web-based
-        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
-        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
-        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","funding_references":null,"guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","id":"fef48952-87bc-467b-8ebb-0bff92ab9e1a","image":"https://blog.front-matter.de/content/images/2022/08/journal.pone.0063184.g003.png","images":[],"indexed":true,"indexed_at":1764616876,"language":"en","parent_doi":null,"published_at":1372784280,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","type":"JournalArticle","unstructured":"Kafkas,
-        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
-        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184.
-        https://doi.org/10.1371/journal.pone.0063184"}],"registered_at":0,"relationships":[],"rid":"9f9z0-ap494","summary":"A
-        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
-        of how datasets o biological databases are cited in research articles, based
-        on an analysis of the full text Open Access articles available from Europe
-        PMC.","tags":["Feature"],"title":"Auto generating links to data and resources","updated_at":1660572893,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
-
-        '
-    headers:
-      Alt-Svc:
-      - h3=":443"; ma=2592000
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Mon, 06 Apr 2026 09:51:36 GMT
-      Server:
-      - hypercorn-h11
-      Transfer-Encoding:
-      - chunked
-      Vary:
-      - Accept-Encoding
-      - Origin
     status:
       code: 200
       message: OK

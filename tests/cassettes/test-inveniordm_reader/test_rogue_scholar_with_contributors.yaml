@@ -14,165 +14,97 @@ interactions:
     uri: https://rogue-scholar.org/api/records/apt10-14q04
   response:
     body:
-      string: '{"id": "apt10-14q04", "created": "2025-10-14T08:13:18.608983+00:00",
-        "updated": "2025-10-25T12:27:01.225269+00:00", "links": {"self": "https://rogue-scholar.org/api/records/apt10-14q04",
-        "self_html": "https://rogue-scholar.org/records/apt10-14q04", "preview_html":
-        "https://rogue-scholar.org/records/apt10-14q04?preview=1", "doi": "https://doi.org/10.59350/510pg-zzf58",
-        "self_doi": "https://doi.org/10.59350/510pg-zzf58", "self_doi_html": "https://rogue-scholar.org/doi/10.59350/510pg-zzf58",
-        "reserve_doi": "https://rogue-scholar.org/api/records/apt10-14q04/draft/pids/doi",
-        "parent": "https://rogue-scholar.org/api/records/eqnvx-r9e30", "parent_html":
-        "https://rogue-scholar.org/records/eqnvx-r9e30", "parent_doi": "https://doi.org/10.59350/eqnvx-r9e30",
-        "parent_doi_html": "https://rogue-scholar.org/doi/10.59350/eqnvx-r9e30", "self_iiif_manifest":
-        "https://rogue-scholar.org/api/iiif/record:apt10-14q04/manifest", "self_iiif_sequence":
-        "https://rogue-scholar.org/api/iiif/record:apt10-14q04/sequence/default",
-        "files": "https://rogue-scholar.org/api/records/apt10-14q04/files", "media_files":
-        "https://rogue-scholar.org/api/records/apt10-14q04/media-files", "archive":
-        "https://rogue-scholar.org/api/records/apt10-14q04/files-archive", "archive_media":
-        "https://rogue-scholar.org/api/records/apt10-14q04/media-files-archive", "latest":
-        "https://rogue-scholar.org/api/records/apt10-14q04/versions/latest", "latest_html":
-        "https://rogue-scholar.org/records/apt10-14q04/latest", "versions": "https://rogue-scholar.org/api/records/apt10-14q04/versions",
-        "draft": "https://rogue-scholar.org/api/records/apt10-14q04/draft", "access_links":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access/links", "access_grants":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access/grants", "access_users":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access/users", "access_groups":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access/groups", "access_request":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access/request", "access":
-        "https://rogue-scholar.org/api/records/apt10-14q04/access", "communities":
-        "https://rogue-scholar.org/api/records/apt10-14q04/communities", "communities-suggestions":
-        "https://rogue-scholar.org/api/records/apt10-14q04/communities-suggestions",
-        "request_deletion": "https://rogue-scholar.org/api/records/apt10-14q04/request-deletion",
-        "requests": "https://rogue-scholar.org/api/records/apt10-14q04/requests"},
-        "revision_id": 35, "parent": {"id": "eqnvx-r9e30", "access": {"owned_by":
-        {"user": "4"}, "settings": {"allow_user_requests": false, "allow_guest_requests":
-        false, "accept_conditions_text": null, "secret_link_expiration": 0}}, "communities":
-        {"ids": ["19c501a7-647b-4a11-9f5e-cf400817cce3", "d79fe364-6d96-40b6-b437-b93ca3493106",
-        "f5585376-cf4d-4ba8-b423-16834e1f708f"], "default": "19c501a7-647b-4a11-9f5e-cf400817cce3",
-        "entries": [{"id": "19c501a7-647b-4a11-9f5e-cf400817cce3", "created": "2024-10-05T18:45:09.152768+00:00",
-        "updated": "2025-12-01T07:41:29.934190+00:00", "links": {}, "revision_id":
-        706, "slug": "ropensci", "metadata": {"title": "rOpenSci - open tools for
-        open science", "description": "Open Tools and R Packages for Open Science",
-        "type": {"id": "blog"}, "website": "https://ropensci.org/blog"}, "access":
-        {"visibility": "public", "members_visibility": "public", "member_policy":
-        "open", "record_submission_policy": "open", "review_policy": "open"}, "custom_fields":
-        {"rs:feed_url": "https://ropensci.org/blog/index.json", "rs:prefix": "10.59350",
-        "rs:joined": "August 31, 2023", "rs:feed_format": "application/feed+json",
-        "rs:generator": "Hugo", "rs:license": "https://creativecommons.org/licenses/by/4.0/legalcode",
-        "rs:language": "English", "rs:category": "Computer and information sciences"},
-        "deletion_status": {"is_deleted": false, "status": "P"}, "children": {"allow":
-        false}}, {"id": "d79fe364-6d96-40b6-b437-b93ca3493106", "created": "2025-02-10T08:12:28.813373+00:00",
-        "updated": "2025-06-30T16:00:16.024136+00:00", "links": {}, "revision_id":
-        6, "slug": "computerandinformationsciences", "metadata": {"title": "Computer
-        and information sciences", "description": "Computer and information sciences
-        subject area.", "type": {"id": "subject"}}, "access": {"visibility": "public",
-        "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}, {"id":
-        "f5585376-cf4d-4ba8-b423-16834e1f708f", "created": "2024-10-08T16:22:44.009032+00:00",
-        "updated": "2025-07-15T19:20:59.530029+00:00", "links": {}, "revision_id":
-        8, "slug": "metadata", "metadata": {"title": "Metadata", "description": "Blog
-        posts about metadata.", "type": {"id": "topic"}}, "access": {"visibility":
-        "public", "members_visibility": "public", "member_policy": "open", "record_submission_policy":
-        "open", "review_policy": "open"}, "custom_fields": {}, "deletion_status":
-        {"is_deleted": false, "status": "P"}, "children": {"allow": false}}]}, "pids":
-        {"doi": {"identifier": "10.59350/eqnvx-r9e30", "provider": "crossref", "client":
-        "crossref"}}}, "versions": {"is_latest": true, "index": 1}, "is_published":
-        true, "is_draft": false, "pids": {"doi": {"identifier": "10.59350/510pg-zzf58",
-        "provider": "crossref", "client": "crossref"}, "oai": {"identifier": "oai:invenio-rdm:apt10-14q04",
-        "provider": "oai"}}, "metadata": {"resource_type": {"id": "publication-blogpost",
-        "title": {"de": "Blogbeitrag", "en": "Blog post", "sv": "blogginl\u00e4gg"}},
-        "creators": [{"person_or_org": {"type": "personal", "name": "Salmon, Ma\u00eblle",
-        "given_name": "Ma\u00eblle", "family_name": "Salmon", "identifiers": [{"identifier":
-        "0000-0002-2815-0399", "scheme": "orcid"}]}}, {"person_or_org": {"type": "personal",
-        "name": "Bellini Saibene, Yanina", "given_name": "Yanina", "family_name":
-        "Bellini Saibene", "identifiers": [{"identifier": "0000-0002-4522-7466", "scheme":
-        "orcid"}]}}], "title": "Recognition Beyond Blog Post Authors", "publisher":
-        "Front Matter", "publication_date": "2025-10-14", "subjects": [{"id": "http://www.oecd.org/science/inno/38235147.pdf?1.2",
-        "subject": "Computer and information sciences", "scheme": "FOS"}, {"subject":
-        "Metadata"}, {"subject": "Tech Notes"}, {"subject": "Community Manager Tools"}],
-        "contributors": [{"person_or_org": {"type": "personal", "name": "LaZerte,
-        Steffi", "given_name": "Steffi", "family_name": "LaZerte", "identifiers":
-        [{"identifier": "0000-0002-7690-8360", "scheme": "orcid"}]}, "role": {"id":
-        "editor", "title": {"de": "EditorIn", "en": "Editor", "sv": "Redakt\u00f6r"}}}],
-        "dates": [{"date": "2025-10-14T02:00:00", "type": {"id": "issued", "title":
-        {"de": "Ver\u00f6ffentlicht", "en": "Issued", "sv": "Utf\u00e4rdad"}}}, {"date":
-        "2025-10-14T09:58:33", "type": {"id": "updated", "title": {"de": "Aktualisiert",
-        "en": "Updated", "sv": "Uppdaterad"}}}], "languages": [{"id": "eng", "title":
-        {"en": "English"}}], "identifiers": [{"identifier": "65e082c0-5500-4949-9ab6-307d55921762",
-        "scheme": "uuid"}, {"identifier": "https://doi.org/10.59350/510pg-zzf58",
-        "scheme": "guid"}, {"identifier": "https://ropensci.org/blog/2025/10/14/blog-roles/",
-        "scheme": "url"}], "version": "v1", "rights": [{"id": "cc-by-4.0", "title":
-        {"en": "Creative Commons Attribution 4.0 International"}, "description": {"en":
-        "The Creative Commons Attribution license allows re-distribution and re-use
-        of a licensed work on the condition that the creator is appropriately credited."},
-        "icon": "cc-by-icon", "props": {"url": "https://creativecommons.org/licenses/by/4.0/",
-        "scheme": "spdx"}}], "description": "Our own dev guide states Recognizing
-        the diverse forms of contributions to our mission is very important to us:we
-        like thanking package reviewers and more generally all package contributors,
-        organizations as well as individuals. We have recently extended our efforts
-        to acknowledging the different roles there are when publishing a blog post."},
-        "custom_fields": {"journal:journal": {"title": "rOpenSci - open tools for
-        open science"}, "rs:content_html": "<p>Our own dev guide <a href=\"https://devguide.ropensci.org/maintenance_collaboration.html#attributions\">states</a></p><blockquote><p>Be
-        generous with attributions</p></blockquote><p>Recognizing the diverse forms
-        of <a href=\"https://contributing.ropensci.org/\">contributions</a> to our
-        mission is very important to us:we like thanking <a href=\"https://ropensci.org/blog/2018/03/16/thanking-reviewers-in-metadata/\">package
-        reviewers</a> and more generally <a href=\"https://ropensci.org/blog/2024/11/26/allcontributors/\">all
-        package contributors</a>, <a href=\"https://ropensci.org/blog/2025/05/09/ror/\">organizations
-        as well as individuals</a>.</p><p>We have recently extended our efforts to
-        acknowledging the different roles there are when publishing a blog post.</p><h2
-        id=\"new-blog-roles-editors-translators-interviewees\"><a class=\"anchor d-print-none\"
-        href=\"https://ropensci.org/blog/2025/10/14/blog-roles//#new-blog-roles-editors-translators-interviewees\">
-        <small>\ud83d\udd17</small></a>New blog roles: editors, translators, interviewees</h2><p>The
-        metadata of our blog posts now feature:</p><ul><li>who edited the blog post<ul><li>for
-        example, <a href=\"https://ropensci.org/blog/2025/09/18/markdown-programmatic-parsing/\">Steffi
-        LaZerte edited a recent post</a>.</li></ul></li><li>who translated the blog
-        post<ul><li>for example, <a href=\"https://ropensci.org/es/blog/2025/06/23/edicion-multilingue-preguntas-frecuentes/\">Yanina
-        Bellini Saibene translated a post into Spanish</a>, and <a href=\"https://ropensci.org/blog/2025/10/14/blog-roles//fr/blog/2025/06/23/publication-multilingue-faq/\">Ma\u00eblle
-        Salmon translated it into French</a>.</li></ul></li><li>who was <em>interviewed</em>
-        for a blog post<ul><li>for example, <a href=\"https://ropensci.org/blog/2023/03/30/r-universe-stars-3-en/\">Athanasia
-        Mo Mowinckel was interviewed in the Stars of the R-Universe series</a>.</li></ul></li></ul><p>The
-        \"author page\" of contributors list their various contributions to the content
-        in the current language (authorships listed first, followed by other roles):</p><ul><li><a
-        href=\"https://ropensci.org/author/steffi-lazerte\">Steffi LaZerte''s author
-        page</a></li><li><a href=\"https://ropensci.org/es/author/yanina-bellini-saibene\">Yanina
-        Bellini Saibene''s author page in Spanish</a></li><li><a href=\"https://ropensci.org/author/athanasia-mo-mowinckel/\">Athanasia
-        Mo Mowinckel''s author page</a></li></ul><p>To achieve this new functionality,
-        we</p><ul><li>modified the Hugo layouts (templates) for <a href=\"https://github.com/ropensci/roweb3/blob/main/themes/ropensci/layouts/partials/blogs/blog-single.html\">blog
-        posts</a> and <a href=\"https://github.com/ropensci/roweb3/blob/main/themes/ropensci/layouts/author/list.html\">author
-        pages</a>.</li><li>documented the corresponding new metadata fields in our
-        <a href=\"https://blogguide.ropensci.org/editorchecklistany.html\">blog guide</a>.</li></ul><h2
-        id=\"conclusion\"><a class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2025/10/14/blog-roles//#conclusion\">
-        <small>\ud83d\udd17</small></a>Conclusion</h2><p>We are thrilled to be able
-        to acknowledge more contributions to our blog.</p><p>This differentiation
-        of roles also allows us to analyze in greater detail how blog-related collaborations
-        occur among members of our community. With this information, we can explore
-        different ways to encourage participation for those interested, including
-        how to best provide the support needed for successful participation.</p><p>We
-        also hope that our findings will be useful to other communities in identifying
-        different types of contributions and ways of giving credit.</p><p>Further
-        work will include having more of those contributions featured in our feed
-        on <a href=\"https://rogue-scholar.org/communities/ropensci/records?q=&amp;l=list&amp;p=1&amp;s=10&amp;sort=newest\">Rogue
-        Scholar</a>.</p>", "rs:generator": "Hugo", "rs:stale": false}, "access": {"record":
-        "public", "files": "public", "embargo": {"active": false, "reason": null},
-        "status": "metadata-only"}, "files": {"enabled": false, "order": [], "count":
-        0, "total_bytes": 0, "entries": {}}, "media_files": {"enabled": false, "order":
-        [], "count": 0, "total_bytes": 0, "entries": {}}, "status": "published", "deletion_status":
-        {"is_deleted": false, "status": "P"}, "stats": {"this_version": {"views":
-        0, "unique_views": 0, "downloads": 0, "unique_downloads": 0, "data_volume":
-        0.0}, "all_versions": {"views": 0, "unique_views": 0, "downloads": 0, "unique_downloads":
-        0, "data_volume": 0.0}}}'
+      string: !!binary |
+        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
     headers:
-      Content-Length:
-      - '12646'
+      Alt-Svc:
+      - h3=":443"; ma=2592000
+      Content-Encoding:
+      - gzip
       Content-Security-Policy:
-      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.rogue-scholar.org wayback.archive-it.org
-        www.youtube.com www.youtube-nocookie.com player.vimeo.com www.blogger.com
-        cdn.embedly.com www.canva.com video.ethz.ch; img-src *'
+      - 'default-src ''self'' data: ''unsafe-inline'' blob: *.front-matter.de *.rogue-scholar.org
+        fsn1.your-objectstorage.com wayback.archive-it.org www.youtube.com www.youtube-nocookie.com
+        player.vimeo.com av.tib.eu www.blogger.com cdn.embedly.com www.canva.com video.ethz.ch
+        *.streamlit.app challenges.cloudflare.com; img-src * blob: data:'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Dec 2025 17:18:44 GMT
+      - Mon, 01 Jun 2026 13:20:58 GMT
       Etag:
-      - '"35"'
+      - '"49"'
       Link:
       - <https://rogue-scholar.org/api/records/apt10-14q04> ; rel="linkset" ; type="application/linkset+json"
       Permissions-Policy:
@@ -180,11 +112,15 @@ interactions:
       Referrer-Policy:
       - strict-origin-when-cross-origin
       Retry-After:
-      - '18'
+      - '59'
       Server:
       - gunicorn
       Strict-Transport-Security:
       - max-age=31556926; includeSubDomains
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -192,9 +128,9 @@ interactions:
       X-Ratelimit-Limit:
       - '500'
       X-Ratelimit-Remaining:
-      - '492'
+      - '495'
       X-Ratelimit-Reset:
-      - '1764609543'
+      - '1780320118'
       X-Xss-Protection:
       - 1; mode=block
     status:
