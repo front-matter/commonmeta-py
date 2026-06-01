@@ -1024,7 +1024,7 @@ def test_yet_another_book_chapter():
     }
     assert subject.publisher == {
         "id": "https://api.crossref.org/members/2432",
-        "name": "IGI Global",
+        "name": "IGI Global Scientific Publishing",
     }
     assert len(subject.references) == 33
     assert subject.funding_references is None

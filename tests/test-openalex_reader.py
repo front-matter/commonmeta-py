@@ -974,9 +974,26 @@ def test_dataset():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Other"
-    assert subject.url is None
-    assert subject.titles is None
-    assert subject.contributors is None
+    assert subject.url == "https://doi.org/10.2210/pdb4hhb/pdb"
+    assert subject.titles == [
+        {
+            "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
+        }
+    ]
+    assert subject.contributors == [
+        {
+            "contributorRoles": ["Author"],
+            "familyName": "Fermi",
+            "givenName": "G.",
+            "type": "Person",
+        },
+        {
+            "contributorRoles": ["Author"],
+            "familyName": "Perutz",
+            "givenName": "M. F.",
+            "type": "Person",
+        },
+    ]
     assert subject.license is None
     assert subject.date is None
     assert subject.publisher is None

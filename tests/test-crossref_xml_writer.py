@@ -19,7 +19,7 @@ def test_write_crossref_xml_header():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
 
-    crossref_xml = subject.write(to="crossref_xml").decode("utf-8")
+    crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
     assert crossref_xml is not None
     lines = crossref_xml.split("\n")

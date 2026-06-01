@@ -216,7 +216,7 @@ def _wrap_crossref_body_list(items: list[dict[str, Any]]) -> dict[str, Any]:
     return body_content
 
 
-def tostring(data: dict | list, *, head: dict | None = None) -> bytes:
+def tostring(data: dict | list, *, head: dict | None = None) -> str:
     """Serialize Crossref XML using xsdata.
 
     Uses xsdata models for the final XML rendering.
@@ -387,7 +387,10 @@ def tostring(data: dict | list, *, head: dict | None = None) -> bytes:
             if var.name in init_names:
                 params[var.name] = bound
 
-        return clazz(**params)
+        try:
+            return clazz(**params)
+        except TypeError as exc:
+            raise ValueError(f"Failed to instantiate {clazz.__name__}: {exc}") from exc
 
     doi_batch = _bind_model(doi_batch_data, DoiBatch)
 
@@ -482,7 +485,7 @@ def tostring(data: dict | list, *, head: dict | None = None) -> bytes:
 
         xml_str = re.sub(r"<rel:program(\s[^>]*)?>", _rel_program_name, xml_str)
 
-    return xml_str.encode("utf-8")
+    return xml_str
 
 
 class CrossrefXMLSchema(Schema):
@@ -886,12 +889,12 @@ def push_crossref_xml(
             "email": metadata.email,
             "registrant": metadata.registrant,
         }
-        bytes = tostring(output, head=head)
+        xml = tostring(output, head=head)
     except (ValueError, CrossrefError) as e:
         log.error(f"Failed to generate XML for upload: {e}")
         return "{}"
 
-    if len(bytes) == 0:
+    if len(xml) == 0:
         log.error("Failed to generate XML for upload")
         return "{}"
 
@@ -900,7 +903,7 @@ def push_crossref_xml(
         password=login_passwd,
         test_mode=test_mode,
     )
-    status = client.post(bytes)
+    status = client.post(xml)
 
     if status != "SUCCESS":
         log.error("Failed to upload XML to Crossref")
@@ -954,12 +957,12 @@ def push_crossref_xml_list(
             "email": metalist.email,
             "registrant": metalist.registrant,
         }
-        bytes = tostring(output, head=head)
+        xml = tostring(output, head=head)
     except ValueError as e:
         log.error(f"Failed to generate XML for upload: {e}")
         return None
 
-    if len(bytes) == 0:
+    if len(xml) == 0:
         log.error("Failed to generate XML for upload")
         return None
 
@@ -968,7 +971,7 @@ def push_crossref_xml_list(
         password=login_passwd,
         test_mode=test_mode,
     )
-    status = client.post(bytes)
+    status = client.post(xml)
 
     if status != "SUCCESS":
         log.error("Failed to upload XML to Crossref")
