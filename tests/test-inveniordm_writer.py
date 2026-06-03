@@ -2,14 +2,12 @@
 """InvenioRDM writer tests"""
 
 import re
-from unittest.mock import MagicMock, patch
 
 import orjson as json
 import pytest
 
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
-from commonmeta.writers.inveniordm_writer import update_legacy_record
 
 
 @pytest.mark.vcr
@@ -212,10 +210,6 @@ def test_rogue_scholar():
     assert dig(inveniordm, "metadata.rights") == [{"id": "cc-by-4.0"}]
     assert dig(inveniordm, "metadata.identifiers") == [
         {
-            "identifier": "c5c2e4e7-ac05-413b-b377-f989a72a5356",
-            "scheme": "uuid",
-        },
-        {
             "identifier": "https://doi.org/10.53731/dv8z6-a6s33",
             "scheme": "guid",
         },
@@ -293,7 +287,6 @@ def test_from_jsonfeed():
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
-        {"identifier": "525a7d13-fe07-4cab-ac54-75d7b7005647", "scheme": "uuid"},
         {"identifier": "https://ideophone.org/?p=5639", "scheme": "guid"},
         {
             "identifier": "https://ideophone.org/linguistic-roots-of-connectionism/",
@@ -379,7 +372,6 @@ def test_from_jsonfeed_affiliations():
     ]
     assert dig(inveniordm, "metadata.languages.0.id") == "eng"
     assert dig(inveniordm, "metadata.identifiers") == [
-        {"identifier": "6d1feb10-057a-4fc2-acb0-ac95e19741af", "scheme": "uuid"},
         {
             "identifier": "https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/",
             "scheme": "guid",
@@ -855,57 +847,3 @@ def test_content_with_external_src():
         'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
         dig(inveniordm, "custom_fields.rs:content_html"),
     )
-
-
-def test_update_legacy_record_rid_updates_via_postgres():
-    record = {
-        "uuid": "c5c2e4e7-ac05-413b-b377-f989a72a5356",
-        "id": "123",
-        "doi": "10.1234/abc",
-    }
-    dsn = "postgresql://user:pass@localhost:5432/db"
-
-    with patch("psycopg.connect") as mock_connect:
-        mock_conn = MagicMock()
-        mock_cur = MagicMock()
-        mock_cur.rowcount = 1
-
-        mock_connect.return_value.__enter__.return_value = mock_conn
-        mock_conn.cursor.return_value.__enter__.return_value = mock_cur
-
-        out = update_legacy_record(record, legacy_conn=dsn, field="rid")
-
-        mock_connect.assert_called_once_with(dsn, connect_timeout=10)
-        (sql, params), _kwargs = mock_cur.execute.call_args
-        assert "UPDATE posts SET" in sql
-        assert "indexed_at = EXTRACT(EPOCH FROM NOW())::bigint" in sql
-        assert "WHERE id = %s" in sql
-        assert params == ("123", "10.1234/abc", "true", "true", "false", record["uuid"])
-        assert out["status"] == "updated_legacy"
-
-
-def test_update_legacy_record_doi_updates_via_postgres():
-    record = {"uuid": "c5c2e4e7-ac05-413b-b377-f989a72a5356", "doi": "10.1234/abc"}
-    dsn = "postgresql://user:pass@localhost:5432/db"
-
-    with patch("psycopg.connect") as mock_connect:
-        mock_conn = MagicMock()
-        mock_cur = MagicMock()
-        mock_cur.rowcount = 1
-
-        mock_connect.return_value.__enter__.return_value = mock_conn
-        mock_conn.cursor.return_value.__enter__.return_value = mock_cur
-
-        out = update_legacy_record(record, legacy_conn=dsn, field="doi")
-
-        mock_connect.assert_called_once_with(dsn, connect_timeout=10)
-        mock_cur.execute.assert_called_once_with(
-            "UPDATE posts SET registered = %s WHERE id = %s",
-            ("true", record["uuid"]),
-        )
-        assert out["status"] == "updated_legacy"
-
-
-def test_update_legacy_record_missing_inputs_sets_error_status():
-    out = update_legacy_record({"uuid": "x"}, legacy_conn=None, field="doi")
-    assert out["status"] == "error_update_legacy_record"

@@ -413,10 +413,6 @@ def test_jsonfeed_upstream_blog():
         dig(crossref_xml, "titles.0.title")
         == "Attempts at automating journal subject classification"
     )
-    assert dig(crossref_xml, "item_number") == {
-        "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
-        "item_number_type": "uuid",
-    }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Traditionally, journal subject classification was done manually at varying levels of granularity"
     )
@@ -457,10 +453,6 @@ def test_jsonfeed_upstream_blog_archived():
         dig(crossref_xml, "titles.0.title")
         == "Attempts at automating journal subject classification"
     )
-    assert dig(crossref_xml, "item_number") == {
-        "#text": "5d14ffacb9ac4e20bdc0d9248df4e80d",
-        "item_number_type": "uuid",
-    }
     assert dig(crossref_xml, "abstract.0.p").startswith(
         "Traditionally, journal subject classification was done manually at varying levels of granularity"
     )

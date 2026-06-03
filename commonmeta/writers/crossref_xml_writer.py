@@ -22,7 +22,7 @@ from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presenc
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
-from .inveniordm_writer import push_inveniordm, update_legacy_record
+from .inveniordm_writer import push_inveniordm
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -681,13 +681,6 @@ def push_crossref_xml(
         if r["status"] != "error":
             record["status"] = "updated"
 
-    # update rogue-scholar legacy record if legacy_conn is provided
-    if is_rogue_scholar_doi(metadata.id, ra="crossref") and legacy_conn is not None:
-        uuid = dig(metadata, "identifiers.0.identifier")
-        if uuid:
-            record["uuid"] = uuid
-            record = update_legacy_record(record, legacy_conn=legacy_conn, field="doi")
-
     # Return JSON response
     return json.dumps(record, option=json.OPT_INDENT_2).decode("utf-8")
 
@@ -750,15 +743,6 @@ def push_crossref_xml_list(
             r = push_inveniordm(item, host=host, token=token)
             if r["status"] != "error":
                 record["status"] = "updated"
-
-        # update rogue-scholar legacy record if legacy_conn is provided
-        if is_rogue_scholar_doi(item.id, ra="crossref") and legacy_conn is not None:
-            uuid = dig(item, "identifiers.0.identifier")
-            if uuid:
-                record["uuid"] = uuid
-                record = update_legacy_record(
-                    record, legacy_conn=legacy_conn, field="doi"
-                )
         items.append(record)
 
     # Return JSON response

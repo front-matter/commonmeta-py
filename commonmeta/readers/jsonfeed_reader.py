@@ -213,7 +213,6 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
             }
         )
     identifiers = [
-        {"identifier": meta.get("id"), "identifierType": "UUID"},
         {"identifier": meta.get("guid"), "identifierType": "GUID"},
     ]
     content = dig(meta, "content_html", "")

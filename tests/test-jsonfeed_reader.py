@@ -64,10 +64,6 @@ def test_wordpress_with_references():
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "4e4bf150-751f-4245-b4ca-fe69e3c3bb24",
-            "identifierType": "UUID",
-        },
         {"identifier": "https://svpow.com/?p=20992", "identifierType": "GUID"},
     ]
     assert subject.container == {
@@ -163,10 +159,6 @@ def test_post_with_relationships():
     ]
     assert subject.identifiers == [
         {
-            "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
-            "identifierType": "UUID",
-        },
-        {
             "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
             "identifierType": "GUID",
         },
@@ -251,10 +243,6 @@ def test_post_with_citations():
         },
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "6d0f1603-4081-4a4c-9bdf-1f0146558935",
-            "identifierType": "UUID",
-        },
         {
             "identifier": "http://opencitations.wordpress.com/?p=31",
             "identifierType": "GUID",
@@ -360,10 +348,6 @@ def test_post_with_relationships_as_doi():
     ]
     assert subject.identifiers == [
         {
-            "identifier": "9e24e4be-1915-48cc-a6b0-c23da5bc2857",
-            "identifierType": "UUID",
-        },
-        {
             "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
             "identifierType": "GUID",
         },
@@ -428,10 +412,6 @@ def test_post_with_funding():
     ]
     assert subject.identifiers == [
         {
-            "identifier": "5adbb6d4-1fe2-4da2-8cf4-c897f88a02d9",
-            "identifierType": "UUID",
-        },
-        {
             "identifier": "https://doi.org/10.54900/vnevh-vaw22",
             "identifierType": "GUID",
         },
@@ -483,10 +463,6 @@ def test_post_with_more_funding():
         {"id": "https://portal.issn.org/resource/ISSN/2749-9952", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "44690ae5-2ece-403d-8e34-a05668277a29",
-            "identifierType": "UUID",
-        },
         {
             "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw1y",
             "identifierType": "GUID",
@@ -556,10 +532,6 @@ def test_post_with_funding_ror():
         }
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "24251b1a-c09c-4341-a65c-30cf92a47d73",
-            "identifierType": "UUID",
-        },
         {"identifier": "62268c301674dc074d971710", "identifierType": "GUID"},
     ]
     assert subject.funding_references == [
@@ -607,10 +579,6 @@ def test_post_with_even_more_funding():
         }
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "6f2b7003-a77d-4b7b-a88a-8ce78546ddf7",
-            "identifierType": "UUID",
-        },
         {
             "identifier": "https://doi.org/10.59350/s6am1-1sa79",
             "identifierType": "GUID",
@@ -672,10 +640,6 @@ def test_ghost_with_institutional_author():
         {"id": "https://rogue-scholar.org/api/communities/oa_works", "type": "IsPartOf"}
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "2b3cdd27-5123-4167-9482-3c074392e2d2",
-            "identifierType": "UUID",
-        },
         {"identifier": "63cef642602205003d6f50fb", "identifierType": "GUID"},
     ]
     # assert subject.funding_references == [
@@ -787,10 +751,6 @@ def test_ghost_with_affiliations():
     ]
     assert subject.identifiers == [
         {
-            "identifier": "fef48952-87bc-467b-8ebb-0bff92ab9e1a",
-            "identifierType": "UUID",
-        },
-        {
             "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw16",
             "identifierType": "GUID",
         },
@@ -865,10 +825,6 @@ def test_ghost_with_personal_name_parsing():
         {"id": "https://portal.issn.org/resource/ISSN/2993-1150", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "4262e4b7-c2db-467b-b8b0-5b6ec32870a7",
-            "identifierType": "UUID",
-        },
         {
             "identifier": "66399ca46f25d60001df1427",
             "identifierType": "GUID",
@@ -1015,10 +971,6 @@ def test_post_with_contributor_roles():
         },
     ]
     assert subject.identifiers == [
-        {
-            "identifier": "65e082c0-5500-4949-9ab6-307d55921762",
-            "identifierType": "UUID",
-        },
         {
             "identifier": "https://doi.org/10.59350/510pg-zzf58",
             "identifierType": "GUID",

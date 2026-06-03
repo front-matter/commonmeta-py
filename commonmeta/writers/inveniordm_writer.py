@@ -6,7 +6,6 @@ import logging
 from typing import TYPE_CHECKING
 
 import orjson as json
-import psycopg
 from requests.exceptions import RequestException
 
 from ..api_utils import http
@@ -563,19 +562,8 @@ def push_inveniordm(metadata: Metadata, host: str, token: str, **kwargs) -> dict
         }
 
         # extract optional information needed
-        # uuid is the Rogue Scholar uuid
         # community_id is the id of the primary community of the record,
         # in the case of Rogue Scholar the blog community
-
-        if metadata.identifiers:
-            for identifier in metadata.identifiers:
-                if (
-                    isinstance(identifier, dict)
-                    and identifier.get("identifierType") == "UUID"
-                    and identifier.get("identifier")
-                ):
-                    record["uuid"] = identifier.get("identifier")
-                    continue
 
         if metadata.relations:
             community_index = None
@@ -739,12 +727,6 @@ def update_external_services(
     metadata: Metadata, host: str, token: str, record: dict, **kwargs
 ) -> dict:
     """Update external services with changes in InvenioRDM"""
-
-    # optionally update rogue-scholar legacy record
-    if host == "rogue-scholar.org" and kwargs.get("legacy_conn", None) is not None:
-        record = update_legacy_record(
-            record, legacy_conn=kwargs.get("legacy_conn", None), field="rid"
-        )
 
     return record
 
@@ -989,62 +971,6 @@ def add_record_to_community(
         return record
     except RequestException as e:
         log.error(f"Error adding record to community: {str(e)}", exc_info=True)
-        return record
-
-
-def update_legacy_record(
-    record, legacy_conn: str | None, field: str | None = None
-) -> dict:
-    """Update corresponding record in Rogue Scholar legacy database."""
-    try:
-        if not legacy_conn:
-            raise ValueError("no legacy connection provided")
-        if not record.get("uuid", None):
-            raise ValueError("no UUID provided")
-
-        if field == "rid" and record.get("id", None) is not None:
-            sql = (
-                "UPDATE posts SET "
-                "rid = %s, "
-                "doi = %s, "
-                "indexed_at = EXTRACT(EPOCH FROM NOW())::bigint, "
-                "indexed = %s, "
-                "archived = %s, "
-                "registered = %s "
-                "WHERE id = %s"
-            )
-            params = (
-                record.get("id"),
-                record.get("doi", None),
-                "true",
-                "true",
-                "false",
-                record["uuid"],
-            )
-        elif record.get("doi", None) is not None:
-            sql = "UPDATE posts SET registered = %s WHERE id = %s"
-            params = (
-                "true",
-                record["uuid"],
-            )
-        else:
-            log.info("nothing to update for id %s", record.get("uuid"))
-            return record  # nothing to update
-
-        with psycopg.connect(legacy_conn, connect_timeout=10) as conn:
-            with conn.cursor() as cur:
-                cur.execute(sql, params)
-                if cur.rowcount != 1:
-                    raise ValueError(
-                        f"Legacy record not updated (rowcount={cur.rowcount})"
-                    )
-
-        record["status"] = "updated_legacy"
-        return record
-
-    except Exception as e:
-        log.error(f"Error updating legacy record: {str(e)}", exc_info=True)
-        record["status"] = "error_update_legacy_record"
         return record
 
 
