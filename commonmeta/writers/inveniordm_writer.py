@@ -8,6 +8,8 @@ from typing import TYPE_CHECKING
 import orjson as json
 from requests.exceptions import RequestException
 
+from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
+
 from ..api_utils import http
 from ..base_utils import (
     compact,
@@ -636,6 +638,19 @@ def upsert_record(
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
 
+    # Else check if record guid exists in InvenioRDM
+    if record["id"] is None:
+        guid = next(
+            (
+                normalize_url(identifier.get("identifier"))
+                for identifier in wrap(dig(record, "metadata.identifiers"))
+                if identifier.get("scheme") == "guid"
+                and identifier.get("identifier", None) is not None
+            ),
+            None,
+        )
+        record["id"] = search_by_guid(guid, host, token)
+
     if record["previous_doi"] is not None:
         record["previous_id"] = search_by_doi(
             doi_from_url(record["previous_doi"]), host, token
@@ -729,30 +744,6 @@ def update_external_services(
     """Update external services with changes in InvenioRDM"""
 
     return record
-
-
-def search_by_doi(doi, host, token) -> str | None:
-    """Search for a record by DOI in InvenioRDM"""
-    headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json",
-    }
-    params = {"q": f"doi:{doi}", "size": 1}
-    try:
-        response = http.get(
-            f"https://{host}/api/records", headers=headers, params=params
-        )
-        if response.status_code == 429:
-            log.warning("Rate limit exceeded while searching by DOI")
-            return None
-        response.raise_for_status()
-        data = response.json()
-        if dig(data, "hits.total", 0) > 0:
-            return dig(data, "hits.hits.0.id")
-        return None
-    except RequestException as e:
-        log.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
-        return None
 
 
 def create_draft_record(record: dict, host: str, token: str, output: dict) -> dict:

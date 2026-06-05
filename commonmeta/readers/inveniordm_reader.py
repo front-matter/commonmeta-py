@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import logging
+
 from furl import furl
+from requests.exceptions import RequestException
 
 from ..api_utils import http
 from ..author_utils import get_authors
@@ -22,6 +25,8 @@ from ..utils import (
     normalize_ror,
     normalize_url,
 )
+
+log = logging.getLogger(__name__)
 
 
 def get_inveniordm(pid: str, **kwargs) -> dict:
@@ -441,3 +446,51 @@ def format_identifier(identifier: dict) -> dict | None:
         "identifier": identifier.get("identifier"),
         "identifierType": identifier_type,
     }
+
+
+def search_by_doi(doi, host, token) -> str | None:
+    """Search for a record by DOI in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    params = {"q": f"doi:{doi}", "size": 1}
+    try:
+        response = http.get(
+            f"https://{host}/api/records", headers=headers, params=params
+        )
+        if response.status_code == 429:
+            log.warning("Rate limit exceeded while searching by DOI")
+            return None
+        response.raise_for_status()
+        data = response.json()
+        if dig(data, "hits.total", 0) > 0:
+            return dig(data, "hits.hits.0.id")
+        return None
+    except RequestException as e:
+        log.error(f"Error searching for DOI {doi}: {str(e)}", exc_info=True)
+        return None
+
+
+def search_by_guid(guid, host, token) -> str | None:
+    """Search for a record by GUID in InvenioRDM"""
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json",
+    }
+    params = {"q": f'guid:"{guid}"', "size": 1}
+    try:
+        response = http.get(
+            f"https://{host}/api/records", headers=headers, params=params
+        )
+        if response.status_code == 429:
+            log.warning("Rate limit exceeded while searching by GUID")
+            return None
+        response.raise_for_status()
+        data = response.json()
+        if dig(data, "hits.total", 0) > 0:
+            return dig(data, "hits.hits.0.id")
+        return None
+    except RequestException as e:
+        log.error(f"Error searching for GUID {guid}: {str(e)}", exc_info=True)
+        return None
