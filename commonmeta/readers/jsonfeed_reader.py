@@ -253,9 +253,13 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     } | read_options
 
 
-def read_jsonfeed_blog(meta: dict | None, **kwargs) -> Commonmeta:
+def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
     """read_jsonfeed_blog. The JSON Feed blog metadata."""
     read_options = kwargs or {}
+
+    if data is None:
+        return {"state": "not_found"}
+    meta = data
 
     # Fetch DOI from jsonfeed
     _id = normalize_doi(read_options.get("doi", None) or meta.get("doi", None))
