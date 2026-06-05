@@ -4,7 +4,7 @@
 import pytest
 
 from commonmeta import Metadata
-from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
+from commonmeta.readers.jsonfeed_reader import get_jsonfeed_doi
 
 
 def vcr_config():
@@ -14,7 +14,7 @@ def vcr_config():
 @pytest.mark.vcr
 def test_wordpress_with_references():
     "Wordpress with references"
-    string = "https://api.rogue-scholar.org/posts/4e4bf150-751f-4245-b4ca-fe69e3c3bb24"
+    string = "https://api.rogue-scholar.org/posts/10.59350/hke8v-d1e66"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/hke8v-d1e66"
@@ -102,7 +102,7 @@ def test_wordpress_with_references():
 @pytest.mark.vcr
 def test_post_with_relationships():
     "post with isIdenticalTo relationships"
-    string = "https://api.rogue-scholar.org/posts/9e24e4be-1915-48cc-a6b0-c23da5bc2857"
+    string = "https://api.rogue-scholar.org/posts/10.53731/ewrv712-2k7rx6d"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/ewrv712-2k7rx6d"
@@ -183,7 +183,7 @@ def test_post_with_relationships():
 @pytest.mark.vcr
 def test_post_with_citations():
     "post with citations"
-    string = "https://api.rogue-scholar.org/posts/6d0f1603-4081-4a4c-9bdf-1f0146558935"
+    string = "https://api.rogue-scholar.org/posts/10.59350/dcw3y-7em87"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/dcw3y-7em87"
@@ -264,7 +264,7 @@ def test_post_with_citations():
 @pytest.mark.vcr
 def test_another_post_with_citations():
     "another post with citations"
-    string = "https://api.rogue-scholar.org/posts/7314152e-cac7-4bc1-ae99-b73ef67ea7db"
+    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/50ebs-4zq55"
@@ -562,7 +562,7 @@ def test_post_with_funding_ror():
 @pytest.mark.vcr
 def test_post_with_even_more_funding():
     "post with even_more funding"
-    string = "https://api.rogue-scholar.org/posts/6f2b7003-a77d-4b7b-a88a-8ce78546ddf7"
+    string = "https://api.rogue-scholar.org/posts/10.59350/s6am1-1sa79"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/s6am1-1sa79"
@@ -606,7 +606,7 @@ def test_post_with_even_more_funding():
 @pytest.mark.vcr
 def test_ghost_with_institutional_author():
     "ghost with institutional author"
-    string = "https://api.rogue-scholar.org/posts/2b3cdd27-5123-4167-9482-3c074392e2d2"
+    string = "https://api.rogue-scholar.org/posts/10.59350/tfahc-rp566"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/tfahc-rp566"
@@ -703,7 +703,7 @@ def test_ghost_with_institutional_author():
 @pytest.mark.vcr
 def test_ghost_with_affiliations():
     "ghost with affiliations"
-    string = "https://api.rogue-scholar.org/posts/fef48952-87bc-467b-8ebb-0bff92ab9e1a"
+    string = "https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.53731/r294649-6f79289-8cw16"
@@ -782,7 +782,7 @@ def test_ghost_with_affiliations():
 @pytest.mark.vcr
 def test_ghost_with_personal_name_parsing():
     "ghost with with personal name parsing"
-    string = "https://api.rogue-scholar.org/posts/4262e4b7-c2db-467b-b8b0-5b6ec32870a7"
+    string = "https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
@@ -866,6 +866,7 @@ def test_cczero_license():
     "cc zero license"
     string = "https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35"
     subject = Metadata(string)
+    print(vars(subject))
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/xgwqt-1sq35"
     assert subject.type == "BlogPost"
@@ -1000,7 +1001,7 @@ def test_post_subfield_classification():
         == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
     )
     assert subject.titles[0] == {
-        "title": "Video of the 2024 SSP debate: “The open access movement has failed”"
+        "title": 'Video of the 2024 SSP debate: "The open access movement has failed"'
     }
     assert (
         subject.descriptions[0]
@@ -1056,7 +1057,7 @@ def test_funded_project():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/p000s-pth40"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {"title": "THOR’s last hurrah"}
+    assert subject.titles[0] == {"title": "THOR's last hurrah"}
     assert subject.funding_references == [
         {
             "awardNumber": "654039",
@@ -1072,7 +1073,7 @@ def test_funded_project():
 @pytest.mark.vcr
 def test_broken_reference():
     "JSON Feed broken reference"
-    string = "https://api.rogue-scholar.org/posts/340de361-9628-481e-9204-527c679446b9"
+    string = "https://api.rogue-scholar.org/posts/10.59350/z78kb-qrz59"
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.59350/z78kb-qrz59"
     assert subject.type == "BlogPost"
@@ -1087,15 +1088,15 @@ def test_broken_reference():
 @pytest.mark.vcr
 def test_get_jsonfeed():
     """Test get_jsonfeed"""
-    item = get_jsonfeed_uuid("1357c246-b632-462a-9876-753ef8b6927d")
+    item = get_jsonfeed_doi("10.59350/hzfr4-z0881")
     assert isinstance(item, dict)
-    assert item["guid"] == "http://gigasciencejournal.com/blog/?p=5621"
+    assert item["guid"] == "https://gigasciencejournal.com/blog/?p=6293"
 
 
 @pytest.mark.vcr
 def test_get_jsonfeed_item_not_found():
-    """Test get_json_feed_item_id not found"""
-    assert get_jsonfeed_uuid("notfound") is None
+    """Test get_jsonfeed_doi not found"""
+    assert get_jsonfeed_doi("notfound") is None
 
 
 @pytest.mark.vcr
@@ -1105,10 +1106,8 @@ def test_get_jsonfeed_blog():
     subject = Metadata(string)
     assert subject.id == "https://doi.org/10.53731/front_matter"
     assert subject.type == "Blog"
-    assert subject.url is None
-    assert subject.titles[0] == {
-        "title": "DOI registration workflow for a science blog (version 2)"
-    }
+    assert subject.url == "https://blog.front-matter.de/"
+    assert subject.titles[0] == {"title": "Front Matter"}
     assert subject.identifiers == [
         {
             "identifier": "https://blog.front-matter.de/atom",
@@ -1120,13 +1119,7 @@ def test_get_jsonfeed_blog():
         },
     ]
     assert subject.descriptions[0] == {
-        "description": "This post is an updated version of the DOI registration workflow for a "
-        "science blog post I published in September 2023. It reflects the best "
-        "practices used by the Rogue Scholar science blog archive and contains one "
-        "important announcement. In previous blog posts such as the "
-        "one&nbsp;published earlier, I discussed the various elements involved in "
-        "registering a DOI for a science blog post.",
-        "type": "Abstract",
+        "description": "The Front Matter Blog covers the intersection of science and technology since 2007."
     }
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
@@ -1136,10 +1129,13 @@ def test_get_jsonfeed_blog():
         "givenName": "Martin",
         "familyName": "Fenner",
     }
-    assert subject.license == {}
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
     assert subject.date == {
-        "created": "2023-01-01T09:19:13",
-        "updated": "2026-05-30T10:02:10",
+        "created": "2023-01-01T01:00:00",
+        "updated": "2026-06-04T21:39:20",
     }
     assert subject.publisher == {
         "name": "Front Matter",
