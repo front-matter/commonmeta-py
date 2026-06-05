@@ -643,7 +643,7 @@ def upsert_record(
         guid = next(
             (
                 normalize_url(identifier.get("identifier"))
-                for identifier in wrap(dig(record, "metadata.identifiers"))
+                for identifier in wrap(dig(output, "metadata.identifiers"))
                 if identifier.get("scheme") == "guid"
                 and identifier.get("identifier", None) is not None
             ),

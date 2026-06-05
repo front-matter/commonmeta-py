@@ -2,12 +2,14 @@
 """InvenioRDM writer tests"""
 
 import re
+from unittest.mock import patch
 
 import orjson as json
 import pytest
 
 from commonmeta import Metadata
 from commonmeta.base_utils import dig
+from commonmeta.writers.inveniordm_writer import upsert_record
 
 
 @pytest.mark.vcr
@@ -847,3 +849,56 @@ def test_content_with_external_src():
         'src="https://chem-bla-ics.linkedchemistry.info/assets/images/imageResolutionLoss.png"',
         dig(inveniordm, "custom_fields.rs:content_html"),
     )
+
+
+@pytest.mark.vcr("test_from_jsonfeed.yaml")
+def test_upsert_record_falls_back_to_guid():
+    "upsert_record uses GUID from output identifiers when DOI lookup returns None"
+    string = "https://api.rogue-scholar.org/posts/525a7d13-fe07-4cab-ac54-75d7b7005647"
+    subject = Metadata(string)
+    assert subject.is_valid
+
+    existing_id = "abc123xyz"
+    record = {
+        "doi": "10.59350/dn2mm-m9q51",
+        "previous_doi": None,
+        "community": "ideophone",
+        "community_id": "community-uuid",
+    }
+
+    with (
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_doi", return_value=None
+        ) as mock_doi,
+        patch(
+            "commonmeta.writers.inveniordm_writer.search_by_guid",
+            return_value=existing_id,
+        ) as mock_guid,
+        patch(
+            "commonmeta.writers.inveniordm_writer.edit_published_record",
+            side_effect=lambda r, *a: {**r, "status": "edited"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.update_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "updated"},
+        ),
+        patch(
+            "commonmeta.writers.inveniordm_writer.publish_draft_record",
+            side_effect=lambda r, *a: {**r, "status": "published"},
+        ),
+    ):
+        result = upsert_record(subject, "rogue-scholar.org", "token", record)
+
+    # DOI search is called with the correct DOI
+    mock_doi.assert_called_once_with(
+        "10.59350/dn2mm-m9q51", "rogue-scholar.org", "token"
+    )
+
+    # GUID search is called with the normalised GUID URL from output identifiers
+    mock_guid.assert_called_once_with(
+        "https://ideophone.org/?p=5639", "rogue-scholar.org", "token"
+    )
+
+    # The existing record id was found via GUID and used for the update path
+    assert result["id"] == existing_id
+    assert result["status"] == "published"
