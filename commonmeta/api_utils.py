@@ -10,13 +10,12 @@ from furl import furl
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
 
-from commonmeta.readers.jsonfeed_reader import get_jsonfeed_uuid
-
-from .doi_utils import doi_as_url, validate_doi
+from .doi_utils import doi_as_url
+from .readers.jsonfeed_reader import get_jsonfeed_doi
 
 # User-Agent for API requests
 COMMONMETA_USER_AGENT = (
-    "commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)"
+    "commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)"
 )
 
 # Shared HTTP session with retry strategy for API calls
@@ -79,21 +78,19 @@ def generate_ghost_token(key: str) -> str:
 
 
 def update_ghost_post_via_api(
-    _id: str, api_key: str | None = None, api_url: str | None = None
+    doi: str, api_key: str | None = None, api_url: str | None = None
 ) -> dict[str, str]:
     """Update Ghost post via API"""
     # Check required parameters
     if not api_key or not api_url:
         return {"error": "api_key and api_url are required"}
 
-    # get post doi and url from Rogue Scholar API
-    # post url is needed to find post via Ghost API
-    post = get_jsonfeed_uuid(_id)
+    # get post url from Rogue Scholar API, needed to find post via Ghost API
+    post = get_jsonfeed_doi(doi)
     if not isinstance(post, dict):
         return {"error": "Invalid response from Rogue Scholar API"}
     if post.get("error", None):
         return {"error": str(post.get("error"))}
-    doi = validate_doi(post.get("doi", None))
     doi = doi_as_url(doi)
     url = post.get("url", None)
     if not doi or not url:

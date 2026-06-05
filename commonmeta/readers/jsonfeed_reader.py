@@ -588,11 +588,11 @@ def get_files(meta: dict) -> list:
     return unique(files)
 
 
-def get_jsonfeed_uuid(id: str | None) -> dict | None:
-    """get jsonfeed by uuid"""
-    if id is None:
+def get_jsonfeed_doi(doi: str | None) -> dict | None:
+    """get jsonfeed by doi"""
+    if doi is None:
         return None
-    url = f"https://api.rogue-scholar.org/posts/{id}"
+    url = f"https://api.rogue-scholar.org/posts/{doi}"
     response = requests.get(url, timeout=10)
     if response.status_code != 200:
         return None
