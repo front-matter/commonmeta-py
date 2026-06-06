@@ -638,18 +638,18 @@ def upsert_record(
     # Check if record already exists in InvenioRDM
     record["id"] = search_by_doi(doi_from_url(record.get("doi")), host, token)
 
-    # Else check if record guid exists in InvenioRDM
+    # Also check by record guid
     if record["id"] is None:
         guid = next(
             (
-                normalize_url(identifier.get("identifier"))
-                for identifier in wrap(dig(output, "metadata.identifiers"))
-                if identifier.get("scheme") == "guid"
-                and identifier.get("identifier", None) is not None
+                i.get("identifier")
+                for i in wrap(metadata.identifiers)
+                if i.get("identifierType") == "GUID" and i.get("identifier")
             ),
             None,
         )
-        record["id"] = search_by_guid(guid, host, token)
+        if guid is not None:
+            record["id"] = search_by_guid(guid, host, token)
 
     if record["previous_doi"] is not None:
         record["previous_id"] = search_by_doi(

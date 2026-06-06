@@ -2,10 +2,12 @@
 """InvenioRDM reader tests"""
 
 from os import path
+from unittest.mock import MagicMock, patch
 
 import pytest
 
 from commonmeta import Metadata
+from commonmeta.readers.inveniordm_reader import search_by_doi, search_by_guid
 
 
 @pytest.mark.vcr
@@ -592,3 +594,95 @@ def test_subfield_classification():
         {"subject": "SSP"},
         {"subject": "Stinkin' Publishers"},
     ]
+
+
+# --- Unit tests for search_by_guid / search_by_doi ---
+
+
+def _mock_response(status_code: int, payload: dict) -> MagicMock:
+    """Build a minimal mock requests.Response."""
+    response = MagicMock()
+    response.status_code = status_code
+    response.json.return_value = payload
+    if status_code >= 400:
+        from requests.exceptions import HTTPError
+
+        response.raise_for_status.side_effect = HTTPError(response=response)
+    else:
+        response.raise_for_status.return_value = None
+    return response
+
+
+def test_search_by_guid_returns_id_when_found():
+    """search_by_guid returns the record id from the first hit."""
+    hit_id = "abc12-def34"
+    payload = {"hits": {"total": 1, "hits": [{"id": hit_id}]}}
+    with patch(
+        "commonmeta.readers.inveniordm_reader.http.get",
+        return_value=_mock_response(200, payload),
+    ) as mock_get:
+        result = search_by_guid(
+            "https://ideophone.org/?p=5639", "rogue-scholar.org", "token"
+        )
+
+    assert result == hit_id
+    # The query must phrase-quote the GUID so partial URLs don't match
+    called_params = mock_get.call_args.kwargs["params"]
+    assert (
+        called_params["q"]
+        == 'metadata.identifiers.identifier:"https://ideophone.org/?p=5639"'
+    )
+
+
+def test_search_by_guid_returns_none_when_not_found():
+    """search_by_guid returns None when no record matches the GUID."""
+    payload = {"hits": {"total": 0, "hits": []}}
+    with patch(
+        "commonmeta.readers.inveniordm_reader.http.get",
+        return_value=_mock_response(200, payload),
+    ):
+        result = search_by_guid(
+            "https://ideophone.org/?p=9999", "rogue-scholar.org", "token"
+        )
+
+    assert result is None
+
+
+def test_search_by_guid_returns_none_on_rate_limit():
+    """search_by_guid returns None when the API responds with 429."""
+    with patch(
+        "commonmeta.readers.inveniordm_reader.http.get",
+        return_value=_mock_response(429, {}),
+    ):
+        result = search_by_guid(
+            "https://ideophone.org/?p=5639", "rogue-scholar.org", "token"
+        )
+
+    assert result is None
+
+
+def test_search_by_doi_returns_id_when_found():
+    """search_by_doi returns the record id from the first hit."""
+    hit_id = "xyz98-uvw76"
+    payload = {"hits": {"total": 1, "hits": [{"id": hit_id}]}}
+    with patch(
+        "commonmeta.readers.inveniordm_reader.http.get",
+        return_value=_mock_response(200, payload),
+    ) as mock_get:
+        result = search_by_doi("10.59350/dn2mm-m9q51", "rogue-scholar.org", "token")
+
+    assert result == hit_id
+    called_params = mock_get.call_args.kwargs["params"]
+    assert called_params["q"] == "doi:10.59350/dn2mm-m9q51"
+
+
+def test_search_by_doi_returns_none_when_not_found():
+    """search_by_doi returns None when no record matches the DOI."""
+    payload = {"hits": {"total": 0, "hits": []}}
+    with patch(
+        "commonmeta.readers.inveniordm_reader.http.get",
+        return_value=_mock_response(200, payload),
+    ):
+        result = search_by_doi("10.59350/nonexistent", "rogue-scholar.org", "token")
+
+    assert result is None

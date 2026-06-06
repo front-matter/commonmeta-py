@@ -478,7 +478,7 @@ def search_by_guid(guid, host, token) -> str | None:
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json",
     }
-    params = {"q": f'guid:"{guid}"', "size": 1}
+    params = {"q": f'metadata.identifiers.identifier:"{guid}"', "size": 1}
     try:
         response = http.get(
             f"https://{host}/api/records", headers=headers, params=params
