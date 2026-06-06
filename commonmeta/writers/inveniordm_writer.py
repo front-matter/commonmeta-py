@@ -667,8 +667,9 @@ def upsert_record(
         # Create draft record from published record
         record = edit_published_record(record, host, token)
 
-        # Update draft record
-        record = update_draft_record(record, host, token, output)
+        # Update draft record with new metadata (except PIDs which should not be updated)
+        update_output = {k: v for k, v in output.items() if k != "pids"}
+        record = update_draft_record(record, host, token, update_output)
     else:
         # Create draft record for DOI that is external or needs to be registered
         # (currently only supported for Crossref PID provider)
