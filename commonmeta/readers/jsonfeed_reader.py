@@ -81,13 +81,9 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     # Generate DOI from guid if it is a DOI string
     if _id is None and dig(meta, "blog.prefix") and meta.get("guid", None):
         prefix = dig(meta, "blog.prefix")
-        guid = meta.get("guid", None)
+        guid = str(meta.get("guid"))
 
-        if (
-            guid is not None
-            and len(guid) > 2
-            and validate_doi_from_guid(prefix, guid[:-2], checksum=False)
-        ):
+        if len(guid) > 2 and validate_doi_from_guid(prefix, guid[:-2], checksum=False):
             _id = guid
 
     # If still no DOI but prefix provided
