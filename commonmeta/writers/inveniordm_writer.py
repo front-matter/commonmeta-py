@@ -213,7 +213,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     "rs:content_html": presence(metadata.content),
                     "rs:image": presence(metadata.image),
                     "rs:citations": presence(citations),
-                    "rs:generator": container.get("platform", None),
+                    "feed:generator": container.get("platform", None),
                 }
             ),
         }
