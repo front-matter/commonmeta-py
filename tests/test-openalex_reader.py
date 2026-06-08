@@ -990,18 +990,18 @@ def test_dataset():
         {
             "contributorRoles": ["Author"],
             "familyName": "Perutz",
-            "givenName": "M. F.",
+            "givenName": "M.F.",
             "type": "Person",
         },
     ]
     assert subject.license is None
-    assert subject.date is None
+    assert subject.date == {"published": "1984-03-07"}
     assert subject.publisher is None
     assert subject.references is None
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects is None
-    assert subject.language is None
+    assert subject.language == "en"
     assert subject.descriptions is None
     assert subject.version is None
     assert subject.provider == "OpenAlex"
@@ -1013,20 +1013,37 @@ def test_component():
     "component"
     string = "10.1371/journal.pmed.0030277.g001"
     subject = Metadata(string, via="openalex")
-    assert subject.id is None
+    assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Other"
-    assert subject.url is None
-    assert subject.titles is None
-    assert subject.contributors is None
-    assert subject.license is None
-    assert subject.date is None
-    assert subject.publisher is None
+    assert (
+        subject.url
+        == "https://figshare.com/articles/figure/_Stimulation_of_IL_32_by_Mycobacteria_/628124"
+    )
+    assert subject.titles == [{"title": "Stimulation of IL-32 by Mycobacteria"}]
+    assert len(subject.contributors) == 12
+    assert subject.contributors[0] == {
+        "type": "Person",
+        "contributorRoles": ["Author"],
+        "givenName": "Mihai G",
+        "familyName": "Netea",
+    }
+    assert subject.license == {
+        "id": "CC-BY-4.0",
+        "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
+    }
+    assert subject.date == {"published": "2015-12-02"}
+    assert subject.publisher == {"name": "Figshare (United Kingdom)"}
     assert subject.references is None
     assert subject.funding_references is None
-    assert subject.container is None
+    assert subject.container == {"type": "Repository", "title": "Figshare"}
     assert subject.subjects is None
-    assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.language == "en"
+    assert subject.descriptions == [
+        {
+            "description": "&lt;div&gt;&lt;p&gt;(A) Whole blood was diluted 1:4 with RPMI and stimulated with 10 \u03bcg/ml sonicated M. tuberculosis (MTB) or M. bovis BCG (BCG). Triton X-100 (0.5%) was added 24 h later, and IL-32 concentration was measured by ECL.&lt;/p&gt;\\n &lt;p&gt;(B) Stimulation of freshly isolated PBMCs with various concentrations of LPS or sonicated M. tuberculosis stimulated IL-32 synthesis in a dose-dependent manner.&lt;/p&gt;\\n &lt;p&gt;(C and D) Freshly isolated PBMCs were stimulated with TLR4 (LPS, 100 ng/ml), TLR2 (Pam3Cys, 10 \u03bcg/ml), TLR3 (poly I:C, 5 \u03bcg/ml), M. tuberculosis, M. bovis BCG, or S. aureus (all at 1 \xd7 10&lt;sup&gt;7&lt;/sup&gt; microorganisms/milliliter, heat-killed). After 24 h of stimulation, LPS-, &lt;i&gt;M. tuberculosis\u2013,&lt;/i&gt; and M. bovis BCG\u2013stimulated production of IL-32 (C) or IL-6 (D) was measured by ECL.&lt;/p&gt;\\n &lt;p&gt;Data are presented as means \xb1 SEM (&lt;i&gt;n =&lt;/i&gt; 8).&lt;/p&gt;&lt;/div&gt;",
+            "type": "Abstract",
+        }
+    ]
     assert subject.version is None
     assert subject.provider == "OpenAlex"
     assert subject.files is None

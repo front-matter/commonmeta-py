@@ -208,9 +208,11 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
                 "type": "IsPartOf",
             }
         )
-    identifiers = [
-        {"identifier": meta.get("guid"), "identifierType": "GUID"},
-    ]
+    identifiers = []
+    if meta.get("guid", None):
+        identifiers.append(
+            {"identifier": str(meta.get("guid")), "identifierType": "GUID"}
+        )
     content = dig(meta, "content_html", "")
     image = dig(meta, "image", None)
     files = get_files(meta)
