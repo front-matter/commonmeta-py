@@ -1082,6 +1082,8 @@ def test_yet_another_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "Graph-Based Methods in Computer Vision",
+        "identifier": "9781466618923",
+        "identifierType": "ISBN",
         "firstPage": "72",
         "lastPage": "94",
     }

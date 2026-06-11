@@ -443,8 +443,6 @@ interactions:
       - W/"2062d-fyyl755BUrGSNvIdClP83Li223Q"
       Server:
       - nginx/1.18.0 (Ubuntu)
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
       X-Powered-By:
@@ -489,8 +487,6 @@ interactions:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
-      Transfer-Encoding:
-      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       cf-cache-status:
@@ -574,6 +570,69 @@ interactions:
       - 1s
       x-rate-limit-limit:
       - '10'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.w3.org
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
+        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
+        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
+        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
+        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
+    headers:
+      Age:
+      - '2540103'
+      CF-RAY:
+      - a09fbb578f18c80e-DUS
+      Connection:
+      - close
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 11 Jun 2026 09:53:58 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - max-age=7776000, s-maxage=2592001
+      cf-cache-status:
+      - HIT
+      content-security-policy:
+      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
+      etag:
+      - W/"1b3-477e54b286fc0-gzip"
+      expires:
+      - Tue, 11 Aug 2026 00:18:55 GMT
+      last-modified:
+      - Mon, 09 Nov 2009 00:29:59 GMT
+      set-cookie:
+      - __cf_bm=hi3seQwdLg281j37dtjAGsQbnEqsxjHcnGwVX3tn1Ew-1781171638.961517-1.0.1.1-YU194yciPujN31RA5fWDmNBmJ3ogyamHd9hWjHFEQL_SCp_zme9AJasqJ787C7vcjOtWxYfLM18qhgqlYdR36Awt_PHAQ.zQaQ6o8nFRNOpKR2FPPWhPNJT.Ft0f7Cv0;
+        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:23:58 GMT
+      strict-transport-security:
+      - max-age=15552000; includeSubdomains; preload
+      vary:
+      - Accept-Encoding
+      x-backend:
+      - www-mirrors
+      x-request-id:
+      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

@@ -538,7 +538,7 @@ wheels = [
 
 [[package]]
 name = "commonmeta-py"
-version = "0.224"
+version = "0.225"
 source = { editable = "." }
 dependencies = [
     { name = "base32-lib" },
@@ -624,7 +624,7 @@ requires-dist = [
     { name = "types-dateparser", specifier = "~=1.1" },
     { name = "types-pyyaml", specifier = ">=5.4" },
     { name = "types-xmltodict", specifier = ">=0.13,<0.20" },
-    { name = "xmlschema", specifier = ">=4.0.1" },
+    { name = "xmlschema", specifier = ">=2.5.1" },
     { name = "xmltodict", specifier = ">=0.12,<0.20" },
 ]
 

@@ -100,8 +100,6 @@ interactions:
       - nginx/1.24.0 + Phusion Passenger(R) 6.1.2
       Status:
       - 200 OK
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept,Accept-Encoding
       X-Anonymous-Consumer:
@@ -120,6 +118,69 @@ interactions:
       - '0.037522'
       X-XSS-Protection:
       - '0'
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Connection:
+      - close
+      Host:
+      - www.w3.org
+      User-Agent:
+      - Python-urllib/3.10
+    method: GET
+    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
+  response:
+    body:
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
+        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
+        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
+        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
+        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
+    headers:
+      Age:
+      - '2540099'
+      CF-RAY:
+      - a09fbb3c5d47f954-DUS
+      Connection:
+      - close
+      Content-Type:
+      - application/xml
+      Date:
+      - Thu, 11 Jun 2026 09:53:54 GMT
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      X-Content-Type-Options:
+      - nosniff
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - max-age=7776000, s-maxage=2592001
+      cf-cache-status:
+      - HIT
+      content-security-policy:
+      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
+      etag:
+      - W/"1b3-477e54b286fc0-gzip"
+      expires:
+      - Tue, 11 Aug 2026 00:18:55 GMT
+      last-modified:
+      - Mon, 09 Nov 2009 00:29:59 GMT
+      set-cookie:
+      - __cf_bm=ezn6eGhdpEy.oOEGwwhKbzRnLaqLAMAcEDSUZDvEL2Y-1781171634.6170726-1.0.1.1-rrvfBByUskPfAihPVjwmsGslejUnJQRTFvMOtyF6C.tk2okJW4wxypJfWYmkGYdhPqa4431GEbTiLDy1CndojGGN_0ym0QQUj4jK_u74jnvWR_I_H3bFVEOYr9Y137fb;
+        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:23:54 GMT
+      strict-transport-security:
+      - max-age=15552000; includeSubdomains; preload
+      vary:
+      - Accept-Encoding
+      x-backend:
+      - www-mirrors
+      x-request-id:
+      - 9fad7d18fae20853
     status:
       code: 200
       message: OK
