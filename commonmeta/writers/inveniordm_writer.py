@@ -954,15 +954,30 @@ def add_record_to_community(
     }
     json = {"communities": [{"id": community_id}]}
     try:
-        # may return 400 if no logo is set for the community
-        http.post(
+        response = http.post(
             f"https://{host}/api/records/{record['id']}/communities",
             headers=headers,
             json=json,
         )
+        if response.status_code == 400:
+            # InvenioRDM returns 400 when the community has no logo set or the
+            # record is already linked to the community.
+            data = response.json()
+            log.warning(
+                "Failed to add record to community: %s",
+                data.get("errors", response.text),
+                extra={"record_id": record["id"], "community_id": community_id},
+            )
+        elif response.status_code == 429:
+            log.warning(
+                "Rate limit exceeded while adding record to community",
+                extra={"record_id": record["id"], "community_id": community_id},
+            )
+        else:
+            response.raise_for_status()
         return record
     except RequestException as e:
-        log.error(f"Error adding record to community: {str(e)}", exc_info=True)
+        log.error("Error adding record to community: %s", str(e), exc_info=True)
         return record
 
 
