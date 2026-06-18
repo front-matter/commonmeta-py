@@ -2,9 +2,13 @@
 
 from __future__ import annotations
 
+import tarfile
+import zipfile
+from io import BytesIO
 from os import path
 from typing import Any
 
+import commonmeta_rs
 import orjson as json
 import yaml
 
@@ -249,7 +253,7 @@ class Metadata:
 
         # All these reader methods should return a dict,
         # even though some may return Commonmeta objects that can be treated as dicts
-        if via == "commonmeta":
+        if via in ["commonmeta", "vraix"]:
             return dict(read_commonmeta(data, **kwargs))
         elif via == "schema_org":
             return dict(read_schema_org(data))
@@ -481,6 +485,39 @@ class MetadataList:
             output = json.dumps(write_inveniordm_list(self))
             if self.file:
                 return write_output(self.file, output, [".json"])
+            else:
+                return output
+        elif to == "parquet":
+            records = write_commonmeta_list(self).get("items", [])
+            output = commonmeta_rs.write_parquet(records)
+            if self.file:
+                return write_output(self.file, output, [".parquet"])
+            else:
+                return output
+        elif to in ("zip", "tgz"):
+            records = write_commonmeta_list(self).get("items", [])
+            archive_format = kwargs.get("format", "commonmeta")
+            base_name = kwargs.get("base_name", "out.json")
+            batch_size = kwargs.get("batch_size", 100_000)
+            entries = commonmeta_rs.write_archive(
+                records, archive_format, base_name, batch_size
+            )
+            buffer = BytesIO()
+            if to == "zip":
+                with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+                    for name, data in entries:
+                        zf.writestr(name, data)
+            else:
+                with tarfile.open(fileobj=buffer, mode="w:gz") as tf:
+                    for name, data in entries:
+                        info = tarfile.TarInfo(name=name)
+                        info.size = len(data)
+                        tf.addfile(info, BytesIO(data))
+            output = buffer.getvalue()
+            if self.file:
+                with open(self.file, "xb") as f:
+                    f.write(output)
+                return None
             else:
                 return output
         elif to == "ris":

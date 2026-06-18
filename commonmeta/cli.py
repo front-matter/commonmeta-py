@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import importlib.metadata
+import re
 import time
+from os import path
 
 import click
 import orjson as json
@@ -12,6 +14,7 @@ from commonmeta.doi_utils import decode_doi, encode_doi, validate_prefix
 from commonmeta.readers.crossref_reader import get_random_crossref_id
 from commonmeta.readers.datacite_reader import get_random_datacite_id
 from commonmeta.readers.openalex_reader import get_random_openalex_id
+from commonmeta.readers.vraix_reader import get_vraix_list
 
 
 @click.group()
@@ -19,6 +22,18 @@ from commonmeta.readers.openalex_reader import get_random_openalex_id
 def cli(show_errors):
     if show_errors:
         click.echo("Show errors mode is on")
+
+
+def format_from_file(file: str) -> str:
+    """Infer the --to output format from a --file extension."""
+    if file.endswith(".parquet") or file.endswith(".parquet.zst"):
+        return "parquet"
+    elif file.endswith(".zip"):
+        return "zip"
+    elif file.endswith(".tgz") or file.endswith(".tar.gz"):
+        return "tgz"
+    else:
+        return "commonmeta"
 
 
 @cli.command()
@@ -125,15 +140,29 @@ def put(
 
 
 @cli.command()
-@click.argument("string", type=str, required=True)
+@click.argument("string", type=str, required=False)
 @click.option("--via", "-f", type=str)
-@click.option("--to", "-t", type=str, default="commonmeta")
+@click.option("--to", "-t", type=str, default=None)
 @click.option("--style", "-s", type=str, default="apa")
 @click.option("--locale", "-l", type=str, default="en-US")
 @click.option("--prefix", type=str)
 @click.option("--depositor", type=str)
 @click.option("--email", type=str)
 @click.option("--registrant", type=str)
+@click.option(
+    "--from",
+    "source",
+    type=str,
+    help="VRAIX source, 'crossref' or 'datacite'. Used with --via vraix.",
+)
+@click.option(
+    "--date", type=str, help="VRAIX dump date, YYYY-MM-DD. Used with --via vraix."
+)
+@click.option(
+    "--input-path",
+    type=str,
+    help="Local VRAIX SQLite dump, read instead of downloading. Used with --via vraix.",
+)
 @click.option("--file", type=str)
 @click.option("--show-errors/--no-errors", type=bool, show_default=True, default=False)
 @click.option("--show-timer/--no-timer", type=bool, show_default=True, default=False)
@@ -147,28 +176,50 @@ def list(
     depositor,
     email,
     registrant,
+    source,
+    date,
+    input_path,
     file,
     show_errors,
     show_timer,
 ):
     start = time.time()
-    metadata_list = MetadataList(
-        string,
-        via=via,
-        file=file,
-        depositor=depositor,
-        email=email,
-        registrant=registrant,
-        prefix=prefix,
-    )
+    if via == "vraix":
+        items = get_vraix_list(source, date, input_path=input_path)
+        metadata_list = MetadataList(
+            {"items": items},
+            via=via,
+            file=file,
+            depositor=depositor,
+            email=email,
+            registrant=registrant,
+            prefix=prefix,
+        )
+    else:
+        metadata_list = MetadataList(
+            string,
+            via=via,
+            file=file,
+            depositor=depositor,
+            email=email,
+            registrant=registrant,
+            prefix=prefix,
+        )
     end = time.time()
     runtime = end - start
     if show_errors and not metadata_list.is_valid:
         raise click.ClickException(str(metadata_list.errors))
+    if to is None:
+        to = format_from_file(file) if file else "commonmeta"
+    write_kwargs = {"style": style, "locale": locale}
+    if to in ("zip", "tgz") and file:
+        write_kwargs["base_name"] = re.sub(
+            r"\.(zip|tgz|tar\.gz)$", "", path.basename(file)
+        )
     if file:
-        metadata_list.write(to=to, style=style, locale=locale)
+        metadata_list.write(to=to, **write_kwargs)
     else:
-        click.echo(metadata_list.write(to=to, style=style, locale=locale))
+        click.echo(metadata_list.write(to=to, **write_kwargs))
 
     if show_errors and len(metadata_list.write_errors) > 0:
         raise click.ClickException(str(metadata_list.write_errors))

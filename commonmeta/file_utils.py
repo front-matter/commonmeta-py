@@ -8,6 +8,7 @@ import zipfile
 from pathlib import Path
 
 import requests
+import zstandard
 
 
 def read_file(filename: str) -> bytes:
@@ -63,6 +64,12 @@ def write_zip_file(filename: str, output: bytes) -> None:
         zipf.writestr(path.name, output)
 
 
+def write_zst_file(filename: str, output: bytes) -> None:
+    compressor = zstandard.ZstdCompressor()
+    with open(filename, "xb") as f:
+        f.write(compressor.compress(output))
+
+
 def get_extension(filename: str) -> tuple[str, str, str | None]:
     """Extract extension and compression from filename"""
     extension = Path(filename).suffix
@@ -72,6 +79,10 @@ def get_extension(filename: str) -> tuple[str, str, str | None]:
         extension = Path(filename).suffix
     elif extension == ".zip":
         compress = ".zip"
+        filename = filename[:-4]
+        extension = Path(filename).suffix
+    elif extension == ".zst":
+        compress = ".zst"
         filename = filename[:-4]
         extension = Path(filename).suffix
     elif extension == "":
@@ -99,5 +110,7 @@ def write_output(filename: str, input: bytes | str, ext: list[str]) -> None:
         write_gz_file(filename + compress, input)
     elif compress == ".zip":
         write_zip_file(filename + compress, input)
+    elif compress == ".zst":
+        write_zst_file(filename + compress, input)
     else:
         write_file(filename, input)

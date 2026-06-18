@@ -58,3 +58,42 @@ def test_list_of_pids():
     subject = subject_lst.items[0]
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
+
+
+def test_write_parquet_roundtrip():
+    """write list as parquet, then read it back via commonmeta_rs"""
+    import commonmeta_rs
+
+    dct = {
+        "items": [
+            {
+                "id": "https://doi.org/10.5555/12345678",
+                "type": "JournalArticle",
+                "titles": [{"title": "A Title"}],
+            }
+        ]
+    }
+    subject_lst = MetadataList(dct, via="commonmeta")
+    output = subject_lst.write(to="parquet")
+    assert isinstance(output, bytes)
+    records = commonmeta_rs.read_parquet(output)
+    assert len(records) == 1
+    assert records[0]["id"] == "https://doi.org/10.5555/12345678"
+
+
+def test_write_zip_archive():
+    """write list as a zip archive of commonmeta JSON batches"""
+    import zipfile
+    from io import BytesIO
+
+    dct = {
+        "items": [
+            {"id": "https://doi.org/10.5555/12345678", "type": "JournalArticle"},
+        ]
+    }
+    subject_lst = MetadataList(dct, via="commonmeta")
+    output = subject_lst.write(to="zip", base_name="out.json")
+    assert isinstance(output, bytes)
+    with zipfile.ZipFile(BytesIO(output)) as zf:
+        assert zf.namelist() == ["out.json"]
+        assert b"10.5555/12345678" in zf.read("out.json")

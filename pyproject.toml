@@ -52,6 +52,8 @@ dependencies = [
     "xmlschema>=2.5.1",
     "isbnlib>=3.10.14",
     "pillow>=11.0.0",
+    "commonmeta-rs>=0.3,<1",
+    "zstandard>=0.22.0,<1",
 ]
 
 [project.urls]
@@ -80,6 +82,9 @@ dev = [
 
 [tool.uv]
 default-groups = ["docs", "dev"]
+
+[tool.uv.sources]
+commonmeta-rs = { path = "../commonmeta-rs/python", editable = true }
 
 [tool.hatch.build.targets.sdist]
 include = ["commonmeta"]
