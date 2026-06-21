@@ -155,45 +155,18 @@
           "items": { "$ref": "#/definitions/contributor" },
           "minItems": 1
         },
-        "date_published": {
-          "description": "The date the resource was published.",
-          "$comment": "Should be formatted as ISO 8601 date.",
-          "type": "string"
-        },
-        "date_updated": {
-          "description": "The date the resource was updated.",
-          "$comment": "Should be formatted as ISO 8601 date.",
-          "type": "string"
-        },
+        "date_published": { "$ref": "#/definitions/date" },
+        "date_updated": { "$ref": "#/definitions/date" },
         "dates": {
           "description": "Other dates for the resource.",
-          "$comment": "The date fields are not required. Dates should be formatted as ISO 8601 dates.",
           "type": "object",
           "properties": {
-            "created": {
-              "description": "The date the resource was created.",
-              "type": "string"
-            },
-            "submitted": {
-              "description": "The date the resource was submitted.",
-              "type": "string"
-            },
-            "accepted": {
-              "description": "The date the resource was accepted.",
-              "type": "string"
-            },
-            "accessed": {
-              "description": "The date the resource was accessed.",
-              "type": "string"
-            },
-            "available": {
-              "description": "The date the resource was made available.",
-              "type": "string"
-            },
-            "withdrawn": {
-              "description": "The date the resource was withdrawn.",
-              "type": "string"
-            }
+            "created": { "$ref": "#/definitions/date" },
+            "submitted": { "$ref": "#/definitions/date" },
+            "accepted": { "$ref": "#/definitions/date" },
+            "accessed": { "$ref": "#/definitions/date" },
+            "available": { "$ref": "#/definitions/date" },
+            "withdrawn": { "$ref": "#/definitions/date" }
           }
         },
         "description": {
@@ -223,17 +196,13 @@
           "items": {
             "type": "object",
             "properties": {
-              "funder": { "$ref": "#/definitions/organization" },
-              "award": {
-                "type": "object",
-                "properties": {
-                  "id": { "$ref": "#/definitions/id" },
-                  "title": { "type": "string" },
-                  "number": { "type": "string" }
-                }
-              }
+              "funder_id": { "$ref": "#/definitions/ror_id" },
+              "funder_name": { "type": "string" },
+              "award_id": { "$ref": "#/definitions/id" },
+              "award_title": { "type": "string" },
+              "award_number": { "type": "string" }
             },
-            "required": ["funder"]
+            "required": ["funder_name"]
           }
         },
         "geo_locations": {
@@ -242,25 +211,15 @@
             "type": "object",
             "properties": {
               "geo_location_place": { "type": "string" },
-              "geo_location_point": { "$ref": "#/definitions/geo_location_point" },
-              "geo_location_box": { "$ref": "#/definitions/geo_location_box" },
-              "geo_location_polygons": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "polygon_points": {
-                      "type": "array",
-                      "items": { "$ref": "#/definitions/geo_location_point" },
-                      "minItems": 4
-                    },
-                    "in_polygon_point": {
-                      "$ref": "#/definitions/geo_location_point"
-                    }
-                  },
-                  "required": ["polygon_points"]
-                },
-                "uniqueItems": true
+              "geo_location_point_longitude": { "$ref": "#/definitions/longitude" },
+              "geo_location_point_latitude": { "$ref": "#/definitions/latitude" },
+              "geo_location_box_west_longitude": { "$ref": "#/definitions/longitude" },
+              "geo_location_box_east_longitude": { "$ref": "#/definitions/longitude" },
+              "geo_location_box_south_latitude": { "$ref": "#/definitions/latitude" },
+              "geo_location_box_north_latitude": { "$ref": "#/definitions/latitude" },
+              "geo_location_polygon": {
+                "description": "The polygon geometry, formatted as Well-Known Text (WKT).",
+                "type": "string"
               }
             }
           },
@@ -373,19 +332,25 @@
     "contributor": {
       "type": "object",
       "properties": {
+        "type": { "type": "string", "enum": ["Person", "Organization"] },
         "person": { "$ref": "#/definitions/person" },
         "organization": { "$ref": "#/definitions/organization" },
         "roles": {
           "description": "List of roles assumed by the contributor when working on the resource.",
           "type": "array",
-          "items": { "$ref": "#/definitions/contributor_role" },
-          "minItems": 1
+          "items": { "$ref": "#/definitions/contributor_role" }
         }
       },
-      "oneOf": [
-        { "required": ["person"] },
-        { "required": ["organization"] }
-      ]
+      "required": ["type"],
+      "if": {
+        "properties": { "type": { "const": "Person" } }
+      },
+      "then": {
+        "required": ["person"]
+      },
+      "else": {
+        "required": ["organization"]
+      }
     },
     "contributor_role": {
       "description": "The type of contribution made by a contributor",
@@ -436,21 +401,10 @@
       ],
       "type": "string"
     },
-    "geo_location_box": {
-      "type": "object",
-      "properties": {
-        "west_bound_longitude": { "$ref": "#/definitions/longitude" },
-        "east_bound_longitude": { "$ref": "#/definitions/longitude" },
-        "south_bound_latitude": { "$ref": "#/definitions/latitude" },
-        "north_bound_latitude": { "$ref": "#/definitions/latitude" }
-      }
-    },
-    "geo_location_point": {
-      "type": "object",
-      "properties": {
-        "point_longitude": { "$ref": "#/definitions/longitude" },
-        "point_latitude": { "$ref": "#/definitions/latitude" }
-      }
+    "date": {
+      "description": "An ISO 8601 / EDTF level 0 date or partial date (year, year-month, year-month-day, or full date-time).",
+      "type": "string",
+      "pattern": "^\\d{4}(-\\d{2}(-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})?)?)?)?$"
     },
     "id": {
       "description": "The unique identifier for the resource.",
@@ -507,12 +461,7 @@
     "organization": {
       "type": "object",
       "properties": {
-        "id": {
-          "description": "ROR identifier URL.",
-          "type": "string",
-          "format": "uri",
-          "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
-        },
+        "id": { "$ref": "#/definitions/ror_id" },
         "name": {
           "description": "The name of the organization.",
           "type": "string"
@@ -544,6 +493,12 @@
         }
       },
       "required": ["family_name"]
+    },
+    "ror_id": {
+      "description": "ROR identifier URL.",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
     },
     "type": {
       "type": "string",
