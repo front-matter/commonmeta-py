@@ -333,7 +333,8 @@
                   "IsPreprintOf",
                   "HasPreprint",
                   "IsSupplementTo",
-                  "IsSupplementedBy"
+                  "IsSupplementedBy",
+                  "Other"
                 ]
               }
             },
@@ -471,6 +472,8 @@
         "PMID",
         "PMCID",
         "PURL",
+        "RAiD",
+        "SWHID",
         "URL",
         "URN",
         "UUID",
@@ -574,6 +577,7 @@
         "Journal",
         "PeerReview",
         "PhysicalObject",
+        "Poster",
         "Presentation",
         "ProceedingsArticle",
         "ProceedingsSeries",
