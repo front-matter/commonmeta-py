@@ -36,7 +36,7 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
     if contrib:
         contributors += contrib
 
-    date = {"published": get_date_from_date_parts(meta.get("issued", None))}
+    date_published = get_date_from_date_parts(meta.get("issued", None))
 
     license_ = meta.get("copyright", None)
     if license_ is not None:
@@ -60,44 +60,36 @@ def read_csl(data: dict | None, **kwargs) -> Commonmeta:
             "type": "Periodical",
             "title": meta.get("container-title", None),
             "identifier": issn,
-            "identifierType": "ISSN" if meta.get("ISSN", None) else None,
+            "identifier_type": "ISSN" if meta.get("ISSN", None) else None,
             "volume": meta.get("volume", None),
             "issue": meta.get("issue", None),
-            "firstPage": pages[0],
-            "lastPage": pages[1] if len(pages) > 1 else None,
+            "first_page": pages[0],
+            "last_page": pages[1] if len(pages) > 1 else None,
         }
     )
 
     state = "findable" if _id or read_options else "not_found"
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
-    if meta.get("abstract", None):
-        descriptions = [
-            {
-                "description": sanitize(str(meta.get("abstract"))),
-                "type": "Abstract",
-            }
-        ]
-    else:
-        descriptions = None
+    description = sanitize(str(meta.get("abstract"))) if meta.get("abstract") else None
 
     provider = get_doi_ra(_id)
 
     return {
         "id": _id,
         "type": _type,
-        "url": normalize_id(meta.get("URL", None)),
-        "titles": [{"title": meta.get("title", None)}],
-        "contributors": presence(contributors),
-        "publisher": presence(publisher),
-        "date": compact(date),
         "container": container,
+        "contributors": presence(contributors),
+        "date_published": date_published,
+        "description": description,
+        "license": license_,
+        "provider": provider,
+        "publisher": presence(publisher),
         "references": None,
         "relations": presence(relations),
-        "descriptions": descriptions,
-        "license": license_,
-        "version": meta.get("version", None),
-        "subjects": subjects,
-        "provider": provider,
         "state": state,
+        "subjects": subjects,
+        "title": meta.get("title", None),
+        "url": normalize_id(meta.get("URL", None)),
+        "version": meta.get("version", None),
     } | read_options

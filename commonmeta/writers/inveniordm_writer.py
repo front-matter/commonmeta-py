@@ -15,7 +15,6 @@ from ..base_utils import (
     compact,
     dig,
     first,
-    parse_attributes,
     presence,
     scrub,
     unique,
@@ -25,7 +24,6 @@ from ..constants import (
     CM_TO_INVENIORDM_CONTRIBUTOR_ROLES,
     CM_TO_INVENIORDM_TRANSLATIONS,
     COMMUNITY_TRANSLATIONS,
-    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     INVENIORDM_IDENTIFIER_TYPES,
     OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
 )
@@ -42,6 +40,7 @@ from ..utils import (
     validate_orcid,
     validate_ror,
 )
+from ..v1_compat import v1_to_date
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -71,24 +70,24 @@ def write_inveniordm(metadata: Metadata) -> dict:
     creators = [
         to_inveniordm_creator(i)
         for i in wrap(metadata.contributors)
-        if "Author" in wrap(i.get("contributorRoles", None))
+        if "Author" in wrap(i.get("roles", None))
     ]
     contributors = scrub(
         [
             to_inveniordm_contributor(i)
             for i in wrap(metadata.contributors)
-            if "Author" not in wrap(i.get("contributorRoles", None))
+            if "Author" not in wrap(i.get("roles", None))
         ]
     )
     identifiers = [
         {
             "identifier": i.get("identifier", None),
             "scheme": INVENIORDM_IDENTIFIER_TYPES.get(
-                i.get("identifierType", None), "other"
+                i.get("identifier_type", None), "other"
             ),
         }
         for i in wrap(metadata.identifiers)
-        if i.get("identifierType", None) != "DOI"
+        if i.get("identifier_type", None) != "DOI"
     ]
     identifiers.append(
         {
@@ -107,7 +106,7 @@ def write_inveniordm(metadata: Metadata) -> dict:
         [
             to_inveniordm_funding(i)
             for i in wrap(metadata.funding_references)
-            if i.get("funderName", None)
+            if i.get("funder_name", None)
         ]
     )
     container = metadata.container if metadata.container else {}
@@ -119,25 +118,26 @@ def write_inveniordm(metadata: Metadata) -> dict:
     )
     issn = (
         container.get("identifier", None)
-        if container.get("identifierType", None) == "ISSN"
+        if container.get("identifier_type", None) == "ISSN"
         else None
     )
     volume = container.get("volume", None)
     issue = container.get("issue", None)
     pages = pages_as_string(container)
 
+    date = v1_to_date(metadata.date_published, metadata.date_updated, metadata.dates)
     dates = []
-    for date in metadata.date.keys():
-        if metadata.date.get(date, None) is None:
+    for d in (date or {}).keys():
+        if (date or {}).get(d, None) is None:
             continue
-        t = date.lower()
+        t = d.lower()
         if t == "published":
             t = "issued"
         elif t == "accessed":
             t = "other"
         dates.append(
             {
-                "date": metadata.date.get(date),
+                "date": date.get(d),
                 "type": {"id": t},
             }
         )
@@ -168,22 +168,16 @@ def write_inveniordm(metadata: Metadata) -> dict:
                     "resource_type": {"id": _type},
                     "creators": creators,
                     "contributors": presence(contributors),
-                    "title": first(
-                        parse_attributes(metadata.titles, content="title", first=True)
-                    ),
+                    "title": metadata.title,
                     "publisher": metadata.publisher.get("name", None)
                     if metadata.publisher
                     else None,
-                    "publication_date": get_iso8601_date(metadata.date.get("published"))
-                    if metadata.date.get("published", None)
+                    "publication_date": get_iso8601_date(metadata.date_published)
+                    if metadata.date_published
                     else None,
                     "dates": presence(dates),
                     "subjects": presence(subjects),
-                    "description": first(
-                        parse_attributes(
-                            metadata.descriptions, content="description", first=True
-                        )
-                    ),
+                    "description": metadata.description,
                     "rights": [{"id": metadata.license.get("id").lower()}]
                     if metadata.license.get("id", None)
                     else None,
@@ -220,65 +214,68 @@ def write_inveniordm(metadata: Metadata) -> dict:
     )
 
 
+def to_inveniordm_identifiers(_id: str | None) -> list | None:
+    """Format a v1.0 person.id (ORCID) as InvenioRDM identifiers"""
+    identifier = validate_orcid(_id)
+    if identifier:
+        return [
+            {
+                "identifier": identifier,
+                "scheme": "orcid",
+            }
+        ]
+    return None
+
+
 def to_inveniordm_creator(creator: dict) -> dict:
-    """Convert contributors to inveniordm creators"""
-
-    def format_identifier(id):
-        identifier = validate_orcid(id)
-        if identifier:
-            return [
-                {
-                    "identifier": identifier,
-                    "scheme": "orcid",
-                }
-            ]
-        return None
-
+    """Convert a v1.0 {type, person|organization, roles} contributor to an
+    InvenioRDM creator"""
     _type = creator.get("type", None)
-    if creator.get("familyName", None):
-        name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
-    elif creator.get("name", None):
-        name = creator.get("name", None)
+    organization = creator.get("organization", None)
+    person = creator.get("person", None) or {}
+    given_name = person.get("given_name", None)
+    family_name = person.get("family_name", None)
+    if family_name:
+        name = ", ".join([family_name, given_name or ""])
+    elif organization:
+        name = organization.get("name", None)
+    else:
+        name = None
+    _id = organization.get("id", None) if organization else person.get("id", None)
 
     return compact(
         {
             "person_or_org": compact(
                 {
                     "name": name,
-                    "given_name": creator.get("givenName", None),
-                    "family_name": creator.get("familyName", None),
+                    "given_name": given_name,
+                    "family_name": family_name,
                     "type": _type.lower() + "al" if _type else None,
-                    "identifiers": format_identifier(creator.get("id", None)),
+                    "identifiers": to_inveniordm_identifiers(_id),
                 }
             ),
-            "affiliations": to_inveniordm_affiliations(creator),
+            "affiliations": to_inveniordm_affiliations(person),
         }
     )
 
 
 def to_inveniordm_contributor(contributor: dict) -> dict:
-    """Convert contributors to inveniordm contributors"""
-
-    def format_identifier(id):
-        identifier = validate_orcid(id)
-        if identifier:
-            return [
-                {
-                    "identifier": identifier,
-                    "scheme": "orcid",
-                }
-            ]
-        return None
-
+    """Convert a v1.0 {type, person|organization, roles} contributor to an
+    InvenioRDM contributor"""
     _type = contributor.get("type", None)
-    if contributor.get("familyName", None):
-        name = ", ".join(
-            [contributor.get("familyName", ""), contributor.get("givenName", "")]
-        )
-    elif contributor.get("name", None):
-        name = contributor.get("name", None)
+    organization = contributor.get("organization", None)
+    person = contributor.get("person", None) or {}
+    given_name = person.get("given_name", None)
+    family_name = person.get("family_name", None)
+    if family_name:
+        name = ", ".join([family_name, given_name or ""])
+    elif organization:
+        name = organization.get("name", None)
+    else:
+        name = None
+    _id = organization.get("id", None) if organization else person.get("id", None)
 
-    role = first(wrap(contributor.get("contributorRoles", None)))
+    role = first(wrap(contributor.get("roles", None)))
     _role = (
         {"id": CM_TO_INVENIORDM_CONTRIBUTOR_ROLES.get(role)}
         if CM_TO_INVENIORDM_CONTRIBUTOR_ROLES.get(role)
@@ -291,14 +288,14 @@ def to_inveniordm_contributor(contributor: dict) -> dict:
             "person_or_org": compact(
                 {
                     "name": name,
-                    "given_name": contributor.get("givenName", None),
-                    "family_name": contributor.get("familyName", None),
+                    "given_name": given_name,
+                    "family_name": family_name,
                     "type": _type.lower() + "al" if _type else None,
-                    "identifiers": format_identifier(contributor.get("id", None)),
+                    "identifiers": to_inveniordm_identifiers(_id),
                 }
             ),
             "role": _role,
-            "affiliations": to_inveniordm_affiliations(contributor),
+            "affiliations": to_inveniordm_affiliations(person),
         }
     )
 
@@ -358,9 +355,8 @@ def to_inveniordm_subject(sub: dict) -> list | None:
     return result
 
 
-def to_inveniordm_affiliations(creator: dict) -> list | None:
-    """Convert affiliations to inveniordm affiliations.
-    Returns None if creator is not a person."""
+def to_inveniordm_affiliations(person: dict) -> list | None:
+    """Convert a v1.0 person's affiliations to inveniordm affiliations."""
 
     def format_affiliation(affiliation):
         return compact(
@@ -370,11 +366,8 @@ def to_inveniordm_affiliations(creator: dict) -> list | None:
             }
         )
 
-    if creator.get("type", None) != "Person":
-        return None
-
     return scrub(
-        [format_affiliation(i) for i in wrap(creator.get("affiliations", None))]
+        [format_affiliation(i) for i in wrap(person.get("affiliations", None))]
     )
 
 
@@ -458,22 +451,15 @@ def to_inveniordm_reference(reference: dict) -> dict | None:
 
 
 def to_inveniordm_funding(funding: dict) -> dict | None:
-    """Convert funding to inveniordm funding"""
-    if funding.get("funderIdentifierType", None) == "Crossref Funder ID":
-        # convert to ROR
-        funder_identifier = id_from_url(
-            CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
-                funding.get("funderIdentifier", None), None
-            )
-        )
-    else:
-        funder_identifier = validate_ror(funding.get("funderIdentifier", None))
-    award_number = funding.get("awardNumber", None)
-    award_title = funding.get("awardTitle", None)
+    """Convert a v1.0 flat funding reference (ROR-only funder_id) to
+    inveniordm funding"""
+    funder_identifier = validate_ror(funding.get("funder_id", None))
+    award_number = funding.get("award_number", None)
+    award_title = funding.get("award_title", None)
     if award_title:
         award_title = {"en": award_title}
-    if funding.get("awardUri", None):
-        award_identifier = funding.get("awardUri", None)
+    if funding.get("award_id", None):
+        award_identifier = funding.get("award_id", None)
         scheme = "doi" if normalize_doi(award_identifier) else "url"
         if scheme == "doi":
             award_identifier = doi_from_url(award_identifier)
@@ -491,7 +477,7 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
             {
                 "funder": compact(
                     {
-                        "name": funding.get("funderName"),
+                        "name": funding.get("funder_name"),
                         "id": funder_identifier,
                     }
                 ),
@@ -509,7 +495,7 @@ def to_inveniordm_funding(funding: dict) -> dict | None:
         {
             "funder": compact(
                 {
-                    "name": funding.get("funderName"),
+                    "name": funding.get("funder_name"),
                     "id": funder_identifier,
                 }
             ),
@@ -644,7 +630,7 @@ def upsert_record(
             (
                 i.get("identifier")
                 for i in wrap(metadata.identifiers)
-                if i.get("identifierType") == "GUID" and i.get("identifier")
+                if i.get("identifier_type") == "GUID" and i.get("identifier")
             ),
             None,
         )

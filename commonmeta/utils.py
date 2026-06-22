@@ -26,11 +26,10 @@ from .base_utils import (
     first,
     omit,
     parse_attributes,
-    pascal_case,
     unique,
     wrap,
 )
-from .constants import DATACITE_CONTRIBUTOR_TYPES, OPENALEX_SUBFIELD_MAPPINGS
+from .constants import OPENALEX_SUBFIELD_MAPPINGS
 from .doi_utils import doi_as_url, doi_from_url, get_doi_ra, normalize_doi, validate_doi
 
 NORMALIZED_LICENSES = {
@@ -1017,6 +1016,7 @@ def dict_to_spdx(dct: dict) -> dict | None:
     return compact(
         {
             "id": license_["licenseId"],
+            "title": license_["name"],
             "url": license_["seeAlso"][0],
         }
     )
@@ -1117,33 +1117,6 @@ def from_crossref_xml(elements: list) -> list:
     return [format_element(i) for i in elements]
 
 
-def from_kbase(elements: list) -> list:
-    """Convert from kbase elements"""
-
-    def map_contributor_role(role):
-        if role.split(":")[0] == "CRediT":
-            return pascal_case(role.split(":")[1])
-        elif role.split(":")[0] == "DataCite":
-            return DATACITE_CONTRIBUTOR_TYPES.get(role.split(":")[1], "Other")
-        else:
-            return role.split(":")[1]
-
-    def format_element(element):
-        """format element"""
-        if not isinstance(element, dict):
-            return None
-        if element.get("contributor_id", None) is not None:
-            element["ORCID"] = from_curie(element["contributor_id"])
-        element["contributor_roles"] = [
-            map_contributor_role(i)
-            for i in wrap(element.get("contributor_roles", None))
-        ]
-        element = omit(element, "contributor_id")
-        return compact(element)
-
-    return [format_element(i) for i in elements]
-
-
 def from_csl(elements: list) -> list:
     """Convert from csl elements"""
 
@@ -1170,15 +1143,18 @@ def from_csl(elements: list) -> list:
 
 
 def to_csl(elements: list) -> list:
-    """Convert elements to CSL-JSON"""
+    """Convert contributors (v1.0 {type, person|organization, roles} shape)
+    to CSL-JSON"""
 
     def format_element(i):
         """format element"""
+        person = i.get("person", None) or {}
+        organization = i.get("organization", None) or {}
         element = {}
-        element["family"] = i.get("familyName", None)
-        element["given"] = i.get("givenName", None)
+        element["family"] = person.get("family_name", None)
+        element["given"] = person.get("given_name", None)
         element["literal"] = (
-            i.get("name", None) if i.get("familyName", None) is None else None
+            organization.get("name", None) if not person.get("family_name", None) else None
         )
         return compact(element)
 
@@ -1186,22 +1162,26 @@ def to_csl(elements: list) -> list:
 
 
 def to_ris(elements: list | None) -> list:
-    """Convert element to RIS"""
+    """Convert contributors (v1.0 {type, person|organization, roles} shape)
+    to RIS"""
     if elements is None:
         return []
 
     def format_element(i):
         """format element"""
-        if i.get("familyName", None) and i.get("givenName", None):
-            element = ", ".join([i["familyName"], i.get("givenName", None)])
-        else:
-            element = i.get("name", None)
-        return element
+        person = i.get("person", None) or {}
+        organization = i.get("organization", None) or {}
+        if person.get("family_name", None) and person.get("given_name", None):
+            return ", ".join([person["family_name"], person["given_name"]])
+        if person.get("family_name", None):
+            return person["family_name"]
+        return organization.get("name", None)
 
     return [
         format_element(i)
         for i in elements
-        if i.get("name", None) or i.get("familyName", None)
+        if (i.get("person", None) or {}).get("family_name", None)
+        or (i.get("organization", None) or {}).get("name", None)
     ]
 
 
@@ -1217,20 +1197,33 @@ def to_schema_org(element: dict | None) -> dict | None:
 
 
 def to_schema_org_creators(elements: list) -> list:
-    """Convert creators to Schema.org"""
+    """Convert contributors (v1.0 {type, person|organization, roles} shape)
+    to Schema.org"""
 
     def format_element(element):
         """format element"""
-        element["@type"] = element["type"][0:-2] if element.get("type", None) else None
-        if element.get("familyName", None) and element.get("name", None) is None:
-            element["name"] = " ".join(
-                [element.get("givenName", None), element.get("familyName")]
+        organization = element.get("organization", None)
+        person = element.get("person", None) or {}
+        given_name = person.get("given_name", None)
+        family_name = person.get("family_name", None)
+        if family_name:
+            return compact(
+                {
+                    "@type": "Person",
+                    "id": person.get("id", None),
+                    "name": " ".join([given_name or "", family_name]).strip(),
+                    "givenName": given_name,
+                    "familyName": family_name,
+                    "affiliations": person.get("affiliations", None),
+                }
             )
-            element["@type"] = "Person"
-        else:
-            element["@type"] = "Organization"
-        element = omit(element, "type", "contributorRoles")
-        return compact(element)
+        return compact(
+            {
+                "@type": "Organization",
+                "id": organization.get("id", None) if organization else None,
+                "name": organization.get("name", None) if organization else None,
+            }
+        )
 
     return [format_element(i) for i in elements]
 
@@ -1376,8 +1369,6 @@ def find_from_format_by_dict(dct: dict) -> str | None:
         return "csl"
     if dig(dct, "conceptdoi") is not None:
         return "inveniordm"
-    if dig(dct, "credit_metadata") is not None:
-        return "kbase"
     return None
 
 
@@ -1411,8 +1402,6 @@ def find_from_format_by_string(string: str | None) -> str | None:
             return "csl"
         if dig(data, "conceptdoi") is not None:
             return "inveniordm"
-        if dig(data, "credit_metadata") is not None:
-            return "kbase"
     except (TypeError, json.JSONDecodeError):
         pass
     try:
@@ -1638,13 +1627,13 @@ def pages_as_string(container: dict | None, page_range_separator="-") -> str | N
     """Parse pages for BibTeX"""
     if container is None:
         return None
-    if container.get("firstPage", None) is None:
+    if container.get("first_page", None) is None:
         return None
-    if container.get("lastPage", None) is None:
-        return container.get("firstPage", None)
+    if container.get("last_page", None) is None:
+        return container.get("first_page", None)
 
     return page_range_separator.join(
-        [container.get("firstPage"), container.get("lastPage", None)]
+        [container.get("first_page"), container.get("last_page", None)]
     )
 
 

@@ -23,32 +23,33 @@ def test_wordpress_with_references():
         subject.url
         == "https://svpow.com/2023/06/09/new-paper-curtice-et-al-2023-on-the-first-haplocanthosaurus-from-dry-mesa/"
     )
-    assert subject.titles[0] == {
-        "title": "New paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry Mesa"
-    }
+    assert subject.title == 'New paper: Curtice et al. (2023) on the first <i>Haplocanthosaurus</i> from Dry Mesa'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0001-6082-3103",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Matt",
-        "familyName": "Wedel",
-        "affiliations": [
-            {
-                "id": "https://ror.org/05167c961",
-                "name": "Western University of Health Sciences",
-            }
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0001-6082-3103",
+            "given_name": "Matt",
+            "family_name": "Wedel",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/05167c961",
+                    "name": "Western University of Health Sciences"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2023-06-09T02:00:00",
-        "updated": "2025-12-05T02:36:30",
-    }
+    assert (subject.date_published == '2023-06-09T02:00:00'
+        and subject.date_updated == '2025-12-05T02:36:30')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -64,19 +65,17 @@ def test_wordpress_with_references():
         {"id": "https://portal.issn.org/resource/ISSN/3033-3695", "type": "IsPartOf"},
     ]
     assert subject.identifiers == [
-        {"identifier": "https://svpow.com/?p=20992", "identifierType": "GUID"},
+        {"identifier": "https://svpow.com/?p=20992", "identifier_type": "GUID"},
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
         "identifier": "3033-3695",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "WordPress.com",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae")
+        subject.description.startswith("<em> Haplocanthosaurus </em> tibiae and dorsal vertebrae")
     )
     assert len(subject.files) == 8
     assert subject.files[0] == {
@@ -110,25 +109,33 @@ def test_post_with_relationships():
     assert (
         subject.url == "https://blog.front-matter.de/posts/introducing-the-pid-graph/"
     )
-    assert subject.titles[0] == {"title": "Introducing the PID Graph"}
+    assert subject.title == 'Introducing the PID Graph'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
-        "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/04wxnsj81",
+                    "name": "DataCite"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2019-03-28T01:00:00",
-        "updated": "2026-06-06T12:34:07",
-    }
+    assert (subject.date_published == '2019-03-28T01:00:00'
+        and subject.date_updated == '2026-06-06T12:34:07')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -139,11 +146,10 @@ def test_post_with_relationships():
     }
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://doi.org/10.3030/777523",
-            "awardNumber": "777523",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://doi.org/10.3030/777523",
+            "award_number": "777523"
         }
     ]
     assert subject.relations == [
@@ -161,14 +167,14 @@ def test_post_with_relationships():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "Ghost",
     }
     assert subject.content.startswith(
@@ -190,27 +196,33 @@ def test_post_with_citations():
     assert subject.id == "https://doi.org/10.59350/dcw3y-7em87"
     assert subject.type == "BlogPost"
     assert subject.url == "https://opencitations.hypotheses.org/31"
-    assert subject.titles[0] == {"title": "Use of CiTO in CiteULike"}
+    assert subject.title == 'Use of CiTO in CiteULike'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0001-5506-523X",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "David M.",
-        "familyName": "Shotton",
-        "affiliations": [
-            {"id": "https://ror.org/052gg0110", "name": "University of Oxford"}
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0001-5506-523X",
+            "given_name": "David M.",
+            "family_name": "Shotton",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/052gg0110",
+                    "name": "University of Oxford"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2010-10-21T02:00:00",
-        "updated": "2025-10-24T08:45:16",
-    }
+    assert (subject.date_published == '2010-10-21T02:00:00'
+        and subject.date_updated == '2025-10-24T08:45:16')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -244,14 +256,14 @@ def test_post_with_citations():
     assert subject.identifiers == [
         {
             "identifier": "http://opencitations.wordpress.com/?p=31",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "OpenCitations blog",
         "identifier": "https://rogue-scholar.org/blogs/opencitations",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "platform": "WordPress",
     }
     assert subject.content.startswith(
@@ -269,7 +281,7 @@ def test_another_post_with_citations():
     assert subject.id == "https://doi.org/10.59350/50ebs-4zq55"
     assert subject.type == "BlogPost"
     assert subject.url is None
-    assert subject.titles[0] == {"title": "Ruby CDK for Newbies"}
+    assert subject.title == 'Ruby CDK for Newbies'
     # assert subject.citations == [
     #     {
     #         "id": "https://doi.org/10.59350/myaw4-dtg76",
@@ -299,36 +311,43 @@ def test_post_with_relationships_as_doi():
     assert (
         subject.url == "https://blog.front-matter.de/posts/introducing-the-pid-graph/"
     )
-    assert subject.titles[0] == {"title": "Introducing the PID Graph"}
+    assert subject.title == 'Introducing the PID Graph'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
-        "affiliations": [{"id": "https://ror.org/04wxnsj81", "name": "DataCite"}],
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/04wxnsj81",
+                    "name": "DataCite"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2019-03-28T01:00:00",
-        "updated": "2026-06-06T12:34:07",
-    }
+    assert (subject.date_published == '2019-03-28T01:00:00'
+        and subject.date_updated == '2026-06-06T12:34:07')
     assert subject.publisher == {
         "name": "Front Matter",
     }
     assert len(subject.references) == 5
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://doi.org/10.3030/777523",
-            "awardNumber": "777523",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://doi.org/10.3030/777523",
+            "award_number": "777523"
         }
     ]
     assert subject.relations == [
@@ -346,14 +365,14 @@ def test_post_with_relationships_as_doi():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.53731/ewrv712-2k7rx6d",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "Ghost",
     }
     assert subject.provider == "Crossref"
@@ -369,27 +388,33 @@ def test_post_with_funding():
     assert subject.id == "https://doi.org/10.54900/vnevh-vaw22"
     assert subject.type == "BlogPost"
     assert subject.url == "https://upstream.force11.org/informate-where-are-the-data/"
-    assert subject.titles[0] == {"title": "INFORMATE: Where Are the Data?"}
+    assert subject.title == 'INFORMATE: Where Are the Data?'
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-3585-6733",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Ted",
-        "familyName": "Habermann",
-        "affiliations": [
-            {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0003-3585-6733",
+            "given_name": "Ted",
+            "family_name": "Habermann",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/05bp8ka05",
+                    "name": "Metadata Game Changers"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2023-12-05T01:00:00",
-        "updated": "2026-04-28T11:08:23",
-    }
+    assert (subject.date_published == '2023-12-05T01:00:00'
+        and subject.date_updated == '2026-04-28T11:08:23')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -408,16 +433,15 @@ def test_post_with_funding():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.54900/vnevh-vaw22",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.funding_references == [
         {
-            "funderName": "National Science Foundation",
-            "funderIdentifier": "https://ror.org/021nxhr62",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
-            "awardNumber": "2134956",
+            "funder_id": "https://ror.org/021nxhr62",
+            "funder_name": "National Science Foundation",
+            "award_id": "https://www.nsf.gov/awardsearch/showaward?awd_id=2134956",
+            "award_number": "2134956"
         }
     ]
     assert subject.container == {
@@ -425,7 +449,7 @@ def test_post_with_funding():
         "title": "Upstream",
         "platform": "Ghost",
         "identifier": "https://rogue-scholar.org/blogs/upstream",
-        "identifierType": "URL",
+        "identifier_type": "URL",
     }
     assert subject.content.startswith(
         '<h2 id="introduction">Introduction</h2><p>A recent'
@@ -460,23 +484,22 @@ def test_post_with_more_funding():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw1y",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://cordis.europa.eu/project/id/312788",
-            "awardNumber": "312788",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://cordis.europa.eu/project/id/312788",
+            "award_number": "312788"
         }
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "Ghost",
     }
 
@@ -493,29 +516,33 @@ def test_post_with_funding_ror():
         subject.url
         == "https://metadatagamechangers.com/blog/2022/3/7/ivfrlw6naf7am3bvord8pldtuyqn4r"
     )
-    assert subject.titles[0] == {
-        "title": "Metadata Life Cycle: Mountain or Superhighway?"
-    }
+    assert subject.title == 'Metadata Life Cycle: Mountain or Superhighway?'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-3585-6733",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Ted",
-        "familyName": "Habermann",
-        "affiliations": [
-            {"id": "https://ror.org/05bp8ka05", "name": "Metadata Game Changers"}
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0003-3585-6733",
+            "given_name": "Ted",
+            "family_name": "Habermann",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/05bp8ka05",
+                    "name": "Metadata Game Changers"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2022-03-08T01:00:00",
-        "updated": "2025-12-06T11:57:05",
-    }
+    assert (subject.date_published == '2022-03-08T01:00:00'
+        and subject.date_updated == '2025-12-06T11:57:05')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -527,22 +554,21 @@ def test_post_with_funding_ror():
         }
     ]
     assert subject.identifiers == [
-        {"identifier": "62268c301674dc074d971710", "identifierType": "GUID"},
+        {"identifier": "62268c301674dc074d971710", "identifier_type": "GUID"},
     ]
     assert subject.funding_references == [
         {
-            "funderName": "National Science Foundation",
-            "funderIdentifier": "https://ror.org/021nxhr62",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
-            "awardNumber": "2135874",
+            "funder_id": "https://ror.org/021nxhr62",
+            "funder_name": "National Science Foundation",
+            "award_id": "https://www.nsf.gov/awardsearch/showaward?awd_id=2135874",
+            "award_number": "2135874"
         }
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Blog - Metadata Game Changers",
         "identifier": "https://rogue-scholar.org/blogs/metadatagamechangers",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "platform": "Squarespace",
     }
     assert subject.content.startswith(
@@ -576,24 +602,23 @@ def test_post_with_even_more_funding():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.59350/s6am1-1sa79",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://cordis.europa.eu/project/id/604134",
-            "awardNumber": "604134",
-            "awardTitle": "eNanoMapper - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://cordis.europa.eu/project/id/604134",
+            "award_title": "eNanoMapper - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment",
+            "award_number": "604134"
         }
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "chem-bla-ics",
         "identifier": "https://rogue-scholar.org/blogs/chem_bla_ics",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "platform": "Jekyll",
     }
 
@@ -610,23 +635,24 @@ def test_ghost_with_institutional_author():
         subject.url
         == "https://blog.oa.works/nature-features-oa-reports-work-putting-oa-policy-into-practice"
     )
-    assert subject.titles[0] == {
-        "title": "Nature features OA.Report's work putting OA policy into practice!"
-    }
+    assert subject.title == "Nature features OA.Report's work putting OA policy into practice!"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "contributorRoles": ["Author"],
         "type": "Organization",
-        "name": "OA.Works",
+        "organization": {
+            "name": "OA.Works"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "published": "2023-01-24T01:00:00",
-        "updated": "2025-04-14T01:21:55",
-    }
+    assert (subject.date_published == '2023-01-24T01:00:00'
+        and subject.date_updated == '2025-04-14T01:21:55')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -635,7 +661,7 @@ def test_ghost_with_institutional_author():
         {"id": "https://rogue-scholar.org/api/communities/oa_works", "type": "IsPartOf"}
     ]
     assert subject.identifiers == [
-        {"identifier": "63cef642602205003d6f50fb", "identifierType": "GUID"},
+        {"identifier": "63cef642602205003d6f50fb", "identifier_type": "GUID"},
     ]
     # assert subject.funding_references == [
     #     {"funderName": "SystemsX"},
@@ -667,11 +693,11 @@ def test_ghost_with_institutional_author():
         "type": "Blog",
         "title": "OA.Works Blog",
         "identifier": "https://rogue-scholar.org/blogs/oa_works",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "platform": "Ghost",
     }
     assert (
-        subject.descriptions[0].get("description").startswith("After a couple of years")
+        subject.description.startswith("After a couple of years")
     )
     assert len(subject.files) == 2
     assert subject.files[0] == {
@@ -707,27 +733,33 @@ def test_ghost_with_affiliations():
         subject.url
         == "https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/"
     )
-    assert subject.titles[0] == {"title": "Auto generating links to data and resources"}
+    assert subject.title == 'Auto generating links to data and resources'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
-        "affiliations": [
-            {"id": "https://ror.org/008zgvp64", "name": "Public Library of Science"}
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/008zgvp64",
+                    "name": "Public Library of Science"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2013-07-02T02:00:00",
-        "updated": "2026-06-06T13:23:07",
-    }
+    assert (subject.date_published == '2013-07-02T02:00:00'
+        and subject.date_updated == '2026-06-06T13:23:07')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -746,20 +778,18 @@ def test_ghost_with_affiliations():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.53731/r294649-6f79289-8cw16",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "Front Matter",
         "identifier": "2749-9952",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "Ghost",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("A few weeks ago Kafkas et al. (2013) published a paper")
+        subject.description.startswith("A few weeks ago Kafkas et al. (2013) published a paper")
     )
     assert len(subject.files) == 1
     assert subject.files[0] == {
@@ -782,26 +812,27 @@ def test_ghost_with_personal_name_parsing():
     assert subject.id == "https://doi.org/10.59350/0vknr-rwv45"
     assert subject.type == "BlogPost"
     assert subject.url == "https://www.ideasurg.pub/surg-resident-voter-turnout/"
-    assert subject.titles[0] == {
-        "title": "Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election"
-    }
+    assert subject.title == 'Voter Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election'
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-0449-4469",
-        "contributorRoles": ["Author"],
         "type": "Person",
-        "familyName": "Sathe",
-        "givenName": "Tejas S.",
+        "person": {
+            "id": "https://orcid.org/0000-0003-0449-4469",
+            "given_name": "Tejas S.",
+            "family_name": "Sathe"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2024-05-08T02:00:00",
-        "updated": "2025-08-02T22:32:30",
-    }
+    assert (subject.date_published == '2024-05-08T02:00:00'
+        and subject.date_updated == '2025-08-02T22:32:30')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -820,20 +851,18 @@ def test_ghost_with_personal_name_parsing():
     assert subject.identifiers == [
         {
             "identifier": "66399ca46f25d60001df1427",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "identifier": "2993-1150",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "platform": "Ghost",
         "title": "I.D.E.A.S.",
         "type": "Blog",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("As residents within the healthcare profession,")
+        subject.description.startswith("As residents within the healthcare profession,")
     )
     assert len(subject.files) == 1
     assert subject.files[0] == {
@@ -863,11 +892,10 @@ def test_cczero_license():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/xgwqt-1sq35"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {
-        "title": "Epistemic diversity and knowledge production"
-    }
+    assert subject.title == 'Epistemic diversity and knowledge production'
     assert subject.license == {
         "id": "CC0-1.0",
+        "title": "Creative Commons Zero v1.0 Universal",
         "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
     }
 
@@ -880,7 +908,7 @@ def test_post_with_peer_reviewed_version():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/zg929-e9595"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {"title": "Large Language Publishing"}
+    assert subject.title == 'Large Language Publishing'
     assert subject.relations == [
         {
             "id": "https://doi.org/10.18357/kula.291",
@@ -908,9 +936,7 @@ def test_post_with_peer_review():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/r8zwg-62003"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {
-        "title": "Drinking from the Firehose? Write More and Publish Less"
-    }
+    assert subject.title == 'Drinking from the Firehose? Write More and Publish Less'
     assert subject.relations == [
         {
             "id": "https://rogue-scholar.org/api/communities/upstream",
@@ -932,24 +958,27 @@ def test_post_with_contributor_roles():
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"
     assert subject.url == "https://ropensci.org/blog/2025/10/14/blog-roles/"
-    assert subject.titles[0] == {"title": "Recognition Beyond Blog Post Authors"}
+    assert subject.title == 'Recognition Beyond Blog Post Authors'
     assert len(subject.contributors) == 2
     assert subject.contributors[1] == {
-        "id": "https://orcid.org/0000-0002-4522-7466",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Yanina",
-        "familyName": "Bellini Saibene",
+        "person": {
+            "id": "https://orcid.org/0000-0002-4522-7466",
+            "given_name": "Yanina",
+            "family_name": "Bellini Saibene"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2025-10-14T02:00:00",
-        "updated": "2026-04-24T20:31:54",
-    }
+    assert (subject.date_published == '2025-10-14T02:00:00'
+        and subject.date_updated == '2026-04-24T20:31:54')
     assert subject.publisher == {
         "name": "Front Matter",
     }
@@ -963,14 +992,14 @@ def test_post_with_contributor_roles():
     assert subject.identifiers == [
         {
             "identifier": "https://doi.org/10.59350/510pg-zzf58",
-            "identifierType": "GUID",
+            "identifier_type": "GUID",
         },
     ]
     assert subject.container == {
         "type": "Blog",
         "title": "rOpenSci - open tools for open science",
         "identifier": "https://rogue-scholar.org/blogs/ropensci",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "platform": "Hugo",
     }
     assert subject.content.startswith("<p>Our own dev guide")
@@ -989,13 +1018,9 @@ def test_post_subfield_classification():
         subject.url
         == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
     )
-    assert subject.titles[0] == {
-        "title": 'Video of the 2024 SSP debate: "The open access movement has failed"'
-    }
+    assert subject.title == 'Video of the 2024 SSP debate: "The open access movement has failed"'
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith(
+        subject.description.startswith(
             "Readers with good memories will remember that back in May last year"
         )
     )
@@ -1021,13 +1046,9 @@ def test_post_topic_classification():
         subject.url
         == "https://danielskatzblog.wordpress.com/2024/08/20/supporting-core-research-softtware-work/"
     )
-    assert subject.titles[0] == {
-        "title": "Supporting the core work in research software"
-    }
+    assert subject.title == 'Supporting the core work in research software'
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("(Please cite this post as")
+        subject.description.startswith("(Please cite this post as")
     )
     assert subject.subjects == [
         {
@@ -1046,7 +1067,7 @@ def test_funded_project():
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.59350/p000s-pth40"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {"title": "THOR's last hurrah"}
+    assert subject.title == "THOR's last hurrah"
     # assert subject.funding_references == [
     #     {
     #         "awardNumber": "654039",
@@ -1095,37 +1116,37 @@ def test_get_jsonfeed_blog():
     assert subject.id == "https://doi.org/10.53731/front_matter"
     assert subject.type == "Blog"
     assert subject.url == "https://blog.front-matter.de/"
-    assert subject.titles[0] == {"title": "Front Matter"}
+    assert subject.title == 'Front Matter'
     assert subject.identifiers == [
         {
             "identifier": "https://blog.front-matter.de/atom/",
-            "identifierType": "URL",
+            "identifier_type": "URL",
         },
         {
             "identifier": "2749-9952",
-            "identifierType": "ISSN",
+            "identifier_type": "ISSN",
         },
     ]
-    assert subject.descriptions[0] == {
-        "description": "The Front Matter Blog covers the intersection of science and technology since 2007.",
-        "type": "Abstract",
-    }
+    assert subject.description == "The Front Matter Blog covers the intersection of science and technology since 2007."
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2023-01-01T01:00:00",
-        "updated": "2026-06-04T21:39:20",
-    }
+    assert (subject.date_updated == '2026-06-04T21:39:20'
+        and subject.dates == {'created': '2023-01-01T01:00:00'})
     assert subject.publisher == {
         "name": "Front Matter",
     }

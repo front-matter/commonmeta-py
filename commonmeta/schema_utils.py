@@ -8,6 +8,7 @@ from typing import Any
 import orjson as json
 import xmlschema
 from jsonschema import Draft202012Validator, ValidationError
+from jsonschema.exceptions import best_match
 
 from .base_utils import normalize_xml_dict
 
@@ -23,7 +24,7 @@ def json_schema_errors(
     """
     schema_map = {
         "cff": "cff_v1.2.0",
-        "commonmeta": "commonmeta_v0.18",
+        "commonmeta": "commonmeta_v1.0",
         "crossref_xml": "crossref-v5.4.0",
         "csl": "csl-data",
         "datacite": "datacite-v4.5",
@@ -53,9 +54,25 @@ def json_schema_errors(
             raise ValueError(f"Schema file not found: {file_path}")
         except json.JSONDecodeError:
             raise ValueError(f"Invalid JSON in schema file: {file_path}")
-        # validate() returns None if valid, raises ValidationError if invalid
-        Draft202012Validator(schema_definition).validate(instance)
-        return None
+        # The commonmeta schema files nest their entry schema under a
+        # non-standard top-level "commonmeta" key instead of putting
+        # validation keywords (anyOf/type/properties) directly at the
+        # document root like every other schema file in resources/. Without
+        # this, the root schema has no validation keywords of its own and
+        # silently validates everything.
+        entry_schema = schema_definition.pop("commonmeta", None)
+        if entry_schema is not None:
+            schema_definition = {**schema_definition, **entry_schema}
+        validator = Draft202012Validator(schema_definition)
+        errors = list(validator.iter_errors(instance))
+        if not errors:
+            return None
+        # anyOf's default message ("X is not valid under any of the given
+        # schemas") hides the actual reason. best_match drills into the most
+        # specific sub-error instead.
+        error = best_match(errors)
+        error_path = "/".join(str(p) for p in error.absolute_path)
+        return f"{error.message} (at {error_path})" if error_path else error.message
     except ValidationError as error:
         return error.message
 

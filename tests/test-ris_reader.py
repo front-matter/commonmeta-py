@@ -1,9 +1,11 @@
 # pylint: disable=invalid-name
 """RIS reader tests"""
 
+import json
 from os import path
 
 from commonmeta import Metadata
+from commonmeta.schema_utils import json_schema_errors
 
 
 def test_journal_article():
@@ -17,19 +19,18 @@ def test_journal_article():
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martial",
-        "familyName": "Sankar",
+        "person": {
+            "given_name": "Martial",
+            "family_name": "Sankar"
+        },
+        "roles": [
+            "Author"
+        ]
     }
-    assert subject.titles == [
-        {
-            "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-        }
-    ]
+    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     assert subject.publisher is None
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Among various advantages,")
     )
     assert subject.license is None
@@ -38,7 +39,20 @@ def test_journal_article():
         "title": "eLife",
         "volume": "3",
     }
-    assert subject.date == {"published": "2014"}
+    assert subject.date_published == "2014"
+
+    commonmeta = json.loads(subject.write())
+    assert json_schema_errors(commonmeta, "commonmeta") is None
+    assert (
+        commonmeta["title"]
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
+    assert commonmeta["date_published"] == "2014"
+    assert commonmeta["contributors"][0] == {
+        "type": "Person",
+        "person": {"given_name": "Martial", "family_name": "Sankar"},
+        "roles": ["Author"],
+    }
 
 
 def test_thesis():
@@ -53,20 +67,22 @@ def test_thesis():
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Y.",
-        "familyName": "Toparlar",
+        "person": {
+            "given_name": "Y.",
+            "family_name": "Toparlar"
+        },
+        "roles": [
+            "Author"
+        ]
     }
-    assert subject.titles == [
-        {"title": "A multiscale analysis of the urban heat island effect"}
-    ]
+    assert subject.title == "A multiscale analysis of the urban heat island effect"
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Designing the climates of cities")
     )
     assert subject.license is None
     assert subject.container == {
         "title": "from city averaged temperatures to the energy demand of individual buildings"
     }
-    assert subject.date == {"published": "2018-04-25", "created": "2018-04-25"}
+    assert subject.date_published == "2018-04-25"
+    assert subject.dates == {"created": "2018-04-25"}

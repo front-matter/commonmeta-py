@@ -65,20 +65,12 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
     # :sandbox, :validate, :ra))
     read_options = kwargs or {}
 
-    member_id = next(
-        (
-            i
-            for i in wrap(query.get("crm-item", None))
-            if i.get("name", None) == "member-id"
-        ),
-        {},
-    ).get("#text", None)
-    publisher_id = (
-        "https://api.crossref.org/members/" + member_id if member_id else None
-    )
+    # organization.id is ROR-only per the v1.0 schema; Crossref member API
+    # URLs have no ROR equivalent, so publisher carries no id here (matching
+    # crossref_reader.py, the JSON-based Crossref reader, which never sets
+    # one either).
     publisher = compact(
         {
-            "id": publisher_id,
             "name": next(
                 (
                     i
@@ -165,7 +157,7 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
 
     url = first(parse_attributes(dig(bibmeta, "doi_data.resource")))
     url = normalize_url(url)
-    titles = crossref_titles(bibmeta)
+    title, additional_titles = crossref_titles(bibmeta)
     contributors = crossref_people(bibmeta)
 
     date: dict = defaultdict(list)
@@ -193,8 +185,11 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
 
     # TODO: fix timestamp. Until then, remove time as this is not always stable with Crossref (different server timezones)
     date = {k: get_iso8601_date(v) for k, v in date.items()}
+    date_published = date.get("published", None)
+    date_updated = date.get("updated", None)
+    dates = compact({"created": date.get("created", None)})
 
-    descriptions = crossref_description(bibmeta)
+    description, additional_descriptions = crossref_description(bibmeta)
     funding = (
         dig(bibmeta, "program.0")
         or dig(bibmeta, "program.0.assertion")
@@ -250,39 +245,39 @@ def read_crossref_xml(data: dict | None, **kwargs) -> Commonmeta:
         # required properties
         "id": _id,
         "type": _type,
-        "url": url,
-        "contributors": presence(contributors),
-        "titles": presence(titles),
-        "publisher": publisher,
-        "date": compact(date),
         # recommended and optional properties
-        "subjects": presence(None),
-        "language": language,
-        "alternate_identifiers": None,
-        "sizes": None,
-        "formats": None,
-        "version": None,
-        "license": presence(license_),
-        "descriptions": presence(descriptions),
-        "geo_locations": None,
+        "additional_descriptions": presence(additional_descriptions),
+        "additional_titles": presence(additional_titles),
+        "container": presence(container),
+        "contributors": presence(contributors),
+        "date_published": presence(date_published),
+        "date_updated": presence(date_updated),
+        "dates": presence(dates),
+        "description": description,
+        "files": presence(files),
         "funding_references": presence(funding_references),
+        "geo_locations": None,
+        "language": language,
+        "license": presence(license_),
+        "provider": provider,
+        "publisher": publisher,
         "references": references,
         "relations": None,
-        # other properties
-        "date_created": None,
-        "date_registered": None,
-        "date_published": None,
-        "date_updated": None,
-        "content_url": presence(files),
-        "container": presence(container),
-        "provider": provider,
         "state": state,
-        "schema_version": None,
+        "subjects": presence(None),
+        "title": title,
+        "url": url,
+        "version": None,
     } | read_options
 
 
-def crossref_titles(bibmeta: dict) -> list | None:
-    """Title information from Crossref metadata."""
+def crossref_titles(bibmeta: dict) -> tuple[str | None, list]:
+    """Title information from Crossref metadata.
+
+    Returns a tuple of (title, additional_titles) per the commonmeta v1.0
+    schema, where title is a single scalar string and additional_titles
+    holds subtitles/translated titles.
+    """
     title = first(parse_attributes(dig(bibmeta, "titles.0.title")))
     subtitle = first(parse_attributes(dig(bibmeta, "titles.0.subtitle")))
     original_language_title = first(
@@ -294,30 +289,40 @@ def crossref_titles(bibmeta: dict) -> list | None:
         )
     )
     if title is None and original_language_title is None:
-        return None
-    if title and original_language_title is None and subtitle is None:
-        return [{"title": sanitize(title)}]
+        return None, []
+    if original_language_title and title is None:
+        # no separate translated title: original_language_title is the
+        # only title present, so it's the primary title, not a translation.
+        return sanitize(original_language_title), []
     if original_language_title:
-        return [
+        return sanitize(title), [
             compact(
                 {
                     "title": sanitize(original_language_title),
-                    "lang": language,
+                    "type": "TranslatedTitle",
+                    "language": language,
                 }
             )
         ]
-    if subtitle:
-        return [
-            compact({"title": sanitize(title)}),
+    additional_titles = (
+        [
             {
                 "title": sanitize(subtitle),
-                "titleType": "Subtitle",
-            },
+                "type": "Subtitle",
+            }
         ]
+        if subtitle
+        else []
+    )
+    return sanitize(title), additional_titles
 
 
-def crossref_description(bibmeta: dict) -> list:
-    """Description information from Crossref metadata."""
+def crossref_description(bibmeta: dict) -> tuple[str | None, list]:
+    """Description information from Crossref metadata.
+
+    Returns a tuple of (description, additional_descriptions) per the
+    commonmeta v1.0 schema, where description is a single scalar string.
+    """
 
     def format_abstract(element: dict) -> dict:
         """Format abstract"""
@@ -337,7 +342,17 @@ def crossref_description(bibmeta: dict) -> list:
             }
         )
 
-    return [format_abstract(i) for i in wrap(bibmeta.get("abstract", None))]
+    abstracts = [format_abstract(i) for i in wrap(bibmeta.get("abstract", None))]
+    if not abstracts:
+        return None, []
+    description = abstracts[0].get("description", None)
+    additional_descriptions = [
+        compact(
+            {"description": a.get("description", None), "type": a.get("type", None)}
+        )
+        for a in abstracts[1:]
+    ]
+    return description, additional_descriptions
 
 
 def crossref_people(bibmeta: dict) -> list:
@@ -465,16 +480,16 @@ def crossref_container(meta: dict, resource_type: str = "JournalArticle") -> dic
         {
             "type": CR_TO_CM_CONTAINER_TRANSLATIONS.get(container_type, None),
             "identifier": issn or isbn,
-            "identifierType": "ISSN" if issn else "ISBN" if isbn else None,
+            "identifier_type": "ISSN" if issn else "ISBN" if isbn else None,
             "title": container_title,
             "volume": volume,
             "issue": issue,
-            "firstPage": dig(
+            "first_page": dig(
                 meta, f"{container_type}.{container_type}_article.pages.first_page"
             )
             or dig(meta, f"{container_type}.content_item.pages.first_page")
             or dig(meta, "conference.conference_paper.pages.first_page"),
-            "lastPage": dig(
+            "last_page": dig(
                 meta, f"{container_type}.{container_type}_article.pages.last_page"
             )
             or dig(meta, f"{container_type}.content_item.pages.last_page")

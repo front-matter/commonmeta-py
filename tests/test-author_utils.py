@@ -22,11 +22,13 @@ def test_one_author():
         }
     ]
     assert {
-        "id": "https://orcid.org/0000-0003-0077-4738",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "familyName": "Jones",
-        "givenName": "Matt",
+        "person": {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "given_name": "Matt",
+            "family_name": "Jones",
+        },
+        "roles": ["Author"],
     } == get_one_author(authors[0])
     # JSON Feed author with url
     authors = [
@@ -36,19 +38,23 @@ def test_one_author():
         }
     ]
     assert {
-        "id": "https://orcid.org/0000-0003-0077-4738",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "familyName": "Jones",
-        "givenName": "Matt",
+        "person": {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "given_name": "Matt",
+            "family_name": "Jones",
+        },
+        "roles": ["Author"],
     } == get_one_author(authors[0])
     # has familyName
     assert {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "name": "Fenner, Martin",
@@ -67,15 +73,17 @@ def test_one_author():
     # has name in sort-order' do
     assert {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Benjamin",
-        "familyName": "Ollomo",
-        "affiliations": [
-            {
-                "id": "https://ror.org/01wyqb997",
-                "name": "Centre International de Recherches Médicales de Franceville",
-            }
-        ],
+        "person": {
+            "given_name": "Benjamin",
+            "family_name": "Ollomo",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/01wyqb997",
+                    "name": "Centre International de Recherches Médicales de Franceville",
+                }
+            ],
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "name": "Ollomo, Benjamin",
@@ -92,21 +100,23 @@ def test_one_author():
         }
     )
     # has name in Thai
-    assert (
-        {
-            "givenName": "กัญจนา",
-            "familyName": "แซ่เตียว",
-            "contributorRoles": ["Author"],
-            "type": "Person",
-        }
-    ) == get_one_author(
+    assert {
+        "type": "Person",
+        "person": {
+            "given_name": "กัญจนา",
+            "family_name": "แซ่เตียว",
+        },
+        "roles": ["Author"],
+    } == get_one_author(
         {"name": "กัญจนา แซ่เตียว", "affiliations": [], "nameIdentifiers": []}
     )
     # multiple author names in one field
     assert {
-        "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
         "type": "Organization",
-        "contributorRoles": ["Author"],
+        "organization": {
+            "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "name": "Enos, Ryan (Harvard University); Fowler, Anthony (University of Chicago); Vavreck, Lynn (UCLA)",
@@ -116,9 +126,9 @@ def test_one_author():
     )
     # 'hyper-authorship'
     assert {
-        "contributorRoles": ["Author"],
         "type": "Organization",
-        "name": "ALICE Collaboration",
+        "organization": {"name": "ALICE Collaboration"},
+        "roles": ["Author"],
     } == get_one_author(
         {
             "name": "ALICE Collaboration",
@@ -138,21 +148,23 @@ def test_one_author():
         },
     }
     assert {
-        "name": "University of California, Santa Barbara",
         "type": "Organization",
-        "contributorRoles": ["Author"],
+        "organization": {"name": "University of California, Santa Barbara"},
+        "roles": ["Author"],
     } == get_one_author(author)
     # name with affiliation crossref
     assert {
-        "affiliations": [
-            {
-                "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-            }
-        ],
-        "familyName": "Sankar",
-        "givenName": "Martial",
         "type": "Person",
-        "contributorRoles": ["Author"],
+        "person": {
+            "given_name": "Martial",
+            "family_name": "Sankar",
+            "affiliations": [
+                {
+                    "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+                }
+            ],
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "given": "Martial",
@@ -169,13 +181,14 @@ def test_one_author():
     # multiple name_identifier
     assert {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Thomas",
-        "familyName": "Dubos",
-        "affiliations": [
-            {"name": "École Polytechnique\nLaboratoire de Météorologie Dynamique"}
-        ],
-        "id": "https://isni.org/isni/0000000357526882",
+        "person": {
+            "given_name": "Thomas",
+            "family_name": "Dubos",
+            "affiliations": [
+                {"name": "École Polytechnique\nLaboratoire de Météorologie Dynamique"}
+            ],
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "name": "Dubos, Thomas",
@@ -191,19 +204,17 @@ def test_one_author():
                     "nameIdentifier": "http://isni.org/isni/0000 0003 5752 6882",
                     "nameIdentifierScheme": "ISNI",
                 },
-                {
-                    "nameIdentifier": "https://orcid.org/0000-0003-4514-4211",
-                    "nameIdentifierScheme": "ORCID",
-                },
             ],
         }
     )
     # only familyName and givenName
     assert {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Emma",
-        "familyName": "Johansson",
+        "person": {
+            "given_name": "Emma",
+            "family_name": "Johansson",
+        },
+        "roles": ["Author"],
     } == get_one_author(
         {
             "givenName": "Emma",
@@ -232,19 +243,26 @@ def test_authors_as_string():
     authors = [
         {
             "type": "Person",
-            "contributorRoles": ["Author"],
-            "id": "http://orcid.org/0000-0003-0077-4738",
-            "givenName": "Matt",
-            "familyName": "Jones",
+            "roles": ["Author"],
+            "person": {
+                "id": "http://orcid.org/0000-0003-0077-4738",
+                "given_name": "Matt",
+                "family_name": "Jones",
+            },
         },
         {
             "type": "Person",
-            "contributorRoles": ["Author"],
-            "id": "http://orcid.org/0000-0002-2192-403X",
-            "givenName": "Peter",
-            "familyName": "Slaughter",
+            "roles": ["Author"],
+            "person": {
+                "id": "http://orcid.org/0000-0002-2192-403X",
+                "given_name": "Peter",
+                "family_name": "Slaughter",
+            },
         },
-        {"type": "Organization", "name": "University of California, Santa Barbara"},
+        {
+            "type": "Organization",
+            "organization": {"name": "University of California, Santa Barbara"},
+        },
     ]
     assert "Jones, Matt and Slaughter, Peter" == authors_as_string(wrap(authors[0:2]))
     # single author
@@ -273,22 +291,23 @@ def test_get_authors():
     ]
     assert [
         {
-            "id": "https://orcid.org/0000-0003-0077-4738",
             "type": "Person",
-            "contributorRoles": ["Author"],
-            "givenName": "Matt",
-            "familyName": "Jones",
+            "person": {
+                "id": "https://orcid.org/0000-0003-0077-4738",
+                "given_name": "Matt",
+                "family_name": "Jones",
+            },
+            "roles": ["Author"],
         },
         {
             "type": "Person",
-            "contributorRoles": ["Author"],
-            "givenName": "Peter",
-            "familyName": "Slaughter",
+            "person": {"given_name": "Peter", "family_name": "Slaughter"},
+            "roles": ["Author"],
         },
         {
-            "name": "University of California, Santa Barbara",
             "type": "Organization",
-            "contributorRoles": ["Author"],
+            "organization": {"name": "University of California, Santa Barbara"},
+            "roles": ["Author"],
         },
     ] == get_authors(authors)
     authors = [
@@ -305,17 +324,19 @@ def test_get_authors():
     ]
     assert [
         {
-            "affiliations": [
-                {
-                    "name": "University of California, Santa Barbara",
-                    "id": "https://ror.org/02t274463",
-                }
-            ],
-            "contributorRoles": ["Author"],
-            "familyName": "Jones",
-            "givenName": "Matt",
-            "id": "https://orcid.org/0000-0003-0077-4738",
             "type": "Person",
+            "person": {
+                "id": "https://orcid.org/0000-0003-0077-4738",
+                "given_name": "Matt",
+                "family_name": "Jones",
+                "affiliations": [
+                    {
+                        "name": "University of California, Santa Barbara",
+                        "id": "https://ror.org/02t274463",
+                    }
+                ],
+            },
+            "roles": ["Author"],
         }
     ] == get_authors(authors)
 

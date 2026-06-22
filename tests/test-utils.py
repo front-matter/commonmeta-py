@@ -66,14 +66,17 @@ def test_dict_to_spdx_id():
     "dict_to_spdx id"
     assert {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     } == dict_to_spdx({"id": "CC-BY-4.0"})
     assert {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     } == dict_to_spdx({"id": "cc-by-4.0"})
     assert {
         "id": "Apache-2.0",
+        "title": "Apache License 2.0",
         "url": "http://www.apache.org/licenses/LICENSE-2.0",
     } == dict_to_spdx({"id": "Apache-2.0"})
 
@@ -82,6 +85,7 @@ def test_dict_to_spdx_url():
     "dict_to_spdx url"
     assert {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     } == dict_to_spdx({"url": "https://creativecommons.org/licenses/by/4.0/legalcode"})
 
@@ -689,11 +693,11 @@ def test_from_inveniordm():
 def test_pages_as_string():
     """pages as string"""
     container = {
-        "firstPage": "2832",
+        "first_page": "2832",
         "identifier": "0012-9658",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "issue": "11",
-        "lastPage": "2841",
+        "last_page": "2841",
         "title": "Ecology",
         "type": "Journal",
         "volume": "87",
@@ -702,11 +706,11 @@ def test_pages_as_string():
     container = {
         "type": "Journal",
         "title": "Publications",
-        "firstPage": "15",
+        "first_page": "15",
         "issue": "2",
         "volume": "6",
         "identifier": "2304-6775",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
     }
     assert "15" == pages_as_string(container)
     assert None is pages_as_string(None)
@@ -726,12 +730,20 @@ def test_to_csl():
     """to csl"""
     authors = [
         {
-            "ORCID": "http://orcid.org/0000-0003-0077-4738",
-            "givenName": "Matt",
-            "familyName": "Jones",
+            "type": "Person",
+            "person": {
+                "id": "http://orcid.org/0000-0003-0077-4738",
+                "given_name": "Matt",
+                "family_name": "Jones",
+            },
         }
     ]
-    organization_authors = [{"name": "University of California, Berkeley"}]
+    organization_authors = [
+        {
+            "type": "Organization",
+            "organization": {"name": "University of California, Berkeley"},
+        }
+    ]
     assert [{"family": "Jones", "given": "Matt"}] == to_csl(authors)
     assert [{"literal": "University of California, Berkeley"}] == to_csl(
         organization_authors
@@ -742,12 +754,20 @@ def test_to_ris():
     """to ris"""
     authors = [
         {
-            "ORCID": "http://orcid.org/0000-0003-0077-4738",
-            "givenName": "Matt",
-            "familyName": "Jones",
+            "type": "Person",
+            "person": {
+                "id": "http://orcid.org/0000-0003-0077-4738",
+                "given_name": "Matt",
+                "family_name": "Jones",
+            },
         }
     ]
-    organization_authors = [{"name": "University of California, Berkeley"}]
+    organization_authors = [
+        {
+            "type": "Organization",
+            "organization": {"name": "University of California, Berkeley"},
+        }
+    ]
     assert ["Jones, Matt"] == to_ris(authors)
     assert ["University of California, Berkeley"] == to_ris(organization_authors)
     assert [] == to_ris(None)
@@ -799,8 +819,18 @@ def test_to_schema_org_container():
 
 def test_to_schema_org_creators():
     """to schema.org creators"""
-    authors = [{"givenName": "Matt", "familyName": "Jones", "type": "Person"}]
-    organization_authors = [{"name": "University of California, Berkeley"}]
+    authors = [
+        {
+            "type": "Person",
+            "person": {"given_name": "Matt", "family_name": "Jones"},
+        }
+    ]
+    organization_authors = [
+        {
+            "type": "Organization",
+            "organization": {"name": "University of California, Berkeley"},
+        }
+    ]
     assert [
         {
             "givenName": "Matt",

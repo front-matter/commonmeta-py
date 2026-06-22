@@ -14,32 +14,26 @@ def test_default():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.titles[0] == {
-        "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-    }
+    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martial",
-        "familyName": "Sankar",
-        "affiliation": [
-            {
-                "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-            }
-        ],
+        "person": {
+            "given_name": "Martial",
+            "family_name": "Sankar"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2014-02-11",
-        "updated": "2022-03-26",
-    }
+    assert subject.date_published == "2014-02-11"
+    assert subject.date_updated == "2022-03-26"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 27
@@ -54,41 +48,44 @@ def test_default():
         "containerTitle": "Nature",
     }
     assert subject.funding_references == [
-        {"funderName": "SystemsX"},
-        {"funderName": "EMBO longterm post-doctoral fellowships"},
-        {"funderName": "Marie Heim-Voegtlin"},
         {
-            "funderName": "University of Lausanne",
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
-        },
-        {"funderName": "SystemsX"},
-        {
-            "funderIdentifier": "https://doi.org/10.13039/501100003043",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "EMBO",
+            "funder_name": "SystemsX"
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100001711",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "Swiss National Science Foundation",
+            "funder_name": "EMBO longterm post-doctoral fellowships"
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "University of Lausanne",
+            "funder_name": "Marie Heim-Voegtlin"
         },
+        {
+            "funder_id": "https://ror.org/019whta54",
+            "funder_name": "University of Lausanne"
+        },
+        {
+            "funder_name": "SystemsX"
+        },
+        {
+            "funder_id": "https://ror.org/04wfr2810",
+            "funder_name": "EMBO"
+        },
+        {
+            "funder_id": "https://ror.org/00yjd3n13",
+            "funder_name": "Swiss National Science Foundation"
+        },
+        {
+            "funder_id": "https://ror.org/019whta54",
+            "funder_name": "University of Lausanne"
+        }
     ]
     assert subject.container == {
         "identifier": "2050-084X",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Among various advantages, their small size makes")
     )
     assert subject.subjects == []
@@ -98,7 +95,7 @@ def test_default():
     assert len(subject.files) == 2
     assert subject.files[0] == {
         "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
-        "mimeType": "application/pdf",
+        "mime_type": "application/pdf",
     }
 
 
@@ -174,11 +171,10 @@ def test_string():
     "type": "Journal",
     "title": "eLife",
     "identifier": "2050-084X",
-    "identifierType": "ISSN",
+    "identifier_type": "ISSN",
     "volume": "3"
   },
   "publisher": {
-    "id": "https://api.crossref.org/members/4374",
     "name": "eLife Sciences Publications, Ltd"
   },
   "references": [
@@ -503,11 +499,11 @@ def test_string():
   "files": [
     {
       "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
-      "mimeType": "application/pdf"
+      "mime_type": "application/pdf"
     },
     {
       "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.xml",
-      "mimeType": "application/xml"
+      "mime_type": "application/xml"
     }
   ],
   "subjects": [],
@@ -521,32 +517,26 @@ def test_string():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.titles[0] == {
-        "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-    }
+    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martial",
-        "familyName": "Sankar",
-        "affiliation": [
-            {
-                "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-            }
-        ],
+        "person": {
+            "given_name": "Martial",
+            "family_name": "Sankar"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2014-02-11",
-        "updated": "2022-03-26",
-    }
+    assert subject.date_published == "2014-02-11"
+    assert subject.date_updated == "2022-03-26"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 27
@@ -561,41 +551,44 @@ def test_string():
         "containerTitle": "Nature",
     }
     assert subject.funding_references == [
-        {"funderName": "SystemsX"},
-        {"funderName": "EMBO longterm post-doctoral fellowships"},
-        {"funderName": "Marie Heim-Voegtlin"},
         {
-            "funderName": "University of Lausanne",
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
-        },
-        {"funderName": "SystemsX"},
-        {
-            "funderIdentifier": "https://doi.org/10.13039/501100003043",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "EMBO",
+            "funder_name": "SystemsX"
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100001711",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "Swiss National Science Foundation",
+            "funder_name": "EMBO longterm post-doctoral fellowships"
         },
         {
-            "funderIdentifier": "https://doi.org/10.13039/501100006390",
-            "funderIdentifierType": "Crossref Funder ID",
-            "funderName": "University of Lausanne",
+            "funder_name": "Marie Heim-Voegtlin"
         },
+        {
+            "funder_id": "https://ror.org/019whta54",
+            "funder_name": "University of Lausanne"
+        },
+        {
+            "funder_name": "SystemsX"
+        },
+        {
+            "funder_id": "https://ror.org/04wfr2810",
+            "funder_name": "EMBO"
+        },
+        {
+            "funder_id": "https://ror.org/00yjd3n13",
+            "funder_name": "Swiss National Science Foundation"
+        },
+        {
+            "funder_id": "https://ror.org/019whta54",
+            "funder_name": "University of Lausanne"
+        }
     ]
     assert subject.container == {
         "identifier": "2050-084X",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Among various advantages, their small size makes")
     )
     assert subject.subjects == []
@@ -605,7 +598,7 @@ def test_string():
     assert len(subject.files) == 2
     assert subject.files[0] == {
         "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
-        "mimeType": "application/pdf",
+        "mime_type": "application/pdf",
     }
 
 

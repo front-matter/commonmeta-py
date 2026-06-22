@@ -10,6 +10,7 @@ from requests.exceptions import ReadTimeout
 from ..author_utils import get_authors
 from ..base_utils import compact, dig, presence, unique, wrap
 from ..constants import (
+    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     DC_TO_CM_CONTAINER_TRANSLATIONS,
     DC_TO_CM_TRANSLATIONS,
     Commonmeta,
@@ -64,7 +65,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         additional_type = None
     else:
         additional_type = resource_type
-    titles = get_titles(wrap(meta.get("titles", None)))
+    title, additional_titles = get_titles(wrap(meta.get("titles", None)))
 
     contributors = get_authors(wrap(meta.get("creators", None)))
     contrib = get_authors(wrap(meta.get("contributors", None)))
@@ -76,7 +77,9 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         publisher = {"name": publisher}
     elif isinstance(publisher, dict):
         publisher = get_publisher(publisher)
-    date = get_dates(wrap(meta.get("dates", None)), meta.get("publicationYear", None))
+    date_published, date_updated, dates = get_dates(
+        wrap(meta.get("dates", None)), meta.get("publicationYear", None)
+    )
     container = get_container(meta.get("container", None))
     license_ = meta.get("rightsList", [])
     if len(license_) > 0:
@@ -90,7 +93,7 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         compact(
             {
                 "identifier": normalize_doi(_id),
-                "identifierType": "DOI",
+                "identifier_type": "DOI",
             }
         )
     )
@@ -99,8 +102,13 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
         wrap(meta.get("relatedItems", None) or meta.get("relatedIdentifiers", None))
     )
     relations = get_relations(wrap(meta.get("relatedIdentifiers", None)))
-    descriptions = get_descriptions(wrap(meta.get("descriptions", None)))
+    description, additional_descriptions = get_descriptions(
+        wrap(meta.get("descriptions", None))
+    )
     geo_locations = get_geolocation(wrap(meta.get("geoLocations", None)))
+    funding_references = get_funding_references(
+        wrap(meta.get("fundingReferences", None))
+    )
 
     def format_subject(subject) -> dict:
         """format_subject"""
@@ -121,27 +129,30 @@ def read_datacite(data: dict, **kwargs) -> Commonmeta:
             "id": _id,
             "type": _type,
             # recommended and optional properties
-            "additionalType": additional_type,
+            "additional_descriptions": presence(additional_descriptions),
+            "additional_titles": presence(additional_titles),
+            "additional_type": additional_type,
             "container": presence(container),
             "contributors": presence(contributors),
-            "date": compact(date),
-            "descriptions": presence(descriptions),
+            "date_published": presence(date_published),
+            "date_updated": presence(date_updated),
+            "dates": dates,
+            "description": description,
             "files": presence(files),
-            "fundingReferences": presence(meta.get("fundingReferences", None)),
-            "geoLocations": presence(geo_locations),
+            "funding_references": presence(funding_references),
+            "geo_locations": presence(geo_locations),
             "identifiers": presence(identifiers),
             "language": meta.get("language", None),
             "license": presence(license_),
+            "provider": "DataCite",
             "publisher": publisher,
             "references": presence(references),
             "relations": presence(relations),
+            "state": state,
             "subjects": presence(subjects),
-            "titles": presence(titles),
+            "title": title,
             "url": normalize_url(meta.get("url", None)),
             "version": meta.get("version", None),
-            # other properties
-            "provider": "DataCite",
-            "state": state,
         },
         **read_options,
     }
@@ -178,7 +189,7 @@ def get_identifiers(identifiers: list) -> list:
         return compact(
             {
                 "identifier": identifier.get("alternateIdentifier", None),
-                "identifierType": type_,
+                "identifier_type": type_,
             }
         )
 
@@ -259,18 +270,27 @@ def get_file(file: str) -> dict:
     return compact({"url": file})
 
 
-def get_dates(dates: list, publication_year) -> dict:
-    """convert date list to dict, rename and/or remove some keys"""
+def get_dates(
+    dates: list, publication_year
+) -> tuple[str | None, str | None, dict | None]:
+    """convert date list to (date_published, date_updated, dates) per v1.0"""
     date: dict = defaultdict(list)
     for sub in dates:
         date[sub.get("dateType", None)] = sub.get("date", None)
     if date.get("Issued", None) is None and publication_year is not None:
         date["Issued"] = str(publication_year)
-    return normalize_date_dict(date)
+    normalized = normalize_date_dict(date)
+    date_published = normalized.pop("published", None)
+    date_updated = normalized.pop("updated", None)
+    return date_published, date_updated, presence(normalized)
 
 
-def get_descriptions(descriptions: list) -> list:
-    """get_descriptions"""
+def get_descriptions(descriptions: list) -> tuple[str | None, list]:
+    """get_descriptions
+
+    Returns a tuple of (description, additional_descriptions) per the
+    commonmeta v1.0 schema, where description is a single scalar string.
+    """
 
     def map_description(description) -> dict:
         """map_description"""
@@ -287,15 +307,23 @@ def get_descriptions(descriptions: list) -> list:
             }
         )
 
-    return [
+    items = [
         map_description(i)
         for i in descriptions
         if i.get("description", None) is not None
     ]
+    if not items:
+        return None, []
+    description = items[0].get("description", None)
+    return description, items[1:]
 
 
-def get_titles(titles: list) -> list:
-    """get_titles"""
+def get_titles(titles: list) -> tuple[str | None, list]:
+    """get_titles
+
+    Returns a tuple of (title, additional_titles) per the commonmeta v1.0
+    schema, where title is a single scalar string.
+    """
 
     def map_title(title) -> dict:
         """map_title"""
@@ -310,7 +338,46 @@ def get_titles(titles: list) -> list:
             }
         )
 
-    return [map_title(i) for i in titles if i.get("title", None) is not None]
+    items = [map_title(i) for i in titles if i.get("title", None) is not None]
+    if not items:
+        return None, []
+    title = items[0].get("title", None)
+    return title, items[1:]
+
+
+def get_funding_references(funding_references: list) -> list:
+    """get_funding_references
+
+    DataCite funding references use funderIdentifier/funderIdentifierType,
+    which may be ROR, Crossref Funder ID, GRID, ISNI, Ringgold, or Other.
+    Commonmeta's funder_id is ROR-only, so Crossref Funder ID is translated to ROR
+    where possible.
+    """
+
+    def map_funding_reference(funding: dict) -> dict:
+        funder_identifier = funding.get("funderIdentifier", None)
+        funder_identifier_type = funding.get("funderIdentifierType", None)
+        funder_id = None
+        if funder_identifier_type == "ROR":
+            funder_id = funder_identifier
+        elif funder_identifier_type == "Crossref Funder ID":
+            funder_id = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
+                funder_identifier, None
+            )
+        # GRID/ISNI/Ringgold/Other/None have no ROR equivalent: funder_id
+        # stays None rather than leaking a non-ROR identifier.
+
+        return compact(
+            {
+                "funder_id": funder_id,
+                "funder_name": funding.get("funderName", None),
+                "award_id": funding.get("awardUri", None),
+                "award_title": funding.get("awardTitle", None),
+                "award_number": funding.get("awardNumber", None),
+            }
+        )
+
+    return [map_funding_reference(i) for i in funding_references]
 
 
 def get_publisher(publisher: dict) -> dict:
@@ -321,50 +388,53 @@ def get_publisher(publisher: dict) -> dict:
 
 
 def get_geolocation(geolocations: list) -> list:
-    """get_geolocation"""
+    """get_geolocation
 
-    def geo_location_point(point: dict) -> dict:
-        """geo_location_point, convert lat and long to int"""
-        return {
-            "pointLatitude": float(point.get("pointLatitude"))
-            if point.get("pointLatitude", None)
-            else None,
-            "pointLongitude": float(point.get("pointLongitude"))
-            if point.get("pointLongitude", None)
-            else None,
-        }
+    Returns flat v1.0-shaped geo_locations (geo_location_place,
+    geo_location_point_longitude/_latitude,
+    geo_location_box_*_longitude/_latitude, geo_location_polygon as WKT)
+    instead of the nested geoLocationPoint/Box/Polygon shape.
+    """
 
-    def geo_location_box(box: dict) -> dict:
-        """geo_location_box, convert lat and long to int"""
-        return {
-            "eastBoundLongitude": float(box.get("eastBoundLongitude"))
-            if box.get("eastBoundLongitude", None)
-            else None,
-            "northBoundLatitude": float(box.get("northBoundLatitude"))
-            if box.get("northBoundLatitude", None)
-            else None,
-            "southBoundLatitude": float(box.get("southBoundLatitude"))
-            if box.get("southBoundLatitude", None)
-            else None,
-            "westBoundLongitude": float(box.get("westBoundLongitude"))
-            if box.get("westBoundLongitude", None)
-            else None,
-        }
+    def point_value(point: dict, key: str) -> float | None:
+        value = point.get(key, None)
+        return float(value) if value else None
 
-    return [
-        compact(
+    def box_value(box: dict, key: str) -> float | None:
+        value = box.get(key, None)
+        return float(value) if value else None
+
+    def polygon_to_wkt(polygon) -> str | None:
+        points = wrap(polygon)
+        coords = [
+            f"{p.get('pointLongitude')} {p.get('pointLatitude')}"
+            for p in points
+            if p.get("pointLongitude", None) is not None
+            and p.get("pointLatitude", None) is not None
+        ]
+        if not coords:
+            return None
+        return f"POLYGON(({', '.join(coords)}))"
+
+    def map_geolocation(location: dict) -> dict:
+        point = location.get("geoLocationPoint", None) or {}
+        box = location.get("geoLocationBox", None) or {}
+        return compact(
             {
-                "geoLocationPoint": geo_location_point(location.get("geoLocationPoint"))
-                if location.get("geoLocationPoint", None)
-                else None,
-                "geoLocationBox": geo_location_box(location.get("geoLocationBox"))
-                if location.get("geoLocationBox", None)
-                else None,
-                "geoLocationPlace": location.get("geoLocationPlace", None),
+                "geo_location_place": location.get("geoLocationPlace", None),
+                "geo_location_point_longitude": point_value(point, "pointLongitude"),
+                "geo_location_point_latitude": point_value(point, "pointLatitude"),
+                "geo_location_box_west_longitude": box_value(box, "westBoundLongitude"),
+                "geo_location_box_east_longitude": box_value(box, "eastBoundLongitude"),
+                "geo_location_box_south_latitude": box_value(box, "southBoundLatitude"),
+                "geo_location_box_north_latitude": box_value(box, "northBoundLatitude"),
+                "geo_location_polygon": polygon_to_wkt(
+                    location.get("geoLocationPolygon", None)
+                ),
             }
         )
-        for location in geolocations
-    ]
+
+    return [map_geolocation(location) for location in geolocations]
 
 
 def get_container(container: dict | None) -> dict | None:

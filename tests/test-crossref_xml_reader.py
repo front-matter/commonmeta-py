@@ -21,28 +21,30 @@ def test_doi_with_data_citation():
     assert subject.id == "https://doi.org/10.7554/elife.01567"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://elifesciences.org/articles/01567"
-    assert subject.titles[0] == {
-        "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-    }
+    assert subject.title == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
     assert len(subject.contributors) == 5
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martial",
-        "familyName": "Sankar",
-        "affiliations": [
-            {
-                "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-            }
-        ],
+        "person": {
+            "given_name": "Martial",
+            "family_name": "Sankar",
+            "affiliations": [
+                {
+                    "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
+        "title": "Creative Commons Attribution 3.0 Unported",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date["published"] == "2014-02-11"
+    assert subject.date_published == "2014-02-11"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 27
@@ -69,14 +71,13 @@ def test_doi_with_data_citation():
     # ]
     assert subject.container == {
         "identifier": "2050-084X",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "eLife",
         "type": "Journal",
         "volume": "3",
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Among various advantages, their small size makes")
     )
     assert subject.subjects is None
@@ -93,33 +94,37 @@ def test_journal_article():
     assert subject.id == "https://doi.org/10.1371/journal.pone.0000030"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pone.0000030"
-    assert subject.titles[0] == {
-        "title": "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
-    }
+    assert subject.title == "Triose Phosphate Isomerase Deficiency Is Caused by Altered Dimerization–Not Catalytic Inactivity–of the Mutant Enzymes"
     assert len(subject.contributors) == 6
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Markus",
-        "familyName": "Ralser",
+        "person": {
+            "given_name": "Markus",
+            "family_name": "Ralser"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.contributors[5] == {
-        "familyName": "Janbon",
-        "givenName": "Guilhem",
-        "contributorRoles": ["Editor"],
         "type": "Person",
+        "person": {
+            "given_name": "Guilhem",
+            "family_name": "Janbon"
+        },
+        "roles": [
+            "Editor"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2006-12-20",
-        "published": "2006-12-20",
-        "updated": "2021-08-06",
-    }
+    assert (subject.date_published == '2006-12-20'
+        and subject.date_updated == '2021-08-06'
+        and subject.dates == {'created': '2006-12-20'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
         "name": "Public Library of Science (PLoS)",
     }
     assert len(subject.references) == 73
@@ -136,16 +141,16 @@ def test_journal_article():
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1932-6203",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "PLoS ONE",
         "type": "Journal",
         "issue": "1",
         "volume": "1",
-        "firstPage": "e30",
+        "first_page": "e30",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -161,27 +166,27 @@ def test_journal_article_with_funding():
         subject.url
         == "https://www.frontiersin.org/article/10.3389/fpls.2019.00816/full"
     )
-    assert subject.titles[0] == {
-        "title": "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"
-    }
+    assert subject.title == "Transcriptional Modulation of Polyamine Metabolism in Fruit Species Under Abiotic and Biotic Stress"
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Ana Margarida",
-        "familyName": "Fortes",
+        "person": {
+            "given_name": "Ana Margarida",
+            "family_name": "Fortes"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2019-07-02",
-        "published": "2019-07-02",
-        "updated": "2019-09-22",
-    }
+    assert (subject.date_published == '2019-07-02'
+        and subject.date_updated == '2019-09-22'
+        and subject.dates == {'created': '2019-07-02'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1965",
         "name": "Frontiers Media SA",
     }
     assert len(subject.references) == 70
@@ -204,14 +209,14 @@ def test_journal_article_with_funding():
     # }
     assert subject.container == {
         "identifier": "1664-462X",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Frontiers in Plant Science",
         "type": "Journal",
         "volume": "10",
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -227,16 +232,13 @@ def test_journal_article_original_language():
         subject.url
         == "https://www.jstage.jst.go.jp/article/jspfsm/56/1/56_1_60/_article/-char/ja/"
     )
-    assert subject.titles[0].get("title") == "自律神経・循環器応答"
+    assert subject.title == "自律神経・循環器応答"
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {
-        "created": "2012-08-30",
-        "published": "2007",
-        "updated": "2021-05-20",
-    }
+    assert (subject.date_published == '2007'
+        and subject.date_updated == '2021-05-20'
+        and subject.dates == {'created': '2012-08-30'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4426",
         "name": "The Japanese Society of Physical Fitness and Sports Medicine",
     }
     assert len(subject.references) == 7
@@ -253,17 +255,17 @@ def test_journal_article_original_language():
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1881-4751",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Japanese Journal of Physical Fitness and Sports Medicine",
         "type": "Journal",
         "issue": "1",
         "volume": "56",
-        "firstPage": "60",
-        "lastPage": "60",
+        "first_page": "60",
+        "last_page": "60",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -279,24 +281,23 @@ def test_journal_article_with_rdf_for_container():
         subject.url
         == "https://academic.oup.com/jcb/article-lookup/doi/10.1163/1937240X-00002096"
     )
-    assert subject.titles[0] == {
-        "title": "Global distribution of Fabaeformiscandona subacuta: an&nbsp;exotic&nbsp;invasive Ostracoda on the Iberian Peninsula?"
-    }
+    assert subject.title == "Global distribution of Fabaeformiscandona subacuta: an exotic invasive Ostracoda on the Iberian Peninsula?"
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {
-        "givenName": "Francesc",
-        "familyName": "Mesquita-Joanes",
         "type": "Person",
-        "contributorRoles": ["Author"],
+        "person": {
+            "given_name": "Francesc",
+            "family_name": "Mesquita-Joanes"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2012-11-20",
-        "published": "2012-01-01",
-        "updated": "2024-05-01",
-    }
+    assert (subject.date_published == '2012-01-01'
+        and subject.date_updated == '2024-05-01'
+        and subject.dates == {'created': '2012-11-20'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/286",
         "name": "Oxford University Press (OUP)",
     }
     assert len(subject.references) == 111
@@ -313,17 +314,17 @@ def test_journal_article_with_rdf_for_container():
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1937-240X",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Journal of Crustacean Biology",
         "type": "Journal",
         "issue": "6",
         "volume": "32",
-        "firstPage": "949",
-        "lastPage": "961",
+        "first_page": "949",
+        "last_page": "961",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -336,20 +337,21 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.id == "https://doi.org/10.1007/978-3-642-33191-6_49"
     assert subject.type == "BookChapter"
     assert subject.url == "http://link.springer.com/10.1007/978-3-642-33191-6_49"
-    assert subject.titles[0] == {
-        "title": "Human Body Orientation Estimation in Multiview Scenarios"
-    }
+    assert subject.title == "Human Body Orientation Estimation in Multiview Scenarios"
     assert len(subject.contributors) == 3
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Lili",
-        "familyName": "Chen",
+        "person": {
+            "given_name": "Lili",
+            "family_name": "Chen"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date["published"] == "2012"
+    assert subject.date_published == "2012"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 11
@@ -361,14 +363,14 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.container == {
         "type": "Book",
         "identifier": "1611-3349",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Lecture Notes in Computer Science",
-        "firstPage": "499",
-        "lastPage": "508",
+        "first_page": "499",
+        "last_page": "508",
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -381,24 +383,26 @@ def test_posted_content():
     assert subject.id == "https://doi.org/10.1101/097196"
     assert subject.type == "Article"
     assert subject.url == "http://biorxiv.org/lookup/doi/10.1101/097196"
-    assert subject.titles[0] == {
-        "title": "A Data Citation Roadmap for Scholarly Data Repositories"
-    }
+    assert subject.title == "A Data Citation Roadmap for Scholarly Data Repositories"
     assert len(subject.contributors) == 11
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-1419-2405",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date["published"] == "2016-12-29"
+    assert subject.date_published == "2016-12-29"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/54368",
         "name": "openRxiv",
     }
     assert len(subject.references) == 26
@@ -416,8 +420,7 @@ def test_posted_content():
     assert subject.subjects is None
     assert subject.language == "en"
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith(
             "This article presents a practical roadmap for scholarly data repositories"
         )
@@ -434,28 +437,28 @@ def test_peer_review():
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
     assert subject.url == "https://elifesciences.org/articles/55167v1/peer-reviews"
-    assert subject.titles[0] == {
-        "title": "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
-    }
+    assert subject.title == "Author response: SpikeForest, reproducible web-facing ground-truth validation of automated neural spike sorters"
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0002-5286-4375",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Jeremy",
-        "familyName": "Magland",
+        "person": {
+            "id": "https://orcid.org/0000-0002-5286-4375",
+            "given_name": "Jeremy",
+            "family_name": "Magland"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2020-05-19",
-        "published": "2020-04-29",
-        "updated": "2024-04-26",
-    }
+    assert (subject.date_published == '2020-04-29'
+        and subject.date_updated == '2024-04-26'
+        and subject.dates == {'created': '2020-05-19'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/4374",
         "name": "eLife Sciences Publications, Ltd",
     }
     assert len(subject.references) == 0
@@ -464,7 +467,7 @@ def test_peer_review():
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -477,25 +480,24 @@ def test_dissertation():
     assert subject.id == "https://doi.org/10.14264/uql.2020.791"
     assert subject.type == "Dissertation"
     assert subject.url == "http://espace.library.uq.edu.au/view/UQ:23a1e74"
-    assert subject.titles[0] == {
-        "title": "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
-    }
+    assert subject.title == "School truancy and financial independence during emerging adulthood: a longitudinal analysis of receipt of and reliance on cash transfers"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
-        "familyName": "Collingwood",
-        "givenName": "Patricia Maree",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "id": "https://orcid.org/0000-0003-3086-4443",
+        "person": {
+            "id": "https://orcid.org/0000-0003-3086-4443",
+            "given_name": "Patricia Maree",
+            "family_name": "Collingwood"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2020-06-08",
-        "published": "2020-06-08",
-        "updated": "2020-06-08",
-    }
+    assert (subject.date_published == '2020-06-08'
+        and subject.date_updated == '2020-06-08'
+        and subject.dates == {'created': '2020-06-08'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/5387",
         "name": "University of Queensland Library",
     }
     assert len(subject.references) == 0
@@ -503,7 +505,7 @@ def test_dissertation():
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -521,22 +523,23 @@ def test_doi_with_sici():
         subject.url
         == "http://doi.wiley.com/10.1890/0012-9658(2006)87[2832:TIOPMA]2.0.CO;2"
     )
-    assert (
-        subject.titles[0]
-        .get("title")
-        .startswith("THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING")
+    assert subject.title.startswith(
+        "THE IMPACT OF PARASITE MANIPULATION AND PREDATOR FORAGING"
     )
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "A.",
-        "familyName": "Fenton",
+        "person": {
+            "given_name": "A.",
+            "family_name": "Fenton"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {"url": "https://doi.wiley.com/10.1002/tdm_license_1.1"}
-    assert subject.date["published"] == "2006-11"
+    assert subject.date_published == "2006-11"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/311",
         "name": "Wiley",
     }
     assert len(subject.references) == 39
@@ -550,18 +553,18 @@ def test_doi_with_sici():
     }
     assert subject.funding_references is None
     assert subject.container == {
-        "firstPage": "2832",
+        "first_page": "2832",
         "identifier": "0012-9658",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "issue": "11",
-        "lastPage": "2841",
+        "last_page": "2841",
         "title": "Ecology",
         "type": "Journal",
         "volume": "87",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -574,36 +577,36 @@ def test_doi_with_orcid():
     assert subject.id == "https://doi.org/10.1155/2012/291294"
     assert subject.type == "JournalArticle"
     assert subject.url == "http://www.hindawi.com/journals/pm/2012/291294/"
-    assert subject.titles[0] == {
-        "title": "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
-    }
+    assert subject.title == "Delineating a Retesting Zone Using Receiver Operating Characteristic Analysis on Serial QuantiFERON Tuberculosis Test Results in US Healthcare Workers"
     assert len(subject.contributors) == 7
     assert subject.contributors[2] == {
-        "id": "https://orcid.org/0000-0003-2043-4925",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Beatriz",
-        "familyName": "Hernandez",
-        "affiliations": [
-            {
-                "name": "War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA"
-            },
-            {
-                "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
-            },
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0003-2043-4925",
+            "given_name": "Beatriz",
+            "family_name": "Hernandez",
+            "affiliations": [
+                {
+                    "name": "War Related Illness and Injury Study Center (WRIISC) and Mental Illness Research Education and Clinical Center (MIRECC), Department of Veterans Affairs, Palo Alto, CA 94304, USA"
+                },
+                {
+                    "name": "Department of Psychiatry and Behavioral Sciences, Stanford University School of Medicine, Stanford, CA 94304, USA"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
+        "title": "Creative Commons Attribution 3.0 Unported",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2012-12-30",
-        "published": "2012",
-        "updated": "2016-08-02",
-    }
+    assert (subject.date_published == '2012'
+        and subject.date_updated == '2016-08-02'
+        and subject.dates == {'created': '2012-12-30'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/311",
         "name": "Wiley",
     }
     assert len(subject.references) == 27
@@ -620,18 +623,17 @@ def test_doi_with_orcid():
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "2090-1844",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Pulmonary Medicine",
         "type": "Journal",
         "volume": "2012",
-        "firstPage": "1",
-        "lastPage": "7",
+        "first_page": "1",
+        "last_page": "7",
     }
     assert subject.subjects is None
     assert subject.language == "en"
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith(". To find a statistically significant separation")
     )
     assert subject.version is None
@@ -648,24 +650,23 @@ def test_date_in_future():
     assert (
         subject.url == "https://linkinghub.elsevier.com/retrieve/pii/S0014299915002332"
     )
-    assert subject.titles[0] == {
-        "title": "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
-    }
+    assert subject.title == "Paving the path to HIV neurotherapy: Predicting SIV CNS disease"
     assert len(subject.contributors) == 10
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Sarah E.",
-        "familyName": "Beck",
+        "person": {
+            "given_name": "Sarah E.",
+            "family_name": "Beck"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {"url": "https://www.elsevier.com/tdm/userlicense/1.0"}
-    assert subject.date == {
-        "created": "2015-04-06",
-        "published": "2015-07",
-        "updated": "2023-08-09",
-    }
+    assert (subject.date_published == '2015-07'
+        and subject.date_updated == '2023-08-09'
+        and subject.dates == {'created': '2015-04-06'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/78",
         "name": "Elsevier BV",
     }
     assert len(subject.references) == 98
@@ -698,16 +699,16 @@ def test_date_in_future():
     # }
     assert subject.container == {
         "identifier": "0014-2999",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "European Journal of Pharmacology",
         "type": "Journal",
         "volume": "759",
-        "firstPage": "303",
-        "lastPage": "312",
+        "first_page": "303",
+        "last_page": "312",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -720,24 +721,23 @@ def test_vor_with_url():
     assert subject.id == "https://doi.org/10.1038/hdy.2013.26"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://www.nature.com/articles/hdy201326"
-    assert subject.titles[0] == {
-        "title": "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"
-    }
+    assert subject.title == "Albinism in phylogenetically and geographically distinct populations of Astyanax cavefish arises through the same loss-of-function Oca2 allele"
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "J B",
-        "familyName": "Gross",
+        "person": {
+            "given_name": "J B",
+            "family_name": "Gross"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date == {
-        "created": "2013-04-10",
-        "published": "2013-04-10",
-        "updated": "2023-05-18",
-    }
+    assert (subject.date_published == '2013-04-10'
+        and subject.date_updated == '2023-05-18'
+        and subject.dates == {'created': '2013-04-10'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 41
@@ -766,17 +766,17 @@ def test_vor_with_url():
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "1365-2540",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
         "title": "Heredity",
         "type": "Journal",
         "volume": "111",
         "issue": "2",
-        "firstPage": "122",
-        "lastPage": "130",
+        "first_page": "122",
+        "last_page": "130",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -789,21 +789,22 @@ def test_dataset():
     assert subject.id == "https://doi.org/10.2210/pdb4hhb/pdb"
     assert subject.type == "Dataset"
     assert subject.url == "https://www.wwpdb.org/pdb?id=pdb_00004hhb"
-    assert subject.titles[0] == {
-        "title": "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
-    }
+    assert subject.title == "THE CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "G.",
-        "familyName": "Fermi",
+        "person": {
+            "given_name": "G.",
+            "family_name": "Fermi"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date["created"].startswith("2006-01")
-    assert subject.date["published"].startswith("2006-01")
-    assert subject.date["updated"].startswith("2025-05")
+    assert subject.dates["created"].startswith("2006-01")
+    assert subject.date_published.startswith("2006-01")
+    assert subject.date_updated.startswith("2025-05")
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/7763",
         "name": "Worldwide Protein Data Bank",
     }
     assert len(subject.references) == 0
@@ -814,7 +815,7 @@ def test_dataset():
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -827,16 +828,13 @@ def test_component():
     assert subject.id == "https://doi.org/10.1371/journal.pmed.0030277.g001"
     assert subject.type == "Component"
     assert subject.url == "https://dx.plos.org/10.1371/journal.pmed.0030277.g001"
-    assert subject.titles is None
+    assert subject.title is None
     assert subject.contributors is None
     assert subject.license is None
-    assert subject.date == {
-        "created": "2015-10-20",
-        "published": "2015-10-20",
-        "updated": "2018-10-19",
-    }
+    assert (subject.date_published == '2015-10-20'
+        and subject.date_updated == '2018-10-19'
+        and subject.dates == {'created': '2015-10-20'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/340",
         "name": "Public Library of Science (PLoS)",
     }
     assert len(subject.references) == 0
@@ -844,7 +842,7 @@ def test_component():
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -857,23 +855,28 @@ def test_dataset_usda():
     assert subject.id == "https://doi.org/10.2737/rds-2018-0001"
     assert subject.type == "Dataset"
     assert subject.url == "https://www.fs.usda.gov/rds/archive/Catalog/RDS-2018-0001"
-    assert subject.titles[0] == {"title": "Fledging times of grassland birds"}
+    assert subject.title == 'Fledging times of grassland birds'
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0003-2583-1778",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Christine A.",
-        "familyName": "Ribic",
-        "affiliations": [{"name": "U.S. Geological Survey"}],
+        "person": {
+            "id": "https://orcid.org/0000-0003-2583-1778",
+            "given_name": "Christine A.",
+            "family_name": "Ribic",
+            "affiliations": [
+                {
+                    "name": "U.S. Geological Survey"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2017-08-09",
-        "published": "2017-08-09",
-        "updated": "2021-07-01",
-    }
+    assert (subject.date_published == '2017-08-09'
+        and subject.date_updated == '2021-07-01'
+        and subject.dates == {'created': '2017-08-09'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1450",
         "name": "USDA Forest Service",
     }
     assert len(subject.references) == 6
@@ -895,7 +898,7 @@ def test_dataset_usda():
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -916,17 +919,20 @@ def test_book_chapter():
     assert subject.id == "https://doi.org/10.1007/978-3-662-46370-3_13"
     assert subject.type == "BookChapter"
     assert subject.url == "https://link.springer.com/10.1007/978-3-662-46370-3_13"
-    assert subject.titles[0] == {"title": "Clinical Symptoms and Physical Examinations"}
+    assert subject.title == 'Clinical Symptoms and Physical Examinations'
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Ronald L.",
-        "familyName": "Diercks",
+        "person": {
+            "given_name": "Ronald L.",
+            "family_name": "Diercks"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date["published"] == "2015"
+    assert subject.date_published == "2015"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 22
@@ -945,12 +951,12 @@ def test_book_chapter():
     assert subject.container == {
         "title": "Shoulder Stiffness",
         "type": "Book",
-        "firstPage": "155",
-        "lastPage": "158",
+        "first_page": "155",
+        "last_page": "158",
     }
     assert subject.subjects is None
     assert subject.language == "en"
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -963,19 +969,20 @@ def test_another_book_chapter():
     assert subject.id == "https://doi.org/10.1007/978-3-319-75889-3_1"
     assert subject.type == "BookChapter"
     assert subject.url == "http://link.springer.com/10.1007/978-3-319-75889-3_1"
-    assert subject.titles[0] == {
-        "title": "Climate Change and Increasing Risk of Extreme Heat"
-    }
+    assert subject.title == "Climate Change and Increasing Risk of Extreme Heat"
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Hunter M.",
-        "familyName": "Jones",
+        "person": {
+            "given_name": "Hunter M.",
+            "family_name": "Jones"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {"url": "https://www.springer.com/tdm"}
-    assert subject.date["published"] == "2018"
+    assert subject.date_published == "2018"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/297",
         "name": "Springer Science and Business Media LLC",
     }
     assert len(subject.references) == 44
@@ -984,13 +991,13 @@ def test_another_book_chapter():
         "type": "Book",
         "title": "SpringerBriefs in Medical Earth Sciences",
         "identifier": "2523-3629",
-        "identifierType": "ISSN",
-        "firstPage": "1",
-        "lastPage": "13",
+        "identifier_type": "ISSN",
+        "first_page": "1",
+        "last_page": "13",
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -1006,24 +1013,27 @@ def test_yet_another_book_chapter():
         subject.url
         == "http://services.igi-global.com/resolvedoi/resolve.aspx?doi=10.4018/978-1-4666-1891-6.ch004"
     )
-    assert subject.titles[0] == {
-        "title": "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
-    }
+    assert subject.title == "Unsupervised and Supervised Image Segmentation Using Graph Partitioning"
     assert subject.contributors[0] == {
-        "affiliations": [{"name": "Université de Lyon, France"}],
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Charles-Edmond",
-        "familyName": "Bichot",
+        "person": {
+            "given_name": "Charles-Edmond",
+            "family_name": "Bichot",
+            "affiliations": [
+                {
+                    "name": "Universit\u00e9 de Lyon, France"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license is None
-    assert subject.date == {
-        "created": "2012-08-08",
-        "published": "2012-08-08",
-        "updated": "2019-07-02",
-    }
+    assert (subject.date_published == '2012-08-08'
+        and subject.date_updated == '2019-07-02'
+        and subject.dates == {'created': '2012-08-08'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/2432",
         "name": "IGI Global Scientific Publishing",
     }
     assert len(subject.references) == 33
@@ -1031,14 +1041,13 @@ def test_yet_another_book_chapter():
     assert subject.container == {
         "type": "Book",
         "title": "Graph-Based Methods in Computer Vision",
-        "firstPage": "72",
-        "lastPage": "94",
+        "first_page": "72",
+        "last_page": "94",
     }
     assert subject.subjects is None
     assert subject.language is None
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Image segmentation is an important research area")
     )
     assert subject.version is None
@@ -1053,27 +1062,27 @@ def test_missing_contributor():
     assert subject.id == "https://doi.org/10.3390/publications6020015"
     assert subject.type == "JournalArticle"
     assert subject.url == "https://www.mdpi.com/2304-6775/6/2/15"
-    assert subject.titles[0] == {
-        "title": "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
-    }
+    assert subject.title == "Converting the Literature of a Scientific Field to Open Access through Global Collaboration: The Experience of SCOAP3 in Particle Physics"
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0002-3836-8885",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Alexander",
-        "familyName": "Kohls",
+        "person": {
+            "id": "https://orcid.org/0000-0002-3836-8885",
+            "given_name": "Alexander",
+            "family_name": "Kohls"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2018-04-10",
-        "published": "2018-04-09",
-        "updated": "2025-10-11",
-    }
+    assert (subject.date_published == '2018-04-09'
+        and subject.date_updated == '2025-10-11'
+        and subject.dates == {'created': '2018-04-10'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/1968",
         "name": "MDPI AG",
     }
     assert len(subject.references) == 23
@@ -1089,17 +1098,16 @@ def test_missing_contributor():
     assert subject.container == {
         "type": "Journal",
         "title": "Publications",
-        "firstPage": "15",
+        "first_page": "15",
         "issue": "2",
         "volume": "6",
         "identifier": "2304-6775",
-        "identifierType": "ISSN",
+        "identifier_type": "ISSN",
     }
     assert subject.subjects is None
     assert subject.language == "en"
     assert (
-        subject.descriptions[0]
-        .get("description")
+        subject.description
         .startswith("Gigantic particle accelerators")
     )
     assert subject.version is None
@@ -1117,17 +1125,20 @@ def test_book():
         subject.url
         == "https://www.cambridge.org/core/product/identifier/9781108348843/type/book"
     )
-    assert subject.titles[0] == {"title": "The Politics of the Past in Early China"}
+    assert subject.title == 'The Politics of the Past in Early China'
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Vincent S.",
-        "familyName": "Leung",
+        "person": {
+            "given_name": "Vincent S.",
+            "family_name": "Leung"
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {"url": "https://www.cambridge.org/core/terms"}
-    assert subject.date["published"] == "2019-07-01"
+    assert subject.date_published == "2019-07-01"
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/56",
         "name": "Cambridge University Press (CUP)",
     }
     assert len(subject.references) == 273
@@ -1144,7 +1155,7 @@ def test_book():
     assert subject.container is None
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"
 
@@ -1157,36 +1168,38 @@ def test_proceedings_article():
     assert subject.id == "https://doi.org/10.1145/3448016.3452841"
     assert subject.type == "ProceedingsArticle"
     assert subject.url == "https://dl.acm.org/doi/10.1145/3448016.3452841"
-    assert subject.titles == [
-        {"title": "Vector Quotient Filters"},
+    assert subject.title == "Vector Quotient Filters"
+    assert subject.additional_titles == [
         {
             "title": "Overcoming the Time/Space Trade-Off in Filter Design",
-            "titleType": "Subtitle",
+            "type": "Subtitle",
         },
     ]
     assert len(subject.contributors) == 6
     assert subject.contributors[0] == {
-        "affiliations": [
-            {
-                "name": "Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA"
-            }
-        ],
-        "givenName": "Prashant",
-        "familyName": "Pandey",
         "type": "Person",
-        "contributorRoles": ["Author"],
+        "person": {
+            "given_name": "Prashant",
+            "family_name": "Pandey",
+            "affiliations": [
+                {
+                    "name": "Lawrence Berkeley National Lab &amp; University of California, Berkeley, Berkeley, CA, USA"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2021-06-18",
-        "published": "2021-06-09",
-        "updated": "2025-06-17",
-    }
+    assert (subject.date_published == '2021-06-09'
+        and subject.date_updated == '2025-06-17'
+        and subject.dates == {'created': '2021-06-18'})
     assert subject.publisher == {
-        "id": "https://api.crossref.org/members/320",
         "name": "Association for Computing Machinery (ACM)",
     }
     assert len(subject.references) == 56
@@ -1204,15 +1217,15 @@ def test_proceedings_article():
     assert subject.container == {
         "type": "Proceedings",
         "identifier": "9781450383431",
-        "identifierType": "ISBN",
+        "identifier_type": "ISBN",
         "title": "Proceedings of the 2021 International Conference on Management of Data",
-        "firstPage": "1386",
-        "lastPage": "1399",
+        "first_page": "1386",
+        "last_page": "1399",
         "location": "Virtual Event China",
         "series": "SIGMOD/PODS '21",
     }
     assert subject.subjects is None
     assert subject.language is None
-    assert subject.descriptions is None
+    assert subject.description is None
     assert subject.version is None
     assert subject.provider == "Crossref"

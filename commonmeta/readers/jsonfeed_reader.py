@@ -17,6 +17,7 @@ from ..base_utils import (
     unique,
 )
 from ..constants import (
+    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     OPENALEX_SUBFIELD_MAPPINGS,
     OPENALEX_TOPIC_MAPPINGS,
     OPENALEX_TOPIC_SUBFIELD_MAPPINGS,
@@ -107,15 +108,15 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         contributors = None
 
     title = first(parse_attributes(meta.get("title", None)))
-    titles = [{"title": sanitize(title)}] if title else None
+    title = sanitize(title) if title else None
+    additional_titles: list = []
 
-    date: dict = {}
-    date["published"] = (
+    date_published = (
         get_date_from_unix_timestamp(meta.get("published_at", None))
         if meta.get("published_at", None)
         else None
     )
-    date["updated"] = (
+    date_updated = (
         get_date_from_unix_timestamp(meta.get("updated_at", None))
         if meta.get("updated_at", None)
         else None
@@ -130,18 +131,25 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         if meta.get("blog_slug", None)
         else None
     )
-    container = {
-        "type": "Blog",
-        "title": dig(meta, "blog.title", None),
-        "identifier": issn or blog_url,
-        "identifierType": "ISSN" if issn else "URL",
-        "platform": dig(meta, "blog.generator", None),
-    }
+    generator = dig(meta, "blog.generator", None)
+    if isinstance(generator, dict):
+        platform = generator.get("id", None) or dig(generator, "title.en", None)
+    else:
+        platform = generator
+    container = compact(
+        {
+            "type": "Blog",
+            "title": dig(meta, "blog.title", None),
+            "identifier": issn or blog_url,
+            "identifier_type": "ISSN" if issn else "URL",
+            "platform": platform,
+        }
+    )
     publisher = (
         {"name": "Front Matter"}
         if is_rogue_scholar_doi(_id)
         or (
-            container.get("identifierType", None) == "URL"
+            container.get("identifier_type", None) == "URL"
             and furl(container.get("identifier", None)).host == "rogue-scholar.org"
         )
         else None
@@ -149,9 +157,8 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
 
     description = meta.get("abstract", None) or meta.get("summary", None)
     if description is not None:
-        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
-    else:
-        descriptions = None
+        description = sanitize(description)
+    additional_descriptions: list = []
     subfield = OPENALEX_SUBFIELD_MAPPINGS.get(dig(meta, "blog.subfield"), None)
     if subfield is not None:
         subjects = [
@@ -211,7 +218,7 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
     identifiers = []
     if meta.get("guid", None):
         identifiers.append(
-            {"identifier": str(meta.get("guid")), "identifierType": "GUID"}
+            {"identifier": str(meta.get("guid")), "identifier_type": "GUID"}
         )
     content = dig(meta, "content_html", "")
     image = dig(meta, "image", None)
@@ -222,32 +229,34 @@ def read_jsonfeed(data: dict | None, **kwargs) -> Commonmeta:
         # required properties
         "id": _id,
         "type": _type,
-        "url": url,
-        "contributors": presence(contributors),
-        "titles": presence(titles),
-        "publisher": publisher,
-        "date": compact(date),
         # recommended and optional properties
+        "additional_descriptions": presence(additional_descriptions),
+        "additional_titles": presence(additional_titles),
         "additional_type": None,
-        "subjects": presence(subjects),
-        "language": meta.get("language", None),
-        "identifiers": identifiers,
-        "version": meta.get("version", None) or "v1",
-        "license": license_,
-        "descriptions": descriptions,
-        "geoLocations": None,
-        "fundingReferences": presence(funding_references),
-        "references": presence(references),
         "citations": presence(citations),
-        "relations": presence(relations),
-        "content": presence(content),
-        "image": presence(image),
-        "files": presence(files),
-        # other properties
         "container": presence(container),
+        "content": presence(content),
+        "contributors": presence(contributors),
+        "date_published": date_published,
+        "date_updated": date_updated,
+        "description": description,
+        "files": presence(files),
+        "funding_references": presence(funding_references),
+        "geo_locations": None,
+        "identifiers": identifiers,
+        "image": presence(image),
+        "language": meta.get("language", None),
+        "license": license_,
         "provider": "Crossref" if is_rogue_scholar_doi(_id) else None,
-        "state": state,
+        "publisher": publisher,
+        "references": presence(references),
+        "relations": presence(relations),
         "schema_version": None,
+        "state": state,
+        "subjects": presence(subjects),
+        "title": title,
+        "url": url,
+        "version": meta.get("version", None) or "v1",
     } | read_options
 
 
@@ -278,28 +287,28 @@ def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
         contributors = None
 
     title = first(parse_attributes(meta.get("title", None)))
-    titles = [{"title": sanitize(title)}] if title else None
+    title = sanitize(title) if title else None
+    additional_titles: list = []
 
-    date: dict = {}
-    date["created"] = (
+    date_created = (
         get_date_from_unix_timestamp(meta.get("created_at", None))
         if meta.get("created_at", None)
         else None
     )
-    date["updated"] = (
+    date_updated = (
         get_date_from_unix_timestamp(meta.get("updated_at", None))
         if meta.get("updated_at", None)
         else None
     )
+    dates = compact({"created": date_created})
     license_ = dig(meta, "license", None)
     if license_ is not None:
         license_ = dict_to_spdx({"url": license_})
     publisher = {"name": "Front Matter"} if is_rogue_scholar_doi(_id) else None
     description = meta.get("description", None)
     if description is not None:
-        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
-    else:
-        descriptions = None
+        description = sanitize(description)
+    additional_descriptions: list = []
     subfield = OPENALEX_SUBFIELD_MAPPINGS.get(dig(meta, "subfield"), None)
     if subfield is not None:
         subjects = [
@@ -311,12 +320,12 @@ def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
     else:
         subjects = []
     if meta.get("feed_url", None):
-        identifiers = [{"identifier": meta.get("feed_url"), "identifierType": "URL"}]
+        identifiers = [{"identifier": meta.get("feed_url"), "identifier_type": "URL"}]
     else:
         identifiers = []
     issn = dig(meta, "issn")
     if issn is not None:
-        identifiers.append({"identifier": issn, "identifierType": "ISSN"})
+        identifiers.append({"identifier": issn, "identifier_type": "ISSN"})
     if meta.get("favicon", None):
         image = meta.get("favicon")
     else:
@@ -329,9 +338,12 @@ def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
         "type": _type,
         "url": url,
         "contributors": presence(contributors),
-        "titles": presence(titles),
+        "title": title,
+        "additional_titles": presence(additional_titles),
         "publisher": publisher,
-        "date": compact(date),
+        "date_published": None,
+        "date_updated": date_updated,
+        "dates": presence(dates),
         # recommended and optional properties
         "additional_type": None,
         "subjects": presence(subjects),
@@ -339,9 +351,10 @@ def read_jsonfeed_blog(data: dict | None, **kwargs) -> Commonmeta:
         "identifiers": presence(identifiers),
         "version": meta.get("version", None) or "v1",
         "license": license_,
-        "descriptions": descriptions,
-        "geoLocations": None,
-        "fundingReferences": None,
+        "description": description,
+        "additional_descriptions": presence(additional_descriptions),
+        "geo_locations": None,
+        "funding_references": None,
         "references": None,
         "citations": None,
         "relations": None,
@@ -527,7 +540,38 @@ def get_funding_references(meta: dict | None) -> list | None:
         ]
 
     awards += wrap(dig(meta, "blog.funding"))
-    return unique(awards)
+    awards = unique(awards)
+
+    def to_v1_funding_reference(funding: dict) -> dict:
+        """flat internal funding reference -> v1.0 flat (ROR-only funder_id).
+
+        funder_id is constrained to ROR per the v1.0 schema. Crossref Funder
+        ID is translated to ROR where a translation is known; any other
+        identifier type (GRID/ISNI/Ringgold/Other/None) has no ROR
+        equivalent, so funder_id stays unset rather than leaking a non-ROR
+        identifier into a ROR-only field.
+        """
+        funder_identifier = funding.get("funderIdentifier", None)
+        funder_identifier_type = funding.get("funderIdentifierType", None)
+        funder_id = None
+        if funder_identifier_type == "ROR":
+            funder_id = funder_identifier
+        elif funder_identifier_type == "Crossref Funder ID":
+            funder_id = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
+                funder_identifier, None
+            )
+
+        return compact(
+            {
+                "funder_id": funder_id,
+                "funder_name": funding.get("funderName", None),
+                "award_id": funding.get("awardUri", None),
+                "award_title": funding.get("awardTitle", None),
+                "award_number": funding.get("awardNumber", None),
+            }
+        )
+
+    return [to_v1_funding_reference(i) for i in awards if i.get("funderName", None)]
 
 
 def get_relations(relations: list) -> list:

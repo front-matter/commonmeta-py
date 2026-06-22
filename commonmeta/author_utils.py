@@ -129,19 +129,48 @@ def get_one_author(author, **kwargs) -> dict | None:
     # support various keys for affiliations
     affiliations = author.get("affiliation", None) or author.get("affiliations", None)
 
-    # return author in commonmeta format, using name vs. given/family name
-    # depending on type
-    return compact(
+    # return author in commonmeta v1.0 format: {type, person|organization, roles}
+    if _type == "Organization":
+        organization = compact(
+            {
+                "id": to_ror_id(_id),
+                "name": name,
+            }
+        )
+        return compact(
+            {
+                "type": _type,
+                "organization": organization,
+                "roles": contributor_roles,
+            }
+        )
+
+    person = compact(
         {
-            "id": _id,
-            "type": _type,
-            "contributorRoles": contributor_roles,
-            "name": name if _type == "Organization" else None,
-            "givenName": given_name if _type == "Person" else None,
-            "familyName": family_name if _type == "Person" else None,
+            # person.id is ORCID-only per the v1.0 schema; non-ORCID
+            # identifiers (ISNI, etc.) are dropped rather than leaking a
+            # non-ORCID id into an ORCID-only field.
+            "id": normalize_orcid(_id),
+            "given_name": given_name,
+            "family_name": family_name,
             "affiliations": presence(get_affiliations(wrap(affiliations))),
         }
     )
+    return compact(
+        {
+            "type": _type,
+            "person": person,
+            "roles": contributor_roles,
+        }
+    )
+
+
+def to_ror_id(_id: str | None) -> str | None:
+    """organization.id is ROR-only per the v1.0 schema; non-ROR
+    identifiers (Wikidata, ISNI, etc.) are dropped rather than leaking a
+    non-ROR id into a ROR-only field."""
+    ror = validate_ror(_id)
+    return f"https://ror.org/{ror}" if ror else None
 
 
 def is_personal_name(name) -> bool:
@@ -238,14 +267,22 @@ def get_authors(authors, **kwargs) -> list[dict]:
 
 
 def authors_as_string(authors: list[dict]) -> str:
-    """convert authors list to string, e.g. for bibtex"""
+    """convert contributors list (v1.0 {type, person|organization, roles}
+    shape) to string, e.g. for bibtex"""
 
     def format_author(author):
-        if author.get("familyName", None) and author.get("givenName", None):
-            return f"{author['familyName']}, {author['givenName']}"
-        elif author.get("familyName", None):
-            return author["familyName"]
-        return author.get("name", None)
+        person = author.get("person", None)
+        if person:
+            family_name = person.get("family_name", None)
+            given_name = person.get("given_name", None)
+            if family_name and given_name:
+                return f"{family_name}, {given_name}"
+            if family_name:
+                return family_name
+        organization = author.get("organization", None)
+        if organization:
+            return organization.get("name", None)
+        return None
 
     return " and ".join([format_author(i) for i in wrap(authors) if i is not None])
 
@@ -283,7 +320,7 @@ def get_affiliations(affiliations: list[dict | str]) -> list[dict]:
             name = i.get("name", None) or i.get("#text", None)
         return compact(
             {
-                "id": affiliation_identifier,
+                "id": to_ror_id(affiliation_identifier),
                 "name": name,
             }
         )

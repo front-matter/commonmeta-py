@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, first, parse_attributes, wrap
+from ..base_utils import compact, parse_attributes, wrap
 from ..constants import CM_TO_RIS_TRANSLATIONS
 from ..doi_utils import doi_from_url
 from ..utils import to_ris
@@ -23,28 +23,22 @@ def write_ris(metadata: Metadata) -> bytes | None:
     ris = compact(
         {
             "TY": _type,
-            "T1": first(parse_attributes(metadata.titles, content="title", first=True)),
+            "T1": metadata.title,
             "T2": container.get("title", None),
             "AU": to_ris(metadata.contributors),
             "DO": doi_from_url(metadata.id),
             "UR": metadata.url,
-            "AB": first(
-                parse_attributes(
-                    metadata.descriptions, content="description", first=True
-                )
-            ),
+            "AB": metadata.description,
             "KW": parse_attributes(
                 wrap(metadata.subjects), content="subject", first=False
             ),
-            "PY": metadata.date.get("published")[:4]
-            if metadata.date.get("published", None)
-            else None,
+            "PY": metadata.date_published[:4] if metadata.date_published else None,
             "PB": publisher.get("name", None),
             "LA": metadata.language,
             "VL": container.get("volume", None),
             "IS": container.get("issue", None),
-            "SP": container.get("firstPage", None),
-            "EP": container.get("lastPage", None),
+            "SP": container.get("first_page", None),
+            "EP": container.get("last_page", None),
             # 'SN'= > Array.wrap(related_identifiers).find do | ri |
             # ri['relationType'] == 'IsPartOf'
             # end.to_h.fetch('relatedIdentifier', nil),

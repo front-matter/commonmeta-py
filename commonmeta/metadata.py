@@ -2,13 +2,17 @@
 
 from __future__ import annotations
 
-import tarfile
-import zipfile
-from io import BytesIO
 from os import path
 from typing import Any
 
-import commonmeta_rs
+# commonmeta_rs (the commonmeta-rs PyO3 bindings) hasn't been migrated to
+# the v1.0 schema yet, so its integration - and the tarfile/zipfile/BytesIO
+# archive-writing it needs - is disabled here pending that migration. See
+# write(to="parquet"/"zip"/"tgz") below.
+# import tarfile
+# import zipfile
+# from io import BytesIO
+# import commonmeta_rs
 import orjson as json
 import yaml
 
@@ -39,7 +43,6 @@ from .readers.inveniordm_reader import (
     read_inveniordm,
 )
 from .readers.jsonfeed_reader import get_jsonfeed, read_jsonfeed
-from .readers.kbase_reader import read_kbase
 from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
@@ -51,9 +54,14 @@ from .readers.schema_org_reader import (
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
 from .utils import find_from_format, is_chain_object, normalize_id
+from .v1_compat import is_v018_shaped, v018_to_v1
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
-from .writers.commonmeta_writer import write_commonmeta, write_commonmeta_list
+from .writers.commonmeta_writer import (
+    write_commonmeta,
+    write_commonmeta_list,
+    # write_commonmeta_records_for_rust,  # disabled with commonmeta_rs, see above
+)
 from .writers.crossref_xml_writer import (
     CrossrefError,
     push_crossref_xml,
@@ -107,20 +115,27 @@ class Metadata:
             raise ValueError("No valid input found")
 
         meta = self.read_metadata(data=data, **kwargs)
+        if is_v018_shaped(meta):
+            meta = v018_to_v1(meta)
 
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103
         self.type = meta.get("type")
         # recommended and optional properties
-        self.additional_type = meta.get("additionalType")
-        self.archive_locations = meta.get("archiveLocations")
+        self.additional_type = meta.get("additional_type")
+        self.archive_locations = meta.get("archive_locations")
         self.container = meta.get("container")
         self.contributors = meta.get("contributors")
-        self.date = meta.get("date")
-        self.descriptions = meta.get("descriptions")
+        self.title = meta.get("title")
+        self.additional_titles = meta.get("additional_titles")
+        self.date_published = meta.get("date_published")
+        self.date_updated = meta.get("date_updated")
+        self.dates = meta.get("dates")
+        self.description = meta.get("description")
+        self.additional_descriptions = meta.get("additional_descriptions")
         self.files = meta.get("files")
-        self.funding_references = meta.get("fundingReferences")
-        self.geo_locations = meta.get("geoLocations")
+        self.funding_references = meta.get("funding_references")
+        self.geo_locations = meta.get("geo_locations")
         self.identifiers = meta.get("identifiers")
         self.language = meta.get("language")
         self.license = meta.get("license")
@@ -130,16 +145,14 @@ class Metadata:
         self.citations = meta.get("citations")
         self.relations = meta.get("relations")
         self.subjects = meta.get("subjects")
-        self.titles = meta.get("titles")
         self.url = meta.get("url")
         self.version = meta.get("version")
         self.content = meta.get("content")
         self.image = meta.get("image")
-        # other properties
+        # other properties - vestigial registration timestamps, distinct
+        # from the public date_published/date_updated above
         self.date_created = meta.get("date_created")
         self.date_registered = meta.get("date_registered")
-        self.date_published = meta.get("date_published")
-        self.date_updated = meta.get("date_updated")
         self.state = meta.get("state")
 
         # options needed for Crossref DOI registration
@@ -155,13 +168,19 @@ class Metadata:
         self.token = kwargs.get("token", None)
         self.legacy_conn = kwargs.get("legacy_conn", None)
 
-        # Catch errors in the reader, then validate against JSON schema for Commonmeta
-        self.errors = meta.get("errors", None) or json_schema_errors(
-            json.loads(self.write())
+        # Catch errors in the reader, then validate against JSON schema for
+        # Commonmeta. Skip schema validation for not_found/forbidden/
+        # bad_request/timeout states: there's no resolved resource to
+        # validate (id/type are typically absent), and that's not a schema
+        # error.
+        self.errors = meta.get("errors", None) or (
+            json_schema_errors(json.loads(self.write()))
+            if meta.get("state", None) not in ["not_found", "forbidden", "bad_request", "timeout"]
+            else None
         )
         self.write_errors = None
         self.is_valid = (
-            meta.get("state", None) not in ["not_found", "forbidden", "bad_request"]
+            meta.get("state", None) not in ["not_found", "forbidden", "bad_request", "timeout"]
             and self.errors is None
             and self.write_errors is None
         )
@@ -237,7 +256,6 @@ class Metadata:
                 "csl",
                 "jsonfeed",
                 "codemeta",
-                "kbase",
                 "inveniordm",
                 "openalex",
             ]:
@@ -253,7 +271,9 @@ class Metadata:
 
         # All these reader methods should return a dict,
         # even though some may return Commonmeta objects that can be treated as dicts
-        if via in ["commonmeta", "vraix"]:
+        # "vraix" used to share this branch (vraix_reader.py also emits
+        # commonmeta-shaped dicts), but it's disabled - see vraix_reader.py.
+        if via == "commonmeta":
             return dict(read_commonmeta(data, **kwargs))
         elif via == "schema_org":
             return dict(read_schema_org(data))
@@ -275,8 +295,6 @@ class Metadata:
             return dict(read_jsonfeed(data, **kwargs))
         elif via == "inveniordm":
             return dict(read_inveniordm(data, **kwargs))
-        elif via == "kbase":
-            return dict(read_kbase(data))
         elif via == "openalex":
             return dict(read_openalex(data))
         elif via == "ris":
@@ -487,39 +505,16 @@ class MetadataList:
                 return write_output(self.file, output, [".json"])
             else:
                 return output
-        elif to == "parquet":
-            records = write_commonmeta_list(self).get("items", [])
-            output = commonmeta_rs.write_parquet(records)
-            if self.file:
-                return write_output(self.file, output, [".parquet"])
-            else:
-                return output
-        elif to in ("zip", "tgz"):
-            records = write_commonmeta_list(self).get("items", [])
-            archive_format = kwargs.get("format", "commonmeta")
-            base_name = kwargs.get("base_name", "out.json")
-            batch_size = kwargs.get("batch_size", 100_000)
-            entries = commonmeta_rs.write_archive(
-                records, archive_format, base_name, batch_size
+        elif to in ("parquet", "zip", "tgz"):
+            # Disabled: commonmeta_rs hasn't been migrated to the v1.0
+            # schema yet. Re-enable once commonmeta-rs is refactored to use
+            # commonmeta v1.0, at which point write_commonmeta_records_for_rust()
+            # (the v1.0->v0.18 conversion for this FFI boundary) can also be
+            # removed since the records will already be v1.0-shaped.
+            raise NotImplementedError(
+                f"write(to={to!r}) is temporarily disabled: commonmeta_rs has "
+                "not yet been migrated to the commonmeta v1.0 schema."
             )
-            buffer = BytesIO()
-            if to == "zip":
-                with zipfile.ZipFile(buffer, "w", zipfile.ZIP_DEFLATED) as zf:
-                    for name, data in entries:
-                        zf.writestr(name, data)
-            else:
-                with tarfile.open(fileobj=buffer, mode="w:gz") as tf:
-                    for name, data in entries:
-                        info = tarfile.TarInfo(name=name)
-                        info.size = len(data)
-                        tf.addfile(info, BytesIO(data))
-            output = buffer.getvalue()
-            if self.file:
-                with open(self.file, "xb") as f:
-                    f.write(output)
-                return None
-            else:
-                return output
         elif to == "ris":
             output = write_ris_list(self)
             if self.file and output is not None:

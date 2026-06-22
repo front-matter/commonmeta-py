@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, first, parse_attributes, wrap
+from ..base_utils import compact, parse_attributes, wrap
 from ..constants import CM_TO_SO_TRANSLATIONS
 from ..utils import get_language, github_as_repo_url, to_schema_org_creators
 
@@ -21,7 +21,7 @@ def write_schema_org(metadata: Metadata) -> dict:
                 {
                     "@type": "DataDownload",
                     "contentUrl": file.get("url"),
-                    "encodingFormat": file.get("mimeType", None),
+                    "encodingFormat": file.get("mime_type", None),
                     "name": file.get("key", None),
                     "sha256": file["checksum"]
                     if file.get("checksum", None)
@@ -38,7 +38,7 @@ def write_schema_org(metadata: Metadata) -> dict:
                 {
                     "@type": "MediaObject",
                     "contentUrl": file.get("url"),
-                    "encodingFormat": file.get("mimeType", None),
+                    "encodingFormat": file.get("mime_type", None),
                     "name": file.get("key", None),
                     "sha256": file["checksum"]
                     if file.get("checksum", None)
@@ -64,10 +64,10 @@ def write_schema_org(metadata: Metadata) -> dict:
         periodical = compact(
             {
                 "issn": container.get("identifier", None)
-                if container.get("identifierType", None) == "ISSN"
+                if container.get("identifier_type", None) == "ISSN"
                 else None,
                 "@id": container.get("identifier", None)
-                if container.get("identifierType", None) != "ISSN"
+                if container.get("identifier_type", None) != "ISSN"
                 else None,
                 "@type": container.get("type", None)
                 if container.get("type", None) == "Journal"
@@ -84,12 +84,8 @@ def write_schema_org(metadata: Metadata) -> dict:
         data_catalog = None
     schema_org = CM_TO_SO_TRANSLATIONS.get(metadata.type, "CreativeWork")
     additional_type = metadata.additional_type
-    authors = [
-        au for au in wrap(metadata.contributors) if au["contributorRoles"] == ["Author"]
-    ]
-    editors = [
-        au for au in wrap(metadata.contributors) if au["contributorRoles"] == ["Editor"]
-    ]
+    authors = [au for au in wrap(metadata.contributors) if au["roles"] == ["Author"]]
+    editors = [au for au in wrap(metadata.contributors) if au["roles"] == ["Editor"]]
     if metadata.type == "Software":
         rel = next(
             (
@@ -113,27 +109,21 @@ def write_schema_org(metadata: Metadata) -> dict:
             "@type": schema_org,
             "url": metadata.url,
             "additionalType": additional_type,
-            "name": first(
-                parse_attributes(metadata.titles, content="title", first=True)
-            ),
+            "name": metadata.title,
             "author": to_schema_org_creators(authors),
             "editor": to_schema_org_creators(editors),
-            "description": first(
-                parse_attributes(
-                    metadata.descriptions, content="description", first=True
-                )
-            ),
+            "description": metadata.description,
             "license": metadata.license.get("url", None) if metadata.license else None,
             "version": metadata.version,
             "keywords": parse_attributes(
                 wrap(metadata.subjects), content="subject", first=False
             ),
             "inLanguage": get_language(metadata.language, format="name"),
-            "dateCreated": metadata.date.get("created", None),
-            "datePublished": metadata.date.get("published", None),
-            "dateModified": metadata.date.get("updated", None),
-            "pageStart": container.get("firstPage", None) if container else None,
-            "pageEnd": container.get("lastPage", None) if container else None,
+            "dateCreated": (metadata.dates or {}).get("created", None),
+            "datePublished": metadata.date_published,
+            "dateModified": metadata.date_updated,
+            "pageStart": container.get("first_page", None) if container else None,
+            "pageEnd": container.get("last_page", None) if container else None,
             # "isPartOf": unwrap(to_schema_org_relations(
             #     related_items=metadata.related_items,
             #     relation_type="IsPartOf",

@@ -14,7 +14,6 @@ from ..base_utils import (
     dig,
     first,
     flatten,
-    omit,
     parse_attributes,
     parse_xml,
     pascal_case,
@@ -103,23 +102,21 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
         contributors += get_authors(editors)
 
     url = normalize_url(dig(meta, "resource.primary.URL"))
-    titles = get_titles(meta)
+    title, additional_titles = get_titles(meta)
     publisher = compact({"name": meta.get("publisher", None)})
     if _type == "Article" and dig(publisher, "name") == "Front Matter":
         _type = "BlogPost"
-    date = compact(
-        {
-            "published": dig(meta, "issued.date-time")
-            or get_date_from_date_parts(meta.get("issued", None))
-            or dig(meta, "created.date-time")
-        }
+    date_published = (
+        dig(meta, "issued.date-time")
+        or get_date_from_date_parts(meta.get("issued", None))
+        or dig(meta, "created.date-time")
     )
     identifiers = []
     identifiers.append(
         compact(
             {
                 "identifier": _id,
-                "identifierType": "DOI",
+                "identifier_type": "DOI",
             }
         )
     )
@@ -140,7 +137,7 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
         relations = unique(relations)
     references = unique([get_reference(i) for i in wrap(meta.get("reference", None))])
     funding_references = from_crossref_funding(wrap(meta.get("funder", None)))
-    descriptions = get_abstract(meta)
+    description, additional_descriptions = get_abstract(meta)
     subjects = unique([{"subject": i} for i in wrap(meta.get("subject", None))])
     files = unique(
         [
@@ -157,48 +154,61 @@ def read_crossref(data: dict | None, **kwargs) -> Commonmeta:
             "id": _id,
             "type": _type,
             # recommended and optional properties
-            "additionalType": additional_type,
-            "archiveLocations": presence(archive_locations),
+            "additional_descriptions": presence(additional_descriptions),
+            "additional_titles": presence(additional_titles),
+            "additional_type": additional_type,
+            "archive_locations": presence(archive_locations),
             "container": presence(container),
             "contributors": presence(contributors),
-            "date": presence(date),
-            "descriptions": presence(descriptions),
+            "date_published": presence(date_published),
+            "description": description,
             "files": presence(files),
-            "fundingReferences": presence(funding_references),
-            "geoLocations": None,
+            "funding_references": presence(funding_references),
+            "geo_locations": None,
             "identifiers": identifiers,
             "language": meta.get("language", None),
             "license": license_,
+            "provider": "Crossref",
             "publisher": presence(publisher),
             "references": presence(references),
             "relations": presence(relations),
+            "state": state,
             "subjects": presence(subjects),
-            "titles": presence(titles),
+            "title": title,
             "url": url,
             "version": dig(meta, "version.version"),
-            # other properties
-            "provider": "Crossref",
-            "state": state,
         },
         **read_options,
     }
 
 
-def get_titles(meta):
-    """Title information from Crossref metadata."""
+def get_titles(meta) -> tuple[str | None, list]:
+    """Title information from Crossref metadata.
+
+    Returns a tuple of (title, additional_titles) per the commonmeta v1.0
+    schema, where title is a single scalar string and additional_titles
+    holds subtitles/translated titles.
+    """
     titles = wrap(parse_attributes(meta.get("title", None)))
     subtitles = wrap(parse_attributes(meta.get("subtitle", None)))
     original_language_titles = wrap(
         parse_attributes(meta.get("original_language_title", None))
     )
     language = None
-    return (
-        [{"title": sanitize(i)} for i in titles]
+
+    title = sanitize(titles[0]) if titles else None
+    if title is None and original_language_titles:
+        # no separate translated title: the original_language_title is the
+        # only title present, so it's the primary title, not a translation.
+        title = sanitize(original_language_titles[0])
+        original_language_titles = original_language_titles[1:]
+    additional_titles = (
+        [{"title": sanitize(i)} for i in titles[1:]]
         + [
             compact(
                 {
                     "title": sanitize(i),
-                    "titleType": "Subtitle",
+                    "type": "Subtitle",
                 }
             )
             for i in subtitles
@@ -207,20 +217,28 @@ def get_titles(meta):
             compact(
                 {
                     "title": sanitize(i),
-                    "titleType": "TranslatedTitle",
-                    "lang": language,
+                    "type": "TranslatedTitle",
+                    "language": language,
                 }
             )
             for i in original_language_titles
         ]
     )
+    return title, additional_titles
 
 
-def get_abstract(meta: dict) -> list | None:
-    """Get abstract from Crossref metadata."""
+def get_abstract(meta: dict) -> tuple[str | None, list]:
+    """Get abstract from Crossref metadata.
+
+    Returns a tuple of (description, additional_descriptions) per the
+    commonmeta v1.0 schema, where description is a single scalar string.
+    Crossref only ever provides a single abstract, so
+    additional_descriptions is always empty, but is returned for symmetry
+    with other readers and future extension.
+    """
     abstract = meta.get("abstract", None)
     if abstract is None:
-        return None
+        return None, []
 
     try:
         # Parse the abstract XML if it is JATS formatted
@@ -228,9 +246,9 @@ def get_abstract(meta: dict) -> list | None:
         description = dig(description_dct, "jats:p")
         if description is None:
             description = abstract
-        return [{"description": sanitize(description), "type": "Abstract"}]
+        return sanitize(description), []
     except (TypeError, ExpatError):
-        return [{"description": sanitize(abstract), "type": "Abstract"}]
+        return sanitize(abstract), []
 
 
 def get_reference(reference: dict | None) -> dict | None:
@@ -307,7 +325,7 @@ def get_file(file: dict) -> dict:
     return compact(
         {
             "url": file.get("URL", None),
-            "mimeType": file.get("content-type", None),
+            "mime_type": file.get("content-type", None),
         }
     )
 
@@ -395,12 +413,12 @@ def get_container(meta: dict, issn: str | None) -> dict:
         {
             "type": container_type,
             "identifier": issn or isbn,
-            "identifierType": "ISSN" if issn else "ISBN" if isbn else None,
+            "identifier_type": "ISSN" if issn else "ISBN" if isbn else None,
             "title": container_title,
             "volume": volume,
             "issue": issue,
-            "firstPage": first_page,
-            "lastPage": last_page,
+            "first_page": first_page,
+            "last_page": last_page,
         }
     )
 
@@ -409,33 +427,27 @@ def from_crossref_funding(funding_references: list) -> list:
     """Get funding references from Crossref"""
     formatted_funding_references = []
     for funding in funding_references:
+        # funder_id is ROR-only in v1.0. Crossref Funder ID DOIs (10.13039/...)
+        # are translated to ROR; any other DOI has no ROR equivalent, so it's
+        # dropped rather than leaking a non-ROR doi.org URL into funder_id.
+        funder_id = None
+        if funding.get("DOI", "").startswith("10.13039"):
+            funder_id = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
+                doi_as_url(funding["DOI"]), None
+            )
         f = compact(
             {
-                "funderName": funding.get("name", None),
-                "funderIdentifier": doi_as_url(funding["DOI"])
-                if funding.get("DOI", None) is not None
-                else None,
-                "funderIdentifierType": "Crossref Funder ID"
-                if funding.get("DOI", "").startswith("10.13039")
-                else None,
+                "funder_name": funding.get("name", None),
+                "funder_id": funder_id,
             }
         )
-        if f.get("funderIdentifierType", None) == "Crossref Funder ID":
-            # convert to ROR
-            funderIdentifier = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(
-                f.get("funderIdentifier", None)
-            )
-            if funderIdentifier:
-                f["funderIdentifier"] = funderIdentifier
-                f["funderIdentifierType"] = "ROR"
-        f = omit(f, "DOI", "doi-asserted-by")
         if (
             funding.get("name", None) is not None
             and funding.get("award", None) is not None
         ):
             for award in wrap(funding["award"]):
                 fund_ref = f.copy()
-                fund_ref["awardNumber"] = award
+                fund_ref["award_number"] = award
                 formatted_funding_references.append(fund_ref)
         elif f != {}:
             formatted_funding_references.append(f)

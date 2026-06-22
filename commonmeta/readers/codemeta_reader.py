@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
-
 import requests
 
 from ..author_utils import get_authors
@@ -65,30 +63,22 @@ def read_codemeta(data: dict | None, **kwargs) -> Commonmeta:
     contrib = get_authors(from_schema_org_creators(wrap(meta.get("editor", None))))
     if contrib:
         contributors += contrib
-    date: dict = defaultdict(list)
-    date["created"] = meta.get("dateCreated", None)
-    date["published"] = meta.get("datePublished", None)
-    date["updated"] = meta.get("dateModified", None)
+
+    date_published = meta.get("datePublished", None)
+    date_updated = meta.get("dateModified", None)
+    dates = compact({"created": meta.get("dateCreated", None)})
 
     publisher = {"name": meta.get("publisher", None)}
 
-    if meta.get("description", None):
-        descriptions = [
-            {
-                "description": sanitize(str(meta.get("description"))),
-                "type": "Abstract",
-            }
-        ]
-    else:
-        descriptions = None
+    description = (
+        sanitize(str(meta.get("description")))
+        if meta.get("description", None)
+        else None
+    )
 
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
-    has_title = meta.get("title", None)
-    if has_title is None:
-        titles = [{"title": meta.get("name", None)}]
-    else:
-        titles = [{"title": has_title}]
+    title = meta.get("title", None) or meta.get("name", None)
 
     license_ = meta.get("licenseId", None)
     if license_:
@@ -101,18 +91,20 @@ def read_codemeta(data: dict | None, **kwargs) -> Commonmeta:
         **{
             "id": _id,
             "type": _type,
-            "url": normalize_id(meta.get("codeRepository", None)),
-            "identifiers": None,
-            "titles": titles,
             "contributors": presence(contributors),
-            "publisher": publisher,
-            "date": compact(date),
-            "descriptions": descriptions,
+            "date_published": date_published,
+            "date_updated": date_updated,
+            "dates": presence(dates),
+            "description": description,
+            "identifiers": None,
             "license": license_,
-            "version": meta.get("version", None),
-            "subjects": presence(subjects),
             "provider": provider,
+            "publisher": publisher,
             "state": state,
+            "subjects": presence(subjects),
+            "title": title,
+            "url": normalize_id(meta.get("codeRepository", None)),
+            "version": meta.get("version", None),
         },
         **read_options,
     }

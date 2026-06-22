@@ -23,37 +23,35 @@ def test_dataset():
     assert subject.type == "Dataset"
     assert subject.publisher == {"name": "Dryad"}
     assert subject.url == "https://datadryad.org/dataset/doi:10.5061/dryad.8515"
-    assert subject.titles[0] == {
-        "title": "Data from: A new malaria agent in African hominids."
-    }
+    assert subject.title == "Data from: A new malaria agent in African hominids."
     assert len(subject.contributors) == 8
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Benjamin",
-        "familyName": "Ollomo",
-        "affiliations": [
-            {"name": "Centre International de Recherches Médicales de Franceville"}
-        ],
+        "person": {
+            "given_name": "Benjamin",
+            "family_name": "Ollomo",
+            "affiliations": [
+                {
+                    "name": "Centre International de Recherches M\u00e9dicales de Franceville"
+                }
+            ],
+        },
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC0-1.0",
+        "title": "Creative Commons Zero v1.0 Universal",
         "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
     }
 
-    assert subject.date == {
-        "published": "2011-02-01T17:22:41Z",
-        "available": "2011-02-01T17:22:41Z",
+    assert subject.date_published == "2011-02-01T17:22:41Z" and subject.dates == {
         "submitted": "2011-02-01T13:09:15Z",
+        "available": "2011-02-01T17:22:41Z",
     }
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith(
-            "Plasmodium falciparum is the major human malaria agent responsible"
-        )
+    assert subject.description.startswith(
+        "Plasmodium falciparum is the major human malaria agent responsible"
     )
     assert subject.subjects == [
         {"subject": "Plasmodium"},
@@ -74,23 +72,23 @@ def test_blog_posting():
     assert subject.id == "https://doi.org/10.5438/zhyx-n122"
     assert subject.type == "Document"
     assert subject.url == "https://datacite.org/blog/datacite-member-survey-2022/"
-    assert subject.titles[0] == {
-        "language": "en",
-        "title": "DataCite Member Survey 2022",
-    }
+    assert subject.title == "DataCite Member Survey 2022"
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Rorie",
-        "familyName": "Edmunds",
-        "affiliations": [{"name": "DataCite"}],
+        "person": {
+            "given_name": "Rorie",
+            "family_name": "Edmunds",
+            "affiliations": [{"name": "DataCite"}],
+        },
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {"published": "2023"}
+    assert subject.date_published == "2023"
     assert subject.publisher == {"name": "DataCite"}
     assert len(subject.references) == 8
     assert subject.references[0] == {
@@ -98,10 +96,8 @@ def test_blog_posting():
         "id": "https://doi.org/10.5438/k1gw-y723",
     }
     assert subject.container is None
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("At the end of 2022, we conducted our annual member survey")
+    assert subject.description.startswith(
+        "At the end of 2022, we conducted our annual member survey"
     )
     assert subject.subjects is None
     assert subject.language == "en"
@@ -121,31 +117,26 @@ def test_date():
         subject.url
         == "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.TQC.2013.93"
     )
-    assert subject.titles[0] == {
-        "language": "en",
-        "title": "The Minimum Size of Qubit Unextendible Product Bases",
-    }
+    assert subject.title == "The Minimum Size of Qubit Unextendible Product Bases"
     assert len(subject.contributors) == 3
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Nathaniel",
-        "familyName": "Johnston",
+        "person": {"given_name": "Nathaniel", "family_name": "Johnston"},
+        "roles": ["Author"],
     }
     assert subject.contributors[1] == {
-        "contributorRoles": ["Editor"],
-        "familyName": "Severini",
-        "givenName": "Simone",
         "type": "Person",
+        "person": {"given_name": "Simone", "family_name": "Severini"},
+        "roles": ["Editor"],
     }
     assert subject.license == {
         "id": "CC-BY-3.0",
+        "title": "Creative Commons Attribution 3.0 Unported",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
-    assert subject.date == {
-        "published": "2013",
-        "available": "2013-11-13",
+    assert subject.date_published == "2013" and subject.dates == {
         "created": "2013-11-13",
+        "available": "2013-11-13",
     }
     assert subject.publisher == {
         "name": "Schloss Dagstuhl – Leibniz-Zentrum für Informatik"
@@ -156,12 +147,8 @@ def test_date():
         "type": "Series",
         "title": "LIPIcs, Volume 22, TQC 2013",
     }
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith(
-            "We investigate the problem of constructing unextendible product bases"
-        )
+    assert subject.description.startswith(
+        "We investigate the problem of constructing unextendible product bases"
     )
     assert subject.subjects == [
         {
@@ -266,28 +253,27 @@ def test_multiple_identifiers():
     assert subject.id == "https://doi.org/10.5281/zenodo.48440"
     assert subject.type == "Software"
     assert subject.url == "https://zenodo.org/record/48440"
-    assert subject.titles[0] == {
-        "title": "Analysis Tools for Crossover Experiment of UI using Choice Architecture"
-    }
+    assert (
+        subject.title
+        == "Analysis Tools for Crossover Experiment of UI using Choice Architecture"
+    )
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Kristian",
-        "familyName": "Garza",
+        "person": {"given_name": "Kristian", "family_name": "Garza"},
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-NC-SA-4.0",
+        "title": "Creative Commons Attribution Non Commercial Share Alike 4.0 International",
         "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode",
     }
-    assert subject.date == {"published": "2016-03-27"}
+    assert subject.date_published == "2016-03-27"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("This tools are used to analyse the data produced")
+    assert subject.description.startswith(
+        "This tools are used to analyse the data produced"
     )
     assert subject.subjects == [
         {"subject": "choice architecture"},
@@ -310,12 +296,8 @@ def test_missing_description():
         subject.url
         == "https://www.tib.eu/suchen/id/awi:7058a56c5e43afd705af945d01536b9aaeeee491"
     )
-    assert subject.titles[0] == {
-        "title": "An Overview of the Geology of Canadian Gold Occurrences"
-    }
-    assert subject.descriptions == [
-        {"description": "Die Geowissenschaften", "type": "Other"}
-    ]
+    assert subject.title == "An Overview of the Geology of Canadian Gold Occurrences"
+    assert subject.description == "Die Geowissenschaften"
 
 
 def test_is_identical():
@@ -326,31 +308,32 @@ def test_is_identical():
     assert subject.id == "https://doi.org/10.6084/m9.figshare.4234751.v1"
     assert subject.type == "Dataset"
     assert subject.url == "https://figshare.com/articles/dataset/RAIN_v1/4234751/1"
-    assert subject.titles[0] == {"title": "RAIN v1"}
+    assert subject.title == "RAIN v1"
     assert len(subject.contributors) == 11
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0002-2410-9671",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Alexander",
-        "familyName": "Junge",
+        "person": {
+            "id": "https://orcid.org/0000-0002-2410-9671",
+            "given_name": "Alexander",
+            "family_name": "Junge",
+        },
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2016-11-16",
-        "published": "2016",
-        "updated": "2016-11-16",
-    }
+    assert (
+        subject.date_published == "2016"
+        and subject.date_updated == "2016-11-16"
+        and subject.dates == {"created": "2016-11-16"}
+    )
     assert subject.publisher == {"name": "figshare"}
     assert subject.references is None
     assert subject.container is None
-    assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("<b>RAIN: RNA–protein Association and Interaction Networks</b>")
+    assert subject.description.startswith(
+        "<b>RAIN: RNA–protein Association and Interaction Networks</b>"
     )
     assert subject.subjects == [
         {"subject": "60102 Bioinformatics"},
@@ -378,29 +361,31 @@ def test_subject_scheme_for():
     )
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
-        "id": "https://orcid.org/0000-0002-2874-287X",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Ian",
-        "familyName": "Dworkin",
-    }
-    assert subject.titles[0] == {
-        "title": "Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia."
+        "person": {
+            "id": "https://orcid.org/0000-0002-2874-287X",
+            "given_name": "Ian",
+            "family_name": "Dworkin",
+        },
+        "roles": ["Author"],
     }
     assert (
-        subject.descriptions[0]
-        .get("description")
-        .startswith("These are raw wing images from <i>Drosophila melanogaster</i>")
+        subject.title
+        == "Drosophila melanogaster wing images from low and high altitude populations in Ethiopia and Zambia."
+    )
+    assert subject.description.startswith(
+        "These are raw wing images from <i>Drosophila melanogaster</i>"
     )
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
-    assert subject.date == {
-        "created": "2015-06-14",
-        "published": "2020",
-        "updated": "2020-06-02",
-    }
+    assert (
+        subject.date_published == "2020"
+        and subject.date_updated == "2020-06-02"
+        and subject.dates == {"created": "2015-06-14"}
+    )
     assert subject.publisher == {"name": "figshare"}
     assert subject.subjects == [
         {"subject": "Evolutionary Biology"},
@@ -453,6 +438,7 @@ def test_cc_by():
     assert subject.id == "https://doi.org/10.6084/m9.figshare.1286826.v1"
     assert subject.license == {
         "id": "CC-BY-4.0",
+        "title": "Creative Commons Attribution 4.0 International",
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
@@ -469,27 +455,26 @@ def test_funding_schema_version_3():
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Najko",
-        "familyName": "Jahn",
-        "affiliations": [{"name": "Bielefeld University Library"}],
+        "person": {
+            "given_name": "Najko",
+            "family_name": "Jahn",
+            "affiliations": [{"name": "Bielefeld University Library"}],
+        },
+        "roles": ["Author"],
     }
-    assert subject.titles == [
-        {"title": "Publication Fp7 Funding Acknowledgment - Plos Openaire"}
-    ]
-    assert subject.descriptions[0]["description"].startswith(
+    assert subject.title == "Publication Fp7 Funding Acknowledgment - Plos Openaire"
+    assert subject.description.startswith(
         "The dataset contains a sample of metadata describing papers"
     )
-    assert subject.date == {"published": "2013-04-03"}
+    assert subject.date_published == "2013-04-03"
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references == [
         {
-            "awardUri": "info:eu-repo/grantAgreement/EC/FP7/246686/",
-            "awardTitle": "Open Access Infrastructure for Research in Europe",
-            "funderName": "European Commission",
-            "awardNumber": "246686",
-            "funderIdentifier": "https://doi.org/10.13039/501100000780",
-            "funderIdentifierType": "Crossref Funder ID",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "info:eu-repo/grantAgreement/EC/FP7/246686/",
+            "award_title": "Open Access Infrastructure for Research in Europe",
+            "award_number": "246686",
         }
     ]
     assert subject.subjects == [
@@ -501,6 +486,7 @@ def test_funding_schema_version_3():
     assert subject.language == "en"
     assert subject.license == {
         "id": "CC0-1.0",
+        "title": "Creative Commons Zero v1.0 Universal",
         "url": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
     }
 
@@ -596,21 +582,23 @@ def test_datacite_json():
     assert subject.id == "https://doi.org/10.5438/4k3m-nyvg"
     assert subject.url == "https://datacite.org/blog/eating-your-own-dog-food/"
     assert subject.type == "BlogPost"
-    assert subject.titles[0] == {"title": "Eating your own Dog Food"}
+    assert subject.title == "Eating your own Dog Food"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
-        "id": "https://orcid.org/0000-0003-1419-2405",
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+        },
+        "roles": ["Author"],
     }
     assert subject.license is None
-    assert subject.date == {
-        "published": "2016-12-20",
-        "created": "2016-12-20",
-        "updated": "2016-12-20",
-    }
+    assert (
+        subject.date_published == "2016-12-20"
+        and subject.date_updated == "2016-12-20"
+        and subject.dates == {"created": "2016-12-20"}
+    )
     assert subject.publisher == {"name": "DataCite"}
 
 
@@ -739,26 +727,30 @@ def test_geolocation_box():
     assert subject.type == "Dataset"
     assert len(subject.contributors) == 10
     assert subject.contributors[0] == {
-        "familyName": "Bales",
-        "givenName": "Roger",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "id": "https://orcid.org/0000-0002-0811-8535",
-        "affiliations": [{"name": "University of California, Merced"}],
+        "person": {
+            "id": "https://orcid.org/0000-0002-0811-8535",
+            "given_name": "Roger",
+            "family_name": "Bales",
+            "affiliations": [{"name": "University of California, Merced"}],
+        },
+        "roles": ["Author"],
     }
-    assert subject.titles == [
-        {
-            "title": "Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature"
-        }
-    ]
+    assert (
+        subject.title
+        == "Southern Sierra Critical Zone Observatory (SSCZO), Providence Creek meteorological data, soil moisture and temperature, snow depth and air temperature"
+    )
     assert subject.publisher == {"name": "Dryad"}
-    assert subject.date == {
-        "available": "2016-03-14T17:02:02Z",
-        "created": "2023-08-18T17:31:44Z",
-        "published": "2016-03-14T17:02:02Z",
-        "submitted": "2022-03-01T22:38:07Z",
-        "updated": "2022-03-30T00:00:00Z",
-    }
+    assert (
+        subject.date_published == "2016-03-14T17:02:02Z"
+        and subject.date_updated == "2022-03-30T00:00:00Z"
+        and subject.dates
+        == {
+            "created": "2023-08-18T17:31:44Z",
+            "submitted": "2022-03-01T22:38:07Z",
+            "available": "2016-03-14T17:02:02Z",
+        }
+    )
     assert subject.subjects == [
         {"subject": "air temperature"},
         {"subject": "Earth sciences"},
@@ -771,41 +763,31 @@ def test_geolocation_box():
 
     assert subject.geo_locations == [
         {
-            "geoLocationBox": {
-                "eastBoundLongitude": -119.182,
-                "northBoundLatitude": 37.075,
-                "southBoundLatitude": 37.046,
-                "westBoundLongitude": -119.211,
-            },
-            "geoLocationPlace": "Providence Creek (Lower, Upper and P301)",
-            "geoLocationPoint": {
-                "pointLatitude": 37.047756,
-                "pointLongitude": -119.221094,
-            },
+            "geo_location_place": "Providence Creek (Lower, Upper and P301)",
+            "geo_location_point_longitude": -119.221094,
+            "geo_location_point_latitude": 37.047756,
+            "geo_location_box_west_longitude": -119.211,
+            "geo_location_box_east_longitude": -119.182,
+            "geo_location_box_south_latitude": 37.046,
+            "geo_location_box_north_latitude": 37.075,
         },
         {
-            "geoLocationBox": {
-                "eastBoundLongitude": -119.182,
-                "northBoundLatitude": 37.075,
-                "southBoundLatitude": 37.046,
-                "westBoundLongitude": -119.211,
-            }
+            "geo_location_box_west_longitude": -119.211,
+            "geo_location_box_east_longitude": -119.182,
+            "geo_location_box_south_latitude": 37.046,
+            "geo_location_box_north_latitude": 37.075,
         },
     ]
     assert subject.funding_references == [
         {
-            "schemeUri": "https://ror.org",
-            "funderName": "National Science Foundation",
-            "awardNumber": "1331939",
-            "funderIdentifier": "https://ror.org/021nxhr62",
-            "funderIdentifierType": "ROR",
+            "funder_id": "https://ror.org/021nxhr62",
+            "funder_name": "National Science Foundation",
+            "award_number": "1331939",
         },
         {
-            "schemeUri": "https://ror.org",
-            "funderName": "National Science Foundation",
-            "awardNumber": "0725097",
-            "funderIdentifier": "https://ror.org/021nxhr62",
-            "funderIdentifierType": "ROR",
+            "funder_id": "https://ror.org/021nxhr62",
+            "funder_name": "National Science Foundation",
+            "award_number": "0725097",
         },
     ]
     # assert subject.sizes == ["2592742591 bytes"]
@@ -1915,16 +1897,15 @@ def test_geolocation():
         == "https://doi.org/10.4121/uuid:7b900822-4efe-42f1-9b6e-a099eda4ba02"
     )
     assert subject.type == "Dataset"
-    assert subject.titles[0] == {
-        "title": "Land cover ground reference data in São Paulo state, Brazil, taken in 2015"
-    }
+    assert (
+        subject.title
+        == "Land cover ground reference data in São Paulo state, Brazil, taken in 2015"
+    )
     assert subject.geo_locations == [
         {
-            "geoLocationPlace": "Mogi Guaçu (municipality)",
-            "geoLocationPoint": {
-                "pointLatitude": -22.3680,
-                "pointLongitude": -46.9460,
-            },
+            "geo_location_place": "Mogi Gua\u00e7u (municipality)",
+            "geo_location_point_longitude": -46.946,
+            "geo_location_point_latitude": -22.368,
         }
     ]
 
@@ -1938,12 +1919,14 @@ def test_datacite_v45():
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "ExampleGivenName",
-        "familyName": "ExampleFamilyName",
+        "person": {
+            "given_name": "ExampleGivenName",
+            "family_name": "ExampleFamilyName",
+        },
+        "roles": ["Author"],
     }
-    assert subject.titles == [
-        {"language": "en", "title": "Example Title"},
+    assert subject.title == "Example Title"
+    assert subject.additional_titles == [
         {"language": "en", "title": "Example Subtitle", "type": "Subtitle"},
         {
             "language": "fr",
@@ -1956,8 +1939,8 @@ def test_datacite_v45():
             "type": "AlternativeTitle",
         },
     ]
-    assert subject.descriptions == [
-        {"description": "Example Abstract", "type": "Abstract", "language": "en"},
+    assert subject.description == "Example Abstract"
+    assert subject.additional_descriptions == [
         {"description": "Example Methods", "type": "Methods", "language": "en"},
         {"description": "Example SeriesInformation", "type": "Other", "language": "en"},
         {"description": "Example TableOfContents", "type": "Other", "language": "en"},
@@ -1984,16 +1967,17 @@ def test_datacite_instrument():
     assert subject.additional_type == "Raster image pixel detector"
     assert len(subject.contributors) == 2
     assert subject.contributors[0] == {
-        "contributorRoles": ["Author"],
-        "name": "DECTRIS",
         "type": "Organization",
-        "id": "https://www.wikidata.org/wiki/Q107529885",
+        "organization": {"name": "DECTRIS"},
+        "roles": ["Author"],
     }
     assert subject.contributors[1] == {
-        "id": "https://ror.org/02aj13c28",
         "type": "Organization",
-        "contributorRoles": ["HostingInstitution"],
-        "name": "Helmholtz-Zentrum Berlin Für Materialien Und Energie",
+        "organization": {
+            "id": "https://ror.org/02aj13c28",
+            "name": "Helmholtz-Zentrum Berlin F\u00fcr Materialien Und Energie",
+        },
+        "roles": ["HostingInstitution"],
     }
     assert subject.publisher == {
         "name": "Helmholtz Centre Potsdam - GFZ German Research Centre for Geosciences",

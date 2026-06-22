@@ -15,6 +15,12 @@ from ..constants import (
     CM_TO_SO_TRANSLATIONS,
 )
 from ..doi_utils import doi_from_url, normalize_doi
+from ..v1_compat import (
+    v1_to_date,
+    v1_to_descriptions,
+    v1_to_geo_locations,
+    v1_to_titles,
+)
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -28,7 +34,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
     alternate_identifiers = [
         {
             "alternateIdentifier": i.get("identifier", None),
-            "alternateIdentifierType": i.get("identifierType", None),
+            "alternateIdentifierType": i.get("identifier_type", None),
         }
         for i in wrap(metadata.identifiers)
         if i.get("id", None) != metadata.id
@@ -37,13 +43,13 @@ def write_datacite(metadata: Metadata) -> dict | None:
     creators = [
         to_datacite_creator(i)
         for i in wrap(metadata.contributors)
-        if "Author" in wrap(i.get("contributorRoles"))
+        if "Author" in wrap(i.get("roles"))
     ]
     contributors = scrub(
         [
             to_datacite_contributor(i)
             for i in wrap(metadata.contributors)
-            if "Author" not in wrap(i.get("contributorRoles"))
+            if "Author" not in wrap(i.get("roles"))
         ]
     )
     related_identifiers = [
@@ -75,9 +81,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
         }
     )
     publication_year = (
-        metadata.date.get("published")[:4]
-        if metadata.date.get("published", None)
-        else None
+        metadata.date_published[:4] if metadata.date_published else None
     )
 
     def to_datacite_date(date_item: tuple[str, str]) -> dict:
@@ -90,7 +94,8 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "dateType": k.title(),
         }
 
-    dates = [to_datacite_date(item) for item in metadata.date.items()]
+    date = v1_to_date(metadata.date_published, metadata.date_updated, metadata.dates)
+    dates = [to_datacite_date(item) for item in (date or {}).items()]
 
     license_ = (
         [
@@ -128,8 +133,14 @@ def write_datacite(metadata: Metadata) -> dict | None:
                 "lang": i.get("language", None),
             }
         )
-        for i in wrap(metadata.descriptions)
+        for i in wrap(
+            v1_to_descriptions(metadata.description, metadata.additional_descriptions)
+        )
     ]
+
+    titles = to_datacite_titles(
+        wrap(v1_to_titles(metadata.title, metadata.additional_titles))
+    )
 
     return compact(
         {
@@ -137,7 +148,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "doi": doi_from_url(metadata.id),
             "url": metadata.url,
             "creators": creators,
-            "titles": metadata.titles,
+            "titles": titles,
             "publisher": metadata.publisher,
             "publicationYear": publication_year,
             "subjects": subjects,
@@ -150,80 +161,100 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "version": metadata.version,
             "rightsList": license_,
             "descriptions": descriptions,
-            "geoLocations": metadata.geo_locations,
-            "fundingReferences": metadata.funding_references,
+            "geoLocations": v1_to_geo_locations(metadata.geo_locations),
+            "fundingReferences": [
+                to_datacite_funding_reference(f)
+                for f in wrap(metadata.funding_references)
+            ],
             "schemaVersion": "http://datacite.org/schema/kernel-4",
         }
     )
 
 
+def to_datacite_name_identifiers(_id: str | None) -> list | None:
+    """Format a v1.0 person.id (ORCID) as DataCite nameIdentifiers"""
+    if not _id:
+        return None
+    return [
+        {
+            "nameIdentifier": i,
+            "nameIdentifierScheme": "ORCID",
+            "schemeUri": "https://orcid.org",
+        }
+        for i in wrap(_id)
+    ]
+
+
 def to_datacite_creator(creator: dict) -> dict:
-    """Convert contributors to datacite creators"""
+    """Convert a v1.0 {type, person|organization, roles} contributor to a
+    DataCite creator"""
     _type = creator.get("type", None)
-    if creator.get("familyName", None):
-        name = ", ".join([creator.get("familyName", ""), creator.get("givenName", "")])
-    elif creator.get("name", None):
-        name = creator.get("name", None)
+    organization = creator.get("organization", None)
+    person = creator.get("person", None) or {}
+    given_name = person.get("given_name", None)
+    family_name = person.get("family_name", None)
+    if family_name:
+        name = ", ".join([family_name, given_name or ""])
+    elif organization:
+        name = organization.get("name", None)
     else:
         name = None
-    name_identifiers = creator.get("id", None)
-    if name_identifiers:
-
-        def format_name_identifier(name_identifier: str) -> dict:
-            return {
-                "nameIdentifier": name_identifier,
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-
-        name_identifiers = [format_name_identifier(i) for i in wrap(name_identifiers)]
+    _id = organization.get("id", None) if organization else person.get("id", None)
     return compact(
         {
             "name": name,
-            "givenName": creator.get("givenName", None),
-            "familyName": creator.get("familyName", None),
+            "givenName": given_name,
+            "familyName": family_name,
             "nameType": _type + "al" if _type else None,
-            "nameIdentifiers": name_identifiers,
-            "affiliation": creator.get("affiliations", None),
+            "nameIdentifiers": to_datacite_name_identifiers(_id),
+            "affiliation": person.get("affiliations", None),
         }
     )
 
 
 def to_datacite_contributor(contributor: dict) -> dict:
-    """Convert contributors to datacite contributors"""
+    """Convert a v1.0 {type, person|organization, roles} contributor to a
+    DataCite contributor"""
     _type = contributor.get("type", None)
-    if contributor.get("familyName", None):
-        name = ", ".join(
-            [contributor.get("familyName", ""), contributor.get("givenName", "")]
-        )
-    elif contributor.get("name", None):
-        name = contributor.get("name", None)
+    organization = contributor.get("organization", None)
+    person = contributor.get("person", None) or {}
+    given_name = person.get("given_name", None)
+    family_name = person.get("family_name", None)
+    if family_name:
+        name = ", ".join([family_name, given_name or ""])
+    elif organization:
+        name = organization.get("name", None)
     else:
         name = None
-    name_identifiers = contributor.get("id", None)
-    if name_identifiers:
-
-        def format_name_identifier(name_identifier: str) -> dict:
-            return {
-                "nameIdentifier": name_identifier,
-                "nameIdentifierScheme": "ORCID",
-                "schemeUri": "https://orcid.org",
-            }
-
-        name_identifiers = [format_name_identifier(i) for i in wrap(name_identifiers)]
-    role = first(wrap(contributor.get("contributorRoles", None)))
+    _id = organization.get("id", None) if organization else person.get("id", None)
+    role = first(wrap(contributor.get("roles", None)))
     _role = CM_TO_DC_CONTRIBUTOR_ROLES.get(role, None)
     if _role is None:
         return None
     return compact(
         {
             "name": name,
-            "givenName": contributor.get("givenName", None),
-            "familyName": contributor.get("familyName", None),
+            "givenName": given_name,
+            "familyName": family_name,
             "nameType": _type + "al" if _type else None,
-            "nameIdentifiers": name_identifiers,
-            "affiliation": contributor.get("affiliations", None),
+            "nameIdentifiers": to_datacite_name_identifiers(_id),
+            "affiliation": person.get("affiliations", None),
             "contributorType": _role,
+        }
+    )
+
+
+def to_datacite_funding_reference(funding: dict) -> dict:
+    """Convert a v1.0 flat funding reference to a DataCite fundingReference"""
+    funder_id = funding.get("funder_id", None)
+    return compact(
+        {
+            "funderName": funding.get("funder_name", None),
+            "funderIdentifier": funder_id,
+            "funderIdentifierType": "ROR" if funder_id else None,
+            "awardUri": funding.get("award_id", None),
+            "awardTitle": funding.get("award_title", None),
+            "awardNumber": funding.get("award_number", None),
         }
     )
 
@@ -231,11 +262,13 @@ def to_datacite_contributor(contributor: dict) -> dict:
 def to_datacite_titles(titles: list) -> list:
     """Convert titles to datacite titles"""
     return [
-        {
-            "title": title.get("title", None),
-            "titleType": title.get("type", None),
-            "lang": title.get("language", None),
-        }
+        compact(
+            {
+                "title": title.get("title", None),
+                "titleType": title.get("type", None),
+                "lang": title.get("language", None),
+            }
+        )
         for title in titles
     ]
 

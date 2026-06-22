@@ -1,9 +1,11 @@
 # pylint: disable=invalid-name
 """Citeproc JSON reader tests"""
 
+import json
 from os import path
 
 from commonmeta import Metadata
+from commonmeta.schema_utils import json_schema_errors
 
 
 def test_blog_posting():
@@ -16,17 +18,33 @@ def test_blog_posting():
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.contributors == [
         {
-            "familyName": "Fenner",
-            "givenName": "Martin",
             "type": "Person",
-            "contributorRoles": ["Author"],
+            "person": {
+                "given_name": "Martin",
+                "family_name": "Fenner"
+            },
+            "roles": [
+                "Author"
+            ]
         }
     ]
-    assert subject.titles == [{"title": "Eating your own Dog Food"}]
-    assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
+    assert subject.title == "Eating your own Dog Food"
+    assert subject.description.startswith("Eating your own dog food")
     assert subject.license is None
-    assert subject.date == {"published": "2016-12-20"}
+    assert subject.date_published == "2016-12-20"
     assert subject.provider == "DataCite"
+
+    commonmeta = json.loads(subject.write())
+    assert json_schema_errors(commonmeta, "commonmeta") is None
+    assert commonmeta["title"] == "Eating your own Dog Food"
+    assert commonmeta["date_published"] == "2016-12-20"
+    assert commonmeta["contributors"] == [
+        {
+            "type": "Person",
+            "person": {"given_name": "Martin", "family_name": "Fenner"},
+            "roles": ["Author"],
+        }
+    ]
 
 
 def test_no_categories():
@@ -41,15 +59,19 @@ def test_no_categories():
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.contributors == [
         {
-            "familyName": "Fenner",
-            "givenName": "Martin",
             "type": "Person",
-            "contributorRoles": ["Author"],
+            "person": {
+                "given_name": "Martin",
+                "family_name": "Fenner"
+            },
+            "roles": [
+                "Author"
+            ]
         }
     ]
-    assert subject.titles == [{"title": "Eating your own Dog Food"}]
-    assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.date == {"published": "2016-12-20"}
+    assert subject.title == "Eating your own Dog Food"
+    assert subject.description.startswith("Eating your own dog food")
+    assert subject.date_published == "2016-12-20"
     assert subject.provider == "DataCite"
 
 
@@ -62,7 +84,7 @@ def test_no_author():
     assert subject.type == "BlogPost"
     assert subject.url == "https://blog.datacite.org/eating-your-own-dog-food"
     assert subject.contributors is None
-    assert subject.titles == [{"title": "Eating your own Dog Food"}]
-    assert subject.descriptions[0]["description"].startswith("Eating your own dog food")
-    assert subject.date == {"published": "2016-12-20"}
+    assert subject.title == "Eating your own Dog Food"
+    assert subject.description.startswith("Eating your own dog food")
+    assert subject.date_published == "2016-12-20"
     assert subject.provider == "DataCite"

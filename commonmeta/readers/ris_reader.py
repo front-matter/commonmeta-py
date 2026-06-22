@@ -6,7 +6,7 @@ from ..author_utils import get_authors
 from ..base_utils import presence
 from ..constants import RIS_TO_CM_TRANSLATIONS, Commonmeta
 from ..date_utils import get_date_from_parts
-from ..doi_utils import doi_from_url, normalize_doi
+from ..doi_utils import normalize_doi
 from ..utils import compact, normalize_url, wrap
 
 
@@ -29,11 +29,12 @@ def read_ris(data: str | None, **kwargs) -> Commonmeta:
 
     authors = [get_author(i) for i in wrap(meta.get("AU", None))]
     contributors = get_authors(authors)
-    date = {}
+    date_published = None
+    dates = {}
     if meta.get("PY", None) is not None:
-        date["published"] = get_date_from_parts(*str(meta.get("PY", None)).split("/"))
+        date_published = get_date_from_parts(*str(meta.get("PY", None)).split("/"))
     if meta.get("Y1", None) is not None:
-        date["created"] = get_date_from_parts(*str(meta.get("Y1", None)).split("/"))
+        dates["created"] = get_date_from_parts(*str(meta.get("Y1", None)).split("/"))
     # related_identifiers = if meta.fetch('T2', nil).present? & & meta.fetch('SN', nil).present?
     #                             [{'type' = > 'Periodical',
     #                                'id'= > meta.fetch('SN', nil),
@@ -43,9 +44,7 @@ def read_ris(data: str | None, **kwargs) -> Commonmeta:
     #                           else
     #                             []
     #                           end
-    descriptions = None
-    if meta.get("AB", None) is not None:
-        descriptions = [{"description": meta.get("AB"), "type": "Abstract"}]
+    description = meta.get("AB", None)
     if meta.get("T2", None) is not None:
         container = compact(
             {
@@ -53,8 +52,8 @@ def read_ris(data: str | None, **kwargs) -> Commonmeta:
                 "title": meta.get("T2", None),
                 "volume": meta.get("VL", None),
                 "issue": meta.get("IS", None),
-                "firstPage": meta.get("SP", None),
-                "lastPage": meta.get("EP", None),
+                "first_page": meta.get("SP", None),
+                "last_page": meta.get("EP", None),
             }
         )
     else:
@@ -70,18 +69,18 @@ def read_ris(data: str | None, **kwargs) -> Commonmeta:
         **{
             "id": _id,
             "type": _type,
-            "doi": doi_from_url(_id),
-            "url": normalize_url(meta.get("UR", None)),
-            "titles": [{"title": meta.get("T1", None)}],
-            "descriptions": descriptions,
-            "contributors": presence(contributors),
-            "publisher": presence(publisher),
             "container": container,
+            "contributors": presence(contributors),
             # 'related_identifiers': related_identifiers,
-            "date": date,
-            "subjects": subjects,
+            "date_published": date_published,
+            "dates": presence(dates),
+            "description": description,
             "language": meta.get("LA", None),
+            "publisher": presence(publisher),
             "state": state,
+            "subjects": subjects,
+            "title": meta.get("T1", None),
+            "url": normalize_url(meta.get("UR", None)),
         },
         **read_options,
     }

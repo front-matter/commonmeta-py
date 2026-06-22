@@ -46,27 +46,18 @@ def write_bibtex(metadata: Metadata) -> bytes | None:
 def write_bibtex_item(metadata: Metadata) -> dict:
     """Write bibtex item"""
     container = metadata.container if metadata.container else {}
-    date_published = get_iso8601_date(metadata.date.get("published", None))
+    date_published = get_iso8601_date(metadata.date_published)
     authors = authors_as_string(metadata.contributors)
-    if metadata.titles and len(metadata.titles) > 1:
+    if metadata.title and metadata.additional_titles:
         title = ": ".join(
-            [
-                metadata.titles[0].get("title", None),
-                metadata.titles[1].get("title", None),
-            ]
+            [metadata.title, metadata.additional_titles[0].get("title", None)]
         )
-    elif metadata.titles and len(metadata.titles) == 1:
-        title = metadata.titles[0].get("title", None)
     else:
-        title = None
+        title = metadata.title
     doi = doi_from_url(metadata.id)
     _id = doi if doi else metadata.id
     _type = CM_TO_BIB_TRANSLATIONS.get(metadata.type, "misc")
-    abstract = (
-        metadata.descriptions[0].get("description", None)
-        if metadata.descriptions
-        else None
-    )
+    abstract = metadata.description
     author = authors if authors and len(authors) > 0 else None
     license_ = str(metadata.license.get("url")) if metadata.license else None
     institution = (
@@ -76,12 +67,12 @@ def write_bibtex_item(metadata: Metadata) -> dict:
     )
     issn = (
         container.get("identifier", None)
-        if container.get("identifierType", None) == "ISSN"
+        if container.get("identifier_type", None) == "ISSN"
         else None
     )
     isbn = (
         container.get("identifier", None)
-        if container.get("identifierType", None) == "ISBN"
+        if container.get("identifier_type", None) == "ISBN"
         else None
     )
     issue = container.get("issue", None)

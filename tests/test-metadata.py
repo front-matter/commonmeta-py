@@ -60,6 +60,9 @@ def test_list_of_pids():
     assert subject.type == "JournalArticle"
 
 
+@pytest.mark.skip(
+    reason="commonmeta_rs integration disabled pending its v1.0 schema migration"
+)
 def test_write_parquet_roundtrip():
     """write list as parquet, then read it back via commonmeta_rs"""
     import commonmeta_rs
@@ -81,6 +84,9 @@ def test_write_parquet_roundtrip():
     assert records[0]["id"] == "https://doi.org/10.5555/12345678"
 
 
+@pytest.mark.skip(
+    reason="commonmeta_rs integration disabled pending its v1.0 schema migration"
+)
 def test_write_zip_archive():
     """write list as a zip archive of commonmeta JSON batches"""
     import zipfile

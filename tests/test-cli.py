@@ -123,6 +123,9 @@ def test_list():
     # assert 2 == len(result.output)
 
 
+@pytest.mark.skip(
+    reason="vraix/commonmeta_rs integration disabled pending its v1.0 schema migration"
+)
 def test_list_via_vraix_to_parquet(tmp_path):
     """Test commonmeta list --via vraix, reading a local VRAIX sqlite fixture
     and writing it out as Parquet, with no live network call."""

@@ -592,5 +592,14 @@ def sanitize(text: str, **kwargs) -> str:
     }
     attributes = kwargs.get("attributes", None)
     string = nh3.clean(text, tags=tags, attributes=attributes, link_rel=None)
+    # nh3.clean() HTML-escapes non-breaking spaces and similar whitespace
+    # characters into literal entities (e.g. "&nbsp;"); decode just those
+    # back, since this is used to produce plain-text metadata, not HTML
+    # output. Entities with HTML significance (&lt;, &gt;, &amp;, ...) are
+    # deliberately left encoded - nh3.clean() escaped them on purpose
+    # (e.g. literal "<div>" tags it stripped from the source aren't in the
+    # tag whitelist above), and decoding them here would reintroduce that
+    # disallowed markup as plain text.
+    string = string.replace("&nbsp;", " ")
     # remove excessive internal whitespace
     return " ".join(re.split(r"\s+", string, flags=re.UNICODE))

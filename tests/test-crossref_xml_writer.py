@@ -223,9 +223,7 @@ def test_write_crossref_journal_article_from_datacite():
     string = "10.2312/geowissenschaften.1989.7.181"
     subject = Metadata(string, via="datacite")
     assert subject.id == "https://doi.org/10.2312/geowissenschaften.1989.7.181"
-    assert subject.descriptions == [
-        {"description": "Die Geowissenschaften", "type": "Other"}
-    ]
+    assert subject.description == 'Die Geowissenschaften'
     assert subject.state == "findable"
 
     crossref_xml = subject.write(to="crossref_xml")
@@ -592,30 +590,38 @@ def test_jsonfeed_without_doi():
     assert subject.contributors == [
         {
             "type": "Person",
-            "id": "https://orcid.org/0000-0001-8448-4521",
-            "contributorRoles": ["Author"],
-            "givenName": "Nees Jan",
-            "familyName": "van Eck",
-            "affiliations": [
-                {
-                    "id": "https://ror.org/027bh9e22",
-                    "name": "Leiden University",
-                },
-            ],
+            "person": {
+                "id": "https://orcid.org/0000-0001-8448-4521",
+                "given_name": "Nees Jan",
+                "family_name": "van Eck",
+                "affiliations": [
+                    {
+                        "id": "https://ror.org/027bh9e22",
+                        "name": "Leiden University"
+                    }
+                ]
+            },
+            "roles": [
+                "Author"
+            ]
         },
         {
             "type": "Person",
-            "contributorRoles": ["Author"],
-            "givenName": "Ludo",
-            "familyName": "Waltman",
-            "id": "https://orcid.org/0000-0001-8249-1752",
-            "affiliations": [
-                {
-                    "id": "https://ror.org/027bh9e22",
-                    "name": "Leiden University",
-                },
-            ],
-        },
+            "person": {
+                "id": "https://orcid.org/0000-0001-8249-1752",
+                "given_name": "Ludo",
+                "family_name": "Waltman",
+                "affiliations": [
+                    {
+                        "id": "https://ror.org/027bh9e22",
+                        "name": "Leiden University"
+                    }
+                ]
+            },
+            "roles": [
+                "Author"
+            ]
+        }
     ]
     assert subject.state == "stale"
     assert subject.version == "v1"
@@ -667,16 +673,20 @@ def test_ghost_with_affiliations():
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "id": "https://orcid.org/0000-0003-1419-2405",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
-        "affiliations": [
-            {
-                "id": "https://ror.org/04wxnsj81",
-                "name": "DataCite",
-            }
-        ],
+        "person": {
+            "id": "https://orcid.org/0000-0003-1419-2405",
+            "given_name": "Martin",
+            "family_name": "Fenner",
+            "affiliations": [
+                {
+                    "id": "https://ror.org/04wxnsj81",
+                    "name": "DataCite"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
     assert subject.state == "stale"
 
@@ -710,10 +720,14 @@ def test_jsonfeed_with_organizational_author():
     assert subject.id == "https://doi.org/10.59350/2shz7-ehx26"
     assert subject.contributors == [
         {
-            "id": "https://ror.org/0342dzm54",
             "type": "Organization",
-            "contributorRoles": ["Author"],
-            "name": "Liberate Science",
+            "organization": {
+                "id": "https://ror.org/0342dzm54",
+                "name": "Liberate Science"
+            },
+            "roles": [
+                "Author"
+            ]
         }
     ]
     assert subject.version == "v1"
@@ -831,11 +845,10 @@ def test_jsonfeed_with_relations_and_funding():
     ]
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://doi.org/10.3030/777523",
-            "awardNumber": "777523",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://doi.org/10.3030/777523",
+            "award_number": "777523"
         }
     ]
     assert subject.version == "v1"
@@ -882,11 +895,10 @@ def test_inveniordm_with_relations_and_funding():
     }
     assert subject.funding_references == [
         {
-            "funderName": "European Commission",
-            "funderIdentifier": "https://ror.org/00k4n6c32",
-            "funderIdentifierType": "ROR",
-            "awardUri": "https://doi.org/10.3030/777523",
-            "awardNumber": "777523",
+            "funder_id": "https://ror.org/00k4n6c32",
+            "funder_name": "European Commission",
+            "award_id": "https://doi.org/10.3030/777523",
+            "award_number": "777523"
         }
     ]
     assert subject.state == "findable"
@@ -949,9 +961,8 @@ def test_doi_with_multiple_funding_references():
     assert subject.type == "JournalArticle"
     assert len(subject.funding_references) == 6
     assert subject.funding_references[3] == {
-        "funderIdentifier": "https://ror.org/019whta54",
-        "funderIdentifierType": "ROR",
-        "funderName": "University of Lausanne",
+        "funder_id": "https://ror.org/019whta54",
+        "funder_name": "University of Lausanne"
     }
     assert subject.state == "findable"
 
@@ -975,23 +986,21 @@ def test_proceedings_article_with_multiple_funding_references():
     assert subject.type == "ProceedingsArticle"
     assert subject.publisher == {"name": "ACM"}
     assert subject.container == {
-        "firstPage": "1386",
-        "lastPage": "1399",
+        "first_page": "1386",
+        "last_page": "1399",
         "title": "Proceedings of the 2021 International Conference on Management of Data",
         "type": "Proceedings",
     }
     assert len(subject.funding_references) == 2
     assert subject.funding_references[0] == {
-        "awardNumber": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680",
-        "funderIdentifier": "https://ror.org/021nxhr62",
-        "funderIdentifierType": "ROR",
-        "funderName": "NSF (National Science Foundation)",
+        "funder_id": "https://ror.org/021nxhr62",
+        "funder_name": "NSF (National Science Foundation)",
+        "award_number": "CCF 805476, CCF 822388, CCF 1724745,CCF 1715777, CCF 1637458, IIS 1541613, CRII 1947789, CNS 1408695, CNS 1755615, CCF 1439084, CCF 1725543, CSR 1763680, CCF 1716252, CCF 1617618, CNS 1938709, IIS 1247726, CNS-1938709,CCF-1750472,CCF-1452904,CNS-1763680"
     }
     assert subject.funding_references[1] == {
-        "awardNumber": "DE-AC02-05CH11231,17-SC-20-SC",
-        "funderIdentifier": "https://ror.org/01bj3aw27",
-        "funderIdentifierType": "ROR",
-        "funderName": "DOE U.S. Department of Energy",
+        "funder_id": "https://ror.org/01bj3aw27",
+        "funder_name": "DOE U.S. Department of Energy",
+        "award_number": "DE-AC02-05CH11231,17-SC-20-SC"
     }
     assert subject.state == "findable"
 
@@ -1013,7 +1022,7 @@ def test_inveniordm_record_with_references():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.container == {
         "identifier": "https://rogue-scholar.org/communities/crossref",
-        "identifierType": "URL",
+        "identifier_type": "URL",
         "title": "Crossref Blog",
         "type": "Blog",
     }
@@ -1175,7 +1184,7 @@ def test_peer_review():
     subject = Metadata(string, via="crossref")
     assert subject.id == "https://doi.org/10.7554/elife.55167.sa2"
     assert subject.type == "PeerReview"
-    assert subject.date == {"published": "2020-04-29"}
+    assert subject.date_published == "2020-04-29"
 
     crossref_xml = subject.write(to="crossref_xml")
     assert subject.is_valid
@@ -1537,11 +1546,15 @@ def test_post_with_translator_role():
     assert subject.id == "https://doi.org/10.59350/swnyg-ger25"
     assert subject.type == "BlogPost"
     assert subject.contributors[1] == {
-        "id": "https://orcid.org/0000-0002-4522-7466",
         "type": "Person",
-        "contributorRoles": ["Author"],
-        "givenName": "Yanina",
-        "familyName": "Bellini Saibene",
+        "person": {
+            "id": "https://orcid.org/0000-0002-4522-7466",
+            "given_name": "Yanina",
+            "family_name": "Bellini Saibene"
+        },
+        "roles": [
+            "Author"
+        ]
     }
 
     crossref_xml = subject.write(to="crossref_xml")

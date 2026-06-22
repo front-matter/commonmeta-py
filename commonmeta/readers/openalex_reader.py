@@ -32,7 +32,6 @@ OA_LICENSES = {"cc-by": "CC-BY-4.0", "cc0": "CC0-1.0"}
 OA_IDENTIFIER_TYPES = {
     "openalex": "OpenAlex",
     "doi": "DOI",
-    "mag": "MAG",
     "pmid": "PMID",
     "pmcid": "PMCID",
 }
@@ -71,7 +70,11 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = meta.get("doi", None) or meta.get("id", None)
-    _type = CR_TO_CM_TRANSLATIONS.get(meta.get("type_crossref", None)) or "Other"
+    # OpenAlex removed the top-level "type_crossref" field; the equivalent
+    # Crossref-style classification now lives at primary_location.raw_type.
+    _type = (
+        CR_TO_CM_TRANSLATIONS.get(dig(meta, "primary_location.raw_type")) or "Other"
+    )
     additional_type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None))
     if additional_type == _type:
         additional_type = None
@@ -84,25 +87,29 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         dig(meta, "primary_location.landing_page_url") or dig(meta, "id")
     )
     title = meta.get("title", None)
-    if title is not None:
-        titles = [{"title": sanitize(title)}]
-    else:
-        titles = None
+    title = sanitize(title) if title else None
+    additional_titles: list = []
     publisher = compact(
         {"name": dig(meta, "primary_location.source.host_organization_name")}
     )
-    date = compact(
-        {"published": dig(meta, "publication_date") or dig(meta, "created_date")}
-    )
+    date_published = dig(meta, "publication_date") or dig(meta, "created_date")
     identifiers = [
         {
             "identifier": uid,
-            "identifierType": OA_IDENTIFIER_TYPES[uidType],
+            "identifier_type": OA_IDENTIFIER_TYPES[uidType],
         }
         for uidType, uid in (meta.get("ids", {})).items()
+        # MAG (Microsoft Academic Graph) has no identifier_type in the
+        # v1.0 schema; skip rather than emit an invalid identifier_type.
+        if uidType in OA_IDENTIFIER_TYPES
     ]
 
     license_ = dig(meta, "best_oa_location.license")
+    # "other-oa" is OpenAlex's own sentinel for "some unspecified open
+    # license", not a real license identifier - drop it rather than
+    # leaking a meaningless id into the license field.
+    if license_ == "other-oa":
+        license_ = None
     if license_ is not None:
         license_ = OA_LICENSES.get(license_, license_)
         license_ = dict_to_spdx({"id": license_})
@@ -114,10 +121,8 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     funding_references = from_openalex_funding(wrap(meta.get("grants", None)))
 
     description = get_abstract(meta)
-    if description is not None:
-        descriptions = [{"description": sanitize(description), "type": "Abstract"}]
-    else:
-        descriptions = None
+    description = sanitize(description) if description is not None else None
+    additional_descriptions: list = []
 
     subjects = unique(
         [
@@ -132,15 +137,17 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "additionalType": additional_type,
-        "archiveLocations": presence(archive_locations),
+        "additional_descriptions": presence(additional_descriptions),
+        "additional_titles": presence(additional_titles),
+        "additional_type": additional_type,
+        "archive_locations": presence(archive_locations),
         "container": presence(container),
         "contributors": presence(contributors),
-        "date": presence(date),
-        "descriptions": presence(descriptions),
+        "date_published": date_published,
+        "description": description,
         "files": presence(files),
-        "fundingReferences": presence(funding_references),
-        "geoLocations": None,
+        "funding_references": presence(funding_references),
+        "geo_locations": None,
         "identifiers": identifiers,
         "language": meta.get("language", None),
         "license": license_,
@@ -149,7 +156,7 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         "references": presence(references),
         "relations": presence(relations),
         "subjects": presence(subjects),
-        "titles": presence(titles),
+        "title": title,
         "url": url,
         "version": meta.get("version", None),
     } | read_options
@@ -320,7 +327,7 @@ def get_files(meta: dict) -> list | None:
     if pdf_url is None:
         return None
     return [
-        {"mimeType": "application/pdf", "url": pdf_url},
+        {"mime_type": "application/pdf", "url": pdf_url},
     ]
 
 
@@ -339,18 +346,23 @@ def get_container(meta: dict) -> dict | None:
         {
             "type": container_type,
             "identifier": issn or url_,
-            "identifierType": "ISSN" if issn else "URL" if url_ else None,
+            "identifier_type": "ISSN" if issn else "URL" if url_ else None,
             "title": container_title,
             "volume": dig(meta, "biblio.volume"),
             "issue": dig(meta, "biblio.issue"),
-            "firstPage": dig(meta, "biblio.first_page"),
-            "lastPage": dig(meta, "biblio.last_page"),
+            "first_page": dig(meta, "biblio.first_page"),
+            "last_page": dig(meta, "biblio.last_page"),
         }
     )
 
 
 def from_openalex_funding(funding_references: list) -> list:
-    """Get funding references from OpenAlex"""
+    """Get funding references from OpenAlex.
+
+    OpenAlex funders only expose a ROR identifier (no Crossref Funder ID,
+    GRID, ISNI, etc.), so funder_id is always ROR-or-None here, matching
+    the v1.0 schema's ROR-only funder_id constraint.
+    """
     funder_ids = [
         validate_openalex(funding.get("funder"))
         for funding in funding_references
@@ -364,10 +376,9 @@ def from_openalex_funding(funding_references: list) -> list:
         )
         f = compact(
             {
-                "funderName": funder.get("name", None),
-                "funderIdentifier": funder.get("ror", None),
-                "funderIdentifierType": "ROR" if funder.get("ror", None) else None,
-                "awardNumber": funding.get("award_id", None),
+                "funder_name": funder.get("name", None),
+                "funder_id": funder.get("ror", None),
+                "award_number": funding.get("award_id", None),
             }
         )
         formatted_funding_references.append(f)

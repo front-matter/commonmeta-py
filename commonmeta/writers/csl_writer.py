@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, first, parse_attributes, presence, wrap
+from ..base_utils import compact, parse_attributes, presence, wrap
 from ..constants import CM_TO_CSL_TRANSLATIONS
 from ..date_utils import get_date_parts
 from ..doi_utils import doi_from_url
@@ -36,7 +36,7 @@ def write_csl_item(metadata: Metadata) -> dict | None:
 
     container = metadata.container or {}
     publisher = metadata.publisher or {}
-    date = metadata.date or {}
+    dates = metadata.dates or {}
 
     return compact(
         {
@@ -50,28 +50,22 @@ def write_csl_item(metadata: Metadata) -> dict | None:
             "language": metadata.language,
             "author": author,
             # "contributor": to_csl(wrap(metadata.contributors)),
-            "issued": get_date_parts(date.get("published"))
-            if date.get("published", None)
+            "issued": get_date_parts(metadata.date_published)
+            if metadata.date_published
             else None,
-            "submitted": get_date_parts(date.get("submitted"))
-            if date.get("submitted", None)
+            "submitted": get_date_parts(dates.get("submitted"))
+            if dates.get("submitted", None)
             else None,
-            "accessed": get_date_parts(date.get("accessed"))
-            if date.get("accessed", None)
+            "accessed": get_date_parts(dates.get("accessed"))
+            if dates.get("accessed", None)
             else None,
-            "abstract": first(
-                parse_attributes(
-                    metadata.descriptions, content="description", first=True
-                )
-            ),
+            "abstract": metadata.description,
             "container-title": container.get("title", None),
             "volume": container.get("volume", None),
             "issue": container.get("issue", None),
             "page": presence(pages_as_string(container)),
             "publisher": publisher.get("name", None),
-            "title": first(
-                parse_attributes(metadata.titles, content="title", first=True)
-            ),
+            "title": metadata.title,
             "copyright": metadata.license.get("id", None) if metadata.license else None,
             "version": metadata.version,
         }

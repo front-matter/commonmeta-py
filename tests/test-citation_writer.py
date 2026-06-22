@@ -86,18 +86,6 @@ def test_software_with_version():
 #     ) == 'Liang, K. (2023). <i>Long Context Transformer v0.0.1</i> (0.0.1) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.7651809'
 
 
-def test_kbase_gulf_of_mexico():
-    """kbase gulf of mexico"""
-    string = path.join(
-        path.dirname(__file__), "fixtures", "10.25982_86723.65_1778009_kbcms.json"
-    )
-    subject = Metadata(string)
-    assert (
-        subject.write(to="citation").decode("utf-8")
-        == "Patin, N. (2021). Gulf of Mexico blue hole harbors high levels of novel microbial lineages [Data set]. In <i>KBase</i>. KBase. https://doi.org/10.25982/86723.65/1778009"
-    )
-
-
 @pytest.mark.vcr
 def test_write_citation_list():
     """write_citation_list"""
@@ -146,11 +134,7 @@ def test_epijats_reference():
     subject = Metadata(string)
     assert subject.id == "ref26"
     assert subject.type == "Other"
-    assert subject.titles == [
-        {
-            "title": "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"
-        }
-    ]
+    assert subject.title == "'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study"
     assert (
         subject.write(to="citation").decode("utf-8")
         == "Daniel, S., Venkateswaran, C., Hutchinson, A., &amp; Johnson, M. (2021). 'I don't talk about my distress to others; I feel that I have to suffer my problems...' voices of indian women with breast cancer: a qualitative interview study. In <i>Support Care Cancer</i> (Vol. 29, Number 5, pp. 2591–2600)."

@@ -72,29 +72,17 @@ def read_cff(data: dict | None, **kwargs) -> Commonmeta:
     url = normalize_id(meta.get("repository-code", None))
     contributors = cff_contributors(wrap(meta.get("authors", None)))
 
-    if meta.get("title", None):
-        titles = [{"title": meta.get("title", None)}]
-    else:
-        titles = []
-    if meta.get("date-released", None):
-        date_released = meta.get("date-released")
-        date = {"published": get_iso8601_date(date_released)}
-    else:
-        date = {}
+    title = meta.get("title", None)
+    date_published = (
+        get_iso8601_date(meta.get("date-released"))
+        if meta.get("date-released", None)
+        else None
+    )
 
     publisher = (
         {"name": "GitHub"} if url and urlparse(url).hostname == "github.com" else None
     )
-    abstract = meta.get("abstract", None)
-    if abstract is not None:
-        descriptions = [
-            {
-                "description": sanitize(abstract),
-                "type": "Abstract",
-            }
-        ]
-    else:
-        descriptions = []
+    description = sanitize(meta.get("abstract")) if meta.get("abstract") else None
 
     subjects = [name_to_fos(i) for i in wrap(meta.get("keywords", None))]
 
@@ -110,19 +98,19 @@ def read_cff(data: dict | None, **kwargs) -> Commonmeta:
         **{
             "id": _id,
             "type": _type,
-            # 'identifiers' => identifiers,
-            "url": url,
-            "titles": titles,
             "contributors": presence(contributors),
+            "date_published": date_published,
+            "description": description,
+            # 'identifiers' => identifiers,
+            "license": license_,
+            "provider": "DataCite" if _id else "GitHub",
             "publisher": publisher,
             "references": presence(references),
-            "date": date,
-            "descriptions": presence(descriptions),
-            "license": license_,
-            "version": meta.get("version", None),
-            "subjects": presence(subjects),
-            "provider": "DataCite" if _id else "GitHub",
             "state": state,
+            "subjects": presence(subjects),
+            "title": title,
+            "url": url,
+            "version": meta.get("version", None),
         },
         **read_options,
     }
@@ -155,25 +143,22 @@ def cff_contributors(contributors) -> list:
         if i.get("given-names", None) or i.get("family-names", None) or _id:
             given_name = first(parse_attributes(i.get("given-names", None)))
             family_name = first(parse_attributes(i.get("family-names", None)))
-            affiliation = scrub(
+            affiliations = scrub(
                 [format_affiliation(a) for a in wrap(i.get("affiliation", None))]
             )
-
-            return compact(
+            person = compact(
                 {
                     "id": _id,
-                    "contributorRoles": ["Author"],
-                    "type": "Person",
-                    "givenName": given_name,
-                    "familyName": family_name,
-                    "affiliation": affiliation,
+                    "given_name": given_name,
+                    "family_name": family_name,
+                    "affiliations": presence(affiliations),
                 }
             )
-        return {
-            "contributorRoles": ["Author"],
-            "type": "Organization",
-            "name": i.get("name", None) or i.get("#text", None),
-        }
+            return compact({"type": "Person", "person": person, "roles": ["Author"]})
+        organization = compact({"name": i.get("name", None) or i.get("#text", None)})
+        return compact(
+            {"type": "Organization", "organization": organization, "roles": ["Author"]}
+        )
 
     return [format_element(i) for i in contributors]
 

@@ -1,4 +1,4 @@
-"""Commonmeta reader for commonmeta-py"""
+"""Commonmeta reader for commonmeta-py."""
 
 from __future__ import annotations
 

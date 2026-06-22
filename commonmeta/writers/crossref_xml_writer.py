@@ -22,6 +22,7 @@ from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presenc
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
+from ..v1_compat import v1_to_descriptions
 from .inveniordm_writer import push_inveniordm
 
 if TYPE_CHECKING:
@@ -767,7 +768,7 @@ def get_journal_metadata(obj) -> dict | None:
     return compact(
         {
             "@language": dig(obj, "language"),
-            "full_title": dig(obj, "container.title") or dig(obj, "titles.0.title"),
+            "full_title": dig(obj, "container.title") or dig(obj, "title"),
             "issn": get_issn(obj),
             "doi_data": get_doi_data(obj),
         }
@@ -817,7 +818,7 @@ def get_proceedings_metadata(obj) -> dict | None:
         },
         "publication_date": get_publication_date(obj, media_type="online"),
     }
-    if dig(obj, "container.identifierType") == "ISBN":
+    if dig(obj, "container.identifier_type") == "ISBN":
         proceedings_metadata["isbn"] = get_isbn(obj)
     return compact(proceedings_metadata)
 
@@ -850,13 +851,12 @@ def get_titles(obj) -> dict | None:
     """get titles"""
 
     titles = {}
-    for t in wrap(dig(obj, "titles", [])):
-        if isinstance(t, str):
-            titles["title"] = t
-        elif isinstance(t, dict) and t.get("titleType", None) == "Subtitle":
+    title = dig(obj, "title", None)
+    if title is not None:
+        titles["title"] = title
+    for t in wrap(dig(obj, "additional_titles", [])):
+        if isinstance(t, dict) and t.get("type", None) == "Subtitle":
             titles["subtitle"] = t.get("title", None)
-        elif isinstance(t, dict):
-            titles["title"] = t.get("title", None)
 
     return titles if titles else None
 
@@ -894,7 +894,7 @@ def get_contributors(obj) -> dict | None:
     con = [
         c
         for c in dig(obj, "contributors", [])
-        if set(c.get("contributorRoles", [])) & allowed_roles
+        if set(c.get("roles", [])) & allowed_roles
     ]
 
     person_names = []
@@ -902,7 +902,7 @@ def get_contributors(obj) -> dict | None:
     anonymous_contributors = []
 
     for num, contributor in enumerate(con):
-        roles = wrap(contributor.get("contributorRoles"))
+        roles = wrap(contributor.get("roles"))
         contributor_role = next(
             (
                 CM_TO_CR_CONTRIBUTOR_ROLES.get(role)
@@ -912,32 +912,31 @@ def get_contributors(obj) -> dict | None:
             "author",
         )
         sequence = "first" if num == 0 else "additional"
-        if (
-            contributor.get("type", None) == "Organization"
-            and contributor.get("name", None) is not None
-        ):
+        organization = contributor.get("organization", None)
+        person = contributor.get("person", None) or {}
+        if organization and organization.get("name", None) is not None:
             organizations.append(
                 {
                     "@contributor_role": contributor_role,
                     "@sequence": sequence,
-                    "#text": contributor.get("name"),
+                    "#text": organization.get("name"),
                 }
             )
         elif (
-            contributor.get("givenName", None) is not None
-            or contributor.get("familyName", None) is not None
+            person.get("given_name", None) is not None
+            or person.get("family_name", None) is not None
         ):
             person_names.append(
                 compact(
                     {
                         "@contributor_role": contributor_role,
                         "@sequence": sequence,
-                        "given_name": contributor.get("givenName", None),
-                        "surname": contributor.get("familyName", None),
+                        "given_name": person.get("given_name", None),
+                        "surname": person.get("family_name", None),
                         "affiliations": map_affiliations(
-                            contributor.get("affiliations", None)
+                            person.get("affiliations", None)
                         ),
-                        "ORCID": contributor.get("id", None),
+                        "ORCID": person.get("id", None),
                     }
                 )
             )
@@ -948,7 +947,7 @@ def get_contributors(obj) -> dict | None:
                         "@contributor_role": contributor_role,
                         "@sequence": sequence,
                         "affiliations": map_affiliations(
-                            contributor.get("affiliations", None)
+                            person.get("affiliations", None)
                         ),
                     }
                 )
@@ -977,11 +976,14 @@ def get_publisher(obj) -> dict | None:
 
 def get_abstracts(obj) -> list | None:
     """get abstracts"""
-    if len(wrap(dig(obj, "descriptions"))) == 0:
+    descriptions = v1_to_descriptions(
+        dig(obj, "description", None), dig(obj, "additional_descriptions", None)
+    )
+    if len(wrap(descriptions)) == 0:
         return None
 
     abstracts = []
-    for d in wrap(dig(obj, "descriptions", [])):
+    for d in wrap(descriptions):
         if d.get("type", None) == "Abstract":
             abstracts.append(
                 {
@@ -1010,17 +1012,17 @@ def get_item_number(obj) -> dict | None:
         return None
 
     for identifier in wrap(dig(obj, "identifiers")):
-        if identifier.get("identifierType", None) == "UUID":
+        if identifier.get("identifier_type", None) == "UUID":
             # strip hyphen from UUIDs, as item_number can only be 32 characters long (UUIDv4 is 36 characters long)
             return {
-                "@item_number_type": identifier.get("identifierType", "").lower(),
+                "@item_number_type": identifier.get("identifier_type", "").lower(),
                 "#text": identifier.get("identifier", None).replace("-", ""),
             }
 
 
 def get_publication_date(obj, media_type: str | None = None) -> Dict | None:
     """get publication date"""
-    pub_date_str = dig(obj, "date.published")
+    pub_date_str = dig(obj, "date_published")
     if pub_date_str is None:
         return None
 
@@ -1127,13 +1129,13 @@ def get_funding_references(obj) -> dict | None:
 
     # Check if we need funding groups (multiple funders with award numbers)
     funders_with_awards = [
-        f for f in funding_refs if f.get("awardNumber", None) is not None
+        f for f in funding_refs if f.get("award_number", None) is not None
     ]
     unique_funders = set(
-        f.get("funderIdentifier", None) or f.get("funderName", None)
+        f.get("funder_id", None) or f.get("funder_name", None)
         for f in funding_refs
-        if f.get("funderIdentifier", None) is not None
-        or f.get("funderName", None) is not None
+        if f.get("funder_id", None) is not None
+        or f.get("funder_name", None) is not None
     )
 
     use_funding_groups = len(funders_with_awards) > 0 and len(unique_funders) > 1
@@ -1141,32 +1143,19 @@ def get_funding_references(obj) -> dict | None:
     for funding_reference in funding_refs:
         group_assertions = []
 
-        # Handle funder identifier/name
-        funder_identifier = funding_reference.get("funderIdentifier", None)
-        funder_identifier_type = funding_reference.get("funderIdentifierType", None)
-        funder_name = funding_reference.get("funderName", None)
+        # Handle funder identifier/name. funder_id is ROR-only per v1.0.
+        funder_id = funding_reference.get("funder_id", None)
+        funder_name = funding_reference.get("funder_name", None)
 
-        if funder_identifier and funder_identifier_type == "ROR":
-            funder_assertion = {"@name": "ror", "#text": funder_identifier}
-            group_assertions.append(funder_assertion)
-        elif funder_identifier and funder_identifier_type == "Crossref Funder ID":
-            # Create nested structure for Crossref Funder ID
-            funder_id_assertion = {
-                "@name": "funder_identifier",
-                "#text": funder_identifier,
-            }
-            funder_assertion = {
-                "@name": "funder_name",
-                "#text": funder_name,
-                "fr:assertion": [funder_id_assertion],
-            }
+        if funder_id:
+            funder_assertion = {"@name": "ror", "#text": funder_id}
             group_assertions.append(funder_assertion)
         elif funder_name:
             funder_assertion = {"@name": "funder_name", "#text": funder_name}
             group_assertions.append(funder_assertion)
 
         # Handle award number
-        award_number = funding_reference.get("awardNumber", None)
+        award_number = funding_reference.get("award_number", None)
         if award_number:
             award_assertion = {"@name": "award_number", "#text": award_number}
             group_assertions.append(award_assertion)
@@ -1291,11 +1280,14 @@ def get_doi_data(obj) -> dict | None:
 
     items = [{"resource": {"@mime_type": "text/html", "#text": dig(obj, "url")}}]
     for file in wrap(dig(obj, "files")):
-        if file.get("mimeType", None) is not None and file.get("url", None) is not None:
+        if (
+            file.get("mime_type", None) is not None
+            and file.get("url", None) is not None
+        ):
             items.append(
                 {
                     "resource": {
-                        "@mime_type": file.get("mimeType"),
+                        "@mime_type": file.get("mime_type"),
                         "#text": file.get("url"),
                     }
                 }
@@ -1316,7 +1308,7 @@ def get_doi_data(obj) -> dict | None:
 def get_isbn(obj, media_type: str | None = None) -> list[dict] | None:
     """get isbn. Returns array of objects with #text and @media_type."""
     if (
-        dig(obj, "container.identifierType") != "ISBN"
+        dig(obj, "container.identifier_type") != "ISBN"
         or dig(obj, "container.identifier") is None
     ):
         return None
@@ -1366,11 +1358,11 @@ def normalize_isbn_crossref(isbn: str) -> str | None:
 
 def get_issn(obj):
     """get issn"""
-    if dig(obj, "container.identifierType") == "ISSN":
+    if dig(obj, "container.identifier_type") == "ISSN":
         return dig(obj, "container.identifier")
 
     for identifier in wrap(dig(obj, "identifiers")):
-        if identifier.get("identifierType") == "ISSN":
+        if identifier.get("identifier_type") == "ISSN":
             return identifier.get("identifier")
 
     return None

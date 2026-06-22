@@ -17,26 +17,33 @@ def test_rdataone():
     assert len(subject.contributors) == 3
     assert subject.contributors[0] == {
         "type": "Person",
-        "id": "https://orcid.org/0000-0003-0077-4738",
-        "contributorRoles": ["Author"],
-        "givenName": "Matt",
-        "familyName": "Jones",
-        "affiliations": [{"name": "NCEAS"}],
+        "person": {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "given_name": "Matt",
+            "family_name": "Jones",
+            "affiliations": [
+                {
+                    "name": "NCEAS"
+                }
+            ]
+        },
+        "roles": [
+            "Author"
+        ]
     }
-    assert subject.titles == [{"title": "R Interface to the DataONE REST API"}]
-    assert subject.descriptions[0]["description"].startswith(
+    assert subject.title == "R Interface to the DataONE REST API"
+    assert subject.description.startswith(
         "Provides read and write access to data and metadata"
     )
     # [{'subject': 'data sharing'}], [{'subject': 'data repository'}], [{'subject': 'dataone'}]
     assert subject.subjects is None
-    assert subject.date == {
-        "created": "2016-05-27",
-        "published": "2016-05-27",
-        "updated": "2016-05-27",
-    }
+    assert (subject.date_published == '2016-05-27'
+        and subject.date_updated == '2016-05-27'
+        and subject.dates == {'created': '2016-05-27'})
     assert subject.publisher == {"name": "https://cran.r-project.org"}
     assert subject.license == {
         "id": "Apache-2.0",
+        "title": "Apache License 2.0",
         "url": "http://www.apache.org/licenses/LICENSE-2.0",
     }
     assert subject.version == "2.0.0"
@@ -53,24 +60,27 @@ def test_metadata_reports():
     assert len(subject.contributors) == 4
     assert subject.contributors[0] == {
         "type": "Person",
-        "id": "https://orcid.org/0000-0003-0077-4738",
-        "contributorRoles": ["Author"],
-        "givenName": "Martin",
-        "familyName": "Fenner",
+        "person": {
+            "id": "https://orcid.org/0000-0003-0077-4738",
+            "given_name": "Martin",
+            "family_name": "Fenner"
+        },
+        "roles": [
+            "Author"
+        ]
     }
-    assert subject.titles == [{"title": "DOI Registrations for Software"}]
-    assert subject.descriptions[0]["description"].startswith(
+    assert subject.title == "DOI Registrations for Software"
+    assert subject.description.startswith(
         "Analysis of DataCite DOIs registered for software"
     )
     assert subject.subjects is None
-    assert subject.date == {
-        "created": "2018-03-09",
-        "published": "2018-05-17",
-        "updated": "2018-05-17",
-    }
+    assert (subject.date_published == '2018-05-17'
+        and subject.date_updated == '2018-05-17'
+        and subject.dates == {'created': '2018-03-09'})
     assert subject.publisher == {"name": "DataCite"}
     assert subject.license == {
         "id": "MIT",
+        "title": "MIT License",
         "url": "https://opensource.org/licenses/MIT",
     }
     assert subject.version is None

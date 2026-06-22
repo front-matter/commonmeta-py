@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from collections import defaultdict
 from datetime import datetime
 
 import orjson as json
@@ -22,6 +21,7 @@ from ..base_utils import (
     wrap,
 )
 from ..constants import (
+    CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS,
     OG_TO_SO_TRANSLATIONS,
     SO_TO_CM_TRANSLATIONS,
     SO_TO_DC_RELATION_TYPES,
@@ -176,18 +176,18 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         contributors += contrib
 
     if meta.get("name", None) is not None:
-        titles = [{"title": meta.get("name")}]
+        title = meta.get("name")
     elif meta.get("headline", None) is not None:
-        titles = [{"title": meta.get("headline")}]
+        title = meta.get("headline")
     else:
-        titles = None
+        title = None
 
-    date: dict = defaultdict(list)
-    date["published"] = strip_milliseconds(meta.get("datePublished", None))
-    date["updated"] = strip_milliseconds(meta.get("dateModified", None))
+    date_published = strip_milliseconds(meta.get("datePublished", None))
+    date_updated = strip_milliseconds(meta.get("dateModified", None))
+    dates: dict = {}
     # if no date is found, use today's date
-    if date == {"published": None, "updated": None}:
-        date["accessed"] = read_options.get(
+    if date_published is None and date_updated is None:
+        dates["accessed"] = read_options.get(
             "dateAccessed", None
         ) or datetime.now().isoformat("T", "seconds")
 
@@ -222,11 +222,11 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
                 "type": "DataRepository",
                 "title": _title,
                 "identifier": container_url,
-                "identifierType": "URL" if container_url is not None else None,
+                "identifier_type": "URL" if container_url is not None else None,
                 "volume": meta.get("volumeNumber", None),
                 "issue": meta.get("issueNumber", None),
-                "firstPage": meta.get("pageStart", None),
-                "lastPage": meta.get("pageEnd", None),
+                "first_page": meta.get("pageStart", None),
+                "last_page": meta.get("pageEnd", None),
             }
         )
     elif _type in ["Article", "BlogPost"]:
@@ -242,7 +242,7 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
                 else container_url
                 if container_url is not None
                 else None,
-                "identifierType": "ISSN"
+                "identifier_type": "ISSN"
                 if issn is not None
                 else "URL"
                 if container_url is not None
@@ -257,12 +257,10 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         get_funding_reference(i) for i in wrap(meta.get("funder", None))
     ]
 
-    descriptions = [
-        {
-            "description": sanitize(i),
-            "type": "Abstract",
-        }
-        for i in wrap(meta.get("description"))
+    descriptions = [sanitize(i) for i in wrap(meta.get("description"))]
+    description = descriptions[0] if descriptions else None
+    additional_descriptions = [
+        {"description": i, "type": "Abstract"} for i in descriptions[1:]
     ]
 
     # convert keywords as comma-separated string into list
@@ -297,28 +295,28 @@ def read_schema_org(data: dict | None, **kwargs) -> Commonmeta:
         # required attributes
         "id": _id,
         "type": _type,
-        "url": url,
-        "contributors": presence(contributors),
-        "titles": titles,
-        "publisher": publisher,
-        "date": compact(date),
         # recommended and optional attributes
+        "additional_descriptions": presence(additional_descriptions),
         "additional_type": additional_type,
-        "subjects": presence(subjects),
-        "language": get_language(language),
-        "identifiers": identifiers,
-        "sizes": None,
-        "formats": None,
-        "version": meta.get("version", None),
-        "license": license_,
-        "descriptions": presence(descriptions),
-        "geo_locations": presence(geo_locations),
-        "funding_references": presence(funding_references),
-        "references": presence(references),
-        # optional attributes
         "container": container,
+        "contributors": presence(contributors),
+        "date_published": date_published,
+        "date_updated": date_updated,
+        "dates": presence(dates),
+        "description": description,
+        "funding_references": presence(funding_references),
+        "geo_locations": presence(geo_locations),
+        "identifiers": identifiers,
+        "language": get_language(language),
+        "license": license_,
         "provider": provider,
+        "publisher": publisher,
+        "references": presence(references),
         "state": state,
+        "subjects": presence(subjects),
+        "title": title,
+        "url": url,
+        "version": meta.get("version", None),
     } | read_options
 
 
@@ -407,7 +405,8 @@ def schema_org_geolocation(geo_location: dict | None) -> dict | None:
 
     if type_ == "GeoCoordinates":
         return {
-            "geoLocationPoint": {"pointLongitude": longitude, "pointLatitude": latitude}
+            "geo_location_point_longitude": longitude,
+            "geo_location_point_latitude": latitude,
         }
     return None
 
@@ -512,13 +511,17 @@ def get_html_meta(soup) -> dict:
 
 
 def get_funding_reference(dct) -> dict | None:
-    """Get funding reference"""
+    """Get funding reference.
+
+    funder_id is ROR-only per the v1.0 schema. schema.org funder @id is a
+    Crossref Funder ID (a doi.org URL); translate to ROR where a translation
+    is known, otherwise drop it rather than leaking a non-ROR identifier
+    into funder_id.
+    """
+    funder_id = CROSSREF_FUNDER_ID_TO_ROR_TRANSLATIONS.get(dct.get("@id", None), None)
     return compact(
         {
-            "funderName": dct.get("name", None),
-            "funderIdentifier": dct.get("@id", None),
-            "funderIdentifierType": "Crossref Funder ID"
-            if dct.get("@id", None)
-            else None,
+            "funder_name": dct.get("name", None),
+            "funder_id": funder_id,
         }
     )

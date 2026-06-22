@@ -353,7 +353,7 @@ def test_inveniordm_dataset():
         "name": "Juan M. Banda",
     }
     assert schema_org.get("description").startswith(
-        "<em><strong>Version 162&nbsp;of the dataset."
+        "<em><strong>Version 162 of the dataset."
     )
     assert schema_org.get("publisher") == {"@type": "Organization", "name": "Zenodo"}
     assert schema_org.get("datePublished") == "2023-04-16"

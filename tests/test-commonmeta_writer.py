@@ -23,11 +23,10 @@ def test_journal_article():
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
-    assert commonmeta["titles"] == [
-        {
-            "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-        }
-    ]
+    assert (
+        commonmeta["title"]
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
     assert len(commonmeta["references"]) == 27
     assert commonmeta["references"][0] == {
         "key": "bib1",
@@ -41,6 +40,7 @@ def test_journal_article():
     }
     assert commonmeta["license"] == {
         "id": "CC-BY-3.0",
+        "title": "Creative Commons Attribution 3.0 Unported",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
     assert commonmeta["provider"] == "Crossref"
@@ -57,11 +57,10 @@ def test_journal_article_crossref_xml():
     assert commonmeta["id"] == "https://doi.org/10.7554/elife.01567"
     assert commonmeta["url"] == "https://elifesciences.org/articles/01567"
     assert commonmeta["type"] == "JournalArticle"
-    assert commonmeta["titles"] == [
-        {
-            "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-        }
-    ]
+    assert (
+        commonmeta["title"]
+        == "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
+    )
     assert len(commonmeta["references"]) == 27
     assert commonmeta["references"][0] == {
         "key": "bib1",
@@ -75,6 +74,7 @@ def test_journal_article_crossref_xml():
     }
     assert commonmeta["license"] == {
         "id": "CC-BY-3.0",
+        "title": "Creative Commons Attribution 3.0 Unported",
         "url": "https://creativecommons.org/licenses/by/3.0/legalcode",
     }
     assert commonmeta["provider"] == "Crossref"
@@ -93,8 +93,8 @@ def test_datacite_schema_45():
     assert commonmeta["id"] == "https://doi.org/10.82433/b09z-4k37"
     assert commonmeta["url"] == "https://example.com/"
     assert commonmeta["type"] == "Dataset"
-    assert commonmeta["titles"] == [
-        {"title": "Example Title", "language": "en"},
+    assert commonmeta["title"] == "Example Title"
+    assert commonmeta["additional_titles"] == [
         {"title": "Example Subtitle", "type": "Subtitle", "language": "en"},
         {
             "title": "Example TranslatedTitle",
@@ -107,8 +107,8 @@ def test_datacite_schema_45():
             "language": "en",
         },
     ]
-    assert commonmeta["descriptions"] == [
-        {"description": "Example Abstract", "type": "Abstract", "language": "en"},
+    assert commonmeta["description"] == "Example Abstract"
+    assert commonmeta["additional_descriptions"] == [
         {"description": "Example Methods", "type": "Methods", "language": "en"},
         {"description": "Example SeriesInformation", "type": "Other", "language": "en"},
         {"description": "Example TableOfContents", "type": "Other", "language": "en"},
@@ -121,6 +121,7 @@ def test_datacite_schema_45():
     ]
     assert commonmeta["license"] == {
         "id": "CC-PDDC",
+        "title": "Creative Commons Public Domain Dedication and Certification",
         "url": "https://creativecommons.org/licenses/publicdomain/",
     }
     assert commonmeta["provider"] == "DataCite"
@@ -143,9 +144,10 @@ def test_write_commonmeta_list():
         == "https://doi.org/10.1306/703c7c64-1707-11d7-8645000102c1865d"
     )
     assert commonmeta["type"] == "JournalArticle"
-    assert commonmeta["titles"] == [
-        {"title": "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"}
-    ]
+    assert (
+        commonmeta["title"]
+        == "Hydrocarbon Potential of Columbia Plateau--an Overview: ABSTRACT"
+    )
 
 
 @pytest.mark.vcr
@@ -162,11 +164,10 @@ def test_write_commonmeta_list_jsonfeed():
     commonmeta = commonmeta_list["items"][0]
     assert commonmeta["id"] == "https://doi.org/10.59350/26ft6-dmv65"
     assert commonmeta["type"] == "BlogPost"
-    assert commonmeta["titles"] == [
-        {
-            "title": "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
-        }
-    ]
+    assert (
+        commonmeta["title"]
+        == "Das BUA Open Science Dashboard Projekt: die Entwicklung disziplinspezifischer Open-Science-Indikatoren"
+    )
 
 
 def test_write_commonmeta_missing_doi():

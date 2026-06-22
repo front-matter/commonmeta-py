@@ -16,7 +16,7 @@ from ..constants import (
     Commonmeta,
 )
 from ..date_utils import strip_milliseconds
-from ..doi_utils import doi_as_url, doi_from_url, is_rogue_scholar_doi, validate_prefix
+from ..doi_utils import doi_as_url, is_rogue_scholar_doi, validate_prefix
 from ..utils import (
     dict_to_spdx,
     from_inveniordm,
@@ -27,6 +27,15 @@ from ..utils import (
 )
 
 log = logging.getLogger(__name__)
+
+
+def get_generator_platform(generator) -> str | None:
+    """container.platform is a string per the v1.0 schema, but
+    custom_fields.rs:generator can be a dict ({id, title: {en: ...}})
+    rather than a plain string."""
+    if isinstance(generator, dict):
+        return generator.get("id", None) or dig(generator, "title.en", None)
+    return generator
 
 
 def get_inveniordm(pid: str, **kwargs) -> dict:
@@ -88,12 +97,12 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         _type = "BlogPost"
 
     title = dig(meta, "metadata.title")
-    titles = [{"title": sanitize(title)}] if title else None
+    title = sanitize(title) if title else None
     # if additional_titles:
-    #     titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
+    #     additional_titles += [{"title": sanitize("bla")} for i in wrap(additional_titles)]
+    additional_titles: list = []
 
-    date: dict = {}
-    date["published"] = next(
+    date_published = next(
         (
             i.get("date")
             for i in wrap(dig(meta, "metadata.dates"))
@@ -101,7 +110,7 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
         ),
         None,
     ) or dig(meta, ("metadata.publication_date"))
-    date["updated"] = next(
+    date_updated = next(
         (
             i.get("date")
             for i in wrap(dig(meta, "metadata.dates", []))
@@ -129,8 +138,10 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                 "type": "Blog",
                 "title": dig(meta, "custom_fields.journal:journal.title"),
                 "identifier": issn if issn else community_url,
-                "identifierType": "ISSN" if issn else "URL",
-                "platform": dig(meta, "custom_fields.rs:generator", None),
+                "identifier_type": "ISSN" if issn else "URL",
+                "platform": get_generator_platform(
+                    dig(meta, "custom_fields.rs:generator", None)
+                ),
             }
         )
         publisher = {"name": "Front Matter"}
@@ -143,11 +154,13 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
                     "type": "Periodical",
                     "title": container.get("title", None),
                     "identifier": issn if issn else None,
-                    "identifierType": "ISSN" if issn else None,
-                    "platform": dig(meta, "custom_fields.rs:generator", None),
+                    "identifier_type": "ISSN" if issn else None,
+                    "platform": get_generator_platform(
+                        dig(meta, "custom_fields.rs:generator", None)
+                    ),
                 }
             )
-    descriptions = format_descriptions(
+    description, additional_descriptions = get_descriptions(
         [
             dig(meta, "metadata.description"),
             dig(meta, "metadata.notes"),
@@ -212,32 +225,33 @@ def read_inveniordm(data: dict, **kwargs) -> Commonmeta:
             # required properties
             "id": _id,
             "type": _type,
-            "doi": doi_from_url(_id),
-            "url": url,
-            "contributors": contributors,
-            "titles": titles,
-            "publisher": publisher,
-            "date": compact(date),
             # recommended and optional properties
+            "additional_descriptions": presence(additional_descriptions),
+            "additional_titles": presence(additional_titles),
             # "additional_type": additional_type,
-            "subjects": presence(subjects),
-            "identifiers": presence(identifiers),
-            "language": get_language(language),
-            "version": version,
-            "license": presence(license_),
-            "descriptions": descriptions,
-            "geoLocations": None,
-            "fundingReferences": presence(funding_references),
-            "references": presence(references),
             "citations": presence(citations),
-            "relations": presence(relations),
-            "content": presence(content),
-            "image": presence(image),
-            "files": presence(files),
-            # other properties
             "container": container,
-            "provider": "Crossref" if is_rogue_scholar_doi(_id) else "Datacite",
+            "content": presence(content),
+            "contributors": contributors,
+            "date_published": date_published,
+            "date_updated": date_updated,
+            "description": description,
+            "files": presence(files),
+            "funding_references": presence(funding_references),
+            "geo_locations": None,
+            "identifiers": presence(identifiers),
+            "image": presence(image),
+            "language": get_language(language),
+            "license": presence(license_),
+            "provider": "Crossref" if is_rogue_scholar_doi(_id) else "DataCite",
+            "publisher": publisher,
+            "references": presence(references),
+            "relations": presence(relations),
             "state": state,
+            "subjects": presence(subjects),
+            "title": title,
+            "url": url,
+            "version": version,
         },
         **read_options,
     }
@@ -318,24 +332,29 @@ def get_references_from_relations(references: list) -> list:
 
 
 def get_funding_references(funding_references: list) -> list:
-    """get_funding_references"""
+    """get_funding_references
+
+    InvenioRDM funder identifiers come from a controlled vocabulary entry
+    (funder.id) that is always a ROR ID, so normalize_ror already enforces
+    the v1.0 ROR-only constraint on funder_id: it returns None for anything
+    that isn't a valid ROR ID rather than leaking another identifier scheme.
+    """
 
     def map_funding(funding: dict) -> dict:
         """map_funding"""
 
-        funder_identifier = normalize_ror(dig(funding, "funder.id"))
-        award_uri = dig(funding, "award.identifiers.0.identifier")
-        if normalize_doi(award_uri) is not None:
-            award_uri = normalize_doi(award_uri)
+        funder_id = normalize_ror(dig(funding, "funder.id"))
+        award_id = dig(funding, "award.identifiers.0.identifier")
+        if normalize_doi(award_id) is not None:
+            award_id = normalize_doi(award_id)
 
         return compact(
             {
-                "funderName": dig(funding, "funder.name"),
-                "funderIdentifier": funder_identifier,
-                "funderIdentifierType": "ROR" if funder_identifier else None,
-                "awardTitle": dig(funding, "award.title.en"),
-                "awardNumber": dig(funding, "award.number"),
-                "awardUri": award_uri,
+                "funder_id": funder_id,
+                "funder_name": dig(funding, "funder.name"),
+                "award_id": award_id,
+                "award_title": dig(funding, "award.title.en"),
+                "award_number": dig(funding, "award.number"),
             }
         )
 
@@ -381,7 +400,7 @@ def get_file(file: dict) -> dict | None:
             "checksum": file.get("checksum", None),
             "url": dig(file, "links.self"),
             "size": file.get("size", None),
-            "mimeType": "application/" + _type if _type else None,
+            "mime_type": "application/" + _type if _type else None,
         }
     )
 
@@ -412,9 +431,13 @@ def get_relations(relations: list) -> list:
     return [i for i in identifiers if i.get("type") in COMMONMETA_RELATION_TYPES]
 
 
-def format_descriptions(descriptions: list) -> list:
-    """format_descriptions"""
-    return [
+def get_descriptions(descriptions: list) -> tuple[str | None, list]:
+    """get_descriptions
+
+    Returns a tuple of (description, additional_descriptions) per the
+    commonmeta v1.0 schema, where description is a single scalar string.
+    """
+    items = [
         {
             "description": sanitize(i),
             "type": "Abstract" if index == 0 else "Other",
@@ -422,6 +445,10 @@ def format_descriptions(descriptions: list) -> list:
         for index, i in enumerate(descriptions)
         if i
     ]
+    if not items:
+        return None, []
+    description = items[0].get("description", None)
+    return description, items[1:]
 
 
 def format_identifier(identifier: dict) -> dict | None:
@@ -444,7 +471,7 @@ def format_identifier(identifier: dict) -> dict | None:
         identifier_type = None
     return {
         "identifier": identifier.get("identifier"),
-        "identifierType": identifier_type,
+        "identifier_type": identifier_type,
     }
 
 
