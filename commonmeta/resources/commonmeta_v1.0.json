@@ -86,6 +86,19 @@
             ]
           }
         },
+        "citations": {
+          "description": "Citations of the resource by other resources.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "$ref": "#/definitions/id" },
+              "type": { "$ref": "#/definitions/type" },
+              "key": { "type": "string" },
+              "title": { "description": "The citation formatted as string.", "type": "string" }
+            }
+          }
+        },
         "container": {
           "description": "The container of the resource.",
           "type": "object",
@@ -148,6 +161,10 @@
               "type": "string"
             }
           }
+        },
+        "content": {
+          "description": "The full text content of the resource, e.g. the body of a blog post.",
+          "type": "string"
         },
         "contributors": {
           "description": "The contributors to the resource.",
@@ -237,6 +254,11 @@
             "required": ["identifier", "identifier_type"]
           }
         },
+        "image": {
+          "description": "The image for the resource, e.g. a thumbnail for a blog post.",
+          "type": "string",
+          "format": "uri"
+        },
         "language": { "$ref": "#/definitions/language" },
         "license": { "$ref": "#/definitions/license" },
         "provider": {
@@ -250,6 +272,7 @@
             "KISTI",
             "mEDRA",
             "OP",
+            "OpenAlex",
             "Other"
           ]
         },
@@ -289,6 +312,8 @@
                   "HasTranslation",
                   "IsReviewOf",
                   "HasReview",
+                  "IsReviewedBy",
+                  "Reviews",
                   "IsPreprintOf",
                   "HasPreprint",
                   "IsSupplementTo",
@@ -300,6 +325,11 @@
             "required": ["id", "type"]
           },
           "minItems": 1
+        },
+        "schema_version": {
+          "description": "The URI of the commonmeta JSON Schema version used.",
+          "type": "string",
+          "const": "https://commonmeta.org/commonmeta_v1.0.json"
         },
         "subjects": {
           "type": "array",
@@ -492,7 +522,10 @@
           "items": { "$ref": "#/definitions/organization" }
         }
       },
-      "required": ["family_name"]
+      "anyOf": [
+        { "required": ["given_name"] },
+        { "required": ["family_name"] }
+      ]
     },
     "ror_id": {
       "description": "ROR identifier URL.",
