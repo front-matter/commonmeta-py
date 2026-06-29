@@ -7,7 +7,6 @@ from commonmeta import Metadata
 from commonmeta.readers.openalex_reader import (
     get_openalex,
     get_random_openalex_id,
-    get_references,
     read_openalex,
 )
 
@@ -45,11 +44,11 @@ def test_doi_with_data_citation():
         ]
     }
     assert subject.identifiers == [
+        {"identifier": "https://doi.org/10.7554/elife.01567", "identifier_type": "DOI"},
         {
             "identifier": "https://openalex.org/W2121398592",
             "identifier_type": "OpenAlex",
         },
-        {"identifier": "https://doi.org/10.7554/elife.01567", "identifier_type": "DOI"},
         {
             "identifier": "https://pubmed.ncbi.nlm.nih.gov/24520159",
             "identifier_type": "PMID",
@@ -89,7 +88,10 @@ def test_doi_with_data_citation():
     assert (
         subject.description.startswith("Among various advantages, their small size makes")
     )
-    assert subject.subjects == [{"subject": "Plant Science"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1110", "subject": "Plant Science"},
+        {"id": "https://openalex.org/T10184", "subject": "Plant Molecular Biology Research"},
+    ]
     assert subject.language == "en"
     assert subject.version is None
     assert subject.provider == "OpenAlex"
@@ -126,12 +128,12 @@ def test_journal_article():
     }
     assert subject.identifiers == [
         {
-            "identifier": "https://openalex.org/W1982728624",
-            "identifier_type": "OpenAlex",
-        },
-        {
             "identifier": "https://doi.org/10.1371/journal.pone.0000030",
             "identifier_type": "DOI",
+        },
+        {
+            "identifier": "https://openalex.org/W1982728624",
+            "identifier_type": "OpenAlex",
         },
         {
             "identifier": "https://pubmed.ncbi.nlm.nih.gov/17183658",
@@ -168,9 +170,8 @@ def test_journal_article():
         "last_page": "e30",
     }
     assert subject.subjects == [
-        {"subject": "Physiology"},
-        {"subject": "Surgery"},
-        {"subject": "Cell Biology"},
+        {"id": "https://openalex.org/subfields/2737", "subject": "Physiology"},
+        {"id": "https://openalex.org/T12286", "subject": "Erythrocyte Function and Pathophysiology"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Triosephosphate isomerase (TPI) deficiency is an autosomal recessive disorder caused by various mutations in the gene encoding the key glycolytic enzyme TPI. A drastic decrease in TPI activity and an increased level of its substrate, dihydroxyacetone phosphate, have been measured in unpurified cell extracts of affected individuals. These observations allowed concluding that the different mutations in the TPI alleles result in catalytically inactive enzymes. However, despite a high occurrence of TPI null alleles within several human populations, the frequency of this disorder is exceptionally rare. In order to address this apparent discrepancy, we generated a yeast model allowing us to perform comparative in vivo analyses of the enzymatic and functional properties of the different enzyme variants. We discovered that the majority of these variants exhibit no reduced catalytic activity per se. Instead, we observed, the dimerization behavior of TPI is influenced by the particular mutations investigated, and by the use of a potential alternative translation initiation site in the TPI gene. Additionally, we demonstrated that the overexpression of the most frequent TPI variant, Glu104Asp, which displays altered dimerization features, results in diminished endogenous TPI levels in mammalian cells. Thus, our results reveal that enzyme deregulation attributable to aberrant dimerization of TPI, rather than direct catalytic inactivation of the enzyme, underlies the pathogenesis of TPI deficiency. Finally, we discovered that yeast cells expressing a TPI variant exhibiting reduced catalytic activity are more resistant against oxidative stress caused by the thiol-oxidizing reagent diamide. This observed advantage might serve to explain the high allelic frequency of TPI null alleles detected among human populations.'
@@ -214,12 +215,12 @@ def test_journal_article_with_funding():
     }
     assert subject.identifiers == [
         {
-            "identifier": "https://openalex.org/W2955786964",
-            "identifier_type": "OpenAlex",
-        },
-        {
             "identifier": "https://doi.org/10.3389/fpls.2019.00816",
             "identifier_type": "DOI",
+        },
+        {
+            "identifier": "https://openalex.org/W2955786964",
+            "identifier_type": "OpenAlex",
         },
         {
             "identifier": "https://pubmed.ncbi.nlm.nih.gov/31333688",
@@ -253,8 +254,8 @@ def test_journal_article_with_funding():
         "last_page": "816",
     }
     assert subject.subjects == [
-        {"subject": "Molecular Biology"},
-        {"subject": "Plant Science"},
+        {"id": "https://openalex.org/subfields/1312", "subject": "Molecular Biology"},
+        {"id": "https://openalex.org/T11924", "subject": "Polyamine Metabolism and Applications"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Polyamines are growth regulators that have been widely implicated in abiotic and biotic stresses. They are also associated with fruit set, ripening, and regulation of fruit quality-related traits. Modulation of their content confers fruit resilience, with polyamine application generally inhibiting postharvest decay. Changes in the content of free and conjugated polyamines in response to stress are highly dependent on the type of abiotic stress applied or the lifestyle of the pathogen. Recent studies suggest that exogenous application of polyamines or modulation of polyamine content by gene editing can confer tolerance to multiple abiotic and biotic stresses simultaneously. In this review, we explore data on polyamine synthesis and catabolism in fruit related to pre- and postharvest stresses. Studies of mutant plants, priming of stress responses, and treatments with polyamines and polyamine inhibitors indicate that these growth regulators can be manipulated to increase fruit productivity with reduced use of pesticides and therefore, under more sustainable conditions.'
@@ -290,15 +291,7 @@ def test_journal_article_original_language():
         "name": "Japanese Society Of Physical Fitness And Sports Medicine",
     }
     assert len(subject.references) == 7
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.1097/01.hjh.0000226186.83192.93",
-        "title": "How to assess arterial compliance in humans",
-        "publicationYear": 2006,
-        "volume": "24",
-        "issue": "6",
-        "firstPage": "1009",
-        "lastPage": "1012",
-    }
+    assert subject.references[-1] == {"id": "https://openalex.org/W2158316475"}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "0039-906X",
@@ -356,16 +349,8 @@ def test_journal_article_with_rdf_for_container():
     assert subject.publisher == {
         "name": "Oxford University Press",
     }
-    assert len(subject.references) == 37
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.3176/biol.1959.1.01",
-        "title": "ANDMEID EESTI MAGEVETE KARPV\u00c4HILISTE (OSTRACODA) FAUNA KOHTA",
-        "publicationYear": 1959,
-        "volume": "8",
-        "issue": "1",
-        "firstPage": "3",
-        "lastPage": "14",
-    }
+    assert len(subject.references) == 70
+    assert subject.references[-1] == {"id": "https://openalex.org/W7046245459"}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "0278-0372",
@@ -378,9 +363,8 @@ def test_journal_article_with_rdf_for_container():
         "last_page": "961",
     }
     assert subject.subjects == [
-        {"subject": "Paleontology"},
-        {"subject": "Atmospheric Science"},
-        {"subject": "Nature and Landscape Conservation"},
+        {"id": "https://openalex.org/subfields/1911", "subject": "Paleontology"},
+        {"id": "https://openalex.org/T11926", "subject": "Subterranean biodiversity and taxonomy"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Although exotic species of Ostracoda have been recorded from various sites in Europe, none of them have a widespread European distribution. Reviews of existing literature, examination of specimens, and sampling in Spain and Japan has greatly expanded the known distribution of the candonid ostracode Fabaeformiscandona subacuta (Yang, 1982). We herein present new reports of its presence in mainland eastern Asia, Australia, and South America, and we review its distribution on the Iberian Peninsula. Although this species is globally widespread, we hypothesize that it is an invasive species on the Iberian Peninsula in light of the following facts: it is not known from other European countries, its known global distribution is extremely disjunct, it has not been found during palaeo-limnological investigations of European lakes, and on the Iberian Peninsula it is almost exclusively found in artificial, intensely human-impacted habitats, mostly in reservoirs and ricefields.'
@@ -425,12 +409,8 @@ def test_book_chapter_with_rdf_for_container():
     assert subject.license is None
     assert subject.date_published == '2012-01-01'
     assert subject.publisher == {"name": "Springer Science+Business Media"}
-    assert len(subject.references) == 13
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.23919/eusipco43300.2018",
-        "title": "2018 26th European Signal Processing Conference (EUSIPCO)",
-        "publicationYear": 2018,
-    }
+    assert len(subject.references) == 14
+    assert subject.references[-1] == {"id": "https://openalex.org/W4285719527"}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "0302-9743",
@@ -440,7 +420,10 @@ def test_book_chapter_with_rdf_for_container():
         "first_page": "499",
         "last_page": "508",
     }
-    assert subject.subjects == [{"subject": "Computer Vision and Pattern Recognition"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1707", "subject": "Computer Vision and Pattern Recognition"},
+        {"id": "https://openalex.org/T10331", "subject": "Video Surveillance and Tracking Methods"},
+    ]
     assert subject.language == "en"
     assert subject.description is None
     assert subject.version is None
@@ -493,9 +476,8 @@ def test_posted_content():
         "title": "bioRxiv (Cold Spring Harbor Laboratory)",
     }
     assert subject.subjects == [
-        {"subject": "Information Systems"},
-        {"subject": "Information Systems and Management"},
-        {"subject": "Molecular Biology"},
+        {"id": "https://openalex.org/subfields/1710", "subject": "Information Systems"},
+        {"id": "https://openalex.org/T11937", "subject": "Research Data Management Practices"},
     ]
     assert subject.language == "en"
     assert (
@@ -542,25 +524,17 @@ def test_blog_post():
     }
     assert subject.date_published == '2023-10-04'
     assert subject.publisher is None
-    assert len(subject.references) == 2
-    assert subject.references[0] == {
-        "id": "https://doi.org/10.1038/d41586-023-02554-0",
-        "title": "Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty",
-        "publicationYear": 2023,
-        "volume": "620",
-        "issue": "7974",
-        "firstPage": "482",
-        "lastPage": "484",
-    }
-    assert subject.references[1] == {
-        "id": "https://doi.org/10.53731/9cdnt-2k006",
-        "title": "The Rogue Scholar weekly newsletter launches on Wednesday",
-        "publicationYear": 2023,
-    }
+    assert len(subject.references) == 3
+    assert subject.references[0] == {"id": "https://openalex.org/W4385415135"}
+    assert subject.references[1] == {"id": "https://openalex.org/W4385876227"}
+    assert subject.references[2] == {"id": "https://openalex.org/W6888861590"}
     assert subject.relations is None
     assert subject.funding_references is None
     assert subject.container is None
-    assert subject.subjects == [{"subject": "Sociology and Political Science"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/3312", "subject": "Sociology and Political Science"},
+        {"id": "https://openalex.org/T11488", "subject": "Climate Change Communication and Perception"},
+    ]
     assert subject.language == "en"
     assert (
         subject.description.startswith(
@@ -606,12 +580,12 @@ def test_peer_review():
     }
     assert subject.identifiers == [
         {
-            "identifier": "https://openalex.org/W3027264027",
-            "identifier_type": "OpenAlex",
-        },
-        {
             "identifier": "https://doi.org/10.7554/elife.55167.sa2",
             "identifier_type": "DOI",
+        },
+        {
+            "identifier": "https://openalex.org/W3027264027",
+            "identifier_type": "OpenAlex",
         },
     ]
     assert subject.license == {
@@ -626,8 +600,8 @@ def test_peer_review():
     assert subject.funding_references is None
     assert subject.container is None
     assert subject.subjects == [
-        {"subject": "Cognitive Neuroscience"},
-        {"subject": "Cellular and Molecular Neuroscience"},
+        {"id": "https://openalex.org/subfields/2805", "subject": "Cognitive Neuroscience"},
+        {"id": "https://openalex.org/T10581", "subject": "Neural dynamics and brain function"},
     ]
     assert subject.language == "en"
     assert subject.description == "Ten popular spike sorting codes are reproducibly benchmarked for accuracy on electrophysiology datasets from eleven laboratories with interactive web-based exploration of thousands of ground-truth units."
@@ -661,22 +635,13 @@ def test_dissertation():
     assert subject.license is None
     assert subject.date_published == '2020-05-25'
     assert subject.publisher is None
-    assert len(subject.references) == 125
-    assert subject.references[0] == {
-        "id": "https://doi.org/10.1002/0471721182",
-        "title": "Finite Mixture Models",
-        "publicationYear": 2000,
-        "volume": "6",
-        "issue": "1",
-        "firstPage": "355",
-        "lastPage": "378",
-    }
+    assert len(subject.references) == 245
+    assert subject.references[0] == {"id": "https://openalex.org/W18156719"}
     assert subject.funding_references is None
     assert subject.container == {"title": "The University of Queensland", "type": "Repository"}
     assert subject.subjects == [
-        {"subject": "Education"},
-        {"subject": "General Health Professions"},
-        {"subject": "Clinical Psychology"},
+        {"id": "https://openalex.org/subfields/3304", "subject": "Education"},
+        {"id": "https://openalex.org/T13207", "subject": "Youth Substance Use and School Attendance"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Across many samples, scholars have observed negative life course correlates of truancy, but the best published evidence demonstrates that truancy prevention efforts have failed to return truant students to acceptable attendance levels. Meanwhile, concerns about the harms arising from truancy policies — including their role in the school to prison pipeline — have been recognised recently in several democratic nations worldwide. Within this context, my study contributes to the truancy prevention science literature nuance that has been lacking, in an effort to assist future truancy prevention efforts and, in time, evidence-based truancy policy. My study employs a life course perspective and draws upon elements of the age-graded theory of informal social control, interactional theory, and the concepts of turning points or snares to argue that truancy is associated with reduced life opportunities \xad— or reduced capability set — as measured by one’s lack of financial independence. But, I argue that truants do not experience worse outcomes than non-truants uniformly; instead, subgroups of truants (and of young people), exist, and these subgroups may help to understand relationships more accurately than comparing the outcomes of “truants” and “non-truants”. In doing so, my thesis explores the as-yet undocumented connection between two “knowns” in the literature: that truancy is a common adolescent behaviour, and that financial assistance is common, during emerging adulthood. I also seek to add granularity to the general concept that “the higher frequency the truancy, the worse the outcomes” by exploring how truanting frequency features in truants who share the same, and who have different, financial assistance pathways; my intention is to explore for the presence of thresholds at which truancy is not harmful.In this study I use a longitudinal panel survey that follows young Australians from age 15 or 16, until they are aged 20 or 21. I observe their truancy in late adolescence and their annual receipt and reliance upon cash transfers received from family and government in the year truancy is measured, and the subsequent five years. I create inverse probability of treatment weights using six empirically important variables — age, gender, ethnic composition, their family situation at 14, mother’s education level, and whether or not their household received government cash transfers in the year prior to the truancy — to reduce any confounding effect of those variables on this study’s results. My results show that about one in every five young people were truant in one year in late adolescence, and almost one-half of those are truanting once or twice in one year. And while Australian statute makes any act of truancy illegal, fines for truancy range widely (from $10 to $11,000), based on the circumstances of the truancy, and state education policies in Australia mostly do not require a response to truancy until a student truants more than six times in one calendar year.My study identified a positive association between truancy and lower financial independence. The nature of this association, however, differs according to the analytic method I used. The first method — cross-sectional analyses exploring truancy’s association with government transfer receipt and reliance at school-leaving age, and at the last year of the observation period — demonstrates that truancy is positively associated with government transfer receipt and reliance at three-years post truancy, but the association fades by five-years post truancy. The second method \xad— longitudinal analyses that identified government transfer receipt and reliance trajectories ignorant of one’s truanting history, and then tested whether one’s level of truancy is associated with one’s trajectory group — leads to the conclusion that truancy is positively associated with being on one of the four identified government cash transfer receipt trajectory groups (those receiving a relatively low, steady dollar value of government cash transfers). Being a truant does not make a person more or less likely to be member of any of the three government transfer reliance trajectory groups. This demonstration illustrates that comparing outcomes by averaging across all non-truants, and all truants, appears to miss important nuance, compared to what I identified from a longitudinal, subgroup-based analysis. I found no association between truancy and a young person’s receipt of cash transfers from friends or family (private cash transfers). However, there are likely too few instances of private cash transfers in my study’s dataset to detect an effect.Finally, I explored what features appeared to discern which truants occupied each government cash transfer trajectory, finding that truants differed on a range of measures within the domains of truanting frequency; pre-truancy social-structural characteristics; timing of engagement in labour force, education, and training; and family and housing features. These results illustrated that truants are a varied group, and — as other results throughout my study demonstrate — truanting frequency may not be the most suitable way to account for that variation. It is true that young people’s truanting frequencies varied across the trajectories, but the differences did not fall in a predictable or expected pattern. That is, the differences across transfer trajectories do not accord with the principle of “the higher frequency the truancy, the worse the outcomes”. I discuss the implications of my study’s results for theory, truancy prevention and intervention science, policy and practice.'
@@ -721,16 +686,8 @@ def test_doi_with_sici():
     assert subject.license is None
     assert subject.date_published == '2006-11-01'
     assert subject.publisher == {"name": "Wiley"}
-    assert len(subject.references) == 25
-    assert subject.references[-1] == {
-        "firstPage": "521",
-        "id": "https://doi.org/10.1086/284153",
-        "issue": "4",
-        "lastPage": "541",
-        "publicationYear": 1983,
-        "title": "Optimal Foraging and the Form of the Predator Isocline",
-        "volume": "122",
-    }
+    assert len(subject.references) == 37
+    assert subject.references[-1] == {"id": "https://openalex.org/W6940713498"}
     assert subject.funding_references is None
     assert subject.container == {
         "first_page": "2832",
@@ -743,9 +700,8 @@ def test_doi_with_sici():
         "volume": "87",
     }
     assert subject.subjects == [
-        {"subject": "Genetics"},
-        {"subject": "Ecology"},
-        {"subject": "Public Health, Environmental and Occupational Health"},
+        {"id": "https://openalex.org/subfields/1311", "subject": "Genetics"},
+        {"id": "https://openalex.org/T11764", "subject": "Evolution and Genetic Dynamics"},
     ]
     assert subject.language == "en"
     assert subject.description == "Parasites are known to directly affect their hosts at both the individual and population level. However, little is known about their more subtle, indirect effects and how these may affect population and community dynamics. In particular, trophically transmitted parasites may manipulate the behavior of intermediate hosts, fundamentally altering the pattern of contact between these individuals and their predators. Here, we develop a suite of population dynamic models to explore the impact of such behavioral modifications on the dynamics and structure of the predator-prey community. We show that, although such manipulations do not directly affect the persistence of the predator and prey populations, they can greatly alter the quantitative dynamics of the community, potentially resulting in high amplitude oscillations in abundance. We show that the precise impact of host manipulation depends greatly on the predator's functional response, which describes the predator's foraging efficiency under changing prey availabilities. Even if the parasite is rarely observed within the prey population, such manipulations extend beyond the direct impact on the intermediate host to affect the foraging success of the predator, with profound implications for the structure and stability of the predator-prey community."
@@ -795,15 +751,7 @@ def test_doi_with_orcid():
     assert subject.date_published == '2012-01-01'
     assert subject.publisher == {"name": "Hindawi Publishing Corporation"}
     assert len(subject.references) == 22
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.1086/593965",
-        "title": "Does the Implementation of an Interferon-γ Release Assay in Lieu of a Tuberculin Skin Test Increase Acceptance of Preventive Therapy for Latent Tuberculosis Among Healthcare Workers?",
-        "publicationYear": 2009,
-        "volume": "30",
-        "issue": "2",
-        "firstPage": "197",
-        "lastPage": "199",
-    }
+    assert subject.references[-1] == {"id": "https://openalex.org/W2624159414"}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "2090-1836",
@@ -814,7 +762,10 @@ def test_doi_with_orcid():
         "first_page": "1",
         "last_page": "7",
     }
-    assert subject.subjects == [{"subject": "Microbiology"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/2404", "subject": "Microbiology"},
+        {"id": "https://openalex.org/T12744", "subject": "Medical Device Sterilization and Disinfection"},
+    ]
     assert subject.language == "en"
     assert subject.description == 'Objective. To find a statistically significant separation point for the QuantiFERON Gold In-Tube (QFT) interferon gamma release assay that could define an optimal "retesting zone" for use in serially tested low-risk populations who have test "reversions" from initially positive to subsequently negative results. Method. Using receiver operating characteristic analysis (ROC) to analyze retrospective data collected from 3 major hospitals, we searched for predictors of reversion until statistically significant separation points were revealed. A confirmatory regression analysis was performed on an additional sample. Results. In 575 initially positive US healthcare workers (HCWs), 300 (52.2%) had reversions, while 275 (47.8%) had two sequential positive tests. The most statistically significant (Kappa = 0.48, chi-square = 131.0, P &lt; 0.001) separation point identified by the ROC for predicting reversion was the tuberculosis antigen minus-nil (TBag-nil) value at 1.11 International Units per milliliter (IU/mL). The second separation point was found at TBag-nil at 0.72 IU/mL (Kappa = 0.16, chi-square = 8.2, P &lt; 0.01). The model was validated by the regression analysis of 287 HCWs. Conclusion. Reversion likelihood increases as the TBag-nil approaches the manufacturer\'s cut-point of 0.35 IU/mL. The most statistically significant separation point between those who test repeatedly positive and those who revert is 1.11 IU/mL. Clinicians should retest low-risk individuals with initial QFT results &lt; 1.11 IU/mL.'
     assert subject.version is None
@@ -884,9 +835,8 @@ def test_date_in_future():
         "last_page": "312",
     }
     assert subject.subjects == [
-        {"subject": "Virology"},
-        {"subject": "Emergency Medicine"},
-        {"subject": "Neurology"},
+        {"id": "https://openalex.org/subfields/2406", "subject": "Virology"},
+        {"id": "https://openalex.org/T10112", "subject": "HIV Research and Treatment"},
     ]
     assert subject.language == "en"
     assert subject.description is None
@@ -927,16 +877,8 @@ def test_vor_with_url():
     assert subject.license is None
     assert subject.date_published == '2013-04-10'
     assert subject.publisher == {"name": "Springer Nature"}
-    assert len(subject.references) == 25
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.2307/2407352",
-        "title": "Genetic Interpretation of Regressive Evolutionary Processes: Studies on Hybrid Eyes of Two Astyanax Cave Populations (Characidae, Pisces)",
-        "publicationYear": 1971,
-        "volume": "25",
-        "issue": "3",
-        "firstPage": "530",
-        "lastPage": "530",
-    }
+    assert len(subject.references) == 39
+    assert subject.references[-1] == {"id": "https://openalex.org/W4252286580"}
     assert subject.funding_references is None
     assert subject.container == {
         "identifier": "0018-067X",
@@ -949,9 +891,8 @@ def test_vor_with_url():
         "last_page": "130",
     }
     assert subject.subjects == [
-        {"subject": "Global and Planetary Change"},
-        {"subject": "Paleontology"},
-        {"subject": "Nature and Landscape Conservation"},
+        {"id": "https://openalex.org/subfields/2306", "subject": "Global and Planetary Change"},
+        {"id": "https://openalex.org/T10332", "subject": "Amphibian and Reptile Biology"},
     ]
     assert subject.language == "en"
     assert subject.description is None
@@ -1082,24 +1023,16 @@ def test_dataset_usda():
     assert subject.license is None
     assert subject.date_published == '2017-08-09'
     assert subject.publisher is None
-    assert len(subject.references) == 4
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.1674/0003-0031-178.1.47",
-        "title": "Grassland Bird Productivity in Warm Season Grass Fields in Southwest Wisconsin",
-        "publicationYear": 2017,
-        "volume": "178",
-        "issue": "1",
-        "firstPage": "47",
-        "lastPage": "63",
-    }
+    assert len(subject.references) == 5
+    assert subject.references[-1] == {"id": "https://openalex.org/W6948539076"}
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Forest Service Research Data Archive",
         "type": "Repository",
     }
     assert subject.subjects == [
-        {"subject": "Ecology"},
-        {"subject": "Nature and Landscape Conservation"},
+        {"id": "https://openalex.org/subfields/2303", "subject": "Ecology"},
+        {"id": "https://openalex.org/T10089", "subject": "Avian ecology and behavior"},
     ]
     assert subject.language == "en"
     assert subject.description == 'This archive contains research data collected and/or funded by Forest Service Research and Development (FS R&amp;D), U.S. Department of Agriculture. It is a resource for accessing both short and long-term FS R&amp;D research data, which includes Experimental Forest and Range data. It is a way to both preserve and share the quality science of our researchers.'
@@ -1157,9 +1090,8 @@ def test_book_chapter():
         "last_page": "158",
     }
     assert subject.subjects == [
-        {"subject": "Surgery"},
-        {"subject": "Pharmacology"},
-        {"subject": "Cell Biology"},
+        {"id": "https://openalex.org/subfields/2746", "subject": "Surgery"},
+        {"id": "https://openalex.org/T10280", "subject": "Shoulder Injury and Treatment"},
     ]
     assert subject.language == "en"
     assert subject.description is None
@@ -1222,8 +1154,8 @@ def test_another_book_chapter():
         "last_page": "13",
     }
     assert subject.subjects == [
-        {"subject": "Health, Toxicology and Mutagenesis"},
-        {"subject": "Physiology"},
+        {"id": "https://openalex.org/subfields/2307", "subject": "Health, Toxicology and Mutagenesis"},
+        {"id": "https://openalex.org/T11244", "subject": "Climate Change and Health Impacts"},
     ]
     assert subject.language == "en"
     assert subject.description is None
@@ -1269,7 +1201,10 @@ def test_yet_another_book_chapter():
     #     "first_page": "72",
     #     "last_page": "94",
     # }
-    assert subject.subjects == [{"subject": "Computer Vision and Pattern Recognition"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1707", "subject": "Computer Vision and Pattern Recognition"},
+        {"id": "https://openalex.org/T12923", "subject": "Digital Image Processing Techniques"},
+    ]
     assert subject.language == "en"
     assert subject.description == 'Image segmentation is an important research area in computer vision and its applications in different disciplines, such as medicine, are of great importance. It is often one of the very first steps of computer vision or pattern recognition methods. This is because segmentation helps to locate objects and boundaries into images. The objective of segmenting an image is to partition it into disjoint and homogeneous sets of pixels. When segmenting an image it is natural to try to use graph partitioning, because segmentation and partitioning share the same high-level objective, to partition a set into disjoints subsets. However, when using graph partitioning for segmenting an image, several big questions remain: What is the best way to convert an image into a graph? Or to convert image segmentation objectives into graph partitioning objectives (not to mention what are image segmentation objectives)? What are the best graph partitioning methods and algorithms for segmenting an image? In this chapter, the author tries to answer these questions, both for unsupervised and supervised image segmentation approach, by presenting methods and algorithms and by comparing them.'
     assert subject.version is None
@@ -1314,16 +1249,8 @@ def test_missing_contributor():
     assert subject.publisher == {
         "name": "Multidisciplinary Digital Publishing Institute"
     }
-    assert len(subject.references) == 10
-    assert subject.references[-1] == {
-        "id": "https://doi.org/10.1038/nphys3862",
-        "title": "Keep posting",
-        "publicationYear": 2016,
-        "volume": "12",
-        "issue": "8",
-        "firstPage": "719",
-        "lastPage": "719",
-    }
+    assert len(subject.references) == 12
+    assert subject.references[-1] == {"id": "https://openalex.org/W6785452197"}
     assert subject.funding_references is None
     assert subject.container == {
         "type": "Journal",
@@ -1336,9 +1263,8 @@ def test_missing_contributor():
         "identifier_type": "ISSN",
     }
     assert subject.subjects == [
-        {"subject": "Statistics, Probability and Uncertainty"},
-        {"subject": "Information Systems"},
-        {"subject": "Information Systems and Management"},
+        {"id": "https://openalex.org/subfields/1804", "subject": "Statistics, Probability and Uncertainty"},
+        {"id": "https://openalex.org/T10102", "subject": "scientometrics and bibliometrics research"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Gigantic particle accelerators, incredibly complex detectors, an antimatter factory and the discovery of the Higgs boson—this is part of what makes CERN famous. Only a few know that CERN also hosts the world largest Open Access initiative: SCOAP3. The Sponsoring Consortium for Open Access Publishing in Particle Physics started operation in 2014 and has since supported the publication of 20,000 Open Access articles in the field of particle physics, at no direct cost, nor burden, for individual authors worldwide. SCOAP3 is made possible by a 3000-institute strong partnership, where libraries re-direct funds previously used for subscriptions to ‘flip’ articles to ‘Gold Open Access’. With its recent expansion, the initiative now covers about 90% of the journal literature of the field. This article describes the economic principles of SCOAP3, the collaborative approach of the partnership, and finally summarizes financial results after four years of successful operation.'
@@ -1445,24 +1371,16 @@ def test_book():
     }
     assert subject.license is None
     assert subject.publisher == {"name": "Cambridge University Press"}
-    assert len(subject.references) == 53
-    assert subject.references[0] == {
-        "id": "https://doi.org/10.2307/2928520",
-        "title": "Between Memory and History: Les Lieux de Mémoire",
-        "publicationYear": 1989,
-        "volume": "26",
-        "firstPage": "7",
-        "lastPage": "24",
-    }
+    assert len(subject.references) == 106
+    assert subject.references[0] == {"id": "https://openalex.org/W15275446"}
     assert subject.funding_references is None
     assert subject.container == {
         "title": "Cambridge University Press eBooks",
         "type": "Book",
     }
     assert subject.subjects == [
-        {"subject": "Sociology and Political Science"},
-        {"subject": "Cultural Studies"},
-        {"subject": "Political Science and International Relations"},
+        {"id": "https://openalex.org/subfields/3312", "subject": "Sociology and Political Science"},
+        {"id": "https://openalex.org/T10893", "subject": "Chinese history and philosophy"},
     ]
     assert subject.language == "en"
     assert subject.description == 'Why did the past matter so greatly in ancient China? How did it matter and to whom? This is an innovative study of how the past was implicated in the long transition of power in early China, as embodied by the decline of the late Bronze Age aristocracy and the rise of empires over the first millenium BCE. Engaging with a wide array of historical materials, including inscriptional records, excavated manuscripts, and transmitted texts, Vincent S. Leung moves beyond the historiographical canon and explores how the past was mobilized as powerful ideological capital in diverse political debate and ethical dialogue. Appeals to the past in early China were more than a matter of cultural attitude, Leung argues, but were rather deliberate ways of articulating political thought and challenging ethical debates during periods of crisis. Significant power lies in the retelling of the past.'
@@ -1531,7 +1449,10 @@ def test_proceedings_article():
         "first_page": "1386",
         "last_page": "1399",
     }
-    assert subject.subjects == [{"subject": "Computer Networks and Communications"}]
+    assert subject.subjects == [
+        {"id": "https://openalex.org/subfields/1705", "subject": "Computer Networks and Communications"},
+        {"id": "https://openalex.org/T11478", "subject": "Caching and Content Delivery"},
+    ]
     assert subject.language == "en"
     assert subject.description == "Today's filters, such as quotient, cuckoo, and Morton, have a trade-off between space and speed; even when moderately full (e.g., 50%-75% full), their performance degrades nontrivially. The result is that today's systems designers are forced to choose between speed and space usage. In this paper, we present the vector quotient filter (VQF). Locally, the VQF is based on Robin Hood hashing, like the quotient filter, but uses power-of-two-choices hashing to reduce the variance of runs, and thus offers consistent, high throughput across load factors. Power-of-two-choices hashing also makes it more amenable to concurrent updates, compared to the cuckoo filter and variants. Finally, the vector quotient filter is designed to exploit SIMD instructions so that all operations have O (1) cost, independent of the size of the filter or its load factor. We show that the vector quotient filter is 2× faster for inserts compared to the Morton filter (a cuckoo filter variant and state-of-the-art for inserts) and has similar lookup and deletion performance as the cuckoo filter (which is fastest for queries and deletes), despite having a simpler design and implementation. The vector quotient filter has minimal performance decline at high load factors, a problem that has plagued modern filters, including quotient, cuckoo, and Morton. Furthermore, we give a thread-safe version of the vector quotient filter and show that insertion throughput scales 3× with four threads compared to a single thread."
     assert subject.version is None
@@ -1595,9 +1516,8 @@ def test_multipe_titles():
         "last_page": "779",
     }
     assert subject.subjects == [
-        {"subject": "Surgery"},
-        {"subject": "Urology"},
-        {"subject": "Emergency Medicine"},
+        {"id": "https://openalex.org/subfields/2746", "subject": "Surgery"},
+        {"id": "https://openalex.org/T11713", "subject": "Genital Health and Disease"},
     ]
     assert subject.language == "de"
     assert subject.description is None
@@ -1635,24 +1555,21 @@ def test_read_openalex():
     assert meta.get("id") == "https://doi.org/10.1017/9781108348843"
 
 
-def test_get_references():
-    """get_references"""
-    referenced_works = [
-        "https://openalex.org/W1964940342",
-        "https://openalex.org/W1969035038",
-        "https://openalex.org/W1983780873",
-        "https://openalex.org/W1989943932",
-        "https://openalex.org/W2004883389",
-        "https://openalex.org/W2024237503",
-        "https://openalex.org/W2036350498",
-        "https://openalex.org/W2062846487",
-    ]
-    references = get_references(referenced_works)
-    assert len(references) == 8
-    assert references[0].get("ids") == {
-        "doi": "https://doi.org/10.1038/nbt1206-1565",
-        "mag": "1964940342",
-        "openalex": "https://openalex.org/W1964940342",
-        "pmid": "https://pubmed.ncbi.nlm.nih.gov/17160063",
+def test_build_identifiers():
+    """build_identifiers produces canonical DOI + OpenAlex first, then deduped extras"""
+    from commonmeta.readers.openalex_reader import build_identifiers
+
+    meta = {
+        "id": "https://openalex.org/W2741809807",
+        "doi": "https://doi.org/10.7717/peerj.4375",
+        "ids": {
+            "openalex": "https://openalex.org/W2741809807",
+            "doi": "https://doi.org/10.7717/peerj.4375",
+            "pmid": "https://pubmed.ncbi.nlm.nih.gov/29456894",
+        },
     }
-    assert len(get_references([])) == 0
+    identifiers = build_identifiers(meta, "https://doi.org/10.7717/peerj.4375")
+    assert identifiers[0] == {"identifier": "https://doi.org/10.7717/peerj.4375", "identifier_type": "DOI"}
+    assert identifiers[1] == {"identifier": "https://openalex.org/W2741809807", "identifier_type": "OpenAlex"}
+    assert identifiers[2] == {"identifier": "https://pubmed.ncbi.nlm.nih.gov/29456894", "identifier_type": "PMID"}
+    assert len(identifiers) == 3

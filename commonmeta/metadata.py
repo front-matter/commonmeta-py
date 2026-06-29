@@ -47,6 +47,7 @@ from .readers.openalex_reader import (
     get_openalex,
     read_openalex,
 )
+from .readers.bibtex_reader import read_bibtex
 from .readers.ris_reader import read_ris
 from .readers.schema_org_reader import (
     get_schema_org,
@@ -61,6 +62,7 @@ from .writers.commonmeta_writer import (
     write_commonmeta_list,
     # write_commonmeta_records_for_rust,  # disabled with commonmeta_rs, see above
 )
+from .writers.crossref_writer import write_crossref, write_crossref_list
 from .writers.crossref_xml_writer import (
     CrossrefError,
     push_crossref_xml,
@@ -241,7 +243,7 @@ class Metadata:
             elif via == "cff":
                 return dict(yaml.safe_load(string) or {})
             elif via == "bibtex":
-                raise ValueError("Bibtex not supported")
+                return {"data": string}
             elif via == "ris":
                 return {"data": string}
             # JSON-based formats
@@ -294,6 +296,8 @@ class Metadata:
             return dict(read_inveniordm(data, **kwargs))
         elif via == "openalex":
             return dict(read_openalex(data))
+        elif via == "bibtex":
+            return dict(read_bibtex(data["data"] if isinstance(data, dict) else data))
         elif via == "ris":
             return dict(read_ris(data["data"] if isinstance(data, dict) else data))
         else:
@@ -302,18 +306,20 @@ class Metadata:
     def write(self, to: str = "commonmeta", **kwargs) -> bytes | None:
         """convert metadata list into different formats"""
         # JSON-based output formats
-        if to in ["commonmeta", "datacite", "inveniordm", "schema_org", "csl"]:
+        if to in ["commonmeta", "crossref", "datacite", "inveniordm", "schema_org", "csl"]:
             writer_map = {
                 "commonmeta": write_commonmeta,
+                "crossref": write_crossref,
                 "datacite": write_datacite,
                 "inveniordm": write_inveniordm,
                 "schema_org": write_schema_org,
                 "csl": write_csl,
             }
             output = writer_map[to](self)
-            self.write_errors = json_schema_errors(output, schema=to)
-            if self.write_errors is not None:
-                self.is_valid = False
+            if to != "crossref":
+                self.write_errors = json_schema_errors(output, schema=to)
+                if self.write_errors is not None:
+                    self.is_valid = False
             if output is None:
                 return b"{}"
             return json.dumps(output)
@@ -465,6 +471,12 @@ class MetadataList:
             output = json.dumps(write_commonmeta_list(self))
             if self.file:
                 return write_output(self.file, output, [".json", ".jsonl"])
+            else:
+                return output
+        elif to == "crossref":
+            output = json.dumps(write_crossref_list(self))
+            if self.file:
+                return write_output(self.file, output, [".json"])
             else:
                 return output
         elif to == "crossref_xml":

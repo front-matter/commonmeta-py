@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import requests
 from requests.exceptions import ConnectionError, ReadTimeout
 
 from ..api_utils import COMMONMETA_USER_AGENT, http
@@ -14,11 +13,11 @@ from ..constants import (
     OA_TO_CM_TRANSLATIONS,
     Commonmeta,
 )
-from ..doi_utils import (
-    normalize_doi,
-)
+from ..doi_utils import normalize_doi
 from ..utils import (
     dict_to_spdx,
+    normalize_orcid,
+    normalize_ror,
     normalize_url,
     openalex_api_query_url,
     openalex_api_sample_url,
@@ -27,8 +26,16 @@ from ..utils import (
     validate_openalex,
 )
 
-# Map OpenAlex license strings to SPDX licenceId. May not be the correct license version.
-OA_LICENSES = {"cc-by": "CC-BY-4.0", "cc0": "CC0-1.0"}
+# Map OpenAlex license strings to SPDX licenseId.
+OA_LICENSES = {
+    "cc-by": "CC-BY-4.0",
+    "cc0": "CC0-1.0",
+    "cc-by-sa": "CC-BY-SA-4.0",
+    "cc-by-nc": "CC-BY-NC-4.0",
+    "cc-by-nd": "CC-BY-ND-4.0",
+    "cc-by-nc-sa": "CC-BY-NC-SA-4.0",
+    "cc-by-nc-nd": "CC-BY-NC-ND-4.0",
+}
 OA_IDENTIFIER_TYPES = {
     "openalex": "OpenAlex",
     "doi": "DOI",
@@ -70,66 +77,81 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     read_options = kwargs or {}
 
     _id = meta.get("doi", None) or meta.get("id", None)
-    # OpenAlex removed the top-level "type_crossref" field; the equivalent
+
+    # type_crossref was removed from top-level; the equivalent
     # Crossref-style classification now lives at primary_location.raw_type.
     _type = (
-        CR_TO_CM_TRANSLATIONS.get(dig(meta, "primary_location.raw_type")) or "Other"
+        CR_TO_CM_TRANSLATIONS.get(meta.get("type_crossref"))
+        or CR_TO_CM_TRANSLATIONS.get(dig(meta, "primary_location.raw_type"))
+        or "Other"
     )
     additional_type = OA_TO_CM_TRANSLATIONS.get(meta.get("type", None))
     if additional_type == _type:
         additional_type = None
 
-    archive_locations = []
     contributors = get_contributors(wrap(meta.get("authorships")))
     contributors = get_authors(contributors)
 
     url = normalize_url(
         dig(meta, "primary_location.landing_page_url") or dig(meta, "id")
     )
-    title = meta.get("title", None)
-    title = sanitize(title) if title else None
-    additional_titles: list = []
+    raw_title = meta.get("display_name") or meta.get("title")
+    title = sanitize(raw_title) if raw_title else None
+
     publisher = compact(
         {"name": dig(meta, "primary_location.source.host_organization_name")}
     )
     date_published = dig(meta, "publication_date") or dig(meta, "created_date")
-    identifiers = [
-        {
-            "identifier": uid,
-            "identifier_type": OA_IDENTIFIER_TYPES[uidType],
-        }
-        for uidType, uid in (meta.get("ids", {})).items()
-        # MAG (Microsoft Academic Graph) has no identifier_type in the
-        # v1.0 schema; skip rather than emit an invalid identifier_type.
-        if uidType in OA_IDENTIFIER_TYPES
-    ]
+
+    identifiers = build_identifiers(meta, _id)
 
     license_ = dig(meta, "best_oa_location.license")
-    # "other-oa" is OpenAlex's own sentinel for "some unspecified open
-    # license", not a real license identifier - drop it rather than
-    # leaking a meaningless id into the license field.
+    # "other-oa" is OpenAlex's sentinel for an unspecified open license; drop it.
     if license_ == "other-oa":
         license_ = None
     if license_ is not None:
         license_ = OA_LICENSES.get(license_, license_)
         license_ = dict_to_spdx({"id": license_})
+
     container = get_container(meta)
-    relations = []
-    references = [
-        get_related(i) for i in get_references(meta.get("referenced_works", []))
-    ]
-    funding_references = from_openalex_funding(wrap(meta.get("grants", None)))
+
+    references = []
+    for oa_url in meta.get("referenced_works", []):
+        oa_id = validate_openalex(oa_url)
+        if oa_id:
+            references.append({"id": f"https://openalex.org/{oa_id}"})
+
+    funding_references = []
+    for grant in wrap(meta.get("grants")):
+        funder = grant.get("funder", "")
+        funder_name = grant.get("funder_display_name", "")
+        if not funder_name:
+            continue
+        funder_id = normalize_ror(funder) if funder else None
+        f = compact({
+            "funder_id": funder_id,
+            "funder_name": funder_name,
+            "award_number": grant.get("award_id") or None,
+        })
+        funding_references.append(f)
+    funding_references = unique(funding_references) or None
 
     description = get_abstract(meta)
-    description = sanitize(description) if description is not None else None
-    additional_descriptions: list = []
+    description = sanitize(description) if description else None
 
-    subjects = unique(
-        [
-            {"subject": dig(i, "subfield.display_name")}
-            for i in wrap(meta.get("topics", None))
-        ]
-    )
+    subjects = []
+    primary_topic = meta.get("primary_topic")
+    if primary_topic:
+        subfield = primary_topic.get("subfield", {})
+        subfield_id = subfield.get("id")
+        subfield_name = subfield.get("display_name")
+        topic_id = primary_topic.get("id")
+        topic_name = primary_topic.get("display_name")
+        if subfield_id and subfield_name:
+            subjects.append({"id": subfield_id, "subject": subfield_name})
+        if topic_id and topic_name:
+            subjects.append({"id": topic_id, "subject": topic_name})
+
     files = get_files(meta)
 
     return {
@@ -137,10 +159,7 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         "id": _id,
         "type": _type,
         # recommended and optional properties
-        "additional_descriptions": presence(additional_descriptions),
-        "additional_titles": presence(additional_titles),
         "additional_type": additional_type,
-        "archive_locations": presence(archive_locations),
         "container": presence(container),
         "contributors": presence(contributors),
         "date_published": date_published,
@@ -148,13 +167,12 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
         "files": presence(files),
         "funding_references": presence(funding_references),
         "geo_locations": None,
-        "identifiers": identifiers,
+        "identifiers": identifiers or None,
         "language": meta.get("language", None),
         "license": license_,
         "provider": "OpenAlex",
         "publisher": presence(publisher),
         "references": presence(references),
-        "relations": presence(relations),
         "subjects": presence(subjects),
         "title": title,
         "url": url,
@@ -162,163 +180,79 @@ def read_openalex(data: dict | None, **kwargs) -> Commonmeta:
     } | read_options
 
 
-def get_abstract(meta: dict) -> str | None:
-    """Parse abstract from OpenAlex abstract_inverted_index"""
-    abstract_inverted_index = dig(meta, "abstract_inverted_index")
+def build_identifiers(meta: dict, _id: str | None) -> list[dict]:
+    """Build identifiers list with canonical DOI + OpenAlex first, then
+    deduplicated additional identifiers from the ids map."""
+    identifiers: list[dict] = []
 
-    if abstract_inverted_index:
-        # Determine the length of the abstract
-        max_pos = max(
-            p for positions in abstract_inverted_index.values() for p in positions
+    # Canonical DOI from the top-level record id
+    if _id and _id.startswith("https://doi.org/"):
+        identifiers.append({"identifier": _id, "identifier_type": "DOI"})
+
+    # Canonical OpenAlex ID from the top-level work id
+    oa_id = validate_openalex(meta.get("id"))
+    if oa_id:
+        identifiers.append(
+            {"identifier": f"https://openalex.org/{oa_id}", "identifier_type": "OpenAlex"}
         )
-        abstract_words = [""] * (max_pos + 1)
 
-        for word, positions in abstract_inverted_index.items():
-            for p in positions:
-                abstract_words[p] = word
+    # Additional identifiers from the ids map, in a defined order
+    for key in ["openalex", "doi", "pmid", "pmcid"]:
+        value = (meta.get("ids") or {}).get(key)
+        if not value:
+            continue
+        id_type = OA_IDENTIFIER_TYPES.get(key)
+        if not id_type:
+            continue
+        normalized = normalize_doi(value) if id_type == "DOI" else value
+        if not normalized:
+            continue
+        if any(
+            i["identifier_type"] == id_type and i["identifier"] == normalized
+            for i in identifiers
+        ):
+            continue
+        identifiers.append({"identifier": normalized, "identifier_type": id_type})
 
-        abstract = " ".join(abstract_words)
-    else:
-        abstract = None
-    return abstract
+    return identifiers
+
+
+def get_abstract(meta: dict) -> str | None:
+    """Parse abstract from OpenAlex abstract_inverted_index."""
+    abstract_inverted_index = dig(meta, "abstract_inverted_index")
+    if not abstract_inverted_index:
+        return None
+
+    max_pos = max(
+        p for positions in abstract_inverted_index.values() for p in positions
+    )
+    abstract_words = [""] * (max_pos + 1)
+    for word, positions in abstract_inverted_index.items():
+        for p in positions:
+            abstract_words[p] = word
+
+    return " ".join(w for w in abstract_words if w) or None
 
 
 def get_contributors(contributors: list) -> list:
-    """Parse contributor"""
+    """Parse contributor from OpenAlex authorship dicts."""
 
     def parse_contributor(c: dict) -> dict:
-        affiliations = []
-        for affiliation in c.get("institutions", []):
-            affiliations.append(
-                compact(
-                    {
-                        "id": affiliation.get("ror", None),
-                        "name": affiliation.get("display_name", None),
-                    }
-                )
-            )
-
-        return {
-            "id": dig(c, "author.orcid"),
+        affiliations = [
+            compact({
+                "id": normalize_ror(affiliation.get("ror")),
+                "name": affiliation.get("display_name"),
+            })
+            for affiliation in c.get("institutions", [])
+            if affiliation.get("display_name") or affiliation.get("ror")
+        ]
+        return compact({
+            "id": normalize_orcid(dig(c, "author.orcid")),
             "name": dig(c, "author.display_name"),
-            "affiliations": affiliations,
-        }
+            "affiliations": affiliations or None,
+        })
 
     return [parse_contributor(i) for i in contributors]
-
-
-def get_references(pids: list, **kwargs) -> list:
-    """Get related articles from OpenAlex using their pid
-    Used for retrieving metadata for citations and references which are not included in the OpenAlex record
-    """
-    references = get_openalex_works(pids)
-    return references
-
-
-def get_citations(citation_url: str, **kwargs) -> dict | list:
-    headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = http.get(citation_url, timeout=10, headers=headers, **kwargs)
-    if response.status_code != 200:
-        return {"state": "not_found"}
-    response = response.json()
-    return response.json().get("results", [])
-
-
-def get_related(related: dict | None) -> dict | None:
-    """Get reference from OpenAlex reference"""
-    if related is None or not isinstance(related, dict):
-        return None
-    doi = related.get("doi", None)
-    metadata = {
-        "id": normalize_doi(doi) if doi else None,
-        "contributor": related.get("author", None),
-        "title": related.get("display_name", None),
-        "publisher": related.get(
-            "primary_location.source.host_organization_name", None
-        ),
-        "publicationYear": related.get("publication_year", None),
-        "volume": dig(related, "biblio.volume"),
-        "issue": dig(related, "biblio.issue"),
-        "firstPage": dig(related, "biblio.first_page"),
-        "lastPage": dig(related, "biblio.last_page"),
-        "containerTitle": related.get("primary_location.source.display_name", None),
-    }
-    return compact(metadata)
-
-
-def get_openalex_works(pids: list, **kwargs) -> list:
-    """Get OpenAlex works, use batches of 49 to honor API limit."""
-    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
-    works = []
-    for pid_batch in pid_batches:
-        ids = "|".join(pid_batch)
-        url = f"https://api.openalex.org/works?filter=ids.openalex:{ids}"
-        headers = {"User-Agent": COMMONMETA_USER_AGENT}
-        response = http.get(url, timeout=10, headers=headers, **kwargs)
-        if response.status_code != 200:
-            return []
-        response = response.json()
-        if dig(response, "count") == 0:
-            return []
-
-        works.extend(response.get("results"))
-
-    return works
-
-
-def get_openalex_funders(pids: list, **kwargs) -> dict | list:
-    """Get ROR id and name from OpenAlex funders.
-    use batches of 49 to honor API limit."""
-    pid_batches = [pids[i : i + 49] for i in range(0, len(pids), 49)]
-    funders = []
-    for pid_batch in pid_batches:
-        ids = "|".join(pid_batch)
-        url = f"https://api.openalex.org/funders?filter=ids.openalex:{ids}"
-        headers = {"User-Agent": COMMONMETA_USER_AGENT}
-        response = http.get(url, timeout=10, headers=headers, **kwargs)
-        if response.status_code != 200:
-            return {"state": "not_found"}
-        response = response.json()
-        if dig(response, "count") == 0:
-            return {"state": "not_found"}
-
-        def format_funder(funder: dict) -> dict:
-            return {
-                "id": dig(funder, "id"),
-                "ror": dig(funder, "ids.ror"),
-                "name": dig(funder, "display_name"),
-            }
-
-        f = [format_funder(i) for i in response.get("results")]
-        funders.extend(f)
-
-    return funders
-
-
-def get_openalex_source(str: str | None, **kwargs) -> dict | None:
-    """Get issn, name, homepage_url and type from OpenAlex source."""
-    id = validate_openalex(str)
-    if not id:
-        return None
-
-    url = f"https://api.openalex.org/sources/{id}"
-    headers = {"User-Agent": COMMONMETA_USER_AGENT}
-    response = requests.get(url, timeout=10, headers=headers, **kwargs)
-    if response.status_code != 200:
-        return {"state": "not_found"}
-    response = response.json()
-    if dig(response, "count") == 0:
-        return {"state": "not_found"}
-
-    return compact(
-        {
-            "id": dig(response, "id"),
-            "url": dig(response, "homepage_url"),
-            "issn": dig(response, "issn_l"),
-            "title": dig(response, "display_name"),
-            "type": dig(response, "type"),
-        }
-    )
 
 
 def get_files(meta: dict) -> list | None:
@@ -326,9 +260,7 @@ def get_files(meta: dict) -> list | None:
     pdf_url = dig(meta, "best_oa_location.pdf_url")
     if pdf_url is None:
         return None
-    return [
-        {"mime_type": "application/pdf", "url": pdf_url},
-    ]
+    return [{"mime_type": "application/pdf", "url": pdf_url}]
 
 
 def get_container(meta: dict) -> dict | None:
@@ -340,13 +272,12 @@ def get_container(meta: dict) -> dict | None:
         )
     issn = dig(meta, "primary_location.source.issn_l")
     container_title = dig(meta, "primary_location.source.display_name")
-    url_ = dig(meta, "primary_location.source.url")
 
     return compact(
         {
             "type": container_type,
-            "identifier": issn or url_,
-            "identifier_type": "ISSN" if issn else "URL" if url_ else None,
+            "identifier": issn,
+            "identifier_type": "ISSN" if issn else None,
             "title": container_title,
             "volume": dig(meta, "biblio.volume"),
             "issue": dig(meta, "biblio.issue"),
@@ -354,35 +285,6 @@ def get_container(meta: dict) -> dict | None:
             "last_page": dig(meta, "biblio.last_page"),
         }
     )
-
-
-def from_openalex_funding(funding_references: list) -> list:
-    """Get funding references from OpenAlex.
-
-    OpenAlex funders only expose a ROR identifier (no Crossref Funder ID,
-    GRID, ISNI, etc.), so funder_id is always ROR-or-None here, matching
-    the v1.0 schema's ROR-only funder_id constraint.
-    """
-    funder_ids = [
-        validate_openalex(funding.get("funder"))
-        for funding in funding_references
-        if "funder" in funding
-    ]
-    funders = get_openalex_funders(funder_ids)
-    formatted_funding_references = []
-    for funding in funding_references:
-        funder = next(
-            item for item in funders if item["id"] == funding.get("funder", None)
-        )
-        f = compact(
-            {
-                "funder_name": funder.get("name", None),
-                "funder_id": funder.get("ror", None),
-                "award_number": funding.get("award_id", None),
-            }
-        )
-        formatted_funding_references.append(f)
-    return unique(formatted_funding_references)
 
 
 def get_random_openalex_id(number: int = 1, **kwargs) -> list:
@@ -393,7 +295,6 @@ def get_random_openalex_id(number: int = 1, **kwargs) -> list:
         response = http.get(url, timeout=10)
         if response.status_code != 200:
             return []
-
         items = dig(response.json(), "results")
         return items
     except (ReadTimeout, ConnectionError):

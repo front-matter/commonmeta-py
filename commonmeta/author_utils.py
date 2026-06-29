@@ -202,6 +202,7 @@ def is_personal_name(name) -> bool:
             "Company",
             "Corporation",
             "Collaboration",
+            "Organization",
             "Consortium",
             "Incorporated",
             "Inc.",

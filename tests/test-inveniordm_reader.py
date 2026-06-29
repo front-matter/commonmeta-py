@@ -19,7 +19,7 @@ def test_software():
     assert subject.id == "https://doi.org/10.5281/zenodo.7752775"
     assert subject.type == "Software"
     assert subject.url == "https://zenodo.org/records/7752775"
-    assert subject.title == 'commonmeta-ruby'
+    assert subject.title == "commonmeta-ruby"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
@@ -27,15 +27,9 @@ def test_software():
             "id": "https://orcid.org/0000-0003-1419-2405",
             "given_name": "Martin",
             "family_name": "Fenner",
-            "affiliations": [
-                {
-                    "name": "Front Matter"
-                }
-            ]
+            "affiliations": [{"name": "Front Matter"}],
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "MIT",
@@ -43,8 +37,10 @@ def test_software():
         "url": "https://opensource.org/licenses/MIT",
     }
 
-    assert (subject.date_published == '2023-03-20'
-        and subject.date_updated == '2023-03-20T14:26:48Z')
+    assert (
+        subject.date_published == "2023-03-20"
+        and subject.date_updated == "2023-03-20T14:26:48Z"
+    )
     assert subject.relations == [
         {
             "id": "https://github.com/front-matter/commonmeta-ruby/tree/v3.0.1",
@@ -54,9 +50,8 @@ def test_software():
     ]
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith("Ruby gem and command-line utility for conversion of DOI metadata")
+    assert subject.description.startswith(
+        "Ruby gem and command-line utility for conversion of DOI metadata"
     )
     assert subject.subjects == [
         {"subject": "ruby"},
@@ -92,18 +87,19 @@ def test_presentation():
     assert subject.id == "https://doi.org/10.5281/zenodo.8173303"
     assert subject.type == "Presentation"
     assert subject.url == "https://zenodo.org/records/8173303"
-    assert subject.title == "ARCHIVE - 11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+    assert (
+        subject.title
+        == "ARCHIVE - 11 July 2023 (Day 2) CERN – NASA Open Science Summit Sketch Notes"
+    )
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0002-8960-9642",
             "given_name": "Heidi",
-            "family_name": "Seibold"
+            "family_name": "Seibold",
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -111,16 +107,17 @@ def test_presentation():
         "url": "https://creativecommons.org/licenses/by/4.0/legalcode",
     }
 
-    assert (subject.date_published == '2023-07-21'
-        and subject.date_updated == '2025-01-22T19:42:46Z')
+    assert (
+        subject.date_published == "2023-07-21"
+        and subject.date_updated == "2025-01-22T19:42:46Z"
+    )
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.8173302", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith("CERN/NASA “Accelerating the Adoption of Open Science”")
+    assert subject.description.startswith(
+        "CERN/NASA “Accelerating the Adoption of Open Science”"
     )
     assert subject.subjects is None
     assert subject.container == {
@@ -160,11 +157,9 @@ def test_publication():
                 {
                     "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
                 }
-            ]
+            ],
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-NC-ND-4.0",
@@ -172,19 +167,20 @@ def test_publication():
         "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
     }
 
-    assert (subject.date_published == '2021-08-18'
-        and subject.date_updated == '2024-07-18T18:54:12Z')
+    assert (
+        subject.date_published == "2021-08-18"
+        and subject.date_updated == "2024-07-18T18:54:12Z"
+    )
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith("The Origins of SARS-CoV-2: A Critical Review Holmes et al.")
+    assert subject.description.startswith(
+        "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
     )
-    assert (
-        subject.additional_descriptions[0]["description"].startswith("Authors' final peer-reviewed version.")
+    assert subject.additional_descriptions[0]["description"].startswith(
+        "Authors' final peer-reviewed version."
     )
     assert subject.subjects == [
         {"subject": "sars-cov-2"},
@@ -228,11 +224,9 @@ def test_publication_with_url():
                 {
                     "name": "School of Life and Environmental Sciences and School of Medical Sciences, The University of Sydney, Sydney, NSW 2006, Australia"
                 }
-            ]
+            ],
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-NC-ND-4.0",
@@ -240,19 +234,20 @@ def test_publication_with_url():
         "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode",
     }
 
-    assert (subject.date_published == '2021-08-18'
-        and subject.date_updated == '2024-07-18T18:54:12Z')
+    assert (
+        subject.date_published == "2021-08-18"
+        and subject.date_updated == "2024-07-18T18:54:12Z"
+    )
     assert subject.relations == [
         {"id": "https://doi.org/10.5281/zenodo.5075887", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith("The Origins of SARS-CoV-2: A Critical Review Holmes et al.")
+    assert subject.description.startswith(
+        "The Origins of SARS-CoV-2: A Critical Review Holmes et al."
     )
-    assert (
-        subject.additional_descriptions[0]["description"].startswith("Authors' final peer-reviewed version.")
+    assert subject.additional_descriptions[0]["description"].startswith(
+        "Authors' final peer-reviewed version."
     )
     assert subject.subjects == [
         {"subject": "sars-cov-2"},
@@ -285,7 +280,10 @@ def test_dataset():
     assert subject.id == "https://doi.org/10.5281/zenodo.7834392"
     assert subject.type == "Dataset"
     assert subject.url == "https://zenodo.org/records/7834392"
-    assert subject.title == "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"
+    assert (
+        subject.title
+        == "A large-scale COVID-19 Twitter chatter dataset for open scientific research - an international collaboration"
+    )
     assert len(subject.contributors) == 9
     assert subject.contributors[0] == {
         "type": "Person",
@@ -293,33 +291,24 @@ def test_dataset():
             "id": "https://orcid.org/0000-0001-8499-824X",
             "given_name": "Juan M.",
             "family_name": "Banda",
-            "affiliations": [
-                {
-                    "name": "Georgia State University"
-                }
-            ]
+            "affiliations": [{"name": "Georgia State University"}],
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {"id": "other-pd"}
-    assert (subject.date_published == '2023-04-16'
-        and subject.date_updated == '2023-04-17T14:26:45Z')
+    assert (
+        subject.date_published == "2023-04-16"
+        and subject.date_updated == "2023-04-17T14:26:45Z"
+    )
     assert subject.relations == [
         {"id": "https://arxiv.org/abs/2004.03688", "type": "IsSupplementTo"},
         {"id": "https://doi.org/10.5281/zenodo.3723939", "type": "IsVersionOf"},
     ]
     assert subject.publisher == {"name": "Zenodo"}
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith("<em><strong>Version 162 of the dataset.")
-    )
-    assert (
-        subject.additional_descriptions[0]["description"].startswith(
-            "This dataset will be updated bi-weekly at least with additional tweets, look at the github repo for these updates."
-        )
+    assert subject.description.startswith("<em><strong>Version 162 of the dataset.")
+    assert subject.additional_descriptions[0]["description"].startswith(
+        "This dataset will be updated bi-weekly at least with additional tweets, look at the github repo for these updates."
     )
     assert subject.subjects == [
         {"subject": "social media"},
@@ -356,18 +345,19 @@ def test_rogue_scholar():
         subject.url
         == "https://aarontay.substack.com/p/the-petrol-tank-for-ai-discovery"
     )
-    assert subject.title == "The Petrol Tank for AI Discovery Might be Running Dry as Publishers close access to scholarly content such as abstracts due to AI incentives"
+    assert (
+        subject.title
+        == "The Petrol Tank for AI Discovery Might be Running Dry as Publishers close access to scholarly content such as abstracts due to AI incentives"
+    )
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0003-0159-013X",
             "given_name": "Aaron",
-            "family_name": "Tay"
+            "family_name": "Tay",
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -381,24 +371,24 @@ def test_rogue_scholar():
     assert subject.publisher == {"name": "Front Matter"}
     assert subject.citations is None
     assert subject.funding_references is None
-    assert (
-        subject.description
-        .startswith(
-            "Elicit.com, Consensus, and Undermind.ai are among the new leading comprehensive cross-disciplinary"
-        )
+    assert subject.description.startswith(
+        "Elicit.com, Consensus, and Undermind.ai are among the new leading comprehensive cross-disciplinary"
     )
     assert subject.container == {
         "type": "Blog",
-        "title": "Aaron Tay's Musings about librarianship",
+        "title": "Aaron Tay's Musings about Librarianship",
         "identifier": "https://rogue-scholar.org/communities/musings",
         "identifier_type": "URL",
-        "platform": "Substack",
     }
     assert subject.subjects == [
         {
             "id": "https://openalex.org/subfields/3309",
             "subject": "Library and Information Sciences",
-        }
+        },
+        {
+            "id": "http://www.oecd.org/science/inno/38235147.pdf?6.5",
+            "subject": "Other humanities",
+        },
     ]
     assert subject.language == "en"
     assert subject.version == "v1"
@@ -416,17 +406,12 @@ def test_rogue_scholar_with_citations():
         subject.url
         == "https://www.earlham.edu/~peters/fos/2007/05/carl-zimmer-contrasts-wiley-and-plos.html"
     )
-    assert subject.title == 'Carl Zimmer contrasts Wiley and PLoS'
+    assert subject.title == "Carl Zimmer contrasts Wiley and PLoS"
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
-        "person": {
-            "given_name": "Peter",
-            "family_name": "Suber"
-        },
-        "roles": [
-            "Author"
-        ]
+        "person": {"given_name": "Peter", "family_name": "Suber"},
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -448,10 +433,7 @@ def test_rogue_scholar_with_citations():
             "unstructured": "Willighagen, E. (2007, May 25). Numbers are copyrighted?. <i>Chem-bla-ics</i>.",
         },
     ]
-    assert (
-        subject.description
-        .startswith("Carl Zimmer, An Open Mouse")
-    )
+    assert subject.description.startswith("Carl Zimmer, An Open Mouse")
     assert subject.container == {
         "type": "Blog",
         "title": "Open Access News",
@@ -482,18 +464,19 @@ def test_rogue_scholar_with_parent_doi():
         subject.url
         == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
     )
-    assert subject.title == 'Video of the 2024 SSP debate: "The open access movement has failed"'
+    assert (
+        subject.title
+        == 'Video of the 2024 SSP debate: "The open access movement has failed"'
+    )
     assert len(subject.contributors) == 1
     assert subject.contributors[0] == {
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0002-1003-5675",
             "given_name": "Mike",
-            "family_name": "Taylor"
+            "family_name": "Taylor",
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.license == {
         "id": "CC-BY-4.0",
@@ -508,18 +491,14 @@ def test_rogue_scholar_with_parent_doi():
     assert subject.funding_references is None
     assert subject.references is None
     assert subject.citations is None
-    assert (
-        subject.description
-        .startswith(
-            "Readers with good memories will remember that back in May last year"
-        )
+    assert subject.description.startswith(
+        "Readers with good memories will remember that back in May last year"
     )
     assert subject.container == {
         "type": "Blog",
         "title": "Sauropod Vertebra Picture of the Week",
         "identifier": "3033-3695",
         "identifier_type": "ISSN",
-        "platform": "WordPress.com",
     }
     assert subject.subjects == [
         {
@@ -550,29 +529,25 @@ def test_rogue_scholar_with_contributors():
     assert subject.id == "https://doi.org/10.59350/510pg-zzf58"
     assert subject.type == "BlogPost"
     assert subject.url == "https://ropensci.org/blog/2025/10/14/blog-roles/"
-    assert subject.title == 'Recognition Beyond Blog Post Authors'
+    assert subject.title == "Recognition Beyond Blog Post Authors"
     assert len(subject.contributors) == 3
     assert subject.contributors[1] == {
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0002-4522-7466",
             "given_name": "Yanina",
-            "family_name": "Bellini Saibene"
+            "family_name": "Bellini Saibene",
         },
-        "roles": [
-            "Author"
-        ]
+        "roles": ["Author"],
     }
     assert subject.contributors[2] == {
         "type": "Person",
         "person": {
             "id": "https://orcid.org/0000-0002-7690-8360",
             "given_name": "Steffi",
-            "family_name": "LaZerte"
+            "family_name": "LaZerte",
         },
-        "roles": [
-            "Editor"
-        ]
+        "roles": ["Editor"],
     }
 
 
@@ -588,12 +563,12 @@ def test_subfield_classification():
         subject.url
         == "https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/"
     )
-    assert subject.title == 'Video of the 2024 SSP debate: "The open access movement has failed"'
     assert (
-        subject.description
-        .startswith(
-            "Readers with good memories will remember that back in May last year"
-        )
+        subject.title
+        == 'Video of the 2024 SSP debate: "The open access movement has failed"'
+    )
+    assert subject.description.startswith(
+        "Readers with good memories will remember that back in May last year"
     )
     assert subject.subjects == [
         {
