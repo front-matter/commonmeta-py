@@ -449,6 +449,7 @@ def get_funding_references(meta: dict | None) -> list | None:
                 funder_identifier = "https://ror.org/021nxhr62"
             else:
                 funder_name = None
+                funder_identifier = None
             f = furl(urls[1])
             # url is for NSF grant
             if f.args.get("awd_id") is not None:
@@ -570,7 +571,11 @@ def get_funding_references(meta: dict | None) -> list | None:
             }
         )
 
-    return [to_v1_funding_reference(i) for i in awards if i.get("funderName", None)]
+    return [
+        to_v1_funding_reference(i)
+        for i in awards
+        if i.get("funderName") or i.get("funderIdentifier") or i.get("awardNumber") or i.get("awardTitle")
+    ]
 
 
 def get_relations(relations: list) -> list:
@@ -659,18 +664,6 @@ def get_jsonfeed_doi(doi: str | None) -> dict | None:
             "indexed_at",
         ],
     )
-
-
-def get_jsonfeed_blog_slug(id: str) -> str | None:
-    """get jsonfeed by id and return blog slug"""
-    if id is None:
-        return None
-    url = f"https://api.rogue-scholar.org/posts/{id}"
-    response = requests.get(url, timeout=10)
-    if response.status_code != 200:
-        return response.json()
-    post = response.json()
-    return dig(post, "blog.slug", None)
 
 
 def format_subject(subject: str) -> dict | None:

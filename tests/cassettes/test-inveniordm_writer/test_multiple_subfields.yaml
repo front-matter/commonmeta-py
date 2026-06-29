@@ -5,76 +5,100 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/1srmw-yb311
   response:
     body:
-      string: !!binary |
-        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
-        X//pvwcAK55nJeEeAAA=
+      string: '{"authors":[{"contributor_roles":[],"family":"Royle","given":"Stephen","url":"https://orcid.org/0000-0001-8927-6967"}],"blog":{"authors":[{"name":"Stephen
+        Royle"}],"community_id":"d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327","created":1673740800,"current_feed_url":null,"description":"x
+        == (s || z). You say it kwontized","favicon":"https://rogue-scholar.org/api/communities/d1d0a116-fe9c-4f5a-b8c5-c3b69edb8327/logo","feed_format":"application/atom+xml","feed_url":"https://quantixed.org/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://quantixed.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"quantixed","status":"active","subfield":"1307","title":"quantixed","updated":1780989026,"use_api":true},"blog_name":"quantixed","blog_slug":"quantixed","content_html":"<p>We
+        have a <a href=\"http://dx.doi.org/10.1098/rsob.170080\">new paper out</a>!
+        This post is to explain what it&#8217;s about.</p>\n<p>Cancer cells often
+        have <em>gene fusions</em>. This happens because the DNA in cancer cells is
+        really messed up. Sometimes, chromosomes can break and get reattached to a
+        different one in a strange way. This means you get a fusion between one gene
+        and another which makes a new gene, called a gene fusion. There are famous
+        fusions that are known to cause cancer, such as the <em>Philadelphia chromosome</em>
+        in chronic myelogenous leukaemia. This rearrangement of chromosomes 9 and
+        22 result in a fusion called BCR-ABL. There are lots of different gene fusions
+        and a\u00a0few years ago, a new fusion was discovered in bladder and brain
+        cancers, called <a href=\"https://doi.org/10.1126/science.1220834\">FGFR3-TACC3</a>.</p>\n<p>Genes
+        encode proteins and proteins do jobs in cells. So the question is: how are
+        the proteins from gene fusions different to their normal versions, and how
+        do they cause cancer? Many of the gene fusions that scientists have found
+        result in a protein that continues to send a signal to the cell when it shouldn&#8217;t.
+        It&#8217;s thought that this transforms the cell to divide uncontrollably.
+        FGFR3-TACC3 is no different. FGFR3 can send signals and the TACC3 part probably
+        makes it do this uncontrollably. But, what about the TACC3 part? Does that
+        do anything, or is this all about FGFR3 going wrong?</p>\n<p><strong>What
+        is TACC3?</strong></p>\n<figure id=\"attachment_1206\" aria-describedby=\"caption-attachment-1206\"
+        style=\"width: 200px\" class=\"wp-caption alignright\"><a href=\"https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/imagej1-51nunitinch/\"
+        rel=\"attachment wp-att-1206\"><img loading=\"lazy\" decoding=\"async\" class=\"size-medium
+        wp-image-1206\" src=\"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg?w=200\"
+        alt=\"\" width=\"200\" height=\"300\" srcset=\"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg
+        591w, https://quantixed.org/wp-content/uploads/2017/08/sarkar-200x300.jpg
+        200w\" sizes=\"auto, (max-width: 200px) 100vw, 200px\" /></a><figcaption id=\"caption-attachment-1206\"
+        class=\"wp-caption-text\">Chromosomes getting shared to the two daughter cells</figcaption></figure>\n<p>TACC3,
+        or transforming acidic coiled-coil protein 3 to give it its full name, is
+        a protein <a href=\"http://dx.doi.org/10.4161/bioa.1.3.16518\">important for
+        cell division</a>. It helps to share the chromosomes to the two daughter cells
+        when a cell divides. Chromosomes are shared out by a machine built inside
+        the cell called the mitotic spindle. This is made up of tiny threads called
+        microtubules. TACC3 stabilises these microtubules and adds strength to this
+        machine.</p>\n<p>We wondered if cancer cells with FGFR3-TACC3 had problems
+        in cell division. If they did, this might be because the TACC3 part of FGFR3-TACC3
+        is changed.</p>\n<p>We weren&#8217;t the first people to have this idea. The
+        scientists that found the gene fusion suggested that FGFR3-TACC3 might bind
+        to the mitotic spindle but not be able to work properly. We decided to take
+        a closer look&#8230;</p>\n<p><strong>What did you find?</strong></p>\n<p>First
+        of all FGFR3-TACC3 is not actually bound to the mitotic spindle. It is at
+        the cells membrane and in small vesicles in the cell. So if it is not part
+        of the mitotic spindle, how can it affect cell division? One unusual thing
+        about TACC3 is that it is a dimer, meaning two TACC3s are stuck together.
+        Stranger than that, these dimers can stick to more dimers and multimerise
+        into a much bigger protein. When we looked at the normal TACC3 in the cell
+        we noticed that the amount bound to the spindle had decreased. We wondered
+        whether the FGFR3-TACC3 was hoovering the normal TACC3 off the spindle, preventing
+        normal cell division.</p>\n<p>We made the cancer cells express a bit more
+        normal TACC3 and this rescued the faulty division. We also got rid of the
+        FGFR3-TACC3 fusion, and that also put things back to normal. Finally, we made
+        a fake FGFR3-TACC3 which had a dummy part in place of FGFR3 and this was just
+        as good at hoovering up normal TACC3 and causing cell division problems. So
+        our idea seemed to be right!</p>\n<p><strong>What does this mean for cancer?</strong></p>\n<p>This
+        project was to look at what is going on inside cancer cells and it is a long
+        way from any cancer treatments. Drug companies can develop chemicals which
+        stop cell signalling from fusions, these could work as anti-cancer agents.
+        In the case of FGFR3-TACC3, what we are saying is: even if you stop the signalling
+        there will still be cell division problems in the cancer cells. So an ideal
+        treatment might be to block TACC3 interactions as well as stopping signalling.
+        This is very difficult to do and is far in the future. Doing work like this
+        is important to understand all the possible ways to tackle a specific cancer
+        and to find any problems with potential treatments.</p>\n<p><strong>The people</strong></p>\n<p>Sourav
+        Sarkar did virtually all the work for this paper and he is first author. Sourav
+        left the lab before we managed to submit this paper and so the revision experiments
+        requested by the peer reviewers were done by Ellis Ryan.</p>\n<p><strong>Why
+        didn&#8217;t we post this paper as a preprint?</strong></p>\n<p>My group have
+        generally been posting our new manuscripts as preprints while they undergo
+        peer review, but we didn&#8217;t post this one. I was reluctant because many
+        cancer journals at the time of submission did not allow preprints. This has
+        changed a bit in the last few months, but back in February several key cancer
+        journals did not accept papers that had appeared first as preprints.</p>\n<p>&#8212;</p>\n<p>The
+        title of the post comes from &#8220;Fusion Confusion&#8221; 4th track on the
+        Hazy EP by Dr Phibes &amp; The House of Wax Equations.</p>","doi":"https://doi.org/10.59350/1srmw-yb311","guid":"https://quantixed.wordpress.com/?p=1194","images":[{"height":"300","sizes":"auto,
+        (max-width: 200px) 100vw, 200px","src":"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg?w=200","srcset":"https://quantixed.org/wp-content/uploads/2017/08/sarkar.jpg,
+        https://quantixed.org/wp-content/uploads/2017/08/sarkar-200x300.jpg","width":"200"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1504051200,"rid":"nnx9s-74a78","summary":"We
+        have a new paper out! This post is to explain what it''s about. Cancer cells
+        often have gene fusions. This happens because the DNA in cancer cells is really
+        messed up. Sometimes, chromosomes can break and get reattached to a different
+        one in a strange way.","tags":["Publishing","Science","Cancer","Cell Biology","FGFR3"],"title":"Fusion
+        confusion: new paper on FGFR3-TACC3 fusions in cancer","updated_at":1769587994,"url":"https://quantixed.org/2017/08/30/fusion-confusion-new-paper-on-fgfr3-tacc3-fusions-in-cancer/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -85,7 +109,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:32 GMT
+      - Mon, 29 Jun 2026 18:14:06 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

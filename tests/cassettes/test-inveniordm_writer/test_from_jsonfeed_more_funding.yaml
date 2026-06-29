@@ -5,60 +5,76 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/m99dx-x9g53
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"contributor_roles":[],"name":"re3data Team"}],"blog":{"authors":[{"name":"re3data
+        Team"}],"community_id":"64af7724-6171-4e2c-8f09-ba23d5f324b6","created":1780876800,"current_feed_url":null,"description":"COREF
+        Blog","favicon":"https://rogue-scholar.org/api/communities/64af7724-6171-4e2c-8f09-ba23d5f324b6/logo","feed_format":"application/atom+xml","feed_url":"https://coref.project.re3data.org/blog.atom","filter":null,"generator":"Other","home_page_url":"https://coref.project.re3data.org/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":null,"slug":"coref","status":"active","subfield":"1710","title":"COREF
+        Blog","updated":1780988884,"use_api":null},"blog_name":"COREF Blog","blog_slug":"coref","content_html":"<img
+        alt=\"\" src=\"https://coref.project.re3data.org/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg\"/>\n<p>Summer
+        Meeting of the Editorial Board</p>\n<p>The re3data.org editorial board was
+        able to get together in person over the summer, meeting for two days in June
+        at the library of the Karlsruhe Institute of Technology (KIT). It was a great
+        opportunity to on-board our new editors and to reconnect with colleagues to
+        focus on updates and improvements to the registry. In addition to the work,
+        the group enjoyed good food and fellowship in the evening.</p>\n<p>Some were
+        not able to travel to Germany but were able to join remotely for introductions
+        and an icebreaker to get to know each other better. The KIT staff led a tutorial
+        and demonstrated the registry''s backend editorial workflow, following a submission
+        through each step in the process as it moved through the system.</p>\n<p>We
+        also had a focussed discussion on new ways to engage with the broader research
+        data community, first by sharing general strategies and then brainstorming
+        specific approaches for each of our regions and networks. Each editor left
+        with 2-3 action items of things they could do to raise awareness of re3data.org
+        and to identify new repositories to index, in particular, from under-represented
+        parts of the world. The board will revisit these on its next quarterly call
+        to update each other on progress.</p>\n<p>Four additional working sessions
+        addressed important topics. A hands-on activity explored inconsistencies over
+        the years in how editors have identified different types of repositories,
+        and they discussed potential changes to their approach to repository typology.
+        The board mapped and investigated the alignment between Version 4 of re3data''s
+        <a href=\"https://doi.org/10.48440/re3.014\">Metadata Schema for the Description
+        of Research Data Repositories</a> and the <a href=\"https://doi.org/10.15497/rda00103\">RDA
+        Common Descriptive Attributes of Research Data Repositories recommendation</a>
+        that was endorsed earlier this year by the Research Data Alliance. They explored
+        how users from specific disciplines may experience the registry differently.
+        For example, how would a humanities scholar interact with re3data.org in ways
+        that would be different from a geoscientist? Each of the editors has individual
+        expertise in different disciplines and presented their views in the context
+        of their subject area. Last but not least, the group experimented and explored
+        how artificial intelligence (AI) tools consume information about repositories
+        that we present in the registry as well as how we may utilize AI to improve
+        our work.</p>\n<p>The meeting concluded with a session of lightning talks
+        on topics of relevance that were brought by our editors, which spanned a wide
+        spectrum of initiatives and interests. </p>\n<p>This was the third in a series
+        of three meetings that were sponsored by the <a href=\"https://www.dfg.de/\">Deutsche
+        Forschungsgemeinschaft (DFG)</a> in support of the <a href=\"https://coref.project.re3data.org/project\">COREF
+        project</a>. The meetings helped reshape the editorial process, brought in
+        missing language and subject expertise, and extended global networks to better
+        cover regions that are currently underrepresented in re3data.</p>\n<p><img
+        alt=\"working\" src=\"https://coref.project.re3data.org/images/7/1/7/5/b/7175be771978de37dc8a61f11f0bb246905a6169-working.jpg\"
+        title=\"working\"/>\n<img alt=\"re3data_editorial_board_2024_s\" src=\"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/re3data_editorial_board_2024_s.jpg\"
+        title=\"re3data_editorial_board_2024_s\"/>\n<img alt=\"super_pretzel\" src=\"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/super_pretzel.jpg\"
+        title=\"super_pretzel\"/></p>","doi":"https://doi.org/10.59350/m99dx-x9g53","funding_references":[{"awardNumber":"422587133","awardTitle":"re3data
+        \u2013 Offene und nutzerorientierte Referenz f\u00fcr Forschungsdatenrepositorien
+        (re3data COREF)","awardUri":"https://gepris-extern.dfg.de/gepris/projekt/422587133","funderIdentifier":"https://ror.org/018mejw64","funderIdentifierType":"ROR","funderName":"Deutsche
+        Forschungsgemeinschaft"}],"guid":"https://coref.project.re3data.org/blog/summer-meeting-of-the-editorial-board","images":[{"src":"https://coref.project.re3data.org/images/7/b/6/1/b/7b61bcef98211c200b6c508c172e8833ae50caaa-working.jpg"},{"alt":"working","src":"https://coref.project.re3data.org/images/7/1/7/5/b/7175be771978de37dc8a61f11f0bb246905a6169-working.jpg"},{"alt":"re3data_editorial_board_2024_s","src":"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/re3data_editorial_board_2024_s.jpg"},{"alt":"super_pretzel","src":"https://coref.project.re3data.org/user/pages/02.blog/18.summer-meeting-of-the-editorial-board/super_pretzel.jpg"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1725408000,"rid":"qz2sd-6tw29","summary":"Summer
+        Meeting of the Editorial Board The re3data.org editorial board was able to
+        get together in person over the summer, meeting for two days in June at the
+        library of the Karlsruhe Institute of Technology (KIT). It was a great opportunity
+        to on-board our new editors and to reconnect with colleagues to focus on updates
+        and improvements to the registry. In addition to the work, the group enjoyed
+        good food and fellowship in the evening.","title":"Summer Meeting of the Editorial
+        Board","updated_at":1744562667,"url":"https://coref.project.re3data.org/blog/summer-meeting-of-the-editorial-board"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -69,7 +85,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:30 GMT
+      - Mon, 29 Jun 2026 18:14:04 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

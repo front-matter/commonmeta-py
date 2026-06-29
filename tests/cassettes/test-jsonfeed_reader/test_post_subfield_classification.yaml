@@ -5,55 +5,64 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/qsajq-6tn97
   response:
     body:
-      string: !!binary |
-        H4sIAAAJbogA/7RZX5Pjtg1/76dA2JlLMpVWkv/bd95M2r5sZpJsu2nyUN94YAmSmKVIhaSsc27u
-        u3dA2bveu9x1Oz2/rEciBIA//ACC2LcCO18b68Tq328FlqVUEr00OjzLQqxE7X3rVklijb0ytkrS
-        6Wji2tF0LiKhsSGxEv/Sck/WSX8AU8JfrXTeKPHudSRyo72Vu84bu7VGEdt5HYkSG6kOYiV+woMy
-        VkSiknvSYiW+l/ckItFZdWba2FwWg/E0TeM0TUdxlqbjeDqbT4OdnTKVWD3dzdE51ghHOyyam6bp
-        tPSHbdheStl4OsnKeJLNKZ7M8jTGxXQZz6bL0Xw0WRblfCQikVtCT4VYZfNFupjPFmkaibyzlrTf
-        lkTFNrisO6UiUZDLrWwHHMXdz/Htj798AXB1dQXwrVLgsLOmNQXsyXraWaQI6E1OrYe+Jg09fWkJ
-        PKp7qSvAnek8/NiShm/znJy7gpu7ux9gnI7H8Xi2nIpIlLiXudFnmFlTdRS7vDYKh8BhK5PT5iW5
-        5Dk7T5SpDOsnKralsQ16sRLYtkrmgScJetP85U2jTkJPI+f2remvctMkvBiEE5aUypM9wVWRJove
-        WLESvxhb3Fpyjj8SkahNQ9sWK/qYYhEJ6RzjfI6HQl11WHH8SVf8QuakHZ0BFCIq98SQGO0CREcp
-        l+wOyeQqTRRVqHJTMCVbS6V8c/LZkgpfn4fdUd5ZEitvO4qEU10lViI4KiLhPPrOMXg5f8dvul0p
-        STEJs2WWiUh46RW7eHfix89HfsCtzH1nidPL1wS/EN1zlrTFGSnT2WI2i0TnaIutHNx4N6TG9pgL
-        z1XM6bR9bwOcykz22jcciFft9T8JC7IOeulrqIwpoKHGWEn8Simw1FCzIwu+Rg87zO9BavgeD6DQ
-        eTgQWniFUFsq15s/oMwoHU2SdJqMlklPzksd9zV6F+emkbqKuzbuqdDkCjzEvUVdKYrNnmzc1+Rr
-        srHBWLoY4x5dbTqfbMT1DaDWptM5FXADvelUATsCox+w9b2BFq2XuWxRe/cqwWv2m3FvFWm0Byho
-        h56GfeXKOHJhGbXuUEFD5DlxjwrvTC7JH6A0Fu6GfFQHuO12Srpa6uoKbqBHBzmDghVK7Tz4Q0sR
-        tBwtx7pYUWM44+DFnxejUfryp5rAcFHAUBSgMXtqSHuo0UGJUlERJLOX0RCh1lJrpfaAxd7k7P93
-        5JzMEW6Nukc2tpfFyVhttLG4U2ykNU6y6atXSXu90a/a6xtojfNUPCN+Mw6hryl2ro0H4GKjY37D
-        7seD+/HJ/bhGFw/uxxyGOItdS5TXcWls+GqAgYPJoJSdUuDpjWe4m0OAhPeAtuoYjhA+1M/0dJGc
-        eRnMj+JfB5TillGKBzR09ZwNsI+mPMHM0cjmL92Da8yqR3CDo5tulGYT2HUetPEnBrnaWE8WLO06
-        71Ex29ADYV6zSOegwj1FYCw/5qazjslJ0OnhIKIC/vECm/blt8OXpVHK9FQEoVDWVeD8yeAQpsdw
-        /2D6CIxWB8AhbRlQhJ30oNBTBLlpyP0BxEYX1KAurpxrNflQZH/iKpfk02I8X+RZvBylo3hS0iTe
-        TTGNy2maFZNxOh3PymOI97Ig89Q1BusL+P4A2BplKi45nF4sXZDCwwqk56TSR9A94B6lCnx23qKs
-        ag9YMqj8zTFjo7Avz0fwDeurjAdvIK8pvx/qF0JjtK/Dru0jPh9ufKhivbFFezrNkr6Nj0U06Vpl
-        sHBc4qZJliaNvKcY/VmOXP3aUrUR169kUwELS12tN0Lh74eNgAI9xug95nXgnCzWGzGaTMbpabEl
-        26CS+v4Yjff5HsxmiySAG5sy8Jnz4DxPn8PxD11PTj4YK6u4lIouAMyZBSd/ZwvZcppG2Shbnszz
-        yU7au7AFYoSy05JssKK4IY/rjXj74rfO+JfYkuWzcHhaDT/p8BMNP7mlQvonAk/XsSGLn1oPTeEn
-        BLgpoWLrZUPOY9N+yhnTHiwT+ePqSpOj2irSla8/oUk684lVV3fek91yGS4+IRe6lyfrT5a5MdAe
-        P9j/EeF3T0MTlK034kN2PZU7a7XXG/F0Lcf33yu0FV2Gkd/06ywdTTYCcoXOrTcClay0NpqACRqH
-        g6pvj9Q75aqz+SWSA5Uf4Ohl4ev1RkwWXBlqYr6sN2Kc8qOzuSP/2e1/068nizScN/V6nKYwWaR9
-        BJ8d7+XsZGSWprCcXcRINj0ZWU4gm17Exjg92cgWCxinFzEyny2ORiaLFOazRc8MkL8Tc/WrBt/E
-        gSsrjlb75mvI0nTfR8PTRkByzWfuw4l3czxYC1B8v/YGuNUv4PG8Di2zdMCXtyh0NA93O+jN48Gs
-        yEND8BX3O522hM5o3KnDqRc6dulPP2jJtIqONtHupLfcl3+He7wL9YDNNwdwkrsTknwd+PoK7gwc
-        THfUpBTUuA++8zkJvramq2p+vlAjc3d3e7Q9wDL05Q+QMcCPPcWNf5BlidB99Xhg90qpCzAdTwsM
-        Y3nsezg3omNXg0p98aDqhd659uXxsbaQfKxrKYwMO8vSq+lyPE2T3xz++ls883o534jrwsjVHy2d
-        mCEiURgpVs/SJyJRdU8mTI/9+DftejSZjCZ8uedS/oHQ/1s9Top5HvVWDGUxjBBSvphzUojVf0sK
-        lrT5JVwb6vJn13ysyzXXmwsUGC7HoRRfQDdXYa7AF1DNxTcU3gvo5pob6q2IRCCSWPFJLN5Fby/D
-        nXev35t9fZ7R1zCroGLL479sPkvnk+mMJ6A2JPBofJgd4n29XEyZvV3ToOXp7ucYEP3vA5vLDmt4
-        TIcV1w3xN6NLsqRzciISfw9hEJE4m9SKSNzd3fJfL/W91F+exj5knXj9OPD7+fyGy5cwPiqOt/AV
-        bMQzZj0b8TgQPIZpkS6m8/F0+f44/bHOfs57oIhE+CeA0WIl9pl496f/DAALZWQKXRgAAA==
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/0524sp257","name":"University
+        of Bristol"}],"contributor_roles":[],"family":"Taylor","given":"Mike","url":"https://orcid.org/0000-0002-1003-5675"}],"blog":{"authors":[{"name":"Mike
+        Taylor"}],"community_id":"0e13541f-417e-46c0-a859-65927249df72","created":1675209600,"current_feed_url":null,"description":"SV-POW!  ...  All
+        sauropod vertebrae, except when we''re talking about Open Access. ISSN 3033-3695","favicon":"https://rogue-scholar.org/api/communities/0e13541f-417e-46c0-a859-65927249df72/logo","feed_format":"application/atom+xml","feed_url":"https://svpow.com/feed/atom/","filter":null,"generator":"WordPress.com","home_page_url":"https://svpow.com","issn":"3033-3695","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"svpow","status":"active","subfield":"1911","title":"Sauropod
+        Vertebra Picture of the Week","updated":1782505016,"use_api":true},"blog_name":"Sauropod
+        Vertebra Picture of the Week","blog_slug":"svpow","content_html":"<p>Readers
+        with good memories will remember that back in May last year <a href=\"https://svpow.com/2024/05/29/westin-whats-coming-up-wednesday-wrangle-over-whether-oa-is-a-washout/\">I
+        announced I would be one of the two participants</a> in the plenary debate
+        that closes the annual meeting of the Society for Scholarly Publishing. I
+        was cast against type, proposing the motion &#8220;The open access movement
+        has failed&#8221;, with preprint advocate Jessica Polka providing the honorable
+        opposition.</p>\n<p>I posted <a href=\"https://svpow.com/2024/06/05/the-ssp-debate-on-the-open-access-movement-has-failed-part-1-speech-for-the-motion/\">the
+        full text of my opening argument</a> and <a href=\"https://svpow.com/2024/06/08/ssp-debate-part-2-jessica-polka-opposing-the-open-access-movement-has-failed/\">of
+        Jessica&#8217;s argument in opposition</a> \u2014 but not of the shorter rebuttals
+        that each of us gave, or of course the unscripted Q&amp;A that followed the
+        formal part of the debate.</p>\n<p>Now, only a year and a bit late, comes
+        <a href=\"https://ondemand.sspnet.org/Title/c5d378c1-9202-4fe4-b5a0-f501d430536f\">the
+        video of the debate</a>! My apologies for the delay: it wasn&#8217;t available
+        straight after the meeting, and then I forgot to check back a month later.</p>\n<p><a
+        href=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"><img
+        loading=\"lazy\" data-attachment-id=\"24430\" data-permalink=\"http://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/mike-at-ssp-debate/\"
+        data-orig-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
+        data-orig-size=\"1950,1219\" data-comments-opened=\"1\" data-image-meta=\"{&quot;aperture&quot;:&quot;0&quot;,&quot;credit&quot;:&quot;&quot;,&quot;camera&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;,&quot;created_timestamp&quot;:&quot;0&quot;,&quot;copyright&quot;:&quot;&quot;,&quot;focal_length&quot;:&quot;0&quot;,&quot;iso&quot;:&quot;0&quot;,&quot;shutter_speed&quot;:&quot;0&quot;,&quot;title&quot;:&quot;&quot;,&quot;orientation&quot;:&quot;0&quot;}\"
+        data-image-title=\"mike-at-ssp-debate\" data-image-description=\"\" data-image-caption=\"\"
+        data-large-file=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=1024\"
+        class=\"alignnone size-full wp-image-24430\" src=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg\"
+        alt=\"\" width=\"480\" height=\"300\" srcset=\"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=480&amp;h=300
+        480w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=960&amp;h=600
+        960w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=150&amp;h=94
+        150w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=300&amp;h=188
+        300w, https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=768&amp;h=480
+        768w\" sizes=\"(max-width: 480px) 100vw, 480px\" /></a></p>\n<p>I&#8217;d
+        like to embed the video in this page, but WordPress won&#8217;t let me (not
+        unreasonably \u2014 I wouldn&#8217;t let people embed arbitrary JavaScript
+        in my site, either). So you&#8217;ll have to link through to <a href=\"https://ondemand.sspnet.org/Title/c5d378c1-9202-4fe4-b5a0-f501d430536f\">the
+        SSP&#8217;s page with the video</a>.</p>\n<p>It&#8217;s the only way to find
+        out who won the debate, after all!</p>\n<p>&nbsp;</p>\n<hr />\n<p><a href=\"https://doi.org/10.59350/qsajq-6tn97\">doi:10.59350/qsajq-6tn97</a></p>","doi":"https://doi.org/10.59350/qsajq-6tn97","guid":"https://svpow.com/?p=24424","image":"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg","images":[{"height":"300","sizes":"(max-width:
+        480px) 100vw, 480px","src":"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg","srcset":"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=480&h=300,
+        https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=960&h=600,
+        https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=150&h=94,
+        https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=300&h=188,
+        https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg?w=768&h=480","width":"480"},{"src":"https://svpow.wordpress.com/wp-content/uploads/2025/10/mike-at-ssp-debate.jpeg"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1760745600,"rid":"23y6y-vh985","summary":"Readers
+        with good memories will remember that back in May last year I announced I
+        would be one of the two participants in the plenary debate that closes the
+        annual meeting of the Society for Scholarly Publishing.","tags":["Conferences","Debate","Open
+        Access","SSP","Stinkin'' Publishers"],"title":"Video of the 2024 SSP debate:
+        \"The open access movement has failed\"","updated_at":1780857359,"url":"https://svpow.com/2025/10/18/video-of-the-2024-ssp-debate-the-open-access-movement-has-failed/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -64,7 +73,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:00:00 GMT
+      - Mon, 29 Jun 2026 18:14:11 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

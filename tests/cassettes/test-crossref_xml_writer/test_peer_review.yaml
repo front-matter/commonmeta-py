@@ -5,39 +5,39 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.7554/elife.55167.sa2
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/91X227jNhD9FUJPLSDakizZsd6yzqabrXNBkgXaxnmgqbHDrkyqJJXEa+TfO6Qc
-        W9lckCyCoq1hAzI5Gs45PCQPV4GxzNYmyAP1NQiDBRjD5kDtsgJsu1G63XoN2gglsSPuRJ1o2xPk
-        q0DIAm6hcI8Fs0Arpi3mvbhIoqQfZmESX16GTZcVC5fdddAoo0l8nkR5L87T4R+Y0/ViVYsqyOPB
-        YNgbZlk07KX9MNiO3+tkvU4c3IWBhhlokBwoV7W0QR6FQVVPS2GuQGMkjMUMyBkXLsaQE9fFmcU0
-        JiRjW+CA2ADSYEUXK0eHtk9iiMI0TIZPYIholNJkeB5Fuf9+jyHb2YnjnTRyHyyYK2lB2haZtTQV
-        cDET4KopoGRLKiQt2NJ4OF9Oxxh1ZW2VT7qTLteA9V8DV4sFougoPZ901xjMpDtdTrppJ5p0g7vL
-        7WiFWjAhPbD108UlFmOulLbUBWEbaERlS0fE5ZbEglZayJc5wUx7xwdOF1FnkGXppAsl0t7Jsrg/
-        6BiWOEoaSVWAw2i4FnCDjR7LM6KJUDTxM4RnNB6ex/2818t72WPCh8OoH8VZQ7hRtebu1ZFWxqBe
-        MFwYuhFOQafLe/HELlNDQbBbW2SHaDAV0gw5OavEV9hX2GBDbK60KmoupiWQG5jSGeNCzslcY6aC
-        Wo1vk2tWisKLjagZYbVF7hEukVBrVhLjEhKDU4BaCBznWJS43fKIlTJfhdfm8enoYG+tBOOloDQX
-        RSMApy6Kv4RmyU6fpr1Btn4bp98pHnH68CDH2iAM5ighp77PyMJiibEzthDlElsO2bxk0mnRwF+1
-        owgbZ0Ib6zLOZqIUHpMvSjI/LSMcBTSZIWEjtahq6yMQ4yHDChC14Lje9kt80MjGgTTIc20BM1Yl
-        457wI7ghv+OOE5IvUjiazjALIDFOyFqVzQq9VpxN65JpVyrfTmkTcM/XHWpytcWIRRryuQ3ycy0f
-        AmRFIZqa/2soX6mLpJ8mtB/1fnudLj6W4hubgr1qszZWuG2ptxPn91+LWxxfE+eWygiX0r+WrXQ4
-        HNA06vdex9ZuCbe4ZlAcD1R2qHQJy7fzdQgFjlaSUzDANL9CrmrJRUk+aNyoyRFYdzSTvSXGo+Y8
-        OZ4if6rYpdtujm9Rp0WbzKZlQ+WvOAl4GvwDyouSHo372Su5HOFIZCwkV6Vsk/mp1jfCfns7mxtl
-        +ZW7W7DKnZ8E5wuZ9DtxazWjDjHqfi0/pPRjIeS01vOrNqubxncktiUrgy6BnDBVqjYXH2qOx80P
-        rES3hemGiAPczObaewlHg0JEyBN3WH8aHRydjHd/fqQp48vYKgr/h+RI6Ru2fAe4Z2xRQ9nG+Quq
-        X7AfhlkALiGOThB/BKSfbmUaM+g6x0slWxgndRTB8L6jDbQJ3NfMlfAu83pLPj2YUKYlWPu/OJMu
-        3cVgMfX+G42IszFPWsy1DUTztzaHTQrqnC2iclxYf7twxohWW+vujL/SYi4QZzthAZUy4jlDmTq3
-        2n/CUKbewffP4zRPszzbeXQLidM4TQbZztpQcjy4vFdEK7g2lyssUSw8NauWYW82RW+G16pb+3Us
-        S/DS+XXvka/jSbfljE1w58appy1sjVVvNQhj6met88aXb2yuaV2Qvi+wUKIp6wX/rqFca2/V2GdX
-        KFUzLw1R3F8ZMZXz18WDy8B4k8zp2BjQ1ttuDEKQfwK3fn1s/jy8gLwM8e7ub/SmlfzFDgAA
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2026,5,21]],"date-time":"2026-05-21T20:31:49Z","timestamp":1779395509346,"version":"3.53.1"},"reference-count":0,"publisher":"eLife
+        Sciences Publications, Ltd","license":[{"start":{"date-parts":[[2020,4,29]],"date-time":"2020-04-29T00:00:00Z","timestamp":1588118400000},"content-version":"unspecified","delay-in-days":0,"URL":"http:\/\/creativecommons.org\/licenses\/by\/4.0\/"}],"content-domain":{"domain":[]},"short-container-title":[],"published-print":{"date-parts":[[2020,4,29]]},"DOI":"10.7554\/elife.55167.sa2","type":"peer-review","created":{"date-parts":[[2020,5,19]],"date-time":"2020-05-19T16:33:35Z","timestamp":1589906015000},"source":"Crossref","is-referenced-by-count":1,"title":["Author
+        response: SpikeForest, reproducible web-facing ground-truth validation of
+        automated neural spike sorters"],"prefix":"10.7554","author":[{"ORCID":"https:\/\/orcid.org\/0000-0002-5286-4375","authenticated-orcid":true,"given":"Jeremy","family":"Magland","sequence":"first","affiliation":[{"name":"Center
+        for Computational Mathematics, Flatiron Institute","place":["New York, United
+        States"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"given":"James
+        J","family":"Jun","sequence":"additional","affiliation":[{"name":"Center for
+        Computational Mathematics, Flatiron Institute","place":["New York, United
+        States"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-2642-603X","authenticated-orcid":true,"given":"Elizabeth","family":"Lovero","sequence":"additional","affiliation":[{"name":"Scientific
+        Computing Core, Flatiron Institute","place":["New York, United States"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-4997-4063","authenticated-orcid":true,"given":"Alexander
+        J","family":"Morley","sequence":"additional","affiliation":[{"name":"Medical
+        Research Council Brain Network Dynamics Unit, University of Oxford","place":["Oxford,
+        United Kingdom"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"ORCID":"https:\/\/orcid.org\/0000-0002-2023-1653","authenticated-orcid":true,"given":"Cole
+        Lincoln","family":"Hurwitz","sequence":"additional","affiliation":[{"name":"Institute
+        for Adaptive and Neural Computation Informatics, University of Edinburgh","place":["Edinburgh,
+        United Kingdom"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"given":"Alessio
+        Paolo","family":"Buccino","sequence":"additional","affiliation":[{"name":"Centre
+        for IntegrativeNeuroplasticity (CINPLA), University of Oslo","place":["Oslo,
+        Norway"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"given":"Samuel","family":"Garcia","sequence":"additional","affiliation":[{"name":"Centre
+        de Recherche en Neuroscience de Lyon, Universit\u00e9 de Lyon","place":["Lyon,
+        France"]}],"role":[{"vocabulary":"crossref","role":"author"}]},{"given":"Alex
+        H","family":"Barnett","sequence":"additional","affiliation":[{"name":"Center
+        for Computational Mathematics, Flatiron Institute","place":["New York, United
+        States"]}],"role":[{"vocabulary":"crossref","role":"author"}]}],"member":"4374","container-title":[],"review":{"type":"author-comment","stage":"pre-publication"},"original-title":[],"deposited":{"date-parts":[[2024,4,26]],"date-time":"2024-04-26T14:45:58Z","timestamp":1714142758000},"score":1,"resource":{"primary":{"URL":"https:\/\/elifesciences.org\/articles\/55167v1\/peer-reviews"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2020,4,29]]},"references-count":0,"URL":"https:\/\/doi.org\/10.7554\/elife.55167.sa2","relation":{"is-review-of":[{"id-type":"doi","id":"10.7554\/eLife.55167","asserted-by":"subject"}]},"subject":[],"published":{"date-parts":[[2020,4,29]]}}}'
     headers:
       Connection:
       - keep-alive
@@ -46,7 +46,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:42 GMT
+      - Mon, 29 Jun 2026 18:13:00 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -70,69 +70,6 @@ interactions:
       - 1s
       x-rate-limit-limit:
       - '10'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540115'
-      CF-RAY:
-      - a09fbba26bb4f807-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:10 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=vBt1soq01H7scA2LL9JycE6SBlBipYtQcXkps8I_xMg-1781171650.949783-1.0.1.1-VBXjWDTiQk2ti8sL3qfPGifwDC4nmeRgzGXIbaLB9uMW.7vjq3E2TP7XVaIDNKN.5wNLut2Jvk28hQda8j2SQwgL662q06etiftCrngbZ7OJQ0tYSo0qIQ23nV6FtAN.;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:10 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

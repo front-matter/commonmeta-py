@@ -17,7 +17,7 @@ import orjson as json
 import yaml
 
 from .base_utils import dig, parse_xml, wrap
-from .file_utils import write_output
+from .io_utils import write_output
 from .readers.cff_reader import get_cff, read_cff
 from .readers.codemeta_reader import (
     get_codemeta,
@@ -54,7 +54,6 @@ from .readers.schema_org_reader import (
 )
 from .schema_utils import json_schema_errors, xml_schema_errors
 from .utils import find_from_format, is_chain_object, normalize_id
-from .v1_compat import is_v018_shaped, v018_to_v1
 from .writers.bibtex_writer import write_bibtex, write_bibtex_list
 from .writers.citation_writer import write_citation, write_citation_list
 from .writers.commonmeta_writer import (
@@ -115,8 +114,6 @@ class Metadata:
             raise ValueError("No valid input found")
 
         meta = self.read_metadata(data=data, **kwargs)
-        if is_v018_shaped(meta):
-            meta = v018_to_v1(meta)
 
         # required properties
         self.id = meta.get("id")  # pylint: disable=C0103

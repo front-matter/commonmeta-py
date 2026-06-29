@@ -458,7 +458,7 @@ def test_blog_post():
     assert subject.references[0] == {
         "id": "https://doi.org/10.1038/d41586-023-02554-0",
         "key": "ref1",
-        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. Nature, 620(7974), 482–484.",
+        "unstructured": "Vidal Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding angst and uncertainty. <i>Nature</i>, <i>620</i>(7974), 482–484.",
     }
     assert subject.relations == [
         {"type": "IsVersionOf", "id": "https://doi.org/10.53731/q5ges-cp507"}

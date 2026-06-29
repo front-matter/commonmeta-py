@@ -5,239 +5,415 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/hzfr4-z0881
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/03yty8687","name":"GigaScience
+        Press"}],"contributor_roles":[],"family":"Edmunds","given":"Scott","url":"https://orcid.org/0000-0001-6444-1436"}],"blog":{"authors":null,"community_id":"52db0518-e228-4260-8c54-c4e323b2569d","created":1675555200,"current_feed_url":null,"description":"Data
+        driven blogging from the GigaScience editors","favicon":"https://rogue-scholar.org/api/communities/52db0518-e228-4260-8c54-c4e323b2569d/logo","feed_format":"application/atom+xml","feed_url":"http://gigasciencejournal.com/blog/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://gigasciencejournal.com/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":false,"slug":"gigablog","status":"archived","subfield":"1311","title":"GigaBlog","updated":null,"use_api":null},"blog_name":"GigaBlog","blog_slug":"gigablog","content_html":"<p><em>A
+        new era is starting at GigaScience, today being the last day for the Hong
+        Kong team including Nicole Nogoy, Chris Hunter, Peter Li, Mary Ann Tuli, Bastien
+        Molcrette and Ken Cho. Joining them, and as outgoing Editor in Chief, I thought
+        I would give my thoughts and perspectives on the last 15 years</em> <em>at
+        the Open Science publishing coalface.</em></p>\n<figure class=\"wp-block-image
+        size-full\"><img alt=\"\" class=\"wp-image-6297\" decoding=\"async\" fetchpriority=\"high\"
+        height=\"478\" sizes=\"(max-width: 720px) 100vw, 720px\" src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong-300x199.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\"><em>Arriving
+        in Shenzhen: My weekend routine of climbing Wutong Mountain and being forced
+        to pose for photos.</em></figcaption></figure>\n<p></p>\n<p>It wasn''t meant
+        to end this way, but I''m still very grateful for the journey. Carrying out
+        my scientific training in the UK and being taught to write scientifically
+        using the passive voice, I have to push myself out of my comfort zone to write
+        in the first person. But as today is my last day at <em>GigaScience,</em>
+        and after giving 14 years and 11 months of my life to this project, excuse
+        me this final indulgence.</p>\n<p>The team received notice 30 days ago that
+        due to <em>\"strategic planning and operational optimization,\u00a0the operation
+        of\u00a0GigaScience will be transferred to the\u00a0BGI Research\u00a0 Shenzhen.
+        Regrettably, this adjustment will lead to the disbandment of the GigaScience
+        Hong Kong team\"</em>. <em>GigaScience</em> and <em>GigaByte</em> will continue,
+        and we have trained the Shenzhen team well and leave them with a strong legacy
+        to build upon. The last two years receiving our highest numbers of submissions
+        and many of the best papers we have ever published, so we leave a fantastic
+        foundation to build from.</p>\n<p>Endpoints are good opportunities for reflection,
+        so I thought I would use my last GigaBlog to talk about my personal highlights
+        of the last 15 years. And thank the people who have helped made <em>GigaScience</em>
+        such a success and pleasure to work on.</p>\n<figure class=\"wp-block-image
+        size-full\"><img alt=\"\" class=\"wp-image-6295\" decoding=\"async\" height=\"539\"
+        sizes=\"(max-width: 720px) 100vw, 720px\" src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet-300x225.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\"><em>On top
+        of the world in 2011: GigaScience trip to Tibet with our first intern Matt,
+        Alexandra, Laurie, and BGI founder Wang Jian and his assistant Ying.</em></figcaption></figure>\n<p></p>\n<p>Firstly
+        I need to thank Laurie Goodman, for giving a wet behind the ears Scottish-Iranian
+        Londoner with 4 years publishing experience under his belt a break in the
+        Wild East. Recruiting me in October 2010 to setup a journal for BGI in Shenzhen
+        as she didn''t want to live in China. And also recruiting <em>GigaScience</em>''s
+        first Assistant Editor Alexandra Basford so we could keep each other sane
+        in a <a href=\"https://www.nature.com/articles/464022a\">giant former shoe
+        factory</a> in the industrial badlands of China with only two other foreigners.
+        I''d had PhD and postdoctoral experience in cancer molecular pathology before
+        moving into Open Access publishing with BioMed Central (BMC). Because I''d
+        done a microarray experiment in my PhD and the other BMC Editors were terrified
+        of bioinformatics and genomics I ended up running what was the highest-submission
+        portfolio of journals in the <em>BMC</em>-series, and launching <em>BMC Medical
+        Genomics</em>. Wooed by stories about this mystical utopian genomics company
+        in a weird place called Shenzhen by our Board Member Stephan Beck, I was crazy
+        enough and had exactly the experience needed to launch a journal in the genomics
+        space. Although as two of my ex-BMC colleagues (Rachael Kotarski and Tom Pollard,
+        both now doing amazing things in the US) had started working for this new
+        organisation called DataCite, I suggested we leverage these new fangled things
+        called data DOIs as well as BGI''s data expertise to focus on the broader
+        topic of data publishing.</p>\n<p>While the launch of DataCite in 2009 had
+        coincided with the first data journals in Earth Sciences nobody had done this
+        in biomedical and biological science, despite these fields becoming massive
+        producers of data (a genomics organisation like BGI being the perfect example
+        of this). Signing up for DataCite membership, and initially working with the
+        BGI database team, our initial focus was on building our own \"<a href=\"https://gigadb.org/\">GigaDB</a>\"
+        database to assist with data hosting so there was no excuse for our authors
+        not to be able to share their data. Coming up with a combined journal-and-data-publishing-as-a-service
+        concept and attempting to do something new and different in the staid and
+        conservative world of academic publishing. Adding in open peer review to make
+        the process transparent, we decided to sign up OA pioneers BMC to be our first
+        publishing partner. \u00a0</p>\n<figure class=\"wp-block-image size-full\"><img
+        alt=\"\" class=\"wp-image-6296\" decoding=\"async\" height=\"478\" sizes=\"(max-width:
+        720px) 100vw, 720px\" src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig-300x199.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\">Petting a cloned
+        piglet at the notorious BGI GMO glow-in-the-dark pig farm in Huizhou. </figcaption></figure>\n<p></p>\n<p><strong>Accidentally
+        inventing the Tweenome<br/></strong>Being in BGI during their highly productive
+        early years in Shenzhen was a blur of having to help entertain visitors like
+        <a href=\"https://commons.wikimedia.org/wiki/File:Wang_Jian_showing_Sydney_Brenner_around_BGI.jpg\">Sydney
+        Brenner</a>, <a href=\"https://commons.wikimedia.org/wiki/File:Eric_Lander_and_Huanming_Yang_at_BGI_Shenzhen.jpg\">Eric
+        Lander</a> and many Human Genomic Project luminaries that I''d learned about
+        in my undergraduate studies. While getting ready to launch GigaDB in summer
+        2011 our BGI colleagues came to me to help them draft a press release announcing
+        they had sequenced the genome of the <a href=\"https://en.wikipedia.org/wiki/2011_Germany_E._coli_O104:H4_outbreak\"><em>E.
+        coli</em> 0104:H4 pathogen</a> that was ravaging Germany that summer, killing
+        over 50 people and causing mass panic in Europe. While drafting the PR and
+        browsing the twitter feed I''d set up for BGI (as nobody in China knew what
+        it was) I saw that a German group just released a PR claiming they had sequenced
+        the pathogen first, but hadn''t shared any data to back that claim up. Immediately
+        letting the BGI group know there was a race on, I asked them if we could use
+        this opportunity to quickly release the data via the new publishing platform
+        we were setting up. Also giving it our <a href=\"https://doi.org/10.5524/100001\">first
+        data DOI</a> and explicitly releasing it into the public domain under a CC0
+        waiver. I warned them that the consequences of data release in this manner
+        were unknown (for example would journals see this as prior publication), but
+        it was the best way to maximise the visibility, utility and reuse potential
+        of their data during a major public health crisis. \u00a0BGI very generously
+        consented to this (thank you JJ and Yingrui) and before the data had even
+        finished uploading to <a href=\"http://www.ncbi.nlm.nih.gov/sites/entrez?cmd=Link&amp;LinkName=bioproject_sra&amp;from_uid=67657\"
+        rel=\"noreferrer noopener\" target=\"_blank\">NCBI</a> I shared the FTP links
+        to the data via <a href=\"http://sciblogs.co.nz/infectious-thoughts/2011/06/09/an-outbreak-of-crowdsourcing/\"
+        rel=\"noreferrer noopener\" target=\"_blank\">twitter</a>. </p>\n<p>Going
+        to bed, the next morning we woke up to find a huge community of microbial
+        genomicists around the world starting to use this data, taking up the challenge
+        to study the organism collaboratively. A <a href=\"https://github.com/ehec-outbreak-crowdsourced/BGI-data-analysis/wiki\"
+        rel=\"noreferrer noopener\" target=\"_blank\">github</a> repository was created
+        to provide a home to these analyses and data, and groups around the world
+        started producing their own annotations and assemblies within 24 hours, also
+        sharing them via twitter. A process that was dubbed in blogs and in book chapters
+        to have <a href=\"https://doi.org/10.59350/5fpc8-mpp13\">made <em>E. coli
+        </em>the first \"Tweenome\"</a>. Within a couple of a days from these collaborative
+        efforts a potential ancestral strain was identified, and the many antibiotic
+        resistance genes and pathogenic features were much more clearly understood.
+        Diagnostic PCR primers were designed and shipped for free by BGI, and anti-microbial
+        agents were produced to help bring the outbreak under control. By releasing
+        the data under a CC0 waiver, this allowed truly open-source analysis, and
+        when the paper was eventually <a href=\"http://doi.org/10.1056/NEJMoa1107643\">published
+        in NEJM</a> the Editors were most interested in this \"Open-Source Genomic
+        Analysis\" angle (H/T Nick Loman and Mark Pallen for helping kick off the
+        crowdsourcing and refocusing the paper). This example has subsequently been
+        used as an example for future UK and EU science policy, with the Royal Society
+        in the UK using <em>the E. coli</em> crowdsourcing as an example of \"the
+        power of intelligently open data\", and highlighting the genome on the cover
+        of their influential <a href=\"https://royalsociety.org/news-resources/projects/science-public-enterprise/\">\"Science
+        as an Open Enterprise\" report</a>. Which wasn''t a bad outcome from playing
+        around on social media, and it set a very high bar for our subsequent datasets.</p>\n<figure
+        class=\"wp-block-image size-full\"><img alt=\"\" class=\"wp-image-6300\" decoding=\"async\"
+        height=\"444\" loading=\"lazy\" sizes=\"auto, (max-width: 720px) 100vw, 720px\"
+        src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds-300x185.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\"><em>Bird genomes
+        soaring at a press conference in 2014 for the<em> Avian Phylogenomics Project</em>
+        that GigaScience and GigaDB published the data for.</em></figcaption></figure>\n<p></p>\n<p>After
+        our first data DOI BGI generously let us continue to experiment and <a href=\"https://doi.org/10.59350/mrr7d-agc81\">seed
+        GigaDB</a> with lots of attractive, unpublished genomic datasets. Allowing
+        us to do very early experiments in Data Citation, using these novel data DOIs
+        to see which journals messed this process up (<a href=\"https://gigasciencejournal.com/blog/promoting-datacitation-in-nature/\">hello
+        2012 <em>Nature Genetics</em></a>), which journals said they wouldn''t allow
+        data DOIs but contradicted themselves when given a particularly cover-worthy
+        paper (<a href=\"https://gigasciencejournal.com/blog/the-latest-weapon-in-publishing-data-the-polar-bear/\">hello
+        2014 <em>Cell</em></a>), and which journals could get this to work right at
+        the beginning (hello and well done <a href=\"https://gigasciencejournal.com/blog/adventures-in-data-citation-sorghum-as-a-standard-for-data-release/\">2011
+        <em>Genome Biology</em></a>). We wrote up these <a href=\"http://dx.doi.org/10.1186/1756-0500-5-223\">adventures
+        in data citation</a> to educate more widely on best practices, and this lead
+        to getting involved in the development of the <a href=\"https://force11.org/post/joint-declaration-of-data-citation-principles/\">Data
+        Citation Principles</a>, the <a href=\"https://gigasciencejournal.com/blog/software-citation-guide/\">Software
+        Citation Principles</a> and many <a href=\"https://doi.org/10.1038/s41597-023-02491-7\">other
+        guidelines</a> on the topic of Data Citation.</p>\n<p><strong>Caught in the
+        Academic Spring<br/></strong>The early 2010''s were an extremely exciting
+        time to be in Open Science publishing. Moving to the BGI Hong Kong office
+        in January 2012 we recruited our first Lead Curator Tam Sneddon and our first
+        Database Administrator Jesse (Si Zhe) Xiao, allowing us to add data curation
+        into the service we provided. After a year Tam handed over the role to Chris
+        Hunter from EBI who built and brilliantly developed and ran the GigaDB platform
+        and growing curation team. Alexandra left and Nicole Nogoy joined the team
+        to help with Commissioning and then the managing of the journal, having launched
+        and been Managing Editor of <em><a href=\"http://genomemedicine.com/\" rel=\"noreferrer
+        noopener\" target=\"_blank\">Genome Medicine</a></em>. Peter Li joined to
+        lead the IT development, bringing a lot of experience in the reproducibility
+        and computational workflow space and leading lots of the reproducibility experiments
+        we worked on. This core team has remained in place to the present day (with
+        the addition of Mary Ann Tulli and Bastien Molcrette in the curation team
+        and Rija M\u00e9nag\u00e9 and Ken Cho in the development team), and we all
+        leave today proud of these accomplishments. Special mention should also go
+        to former team members Hans Zauner (our most productive and proficient Editor
+        who had to leave a few months ago), Rob Davidson and Chris Armit (our two
+        Data Scientists), and Nafisa Qazi who was running the editorial office.</p>\n<figure
+        class=\"wp-block-image size-full\"><img alt=\"\" class=\"wp-image-6299\" decoding=\"async\"
+        height=\"548\" loading=\"lazy\" sizes=\"auto, (max-width: 720px) 100vw, 720px\"
+        src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1-300x228.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\">Being a global
+        team it''s hard to take photos of everybody in one place, but this photo from
+        the AsiaEvo conference includes (L to R): Scott, Jesse, Chris A, Chris H,
+        Hongling, Laurie, Mary Ann and Qi.</figcaption></figure>\n<p></p>\n<p>The
+        year 2012 has been <a href=\"https://americanlibrariesmagazine.org/2012/04/04/an-academic-spring-updated/\">labelled
+        as an \"academic spring\"</a> as it seemed a major turning point shaking up
+        the centuries old, stale and untransparent system of scientific discourse.
+        With boycotts of the closed-access old guard gathering momentum, influential
+        policy papers signalling government moves towards open access, and the launch
+        of a new generation of journals that were moving beyond that first important
+        step of making published research open access to begin embracing the wider
+        principles of Open Science. These included <em>F1000 Research</em>, <em>eLife</em>,
+        and <em>PeerJ</em>, and, on the 12th July 2012, <em>GigaScience</em>, <a href=\"https://blogs.biomedcentral.com/bmcblog/2012/07/12/gigascience-launches-overseeing-the-transition-from-papers-to-executable-research-objects/\">launched</a>
+        at the ISMB meeting in Long Beach. Every subsequent year we have celebrated
+        with <a href=\"https://gigasciencejournal.com/blog/tag/ismb/\">increasingly
+        big birthday parties</a> at the conference, and it feels weird we will not
+        catch up with our many friends at next one in 2026. We realised our ideas
+        about data publishing were timely when I was invited into the offices of one
+        of the major publishers to talk about the subject, and the following week
+        they emailed our entire Editorial Board to try to recruit them for a remarkably
+        similar project they suddenly decided to launch. Amusingly they invited our
+        EBM Wang Jun (who was our main backer at BGI) to one of their recruitment
+        calls and he got me to attend in his place. When the call started and I surprised
+        the publishers I''d just talked to the previous week they were unable to speak
+        for several minutes through shock. Imitation being the most sincere form of
+        flattery, we are proud to see how most of the major publishers now have data
+        journals in their portfolio.</p>\n<figure class=\"wp-block-image size-full\"><img
+        alt=\"\" class=\"wp-image-6306\" decoding=\"async\" height=\"832\" loading=\"lazy\"
+        sizes=\"auto, (max-width: 720px) 100vw, 720px\" src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949-260x300.jpg
+        260w\" width=\"720\"/><figcaption class=\"wp-element-caption\">Chris H and
+        Rob cross the \"Frontier Closed Area\" to Yantian Industrial Area and BGI
+        HQ</figcaption></figure>\n<p></p>\n<p>Working with the <a href=\"https://doi.org/10.1038/ng.1054\">ISA-Tab</a>,
+        Nanopub, and <a href=\"https://www.researchobject.org/\">Research Object</a>
+        communities we collaborated and published many <a href=\"https://doi.org/10.1371/journal.pone.0127612\">reproducibility
+        case studies</a>, and from this experience I ended up getting involved in
+        the reproducibility research space, being one of the authors on the highly
+        influential <a href=\"https://doi.org/10.1038/sdata.2016.18\">FAIR Principles
+        paper</a>, helped in the drafting of the <a href=\"https://force11.org/group/research-data-publishing-ethics-2/\">COPE-FORCE11
+        Data Ethics guidelines</a>, <a href=\"https://gigasciencejournal.com/blog/dome-webinar-on-ml-recommendations/\">collaborating
+        with ELIXIR on AI standards</a>, and ended up teaching the first Data Management
+        and Curation course at Hong Kong University to MLIM students.</p>\n<figure
+        class=\"wp-block-image size-full\"><img alt=\"\" class=\"wp-image-6301\" decoding=\"async\"
+        height=\"490\" loading=\"lazy\" sizes=\"auto, (max-width: 720px) 100vw, 720px\"
+        src=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926.jpg\"
+        srcset=\"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926.jpg
+        720w, https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926-300x204.jpg
+        300w\" width=\"720\"/><figcaption class=\"wp-element-caption\">Visiting (pre-CRISPR
+        twin infamy) He Jiankui''s lab at SUSTech with Randy and Meagan from iGEM.
+        </figcaption></figure>\n<p><br/><strong>The Establishment Years</strong><br/>Once
+        the journal launched we had to fight hard to get submissions in, which is
+        especially challenging before you are established and indexed. Through the
+        support of our incredible Editorial Board we slowly got many fantastic papers
+        in and the journal built momentum and became a success. Indexing is a huge
+        challenge for journals, and whilst we eventually achieved very high metrics
+        in these we stuck to our <a href=\"https://gigasciencejournal.com/blog/reproducible-research-resources-researching-parasites/\">DORA
+        signatory</a> guns and refused to market or <a href=\"https://gigasciencejournal.com/blog/jif_problems/\">list
+        them anywhere on our website</a>. Being lean and nimble, and wearing our Open
+        Science principles on our sleeves, we experimented and collaborated with many
+        of the new Open Science platforms that were launching. Many of these projects
+        have now fallen by the wayside, but we were one of the first journals to work
+        with <a href=\"https://gigasciencejournal.com/blog/gigascience-making-open-peer-review-more-open-qa-with-publons-co-founder-andrew-preston/\">Publons</a>,
+        and second journal to work with <a href=\"https://gigasciencejournal.com/blog/reproducible-research-resources-researching-parasites/\">Protocols.io</a>
+        (the first with deep integration). These collaborations have continued to
+        the present day, such as recent tie-ins with <a href=\"https://gigasciencejournal.com/blog/cassyni-x-sciety/\">Cassyni
+        and Sciety</a>, and I hope this history of experimentation will continue.
+        Many of our authors, collaborators and Ed Board Members became great friends,
+        allowing us to visit their labs across the world, and also meet many of the
+        species we published papers on. A highpoint <a href=\"https://gigasciencejournal.com/blog/community-genomes-from-the-peoples-parrot-to-crowdfernding/\">visiting
+        the El Yunque forest breeding facility</a> to see the endangered Puerto Rican
+        parrots we published the genome of (thanks Taras!). We also <a href=\"https://gigasciencejournal.com/blog/tag/icg-prize/\">launched
+        our own awards</a>, the most important acknowledging and presenting COVID-19
+        hero <a href=\"https://gigasciencejournal.com/blog/covid-19-hero-wins-gigascience-prize/\">Zhang
+        Yongzhen with a GigaScience prize</a> for sharing the first SARS-CoV2 sequence.</p>\n<figure
+        class=\"wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube
+        wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe
+        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"281\"
+        loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/KdG1B6cdg2U?feature=oembed\"
+        title=\"ICG GigaScience Prize Presentation to Prof Zhang Yongzhen\" width=\"500\"></iframe>\n</div></figure>\n<p></p>\n<p><strong>Cyber
+        Centipedes, Emblematic Genomes and More</strong><br/>Despite having a human
+        genetics background, having free reign to get involved in interesting research
+        experiments meant I managed to get involved in a wide range of research areas
+        I never would have expected. From collaborating with Pensoft to <a href=\"https://gigasciencejournal.com/blog/the-cyber-centipede-giving-online-species-descriptions-a-leg-up/\">publish
+        the most data-rich species description</a> of a blind cave centipede, to launching
+        our own genome project of Hong Kong''s floral emblem. \u00a0Being based in
+        Hong Kong, and <a href=\"https://gigasciencejournal.com/blog/community-genomes-from-the-peoples-parrot-to-crowdfernding/\">inspired</a>
+        by the first community funded <a href=\"https://doi.org/10.1186/2047-217X-1-13\">genome
+        project of the Puerto Rican parrot</a>, the historical and cultural interest
+        of the Hong Kong <em>Bauhinia</em> flower led to our involvement in a community-crowdfunded
+        genome project to try to answer some of the questions on the species'' origin
+        and unclear parentage. Reaching out directly to the Hong public and launching
+        a <a href=\"https://www.scmp.com/magazines/post-magazine/article/1875917/unique-project-sequence-genome-hong-kong-bauhinia-tree\">crowdfunding
+        campaign in 2015</a> raised enough money to start the community <a href=\"http://bauhiniagenome.hk/\">Bauhinia
+        Genome project</a>. This lead me to leave my comfort zone with <a href=\"https://bauhiniagenome.hk/2016/08/education-education-education-the-reason-for-bauhiniagenome/\">school
+        visits</a>, <a href=\"https://bauhiniagenome.hk/2018/04/dna-day-2018-primary-school-genomics/\">teaching
+        molecular biology to 7 year olds</a>, <a href=\"https://edition.cnn.com/videos/tv/2016/04/28/on-china-bauhinia-genome-project-natpkg.cnn\">CNN
+        interviews</a>, and even a <a href=\"https://www.youtube.com/watch?v=RcBzJI8O4j0\">TEDx
+        talk</a>.</p>\n<figure class=\"wp-block-embed is-type-video is-provider-youtube
+        wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe
+        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"281\"
+        loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/RcBzJI8O4j0?feature=oembed\"
+        title=\"Emblematic Education to Know Thy DNA | Scott Edmunds | TEDxEdUHK\"
+        width=\"500\"></iframe>\n</div></figure>\n<p>What was most satisfying was
+        the <a href=\"https://gigasciencejournal.com/blog/mission-accomplished-for-bauhinia-genome/\">\"mission
+        accomplished\" completion</a> of the project this year, with a <a href=\"https://doi.org/10.1093/gigascience/giaf044\">publication
+        in <em>GigaScience</em></a> definitively solving the parentage with a complete,
+        gapless sequence of the <em>Bauhinia</em> genome, spanning from one end of
+        a chromosome to the other. This Citizen Science experience also leading me
+        to help co-found and register a Citizen Science NGO in Hong Kong called <a
+        href=\"https://citizenscience.asia/\">CitizenScience.Asia</a>.</p>\n<p><strong>The
+        Next Phase of Open Science Publishing</strong><br/>In 2017 we moved from publishing
+        with BMC to Oxford University Press and the journal continued to flourish,
+        <a href=\"https://gigasciencejournal.com/blog/gigascience-prose-award-for-innovation/\">winning
+        the 2018 PROSE Award</a> for Innovation in Publishing. We were hungry to do
+        more though, feeling our full potential to carry out Open Science was being
+        frustrated with the legacy publishing infrastructure, incorporating print-based
+        production processes and decades old codebases. No longer being fit for purpose
+        in this non-print, online, more data-centric digital age. This lead us to
+        team up with <a href=\"https://rivervalleytechnologies.com/\">River Valley
+        Technologies</a> in 2020 to <a href=\"https://doi.org/10.46471/gigabyte.1\">launch
+        our sister journal <em>GigaByte</em></a><em>:</em> an Open Science journal
+        that allows rapid publication using custom-built, XML-first and end-to-end
+        publishing technology. Also <a href=\"https://gigasciencejournal.com/blog/gigabyte-kickstarts-gigascience-press/\">allowing
+        us to become a press</a>, and handle things like indexing and metadata debugging
+        ourselves. This shake-up of our tech platform enabled much cheaper and quicker
+        publishing, with accepted manuscripts converted to online and PDF-ready articles
+        within a day. Being offered the opportunity to publish and proof papers for
+        1/5 the cost and 1/30<sup>th</sup> of the time you''d have to be completely
+        stupid to turn that down. Working with Kaveh and Maryam Bazargan from River
+        Valley Technologies has been a dream, and the last 5 years have been my most
+        productive and enjoyable time at <em>GigaScience. </em>Allowing us to tackle
+        final barriers in accessibility and Open Science we''ve always dreamed of
+        like <a href=\"https://gigasciencejournal.com/blog/frictionless-data-interactive-figures/\">interactive
+        papers</a>, <a href=\"https://gigasciencejournal.com/blog/how-to-publish-multilingual-articles/\">multilingual
+        publishing</a>, <a href=\"https://gigasciencejournal.com/blog/peerreviewweek-why-we-need-a-fair-principles-for-peer-review/\">FAIR
+        peer review</a>, and making papers much more accessible to humans and machines.</p>\n<figure
+        class=\"wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube
+        wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe
+        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"281\"
+        loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/Hno4C0Xh_4k?feature=oembed\"
+        title=\"Opening the final barriers in Open Science. Submit your data and software
+        to GigaByte.\" width=\"500\"></iframe>\n</div></figure>\n<p></p>\n<p>eLife
+        have also been fantastically collaborative in this space, and I would like
+        to thank them for the technical support and help they''ve provided over the
+        years. Helping us to be the second journal to <a href=\"https://gigasciencejournal.com/blog/gigabyte-executable-research-articles/\">publish
+        Executable Research Articles</a> (H/T also Stencila), and building the <a
+        href=\"https://sciety.org/\">Sciety platform</a> that has <a href=\"https://gigasciencejournal.com/blog/peer-review-week-2023/\">allowed
+        <em>GigaByte</em> to join the ''Publish, Review, Curate'' revolution</a> through
+        linking reviews and highlighted editor''s assessments to their mandated linked
+        preprints. </p>\n<p>This month we are finalising the <a href=\"https://gigasciencejournal.com/blog/extended-call-and-webinar-for-vectors-of-human-disease-series/\">final
+        round of papers</a> from a WHO-sponsored collaboration with GBIF and TDR publishing
+        human vector born disease data of extreme importance to public health. This
+        has diversified and democratised the <a href=\"https://gigasciencejournal.com/blog/extended-call-and-webinar-for-vectors-of-human-disease-series/\">submission
+        base</a> of <em>GigaByte</em> across Africa and Latin America (including submissions
+        from Congo, Cuba, and Cabo Verde), also leveraging our multi-lingual functions
+        to aid local public health field workers only able to read French, Spanish
+        and Portuguese. Ultimately mobilizing new data on over one million vector
+        specimens into the GBIF database. It has been nice to end on such a rewarding
+        and enjoyable collaboration with GBIF and TDR that has taken me to other unexpected
+        destinations, such as carrying out data publishing training in Borneo. It''s
+        touching these efforts have also not gone unrecognized by others, with GigaScience
+        Press and the platforms we''ve used from River Valley winning many prizes
+        such as the 2022 ALPSP Innovation in Publishing Award. This summer <a href=\"https://gigasciencejournal.com/blog/gigascience-press-wins-crossref-metada-award/\">winning
+        the 2025 Crossref Excellence in Metadata Award</a>, having been selected from
+        nearly 150,000 journals and 22,000 publishers using Crossref infrastructure
+        for having the highest metadata completeness in the small publishers category.</p>\n<figure
+        class=\"wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube
+        wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div class=\"wp-block-embed__wrapper\">\n<iframe
+        allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
+        picture-in-picture; web-share\" allowfullscreen=\"\" frameborder=\"0\" height=\"281\"
+        loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\" src=\"https://www.youtube.com/embed/yp_pYwb78G4?feature=oembed\"
+        title=\"GigaScience Press: An Award-Winning Publisher\" width=\"500\"></iframe>\n</div></figure>\n<p></p>\n<p>Good
+        things unfortunately must come to an end, but it''s always good to leave on
+        a high. It''s been an absolute privilege to setup and run <em>GigaScience</em>
+        for the last 15 years, and I''d like to wish my successors the very best when
+        they carry on the Open Science mission. None of this would have been possible
+        without my amazing <em>GigaScience</em> team mates, and if anybody is looking
+        to employ the greatest team of Editors, Curators and Developers in the business
+        please get in touch. This job has taken me places I never imagined when as
+        a naive thirty-something I headed Eastward in 2010 with all my belongings
+        in a single rucksack. Apologies to the many people I''ve forgotten to thank
+        here but this piece is already much too long and you''ll have to wait for
+        the extended version in my upcoming memoirs. Thank you to everyone who was
+        a part of this journey, and hope to see you on the next one.</p>","doi":"https://doi.org/10.59350/hzfr4-z0881","guid":"https://gigasciencejournal.com/blog/?p=6293","images":[{"height":"478","sizes":"(max-width:
+        720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong-300x199.jpg","width":"720"},{"height":"539","sizes":"(max-width:
+        720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet-300x225.jpg","width":"720"},{"height":"478","sizes":"(max-width:
+        720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig-300x199.jpg","width":"720"},{"height":"444","sizes":"auto,
+        (max-width: 720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds-300x185.jpg","width":"720"},{"height":"548","sizes":"auto,
+        (max-width: 720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1-300x228.jpg","width":"720"},{"height":"832","sizes":"auto,
+        (max-width: 720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949-260x300.jpg","width":"720"},{"height":"490","sizes":"auto,
+        (max-width: 720px) 100vw, 720px","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926.jpg","srcset":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926.jpg,
+        https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926-300x204.jpg","width":"720"},{"alt":"Arriving
+        in Shenzhen: My weekend routine of climbing Wutong Mountain and being forced
+        to pose for photos.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Wutong.jpg"},{"alt":"On
+        top of the world in 2011: GigaScience trip to Tibet with our first intern
+        Matt, Alexandra, Laurie, and BGI founder Wang Jian and his assistant Ying.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/Giga-in-Tibet.jpg"},{"alt":"Petting
+        a cloned piglet at the notorious BGI GMO glow-in-the-dark pig farm in Huizhou.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/GMO-pig.jpg"},{"alt":"Bird
+        genomes soaring at a press conference in 2014 for the Avian Phylogenomics
+        Project that GigaScience and GigaDB published the data for.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/birds.jpg"},{"alt":"Being
+        a global team it''s hard to take photos of everybody in one place, but this
+        photo from the AsiaEvo conference includes (L to R): Scott, Jesse, Chris A,
+        Chris H, Hongling, Laurie, Mary Ann and Qi.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/4D5F2C1A-A3F5-4061-A041-6474B54CBE26-1105-0000015E5F55D4A8_tmp-1-1.jpg"},{"alt":"Chris
+        H and Rob cross the \"Frontier Closed Area\" to Yantian Industrial Area and
+        BGI HQ","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_2949.jpg"},{"alt":"Visiting
+        (pre-CRISPR twin infamy) He Jiankui''s lab at SUSTech with Randy and Meagan
+        from iGEM.","src":"https://gigasciencejournal.com/blog/wp-content/uploads/2025/09/IMG_8926.jpg"},{"alt":"Sydney
+        Brenner","src":"https://commons.wikimedia.org/wiki/File:Wang_Jian_showing_Sydney_Brenner_around_BGI.jpg"},{"alt":"Eric
+        Lander","src":"https://commons.wikimedia.org/wiki/File:Eric_Lander_and_Huanming_Yang_at_BGI_Shenzhen.jpg"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1758067200,"rid":"es553-ey605","summary":"<em>
+        A new era is starting at GigaScience, today being the last day for the Hong
+        Kong team including Nicole Nogoy, Chris Hunter, Peter Li, Mary Ann Tuli, Bastien
+        Molcrette and Ken Cho. Joining them, and as outgoing Editor in Chief, I thought
+        I would give my thoughts and perspectives on the last 15 years </em> <em>
+        at the Open Science publishing coalface. </em> It wasn''t meant to end this
+        way, but I''m still very grateful for the journey.","tags":["Publishing","BGI","GigaByte","GigaDB","Open
+        Data"],"title":"And it''s goodbye from me","updated_at":1761121790,"url":"https://web.archive.org/web/20250917153106/https://gigasciencejournal.com/blog/and-its-goodbye-from-me/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -248,7 +424,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:00:01 GMT
+      - Mon, 29 Jun 2026 18:14:12 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

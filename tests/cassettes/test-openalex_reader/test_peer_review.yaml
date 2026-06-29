@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -14,66 +14,90 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.7554/elife.55167.sa2
   response:
     body:
-      string: !!binary |
-        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
-        ikBCAAA=
+      string: '{"id":"https://openalex.org/W3027264027","doi":"https://doi.org/10.7554/elife.55167.sa2","title":"Author
+        response: SpikeForest, reproducible web-facing ground-truth validation of
+        automated neural spike sorters","display_name":"Author response: SpikeForest,
+        reproducible web-facing ground-truth validation of automated neural spike
+        sorters","publication_year":2020,"publication_date":"2020-04-29","ids":{"openalex":"https://openalex.org/W3027264027","doi":"https://doi.org/10.7554/elife.55167.sa2","mag":"3027264027"},"language":"en","primary_location":{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"},"type":"peer-review","indexed_in":["crossref"],"open_access":{"is_oa":true,"oa_status":"gold","oa_url":"https://doi.org/10.7554/elife.55167.sa2","any_repository_has_fulltext":null},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5042248436","display_name":"Jeremy
+        F. Magland","orcid":"https://orcid.org/0000-0002-5286-4375"},"institutions":[{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
+        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]},{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
+        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Jeremy
+        Magland","raw_affiliation_strings":["Center for Computational Mathematics,
+        Flatiron Institute"],"raw_orcid":"https://orcid.org/0000-0002-5286-4375","affiliations":[{"raw_affiliation_string":"Center
+        for Computational Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5021902937","display_name":"James
+        J. Jun","orcid":null},"institutions":[{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
+        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]},{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
+        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"James
+        J Jun","raw_affiliation_strings":["Center for Computational Mathematics, Flatiron
+        Institute"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"Center
+        for Computational Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5042446862","display_name":"Elizabeth
+        Lovero","orcid":"https://orcid.org/0000-0002-2642-603X"},"institutions":[{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
+        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]},{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
+        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Elizabeth
+        Lovero","raw_affiliation_strings":["Scientific Computing Core, Flatiron Institute"],"raw_orcid":"https://orcid.org/0000-0002-2642-603X","affiliations":[{"raw_affiliation_string":"Scientific
+        Computing Core, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5069887346","display_name":"Alexander
+        Morley","orcid":"https://orcid.org/0000-0002-4997-4063"},"institutions":[{"id":"https://openalex.org/I4210108304","display_name":"MRC
+        Brain Network Dynamics Unit","ror":"https://ror.org/01tfjyv98","country_code":"GB","type":"facility","lineage":["https://openalex.org/I40120149","https://openalex.org/I4210087105","https://openalex.org/I4210108304","https://openalex.org/I90344618"]},{"id":"https://openalex.org/I90344618","display_name":"Medical
+        Research Council","ror":"https://ror.org/03x94j517","country_code":"GB","type":"government","lineage":["https://openalex.org/I4210087105","https://openalex.org/I90344618"]}],"countries":["GB"],"is_corresponding":false,"raw_author_name":"Alexander
+        J Morley","raw_affiliation_strings":["Medical Research Council Brain Network
+        Dynamics Unit, University of Oxford"],"raw_orcid":"https://orcid.org/0000-0002-4997-4063","affiliations":[{"raw_affiliation_string":"Medical
+        Research Council Brain Network Dynamics Unit, University of Oxford","institution_ids":["https://openalex.org/I4210108304","https://openalex.org/I90344618"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5080697070","display_name":"Cole
+        Hurwitz","orcid":"https://orcid.org/0000-0002-2023-1653"},"institutions":[{"id":"https://openalex.org/I98677209","display_name":"University
+        of Edinburgh","ror":"https://ror.org/01nrxwf90","country_code":"GB","type":"education","lineage":["https://openalex.org/I98677209"]}],"countries":["GB"],"is_corresponding":false,"raw_author_name":"Cole
+        Lincoln Hurwitz","raw_affiliation_strings":["Institute for Adaptive and Neural
+        Computation Informatics, University of Edinburgh"],"raw_orcid":"https://orcid.org/0000-0002-2023-1653","affiliations":[{"raw_affiliation_string":"Institute
+        for Adaptive and Neural Computation Informatics, University of Edinburgh","institution_ids":["https://openalex.org/I98677209"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5022611002","display_name":"Alessio
+        Paolo Buccino","orcid":"https://orcid.org/0000-0003-3661-527X"},"institutions":[{"id":"https://openalex.org/I184942183","display_name":"University
+        of Oslo","ror":"https://ror.org/01xtthb56","country_code":"NO","type":"education","lineage":["https://openalex.org/I184942183"]}],"countries":["NO"],"is_corresponding":false,"raw_author_name":"Alessio
+        Paolo Buccino","raw_affiliation_strings":["Centre for IntegrativeNeuroplasticity
+        (CINPLA), University of Oslo"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"Centre
+        for IntegrativeNeuroplasticity (CINPLA), University of Oslo","institution_ids":["https://openalex.org/I184942183"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5062048690","display_name":"Samuel
+        Garcia","orcid":"https://orcid.org/0000-0001-6389-9779"},"institutions":[{"id":"https://openalex.org/I100532134","display_name":"Universit\u00e9
+        Claude Bernard Lyon 1","ror":"https://ror.org/029brtt94","country_code":"FR","type":"education","lineage":["https://openalex.org/I100532134","https://openalex.org/I203339264"]},{"id":"https://openalex.org/I4210095118","display_name":"Centre
+        de Recherche en Neurosciences de Lyon","ror":"https://ror.org/00pdd0432","country_code":"FR","type":"facility","lineage":["https://openalex.org/I100532134","https://openalex.org/I1294671590","https://openalex.org/I1294671590","https://openalex.org/I154526488","https://openalex.org/I203339264","https://openalex.org/I203339264","https://openalex.org/I4210095118","https://openalex.org/I4210096427","https://openalex.org/I4405259976"]}],"countries":["FR"],"is_corresponding":false,"raw_author_name":"Samuel
+        Garcia","raw_affiliation_strings":["Centre de Recherche en Neuroscience de
+        Lyon, Universit\u00e9 de Lyon"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"Centre
+        de Recherche en Neuroscience de Lyon, Universit\u00e9 de Lyon","institution_ids":["https://openalex.org/I100532134","https://openalex.org/I4210095118"]}]},{"author_position":"last","author":{"id":"https://openalex.org/A5111977840","display_name":"Alex
+        H. Barnett","orcid":null},"institutions":[{"id":"https://openalex.org/I4210153546","display_name":"Flatiron
+        Health (United States)","ror":"https://ror.org/0508h6p74","country_code":"US","type":"company","lineage":["https://openalex.org/I4210153546"]},{"id":"https://openalex.org/I4387153999","display_name":"Flatiron
+        Institute","ror":"https://ror.org/00sekdz59","country_code":null,"type":"nonprofit","lineage":["https://openalex.org/I4210107338","https://openalex.org/I4387153999"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Alex
+        H Barnett","raw_affiliation_strings":["Center for Computational Mathematics,
+        Flatiron Institute"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"Center
+        for Computational Mathematics, Flatiron Institute","institution_ids":["https://openalex.org/I4210153546","https://openalex.org/I4387153999"]}]}],"institutions":[],"countries_distinct_count":4,"institutions_distinct_count":8,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":1,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10581","display_name":"Neural
+        dynamics and brain function","score":0.995199978351593,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
+        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
+        Sciences"}},"topics":[{"id":"https://openalex.org/T10581","display_name":"Neural
+        dynamics and brain function","score":0.995199978351593,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
+        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
+        Sciences"}},{"id":"https://openalex.org/T11601","display_name":"Neuroscience
+        and Neural Engineering","score":0.9835000038146973,"subfield":{"id":"https://openalex.org/subfields/2804","display_name":"Cellular
+        and Molecular Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
+        Sciences"}},{"id":"https://openalex.org/T10429","display_name":"EEG and Brain-Computer
+        Interfaces","score":0.9761999845504761,"subfield":{"id":"https://openalex.org/subfields/2805","display_name":"Cognitive
+        Neuroscience"},"field":{"id":"https://openalex.org/fields/28","display_name":"Neuroscience"},"domain":{"id":"https://openalex.org/domains/1","display_name":"Life
+        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/spike-sorting","display_name":"Spike
+        sorting","score":0.9409171342849731},{"id":"https://openalex.org/keywords/computer-science","display_name":"Computer
+        science","score":0.7431434392929077},{"id":"https://openalex.org/keywords/spike","display_name":"Spike
+        (software development)","score":0.7124596238136292},{"id":"https://openalex.org/keywords/ground-truth","display_name":"Ground
+        truth","score":0.6548522710800171},{"id":"https://openalex.org/keywords/python","display_name":"Python
+        (programming language)","score":0.5672343969345093},{"id":"https://openalex.org/keywords/suite","display_name":"Suite","score":0.5200164318084717},{"id":"https://openalex.org/keywords/artificial-intelligence","display_name":"Artificial
+        intelligence","score":0.4848952889442444},{"id":"https://openalex.org/keywords/sorting","display_name":"Sorting","score":0.453848272562027},{"id":"https://openalex.org/keywords/software","display_name":"Software","score":0.4444847106933594},{"id":"https://openalex.org/keywords/pattern-recognition","display_name":"Pattern
+        recognition (psychology)","score":0.383956640958786},{"id":"https://openalex.org/keywords/data-mining","display_name":"Data
+        mining","score":0.37241071462631226},{"id":"https://openalex.org/keywords/algorithm","display_name":"Algorithm","score":0.11071869730949402}],"concepts":[{"id":"https://openalex.org/C2777613131","wikidata":"https://www.wikidata.org/wiki/Q2003571","display_name":"Spike
+        sorting","level":3,"score":0.9409171342849731},{"id":"https://openalex.org/C41008148","wikidata":"https://www.wikidata.org/wiki/Q21198","display_name":"Computer
+        science","level":0,"score":0.7431434392929077},{"id":"https://openalex.org/C2781390188","wikidata":"https://www.wikidata.org/wiki/Q25203449","display_name":"Spike
+        (software development)","level":2,"score":0.7124596238136292},{"id":"https://openalex.org/C146849305","wikidata":"https://www.wikidata.org/wiki/Q370766","display_name":"Ground
+        truth","level":2,"score":0.6548522710800171},{"id":"https://openalex.org/C519991488","wikidata":"https://www.wikidata.org/wiki/Q28865","display_name":"Python
+        (programming language)","level":2,"score":0.5672343969345093},{"id":"https://openalex.org/C79581498","wikidata":"https://www.wikidata.org/wiki/Q1367530","display_name":"Suite","level":2,"score":0.5200164318084717},{"id":"https://openalex.org/C154945302","wikidata":"https://www.wikidata.org/wiki/Q11660","display_name":"Artificial
+        intelligence","level":1,"score":0.4848952889442444},{"id":"https://openalex.org/C111696304","wikidata":"https://www.wikidata.org/wiki/Q2303697","display_name":"Sorting","level":2,"score":0.453848272562027},{"id":"https://openalex.org/C2777904410","wikidata":"https://www.wikidata.org/wiki/Q7397","display_name":"Software","level":2,"score":0.4444847106933594},{"id":"https://openalex.org/C153180895","wikidata":"https://www.wikidata.org/wiki/Q7148389","display_name":"Pattern
+        recognition (psychology)","level":2,"score":0.383956640958786},{"id":"https://openalex.org/C124101348","wikidata":"https://www.wikidata.org/wiki/Q172491","display_name":"Data
+        mining","level":1,"score":0.37241071462631226},{"id":"https://openalex.org/C11413529","wikidata":"https://www.wikidata.org/wiki/Q8366","display_name":"Algorithm","level":1,"score":0.11071869730949402},{"id":"https://openalex.org/C111919701","wikidata":"https://www.wikidata.org/wiki/Q9135","display_name":"Operating
+        system","level":1,"score":0.0},{"id":"https://openalex.org/C95457728","wikidata":"https://www.wikidata.org/wiki/Q309","display_name":"History","level":0,"score":0.0},{"id":"https://openalex.org/C115903868","wikidata":"https://www.wikidata.org/wiki/Q80993","display_name":"Software
+        engineering","level":1,"score":0.0},{"id":"https://openalex.org/C199360897","wikidata":"https://www.wikidata.org/wiki/Q9143","display_name":"Programming
+        language","level":1,"score":0.0},{"id":"https://openalex.org/C166957645","wikidata":"https://www.wikidata.org/wiki/Q23498","display_name":"Archaeology","level":1,"score":0.0}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"}],"best_oa_location":{"id":"doi:10.7554/elife.55167.sa2","is_oa":true,"landing_page_url":"https://doi.org/10.7554/elife.55167.sa2","pdf_url":null,"source":null,"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":null,"raw_type":"peer-review"},"sustainable_development_goals":[{"display_name":"Gender
+        equality","score":0.6700000166893005,"id":"https://metadata.un.org/sdg/5"}],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"content_urls":null,"referenced_works_count":0,"referenced_works":[],"related_works":["https://openalex.org/W3178771700","https://openalex.org/W1968361507","https://openalex.org/W3136143059","https://openalex.org/W2037099207","https://openalex.org/W3035015922","https://openalex.org/W2124872530","https://openalex.org/W2990250786","https://openalex.org/W2366422659","https://openalex.org/W4377004198","https://openalex.org/W2092500599"],"abstract_inverted_index":{"Ten":[0],"popular":[1],"spike":[2],"sorting":[3],"codes":[4],"are":[5],"reproducibly":[6],"benchmarked":[7],"for":[8],"accuracy":[9],"on":[10],"electrophysiology":[11],"datasets":[12],"from":[13],"eleven":[14],"laboratories":[15],"with":[16],"interactive":[17],"web-based":[18],"exploration":[19],"of":[20,22],"thousands":[21],"ground-truth":[23],"units.":[24]},"counts_by_year":[{"year":2019,"cited_by_count":1}],"updated_date":"2026-06-11T09:08:48.828518","created_date":"2025-10-10T00:00:00"}
+
+        '
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -84,7 +108,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd77ed9956bb09-AMS
+      - a136e94aeb1a2956-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -92,13 +116,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:39 GMT
+      - Mon, 29 Jun 2026 18:14:31 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=CYlzdVr1%2BRWKkWLzSOW%2BnUM0qnjZwGASX7CLXVu2ETY%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154539"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=ZuXimtsroUTj5OaZrfC3MPOQYNqfrYywMmIqtDA73wM%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756871"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=CYlzdVr1%2BRWKkWLzSOW%2BnUM0qnjZwGASX7CLXVu2ETY%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154539"
+      - heroku-nel="https://nel.heroku.com/reports?s=ZuXimtsroUTj5OaZrfC3MPOQYNqfrYywMmIqtDA73wM%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756871"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -118,11 +142,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '962'
+      - '944'
       X-RateLimit-Remaining-USD:
-      - '0.0962'
+      - '0.0944'
       X-RateLimit-Reset:
-      - '18261'
+      - '20729'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,

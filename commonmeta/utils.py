@@ -1253,7 +1253,7 @@ def to_schema_org_identifiers(elements: list) -> list:
         """format element"""
         element = {}
         element["@type"] = "PropertyValue"
-        element["propertyID"] = i.get("identifierType", None)
+        element["propertyID"] = i.get("identifier_type", None)
         element["value"] = i.get("identifier", None)
         return compact(element)
 

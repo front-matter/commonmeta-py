@@ -5,55 +5,58 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/5561f8e4-2ff1-4186-a8d5-8dacb3afe414
+    uri: https://api.rogue-scholar.org/posts/10.59350/2shz7-ehx26
   response:
     body:
-      string: !!binary |
-        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
-        Fg8Mo9mWHXL2y5/+OwCivri57BMAAA==
+      string: '{"authors":[{"contributor_roles":[],"name":"Liberate Science"}],"blog":{"authors":null,"community_id":"8655fbee-45c9-4cd4-9500-f55f85811cee","created":1672790400,"current_feed_url":null,"description":"Supporting
+        research as a common good.","favicon":"https://rogue-scholar.org/api/communities/8655fbee-45c9-4cd4-9500-f55f85811cee/logo","feed_format":"application/rss+xml","feed_url":"https://libscie.org/rss/","filter":"visibility:public","generator":"Ghost","home_page_url":"https://www.libscie.org/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"libscie","status":"archived","subfield":"1802","title":"Liberate
+        Science","updated":null,"use_api":false},"blog_name":"Liberate Science","blog_slug":"libscie","content_html":"<p>KU
+        Leuven is now an inaugural supporting member of ResearchEquals,\nsustaining
+        and governing the development of modular publishing.</p>\n<p>As part of their
+        commitment to Open Science, KU Leuven supports\nsustainable implementations
+        of Open Access and Open Science through the\n<a\nhref=\"https://www.kuleuven.be/open-science/what-is-open-science/scholarly-publishing-and-open-access/open-access-kuleuven/OS-services?ref=libscie.org\">KU\nLeuven
+        Fund for Fair OA</a>. The fund is usually only available to\nnon-profits,
+        but ResearchEquals'' governance convinced KU Leuven to\nsupport a for-profit
+        initiative.</p>\n<p>\"We don''t want to be too rigid in our approach and understand
+        that\npublishing or other research infrastructures can work according to\ndifferent
+        sustainability models. What matters to us is that, if profits\nare made, they
+        are reinvested in the academic community and that\nresearchers remain firmly
+        in control.\" Demmy Verbeke said.</p>\n<p>Supporting members help sustain
+        operations and receive additional\ngovernance rights for <a\nhref=\"https://researchequals.com/?ref=libscie.org\">ResearchEquals</a>.\nThese
+        rights include the option to participate in quarterly assemblies,\nstrategy
+        and decision making processes, the power to block acquisitions,\nand to request
+        more information around business operations. As a result,\nsupporting members
+        shape how ResearchEquals evolves. Individuals can\nbecome supporting members
+        for 79.99 euro''s per year. Institutions can\nbecome supporting members for
+        a yearly contribution of at least 2500\neuro''s.</p>\n<p>ResearchEquals is
+        an open source, open access publishing platform for\nresearch modules. ResearchEquals
+        realized the first modular publishing\nplatform (launched February 1st, 2022),
+        which revolves around sharing\nthe research process, step by step, instead
+        of only the final\nreport.</p>\n<p>\"It is great to see KU Leuven support
+        generative projects, regardless\nof whether they are for-profit or not\" Chris
+        Hartgerink said.</p>\n<p>KU Leuven is one of the first institutional supporting
+        members of\nResearchEquals.</p>\n<hr />\n<p>KU Leuven is one of the largest
+        universities in Belgium, with a\nstrong commitment to open access and open
+        science. Demmy Verbeke and\nLaura Mesotten manage the Fund for Fair OA of
+        KU Leuven Libraries.</p>\n<p>Liberate Science GmbH (est. 2019) cultivates
+        alternative publishing\nformats that work for researchers everywhere. ResearchEquals
+        is a\nLiberate Science GmbH project. For more information view the <a\nhref=\"https://www.researchequals.com/supporting-member?ref=libscie.org\">supporting\nmember
+        page</a> or contact CEO Chris Hartgerink (<a\nhref=\"mailto:ceo@libscie.org\">ceo@libscie.org</a>).</p>","doi":"https://doi.org/10.59350/2shz7-ehx26","guid":"6446a54e261a1e6be45d3764","image":"https://libscie.org/content/images/2023/04/thank-you-1-.jpg","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1683590400,"rid":"7tzqm-vcp96","summary":"KU
+        Leuven is now an inaugural supporting member of ResearchEquals, sustaining
+        and governing the development of modular publishing. As part of their commitment
+        to Open Science, KU Leuven supports sustainable implementations of Open Access
+        and Open Science through the KU Leuven Fund for Fair OA. The fund is usually
+        only available to non-profits, but ResearchEquals'' governance convinced KU
+        Leuven to support a for-profit initiative.","tags":["ResearchEquals"],"title":"KU
+        Leuven supports ResearchEquals","updated_at":1744584362,"url":"https://libscie.org/ku-leuven-supports-researchequals"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -61,14 +64,14 @@ interactions:
       - h3=":443"; ma=2592000
       Content-Encoding:
       - gzip
+      Content-Length:
+      - '1895'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:35 GMT
+      - Mon, 29 Jun 2026 18:54:39 GMT
       Server:
       - gunicorn
-      Transfer-Encoding:
-      - chunked
       Vary:
       - Accept-Encoding
     status:

@@ -1,11 +1,11 @@
 # pylint: disable=invalid-name
-"""Test file_utils"""
+"""Test io_utils"""
 
 from os import path, remove
 
 import pytest  # noqa: F401
 
-from commonmeta.file_utils import (
+from commonmeta.io_utils import (
     download_file,
     get_extension,
     read_file,

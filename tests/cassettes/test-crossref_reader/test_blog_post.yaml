@@ -5,21 +5,19 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a04e86373be434b7-AMS
+      - a136e59e399bb6a8-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:21:56 GMT
+      - Mon, 29 Jun 2026 18:12:00 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=ODTv70glgs4cvwnMidg%2BF3AFBO7vkK2%2FRTjkQoaXmyuRJ6f50BzuA0gub8zdoA%2BhCkvhC7C3gWvtshsaKN4qc5vpM29yXfohCWpbJ1gBb4HJuusoOO8kZKbUZ8bekVeA7suZK6U%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=oUVsVUTcbaZOmTJA%2FGRt0krLMAxYpA2XjBpfvOXc9wBFL7ZuS6Wt33x9yEIMwNR20HNdwy1YsSYmsTjVwPowwWZtIk9KZshGEndI4JxzneNE4yZlTRlCBE7pNkicrC07tdkm2n4%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -56,52 +54,40 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.53731/ybhah-9jy85
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/81X2W7cNhT9FUIPRYJKGm2zIuhDHSRNkaVI3ASoxw8ciTNiRhIVkvJ4Yvjfe66k
-        WbzVCIogMWxA5nLvOXfnlWMst41xZo5aO65TCmP4Snh2WwusbZQ+Xr0Q2khVYSP0Az847DizK0dW
-        xkrb2PbA2ZVT8ZJEvNCqsuwNt1Zo5/rcxblMXIqMrmTcCq/m2kL/2VkURCM3cqPJOU61W1a2ImjD
-        CyIvmpwG41k8miXxP9BNu0Bf1s4sHI+jaJREQRxPY9c54Iz9YeCHzrXr1MrYB7TGbhi4yfk5Tq20
-        amrotcUd7K6jxVJoUaXCS1VTWWcGVXWzKKTJsX/neCFTURnRGgM4tf1P5Xcox14YeEFyGgSz9vc2
-        5dF0FI/Ho4B+gDyFblHZIx9dKEKRiYJvPVl5Gd9CZ+A6f79/jd3c2trM5oP5INWCW3khUlWWqjK+
-        0qv5oAdv5oPFdj5I/ABLYsWLVGUC5vwxjGxWfi9G5wd9mSq5rFpq/dcZ7WplTMn12tMArGXaBfqS
-        F0YArMmVth6JwA2hdyFEN/kC53kKYznPPnNrZvVvb8XGFILixLCcXwi2EKJiHMFXZWyptABnly0a
-        y2wupGa1qpuCa2m3OG6YkatKLmXKK1tsmayIrxEZvug8q7mxbCk2bCu4Ni4DRIUNXq0Ns4rVBbfQ
-        UUJOk+YM8l7mSA6XvRGZbEqcB4gPDVDzdO2zT7nEKbVkCHptRCcNOosmExCRSsoIVh0Y+ewFl0Wj
-        BV3iGahYaWS1Ik2cEbeqEayE2Qt2mtMX4MqyhgFBiGUantN01+YSgJFxYGZYrdWCL8CXKIJwIb9y
-        8gExszf0SNJTK6VvKQNp1juZ7fI2Y6oz2kYs3J4WyVgUamX8Z/NB7zHE3fN3r6jyBf4wHsfhfLBd
-        5Dz3pp+3kyEFclcxuzLj9WocihvE4iOF5+FMmcySySyc3pMpSTCNptMuUww8k9LVEwpSlCkcl8bb
-        16vMW2x3NSsgSV1sOmR9LY3ojC3Yk96bT4/c6QBdDUnysic/jYdU+XljEfJtcXv3/uTV8xsJqHQq
-        sy7tKJk9/IFSEk69KAmG/W3YByFM1mqP97mEGgz/U7a/gaWQfa6z5KUstlRgRVW1pdWILw0BxdpS
-        akN25sulLCTv2w9Aa1V0tbf72AFGd1ApX1A6kch0Z7Hrc6oBpSgXbS2Pw/F0eFzzW1FrQXewFlId
-        UtLjxiDsWgOT8/fNwHUatEPdpBZ5AGrOR5nxgn3khdAKmeazJ+Tmpz4yQDUGGWfICa39EcUWEYz8
-        SRtr22BEIlKcnm4kucRlRog2Snm1Qu5QvjaAqKn22K3P3nJS67JRFDwZT8fJU5clk2jeREEYJ5PE
-        Pw7mMIgn80GWhMMJNdkYf8Nh4gVtkd/zjb6V7++yyAjpS99lr2Xlsj/x8Qt7K7aFwn8nnQGC1gCC
-        /aWRebIuRGuFdzWK4Yc0V/AR8v1VtdR8L9xnhzADoi7IwCNK4iSeD07i5FP0xzHBfiONk02U32QV
-        fyurLgBv+U+w92qFItMjRiURa8A+pBArONyTE7mKfRJZJQxal39PSZmmGRpQtA6C0b4l3eknSsuV
-        rHhxvFbIat1G6O1WSHXMX9Jg4pXtYOJnYj6gKoVGiBz0KP89tfTou09/7wB9PnAOjbEvcVZc2vkg
-        t2XhPDx2SFrOYFJe1wWled/BcdcrZYXgbV1xGy6vpa/JmsDSWrPzb4/33trrl9lDGNHp2gLyE4Cs
-        s+VdlEdqcf3GiR8IVSABHsFKR379KuufA/DljUi8D+/lzx+rNFpmavN/w5VmCQEI8qGZY+SGDz6x
-        wvaJhZljNBvemTnGo+kQ80a4mzlSjKlYpha5mz+uMCnIsm2s36MSXZPaZnFU9rqp+2hBGtM8/srb
-        N3Vz9JLbW/vq6P140b4db1M57jv3DoMaTxTbC8Mg1ssDubZGy2zneggiv2Y3msCX4YqA1cNgTHPN
-        jd6kFp8FXhLX550p2n9a4vt59jHuZMBOubLU466v/wXQa4vWBBAAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
+        Matter"}],"indexed":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T11:01:04Z","timestamp":1780743664451,"version":"3.54.1"},"posted":{"date-parts":[[2023,10,4]]},"group-title":"Front
+        Matter","reference-count":3,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T00:00:00Z","timestamp":1696377600000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Newsletters
+        have been around forever, but their popularity has significantly increased
+        in the past few years, also thanks to platforms such as Ghost, Medium, and
+        Substack. Which of course also includes science newsletters. Failure of advertising
+        as a revenue model The most important driver of this trend is probably the
+        realization that advertising is a poor revenue model for content published
+        on the web, including blogs.<\/jats:p>","DOI":"10.53731\/ybhah-9jy85","type":"posted-content","created":{"date-parts":[[2023,10,4]],"date-time":"2023-10-04T08:48:19Z","timestamp":1696409299000},"source":"Crossref","is-referenced-by-count":0,"title":["The
+        rise of the (science) newsletter"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[],"role":[{"vocabulary":"crossref","role":"author"}]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","unstructured":"Vidal
+        Valero, M. (2023). Thousands of scientists are cutting back on Twitter, seeding
+        angst and uncertainty. <i>Nature<\/i>, <i>620<\/i>(7974), 482\u2013484.","DOI":"10.1038\/d41586-023-02554-0"},{"key":"ref2","doi-asserted-by":"publisher","unstructured":"Bilder,
+        G., Lin, J., &amp; Neylon, C. (2020). <i>The Principles of Open Scholarly
+        Infrastructure<\/i>. The Principles of Open Scholarly Infrastructure.","DOI":"10.24343\/c34w2h"},{"key":"ref3","doi-asserted-by":"publisher","unstructured":"Fenner,
+        M. (2023). The Rogue Scholar weekly newsletter launches on Wednesday. In <i>Front
+        Matter<\/i> (Version v1). Crossref.","DOI":"10.53731\/9cdnt-2k006"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/ybhah-9jy85.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T10:27:36Z","timestamp":1780741656000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/the-rise-of-the-science-newsletter\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,10,4]]},"references-count":3,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/ybhah-9jy85","relation":{"is-version-of":[{"id-type":"doi","id":"10.53731\/q5ges-cp507","asserted-by":"object"}]},"subject":[],"published":{"date-parts":[[2023,10,4]]},"subtype":"other"}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1522'
+      - '1537'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:21:56 GMT
+      - Mon, 29 Jun 2026 18:12:00 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

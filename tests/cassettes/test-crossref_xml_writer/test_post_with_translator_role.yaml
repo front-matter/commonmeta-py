@@ -5,131 +5,227 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/swnyg-ger25
   response:
     body:
-      string: !!binary |
-        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
-        W3e9X/7H/xsAs4ZZH25SAAA=
+      string: '{"authors":[{"contributor_roles":[],"family":"Nicolini","given":"Juan
+        Pablo Ruiz","url":"https://orcid.org/0000-0002-3138-6343"},{"contributor_roles":[],"family":"Bellini
+        Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
+        rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
+        Tools and R Packages for Open Science","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
+        - open tools for open science","updated":1782746318,"use_api":null},"blog_name":"rOpenSci
+        - open tools for open science","blog_slug":"ropensci","content_html":"<blockquote><p><em>\"I''m
+        just a political scientist, standing in front of the R console  asking it
+        to help me finish my thesis.\"</em></p></blockquote><p>It was 2015, a Political
+        Science master''s student had to process data to hand in his thesis and decided
+        to take the opportunity to learn how to use R. To the long and winding road
+        of the academic requirement was added an extra degree of difficulty: incorporating
+        programming software from scratch, with a somewhat steep learning curve.</p><p>Years
+        later, <a href=\"https://github.com/TuQmano/evoteSALTA_UTDT\">as I review
+        scripts from the thesis code</a>, I smile to see long lines of code to recode
+        variables with a structure like this:</p><div class=\"highlight\"><pre class=\"chroma\"
+        tabindex=\"0\"><code class=\"language-r\" data-lang=\"r\"><span class=\"line\"><span
+        class=\"cl\"></span></span><span class=\"line\"><span class=\"cl\"><span class=\"c1\">#PARTY
+        LABELS A GOBERNADOR</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"c1\"># 0 VOTOS EN BLANCO</span></span></span><span class=\"line\"><span
+        class=\"cl\"><span class=\"c1\"># 1 WAYAR GOBERNADOR  (WALTER WAYAR)</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 2 COALICION CIVICA
+        (ARI) (ALBERTO ROLANDO TONDA)</span></span></span><span class=\"line\"><span
+        class=\"cl\"><span class=\"c1\"># 3 FRENTE JUSTICIALISTA RENOVADOR DE LA VICOTRIA
+        (JUAN MANUEL URTUBEY)</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"c1\"># 4 FRENTE OLMEDO GOBERNADOR  (ALFREDO OLMEDO)</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 5 MORELLO GOBERNADOR
+        / PROYECTO SUR  (CARLOS FERNANDO MORELLO)</span></span></span><span class=\"line\"><span
+        class=\"cl\"><span class=\"c1\"># 6 PARTIDO OBRERO (CLAUDIO DEL PLA)</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\"># 7 UNION CIVICA RADICAL  (DIEGO
+        MARINO)</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"c1\"># 8 MIJD (CARLOS ARIEL FERNANDEZ)</span></span></span><span class=\"line\"><span
+        class=\"cl\"></span></span><span class=\"line\"><span class=\"cl\"></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"c1\">#RECODE TODOS LOS PARTY
+        LABELS SEGUN ADHESIONES A LISTAS CON CANDIDATOS A GOBERNADOR</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"n\">SALTA</span><span class=\"o\">$</span><span
+        class=\"n\">ListaF[</span> <span class=\"n\">SALTA</span><span class=\"o\">$</span><span
+        class=\"n\">Lista</span> <span class=\"o\">==</span> <span class=\"s\">\"VOTOS
+        EN BLANCO\"</span> <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span
+        class=\"o\">$</span><span class=\"n\">Year</span> <span class=\"o\">==</span>
+        <span class=\"m\">2011</span><span class=\"n\">]</span> <span class=\"o\">&lt;-</span><span
+        class=\"m\">9999</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">ListaF[</span>
+        <span class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">Lista</span>
+        <span class=\"o\">==</span> <span class=\"s\">\"AGRUPACION CRECIMIENTO SOLIDARIO\"</span>
+        <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span class=\"o\">$</span><span
+        class=\"n\">Year</span> <span class=\"o\">==</span> <span class=\"m\">2011</span><span
+        class=\"n\">]</span> <span class=\"o\">&lt;-</span><span class=\"m\">3</span></span></span><span
+        class=\"line\"><span class=\"cl\"><span class=\"n\">SALTA</span><span class=\"o\">$</span><span
+        class=\"n\">ListaF[</span> <span class=\"n\">SALTA</span><span class=\"o\">$</span><span
+        class=\"n\">Lista</span> <span class=\"o\">==</span> <span class=\"s\">\"AGRUPACION
+        DEMOCRATICA COMUNAL\"</span> <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span
+        class=\"o\">$</span><span class=\"n\">Year</span> <span class=\"o\">==</span>
+        <span class=\"m\">2011</span><span class=\"n\">]</span> <span class=\"o\">&lt;-</span><span
+        class=\"m\">3</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">ListaF[</span>
+        <span class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">Lista</span>
+        <span class=\"o\">==</span> <span class=\"s\">\"AGRUPACION DEMOCRATICA TARTAGAL
+        (ADETA)\"</span> <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span
+        class=\"o\">$</span><span class=\"n\">Year</span> <span class=\"o\">==</span>
+        <span class=\"m\">2011</span><span class=\"n\">]</span> <span class=\"o\">&lt;-</span><span
+        class=\"m\">3</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">ListaF[</span>
+        <span class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">Lista</span>
+        <span class=\"o\">==</span> <span class=\"s\">\"AGRUPACION FEDERALISTA POPULAR
+        MOSCONI\"</span> <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span
+        class=\"o\">$</span><span class=\"n\">Year</span> <span class=\"o\">==</span>
+        <span class=\"m\">2011</span><span class=\"n\">]</span> <span class=\"o\">&lt;-</span><span
+        class=\"m\">1</span></span></span><span class=\"line\"><span class=\"cl\"><span
+        class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">ListaF[</span>
+        <span class=\"n\">SALTA</span><span class=\"o\">$</span><span class=\"n\">Lista</span>
+        <span class=\"o\">==</span> <span class=\"s\">\"AGRUPACION FEDERALISTA POPULAR
+        TARTAGAL\"</span> <span class=\"o\">&amp;</span> <span class=\"n\">SALTA</span><span
+        class=\"o\">$</span><span class=\"n\">Year</span> <span class=\"o\">==</span>
+        <span class=\"m\">2011</span><span class=\"n\">]</span> <span class=\"o\">&lt;-</span><span
+        class=\"m\">3</span></span></span></code></pre></div><p>Looking at it in perspective
+        (like my scripts) I can say that learning R was the <strong>best decision
+        I made in my professional career.</strong></p><p>R Since then it has become
+        a fundamental tool in my daily life: As <a href=\"https://tuqmano.github.io/geo_utdt/\">academic</a>
+        in my work as a <a href=\"https://twitter.com/menta_arg\">consultant and analyst</a>;
+        in my role <a href=\"https://ropensci.org/es/blog/2022/11/23/r-universe-stars-1-es/\">as
+        a public servant</a>; in my spare time, <a href=\"https://twitter.com/TuQmano/status/1426882408574595072\">as
+        a hobby</a>; and in my current role, coordinating the Data team at <a href=\"https://fund.ar/\">Fundar</a>,
+        a think tank that studies and formulates public policies for the sustainable
+        and inclusive development of Argentina.</p><p>Of all the qualities that R
+        has, the <strong>community</strong> was the determining factor in my journey
+        with this programming language.</p><p>While I was finishing the first step
+        of the thesis, I found out about the organization of the first <a href=\"https://latinr.org/\">Latin
+        American Conference on R for R&amp;D (LatinR)</a> to which I owe my second
+        (and third\u2026 and umpteenth) step in my relationship with R. In the first
+        conference I presented use cases for political analyses from R, implementing
+        <a href=\"https://www.researchgate.net/publication/327382101_Geofaceting_Argentina_LatinR_2018\">grids
+        from Argentina to use with ggplot as if they were maps with geofacet</a>.
+        In the second conference, we presented the <em>Shiny App</em> <a href=\"http://inteligenciaelectoral.mentacomunicacion.com.ar/\">Electoral
+        Intelligence</a> for the analysis of electoral results in Argentina and I
+        was able to participate in the <em>Package Development</em> workshop with
+        <a href=\"https://hadley.nz/\">Hadley Wickham</a>. This was the ideal starting
+        point to get started with the idea of packaging code myself.</p><figure class=\"center\"><img
+        alt=\"geofecetAR R package hex logo on the left and original polAr R package
+        hex logo on the right\" src=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/hex_joint.png\"
+        width=\"600\"/></figure><h2 id=\"the-birth-of-polar\"><a class=\"anchor d-print-none\"
+        href=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse//#the-birth-of-polar\">
+        <small>\ud83d\udd17</small></a>The birth of polAr</h2><p>With the aim of presenting
+        at the third LatinR conference, I developed a polished version of <a href=\"https://electorarg.github.io/geofaceteAR/\">geofacetAR</a>
+        with functions to work with the design of grids as if they were maps of Argentina.</p><p>The
+        Covid19 pandemic hit. Learning how to develop packages, in times of confinement
+        and many hours in front of the computer, turned the electoral data processing
+        work of my life as a political scientist and consultant into a new package:
+        <a href=\"https://github.com/electorArg/polAr\">polAr</a>; that on May 16,
+        2020 <a href=\"https://twitter.com/CRANberriesFeed/status/1261597845808975872\">traveled
+        to CRAN</a>.</p><h2 id=\"the-polar-universe\"><a class=\"anchor d-print-none\"
+        href=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse//#the-polar-universe\">
+        <small>\ud83d\udd17</small></a>The polAr Universe</h2><p>Although originally
+        the package sought to facilitate access and tools for the analysis of electoral
+        data in Argentina, over time, other workflows and data sources (geographic,
+        presidential speeches, and legislative votes) were integrated, with an increase
+        in dependencies and difficulty in managing more and more functions. This was
+        a problematic issue that <a href=\"https://www.youtube.com/watch?v=UYvSv8StDa8&amp;t=10872s\">was
+        discussed with colleagues in the Package Development panel during the third
+        LatinR confernce (2020)</a>.</p><figure><a href=\"https://www.youtube.com/watch?v=UYvSv8StDa8&amp;t=10872s\"><img
+        alt=\"LatinR Confernce (2022) - Package Development Ronund Table\" src=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/latinr-rpkg.png\"/></a></figure><p>polAr
+        had reached 4000 downloads when I received an email from the CRAN team informing
+        me that I had to fix a policy violation to prevent the package from being
+        archived. DUnfortunately my submitted fix did not appear to correct the problem
+        and the package was archived.</p><figure><a href=\"https://github.com/politicaargentina/polarverse\"><img
+        alt=\"The polarverse\" src=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/polarverse.png\"/></a></figure><p>If
+        the conversation at LatinR made me think about splitting polAr into multiple
+        packages as a possibility, the CRAN archiving gave me the opportunity to do
+        so. The decision was to generate independent workflows; a strategy that made
+        it possible to move forward at different paces, making specific decisions
+        for each topic, trying to address it at the same time as part of a whole,
+        emulating the <em>Tidyverse</em> paradigm: a similar philosophy and grammar
+        of operation for the <a href=\"https://tuqmano.ar/2021/06/05/de-polar-al-polarverse/\">collection
+        of packages</a>. The goal was to improve the development of that which led
+        to the archiving of polAr.</p><p>I presented \"<a href=\"https://github.com/TuQmano/latinr2021/blob/master/divide_reinaras/divide_reinaras.pdf\">Divide
+        and Conquer: from {polAr} to the polarverse</a> at the fourth edition of LatinR,
+        showcasing this new universe with five packages:</p><ol><li><p>\ud83d\udce6
+        <a href=\"https://politicaargentina.r-universe.dev/opinAr\">opinAr</a>: provides
+        access to data on public opinion and government in Argentina based on the
+        Confidence in Government Index published monthly by the Universidad Torcuato
+        Di Tella.</p></li><li><p>\ud83d\udce6 <a href=\"https://politicaargentina.r-universe.dev/electorAr\">electorAr</a>:
+        facilitates access to electoral data for Argentina (for different levels and
+        with different spatial aggregation) and functions to compute relevant indicators.</p></li><li><p>\ud83d\udce6
+        <a href=\"https://politicaargentina.r-universe.dev/legislAr\">legislAr</a>:
+        facilitates downloading disaggregated information of votes in the legislative
+        chambers of Argentina, originating from the project <a href=\"https://andytow.com/scripts/disciplina/index-d.html\">Decade
+        Voted</a> project by Andy Tow.</p></li><li><p>\ud83d\udce6 <a href=\"https://politicaargentina.r-universe.dev/discursAr\">discursAr</a>:
+        is designed to obtain data on political speeches. In principle, it provides
+        access to presidential speeches in legislative assemblies at the inauguration
+        of ordinary sessions.</p></li><li><p>\ud83d\udce6 <a href=\"https://politicaargentina.r-universe.dev/geoAr\">geoAr</a>:
+        allows access to data and tools for spatial workflows from within R. One <a
+        href=\"https://github.com/TuQmano/latinr2023/blob/main/geoAr/geoAr.pdf\">paper</a>
+        on the package was accepted for the <a href=\"https://latinr.org/\">sixth
+        edition of LatinR conference (2023)</a>.</p></li></ol><p>In addition, we worked
+        on an auxiliary library called <a href=\"https://politicaargentina.r-universe.dev/polArViz\">polarViz</a>
+        to facilitate the visualization of the other packages, and a metapackage called
+        <a href=\"https://politicaargentina.r-universe.dev/polArverse\">polArverse</a>that
+        emulates the operation of tidyverse for loading the set of associated libraries.</p><h2
+        id=\"-meeting-of-universes-the\"><a class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse//#-meeting-of-universes-the\">
+        <small>\ud83d\udd17</small></a>\ud83c\udf20 Meeting of universes: <a href=\"https://politicaargentina.r-universe.dev/builds\">the
+        <em>polArverse</em> and <em>R-Universe</em></a></h2><p>During this process,
+        I incorporated  the R-Universe into the workflow. It provides an autonomous
+        and self-managed space in which to publish these new packages (no longer simply
+        as GitHub repositories) and provides support for testing on different operating
+        systems and software versions. Undoubtedly, it is an important tool for better
+        maintenance.</p><figure><img alt=\"polAr R-Universe\" src=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/politicaargentina-r-universe.png\"/></figure><h3
+        id=\"we-continue-to-take-important-steps-for-our-universe\"><a class=\"anchor
+        d-print-none\" href=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse//#we-continue-to-take-important-steps-for-our-universe\">
+        <small>\ud83d\udd17</small></a>We continue to take important steps for our
+        universe:</h3><p>First, we returned to CRAN! In February 2023, we shipped
+        geoAr, which, as noted, provides access to and facilitates the processing
+        of spatially relevant data. A version under development (accessible from the
+        R-Universe) also allows you to interact with the <a href=\"https://georef-ar-api.readthedocs.io/es/latest/\">API
+        of the Argentine Geographic Data Standardization Service (Servicio de Normalizaci\u00f3n
+        de Datos Geogr\u00e1ficos de Argentina</a>.</p><p>On the other hand, I added
+        a pending tool to the polAr toolbox to work with census data: <a href=\"https://github.com/PoliticaArgentina/censAr\">censAr</a>.
+        The package, currently under development, is based on the code from <a href=\"https://docs.ropensci.org/censo2017/\">censo2017</a>
+        developed by <a href=\"https://ropensci.org/author/pach%C3%A1-aka-mauricio-vargas-sep%C3%BAlveda/\">Mauricio
+        \"Pacha\" Vargas</a> and part of the rOpenSci suite.</p><h2 id=\"summarizinig-my-experience\"><a
+        class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse//#summarizinig-my-experience\">
+        <small>\ud83d\udd17</small></a>Summarizinig my experience</h2><ul><li><p>I
+        started working with this language - or dialect, <a href=\"https://tuqmano.github.io/CienciaDeDatosCiPol/clases/clase1.html#12\">as
+        one of my colleagues likes to say</a> regarding the antecedent of S from <em>Bell</em>
+        in the 1970s - a little by chance.</p></li><li><p>I quickly incorporated it
+        as a work tool, in multiple facets: as an analyst, consultant and teacher.</p></li><li><p>The
+        R community -  in particular all my experiences with <em>LatinR</em>- were
+        a determining factor for my development. It certainly made the process much
+        easier.</p></li><li><p>I think it is possible to make improvements to the
+        process; to support CRAN becoming an even better space for the R ecosystem
+        and to make the R development experience more enjoyable and predictable.</p></li><li><p>The
+        <em>R-Universe</em> project to enhance the publishing and discovery experience
+        of packages developed in R is invaluable.</p></li></ul><p>The <em>polarverse</em>
+        was a side project where I worked in my free time and without funding. It
+        emerged almost playfully, as an experiment to learn how to develop software.
+        We successfully published it in CRAN. We got frustrated and angry. We learned.
+        We added new tools.</p><p>Now, with the support and encouragement provided
+        by the great team at <a href=\"https://fund.ar/\">Fundar</a>, in general,
+        and the <a href=\"https://fund.ar/area/datos/\">data</a> area that I coordinate,
+        in particular. We kept moving forward. Little by little. \"Slowly, but steady\".</p>","doi":"https://doi.org/10.59350/swnyg-ger25","guid":"https://doi.org/10.59350/swnyg-ger25","images":[{"alt":"geofecetAR
+        R package hex logo on the left and original polAr R package hex logo on the
+        right","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/hex_joint.png","width":"600"},{"alt":"LatinR
+        Confernce (2022) - Package Development Ronund Table","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/latinr-rpkg.png"},{"alt":"The
+        polarverse","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/polarverse.png"},{"alt":"polAr
+        R-Universe","src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/politicaargentina-r-universe.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/hex_joint.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/latinr-rpkg.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/polarverse.png"},{"src":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/politicaargentina-r-universe.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1701734400,"rid":"wsaar-7ac18","summary":"It
+        was 2015, a Political Science master''s student had to process data to hand
+        in his thesis and decided to take the opportunity to learn how to use R. To
+        the long and winding road of the academic requirement was added an extra degree
+        of difficulty: incorporating programming software from scratch, with a somewhat
+        steep learning curve.","tags":["Community","Packages","Development"],"title":"Divide
+        and Conquer: From polar To the Polarverse","updated_at":1765009910,"url":"https://ropensci.org/blog/2023/12/05/divide_and_you_will_win_from_polar_to_the_polarverse/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -140,74 +236,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:49 GMT
+      - Mon, 29 Jun 2026 18:13:08 GMT
       Server:
       - gunicorn
-      Vary:
-      - Accept-Encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540120'
-      CF-RAY:
-      - a09fbbc308b61b4d-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:16 GMT
-      Server:
-      - cloudflare
       Transfer-Encoding:
       - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=gu_91JPfG.dz2bcplOlNEIHwRkpmtxt4AohnHwyj_sM-1781171656.1632051-1.0.1.1-Pdf7syAGVEqvRZq1l3k.Zo6oUlW2QFFq0YGl7Ey_y_G_A7reh1DnToJWMWI5dFG_n2axNMHWTiawVqMLuFLPF2uX9xMs39rxg6Jmnc_cCL_nRByu75O1EiCITRXGRwmn;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:16 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
+      Vary:
       - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

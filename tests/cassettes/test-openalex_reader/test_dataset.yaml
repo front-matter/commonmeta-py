@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -14,33 +14,27 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.2210/pdb4hhb/pdb
   response:
     body:
-      string: !!binary |
-        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
-        M0wEe8Tr9TCCzxihgfnYD3/8A048eNXQEgAA
+      string: '{"id":"https://openalex.org/W6945048743","doi":"https://doi.org/10.2210/pdb4hhb/pdb","title":"THE
+        CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION","display_name":"THE
+        CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION","publication_year":1984,"publication_date":"1984-03-07","ids":{"openalex":"https://openalex.org/W6945048743","doi":"https://doi.org/10.2210/pdb4hhb/pdb"},"language":"en","primary_location":{"id":"doi:10.2210/pdb4hhb/pdb","is_oa":false,"landing_page_url":"https://doi.org/10.2210/pdb4hhb/pdb","pdf_url":null,"source":null,"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Worldwide
+        Protein Data Bank","raw_type":"dataset"},"type":"dataset","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":null,"display_name":"G.
+        Fermi","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"G.
+        Fermi","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"last","author":{"id":null,"display_name":"M.F.
+        Perutz","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"M.F.
+        Perutz","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":2,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":1,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":true,"primary_topic":null,"topics":[],"keywords":[{"id":"https://openalex.org/keywords/angstrom","display_name":"Angstrom","score":0.7886999845504761},{"id":"https://openalex.org/keywords/crystal-structure","display_name":"Crystal
+        structure","score":0.6115000247955322},{"id":"https://openalex.org/keywords/resolution","display_name":"Resolution
+        (logic)","score":0.4846999943256378},{"id":"https://openalex.org/keywords/crystal","display_name":"Crystal
+        (programming language)","score":0.3188999891281128},{"id":"https://openalex.org/keywords/high-resolution","display_name":"High
+        resolution","score":0.27379998564720154}],"concepts":[{"id":"https://openalex.org/C37407028","wikidata":"https://www.wikidata.org/wiki/Q81454","display_name":"Angstrom","level":2,"score":0.7886999845504761},{"id":"https://openalex.org/C115624301","wikidata":"https://www.wikidata.org/wiki/Q895901","display_name":"Crystal
+        structure","level":2,"score":0.6115000247955322},{"id":"https://openalex.org/C192562407","wikidata":"https://www.wikidata.org/wiki/Q228736","display_name":"Materials
+        science","level":0,"score":0.5716999769210815},{"id":"https://openalex.org/C8010536","wikidata":"https://www.wikidata.org/wiki/Q160398","display_name":"Crystallography","level":1,"score":0.5020999908447266},{"id":"https://openalex.org/C138268822","wikidata":"https://www.wikidata.org/wiki/Q1051925","display_name":"Resolution
+        (logic)","level":2,"score":0.4846999943256378},{"id":"https://openalex.org/C2781285689","wikidata":"https://www.wikidata.org/wiki/Q21921428","display_name":"Crystal
+        (programming language)","level":2,"score":0.3188999891281128},{"id":"https://openalex.org/C3020199158","wikidata":"https://www.wikidata.org/wiki/Q210521","display_name":"High
+        resolution","level":2,"score":0.27379998564720154},{"id":"https://openalex.org/C50515024","wikidata":"https://www.wikidata.org/wiki/Q826582","display_name":"X-ray
+        crystallography","level":3,"score":0.2615000009536743},{"id":"https://openalex.org/C120665830","wikidata":"https://www.wikidata.org/wiki/Q14620","display_name":"Optics","level":1,"score":0.2531000077724457},{"id":"https://openalex.org/C199289684","wikidata":"https://www.wikidata.org/wiki/Q83353","display_name":"Mineralogy","level":1,"score":0.24390000104904175}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.2210/pdb4hhb/pdb","is_oa":false,"landing_page_url":"https://doi.org/10.2210/pdb4hhb/pdb","pdf_url":null,"source":null,"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Worldwide
+        Protein Data Bank","raw_type":"dataset"}],"best_oa_location":null,"sustainable_development_goals":[],"awards":[],"funders":[],"has_content":{"pdf":false,"grobid_xml":false},"content_urls":null,"referenced_works_count":0,"referenced_works":[],"related_works":[],"abstract_inverted_index":null,"counts_by_year":[{"year":2024,"cited_by_count":1}],"updated_date":"2026-06-11T09:08:48.828518","created_date":"2025-10-10T00:00:00"}
+
+        '
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -51,7 +45,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd78448d960b30-AMS
+      - a136e998fc6df5e6-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -59,13 +53,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:53 GMT
+      - Mon, 29 Jun 2026 18:14:43 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=LmmYhvnPTlN%2Fu1DxsUcT9N%2FhS1SfPTGvAKT685kNvEM%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154553"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=1nVC69R5ujDNQBHqUQcIjf61nXAuKNHPjEsLh9StJ2Y%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756883"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=LmmYhvnPTlN%2Fu1DxsUcT9N%2FhS1SfPTGvAKT685kNvEM%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154553"
+      - heroku-nel="https://nel.heroku.com/reports?s=1nVC69R5ujDNQBHqUQcIjf61nXAuKNHPjEsLh9StJ2Y%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756883"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -85,11 +79,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '947'
+      - '927'
       X-RateLimit-Remaining-USD:
-      - '0.0947'
+      - '0.0927'
       X-RateLimit-Reset:
-      - '18247'
+      - '20717'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,

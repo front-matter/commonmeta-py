@@ -5,11 +5,11 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://www.vosviewer.com/documentation/manual_vosviewer_1.6.8.pdf
   response:
@@ -26213,7 +26213,7 @@ interactions:
       Content-Type:
       - application/pdf
       Date:
-      - Mon, 01 Jun 2026 13:23:48 GMT
+      - Mon, 29 Jun 2026 18:15:11 GMT
       ETag:
       - '"0d572ff0ddd31:0"'
       Last-Modified:

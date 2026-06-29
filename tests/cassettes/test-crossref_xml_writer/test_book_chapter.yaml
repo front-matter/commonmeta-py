@@ -5,79 +5,91 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.1007/978-3-662-46370-3_13
   response:
     body:
-      string: !!binary |
-        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
-        Aq517OXVaf/48R+CvfcqyCYAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2025,3,26]],"date-time":"2025-03-26T01:25:44Z","timestamp":1742952344271,"version":"3.40.3"},"publisher-location":"Berlin,
+        Heidelberg","reference-count":22,"publisher":"Springer Berlin Heidelberg","isbn-type":[{"type":"print","value":"9783662463697"},{"type":"electronic","value":"9783662463703"}],"license":[{"start":{"date-parts":[[2015,1,1]],"date-time":"2015-01-01T00:00:00Z","timestamp":1420070400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/www.springernature.com\/gp\/researchers\/text-and-data-mining"},{"start":{"date-parts":[[2015,1,1]],"date-time":"2015-01-01T00:00:00Z","timestamp":1420070400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/www.springernature.com\/gp\/researchers\/text-and-data-mining"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"published-print":{"date-parts":[[2015]]},"DOI":"10.1007\/978-3-662-46370-3_13","type":"book-chapter","created":{"date-parts":[[2015,4,14]],"date-time":"2015-04-14T02:31:00Z","timestamp":1428978660000},"page":"155-158","source":"Crossref","is-referenced-by-count":1,"title":["Clinical
+        Symptoms and Physical Examinations"],"prefix":"10.1007","author":[{"given":"Ronald
+        L.","family":"Diercks","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"Tom
+        Clement","family":"Ludvigsen","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"297","reference":[{"issue":"10","key":"13_CR1","doi-asserted-by":"publisher","first-page":"1301","DOI":"10.1007\/s00256-012-1391-8","volume":"41","author":"KS
+        Ahn","year":"2012","unstructured":"Ahn KS, Kang CH, Oh YW, Jeong WK. Correlation
+        between magnetic resonance imaging and clinical impairment in patients with
+        adhesive capsulitis. Skeletal Radiol. 2012;41(10):1301\u20138.","journal-title":"Skeletal
+        Radiol"},{"issue":"3","key":"13_CR2","doi-asserted-by":"publisher","first-page":"333","DOI":"10.1016\/j.arthro.2004.11.003","volume":"21","author":"JR
+        Andrews","year":"2005","unstructured":"Andrews JR. Diagnosis and treatment
+        of chronic painful shoulder: review of nonsurgical interventions. Arthroscopy.
+        2005;21(3):333\u201347.","journal-title":"Arthroscopy"},{"key":"13_CR3","first-page":"1773","volume":"39","author":"HA
+        Anton","year":"1993","unstructured":"Anton HA. Frozen shoulder. Can Fam Physician.
+        1993;39:1773\u20138.","journal-title":"Can Fam Physician"},{"issue":"5","key":"13_CR4","doi-asserted-by":"publisher","first-page":"321","DOI":"10.3109\/03009749009096786","volume":"19","author":"B
+        Baslund","year":"1990","unstructured":"Baslund B, Thomsen BS, Jensen EM. Frozen
+        shoulder: current concepts. Scand J Rheumatol. 1990;19(5):321\u20135.","journal-title":"Scand
+        J Rheumatol"},{"issue":"8","key":"13_CR5","doi-asserted-by":"publisher","first-page":"1048","DOI":"10.1007\/s00167-007-0291-2","volume":"15","author":"S
+        Brue","year":"2007","unstructured":"Brue S, Valentin A, Forssblad M, Werner
+        S, Mikkelsen C, Cerulli G. Idiopathic adhesive capsulitis of the shoulder:
+        a review. Knee Surg Sports Traumatol Arthrosc. 2007;15(8):1048\u201354.","journal-title":"Knee
+        Surg Sports Traumatol Arthrosc"},{"issue":"1640","key":"13_CR6","first-page":"730","volume":"246","author":"S
+        Cutts","year":"2002","unstructured":"Cutts S, Clarke D. The patient with frozen
+        shoulder. Practitioner. 2002;246(1640):730, 734\u20136, 738\u20139.","journal-title":"Practitioner"},{"issue":"7530","key":"13_CR7","doi-asserted-by":"publisher","first-page":"1453","DOI":"10.1136\/bmj.331.7530.1453","volume":"331","author":"R
+        Dias","year":"2005","unstructured":"Dias R, Cutts S, Massoud S. Frozen shoulder.
+        BMJ. 2005;331(7530):1453\u20136.","journal-title":"BMJ"},{"issue":"5","key":"13_CR8","doi-asserted-by":"publisher","first-page":"499","DOI":"10.1016\/j.jse.2004.03.002","volume":"13","author":"RL
+        Diercks","year":"2004","unstructured":"Diercks RL, Stevens M. Gentle thawing
+        of the frozen shoulder: a prospective study of supervised neglect versus intensive
+        physical therapy in seventy-seven patients with frozen shoulder syndrome followed
+        up for two years. J Shoulder Elbow Surg. 2004;13(5):499\u2013502.","journal-title":"J
+        Shoulder Elbow Surg"},{"issue":"6","key":"13_CR9","doi-asserted-by":"publisher","first-page":"1457","DOI":"10.2214\/ajr.164.6.7754892","volume":"164","author":"EW
+        Emig","year":"1995","unstructured":"Emig EW, Schweitzer ME, Karasick D, Lubowitz
+        J. Adhesive capsulitis of the shoulder: MR diagnosis. AJR Am J Roentgenol.
+        1995;164(6):1457\u20139.","journal-title":"AJR Am J Roentgenol"},{"issue":"2","key":"13_CR10","doi-asserted-by":"publisher","first-page":"117","DOI":"10.1016\/j.physio.2012.01.001","volume":"98","author":"NC
+        Hanchard","year":"2012","unstructured":"Hanchard NC, Goodchild L, Thompson
+        J, O\u2019Brien T, Davison D, Richardson C. Evidence-based clinical guidelines
+        for the diagnosis, assessment and physiotherapy management of contracted (frozen)
+        shoulder: quick reference summary. Physiotherapy. 2012;98(2):117\u201320.","journal-title":"Physiotherapy"},{"issue":"4","key":"13_CR11","doi-asserted-by":"publisher","first-page":"264","DOI":"10.1136\/oem.55.4.264","volume":"55","author":"JM
+        Harrington","year":"1998","unstructured":"Harrington JM, Carter JT, Birrell
+        L, Gompertz D. Surveillance case definitions for work related upper limb pain
+        syndromes. Occup Environ Med. 1998;55(4):264\u201371.","journal-title":"Occup
+        Environ Med"},{"issue":"10","key":"13_CR12","first-page":"845","volume":"29","author":"R
+        Hertel","year":"2000","unstructured":"Hertel R. The frozen shoulder. Orthopade.
+        2000;29(10):845\u201351.","journal-title":"Orthopade"},{"issue":"3","key":"13_CR13","doi-asserted-by":"publisher","first-page":"502","DOI":"10.1016\/j.jse.2010.08.023","volume":"20","author":"JE
+        Hsu","year":"2011","unstructured":"Hsu JE, Anakwenze OA, Warrender WJ, Abboud
+        JA. Current review of adhesive capsulitis. J Shoulder Elbow Surg. 2011;20(3):502\u201314.","journal-title":"J
+        Shoulder Elbow Surg"},{"key":"13_CR14","doi-asserted-by":"publisher","first-page":"1","DOI":"10.3109\/ort.1969.40.suppl-119.01","volume":"Suppl
+        119","author":"J Lundberg","year":"1969","unstructured":"Lundberg J. The frozen
+        shoulder. Clinical and radiographical observations. The effect of manipulation
+        under general anesthesia. Structure and glycosaminoglycan content of the joint
+        capsule. Local bone metabolism. Acta Orthop Scand. 1969;Suppl 119:1\u201359.","journal-title":"Acta
+        Orthop Scand"},{"issue":"11","key":"13_CR15","doi-asserted-by":"publisher","first-page":"2346","DOI":"10.1177\/0363546509348048","volume":"38","author":"AS
+        Neviaser","year":"2010","unstructured":"Neviaser AS, Hannafin JA. Adhesive
+        capsulitis: a review of current treatment. Am J Sports Med. 2010;38(11):2346\u201356.","journal-title":"Am
+        J Sports Med"},{"issue":"223","key":"13_CR16","first-page":"59","volume":"223","author":"RJ
+        Neviaser","year":"1987","unstructured":"Neviaser RJ, Neviaser TJ. The frozen
+        shoulder. Diagnosis and management. Clin Orthop Relat Res. 1987;223(223):59\u201364.","journal-title":"Clin
+        Orthop Relat Res"},{"issue":"11","key":"13_CR17","first-page":"619","volume":"64","author":"E
+        Noel","year":"1997","unstructured":"Noel E. Treatment of calcific tendinitis
+        and adhesive capsulitis of the shoulder. Rev Rhum Engl Ed. 1997;64(11):619\u201328.","journal-title":"Rev
+        Rhum Engl Ed"},{"issue":"5","key":"13_CR18","first-page":"393","volume":"67","author":"E
+        Noel","year":"2000","unstructured":"Noel E, Thomas T, Schaeverbeke T, Thomas
+        P, Bonjean M, Revel M. Frozen shoulder. Joint Bone Spine. 2000;67(5):393\u2013400.","journal-title":"Joint
+        Bone Spine"},{"issue":"8","key":"13_CR19","doi-asserted-by":"publisher","first-page":"445","DOI":"10.1136\/ard.57.8.445","volume":"57","author":"K
+        Palmer","year":"1998","unstructured":"Palmer K, Coggon D, Cooper C, Doherty
+        M. Work related upper limb disorders: getting down to specifics. Ann Rheum
+        Dis. 1998;57(8):445\u20136.","journal-title":"Ann Rheum Dis"},{"issue":"6","key":"13_CR20","doi-asserted-by":"publisher","first-page":"478","DOI":"10.1016\/j.math.2008.04.005","volume":"13","author":"JM
+        Schellingerhout","year":"2008","unstructured":"Schellingerhout JM, Verhagen
+        AP, Thomas S, Koes BW. Lack of uniformity in diagnostic labeling of shoulder
+        pain: time for a different approach. Man Ther. 2008;13(6):478\u201383.","journal-title":"Man
+        Ther"},{"issue":"1","key":"13_CR21","doi-asserted-by":"publisher","first-page":"22","DOI":"10.3928\/01477447-20090101-29","volume":"32","author":"JC
+        Yoo","year":"2009","unstructured":"Yoo JC, Ahn JH, Lee YS, Koh KH. Magnetic
+        resonance arthrographic findings of presumed stage-2 adhesive capsulitis:
+        focus on combined rotator cuff pathology. Orthopedics. 2009;32(1):22.","journal-title":"Orthopedics"},{"issue":"2","key":"13_CR22","doi-asserted-by":"publisher","first-page":"322","DOI":"10.1016\/j.jse.2010.07.008","volume":"20","author":"JD
+        Zuckerman","year":"2011","unstructured":"Zuckerman JD, Rokito A. Frozen shoulder:
+        a consensus definition. J Shoulder Elbow Surg. 2011;20(2):322\u20135.","journal-title":"J
+        Shoulder Elbow Surg"}],"container-title":["Shoulder Stiffness"],"original-title":[],"language":"en","link":[{"URL":"https:\/\/link.springer.com\/content\/pdf\/10.1007\/978-3-662-46370-3_13","content-type":"unspecified","content-version":"vor","intended-application":"similarity-checking"}],"deposited":{"date-parts":[[2023,2,10]],"date-time":"2023-02-10T08:59:39Z","timestamp":1676019579000},"score":1,"resource":{"primary":{"URL":"https:\/\/link.springer.com\/10.1007\/978-3-662-46370-3_13"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2015]]},"ISBN":["9783662463697","9783662463703"],"references-count":22,"URL":"https:\/\/doi.org\/10.1007\/978-3-662-46370-3_13","relation":{},"subject":[],"published":{"date-parts":[[2015]]}}}'
     headers:
       Connection:
       - keep-alive
@@ -86,7 +98,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:40 GMT
+      - Mon, 29 Jun 2026 18:12:58 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -110,69 +122,6 @@ interactions:
       - 1s
       x-rate-limit-limit:
       - '10'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540113'
-      CF-RAY:
-      - a09fbb961bd17172-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:08 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=KAnH6f1QzoYy2PCxShYaIT0GENlJvT4uIa9hCgEYtfk-1781171648.9790905-1.0.1.1-VAdtK.Dj_wrD1.U2EVZT5L9Rv91k1kjBxySpZVY2emhM.dPvlmCf.2ie5sOtXBClllQzG_xFqZapbnLh.1TwjwS6iPVCnSTH1GZybxUgWBjIwQk.Exrp6UyKr.LKHOvW;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:08 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from ..base_utils import compact, first, scrub, wrap
+from ..base_utils import compact, first, presence, scrub, wrap
 from ..constants import (
     CM_TO_BIB_TRANSLATIONS,
     CM_TO_CR_TRANSLATIONS,
@@ -15,15 +15,55 @@ from ..constants import (
     CM_TO_SO_TRANSLATIONS,
 )
 from ..doi_utils import doi_from_url, normalize_doi
-from ..v1_compat import (
-    v1_to_date,
-    v1_to_descriptions,
-    v1_to_geo_locations,
-    v1_to_titles,
-)
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
+
+
+def _wkt_to_polygon_points(wkt: str | None) -> list | None:
+    if not wkt or not wkt.startswith("POLYGON((") or not wkt.endswith("))"):
+        return None
+    body = wkt[len("POLYGON(("):-2]
+    points = []
+    for pair in body.split(", "):
+        parts = pair.strip().split(" ")
+        if len(parts) == 2:
+            points.append(
+                {"pointLongitude": float(parts[0]), "pointLatitude": float(parts[1])}
+            )
+    return points or None
+
+
+def _geo_locations_to_datacite(geo_locations: list | None) -> list | None:
+    items = []
+    for g in wrap(geo_locations):
+        point = compact(
+            {
+                "pointLongitude": g.get("geo_location_point_longitude", None),
+                "pointLatitude": g.get("geo_location_point_latitude", None),
+            }
+        )
+        box = compact(
+            {
+                "westBoundLongitude": g.get("geo_location_box_west_longitude", None),
+                "eastBoundLongitude": g.get("geo_location_box_east_longitude", None),
+                "southBoundLatitude": g.get("geo_location_box_south_latitude", None),
+                "northBoundLatitude": g.get("geo_location_box_north_latitude", None),
+            }
+        )
+        items.append(
+            compact(
+                {
+                    "geoLocationPlace": g.get("geo_location_place", None),
+                    "geoLocationPoint": presence(point),
+                    "geoLocationBox": presence(box),
+                    "geoLocationPolygon": _wkt_to_polygon_points(
+                        g.get("geo_location_polygon", None)
+                    ),
+                }
+            )
+        )
+    return presence(items)
 
 
 def write_datacite(metadata: Metadata) -> dict | None:
@@ -94,8 +134,14 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "dateType": k.title(),
         }
 
-    date = v1_to_date(metadata.date_published, metadata.date_updated, metadata.dates)
-    dates = [to_datacite_date(item) for item in (date or {}).items()]
+    date_fields = compact(
+        {
+            "published": metadata.date_published,
+            "updated": metadata.date_updated,
+            **(metadata.dates or {}),
+        }
+    )
+    dates = [to_datacite_date(item) for item in date_fields.items()]
 
     license_ = (
         [
@@ -125,6 +171,10 @@ def write_datacite(metadata: Metadata) -> dict | None:
         for i in wrap(metadata.subjects)
     ]
 
+    all_descriptions = (
+        ([{"description": metadata.description, "type": "Abstract"}] if metadata.description else [])
+        + wrap(metadata.additional_descriptions)
+    )
     descriptions = [
         compact(
             {
@@ -133,14 +183,14 @@ def write_datacite(metadata: Metadata) -> dict | None:
                 "lang": i.get("language", None),
             }
         )
-        for i in wrap(
-            v1_to_descriptions(metadata.description, metadata.additional_descriptions)
-        )
+        for i in all_descriptions
     ]
 
-    titles = to_datacite_titles(
-        wrap(v1_to_titles(metadata.title, metadata.additional_titles))
+    all_titles = (
+        ([{"title": metadata.title}] if metadata.title else [])
+        + wrap(metadata.additional_titles)
     )
+    titles = to_datacite_titles(all_titles)
 
     return compact(
         {
@@ -161,7 +211,7 @@ def write_datacite(metadata: Metadata) -> dict | None:
             "version": metadata.version,
             "rightsList": license_,
             "descriptions": descriptions,
-            "geoLocations": v1_to_geo_locations(metadata.geo_locations),
+            "geoLocations": _geo_locations_to_datacite(metadata.geo_locations),
             "fundingReferences": [
                 to_datacite_funding_reference(f)
                 for f in wrap(metadata.funding_references)

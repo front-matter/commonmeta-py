@@ -5,282 +5,412 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.54900/zg929-e9595
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"contributor_roles":[],"family":"Pooley","given":"Jeff","url":"https://orcid.org/0000-0002-3674-1930"}],"blog":{"authors":null,"community_id":"b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b","created":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
+        community blog for all things Open Research.","favicon":"https://rogue-scholar.org/api/communities/b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b/logo","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"generator":"Ghost","home_page_url":"https://upstream.force11.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.54900","relative_url":null,"secure":true,"slug":"upstream","status":"active","subfield":"1802","title":"Upstream","updated":1781010905,"use_api":true},"blog_name":"Upstream","blog_slug":"upstream","content_html":"<p><em>The
+        New York Times</em> ushered in the New Year with a <a href=\"https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf\">lawsuit</a>
+        against OpenAI and Microsoft. The paper <a href=\"https://www.nytimes.com/2023/12/27/business/media/new-york-times-open-ai-microsoft-lawsuit.html\">covered
+        the suit</a>, fittingly, as a major business story. OpenAI and its Microsoft
+        patron had, according to the filing, stolen \"<em>millions</em> of The Times''
+        copyrighted news articles, in-depth investigations, opinion pieces, reviews,
+        how-to guides,\" and more\u2014all to train OpenAI''s large language models
+        (LLMs). The <em>Times</em> sued to stop the tech companies'' \"free-ride\"
+        on the newspaper''s \"uniquely valuable\" journalism.</p>\n<p>OpenAI and Microsoft
+        have, of course, cited fair use to justify their permissionless borrowing.
+        Across 70 bitter pages, the <em>Times</em>'' lawyers drove a bulldozer through
+        all <a href=\"https://en.wikipedia.org/wiki/Fair_use\">four factors</a> that
+        U.S. judges weigh for fair use. The brief also points to reputational harm\u2014from
+        made-up responses that ChatGPT or Bing Chat attribute to the <em>Times</em>:
+        \"In plain English, it''s misinformation.\"</p>\n<p>There''s no question that
+        attorneys for Elsevier and the other scholarly-publishing giants are reading
+        the <em>Times</em> <a href=\"https://nytco-assets.nytimes.com/2023/12/NYT_Complaint_Dec2023.pdf\">filing</a>
+        carefully. They''ll notice a leitmotif: The newspaper''s expensively reported
+        stories produce <em>trusted</em> knowledge, in otherwise short supply. In
+        a \"damaged information ecosystem [\u2026] awash in unreliable content,\"
+        the <em>Times</em>'' journalism is an \"exceptionally valuable body of data\"
+        for AI training, states the filing. Other news organizations have the same
+        view; some have <a href=\"https://www.wsj.com/business/media/openai-to-pay-politico-parent-axel-springer-for-using-its-content-bdc33332\">signed
+        licensing deals</a>, while others are <a href=\"https://www.nytimes.com/2023/12/29/business/media/media-openai-chatgpt.html\">negotiating</a>
+        with OpenAI and its peers. No more free rides.</p>\n<p>The big scholarly publishers
+        are very likely to agree. And they''re sitting on the <em>other</em> corpus
+        of vetted knowledge, science and scholarship. So licensing talks are almost
+        certainly underway, with threats and lawsuits doubtlessly prepped. At the
+        same time, the commercial publishers are building their own AI products. In
+        the year since ChatGPT''s splashy entrance, at least three of the big five
+        scholarly publishers, plus Clarivate, have announced tools and features powered
+        by LLMs. They are joined by dozens of VC-backed startups\u2014acquisition
+        targets, one and all\u2014promising an AI boost across the scholarly workflow,
+        from literature search to abstract writing to manuscript editing.</p>\n<p>Thus
+        the two main sources of trustworthy knowledge, science and journalism, are
+        poised to extract protection money\u2014to otherwise exploit their vast pools
+        of vetted text as \"training data.\" But there''s a key difference between
+        the news and science: Journalists'' salaries, and the cost of reporting, are
+        covered by the companies. Not so for scholarly publishing: Academics, of course,
+        write and review for free, and much of our research is funded by taxpayers.
+        The <em>Times</em> suit is marinated in complaints about the costly business
+        of journalism. The likes of Taylor &amp; Francis and Springer Nature won''t
+        have that argument to make. It''s hard to call out free-riding when it''s
+        your own business model.</p>\n<h2 id=\"surveillance-publishing-llm-edition\">Surveillance
+        Publishing, LLM Edition</h2>\n<p>The AI hype-cycle froth has come for scholarly
+        publishing. The industry''s feverish\u2014if mostly aspirational\u2014embrace
+        of AI should be read as the latest installment of an ongoing campaign.<sup
+        class=\"footnote-ref\"><a href=\"#fn1\" id=\"fnref1\">[1]</a></sup> Led by
+        Elsevier, commercial publishers have, for about a decade, layered another
+        business on top of their legacy publishing operations. That business is to
+        mine and process scholars'' works and behavior into prediction products, sold
+        back to universities and research agencies. Elsevier, for example, peddles
+        a dashboard software, Pure, to university assessment offices\u2014one that
+        assigns each of the school''s researchers a Fingerprint\u00ae of weighted
+        keywords. The underlying data comes from Elsevier''s Scopus, the firm''s propriety
+        database of abstracts and citations. Thus the scholar <em>is</em> the product:
+        Her articles and references feed Scopus and Pure, which are then sold back
+        to her university employer. That same university, of course, already shells
+        out usurious subscription and APC dollars to Elsevier\u2014which, in a painful
+        irony, have financed the very acquisition binge that transformed the firm
+        into a <a href=\"https://www.hachettebookgroup.com/titles/shoshana-zuboff/the-age-of-surveillance-capitalism/9781610395694/?lens=publicaffairs\">full-stack
+        publisher</a>.</p>\n<p>Elsevier and the other big publishers are, to borrow
+        Sarah Lamdan''s phrase, <a href=\"https://www.sup.org/books/title/?id=33205\">data
+        cartels</a>. I''ve called this drive to extract profit from researchers''
+        behavior <a href=\"https://elephantinthelab.org/surveillance-publishing/\"><em>surveillance
+        publishing</em></a>\u2014by analogy to Shoshana Zuboff''s notion of <a href=\"https://www.hachettebookgroup.com/titles/shoshana-zuboff/the-age-of-surveillance-capitalism/9781610395694/?lens=publicaffairs\">surveillance
+        capitalism</a>, in which firms like Google and Meta package user data to sell
+        to advertisers. The core business strategy is the same for Silicon Valley
+        and Elsevier: extract data from behavior to feed predictive models that, in
+        turn, get refined and sold to customers. In one case it''s Facebook posts
+        and in the other abstracts and citations, but either way the point is to mint
+        money from the by-products of (consumer or scholarly) behavior. One big difference
+        between the big tech firms and the publishers is that Google et al entice
+        users with free services like Gmail: If you''re not paying for it, the adage
+        goes, then you''re the product. In the Elsevier case we''re the product <em>and</em>
+        we''re paying (a lot) for it.</p>\n<p>Elsevier and some of the other big publishers
+        <a href=\"https://www.elsevier.com/about/press-releases/elsevier-introduces-authoritative-scientific-datasets-to-fuel-innovation-and\">already
+        harness</a> their troves of scholarly data to, for example, assign subject
+        keywords to scholars and works. They have, indeed, been using so-called AI
+        for years now, including variations on the machine-learning (ML) techniques
+        ascendant in the last 15 years or so. What''s different about the publishers''
+        imminent licensing windfall and wave of announced tools is, in a word, ChatGPT.
+        It''s true that successive versions of enormous, \"large language\" models
+        from OpenAI, Google, and others have been kicking around in commercial and
+        academic circles for years. But the November 2022 public release of ChatGPT
+        changed the game. Among other things, and almost overnight, the value of <em>content</em>
+        took on a different coloration. Each of the giant \"foundation\" models, including
+        OpenAI''s GPT series, is fed on prodigious helpings of text. The appetite
+        for such training data isn''t sated, even as the legality of the ongoing ingestion
+        is an open and litigated question.</p>\n<p>The big publishers think they''re
+        sitting on a gold mine. It''s not just their paywalled, full-text scholarship,
+        but also the reams of other data they hoover up from academics across their
+        platforms and products. In theory at least, their proprietary content is\u2014unlike
+        the clown show of the open web\u2014vetted and linked. On those grounds, observers
+        have declared that publishers may be the <a href=\"https://www.forbes.com/sites/alexzhavoronkov/2023/02/23/the-unexpected-winners-of-the-chatgpt-generative-ai-revolution/?sh=45a4d82312b0&amp;ref=lorcandempsey.net\">\"biggest
+        winners\" in the generative AI revolution</a>. Maybe. But either way, expect
+        Springer Nature, Taylor &amp; Francis, Elsevier, Wiley, and SAGE to test the
+        theory.</p>\n<h2 id=\"hallucinating-parrots\">Hallucinating Parrots</h2>\n<p>Truly
+        large language models, like those driving ChatGPT and Bard, are notorious
+        fabulists. They routinely, and confidently, return what the industry euphemism
+        terms \"hallucinations.\" Some observers expect the problem to keep getting
+        worse, as LLM-generated material floods the internet. The big models, on this
+        fear, will feed on their own falsehood-ridden prose in subsequent training
+        rounds\u2014a kind of large-language cannibalism that, over time, could crowd
+        out whatever share of the pre-LLM web that was more-or-less truthful.</p>\n<p>One
+        solution to the problem, with gathering VC and hype-cycle momentum, is a turn
+        to so-called \"small\" language models. The idea is to apply the same pattern-recognition
+        techniques, but on curated, domain-specific data sets. One advantage of the
+        smaller models, according to proponents, is their ability to restrict training
+        data to the known and verifiable. The premise is that, with less garbage in,
+        there will be less garbage out.</p>\n<p>So it''s no surprise that the <a href=\"https://www.timeshighereducation.com/blog/academic-chatgpt-needs-better-schooling\">published
+        scientific record</a> has emerged, in the industry chatter, as an especially
+        promising hallucination-slayer. Here''s a body of vetted knowledge, the thinking
+        goes, cordoned off from the internet''s Babelist free-for-all. What makes
+        the research corpus different is, well, peer review and editorial gate-keeping,
+        together with citation conventions and scholars'' putative commitment to a
+        culture of self-correcting criticism. Thus the published record is\u2014among
+        bodies of minable text\u2014uniquely trustworthy. Or that''s what small-language
+        evangelists are claiming.</p>\n<p>Enter <a href=\"https://diginomica.com/reed-elsevier-sees-promise-small-language-models-and-graph-data\">Elsevier</a>
+        and its oligopolistic peers. They guard (with paywalled vigilance) a large
+        share of published scholarship, much of which is unscrapable. A growing proportion
+        of their total output is, it''s true, open access, but a large share of that
+        material carries a non-commercial license. Standard OA agreements tend to
+        grant publishers blanket rights, so they <a href=\"https://scholarlykitchen.sspnet.org/2023/03/07/some-thoughts-on-five-pending-ai-litigations-avoiding-squirrels-and-other-ai-distractions/\">have
+        a claim</a>\u2014albeit one contested on fair-use grounds by OpenAI and the
+        like\u2014to exclusive exploitation. Even the balance of OA works that permit
+        commercial re-use are corralled with the rest, on propriety platforms like
+        Elsevier''s ScienceDirect. Those platforms <a href=\"https://sparcopen.org/news/2023/sparc-report-urges-action-to-address-concerns-with-sciencedirect-data-privacy-practices/\">also
+        track researcher behavior</a>, like downloads and citations, that can be used
+        to tune their models'' outputs. Such models could, in theory, be fed by proprietary
+        bibliographic platforms, such as Clarivate''s Web of Science, Elsevier''s
+        Scopus, and Digital Science''s Dimensions (owned by Springer Nature''s parent
+        company).</p>\n<h2 id=\"%E2%80%98the-world%E2%80%99s-largest-collection%E2%80%99\">''The
+        World''s Largest Collection''</h2>\n<p>One area where a number of big publishers
+        are already jumping in is <a href=\"https://www.nature.com/articles/d41586-023-02470-3\">search-based
+        summary</a>. Elsevier is piloting <a href=\"https://beta.elsevier.com/products/scopus/scopus-ai\">Scopus
+        AI</a>, with an early 2024 launch expected. Researchers type in natural-language
+        questions, and they get a summary spit out, with some suggested follow up
+        questions and references\u2014those open a ScienceDirect view in the sidebar.
+        ScopusAI results also include a \"Concept Map\"\u2014an expandable topic-based
+        tree, presumably powered by the firm''s Fingerprint keywords.</p>\n<p>The
+        tool is combing its Scopus titles and abstracts\u2014from 2018 on\u2014and
+        then feeding the top 10 or so results into an OpenAI GPT model for summarizing.
+        Elsevier isn''t shy about its data-trove advantage: Scopus AI is \"built on
+        the world''s largest collection of trusted peer-reviewed academic literature,\"
+        proclaims a splashy <a href=\"https://www.elsevier.com/products/scopus/scopus-ai\">promotional
+        video</a>.</p>\n<p>Springer Nature and Clarivate are also in on the search-summary
+        game. Dimensions, the Scopus competitor from Springer Nature''s corporate
+        sibling, has a <a href=\"https://www.dimensions.ai/discover-dimensions-ai-assistant/\">Dimensions
+        AI Assistant</a> in trials. Like Scopus AI, the Dimensions tool is retrieving
+        a small number of abstracts based on conversational search, turning to models
+        from OpenAI and Google for the summaries.</p>\n<p>Meanwhile, Clarivate\u2014which
+        owns Web of Science and ProQuest\u2014has <a href=\"https://ir.clarivate.com/news-events/press-releases/news-details/2023/Clarivate-Announces-Partnership-with-AI21-Labs-as-part-of-its-Generative-AI-Strategy-to-Drive-Growth/default.aspx\">struck
+        a deal</a> with <a href=\"https://www.ai21.com\">AI21 Labs</a>, an Israeli
+        LLM startup (tagline: \"When Machines Become Thought Partners\"). Using Clarivate''s
+        \"trusted content as the foundation,\" AI21 promises to use its models to
+        generate \"high-quality, contextual-based answers and services,\" with what
+        it frankly calls \"Clarivate''s troves of content and data.\"</p>\n<p>The
+        big firms will be competing with a stable of VC-backed startups, including
+        <a href=\"https://ought.org/elicit\">Ought</a> (\"Scale up good reasoning\"),
+        <a href=\"https://iris.ai\">iris.ai</a> (\"The Researcher Workspace\"), <a
+        href=\"https://scisummary.com\">SciSummary</a> (\"Use AI to summarize scientific
+        articles in seconds\"), <a href=\"https://www.petal.org\">Petal</a> (\"Chat
+        with your documents\"), <a href=\"https://jenni.ai\">Jenni</a> (\"Supercharge
+        Your Next Research Paper\"), <a href=\"https://www.scholarcy.com\">scholarcy</a>
+        (\"The AI-powered article summarizer\"), <a href=\"https://imagetwin.ai\">Imagetwin</a>
+        (\"Increase the Quality in Science\"), <a href=\"https://keenious.com\">keenious</a>
+        (\"Find research relevant to any document!\"), and <a href=\"https://consensus.app/home/about-us/\">Consensus</a>
+        (\"AI Search Engine for Research\").</p>\n<p>An open question is if the startups
+        can compete with the big publishers; many are using the open access database
+        <a href=\"https://www.semanticscholar.org\">Semantic Scholar</a>, which <a
+        href=\"https://allenai.org/data/s2orc\">excludes the full-text</a> of paywalled
+        articles. They''ve won plenty of venture-capital backing, but\u2014if the
+        wider AI industry is any guide\u2014the startups will face an uphill climb
+        to stay independent. Commercial AI, after all, is dominated by a <a href=\"https://www.technologyreview.com/2023/12/05/1084393/make-no-mistake-ai-is-owned-by-big-tech/\">handful
+        of giant U.S. and Chinese corporations</a>, nearly all <a href=\"https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4543807\">big
+        tech incumbents</a>. The industry has ferocious economies of scale, largely
+        because model-building takes enormous financial and human resources.</p>\n<p>The
+        big publishers may very well find themselves in a similar pole position. The
+        firms'' stores of proprietary full-text papers and other privately held data
+        are a built-in advantage. Their astronomical margins on legacy subscription-and-APC
+        publishing businesses means that they have the capital at hand to invest and
+        acquire. Elsevier''s decade-long acquisition binge was, in that same way,
+        financed by its lucrative earnings. There''s every reason to expect that the
+        company will fund its costly LLM investments from the same surplus; Elsevier''s
+        peers are likely to follow suit. Thus universities and taxpayers are serving,
+        in effect, as a capital fund for AI products that, in turn, will be sold back
+        to us. The independent startups may well be acquired along the way. The giant
+        publishers <em>themselves</em> may be acquisition targets to the even-larger
+        Silicon Valley firms hungry for training data\u2014as Avi Staiman <a href=\"https://scholarlykitchen.sspnet.org/2023/08/08/will-building-llms-become-the-new-revenue-driver-for-academic-publishing/\">recently
+        observed</a> in <em>The Scholarly Kitchen</em>.</p>\n<p>The acquisition binge
+        has already begun. In October Springer Nature <a href=\"https://group.springernature.com/gp/group/media/press-releases/acquisition-slimmer-ai-science-division/26215608\">acquired</a>
+        the Science division of <a href=\"https://www.slimmer.ai\">Slimmer AI</a>,
+        a Dutch \"AI venture studio\" that the publisher has worked with since 2015
+        on peer review and plagiarism-detection tools. Digital Science, meanwhile,
+        <a href=\"https://www.researchinformation.info/news/digital-science-acquires-ai-service-writefull?utm_campaign=RI%20Newsline%2028-11-23&amp;utm_content=https%3A%2F%2Fwww.researchinformation.info%2Fnews%2Fdigital-science-acquires-ai-service-writefull&amp;utm_term=Research%20Information&amp;utm_medium=email&amp;utm_source=Adestra\">just
+        bought</a> <a href=\"https://www.writefull.com\">Writefull</a>, which makes
+        an academic writing assistant (to join corporate sibling Springer Nature''s
+        recently announced <a href=\"https://www.aje.com/curie/\">Curie</a>). Digital
+        Science pitched the acquisition as a small-language model play: \"While the
+        broader focus is currently on LLMs,\" said a company executive in the <a href=\"https://www.researchinformation.info/news/digital-science-acquires-ai-service-writefull?utm_campaign=RI%20Newsline%2028-11-23&amp;utm_content=https%3A%2F%2Fwww.researchinformation.info%2Fnews%2Fdigital-science-acquires-ai-service-writefull&amp;utm_term=Research%20Information&amp;utm_medium=email&amp;utm_source=Adestra\">press
+        release</a>, \"Writefull''s small, specialized models offer more flexibility,
+        at lower cost, with auditable metrics.\" Research Solutions, a Nevada company
+        that sells access to the big commercial publishers'' paywalled content to
+        corporations, <a href=\"https://ai-techpark.com/research-solutions-announces-acquisition-of-scite/\">recently
+        bought</a> <a href=\"https://scite.ai/assistant?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=brand&amp;utm_term=scite&amp;gclid=CjwKCAiAvJarBhA1EiwAGgZl0KEglv3ZDlnC2EAnHNERfv-5URJEcVa54TgCDEUXzn61SYrSVIVrhBoC_h4QAvD_BwE\">scite</a>,
+        a startup whose novel offering\u2014<a href=\"https://direct.mit.edu/qss/article/2/3/882/102990/scite-A-smart-citation-index-that-displays-the\">citations
+        <em>contexts</em></a>\u2014has been repackaged as \"ChatGPT for Science.\"</p>\n<h2
+        id=\"fair-use\">Fair Use?</h2>\n<p>As the <em>Times</em> lawsuit suggests,
+        there''s a big legal question mark hovering over the big publishers'' AI prospects.
+        The key issue, winding its way through the courts, is fair use: Can the likes
+        of OpenAI scrape up copyrighted content into their models, without permission
+        or compensation? The Silicon Valley tech companies think so; they''re <a href=\"https://jacobin.com/2023/11/artificial-intelligence-big-tech-lobbying-copyright-infringement-regulation/\">fresh
+        converts</a> to fair-use maximalism, as revealed by their public comments
+        filed with the US Copyright Office. The companies'' \"overall message,\" reported
+        <em>The Verge</em> in a <a href=\"https://www.theverge.com/2023/11/4/23946353/generative-ai-copyright-training-data-openai-microsoft-google-meta-stabilityai\">round-up</a>,
+        is that they \"don''t think they should have to pay to train AI models on
+        copyrighted work.\" Artists and other content creators have begged to differ,
+        filing a handful of high-profile lawsuits.</p>\n<p>The publishers haven''t
+        filed their own suits yet, but they''re certainly watching the cases carefully.
+        Wiley, for one, <a href=\"https://www.nature.com/articles/d41586-023-03144-w\">told
+        <em>Nature</em></a> that it was \"closely monitoring industry reports and
+        litigation claiming that generative AI models are harvesting protected material
+        for training purposes while disregarding any existing restrictions on that
+        information.\" The firm has called for audits and regulatory oversight of
+        AI models, to address the \"potential for unauthorised use of restricted content
+        as an input for model training.\" Elsevier, for its part, has <a href=\"https://www.timeshighereducation.com/news/publishers-seek-protection-ai-mining-academic-research\">banned</a>
+        the use of \"our content and data\" for training; its sister company LexisNexis,
+        likewise, <a href=\"https://www.optica-opn.org/home/articles/volume_34/october_2023/features/generative_ai_meets_scientific_publishing/\">recently
+        emailed customers</a> to \"remind\" them that feeding content to \"large language
+        models and generative AI\" is forbidden. CCC (n\u00e9e Copyright Clearance
+        Center), in its <a href=\"https://scholarlykitchen.sspnet.org/2023/11/28/the-united-states-copyright-office-notice-of-inquiring-on-ai-a-quick-take/\">own
+        comments to the US Copyright Office</a>, took a predictably muscular stance
+        on the question:</p>\n<blockquote>\n<p>There is certainly enough copyrightable
+        material available under license to build reliable, workable, and trustworthy
+        AI. Just because a developer wants to use \"everything\" does not mean it
+        needs to do so, is entitled to do so, or has the right to do so. Nor should
+        governments and courts twist or modify the law to accommodate them.</p>\n</blockquote>\n<p>The
+        for-profit CCC is the publishing industry''s main licensing and permission
+        enforcer. Big tech and the commercial publishing giants are <a href=\"https://jacobin.com/2023/11/artificial-intelligence-big-tech-lobbying-copyright-infringement-regulation/\">already
+        maneuvering for position</a>. As Joseph Esposito, a keen observer of scholarly
+        publishing, <a href=\"https://scholarlykitchen.sspnet.org/2023/07/12/who-is-going-to-make-money-from-artificial-intelligence-in-scholarly-communications/\">put
+        the point</a>: \"scientific publishers in particular, may have a special,
+        remunerative role to play here.\"</p>\n<p>One near-term consequence may be
+        a shift in the big publishers'' approach to open access. The companies are
+        already updating their licenses and terms to forbid commercial AI training\u2014for
+        anyone but them, of course. The companies could also pull back from OA altogether,
+        to keep a larger share of exclusive content to mine. Esposito made the argument
+        explicit in a recent <em>Scholarly Kitchen</em> <a href=\"https://scholarlykitchen.sspnet.org/2023/07/12/who-is-going-to-make-money-from-artificial-intelligence-in-scholarly-communications/\">post</a>:
+        \"The unfortunate fact of the matter is that the OA movement and the people
+        and organizations that support it have been co-opted by the tech world as
+        it builds content-trained AI.\" Publishers need \"more copyright protection,
+        not less,\" he added. Esposito''s consulting firm, in its latest <a href=\"https://www.ce-strategy.com/the-brief/gemini/\">newsletter</a>,
+        called the liberal <a href=\"https://creativecommons.org/licenses/by/4.0/\">Creative
+        Commons BY</a> license a \"mechanism to transfer value from scientific and
+        scholarly publishers to the world''s wealthiest tech companies.\" Perhaps,
+        though I would preface the point: <em>Commercial scholarly publishing</em>
+        is a mechanism to transfer value from scholars, taxpayers, universities to
+        the world''s most profitable companies.</p>\n<h2 id=\"the-matthew-effect-in-ai\">The
+        Matthew Effect in AI</h2>\n<p>There are a hundred and one reasons to worry
+        about Elsevier mining our scholarship to maximize its profits. I want to linger
+        on what is, arguably, the most important: the potential effects on knowledge
+        itself. At the core of these tools\u2014including a predictable avalanche
+        of as-yet-unannounced products\u2014is a series of verbs: to surface, to rank,
+        to summarize, and to recommend. The object of each verb is <em>us</em>\u2014our
+        scholarship and our behavior. What''s at stake is the kind of knowledge that
+        the models surface, and <em>whose</em> knowledge.</p>\n<p>AI models are poised
+        to serve as <a href=\"https://zenodo.org/records/7222845\">knowledge arbitrators</a>,
+        by picking winners and losers according to what they make visible. There are
+        two big and interlocking problems with this role: The models are trained on
+        the past, and their filtering logic is inscrutable. As a result, they may
+        smuggle in the many biases that mark the history of scholarship, around gender,
+        geography, and other lines of difference. In this context it''s useful to
+        revive an old concept in the sociology of science. According to the Matthew
+        Effect\u2014<a href=\"https://www.science.org/doi/10.1126/science.159.3810.56\">named
+        by Robert Merton</a> decades ago\u2014prominent and well-cited scholars tend
+        to receive still more prominence and citations. The flip side is that less-cited
+        scholars tend to slip into further obscurity over time. (\"For to every one
+        who has will more be given, and he will have abundance; but from him who has
+        not, even what he has will be taken away\"\u2014\u200aMatthew 25:29.) These
+        dynamics of cumulative advantage have, in practice, served to amplify the
+        knowledge system''s patterned inequalities\u2014for example, in the case of
+        gender and twentieth-century scholarship, aptly labeled the <a href=\"https://journals.sagepub.com/doi/abs/10.1177/030631293023002004\">Matilda
+        Effect</a> by Margaret Rossiter.</p>\n<p>The deployment of AI models in science,
+        especially proprietary ones, may produce a Matthew Effect on the scale of
+        Scopus, and with no paper trail. The problem is analogous to the well-documented
+        bias-smuggling with existing generative models; image tools trained on, for
+        example, mostly white and male photos reproduce the skew in their prompt-generated
+        outputs. With our bias-laden scholarship as training data, the academic models
+        may spit out results that, in effect, double-down on inequality. What''s worse
+        is that we won''t really know, due to the models'' black-boxed character.
+        Thus the tools may act as laundering machines\u2014context-erasing abstractions
+        that disguise their probabilistic \"reasoning.\" Existing biases, like male
+        academics'' propensity for self-citation, may win a fresh coat of algorithmic
+        legitimacy. Or consider center-periphery dynamics along North-South and native-English-speaking
+        lines: Gaps traceable to geopolitical history, including the legacy of European
+        colonialism, may be buried still deeper. The models, in short, could serve
+        as privilege multipliers.</p>\n<p>The AI models aren''t going away, but we
+        should demand that\u2014to whatever extent possible\u2014the tools and models
+        are <a href=\"https://hdsr.mitpress.mit.edu/pub/xau9dza3/\">subject to scrutiny
+        and study</a>. This means ruling out propriety products, unless they can be
+        pried open by law or regulation. We should, meanwhile, bring the models in-house,
+        within the academic fold, using mission-aligned collections like the Open
+        University''s <a href=\"https://core.ac.uk/about\">CORE</a> and the Allen
+        Institute''s <a href=\"https://www.semanticscholar.org\">Semantic Scholar</a>.
+        Academy-led efforts to build <a href=\"https://blog.allenai.org/announcing-ai2-olmo-an-open-language-model-made-by-scientists-for-scientists-ab761e4e9b76\">nonprofit</a>
+        <a href=\"https://blog.core.ac.uk/2023/03/17/core-gpt-combining-open-access-research-and-ai-for-credible-trustworthy-question-answering/\">models</a>
+        and <a href=\"https://www.semanticscholar.org/product/semantic-reader\">tools</a>
+        should be transparent, explainable, and auditable.</p>\n<h2 id=\"stop-tracking-scholarship\">Stop
+        Tracking Scholarship</h2>\n<p>These are early days. The legal uncertainty,
+        the vaporware, the breathless annual-report prose: All of it points to aspiration
+        and C-suite prospecting. We''re not yet living in a world of publisher small-language
+        models, trained on our work and behavior.</p>\n<p>Still, I''m convinced that
+        the big five publishers, plus Clarivate, will make every effort to pad their
+        margins with fresh AI revenue. My guess is that they''ll develop and acquire
+        their way to a product portfolio up, down, and around the research-lifecycle,
+        on Elsevier''s existing full-stack model. After all\u2014and depending on
+        what we mean by AI\u2014the commercial publishers have been rolling out AI
+        products for years. Every signal suggests they''ll pick up the pace, with
+        hype-driven pursuit of GPT-style language models in particular. They''ll sell
+        their own products back to us, and\u2014I predict\u2014license our papers
+        out to the big foundation models, court-willing.</p>\n<p>So it''s an urgent
+        task to push back now, and not wait until after the models are trained and
+        deployed. What''s needed is a full-fledged campaign, leveraging activism and
+        legislative pressure, to challenge the commercial publishers'' extractive
+        agenda. One crucial framing step is to treat the impending AI avalanche as
+        continuous with\u2014as an extension of\u2014the publishers'' in-progress
+        mutation into surveillance-capitalist data businesses. The surveillance publisher
+        era was symbolically kicked off in 2015, when Reed-Elsevier adopted its \"shorter,
+        more modern name\" RELX Group to <a href=\"https://www.relx.com/~/media/Files/R/RELX-Group/documents/reports/annual-reports/2015-annual-report.pdf\">mark</a>
+        its \"transformation\" from publisher to \"technology, content and analytics
+        driven business.\" They''ve made good on the promise, skimming scholars''
+        behavioral cream with product-by-product avidity. Clarivate and Elsevier''s
+        peers have followed their lead.</p>\n<p>Thus the turn to AI is more of the
+        same, only more so. The publishers'' cocktail of probability, prediction,
+        and profit is predicated on the same process: extract our scholarship and
+        behavior, then sell it back to us in congealed form. The stakes are higher
+        given that some of the publishers are embedded in data-analytics conglomerates\u2014RELX
+        (Elsevier) and Informa (Taylor &amp; Francis), joined by publisher-adjacent
+        firms like Clarivate and Thomson Reuters. Are the companies cross-pollinating
+        their academic and \"risk solutions\" businesses? RELX''s LexisNexis sold
+        face-tracking and other surveillance tools to the US Customs and Border Protection
+        last year, as <em>The Intercept</em> <a href=\"https://theintercept.com/2023/11/16/lexisnexis-cbp-surveillance-border\">recently
+        reported</a>. As SPARC (the library alliance) put it in its <a href=\"https://zenodo.org/doi/10.5281/zenodo.10078609\">November
+        report</a> on Elsevier''s ScienceDirect platform: \"There is little to nothing
+        to stop vendors who collect and track [library] patron data from feeding that
+        data\u2014either in its raw form or in aggregate\u2014into their data brokering
+        business.\"</p>\n<p>So far the publishers'' data-hoovering hasn''t galvanized
+        scholars to protest. The main reason is that most academics are blithely unaware
+        of the tracking\u2014no surprise, given scholars'' too-busy-to-care ignorance
+        of the publishing system itself. The library community is far more attuned
+        to the unconsented pillage, though librarians\u2014aside from <a href=\"https://sparcopen.org/news/2021/addressing-the-alarming-systems-of-surveillance-built-by-library-vendors/\">SPARC</a>\u2014haven''t
+        organized on the issue. There have been scattered notes of dissent, including
+        a <a href=\"https://stoptrackingscience.eu\">Stop Tracking Science</a> petition,
+        and an <a href=\"https://www.scienceguide.nl/2020/06/open-science-deal-benefits-elsevier/\">outcry</a>
+        from Dutch scholars on a 2020 <a href=\"https://www.elsevier.com/about/press-releases/corporate/dutch-research-institutions-and-elsevier-initiate-worlds-first-national-open-science-partnership\">data-and-publish
+        agreement</a> with Elsevier, largely because the company had baked its prediction
+        products into the deal. In 2022 the German national research foundation, Deutsche
+        Forschungsgemeinschaft (DFG), released its own <a href=\"https://www.dfg.de/resource/blob/174924/d99b797724796bc1a137fe3d6858f326/datentracking-papier-en-data.pdf\">report-cum-warning</a>\u2014\"industrialization
+        of knowledge through tracking,\" in the report''s words. Sharp critiques from,
+        among others <a href=\"https://bjoern.brembs.net/2021/09/algorithmic-employment-decisions-in-academia/\">Bjorn
+        Brembs</a>, <a href=\"https://zenodo.org/records/2656601\">Leslie Chan</a>,
+        <a href=\"https://elephantinthelab.org/when-your-journal-reads-you/\">Renke
+        Siems</a>, <a href=\"https://liberquarterly.eu/article/view/13561\">Lai Ma</a>,
+        and <a href=\"https://www.sup.org/books/title/?id=33205\">Sarah Lamdan</a>
+        have appeared at regular intervals.</p>\n<p>None of this has translated into
+        much, not even awareness among the larger academic public. A coordinated campaign
+        of advocacy and consciousness-raising should be paired with high-quality,
+        in-depth studies of publisher data harvesting\u2014on the example of SPARC''s
+        recent <a href=\"https://sparcopen.org/news/2023/sparc-report-urges-action-to-address-concerns-with-sciencedirect-data-privacy-practices/\">ScienceDirect
+        report</a>. Any effort like this should be built on the premise that another
+        scholarly-publishing world is possible. Our prevailing joint-custody arrangement\u2014for-profit
+        publishers and non-profit universities\u2014is a recent and reversible development.
+        There are lots of good reasons to restore custody to the academy. The latest
+        is to stop our work from fueling the publishers'' AI profits.</p>\n<h2 id=\"acknowledgments\">Acknowledgments</h2>\n<p>A
+        peer-reviewed version of this blog post has been published in <a href=\"https://doi.org/10.18357/kula.291\">KULA</a>.</p>\n<hr
+        class=\"footnotes-sep\">\n<section class=\"footnotes\">\n<ol class=\"footnotes-list\">\n<li
+        id=\"fn1\" class=\"footnote-item\"><p>The term itself is misleading, though
+        now unavoidable. By AI (artificial intelligence), I am mostly referring to
+        the bundle of techniques now routinely grouped under the \"machine learning\"
+        label. There is an irony in this linguistic capture. For decades after its
+        coinage in the mid-1950s, \"artificial intelligence\" was used to designate
+        a rival approach, grounded in rules and symbols. What most everyone now calls
+        AI was, until about 30 years ago, excluded from the club. The story of how
+        neural networks and other ML techniques won admission has not yet found its
+        chronicler. What''s clear is that a steep funding drop-off in the 1980s (the
+        so-called \"AI winter\") made the once-excluded machine-learning rival\u2014its
+        predictive successes on display over subsequent decades\u2014a very attractive
+        aide to winning back the grant money. This essay is based on an invited talk
+        delivered for Colgate University''s <a href=\"https://jfinnell.colgate.domains/horizons/\">Horizons
+        colloquium series</a> in October 2023. <a href=\"#fnref1\" class=\"footnote-backref\">\u21a9\ufe0e</a></p>\n</li>\n</ol>\n</section>","doi":"https://doi.org/10.54900/zg929-e9595","guid":"https://doi.org/10.54900/zg929-e9595","image":"https://upstream.force11.org/content/images/2023/12/pexels-viktor-talashuk-2377295.jpg","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1704153600,"relationships":[{"type":"IsPreviousVersionOf","url":"https://doi.org/10.18357/kula.291"}],"rid":"4jymf-n5m83","summary":"The
+        New York Times ushered in the New Year with a lawsuit against OpenAI and Microsoft.
+        The paper covered the suit, fittingly, as a major business story.","tags":["Thought
+        Pieces"],"title":"Large Language Publishing","updated_at":1773702336,"url":"https://upstream.force11.org/large-language-publishing/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -291,7 +421,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:31 GMT
+      - Mon, 29 Jun 2026 18:14:05 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

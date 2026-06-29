@@ -5,21 +5,19 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a04e85bd5c550bce-AMS
+      - a136e521cc3dd3db-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:21:36 GMT
+      - Mon, 29 Jun 2026 18:11:40 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=wGiJAny1hMRtke2srJGkwznj2zULq28tq1DiwpvLeUcHn9YtFRjN9DCn%2BojUTy%2FGriIPn2EeuM7LY7xS3kFk%2ByKhPYw%2FYMpPNkO2uZoD1lk8TxQw%2B6K9BjDc4gmhTT4aDcBHlQg%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=yqDQ4VSR4rw%2BATvGDOj3hsY6pMd3Hv2p4QnXAGuMHJw0itEfSu%2F0kdxoQhyZn7Kg46otM8b2yERFkqu5p8lfQfGluy2Nut7Eoi3r4GISXtqjTiYMC%2BRzJdnDyC%2B1lBCZHIFALOc%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -56,47 +54,36 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.53731/avg2ykg-gdxppcd
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/9VX227bOBD9FYKvK8q6+I5iC7TZBQpsUaCXl439QEuUzVoiVZJyrBr5952hZMeJ
-        6+ZhL+0GCeDwMnNmeObM+ECt466xdE71lga0EtbytWCurQWs3WlzvroTxkqtYCMOozB62KHzA5XK
-        Ouka5w/cHqjiFZr43WjlyFvunDD0fhnAuVzsRY5Xcu4Eq7lx4P/2NomScZAEyXQJp/yWk94EbrAo
-        Ycn0YzSZp+P5MP4TfOMuoK9qOo8nkyQZD5MojpJhQB9wpuEoCmN6H9BaW3fFaxrEQTJaLuHU2uim
-        Br+uvMAeUCMKYYTKBMt0oxydJ2C2WZXSbmD/4ngpM6Gs8MkAnMZ91/lFyCmLYpaMPkbR3P8+DXk8
-        GY6j4TTCH0CegW+h3Nkb7TSiyEXJWyYVy3kLPqOAfnr/B+xunKvtfDFYDDIjuJM7kemq0sqG2qwX
-        gx68XQxW7WIwDCNYEmteZjoXkM4fE5HLq38rouWDv1xXXCofWv/pFneNtrbiZssMADYy64he8NIK
-        AGs32jiGJuCGMEcK4U2+gvM8g2TRF5+5s/P61w+ZRB6RVanXlmz4Dj4KoQgH+qmcFNoQ7kgpuHUk
-        iUgruLGEw05/FAIT8D+RVQ1uObAOH4DogtjeMobeKJlxhBmSDxpsC+KAqHixJQX4gQIFuCWR1jbC
-        wib4VEKAf7mXav2SvOLGSMg+cZr8ppxpySsAvIY9UpfcAczKersVaAgadmBEWlJrqVzgAYNH4kS2
-        URputuCKKO08botmVmcehPeAsVdQq6QWui5F+GIx6JMGT3/z7g2KTxSO0kkaLwZ8t07a7Zqt831d
-        ZznyqROurtpZ/6QUnw8o8Uz9XyVsHAE5QXi+RdhhPJmNO8Ja3ZgMr75GroBawHFp2Uk2crZqj9IR
-        oaWOIvRGkzvRZR7SAMk/vaLnx0sKyGqwIvd98LN0hOLLGwes8/ry7v3rNzePakCbTOYd87GeGPyl
-        LB7GM5YMo1F/G3KDFAFk/nhPZ5BBKB4suLeQJSiAgBa8kmWLGieU8upmxZcGMcJaIY3FHPOikKXk
-        fQcA0EaXnfx1H46AQaB1xldNyQ2azI7Zul9iGVaiWnk5TSGzo3PZ9aa2Au/AWoxSoCXj1grjfHLx
-        4U96HNAGOpJpMqQmhEY/qa3Sd4p0eb8kk0lm8JwzNi4ms2Q6Y9PsLt54rTv5TP4Ln19OanQhJdpI
-        qD5enq+VUm19Zp6qIJInLLAnscr3pDAXiwFWBmggso05zYBUrGcb82xbDOiDFPbV5MTeLQYbV5X0
-        eqORuJyDVV7XZS88/V1WSQXV7nP5FCWvZWj0uhEAY6OBEh1ne5hXSz2s8ms4QZo8Z38SoHVeXCI9
-        cw0mHp34wXAFsPkZvHjkl6+y/nlA7x8x81uY9/8P7uKAkYNg/E2s2MoEtthrLW+MLe/KoB37QXs6
-        H07nSXoxaI9noxmM2Wnf8jJt4GaMKn1sfwdoVrLy2v4PitI9emtWZ8LXjVxnC36OeXbEP7UTezbG
-        n5J8OPvysPNfHJ5GAPrfPfP3xhADM6rrDcII0NtkuvBKLfPjq4MxfNL8UVNIvvK7mqVuMhliV33U
-        a/Tqs4BR8n7ZpcP/44M/NqFn48ckds41joOQ2L8AwY/tcAUOAAA=
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Front
+        Matter"}],"indexed":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T11:01:19Z","timestamp":1780743679039,"version":"3.54.1"},"posted":{"date-parts":[[2023,1,25]]},"group-title":"Front
+        Matter","reference-count":2,"publisher":"Front Matter","license":[{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T00:00:00Z","timestamp":1674604800000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<jats:p>Science
+        blogs have been around for at least 20 years and have become an important
+        part of science communication. So are there any fundamental issues that need
+        fixing? Barriers to Entry Blogging platforms are mature at this point, and
+        the technology is not imposing barriers to entry for most people.<\/jats:p>","DOI":"10.53731\/avg2ykg-gdxppcd","type":"posted-content","created":{"date-parts":[[2023,1,25]],"date-time":"2023-01-25T10:16:36Z","timestamp":1674641796000},"source":"Crossref","is-referenced-by-count":0,"title":["Do
+        we need to fix science blogs?"],"prefix":"10.59350","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-1419-2405","authenticated-orcid":false,"given":"Martin","family":"Fenner","sequence":"first","affiliation":[],"role":[{"vocabulary":"crossref","role":"author"}]}],"member":"31795","reference":[{"key":"ref1","doi-asserted-by":"publisher","unstructured":"Fenner,
+        M. (2009). Author Identifiers: Interview with Geoffrey Bilder. In <i>Front
+        Matter<\/i> (Version v1). Crossref.","DOI":"10.53731\/r294649-6f79289-8cw1h"},{"key":"ref2","doi-asserted-by":"publisher","unstructured":"Fenner,
+        M. (2007, August 3). Open access may become mandatory for NIH-funded research.
+        <i>Front Matter<\/i>.","DOI":"10.53731\/r294649-6f79289-8cw1q"}],"container-title":[],"original-title":[],"link":[{"URL":"https:\/\/blog.front-matter.de\/posts\/need-to-fix-science-blogs\/","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.md","content-type":"text\/plain","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.pdf","content-type":"application\/pdf","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.epub","content-type":"application\/epub+zip","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.xml","content-type":"application\/xml","content-version":"vor","intended-application":"text-mining"},{"URL":"https:\/\/api.rogue-scholar.org\/posts\/10.53731\/avg2ykg-gdxppcd.md","content-type":"text\/markdown","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2026,6,6]],"date-time":"2026-06-06T10:33:09Z","timestamp":1780741989000},"score":1,"resource":{"primary":{"URL":"https:\/\/blog.front-matter.de\/posts\/need-to-fix-science-blogs\/"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2023,1,25]]},"references-count":2,"version":{"version":"v1"},"URL":"https:\/\/doi.org\/10.53731\/avg2ykg-gdxppcd","relation":{"is-version-of":[{"id-type":"doi","id":"10.53731\/2zawp-3t774","asserted-by":"object"}]},"subject":[],"published":{"date-parts":[[2023,1,25]]},"subtype":"other"}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '1235'
+      - '1334'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:21:37 GMT
+      - Mon, 29 Jun 2026 18:11:40 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

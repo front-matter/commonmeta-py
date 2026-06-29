@@ -5,73 +5,29 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/570c8129-e867-49e6-8517-bd783627e76e
+    uri: https://api.rogue-scholar.org/posts/10.59350/faeph-x4x84
   response:
     body:
-      string: !!binary |
-        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
-        9/XftQNQ0TbapdEf//b/AwAfFmhIgx8AAA==
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04ers2y35","name":"University
+        of Bremen"}],"contributor_roles":[],"family":"Stocker","given":"Markus","url":"https://orcid.org/0000-0001-5492-3212"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
+        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/faeph-x4x84","funding_references":[{"awardNumber":"654039","awardTitle":"Technical
+        and Human Infrastructure for Open Research","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"http://project-thor.eu/?p=664","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1470787200,"rid":"ewn0f-f5a52","summary":"This
+        is the first in a series of posts\u00a0describing how THOR partners have recently
+        integrated ORCID in their disciplinary data repositories. This post describes
+        ORCID integration in PANGAEA, the Data Publisher for Earth &amp; Environmental
+        Science. PANGAEA is rolling out a new version of its website. Developers and
+        designers are currently ironing out a few remaining open issues. The release
+        is expected for autumn 2016.","title":"ORCID Integration Series: PANGAEA","updated_at":1741474768,"url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2016/08/10/orcid-integration-in-pangaea"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -79,77 +35,16 @@ interactions:
       - h3=":443"; ma=2592000
       Content-Encoding:
       - gzip
+      Content-Length:
+      - '1056'
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:35 GMT
+      - Mon, 29 Jun 2026 18:54:39 GMT
       Server:
       - gunicorn
       Vary:
       - Accept-Encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540107'
-      CF-RAY:
-      - a09fbb72bcca7a4c-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:03 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=sbz5bQL6ojpVIn5tdfamHHhFoqu5taCAUiEz3kKr6BA-1781171643.312044-1.0.1.1-JatzmmzHF3VHdbIf.vIa4YVDN8p1m2kLu1Khsf8BcvjVkyrzgmDpw8XmBcBwGDm3ESqPjRRumUlfQXHoMwtA0iSYRuK3m3B4UwSxhBVu1pUcY6s9RX4ONyoMobLP..7R;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:03 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

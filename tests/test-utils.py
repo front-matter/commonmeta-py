@@ -494,7 +494,7 @@ def test_find_from_format_by_id():
     )
     # jsonfeed
     assert "jsonfeed" == find_from_format_by_id(
-        "https://api.rogue-scholar.org/posts/c3095752-2af0-40a4-a229-3ceb7424bce2"
+        "https://api.rogue-scholar.org/posts/10.59350/kz04m-s8z58"
     )  # noqa: E501
     # jsonfeed blog
     assert "jsonfeed" == find_from_format_by_id(
@@ -849,7 +849,7 @@ def test_to_schema_org_identifiers():
     identifiers = [
         {
             "identifier": "10.5061/dryad.8515",
-            "identifierType": "DOI",
+            "identifier_type": "DOI",
         }
     ]
     assert [

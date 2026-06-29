@@ -5,42 +5,39 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/s6am1-1sa79
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/02jz4aj89","name":"Maastricht
+        University"}],"contributor_roles":[],"family":"Willighagen","given":"Egon","url":"https://orcid.org/0000-0001-7542-0286"}],"blog":{"authors":[{"name":"Egon
+        Willighagen"}],"community_id":"7f57028e-9d03-489c-b3b4-3d60de06bc9e","created":1710288000,"current_feed_url":"https://chem-bla-ics.linkedchemistry.info/feed.json","description":"Chemblaics
+        (pronounced chem-bla-ics) is the science that uses open science and computers
+        to solve problems in chemistry, biochemistry and related fields.","favicon":"https://rogue-scholar.org/api/communities/7f57028e-9d03-489c-b3b4-3d60de06bc9e/logo","feed_format":"application/feed+json","feed_url":"https://chem-bla-ics.linkedchemistry.info/archive.json","filter":null,"generator":"Jekyll","home_page_url":"https://chem-bla-ics.linkedchemistry.info","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"chem_bla_ics","status":"active","subfield":"1606","title":"chem-bla-ics","updated":1781481600,"use_api":true},"blog_name":"chem-bla-ics","blog_slug":"chem_bla_ics","content_html":"<p>I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed,\netc, somewhere early 2014. The
+        project is about setting up data needs for the analysis of nanosafety studies.
+        And for this,\nI have the below two position vacancies available now. If you
+        are keen on doing Open Science (CDK, Bioclipse, OpenTox, WikiPathways, \u2026,
+        \u2026),\nworking within the European <a href=\"http://www.nanosafetycluster.eu/\">NanoSafety
+        Cluster</a>, and have an affinity with understanding the\nsystems biology
+        of nanomaterials, then you may be interested in applying.</p>\n<p><strong>PhD
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png\"/></p>\n<p><strong>Postdoc
+        position</strong></p>\n<p><img alt=\"\" src=\"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png\"/></p>","doi":"https://doi.org/10.59350/s6am1-1sa79","funding_references":[{"awardNumber":"604134","awardTitle":"eNanoMapper
+        - A Database and Ontology Framework for Nanomaterials Design and Safety Assessment","awardUri":"https://cordis.europa.eu/project/id/604134","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.59350/s6am1-1sa79","images":[{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac1.png"},{"src":"https://chem-bla-ics.linkedchemistry.info/assets/images/vac2.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1383868800,"rid":"htj6r-vkc34","summary":"I
+        am happy that I got my first research grant awarded (EU FP7), which should
+        start after all the contracts are signed, etc, somewhere early 2014. The project
+        is about setting up data needs for the analysis of nanosafety studies. And
+        for this, I have the below two position vacancies available now.","tags":["Nanosafety","Enanomapper","Opentox","Ontology"],"title":"Looking
+        for a PhD and a Postdoc to work on Open Science Nanosafety","updated_at":1781549574,"url":"https://chem-bla-ics.linkedchemistry.info/2013/11/08/looking-for-phd-and-postdoc-to-work-on.html","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -49,11 +46,11 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '1471'
+      - '1485'
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 15:59:58 GMT
+      - Mon, 29 Jun 2026 18:14:09 GMT
       Server:
       - gunicorn
       Vary:

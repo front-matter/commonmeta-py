@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -14,63 +14,64 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.2737/rds-2018-0001
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"id":"https://openalex.org/W4240386948","doi":"https://doi.org/10.2737/rds-2018-0001","title":"Fledging
+        times of grassland birds","display_name":"Fledging times of grassland birds","publication_year":2017,"publication_date":"2017-08-09","ids":{"openalex":"https://openalex.org/W4240386948","doi":"https://doi.org/10.2737/rds-2018-0001"},"language":"en","primary_location":{"id":"doi:10.2737/rds-2018-0001","is_oa":false,"landing_page_url":"https://doi.org/10.2737/rds-2018-0001","pdf_url":null,"source":{"id":"https://openalex.org/S4363604571","display_name":"Forest
+        Service Research Data Archive","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":null,"host_organization_name":null,"host_organization_lineage":[],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Forest
+        Service Research Data Archive","raw_type":"dataset"},"type":"dataset","indexed_in":["crossref"],"open_access":{"is_oa":false,"oa_status":"closed","oa_url":null,"any_repository_has_fulltext":false},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5078612246","display_name":"Christine
+        A. Ribic","orcid":"https://orcid.org/0000-0003-2583-1778"},"institutions":[{"id":"https://openalex.org/I1286329397","display_name":"United
+        States Geological Survey","ror":"https://ror.org/035a68863","country_code":"US","type":"government","lineage":["https://openalex.org/I1286329397","https://openalex.org/I1335927249"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Christine
+        A. Ribic","raw_affiliation_strings":["U.S. Geological Survey"],"raw_orcid":"https://orcid.org/0000-0003-2583-1778","affiliations":[{"raw_affiliation_string":"U.S.
+        Geological Survey","institution_ids":["https://openalex.org/I1286329397"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5083742572","display_name":"Pamela
+        J. Pietz","orcid":"https://orcid.org/0000-0003-4606-044X"},"institutions":[{"id":"https://openalex.org/I1286329397","display_name":"United
+        States Geological Survey","ror":"https://ror.org/035a68863","country_code":"US","type":"government","lineage":["https://openalex.org/I1286329397","https://openalex.org/I1335927249"]}],"countries":["US"],"is_corresponding":false,"raw_author_name":"Pamela
+        J. Pietz","raw_affiliation_strings":["U.S. Geological Survey"],"raw_orcid":"https://orcid.org/0000-0003-4606-044X","affiliations":[{"raw_affiliation_string":"U.S.
+        Geological Survey","institution_ids":["https://openalex.org/I1286329397"]}]},{"author_position":"middle","author":{"id":"https://openalex.org/A5032802467","display_name":"Nicola
+        Koper","orcid":"https://orcid.org/0000-0003-3576-9525"},"institutions":[{"id":"https://openalex.org/I46247651","display_name":"University
+        of Manitoba","ror":"https://ror.org/02gfys938","country_code":"CA","type":"education","lineage":["https://openalex.org/I46247651"]}],"countries":["CA"],"is_corresponding":false,"raw_author_name":"Nicola
+        Koper","raw_affiliation_strings":["University of Manitoba"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"University
+        of Manitoba","institution_ids":["https://openalex.org/I46247651"]}]},{"author_position":"last","author":{"id":"https://openalex.org/A5080487444","display_name":"Christoph
+        S. Ng","orcid":"https://orcid.org/0000-0002-8463-9746"},"institutions":[{"id":"https://openalex.org/I46247651","display_name":"University
+        of Manitoba","ror":"https://ror.org/02gfys938","country_code":"CA","type":"education","lineage":["https://openalex.org/I46247651"]}],"countries":["CA"],"is_corresponding":false,"raw_author_name":"Christoph
+        S. Ng","raw_affiliation_strings":["University of Manitoba"],"raw_orcid":null,"affiliations":[{"raw_affiliation_string":"University
+        of Manitoba","institution_ids":["https://openalex.org/I46247651"]}]}],"institutions":[],"countries_distinct_count":2,"institutions_distinct_count":4,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":1,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10089","display_name":"Avian
+        ecology and behavior","score":0.9995999932289124,"subfield":{"id":"https://openalex.org/subfields/2303","display_name":"Ecology"},"field":{"id":"https://openalex.org/fields/23","display_name":"Environmental
+        Science"},"domain":{"id":"https://openalex.org/domains/3","display_name":"Physical
+        Sciences"}},"topics":[{"id":"https://openalex.org/T10089","display_name":"Avian
+        ecology and behavior","score":0.9995999932289124,"subfield":{"id":"https://openalex.org/subfields/2303","display_name":"Ecology"},"field":{"id":"https://openalex.org/fields/23","display_name":"Environmental
+        Science"},"domain":{"id":"https://openalex.org/domains/3","display_name":"Physical
+        Sciences"}},{"id":"https://openalex.org/T10199","display_name":"Wildlife Ecology
+        and Conservation","score":0.9986000061035156,"subfield":{"id":"https://openalex.org/subfields/2303","display_name":"Ecology"},"field":{"id":"https://openalex.org/fields/23","display_name":"Environmental
+        Science"},"domain":{"id":"https://openalex.org/domains/3","display_name":"Physical
+        Sciences"}},{"id":"https://openalex.org/T10005","display_name":"Ecology and
+        Vegetation Dynamics Studies","score":0.9983999729156494,"subfield":{"id":"https://openalex.org/subfields/2309","display_name":"Nature
+        and Landscape Conservation"},"field":{"id":"https://openalex.org/fields/23","display_name":"Environmental
+        Science"},"domain":{"id":"https://openalex.org/domains/3","display_name":"Physical
+        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/grassland","display_name":"Grassland","score":0.7320829629898071},{"id":"https://openalex.org/keywords/resource","display_name":"Resource
+        (disambiguation)","score":0.586179792881012},{"id":"https://openalex.org/keywords/geography","display_name":"Geography","score":0.5791098475456238},{"id":"https://openalex.org/keywords/fledge","display_name":"Fledge","score":0.5410692691802979},{"id":"https://openalex.org/keywords/research-data","display_name":"Research
+        data","score":0.505612850189209},{"id":"https://openalex.org/keywords/service","display_name":"Service
+        (business)","score":0.47962793707847595},{"id":"https://openalex.org/keywords/agriculture","display_name":"Agriculture","score":0.4582814574241638},{"id":"https://openalex.org/keywords/range","display_name":"Range
+        (aeronautics)","score":0.44884902238845825},{"id":"https://openalex.org/keywords/forestry","display_name":"Forestry","score":0.40942326188087463},{"id":"https://openalex.org/keywords/environmental-resource-management","display_name":"Environmental
+        resource management","score":0.381271094083786},{"id":"https://openalex.org/keywords/ecology","display_name":"Ecology","score":0.3808736503124237},{"id":"https://openalex.org/keywords/agroforestry","display_name":"Agroforestry","score":0.3255770802497864},{"id":"https://openalex.org/keywords/library-science","display_name":"Library
+        science","score":0.2889902591705322},{"id":"https://openalex.org/keywords/business","display_name":"Business","score":0.2411663830280304},{"id":"https://openalex.org/keywords/computer-science","display_name":"Computer
+        science","score":0.19018614292144775},{"id":"https://openalex.org/keywords/environmental-science","display_name":"Environmental
+        science","score":0.1700538992881775},{"id":"https://openalex.org/keywords/biology","display_name":"Biology","score":0.14989498257637024},{"id":"https://openalex.org/keywords/archaeology","display_name":"Archaeology","score":0.13738125562667847},{"id":"https://openalex.org/keywords/engineering","display_name":"Engineering","score":0.13095369935035706},{"id":"https://openalex.org/keywords/marketing","display_name":"Marketing","score":0.11334371566772461}],"concepts":[{"id":"https://openalex.org/C2775835988","wikidata":"https://www.wikidata.org/wiki/Q1006733","display_name":"Grassland","level":2,"score":0.7320829629898071},{"id":"https://openalex.org/C206345919","wikidata":"https://www.wikidata.org/wiki/Q20380951","display_name":"Resource
+        (disambiguation)","level":2,"score":0.586179792881012},{"id":"https://openalex.org/C205649164","wikidata":"https://www.wikidata.org/wiki/Q1071","display_name":"Geography","level":0,"score":0.5791098475456238},{"id":"https://openalex.org/C76257803","wikidata":"https://www.wikidata.org/wiki/Q2914884","display_name":"Fledge","level":3,"score":0.5410692691802979},{"id":"https://openalex.org/C3020038283","wikidata":"https://www.wikidata.org/wiki/Q42848","display_name":"Research
+        data","level":3,"score":0.505612850189209},{"id":"https://openalex.org/C2780378061","wikidata":"https://www.wikidata.org/wiki/Q25351891","display_name":"Service
+        (business)","level":2,"score":0.47962793707847595},{"id":"https://openalex.org/C118518473","wikidata":"https://www.wikidata.org/wiki/Q11451","display_name":"Agriculture","level":2,"score":0.4582814574241638},{"id":"https://openalex.org/C204323151","wikidata":"https://www.wikidata.org/wiki/Q905424","display_name":"Range
+        (aeronautics)","level":2,"score":0.44884902238845825},{"id":"https://openalex.org/C97137747","wikidata":"https://www.wikidata.org/wiki/Q38112","display_name":"Forestry","level":1,"score":0.40942326188087463},{"id":"https://openalex.org/C107826830","wikidata":"https://www.wikidata.org/wiki/Q929380","display_name":"Environmental
+        resource management","level":1,"score":0.381271094083786},{"id":"https://openalex.org/C18903297","wikidata":"https://www.wikidata.org/wiki/Q7150","display_name":"Ecology","level":1,"score":0.3808736503124237},{"id":"https://openalex.org/C54286561","wikidata":"https://www.wikidata.org/wiki/Q397350","display_name":"Agroforestry","level":1,"score":0.3255770802497864},{"id":"https://openalex.org/C161191863","wikidata":"https://www.wikidata.org/wiki/Q199655","display_name":"Library
+        science","level":1,"score":0.2889902591705322},{"id":"https://openalex.org/C144133560","wikidata":"https://www.wikidata.org/wiki/Q4830453","display_name":"Business","level":0,"score":0.2411663830280304},{"id":"https://openalex.org/C41008148","wikidata":"https://www.wikidata.org/wiki/Q21198","display_name":"Computer
+        science","level":0,"score":0.19018614292144775},{"id":"https://openalex.org/C39432304","wikidata":"https://www.wikidata.org/wiki/Q188847","display_name":"Environmental
+        science","level":0,"score":0.1700538992881775},{"id":"https://openalex.org/C86803240","wikidata":"https://www.wikidata.org/wiki/Q420","display_name":"Biology","level":0,"score":0.14989498257637024},{"id":"https://openalex.org/C166957645","wikidata":"https://www.wikidata.org/wiki/Q23498","display_name":"Archaeology","level":1,"score":0.13738125562667847},{"id":"https://openalex.org/C127413603","wikidata":"https://www.wikidata.org/wiki/Q11023","display_name":"Engineering","level":0,"score":0.13095369935035706},{"id":"https://openalex.org/C162853370","wikidata":"https://www.wikidata.org/wiki/Q39809","display_name":"Marketing","level":1,"score":0.11334371566772461},{"id":"https://openalex.org/C2777855551","wikidata":"https://www.wikidata.org/wiki/Q12310021","display_name":"Subject
+        (documents)","level":2,"score":0.0},{"id":"https://openalex.org/C188382862","wikidata":"https://www.wikidata.org/wiki/Q170430","display_name":"Predation","level":2,"score":0.0},{"id":"https://openalex.org/C146978453","wikidata":"https://www.wikidata.org/wiki/Q3798668","display_name":"Aerospace
+        engineering","level":1,"score":0.0},{"id":"https://openalex.org/C31258907","wikidata":"https://www.wikidata.org/wiki/Q1301371","display_name":"Computer
+        network","level":1,"score":0.0}],"mesh":[],"locations_count":1,"locations":[{"id":"doi:10.2737/rds-2018-0001","is_oa":false,"landing_page_url":"https://doi.org/10.2737/rds-2018-0001","pdf_url":null,"source":{"id":"https://openalex.org/S4363604571","display_name":"Forest
+        Service Research Data Archive","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":null,"host_organization_name":null,"host_organization_lineage":[],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Forest
+        Service Research Data Archive","raw_type":"dataset"}],"best_oa_location":null,"sustainable_development_goals":[{"display_name":"Life
+        in Land","id":"https://metadata.un.org/sdg/15","score":0.5299999713897705}],"awards":[],"funders":[{"id":"https://openalex.org/F4320332478","display_name":"U.S.
+        Forest Service","ror":"https://ror.org/03zmjc935"}],"has_content":{"grobid_xml":false,"pdf":false},"content_urls":null,"referenced_works_count":5,"referenced_works":["https://openalex.org/W1987380253","https://openalex.org/W2151508805","https://openalex.org/W2549402100","https://openalex.org/W2730750411","https://openalex.org/W6948539076"],"related_works":["https://openalex.org/W2037853590","https://openalex.org/W2326918872","https://openalex.org/W2020725509","https://openalex.org/W4237650553","https://openalex.org/W2088763550","https://openalex.org/W2352557187","https://openalex.org/W2117398136","https://openalex.org/W4280573594","https://openalex.org/W1990658113","https://openalex.org/W2109885171"],"abstract_inverted_index":{"This":[0],"archive":[1],"contains":[2],"research":[3,32],"data":[4],"collected":[5],"and/or":[6],"funded":[7],"by":[8],"Forest":[9,37],"Service":[10],"Research":[11],"and":[12,28,38,48],"Development":[13],"(FS":[14],"R&D),":[15],"U.S.":[16],"Department":[17],"of":[18,53],"Agriculture.":[19],"It":[20,41],"is":[21,42],"a":[22,43],"resource":[23],"for":[24],"accessing":[25],"both":[26,46],"short":[27],"long-term":[29],"FS":[30],"R&D":[31],"data,":[33],"which":[34],"includes":[35],"Experimental":[36],"Range":[39],"data.":[40],"way":[44],"to":[45],"preserve":[47],"share":[49],"the":[50],"quality":[51],"science":[52],"our":[54],"researchers.":[55]},"counts_by_year":[{"year":2018,"cited_by_count":1}],"updated_date":"2026-06-11T09:08:48.828518","created_date":"2025-10-10T00:00:00"}
+
+        '
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -81,7 +82,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd7847881055e3-AMS
+      - a136e99c9d0433a0-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -89,13 +90,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:53 GMT
+      - Mon, 29 Jun 2026 18:14:44 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=LmmYhvnPTlN%2Fu1DxsUcT9N%2FhS1SfPTGvAKT685kNvEM%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154553"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=LPIIGJLBRTePFyxEoGsIoZM7XLClLecFhqv4NYJ9uVI%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756884"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=LmmYhvnPTlN%2Fu1DxsUcT9N%2FhS1SfPTGvAKT685kNvEM%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154553"
+      - heroku-nel="https://nel.heroku.com/reports?s=LPIIGJLBRTePFyxEoGsIoZM7XLClLecFhqv4NYJ9uVI%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756884"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -115,11 +116,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '946'
+      - '925'
       X-RateLimit-Remaining-USD:
-      - '0.0946'
+      - '0.0925'
       X-RateLimit-Reset:
-      - '18247'
+      - '20716'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
@@ -134,7 +135,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -143,266 +144,1005 @@ interactions:
     uri: https://api.openalex.org/works?filter=ids.openalex:https://openalex.org/W1987380253%7Chttps://openalex.org/W2151508805%7Chttps://openalex.org/W2549402100%7Chttps://openalex.org/W2730750411%7Chttps://openalex.org/W6948539076
   response:
     body:
-      string: !!binary |
-        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
-        3Vdt77UsMf8QPD98/QftxcNpfE0BAA==
+      string: '{"meta": {"count": 4, "db_response_time_ms": 19, "page": 1, "per_page":
+        25, "groups_count": null, "x_query": {"oql": "works where openalex id is (\n    https://openalex.org/W1987380253\n    or
+        https://openalex.org/W2151508805\n    or https://openalex.org/W2549402100\n    or
+        https://openalex.org/W2730750411\n    or https://openalex.org/W6948539076\n  )",
+        "oqo": {"get_rows": "works", "filter_rows": [{"join": "or", "filters": [{"column_id":
+        "ids.openalex", "value": "https://openalex.org/W1987380253"}, {"column_id":
+        "ids.openalex", "value": "https://openalex.org/W2151508805"}, {"column_id":
+        "ids.openalex", "value": "https://openalex.org/W2549402100"}, {"column_id":
+        "ids.openalex", "value": "https://openalex.org/W2730750411"}, {"column_id":
+        "ids.openalex", "value": "https://openalex.org/W6948539076"}]}]}, "url": "/works?filter=ids.openalex:https:%2F%2Fopenalex.org%2FW1987380253|https:%2F%2Fopenalex.org%2FW2151508805|https:%2F%2Fopenalex.org%2FW2549402100|https:%2F%2Fopenalex.org%2FW2730750411|https:%2F%2Fopenalex.org%2FW6948539076"},
+        "cost_usd": 0.0001}, "results": [{"id": "https://openalex.org/W2151508805",
+        "doi": "https://doi.org/10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2",
+        "title": "EDGE AVOIDANCE BY NESTING GRASSLAND BIRDS: A FUTILE STRATEGY IN
+        A FRAGMENTED LANDSCAPE", "display_name": "EDGE AVOIDANCE BY NESTING GRASSLAND
+        BIRDS: A FUTILE STRATEGY IN A FRAGMENTED LANDSCAPE", "publication_year": 2005,
+        "publication_date": "2005-01-01", "ids": {"openalex": "https://openalex.org/W2151508805",
+        "doi": "https://doi.org/10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2",
+        "mag": "2151508805"}, "language": "en", "primary_location": {"id": "doi:10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S152904045", "display_name":
+        "The Auk", "issn_l": "0004-8038", "issn": ["0004-8038", "1938-4254"], "is_oa":
+        false, "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310311648",
+        "host_organization_name": "Oxford University Press", "host_organization_lineage":
+        ["https://openalex.org/P4310311648", "https://openalex.org/P4310311647"],
+        "host_organization_lineage_names": ["Oxford University Press", "University
+        of Oxford"], "type": "journal"}, "license": null, "license_id": null, "version":
+        "publishedVersion", "is_accepted": true, "is_published": true, "raw_source_name":
+        "The Auk", "raw_type": "journal-article"}, "type": "article", "indexed_in":
+        ["crossref"], "open_access": {"is_oa": false, "oa_status": "closed", "oa_url":
+        null, "any_repository_has_fulltext": false}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5001138213", "display_name":
+        "Rosalind B. Renfrew", "orcid": "https://orcid.org/0000-0002-6073-9937"},
+        "institutions": [{"id": "https://openalex.org/I135310074", "display_name":
+        "University of Wisconsin\u2013Madison", "ror": "https://ror.org/01y2jtd41",
+        "country_code": "US", "type": "education", "lineage": ["https://openalex.org/I135310074"]}],
+        "countries": ["US"], "is_corresponding": true, "raw_author_name": "Rosalind
+        B. Renfrew", "raw_affiliation_strings": ["Department of Wildlife Ecology,
+        University of Wisconsin, Madison, Wisconsin 53706, USA"], "affiliations":
+        [{"raw_affiliation_string": "Department of Wildlife Ecology, University of
+        Wisconsin, Madison, Wisconsin 53706, USA", "institution_ids": ["https://openalex.org/I135310074"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5078612246",
+        "display_name": "Christine A. Ribic", "orcid": "https://orcid.org/0000-0003-2583-1778"},
+        "institutions": [{"id": "https://openalex.org/I135310074", "display_name":
+        "University of Wisconsin\u2013Madison", "ror": "https://ror.org/01y2jtd41",
+        "country_code": "US", "type": "education", "lineage": ["https://openalex.org/I135310074"]},
+        {"id": "https://openalex.org/I1286329397", "display_name": "United States
+        Geological Survey", "ror": "https://ror.org/035a68863", "country_code": "US",
+        "type": "funder", "lineage": ["https://openalex.org/I1286329397", "https://openalex.org/I1335927249"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "Christine
+        A. Ribic", "raw_affiliation_strings": ["U.S. Geological Survey, Wisconsin
+        Cooperative Wildlife Research Unit, Department of Wildlife Ecology, University
+        of Wisconsin, Madison, Wisconsin 53706, USA"], "affiliations": [{"raw_affiliation_string":
+        "U.S. Geological Survey, Wisconsin Cooperative Wildlife Research Unit, Department
+        of Wildlife Ecology, University of Wisconsin, Madison, Wisconsin 53706, USA",
+        "institution_ids": ["https://openalex.org/I1286329397", "https://openalex.org/I135310074"]}]},
+        {"author_position": "last", "author": {"id": "https://openalex.org/A5047420206",
+        "display_name": "Jamie L. Nack", "orcid": null}, "institutions": [{"id": "https://openalex.org/I135310074",
+        "display_name": "University of Wisconsin\u2013Madison", "ror": "https://ror.org/01y2jtd41",
+        "country_code": "US", "type": "education", "lineage": ["https://openalex.org/I135310074"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "Jamie
+        L. Nack", "raw_affiliation_strings": ["Department of Wildlife Ecology, University
+        of Wisconsin, Madison, Wisconsin 53706, USA"], "affiliations": [{"raw_affiliation_string":
+        "Department of Wildlife Ecology, University of Wisconsin, Madison, Wisconsin
+        53706, USA", "institution_ids": ["https://openalex.org/I135310074"]}]}], "institutions":
+        [], "countries_distinct_count": 1, "institutions_distinct_count": 3, "corresponding_author_ids":
+        ["https://openalex.org/A5001138213"], "corresponding_institution_ids": ["https://openalex.org/I135310074"],
+        "apc_list": null, "apc_paid": null, "fwci": 3.9691, "has_fulltext": false,
+        "cited_by_count": 109, "citation_normalized_percentile": {"value": 0.9301911,
+        "is_in_top_1_percent": false, "is_in_top_10_percent": true}, "cited_by_percentile_year":
+        {"min": 89, "max": 99}, "biblio": {"volume": "122", "issue": "2", "first_page":
+        "618", "last_page": "618"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9995999932289124, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, "topics": [{"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9995999932289124, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T11913", "display_name": "Animal
+        Ecology and Behavior Studies", "score": 0.9959999918937683, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T10005", "display_name": "Ecology
+        and Vegetation Dynamics Studies", "score": 0.9904000163078308, "subfield":
+        {"id": "https://openalex.org/subfields/2309", "display_name": "Nature and
+        Landscape Conservation"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/nest",
+        "display_name": "Nest (protein structural motif)", "score": 0.8162264823913574},
+        {"id": "https://openalex.org/keywords/grassland", "display_name": "Grassland",
+        "score": 0.8010871410369873}, {"id": "https://openalex.org/keywords/predation",
+        "display_name": "Predation", "score": 0.7929718494415283}, {"id": "https://openalex.org/keywords/passerine",
+        "display_name": "Passerine", "score": 0.6540862321853638}, {"id": "https://openalex.org/keywords/pasture",
+        "display_name": "Pasture", "score": 0.5809808969497681}, {"id": "https://openalex.org/keywords/ecology",
+        "display_name": "Ecology", "score": 0.5808230042457581}, {"id": "https://openalex.org/keywords/vegetation",
+        "display_name": "Vegetation (pathology)", "score": 0.5281567573547363}, {"id":
+        "https://openalex.org/keywords/biology", "display_name": "Biology", "score":
+        0.4990425109863281}, {"id": "https://openalex.org/keywords/geography", "display_name":
+        "Geography", "score": 0.3280611038208008}], "concepts": [{"id": "https://openalex.org/C152630561",
+        "wikidata": "https://www.wikidata.org/wiki/Q6997750", "display_name": "Nest
+        (protein structural motif)", "level": 2, "score": 0.8162264823913574}, {"id":
+        "https://openalex.org/C2775835988", "wikidata": "https://www.wikidata.org/wiki/Q1006733",
+        "display_name": "Grassland", "level": 2, "score": 0.8010871410369873}, {"id":
+        "https://openalex.org/C188382862", "wikidata": "https://www.wikidata.org/wiki/Q170430",
+        "display_name": "Predation", "level": 2, "score": 0.7929718494415283}, {"id":
+        "https://openalex.org/C2780071441", "wikidata": "https://www.wikidata.org/wiki/Q25341",
+        "display_name": "Passerine", "level": 2, "score": 0.6540862321853638}, {"id":
+        "https://openalex.org/C2778053677", "wikidata": "https://www.wikidata.org/wiki/Q30121",
+        "display_name": "Pasture", "level": 2, "score": 0.5809808969497681}, {"id":
+        "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.5808230042457581}, {"id":
+        "https://openalex.org/C2776133958", "wikidata": "https://www.wikidata.org/wiki/Q7918366",
+        "display_name": "Vegetation (pathology)", "level": 2, "score": 0.5281567573547363},
+        {"id": "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.4990425109863281}, {"id":
+        "https://openalex.org/C205649164", "wikidata": "https://www.wikidata.org/wiki/Q1071",
+        "display_name": "Geography", "level": 0, "score": 0.3280611038208008}, {"id":
+        "https://openalex.org/C142724271", "wikidata": "https://www.wikidata.org/wiki/Q7208",
+        "display_name": "Pathology", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C71924100",
+        "wikidata": "https://www.wikidata.org/wiki/Q11190", "display_name": "Medicine",
+        "level": 0, "score": 0.0}, {"id": "https://openalex.org/C55493867", "wikidata":
+        "https://www.wikidata.org/wiki/Q7094", "display_name": "Biochemistry", "level":
+        1, "score": 0.0}], "mesh": [], "locations_count": 2, "locations": [{"id":
+        "doi:10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2", "is_oa": false, "landing_page_url":
+        "https://doi.org/10.1642/0004-8038(2005)122[0618:eabngb]2.0.co;2", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S152904045", "display_name":
+        "The Auk", "issn_l": "0004-8038", "issn": ["0004-8038", "1938-4254"], "is_oa":
+        false, "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310311648",
+        "host_organization_name": "Oxford University Press", "host_organization_lineage":
+        ["https://openalex.org/P4310311648", "https://openalex.org/P4310311647"],
+        "host_organization_lineage_names": ["Oxford University Press", "University
+        of Oxford"], "type": "journal"}, "license": null, "license_id": null, "version":
+        "publishedVersion", "is_accepted": true, "is_published": true, "raw_source_name":
+        "The Auk", "raw_type": "journal-article"}, {"id": "pmh:10.1642/0004-8038(2005)122[0618:EABNGB]2.0.CO;2",
+        "is_oa": false, "landing_page_url": "http://www.bioone.org/doi/10.1642/0004-8038%282005%29122%5B0618%3AEABNGB%5D2.0.CO%3B2",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306402358", "display_name":
+        "BioOne Complete (BioOne)", "issn_l": null, "issn": null, "is_oa": false,
+        "is_in_doaj": false, "is_core": false, "host_organization": "https://openalex.org/I4210111627",
+        "host_organization_name": "BioOne", "host_organization_lineage": ["https://openalex.org/I4210111627"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": "text"}], "best_oa_location": null,
+        "sustainable_development_goals": [{"display_name": "Life in Land", "score":
+        0.6800000071525574, "id": "https://metadata.un.org/sdg/15"}], "awards": [],
+        "funders": [], "has_content": {"pdf": false, "grobid_xml": false}, "content_urls":
+        null, "referenced_works_count": 58, "referenced_works": ["https://openalex.org/W40254618",
+        "https://openalex.org/W55139997", "https://openalex.org/W62423020", "https://openalex.org/W126620599",
+        "https://openalex.org/W254743607", "https://openalex.org/W1563539621", "https://openalex.org/W1965730174",
+        "https://openalex.org/W1969774237", "https://openalex.org/W1979897420", "https://openalex.org/W1982641657",
+        "https://openalex.org/W2001864397", "https://openalex.org/W2002243680", "https://openalex.org/W2009435671",
+        "https://openalex.org/W2014707782", "https://openalex.org/W2015068764", "https://openalex.org/W2015286736",
+        "https://openalex.org/W2025878595", "https://openalex.org/W2029573189", "https://openalex.org/W2041656676",
+        "https://openalex.org/W2046672503", "https://openalex.org/W2055975098", "https://openalex.org/W2062766245",
+        "https://openalex.org/W2069423567", "https://openalex.org/W2076162621", "https://openalex.org/W2077343001",
+        "https://openalex.org/W2078447483", "https://openalex.org/W2088192119", "https://openalex.org/W2090563195",
+        "https://openalex.org/W2094835075", "https://openalex.org/W2104954066", "https://openalex.org/W2108864185",
+        "https://openalex.org/W2114975481", "https://openalex.org/W2117425143", "https://openalex.org/W2124929295",
+        "https://openalex.org/W2134429357", "https://openalex.org/W2172645964", "https://openalex.org/W2173860816",
+        "https://openalex.org/W2176254987", "https://openalex.org/W2178751969", "https://openalex.org/W2197755973",
+        "https://openalex.org/W2254362509", "https://openalex.org/W2258949391", "https://openalex.org/W2267616266",
+        "https://openalex.org/W2314795542", "https://openalex.org/W2315324528", "https://openalex.org/W2317514788",
+        "https://openalex.org/W2318301548", "https://openalex.org/W2318741280", "https://openalex.org/W2323157127",
+        "https://openalex.org/W2323984204", "https://openalex.org/W2328425223", "https://openalex.org/W2329348119",
+        "https://openalex.org/W2335223157", "https://openalex.org/W3144712972", "https://openalex.org/W4233803403",
+        "https://openalex.org/W4235136314", "https://openalex.org/W4236497918", "https://openalex.org/W4285719527"],
+        "related_works": ["https://openalex.org/W2013388771", "https://openalex.org/W2318337539",
+        "https://openalex.org/W2254261386", "https://openalex.org/W2316339892", "https://openalex.org/W2083789584",
+        "https://openalex.org/W2941924294", "https://openalex.org/W2318917346", "https://openalex.org/W1950363323",
+        "https://openalex.org/W3047052854", "https://openalex.org/W3043663399"], "abstract_inverted_index":
+        {"Abstract": [0], "Some": [1], "grassland": [2, 199, 283], "passerine": [3],
+        "species": [4, 194], "are": [5, 14], "considered": [6], "area-sensitive,":
+        [7], "but": [8, 120], "the": [9, 54, 91, 124, 174, 188, 211, 249, 270], "mechanisms":
+        [10], "underlying": [11], "that": [12, 121, 153, 247], "phenomenon": [13],
+        "not": [15, 123, 186, 238], "understood,": [16], "particularly": [17], "on":
+        [18, 60, 198], "grazed": [19], "grasslands.": [20], "Area": [21], "sensitivity":
+        [22], "may": [23, 37], "result": [24, 125], "from": [25, 113, 144, 182], "edge":
+        [26, 49, 59, 114, 117, 165], "avoidance": [27], "or": [28, 43, 141, 149, 164],
+        "higher": [29, 225], "nest": [30, 61, 96, 109, 177, 191], "predation": [31,
+        64, 255], "near": [32], "edges,": [33, 183, 206, 231], "both": [34, 260],
+        "of": [35, 56, 85, 93, 126, 128, 156, 173, 176, 190, 215, 281, 292], "which":
+        [36, 273], "be": [38], "influenced": [39], "by": [40], "predator": [41], "activity":
+        [42, 92, 236], "cattle-induced": [44], "vegetational": [45], "differences":
+        [46], "between": [47, 108, 137], "pasture": [48, 205, 250, 261], "and": [50,
+        63, 76, 82, 90, 111, 217, 229, 263, 285], "interior.": [51, 251], "We": [52,
+        103], "assessed": [53], "effect": [55], "distance": [57, 112], "to": [58,
+        196], "density": [62, 110, 136], "Savannah": [65], "Sparrows": [66, 70], "(Passerculus":
+        [67], "sandwichensis),": [68], "Grasshopper": [69], "(Ammodramus": [71], "savannarum),":
+        [72], "Bobolinks": [73], "(Dolichonyx": [74], "oryzivorus),": [75], "meadowlarks":
+        [77], "(Sturnella": [78], "spp.)": [79], "along": [80, 98, 204, 226, 243],
+        "wooded": [81, 129, 145, 227], "nonwooded": [83, 147, 230], "edges": [84,
+        100, 228, 244, 264], "Wisconsin": [86], "pastures": [87], "in": [88, 101,
+        135, 248, 259, 265], "1998-2000": [89], "potential": [94], "mammalian": [95],
+        "predators": [97, 274], "those": [99], "2000-2001.": [102], "found": [104,
+        132], "a": [105, 266], "positive": [106], "relationship": [107], "for": [115,
+        254], "all": [116, 168], "types": [118], "combined,": [119], "was": [122,
+        224], "effects": [127], "edges:": [130], "we": [131], "no": [133], "difference":
+        [134], "nests": [138, 180, 201], "located": [139], "&lt;50": [140], "&lt;100":
+        [142], "m": [143], "versus": [146], "(crop": [148], "grassland)": [150], "edges.":
+        [151], "Models": [152], "included": [154], "combinations": [155], "vegetation":
+        [157, 241], "structure": [158], "(e.g.": [159], "concealment),": [160], "initiation":
+        [161], "date,": [162], "year,": [163], "variables": [166], "(or": [167], "four)":
+        [169], "were": [170, 202], "poor": [171], "predictors": [172], "probability":
+        [175], "predation.": [178, 192], "Placing": [179], "away": [181], "therefore,":
+        [184], "did": [185, 237], "reduce": [187], "risk": [189, 256], "Eight": [193],
+        "known": [195], "prey": [197], "bird": [200], "documented": [203], "raccoon":
+        [207, 216], "(Procyon": [208], "lotor)": [209], "being": [210, 257], "most":
+        [212], "common.": [213], "Frequency": [214], "thirteen-lined": [218], "ground":
+        [219], "squirrel": [220], "(Spermophilus": [221], "tridecemlineatus)": [222],
+        "visitation": [223], "respectively.": [232], "Cattle": [233], "(Bos": [234],
+        "taurus)": [235], "differentially": [239], "affect": [240], "height-density":
+        [242], "compared": [245], "with": [246, 272], "Possible": [252], "reasons":
+        [253], "similar": [258], "interiors": [262], "fragmented": [267], "landscape":
+        [268], "include": [269], "ease": [271], "can": [275], "move": [276], "within":
+        [277], "pastures,": [278], "high": [279], "percentage": [280], "resident":
+        [282], "predators,": [284], "small": [286], "size": [287], "(median": [288],
+        "=": [289], "47.2": [290], "ha)": [291], "pastures.": [293]}, "counts_by_year":
+        [{"year": 2024, "cited_by_count": 1}, {"year": 2023, "cited_by_count": 3},
+        {"year": 2022, "cited_by_count": 1}, {"year": 2021, "cited_by_count": 2},
+        {"year": 2020, "cited_by_count": 1}, {"year": 2019, "cited_by_count": 9},
+        {"year": 2018, "cited_by_count": 6}, {"year": 2017, "cited_by_count": 9},
+        {"year": 2016, "cited_by_count": 7}, {"year": 2015, "cited_by_count": 6},
+        {"year": 2014, "cited_by_count": 5}, {"year": 2013, "cited_by_count": 11},
+        {"year": 2012, "cited_by_count": 12}], "updated_date": "2025-11-06T03:46:38.306776",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W1987380253",
+        "doi": "https://doi.org/10.1371/journal.pone.0059151", "title": "Impacts of
+        Tree Rows on Grassland Birds and Potential Nest Predators: A Removal Experiment",
+        "display_name": "Impacts of Tree Rows on Grassland Birds and Potential Nest
+        Predators: A Removal Experiment", "publication_year": 2013, "publication_date":
+        "2013-04-02", "ids": {"openalex": "https://openalex.org/W1987380253", "doi":
+        "https://doi.org/10.1371/journal.pone.0059151", "mag": "1987380253", "pmid":
+        "https://pubmed.ncbi.nlm.nih.gov/23565144"}, "language": "en", "primary_location":
+        {"id": "doi:10.1371/journal.pone.0059151", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.1371/journal.pone.0059151", "pdf_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0059151&type=printable",
+        "source": {"id": "https://openalex.org/S202381698", "display_name": "PLoS
+        ONE", "issn_l": "1932-6203", "issn": ["1932-6203"], "is_oa": true, "is_in_doaj":
+        true, "is_core": true, "host_organization": "https://openalex.org/P4310315706",
+        "host_organization_name": "Public Library of Science", "host_organization_lineage":
+        ["https://openalex.org/P4310315706"], "host_organization_lineage_names": ["Public
+        Library of Science"], "type": "journal"}, "license": "cc-by", "license_id":
+        "https://openalex.org/licenses/cc-by", "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "PLoS ONE", "raw_type": "journal-article"},
+        "type": "article", "indexed_in": ["crossref", "doaj", "pubmed"], "open_access":
+        {"is_oa": true, "oa_status": "gold", "oa_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0059151&type=printable",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5089675901", "display_name":
+        "Kevin Ellison", "orcid": "https://orcid.org/0000-0002-1021-6345"}, "institutions":
+        [{"id": "https://openalex.org/I135310074", "display_name": "University of
+        Wisconsin\u2013Madison", "ror": "https://ror.org/01y2jtd41", "country_code":
+        "US", "type": "education", "lineage": ["https://openalex.org/I135310074"]}],
+        "countries": ["US"], "is_corresponding": true, "raw_author_name": "Kevin S.
+        Ellison", "raw_affiliation_strings": ["Department of Forest and Wildlife Ecology,
+        University of Wisconsin, Madison, Wisconsin, United States of America. kellison@wcs.org",
+        "Department of Forest and Wildlife Ecology, University of Wisconsin, Madison,
+        Wisconsin, United States of America"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "Department of Forest and Wildlife Ecology, University
+        of Wisconsin, Madison, Wisconsin, United States of America. kellison@wcs.org",
+        "institution_ids": ["https://openalex.org/I135310074"]}, {"raw_affiliation_string":
+        "Department of Forest and Wildlife Ecology, University of Wisconsin, Madison,
+        Wisconsin, United States of America", "institution_ids": ["https://openalex.org/I135310074"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5078612246",
+        "display_name": "Christine A. Ribic", "orcid": "https://orcid.org/0000-0003-2583-1778"},
+        "institutions": [{"id": "https://openalex.org/I1286329397", "display_name":
+        "United States Geological Survey", "ror": "https://ror.org/035a68863", "country_code":
+        "US", "type": "funder", "lineage": ["https://openalex.org/I1286329397", "https://openalex.org/I1335927249"]},
+        {"id": "https://openalex.org/I135310074", "display_name": "University of Wisconsin\u2013Madison",
+        "ror": "https://ror.org/01y2jtd41", "country_code": "US", "type": "education",
+        "lineage": ["https://openalex.org/I135310074"]}], "countries": ["US"], "is_corresponding":
+        false, "raw_author_name": "Christine A. Ribic", "raw_affiliation_strings":
+        ["U.S. Geological Survey, Wisconsin Cooperative Wildlife Research Unit, University
+        of Wisconsin, Madison, Wisconsin, United States of America"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "U.S. Geological Survey,
+        Wisconsin Cooperative Wildlife Research Unit, University of Wisconsin, Madison,
+        Wisconsin, United States of America", "institution_ids": ["https://openalex.org/I1286329397",
+        "https://openalex.org/I135310074"]}]}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5065564079", "display_name": "David W. Sample",
+        "orcid": null}, "institutions": [{"id": "https://openalex.org/I2799428307",
+        "display_name": "Wisconsin Department of Natural Resources", "ror": "https://ror.org/03nmkqc55",
+        "country_code": "US", "type": "government", "lineage": ["https://openalex.org/I2799428307"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "David
+        W. Sample", "raw_affiliation_strings": ["Wisconsin Department of Natural Resources,
+        Bureau of Science Services, Madison, Wisconsin, United States of America"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "Wisconsin
+        Department of Natural Resources, Bureau of Science Services, Madison, Wisconsin,
+        United States of America", "institution_ids": ["https://openalex.org/I2799428307"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5028842959",
+        "display_name": "Megan J. Fawcett", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I135310074", "display_name": "University of Wisconsin\u2013Madison",
+        "ror": "https://ror.org/01y2jtd41", "country_code": "US", "type": "education",
+        "lineage": ["https://openalex.org/I135310074"]}], "countries": ["US"], "is_corresponding":
+        false, "raw_author_name": "Megan J. Fawcett", "raw_affiliation_strings": ["Department
+        of Forest and Wildlife Ecology, University of Wisconsin, Madison, Wisconsin,
+        United States of America"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Department of Forest and Wildlife Ecology, University of Wisconsin, Madison,
+        Wisconsin, United States of America", "institution_ids": ["https://openalex.org/I135310074"]}]},
+        {"author_position": "last", "author": {"id": "https://openalex.org/A5088664248",
+        "display_name": "John D. Dadisman", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I2799428307", "display_name": "Wisconsin Department
+        of Natural Resources", "ror": "https://ror.org/03nmkqc55", "country_code":
+        "US", "type": "government", "lineage": ["https://openalex.org/I2799428307"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "John D.
+        Dadisman", "raw_affiliation_strings": ["Wisconsin Department of Natural Resources,
+        Bureau of Science Services, Madison, Wisconsin, United States of America"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "Wisconsin
+        Department of Natural Resources, Bureau of Science Services, Madison, Wisconsin,
+        United States of America", "institution_ids": ["https://openalex.org/I2799428307"]}]}],
+        "institutions": [], "countries_distinct_count": 1, "institutions_distinct_count":
+        5, "corresponding_author_ids": ["https://openalex.org/A5089675901"], "corresponding_institution_ids":
+        ["https://openalex.org/I135310074"], "apc_list": {"value": 1805, "currency":
+        "USD", "value_usd": 1805}, "apc_paid": {"value": 1805, "currency": "USD",
+        "value_usd": 1805}, "fwci": 5.7842, "has_fulltext": true, "cited_by_count":
+        75, "citation_normalized_percentile": {"value": 0.9568196, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": true}, "cited_by_percentile_year": {"min":
+        94, "max": 99}, "biblio": {"volume": "8", "issue": "4", "first_page": "e59151",
+        "last_page": "e59151"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9997000098228455, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, "topics": [{"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9997000098228455, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T11913", "display_name": "Animal
+        Ecology and Behavior Studies", "score": 0.9994000196456909, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T10005", "display_name": "Ecology
+        and Vegetation Dynamics Studies", "score": 0.9980000257492065, "subfield":
+        {"id": "https://openalex.org/subfields/2309", "display_name": "Nature and
+        Landscape Conservation"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/grassland",
+        "display_name": "Grassland", "score": 0.8003014326095581}, {"id": "https://openalex.org/keywords/nest",
+        "display_name": "Nest (protein structural motif)", "score": 0.6533472537994385},
+        {"id": "https://openalex.org/keywords/predation", "display_name": "Predation",
+        "score": 0.6438695788383484}, {"id": "https://openalex.org/keywords/ecology",
+        "display_name": "Ecology", "score": 0.638941764831543}, {"id": "https://openalex.org/keywords/sparrow",
+        "display_name": "Sparrow", "score": 0.5664994120597839}, {"id": "https://openalex.org/keywords/biology",
+        "display_name": "Biology", "score": 0.559775173664093}, {"id": "https://openalex.org/keywords/habitat",
+        "display_name": "Habitat", "score": 0.5305134654045105}, {"id": "https://openalex.org/keywords/woodland",
+        "display_name": "Woodland", "score": 0.5153847932815552}, {"id": "https://openalex.org/keywords/vegetation",
+        "display_name": "Vegetation (pathology)", "score": 0.5037791132926941}], "concepts":
+        [{"id": "https://openalex.org/C2775835988", "wikidata": "https://www.wikidata.org/wiki/Q1006733",
+        "display_name": "Grassland", "level": 2, "score": 0.8003014326095581}, {"id":
+        "https://openalex.org/C152630561", "wikidata": "https://www.wikidata.org/wiki/Q6997750",
+        "display_name": "Nest (protein structural motif)", "level": 2, "score": 0.6533472537994385},
+        {"id": "https://openalex.org/C188382862", "wikidata": "https://www.wikidata.org/wiki/Q170430",
+        "display_name": "Predation", "level": 2, "score": 0.6438695788383484}, {"id":
+        "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.638941764831543}, {"id":
+        "https://openalex.org/C2778825724", "wikidata": "https://www.wikidata.org/wiki/Q243984",
+        "display_name": "Sparrow", "level": 2, "score": 0.5664994120597839}, {"id":
+        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.559775173664093}, {"id":
+        "https://openalex.org/C185933670", "wikidata": "https://www.wikidata.org/wiki/Q52105",
+        "display_name": "Habitat", "level": 2, "score": 0.5305134654045105}, {"id":
+        "https://openalex.org/C203174812", "wikidata": "https://www.wikidata.org/wiki/Q3241565",
+        "display_name": "Woodland", "level": 2, "score": 0.5153847932815552}, {"id":
+        "https://openalex.org/C2776133958", "wikidata": "https://www.wikidata.org/wiki/Q7918366",
+        "display_name": "Vegetation (pathology)", "level": 2, "score": 0.5037791132926941},
+        {"id": "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C142724271",
+        "wikidata": "https://www.wikidata.org/wiki/Q7208", "display_name": "Pathology",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C71924100", "wikidata":
+        "https://www.wikidata.org/wiki/Q11190", "display_name": "Medicine", "level":
+        0, "score": 0.0}], "mesh": [{"descriptor_ui": "D000818", "descriptor_name":
+        "Animals", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D000818", "descriptor_name": "Animals", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D000818", "descriptor_name": "Animals", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D001717", "descriptor_name":
+        "Birds", "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true},
+        {"descriptor_ui": "D001717", "descriptor_name": "Birds", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D001717",
+        "descriptor_name": "Birds", "qualifier_ui": null, "qualifier_name": null,
+        "is_major_topic": true}, {"descriptor_ui": "D005260", "descriptor_name": "Female",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D005260", "descriptor_name": "Female", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D005260", "descriptor_name":
+        "Female", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D006109", "descriptor_name": "Poaceae", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D006109",
+        "descriptor_name": "Poaceae", "qualifier_ui": null, "qualifier_name": null,
+        "is_major_topic": true}, {"descriptor_ui": "D006109", "descriptor_name": "Poaceae",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui":
+        "D008297", "descriptor_name": "Male", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D008297", "descriptor_name":
+        "Male", "qualifier_ui": null, "qualifier_name": null, "is_major_topic": false},
+        {"descriptor_ui": "D008297", "descriptor_name": "Male", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui": "D009425",
+        "descriptor_name": "Nesting Behavior", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": true}, {"descriptor_ui": "D009425", "descriptor_name":
+        "Nesting Behavior", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        true}, {"descriptor_ui": "D009425", "descriptor_name": "Nesting Behavior",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui":
+        "D011156", "descriptor_name": "Population Density", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui": "D011156",
+        "descriptor_name": "Population Density", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D011156", "descriptor_name":
+        "Population Density", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D011235", "descriptor_name": "Predatory Behavior",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui":
+        "D011235", "descriptor_name": "Predatory Behavior", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D011235",
+        "descriptor_name": "Predatory Behavior", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": true}, {"descriptor_ui": "D014197", "descriptor_name":
+        "Trees", "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true},
+        {"descriptor_ui": "D014197", "descriptor_name": "Trees", "qualifier_ui": null,
+        "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D014197",
+        "descriptor_name": "Trees", "qualifier_ui": null, "qualifier_name": null,
+        "is_major_topic": true}, {"descriptor_ui": "D014922", "descriptor_name": "Wisconsin",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": false}, {"descriptor_ui":
+        "D014922", "descriptor_name": "Wisconsin", "qualifier_ui": null, "qualifier_name":
+        null, "is_major_topic": false}, {"descriptor_ui": "D014922", "descriptor_name":
+        "Wisconsin", "qualifier_ui": null, "qualifier_name": null, "is_major_topic":
+        false}, {"descriptor_ui": "D017753", "descriptor_name": "Ecosystem", "qualifier_ui":
+        null, "qualifier_name": null, "is_major_topic": true}, {"descriptor_ui": "D017753",
+        "descriptor_name": "Ecosystem", "qualifier_ui": null, "qualifier_name": null,
+        "is_major_topic": true}, {"descriptor_ui": "D017753", "descriptor_name": "Ecosystem",
+        "qualifier_ui": null, "qualifier_name": null, "is_major_topic": true}], "locations_count":
+        7, "locations": [{"id": "doi:10.1371/journal.pone.0059151", "is_oa": true,
+        "landing_page_url": "https://doi.org/10.1371/journal.pone.0059151", "pdf_url":
+        "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0059151&type=printable",
+        "source": {"id": "https://openalex.org/S202381698", "display_name": "PLoS
+        ONE", "issn_l": "1932-6203", "issn": ["1932-6203"], "is_oa": true, "is_in_doaj":
+        true, "is_core": true, "host_organization": "https://openalex.org/P4310315706",
+        "host_organization_name": "Public Library of Science", "host_organization_lineage":
+        ["https://openalex.org/P4310315706"], "host_organization_lineage_names": ["Public
+        Library of Science"], "type": "journal"}, "license": "cc-by", "license_id":
+        "https://openalex.org/licenses/cc-by", "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "PLoS ONE", "raw_type": "journal-article"},
+        {"id": "pmid:23565144", "is_oa": false, "landing_page_url": "https://pubmed.ncbi.nlm.nih.gov/23565144",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306525036", "display_name":
+        "PubMed", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health", "host_organization_lineage":
+        ["https://openalex.org/I1299303238"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "publishedVersion",
+        "is_accepted": true, "is_published": true, "raw_source_name": "PloS one",
+        "raw_type": null}, {"id": "pmh:oai:CiteSeerX.psu:10.1.1.810.4074", "is_oa":
+        false, "landing_page_url": "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.810.4074",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        "submittedVersion", "is_accepted": false, "is_published": false, "raw_source_name":
+        "ftp://ftp.ncbi.nlm.nih.gov/pub/pmc/51/83/pone.0059151.PMC3614982.pdf", "raw_type":
+        "text"}, {"id": "pmh:oai:doaj.org/article:786860a18647486db078d66138c70029",
+        "is_oa": true, "landing_page_url": "https://doaj.org/article/786860a18647486db078d66138c70029",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306401280", "display_name":
+        "DOAJ (DOAJ: Directory of Open Access Journals)", "issn_l": null, "issn":
+        null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        null, "host_organization_name": null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": "cc-by-sa", "license_id": "https://openalex.org/licenses/cc-by-sa",
+        "version": "submittedVersion", "is_accepted": false, "is_published": false,
+        "raw_source_name": "PLoS ONE, Vol 8, Iss 4, p e59151 (2013)", "raw_type":
+        "article"}, {"id": "pmh:oai:europepmc.org:2617296", "is_oa": true, "landing_page_url":
+        "http://europepmc.org/articles/PMC3614982", "pdf_url": null, "source": {"id":
+        "https://openalex.org/S4306400806", "display_name": "Europe PMC (PubMed Central)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I1303153112", "host_organization_name":
+        "European Bioinformatics Institute", "host_organization_lineage": ["https://openalex.org/I1303153112"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        "Text"}, {"id": "pmh:oai:figshare.com:article/664410", "is_oa": true, "landing_page_url":
+        "https://figshare.com/articles/dataset/_Impacts_of_Tree_Rows_on_Grassland_Birds_and_Potential_Nest_Predators_A_Removal_Experiment_/664410",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4377196282", "display_name":
+        "Figshare", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false,
+        "is_core": false, "host_organization": "https://openalex.org/I4210132348",
+        "host_organization_name": "Figshare (United Kingdom)", "host_organization_lineage":
+        ["https://openalex.org/I4210132348"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "submittedVersion", "is_accepted": false, "is_published": false,
+        "raw_source_name": "", "raw_type": "Dataset"}, {"id": "pmh:oai:pubmedcentral.nih.gov:3614982",
+        "is_oa": true, "landing_page_url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3614982",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S2764455111", "display_name":
+        "PubMed Central", "issn_l": null, "issn": null, "is_oa": true, "is_in_doaj":
+        false, "is_core": false, "host_organization": "https://openalex.org/I1299303238",
+        "host_organization_name": "National Institutes of Health", "host_organization_lineage":
+        ["https://openalex.org/I1299303238"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "public-domain", "license_id": "https://openalex.org/licenses/public-domain",
+        "version": "submittedVersion", "is_accepted": false, "is_published": false,
+        "raw_source_name": "PLoS One", "raw_type": "Text"}], "best_oa_location": {"id":
+        "doi:10.1371/journal.pone.0059151", "is_oa": true, "landing_page_url": "https://doi.org/10.1371/journal.pone.0059151",
+        "pdf_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0059151&type=printable",
+        "source": {"id": "https://openalex.org/S202381698", "display_name": "PLoS
+        ONE", "issn_l": "1932-6203", "issn": ["1932-6203"], "is_oa": true, "is_in_doaj":
+        true, "is_core": true, "host_organization": "https://openalex.org/P4310315706",
+        "host_organization_name": "Public Library of Science", "host_organization_lineage":
+        ["https://openalex.org/P4310315706"], "host_organization_lineage_names": ["Public
+        Library of Science"], "type": "journal"}, "license": "cc-by", "license_id":
+        "https://openalex.org/licenses/cc-by", "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "PLoS ONE", "raw_type": "journal-article"},
+        "sustainable_development_goals": [{"display_name": "Life in Land", "score":
+        0.7699999809265137, "id": "https://metadata.un.org/sdg/15"}], "awards": [{"id":
+        "https://openalex.org/G448734347", "display_name": null, "funder_award_id":
+        "W-160-P", "funder_id": "https://openalex.org/F4320311568", "funder_display_name":
+        "Wisconsin Department of Natural Resources"}, {"id": "https://openalex.org/G6909714095",
+        "display_name": null, "funder_award_id": "W-160-P", "funder_id": "https://openalex.org/F4320332182",
+        "funder_display_name": "U.S. Fish and Wildlife Service"}], "funders": [{"id":
+        "https://openalex.org/F4320306114", "display_name": "U.S. Department of Agriculture",
+        "ror": "https://ror.org/01na82s61"}, {"id": "https://openalex.org/F4320309434",
+        "display_name": "University of Wisconsin-Madison", "ror": "https://ror.org/01y2jtd41"},
+        {"id": "https://openalex.org/F4320311568", "display_name": "Wisconsin Department
+        of Natural Resources", "ror": "https://ror.org/03nmkqc55"}, {"id": "https://openalex.org/F4320315140",
+        "display_name": "Nature Conservancy", "ror": "https://ror.org/0563w1497"},
+        {"id": "https://openalex.org/F4320332182", "display_name": "U.S. Fish and
+        Wildlife Service", "ror": "https://ror.org/04k7dar27"}, {"id": "https://openalex.org/F4320332183",
+        "display_name": "U.S. Geological Survey", "ror": "https://ror.org/035a68863"}],
+        "has_content": {"pdf": true, "grobid_xml": true}, "content_urls": {"pdf":
+        "https://content.openalex.org/works/W1987380253.pdf", "grobid_xml": "https://content.openalex.org/works/W1987380253.grobid-xml"},
+        "referenced_works_count": 79, "referenced_works": ["https://openalex.org/W7526057",
+        "https://openalex.org/W106353426", "https://openalex.org/W140645639", "https://openalex.org/W164763555",
+        "https://openalex.org/W226346949", "https://openalex.org/W941024775", "https://openalex.org/W1486216142",
+        "https://openalex.org/W1494427159", "https://openalex.org/W1497615079", "https://openalex.org/W1520621894",
+        "https://openalex.org/W1563539621", "https://openalex.org/W1588227310", "https://openalex.org/W1604929514",
+        "https://openalex.org/W1908468689", "https://openalex.org/W1969610256", "https://openalex.org/W1978274506",
+        "https://openalex.org/W1997783951", "https://openalex.org/W2001864397", "https://openalex.org/W2002243680",
+        "https://openalex.org/W2009435671", "https://openalex.org/W2014766160", "https://openalex.org/W2015639210",
+        "https://openalex.org/W2027515295", "https://openalex.org/W2028578858", "https://openalex.org/W2032642438",
+        "https://openalex.org/W2046688514", "https://openalex.org/W2048906593", "https://openalex.org/W2051903462",
+        "https://openalex.org/W2065255806", "https://openalex.org/W2071039952", "https://openalex.org/W2074506576",
+        "https://openalex.org/W2082874300", "https://openalex.org/W2083001458", "https://openalex.org/W2086787834",
+        "https://openalex.org/W2089512698", "https://openalex.org/W2090563195", "https://openalex.org/W2091412491",
+        "https://openalex.org/W2094019447", "https://openalex.org/W2102225587", "https://openalex.org/W2111863257",
+        "https://openalex.org/W2111894001", "https://openalex.org/W2117447244", "https://openalex.org/W2122052385",
+        "https://openalex.org/W2130699599", "https://openalex.org/W2134429357", "https://openalex.org/W2145638211",
+        "https://openalex.org/W2147176922", "https://openalex.org/W2147238660", "https://openalex.org/W2151508805",
+        "https://openalex.org/W2153706825", "https://openalex.org/W2155542471", "https://openalex.org/W2155656696",
+        "https://openalex.org/W2160206889", "https://openalex.org/W2169643123", "https://openalex.org/W2172481803",
+        "https://openalex.org/W2172820175", "https://openalex.org/W2175986260", "https://openalex.org/W2176254987",
+        "https://openalex.org/W2176942351", "https://openalex.org/W2179377614", "https://openalex.org/W2180335356",
+        "https://openalex.org/W2180358593", "https://openalex.org/W2180931464", "https://openalex.org/W2251609902",
+        "https://openalex.org/W2290858179", "https://openalex.org/W2314621266", "https://openalex.org/W2315324528",
+        "https://openalex.org/W2321902963", "https://openalex.org/W2323157127", "https://openalex.org/W2487409367",
+        "https://openalex.org/W2500629106", "https://openalex.org/W2577517153", "https://openalex.org/W2582743722",
+        "https://openalex.org/W3090210236", "https://openalex.org/W3204504948", "https://openalex.org/W4237175402",
+        "https://openalex.org/W4245331166", "https://openalex.org/W4299638721", "https://openalex.org/W4302045697"],
+        "related_works": ["https://openalex.org/W2090667432", "https://openalex.org/W4243618332",
+        "https://openalex.org/W2271485399", "https://openalex.org/W2172631637", "https://openalex.org/W4386959565",
+        "https://openalex.org/W2094695244", "https://openalex.org/W2013017998", "https://openalex.org/W2316339892",
+        "https://openalex.org/W2351218430", "https://openalex.org/W2083789584"], "abstract_inverted_index":
+        {"Globally,": [0], "grasslands": [1, 19, 40, 70], "and": [2, 14, 41, 46, 54,
+        66, 75, 91, 104, 113, 132, 135, 189, 228, 236, 253, 280, 283], "the": [3,
+        21, 59, 76, 121, 143, 159, 187, 211, 229, 254, 267], "wildlife": [4], "that":
+        [5, 68], "inhabit": [6], "them": [7], "are": [8], "widely": [9, 17], "imperiled.":
+        [10], "Encroachment": [11], "by": [12, 175, 221, 247], "shrubs": [13, 67],
+        "trees": [15, 65], "has": [16], "impacted": [18], "in": [20, 97, 142, 213,
+        243], "past": [22], "150": [23], "years.": [24], "In": [25], "North": [26],
+        "America,": [27], "most": [28, 78], "grassland": [29, 55, 80, 190, 214, 278,
+        285], "birds": [30, 279], "avoid": [31], "nesting": [32, 136], "near": [33],
+        "woody": [34, 37], "vegetation.": [35], "Because": [36, 240], "vegetation":
+        [38], "fragments": [39], "potential": [42, 72], "nest": [43, 73], "predator":
+        [44, 268], "diversity": [45], "abundance": [47], "is": [48], "often": [49],
+        "greater": [50, 249], "along": [51], "wooded": [52], "edge": [53], "transitions,":
+        [56], "we": [57], "measured": [58], "impacts": [60], "of": [61, 64, 158, 231,
+        241, 251, 257], "removing": [62], "rows": [63, 169], "intersected": [69],
+        "on": [71, 266], "predators": [74, 177, 191], "three": [77], "abundant": [79],
+        "bird": [81, 125], "species": [82, 224], "(Henslow''s": [83], "sparrow": [84],
+        "[Ammodramus": [85], "henslowii],": [86], "Eastern": [87], "meadowlark": [88],
+        "[Sturnella": [89], "magna],": [90], "bobolink": [92, 131], "[Dolichonyx":
+        [93], "oryzivorus])": [94], "at": [95, 120, 186], "sites": [96], "Wisconsin,":
+        [98], "U.S.A.": [99], "We": [100], "monitored": [101], "3": [102, 105, 114,
+        140, 223], "control": [103, 148], "treatment": [106, 122, 160], "sites,":
+        [107], "for": [108, 130, 182, 198, 234, 276], "1": [109], "yr": [110, 115],
+        "prior": [111], "to": [112, 147, 194], "after": [116], "tree": [117, 168,
+        260], "row": [118, 261], "removal": [119, 144, 256], "sites.": [123], "Grassland":
+        [124], "densities": [126, 137], "increased": [127, 138, 192, 245], "(2-4":
+        [128], "times": [129, 196], "Henslow''s": [133, 152, 237], "sparrow)": [134],
+        "(all": [139], "species)": [141], "areas": [145], "compared": [146], "areas.":
+        [149], "After": [150], "removals,": [151], "sparrows": [153, 238], "nested":
+        [154], "within": [155], "\u226450": [156], "m": [157], "area,": [161], "where":
+        [162, 263], "they": [163], "did": [164, 206], "not": [165, 207], "occur":
+        [166], "when": [167], "were": [170, 219], "present.": [171], "Most": [172],
+        "dramatically,": [173], "activity": [174, 197], "woodland-associated": [176,
+        258], "nearly": [178], "ceased": [179], "(nine-fold": [180], "decrease": [181],
+        "raccoon": [183], "[Procyon": [184], "lotor])": [185], "removals": [188],
+        "(up": [193], "27": [195], "thirteen-lined": [199], "ground": [200], "squirrel":
+        [201], "[Ictidomys": [202], "tridecemlineatus]).": [203], "Nest": [204], "success":
+        [205], "increase,": [208], "likely": [209], "reflecting": [210], "increase":
+        [212], "predators.": [215], "However,": [216], "more": [217], "nests": [218,
+        233], "attempted": [220], "all": [222], "(175": [225], "versus": [226], "116)":
+        [227], "number": [230], "successful": [232], "bobolinks": [235], "increased.":
+        [239], "gains": [242], "habitat,": [244], "use": [246], "birds,": [248], "production":
+        [250], "young,": [252], "effective": [255], "predators,": [259], "removal,":
+        [262], "appropriate": [264], "based": [265], "community,": [269], "can": [270],
+        "be": [271], "a": [272], "beneficial": [273], "management": [274], "action":
+        [275], "conserving": [277], "improving": [281], "fragmented": [282], "degraded":
+        [284], "ecosystems.": [286]}, "counts_by_year": [{"year": 2026, "cited_by_count":
+        3}, {"year": 2025, "cited_by_count": 2}, {"year": 2024, "cited_by_count":
+        4}, {"year": 2023, "cited_by_count": 6}, {"year": 2022, "cited_by_count":
+        8}, {"year": 2021, "cited_by_count": 10}, {"year": 2020, "cited_by_count":
+        4}, {"year": 2019, "cited_by_count": 10}, {"year": 2018, "cited_by_count":
+        3}, {"year": 2017, "cited_by_count": 7}, {"year": 2016, "cited_by_count":
+        7}, {"year": 2015, "cited_by_count": 6}, {"year": 2014, "cited_by_count":
+        2}, {"year": 2013, "cited_by_count": 3}], "updated_date": "2026-06-20T22:02:38.213706",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2549402100",
+        "doi": "https://doi.org/10.1016/j.biocon.2016.11.002", "title": "Physical
+        footprint of oil and gas infrastructure, not anthropogenic noise, reduces
+        nesting success of some grassland songbirds", "display_name": "Physical footprint
+        of oil and gas infrastructure, not anthropogenic noise, reduces nesting success
+        of some grassland songbirds", "publication_year": 2016, "publication_date":
+        "2016-11-17", "ids": {"openalex": "https://openalex.org/W2549402100", "doi":
+        "https://doi.org/10.1016/j.biocon.2016.11.002", "mag": "2549402100"}, "language":
+        "en", "primary_location": {"id": "doi:10.1016/j.biocon.2016.11.002", "is_oa":
+        false, "landing_page_url": "https://doi.org/10.1016/j.biocon.2016.11.002",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S80660208", "display_name":
+        "Biological Conservation", "issn_l": "0006-3207", "issn": ["0006-3207", "1873-2917"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320990", "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": ["https://openalex.org/P4310320990"], "host_organization_lineage_names":
+        ["Elsevier BV"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Biological Conservation", "raw_type": "journal-article"},
+        "type": "article", "indexed_in": ["crossref"], "open_access": {"is_oa": false,
+        "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext": false},
+        "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5055754578",
+        "display_name": "Jacy Bernath\u2010Plaisted", "orcid": "https://orcid.org/0000-0003-4645-8132"},
+        "institutions": [{"id": "https://openalex.org/I46247651", "display_name":
+        "University of Manitoba", "ror": "https://ror.org/02gfys938", "country_code":
+        "CA", "type": "education", "lineage": ["https://openalex.org/I46247651"]}],
+        "countries": ["CA"], "is_corresponding": true, "raw_author_name": "Jacy Bernath-Plaisted",
+        "raw_affiliation_strings": ["University of Manitoba, Natural Resources Institute,
+        303-70 Dysart Road, Winnipeg, MB R3T 2M6, Canada"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "University of Manitoba, Natural Resources Institute,
+        303-70 Dysart Road, Winnipeg, MB R3T 2M6, Canada", "institution_ids": ["https://openalex.org/I46247651"]}]},
+        {"author_position": "last", "author": {"id": "https://openalex.org/A5032802467",
+        "display_name": "Nicola Koper", "orcid": "https://orcid.org/0000-0003-3576-9525"},
+        "institutions": [{"id": "https://openalex.org/I46247651", "display_name":
+        "University of Manitoba", "ror": "https://ror.org/02gfys938", "country_code":
+        "CA", "type": "education", "lineage": ["https://openalex.org/I46247651"]}],
+        "countries": ["CA"], "is_corresponding": false, "raw_author_name": "Nicola
+        Koper", "raw_affiliation_strings": ["University of Manitoba, Natural Resources
+        Institute, 303-70 Dysart Road, Winnipeg, MB R3T 2M6, Canada"], "raw_orcid":
+        null, "affiliations": [{"raw_affiliation_string": "University of Manitoba,
+        Natural Resources Institute, 303-70 Dysart Road, Winnipeg, MB R3T 2M6, Canada",
+        "institution_ids": ["https://openalex.org/I46247651"]}]}], "institutions":
+        [], "countries_distinct_count": 1, "institutions_distinct_count": 2, "corresponding_author_ids":
+        ["https://openalex.org/A5055754578"], "corresponding_institution_ids": ["https://openalex.org/I46247651"],
+        "apc_list": {"value": 3570, "currency": "USD", "value_usd": 3570}, "apc_paid":
+        null, "fwci": 6.6951, "has_fulltext": false, "cited_by_count": 58, "citation_normalized_percentile":
+        {"value": 0.96623672, "is_in_top_1_percent": false, "is_in_top_10_percent":
+        true}, "cited_by_percentile_year": {"min": 95, "max": 99}, "biblio": {"volume":
+        "204", "issue": null, "first_page": "434", "last_page": "441"}, "is_retracted":
+        false, "is_paratext": false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T11665",
+        "display_name": "Animal Vocal Communication and Behavior", "score": 0.9987000226974487,
+        "subfield": {"id": "https://openalex.org/subfields/1309", "display_name":
+        "Developmental Biology"}, "field": {"id": "https://openalex.org/fields/13",
+        "display_name": "Biochemistry, Genetics and Molecular Biology"}, "domain":
+        {"id": "https://openalex.org/domains/1", "display_name": "Life Sciences"}},
+        "topics": [{"id": "https://openalex.org/T11665", "display_name": "Animal Vocal
+        Communication and Behavior", "score": 0.9987000226974487, "subfield": {"id":
+        "https://openalex.org/subfields/1309", "display_name": "Developmental Biology"},
+        "field": {"id": "https://openalex.org/fields/13", "display_name": "Biochemistry,
+        Genetics and Molecular Biology"}, "domain": {"id": "https://openalex.org/domains/1",
+        "display_name": "Life Sciences"}}, {"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9973999857902527, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T10659", "display_name": "Marine
+        animal studies overview", "score": 0.9925000071525574, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/sparrow",
+        "display_name": "Sparrow", "score": 0.8489692211151123}, {"id": "https://openalex.org/keywords/grassland",
+        "display_name": "Grassland", "score": 0.631216287612915}, {"id": "https://openalex.org/keywords/environmental-science",
+        "display_name": "Environmental science", "score": 0.5939041972160339}, {"id":
+        "https://openalex.org/keywords/ecology", "display_name": "Ecology", "score":
+        0.5207119584083557}, {"id": "https://openalex.org/keywords/nest", "display_name":
+        "Nest (protein structural motif)", "score": 0.4869609773159027}, {"id": "https://openalex.org/keywords/wildlife",
+        "display_name": "Wildlife", "score": 0.4729834794998169}, {"id": "https://openalex.org/keywords/geography",
+        "display_name": "Geography", "score": 0.3533061742782593}, {"id": "https://openalex.org/keywords/biology",
+        "display_name": "Biology", "score": 0.12025827169418335}], "concepts": [{"id":
+        "https://openalex.org/C2778825724", "wikidata": "https://www.wikidata.org/wiki/Q243984",
+        "display_name": "Sparrow", "level": 2, "score": 0.8489692211151123}, {"id":
+        "https://openalex.org/C2775835988", "wikidata": "https://www.wikidata.org/wiki/Q1006733",
+        "display_name": "Grassland", "level": 2, "score": 0.631216287612915}, {"id":
+        "https://openalex.org/C39432304", "wikidata": "https://www.wikidata.org/wiki/Q188847",
+        "display_name": "Environmental science", "level": 0, "score": 0.5939041972160339},
+        {"id": "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.5207119584083557}, {"id":
+        "https://openalex.org/C152630561", "wikidata": "https://www.wikidata.org/wiki/Q6997750",
+        "display_name": "Nest (protein structural motif)", "level": 2, "score": 0.4869609773159027},
+        {"id": "https://openalex.org/C29376679", "wikidata": "https://www.wikidata.org/wiki/Q241741",
+        "display_name": "Wildlife", "level": 2, "score": 0.4729834794998169}, {"id":
+        "https://openalex.org/C205649164", "wikidata": "https://www.wikidata.org/wiki/Q1071",
+        "display_name": "Geography", "level": 0, "score": 0.3533061742782593}, {"id":
+        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.12025827169418335}, {"id":
+        "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry", "level": 1, "score": 0.0}], "mesh": [], "locations_count":
+        2, "locations": [{"id": "doi:10.1016/j.biocon.2016.11.002", "is_oa": false,
+        "landing_page_url": "https://doi.org/10.1016/j.biocon.2016.11.002", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S80660208", "display_name": "Biological
+        Conservation", "issn_l": "0006-3207", "issn": ["0006-3207", "1873-2917"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320990", "host_organization_name": "Elsevier BV",
+        "host_organization_lineage": ["https://openalex.org/P4310320990"], "host_organization_lineage_names":
+        ["Elsevier BV"], "type": "journal"}, "license": null, "license_id": null,
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Biological Conservation", "raw_type": "journal-article"},
+        {"id": "pmh:oai:mspace.lib.umanitoba.ca:1993/33970", "is_oa": false, "landing_page_url":
+        "http://hdl.handle.net/1993/33970", "pdf_url": null, "source": {"id": "https://openalex.org/S4306400554",
+        "display_name": "Mspace (University of Manitoba)", "issn_l": null, "issn":
+        null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I46247651", "host_organization_name": "University of
+        Manitoba", "host_organization_lineage": ["https://openalex.org/I46247651"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": null, "raw_type": "Article"}], "best_oa_location":
+        null, "sustainable_development_goals": [{"display_name": "Industry, innovation
+        and infrastructure", "score": 0.49000000953674316, "id": "https://metadata.un.org/sdg/9"}],
+        "awards": [{"id": "https://openalex.org/G4463308916", "display_name": null,
+        "funder_award_id": "CRDPJ 432934-12", "funder_id": "https://openalex.org/F4320334593",
+        "funder_display_name": "Natural Sciences and Engineering Research Council
+        of Canada"}], "funders": [{"id": "https://openalex.org/F4320310778", "display_name":
+        "Cenovus Energy", "ror": "https://ror.org/00j81st88"}, {"id": "https://openalex.org/F4320311952",
+        "display_name": "University of Manitoba", "ror": "https://ror.org/02gfys938"},
+        {"id": "https://openalex.org/F4320314105", "display_name": "Government of
+        Alberta", "ror": "https://ror.org/006b2g567"}, {"id": "https://openalex.org/F4320334593",
+        "display_name": "Natural Sciences and Engineering Research Council of Canada",
+        "ror": "https://ror.org/01h531d29"}], "has_content": {"pdf": false, "grobid_xml":
+        false}, "content_urls": null, "referenced_works_count": 88, "referenced_works":
+        ["https://openalex.org/W34701349", "https://openalex.org/W58602854", "https://openalex.org/W111365810",
+        "https://openalex.org/W1218305082", "https://openalex.org/W1542005385", "https://openalex.org/W1563539621",
+        "https://openalex.org/W1900308580", "https://openalex.org/W1964566798", "https://openalex.org/W1968407436",
+        "https://openalex.org/W1968713344", "https://openalex.org/W1970339149", "https://openalex.org/W1970818949",
+        "https://openalex.org/W1973421741", "https://openalex.org/W1973455972", "https://openalex.org/W1974741897",
+        "https://openalex.org/W1985152048", "https://openalex.org/W1993132253", "https://openalex.org/W1999785155",
+        "https://openalex.org/W2001864397", "https://openalex.org/W2002243680", "https://openalex.org/W2008185786",
+        "https://openalex.org/W2012269793", "https://openalex.org/W2017442758", "https://openalex.org/W2025878595",
+        "https://openalex.org/W2028818802", "https://openalex.org/W2029573189", "https://openalex.org/W2038239217",
+        "https://openalex.org/W2042684822", "https://openalex.org/W2043914839", "https://openalex.org/W2053319214",
+        "https://openalex.org/W2055512957", "https://openalex.org/W2056402315", "https://openalex.org/W2076942171",
+        "https://openalex.org/W2077343001", "https://openalex.org/W2098055937", "https://openalex.org/W2098344753",
+        "https://openalex.org/W2103530368", "https://openalex.org/W2105944525", "https://openalex.org/W2108208955",
+        "https://openalex.org/W2108864185", "https://openalex.org/W2109089994", "https://openalex.org/W2111298395",
+        "https://openalex.org/W2118797082", "https://openalex.org/W2121506685", "https://openalex.org/W2122255470",
+        "https://openalex.org/W2128777754", "https://openalex.org/W2128921336", "https://openalex.org/W2130298648",
+        "https://openalex.org/W2132017730", "https://openalex.org/W2133929201", "https://openalex.org/W2133969024",
+        "https://openalex.org/W2134563790", "https://openalex.org/W2142635246", "https://openalex.org/W2145340043",
+        "https://openalex.org/W2146308766", "https://openalex.org/W2147817982", "https://openalex.org/W2153706825",
+        "https://openalex.org/W2159229766", "https://openalex.org/W2172199324", "https://openalex.org/W2173886496",
+        "https://openalex.org/W2174684700", "https://openalex.org/W2176254987", "https://openalex.org/W2176942351",
+        "https://openalex.org/W2181286509", "https://openalex.org/W2276489513", "https://openalex.org/W2312516434",
+        "https://openalex.org/W2327331367", "https://openalex.org/W2330711433", "https://openalex.org/W2333117260",
+        "https://openalex.org/W2335031125", "https://openalex.org/W2406457230", "https://openalex.org/W2582743722",
+        "https://openalex.org/W3084268859", "https://openalex.org/W3118901112", "https://openalex.org/W4235741694",
+        "https://openalex.org/W4237175402", "https://openalex.org/W4299411974", "https://openalex.org/W4301143550",
+        "https://openalex.org/W6602410533", "https://openalex.org/W6604528107", "https://openalex.org/W6628000321",
+        "https://openalex.org/W6632525782", "https://openalex.org/W6675764650", "https://openalex.org/W6679943858",
+        "https://openalex.org/W6680144915", "https://openalex.org/W6682658973", "https://openalex.org/W6702860831",
+        "https://openalex.org/W6845023793"], "related_works": ["https://openalex.org/W4398744184",
+        "https://openalex.org/W2090667432", "https://openalex.org/W4243618332", "https://openalex.org/W4398334694",
+        "https://openalex.org/W4398366034", "https://openalex.org/W4386959565", "https://openalex.org/W2271485399",
+        "https://openalex.org/W4398378462", "https://openalex.org/W4398431573", "https://openalex.org/W4398469731"],
+        "abstract_inverted_index": null, "counts_by_year": [{"year": 2026, "cited_by_count":
+        1}, {"year": 2025, "cited_by_count": 2}, {"year": 2024, "cited_by_count":
+        6}, {"year": 2023, "cited_by_count": 8}, {"year": 2022, "cited_by_count":
+        5}, {"year": 2021, "cited_by_count": 7}, {"year": 2020, "cited_by_count":
+        9}, {"year": 2019, "cited_by_count": 11}, {"year": 2018, "cited_by_count":
+        5}, {"year": 2017, "cited_by_count": 4}], "updated_date": "2026-06-02T09:04:35.204637",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2730750411",
+        "doi": "https://doi.org/10.1674/0003-0031-178.1.47", "title": "Grassland Bird
+        Productivity in Warm Season Grass Fields in Southwest Wisconsin", "display_name":
+        "Grassland Bird Productivity in Warm Season Grass Fields in Southwest Wisconsin",
+        "publication_year": 2017, "publication_date": "2017-06-29", "ids": {"openalex":
+        "https://openalex.org/W2730750411", "doi": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "mag": "2730750411"}, "language": "en", "primary_location": {"id": "doi:10.1674/0003-0031-178.1.47",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S132624429", "display_name":
+        "The American Midland Naturalist", "issn_l": "0003-0031", "issn": ["0003-0031",
+        "1938-4238"], "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310316167", "host_organization_name": "University
+        of Notre Dame", "host_organization_lineage": ["https://openalex.org/P4310316167"],
+        "host_organization_lineage_names": ["University of Notre Dame"], "type": "journal"},
+        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "The American Midland Naturalist",
+        "raw_type": "journal-article"}, "type": "article", "indexed_in": ["crossref"],
+        "open_access": {"is_oa": false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5064224359",
+        "display_name": "Carolyn M. Byers", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I135310074", "display_name": "University of Wisconsin\u2013Madison",
+        "ror": "https://ror.org/01y2jtd41", "country_code": "US", "type": "education",
+        "lineage": ["https://openalex.org/I135310074"]}], "countries": ["US"], "is_corresponding":
+        false, "raw_author_name": "Carolyn M. Byers", "raw_affiliation_strings": ["Wisconsin
+        Cooperative Wildlife Research Unit, Department of Forest and Wildlife Ecology,
+        University of Wisconsin, Madison 53706"], "raw_orcid": null, "affiliations":
+        [{"raw_affiliation_string": "Wisconsin Cooperative Wildlife Research Unit,
+        Department of Forest and Wildlife Ecology, University of Wisconsin, Madison
+        53706", "institution_ids": ["https://openalex.org/I135310074"]}]}, {"author_position":
+        "middle", "author": {"id": "https://openalex.org/A5078612246", "display_name":
+        "Christine A. Ribic", "orcid": "https://orcid.org/0000-0003-2583-1778"}, "institutions":
+        [{"id": "https://openalex.org/I1286329397", "display_name": "United States
+        Geological Survey", "ror": "https://ror.org/035a68863", "country_code": "US",
+        "type": "government", "lineage": ["https://openalex.org/I1286329397", "https://openalex.org/I1335927249"]},
+        {"id": "https://openalex.org/I135310074", "display_name": "University of Wisconsin\u2013Madison",
+        "ror": "https://ror.org/01y2jtd41", "country_code": "US", "type": "education",
+        "lineage": ["https://openalex.org/I135310074"]}], "countries": ["US"], "is_corresponding":
+        false, "raw_author_name": "Christine A. Ribic", "raw_affiliation_strings":
+        ["U.S. Geological Survey, Wisconsin Cooperative Wildlife Research Unit, Department
+        of Forest and Wildlife Ecology, University of Wisconsin, Madison 53706"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "U.S. Geological
+        Survey, Wisconsin Cooperative Wildlife Research Unit, Department of Forest
+        and Wildlife Ecology, University of Wisconsin, Madison 53706", "institution_ids":
+        ["https://openalex.org/I1286329397", "https://openalex.org/I135310074"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5065564079",
+        "display_name": "David W. Sample", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I2799428307", "display_name": "Wisconsin Department
+        of Natural Resources", "ror": "https://ror.org/03nmkqc55", "country_code":
+        "US", "type": "government", "lineage": ["https://openalex.org/I2799428307"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "David
+        W. Sample", "raw_affiliation_strings": ["Wisconsin Department of Natural Resources,
+        Division of Fish, Wildlife, and Parks, Madison 53707"], "raw_orcid": null,
+        "affiliations": [{"raw_affiliation_string": "Wisconsin Department of Natural
+        Resources, Division of Fish, Wildlife, and Parks, Madison 53707", "institution_ids":
+        ["https://openalex.org/I2799428307"]}]}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5088664248", "display_name": "John D. Dadisman",
+        "orcid": null}, "institutions": [{"id": "https://openalex.org/I2799428307",
+        "display_name": "Wisconsin Department of Natural Resources", "ror": "https://ror.org/03nmkqc55",
+        "country_code": "US", "type": "government", "lineage": ["https://openalex.org/I2799428307"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "John D.
+        Dadisman", "raw_affiliation_strings": ["Wisconsin Department of Natural Resources,
+        Science Services, Madison 53716"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Wisconsin Department of Natural Resources, Science Services, Madison 53716",
+        "institution_ids": ["https://openalex.org/I2799428307"]}]}, {"author_position":
+        "last", "author": {"id": "https://openalex.org/A5048583499", "display_name":
+        "Michael R. Guttery", "orcid": null}, "institutions": [{"id": "https://openalex.org/I104411113",
+        "display_name": "Alaska Department of Fish and Game", "ror": "https://ror.org/02rh7vj17",
+        "country_code": "US", "type": "government", "lineage": ["https://openalex.org/I104411113"]}],
+        "countries": ["US"], "is_corresponding": false, "raw_author_name": "Michael
+        R. Guttery", "raw_affiliation_strings": ["Alaska Department of Fish and Game,
+        Palmer 99645"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Alaska Department of Fish and Game, Palmer 99645", "institution_ids": ["https://openalex.org/I104411113"]}]}],
+        "institutions": [], "countries_distinct_count": 1, "institutions_distinct_count":
+        5, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
+        null, "apc_paid": null, "fwci": 1.5632, "has_fulltext": false, "cited_by_count":
+        13, "citation_normalized_percentile": {"value": 0.82981264, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
+        90, "max": 98}, "biblio": {"volume": "178", "issue": "1", "first_page": "47",
+        "last_page": "63"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9998000264167786, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, "topics": [{"id": "https://openalex.org/T10089", "display_name":
+        "Avian ecology and behavior", "score": 0.9998000264167786, "subfield": {"id":
+        "https://openalex.org/subfields/2303", "display_name": "Ecology"}, "field":
+        {"id": "https://openalex.org/fields/23", "display_name": "Environmental Science"},
+        "domain": {"id": "https://openalex.org/domains/3", "display_name": "Physical
+        Sciences"}}, {"id": "https://openalex.org/T10555", "display_name": "Fire effects
+        on ecosystems", "score": 0.9969000220298767, "subfield": {"id": "https://openalex.org/subfields/2306",
+        "display_name": "Global and Planetary Change"}, "field": {"id": "https://openalex.org/fields/23",
+        "display_name": "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T13388",
+        "display_name": "Rangeland and Wildlife Management", "score": 0.9965999722480774,
+        "subfield": {"id": "https://openalex.org/subfields/2303", "display_name":
+        "Ecology"}, "field": {"id": "https://openalex.org/fields/23", "display_name":
+        "Environmental Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/sparrow",
+        "display_name": "Sparrow", "score": 0.9073325991630554}, {"id": "https://openalex.org/keywords/nest",
+        "display_name": "Nest (protein structural motif)", "score": 0.7051777243614197},
+        {"id": "https://openalex.org/keywords/grasshopper", "display_name": "Grasshopper",
+        "score": 0.6692854166030884}, {"id": "https://openalex.org/keywords/ecology",
+        "display_name": "Ecology", "score": 0.6146085858345032}, {"id": "https://openalex.org/keywords/grassland",
+        "display_name": "Grassland", "score": 0.5420300960540771}, {"id": "https://openalex.org/keywords/biology",
+        "display_name": "Biology", "score": 0.4644738435745239}, {"id": "https://openalex.org/keywords/habitat",
+        "display_name": "Habitat", "score": 0.4617958068847656}, {"id": "https://openalex.org/keywords/vegetation",
+        "display_name": "Vegetation (pathology)", "score": 0.42784255743026733}],
+        "concepts": [{"id": "https://openalex.org/C2778825724", "wikidata": "https://www.wikidata.org/wiki/Q243984",
+        "display_name": "Sparrow", "level": 2, "score": 0.9073325991630554}, {"id":
+        "https://openalex.org/C152630561", "wikidata": "https://www.wikidata.org/wiki/Q6997750",
+        "display_name": "Nest (protein structural motif)", "level": 2, "score": 0.7051777243614197},
+        {"id": "https://openalex.org/C2778575915", "wikidata": "https://www.wikidata.org/wiki/Q18398431",
+        "display_name": "Grasshopper", "level": 2, "score": 0.6692854166030884}, {"id":
+        "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.6146085858345032}, {"id":
+        "https://openalex.org/C2775835988", "wikidata": "https://www.wikidata.org/wiki/Q1006733",
+        "display_name": "Grassland", "level": 2, "score": 0.5420300960540771}, {"id":
+        "https://openalex.org/C86803240", "wikidata": "https://www.wikidata.org/wiki/Q420",
+        "display_name": "Biology", "level": 0, "score": 0.4644738435745239}, {"id":
+        "https://openalex.org/C185933670", "wikidata": "https://www.wikidata.org/wiki/Q52105",
+        "display_name": "Habitat", "level": 2, "score": 0.4617958068847656}, {"id":
+        "https://openalex.org/C2776133958", "wikidata": "https://www.wikidata.org/wiki/Q7918366",
+        "display_name": "Vegetation (pathology)", "level": 2, "score": 0.42784255743026733},
+        {"id": "https://openalex.org/C55493867", "wikidata": "https://www.wikidata.org/wiki/Q7094",
+        "display_name": "Biochemistry", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C142724271",
+        "wikidata": "https://www.wikidata.org/wiki/Q7208", "display_name": "Pathology",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C71924100", "wikidata":
+        "https://www.wikidata.org/wiki/Q11190", "display_name": "Medicine", "level":
+        0, "score": 0.0}], "mesh": [], "locations_count": 2, "locations": [{"id":
+        "doi:10.1674/0003-0031-178.1.47", "is_oa": false, "landing_page_url": "https://doi.org/10.1674/0003-0031-178.1.47",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S132624429", "display_name":
+        "The American Midland Naturalist", "issn_l": "0003-0031", "issn": ["0003-0031",
+        "1938-4238"], "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310316167", "host_organization_name": "University
+        of Notre Dame", "host_organization_lineage": ["https://openalex.org/P4310316167"],
+        "host_organization_lineage_names": ["University of Notre Dame"], "type": "journal"},
+        "license": null, "license_id": null, "version": "publishedVersion", "is_accepted":
+        true, "is_published": true, "raw_source_name": "The American Midland Naturalist",
+        "raw_type": "journal-article"}, {"id": "pmh:10.1674/0003-0031-178.1.47", "is_oa":
+        false, "landing_page_url": "http://www.bioone.org/doi/10.1674/0003-0031-178.1.47",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306402358", "display_name":
+        "BioOne Complete (BioOne)", "issn_l": null, "issn": null, "is_oa": false,
+        "is_in_doaj": false, "is_core": false, "host_organization": "https://openalex.org/I4210111627",
+        "host_organization_name": "BioOne", "host_organization_lineage": ["https://openalex.org/I4210111627"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": "text"}], "best_oa_location": null,
+        "sustainable_development_goals": [{"display_name": "Life in Land", "score":
+        0.5400000214576721, "id": "https://metadata.un.org/sdg/15"}], "awards": [],
+        "funders": [], "has_content": {"pdf": false, "grobid_xml": false}, "content_urls":
+        null, "referenced_works_count": 55, "referenced_works": ["https://openalex.org/W106353426",
+        "https://openalex.org/W111365810", "https://openalex.org/W226346949", "https://openalex.org/W254743607",
+        "https://openalex.org/W941024775", "https://openalex.org/W1218305082", "https://openalex.org/W1563539621",
+        "https://openalex.org/W1605224228", "https://openalex.org/W1981893456", "https://openalex.org/W1985029524",
+        "https://openalex.org/W1987380253", "https://openalex.org/W1991308416", "https://openalex.org/W2001864397",
+        "https://openalex.org/W2002243680", "https://openalex.org/W2006189915", "https://openalex.org/W2015639210",
+        "https://openalex.org/W2015761046", "https://openalex.org/W2032642438", "https://openalex.org/W2061220072",
+        "https://openalex.org/W2081621488", "https://openalex.org/W2095213247", "https://openalex.org/W2097712031",
+        "https://openalex.org/W2115761646", "https://openalex.org/W2122052385", "https://openalex.org/W2122745852",
+        "https://openalex.org/W2126505682", "https://openalex.org/W2127400640", "https://openalex.org/W2134038544",
+        "https://openalex.org/W2134429357", "https://openalex.org/W2135683667", "https://openalex.org/W2147176922",
+        "https://openalex.org/W2147629602", "https://openalex.org/W2151508805", "https://openalex.org/W2153706825",
+        "https://openalex.org/W2153789074", "https://openalex.org/W2155492418", "https://openalex.org/W2159177552",
+        "https://openalex.org/W2166893497", "https://openalex.org/W2168967784", "https://openalex.org/W2172472481",
+        "https://openalex.org/W2173202961", "https://openalex.org/W2175986260", "https://openalex.org/W2176254987",
+        "https://openalex.org/W2176942351", "https://openalex.org/W2178132417", "https://openalex.org/W2180358593",
+        "https://openalex.org/W2180910566", "https://openalex.org/W2240994211", "https://openalex.org/W2332719819",
+        "https://openalex.org/W2343451325", "https://openalex.org/W2523469866", "https://openalex.org/W2554540006",
+        "https://openalex.org/W4285719527", "https://openalex.org/W4299411974", "https://openalex.org/W6980951442"],
+        "related_works": ["https://openalex.org/W93244887", "https://openalex.org/W4299557058",
+        "https://openalex.org/W2792304384", "https://openalex.org/W2321435712", "https://openalex.org/W2325692410",
+        "https://openalex.org/W2910538489", "https://openalex.org/W3112403371", "https://openalex.org/W2385855345",
+        "https://openalex.org/W2324451813", "https://openalex.org/W2149424596"], "abstract_inverted_index":
+        {"Surrogate": [0], "grasslands": [1], "established": [2], "through": [3],
+        "federal": [4], "set-aside": [5], "programs,": [6], "such": [7], "as": [8,
+        28], "U.S.": [9], "Department": [10], "of": [11, 38, 60, 111, 287, 297, 312,
+        327], "Agriculture''s": [12], "Conservation": [13], "Reserve": [14], "Program":
+        [15], "(CRP),": [16], "provide": [17], "important": [18], "habitat": [19,
+        39, 323], "for": [20, 34, 41, 217, 224, 232, 241, 314, 320, 324], "grassland":
+        [21, 63, 316], "birds.": [22], "Warm": [23], "season": [24, 92, 128, 301],
+        "grass": [25], "CRP": [26, 93, 302], "fields": [27, 48, 94, 303], "a": [29,
+        36, 310, 325], "group": [30], "have": [31], "the": [32, 47, 57, 109, 114,
+        126, 202, 285, 290], "potential": [33], "providing": [35], "continuum": [37,
+        311], "structure": [40, 313], "breeding": [42, 127, 321], "birds,": [43],
+        "depending": [44], "on": [45, 167, 177, 195, 299], "how": [46], "are": [49],
+        "managed": [50], "and": [51, 77, 87, 144, 147, 176, 187, 239, 272, 322], "their":
+        [52], "floristic": [53], "composition.": [54], "We": [55], "studied": [56],
+        "nesting": [58, 221, 229, 237, 246], "activity": [59], "four": [61], "obligate":
+        [62, 315], "bird": [64], "species,": [65], "Bobolink": [66, 146, 218], "(Dolichonyx":
+        [67], "oryzivorus),": [68], "Eastern": [69, 148, 185, 225], "Meadowlark":
+        [70, 149, 226], "(Sturnella": [71], "magna),": [72], "Grasshopper": [73, 119,
+        161, 233], "Sparrow": [74, 79, 120, 135, 162, 189, 234, 243], "(Ammodramus":
+        [75], "savannarum),": [76], "Henslow''s": [78, 134, 188, 242], "(A.": [80],
+        "henslowii),": [81], "in": [82, 90, 95, 102, 125, 154], "relation": [83],
+        "to": [84, 108, 159, 318], "vegetative": [85, 203], "composition": [86], "fire":
+        [88, 156, 308], "management": [89, 306], "warm": [91, 300], "southwest": [96],
+        "Wisconsin": [97], "during": [98], "2009\u20132011.": [99], "Intraspecific":
+        [100], "variation": [101], "apparent": [103, 133, 145, 190], "nest": [104,
+        121, 136, 150, 163, 191, 213, 250, 328], "density": [105, 122, 137, 164],
+        "was": [106, 116, 123, 138, 165, 201, 206, 215, 281], "related": [107], "number":
+        [110, 286], "years": [112, 157, 288], "since": [113, 289], "field": [115],
+        "burned.": [117, 294], "Apparent": [118], "highest": [124, 139, 166], "immediately":
+        [129], "following": [130], "spring": [131, 210], "burns,": [132], "1": [140],
+        "y": [141], "post": [142, 155], "burn,": [143], "densities": [151, 192], "were":
+        [152, 193, 252], "higher": [153, 194], "one": [158], "three.": [160], "sites":
+        [168, 178, 196], "with": [169, 179, 197], "more": [170], "diverse": [171],
+        "vegetation,": [172], "specifically": [173], "prairie": [174], "forbs,": [175],
+        "shorter": [180], "less": [181], "dense": [182], "vegetation.": [183], "Bobolink,":
+        [184], "Meadowlark,": [186], "deeper": [198], "litter;": [199], "litter":
+        [200], "component": [204], "that": [205], "most": [207], "affected": [208,
+        283], "by": [209, 284, 305], "burns.": [211], "Overall": [212, 278], "success":
+        [214], "0.487": [216], "(22": [219, 235], "d": [220, 228, 236, 245], "period),":
+        [222, 230, 238], "0.478": [223], "(25": [227], "0.507": [231], "0.151": [240],
+        "(21": [244], "period).": [247], "The": [248, 295], "major": [249], "predators":
+        [251], "grassland-associated": [253], "species:": [254], "thirteen-lined":
+        [255], "ground": [256], "squirrel": [257], "(Ictidomys": [258], "tridecemlineatus),":
+        [259], "striped": [260], "skunk": [261], "(Mephitis": [262], "mephitis),":
+        [263], "milk": [264], "snake": [265, 275], "(Lampropeltis": [266], "triangulum),":
+        [267], "American": [268], "badger": [269], "(Taxidea": [270], "taxus),": [271],
+        "western": [273], "fox": [274], "(Elaphe": [276], "vulpina).": [277], "depredation":
+        [279], "rate": [280], "not": [282], "site": [291], "had": [292], "been": [293],
+        "diversity": [296, 326], "vegetation": [298], "created": [304], "using": [307],
+        "provides": [309], "birds": [317], "use": [319], "predators.": [329]}, "counts_by_year":
+        [{"year": 2026, "cited_by_count": 1}, {"year": 2025, "cited_by_count": 1},
+        {"year": 2024, "cited_by_count": 1}, {"year": 2023, "cited_by_count": 3},
+        {"year": 2022, "cited_by_count": 1}, {"year": 2021, "cited_by_count": 2},
+        {"year": 2019, "cited_by_count": 2}, {"year": 2018, "cited_by_count": 2}],
+        "updated_date": "2026-06-20T22:02:38.213706", "created_date": "2025-10-10T00:00:00"}],
+        "group_by": []}'
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -413,7 +1153,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd7849dfc455e3-AMS
+      - a136e99f19baf5cf-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -421,13 +1161,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:54 GMT
+      - Mon, 29 Jun 2026 18:14:44 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=OXaejAnKnwnFxAWITfLmD8F7QvDk3y4AG7oOXru1Gcs%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154554"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=LPIIGJLBRTePFyxEoGsIoZM7XLClLecFhqv4NYJ9uVI%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756884"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=OXaejAnKnwnFxAWITfLmD8F7QvDk3y4AG7oOXru1Gcs%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154554"
+      - heroku-nel="https://nel.heroku.com/reports?s=LPIIGJLBRTePFyxEoGsIoZM7XLClLecFhqv4NYJ9uVI%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756884"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -447,11 +1187,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '945'
+      - '924'
       X-RateLimit-Remaining-USD:
-      - '0.0945'
+      - '0.0924'
       X-RateLimit-Reset:
-      - '18246'
+      - '20716'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,

@@ -5,71 +5,58 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.openalex.org/works/https://doi.org/10.1371/journal.pmed.0030277.g001
   response:
     body:
-      string: !!binary |
-        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
-        Yv9GN3/4N+SciAk1MQAA
+      string: '{"id":"https://openalex.org/W6885490810","doi":"https://doi.org/10.1371/journal.pmed.0030277.g001","title":"Stimulation
+        of IL-32 by Mycobacteria","display_name":"Stimulation of IL-32 by Mycobacteria","publication_year":2015,"publication_date":"2015-12-02","ids":{"openalex":"https://openalex.org/W6885490810","doi":"https://doi.org/10.1371/journal.pmed.0030277.g001"},"language":"en","primary_location":{"id":"pmh:oai:figshare.com:article/628124","is_oa":true,"landing_page_url":"https://figshare.com/articles/figure/_Stimulation_of_IL_32_by_Mycobacteria_/628124","pdf_url":null,"source":{"id":"https://openalex.org/S4377196282","display_name":"Figshare","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I4210132348","host_organization_name":"Figshare
+        (United Kingdom)","host_organization_lineage":["https://openalex.org/I4210132348"],"host_organization_lineage_names":[],"type":"repository"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"","raw_type":"Image"},"type":"other","indexed_in":[],"open_access":{"is_oa":true,"oa_status":"green","oa_url":"https://figshare.com/articles/figure/_Stimulation_of_IL_32_by_Mycobacteria_/628124","any_repository_has_fulltext":true},"authorships":[{"author_position":"first","author":{"id":null,"display_name":"Mihai
+        G Netea (15649)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Mihai
+        G Netea (15649)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Tania
+        Azam (64531)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Tania
+        Azam (64531)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Eli
+        C Lewis (64532)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Eli
+        C Lewis (64532)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Leo
+        A. B Joosten (64533)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Leo
+        A. B Joosten (64533)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Maorong
+        Wang (64534)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Maorong
+        Wang (64534)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Dennis
+        Langenberg (64535)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Dennis
+        Langenberg (64535)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Xianzhong
+        Meng (64536)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Xianzhong
+        Meng (64536)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Edward
+        D Chan (64537)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Edward
+        D Chan (64537)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Do-Young
+        Yoon (64538)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Do-Young
+        Yoon (64538)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Tom
+        Ottenhoff (64539)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Tom
+        Ottenhoff (64539)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"middle","author":{"id":null,"display_name":"Soo-Hyun
+        Kim (10655)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Soo-Hyun
+        Kim (10655)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]},{"author_position":"last","author":{"id":null,"display_name":"Charles
+        A Dinarello (64540)","orcid":null},"institutions":[],"countries":[],"is_corresponding":false,"raw_author_name":"Charles
+        A Dinarello (64540)","raw_affiliation_strings":[],"raw_orcid":null,"affiliations":[]}],"institutions":[],"countries_distinct_count":0,"institutions_distinct_count":12,"corresponding_author_ids":[],"corresponding_institution_ids":[],"apc_list":null,"apc_paid":null,"fwci":null,"has_fulltext":false,"cited_by_count":0,"citation_normalized_percentile":null,"cited_by_percentile_year":null,"biblio":{"volume":null,"issue":null,"first_page":null,"last_page":null},"is_retracted":false,"is_paratext":false,"is_xpac":true,"primary_topic":null,"topics":[],"keywords":[{"id":"https://openalex.org/keywords/stimulation","display_name":"Stimulation","score":0.7700999975204468},{"id":"https://openalex.org/keywords/mycobacterium-bovis","display_name":"Mycobacterium
+        bovis","score":0.692300021648407},{"id":"https://openalex.org/keywords/peripheral-blood-mononuclear-cell","display_name":"Peripheral
+        blood mononuclear cell","score":0.6764000058174133},{"id":"https://openalex.org/keywords/sonication","display_name":"Sonication","score":0.6018000245094299},{"id":"https://openalex.org/keywords/tuberculosis","display_name":"Tuberculosis","score":0.5867999792098999},{"id":"https://openalex.org/keywords/tlr2","display_name":"TLR2","score":0.5360999703407288},{"id":"https://openalex.org/keywords/tlr4","display_name":"TLR4","score":0.4697999954223633}],"concepts":[{"id":"https://openalex.org/C24998067","wikidata":"https://www.wikidata.org/wiki/Q4114622","display_name":"Stimulation","level":2,"score":0.7700999975204468},{"id":"https://openalex.org/C2778497218","wikidata":"https://www.wikidata.org/wiki/Q133447","display_name":"Mycobacterium
+        bovis","level":4,"score":0.692300021648407},{"id":"https://openalex.org/C137061746","wikidata":"https://www.wikidata.org/wiki/Q736033","display_name":"Peripheral
+        blood mononuclear cell","level":3,"score":0.6764000058174133},{"id":"https://openalex.org/C104628117","wikidata":"https://www.wikidata.org/wiki/Q3964828","display_name":"Sonication","level":2,"score":0.6018000245094299},{"id":"https://openalex.org/C2781069245","wikidata":"https://www.wikidata.org/wiki/Q12204","display_name":"Tuberculosis","level":2,"score":0.5867999792098999},{"id":"https://openalex.org/C89423630","wikidata":"https://www.wikidata.org/wiki/Q7193","display_name":"Microbiology","level":1,"score":0.5730000138282776},{"id":"https://openalex.org/C185592680","wikidata":"https://www.wikidata.org/wiki/Q2329","display_name":"Chemistry","level":0,"score":0.5361999869346619},{"id":"https://openalex.org/C2781236682","wikidata":"https://www.wikidata.org/wiki/Q410015","display_name":"TLR2","level":4,"score":0.5360999703407288},{"id":"https://openalex.org/C2776070231","wikidata":"https://www.wikidata.org/wiki/Q14914098","display_name":"TLR4","level":3,"score":0.4697999954223633},{"id":"https://openalex.org/C2777975735","wikidata":"https://www.wikidata.org/wiki/Q130971","display_name":"Mycobacterium
+        tuberculosis","level":3,"score":0.40720000863075256},{"id":"https://openalex.org/C203014093","wikidata":"https://www.wikidata.org/wiki/Q101929","display_name":"Immunology","level":1,"score":0.3797999918460846},{"id":"https://openalex.org/C2778420691","wikidata":"https://www.wikidata.org/wiki/Q14866230","display_name":"TLR3","level":5,"score":0.3752000033855438},{"id":"https://openalex.org/C2778815084","wikidata":"https://www.wikidata.org/wiki/Q79803","display_name":"Guinea
+        pig","level":2,"score":0.3384999930858612},{"id":"https://openalex.org/C153911025","wikidata":"https://www.wikidata.org/wiki/Q7202","display_name":"Molecular
+        biology","level":1,"score":0.3353999853134155},{"id":"https://openalex.org/C3017910909","wikidata":"https://www.wikidata.org/wiki/Q618363","display_name":"Peripheral
+        blood","level":2,"score":0.32030001282691956},{"id":"https://openalex.org/C1621761","wikidata":"https://www.wikidata.org/wiki/Q7997549","display_name":"Whole
+        blood","level":2,"score":0.29789999127388},{"id":"https://openalex.org/C71924100","wikidata":"https://www.wikidata.org/wiki/Q11190","display_name":"Medicine","level":0,"score":0.29490000009536743},{"id":"https://openalex.org/C86803240","wikidata":"https://www.wikidata.org/wiki/Q420","display_name":"Biology","level":0,"score":0.289900004863739},{"id":"https://openalex.org/C523546767","wikidata":"https://www.wikidata.org/wiki/Q10876","display_name":"Bacteria","level":2,"score":0.2800999879837036},{"id":"https://openalex.org/C176685330","wikidata":"https://www.wikidata.org/wiki/Q857638","display_name":"Radioimmunoassay","level":2,"score":0.2621999979019165},{"id":"https://openalex.org/C2780374374","wikidata":"https://www.wikidata.org/wiki/Q194309","display_name":"Mycobacterium","level":3,"score":0.25679999589920044}],"mesh":[],"locations_count":1,"locations":[{"id":"pmh:oai:figshare.com:article/628124","is_oa":true,"landing_page_url":"https://figshare.com/articles/figure/_Stimulation_of_IL_32_by_Mycobacteria_/628124","pdf_url":null,"source":{"id":"https://openalex.org/S4377196282","display_name":"Figshare","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I4210132348","host_organization_name":"Figshare
+        (United Kingdom)","host_organization_lineage":["https://openalex.org/I4210132348"],"host_organization_lineage_names":[],"type":"repository"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"","raw_type":"Image"}],"best_oa_location":{"id":"pmh:oai:figshare.com:article/628124","is_oa":true,"landing_page_url":"https://figshare.com/articles/figure/_Stimulation_of_IL_32_by_Mycobacteria_/628124","pdf_url":null,"source":{"id":"https://openalex.org/S4377196282","display_name":"Figshare","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I4210132348","host_organization_name":"Figshare
+        (United Kingdom)","host_organization_lineage":["https://openalex.org/I4210132348"],"host_organization_lineage_names":[],"type":"repository"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"","raw_type":"Image"},"sustainable_development_goals":[],"awards":[],"funders":[],"has_content":{"grobid_xml":false,"pdf":false},"content_urls":null,"referenced_works_count":0,"referenced_works":[],"related_works":[],"abstract_inverted_index":{"&lt;div&gt;&lt;p&gt;(A)":[0],"Whole":[1],"blood":[2],"was":[3,25,33,115],"diluted":[4],"1:4":[5],"with":[6,10,43,67],"RPMI":[7],"and":[8,30,60,104],"stimulated":[9,52,66],"10":[11,74],"\u03bcg/ml":[12],"sonicated":[13,49],"M.":[14,18,50,81,83,105],"tuberculosis":[15,51],"(MTB)":[16],"or":[17,48,86,112],"bovis":[19,84,106],"BCG":[20],"(BCG).":[21],"Triton":[22],"X-100":[23],"(0.5%)":[24],"added":[26],"24":[27,97],"h":[28,98],"later,":[29],"IL-32":[31,53,110],"concentration":[32],"measured":[34,116],"by":[35,117],"ECL.&lt;/p&gt;\\n":[36,118],"&lt;p&gt;(B)":[37],"Stimulation":[38],"of":[39,46,99,109],"freshly":[40],"isolated":[41,63],"PBMCs":[42,64],"various":[44],"concentrations":[45],"LPS":[47],"synthesis":[54],"in":[55],"a":[56],"dose-dependent":[57],"manner.&lt;/p&gt;\\n":[58],"&lt;p&gt;(C":[59],"D)":[61],"Freshly":[62],"were":[65],"TLR4":[68],"(LPS,":[69],"100":[70],"ng/ml),":[71],"TLR2":[72],"(Pam3Cys,":[73],"\u03bcg/ml),":[75,80],"TLR3":[76],"(poly":[77],"I:C,":[78],"5":[79],"tuberculosis,":[82],"BCG,":[85],"S.":[87],"aureus":[88],"(all":[89],"at":[90],"1":[91],"\u00d7":[92],"10&lt;sup&gt;7&lt;/sup&gt;":[93],"microorganisms/milliliter,":[94],"heat-killed).":[95],"After":[96],"stimulation,":[100],"LPS-,":[101],"&lt;i&gt;M.":[102],"tuberculosis\u2013,&lt;/i&gt;":[103],"BCG\u2013stimulated":[107],"production":[108],"(C)":[111],"IL-6":[113],"(D)":[114],"&lt;p&gt;Data":[119],"are":[120],"presented":[121],"as":[122],"means":[123],"\u00b1":[124],"SEM":[125],"(&lt;i&gt;n":[126],"=&lt;/i&gt;":[127],"8).&lt;/p&gt;&lt;/div&gt;":[128]},"counts_by_year":[],"updated_date":"2026-06-11T09:08:48.828518","created_date":"2025-10-10T00:00:00"}
+
+        '
     headers:
       Access-Control-Allow-Headers:
-      - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type
+      - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
       Access-Control-Allow-Methods:
       - GET, HEAD, POST, OPTIONS
       Access-Control-Allow-Origin:
@@ -77,7 +64,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a04e88699f51fba2-AMS
+      - a136e99ace9f9df9-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -85,13 +72,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:23:26 GMT
+      - Mon, 29 Jun 2026 18:14:43 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=dwL8QKzuJgK91g99W7LDhpv1N%2FEWtmvP9yUvjiacqxc%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1780320206"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=1nVC69R5ujDNQBHqUQcIjf61nXAuKNHPjEsLh9StJ2Y%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756883"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=dwL8QKzuJgK91g99W7LDhpv1N%2FEWtmvP9yUvjiacqxc%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1780320206"
+      - heroku-nel="https://nel.heroku.com/reports?s=1nVC69R5ujDNQBHqUQcIjf61nXAuKNHPjEsLh9StJ2Y%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756883"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -103,19 +90,19 @@ interactions:
       X-RateLimit-Credits-Used:
       - '1'
       X-RateLimit-Limit:
-      - '10000'
+      - '1000'
       X-RateLimit-Limit-USD:
-      - '1'
+      - '0.1'
       X-RateLimit-Onetime-Remaining:
       - '0'
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '9956'
+      - '926'
       X-RateLimit-Remaining-USD:
-      - '0.9956'
+      - '0.0926'
       X-RateLimit-Reset:
-      - '38194'
+      - '20717'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,

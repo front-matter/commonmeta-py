@@ -5,21 +5,19 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://doi.org/ra/10.53731
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U2NzY0MlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        APmc72o3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.53731\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a04e86f7ea40fff9-AMS
+      - a136e6c89eb70b66-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,15 +25,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:22:27 GMT
+      - Mon, 29 Jun 2026 18:12:48 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=xL92dySYP9PKsrCDUL7L%2FJTge9qraFTOQL6KN6yq6gLcUV%2BBb7zNUEyIMPTYaKQFFWASlr4rzu1k%2BafElHmhavO8FeQPptaanyyClPKEjuzojTmfSmkXuUl8TrhUsfTjPKNBOPk%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=sviPnsVK2viaW6KfNaC0QUlxyw12AAot19GnZ%2B902uC47aHi9oTw0wpQ4Aqwx%2Bsrqe9HCZUgSQS66jHkSmGaZAe%2Fg6oEoHiC2O%2FzIiLk2%2Fqk4Uen1xB%2BQcb35v3M2BYlyddvQqA%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       cf-cache-status:
@@ -45,69 +45,6 @@ interactions:
       vary:
       - Origin
       - accept-encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540101'
-      CF-RAY:
-      - a09fbb4b1ba31605-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:53:56 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=V6nJDnrMmj7BzKwahZ7aPYjY8Jj4_mlUN5_Rk1RPHB0-1781171636.9802554-1.0.1.1-_2pR2hcGKUJYECMjXbx3MP4QpV6OSnC.9LDHT1LQ3uIPso1LyKsIrSWUlTD4Oy.HqWCjM1fVBRuvoftWhw9304qkBU5NNJ4BxURb5jOBX.UhgAZXFcqGsg0H3lXP2pPs;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:23:56 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

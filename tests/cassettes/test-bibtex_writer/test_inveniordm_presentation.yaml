@@ -5,42 +5,67 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://zenodo.org/api/records/8173303
   response:
     body:
-      string: !!binary |
-        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
-        /fJgFAAA
+      string: '{"created": "2023-07-21T22:00:21.474631+00:00", "modified": "2025-01-22T19:42:46.763514+00:00",
+        "id": 8173303, "conceptrecid": "8173302", "doi": "10.5281/zenodo.8173303",
+        "conceptdoi": "10.5281/zenodo.8173302", "doi_url": "https://doi.org/10.5281/zenodo.8173303",
+        "metadata": {"title": "ARCHIVE - 11 July 2023 (Day 2) CERN \u2013 NASA Open
+        Science Summit Sketch Notes", "doi": "10.5281/zenodo.8173303", "publication_date":
+        "2023-07-21", "description": "<p>CERN/NASA &ldquo;Accelerating the Adoption
+        of Open Science&rdquo;, from July 10th-14th at CERN in Geneva, Switzerland</p>\n\n<p><a
+        href=\"https://indico.cern.ch/event/1254282/\">https://indico.cern.ch/event/1254282/</a></p>\n\n<p>11&nbsp;July
+        2023 (Day 2)&nbsp;Open Data Sharing</p>", "access_right": "open", "creators":
+        [{"name": "Seibold, Heidi", "affiliation": null, "orcid": "0000-0002-8960-9642"}],
+        "resource_type": {"title": "Presentation", "type": "presentation"}, "meeting":
+        {"title": "CERN/NASA Accelerating the Adoption of Open Science Summit", "dates":
+        "10-14 July 2023", "place": "Geneva, Switzerland", "url": "https://home.cern/news/announcement/knowledge-sharing/cernnasa-summit-accelerating-adoption-open-science"},
+        "license": {"id": "cc-by-4.0"}, "communities": [{"id": "tops"}, {"id": "cern-nasa-open-science-summit-july-2023"}],
+        "relations": {"version": [{"index": 0, "is_last": true, "parent": {"pid_type":
+        "recid", "pid_value": "8173302"}}]}}, "title": "ARCHIVE - 11 July 2023 (Day
+        2) CERN \u2013 NASA Open Science Summit Sketch Notes", "links": {"self": "https://zenodo.org/api/records/8173303",
+        "self_html": "https://zenodo.org/records/8173303", "preview_html": "https://zenodo.org/records/8173303?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.8173303", "self_doi": "https://doi.org/10.5281/zenodo.8173303",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8173303", "reserve_doi":
+        "https://zenodo.org/api/records/8173303/draft/pids/doi", "parent": "https://zenodo.org/api/records/8173302",
+        "parent_html": "https://zenodo.org/records/8173302", "parent_doi": "https://doi.org/10.5281/zenodo.8173302",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.8173302", "self_iiif_manifest":
+        "https://zenodo.org/api/iiif/record:8173303/manifest", "self_iiif_sequence":
+        "https://zenodo.org/api/iiif/record:8173303/sequence/default", "files": "https://zenodo.org/api/records/8173303/files",
+        "media_files": "https://zenodo.org/api/records/8173303/media-files", "thumbnails":
+        {"10": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://zenodo.org/api/iiif/record:8173303:20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://zenodo.org/api/records/8173303/files-archive", "archive_media":
+        "https://zenodo.org/api/records/8173303/media-files-archive", "latest": "https://zenodo.org/api/records/8173303/versions/latest",
+        "latest_html": "https://zenodo.org/records/8173303/latest", "versions": "https://zenodo.org/api/records/8173303/versions",
+        "draft": "https://zenodo.org/api/records/8173303/draft", "access_links": "https://zenodo.org/api/records/8173303/access/links",
+        "access_grants": "https://zenodo.org/api/records/8173303/access/grants", "access_users":
+        "https://zenodo.org/api/records/8173303/access/users", "access_request": "https://zenodo.org/api/records/8173303/access/request",
+        "access": "https://zenodo.org/api/records/8173303/access", "communities":
+        "https://zenodo.org/api/records/8173303/communities", "communities-suggestions":
+        "https://zenodo.org/api/records/8173303/communities-suggestions", "request_deletion":
+        "https://zenodo.org/api/records/8173303/request-deletion", "file_modification":
+        "https://zenodo.org/api/records/8173303/file-modification", "quota_increase":
+        "https://zenodo.org/api/records/8173303/quota-increase", "requests": "https://zenodo.org/api/records/8173303/requests"},
+        "updated": "2025-01-22T19:42:46.763514+00:00", "recid": "8173303", "revision":
+        8, "files": [{"id": "a3d52e85-858a-4ceb-88bd-34e636c74e08", "key": "20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf",
+        "size": 13994803, "checksum": "md5:45d8b11d4ef0da78b9db5397d8e0e8d9", "links":
+        {"self": "https://zenodo.org/api/records/8173303/files/20230711-CERN-NASA-Open-Science-Summit-Summary-Drawings.pdf/content"}}],
+        "swh": {}, "owners": [{"id": "363883"}], "status": "published", "stats": {"downloads":
+        115, "unique_downloads": 106, "views": 121, "unique_views": 100, "version_downloads":
+        115, "version_unique_downloads": 106, "version_unique_views": 100, "version_views":
+        121}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -55,7 +80,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 01 Jun 2026 13:21:42 GMT
+      - Mon, 29 Jun 2026 18:11:46 GMT
       etag:
       - W/"8"
       link:
@@ -65,7 +90,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '3'
+      - '60'
       server:
       - nginx
       strict-transport-security:
@@ -81,9 +106,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '126'
+      - '132'
       x-ratelimit-reset:
-      - '1780320106'
+      - '1782756767'
       x-source:
       - api
       x-xss-protection:

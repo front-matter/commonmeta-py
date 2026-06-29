@@ -5,42 +5,68 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://zenodo.org/api/records/3871094
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"created": "2020-06-01T04:43:51.061750+00:00", "modified": "2024-07-19T19:49:55.245734+00:00",
+        "id": 3871094, "conceptrecid": "3862788", "doi": "10.5281/zenodo.3871094",
+        "conceptdoi": "10.5281/zenodo.3862788", "doi_url": "https://doi.org/10.5281/zenodo.3871094",
+        "metadata": {"title": "An open letter to Mehra et al and The Lancet", "doi":
+        "10.5281/zenodo.3871094", "publication_date": "2020-05-28", "description":
+        "<p>Open letter to MR Mehra, SS Desai, F Ruschitzka, and AN Patel, authors
+        of</p>\n\n<p><strong>&ldquo;Hydroxychloroquine or chloroquine with or without
+        a macrolide for treatment of COVID-19: a multinational registry analysis&rdquo;.
+        Lancet. 2020 May 22:S0140-6736(20)31180-6. doi: 10.1016/S0140-6736(20)31180-6.
+        PMID: 32450107</strong></p>\n\n<p>and to Richard Horton (editor of The Lancet).</p>",
+        "access_right": "open", "creators": [{"name": "James Watson on the behalf
+        of 201 signatories", "affiliation": "Mahidol Oxford Tropical Medicine Research
+        Unit", "orcid": "0000-0001-5524-0325"}], "keywords": ["Hydroxychloroquine",
+        "The Lancet", "Open Science"], "version": "4", "language": "eng", "resource_type":
+        {"title": "Report", "type": "publication", "subtype": "report"}, "license":
+        {"id": "cc-by-4.0"}, "relations": {"version": [{"index": 3, "is_last": true,
+        "parent": {"pid_type": "recid", "pid_value": "3862788"}}]}}, "title": "An
+        open letter to Mehra et al and The Lancet", "links": {"self": "https://zenodo.org/api/records/3871094",
+        "self_html": "https://zenodo.org/records/3871094", "preview_html": "https://zenodo.org/records/3871094?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.3871094", "self_doi": "https://doi.org/10.5281/zenodo.3871094",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.3871094", "reserve_doi":
+        "https://zenodo.org/api/records/3871094/draft/pids/doi", "parent": "https://zenodo.org/api/records/3862788",
+        "parent_html": "https://zenodo.org/records/3862788", "parent_doi": "https://doi.org/10.5281/zenodo.3862788",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.3862788", "self_iiif_manifest":
+        "https://zenodo.org/api/iiif/record:3871094/manifest", "self_iiif_sequence":
+        "https://zenodo.org/api/iiif/record:3871094/sequence/default", "files": "https://zenodo.org/api/records/3871094/files",
+        "media_files": "https://zenodo.org/api/records/3871094/media-files", "thumbnails":
+        {"10": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://zenodo.org/api/iiif/record:3871094:Open%20Letter%20V4.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://zenodo.org/api/records/3871094/files-archive", "archive_media":
+        "https://zenodo.org/api/records/3871094/media-files-archive", "latest": "https://zenodo.org/api/records/3871094/versions/latest",
+        "latest_html": "https://zenodo.org/records/3871094/latest", "versions": "https://zenodo.org/api/records/3871094/versions",
+        "draft": "https://zenodo.org/api/records/3871094/draft", "access_links": "https://zenodo.org/api/records/3871094/access/links",
+        "access_grants": "https://zenodo.org/api/records/3871094/access/grants", "access_users":
+        "https://zenodo.org/api/records/3871094/access/users", "access_request": "https://zenodo.org/api/records/3871094/access/request",
+        "access": "https://zenodo.org/api/records/3871094/access", "communities":
+        "https://zenodo.org/api/records/3871094/communities", "communities-suggestions":
+        "https://zenodo.org/api/records/3871094/communities-suggestions", "request_deletion":
+        "https://zenodo.org/api/records/3871094/request-deletion", "file_modification":
+        "https://zenodo.org/api/records/3871094/file-modification", "quota_increase":
+        "https://zenodo.org/api/records/3871094/quota-increase", "requests": "https://zenodo.org/api/records/3871094/requests"},
+        "updated": "2024-07-19T19:49:55.245734+00:00", "recid": "3871094", "revision":
+        5, "files": [{"id": "735c18c3-8ecd-41bf-826b-4d719f94b334", "key": "Open Letter
+        V4.pdf", "size": 130482, "checksum": "md5:8d686fae168ff94e45e59c076d2fb209",
+        "links": {"self": "https://zenodo.org/api/records/3871094/files/Open%20Letter%20V4.pdf/content"}}],
+        "swh": {}, "owners": [{"id": "103835"}], "status": "published", "stats": {"downloads":
+        105021, "unique_downloads": 96898, "views": 196645, "unique_views": 167787,
+        "version_downloads": 10436, "version_unique_downloads": 9564, "version_unique_views":
+        18648, "version_views": 20873}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -55,7 +81,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Mon, 01 Jun 2026 13:23:51 GMT
+      - Mon, 29 Jun 2026 18:15:14 GMT
       etag:
       - W/"5"
       link:
@@ -65,7 +91,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '15'
+      - '49'
       server:
       - nginx
       strict-transport-security:
@@ -81,9 +107,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '128'
+      - '129'
       x-ratelimit-reset:
-      - '1780320247'
+      - '1782756964'
       x-source:
       - api
       x-xss-protection:

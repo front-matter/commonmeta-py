@@ -5,69 +5,118 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://zenodo.org/api/records/5244404
   response:
     body:
-      string: !!binary |
-        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
-        IwAA
+      string: '{"created": "2021-08-24T13:07:25.333473+00:00", "modified": "2024-07-18T18:54:12.932791+00:00",
+        "id": 5244404, "conceptrecid": "5075887", "doi": "10.5281/zenodo.5244404",
+        "conceptdoi": "10.5281/zenodo.5075887", "doi_url": "https://doi.org/10.5281/zenodo.5244404",
+        "metadata": {"title": "The Origins of SARS-CoV-2: A Critical Review", "doi":
+        "10.5281/zenodo.5244404", "publication_date": "2021-08-18", "description":
+        "<p>The Origins of SARS-CoV-2: A Critical Review</p>\n\n<p>Holmes et al.</p>\n\n<p>Published
+        online: 18-Aug-2021,&nbsp;Cell,&nbsp;<a href=\"https://doi.org/10.1016/j.cell.2021.08.017\">https://doi.org/10.1016/j.cell.2021.08.017</a></p>\n\n<p>Since
+        the first reports of a novel SARS-like coronavirus in December 2019 in Wuhan,
+        China, there has been intense interest in understanding how SARS-CoV-2 emerged
+        in the human population. Recent debate has coalesced around two competing
+        ideas: a &ldquo;laboratory escape&rdquo; scenario and zoonotic emergence.
+        Here, we critically review the current scientific evidence that may help clarify
+        the origin of SARS-CoV-2.</p>\n\n<p>Computer readable versions of data tables,
+        SVG maps, and acknowledgements of sequence data used are available from:</p>\n\n<p>https://github.com/sars-cov-2-origins/critical-review</p>\n\n<p>&nbsp;</p>",
+        "access_right": "open", "creators": [{"name": "Holmes, Edward C", "affiliation":
+        "School of Life and Environmental Sciences and School of Medical Sciences,
+        The University of Sydney, Sydney, NSW 2006, Australia"}, {"name": "Goldstein,
+        Stephen A", "affiliation": "Department of Human Genetics, University of Utah,
+        Salt Lake City, UT 84112, USA"}, {"name": "Rasmussen, Angela L", "affiliation":
+        "Vaccine and Infectious Disease Organization, University of Saskatchewan,
+        Saskatoon, SK, S7N 5E3, Canada"}, {"name": "Robertson, David L", "affiliation":
+        "MRC-University of Glasgow Centre for Virus Research, Glasgow, G61 1QH, UK"},
+        {"name": "Crits-Christoph, Alexander", "affiliation": "Department of Plant
+        and Microbial Biology, University of California Berkeley, Berkeley, CA 94704,
+        USA"}, {"name": "Wertheim, Joel O", "affiliation": "Department of Medicine,
+        University of California San Diego, La Jolla, CA 92093, USA"}, {"name": "Anthony,
+        Simon J", "affiliation": "Department of Pathology, Microbiology, and Immunology,
+        University of California Davis School of Veterinary Medicine, Davis, CA 95616,
+        USA"}, {"name": "Barclay, Wendy S", "affiliation": "Department of Infectious
+        Disease, Imperial College London, W2 1PG, UK"}, {"name": "Boni, Maciej F",
+        "affiliation": "Center for Infectious Disease Dynamics, Department of Biology,
+        The Pennsylvania State University, University Park, PA 16802, USA"}, {"name":
+        "Doherty, Peter C", "affiliation": "Department of Microbiology and Immunology,
+        The University of Melbourne at the Doherty Institute, 792 Elizabeth St, Melbourne,
+        VIC 3000, Australia"}, {"name": "Farrar, Jeremy", "affiliation": "The Wellcome
+        Trust, London, NW1 2BE, UK"}, {"name": "Geoghegan, Jemma L", "affiliation":
+        "Department of Microbiology and Immunology, University of Otago, Dunedin,
+        New Zealand. Institute of Environmental Science and Research, Wellington,
+        New Zealand"}, {"name": "Jiang, Xiaowei", "affiliation": "Department of Biological
+        Sciences, Xi''an Jiaotong-Liverpool University (XJTLU), Suzhou, China"}, {"name":
+        "Leibowitz, Julian L", "affiliation": "Department of Microbial Pathogenesis
+        and Immunology, Texas A&M University, College Station, TX 77807, USA"}, {"name":
+        "Neil, Stuart J D", "affiliation": "Department of Infectious Diseases, King''s
+        College London, Guy''s Hospital, London SE1 9RT, UK"}, {"name": "Skern, Tim",
+        "affiliation": "Max Perutz Labs, Medical University of Vienna, Vienna Biocenter,
+        Dr. Bohr-Gasse 9/3, A-1030 Vienna, Austria"}, {"name": "Weiss, Susan R", "affiliation":
+        "Perelman School of Medicine, University of Pennsylvania. Philadelphia, PA
+        19104, USA"}, {"name": "Worobey, Michael", "affiliation": "Department of Ecology
+        and Evolutionary Biology, University of Arizona, Tucson, AZ 85721, USA"},
+        {"name": "Andersen, Kristian G", "affiliation": "Department of Immunology
+        and Microbiology, The Scripps Research Institute, La Jolla, CA 92037, USA"},
+        {"name": "Garry, Robert F", "affiliation": "Department of Microbiology and
+        Immunology, Tulane University School of Medicine, New Orleans, LA 70112, USA"},
+        {"name": "Rambaut, Andrew", "affiliation": "Institute of Evolutionary Biology,
+        University of Edinburgh, Edinburgh, EH9 FL, UK"}], "keywords": ["sars-cov-2",
+        "covid-19", "origins", "zoonosis"], "version": "Authors'' final version",
+        "resource_type": {"title": "Journal article", "type": "publication", "subtype":
+        "article"}, "license": {"id": "cc-by-nc-nd-4.0"}, "communities": [{"id": "sars-cov-2-origins"}],
+        "relations": {"version": [{"index": 3, "is_last": true, "parent": {"pid_type":
+        "recid", "pid_value": "5075887"}}]}, "notes": "Authors'' final peer-reviewed
+        version. Published as: https://doi.org/10.1016/j.cell.2021.08.017"}, "title":
+        "The Origins of SARS-CoV-2: A Critical Review", "links": {"self": "https://zenodo.org/api/records/5244404",
+        "self_html": "https://zenodo.org/records/5244404", "preview_html": "https://zenodo.org/records/5244404?preview=1",
+        "doi": "https://doi.org/10.5281/zenodo.5244404", "self_doi": "https://doi.org/10.5281/zenodo.5244404",
+        "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.5244404", "reserve_doi":
+        "https://zenodo.org/api/records/5244404/draft/pids/doi", "parent": "https://zenodo.org/api/records/5075887",
+        "parent_html": "https://zenodo.org/records/5075887", "parent_doi": "https://doi.org/10.5281/zenodo.5075887",
+        "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.5075887", "self_iiif_manifest":
+        "https://zenodo.org/api/iiif/record:5244404/manifest", "self_iiif_sequence":
+        "https://zenodo.org/api/iiif/record:5244404/sequence/default", "files": "https://zenodo.org/api/records/5244404/files",
+        "media_files": "https://zenodo.org/api/records/5244404/media-files", "thumbnails":
+        {"10": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E10,/0/default.jpg",
+        "50": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E50,/0/default.jpg",
+        "100": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E100,/0/default.jpg",
+        "250": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E250,/0/default.jpg",
+        "750": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E750,/0/default.jpg",
+        "1200": "https://zenodo.org/api/iiif/record:5244404:Holmes_et_al_(2021)_Cell_Supplementary.pdf/full/%5E1200,/0/default.jpg"},
+        "archive": "https://zenodo.org/api/records/5244404/files-archive", "archive_media":
+        "https://zenodo.org/api/records/5244404/media-files-archive", "latest": "https://zenodo.org/api/records/5244404/versions/latest",
+        "latest_html": "https://zenodo.org/records/5244404/latest", "versions": "https://zenodo.org/api/records/5244404/versions",
+        "draft": "https://zenodo.org/api/records/5244404/draft", "access_links": "https://zenodo.org/api/records/5244404/access/links",
+        "access_grants": "https://zenodo.org/api/records/5244404/access/grants", "access_users":
+        "https://zenodo.org/api/records/5244404/access/users", "access_request": "https://zenodo.org/api/records/5244404/access/request",
+        "access": "https://zenodo.org/api/records/5244404/access", "communities":
+        "https://zenodo.org/api/records/5244404/communities", "communities-suggestions":
+        "https://zenodo.org/api/records/5244404/communities-suggestions", "request_deletion":
+        "https://zenodo.org/api/records/5244404/request-deletion", "file_modification":
+        "https://zenodo.org/api/records/5244404/file-modification", "quota_increase":
+        "https://zenodo.org/api/records/5244404/quota-increase", "requests": "https://zenodo.org/api/records/5244404/requests"},
+        "updated": "2024-07-18T18:54:12.932791+00:00", "recid": "5244404", "revision":
+        7, "files": [{"id": "79b84768-1a44-4f1a-ad18-0e468f674470", "key": "Holmes_et_al_(2021)_Cell_Supplementary.pdf",
+        "size": 197003, "checksum": "md5:bdb88fc94708d8fd7d87854031faa8ab", "links":
+        {"self": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell_Supplementary.pdf/content"}},
+        {"id": "c5fd498b-0338-4ab2-ba33-5131e680c8fc", "key": "Holmes_et_al_(2021)_Cell.pdf",
+        "size": 1174157, "checksum": "md5:28a4d8215374cda683d236c7ad932ffd", "links":
+        {"self": "https://zenodo.org/api/records/5244404/files/Holmes_et_al_(2021)_Cell.pdf/content"}},
+        {"id": "75918c3f-8aea-4d98-8b48-a1d246dd0647", "key": "gisaid_acknowledgement_table.pdf",
+        "size": 5335, "checksum": "md5:b1b5979db4d4755601b85f160ce664b9", "links":
+        {"self": "https://zenodo.org/api/records/5244404/files/gisaid_acknowledgement_table.pdf/content"}}],
+        "swh": {}, "owners": [{"id": "145956"}], "status": "published", "stats": {"downloads":
+        91289, "unique_downloads": 81966, "views": 152336, "unique_views": 133888,
+        "version_downloads": 2642, "version_unique_downloads": 2428, "version_unique_views":
+        4060, "version_views": 4381}, "state": "done", "submitted": true}'
     headers:
       access-control-allow-origin:
       - '*'
@@ -82,7 +131,7 @@ interactions:
       content-type:
       - application/json
       date:
-      - Thu, 11 Jun 2026 19:30:28 GMT
+      - Mon, 29 Jun 2026 18:14:01 GMT
       etag:
       - W/"7"
       link:
@@ -92,7 +141,7 @@ interactions:
       referrer-policy:
       - strict-origin-when-cross-origin
       retry-after:
-      - '60'
+      - '3'
       server:
       - nginx
       strict-transport-security:
@@ -108,9 +157,9 @@ interactions:
       x-ratelimit-limit:
       - '133'
       x-ratelimit-remaining:
-      - '132'
+      - '126'
       x-ratelimit-reset:
-      - '1781206289'
+      - '1782756845'
       x-source:
       - api
       x-xss-protection:

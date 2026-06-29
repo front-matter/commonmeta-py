@@ -5,358 +5,672 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.54900/r8zwg-62003
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"contributor_roles":[],"family":"Marcum","given":"Christopher
+        Steven","url":"https://orcid.org/0000-0002-0899-6143"}],"blog":{"authors":null,"community_id":"b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b","created":1673568000,"current_feed_url":"https://upstream.force11.org/atom/","description":"The
+        community blog for all things Open Research.","favicon":"https://rogue-scholar.org/api/communities/b56ef314-34f7-4c7f-b0e2-d0bf13bfe83b/logo","feed_format":"application/atom+xml","feed_url":"https://upstream.force11.org/atom-complete/","filter":null,"generator":"Ghost","home_page_url":"https://upstream.force11.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.54900","relative_url":null,"secure":true,"slug":"upstream","status":"active","subfield":"1802","title":"Upstream","updated":1781010905,"use_api":true},"blog_name":"Upstream","blog_slug":"upstream","content_html":"<figure
+        class=\"kg-card kg-image-card kg-card-hascaption\"><img src=\"https://upstream.force11.org/content/images/2024/08/1000008255.jpg\"
+        class=\"kg-image\" alt=\"alt_text\" loading=\"lazy\" title=\"image_tooltip\"
+        width=\"1024\" height=\"1024\" srcset=\"https://upstream.force11.org/content/images/size/w600/2024/08/1000008255.jpg
+        600w, https://upstream.force11.org/content/images/size/w1000/2024/08/1000008255.jpg
+        1000w, https://upstream.force11.org/content/images/2024/08/1000008255.jpg
+        1024w\" sizes=\"(min-width: 720px) 720px\"><figcaption><span style=\"white-space:
+        pre-wrap;\">AI generated illustration using Microsoft Designer</span></figcaption></figure><p>Academia
+        is undergoing a rapid transformation characterized by exponential growth of
+        scholarly outputs. This phenomenon, often termed the \"firehose problem,\"
+        presents significant challenges for researchers, publishers, funders, policymakers,
+        and institutions alike. Some of these challenges include stresses on the peer-review
+        system, a lower capacity to stay abreast of the latest research, a shift in
+        the value of quantity over quality of scholarship, and a divergence between
+        the rewards and incentives for producing outputs that meet funder and societal
+        expectations. In this essay, the implications of the firehose problem and
+        potential approaches to resolving it through reform of incentives and rewards
+        for publishing are explored.</p><h3 id=\"the-firehose\">The firehose</h3><p>At
+        the 2024 National Academies Workshop,<a href=\"https://www.nationalacademies.org/our-work/enhancing-public-access-to-the-results-of-research-supported-by-the-department-of-health-and-human-services-a-workshop\">
+        Enhancing Public Access to the Results of Research Supported by the Department
+        of Health and Human Services</a> Tom Ciavarella of Frontiers re-raised an
+        idea that periodically pops up in conversations about scholarly publishing:
+        there are too many research articles being submitted for publication to journals
+        - that is, we publish too much. This was in response to a researcher who complained
+        about the <a href=\"https://doi.org/10.1242/dmm.002758\" rel=\"noreferrer\">firehose
+        problem</a> in academic publishing - it''s challenging <a href=\"https://doi.org/10.48550/ARXIV.2309.15884\"
+        rel=\"noreferrer\">to keep up with the volume</a> at which research publications
+        are produced. The researcher was, by implication, placing some blame for the
+        firehouse on the publishers. Ciavarella noted that publishers only respond
+        to demand - they build bigger pipes on which to fit bigger hoses; if there
+        is too much research coming out of the <a href=\"https://doi.org/10.1021/acsenergylett.4c01991\"
+        rel=\"noreferrer\">publication firehose</a>, it''s because there are too many
+        submissions for publication, he claimed. The relationship between supply and
+        demand in academic publishing is more complex than this analogy supposes.
+        After all, the<a href=\"https://doi.org/10.4337/9781786434937.00007\" rel=\"noreferrer\">
+        traditional currency</a> that academic institutions use in exchange for tenure
+        and promotion for their faculty is peer-reviewed publications - and the fiat
+        currency of publishers is peer-reviewed publications. More than fifty years
+        after Silen''s seminal editorial criticizing this currency, it''s still a
+        <a href=\"https://doi.org/10.1001/archsurg.1971.01350070027002\" rel=\"noreferrer\">publish
+        or perish</a> world.</p><h3 id=\"upstream-of-the-nozzle\">Upstream of the
+        nozzle</h3><p>To assess Ciavarella''s claim, a reasonable estimate of the
+        global number of article submissions to academic journals would be needed.
+        Submissions represent the reservoir supplying the firehose. It is, however,
+        incredibly difficult to get accurate data on the number of submissions to
+        journals. Most publishers keep their data closed - a point that the Office
+        of Science and Technology Policy respectfully glosses over in their Sisyphean
+        <a href=\"https://www.whitehouse.gov/ostp/news-updates/reports-and-documents/\">reports
+        to Congress</a> on public access to federally funded research. Publishers
+        do, however, advertise their journal \"acceptance rates\" in part because
+        of a belief that such rates are inversely proportional to journal prestige
+        - the more submissions a journal rejects relative to the number they accept,
+        the more prestigious that journal claims to be along with other factors such
+        as readership, citation rates, etc. Publishers translate that <a href=\"https://blogs.lse.ac.uk/impactofsocialsciences/2024/07/09/designer-science-why-big-brand-journals-harm-research/\">prestige
+        into brand power</a> - creating market forces that drive additional submissions
+        from researchers eager to attach their names to recognizable brands.</p><p>In
+        a preprint from a few years ago, Rachel Herbert of Elsevier''s International
+        Center for the Study of Research (ICSR), <a href=\"https://doi.org/10.2139/ssrn.3526365\"
+        rel=\"noreferrer\">evaluated the acceptance rates</a> of over 2,000 journals
+        (80% of them published by Elsevier) in 2017. The study found that the average
+        acceptance rate was 32% with a range of 1.1% to 93.2% - this is similar to
+        the rates found independently around the <a href=\"https://doi.org/10.3145/epi.2019.jul.07\">same
+        time</a>. Acceptance rates, of course, are a function of editorial policy
+        that can be influenced by the publisher through a range of factors such as
+        issue page number allotments, scope of the journal field, editorial prerogative,
+        reviewer consensus on potential scientific importance of a submission, and
+        the number of submissions sent into the journal. Leaving aside the fact that
+        acceptance rates can be artificially deflated (and prestige factors artificially
+        inflated) by simply increasing the number of submissions of poor-quality manuscripts,
+        they can be used in conjunction with estimates of the total number of articles
+        published to come up with a reasonable back-of-the-envelope estimate of the
+        number of submissions.</p><p>According to<a href=\"https://wordsrated.com/author/dimitrije-curcic/\">
+        Dimitri Curcic at WordsRated</a>, since 1996 more than <a href=\"https://wordsrated.com/number-of-academic-papers-published-per-year/\">64
+        million papers have been</a> published in academic journals and there has
+        been a <a href=\"https://wordsrated.com/academic-publishing-statistics/\">23%
+        increase</a> in growth in the last five years alone. During that time, the
+        number of active journals has increased by more than 28% - outpacing the proliferation
+        of articles (which suggests that the growth of these journals is somewhat
+        indicative of having higher acceptance rates as there are more venues for
+        articles that would have otherwise not been accepted for publications). These
+        data also suggest that this relationship dampened in recent years, with the
+        average annual growth rate of journals (1.67%, 2016-2020) being about a third
+        of that of the number of published articles (5.28%, 2018-2022) in the last
+        five years of available data for each.</p><p>The WordsRated data suggests
+        that there were, conservatively, around 4 million articles published in 2017-the
+        year of Herbert''s ICSR preprint (about <a href=\"https://ncses.nsf.gov/pubs/nsb20243/translation-u-s-and-global-science-technology-and-innovation-capabilities\">2.5
+        million</a> of those were in science and engineering fields based on National
+        Science Foundation estimates). Combining these data, we can reasonably estimate
+        the range of articles submitted in 2017 at 12.5 million articles submitted
+        globally - that''s almost 24 submissions per minute.<a><sup>[1]</sup></a>
+        That is a lot of papers under consideration in the scholarly publishing market.</p><p>But
+        is it too many submissions translating into too many papers coming out of
+        the nozzle of the firehose? Because the firehose analogy is an oversimplification
+        of a complex system we need to consider more factors than just the demand
+        from researchers to have more outlets to publish in and the publishers'' response
+        to supply those outlets. Whether this system has resulted in a surplus of
+        published manuscripts \u2013 flooding the streets well after the fire is out
+        \u2013 is a question about the quality of that surplus.</p><h3 id=\"is-the-water-from-the-firehose-safe-to-drink\">Is
+        the water from the firehose safe to drink?</h3><p>Few would argue that a surplus
+        of high-quality, groundbreaking, innovative research is characteristic of
+        a system producing <em>too many papers</em>. On the other hand, an excess
+        of poor quality, low impact, and questionable research published in journals
+        that are fit for that purpose, should<a><sup>[2]</sup></a> give pause to anyone
+        drinking from the firehose. That is, perhaps it''s not just the excess number
+        of papers that contributes to the surplus of frankly poor quality research
+        published. Maybe there are too many poor quality journals too - responding
+        to an underlying demand to publish low quality papers.</p><p>During the digital
+        transformation to online publication, there was only one variable that the
+        publishers needed to tune to satisfy this demand - increase the acceptance
+        rate of existing journals. But doing that would have diminished the underlying
+        value of their high prestige journals. So, instead, they tuned two variables
+        by increasing the number of journals with higher acceptance rates in the system
+        while protecting their big brands with constant rates. This is a practice
+        that is often couched within the seemingly innocuous guise of field specialty
+        journals. Why would field specialization need a lower threshold for publication
+        if the merits of peer review are constant?</p><p>Here too, however, even after
+        accounting for quality, the relationship between the number of submissions
+        and the number of journals is more complex than a simple feedback loop. There
+        is an underlying hidden dependence resulting from the very rational behavior
+        of researchers contributing to this loop. The expansion of journals with higher
+        acceptance rates alters the rational calculus for researchers - all things
+        being equal higher acceptance rates create a perverse incentive to submit
+        as many manuscripts as possible since the underlying probability of acceptance
+        is simply higher than if those same publications were submitted to a journal
+        with a lower acceptance rate, and hence higher prestige. Publishers often
+        compound this incentive by offering automatic referrals for papers rejected
+        from higher prestige journals to lower ones - allowing for almost instantaneous
+        and friction-free forwarding of a rejected manuscript to <a href=\"https://pubs.acs.org/page/policy/manuscript_transfer/index.html\"
+        rel=\"noreferrer\">another journal in their own portfolios </a>(and certainly
+        never to a competitor''s journal). This feedback loop is self-replicating
+        and self-expanding without significant disruption.</p><p>The idea that there
+        are too many journals accepting too many manuscripts for publication is not
+        new. Christa Easton <a href=\"https://doi.org/10.1080/00987913.1997.10764393\">summarized
+        the pressures</a> that libraries faced sustaining subscriptions to the growing
+        number of serial publications during the digital transformation in the 1990s
+        while, simultaneously, publishers were faced with increased incentives to
+        produce more journals. In 1997, the great migration to digital formats was
+        only just beginning and came at significant risk and cost - now, it''s effectively
+        effortless for a publisher to spin off a new online-only journal. Publishers
+        \u2013 and not just experienced publishers but really anybody including scholarly
+        societies and unaffiliated individuals \u2013 can create a new journal in
+        minutes. Researchers can \u2013 and do \u2013 respond to the availability
+        by slicing up their work (and their data) into minimally publishable units
+        (sometimes <a href=\"https://doi.org/10.1038/s41393-020-00543-y\" rel=\"noreferrer\">called
+        salami slicing</a>) knowing that they have lower chances of contributing a
+        single high-quality and holistic article to the scholarly record than they
+        do contributing multiple smaller studies to a wider variety of field journals
+        (which can contribute to <a href=\"https://doi.org/10.1016/j.jpsychores.2014.11.008\">self-citation
+        and auto-plagiarism</a>).</p><h3 id=\"who-is-testing-the-water\">Who is testing
+        the water?</h3><p>Another argument is that the growth in the number of journals
+        and the number of published research articles has been <a href=\"https://doi.org/10.1128/iai.01530-13\"
+        rel=\"noreferrer\">a response to scientific advances requiring increasingly
+        specialized knowledge</a>. The scientific publication model, and the incentives
+        superstructure supporting researcher participation in it, is based upon the
+        premise that science advances by taking baby steps \u2013 little discoveries,
+        a single hypothesis falsified, a new data point, a novel method, another patent.
+        And yet, there is very little evidence that this slow march of science correlates
+        positively with the volume of published research. In fact, there is a countervailing
+        theory, and <a href=\"https://doi.org/10.4103/sja.SJA_544_18\" rel=\"noreferrer\">some
+        evidence </a>to support it, that the overall quality of research is inversely
+        proportional to the overall quantity of research or perhaps just a random
+        consequence of the <a href=\"https://doi.org/10.1371/journal.pone.0178074\">pool
+        of available sources to cite</a>.</p><p>Major breakthroughs, theories, and
+        discoveries in science are rare and, relative to the volume of research over
+        the last half-century, <a href=\"https://doi.org/10.1038/s41586-022-05543-x\"
+        rel=\"noreferrer\">appear to be getting rarer</a>. If journals provide value
+        proportional to their acceptance rates (i.e., a component of their prestige
+        by the publishers'' metrics), then one might assume that the quality of reviews
+        and rigor of the underlying research must also be of significantly higher
+        quality than less prestigious journals, right? Well, if that''s the case,
+        then must it also be true that a less prestigious journal has a poorer review
+        system allowing for lower quality research to be published? If publishers
+        were building bigger pipes solely in response to the increase in the volume
+        of submissions flowing through the firehose to altruistically advance science
+        in proportion to its progress \u2013 and not to increase their revenues \u2013
+        they would have produced more journals with lower acceptance rates or improved
+        the fittings and bushings connecting their pipes to the firehose by innovating
+        with alternative business models (a few ideas that some good faith publishers
+        have attempted to introduce into the system without much success in disruption
+        include models such as compensating reviewers, charging non-refundable submission
+        fees at the time of submission, etc). Two widespread and successful, if inequitable,
+        innovations to come out of the <a href=\"https://www.doi.org/10.17705/1jais.00873\">digital
+        transformation </a>in the last 20 years include the invention of article processing
+        charges (APCs) and journal impact factors (JIFs<a><sup>[3]</sup></a>). APCs
+        support the surplus revenues of the journals and not the quality of the underlying
+        research that they publish. This latter point was highlighted in the <a href=\"https://www.budapestopenaccessinitiative.org/boai20/\">2022
+        Budapest Open Access Initiative </a>20th anniversary statement: \"[APCs] don''t
+        pay for improved quality but for the perception of improved quality\u2026Career
+        advancement can depend on that perception. But that is a problem to solve,
+        not an immutable reality to accommodate.\" The JIFs were also called out by
+        the statement as erroneously mistaking impact for <a href=\"https://doi.org/10.7554/eLife.47338\"
+        rel=\"noreferrer\">quality and conflating journal with article impact.</a>
+        Even if the JIFs and their individual impact factor counterparts were once
+        an effective measure of <em>quality</em>, they are unlikely to<a href=\"https://doi.org/10.1093/gigascience/giz053\">
+        remain effective as measures in general.</a></p><p>If peer reviewers have
+        a role in the firehose analogy, <a href=\"https://doi.org/10.3389/bjbs.2024.12054\"
+        rel=\"noreferrer\">they are supposed to play the part of water quality control</a>.
+        However, across the academic publishing landscape, there is a mix of quality
+        control through the peer review system \u2013 a mix that may be increasingly
+        unreliable. It might seem intuitive to assume that, given the greater resources
+        and credibility of higher prestige journals there''s a higher concentration
+        of high quality rigorous reviews while the concentration of poor quality reviews
+        is likely to pool in less prestigious outlets, but the <a href=\"https://doi.org/10.3389/fnhum.2018.00037\"
+        rel=\"noreferrer\">evidence </a>appears to be <a href=\"https://doi.org/10.3389/fnhum.2013.00291\"
+        rel=\"noreferrer\">to the contrary</a>. Of course, the worst of the worst
+        falls within the <a href=\"https://doi.org/10.1177/0192623320920209\" rel=\"noreferrer\">predatory
+        space</a> where there''s a complete absence of review or disingenuous promises
+        of quality rapid review. Sometimes this takes the form of otherwise legitimate
+        journals allowing for <a href=\"https://retractionwatch.com/2024/07/01/we-authors-paid-a-heavy-price-journal-retracts-all-23-articles-in-special-issue/\">greater
+        tolerances to review processes</a> to accelerate the publication of \"<a href=\"https://origineditorial.com/original-thoughts-blog/the-perils-and-pitfalls-of-special-issues-and-how-to-avoid-them/\">special
+        issues</a>\" (which sometimes come with the condition that <a href=\"https://doi.org/10.1002/leap.1406\">authors
+        have to pay APCs</a> when they''re being invited by the journal to contribute
+        - a suspect practice altogether). Certainly, no peer review system or peer
+        reviewer pool is perfect and there are significant and often consequential
+        lapses in scientific integrity or methodological concerns that escape even
+        the most rigorous peer review and end up in a prestigious publication outlet.</p><p>The
+        most egregious and<a href=\"https://www.vice.com/en/article/4a389b/ai-midjourney-rat-penis-study-retracted-frontiers\">
+        sometimes hilarious</a> lapses in the peer review system in high profile journals
+        \u2013 <a href=\"https://www.nature.com/articles/s41586-023-05742-0\">some
+        at the very apex of prestige</a> \u2013 only demonstrate that there is a significant
+        problem with peer review at a systemic level.</p><p>The conjecture advanced
+        here, <a href=\"https://scholarlykitchen.sspnet.org/2021/10/12/recognition-in-peer-review/\">and
+        by others</a>, is that this problem is threefold:</p><ol><li>The demand for
+        peer review is too high;</li><li>The rewards for conducting peer review are
+        too low;</li><li>The resources required for rigorous peer review are insufficient
+        for most peer review editorial systems.</li></ol><p>The initial conditions
+        of the first aspect of the peer review problem have already been implied here:
+        the likelihood that there are too many papers and too many journals for the
+        system to support. If demand for peer review is too high, it''s likely because
+        of a deficit in the supply of qualified peers available to conduct review.</p><p>There''s
+        good data from the National Science Foundation to support that claim. According
+        to the <a href=\"https://ncses.nsf.gov/pubs/nsf23300/report\">latest report</a>
+        on the results of the Survey of Earned Doctorates by the NSF''s National Center
+        for Science and Engineering Statistics, the number of earned doctorates in
+        science and engineering fields has risen on average over time. The trend peaked
+        in 2019 at 42,898 doctorates awarded before declining slightly<a href=\"https://ncses.nsf.gov/pubs/nsf23300/report/special-focus-covid-19-pandemic-impacts-on-doctorate-recipients\">
+        during the pandemic years.</a></p><p>However, even as universities are awarding
+        a greater number of doctorates over time, fewer and fewer are entering into
+        academic jobs at universities where the vast majority of journals draw their
+        editorial review boards. At the<a href=\"https://www.nationalacademies.org/event/41687_06-2024_the-state-of-the-science\">
+        2024 State of the Science Address</a>, NASEM President Marcia McNutt called
+        attention to the deficit in academic replacement. Just 36% of doctorate recipients
+        not immediately going into a post-doctoral fellowship in 2021 reported that
+        their first job out of graduate school would be in academia. That''s a significant
+        decline from 48% of such in 2001. Now, it''s true that a greater number of
+        doctorate recipients are entering into postdoctoral fellowships but the rate
+        hasn''t kept up with the decline in academe overall \u2013 postdoctoral fellowships
+        are not offsetting the fewer career positions filled in academia. Almost everyone
+        getting a doctorate goes into a non-university position after graduation and
+        for good reason: the academy cannot compete with the salary, benefits, and
+        job security and stability that other sectors provide to newly minted PhDs.
+        And when they get into those jobs, very few PhDs continue to publish in or
+        review for scholarly outlets at high rates \u2013 some journals have strict
+        review policies that do not allow non-academics or individuals who have not
+        published recently to participate in peer review, which compounds the problem.</p><p>For
+        those that remain in the academy, participation in peer review \u2013 ostensibly
+        lauded as a critical component of the scientific process \u2013 is not given
+        adequate recognition and reward by academic institutions. Peer review is often
+        treated as <a href=\"https://doi.org/10.12688/f1000research.16493.1\" rel=\"noreferrer\"><em>service</em></a>
+        by tenure and promotion committees, which is the least important aspect of
+        the expected contributions of scholars. Recognition mechanisms outside of
+        the academy, and metadata infrastructure to support them, is <a href=\"https://scholarlykitchen.sspnet.org/2021/10/12/recognition-in-peer-review/\">increasingly
+        becoming available</a><a><sup>[4]</sup></a> and yet the culture of the academy
+        has been slow to adopt these innovations.</p><p>Based on these trends, it''s
+        very likely that the proliferation in the number of journals and articles
+        rose concurrently with a decline in the availability of qualified reviewers
+        to conduct robust, high quality peer review over the same time period. Conveniently,
+        it appears that not only is there a demand to publish low quality research,
+        there is a deficit in the quality of the peer review system overall anyway.
+        Here too, artificial intelligence \u2013 even with its <a href=\"https://www.doi.org/10.1001/jama.2023.12500\">potential
+        benefits </a>to the peer review system (such as augmented literature search,
+        detection of falsified data and images, and translation services) \u2013 is
+        likely contributing to a downturn in thoughtful and rigorous review as generative
+        AI can both do the reading and the writing on behalf of a human reviewer.
+        Some publishers require reviewers to<a href=\"https://editorresources.taylorandfrancis.com/reviewer-guidelines/\">
+        abstain from using those tools</a>, even when they could be helpful. We can
+        be certain that, given the unrewarded high demands on qualified human reviewers,
+        they are indeed employing this tactic without disclosure.</p><p>All of this
+        belies a significant crisis <a href=\"https://doi.org/10.1111/hequ.12511\"
+        rel=\"noreferrer\">unfolding within the scholarly peer review system</a><a><sup>[5]</sup></a>.
+        Legitimate journals are finding it increasingly difficult to solicit and retain
+        high quality and timely responses to invitations for peer review. The pressures
+        are perverse for potential reviewers. The motivations for contributing to
+        peer review are almost entirely altruistic, save for the ability to stay abreast
+        of potentially competing research \u2013 or, dreadfully, quell competing research
+        from behind the veil of anonymity. There''s very little incentive provided
+        by publishers, academic institutions, and scholarly societies for potential
+        reviewers to contribute their valuable time in an increasingly productivity-constrained
+        environment. For many journals, the time between the initial invitation and
+        final decision is substantially delayed and editorial boards have to reach
+        an increasing number of potential reviewers before finding someone available
+        and willing to do reviews. Worse, there is very little done by editorial boards
+        or journals <a href=\"https://www.doi.org/10.1186/s12874-019-0688-x\">to assess
+        and report on the quality of reviews</a> and to incentivize potential reviewers
+        to maintain the scientific integrity of the reviews they provide. Authors
+        are required to disclose conflicts of interest, reviewers however, rarely
+        if ever are expected to do the same.</p><p>Still, peer review remains an <a
+        href=\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4975196/\">incredibly
+        valuable asset to the research enterprise</a>. When done effectively and transparently,
+        peer review provides significant benefits to science, including: improving
+        the quality and rigor of works, grammatical and typesetting corrections, identifying
+        theoretical gaps and insights, fostering collaborations, conferring public
+        trust in the oversight of science, and more. But this crisis in peer review
+        threatens all of its benefits. Without intervention and significant reform
+        in the culture of scholarly publishing, it will be peer review \u2013 and
+        not unsustainable publication business models \u2013 that undermines science
+        the most. The firehose will continue to flow even as the water quality tests
+        fail to pass potability standards.</p><h3 id=\"sip-from-the-spring\">Sip from
+        the spring</h3><p>Silen, <a href=\"https://doi.org/10.1021/acsenergylett.4c01991\"
+        rel=\"noreferrer\">and many others after</a>, point out the unintended consequences
+        the publish or perish culture in academia has created for the research community
+        that have been revisited here: a proliferation of low-quality publications,
+        slow review times-or false-promises for high-quality fast review-proliferation
+        of predatory journals and paper mills, and more. With the recent emergence
+        and widespread availability of generative artificial intelligence, all of
+        these problems are accelerating in magnitude and velocity and will continue
+        to put significant strain on the fittings and controls in this system \u2013
+        possibly until the hose bursts. As we enter a<a href=\"https://doi.org/10.18665/sr.320210\">
+        second digital transformation</a> in scholarly writing, one characterized
+        by demand for data and code sharing in publicly accessible repositories and
+        the challenges and promises of AI<a><sup>[6]</sup></a>, reform in infrastructure
+        alone will be insufficient to support the forthcoming deluge \u2013 we need
+        significant changes to the incentive structure for academic scholarship to
+        lower the pressure, and increase the quality, of the water coming out of the
+        firehose.</p><p>Researchers hold an incredible amount of market power in scholarly
+        publishing - they drive both the supply of and demand for manuscripts. Researchers
+        can, and should, leverage that power to challenge the status-quo and resolve
+        the firehouse problem <em>that they themselves decry</em>. They are the source
+        of the <a href=\"https://en.wikipedia.org/wiki/Pierian_Spring\">Pieran spring</a>
+        and everything downstream depends on its flow. One way to temper the firehouse
+        would be to sip directly from the spring rather than from the nozzle.</p><p>Scholarly
+        writing is much richer than just publications. For example, researchers produce
+        grant proposals, editorials, policy briefs, blog posts, teaching curricula
+        and lectures, software code and documentation, dataset curation, and labnotes
+        and codebooks. Some of these scholarly outputs may end up being published
+        \u2013 some may even end up <a href=\"https://jupyter.org/\">changing how
+        science is communicated and conducted.</a> But, realistically, most will not
+        obtain the recognition that the authors and contributions deserve for these
+        <a href=\"https://doi.org/10.7551/mitpress/12200.003.0017\" rel=\"noreferrer\">\"non-traditional\"
+        outputs</a>. Much of these outputs hold incredible value to the scientific
+        community and to the public. A singular focus on writing manuscripts to submit
+        for publication lowers the likelihood that the value of these other materials
+        can be realized.</p><p>By writing more and publishing less, researchers can
+        lower the pressure of the firehose while continuing to make valuable contributions
+        to the world. When academics write policy briefs that inform legislation,
+        create a blog to enhance dialogue in their field, produce open data that is
+        broadly reused, or write open software that enables a broad gold standard
+        method to be widely available, they should be rewarded with value on par with
+        any particular peer-reviewed publication in a journal. All of these materials
+        fill the spring even if only published manuscripts filter through to the firehose.</p><p>The
+        superstructure of incentives \u2013 predominantly those that provide credit
+        for the purposes of tenure, promotion, and other career advances \u2013 should
+        treat some combination of these outputs with parity to publications. Increasingly,
+        <a href=\"https://asapbio.org/funder-policies\">funder policies require preprints</a>,
+        <a href=\"https://sharing.nih.gov/data-management-and-sharing-policy\">data
+        </a>and <a href=\"https://www.nasa.gov/wp-content/uploads/2021/12/nasa-ocs-public-access-plan-may-2023.pdf\">code
+        sharing</a>, and other research outputs that they support with their grant
+        money: some funders incentivize these requirements by rewarding compliance
+        with parity to publications for the purposes of future grant review \u2013
+        the same should be true of home institutions that receive the funds that researchers
+        are awarded and researchers should demand that the full cornucopia of the
+        work supported by their grant is rewarded equitably for the purposes of performance,
+        tenure, and promotion review. That is not to say that major breakthroughs
+        and discoveries should not receive special attention \u2013 rather, it''s
+        a proposal to amplify the entire portfolio of work that led to those discoveries.</p><p>Sharing
+        ideas earlier with the community can greatly improve the quality of scholarship
+        and broaden the impact and reach of those ideas. One way to accomplish this
+        with research is by contributing to preprints and preprint reviews. Preprints,
+        of course, can be added to a repository without ever undergoing review - that''s
+        both an advantage and a disadvantage. On the one hand mass adoption of preprint
+        use could shift the firehose problem to a problem of a poisoned spring with
+        a large volume of unreviewed manuscripts filling the pool \u2013 on the other,<a
+        href=\"https://aj-boston.pubpub.org/pub/mtrwtisx/release/3\"> preprints can
+        be checked by many more potential reviewers</a> and provide an avenue for
+        sharing important results that may not otherwise get published in a journal
+        (such as null-results). To help with the balance, preprint review provides
+        an additional filter from the spring into the firehouse.</p><p>Preprint review
+        is increasingly important as a <a href=\"https://doi.org/10.1371/journal.pbio.3002502\">mechanism
+        to reform the peer review system</a> \u2013 reform that''s happening in a
+        manner that seeks to shift peer review from a monoculture maintained solely
+        by publishers into an entire ecosystem largely maintained by researchers,
+        their institutions, and their funders. With preprint review, authors participate
+        in a system that views peer review not as a gatekeeping hurdle to overcome
+        to reach publication but as a participatory exercise to improve scholarship.</p><p>Preprint
+        review can also reveal potential errors and issues of scientific integrity
+        earlier in the development of a manuscript so that authors can make more informed
+        decisions about the state of their research and what should be done to address
+        those issues in future revisions. Also, because preprint review is done out
+        in the open, reviewers have an opportunity to interact with one another and
+        to expose disagreements, highlight consistencies, and respond to ideas that
+        ultimately allow authors to have a more holistic review. It''s also a way
+        to ensure that authors can retain full control over their intellectual property
+        and its derivatives by asserting licenses that fit with their personal needs
+        and values (e.g., using a CC-BY-NC license if one does not want <a href=\"https://www.thebookseller.com/news/academic-authors-shocked-after-taylor--francis-sells-access-to-their-research-to-microsoft-ai\">publishers
+        to sell the content of a manuscript for use in AI, for instance</a>).</p><p>The
+        macro-effect of reforming peer review to include widespread use of preprint
+        review would align nicely with a widely held philosophy of science that treats
+        science <a href=\"https://doi.org/10.22323/2.20030401\">communication to be
+        a conversation rather than a broadcast.</a> Models of preprint review are
+        many, including relatively novel approaches such as <a href=\"https://prereview.org/\">PREreview</a>''s
+        live review where multiple reviewers collaborate to <a href=\"https://prereview.org/live-reviews\">review
+        a preprint in real time online</a> or ASAPbio''s <a href=\"https://asapbio.org/crowd-preprint-review\">crowd
+        preprint</a> review done collaboratively buy asynchronously. Some journals,
+        like eLife''s new model, already consider <a href=\"https://elifesciences.org/inside-elife/66d43597/elife-s-new-model-one-year-on\">preprint
+        review in their editorial pipelines</a> \u2013 bypassing the need to solicit
+        additional feedback and accelerating editorial decisions. Recently, The Gates
+        Foundation <a href=\"https://openaccess.gatesfoundation.org/\">refreshed their
+        open access policy</a> to require deposit of preprints by their grantees.
+        Certainly, funders like Gates continue to value peer review and greater adoption
+        of preprint review can shift the inaccurate belief that all preprints lack
+        review (a belief codified in Gates'' required disclosure for researchers posting
+        preprints).</p><p>The firehose problem in academic publishing is unlikely
+        to be resolved by changing the pipe fittings alone. Of course, this is the
+        rational option that publishers choose in response to the apparent demand
+        from researchers - as Ciavarella rightly pointed out. The underlying demand,
+        however, is fueled by a complex of misaligned and perverse incentives to publish
+        or perish in academia. Reform at the fittings has only compounded the problem
+        \u2013 increasing additional demand on an already stressed peer-review system
+        and favoring quantity over quality of published manuscripts. A more holistic
+        approach should focus repairs upstream, away from the nozzle, and to the source
+        of knowledge that flows through the firehose itself \u2013 a spring filled
+        with a variety of scholarly outputs beyond just manuscripts. Incentives for
+        filling that spring should mesh with the rewards for publishing offered by
+        funders, academic institutions, policymakers, publishers, and researchers
+        themselves. This requires <a href=\"https://doi.org/10.1371/journal.pone.0265506\"
+        rel=\"noreferrer\">collegiality</a> across and between all of those stakeholders
+        to <a href=\"https://www.timeshighereducation.com/opinion/open-access-loses-when-publishers-are-vilified\">work
+        together</a> without polarization. In sum, alleviating the pressure coming
+        out of the firehose is straightforward when the incentives are appropriately
+        and collaboratively aligned: write more and publish less.</p><h2 id=\"acknowledgments\">Acknowledgments</h2><p>Special
+        thanks are owed to Stuart Buck, Tom Ciavarella, Erin McKiernan, Peter Suber,
+        and Crystal Tristch for their efforts in improving this work.</p><h2 id=\"editorial-assessment\">Editorial
+        Assessment</h2><p>Three reviewers <a href=\"https://metaror.org/kotahi/articles/40/index.html\"
+        rel=\"noreferrer\">have reviewed</a> this blog post via the MetaROR platform:</p><blockquote>In
+        this blog post the author argues that problematic incentive structures have
+        led to a rapid increase in the publication of low-quality research articles
+        and that stakeholders need to work together to reform incentive structures.
+        The blog post has been reviewed by three reviewers. Reviewer 3 considers the
+        blog post to be a ''great piece'', and Reviewer 1 finds it ''compellingly
+        written and thought provoking''. According to Reviewer 2, the blog post does
+        not offer significant new insights for readers already familiar with the topic.
+        All three reviewers provide recommendations for clarifications. Reviewers
+        2 and 3 also suggest the blog post could be more critical toward publishers.
+        Reviewers 1 and 3 suggest taking a broader perspective on incentives, for
+        instance by also considering incentives related to teaching and admin or incentives
+        for funders, libraries, and other organizations.</blockquote><h2 id=\"disclosure\">Disclosure</h2><p>The
+        opinions expressed here are my own and may not represent those of my employer,
+        my position, or the reviewers. For full transparency: I am a member of the
+        scientific advisory board of PREreview, which I cited here. I contributed
+        - either as author or reviewer - to a few of the papers incorporated by reference
+        above. I have been guest editor or associate editor on a number of special
+        issues during my academic career though I have never participated in soliciting
+        direct contributions to those issues. I have made every attempt at citing
+        works that are publicly accessible - a few works may not be freely available
+        to all readers.</p><h2 id=\"notes\">Notes</h2><ol><li>(4M publications / 0.32
+        acceptance rate) = 12.5M submissions; (12.5M submissions / 525,600 minutes
+        in a year) = 24 submissions per minute. This should conservatively underestimate
+        the true rate. <a>\u21a9\ufe0e</a></li><li>The same argument about the balance
+        of quantity over quality has also been made <a href=\"https://lithub.com/there-are-too-many-books-or-publishing-shouldnt-be-all-about-quantity/\">about
+        books too</a>. <a>\u21a9\ufe0e</a></li><li>Pronounced like, but not to be
+        confused with, the famous <a href=\"https://www.jif.com/the-spread/jif-vs-gif\">brand
+        of peanut butter.</a> <a>\u21a9\ufe0e</a></li><li>A trusted colleague once
+        warned: \"be careful what you eat in the scholarly kitchen.\" Thankfully,
+        this article is good soup. <a>\u21a9\ufe0e</a></li><li>This is the most comprehensive
+        and up-to-date review of peer review currently available. The scope of the
+        article demonstrates the value of peer review, its novelty as 20th Century
+        practice, and the challenges that jeopardize its contemporary legitimacy in
+        the 21st Century. It''s well worth a read and it is available open access
+        for free. There is another recent great article about the crisis in peer-review
+        by Colleen Flaherty <a href=\"https://www.insidehighered.com/news/2022/06/13/peer-review-crisis-creates-problems-journals-and-scholars\">behind
+        a paywall here</a>. <a>\u21a9\ufe0e</a></li><li>There are new <a href=\"https://www.science.org/content/article/how-keep-scientific-literature\">tools</a>
+        available to researchers for writing and conducting peer review, including
+        emerging <a href=\"https://scite.ai/\">artificial intelligence tools</a>.
+        <a>\u21a9\ufe0e</a></li></ol><h2 id=\"references\">References</h2><ol><li>Patil,
+        C., &amp; Siegel, V. (2009). Drinking from the firehose of scientific publishing.
+        <em>Disease Models &amp; Mechanisms</em>, <em>2</em>(3\u20134), 100\u2013102.
+        <a href=\"https://doi.org/10.1242/dmm.002758\">https://doi.org/10.1242/dmm.002758</a></li><li>Hanson,
+        M. A., Barreiro, P. G., Crosetto, P., &amp; Brockington, D. (2023). <em>The
+        strain on scientific publishing</em> (Version 2). arXiv. <a href=\"https://doi.org/10.48550/arxiv.2309.15884\"
+        rel=\"noreferrer\">https://doi.org/10.48550/arxiv.2309.15884</a></li><li>Jin,
+        S. (2024). Should We Publish Fewer Papers? <em>ACS Energy Letters</em>, <em>9</em>(8),
+        4196\u20134198. <a href=\"https://doi.org/10.1021/acsenergylett.4c01991\">https://doi.org/10.1021/acsenergylett.4c01991</a></li><li>Publish
+        or perish: Origin and perceived benefits. (2018). In I. Moosa, <em>Publish
+        or Perish</em> (pp. 1\u201317). Edward Elgar Publishing. <a href=\"https://doi.org/10.4337/9781786434937.00007\">https://doi.org/10.4337/9781786434937.00007</a></li><li>Silen,
+        W. (1971). Publish or Perish. <em>Archives of Surgery</em>, <em>103</em>(1),
+        1. <a href=\"https://doi.org/10.1001/archsurg.1971.01350070027002\">https://doi.org/10.1001/archsurg.1971.01350070027002</a></li><li>Herbert,
+        R. (2020). <em>Accept Me, Accept Me Not: What Do Journal Acceptance Rates
+        Really Mean? [ICSR Perspectives]</em>. <a href=\"https://doi.org/10.2139/ssrn.3526365\">https://doi.org/10.2139/ssrn.3526365</a></li><li>Bj\u00f3rk,
+        B.-C. (2019). Acceptance rates of scholarly peer-reviewed journals: A literature
+        survey. <em>El Profesional de La Informaci\u00f3n</em>, <em>28</em>(4). <a
+        href=\"https://doi.org/10.3145/epi.2019.jul.07\">https://doi.org/10.3145/epi.2019.jul.07</a></li><li>Easton,
+        C. (1997). Too many journals, in too many forms? <em>Serials Review</em>,
+        <em>23</em>(3), 64\u201368. <a href=\"https://doi.org/10.1080/00987913.1997.10764393\">https://doi.org/10.1080/00987913.1997.10764393</a></li><li>Harvey,
+        L. A. (2020). We need to value research quality more than quantity. <em>Spinal
+        Cord</em>, <em>58</em>(10), 1047\u20131047. <a href=\"https://doi.org/10.1038/s41393-020-00543-y\">https://doi.org/10.1038/s41393-020-00543-y</a></li><li>Ioannidis,
+        J. P. A. (2015). A generalized view of self-citation: Direct, co-author, collaborative,
+        and coercive induced self-citation. <em>Journal of Psychosomatic Research</em>,
+        <em>78</em>(1), 7\u201311. <a href=\"https://doi.org/10.1016/j.jpsychores.2014.11.008\">https://doi.org/10.1016/j.jpsychores.2014.11.008</a></li><li>Casadevall,
+        A., &amp; Fang, F. C. (2014). Specialized Science. <em>Infection and Immunity</em>,
+        <em>82</em>(4), 1355\u20131360. <a href=\"https://doi.org/10.1128/iai.01530-13\"
+        rel=\"noreferrer\">https://doi.org/10.1128/iai.01530-13</a></li><li>Tumin,
+        D., &amp; Tobias, J. (2019). The peer review process. <em>Saudi Journal of
+        Anaesthesia</em>, <em>13</em>(5), 52. <a href=\"https://doi.org/10.4103/sja.SJA_544_18\">https://doi.org/10.4103/sja.SJA_544_18</a></li><li>Michalska-Smith,
+        M. J., &amp; Allesina, S. (2017). And, not or: Quality, quantity in scientific
+        publishing. <em>PLOS ONE</em>, <em>12</em>(6), e0178074. <a href=\"https://doi.org/10.1371/journal.pone.0178074\">https://doi.org/10.1371/journal.pone.0178074</a></li><li>Park,
+        M., Leahey, E., &amp; Funk, R. J. (2023). Papers and patents are becoming
+        less disruptive over time. <em>Nature</em>, <em>613</em>(7942), 138\u2013144.
+        <a href=\"https://doi.org/10.1038/s41586-022-05543-x\">https://doi.org/10.1038/s41586-022-05543-x</a></li><li>Avital,
+        M. &amp; Copenhagen Business School. (2024). Digital Transformation of Academic
+        Publishing: A Call for the Decentralization and Democratization of Academic
+        Journals. <em>Journal of the Association for Information Systems</em>, <em>25</em>(1),
+        172\u2013181. <a href=\"https://doi.org/10.17705/1jais.00873\">https://doi.org/10.17705/1jais.00873</a></li><li>McKiernan,
+        E. C., Schimanski, L. A., Mu\u00f1oz Nieves, C., Matthias, L., Niles, M. T.,
+        &amp; Alperin, J. P. (2019). Use of the Journal Impact Factor in academic
+        review, promotion, and tenure evaluations. <em>eLife</em>, <em>8</em>, e47338.
+        <a href=\"https://doi.org/10.7554/eLife.47338\">https://doi.org/10.7554/eLife.47338</a></li><li>Fire,
+        M., &amp; Guestrin, C. (2019). Over-optimization of academic publishing metrics:
+        Observing Goodhart''s Law in action. <em>GigaScience</em>, <em>8</em>(6),
+        giz053. <a href=\"https://doi.org/10.1093/gigascience/giz053\">https://doi.org/10.1093/gigascience/giz053</a></li><li>Drozdz,
+        J. A., &amp; Ladomery, M. R. (2024). The Peer Review Process: Past, Present,
+        and Future. <em>British Journal of Biomedical Science</em>, <em>81</em>, 12054.
+        <a href=\"https://doi.org/10.3389/bjbs.2024.12054\">https://doi.org/10.3389/bjbs.2024.12054</a></li><li>Brembs,
+        B. (2018). Prestigious Science Journals Struggle to Reach Even Average Reliability.
+        <em>Frontiers in Human Neuroscience</em>, <em>12</em>, 37. <a href=\"https://doi.org/10.3389/fnhum.2018.00037\">https://doi.org/10.3389/fnhum.2018.00037</a></li><li>Brembs,
+        B., Button, K., &amp; Munaf\u00f2, M. (2013). Deep impact: Unintended consequences
+        of journal rank. <em>Frontiers in Human Neuroscience</em>, <em>7</em>. <a
+        href=\"https://doi.org/10.3389/fnhum.2013.00291\">https://doi.org/10.3389/fnhum.2013.00291</a></li><li>Elmore,
+        S. A., &amp; Weston, E. H. (2020). Predatory Journals: What They Are and How
+        to Avoid Them. <em>Toxicologic Pathology</em>, <em>48</em>(4), 607\u2013610.
+        <a href=\"https://doi.org/10.1177/0192623320920209\">https://doi.org/10.1177/0192623320920209</a></li><li>Repiso,
+        R., Segarra\u2010Saavedra, J., Hidalgo\u2010Mar\u00ed, T., &amp; Tur\u2010Vi\u00f1es,
+        V. (2021). The prevalence and impact of special issues in communications journals
+        2015\u20132019. <em>Learned Publishing</em>, <em>34</em>(4), 593\u2013601.
+        <a href=\"https://doi.org/10.1002/leap.1406\">https://doi.org/10.1002/leap.1406</a></li><li>Schimanski,
+        L. A., &amp; Alperin, J. P. (2018). The evaluation of scholarship in academic
+        promotion and tenure processes: Past, present, and future. <em>F1000Research</em>,
+        <em>7</em>, 1605. <a href=\"https://doi.org/10.12688/f1000research.16493.1\">https://doi.org/10.12688/f1000research.16493.1</a></li><li>Flanagin,
+        A., Kendall-Taylor, J., &amp; Bibbins-Domingo, K. (2023). Guidance for Authors,
+        Peer Reviewers, and Editors on Use of AI, Language Models, and Chatbots. <em>JAMA</em>,
+        <em>330</em>(8), 702. <a href=\"https://doi.org/10.1001/jama.2023.12500\">https://doi.org/10.1001/jama.2023.12500</a></li><li>Horta,
+        H., &amp; Jung, J. (2024). The crisis of peer review: Part of the evolution
+        of science. <em>Higher Education Quarterly</em>, e12511. <a href=\"https://doi.org/10.1111/hequ.12511\">https://doi.org/10.1111/hequ.12511</a></li><li>Superchi,
+        C., Gonz\u00e1lez, J. A., Sol\u00e0, I., Cobo, E., Hren, D., &amp; Boutron,
+        I. (2019). Tools used to assess the quality of peer review reports: A methodological
+        systematic review. <em>BMC Medical Research Methodology</em>, <em>19</em>(1),
+        48. <a href=\"https://doi.org/10.1186/s12874-019-0688-x\">https://doi.org/10.1186/s12874-019-0688-x</a></li><li>Bergstrom,
+        T., Rieger, O. Y., &amp; Schonfeld, R. C. (2024). <em>The Second Digital Transformation
+        of Scholarly Publishing: Strategic Context and Shared Infrastructure</em>.
+        Ithaka S+R. <a href=\"https://doi.org/10.18665/sr.320210\">https://doi.org/10.18665/sr.320210</a></li><li>Alperin,
+        J. P., Schimanski, L. A., La, M., Niles, M. T., &amp; McKiernan, E. C. (2022).
+        The Value of Data and Other Non-traditional Scholarly Outputs in Academic
+        Review, Promotion, and Tenure in Canada and the United States. In A. L. Berez-Kroeker,
+        B. McDonnell, E. Koller, &amp; L. B. Collister (Eds.), <em>The Open Handbook
+        of Linguistic Data Management</em> (pp. 171\u2013182). The MIT Press. <a href=\"https://doi.org/10.7551/mitpress/12200.003.0017\">https://doi.org/10.7551/mitpress/12200.003.0017</a></li><li>Avissar-Whiting,
+        M., Belliard, F., Bertozzi, S. M., Brand, A., Brown, K., Cl\u00e9ment-Stoneham,
+        G., Dawson, S., Dey, G., Ecer, D., Edmunds, S. C., Farley, A., Fischer, T.
+        D., Franko, M., Fraser, J. S., Funk, K., Ganier, C., Harrison, M., Hatch,
+        A., Hazlett, H., \u2026 Williams, M. (2024). Recommendations for accelerating
+        open preprint peer review to improve the culture of science. <em>PLOS Biology</em>,
+        <em>22</em>(2), e3002502. <a href=\"https://doi.org/10.1371/journal.pbio.3002502\">https://doi.org/10.1371/journal.pbio.3002502</a></li><li>Bucchi,
+        M., &amp; Trench, B. (2021). Rethinking science communication as the social
+        conversation around science. <em>Journal of Science Communication</em>, <em>20</em>(03),
+        Y01. <a href=\"https://doi.org/10.22323/2.20030401\">https://doi.org/10.22323/2.20030401</a></li><li>Dawson,
+        D. (DeDe), Morales, E., McKiernan, E. C., Schimanski, L. A., Niles, M. T.,
+        &amp; Alperin, J. P. (2022). The role of collegiality in academic review,
+        promotion, and tenure. <em>PLOS ONE</em>, <em>17</em>(4), e0265506. <a href=\"https://doi.org/10.1371/journal.pone.0265506\">https://doi.org/10.1371/journal.pone.0265506</a></li></ol>","doi":"https://doi.org/10.54900/r8zwg-62003","guid":"https://doi.org/10.54900/r8zwg-62003","images":[{"alt":"alt_text","height":"1024","sizes":"(min-width:
+        720px) 720px","src":"https://upstream.force11.org/content/images/2024/08/1000008255.jpg","srcset":"https://upstream.force11.org/content/images/size/w600/2024/08/1000008255.jpg,
+        https://upstream.force11.org/content/images/size/w1000/2024/08/1000008255.jpg,
+        https://upstream.force11.org/content/images/2024/08/1000008255.jpg","width":"1024"},{"alt":"AI
+        generated illustration using Microsoft Designer","src":"https://upstream.force11.org/content/images/2024/08/1000008255.jpg"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1724716800,"reference":[{"id":"https://doi.org/10.1242/dmm.002758","unstructured":"Patil,
+        C., &amp; Siegel, V. (2009). Drinking from the firehose of scientific publishing.
+        <i>Disease Models & Mechanisms</i>, <i>2</i>(3-4), 100\u2013102."},{"id":"https://doi.org/10.48550/arxiv.2309.15884","unstructured":"Hanson,
+        M. A., Barreiro, P. G., Crosetto, P., &amp; Brockington, D. (2023). <i>The
+        strain on scientific publishing</i> (Version 2). arXiv."},{"id":"https://doi.org/10.1021/acsenergylett.4c01991","unstructured":"Jin,
+        S. (2024). Should We Publish Fewer Papers?. <i>ACS Energy Letters</i>, <i>9</i>(8),
+        4196\u20134198."},{"id":"https://doi.org/10.4337/9781786434937.00007","unstructured":"Publish
+        or perish: Origin and perceived benefits. (2018). In I. Moosa, Publish or
+        Perish (pp. 1\u201317). Edward Elgar Publishing."},{"id":"https://doi.org/10.1001/archsurg.1971.01350070027002","unstructured":"SILEN,
+        W. (1971). Publish or Perish. <i>Archives of Surgery</i>, <i>103</i>(1), 1."},{"id":"https://doi.org/10.2139/ssrn.3526365","unstructured":"Herbert,
+        R. (2020). Accept Me, Accept Me Not: What Do Journal Acceptance Rates Really
+        Mean? [ICSR Perspectives]. In <i>SSRN</i>. Elsevier BV."},{"id":"https://doi.org/10.3145/epi.2019.jul.07","unstructured":"Bj\u00f3rk,
+        B.-C. (2019). Acceptance rates of scholarly peer-reviewed journals: A literature
+        survey. <i>El Profesional De La Informaci\u00f3n</i>, <i>28</i>(4)."},{"id":"https://doi.org/10.1080/00987913.1997.10764393","unstructured":"Easton,
+        C. (1997). Too many journals, in too many forms?. <i>Serials Review</i>, <i>23</i>(3),
+        64\u201368."},{"id":"https://doi.org/10.1038/s41393-020-00543-y","unstructured":"Harvey,
+        L. A. (2020). We need to value research quality more than quantity. <i>Spinal
+        Cord</i>, <i>58</i>(10), 1047\u20131047."},{"id":"https://doi.org/10.1016/j.jpsychores.2014.11.008","unstructured":"Ioannidis,
+        J. P. A. (2015). A generalized view of self-citation: Direct, co-author, collaborative,
+        and coercive induced self-citation. <i>Journal of Psychosomatic Research</i>,
+        <i>78</i>(1), 7\u201311."},{"id":"https://doi.org/10.1128/iai.01530-13","unstructured":"Casadevall,
+        A., Fang, F. C., &amp; Morrison, R. P. (2014). Specialized Science. <i>Infection
+        and Immunity</i>, <i>82</i>(4), 1355\u20131360."},{"id":"https://doi.org/10.4103/sja.sja_544_18","unstructured":"Tobias,
+        J., &amp; Tumin, D. (2019). The peer review process. <i>Saudi Journal of Anaesthesia</i>,
+        <i>13</i>(5), 52."},{"id":"https://doi.org/10.1371/journal.pone.0178074","unstructured":"Michalska-Smith,
+        M. J., Allesina, S., &amp; Jadhao, S. B. (2017). And, not or: Quality, quantity
+        in scientific publishing. <i>PLOS ONE</i>, <i>12</i>(6), e0178074."},{"id":"https://doi.org/10.1038/s41586-022-05543-x","unstructured":"Park,
+        M., Leahey, E., &amp; Funk, R. J. (2023). Papers and patents are becoming
+        less disruptive over time. <i>Nature</i>, <i>613</i>(7942), 138\u2013144."},{"id":"https://doi.org/10.17705/1jais.00873","unstructured":"Avital,
+        M., &amp; Copenhagen Business School. (2024). Digital Transformation of Academic
+        Publishing: A Call for the Decentralization and Democratization of Academic
+        Journals. <i>Journal of the Association for Information Systems</i>, <i>25</i>(1),
+        172\u2013181."},{"id":"https://doi.org/10.7554/elife.47338","unstructured":"McKiernan,
+        E. C., Schimanski, L. A., Mu\u00f1oz Nieves, C., Matthias, L., Niles, M. T.,
+        &amp; Alperin, J. P. (2019). Use of the Journal Impact Factor in academic
+        review, promotion, and tenure evaluations. <i>eLife</i>, <i>8</i>."},{"id":"https://doi.org/10.1093/gigascience/giz053","unstructured":"Fire,
+        M., &amp; Guestrin, C. (2019). Over-optimization of academic publishing metrics:
+        observing Goodhart''s Law in action. <i>GigaScience</i>, <i>8</i>(6)."},{"id":"https://doi.org/10.3389/bjbs.2024.12054","unstructured":"Drozdz,
+        J. A., &amp; Ladomery, M. R. (2024). The Peer Review Process: Past, Present,
+        and Future. <i>British Journal of Biomedical Science</i>, <i>81</i>."},{"id":"https://doi.org/10.3389/fnhum.2018.00037","unstructured":"Brembs,
+        B. (2018). Prestigious Science Journals Struggle to Reach Even Average Reliability.
+        <i>Frontiers in Human Neuroscience</i>, <i>12</i>."},{"id":"https://doi.org/10.3389/fnhum.2013.00291","unstructured":"Brembs,
+        B., Button, K., &amp; Munaf\u00f2, M. (2013). Deep impact: unintended consequences
+        of journal rank. <i>Frontiers in Human Neuroscience</i>, <i>7</i>."},{"id":"https://doi.org/10.1177/0192623320920209","unstructured":"Elmore,
+        S. A., &amp; Weston, E. H. (2020). Predatory Journals: What They Are and How
+        to Avoid Them. <i>Toxicologic Pathology</i>, <i>48</i>(4), 607\u2013610."},{"id":"https://doi.org/10.1002/leap.1406","unstructured":"Repiso,
+        R., Segarra\u2010Saavedra, J., Hidalgo\u2010Mar\u00ed, T., &amp; Tur\u2010Vi\u00f1es,
+        V. (2021). The prevalence and impact of special issues in communications journals
+        2015\u20132019. <i>Learned Publishing</i>, <i>34</i>(4), 593\u2013601."},{"id":"https://doi.org/10.12688/f1000research.16493.1","unstructured":"Schimanski,
+        L. A., &amp; Alperin, J. P. (2018). The evaluation of scholarship in academic
+        promotion and tenure processes: Past, present, and future. <i>F1000Research</i>,
+        <i>7</i>, 1605."},{"id":"https://doi.org/10.1001/jama.2023.12500","unstructured":"Flanagin,
+        A., Kendall-Taylor, J., &amp; Bibbins-Domingo, K. (2023). Guidance for Authors,
+        Peer Reviewers, and Editors on Use of AI, Language Models, and Chatbots. <i>JAMA</i>,
+        <i>330</i>(8), 702."},{"id":"https://doi.org/10.1111/hequ.12511","unstructured":"Horta,
+        H., &amp; Jung, J. (2024). The crisis of peer review: Part of the evolution
+        of science. <i>Higher Education Quarterly</i>, <i>78</i>(4)."},{"id":"https://doi.org/10.1186/s12874-019-0688-x","unstructured":"Superchi,
+        C., Gonz\u00e1lez, J. A., Sol\u00e0, I., Cobo, E., Hren, D., &amp; Boutron,
+        I. (2019). Tools used to assess the quality of peer review reports: a methodological
+        systematic review. <i>BMC Medical Research Methodology</i>, <i>19</i>(1)."},{"id":"https://doi.org/10.18665/sr.320210","unstructured":"Bergstrom,
+        T., Rieger, O. Y., &amp; Schonfeld, R. C. (2024). <i>The Second Digital Transformation
+        of Scholarly Publishing: Strategic Context and Shared Infrastructure</i>.
+        Ithaka S+R."},{"id":"https://doi.org/10.7551/mitpress/12200.003.0017","unstructured":"Alperin,
+        J. P., Schimanski, L. A., La, M., Niles, M. T., &amp; McKiernan, E. C. (2022).
+        The Value of Data and Other Non-traditional Scholarly Outputs in Academic
+        Review, Promotion, and Tenure in Canada and the United States. In <i>The Open
+        Handbook of Linguistic Data Management</i> (pp. 171\u2013182). The MIT Press."},{"id":"https://doi.org/10.1371/journal.pbio.3002502","unstructured":"Avissar-Whiting,
+        M., Belliard, F., Bertozzi, S. M., Brand, A., Brown, K., Cl\u00e9ment-Stoneham,
+        G., Dawson, S., Dey, G., Ecer, D., Edmunds, S. C., Farley, A., Fischer, T.
+        D., Franko, M., Fraser, J. S., Funk, K., Ganier, C., Harrison, M., Hatch,
+        A., Hazlett, H., \u2026 Williams, M. (2024). Recommendations for accelerating
+        open preprint peer review to improve the culture of science. <i>PLOS Biology</i>,
+        <i>22</i>(2), e3002502."},{"id":"https://doi.org/10.22323/2.20030401","unstructured":"Bucchi,
+        M., &amp; Trench, B. (2021). Rethinking science communication as the social
+        conversation around science. <i>Journal of Science Communication</i>, <i>20</i>(03),
+        Y01."},{"id":"https://doi.org/10.1371/journal.pone.0265506","unstructured":"Dawson,
+        D. (DeDe) ., Morales, E., McKiernan, E. C., Schimanski, L. A., Niles, M. T.,
+        Alperin, J. P., &amp; Kirgiz, M. S. (2022). The role of collegiality in academic
+        review, promotion, and tenure. <i>PLOS ONE</i>, <i>17</i>(4), e0265506."}],"rid":"81deq-vqv03","summary":"Academia
+        is undergoing a rapid transformation characterized by exponential growth of
+        scholarly outputs. This phenomenon, often termed the \"firehose problem,\"
+        presents significant challenges for researchers, publishers, funders, policymakers,
+        and institutions alike.","tags":["Thought Pieces"],"title":"Drinking from
+        the Firehose? Write More and Publish Less","updated_at":1781020087,"url":"https://upstream.force11.org/drinking-from-the-firehose/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -367,7 +681,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:00:00 GMT
+      - Mon, 29 Jun 2026 18:14:11 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

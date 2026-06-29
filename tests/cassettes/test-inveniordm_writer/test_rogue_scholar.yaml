@@ -5,106 +5,189 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.53731/dv8z6-a6s33
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"affiliation":[{"name":"Front Matter"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
+        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
+        Front Matter Blog covers the intersection of science and technology since
+        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1781522561,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>The
+        Rogue Scholar infrastructure <a href=\"https://doi.org/10.53731/sdazp-kzn55\"
+        rel=\"noreferrer\">started migrating</a> to InvenioRDM infrastructure a few
+        weeks ago. This first phase of the migration will conclude on November 4 with
+        the switch of the Rogue Scholar frontend (<a href=\"https://rogue-scholar.org\"
+        rel=\"noreferrer\">rogue-scholar.org</a>) to InvenioRDM (to what is currently
+        hosted at <a href=\"https://beta.rogue-scholar.org\" rel=\"noreferrer\">beta.rogue-scholar.org</a>).</p><h3
+        id=\"inveniordm-record\">InvenioRDM record</h3><p>For the most part and <a
+        href=\"https://doi.org/10.53731/d6vdvbt-tffmezj\" rel=\"noreferrer\">not by
+        coincidence</a>, InvenioRDM is a very good fit for Rogue Scholar. Showing
+        the metadata and content of Rogue Scholar blog posts can use more or less
+        the default InvenioRDM record view, which you can see for example in <a href=\"https://zenodo.org/records/5479442\"
+        rel=\"noreferrer\">Zenodo</a>. We show optional metadata for the journal title
+        (i.e. the blog name) and ISSN. We display previews of the markdown and PDF
+        version of the blog post, automatically generated by the Rogue Scholar API.
+        The Rogue Scholar DOI is displayed as <em>identifier</em>, and clicking the
+        DOI link brings you to the original blog post hosted on the blog participating
+        in Rogue Scholar (here <a href=\"https://cameronneylon.net/\" rel=\"noreferrer\">Science
+        in the Open</a>).</p><figure class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1251\" height=\"1024\"
+        srcset=\"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png
+        600w, https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png
+        1000w, https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png
+        1251w\" sizes=\"(min-width: 720px) 720px\"></figure><p>In contrast to Zenodo
+        and most other InvenioRDM instances, Rogue Scholar DOIs point to content hosted
+        elsewhere (by the participating science blog), as Rogue Scholar is an archive
+        and not the primary place where content is hosted and metadata generated.
+        Further work is needed to change what is displayed prominently, including
+        the Rogue Scholar DOI, language, and subject areas (the latter two are also
+        used as search filters/facets). In contrast, the resource-type and license
+        status don''t need to be displayed prominently as they are the same \u2013
+        resource-type <em>preprint</em> and license <em>open</em> (either CC-BY or
+        CC0) \u2013 for all blog posts.</p><p>The only Rogue Scholar metadata that
+        are not easy to show in InvenioRDM are <em>feature images</em> of blog posts,
+        but this requires more work on the workflow for storing these images (not
+        just the references) in Rogue Scholar, and then showing them as custom metadata.</p><p>Again
+        in contrast to most other InvenioRDM instances, the record content and metadata
+        are not generated by users filling out a web form, but are automatically generated
+        from blog RSS feeds by the Rogue Scholar API. In the coming weeks, I will
+        focus on integrating the Rogue Scholar API with the InvenioRDM API and bring
+        all 100+ participating science blogs with more than 15,000 blog posts into
+        the Rogue Scholar InvenioRDM instance.</p><h3 id=\"communities\">Communities</h3><p>One
+        core functionality of InvenioRDM that enables exciting new features for Rogue
+        Scholar is <em>communities</em>. Communities allow the grouping of blog posts
+        into collections, and the most obvious use case is the grouping of blog posts
+        by blog:</p><figure class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1260\" height=\"604\"
+        srcset=\"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png
+        600w, https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png
+        1000w, https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png
+        1260w\" sizes=\"(min-width: 720px) 720px\"></figure><p>This enables functionality
+        similar to what Rogue Scholar currently provides with <a href=\"https://rogue-scholar.org/blogs/ropensci\"
+        rel=\"noreferrer\">blog-specific views</a>. More work is needed to <a href=\"https://inveniordm.docs.cern.ch/customize/metadata/custom_fields/communities/\"
+        rel=\"noreferrer\">customize the blog community metadata</a> to include the
+        RSS feed URL and blogging platform (both needed for automated content and
+        metadata extraction).</p><p>These blog communities \u2013 like everything
+        else in InvenioRDM \u2013 can be managed by the InvenioRDM API, and integration
+        with the Rogue Scholar API is a top priority for October. </p><p>One important
+        task for blogs participating in Rogue Scholar is integrating the DOIs registered
+        by Rogue Scholar in the blog itself. For blogs publishing at low-frequency,
+        this can be done manually, but for blogs publishing multiple times per month,
+        this process should be automated. With the InvenioRDM API this can now be
+        done with an API that is much more widely used and adopted, for the example
+        above via the endpoint <a href=\"https://beta.rogue-scholar.org/api/communities/ropensci/records\">https://beta.rogue-scholar.org/api/communities/ropensci/records</a>.</p><p>InvenioRDM
+        records can be included in more than one community, and the obvious communities
+        to use in addition to <em>blogs</em> are <em>topics</em>. The Rogue Scholar
+        beta instance has started with 12 topic communities, which include these six
+        <em>Open Science</em> communities:</p><ul><li><a href=\"https://beta.rogue-scholar.org/communities/openaccess\"
+        rel=\"noreferrer\">Open Access</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/opendata\"
+        rel=\"noreferrer\">Open Data</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/opensource\"
+        rel=\"noreferrer\">Open Source</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/oer\"
+        rel=\"noreferrer\">Open Educational Resources</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/openevaluation\"
+        rel=\"noreferrer\">Open Evaluation</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/openinfrastructure\"
+        rel=\"noreferrer\">Open Infrastructure</a></li></ul><p>In addition, there
+        are six other topic communities covering topics that are popular with multiple
+        Rogue Scholar blogs:</p><ul><li><a href=\"https://beta.rogue-scholar.org/communities/metascience\"
+        rel=\"noreferrer\">Metascience</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/datascience\"
+        rel=\"noreferrer\">Data Science</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/copyright\"
+        rel=\"noreferrer\">Copyright</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/citizenscience\"
+        rel=\"noreferrer\">Citizen Science</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/computational_chemistry\"
+        rel=\"noreferrer\">Computational Chemistry</a></li><li><a href=\"https://beta.rogue-scholar.org/communities/ai\"
+        rel=\"noreferrer\">Artificial Intelligence</a></li></ul><p>These topic communities
+        have just started and only include a few blog posts each. Below is a screenshot
+        of part of the <a href=\"https://beta.rogue-scholar.org/communities/openinfrastructure\"
+        rel=\"noreferrer\">Open Infrastructure</a> community, where you can see that
+        several Rogue Scholar blog posts talk about adopting the <a href=\"https://doi.org/10.59350/b7mtv-gpn88\"
+        rel=\"noreferrer\">Principles of Open Scholarly Infrastructure</a>, itself
+        originally a blog post and included in Rogue Scholar (see also screenshot
+        above). </p><figure class=\"kg-card kg-image-card\"><img src=\"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png\"
+        class=\"kg-image\" alt=\"\" loading=\"lazy\" width=\"1269\" height=\"912\"
+        srcset=\"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png
+        600w, https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png
+        1000w, https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png
+        1269w\" sizes=\"(min-width: 720px) 720px\"></figure><p>A topic that has been
+        very popular with Rogue Scholar bloggers since the launch of ChatGPT 3.5 two
+        years ago is <a href=\"https://beta.rogue-scholar.org/communities/ai/\" rel=\"noreferrer\"><em>Artificial
+        Intelligence</em></a>, covering aspects such as <a href=\"https://doi.org/10.59350/66xvc-kjy06\"
+        rel=\"noreferrer\">practical advice</a>, <a href=\"https://doi.org/10.59350/bgk5r-gaw57\"
+        rel=\"noreferrer\">background research</a>, and <a href=\"https://doi.org/10.54900/zg929-e9595\"
+        rel=\"noreferrer\">legal implications</a>. </p><p>More experience and feedback
+        regarding topic communities is needed, please <a href=\"mailto:info@rogue-scholar.org\"
+        rel=\"noreferrer\">reach out</a> with comments, or if you want to help curate
+        a new or existing community. As Rogue Scholar generates all metadata automatically
+        from blog metadata, the question of changing blog post metadata by communities
+        also needs more discussion.</p><p>As of today, 78 Rogue Scholar blog posts
+        have been added to the Beta version of the InvenioRDM-based service. In the
+        coming weeks, all currently 17,468 blog posts will be added via API, and added
+        to appropriate topic communities. Until November 4, I will also work on interface
+        glitches and bugs I encounter, and make sure the InvenioRDM Rogue Scholar
+        instance scales appropriately with traffic. Please reach out <a href=\"mailto:info@rogue-scholar.org\"
+        rel=\"noreferrer\">via email</a> if you encounter bugs or performance issues.</p><p>The
+        next InvenioRDM release (v12.1, planned for the next few weeks) will improve
+        language support, and Rogue Scholar will benefit as it currently supports
+        seven languages and 31% of blog posts are currently written in languages other
+        than English (predominantly German and Spanish). Some work will be needed
+        to translate the Rogue Scholar customizations.</p><h3 id=\"future-work\">Future
+        Work</h3><p>After re-launching the Rogue Scholar frontend on November 4, the
+        next phase of developing work will focus on consolidating duplicated resources,
+        including two separate Postgres databases, Search indexes and APIs. Rogue
+        Scholar currently uses <a href=\"https://typesense.org/\" rel=\"noreferrer\">Typesense</a>
+        for search versus <a href=\"https://opensearch.org/\" rel=\"noreferrer\">OpenSearch</a>
+        used by InvenioRDM. In contrast to the Rogue Scholar Typesense integration,
+        InvenioRDM currently does not offer full-text search of content, so substantial
+        development work is needed and will not be completed until 2025.</p><p>Both
+        the Rogue Scholar and InvenioRDM API are written in Python and integrate with
+        the similar <a href=\"https://quart.palletsprojects.com/\" rel=\"noreferrer\">Quart</a>
+        and <a href=\"https://flask.palletsprojects.com/\" rel=\"noreferrer\">Flask</a>
+        frameworks, respectively. Consolidating them is mostly about deciding what
+        part of the Rogue Scholar functionality is of broader interest to the InvenioRDM
+        community, e.g. automatic metadata extraction from RSS feeds or automatic
+        generation of markdown, PDF, and other document formats using the <a href=\"https://pandoc.org\"
+        rel=\"noreferrer\">Pandoc</a> document converter.</p><p>DOI registration of
+        Rogue Scholar DOIs and metadata is done with Crossref. InvenioRDM supports
+        DOIs registered externally, but for a deeper integration with fewer dependencies
+        more work is needed. Full-text search, support for Crossref DOI registration,
+        and RSS support are features of interest to other members of the InvenioRDM
+        community, so this work will be coordinated.</p><h2 id=\"references\">References</h2><ol><li>Fenner,
+        M. (2024, September 2). Rogue Scholar migrates to InvenioRDM. <em>Front Matter</em>.
+        <a href=\"https://doi.org/10.53731/sdazp-kzn55\">https://doi.org/10.53731/sdazp-kzn55</a></li><li>Fenner,
+        M. (2023, January 16). RSS, Atom, JSON Feed. <em>Front Matter</em>. <a href=\"https://doi.org/10.53731/d6vdvbt-tffmezj\">https://doi.org/10.53731/d6vdvbt-tffmezj</a></li><li>Tay,
+        A. (2024, September 16). Primo Research Assistant launches- a first look and
+        some things you should know. <em>Aaron Tay''s Musings about Librarianship</em>.
+        <a href=\"https://doi.org/10.59350/66xvc-kjy06\">https://doi.org/10.59350/66xvc-kjy06</a></li><li>Research
+        Graph. (2024, August 2). What is Gemma2? <em>Stories by Research Graph on
+        Medium</em>. <a href=\"https://doi.org/10.59350/bgk5r-gaw57\">https://doi.org/10.59350/bgk5r-gaw57</a></li><li>Pooley,
+        J. (2024, January 2). Large Language Publishing. <em>Upstream</em>. <a href=\"https://doi.org/10.54900/zg929-e9595\">https://doi.org/10.54900/zg929-e9595</a></li></ol>","doi":"https://doi.org/10.53731/dv8z6-a6s33","guid":"https://doi.org/10.53731/dv8z6-a6s33","image":"https://images.unsplash.com/photo-1450609283058-0ec52fa7eac4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTc3M3wwfDF8c2VhcmNofDYyfHxjb21tdW5pdHl8ZW58MHx8fHwxNzI4MzAxMDk4fDA&ixlib=rb-4.0.3&q=80&w=2000","images":[{"height":"1024","sizes":"(min-width:
+        720px) 720px","src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png","srcset":"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png,
+        https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png,
+        https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png","width":"1251"},{"height":"604","sizes":"(min-width:
+        720px) 720px","src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png","srcset":"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png,
+        https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png,
+        https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png","width":"1260"},{"height":"912","sizes":"(min-width:
+        720px) 720px","src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png","srcset":"https://blog.front-matter.de/content/images/size/w600/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png,
+        https://blog.front-matter.de/content/images/size/w1000/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png,
+        https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png","width":"1269"},{"src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.17.41.png"},{"src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.54.55-1.png"},{"src":"https://blog.front-matter.de/content/images/2024/10/Bildschirmfoto-2024-10-07-um-08.14.22.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1728259200,"reference":[{"unstructured":"Fenner,
+        M. (2024, September 2). Rogue Scholar migrates to InvenioRDM. Front Matter."},{"unstructured":"Fenner,
+        M. (2023, January 16). RSS, Atom, JSON Feed. Front Matter."},{"unstructured":"Tay,
+        A. (2024, September 16). Primo Research Assistant launches- a first look and
+        some things you should know. Aaron Tay''s Musings about Librarianship."},{"unstructured":"Research
+        Graph. (2024, August 2). What is Gemma2? Stories by Research Graph on Medium."},{"unstructured":"Pooley,
+        J. (2024, January 2). Large Language Publishing. Upstream."}],"rid":"1xr7q-9fp18","summary":"The
+        Rogue Scholar infrastructure started migrating to InvenioRDM infrastructure
+        a few weeks ago. This first phase of the migration will conclude on November
+        4 with the switch of the Rogue Scholar frontend (rogue-scholar.org) to InvenioRDM
+        (to what is currently hosted at beta.rogue-scholar.org). InvenioRDM record
+        For the most part and not by coincidence, InvenioRDM is a very good fit for
+        Rogue Scholar.","tags":["Rogue Scholar"],"title":"Rogue Scholar learns about
+        communities","updated_at":1773703982,"url":"https://blog.front-matter.de/posts/rogue-scholar-learns-about-communities/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -115,7 +198,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:29 GMT
+      - Mon, 29 Jun 2026 18:14:02 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

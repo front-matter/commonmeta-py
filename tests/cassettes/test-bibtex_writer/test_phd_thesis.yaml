@@ -5,21 +5,19 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://doi.org/ra/10.14264
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9QxMjMxMlHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        AMUR8AA3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.14264\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a04e85d67aca5286-AMS
+      - a136e5405f956729-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -27,11 +25,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:21:40 GMT
+      - Mon, 29 Jun 2026 18:11:45 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=xS2TZXTDSYlN9HqzKZGqF2dSCFL0Hw1r%2FwoVbyPARFkTmpQfaZ7TgrP4okvYm97yN7ledTRDWhjjztObq9fbPLKhGUnw4GPpPgB7oBN06SpRa3XtHOtnDqatEIraFOeDqnd3lMk%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=oOw6a9ZPDOUHsWIdYm6OZnH0aH%2BEz5IlERTcj14OumRxOyTPVoWCEPutul2OUmOqLmVKd%2BIV%2FJkqsLNGpqw060dW2mTEoCVULSFrSYjfY0i3%2FOnR73XwAnp4PqETKxJmDZJIDNI%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
@@ -56,30 +54,22 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.14264/uql.2020.791
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/6VUyW7bMBD9FYFnSaYsKbZ1TS4BWrTZLo19oKmxzZYiFS5JDcP/3hnJSYw2ORUw
-        DILDWd4yOjAfRIieNcz+YinrwHuxhSzse8C7F+vOb5/BeWUNBoqc5/w9wpoDU8YHFWIYHjwemBEd
-        lbjfQfJg1JAa9ondJDcRwHgtTIsFWuiFCx2YgEnsTu6s1fTozkoldHInFRgJbHVcpdihhd/QUrNW
-        BMgoEyd/fJzyaZ3WaVGt8NUQCmpoToGM11lR3fOqKadNOfuBTSmKuLueNcWsmhWLWVHPqoqn7B1h
-        mVc8r9kxZQ424GiKTNpIc+K7Pq618jtw+PIzdMkXtXbC7bGhtCYgxKy1nVBmAHA6PeLE0lnvO+F+
-        ZQ7HckqOHG6E9oD9/c66kFEJzACH2IKGMfPq2zWJwfOiml5Uy0l80jli5vlsURDOUcVWeQ8Odaay
-        1A6Qoo9p5OlFOv+ARZ7xi4zP73nd8HlTz/9msV7gb7oo55xzHFn0vbPPn/ao02m9WhE0G52kFpdE
-        ARKNZZXP3hhvs/X+jPVX5K8+CS4KI/cJkb1RBs/kGbJJD/iHBZI2OmW2CXTgtnQQbdQBk9smEYm2
-        ZouWbTFVYxGh9155EtGBBNUHOlJtB1oJqmZNIoXfYWNhPM7oGVLV47jq95kOCEJEbOKGPfh2e3l9
-        hdFdCL1vlpPlxDqp2ty67XKCdCG1nJdZyecXWVVV5Skb7aIk6ZQNz1mDYCFlW/Qa2fO7IKMokXwV
-        DgBzNqJTek9UWq0R6QtixGsPT3HYoIZtlPOBqm82CvGcFhUBODuwejgdXofHbbBSrKMmDzejS0mi
-        47CMHXTrwf51OZ+dLP6PP61TWyL3/A7Fsbgs/2fAxWcGXIwG9NI6zCyo3ZYIQtN8310l+DVCiUk1
-        XLWT+Q6ooOoGkAf2cPvlpNUgFfheSMj1uMl5fMqhjbmIy8mzgpfl5OGmmZaigFnFjtQ2rs+Qjot7
-        doF7GD/CbaLWwz68Gd+fuf59pNE+rVWjeT7de/TrSd7DONRPkPR9XR2PfwD1Onvd8QUAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"The
+        University of Queensland","department":["School of Social Science"]}],"indexed":{"date-parts":[[2025,5,14]],"date-time":"2025-05-14T04:32:37Z","timestamp":1747197157440,"version":"3.40.5"},"reference-count":0,"publisher":"University
+        of Queensland Library","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"DOI":"10.14264\/uql.2020.791","type":"dissertation","created":{"date-parts":[[2020,6,8]],"date-time":"2020-06-08T05:08:58Z","timestamp":1591592938000},"approved":{"date-parts":[[2020,5,25]]},"source":"Crossref","is-referenced-by-count":0,"title":["School
+        truancy and financial independence during emerging adulthood: a longitudinal
+        analysis of receipt of and reliance on cash transfers"],"prefix":"10.14264","author":[{"ORCID":"https:\/\/orcid.org\/0000-0003-3086-4443","authenticated-orcid":true,"given":"Patricia
+        Maree","family":"Collingwood","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"5387","container-title":[],"original-title":[],"deposited":{"date-parts":[[2020,6,8]],"date-time":"2020-06-08T05:08:59Z","timestamp":1591592939000},"score":1,"degree":["PhD
+        Thesis"],"resource":{"primary":{"URL":"http:\/\/espace.library.uq.edu.au\/view\/UQ:23a1e74"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[null]]},"references-count":0,"URL":"https:\/\/doi.org\/10.14264\/uql.2020.791","relation":{},"subject":[]}}'
     headers:
       Connection:
       - keep-alive
@@ -88,7 +78,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:21:41 GMT
+      - Mon, 29 Jun 2026 18:11:45 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

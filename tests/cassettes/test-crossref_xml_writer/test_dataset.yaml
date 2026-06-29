@@ -5,31 +5,21 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.2210/pdb4hhb/pdb
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/61UaW/bMAz9K4Y+2658pE4MDEPapgfQ1kXqYEcbDIqtNNpsy5PkuVmQ/z7Kdo4e
-        2b4MCBCZosjHx0eukFREVRKFiP9AJsqplOSJWmpZUrDVXOxbf1EhGS/gwrGxjXc3KFwhVkjFVKUa
-        hwf4Trd/aKFUKcPHo8cjwYXNxdPjEfaDn8te4PchCks3CcfRGL6JlFQomlqzJdjKapYxuaACracm
-        KkiuHT9xkaU1S6lxJ7iirDDOiCLGCSk0YJIIXixzAIDq+u7sBE31U1ak9JmmGmxKFLVKIhRU/vDg
-        Yrdn9kzXm4JXc6VYk0VfWLhnuV6M/bCHQ3/wFcLrW+AtL1HoBH4wCHp9f+AFAxPtGPJsH0hCawhI
-        ZSJY2RKDni1BlkbK5nNBEm0zpBJVoipBIbKgcypokVAr4VWhUIjNvfr/VXbCC0ULZaU8J6xo6uxO
-        D1AYcCJlTsQPSwB6wZIW0ZxkkgJMueBCWToEvKACKFAZ7V52catSk/M+gb4m0J1O1zvAqVUKpot4
-        7e4M+r4ZmE7QuJ9FV1pR2HZdBz8elenMXyxmzUFz3QoDAhBJlS5S0EMg8LHpmL23TcTHFnagjzHG
-        oQd97L9uouMd+67jDvoYY00Fr0Sin55qyqAnWqPS2jZHC3PTIEdHaplC8eXIOB1/uY+H18Z9PJ6c
-        xpPxyIjOjcvJzfDWOBtFn79cDkc30cV1dHJ1awxjw7ED3xjeXoB7dHNvjEf30fUkvopuEVRRQkb2
-        vCNHK7tS0Kdmsp7YL6oVdWGDfU5ylulpOaciZ2CQ9GelsYJpzoTUzJH5nGWMdBMK8QVvcK+6wyY4
-        yJgnZFZlROiIyYaENXRrl/bGPn+R+I6KSv1+mZmkKdPpSPZ/0k/1xslnzSgEwbG3p/mDsmjE5pmt
-        1t7K+68jBfm4YE8MCtifh5SWXLJDk9DrJuHAKnFjJwhd+HnvrRLP7/tep8KEw07QAoN57RS5Ak2w
-        vCFmhSbj6xe7ta5ru65hbNoNC4ePLP0Af98gINZDhdY6bjXbFt8Yp5vh3yuRSVn9k83tQMi9dfUa
-        VcpZi+fQhAuadaJYtei+00S1KLab5K9A1us//ds72ccGAAA=
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"id":[{"id":"https:\/\/ror.org\/047qy5748","id-type":"ROR","asserted-by":"publisher"}],"name":"Worldwide
+        Protein Data Bank","acronym":["wwPDB"]}],"indexed":{"date-parts":[[2025,5,23]],"date-time":"2025-05-23T04:50:49Z","timestamp":1747975849379,"version":"3.41.0"},"description":"x-ray
+        diffraction structure","reference-count":0,"publisher":"Worldwide Protein
+        Data Bank","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"content-updated":{"date-parts":[[2024,5,22]]},"published-print":{"date-parts":[[1984,7,17]]},"DOI":"10.2210\/pdb4hhb\/pdb","type":"dataset","created":{"date-parts":[[2006,1,5]],"date-time":"2006-01-05T00:34:58Z","timestamp":1136421298000},"source":"Crossref","is-referenced-by-count":1,"title":["THE
+        CRYSTAL STRUCTURE OF HUMAN DEOXYHAEMOGLOBIN AT 1.74 ANGSTROMS RESOLUTION"],"prefix":"10.2210","author":[{"given":"G.","family":"Fermi","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]},{"given":"M.F.","family":"Perutz","sequence":"additional","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"7763","content-created":{"date-parts":[[1984,3,7]]},"container-title":["Worldwide
+        Protein Data Bank"],"original-title":[],"deposited":{"date-parts":[[2025,5,22]],"date-time":"2025-05-22T17:27:23Z","timestamp":1747934843000},"score":1,"resource":{"primary":{"URL":"https:\/\/www.wwpdb.org\/pdb?id=pdb_00004hhb"}},"subtitle":["4hhb"],"short-title":[],"issued":{"date-parts":[[1984,3,7]]},"references-count":0,"URL":"https:\/\/doi.org\/10.2210\/pdb4hhb\/pdb","relation":{},"subject":[],"published":{"date-parts":[[1984,3,7]]}}}'
     headers:
       Connection:
       - keep-alive
@@ -38,7 +28,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:41 GMT
+      - Mon, 29 Jun 2026 18:12:59 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -62,69 +52,6 @@ interactions:
       - 1s
       x-rate-limit-limit:
       - '10'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540114'
-      CF-RAY:
-      - a09fbb9b1b74e67c-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:09 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=gepZ8TRSXDwC7tLeF1bxNJfuQrHH4bN3eCUeg86LD.Y-1781171649.770725-1.0.1.1-aiwjdnmXWZXbbC9M9AqNY7MvUzzkufsVtY_vOaqMrqMNF5DwvEzMsx8uZigtqmR6eNL7AfcrHh4JnwIHR28WtWNtdnIF.CI4Evu6Ihzec8DbHglZtOv3uBVdjxlBhuZf;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:09 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

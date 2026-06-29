@@ -5,91 +5,92 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
-    uri: https://api.rogue-scholar.org/posts/a080e9d7-20a1-4a0c-b550-0c39d4423868
+    uri: https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"contributor_roles":[],"family":"Apodaca","given":"Richard
+        L.","url":"https://orcid.org/0000-0003-3855-9427"}],"blog":{"authors":null,"community_id":"9eb6ed36-4c18-4be8-8262-f94d91dd01fa","created":1734134400,"current_feed_url":null,"description":"Recent
+        content on Depth-First","favicon":"https://rogue-scholar.org/api/communities/9eb6ed36-4c18-4be8-8262-f94d91dd01fa/logo","feed_format":"application/feed+json","feed_url":"http://localhost:3000/articles.atom","filter":null,"generator":"Other","home_page_url":"https://depth-first.com","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"rapodaca","status":"archived","subfield":"1606","title":"Depth-First","updated":null,"use_api":null},"blog_name":"Depth-First","blog_slug":"rapodaca","content_html":"<p>Scripting
+        languages and cheminformatics can be a highly-effective\ncombination. With
+        their relaxed syntax, compilation-free execution, and\ninteractive testing
+        environments, scripting languages offer fast\ndevelopment iteration cycles.
+        And scripting languages'' support for\nmanipulating libraries written in other
+        languages can be key in today''s\nheterogeneous cheminformatics software environment.</p>\n<p>Although
+        there are many <a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">cheminformatics\nscripting
+        environments</a> to choose from, Ruby offers some important\nadvantages. Number
+        one on the list is the wildly-popular <a\nhref=\"http://rubyonrails.org\"
+        target=\"_blank\">Ruby on Rails</a> Web\ndevelopment framework. Others worth
+        mentioning include <a\nhref=\"http://tryruby.hobix.com/\" target=\"_blank\">interactive
+        ruby</a>\n(irb), the <a href=\"http://www.rubygems.org/\"\ntarget=\"_blank\">RubyGems</a>
+        package manager, the <a\nhref=\"http://martinfowler.com/articles/rake.html\"\ntarget=\"_blank\">Rake</a>
+        build system, the <a href=\"http://jruby.org\"\ntarget=\"_blank\">JRuby</a>
+        Ruby implementation, <a\nhref=\"http://rubyforge.org\" target=\"_blank\">RubyForge</a>,
+        and a host of\nother productivity-boosters.</p>\n<p>A major focus of Depth-First
+        over the last few months has been <a\nhref=\"http://localhost:1313/articles/tag/rubycdk\">Ruby
+        CDK</a>. This\nlibrary consists of a thin Ruby wrapper around the open source
+        <a\nhref=\"http://cdk.sf.net\" target=\"_blank\">Chemistry Development Kit</a>\n(CDK),
+        <a\nhref=\"http://localhost:1313/articles/2006/08/28/drawing-2-d-structures-with-structure-cdk\">Structure-CDK</a>,\nan
+        open source 2D rendering toolkit, and <a\nhref=\"http://localhost:1313/articles/tag/opsin\">OPSIN</a>,
+        an open\nsource chemical nomenclature parser. A recent comment on Depth-First
+        by\n<a href=\"http://chem-bla-ics.blogspot.com/\" target=\"_blank\">Egon\nWillighagen</a>,
+        one of CDK''s creators, got me thinking about\ncentralizing this documentation.
+        The following collection of links is a\nstep in that direction.</p>\n<h1 class=\"relative
+        group\" id=\"overview-and-installation\">Overview and\nInstallation</h1>\n<div
+        id=\"overview-and-installation\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/30/agile-chemical-informatics-development-with-cdk-and-ruby-rcdk-0-3-0\">Agile\nChemical
+        Informatics Development with CDK and Ruby CDK 0.3.0</a>\nInstallation of Ruby
+        CDK on Linux.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/12/running-ruby-java-bridge-on-windows\">Running\nRuby
+        Java Bridge on Windows</a> Special installation instructions for\nRuby CDK
+        on Windows.</li>\n</ul>\n<h1 class=\"relative group\" id=\"ruby-cdk-in-its-environment\">Ruby
+        CDK in\nIts Environment</h1>\n<div id=\"ruby-cdk-in-its-environment\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/17/from-iupac-nomenclature-to-2-d-structures-with-opsin\">From\nIUPAC
+        Nomenclature to 2D Structures with OPSIN</a> OPSIN converts IUPAC\nnomenclature
+        into molecular representations and is now part of Ruby\nCDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/14/eleven-free-cheminformatics-scripting-environments\">Eleven\nFree
+        Cheminformatics Scripting Environments</a> So many choices, so\nlittle time.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/10/24/metaprogramming-with-ruby-mapping-java-packages-onto-ruby-modules\">Metaprogramming\nwith
+        Ruby : mapping Java Packages Onto Ruby Modules</a> Behind the\nscenes look
+        at a trick used in Ruby CDK.</li>\n</ul>\n<h1 class=\"relative group\" id=\"using-ruby-cdk\">Using
+        Ruby CDK</h1>\n<div id=\"using-ruby-cdk\" class=\"anchor\">\n\n</div>\n<ul>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/21/build-a-rails-cheminformatics-application-in-thirty-minutes\">Build\na
+        Rails Cheminformatics Application in Thirty Minutes</a> First article\nin
+        a series on building a SMILES Depict application.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/27/anatomy-of-a-cheminformatics-web-application-beautifying-depict\">Anatomy\nof
+        a Cheminformatics Web Application: Beautifying Depict</a> Second\narticle
+        in the series - cleaning up the Depict user interface.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/04/anatomy-of-a-cheminformatics-web-application-ajaxifying-depict\">Anatomy\nof
+        a Cheminformatics Web Application: Ajaxifying Depict</a> Third\narticle in
+        the series - use Ajax to automatically update the Depict\ndrawing.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/13/cheminformatics-for-the-web-convert-sd-files-to-html-with-ruby-cdk\">Cheminformatics\nfor
+        the Web: Convert SD Files to HTML with Ruby CDK</a> SD Files are\nboth everywhere
+        and useless by themselves to chemists - why not convert\nthem into HTML and
+        post them to the Web?</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/15/diversity-oriented-chemical-informatics\">Diversity-Oriented\nChemical
+        Informatics</a> CDK is chock-full of nifty little tidbits, like\nthe ability
+        to enumerate all molecules of a given empirical\nformula.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/11/22/scripting-molecular-fingerprints-with-ruby-cdk\">Scripting\nMolecular
+        Fingerprints with Ruby CDK</a> To borrow a phrase from a\ncheminformatics
+        master: \"It''s just that easy.\"</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/11/hacking-molbank-creating-a-graphical-table-of-contents\">Hacking\nMolbank:
+        Creating a Graphical Table of Contents</a> The intersection of\nOpen Access,
+        Open Source, and rapid application development.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/18/anatomy-of-a-cheminformatics-web-application-structure-cleanup-in-java-molecular-editor\">Anatomy\nof
+        a Cheminformatics Web Application: Structure Cleanup in Java\nMolecular Editor</a>
+        The structure editor <em>can</em> be lean, mean,\nand still highly functional
+        - just offload resource-hungry features to\nthe server.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/03/13/from-iupac-name-to-molecular-formula-with-ruby-cdk\">From\nIUPAC
+        Name to Molecular Formula with Ruby CDK</a> <a\nhref=\"http://wwmm.ch.cam.ac.uk/blogs/corbett/\"
+        target=\"_blank\">Peter\nCorbett''s</a> awesome OPSIN Library plays nice with
+        Ruby CDK.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/06/from-inchi-to-image-with-ruby-open-babel-and-ruby-cdk\">From\nInChI
+        to Image with Ruby Open Babel and Ruby CDK</a> InChIs are not easy\nto interpret
+        - fortunately, this little library will do it for you.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/19/easily-calculate-tpsa-descriptors-from-smiles-strings-using-ruby-cdk\">Easily\nCalculate
+        TPSA Descriptors from SMILES Strings Using Ruby CDK</a> It\njust works.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2007/09/20/ruby-cdk-one-liners-create-a-molfile-with-2d-atom-coordinates-from-arbitrary-smiles-strings\">Ruby\nCDK
+        One-Liners: Create a Molfile with 2D Atom Coordinates from Arbitrary\nSMILES
+        Strings</a> Extremely short library for solving a very common\ncheminformatics
+        problem.</li>\n<li><a\nhref=\"http://localhost:1313/articles/2006/12/05/source-code-documentation-in-ruby-rdoc-for-ruby-cdk\">Source\nCode
+        Documentation in Ruby: RDoc for Ruby CDK</a> When all else fails,\nread the
+        documentation.</li>\n</ul>","doi":"https://doi.org/10.59350/50ebs-4zq55","guid":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies/","image":"https://depth-first.com/","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1191456000,"rid":"vtvqg-j3285","summary":"Scripting
+        languages and cheminformatics can be a highly-effective combination. With
+        their relaxed syntax, compilation-free execution, and interactive testing
+        environments, scripting languages offer fast development iteration cycles.
+        And scripting languages'' support for manipulating libraries written in other
+        languages can be key in today''s heterogeneous cheminformatics software environment.","title":"Ruby
+        CDK for Newbies","updated_at":1743759142,"url":"https://depth-first.com/articles/2007/10/04/ruby-cdk-for-newbies"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -100,74 +101,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:21:50 GMT
+      - Mon, 29 Jun 2026 19:59:55 GMT
       Server:
       - gunicorn
-      Vary:
-      - Accept-Encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540067'
-      CF-RAY:
-      - a09fba75585e33b5-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:53:22 GMT
-      Server:
-      - cloudflare
       Transfer-Encoding:
       - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=e2TUsogqMWfZI2BNVWfXV4GcMK.1SvK0HAW4ap9rcL4-1781171602.7786598-1.0.1.1-8RB5WEHm79kEKr1zYHjm5r0eaKvYe8fRSWLU23ZNBmb9.zDFhkig3tv3iykrppM2dpheDGCg6JVIAvxJIuyvPZ3B5APXwV6I_7WqN7_WU49jZORm_A0o9Wd_ifuvAUyM;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:23:22 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
+      Vary:
       - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

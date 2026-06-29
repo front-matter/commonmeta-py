@@ -9,6 +9,11 @@ import pytest
 from commonmeta import Metadata
 
 
+@pytest.fixture(scope="module")
+def vcr_config():
+    return {"record_mode": "new_episodes"}
+
+
 @pytest.mark.vcr
 def test_journal_article():
     "journal article"
@@ -818,7 +823,7 @@ def test_instrument():
 @pytest.mark.vcr
 def test_jsonfeed_upstream_blog():
     """jsonfeed upstream blog"""
-    string = "https://api.rogue-scholar.org/posts/5d14ffac-b9ac-4e20-bdc0-d9248df4e80d"
+    string = "https://api.rogue-scholar.org/posts/10.54900/n6dnt-xpq48"
     subject = Metadata(string)
     assert subject.is_valid
     assert subject.id == "https://doi.org/10.54900/n6dnt-xpq48"

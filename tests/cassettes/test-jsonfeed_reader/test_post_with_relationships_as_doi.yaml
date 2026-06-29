@@ -5,121 +5,190 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.53731/ewrv712-2k7rx6d
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04wxnsj81","name":"DataCite"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
+        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
+        Front Matter Blog covers the intersection of science and technology since
+        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1781522561,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>Persistent
+        identifiers (PIDs) are not only important to uniquely identify a publication,
+        dataset, or person, but the metadata for these persistent identifiers can
+        provide unambiguous linking between persistent identifiers of the same type,
+        e.g. journal articles citing other journal articles, or of different types,
+        e.g. linking a researcher and the datasets they produced.</p>\n<p>Work is
+        needed to connect existing persistent identifiers to each other in standardized
+        ways, e.g. to the outputs associated with a particular researcher, repository,
+        institution or funder, for discovery and impact assessment. Some of the more
+        complex but still important use cases can''t be addressed by simply collecting
+        and aggregating links between two persistent identifiers, including</p>\n<ol><li>Aggregate
+        the citations for all versions of a dataset or software source code</li><li>Aggregate
+        the citations for all datasets hosted in a particular repository, funded by
+        a particular funder, or created by a particular researcher</li><li>Aggregate
+        all citations for a <a href=\"http://www.researchobject.org/\">research object</a>:
+        a publication, the data underlying the findings in the paper, and the software,
+        samples, and reagents used to create those datasets.</li></ol>\n<p>To address
+        these use cases we need a more complex model to describe the resources that
+        are identified by PIDs, and the connections between them: a graph. In graph
+        theory, the resources identified by PIDs correspond to the nodes in this graph,
+        and the connections between PIDs correspond to the edges.</p>\n<p>Using a
+        graph makes it easier to describe these more complex use cases and relationships,
+        and this approach has been frequently applied to similar questions in the
+        past. FREYA builds on the expertise and close collaboration with the <a href=\"http://researchgraph.org/\">Research
+        Graph</a> team and adopts the outputs of the <a href=\"https://www.rd-alliance.org/groups/data-description-registry-interoperability.html\">Research
+        Data Alliance DDRI Working group</a> to transform PID connections into an
+        improved graph of research objects. This project takes advantage of the best
+        practices of graph modelling and distributed network analysis techniques.
+        We call this the <strong>PID Graph</strong>.</p>\n<h3 id=\"pid-graph-use-cases\">PID
+        Graph Use Cases</h3>\n<p>Before starting work on implementing the PID Graph,
+        the FREYA partners collected user stories from their communities relevant
+        to the PID Graph work. We used GitHub issues in a public repository for this
+        activity and then met in person in August 2018 to clarify, group and prioritize
+        these user stories. In total, we identified 48 user stories, described <a
+        href=\"https://github.com/datacite/freya/issues?utf8=%E2%9C%93&amp;q=is%3Aissue+is%3Aopen+label%3A%22PID+Graph%22++label%3A%22user+story%22+\">here</a>.
+        The main outcomes of the August 2018 workshop were:</p>\n<ol><li>There is
+        a significant number of relevant user stories that can only be addressed by
+        implementing a PID Graph.</li><li>While there is a diverse number of stakeholder
+        groups and persistent identifier types in these user stories, a number of
+        common themes and major use cases emerged in the workshop.</li><li>We didn''t
+        identify any uses cases that require more than two connections between PIDs,
+        simplifying the required implementation work needed.</li></ol>\n<p>After identifying
+        and describing the most relevant use cases, summarized above, we started the
+        implementation work for the FREYA PID Graph. Our goal was to implement the
+        PID Graph as standard production service rather than a research activity or
+        pilot service, so scalability and maintainability are of utmost importance.
+        We learned a lot from the extensive experience gained in the <a href=\"http://researchgraph.org/\">Research
+        Graph</a> initiative and decided to build PID Graph using a set of federated
+        RESTful JSON APIs. PID Graph will not be a single service but federated between
+        FREYA PID providers, FREYA disciplinary partners, and organizations outside
+        of FREYA. PID Graph will be provided by <a href=\"https://restfulapi.net/\">RESTful
+        JSON APIs</a> that describe the resources (nodes) and connections (edges)
+        in this graph. All FREYA PID providers use RESTful JSON APIs to provide PID
+        metadata so that this approach aligns with the extensive existing infrastructure.</p>\n<h3
+        id=\"initial-pid-graph-implementation\">Initial PID Graph Implementation</h3>\n<p>The
+        first working PID Graph implementation is provided by DataCite, extending
+        the existing Event Data Service (Dasler &amp; Cousijn, <a href=\"https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5438/s6d3-k860\">2018</a>),
+        a collaboration between Crossref and DataCite. Event Data is a service that
+        provides connections (here called events) between PIDs and other resources,
+        with an initial focus on social media mentions and data citations. The initial
+        PID Graph work done by DataCite since the August 2018 workshop has added these
+        functionalities to <a href=\"https://datacite.org/eventdata.html\">DataCite
+        Event Data</a>:</p>\n<h4 id=\"include-metadata-about-resources\">Include metadata
+        about resources</h4>\n<p>Include not only metadata about connections but also
+        metadata about the resources identified by PIDs. This dramatically simplifies
+        the API calls needed to construct a PID Graph. We do this by optionally including
+        the metadata for the <strong>subj</strong> and <strong>obj</strong> (the resources
+        linked via the event) in Event Data via an extra query parameter: <a href=\"https://api.datacite.org/events?include=subj,obj\">https://api.datacite.org/events?include=subj,obj</a></p>\n<p>Including
+        the metadata for subj and obj also enables queries based on resource metadata,
+        e.g. query by type of content that is connected: <a href=\"https://api.datacite.org/events?include=subj,obj&amp;citationType=ScholarlyArticle-SoftwareSourceCode\">https://api.datacite.org/events?include=subj,obj&amp;citationType=ScholarlyArticle-SoftwareSourceCode</a></p>\n<p>This
+        query today returns 1,078 events connecting scholarly articles and software,
+        including 834 from journal articles referencing software via Crossref metadata
+        and 210 from software referencing journal articles via DataCite metadata.</p>\n<h4
+        id=\"include-implicit-relations-in-metadata-about-resources\">Include implicit
+        relations in metadata about resources</h4>\n<p>Metadata for resources contain
+        a lot of information about connected PIDs. We can take advantage of this by
+        including the information in DataCite Event Data, allowing queries that in
+        effect connect two PIDs via an intermediary resource and two connections.
+        Specifically, we include these relations and associated PIDs:</p>\n<ol><li>Version,
+        e.g. dataset A <strong>isVersionOf</strong> dataset B (using DataCite <strong>relatedIdentifier</strong>
+        metadata)</li><li>Granularity, e.g. dataset A <strong>isPartOf</strong> dataset
+        B or dataset A <strong>isSupplementTo</strong> article B (using DataCite <strong>relatedIdentifier</strong>
+        metadata)</li><li>Funding, e.g. dataset A <strong>isFundedBy</strong> funder
+        B (using DataCite <strong>fundingReferences</strong> metadata)</li><li>Author,
+        e.g. dataset A <strong>isAuthoredBy </strong>author B (using DataCite <strong>nameIdentifier</strong>
+        metadata)</li></ol>\n<p>These connected PIDs can then act as a <strong>proxy</strong>
+        in PID Graph queries, as demonstrated in this example:</p>\n<p><a href=\"https://api.datacite.org/events?include=subj,obj&amp;doi=10.5061/dryad.k5k9074\">https://api.datacite.org/events?include=subj,obj&amp;doi=10.5061/dryad.k5k9074</a></p>\n<p>The
+        query today returns one data citation of the dataset identified by the DOI,
+        and eight data files that are part of this dataset. If someone decides to
+        cite one of these data files instead of the dataset (following principle 8
+        Specificity and Verifiability of the Joint Declaration of Data Citation Principles
+        (Data Citation Synthesis Group, <a href=\"https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.25490/a97f-egyk\">2014</a>)),
+        that data citation would also be included in the DataCite Event Data response.</p>\n<p>Similarly,
+        the citation of a specific version of a dataset would be included if querying
+        for the parent version of the dataset. Examples for funding and authorship
+        are given in the next paragraph.</p>\n<h4 id=\"include-more-types-of-events\">Include
+        more types of events</h4>\n<p>The initial focus in Event Data was on social
+        media mentions and data citations. DataCite has added author-resource links
+        and funder-resource links, using ORCID and Crossref Funder ID as PIDs, respectively.
+        DataCite also include dataset usage statistics, as part of the work in the
+        Make Data Count (Lowenberg, Budden, &amp; Cruse, <a href=\"https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5438/pre3-2f25\">2018</a>)
+        project. This enables the following two use cases:</p>\n<ol><li>Show all datasets
+        created by a particular researcher and their usage stats <a href=\"https://api.datacite.org/events?include=subj,obj&amp;orcid=0000-0002-1194-1055\">https://api.datacite.org/events?include=subj,obj&amp;orcid=0000-0002-1194-1055</a>.
+        The query today returns four datasets created by a researcher identified via
+        her ORCID ID, plus a combined 21 unique views of these datasets in February
+        and March 2019.</li><li>Show all datasets funded by the European Commission
+        that have been cited by a journal article <a href=\"https://api.datacite.org/events?include=subj,obj&amp;doi=10.13039/501100000780&amp;citation-type=Dataset-ScholarlyArticle\">https://api.datacite.org/events?include=subj,obj&amp;doi=10.13039/501100000780&amp;citation-type=Dataset-ScholarlyArticle</a>.
+        The query today returns 69 datasets cited by 37 journal articles.</li></ol>\n<h3
+        id=\"collaborating-on-research-data-graph-initiatives\">Collaborating on Research
+        Data Graph Initiatives</h3>\n<p>The aim is for any interested parties within
+        and beyond FREYA to implement PID Graph services, meaning that we have to
+        figure out how best to coordinate and enable this federated PID Graph. And
+        of course, there are initiatives outside of FREYA taking similar approaches
+        and addressing similar use cases. These include:</p>\n<ol><li>The already
+        mentioned Research Graph Foundation</li><li><a href=\"http://www.scholix.org/\">Scholix</a>:
+        a framework for Scholarly Link Exchange coordinated by a Research Data Alliance
+        (RDA) Working Group</li><li>The OpenAIRE Research Graph (Manghi &amp; Bardi,
+        <a href=\"https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5281/zenodo.2600275\">2019</a>),
+        an open metadata research graph of interlinked scientific products, with access
+        rights information, linked to funding information and research communities.</li><li>Asclepias
+        (Ioannidis &amp; Gonzalez Lopez, <a href=\"https://blog.datacite.org/introducing-the-pid-graph/#ref-https://doi.org/10.5281/zenodo.2548643\">2019</a>),
+        a broker service initially developed to track software citations in astronomy.</li></ol>\n<p>To
+        coordinate these activities we have organized a Birds of a Feather session
+        at the RDA Plenary in Philadelphia next week (Wednesday at 2:30 PM): <a href=\"https://rd-alliance.org/bof-Research-Data-Graph-RDA-13th-Plenary-meeting\">Research
+        Data Graph</a>.</p>\n<p>The initial implementation of the PID Graph in DataCite
+        Event Data contains 5.38 million events as of today and more work is needed
+        to convert existing events to the new format (we expect a total of 25 million
+        events with the current data source), improve documentation, and build visualizations
+        and other frontend services to make it easier to show the PID Graph information
+        we already have. But if you can''t wait and are not afraid working with JSON
+        REST APIs, feel free to explore DataCite Event Data, which is a free service
+        with no registration required, by starting with the <a href=\"https://support.datacite.org/docs/eventdata-guide\">documentation</a>.</p>\n<p>And
+        please reach out to us via the <a href=\"https://www.pidforum.org/\">PID Forum</a>
+        if you are interested to learn more about PID Graph, want to see your data
+        in PID Graph, or are working on a related project and want to coordinate.
+        And of course, join us for the RDA Plenary session next week in Philadelphia
+        if you plan to attend the conference.</p>\n<h2 id=\"acknowledgments\">Acknowledgments</h2>\n<p>This
+        post has been cross-posted from the <a href=\"https://www.project-freya.eu/en/blogs/blogs/the-pid-graph\">FREYA</a>
+        and <a href=\"https://doi.org/10.5438/jwvf-8a66\">DataCite</a> blogs. This
+        work was funded by the European Union''s Horizon 2020 research and innovation
+        programme under <a href=\"https://doi.org/10.3030/777523\" rel=\"noreferrer\">grant
+        agreement No.&nbsp;777523</a>.</p>\n<h2 id=\"references\">References</h2>\n<p>Dasler
+        R, Cousijn H. Are your data being used? Event Data has the answer! In: DataCite;
+        2018. doi:<a href=\"https://doi.org/10.5438/S6D3-K860\">10.5438/S6D3-K860</a></p>\n<p>Data
+        Citation Synthesis Group. <em>Joint Declaration of Data Citation Principles</em>.
+        Force11; 2014. doi:<a href=\"https://doi.org/10.25490/A97F-EGYK\">10.25490/A97F-EGYK</a></p>\n<p>Ioannidis
+        A, Gonzalez Lopez JB. Asclepias: Flower Power for Software Citation. Published
+        online January 24, 2019. doi:<a href=\"https://doi.org/10.5281/ZENODO.2548643\">10.5281/ZENODO.2548643</a></p>\n<p>Lowenberg
+        D, Budden A, Cruse P. It''s Time to Make Your Data Count! Published online
+        June 5, 2018. doi:<a href=\"https://doi.org/10.5438/PRE3-2F25\">10.5438/PRE3-2F25</a></p>\n<p>Manghi
+        P, Bardi A. The OpenAIRE Research Graph - Opportunities and challenges for
+        science. Published online March 20, 2019. doi:<a href=\"https://doi.org/10.5281/ZENODO.2600275\">10.5281/ZENODO.2600275</a></p>","doi":"https://doi.org/10.53731/ewrv712-2k7rx6d","funding_references":[{"awardNumber":"777523","awardUri":"https://doi.org/10.3030/777523","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.53731/ewrv712-2k7rx6d","image":"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2022/08/pid_graph_image-1.webp","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1553731200,"reference":[{"id":"https://doi.org/10.5438/s6d3-k860","unstructured":"Dasler,
+        R., &amp; Cousijn, H. (2018). Are your data being used? Event Data has the
+        answer!. In <i>DataCite Blog</i> (1.0). DataCite."},{"id":"https://doi.org/10.25490/a97f-egyk","unstructured":"Data
+        Citation Synthesis Group, &amp; Martone, M. (2014). <i>Joint Declaration of
+        Data Citation Principles</i>. Force11."},{"id":"https://doi.org/10.5281/zenodo.2548643","unstructured":"Ioannidis,
+        A., &amp; Gonzalez Lopez, J. B. (2019). <i>Asclepias: Flower Power for Software
+        Citation</i>. Zenodo."},{"id":"https://doi.org/10.5438/pre3-2f25","unstructured":"Lowenberg,
+        D., Budden, A., &amp; Cruse, P. (2018). <i>It''s Time to Make Your Data Count!</i>
+        (1.0). DataCite."},{"id":"https://doi.org/10.5281/zenodo.2600275","unstructured":"Manghi,
+        P., &amp; Bardi, A. (2019). <i>The OpenAIRE Research Graph - Opportunities
+        and challenges for science</i>. Zenodo."}],"relationships":[{"type":"IsIdenticalTo","url":"https://www.project-freya.eu/en/blogs/blogs/the-pid-graph"},{"type":"IsIdenticalTo","url":"https://doi.org/10.5438/jwvf-8a66"}],"rid":"q2stn-fjh79","summary":"Persistent
+        identifiers (PIDs) are not only important to uniquely identify a publication,
+        dataset, or person, but the metadata for these persistent identifiers can
+        provide unambiguous linking between persistent identifiers of the same type,
+        e.g. journal articles citing other journal articles, or of different types,
+        e.g. linking a researcher and the datasets they produced.","tags":["Metadata"],"title":"Introducing
+        the PID Graph","updated_at":1780742047,"url":"https://blog.front-matter.de/posts/introducing-the-pid-graph/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -130,7 +199,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 15:59:57 GMT
+      - Mon, 29 Jun 2026 18:14:08 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

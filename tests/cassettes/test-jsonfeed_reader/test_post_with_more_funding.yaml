@@ -5,53 +5,59 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw1y
   response:
     body:
-      string: !!binary |
-        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
-        TR4JpEgEf3lR1oil2I7Fd3/47wAOxR0VOxMAAA==
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
+        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
+        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
+        Front Matter Blog covers the intersection of science and technology since
+        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1781522561,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>A
+        <a href=\"https://web.archive.org/web/20171029102032/http://datacite.labs.orcid-eu.org/\">new
+        service</a> allows researchers to add research datasets \u2013 and other content
+        with DataCite DOIs, including all <a href=\"https://web.archive.org/web/20171029102032/http://figshare.com/\">figshare</a>
+        content \u2013 to their <a href=\"https://web.archive.org/web/20171029102032/http://about.orcid.org/\">ORCID</a>
+        profile by integrating with the <a href=\"https://search.datacite.org\">DataCite
+        Metadata Store</a>. The tool is an adaption (or fork) of the <a href=\"https://search.crossref.org/\"
+        rel=\"noreferrer\">CrossRef Metadata Search</a> developed by <a href=\"https://web.archive.org/web/20171029102032/https://twitter.com/karlward\">Karl
+        Ward</a>, and was developed by <a href=\"https://web.archive.org/web/20171029102032/https://twitter.com/gthorisson\">Gudmundur
+        Thorisson</a> and myself as part of work in the EU-funded <a href=\"https://web.archive.org/web/20171029102032/http://odin-project.eu/\">ODIN
+        project</a>. More details can be found <a href=\"https://web.archive.org/web/20171029102032/http://odin-project.eu/2013/05/13/new-orcid-integrated-data-citation-tool/\">here</a>.</p>\n<p>There
+        are many things I like about this new DataCite/ORCID integration tool:</p>\n<ul><li>it
+        makes it easier for researchers to get credit for their research outputs.</li><li>it
+        shows the value of persistent identifiers for data, publications and people,
+        and linking them together</li><li>it shows the Creative Commons licenses for
+        DataCite content where this info is available, facilitating reuse of content</li><li>it
+        demonstrates the power of open source (thanks CrossRef!), open collaboration,
+        standard REST APIs, and lightweight programming (Sinatra/Ruby) and deployment
+        (Vagrant, Amazon EC2, Rackspace) tools</li><li>it shows that we don''t need
+        a single \u2013 often closed \u2013 system, but open services that build on
+        top of each other using accepted community standards. Tools using the ORCID
+        API can immediately reuse the new DataCite content, altmetrics provided by
+        <a href=\"https://impactstory.org/\">ImpactStory</a> are a good example</li></ul>\n<p>I
+        want to explore some of these ideas in the panel <strong>Attribution: Managing
+        Provenance, Ethics, and Metrics</strong> at the combined <a href=\"https://web.archive.org/web/20171029102032/http://orcid.org/orcid-outreach-meeting-symposium-and-codefest-may-2013\">ORCID/Dryad
+        Meeting</a> in Oxford next Thursday.</p>\n<h2 id=\"acknowledgments\">Acknowledgments</h2>\n<p>This
+        work was funded by the European Union''s Horizon Seventh Framework programme
+        under <a href=\"https://cordis.europa.eu/project/id/312788\" rel=\"noreferrer\">grant
+        agreement No.&nbsp;312788</a>.</p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw1y","funding_references":[{"awardNumber":"312788","awardUri":"https://cordis.europa.eu/project/id/312788","funderIdentifier":"https://ror.org/00k4n6c32","funderIdentifierType":"ROR","funderName":"European
+        Commission"}],"guid":"https://doi.org/10.53731/r294649-6f79289-8cw1y","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1368835200,"rid":"mf40a-xtn49","summary":"A
+        new service allows researchers to add research datasets \u2013 and other content
+        with DataCite DOIs, including all figshare content \u2013 to their ORCID profile
+        by integrating with the DataCite Metadata Store. The tool is an adaption (or
+        fork) of the CrossRef Metadata Search developed by Karl Ward, and was developed
+        by Gudmundur Thorisson and myself as part of work in the EU-funded ODIN project.
+        More details can be found here.","tags":["News"],"title":"New DataCite / ORCID
+        Integration Tool","updated_at":1780745005,"url":"https://blog.front-matter.de/posts/new-datacite-orcid-integration-tool/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -62,7 +68,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 15:59:57 GMT
+      - Mon, 29 Jun 2026 18:14:08 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

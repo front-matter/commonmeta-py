@@ -40,7 +40,6 @@ from ..utils import (
     validate_orcid,
     validate_ror,
 )
-from ..v1_compat import v1_to_date
 
 if TYPE_CHECKING:
     from ..metadata import Metadata, MetadataList
@@ -125,22 +124,21 @@ def write_inveniordm(metadata: Metadata) -> dict:
     issue = container.get("issue", None)
     pages = pages_as_string(container)
 
-    date = v1_to_date(metadata.date_published, metadata.date_updated, metadata.dates)
+    date_fields = compact(
+        {
+            "published": metadata.date_published,
+            "updated": metadata.date_updated,
+            **(metadata.dates or {}),
+        }
+    )
     dates = []
-    for d in (date or {}).keys():
-        if (date or {}).get(d, None) is None:
-            continue
+    for d, v in date_fields.items():
         t = d.lower()
         if t == "published":
             t = "issued"
         elif t == "accessed":
             t = "other"
-        dates.append(
-            {
-                "date": date.get(d),
-                "type": {"id": t},
-            }
-        )
+        dates.append({"date": v, "type": {"id": t}})
 
     # Flatten subjects list since to_inveniordm_subject can return multiple subjects
     # Deduplicate by ID to handle multiple subfields mapping to same FOS

@@ -22,7 +22,6 @@ from ..base_utils import compact, dig, get_crossref_xml_head, parse_xml, presenc
 from ..constants import CM_TO_CR_CONTRIBUTOR_ROLES
 from ..doi_utils import doi_from_url, is_rogue_scholar_doi, validate_doi
 from ..utils import validate_url
-from ..v1_compat import v1_to_descriptions
 from .inveniordm_writer import push_inveniordm
 
 if TYPE_CHECKING:
@@ -976,9 +975,11 @@ def get_publisher(obj) -> dict | None:
 
 def get_abstracts(obj) -> list | None:
     """get abstracts"""
-    descriptions = v1_to_descriptions(
-        dig(obj, "description", None), dig(obj, "additional_descriptions", None)
-    )
+    _description = dig(obj, "description", None)
+    descriptions = (
+        ([{"description": _description, "type": "Abstract"}] if _description else [])
+        + wrap(dig(obj, "additional_descriptions", None))
+    ) or None
     if len(wrap(descriptions)) == 0:
         return None
 

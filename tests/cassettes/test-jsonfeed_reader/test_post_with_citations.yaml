@@ -5,56 +5,80 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/dcw3y-7em87
   response:
     body:
-      string: !!binary |
-        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
-        /vDfAQD2RRbm8xsAAA==
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/052gg0110","name":"University
+        of Oxford"}],"contributor_roles":[],"family":"Shotton","given":"David M.","url":"https://orcid.org/0000-0001-5506-523X"}],"blog":{"authors":[{"name":"OpenCitations
+        Team"}],"community_id":"c8efeda5-cd52-472d-9537-6915b9c62e34","created":1681862400,"current_feed_url":null,"description":"The
+        blog of the OpenCitations Infrastructure","favicon":"https://rogue-scholar.org/api/communities/c8efeda5-cd52-472d-9537-6915b9c62e34/logo","feed_format":"application/atom+xml","feed_url":"https://opencitations.hypotheses.org/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://opencitations.hypotheses.org","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"opencitations","status":"active","subfield":"1802","title":"OpenCitations
+        blog","updated":1780989011,"use_api":true},"blog_name":"OpenCitations blog","blog_slug":"opencitations","content_html":"<p>Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in <a href=\"http://www.citeulike.org/\" target=\"_blank\" rel=\"noopener\">CiteULike</a>,
+        the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.</p>\n<p>For example, in documenting papers
+        that use the Chemistry Development Kit (CDK), Egon records the following paper
+        by Guha (2007)\u00a0(Egon&#8217;s CiteULike reference 7901082):\u00a0 <em><br
+        />\n</em></p>\n<p><em><a href=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-37\"
+        title=\"Guha 2007 reference 7901082\" src=\"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png\"
+        alt=\"\" width=\"640\" height=\"394\" /></a></em></p>\n<p>He tags that Guha
+        paper, using the CiTO tag <em>cito:usedMethodIn</em>, as using the CDK method
+        described in a paper by Steinbeck <em>et al</em>. (2003) (Egon&#8217;s CiteULike
+        reference 423382):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-34\"
+        title=\"Steinbeck reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png\"
+        alt=\"\" width=\"640\" height=\"367\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png
+        643w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png
+        500w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>However, the
+        original paper by Guha that has been tagged by Egon does <em>not</em> cite\u00a0
+        Steinbeck <em>et al</em>. (2003) directly in its reference list.\u00a0 Rather,
+        it contains a reference to a later paper on CDK by Steinbeck <em>et al</em>.
+        (2006), entitled &#8220;Recent developments of the Chemistry Development Kit
+        (CDK)&#8221; (Egon&#8217;s CiteULike reference 1073448):</p>\n<p><a href=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"><img
+        loading=\"lazy\" decoding=\"async\" class=\"aligncenter size-full wp-image-35\"
+        title=\"Steinbeck 2006 reference\" src=\"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png\"
+        alt=\"\" width=\"640\" height=\"357\" srcset=\"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png
+        798w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png
+        300w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png
+        500w, https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png
+        768w\" sizes=\"auto, (max-width: 640px) 100vw, 640px\" /></a>. . . , a paper
+        that Egon tags as <strong>extending </strong>the original 2003 paper describing
+        CDK, using the property <em>cito:extends</em>.</p>\n<p>Thus the Guha paper
+        cites Steinbeck <em>et al</em>. (2003) only indirectly, via Steinbeck <em>et
+        al</em>. (2006).\u00a0 For this reason, the scope of CiTO was extended to
+        include such indirect citations.\u00a0 The description of CiTO now reads:</p>\n<p
+        style=\"padding-left: 30px\">&#8220;The purpose of the CiTO Ontology is to
+        enable characterization of the nature or type of citations, both factually
+        and rhetorically.\u00a0 The citations characterized may be either direct and
+        explicit (as in the reference list of a journal article), indirect (e.g. a
+        citation to a more recent paper by the same research group on the same topic),
+        or implicit (e.g. as in artistic quotations or parodies, or in cases of plagiarism).&#8221;</p>\n<p>Thanks,
+        Egon!</p>\n<div class=\"zemanta-pixie\" style=\"margin-top: 10px;height: 15px\"></div>","doi":"https://doi.org/10.59350/dcw3y-7em87","guid":"http://opencitations.wordpress.com/?p=31","images":[{"height":"394","src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png","width":"640"},{"height":"367","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-300x172.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-reference-500x287.png","width":"640"},{"height":"357","sizes":"auto,
+        (max-width: 640px) 100vw, 640px","src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png","srcset":"https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-300x168.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-500x279.png,
+        https://opencitations.hypotheses.org/files/2010/10/steinbeck-2006-reference-768x429.png","width":"640"},{"src":"http://opencitations.files.wordpress.com/2010/10/guha-2007-reference-7901082.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-reference.png"},{"src":"http://opencitations.files.wordpress.com/2010/10/steinbeck-2006-reference.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1287619200,"rid":"w2nqy-wxa44","summary":"Egon
+        Willighagen, at Uppsala University, has pioneered the use of object properties
+        from CiTO, the Citation Typing Ontology, to characterize bibliographic citations
+        in CiteULike, the free service for managing and discovering scholarly references.\u00a0
+        Indeed, it was his use case that persuaded me of the need to generalize CiTO
+        to include indirect citations.","tags":["JISC","Ontologies","Open Citations","Semantic
+        Publishing","Applications"],"title":"Use of CiTO in CiteULike","updated_at":1761288316,"url":"https://opencitations.hypotheses.org/31","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -65,7 +89,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:30:44 GMT
+      - Mon, 29 Jun 2026 18:14:07 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

@@ -5,48 +5,56 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.57689/dini-blog.20210712
   response:
     body:
-      string: !!binary |
-        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
-        pJwptCSncj2Q7//23wEArVFujOQSAAA=
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/05745n787","name":"G\u00f6ttingen
+        State and University Library"}],"contributor_roles":[],"family":"Beucke","given":"Daniel","url":"https://orcid.org/0000-0003-4905-1936"}],"blog":{"authors":null,"community_id":"b57b2853-9ea4-48b5-ad88-d0ddb6f11a9d","created":1689897600,"current_feed_url":null,"description":"Forschungsinformationen
+        & Systeme | Elektronisches Publizieren | Kompetenzzentrum Interoperable Metadaten","favicon":"https://rogue-scholar.org/api/communities/b57b2853-9ea4-48b5-ad88-d0ddb6f11a9d/logo","feed_format":"application/atom+xml","feed_url":"https://blog.dini.de/EPub_FIS/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://blog.dini.de/EPub_FIS","issn":"2940-1798","language":"deu","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":null,"relative_url":null,"secure":true,"slug":"epub_fis","status":"active","subfield":"1710","title":"Gemeinsamer
+        Blog der DINI AGs","updated":1780988907,"use_api":true},"blog_name":"Gemeinsamer
+        Blog der DINI AGs","blog_slug":"epub_fis","content_html":"<p>Bei der Einf\u00fchrung
+        eines Forschungsinformationssystems (FIS) stellt die rechtliche Seite oftmals
+        eine gro\u00dfe Herausforderungen dar. Wie ist es mit dem Datenschutz? F\u00fcr
+        was muss das Einverst\u00e4ndnis der Forschenden eingeholt werden und auf
+        welcher rechtlichen Grundlage? Wie sieht es aus mit der Beteiligung des Personals
+        an diesen Prozessen?</p>\n<p>An der TIB \u2013 Leibniz-Informationszentrum
+        Technik und Naturwissenschaften und Universit\u00e4tsbibliothek wurden diese
+        Fragen gestellt und unter Beteiligung der Datenschutzbeauftragten und des
+        von Beginn an eingebundenen Personalrats beantwortet. Das Ergebnis liegt nun
+        in Form einer nachnutzbaren Musterdienstvereinbarung (<a href=\"https://projects.tib.eu/fileadmin/data/openresearchinformation/docs/Musterdienstvereinbarung_VIVO.pdf\">PDF-Datei</a>,
+        <a href=\"https://projects.tib.eu/fileadmin/data/openresearchinformation/docs/Musterdienstvereinbarung_VIVO.docx\">Word-Datei</a>)
+        vor.</p>\n<p>Beitrag im TIB-Blog: <a href=\"https://blogs.tib.eu/wp/tib/2021/07/08/eine-musterdienstvereinbarung-fuer-vivo/\">https://blogs.tib.eu/wp/tib/2021/07/08/eine-musterdienstvereinbarung-fuer-vivo/</a></p>\n<h1>Zitiervorschlag</h1>\n<p>Vierkant,
+        Paul. \"Eine Musterdienstvereinbarung F\u00fcrs FIS \u2013 Ein Beispiel Der
+        TIB.\" <em>Blog der DINI AGs FIS &amp; EPUB</em>, 2021. <a href=\"https://doi.org/10.57689/DINI-BLOG.20210712\">https://doi.org/10.57689/DINI-BLOG.20210712</a>.</p>\n<hr
+        />\n<p><em><span dir=\"ltr\" role=\"presentation\">Diese</span>r Beitrag <span
+        dir=\"ltr\" role=\"presentation\">\u2013</span> <span dir=\"ltr\" role=\"presentation\">ausgenommen</span>
+        <span dir=\"ltr\" role=\"presentation\">Zitate</span> <span dir=\"ltr\" role=\"presentation\">und</span>
+        <span dir=\"ltr\" role=\"presentation\">anderweitig </span><span dir=\"ltr\"
+        role=\"presentation\">gekennzeichnete</span> <span dir=\"ltr\" role=\"presentation\">Teile</span>
+        <span dir=\"ltr\" role=\"presentation\">\u2013</span> <span dir=\"ltr\" role=\"presentation\">ist</span>
+        lizenziert <span dir=\"ltr\" role=\"presentation\">unter</span> <span dir=\"ltr\"
+        role=\"presentation\">der</span> <a href=\"http://creativecommons.org/licenses/by/4.0/\"
+        rel=\"license\">Creative Commons Namensnennung 4.0 International Lizenz</a>
+        (<span dir=\"ltr\" role=\"presentation\">CC</span> <span dir=\"ltr\" role=\"presentation\">BY</span>
+        <span dir=\"ltr\" role=\"presentation\">4.0</span>).</em><br />\n<a href=\"http://creativecommons.org/licenses/by/4.0/\"
+        rel=\"license\"><img decoding=\"async\" src=\"https://i.creativecommons.org/l/by/4.0/88x31.png\"
+        alt=\"Creative Commons Lizenzvertrag\" /></a></p>","doi":"https://doi.org/10.57689/dini-blog.20210712","guid":"https://blogs.tib.eu/wp/dini-ag-blog/?p=2547","image":"https://blog.dini.de/EPub_FIS/wp-content/uploads/2021/07/DINI-Blog-FISE-Pub-16.png","images":[{"alt":"Creative
+        Commons Lizenzvertrag","src":"https://i.creativecommons.org/l/by/4.0/88x31.png"}],"language":"de","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1626048000,"rid":"9jsrb-jtc73","summary":"Bei
+        der Einf\u00fchrung eines Forschungsinformationssystems (FIS) stellt die rechtliche
+        Seite oftmals eine gro\u00dfe Herausforderungen dar. Wie ist es mit dem Datenschutz?
+        F\u00fcr was muss das Einverst\u00e4ndnis der Forschenden eingeholt werden
+        und auf welcher rechtlichen Grundlage? Wie sieht es aus mit der Beteiligung
+        des Personals an diesen Prozessen?","tags":["Best Practice","Forschungsinformationen
+        & Systeme","VIVO"],"title":"Eine Musterdienstvereinbarung f\u00fcrs FIS \u2013
+        ein Beispiel der TIB","updated_at":1765034465,"url":"https://blog.dini.de/EPub_FIS/2021/07/12/eine-musterdienstvereinbarung-fuers-fis","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -59,7 +67,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:31 GMT
+      - Mon, 29 Jun 2026 18:14:05 GMT
       Server:
       - gunicorn
       Vary:

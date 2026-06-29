@@ -2,73 +2,54 @@
   "id": "https://doi.org/10.7554/elife.01567",
   "type": "JournalArticle",
   "url": "https://elifesciences.org/articles/01567",
-  "titles": [
-    {
-      "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth"
-    }
-  ],
+  "title": "Automated quantitative histology reveals vascular morphodynamics during Arabidopsis hypocotyl secondary growth",
   "contributors": [
     {
       "type": "Person",
-      "contributorRoles": ["Author"],
-      "givenName": "Martial",
-      "familyName": "Sankar",
-      "affiliation": [
-        {
-          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-        }
-      ]
+      "roles": ["Author"],
+      "person": {
+        "given_name": "Martial",
+        "family_name": "Sankar"
+      }
     },
     {
       "type": "Person",
-      "contributorRoles": ["Author"],
-      "givenName": "Kaisa",
-      "familyName": "Nieminen",
-      "affiliation": [
-        {
-          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-        }
-      ]
+      "roles": ["Author"],
+      "person": {
+        "given_name": "Kaisa",
+        "family_name": "Nieminen"
+      }
     },
     {
       "type": "Person",
-      "contributorRoles": ["Author"],
-      "givenName": "Laura",
-      "familyName": "Ragni",
-      "affiliation": [
-        {
-          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-        }
-      ]
+      "roles": ["Author"],
+      "person": {
+        "given_name": "Laura",
+        "family_name": "Ragni"
+      }
     },
     {
       "type": "Person",
-      "contributorRoles": ["Author"],
-      "givenName": "Ioannis",
-      "familyName": "Xenarios",
-      "affiliation": [
-        {
-          "name": "Vital-IT, Swiss Institute of Bioinformatics, Lausanne, Switzerland"
-        }
-      ]
+      "roles": ["Author"],
+      "person": {
+        "given_name": "Ioannis",
+        "family_name": "Xenarios"
+      }
     },
     {
       "type": "Person",
-      "contributorRoles": ["Author"],
-      "givenName": "Christian S",
-      "familyName": "Hardtke",
-      "affiliation": [
-        {
-          "name": "Department of Plant Molecular Biology, University of Lausanne, Lausanne, Switzerland"
-        }
-      ]
+      "roles": ["Author"],
+      "person": {
+        "given_name": "Christian S",
+        "family_name": "Hardtke"
+      }
     }
   ],
   "container": {
     "type": "Journal",
     "title": "eLife",
     "identifier": "2050-084X",
-    "identifierType": "ISSN",
+    "identifier_type": "ISSN",
     "volume": "3"
   },
   "publisher": {
@@ -344,66 +325,54 @@
       "containerTitle": "Nature Cell Biology"
     }
   ],
-  "date": {
-    "published": "2014-02-11",
-    "updated": "2022-03-26"
-  },
-  "descriptions": [
-    {
-      "description": "Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale. For instance, secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly specialized tissues that comprises several thousand cells starting from a few dozen. This dynamic process is difficult to follow because of its scale and because it can only be investigated invasively, precluding comprehensive understanding of the cell proliferation, differentiation, and patterning events involved. To overcome such limitation, we established an automated quantitative histology approach. We acquired hypocotyl cross-sections from tiled high-resolution images and extracted their information content using custom high-throughput image processing and segmentation. Coupled with automated cell type recognition through machine learning, we could establish a cellular resolution atlas that reveals vascular morphodynamics during secondary growth, for example equidistant phloem pole formation.",
-      "type": "Abstract"
-    }
-  ],
+  "date_published": "2014-02-11",
+  "date_updated": "2022-03-26",
+  "description": "Among various advantages, their small size makes model organisms preferred subjects of investigation. Yet, even in model systems detailed analysis of numerous developmental processes at cellular level is severely hampered by their scale. For instance, secondary growth of Arabidopsis hypocotyls creates a radial pattern of highly specialized tissues that comprises several thousand cells starting from a few dozen. This dynamic process is difficult to follow because of its scale and because it can only be investigated invasively, precluding comprehensive understanding of the cell proliferation, differentiation, and patterning events involved. To overcome such limitation, we established an automated quantitative histology approach. We acquired hypocotyl cross-sections from tiled high-resolution images and extracted their information content using custom high-throughput image processing and segmentation. Coupled with automated cell type recognition through machine learning, we could establish a cellular resolution atlas that reveals vascular morphodynamics during secondary growth, for example equidistant phloem pole formation.",
   "license": {
     "id": "CC-BY-3.0",
     "url": "https://creativecommons.org/licenses/by/3.0/legalcode"
   },
-  "identifiers": [],
-  "fundingReferences": [
+  "funding_references": [
     {
-      "funderName": "SystemsX"
+      "funder_name": "SystemsX"
     },
     {
-      "funderName": "EMBO longterm post-doctoral fellowships"
+      "funder_name": "EMBO longterm post-doctoral fellowships"
     },
     {
-      "funderName": "Marie Heim-Voegtlin"
+      "funder_name": "Marie Heim-Voegtlin"
     },
     {
-      "funderName": "University of Lausanne",
-      "funderIdentifier": "https://doi.org/10.13039/501100006390",
-      "funderIdentifierType": "Crossref Funder ID"
+      "funder_id": "https://ror.org/019whta54",
+      "funder_name": "University of Lausanne"
     },
     {
-      "funderName": "SystemsX"
+      "funder_name": "SystemsX"
     },
     {
-      "funderName": "EMBO",
-      "funderIdentifier": "https://doi.org/10.13039/501100003043",
-      "funderIdentifierType": "Crossref Funder ID"
+      "funder_id": "https://ror.org/04wfr2810",
+      "funder_name": "EMBO"
     },
     {
-      "funderName": "Swiss National Science Foundation",
-      "funderIdentifier": "https://doi.org/10.13039/501100001711",
-      "funderIdentifierType": "Crossref Funder ID"
+      "funder_id": "https://ror.org/00yjd3n13",
+      "funder_name": "Swiss National Science Foundation"
     },
     {
-      "funderName": "University of Lausanne",
-      "funderIdentifier": "https://doi.org/10.13039/501100006390",
-      "funderIdentifierType": "Crossref Funder ID"
+      "funder_id": "https://ror.org/019whta54",
+      "funder_name": "University of Lausanne"
     }
   ],
   "files": [
     {
       "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.pdf",
-      "mimeType": "application/pdf"
+      "mime_type": "application/pdf"
     },
     {
       "url": "https://cdn.elifesciences.org/articles/01567/elife-01567-v1.xml",
-      "mimeType": "application/xml"
+      "mime_type": "application/xml"
     }
   ],
   "subjects": [],
   "provider": "Crossref",
-  "schema": "https://commonmeta.org/commonmeta_v0.13.json"
+  "schema": "https://commonmeta.org/commonmeta_v1.0.json"
 }

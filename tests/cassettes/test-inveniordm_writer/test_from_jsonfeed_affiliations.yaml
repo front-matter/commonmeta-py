@@ -5,97 +5,145 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/mg09a-5ma64
   response:
     body:
-      string: !!binary |
-        H4sIAAAJbogA/8xbW3PbxpJ+31/RhYeNXUvwIupGrsw6tiUnOmtbWjvnZPcsUqoB0AAmHvQgMwPK
-        tEr/fasHAAlKlKzE3stLbIPATF++7v6mp3MTiNoV2thg/l83gcgyqaRwUpP/t0yDeVA4V9n5aGS0
-        GWqTj8YHR/sHdHR8FAwCEiUG8+DHqB6Ps0PnJOVI8NEJhyAohb+RXKKx0q3grYyNMKvg9tdBkGhy
-        Rsa10+bKaIW8+6+DIBOlVKtgHrzCOvmEwSDI5RIpmAengiSqYBDURvVE0iaRaSPUeDwOx+PxNNyf
-        jQ/CyWx6GNwOnqrRuLpOlr9NZhuNfhJlXJv821V5h5JwW5lzK2JUSjxBnUl4PJ0ehdPDyewPqDMp
-        ks+Hs9leT526jLVKXbjWgj2G+w6+1PAKjZL0JG0uRVmh6jnmJ5T05Ul+mU6n++He0dHk/4Uiv5gv
-        aCXZT7KHsnfCJE9C2V64N92fhkez8YHfLVY6D+a9WKJaKRaiLGuSbnXl1TuYTo72D2bjMD5Ox+F+
-        cnwcxpO9SbifiKOD7CjFyf5BMAgSg8JhGswnR5Ojw+neeDweBEltDJK7yhDTKy9es0WKNjGyauwY
-        fECLwiQF/Gh0XcE5ZdqUPpzhnSCRY4nk4C/wFDhwOC5loqnnV6PzGkObFFqJxkWikqNOTYl29BQd
-        R0rnmtdHTK8aCYN5IKpKycQLOzLW/svnUnXvbLtDUqbLnJzfX1KKn4ftu1I5NJ1lciQ0wmkTzIN/
-        r4VxvGWhS7yqRI6PrRkMAmkt6703298PD4/3j4NBoATltcgZhEg5P5AJksUeULzn5BLZIJqsF7B9
-        y47i1Wh/OB4pzIVKdMrZrTKYyc/BPJiMhwez6cE4GAQGlV+j72SLSW0wmDtT4yCwqs6DedCZIRgE
-        1glXW7Zhwp/ykzrOJCpG3XQ65rzmpFP43SFSV2mH1ePx7Ph4tn8wCGqLV6KSjSNum+i4auP3+yKU
-        4+7qvj24vHCwFK5kJ59Ui3MCVyDEmEsiSTnoDP5aE8LeeG9/AO+Fqw2CwUobhyno5vW/ikoQWozo
-        nSRpnVnxd2dp3cD0BwuVEgROg6QlWgeTMcRSKakJVkggCfBzJSiVlEckyTrpaga4UHBRIcHLJEFr
-        4QNW2kqnjUQLJ7YSBIkS1r6IgkQ6v1cURJQKJ8JEOuQfrKS8uEoKca3E1W8sqL1iZaJg8ewj/wav
-        /W9ew+cnI151MYSfC2lZFOm4zC8RKqOXMkULAnKtU9AV28BnLVYslTaprfXmyGpvJZ154SPaJb1w
-        /tUTEVFhMHsRrYOD5RjGMlZSJ5qGKY6iYPHwjycjsRiejKpFRI3/Eq2UiLXx5oBr6Qq/U2X0b5g4
-        iIJLozO01ptXfmle05l/6WF5zykzwjpTJ143SfAjmlLQKgrg2Q4trq+vhzKWw6IOY58nWZEUR5k2
-        Nilq4oyU6XKdbEdevk8O+S+hFiZMMQoWl0ZHdPHyA5yesaLPn+r1ytffq6qvqpVoasrZ+1P2flOj
-        PWf5oF2RGem+RMS/djAYQFZTiinEK2+eN5iiEQp2orxZqA3biJ69evfqzfOB/+5MYeKMJpnAZR0r
-        aQsOrV+0+cR/NhG+y4ipJMl2w7Cq4yhYvPwRzsLLOm5M0fqs8QOcb6CaaRPRe3TX2nzCdCt3PDsR
-        sHuTKFicnr8/b5c2uSD5BVMQEf0kKLXhBcFbEYNPjylEwccESRipLW/ntTzFJSpd+cSks37gRtSP
-        3CjgvOGzyuGgTSxpbdgUvMxksucKeOUD4LUmDkWEXAsF18JGxLHWbAT2nghd5BmJ5NbIvp9Q1jFp
-        enI1sVIJ42QiK0HOQmZ0CSIRKZZSDEB5PivRDtjZEWlXoAHZs6/cChO7CcyfC4QSXaFTrXQuE6FA
-        VJXRIila6aUFXLLtroWFWNhNej1FVRUyokRTgpV7agwUIkVzlfqPwxgzI/Kajx1Xe+OJT38/NWQm
-        RQP8aIN6v0FEX82tJDkgYjT5ZqMlmkwUptlmxtu8773VBgkRB9pk1m05hMu+2a/RIAjL4HUacClU
-        zaeLymCKmSRMgSu5J2k2Ik3bbpQE7lpDoon5ABd6MLqm1DKUpG3dAEKWzfoG2QnC29ci2doyPm2F
-        icxk8gjKsq19h/Ay1rWD6TiiCnWlcIMlrpUsVoGgROyN4HVMJdeUFCTDOuc8YDl0Ml2biK4LmRRg
-        ZVkrJwh1bdWqqzMseYEb2Vg17H6UmmyzvoeRtxDKvHA9s4ErhGteqgxWwmyyXBf8xptSpEtBiT+l
-        RiTS1KDfXbB9nO2SUPpg7G/baB0Pb6SxbgDe9F5xENY2S7MM98Rd1zEhS9AZO6v0GUODgI3jhHcB
-        r+B0JZMhvNEG8LMoK4WD7dhm3SNao6y1nf8200rpa16+MtpLLzXNfenEykjODJUSKxAEsmQaIMhF
-        xAf0zsu9nCBUQ25sm4227BEFcLYxASGmmG7lOAG/aUkOOikYmo5RzBhiWZscZDl19Ow1gHgVEXMA
-        tlGBJX8nwCZCYZPVosByScobTIncIEYBm7P3g386jIK1187pjn18YG25MauNlwg/V0ozqlxhEHui
-        RcSit+b2oWyEw5wpHf/ASc6g42wpbG3Qskwt7rzC0toaLSsn+XPmjrz7ZoPtigE9Y1aGiX8/9/JC
-        Tm8AYweb1CvAFj4umAMY6xp+2iF+s98gokwnNRPNLmM3Pmt1bP1utfIlqKfwJhxOZJlHZE3So1Dd
-        wcUfjyptnfXcMBwfhZODsPBVWVOoRBwypowbyVLkaEe+gl5tKORvFeZRsMnnsszDTNUyjQIYLTYy
-        NIBYvEVrOYO8RWEI05NR+3z9IteypNAWqculqUyBtAPBcePrmaQwxcoVPvgkbRgSVzfSHC5YGbRN
-        nV7iAOLagXSAJGJmGAK8UflvlEJtMavVtkUjag/7LSQgEwn7YLvcb4UbfGCs8Eu9pBERy5QUQimk
-        XFI+AMGpz6GpDDY0wt53OyyZCqQRWZkTVwpBTq1AlJryrUzjyUJXxfxaqcwyZGSlWGGLKuKqYXxW
-        lcs2FprEmOiyi/4eYt5ocycW7wbaoEH5UihoEkFbFGSK5GTmZZfEPvMFp6s/z/yfbHfLuUCXeM2l
-        ossQLNcmRUTUPn8+byWrFf9XycVJteizvh/Yh4wLxwQhQQu20LVKIeY2AEKpDadNV0vWn7eJqNQp
-        GvI6n4yU3Cz8M352/Aow4dlycbeqJIdkZeaJu+R0lBSCcvSFJCKGQZM6d6z+Ycd6TnxqZeznJUnc
-        yrDIm8BSWhlLJd0qogYt0kB7xN7aZdTYaH3atphoSrtcuu1UyZWrXLPZTe5o61cbEZh2HNjiPSB0
-        rtmE+J93TJO9G8fM76aGvu8vGOJQ1spJJbkjpO4BwFMQW/uDNHRtIwsxrjSTjfZgw24+o5xPTTt8
-        9ZENxG6uK6VFyosaXedFg4ymOsNSCnh5ec5aYN4ejJ/hMB8OIjq9OIffa/TY4fdeG22twez5js3O
-        lPS5DKEU3GXQZgW+fdTSKc5nfPpj6lTW1kEmlYpI19v+bwx0Rgwj/qbSZLl/z4duTT6v6Noyp5IJ
-        2i051tDpPPnnIyEiDgXYRMKj7mylFbXTfJRMGvtmSl+zw9w1Iq3Vvy9Lg5r757CusdOX+//cyd1x
-        Q2nPFExSSIdN28NzCYemlIRwXSCbjRtC3EKVia9pjR4rH46cWnXs2y5uVaEFbbrcT25Laf86uyKi
-        ijsEbUuBvwI+snAMrtnL44j4c9krok36grvZ61FknErryXDDN3IjqqKDR0uGLy5fvmbVT6VN9BLN
-        KqKPK+uw3OHqc+5TP7BW2xG1aHxgwI7PX/rqqVabvNl95Us7gq6cLLuuV5fKdyx05mlIh3dsK02D
-        d0ZQxVdclo2zqafmgVhlvtTeeHCeoE8+x28dRtrkLQ1oDosNz2mIgO/oMBtt6bwvaBXjmbiSbhcG
-        p9ckfKv/9eVOf6+Pvw2vYGEN2lrxOVwqBUJZDTFC3Ssy6w3unPtYL+4iRfQaDXOMhJMlK8fdoLDd
-        +LKH8I+dMznNt3jRlGtWlPtXXSmFS6OhaQR2rcyh76DZQvOhmYCZyvpY6iWPEQpU3bIRdUInujYW
-        4eGF18Z4037Rb/FsjpjrfNfyNEG8ZcZHInaJrs3d/u58NCrqYdMQXfP7KFjoLJOJ5BYXxlY63G7q
-        ci8aHCf6qN4bT6ZMZlTtaePvtXat8TybuZbWtxiQKTQjzHbfcDu7vWNpTzQPNaCfcjuTIqZD36F9
-        /Rpe/SfsD8cRnZ6dnXrJua8kxmv5LwvtNLw2mEo3h3eo+JIaPqJypSAawP+WWK1AqVyCTF9Ewe/+
-        tisUlSfhn6NgfZuQYiZqxZ6J6MRi4qHa/6aXoFa97+6sGLbszzYLFXvrFwUlhT8d3/2iQMGO5eOa
-        388gnxQ4yqNg8WH9j5NRsbeli8HM9gTZfAaJVSxuGOt0BcyBJeUhXweSW7cMkZxZhbbyB6gXUTCO
-        AuB2xosoUNK2dljbzWAWfqW5uBaEd/er8169JaXD0i+7aUIO4J1MCoFq6NuRQzjBctH0PsNXmx3m
-        cCYJXpoYpbNxnRQnIywXw4h+kWhjkSLN4SN3aXI08EYkRYmpRIL1z8Ndty6plh7ok/FwMh4fjWZH
-        x+E0PDw4DseT2d5xOO5dwnz1XY+2iE5GqVze9VL4lKbp083Xb64O4J0wCqk5cF4Ydy0JPiCHGHL3
-        k9fesurfu16tPwie8kSK/iKFCuFvlMKPaGtKCzbztbTcYEsKkTm2779p+oKVG8DfhZGCj1r8RUQv
-        6RoprSm3MUpbSVTYeAf+h5yzNzk8OAqnT3JO++6jzvn6vdHTXdPcLw3Aj340PnkraiM2t00M9L3p
-        8O6dXLshnKKJqFc4wx61o3B9I/fJ1XyuhlOsnU0KxcXg2aXR4cXLD+Hp2fMhC/heL7GM0XwN/Ad7
-        x5PRP87eX5xeDCfjydF0f7a/27q73nzUtg/fxD7dpv0b2wGcClUiOm/GfTajv4j+wcJlbQvmQe+Y
-        975UCtbX6VsM6NzCz8LfwX0sRMWdTh8dzS23By6H1OrrCWN6PEr3JwfHh6Fv0E32Z9Pw+CFQ7nz5
-        ruXWf7bV56FCtLmbWRvxOxahJt9v9li8bv/aqz+LiNoU95AATX9DmBX3KlE1clSLVzL+Gf8DutW7
-        LkWneWVwvaLVtUnwtU4ReCQk5JNrmOhqda9+xjJ2+DkKFif84uIvmpQkvIn9oBy3TwcRQcvG4QXc
-        NBN0DCUenPNB2k2iDaAbQPOPt8KZn/BCAJsBKcYKz0Xd+i38RSnvwEFrXNcZvuluU2/h5q2IbyEK
-        btZXqbfdOYAXALjp3ajeMl29YfTewk0D31u46SUEexsF3VSBbwC3a6wvUm8buXgOhcXatJKb57VR
-        /HhHyvUTN6MyH89EeFCKw/3mA27YyJS/QbqN6PZk5C1+MqoMdkWv898TEcE9TeGaeTSpaQCVQmGR
-        IcJdLWn9kQCEvYuVLWqy8fWubH0PMby4sA/Rk2189CCxQYnP72t4MFQaHPSgMeTrziZFbcNh6279
-        hyfdqe+cJ/lhy/W92/MogL/WagWTg0GbJb+S/+86+4Hkf/e1B/LXnQzmYzsYBKmWvXGwx9blqcN6
-        a7z2j1+L8Jwa34x80yK7LlW6hXlo8iawJvmmHR65vfHDk1uDdd9nro4P4rbA9Eo4HqPcG88mB3s8
-        Rrk+P9wfb/4q++VxN1qPCvGnWxx/CM+Y3j8fwoncQe9PRnIx/AqB95OxTxSqZX33hbrDnIcD+GdR
-        Vv/aEuaLRszZlphrvsx0K+3R5foxuvzNGnmm9QVJp3rNtO7r0yWgnzaadDxzAG+9OnvTRp2dbJPH
-        QL4D2Wy0/Ucj7VcctZMJ3dfsDulrVGEAdXSvauleyXRPKLXpzPhumvAKcR/VNWzPerbH+OuonlwM
-        fYwZj6rlkTjeC8cH8YylsXVZ8kD+PPi26Uj49uHIR1rofSoAOyYb2+GX7zHRuHPLtv48PKg4hO8w
-        nLhz60dnEzd9w+c83StyTtYBl9u3MuMR4O5oEPzaH/79xiINf6BGM+Cb8eA2DR/OppPZ9Pjg7v8t
-        8IdLSjAI/NS6pmAeLCfB7T/99wDIesHUxzIAAA==
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/05745n787","name":"G\u00f6ttingen
+        State and University Library"}],"contributor_roles":[],"family":"Beucke","given":"Daniel","url":"https://orcid.org/0000-0003-4905-1936"},{"affiliation":[{"id":"https://ror.org/00pwcvj19","name":"Hamburg
+        State and University Library"}],"contributor_roles":[],"family":"Meinecke","given":"Isabella","url":"https://orcid.org/0000-0001-8337-3619"},{"affiliation":[{"id":"https://ror.org/01hcx6992","name":"Humboldt-Universit\u00e4t
+        zu Berlin"}],"contributor_roles":[],"family":"Pampel","given":"Heinz","url":"https://orcid.org/0000-0003-3334-2771"},{"affiliation":[{"id":"https://ror.org/01hcx6992","name":"Humboldt-Universit\u00e4t
+        zu Berlin"}],"contributor_roles":[],"family":"Wrzesinski","given":"Marcel","url":"https://orcid.org/0000-0002-2343-7905"}],"blog":{"authors":null,"community_id":"53174590-b8d0-4c88-b121-4ca75f7de145","created":1717632000,"current_feed_url":null,"description":"Research
+        Group Information Management @ Humboldt-Universit\u00e4t zu Berlin","favicon":"https://rogue-scholar.org/api/communities/53174590-b8d0-4c88-b121-4ca75f7de145/logo","feed_format":"application/rss+xml","feed_url":"https://infomgnt.org/index.xml","filter":null,"generator":"Quarto","home_page_url":"https://infomgnt.org/","issn":"2944-6848","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"infomgnt","status":"active","subfield":"3309","title":"Research
+        Group Information Management @ Humboldt-Universit\u00e4t zu Berlin","updated":1782338400,"use_api":null},"blog_name":"Research
+        Group Information Management @ Humboldt-Universit\u00e4t zu Berlin","blog_slug":"infomgnt","content_html":"<p>In
+        the beginning of June 2024, Nature reported on the Japanese\nMinistry of Education''s
+        plan to invest 10 billion yen in expanding\ninstitutional Open Access Repositories
+        <span class=\"citation\"\ndata-cites=\"singh_chawla_japans_2024\">(Singh Chawla
+        2024)</span>. This\ninitiative provides a good opportunity to discuss the
+        future of Open\nAccess Repositories at the <a\nhref=\"https://2024.bibliocon.de/\">https://2024.bibliocon.de/</a>.</p>\n<p>In
+        collaboration with the project \"Professionalization of the Open\nAccess Repositories
+        Infrastructure in Germany\" (<a\nhref=\"https://www.ibi.hu-berlin.de/de/forschung/infomanagement/projekte/pro-oar-de\">Pro\nOAR
+        DE</a>) <span class=\"citation\"\ndata-cites=\"pampel_professionalisierung_2023\">(Pampel
+        and Rothfritz\n2023)</span>, funded by the Federal Ministry of Education and
+        Research\n(BMBF), the Electronic Publishing Working Group (<a\nhref=\"https://dini.de/e-pub\">AG
+        E-Pub</a>) of the German Initiative for\nNetworked Information (<a href=\"https://dini.de\">DINI</a>)
+        organized a\nHands-On Lab titled \"Scenarios for the Development of Open Access\nRepositories\"
+        on June 6, 2024, during the 112th BiblioCon. The goal was\nto develop scenarios
+        for the future orientation of institutional Open\nAccess repositories with
+        participants from academia, libraries, and\nother information infrastructures.</p>\n<p>The
+        methodological approach for this event was based on the Delphi\nconcept <span
+        class=\"citation\"\ndata-cites=\"hader_delphi-befragungen_2014\">(H\u00e4der
+        2014)</span>, <span\nclass=\"citation\"\ndata-cites=\"niederberger_delphi-verfahren_2019\">(Niederberger
+        and Renn\n2019)</span>. Participants were asked to evaluate predefined statements\non
+        repositories in two consecutive rounds. This method aimed to reach a\nconsensus
+        on specific scenarios for the future of repositories. About 30\npeople participated
+        in the lab and were divided into groups of four\nwhich simultaneously discussed
+        the scenarios. The discussions were based\non eight statements that were prepared
+        by the organizers in advance and\naddressed aspects of the development of
+        Open Access repositories.</p>\n<p>First, each group assessed the eight statements
+        with the aim of\ncoming to a consensus about the topic. For example, participants
+        were\nasked to discuss the following proposition: \"Preprints play an important\nrole
+        in the informational expansion of repositories.\" Each group needed\nto develop
+        a joint position on this and the other seven statements, by\nrating them on
+        a scale from \"strongly disagree\" to \"strongly agree.\"</p>\n<p>In the following
+        round, each group further explored three statements\nand discussed strategies
+        and concrete measures to address the issues\nraised in each statements. The
+        goal was to develop practical approaches\nto the topics, based on a shared
+        understanding of the statements,\nfocusing on the joint discussion of solution
+        strategies.</p>\n<p><img\nsrc=\"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/images/112th_bibliocon.jpeg\"\nclass=\"img-fluid\"
+        /></p>\n<p><strong>Lessons Learned</strong></p>\n<p>The chosen method did
+        not allow for in-depth examination and was not\nrepresentative, but it enabled
+        a focused and useful discussion of\ncurrent issues facing institutional repositories.
+        Reaching a consensus\nwas challenging, as interpretations of the statements
+        varied\nsignificantly among participants, and evaluations differed depending
+        on\nperspectives and group compositions.</p>\n<p>For the following three statements,
+        approval ratings were identified\nin all four groups (grouped as \"somewhat
+        agree\" and \"strongly\nagree\"):</p>\n<ul>\n<li><p>Repositories'' user interfaces
+        should become more intuitive and\nmodern.</p></li>\n<li><p>Text and data repositories
+        should intensify their exchange with\neach other.</p></li>\n<li><p>Repositories
+        should take more measures to increase the visibility\nof their content.</p></li>\n</ul>\n<p>In
+        the second round, the following implementation strategies were\ndiscussed
+        for these three statements:</p>\n<p><strong>Repositories'' user interfaces
+        should become more intuitive\nand modern:</strong></p>\n<ul>\n<li><p>Offer
+        multilingual user interfaces that support languages beyond\nGerman and English.</p></li>\n<li><p>Simplify
+        uploads through data import via API integration (e.g.,\nDOI queries via Crossref).</p></li>\n<li><p>Eliminate
+        mandatory fields that researchers must fill\nout.</p></li>\n<li><p>Ensure
+        responsiveness on various devices.</p></li>\n</ul>\n<p><strong>Text and data
+        repositories should intensify their exchange\nwith each other:</strong></p>\n<ul>\n<li><p>Ensure
+        automatic data flows between research data repositories\nand institutional
+        Open Access repositories.</p></li>\n<li><p>Simplify uploads through data import
+        via API integration (e.g.,\nDOI queries via Crossref).</p></li>\n<li><p>Evaluate
+        local architecture to determine whether a generic\nrepository for all object
+        types or different repositories for each\npublication type is more practical.</p></li>\n</ul>\n<p><strong>Repositories
+        should take more measures to increase the\nvisibility of their content:</strong></p>\n<ul>\n<li><p>Display
+        bibliographic data in the OPAC or Discovery\nSystem.</p></li>\n<li><p>Index
+        bibliographic data in search services .</p></li>\n<li><p>Actively implement
+        search engine optimization measures.</p></li>\n<li><p>Enable automated data
+        flows via persistent identifiers.</p></li>\n</ul>\n<p>The authors thank the
+        participants for their open discussions and for\nsharing their experiences
+        on strategies to further professionalize Open\nAccess repositories.</p>\n<p>The
+        results will also be used for the further development of the DINI\nCertificate
+        for Open-Access Publication Services and in the ongoing work\nof the Pro OAR
+        DE project. Workshops on some aspects will be held in the\nfurther course
+        of the Pro OAR DE project.</p>\n<p>Further information about the research
+        group can be found on our <a\nhref=\"http://hu.berlin/infomgnt\">official
+        website</a>.</p>\n<p>This text \u2013 excluding quotes and otherwise labeled
+        parts \u2013 is\nlicensed under the <a\nhref=\"https://creativecommons.org/licenses/by/4.0/deed.de\">CC
+        BY 4.0\nDEED</a>.\u00a0</p>\n<p>Photo Credit: Melanie Seltmann, licensed under
+        the <a\nhref=\"https://creativecommons.org/licenses/by/4.0/deed.de\">CC BY
+        4.0\nDEED</a>.</p>\n<div id=\"quarto-appendix\" class=\"default\">\n<section
+        id=\"quarto-bibliography\" class=\"quarto-appendix-contents\">\n<h2 class=\"anchored
+        quarto-appendix-heading\"\nid=\"references\">References</h2>\n<div id=\"refs\"
+        class=\"references csl-bib-body hanging-indent\"\ndata-entry-spacing=\"0\"
+        role=\"list\">\n<div id=\"ref-hader_delphi-befragungen_2014\" class=\"csl-entry\"\nrole=\"listitem\">\nH\u00e4der,
+        Michael. 2014. <em>Delphi-Befragungen: Ein Arbeitsbuch</em>.\nWiesbaden: Springer
+        Fachmedien Wiesbaden. <a\nhref=\"https://doi.org/10.1007/978-3-658-01928-0\">https://doi.org/10.1007/978-3-658-01928-0</a>.\n</div>\n<div
+        id=\"ref-niederberger_delphi-verfahren_2019\" class=\"csl-entry\"\nrole=\"listitem\">\nNiederberger,
+        Marlen, and Ortwin Renn, eds. 2019. <em>Delphi-Verfahren\nin Den Sozial- Und
+        Gesundheitswissenschaften: Konzept, Varianten Und\nAnwendungsbeispiele</em>.
+        Wiesbaden: Springer Fachmedien Wiesbaden. <a\nhref=\"https://doi.org/10.1007/978-3-658-21657-3\">https://doi.org/10.1007/978-3-658-21657-3</a>.\n</div>\n<div
+        id=\"ref-pampel_professionalisierung_2023\" class=\"csl-entry\"\nrole=\"listitem\">\nPampel,
+        Heinz, and Laura Rothfritz. 2023. \"Professionalisierung Der\nOpen-Access-Repositorien-Infrastruktur
+        in Deutschland (Pro-OAR-DE).\"\nNovember. <a\nhref=\"https://doi.org/10.5281/ZENODO.10173494\">https://doi.org/10.5281/ZENODO.10173494</a>.\n</div>\n<div
+        id=\"ref-singh_chawla_japans_2024\" class=\"csl-entry\"\nrole=\"listitem\">\nSingh
+        Chawla, Dalmeet. 2024. \"Japan''s Push to Make All Research Open\nAccess Is
+        Taking Shape.\" <em>Nature</em>, May. <a\nhref=\"https://doi.org/10.1038/d41586-024-01493-8\">https://doi.org/10.1038/d41586-024-01493-8</a>.\n</div>\n</div>\n</section>\n<section
+        id=\"quarto-citation\" class=\"quarto-appendix-contents\">\n<h2 class=\"anchored
+        quarto-appendix-heading\" id=\"citation\">Citation</h2>\n<div>\n\n<div class=\"quarto-appendix-secondary-label\">\n<p>BibTeX
+        citation:</p>\n</div>\n<pre class=\"sourceCode code-with-copy quarto-appendix-bibtex\"><code>@online{beucke2024,\n  author
+        = {Beucke, Daniel and Meinecke, Isabella and Pampel, Heinz and\n    Wrzesinski,
+        Marcel},\n  title = {Report on the {Hands-On} {Lab} \"{Scenarios} for the\n    {Development}
+        of {Open} {Access} {Repositories}\" at the 112th\n    {BiblioCon}},\n  date
+        = {2024-07-15},\n  url = {https://doi.org/10.59350/mg09a-5ma64},\n  langid
+        = {en}\n}</code></pre>\n<div class=\"quarto-appendix-secondary-label\">\n<p>For
+        attribution, please cite this work as:</p>\n</div>\n<div id=\"ref-beucke2024\"
+        class=\"csl-entry quarto-appendix-citeas\"\nrole=\"listitem\">\nBeucke, Daniel,
+        Isabella Meinecke, Heinz Pampel, and Marcel Wrzesinski.\n2024. \"Report on
+        the Hands-On Lab ''Scenarios for the Development of Open\nAccess Repositories''
+        at the 112th BiblioCon.\" July 15, 2024. <a\nhref=\"https://doi.org/10.59350/mg09a-5ma64\">https://doi.org/10.59350/mg09a-5ma64</a>.\n</div>\n</div>\n\n</section>\n</div>","doi":"https://doi.org/10.59350/mg09a-5ma64","guid":"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/","image":"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/112th_bibliocon.jpeg","images":[{"src":"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report/images/112th_bibliocon.jpeg"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1720915200,"reference":[{"id":"https://doi.org/10.1007/978-3-658-01928-0","unstructured":"H\u00e4der,
+        M. (2014). <i>Delphi-Befragungen</i>. Springer Fachmedien Wiesbaden."},{"id":"https://doi.org/10.1007/978-3-658-21657-3","unstructured":"Niederberger,
+        M., &amp; Renn, O. (2019). <i>Delphi-Verfahren in den Sozial- und Gesundheitswissenschaften</i>.
+        Springer Fachmedien Wiesbaden."},{"id":"https://doi.org/10.5281/zenodo.10173494","unstructured":"Pampel,
+        H., &amp; Rothfritz, L. (2023). <i>Professionalisierung der Open-Access-Repositorien-Infrastruktur
+        in Deutschland (Pro-OAR-DE).</i>. Zenodo."},{"id":"https://doi.org/10.1038/d41586-024-01493-8","unstructured":"Singh
+        Chawla, D. (2024). Japan''s push to make all research open access is taking
+        shape. <i>Nature</i>."}],"rid":"v7a82-05b98","summary":"In the beginning of
+        June 2024, Nature reported on the Japanese Ministry of Education''s plan to
+        invest 10 billion yen in expanding institutional Open Access Repositories
+        (Singh Chawla 2024). This initiative provides a good opportunity to discuss
+        the future of Open Access Repositories at the https://2024.bibliocon.de/.
+        In collaboration with the project \"Professionalization of the Open Access
+        Repositories Infrastructure in Germany\" (Pro OAR DE)","tags":["Lab Life","Research"],"title":"Report
+        on the Hands-On Lab ''Scenarios for the Development of Open Access Repositories''
+        at the 112th BiblioCon","updated_at":1769319385,"url":"https://infomgnt.org/posts/2024-07-15-hands-on-lab-report","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -106,7 +154,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:29 GMT
+      - Mon, 29 Jun 2026 18:14:03 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

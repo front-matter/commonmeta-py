@@ -5,71 +5,92 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.53731/r294649-6f79289-8cw16
   response:
     body:
-      string: !!binary |
-        H4sIAAAJbogA/+xZe2/cOJL//z5FgcAeEpxaUj/86F5PL+JxkslsnDGS3B1w54FBiSWJa4pUSMrt
-        zmK++6FIqR+JM5eduz8XMOBuNVnv+tVDf2e8942xjq3++++MV5VUkntpdPguBVuxxvvOrbLMGpsa
-        W2d5fv65fuhOFyxhmrfIVuymL5Qs4a0sLLdbMBV8KCXqEtlvvyasNNpbWfTe2DtrFBKvXxNW8Vaq
-        LVuxV6g1WpawWj6gZit2za2XmiWst+pAAGNLKQYR8nyS5/l8Ml1Ml5PZIj8JnAplarY61mkQMdKE
-        Ha9/lHRp2rbX0m/vglGmJ3x+OkM+OZ/OzyeLWXE+WU7Pqsn0fJHz5YwLUZ2zhJUWuUfBVtPTs9nJ
-        fDrL84SVvbWo/V2FKO6CHLpXKmECXWllF63PPjYIr6zRHq6592jhUpkaSvOA1oFvEKT2aB2WdJ5M
-        7qLJgWsBHstGG2XqLThJD2d5fpYyMvqDLI0+UN2auseJKxujeHQw72Q2qivRZd+ja6ZMbYg+orir
-        jG25ZyvGu07JMsRTxr1p/+2xVeOhYweQ59KK1J20Qd1UYLiS0XmpPNrRTDVqtNwby1bsdWOcZwlr
-        TIt3Ha/xe8iyhEnnyAazs8VyslyezFjCFNd1z2uKFdQ1PZAlaocHARi8KR+QjGO0C8YaTrms2GaL
-        NM8U1lyVRiBLWGexko+j3BZVuH3ocodlb5GtvO0xYU71NVuxYIa7aAaWMOe57x1Zs6Tr9KQvKokq
-        xOHZNGcJ89IrkvQwYCjIOzGE39l5fppPl6d5wnqHd7yTkelvMWnuhiz54j6Z7+5pqSipKYgb35LB
-        L7r1C6hwAxvEewe8NvBXXt1zB+iBqxSezfLp/Dl0hBSuQQEcOt6hBWXMvdQ1cA9DYkAXVNeOorox
-        GxDcc4fegYFCUlTLkqvwtOAOHXCLUEqPAqQGiw65LRughC8VugTolACjgdMfV1snA23KoqpXCjw+
-        evilQw0vyhKd290F/sCl4oVCqKxp4WVvTYdwc/1jCh8b3IIUqL2sJIogD4kRwt1BsV1dZN36wqj1
-        hZLrSJhSVfdtgfaQtNQHDN3ORnbiekogFAk4b/vS9xYFDJb/80Wm5DdIH0h1SLvYRk1bqaWu9wTe
-        Y4WW4NqBN/vjQWOy0ct3LxL4dy1vrPEBXm6uLhEslsYKl0YyGenZrYNRStMrAY5c5xvuD5mCMH1B
-        xIluFJc8caAe19qMNjwy0d9MbzVXe/meBQFn6ez0TyT3STo9+dPzJAgY2Tbo8FukXROELBDw0aMW
-        SJ+3Rotvary3agBg0qtBafcRVZmyj4GWksmOzj+rjAXdlwqNlwLB4ac+WlxqeI36kuv7BF5eX74F
-        Y+Hq6vLn59Dye4S+C6ZS3NboPNTW9F0CG+kbmJ7myXQ6O+JTmV4Hp9OlxTRP5qeLvcWC1Bu0VCS4
-        2n5GkYYY7dYvtPENWsqeXvmRQMxQOVy0T4dJPOvwICGD65X0XiFQwVK8iyKPR0BJfX8g7ShhCr9o
-        HFOzNLpUPeWMA2H5RocAbhBiyzLKFTQolCnvP/XG4/ojPvrJEG0l1+Ti4BZvBlcfhsRR0sbYKcfA
-        4AQckqS0ga3AB1Sma1F7EtGhfZBDzjSoukEsRw5EIb2hMDHAhXgiewnuiGaBtdSUjaPSIfljyYTO
-        GkKjBCwPzvENAVhFzQDdrXjp04vsQHVypBBE7VsqOhC9pQN7O9K3ruEu2J1Dy3Uf+xCw+KmXNmho
-        1BAEISh9I90oHSB3Em1C3x9kYM57bybk4fBFC3hAK6tRKwoE04/U6Qg+estB6q73e9CJ1kzhQ+xM
-        1Bauub0XZqPJ8VxT2HMFneKe+o3RSw6jtAkhqfR0Ngp44P9gR2+5kCQQV7AxVoz6kNtcT/XDwbUs
-        rXGm8vCfxooUrqLtOLiWq3Dt3jWmA25DIHdonXTBvcc5aWOcPbvg0FisfrgNDcoqy+gxVa7QStyy
-        9RX3/Efp8SLj6+cJdGg6hU/c2/ert2z9y/sf31yFG8HYNe5KpONtRyn6NYHNZpPWaIYDgb2sneaF
-        6f0tW795/eFdpBggwxtzT5YuEbboPFrBt4GXN+FTgEJ4mkn1edIZ7wRvqaXrjPVcZXX1OSuxlsTr
-        9av/gpt4gljCm2DXoWATaxWFEAbdcWjtXX5g7lXAgz5WXdIjhX9Ye+qsNR+C4/VoJngXKjcJuSud
-        16/ffOVralA9tShqC60R9IuA1vSxGHGpR8x8WrBKatHKMsbEziFRJAXXgc6HQAfeozO9LfFIpJfv
-        XnxDZSxkysu0v89Q80h6x+A16oLre8hC6cpCCXqyYB3xGpuCzhqPUh+UtV0ePylJryVdCSoSdu7E
-        GAmOheKI283V5Tc0s6UrArFOFBk1zLJMhflL9wMNBlnFP6XUp96y9c0gKCUaUNHdiz4iJkhNgBLc
-        v2ef9WN/A0o6qpCl6sXQyFCYJRSK+wJ3GBTO94I6xGJ71BQPPfHYsSAcB9NXscRpCqJQouCANzGE
-        lKxwHP2CMKSAAw7KEMqPIAeTwGVA9FDCiu3YUjmYEDr27hvyjwCWQNF/DW12CMI9bD6dALLE0Kn3
-        ZF7fa+5RbUEbsiXEkYpEGDuSj1RjaAChh0EzuOFamBLasQ7sEHtnwZ/xfqsUxAiADRZOeoTdxBia
-        9lgPnIcN35LakjAyWCSUtarXYaTmSvotbDh18rCx0lOl4hBn0RF6QMlPvaR5u6VCREdQ11IPLUex
-        HSSKPo4VciifAyFOvhrE7lRfSx2FPHo09jGxu+P+iySg7UwtfdMXaWnarK3CkiP7WyARR/tW3LL1
-        0z9QjEeekT/gY4elH1p03u76sb3jE6iMUmYTY5pDaRSBtRZgugE1XcdLPD53TCPidGdxfUHj8npo
-        glcA19M8X+a3mrJqBfDz+5+Wp4vF/PRWX79+swJYni5ns1s9QMUK4CafTReLW31zdbkCmLaFvsgC
-        zYss0B+CKTYYlBy9N5TfMUK95dopmpNppWK+Bzopy7MHiZtskJXtxI8PyKbJ15QaodKGa6Ew1eiz
-        aT47m2d7/WLdXe0efIPKV0XC9W3L7fYvNS9LKbJoH0a1aRU+RzrkngNogwC5wSlN33IN7dbUyhRS
-        7yDx2f+K3QOOZ4MHdvi9ig9+R4EjxMbHThmL43+C7h0cvxE/kEcJu68uV/SRqD4nPw55PUy54GQr
-        FbdQcddIo/dAsotsymZKZY+aQIeHjUVj+tCpC76NaSodtFuopHX+icyM+GqNiS2nbCmrA34kgGmd
-        Ag3txvrwa2vsYcy7BAqk3QZYrPERWu7LRuo6gQeupODjKo+cEicxQhRqd6ifpdSPkYsCPK9H/emS
-        rIaWeOBESgS0SOGNwBjnDR535sMI3PCONh9DS7IDV2JH4EwPf/p4/RZM77veJ+DMbvo9Hq93tYMY
-        0A4FgStnjqf4OGbuuESi+9Jxc/UqhcsQl9KREnwYTPEx9mA0WT4xEhBAhtFE+rHfH2pTWAbhMIuF
-        mQKEKXtymHtiFuFQcV1uqXZMqBAKQnJLyIC24uVQnhqaun+4ZfuR+JYdrFEusmZGsBOrfQK3fT49
-        wTSBv8o2gZ/TyU9pAv/K2+7PcF2+1H5rkR7D+3FPlsLVaMwfh8mNHPSKllU038KlNC0KQjB4sZud
-        L7Bd37w1H+CXdy8vMmzXT3RLwsiAGdM8nc7PptnQAqSd0Zjm+el8er64ZWth5Or3jlAOUn6xhAkj
-        D3akB/RP5mfzaWZny8XpYjk5rc6Ws/Pl5LzcTE9p2d9L8UfuyTYuacfC57yxvMa0plVwKk1WZuVJ
-        Np9n5cl8Xi5PTibFSTWfLKpqOuE4E5PT4mTGZ9MZnuazbFimZYGqy2b5bJbl509aJa3zfJ52uv5y
-        Wfz/syseF6N33LPVdH42O5vNw+uCXYx9/Urme5xJa2C9Q1O6/btR+UU8jmH6llv5IG/7PMdz+vE/
-        /o+RKg8CVa4TuJDrc/r07OR5AhiiMA2vdGyIkmW1/JxPeLdYkj5DvWMr9s+d85c7Z5im8PVC+AiC
-        /8CuGWZPUT0Q5HfWzPR6gtf00o+9Qk5bMPbr/o3Fi96bXSEbix215eSAYWYZ5ov9C42YI2fn+dli
-        sTw/S9h3vEzqjPMuCwVwzy5sqdzEmwmxm3AtJjt29J6IXrZJo9mKPUzZb//yPwMAX8MyYy4dAAA=
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/008zgvp64","name":"Public
+        Library of Science"}],"contributor_roles":[],"family":"Fenner","given":"Martin","url":"https://orcid.org/0000-0003-1419-2405"}],"blog":{"authors":[{"name":"Martin
+        Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created":1672531200,"current_feed_url":null,"description":"The
+        Front Matter Blog covers the intersection of science and technology since
+        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated":1781522561,"use_api":true},"blog_name":"Front Matter","blog_slug":"front_matter","content_html":"<p>A
+        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
+        of how datasets o biological databases are cited in research articles, based
+        on an analysis of the full text Open Access articles available from Europe
+        PMC. They identified data citations by:</p><ol><li>Accession numbers available
+        in articles as publisher-supplied, structured content;</li><li>Accession numbers
+        identified in articles by text mining;</li><li>References to articles from
+        the ENA, UniProt and PDBe records.</li></ol><p>They could show that text mining
+        doubles the number of structured annotations available in journal articles
+        (from 2.26% to 5.15%), and that these structured annotations should be extended
+        beyond the ENA, UniProt and PDB identifiers that their analysis focused on.
+        ENA identifiers (for nucleotide sequences in GenBank, EMBL or DDBJ) make up
+        the largest group, with 160,112 identifiers found in the 410,364 articles
+        that were analyzed.</p><p>Another result in the paper is that references to
+        articles in these databases show little overlap with database links found
+        in articles. One of the conclusions drawn by the author is that</p><blockquote>Text-mining
+        can be used to extend structured data citation, and could be a basis for the
+        development of services to help authors or editors to add structured content
+        at the beginning of the publication process, rather than after the fact.</blockquote><p>Adding
+        structured data citations during the authoring phase of a manuscript requires
+        tools that make this process easier, providing auto-linking and verification
+        without requiring extra input from the author. Scholarly Markdown is an ideal
+        platform for these tools, as it is easier to extend than traditional word
+        processors such as Microsoft Word. During a small workshop around persistent
+        identifiers for data (<a href=\"http://datacite.org/\">DataCite</a>), people
+        (<a href=\"http://orcid.org/\">ORCID</a>) and geological samples (<a href=\"http://www.geosamples.org/igsnabout\">IGSN</a>)
+        that took place yesterday and today at the <a href=\"http://www.gfz-potsdam.de/portal/gfz/cegit\">GFZ
+        Potsdam</a> I worked on a tool that does auto-linking for these identifiers:</p><ul><li>IGSN.
+        <a href=\"http://www.geosamples.org/igsnabout\">International Geosample Number</a></li><li>MGI
+        identifiers for genetically modified mouse strains in the <a href=\"http://www.findmice.org/about\">Internal
+        Mouse Strain Resource</a></li><li>ENA. <a href=\"http://www.ebi.ac.uk/ena/about/about\">Genbank
+        / ENA / DDBJ nucleotide sequences</a></li><li>UniProt protein sequences from
+        the <a href=\"http://www.uniprot.org/help/about\">UniProt database</a></li><li>PDB.
+        <a href=\"http://www.rcsb.org/pdb/static.do?p=home/faq.html\">Protein Data
+        Bank protein structure information</a></li></ul><p>The list includes the IGSN,
+        the database identifiers studied by Kafkas et al (2013), and the MGI identifier
+        for genetically altered mice. In the life sciences there is a long tradition
+        - and requirement by journals - to use database identifiers for data, but
+        identifiers for resources such as genetically modified mice are unfortunately
+        not in common use.</p><p>This blog uses the Pandoc markdown processor and
+        the Jekyll static website generator. The easiest way to implement this functionality
+        was by writing a filter for the liquid templating engine used by Jekyll, and
+        provide this filter as a Jekyll plugin. The Jekyll plugin can be found at
+        <a href=\"https://github.com/mfenner/jekyll-scholmd\">mfenner/jekyll-scholmd</a>.
+        The plugin expects the name of the identifier, followed by a colon and optional
+        space, followed by the identifier:</p><pre><code>GenBank:  M10090\nIGSN:  JRH964436\nMGI:  96922\nUniProt:  P02144\nPDB:  1mbn</code></pre><p>This
+        input is automatically translated into <a href=\"http://www.ebi.ac.uk/ena/data/view/M10090\">GenBank:M10090</a>,
+        <a href=\"http://hdl.handle.net/10273/JRH964436\">IGSN:JRH964436</a>, <a href=\"http://www.findmice.org/summary?gaccid/96922\">MGI:96922</a>,
+        and information about the human myoglobin protein (<a href=\"http://www.uniprot.org/uniprot/P02144\">UniProt:P02144</a>,
+        <a href=\"http://www.rcsb.org/pdb/explore/explore.do?structureId=1mbn\">PDB:1mbn</a>)
+        is generated in a similar fashion.</p><p>The plugin was written in a few hours
+        today, and is my first Jekyll plugin. There is room for improvement, e.g.
+        support for more identifiers, better regex matching, validation of the resulting
+        links, and automated tag generation if an identifier is found. Ideally the
+        auto-linking should happen in the markdown and not the HTML output, so that
+        these structured database links are also available in other markdown outputs
+        such as PDF. But this is another example how Scholarly Markdown can make it
+        easier for researchers to author documents without requiring a fancy web-based
+        user interface.</p><h2 id=\"references\">References</h2><p>Kafkas, \u015e.,
+        Kim, J.-H., &amp; McEntyre, J. R. (2013). Database Citation in Full Text Biomedical
+        Articles. <em>PLoS ONE</em>. <a href=\"http://doi.org/10.1371/journal.pone.0063184\">doi:10.1371/journal.pone.0063184</a></p>","doi":"https://doi.org/10.53731/r294649-6f79289-8cw16","guid":"https://doi.org/10.53731/r294649-6f79289-8cw16","image":"https://storage.ghost.io/c/c5/33/c533c955-b5f3-4ff1-ae2d-6b52a212e602/content/images/2022/08/journal.pone.0063184.g003.png","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1372723200,"reference":[{"id":"https://doi.org/10.1371/journal.pone.0063184","unstructured":"Kafkas,
+        \u015e., Kim, J.-H., McEntyre, J. R., &amp; Larivi\u00e8re, V. (2013). Database
+        Citation in Full Text Biomedical Articles. <i>PLoS ONE</i>, <i>8</i>(5), e63184."}],"rid":"9f9z0-ap494","summary":"A
+        few weeks ago Kafkas et al. (2013) published a paper looking at current patterns
+        of how datasets o biological databases are cited in research articles, based
+        on an analysis of the full text Open Access articles available from Europe
+        PMC. They identified data citations by: 1. Accession numbers available in
+        articles as publisher-supplied, structured content; 2. Accession numbers identified
+        in articles by text mining;","tags":["Feature"],"title":"Auto generating links
+        to data and resources","updated_at":1780744987,"url":"https://blog.front-matter.de/posts/auto-generating-links-to-data-and-resources/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -80,7 +101,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 15:59:59 GMT
+      - Mon, 29 Jun 2026 18:14:09 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

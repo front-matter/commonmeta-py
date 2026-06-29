@@ -5,26 +5,17 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.1371/journal.pmed.0030277.g001
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/42UwY7aMBCGXwX51EpxsB2Cia/tpRJSV1166cLBSQx4N4kj22lBiHfvOGGXaKHq
-        3pyZ8cz//R44Ieel7xwSyLygCNXKOblT2B9bBbE/xo6jv5V12jSQoDGJyTWDxAnpplQHVYZjKb3C
-        rbQe+j49McLmEYsY32yiIeV1HbqHBCYMM74iXLBEUPoLeoYsqKpbJCjnjPJ5ltFsQSN0nZ/EKYkp
-        OkfIqq2yqikULkzXeCRIhNour7TbKwuVD+FcTJY6t9IeJ2Y7eSx0qJ98eliax88wsDCNV43Hpaml
-        bnqAy+kJFBfWOFdL+4ItyLK68L2Eraycgvlub6zHoQXcUBbYfKWGm1+/fwtWgdCE0/X02XS2kVXc
-        1qqMCUkI4zzeEUID8+B3YerWNKAlqLIKvLrrJ00jSiJGbg2lKaYEM7Kic0GooNl7Q2ezNEnnC54R
-        QoJ60FSEq18CJXgJ5drhN1NLnB9Hxo7gWqjRhytfvwx13nuezMjF1htPjNU7DS6MY6VqjdP/Yl0E
-        VprdYV0EVpqtKBc0ETP2njVNsmyeMcYurIWxcJOGnXnlPgGHhsc9huPPH0tovPe+dWI9XU/LQ9xW
-        xsXG7tbTDzzjOQzp8hHZsByjgHauu8fZdFW12YzX2Y1svxFm9IdFhZaVHHb2FN72bcew2cJoiJWv
-        P3foG96//N/WQpF0Tlnf70f478ifVeHReTM40H8A7/n8Fyn/r71gBAAA
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"indexed":{"date-parts":[[2026,2,27]],"date-time":"2026-02-27T07:23:11Z","timestamp":1772176991981,"version":"3.50.1"},"reference-count":0,"publisher":"Public
+        Library of Science (PLoS)","content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"DOI":"10.1371\/journal.pmed.0030277.g001","type":"component","created":{"date-parts":[[2015,10,20]],"date-time":"2015-10-20T16:01:19Z","timestamp":1445356879000},"source":"Crossref","is-referenced-by-count":0,"title":[],"prefix":"10.1371","member":"340","container-title":[],"original-title":[],"deposited":{"date-parts":[[2018,10,19]],"date-time":"2018-10-19T17:13:42Z","timestamp":1539969222000},"score":1,"resource":{"primary":{"URL":"https:\/\/dx.plos.org\/10.1371\/journal.pmed.0030277.g001"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[null]]},"references-count":0,"URL":"https:\/\/doi.org\/10.1371\/journal.pmed.0030277.g001","relation":{"is-component-of":[{"id-type":"doi","id":"10.1371\/journal.pmed.0030277","asserted-by":"object"}]},"subject":[]}}'
     headers:
       Connection:
       - keep-alive
@@ -33,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:42 GMT
+      - Mon, 29 Jun 2026 18:13:00 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control

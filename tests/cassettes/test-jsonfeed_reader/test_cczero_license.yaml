@@ -5,122 +5,176 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/xgwqt-1sq35
   response:
     body:
-      string: !!binary |
-        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
-        zP7+3/7fAF3GnQSZNwAA
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/02n415q13","name":"Curtin
+        University"}],"contributor_roles":[],"family":"Neylon","given":"Cameron","url":"https://orcid.org/0000-0002-0068-716X"}],"blog":{"authors":[{"name":"Cameron
+        Neylon","url":"https://orcid.org/0000-0002-0068-716X"}],"community_id":"57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e","created":1707696000,"current_feed_url":null,"description":"The
+        online home of Cameron Neylon","favicon":"https://rogue-scholar.org/api/communities/57bf5fb9-8f97-4a80-83d7-c6a1910c7e8e/logo","feed_format":"application/atom+xml","feed_url":"https://cameronneylon.net/feed/atom/","filter":null,"generator":"WordPress","home_page_url":"https://cameronneylon.net","issn":null,"language":"eng","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"cameronneylon","status":"active","subfield":"1802","title":"Science
+        in the Open","updated":1780988870,"use_api":true},"blog_name":"Science in
+        the Open","blog_slug":"cameronneylon","content_html":"<p><em>Consider this
+        yet another commitment to trying to write here a little more regularly. Lots
+        of thinking has been going on but not much writing! At least not writing as
+        I&#8217;m going&#8230;</em></p>\n\n\n\n<p>Three things colliding over the
+        past few weeks have led me to want to try and get some ideas down. The first
+        was a conversation \u2013 one of a set really \u2013 with Titus Brown and
+        Dan Katz relating to the application of political economy and collective action
+        theory to communities building research. <br></p>\n\n\n\n<p>The second was
+        the posting of video of a talk I gave a month or so back to our research centre,
+        the Centre for Culture and Technology at Curtin University. In this, I tried
+        to work through the full story of some recent thinking for the first time.
+        I&#8217;m trying to articulate what has evolved in my thinking from a view
+        driven by network theory that open is good, more open is better, to an understanding
+        of where and how things have gone wrong.</p>\n\n\n\n<p>The final piece was
+        the publication of a new paper (<a href=\"http://philsci-archive.pitt.edu/14352/\">preprint
+        version is also available</a>, actually its what I read so that&#8217;s what
+        I&#8217;ll link to) by Sabina Leonelli which tackles the value of reproducibility
+        as a concept head on. Leonelli&#8217;s work has been a big influence on my
+        developing thinking. Two pieces are particularly relevant. The <a href=\"https://books.google.co.uk/books?hl=en&amp;lr=&amp;id=i8NADQAAQBAJ&amp;oi=fnd&amp;pg=PR5&amp;dq=sabina+leonelli&amp;ots=iBvrf8uB3L&amp;sig=I5cdiwlIRoZQrm7iX2ksRe70ias&amp;redir_esc=y#v=onepage&amp;q=sabina%20leonelli&amp;f=false\">idea
+        that data is not a thing, but is a category defined by use</a>. That is, we
+        can&#8217;t say whether a particular object <em>is</em> data, only that something
+        is data when it is used in particular ways. This is true of many things in
+        research, the objectivist in us wants the qualities of objects like data,
+        methods, and knowledge itself to be eternal platonic concepts inherent in
+        the objects themselves. In practice however these qualities only reveal themselves
+        in certain activities.</p>\n\n\n\n<p>These activities depend in turn on &#8216;repertoires&#8217;
+        another concept I&#8217;ve taken from Leonelli&#8217;s work, this time from
+        <a href=\"https://doi.org/10.1016/j.shpsa.2016.08.003\">a paper published
+        with Rachel Ankeny</a>. The concept here is that research communities are
+        defined by practices and that these practices are not just learned, but displayed
+        and internalised, in a similar manner to a musician learning repertoire as
+        a set of hurdles to be jumped in their development. I first read this paper
+        at the same time as I was reading <a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Lave
+        and Wenger&#8217;s </a><em><a href=\"https://www.amazon.co.uk/Situated-Learning-Participation-Computational-Perspectives/dp/0521413087/\">Situated
+        Learning</a></em> and the parallel between craft learning (see also <a href=\"https://www.amazon.com/Scientific-Knowledge-Its-Social-Problems/dp/1560008512\">Ravetz</a>),
+        identity making (see also <a href=\"https://www.bloomsbury.com/uk/cultural-science-9781849666022/\">Hartley
+        and Potts</a>) and community had a significant resonance for me.</p>\n\n\n\n<p>In
+        the new piece Leonelli tackles the range of different, and largely incommensurate
+        meanings that are ascribed to the concept of &#8216;reproducibility&#8217;.
+        The paper tackles a range of disciplinarily bound practices ranging from computational
+        sciences, where there is &#8216;total control&#8217; (yes I could quibble
+        about machine states and compilers but this is philosophy, let&#8217;s accept
+        the abstraction) through to ethnography, where there is the expectation that
+        the life experience of the researcher affects the outcome, and that a different
+        researcher would reach different conclusions.</p>\n\n\n\n<p>The article focuses
+        on how the necessity for documentation changes as different aspects of <em>accountability</em>
+        rather than reproducibility are taken into account. These concepts of responsibility
+        and accountability for sources of variability that have implications for the
+        claims being made seems more productive and more readily contextualised and
+        generalised. The article finishes with a call to value &#8216;epistemic diversity&#8217;.
+        That is, it is through differing kinds of cross referencing, with different
+        sources of variability, accountability, and reliability that we can most usefully
+        build knowledge.</p>\n\n\n\n<p>All of this resonates for me because I&#8217;ve
+        been working towards a similar end from a different place. My concern has
+        been thinking about how to operationalise social models of knowledge production.
+        There are a broad class of constructivist models of knowledge where validation
+        occurs when groups come together and contest claims. I have a paper currently
+        in review that casts this as &#8216;productive conflict&#8217;.</p>\n\n\n\n<p>In
+        such models the greater the diversity of groups in contact the more &#8216;general&#8217;
+        the knowledge that is created. However the more diverse those groups are,
+        the less likely it is that such contact will be productive. Indeed it can
+        be harmful \u2013 and in most cases involving disadvantaged groups (which
+        is practically everyone in comparison to a professional, permanently employed,
+        western academic) it is at the very least a significant burden and frequently
+        significantly damaging.</p>\n\n\n\n<figure class=\"wp-block-embed is-type-video
+        is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio\"><div
+        class=\"wp-block-embed__wrapper\">\n<iframe loading=\"lazy\" title=\"Cameron
+        Neylon - Network Enabled Scholarship: Connectivity, groups and growth in the
+        production ...\" width=\"525\" height=\"295\" src=\"https://www.youtube.com/embed/9wvEh1Rn4-8?feature=oembed\"
+        frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media;
+        gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\"
+        allowfullscreen></iframe>\n</div></figure>\n\n\n\n<p>In the talk I&#8217;m
+        trying to work through the question of how such contacts can be made safe,
+        while equally privileging the value of closing ranks, returning to community
+        to regain strength and re-affirm identity. If diversity is a first order principle
+        in the utilitarian goal of making knowledge, what are the principles of care
+        that allow us to protect the communities that contribute that diversity? </p>\n\n\n\n<p>Part
+        of the argument I make is that we need to return to the thinking about network
+        structures. Five years ago I was making the case that &#8216;bigger is better&#8217;
+        underpinned by an assumption that even if benefits flowed to those who were
+        already well connected the new opportunities of scale would still spread benefits
+        more widely. That seems less and less to be the case today, and the key problems
+        appear to be ones where the benefits of locality are reduced or broken, boundaries
+        are too readily traversed, and groups come into contact in <em>non-productive</em>
+        conflict too frequently.</p>\n\n\n\n<iframe loading=\"lazy\" src=\"//www.slideshare.net/slideshow/embed_code/key/BibYCjjYUQdN13?startSlide=94\"
+        width=\"595\" height=\"485\" frameborder=\"0\" marginwidth=\"0\" marginheight=\"0\"
+        scrolling=\"no\" style=\"border:1px solid #CCC; border-width:1px; margin-bottom:5px;
+        max-width: 100%;\" allowfullscreen> </iframe>\n\n\n\n<p>In the talk I discuss
+        the need to privilege locality. This is the opposite of what most of our systems
+        do today, both in the wider world (&#8216;you need to go viral!&#8217;) and
+        in academia (&#8216;international rankings! international journals!&#8217;).
+        Many social models draw simple lines with groups inside or outside. Even with
+        a mental view of groups within groups and overlapping groups this tends to
+        miss the messiness that results from non-homogenous interactions across group
+        boundaries. Network structural analysis is harder to do and harder to visualise
+        but it seems to me crucial to get a view of what the optimal dynamics are.</p>\n\n\n\n<p>One
+        way to frame the question of network and community dynamics is economically.
+        That is, to ask how the differing groups and communities in contact are sustained
+        and succeed or fail. This in turn is a question of exchange (not necessarily
+        purely financial exchange, but there are limitations to this framing!). Models
+        of club economics and collective action from political economy are useful
+        here and this leads us back to the first conversation I mentioned above.</p>\n\n\n\n<p>Titus
+        Brown has been working through <a href=\"http://ivory.idyll.org/blog/tag/cpr.html\">a
+        series of posts</a>, relating to the NIH Data Commons project looking at the
+        goods produced in open source projects through the lens of commons and clubs
+        goods. Dan Katz was raising good questions about issues of time and scale
+        that are not well captured by the classical analysis of goods.</p>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\n<blockquote class=\"twitter-tweet\" data-width=\"525\"
+        data-dnt=\"true\"><p lang=\"en\" dir=\"ltr\">Chatting with @egonwillighagen
+        and <a href=\"https://twitter.com/derkarts?ref_src=twsrc%5Etfw\">@derkarts</a>
+        yesterday, drew this diagram of club/public/private goods and they asked me
+        to tweet it &#8211; so here it is! see also <a href=\"https://t.co/8pmGIBEak4\">https://t.co/8pmGIBEak4</a>
+        <a href=\"https://twitter.com/hashtag/commonspilot?src=hash&amp;ref_src=twsrc%5Etfw\">#commonspilot</a>
+        <a href=\"https://t.co/RbBoTCLGVr\">pic.twitter.com/RbBoTCLGVr</a></p>&mdash;
+        Titus Brown (@ctitusbrown) <a href=\"https://twitter.com/ctitusbrown/status/1047409685001904134?ref_src=twsrc%5Etfw\">October
+        3, 2018</a></blockquote><script async src=\"https://platform.twitter.com/widgets.js\"
+        charset=\"utf-8\"></script>\n</div></figure>\n\n\n\n<figure class=\"wp-block-embed
+        is-type-rich is-provider-twitter wp-block-embed-twitter\"><div class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047442062264717312\n</div></figure>\n\n\n\n<figure
+        class=\"wp-block-embed is-type-rich is-provider-twitter wp-block-embed-twitter\"><div
+        class=\"wp-block-embed__wrapper\">\nhttps://twitter.com/danielskatz/status/1047449426564960256\n</div></figure>\n\n\n\n<p>I
+        have quibbles with Brown&#8217;s analyses and often with others who use this
+        kind of goods-class analysis. However I only just realised that my issue was
+        similar to Leonelli&#8217;s point about data. The question of what is &#8216;the
+        good&#8217; in any particular case is relational, not an absolute. Our discussion
+        of these models tends to turn on an implicit assumption that something (prestige,
+        code, knowledge, expert attention) is the specific good in play, something
+        that in turn surfaces a common assumption in most classical economics that
+        it is appropriate to assume some kind of &#8216;numeraire good&#8217; that
+        allows exchange of all the others (this is what money is for, and if there&#8217;s
+        anything wrong with economic analysis, its money..). </p>\n\n\n\n<p>This doesn&#8217;t
+        leave me with any firm conclusions beyond some possible routes to analysis.
+        It seems likely that simple analysis based on static descriptions of community
+        and the environment aren&#8217;t going to give us answers. We need to understand
+        dynamics of groups opening up and enclosing over time, what sustains them,
+        and what they might find valuable in exchange. We need agent based modelling
+        of the network structures these occur over, and ways of translating from local
+        structure in networks to more &#8216;bright-lined&#8217; social models of
+        groups. We need to move beyond the simple &#8216;economic mathematics&#8217;
+        that is often developed from the the club economics of Buchannan and Olson
+        and to develop much more sophisticated and flexible models that allow the
+        nature of exchange and goods to change when viewed from different perspectives.</p>\n\n\n\n<p>All
+        in all it emphasises the conclusion I&#8217;d reached, that diversity is a
+        first order principle. All forms of diversity and the more diverse the better,
+        provided the coordination between groups is principled. There&#8217;s a lot
+        to unpack in that word &#8216;principled&#8217; but I feel like its the link
+        to the ethical dimension I&#8217;ve been missing. I need to dig deeper into
+        notions of &#8216;care&#8217; (Moore, Priego) and &#8216;flourishing&#8217;
+        (Holbrook) to tease this out. <br></p>","doi":"https://doi.org/10.59350/xgwqt-1sq35","guid":"http://cameronneylon.net/?p=20035","language":"en","license":"https://creativecommons.org/publicdomain/zero/1.0/legalcode","published_at":1540252800,"rid":"8x3ev-zgm51","summary":"Consider
+        this yet another commitment to trying to write here a little more regularly.
+        Lots of thinking has been going on but not much writing! At least not writing
+        as I''m going\u2026 Three things colliding over the past few weeks have led
+        me to want to try and get some ideas down.","tags":["CCC"],"title":"Epistemic
+        diversity and knowledge production","updated_at":1765190482,"url":"https://cameronneylon.net/blog/epistemic-diversity-and-knowledge-production/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -131,7 +185,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 15:59:59 GMT
+      - Mon, 29 Jun 2026 18:14:10 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

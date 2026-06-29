@@ -5,34 +5,26 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/p000s-pth40
   response:
     body:
-      string: !!binary |
-        H4sIAAAJbogA/6xUS4/bNhC+91cMeOi2gB6kHt61gSAomkMCNN3FJu2lCQyaGkmTUKTAh10n2P9e
-        UF5vnUUPPeQm8THzvYZfmYxhtM6zzV9fmex70iQDWbP8U8c2bAxh9puydNYV1g0lb3rZuLZpWMaM
-        nJBt2O39r29esYePGVPWBEe7GKzbOqsx1f2YsV5OpI9sw16hNJjfORkCy9hAezRsw37pPkTO8cbQ
-        5+VjzTIWnb5obp2i7tSec55zzkW+Xjc8X1d1vXTeaTuwzQUfE7VOgKYpGgrH7UJmjW0lmlWXt9Wu
-        yZvrus7XO97mYlfVfC1UfVO3LGPKoQzYsQ3PmIrOoQnbHrHbLqhOlTv0ytF8Eou9RzUaUlKDNB28
-        jpM0QKZ30gcXVYgOobcObmc0cI8epVNjwZIye1LWXFB1doiYezVaLU+Ky5nKMw9CX/4fEqW2g031
-        E+reukmGM/DnRHrSAd35b0CDTgb7tDDaCbezHHD7rSUHedxJ9blITGiPOYUFbFWJpi4rXtVC8Fqs
-        RdM25TlDs7OfUIU8Ra7AWLKMkffm3EpLM0Q5pEihGVjGNCk0Hi+CsDhDe0x6WOOXlo+nfLk7lk3B
-        S42D1Mp2yDI2O+zp73MDh3q5femjRxUdnk94HQe2YQkgy5gPMsSnLPm46wl1ypG44RXLWKCgE7q7
-        Ey94//r2PmV37k7xOd2LHrdyplOZh1NUt4+j8+xmSvH2WwydpQv+naWFs+BFu65bXs6cc5/PYWx4
-        mqj4NLP/IffL+YW4btN00XSS+WxM4vtoTsVFU/Sk0RcH67rZofeFslNZcXFdClHOow02F8VshpeH
-        F9ft6sfxRVOt2DP/vo99cafJj9htU35FK0RzI1acZ8wtRKsjbzHH9suqTnbFaZLu+MwQIA/KTmQG
-        CBYkKG09FnAbHfRkpAbcowlwkB5G1B2QgTdB6iNYA6KF3+0epx06kAGufpPwTs6E5ou8gg+x4qKG
-        MCL8YWiPzlM4gu3h3k543v0UfQAJPliDVx7C6OwBemcneEtqxBR51PbKA02L1LRH8CrqeXkzbA9v
-        rUefQKU+aoxOjWn5nTRwRxicTXt/klFWUwHvR4ROHhPhHRnsQIJLh/yMKiUfHO4JD6lCCuuVB6lG
-        wj1OaIJfHi+aZqkCHCiMINOrdZCuy7W1n5OEM7qnWvYE6kAdumWDfEhSUocmUE/o4Ke7N69+Bi1N
-        55WcsbgYmsf+WvoAY3ROjv+Ozsnu60asxKqq1xn7/m/POc5Vs6Tf5wlIPkbn5MgefvhnANyB5SAa
-        BwAA
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04fa4r544","name":"ORCID"}],"contributor_roles":[],"family":"Deane-Pratt","given":"Ad\u00e8nik\u00e9","url":"https://orcid.org/0000-0001-9940-9233"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
+        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/p000s-pth40","guid":"http://project-thor.eu/?p=1759","image":"https://thorproject2014.files.wordpress.com/2017/11/photo-1.png?w=756&h=426","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1511481600,"rid":"2y05e-e5z63","summary":"Project
+        THOR is coming to a close. Our final event was held in Italy on 15 November
+        at ''La Sapienza'' \u2013 the University of Rome \u2013 just a stone''s throw
+        from Michelangelo''s impressive sculpture of Moses in the church of San Pietro
+        in Vincoli. The day combined a retrospective review of THOR''s achievements
+        and impact with a forward-looking perspective on the wider persistent identifier
+        (PID) landscape.","title":"THOR''s last hurrah","updated_at":1741616239,"url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2017/11/24/thors-last-hurrah"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -41,11 +33,11 @@ interactions:
       Content-Encoding:
       - gzip
       Content-Length:
-      - '972'
+      - '1019'
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:00:01 GMT
+      - Mon, 29 Jun 2026 18:14:12 GMT
       Server:
       - gunicorn
       Vary:

@@ -5,33 +5,26 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/hnegw-6rx17
   response:
     body:
-      string: !!binary |
-        H4sIAAAJbogA/6xUS6/bNhPdf79ivtlWst52bKDoImmRAG1T3KSLogmMsTSSJqFIgQ87bnD/e0Ep
-        N/ENWqCLLEWP5zx4Dj8iBT8a6/Dw50ekvhcl5MXo5Vs6PODo/ewOWWaN3Rg7ZHndU22busYENU2M
-        B3x59/TFM7x/m2BrtLdyCt7YozWK4963CfY0ibriAZ8F0YwJDnJmjQf8hUjex4Ng1Q2Wsa10K1qe
-        52me51Va1UWZ7op9uQCdlBnwcENfB6Ui/jQFLf56XLjvuSmLetulTXmq03pXVen+lDdpcSqrfF+0
-        1ZOqwQRby+S5w0Ox3TdlU9d5nmAbrGXtjz1zd1zorRAdu9bKvJqEr7kdtbSkgHQHz8NEGkT3lpy3
-        ofXBMvTGwsuZNdyxY7LtuMHoyFlao280WzMETl07GkWr0zRL9iBI2GX/RU2mzGDifubu2Bs7kccD
-        0jwraZeLzeIv371zRj9MPbZ+tuYdtz6NqdhwWMYz8mbK4rwoz/bBiYE1W/LGxgj4kS0mOJqJjzMN
-        /NXaC11P1L7fRP1y5lT8IrEsi7rKyrysiiKvin1RN3X2b1QwQXFOP8Ar0kOgIQaQ9YAJKmlZO77J
-        0XKxcubootFugfw05bLTNas3eaZ4INWaLqZwttzLBzxgkW+afdXkmKBltey4zYDjNljGg7eBE3Qq
-        DHjA6Bgm6Dz54KLpq9QunoVTL6xiJIsneYkJevEqMv1t1Qivn7+8izWYuzWJK05wfKRZVqD7NfXH
-        T6X76p+xEMfHTDojN150Rhb9D9KyUfNwSbf2Q7GLjQyf2/4P1v8wf19sl8o/cv3bmB5OStzI3TFm
-        tWjy3W67XSpoF0rXyl23abnTTcR3YZrIxrfkqZl4ad07IxqCA/LgR4bftZzZOvFvQp5zDh0PSuCV
-        D51AJ3BnJoI3+DPBK5qF9V/0BkE03JmJE3jhSV0TMBp+NWeeTmyhaPwIZV7swBtQTFYDnUzwMJoL
-        XBhGOjNQdybdcrcwiBFgMP3yQdbH9XOk5DxrD9Kx9tILW7eBP0yAiygFvegO4tovy2MoYCbrNVu3
-        4nR8ZmVm7kDzBbwxykVardGa20ergVprnAN3dZ4nl8QxJfo9zGxmxQl05Mmxdwk4mmbFLgHL1MZH
-        wi2+Tsby5iarC52fRJOCH89RyGzNYGmaGMRF6v//kuD1LnfboiiLJ1Wd4Ld/DuKVZEWeFWUWq5f2
-        kVnKkVn6mVkqLjXB4/3//h4AEro3P+sGAAA=
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/04fa4r544","name":"ORCID"}],"contributor_roles":[],"family":"Duine","given":"Maaike","url":"https://orcid.org/0000-0003-3412-7192"}],"blog":{"authors":null,"community_id":"9e52146d-52b4-4733-9b05-1b23091c3835","created":1695254400,"current_feed_url":null,"description":"Technical
+        and Human infrastructure for Open Research.","favicon":"https://rogue-scholar.org/api/communities/9e52146d-52b4-4733-9b05-1b23091c3835/logo","feed_format":"application/feed+json","feed_url":"https://project-thor.eu/feed/atom/","filter":null,"generator":"Other","home_page_url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"thor","status":"archived","subfield":"1802","title":"Project
+        THOR","updated":null,"use_api":true},"blog_name":"Project THOR","blog_slug":"thor","doi":"https://doi.org/10.59350/hnegw-6rx17","guid":"http://project-thor.eu/?p=1644","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1507766400,"rid":"y3sy6-27n54","summary":"Come
+        and join us at the Universit\u00e0 degli Studi di Roma \"La Sapienza\" in
+        Rome, Italy, on November 15th 2017 to learn about how we have advanced the
+        state of the art in persistent identifiers. You will find out about how THOR
+        partners have developed new tools to connect identifiers across systems, to
+        link people, datasets, samples, reactions and more.","title":"THOR Final Event
+        programme is out!","updated_at":1761121834,"url":"https://wayback.archive-it.org/22143/20231103191454/https://project-thor.eu/2017/10/12/thor-final-event-programme-is-out"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -44,7 +37,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:30 GMT
+      - Mon, 29 Jun 2026 18:14:03 GMT
       Server:
       - gunicorn
       Vary:

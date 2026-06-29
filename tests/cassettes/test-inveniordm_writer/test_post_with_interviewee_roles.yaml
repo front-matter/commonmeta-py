@@ -5,89 +5,135 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/s8m95-ap410
   response:
     body:
-      string: !!binary |
-        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
-        LAAA
+      string: '{"authors":[{"contributor_roles":[],"family":"Bellini","given":"Alejandra"},{"contributor_roles":[],"family":"Black","given":"Chris"},{"contributor_roles":[],"family":"LeBauer","given":"David"},{"contributor_roles":[],"family":"Scott","given":"Eric","url":"https://orcid.org/0000-0002-7430-7879"},{"contributor_roles":[],"family":"Casalla","given":"Lucio"},{"contributor_roles":[],"family":"Dietze","given":"Michael"},{"contributor_roles":[],"family":"Kooper","given":"Rob"},{"contributor_roles":[],"family":"LaZerte","given":"Steffi","url":"https://orcid.org/0000-0002-7690-8360"},{"contributor_roles":[],"family":"Bellini
+        Saibene","given":"Yanina","url":"https://orcid.org/0000-0002-4522-7466"}],"blog":{"authors":[{"name":"The
+        rOpenSci Team"}],"community_id":"19c501a7-647b-4a11-9f5e-cf400817cce3","created":1780876800,"current_feed_url":null,"description":"Open
+        Tools and R Packages for Open Science","favicon":"https://rogue-scholar.org/api/communities/19c501a7-647b-4a11-9f5e-cf400817cce3/logo","feed_format":"application/feed+json","feed_url":"https://ropensci.org/blog/index.json","filter":null,"generator":"Other","home_page_url":"https://ropensci.org/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ropensci","status":"active","subfield":"1710","title":"rOpenSci
+        - open tools for open science","updated":1782746318,"use_api":null},"blog_name":"rOpenSci
+        - open tools for open science","blog_slug":"ropensci","content_html":"<p>A
+        new post of our interview series <a href=\"https://ropensci.org/tags/r-universe-stars/\">\"Meeting
+        the stars of the R-universe\"</a>. We aim to introduce the teams and people
+        behind the development of software and packages many of us use and which are
+        available through the R-Universe. We want to highlight and explore different
+        teams and projects around the world, the work they do, their processes and
+        users. Our third stop is the <strong>United States</strong> to talk with members
+        of the PEcAn project. Be sure to watch the video at the end with excerpts
+        from the interview.</p><h4 id=\"climate-change-and-research-in-this-area-have-diverse-and-complex-data-that-demand-increasingly-complex-analysis-models-the-pecan-project-works-to-develop-this-ability\"><a
+        class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en//#climate-change-and-research-in-this-area-have-diverse-and-complex-data-that-demand-increasingly-complex-analysis-models-the-pecan-project-works-to-develop-this-ability\">
+        <small>\ud83d\udd17</small></a>Climate change and research in this area have
+        diverse and complex data that demand increasingly complex analysis models.
+        The PEcAn project works to develop this ability.</h4><p>In this next interview,
+        we will go into the science of climate change, and explore where data analysis
+        and ecosystem modeling tools are developed. That is the main objective of
+        the <a href=\"https://pecanproject.github.io/\">PEcAn project</a>, where they
+        collaboratively seek new ways to collect and synthesize data and develop accessible
+        tools to perform these tasks in a reproducible way.</p><p>Our discussion was
+        attended by Rob Kooper, Chris Black, Eric Scott, Michael C. Dietze, and David
+        LeBauer. All members of the PEcAn project with the same goal: to find more
+        and better ways to integrate the enormous amount of existing data on climate
+        change.</p><figure><img alt=\"Profile photos of David LeBauer, Michael C.
+        Dietze, Rob Kooper, Eric Scott, and Chris Black\" src=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/team.jpg\"/><figcaption>
+        <p><center><strong>David LeBauer, Michael C. Dietze, Rob Kooper, Eric Scott,
+        and Chris Black</strong></center></p> </figcaption></figure><p>According to
+        Michael C. Dietze''s own account, the project <em>\"is like a kind of computerized
+        data modeling system. It''s a set of tools that facilitate the combination
+        of process and data models, with a special focus on ecological models.\"</em></p><p>In
+        the project description, the concept of community quickly comes up. They have
+        a large network of people distributed geographically and strategically, allowing
+        them to reach more students involved in different parts of the process and
+        in different projects. Thus, they can share work with many people simultaneously,
+        have a significant number of collaborators and disseminate knowledge beyond
+        academic boundaries because, as Rob explains, those students will continue
+        their developments in other places where they are likely to bring their tools
+        and data packages. In these connections and collaborative work lies much of
+        the strength of the PEcAn Project.</p><p>An example of this practice is the
+        project they are developing with Brooklyn National Laboratory, where they
+        are working on NASA carbon monitoring that uses a data simulation system.
+        In this case, there are both PhD students and Post Doctoral Researchers working
+        on the project.</p><h2 id=\"a-tree-that-keeps-growing\"><a class=\"anchor
+        d-print-none\" href=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en//#a-tree-that-keeps-growing\">
+        <small>\ud83d\udd17</small></a>A tree that keeps growing</h2><p>In this work
+        structure, one of the main objectives is to become a kind of \"Hacker\" that
+        solves problems in a more general sense that can then be applied in other
+        contexts and in other areas. According to Rob, knowledge can be sustained
+        and grow thanks to the research developed across multiple institutions including
+        University of Illinois, Boston University, University of Arizona, University
+        of Wisconsin and Brookhaven National Laboratory.</p><p>Working with Google
+        Summer of Code, which has helped with developing and promoting an ecosystem
+        of modeling tools, Chris explains that part of the success is that it is not
+        just one university doing research but a large team of people all over the
+        world working together. Although it takes longer, the result is used by a
+        much wider community.</p><h2 id=\"doing-more-in-less-time-with-standards\"><a
+        class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en//#doing-more-in-less-time-with-standards\">
+        <small>\ud83d\udd17</small></a>Doing more in less time with standards</h2><p>During
+        the talk, the team shared the work <a href=\"https://onlinelibrary.wiley.com/doi/pdfdirect/10.1111/gcb.15409\">\"Beyond
+        ecosystem modeling: A roadmap to communitycyberinfrastructure for ecological
+        data-model integration\"</a> as an example, where they explain with a diagram
+        how the PEcAn project makes the life of researchers who have to do multi-model
+        analysis \"352\" times easier.</p><figure><img alt=\"A flow diagram showing
+        the standards approach for reducing redundant work when adopting common formats.
+        There are \" n\" data types that must be linked to \"m\" simulation models
+        and \"k\" post-simulation analyses. In the top panel, the conventional approach
+        where modeling teams work independently requires implementing n \u00d7 m different
+        input and m \u00d7 k different output conversions. As data, models, and analyses
+        are added, and effort scales quadratically. On the other hand, the bottom
+        panel shows that by working as a community, and adopting common formats and
+        shared analytical tools, the number of converters necessary to link models,
+        data, and analyses reduces to an m + n and m + k problem, and scales linearly.
+        \" src=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/diagram.png\"/><figcaption>
+        <p><center><strong>Conventional and Standards approach to modeling. PEcAn
+        project is an example of the standards approach for modeling.</strong></center></p>
+        </figcaption></figure><p>By using standards and having packages that can solve
+        the reading, embedding and writing of all the data involved in the process,
+        researchers don''t need to know how many different formats work, or communicate
+        with many different research teams, in order to do this kind of work.</p><p>This
+        allows an individual researcher to run a whole ensemble models. \"Just a couple
+        of years ago analyzing multi-models was not something that was accessible
+        to individual researchers\" Michael explains.</p><h2 id=\"the-r-universe-experience\"><a
+        class=\"anchor d-print-none\" href=\"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en//#the-r-universe-experience\">
+        <small>\ud83d\udd17</small></a>The R-Universe experience</h2><p>PEcAn packages
+        are organized into different groups, such as basic packages, useful tools,
+        and modules that include packages for data management and also packages to
+        do statistical analysis on the inputs and outputs of the models.</p><p>One
+        of the most important points of <a href=\"https://pecanproject.r-universe.dev/builds\">having
+        all the packages in an orderly manner in the R-Universe</a> is to simplify
+        the work of researchers. Having easy and organized access to these models
+        saves years of work and resources.</p><p>In addition, with so many people
+        working on the packages, errors are more likely to discovered. Although the
+        team knows that the PEcAn project code is not bug-free, they have a better
+        chance of finding and fixing bugs by having more eyes looking at the same
+        thing.</p><p>In the following video, the team shares how they organize the
+        packages in the R-Universe and the strengths of using this tool:</p> <div
+        style=\"position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;\">
+        <iframe allow=\"fullscreen\" loading=\"eager\" src=\"https://player.vimeo.com/video/829850626?dnt=0\"
+        style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;\"
+        title=\"Meeting R-Universe Stars - PEcAn project\"> </iframe> </div>","doi":"https://doi.org/10.59350/s8m95-ap410","guid":"https://doi.org/10.59350/s8m95-ap410","images":[{"alt":"Profile
+        photos of David LeBauer, Michael C. Dietze, Rob Kooper, Eric Scott, and Chris
+        Black","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/team.jpg"},{"alt":"A
+        flow diagram showing the standards approach for reducing redundant work when
+        adopting common formats. There are","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/diagram.png"},{"alt":"David
+        LeBauer, Michael C. Dietze, Rob Kooper, Eric Scott, and Chris Black","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/team.jpg"},{"alt":"Conventional
+        and Standards approach to modeling. PEcAn project is an example of the standards
+        approach for modeling.","src":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/diagram.png"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1686009600,"rid":"ssrar-vhq35","summary":"A
+        new post of our interview series \"Meeting the stars of the R-universe\".
+        We aim to introduce the teams and people behind the development of software
+        and packages many of us use and which are available through the R-Universe.
+        We want to highlight and explore different teams and projects around the world,
+        the work they do, their processes and users. Our third stop is the <strong>
+        United States </strong> to talk with members of the PEcAn project.","tags":["Community","R-universe","Interviews","R-universe-stars"],"title":"Meeting
+        the Stars of the R-Universe: PEcAn, an Open Source Project to Take Care of
+        the Planet","updated_at":1769318386,"url":"https://ropensci.org/blog/2023/06/06/r-universe-stars-4-en/","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -98,7 +144,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 11 Jun 2026 19:30:32 GMT
+      - Mon, 29 Jun 2026 18:14:06 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

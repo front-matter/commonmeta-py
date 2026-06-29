@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -14,76 +14,67 @@ interactions:
     uri: https://api.openalex.org/works/https://doi.org/10.3390/publications6020015
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"id":"https://openalex.org/W2787899882","doi":"https://doi.org/10.3390/publications6020015","title":"Converting
+        the Literature of a Scientific Field to Open Access through Global Collaboration:
+        The Experience of SCOAP3 in Particle Physics","display_name":"Converting the
+        Literature of a Scientific Field to Open Access through Global Collaboration:
+        The Experience of SCOAP3 in Particle Physics","publication_year":2018,"publication_date":"2018-04-09","ids":{"openalex":"https://openalex.org/W2787899882","doi":"https://doi.org/10.3390/publications6020015","mag":"2787899882"},"language":"en","primary_location":{"id":"doi:10.3390/publications6020015","is_oa":true,"landing_page_url":"https://doi.org/10.3390/publications6020015","pdf_url":"https://www.mdpi.com/2304-6775/6/2/15/pdf?version=1525347674","source":{"id":"https://openalex.org/S2738007992","display_name":"Publications","issn_l":"2304-6775","issn":["2304-6775"],"is_oa":true,"is_in_doaj":true,"is_core":true,"host_organization":"https://openalex.org/P4310310987","host_organization_name":"Multidisciplinary
+        Digital Publishing Institute","host_organization_lineage":["https://openalex.org/P4310310987"],"host_organization_lineage_names":["Multidisciplinary
+        Digital Publishing Institute"],"type":"journal"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Publications","raw_type":"journal-article"},"type":"article","indexed_in":["crossref","doaj"],"open_access":{"is_oa":true,"oa_status":"gold","oa_url":"https://www.mdpi.com/2304-6775/6/2/15/pdf?version=1525347674","any_repository_has_fulltext":true},"authorships":[{"author_position":"first","author":{"id":"https://openalex.org/A5078980654","display_name":"Alexander
+        Kohls","orcid":"https://orcid.org/0000-0002-3836-8885"},"institutions":[{"id":"https://openalex.org/I67311998","display_name":"European
+        Organization for Nuclear Research","ror":"https://ror.org/01ggx4157","country_code":"CH","type":"facility","lineage":["https://openalex.org/I67311998"]}],"countries":["CH"],"is_corresponding":true,"raw_author_name":"Alexander
+        Kohls","raw_affiliation_strings":["CERN, CH-1211 Geneva 23, Switzerland"],"raw_orcid":"https://orcid.org/0000-0002-3836-8885","affiliations":[{"raw_affiliation_string":"CERN,
+        CH-1211 Geneva 23, Switzerland","institution_ids":["https://openalex.org/I67311998"]}]},{"author_position":"last","author":{"id":"https://openalex.org/A5051435114","display_name":"S.
+        Mele","orcid":"https://orcid.org/0000-0003-0762-2235"},"institutions":[{"id":"https://openalex.org/I67311998","display_name":"European
+        Organization for Nuclear Research","ror":"https://ror.org/01ggx4157","country_code":"CH","type":"facility","lineage":["https://openalex.org/I67311998"]}],"countries":["CH"],"is_corresponding":false,"raw_author_name":"Salvatore
+        Mele","raw_affiliation_strings":["CERN, CH-1211 Geneva 23, Switzerland"],"raw_orcid":"https://orcid.org/0000-0003-0762-2235","affiliations":[{"raw_affiliation_string":"CERN,
+        CH-1211 Geneva 23, Switzerland","institution_ids":["https://openalex.org/I67311998"]}]}],"institutions":[],"countries_distinct_count":1,"institutions_distinct_count":2,"corresponding_author_ids":["https://openalex.org/A5078980654"],"corresponding_institution_ids":["https://openalex.org/I67311998"],"apc_list":{"value":1400,"currency":"CHF","value_usd":1515},"apc_paid":{"value":1400,"currency":"CHF","value_usd":1515},"fwci":0.5789,"has_fulltext":true,"cited_by_count":9,"citation_normalized_percentile":{"value":0.72030987,"is_in_top_1_percent":false,"is_in_top_10_percent":false},"cited_by_percentile_year":{"min":90,"max":98},"biblio":{"volume":"6","issue":"2","first_page":"15","last_page":"15"},"is_retracted":false,"is_paratext":false,"is_xpac":false,"primary_topic":{"id":"https://openalex.org/T10102","display_name":"scientometrics
+        and bibliometrics research","score":0.9947999715805054,"subfield":{"id":"https://openalex.org/subfields/1804","display_name":"Statistics,
+        Probability and Uncertainty"},"field":{"id":"https://openalex.org/fields/18","display_name":"Decision
+        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
+        Sciences"}},"topics":[{"id":"https://openalex.org/T10102","display_name":"scientometrics
+        and bibliometrics research","score":0.9947999715805054,"subfield":{"id":"https://openalex.org/subfields/1804","display_name":"Statistics,
+        Probability and Uncertainty"},"field":{"id":"https://openalex.org/fields/18","display_name":"Decision
+        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
+        Sciences"}},{"id":"https://openalex.org/T11937","display_name":"Research Data
+        Management Practices","score":0.9941999912261963,"subfield":{"id":"https://openalex.org/subfields/1710","display_name":"Information
+        Systems"},"field":{"id":"https://openalex.org/fields/17","display_name":"Computer
+        Science"},"domain":{"id":"https://openalex.org/domains/3","display_name":"Physical
+        Sciences"}},{"id":"https://openalex.org/T11986","display_name":"Scientific
+        Computing and Data Management","score":0.9761999845504761,"subfield":{"id":"https://openalex.org/subfields/1802","display_name":"Information
+        Systems and Management"},"field":{"id":"https://openalex.org/fields/18","display_name":"Decision
+        Sciences"},"domain":{"id":"https://openalex.org/domains/2","display_name":"Social
+        Sciences"}}],"keywords":[{"id":"https://openalex.org/keywords/general-partnership","display_name":"General
+        partnership","score":0.6533904075622559},{"id":"https://openalex.org/keywords/large-hadron-collider","display_name":"Large
+        Hadron Collider","score":0.5657200813293457},{"id":"https://openalex.org/keywords/higgs-boson","display_name":"Higgs
+        boson","score":0.5289162397384644},{"id":"https://openalex.org/keywords/publishing","display_name":"Publishing","score":0.48473283648490906},{"id":"https://openalex.org/keywords/field","display_name":"Field
+        (mathematics)","score":0.41635650396347046},{"id":"https://openalex.org/keywords/physics","display_name":"Physics","score":0.4000847041606903},{"id":"https://openalex.org/keywords/particle-physics","display_name":"Particle
+        physics","score":0.37424004077911377},{"id":"https://openalex.org/keywords/political-science","display_name":"Political
+        science","score":0.31642600893974304}],"concepts":[{"id":"https://openalex.org/C71750763","wikidata":"https://www.wikidata.org/wiki/Q646164","display_name":"General
+        partnership","level":2,"score":0.6533904075622559},{"id":"https://openalex.org/C87668248","wikidata":"https://www.wikidata.org/wiki/Q40605","display_name":"Large
+        Hadron Collider","level":2,"score":0.5657200813293457},{"id":"https://openalex.org/C158129726","wikidata":"https://www.wikidata.org/wiki/Q402","display_name":"Higgs
+        boson","level":2,"score":0.5289162397384644},{"id":"https://openalex.org/C151719136","wikidata":"https://www.wikidata.org/wiki/Q3972943","display_name":"Publishing","level":2,"score":0.48473283648490906},{"id":"https://openalex.org/C9652623","wikidata":"https://www.wikidata.org/wiki/Q190109","display_name":"Field
+        (mathematics)","level":2,"score":0.41635650396347046},{"id":"https://openalex.org/C121332964","wikidata":"https://www.wikidata.org/wiki/Q413","display_name":"Physics","level":0,"score":0.4000847041606903},{"id":"https://openalex.org/C109214941","wikidata":"https://www.wikidata.org/wiki/Q18334","display_name":"Particle
+        physics","level":1,"score":0.37424004077911377},{"id":"https://openalex.org/C17744445","wikidata":"https://www.wikidata.org/wiki/Q36442","display_name":"Political
+        science","level":0,"score":0.31642600893974304},{"id":"https://openalex.org/C199539241","wikidata":"https://www.wikidata.org/wiki/Q7748","display_name":"Law","level":1,"score":0.0},{"id":"https://openalex.org/C33923547","wikidata":"https://www.wikidata.org/wiki/Q395","display_name":"Mathematics","level":0,"score":0.0},{"id":"https://openalex.org/C202444582","wikidata":"https://www.wikidata.org/wiki/Q837863","display_name":"Pure
+        mathematics","level":1,"score":0.0}],"mesh":[],"locations_count":5,"locations":[{"id":"doi:10.3390/publications6020015","is_oa":true,"landing_page_url":"https://doi.org/10.3390/publications6020015","pdf_url":"https://www.mdpi.com/2304-6775/6/2/15/pdf?version=1525347674","source":{"id":"https://openalex.org/S2738007992","display_name":"Publications","issn_l":"2304-6775","issn":["2304-6775"],"is_oa":true,"is_in_doaj":true,"is_core":true,"host_organization":"https://openalex.org/P4310310987","host_organization_name":"Multidisciplinary
+        Digital Publishing Institute","host_organization_lineage":["https://openalex.org/P4310310987"],"host_organization_lineage_names":["Multidisciplinary
+        Digital Publishing Institute"],"type":"journal"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Publications","raw_type":"journal-article"},{"id":"pmh:oai:RePEc:gam:jpubli:v:6:y:2018:i:2:p:15-:d:140150","is_oa":false,"landing_page_url":"https://www.mdpi.com/2304-6775/6/2/15/","pdf_url":null,"source":{"id":"https://openalex.org/S4306401271","display_name":"RePEc:
+        Research Papers in Economics","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I77793887","host_organization_name":"Federal
+        Reserve Bank of St. Louis","host_organization_lineage":["https://openalex.org/I77793887"],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":null,"raw_type":"article"},{"id":"pmh:oai:doaj.org/article:04a70e5cdea641008c39c3b076dc47aa","is_oa":true,"landing_page_url":"https://doaj.org/article/04a70e5cdea641008c39c3b076dc47aa","pdf_url":null,"source":{"id":"https://openalex.org/S4306401280","display_name":"DOAJ
+        (DOAJ: Directory of Open Access Journals)","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":null,"host_organization_name":null,"host_organization_lineage":[],"host_organization_lineage_names":[],"type":"repository"},"license":"cc-by-sa","license_id":"https://openalex.org/licenses/cc-by-sa","version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"Publications,
+        Vol 6, Iss 2, p 15 (2018)","raw_type":"article"},{"id":"pmh:oai:inspirehep.net:1666542","is_oa":false,"landing_page_url":"http://cds.cern.ch/record/2312299","pdf_url":null,"source":{"id":"https://openalex.org/S4306402194","display_name":"CERN
+        Document Server (European Organization for Nuclear Research)","issn_l":null,"issn":null,"is_oa":false,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I67311998","host_organization_name":"European
+        Organization for Nuclear Research","host_organization_lineage":["https://openalex.org/I67311998"],"host_organization_lineage_names":[],"type":"repository"},"license":null,"license_id":null,"version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"","raw_type":""},{"id":"pmh:oai:mdpi.com:/2304-6775/6/2/15/","is_oa":true,"landing_page_url":"https://dx.doi.org/10.3390/publications6020015","pdf_url":null,"source":{"id":"https://openalex.org/S4306400947","display_name":"MDPI
+        (MDPI AG)","issn_l":null,"issn":null,"is_oa":true,"is_in_doaj":false,"is_core":false,"host_organization":"https://openalex.org/I4210097602","host_organization_name":"Multidisciplinary
+        Digital Publishing Institute (Switzerland)","host_organization_lineage":["https://openalex.org/I4210097602"],"host_organization_lineage_names":[],"type":"repository"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"submittedVersion","is_accepted":false,"is_published":false,"raw_source_name":"Publications;
+        Volume 6; Issue 2; Pages: 15","raw_type":"Text"}],"best_oa_location":{"id":"doi:10.3390/publications6020015","is_oa":true,"landing_page_url":"https://doi.org/10.3390/publications6020015","pdf_url":"https://www.mdpi.com/2304-6775/6/2/15/pdf?version=1525347674","source":{"id":"https://openalex.org/S2738007992","display_name":"Publications","issn_l":"2304-6775","issn":["2304-6775"],"is_oa":true,"is_in_doaj":true,"is_core":true,"host_organization":"https://openalex.org/P4310310987","host_organization_name":"Multidisciplinary
+        Digital Publishing Institute","host_organization_lineage":["https://openalex.org/P4310310987"],"host_organization_lineage_names":["Multidisciplinary
+        Digital Publishing Institute"],"type":"journal"},"license":"cc-by","license_id":"https://openalex.org/licenses/cc-by","version":"publishedVersion","is_accepted":true,"is_published":true,"raw_source_name":"Publications","raw_type":"journal-article"},"sustainable_development_goals":[{"display_name":"Partnerships
+        for the goals","score":0.5799999833106995,"id":"https://metadata.un.org/sdg/17"}],"awards":[],"funders":[{"id":"https://openalex.org/F4320313559","display_name":"CERN","ror":"https://ror.org/01ggx4157"},{"id":"https://openalex.org/F4320321382","display_name":"Sponsoring
+        Consortium for Open Access Publishing in Particle Physics","ror":null}],"has_content":{"pdf":true,"grobid_xml":false},"content_urls":{"pdf":"https://content.openalex.org/works/W2787899882.pdf"},"referenced_works_count":12,"referenced_works":["https://openalex.org/W64795899","https://openalex.org/W351146182","https://openalex.org/W1503623321","https://openalex.org/W1590603655","https://openalex.org/W2128349488","https://openalex.org/W2474679122","https://openalex.org/W2539996007","https://openalex.org/W3106193278","https://openalex.org/W4251478550","https://openalex.org/W4390463023","https://openalex.org/W6676707482","https://openalex.org/W6785452197"],"related_works":["https://openalex.org/W2748952813","https://openalex.org/W751685047","https://openalex.org/W4226025818","https://openalex.org/W2949492134","https://openalex.org/W3207341116","https://openalex.org/W1796848044","https://openalex.org/W4300891621","https://openalex.org/W3102526018","https://openalex.org/W2949327310","https://openalex.org/W4297847862"],"abstract_inverted_index":{"Gigantic":[0],"particle":[1,67],"accelerators,":[2],"incredibly":[3],"complex":[4],"detectors,":[5],"an":[6],"antimatter":[7],"factory":[8],"and":[9,52,134],"the":[10,13,31,56,64,107,114,118,123,128,132],"discovery":[11],"of":[12,18,58,66,113,117,126,131,142],"Higgs":[14],"boson\u2014this":[15],"is":[16,80],"part":[17],"what":[19],"makes":[20],"CERN":[21,28],"famous.":[22],"Only":[23],"a":[24,84],"few":[25],"know":[26],"that":[27],"also":[29],"hosts":[30],"world":[32],"largest":[33],"Open":[34,42,60,101],"Access":[35,43,61],"initiative:":[36],"SCOAP3.":[37],"The":[38],"Sponsoring":[39],"Consortium":[40],"for":[41,75,94],"Publishing":[44],"in":[45,50,63],"Particle":[46],"Physics":[47],"started":[48],"operation":[49],"2014":[51],"has":[53],"since":[54],"supported":[55],"publication":[57],"20,000":[59],"articles":[62,98],"field":[65],"physics,":[68],"at":[69],"no":[70],"direct":[71],"cost,":[72],"nor":[73],"burden,":[74],"individual":[76],"authors":[77],"worldwide.":[78],"SCOAP3":[79],"made":[81],"possible":[82],"by":[83],"3000-institute":[85],"strong":[86],"partnership,":[87,133],"where":[88],"libraries":[89],"re-direct":[90],"funds":[91],"previously":[92],"used":[93],"subscriptions":[95],"to":[96,99],"\u2018flip\u2019":[97],"\u2018Gold":[100],"Access\u2019.":[102],"With":[103],"its":[104],"recent":[105],"expansion,":[106],"initiative":[108],"now":[109],"covers":[110],"about":[111],"90%":[112],"journal":[115],"literature":[116],"field.":[119],"This":[120],"article":[121],"describes":[122],"economic":[124],"principles":[125],"SCOAP3,":[127],"collaborative":[129],"approach":[130],"finally":[135],"summarizes":[136],"financial":[137],"results":[138],"after":[139],"four":[140],"years":[141],"successful":[143],"operation.":[144]},"counts_by_year":[{"year":2026,"cited_by_count":1},{"year":2025,"cited_by_count":1},{"year":2024,"cited_by_count":1},{"year":2022,"cited_by_count":3},{"year":2021,"cited_by_count":2},{"year":2019,"cited_by_count":1}],"updated_date":"2026-05-21T06:26:12.895304","created_date":"2025-10-10T00:00:00"}
+
+        '
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -94,7 +85,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd785d29d4323f-AMS
+      - a136e9ba9833ffef-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -102,13 +93,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:57 GMT
+      - Mon, 29 Jun 2026 18:14:48 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=2u6eVM1r5lOWqIRqaMW55AXtnyKqg4jvWgFj6mxh35c%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154557"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=E0Ikd5KK3ZJlJdqn0FS82m5xlkbJ1g499NG0eOdOfww%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756888"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=2u6eVM1r5lOWqIRqaMW55AXtnyKqg4jvWgFj6mxh35c%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154557"
+      - heroku-nel="https://nel.heroku.com/reports?s=E0Ikd5KK3ZJlJdqn0FS82m5xlkbJ1g499NG0eOdOfww%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756888"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -128,11 +119,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '940'
+      - '917'
       X-RateLimit-Remaining-USD:
-      - '0.094'
+      - '0.0917'
       X-RateLimit-Reset:
-      - '18243'
+      - '20712'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,
@@ -147,7 +138,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
@@ -156,346 +147,1522 @@ interactions:
     uri: https://api.openalex.org/works?filter=ids.openalex:https://openalex.org/W64795899%7Chttps://openalex.org/W351146182%7Chttps://openalex.org/W1503623321%7Chttps://openalex.org/W1590603655%7Chttps://openalex.org/W2128349488%7Chttps://openalex.org/W2474679122%7Chttps://openalex.org/W2539996007%7Chttps://openalex.org/W3106193278%7Chttps://openalex.org/W4251478550%7Chttps://openalex.org/W4390463023%7Chttps://openalex.org/W6676707482%7Chttps://openalex.org/W6785452197
   response:
     body:
-      string: !!binary |
-        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
+      string: '{"meta": {"count": 10, "db_response_time_ms": 17, "page": 1, "per_page":
+        25, "groups_count": null, "x_query": {"oql": "works where openalex id is (\n    https://openalex.org/W1503623321
+        or https://openalex.org/W1590603655\n    or https://openalex.org/W2128349488
+        or https://openalex.org/W2474679122\n    or https://openalex.org/W2539996007
+        or https://openalex.org/W3106193278\n    or https://openalex.org/W351146182
+        or https://openalex.org/W4251478550\n    or https://openalex.org/W4390463023
+        or https://openalex.org/W64795899\n    or https://openalex.org/W6676707482
+        or https://openalex.org/W6785452197\n  )", "oqo": {"get_rows": "works", "filter_rows":
+        [{"join": "or", "filters": [{"column_id": "ids.openalex", "value": "https://openalex.org/W1503623321"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W1590603655"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W2128349488"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W2474679122"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W2539996007"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W3106193278"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W351146182"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W4251478550"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W4390463023"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W64795899"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W6676707482"},
+        {"column_id": "ids.openalex", "value": "https://openalex.org/W6785452197"}]}]},
+        "url": "/works?filter=ids.openalex:https:%2F%2Fopenalex.org%2FW1503623321|https:%2F%2Fopenalex.org%2FW1590603655|https:%2F%2Fopenalex.org%2FW2128349488|https:%2F%2Fopenalex.org%2FW2474679122|https:%2F%2Fopenalex.org%2FW2539996007|https:%2F%2Fopenalex.org%2FW3106193278|https:%2F%2Fopenalex.org%2FW351146182|https:%2F%2Fopenalex.org%2FW4251478550|https:%2F%2Fopenalex.org%2FW4390463023|https:%2F%2Fopenalex.org%2FW64795899|https:%2F%2Fopenalex.org%2FW6676707482|https:%2F%2Fopenalex.org%2FW6785452197"},
+        "cost_usd": 0.0001}, "results": [{"id": "https://openalex.org/W2128349488",
+        "doi": "https://doi.org/10.1007/s11192-009-0111-1", "title": "Citing and reading
+        behaviours in high-energy physics", "display_name": "Citing and reading behaviours
+        in high-energy physics", "publication_year": 2009, "publication_date": "2009-12-01",
+        "ids": {"openalex": "https://openalex.org/W2128349488", "doi": "https://doi.org/10.1007/s11192-009-0111-1",
+        "mag": "2128349488"}, "language": "en", "primary_location": {"id": "doi:10.1007/s11192-009-0111-1",
+        "is_oa": false, "landing_page_url": "https://doi.org/10.1007/s11192-009-0111-1",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S148561398", "display_name":
+        "Scientometrics", "issn_l": "0138-9130", "issn": ["0138-9130", "1588-2861"],
+        "is_oa": false, "is_in_doaj": false, "is_core": true, "host_organization":
+        "https://openalex.org/P4310320108", "host_organization_name": "Springer Nature
+        (Netherlands)", "host_organization_lineage": ["https://openalex.org/P4310320108",
+        "https://openalex.org/P4310319965"], "host_organization_lineage_names": ["Springer
+        Nature (Netherlands)", "Springer Nature"], "type": "journal"}, "license":
+        null, "license_id": null, "version": "publishedVersion", "is_accepted": true,
+        "is_published": true, "raw_source_name": "Scientometrics", "raw_type": "journal-article"},
+        "type": "article", "indexed_in": ["crossref"], "open_access": {"is_oa": false,
+        "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext": false},
+        "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5029832677",
+        "display_name": "Anne Gentil\u2010Beccot", "orcid": "https://orcid.org/0000-0001-9199-655X"},
+        "institutions": [{"id": "https://openalex.org/I67311998", "display_name":
+        "European Organization for Nuclear Research", "ror": "https://ror.org/01ggx4157",
+        "country_code": "CH", "type": "facility", "lineage": ["https://openalex.org/I67311998"]}],
+        "countries": ["CH"], "is_corresponding": true, "raw_author_name": "Anne Gentil-Beccot",
+        "raw_affiliation_strings": ["CERN European Organization for Nuclear Research,
+        1211, Geneva 23, Switzerland", "CERN - EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "CERN European
+        Organization for Nuclear Research, 1211, Geneva 23, Switzerland", "institution_ids":
+        ["https://openalex.org/I67311998"]}, {"raw_affiliation_string": "CERN - EUROPEAN
+        ORGANIZATION FOR NUCLEAR RESEARCH", "institution_ids": ["https://openalex.org/I67311998"]}]},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5051435114",
+        "display_name": "S. Mele", "orcid": "https://orcid.org/0000-0003-0762-2235"},
+        "institutions": [{"id": "https://openalex.org/I67311998", "display_name":
+        "European Organization for Nuclear Research", "ror": "https://ror.org/01ggx4157",
+        "country_code": "CH", "type": "facility", "lineage": ["https://openalex.org/I67311998"]}],
+        "countries": ["CH"], "is_corresponding": false, "raw_author_name": "Salvatore
+        Mele", "raw_affiliation_strings": ["CERN European Organization for Nuclear
+        Research, 1211, Geneva 23, Switzerland", "CERN - EUROPEAN ORGANIZATION FOR
+        NUCLEAR RESEARCH"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "CERN European Organization for Nuclear Research, 1211, Geneva 23, Switzerland",
+        "institution_ids": ["https://openalex.org/I67311998"]}, {"raw_affiliation_string":
+        "CERN - EUROPEAN ORGANIZATION FOR NUCLEAR RESEARCH", "institution_ids": ["https://openalex.org/I67311998"]}]},
+        {"author_position": "last", "author": {"id": "https://openalex.org/A5030538000",
+        "display_name": "Travis C. Brooks", "orcid": null}, "institutions": [{"id":
+        "https://openalex.org/I2801935854", "display_name": "SLAC National Accelerator
+        Laboratory", "ror": "https://ror.org/05gzmn429", "country_code": "US", "type":
+        "facility", "lineage": ["https://openalex.org/I1330989302", "https://openalex.org/I2801935854",
+        "https://openalex.org/I39565521", "https://openalex.org/I97018004"]}], "countries":
+        ["US"], "is_corresponding": false, "raw_author_name": "Travis C. Brooks",
+        "raw_affiliation_strings": ["SLAC National Accelerator Laboratory, Sand Hill
+        Road, Menlo Park, CA, 94309, USA", "SLAC National Accelerator Laboratory"],
+        "raw_orcid": null, "affiliations": [{"raw_affiliation_string": "SLAC National
+        Accelerator Laboratory, Sand Hill Road, Menlo Park, CA, 94309, USA", "institution_ids":
+        ["https://openalex.org/I2801935854"]}, {"raw_affiliation_string": "SLAC National
+        Accelerator Laboratory", "institution_ids": ["https://openalex.org/I2801935854"]}]}],
+        "institutions": [], "countries_distinct_count": 2, "institutions_distinct_count":
+        2, "corresponding_author_ids": ["https://openalex.org/A5029832677"], "corresponding_institution_ids":
+        ["https://openalex.org/I67311998"], "apc_list": {"value": 2290, "currency":
+        "EUR", "value_usd": 2890}, "apc_paid": null, "fwci": 5.9592, "has_fulltext":
+        false, "cited_by_count": 122, "citation_normalized_percentile": {"value":
+        0.97546729, "is_in_top_1_percent": false, "is_in_top_10_percent": true}, "cited_by_percentile_year":
+        {"min": 90, "max": 100}, "biblio": {"volume": "84", "issue": "2", "first_page":
+        "345", "last_page": "355"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T10102", "display_name":
+        "scientometrics and bibliometrics research", "score": 0.9968000054359436,
+        "subfield": {"id": "https://openalex.org/subfields/1804", "display_name":
+        "Statistics, Probability and Uncertainty"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T10102",
+        "display_name": "scientometrics and bibliometrics research", "score": 0.9968000054359436,
+        "subfield": {"id": "https://openalex.org/subfields/1804", "display_name":
+        "Statistics, Probability and Uncertainty"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T11986",
+        "display_name": "Scientific Computing and Data Management", "score": 0.9934999942779541,
+        "subfield": {"id": "https://openalex.org/subfields/1802", "display_name":
+        "Information Systems and Management"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T11937",
+        "display_name": "Research Data Management Practices", "score": 0.993399977684021,
+        "subfield": {"id": "https://openalex.org/subfields/1710", "display_name":
+        "Information Systems"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/citation",
+        "display_name": "Citation", "score": 0.6786406636238098}, {"id": "https://openalex.org/keywords/scholarly-communication",
+        "display_name": "Scholarly communication", "score": 0.6657041311264038}, {"id":
+        "https://openalex.org/keywords/reading", "display_name": "Reading (process)",
+        "score": 0.6265571713447571}, {"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.5921010375022888}, {"id": "https://openalex.org/keywords/field",
+        "display_name": "Field (mathematics)", "score": 0.5802326798439026}, {"id":
+        "https://openalex.org/keywords/world-wide-web", "display_name": "World Wide
+        Web", "score": 0.5727283954620361}, {"id": "https://openalex.org/keywords/publishing",
+        "display_name": "Publishing", "score": 0.5719031691551208}, {"id": "https://openalex.org/keywords/digital-library",
+        "display_name": "Digital library", "score": 0.5343714356422424}, {"id": "https://openalex.org/keywords/electronic-publishing",
+        "display_name": "Electronic publishing", "score": 0.46140021085739136}, {"id":
+        "https://openalex.org/keywords/energy", "display_name": "Energy (signal processing)",
+        "score": 0.4509642720222473}, {"id": "https://openalex.org/keywords/scientific-communication",
+        "display_name": "Scientific communication", "score": 0.4361836314201355},
+        {"id": "https://openalex.org/keywords/citation-analysis", "display_name":
+        "Citation analysis", "score": 0.42387133836746216}, {"id": "https://openalex.org/keywords/library-science",
+        "display_name": "Library science", "score": 0.3992964029312134}, {"id": "https://openalex.org/keywords/data-science",
+        "display_name": "Data science", "score": 0.38941001892089844}, {"id": "https://openalex.org/keywords/the-internet",
+        "display_name": "The Internet", "score": 0.20517504215240479}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.18547502160072327}, {"id":
+        "https://openalex.org/keywords/physics", "display_name": "Physics", "score":
+        0.13514956831932068}, {"id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics", "score": 0.08885136246681213}], "concepts":
+        [{"id": "https://openalex.org/C2778805511", "wikidata": "https://www.wikidata.org/wiki/Q1713",
+        "display_name": "Citation", "level": 2, "score": 0.6786406636238098}, {"id":
+        "https://openalex.org/C2777462167", "wikidata": "https://www.wikidata.org/wiki/Q7432048",
+        "display_name": "Scholarly communication", "level": 3, "score": 0.6657041311264038},
+        {"id": "https://openalex.org/C554936623", "wikidata": "https://www.wikidata.org/wiki/Q199657",
+        "display_name": "Reading (process)", "level": 2, "score": 0.6265571713447571},
+        {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.5921010375022888},
+        {"id": "https://openalex.org/C9652623", "wikidata": "https://www.wikidata.org/wiki/Q190109",
+        "display_name": "Field (mathematics)", "level": 2, "score": 0.5802326798439026},
+        {"id": "https://openalex.org/C136764020", "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web", "level": 1, "score": 0.5727283954620361},
+        {"id": "https://openalex.org/C151719136", "wikidata": "https://www.wikidata.org/wiki/Q3972943",
+        "display_name": "Publishing", "level": 2, "score": 0.5719031691551208}, {"id":
+        "https://openalex.org/C513874922", "wikidata": "https://www.wikidata.org/wiki/Q212805",
+        "display_name": "Digital library", "level": 3, "score": 0.5343714356422424},
+        {"id": "https://openalex.org/C18599908", "wikidata": "https://www.wikidata.org/wiki/Q1196904",
+        "display_name": "Electronic publishing", "level": 3, "score": 0.46140021085739136},
+        {"id": "https://openalex.org/C186370098", "wikidata": "https://www.wikidata.org/wiki/Q442787",
+        "display_name": "Energy (signal processing)", "level": 2, "score": 0.4509642720222473},
+        {"id": "https://openalex.org/C2775989791", "wikidata": "https://www.wikidata.org/wiki/Q18244815",
+        "display_name": "Scientific communication", "level": 2, "score": 0.4361836314201355},
+        {"id": "https://openalex.org/C105345328", "wikidata": "https://www.wikidata.org/wiki/Q206276",
+        "display_name": "Citation analysis", "level": 3, "score": 0.42387133836746216},
+        {"id": "https://openalex.org/C161191863", "wikidata": "https://www.wikidata.org/wiki/Q199655",
+        "display_name": "Library science", "level": 1, "score": 0.3992964029312134},
+        {"id": "https://openalex.org/C2522767166", "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+        "display_name": "Data science", "level": 1, "score": 0.38941001892089844},
+        {"id": "https://openalex.org/C110875604", "wikidata": "https://www.wikidata.org/wiki/Q75",
+        "display_name": "The Internet", "level": 2, "score": 0.20517504215240479},
+        {"id": "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.18547502160072327},
+        {"id": "https://openalex.org/C121332964", "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics", "level": 0, "score": 0.13514956831932068}, {"id":
+        "https://openalex.org/C33923547", "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics", "level": 0, "score": 0.08885136246681213},
+        {"id": "https://openalex.org/C124952713", "wikidata": "https://www.wikidata.org/wiki/Q8242",
+        "display_name": "Literature", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C62520636",
+        "wikidata": "https://www.wikidata.org/wiki/Q944", "display_name": "Quantum
+        mechanics", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C142362112",
+        "wikidata": "https://www.wikidata.org/wiki/Q735", "display_name": "Art", "level":
+        0, "score": 0.0}, {"id": "https://openalex.org/C164913051", "wikidata": "https://www.wikidata.org/wiki/Q482",
+        "display_name": "Poetry", "level": 2, "score": 0.0}, {"id": "https://openalex.org/C202444582",
+        "wikidata": "https://www.wikidata.org/wiki/Q837863", "display_name": "Pure
+        mathematics", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C199539241",
+        "wikidata": "https://www.wikidata.org/wiki/Q7748", "display_name": "Law",
+        "level": 1, "score": 0.0}], "mesh": [], "locations_count": 3, "locations":
+        [{"id": "doi:10.1007/s11192-009-0111-1", "is_oa": false, "landing_page_url":
+        "https://doi.org/10.1007/s11192-009-0111-1", "pdf_url": null, "source": {"id":
+        "https://openalex.org/S148561398", "display_name": "Scientometrics", "issn_l":
+        "0138-9130", "issn": ["0138-9130", "1588-2861"], "is_oa": false, "is_in_doaj":
+        false, "is_core": true, "host_organization": "https://openalex.org/P4310320108",
+        "host_organization_name": "Springer Nature (Netherlands)", "host_organization_lineage":
+        ["https://openalex.org/P4310320108", "https://openalex.org/P4310319965"],
+        "host_organization_lineage_names": ["Springer Nature (Netherlands)", "Springer
+        Nature"], "type": "journal"}, "license": null, "license_id": null, "version":
+        "publishedVersion", "is_accepted": true, "is_published": true, "raw_source_name":
+        "Scientometrics", "raw_type": "journal-article"}, {"id": "pmh:oai:RePEc:spr:scient:v:84:y:2010:i:2:d:10.1007_s11192-009-0111-1",
+        "is_oa": false, "landing_page_url": "http://link.springer.com/10.1007/s11192-009-0111-1",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306401271", "display_name":
+        "RePEc: Research Papers in Economics", "issn_l": null, "issn": null, "is_oa":
+        false, "is_in_doaj": false, "is_core": false, "host_organization": "https://openalex.org/I77793887",
+        "host_organization_name": "Federal Reserve Bank of St. Louis", "host_organization_lineage":
+        ["https://openalex.org/I77793887"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "acceptedVersion",
+        "is_accepted": true, "is_published": false, "raw_source_name": null, "raw_type":
+        "article"}, {"id": "pmh:oai:cds.cern.ch:1214893", "is_oa": false, "landing_page_url":
+        "http://cds.cern.ch/record/1214893", "pdf_url": null, "source": {"id": "https://openalex.org/S4306402194",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}], "best_oa_location": null, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/4",
+        "score": 0.7099999785423279, "display_name": "Quality Education"}], "awards":
+        [], "funders": [], "has_content": {"pdf": false, "grobid_xml": false}, "content_urls":
+        null, "referenced_works_count": 22, "referenced_works": ["https://openalex.org/W1590603655",
+        "https://openalex.org/W1715687586", "https://openalex.org/W1782003150", "https://openalex.org/W1823081643",
+        "https://openalex.org/W1970217003", "https://openalex.org/W1981745473", "https://openalex.org/W1982149803",
+        "https://openalex.org/W2001450038", "https://openalex.org/W2037150872", "https://openalex.org/W2053558219",
+        "https://openalex.org/W2069656088", "https://openalex.org/W2086496065", "https://openalex.org/W2089604928",
+        "https://openalex.org/W2100117397", "https://openalex.org/W2104772551", "https://openalex.org/W2146926260",
+        "https://openalex.org/W2149173175", "https://openalex.org/W2951351472", "https://openalex.org/W2952693111",
+        "https://openalex.org/W3106193278", "https://openalex.org/W4212795824", "https://openalex.org/W4240507605"],
+        "related_works": ["https://openalex.org/W2294604317", "https://openalex.org/W2086473138",
+        "https://openalex.org/W1520779605", "https://openalex.org/W2014908723", "https://openalex.org/W1491415675",
+        "https://openalex.org/W2470540887", "https://openalex.org/W2092907983", "https://openalex.org/W2398606238",
+        "https://openalex.org/W4309407769", "https://openalex.org/W1987480379"], "abstract_inverted_index":
+        null, "counts_by_year": [{"year": 2026, "cited_by_count": 2}, {"year": 2025,
+        "cited_by_count": 3}, {"year": 2024, "cited_by_count": 1}, {"year": 2023,
+        "cited_by_count": 1}, {"year": 2022, "cited_by_count": 6}, {"year": 2021,
+        "cited_by_count": 8}, {"year": 2020, "cited_by_count": 27}, {"year": 2019,
+        "cited_by_count": 12}, {"year": 2018, "cited_by_count": 3}, {"year": 2017,
+        "cited_by_count": 5}, {"year": 2016, "cited_by_count": 14}, {"year": 2015,
+        "cited_by_count": 4}, {"year": 2014, "cited_by_count": 8}, {"year": 2013,
+        "cited_by_count": 7}, {"year": 2012, "cited_by_count": 4}], "updated_date":
+        "2026-06-26T08:34:08.712188", "created_date": "2016-06-24T00:00:00"}, {"id":
+        "https://openalex.org/W1590603655", "doi": null, "title": "Communication Patterns
+        in High-Energy Physics", "display_name": "Communication Patterns in High-Energy
+        Physics", "publication_year": 1965, "publication_date": "1965-01-01", "ids":
+        {"openalex": "https://openalex.org/W1590603655", "mag": "1590603655"}, "language":
+        "en", "primary_location": {"id": "pmh:oai:eprints.rclis.org:4253", "is_oa":
+        true, "landing_page_url": null, "pdf_url": "http://eprints.rclis.org/4253/1/communication_patterns.pdf",
+        "source": {"id": "https://openalex.org/S4306401228", "display_name": "E-LIS
+        Repository (University of Naples Federico II)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I71267560", "host_organization_name": "University of
+        Naples Federico II", "host_organization_lineage": ["https://openalex.org/I71267560"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": "Journal article (Unpaginated)"},
+        "type": "article", "indexed_in": [], "open_access": {"is_oa": true, "oa_status":
+        "green", "oa_url": "http://eprints.rclis.org/4253/1/communication_patterns.pdf",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5036586330", "display_name":
+        "Luisella Goldschmidt\u2010Clermont", "orcid": null}, "institutions": [],
+        "countries": [], "is_corresponding": true, "raw_author_name": "Luisella Goldschmidt\u2010Clermont",
+        "raw_affiliation_strings": [], "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5036586330"],
+        "corresponding_institution_ids": [], "apc_list": null, "apc_paid": null, "fwci":
+        0.0, "has_fulltext": true, "cited_by_count": 35, "citation_normalized_percentile":
+        {"value": 0.04574333, "is_in_top_1_percent": false, "is_in_top_10_percent":
+        false}, "cited_by_percentile_year": {"min": 89, "max": 98}, "biblio": {"volume":
+        null, "issue": null, "first_page": null, "last_page": null}, "is_retracted":
+        false, "is_paratext": false, "is_xpac": false, "primary_topic": {"id": "https://openalex.org/T14280",
+        "display_name": "Big Data Technologies and Applications", "score": 0.8460000157356262,
+        "subfield": {"id": "https://openalex.org/subfields/1802", "display_name":
+        "Information Systems and Management"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T14280",
+        "display_name": "Big Data Technologies and Applications", "score": 0.8460000157356262,
+        "subfield": {"id": "https://openalex.org/subfields/1802", "display_name":
+        "Information Systems and Management"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T11896",
+        "display_name": "Opportunistic and Delay-Tolerant Networks", "score": 0.8282999992370605,
+        "subfield": {"id": "https://openalex.org/subfields/1705", "display_name":
+        "Computer Networks and Communications"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T14347",
+        "display_name": "Big Data and Digital Economy", "score": 0.7781000137329102,
+        "subfield": {"id": "https://openalex.org/subfields/1710", "display_name":
+        "Information Systems"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/preprint",
+        "display_name": "Preprint", "score": 0.769633412361145}, {"id": "https://openalex.org/keywords/telecommunications",
+        "display_name": "Telecommunications", "score": 0.41575315594673157}, {"id":
+        "https://openalex.org/keywords/data-science", "display_name": "Data science",
+        "score": 0.39770448207855225}, {"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.3781401515007019}, {"id": "https://openalex.org/keywords/history",
+        "display_name": "History", "score": 0.3676205277442932}, {"id": "https://openalex.org/keywords/engineering-ethics",
+        "display_name": "Engineering ethics", "score": 0.3421148359775543}, {"id":
+        "https://openalex.org/keywords/engineering", "display_name": "Engineering",
+        "score": 0.3257293403148651}, {"id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web", "score": 0.28511685132980347}], "concepts":
+        [{"id": "https://openalex.org/C43169469", "wikidata": "https://www.wikidata.org/wiki/Q580922",
+        "display_name": "Preprint", "level": 2, "score": 0.769633412361145}, {"id":
+        "https://openalex.org/C76155785", "wikidata": "https://www.wikidata.org/wiki/Q418",
+        "display_name": "Telecommunications", "level": 1, "score": 0.41575315594673157},
+        {"id": "https://openalex.org/C2522767166", "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+        "display_name": "Data science", "level": 1, "score": 0.39770448207855225},
+        {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.3781401515007019},
+        {"id": "https://openalex.org/C95457728", "wikidata": "https://www.wikidata.org/wiki/Q309",
+        "display_name": "History", "level": 0, "score": 0.3676205277442932}, {"id":
+        "https://openalex.org/C55587333", "wikidata": "https://www.wikidata.org/wiki/Q1133029",
+        "display_name": "Engineering ethics", "level": 1, "score": 0.3421148359775543},
+        {"id": "https://openalex.org/C127413603", "wikidata": "https://www.wikidata.org/wiki/Q11023",
+        "display_name": "Engineering", "level": 0, "score": 0.3257293403148651}, {"id":
+        "https://openalex.org/C136764020", "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web", "level": 1, "score": 0.28511685132980347}],
+        "mesh": [], "locations_count": 3, "locations": [{"id": "pmh:oai:eprints.rclis.org:4253",
+        "is_oa": true, "landing_page_url": null, "pdf_url": "http://eprints.rclis.org/4253/1/communication_patterns.pdf",
+        "source": {"id": "https://openalex.org/S4306401228", "display_name": "E-LIS
+        Repository (University of Naples Federico II)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I71267560", "host_organization_name": "University of
+        Naples Federico II", "host_organization_lineage": ["https://openalex.org/I71267560"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": "Journal article (Unpaginated)"},
+        {"id": "pmh:oai:hispana.mcu.es:6656615", "is_oa": false, "landing_page_url":
+        "http://hdl.handle.net/10760/4253", "pdf_url": null, "source": {"id": "https://openalex.org/S4377196108",
+        "display_name": "Hispana", "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj":
+        false, "is_core": false, "host_organization": null, "host_organization_name":
+        null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": null, "license_id": null, "version":
+        "submittedVersion", "is_accepted": false, "is_published": false, "raw_source_name":
+        "", "raw_type": "Journal Article (On-line/Unpaginated)"}, {"id": "mag:1590603655",
+        "is_oa": false, "landing_page_url": "http://eprints.rclis.org/4253/", "pdf_url":
+        null, "source": null, "license": null, "license_id": null, "version": null,
+        "is_accepted": false, "is_published": null, "raw_source_name": null, "raw_type":
+        null}], "best_oa_location": {"id": "pmh:oai:eprints.rclis.org:4253", "is_oa":
+        true, "landing_page_url": null, "pdf_url": "http://eprints.rclis.org/4253/1/communication_patterns.pdf",
+        "source": {"id": "https://openalex.org/S4306401228", "display_name": "E-LIS
+        Repository (University of Naples Federico II)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I71267560", "host_organization_name": "University of
+        Naples Federico II", "host_organization_lineage": ["https://openalex.org/I71267560"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": "Journal article (Unpaginated)"},
+        "sustainable_development_goals": [], "awards": [], "funders": [], "has_content":
+        {"pdf": true, "grobid_xml": false}, "content_urls": {"pdf": "https://content.openalex.org/works/W1590603655.pdf"},
+        "referenced_works_count": 0, "referenced_works": [], "related_works": ["https://openalex.org/W2001450038",
+        "https://openalex.org/W2149173175", "https://openalex.org/W2128349488", "https://openalex.org/W2100117397",
+        "https://openalex.org/W1503623321", "https://openalex.org/W2146926260", "https://openalex.org/W1982149803",
+        "https://openalex.org/W1803241704", "https://openalex.org/W2069706246", "https://openalex.org/W2296534915",
+        "https://openalex.org/W2058875959", "https://openalex.org/W2024087965", "https://openalex.org/W2109989547",
+        "https://openalex.org/W1983604394", "https://openalex.org/W1896016129", "https://openalex.org/W1990317974",
+        "https://openalex.org/W2294962740", "https://openalex.org/W1555537460", "https://openalex.org/W2011982521",
+        "https://openalex.org/W146815518"], "abstract_inverted_index": {"This": [0],
+        "historical": [1], "paper": [2, 48], "was": [3], "written": [4], "in": [5],
+        "1965": [6], "by": [7], "Luisella": [8], "Goldschmidt-Clermont,": [9], "who":
+        [10], "envisioned": [11], "and": [12, 37], "inspired": [13], "the": [14, 35,
+        43, 47], "preprint": [15], "communication": [16], "system.": [17], "For":
+        [18], "complex": [19], "reasons,": [20], "it": [21, 29, 38], "has": [22, 30],
+        "not": [23], "been": [24, 31], "published": [25], "until": [26], "now,": [27],
+        "but": [28], "referred": [32], "to": [33, 45], "throughout": [34], "years,":
+        [36], "became": [39], "a": [40], "requirement": [41], "for": [42, 50], "community":
+        [44], "make": [46], "available": [49], "research": [51], "purposes.": [52]},
+        "counts_by_year": [{"year": 2024, "cited_by_count": 1}, {"year": 2022, "cited_by_count":
+        1}, {"year": 2020, "cited_by_count": 1}, {"year": 2019, "cited_by_count":
+        2}, {"year": 2018, "cited_by_count": 2}, {"year": 2017, "cited_by_count":
+        2}, {"year": 2015, "cited_by_count": 2}, {"year": 2014, "cited_by_count":
+        1}, {"year": 2013, "cited_by_count": 1}, {"year": 2012, "cited_by_count":
+        4}], "updated_date": "2026-04-04T16:13:02.066488", "created_date": "2025-10-10T00:00:00"},
+        {"id": "https://openalex.org/W1503623321", "doi": null, "title": "Quantitative
+        study of the geographical distribution of the authorship of high-energy physics
+        journals", "display_name": "Quantitative study of the geographical distribution
+        of the authorship of high-energy physics journals", "publication_year": 2007,
+        "publication_date": "2007-07-16", "ids": {"openalex": "https://openalex.org/W1503623321",
+        "mag": "1503623321"}, "language": "en", "primary_location": {"id": "pmh:oai:cds.cern.ch:1033099",
+        "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1033099", "pdf_url":
+        "http://cds.cern.ch/record/1033099", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "other-oa", "license_id": "https://openalex.org/licenses/other-oa",
+        "version": "submittedVersion", "is_accepted": false, "is_published": false,
+        "raw_source_name": "", "raw_type": ""}, "type": "article", "indexed_in": [],
+        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "http://cds.cern.ch/record/1033099",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5016038582", "display_name":
+        "Jan Krause", "orcid": "https://orcid.org/0000-0001-9375-2102"}, "institutions":
+        [], "countries": [], "is_corresponding": false, "raw_author_name": "Jan Krause",
+        "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0001-9375-2102",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5051435114",
+        "display_name": "S. Mele", "orcid": "https://orcid.org/0000-0003-0762-2235"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "S. Mele", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0003-0762-2235",
+        "affiliations": []}, {"author_position": "last", "author": {"id": "https://openalex.org/A5008179741",
+        "display_name": "Carl Marten Lindqvist", "orcid": null}, "institutions": [],
+        "countries": [], "is_corresponding": false, "raw_author_name": "Carl Marten
+        Lindqvist", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
+        []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
+        3, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
+        null, "apc_paid": null, "fwci": 10.9696, "has_fulltext": true, "cited_by_count":
+        19, "citation_normalized_percentile": {"value": 0.97690521, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": true}, "cited_by_percentile_year": {"min":
+        89, "max": 97}, "biblio": {"volume": null, "issue": null, "first_page": null,
+        "last_page": null}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T12722", "display_name":
+        "Innovation Policy and R&D", "score": 0.9927999973297119, "subfield": {"id":
+        "https://openalex.org/subfields/2002", "display_name": "Economics and Econometrics"},
+        "field": {"id": "https://openalex.org/fields/20", "display_name": "Economics,
+        Econometrics and Finance"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T12722",
+        "display_name": "Innovation Policy and R&D", "score": 0.9927999973297119,
+        "subfield": {"id": "https://openalex.org/subfields/2002", "display_name":
+        "Economics and Econometrics"}, "field": {"id": "https://openalex.org/fields/20",
+        "display_name": "Economics, Econometrics and Finance"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T12961",
+        "display_name": "Regional Development and Policy", "score": 0.9918000102043152,
+        "subfield": {"id": "https://openalex.org/subfields/3320", "display_name":
+        "Political Science and International Relations"}, "field": {"id": "https://openalex.org/fields/33",
+        "display_name": "Social Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/distribution",
+        "display_name": "Distribution (mathematics)", "score": 0.6890575885772705},
+        {"id": "https://openalex.org/keywords/publishing", "display_name": "Publishing",
+        "score": 0.6729910373687744}, {"id": "https://openalex.org/keywords/energy",
+        "display_name": "Energy (signal processing)", "score": 0.5066435933113098},
+        {"id": "https://openalex.org/keywords/regional-science", "display_name": "Regional
+        science", "score": 0.46661558747291565}, {"id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics", "score": 0.370103120803833}, {"id": "https://openalex.org/keywords/geography",
+        "display_name": "Geography", "score": 0.36667901277542114}, {"id": "https://openalex.org/keywords/data-science",
+        "display_name": "Data science", "score": 0.3402935266494751}, {"id": "https://openalex.org/keywords/library-science",
+        "display_name": "Library science", "score": 0.32418549060821533}, {"id": "https://openalex.org/keywords/social-science",
+        "display_name": "Social science", "score": 0.3238813281059265}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.28400957584381104}, {"id":
+        "https://openalex.org/keywords/computer-science", "display_name": "Computer
+        science", "score": 0.23871290683746338}, {"id": "https://openalex.org/keywords/sociology",
+        "display_name": "Sociology", "score": 0.22907641530036926}, {"id": "https://openalex.org/keywords/mathematics",
+        "display_name": "Mathematics", "score": 0.1264711618423462}, {"id": "https://openalex.org/keywords/law",
+        "display_name": "Law", "score": 0.0963386595249176}], "concepts": [{"id":
+        "https://openalex.org/C110121322", "wikidata": "https://www.wikidata.org/wiki/Q865811",
+        "display_name": "Distribution (mathematics)", "level": 2, "score": 0.6890575885772705},
+        {"id": "https://openalex.org/C151719136", "wikidata": "https://www.wikidata.org/wiki/Q3972943",
+        "display_name": "Publishing", "level": 2, "score": 0.6729910373687744}, {"id":
+        "https://openalex.org/C186370098", "wikidata": "https://www.wikidata.org/wiki/Q442787",
+        "display_name": "Energy (signal processing)", "level": 2, "score": 0.5066435933113098},
+        {"id": "https://openalex.org/C148383697", "wikidata": "https://www.wikidata.org/wiki/Q1781695",
+        "display_name": "Regional science", "level": 1, "score": 0.46661558747291565},
+        {"id": "https://openalex.org/C121332964", "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics", "level": 0, "score": 0.370103120803833}, {"id":
+        "https://openalex.org/C205649164", "wikidata": "https://www.wikidata.org/wiki/Q1071",
+        "display_name": "Geography", "level": 0, "score": 0.36667901277542114}, {"id":
+        "https://openalex.org/C2522767166", "wikidata": "https://www.wikidata.org/wiki/Q2374463",
+        "display_name": "Data science", "level": 1, "score": 0.3402935266494751},
+        {"id": "https://openalex.org/C161191863", "wikidata": "https://www.wikidata.org/wiki/Q199655",
+        "display_name": "Library science", "level": 1, "score": 0.32418549060821533},
+        {"id": "https://openalex.org/C36289849", "wikidata": "https://www.wikidata.org/wiki/Q34749",
+        "display_name": "Social science", "level": 1, "score": 0.3238813281059265},
+        {"id": "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.28400957584381104},
+        {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.23871290683746338},
+        {"id": "https://openalex.org/C144024400", "wikidata": "https://www.wikidata.org/wiki/Q21201",
+        "display_name": "Sociology", "level": 0, "score": 0.22907641530036926}, {"id":
+        "https://openalex.org/C33923547", "wikidata": "https://www.wikidata.org/wiki/Q395",
+        "display_name": "Mathematics", "level": 0, "score": 0.1264711618423462}, {"id":
+        "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.0963386595249176}, {"id": "https://openalex.org/C134306372",
+        "wikidata": "https://www.wikidata.org/wiki/Q7754", "display_name": "Mathematical
+        analysis", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C62520636",
+        "wikidata": "https://www.wikidata.org/wiki/Q944", "display_name": "Quantum
+        mechanics", "level": 1, "score": 0.0}], "mesh": [], "locations_count": 3,
+        "locations": [{"id": "pmh:oai:cds.cern.ch:1033099", "is_oa": true, "landing_page_url":
+        "http://cds.cern.ch/record/1033099", "pdf_url": "http://cds.cern.ch/record/1033099",
+        "source": {"id": "https://openalex.org/S4306402195", "display_name": "CERN
+        Document Server (European Organization for Nuclear Research)", "issn_l": null,
+        "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I67311998", "host_organization_name": "European Organization
+        for Nuclear Research", "host_organization_lineage": ["https://openalex.org/I67311998"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}, {"id": "pmh:oai:CiteSeerX.psu:10.1.1.399.1291", "is_oa": false, "landing_page_url":
+        "http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.399.1291", "pdf_url":
+        null, "source": null, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "http://scoap3.org/files/cer-002691702.pdf",
+        "raw_type": "text"}, {"id": "mag:1503623321", "is_oa": false, "landing_page_url":
+        "http://cds.cern.ch/record/1033099/files/cer-002691702.pdf", "pdf_url": null,
+        "source": null, "license": null, "license_id": null, "version": null, "is_accepted":
+        false, "is_published": null, "raw_source_name": null, "raw_type": null}],
+        "best_oa_location": {"id": "pmh:oai:cds.cern.ch:1033099", "is_oa": true, "landing_page_url":
+        "http://cds.cern.ch/record/1033099", "pdf_url": "http://cds.cern.ch/record/1033099",
+        "source": {"id": "https://openalex.org/S4306402195", "display_name": "CERN
+        Document Server (European Organization for Nuclear Research)", "issn_l": null,
+        "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I67311998", "host_organization_name": "European Organization
+        for Nuclear Research", "host_organization_lineage": ["https://openalex.org/I67311998"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/7",
+        "score": 0.5099999904632568, "display_name": "Affordable and clean energy"}],
+        "awards": [], "funders": [{"id": "https://openalex.org/F4320313559", "display_name":
+        "CERN", "ror": "https://ror.org/01ggx4157"}], "has_content": {"pdf": true,
+        "grobid_xml": true}, "content_urls": {"pdf": "https://content.openalex.org/works/W1503623321.pdf",
+        "grobid_xml": "https://content.openalex.org/works/W1503623321.grobid-xml"},
+        "referenced_works_count": 0, "referenced_works": [], "related_works": ["https://openalex.org/W1590603655",
+        "https://openalex.org/W2149173175", "https://openalex.org/W2037830091", "https://openalex.org/W2003141716",
+        "https://openalex.org/W2087467050", "https://openalex.org/W2963832574", "https://openalex.org/W2558376143",
+        "https://openalex.org/W2408461477", "https://openalex.org/W2224314384", "https://openalex.org/W191298844",
+        "https://openalex.org/W2258662778", "https://openalex.org/W2386846128", "https://openalex.org/W2237944958",
+        "https://openalex.org/W1522308784", "https://openalex.org/W146171711", "https://openalex.org/W3135653475",
+        "https://openalex.org/W1990230827", "https://openalex.org/W2608941577", "https://openalex.org/W2946337804",
+        "https://openalex.org/W231385126"], "abstract_inverted_index": {"The": [0],
+        "recent": [1], "debate": [2], "on": [3, 71, 77], "Open": [4], "Access": [5],
+        "publishing": [6], "in": [7, 26, 98], "High-Energy": [8, 39, 57, 123], "Physics":
+        [9, 40, 58, 124], "has": [10], "exposed": [11], "the": [12, 16, 34, 44, 51,
+        78, 94, 99, 122], "problem": [13], "of": [14, 19, 38, 46, 50, 54, 56, 80,
+        126], "assessing": [15], "scientific": [17, 81], "production": [18, 125],
+        "every": [20], "country": [21, 86, 128], "where": [22], "scholars": [23],
+        "are": [24, 87, 118], "active": [25], "this": [27], "discipline.": [28], "This":
+        [29], "assessment": [30], "is": [31, 129], "complicated": [32], "by": [33,
+        66, 84, 106], "highly-collaborative": [35], "cross-border": [36, 64], "tradition":
+        [37], "research.": [41], "We": [42], "present": [43], "results": [45, 82],
+        "a": [47, 72, 91, 102], "quantitative": [48], "study": [49], "geographical":
+        [52], "distribution": [53], "authors": [55], "articles,": [59], "which": [60],
+        "takes": [61], "into": [62], "account": [63], "co-authorship": [65], "attributing":
+        [67], "articles": [68, 105], "to": [69], "countries": [70], "pro-rata": [73],
+        "basis.": [74], "Aggregated": [75], "data": [76], "share": [79], "published":
+        [83], "each": [85, 127], "presented": [88], "together": [89], "with": [90,
+        131], "breakdown": [92], "for": [93, 104], "most": [95], "popular": [96],
+        "journals": [97], "field,": [100], "and": [101], "separation": [103], "small":
+        [107], "groups": [108], "or": [109], "large": [110, 115], "collaborations.":
+        [111], "Collaborative": [112], "patterns": [113], "across": [114], "geographic":
+        [116], "areas": [117], "also": [119], "investigated.": [120], "Finally,":
+        [121], "compared": [130], "some": [132], "economic": [133], "indicators.":
+        [134]}, "counts_by_year": [{"year": 2020, "cited_by_count": 1}, {"year": 2019,
+        "cited_by_count": 1}, {"year": 2018, "cited_by_count": 2}, {"year": 2017,
+        "cited_by_count": 3}, {"year": 2016, "cited_by_count": 1}, {"year": 2013,
+        "cited_by_count": 1}], "updated_date": "2026-06-11T09:08:48.828518", "created_date":
+        "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W64795899", "doi": null,
+        "title": "Towards Open Access Publishing in High Energy Physics : Report of
+        the SCOAP3 Working Party", "display_name": "Towards Open Access Publishing
+        in High Energy Physics : Report of the SCOAP3 Working Party", "publication_year":
+        2007, "publication_date": "2007-04-19", "ids": {"openalex": "https://openalex.org/W64795899",
+        "mag": "64795899"}, "language": "en", "primary_location": {"id": "pmh:oai:cds.cern.ch:1034368",
+        "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1034368", "pdf_url":
+        "http://cds.cern.ch/record/1034368", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}, "type": "article", "indexed_in": [], "open_access": {"is_oa": true, "oa_status":
+        "green", "oa_url": "http://cds.cern.ch/record/1034368", "any_repository_has_fulltext":
+        true}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5100689886",
+        "display_name": "S. Bianco", "orcid": "https://orcid.org/0000-0002-8300-4124"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "S. Bianco", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0002-8300-4124",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5000917188",
+        "display_name": "Paola Gargiulo", "orcid": "https://orcid.org/0000-0003-4156-3283"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "Paola Gargiulo", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0003-4156-3283",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5027149970",
+        "display_name": "M Wilbers", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "M Wilbers", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5047916278", "display_name": "A Lemasurier",
+        "orcid": null}, "institutions": [], "countries": [], "is_corresponding": false,
+        "raw_author_name": "A Lemasurier", "raw_affiliation_strings": [], "raw_orcid":
+        null, "affiliations": []}, {"author_position": "middle", "author": {"id":
+        "https://openalex.org/A5081070775", "display_name": "D Jarroux-Declais", "orcid":
+        null}, "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "D Jarroux-Declais", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
+        []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5051435114",
+        "display_name": "S. Mele", "orcid": "https://orcid.org/0000-0003-0762-2235"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "S. Mele", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0003-0762-2235",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5041543641",
+        "display_name": "Christina Lindqvist", "orcid": "https://orcid.org/0000-0003-1590-1437"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "Christina Lindqvist", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0003-1590-1437",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5091710697",
+        "display_name": "O H Ellestad", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "O H Ellestad", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5111472102", "display_name": "Ralf
+        Schimmer", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
+        false, "raw_author_name": "Ralf Schimmer", "raw_affiliation_strings": [],
+        "raw_orcid": null, "affiliations": []}, {"author_position": "middle", "author":
+        {"id": "https://openalex.org/A5027959832", "display_name": "Annette Holtkamp",
+        "orcid": "https://orcid.org/0000-0002-4133-3528"}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "Annette Holtkamp", "raw_affiliation_strings":
+        [], "raw_orcid": "https://orcid.org/0000-0002-4133-3528", "affiliations":
+        []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5017525149",
+        "display_name": "S. Henrot\u2013Versill\u00e9", "orcid": "https://orcid.org/0000-0003-1218-2991"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "S. Henrot\u2013Versill\u00e9", "raw_affiliation_strings": [], "raw_orcid":
+        "https://orcid.org/0000-0003-1218-2991", "affiliations": []}, {"author_position":
+        "middle", "author": {"id": "https://openalex.org/A5059766627", "display_name":
+        "Magda Jord\u00e3o", "orcid": "https://orcid.org/0000-0003-2108-2677"}, "institutions":
+        [], "countries": [], "is_corresponding": false, "raw_author_name": "Magda
+        Jord\u00e3o", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0003-2108-2677",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5108137120",
+        "display_name": "F. R. Le Diberder", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "F. R. Le Diberder", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5010603618", "display_name": "Jens
+        Vigen", "orcid": "https://orcid.org/0000-0002-2050-7701"}, "institutions":
+        [], "countries": [], "is_corresponding": false, "raw_author_name": "Jens Vigen",
+        "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0002-2050-7701",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5013770408",
+        "display_name": "P. Igo-Kemenes", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "P. Igo-Kemenes", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5078538322", "display_name": "Anja
+        Lengenfelder", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
+        false, "raw_author_name": "Anja Lengenfelder", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5019600150", "display_name": "R. Voss",
+        "orcid": "https://orcid.org/0000-0002-4299-8791"}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "R. Voss", "raw_affiliation_strings":
+        [], "raw_orcid": "https://orcid.org/0000-0002-4299-8791", "affiliations":
+        []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5054376927",
+        "display_name": "K. Zioutas", "orcid": "https://orcid.org/0000-0001-7046-2428"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "K. Zioutas", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0001-7046-2428",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5034950177",
+        "display_name": "Ted LaGrange", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "Ted LaGrange", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5027220599", "display_name": "P. M.
+        Ferreira", "orcid": "https://orcid.org/0000-0002-9351-1074"}, "institutions":
+        [], "countries": [], "is_corresponding": false, "raw_author_name": "P. M.
+        Ferreira", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0002-9351-1074",
+        "affiliations": []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5024210724",
+        "display_name": "B-C K\u00e4mper", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "B-C K\u00e4mper", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5109862818", "display_name": "Frederick
+        J. Friend", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
+        false, "raw_author_name": "Frederick J. Friend", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5022247460", "display_name": "Jeff
+        Krause", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
+        false, "raw_author_name": "Jeff Krause", "raw_affiliation_strings": [], "raw_orcid":
+        null, "affiliations": []}, {"author_position": "middle", "author": {"id":
+        "https://openalex.org/A5029797988", "display_name": "R. Hanania", "orcid":
+        null}, "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "R. Hanania", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
+        []}, {"author_position": "middle", "author": {"id": "https://openalex.org/A5028665438",
+        "display_name": "S. Plaszczynski", "orcid": "https://orcid.org/0000-0002-1278-109X"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "S. Plaszczynski", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations":
+        []}, {"author_position": "last", "author": {"id": "https://openalex.org/A5065790921",
+        "display_name": "Joanne Yeomans", "orcid": "https://orcid.org/0000-0002-0738-7661"},
+        "institutions": [], "countries": [], "is_corresponding": false, "raw_author_name":
+        "Joanne Yeomans", "raw_affiliation_strings": [], "raw_orcid": "https://orcid.org/0000-0002-0738-7661",
+        "affiliations": []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
+        26, "corresponding_author_ids": [], "corresponding_institution_ids": [], "apc_list":
+        null, "apc_paid": null, "fwci": 4.1454, "has_fulltext": false, "cited_by_count":
+        9, "citation_normalized_percentile": {"value": 0.93901578, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": true}, "cited_by_percentile_year": {"min":
+        90, "max": 96}, "biblio": {"volume": null, "issue": null, "first_page": null,
+        "last_page": null}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T11937", "display_name":
+        "Research Data Management Practices", "score": 0.9646999835968018, "subfield":
+        {"id": "https://openalex.org/subfields/1710", "display_name": "Information
+        Systems"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T11937", "display_name":
+        "Research Data Management Practices", "score": 0.9646999835968018, "subfield":
+        {"id": "https://openalex.org/subfields/1710", "display_name": "Information
+        Systems"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, {"id": "https://openalex.org/T10715", "display_name":
+        "Distributed and Parallel Computing Systems", "score": 0.9239000082015991,
+        "subfield": {"id": "https://openalex.org/subfields/1705", "display_name":
+        "Computer Networks and Communications"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T11986",
+        "display_name": "Scientific Computing and Data Management", "score": 0.9143000245094299,
+        "subfield": {"id": "https://openalex.org/subfields/1802", "display_name":
+        "Information Systems and Management"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/publishing",
+        "display_name": "Publishing", "score": 0.5388332009315491}, {"id": "https://openalex.org/keywords/energy",
+        "display_name": "Energy (signal processing)", "score": 0.4110676944255829},
+        {"id": "https://openalex.org/keywords/public-relations", "display_name": "Public
+        relations", "score": 0.3883504867553711}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.3859637379646301}, {"id":
+        "https://openalex.org/keywords/media-studies", "display_name": "Media studies",
+        "score": 0.33873581886291504}, {"id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web", "score": 0.3360958695411682}, {"id": "https://openalex.org/keywords/internet-privacy",
+        "display_name": "Internet privacy", "score": 0.3360186219215393}, {"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.32427531480789185}, {"id":
+        "https://openalex.org/keywords/physics", "display_name": "Physics", "score":
+        0.3123350143432617}, {"id": "https://openalex.org/keywords/sociology", "display_name":
+        "Sociology", "score": 0.2753112316131592}, {"id": "https://openalex.org/keywords/law",
+        "display_name": "Law", "score": 0.14938795566558838}, {"id": "https://openalex.org/keywords/quantum-mechanics",
+        "display_name": "Quantum mechanics", "score": 0.09547397494316101}], "concepts":
+        [{"id": "https://openalex.org/C151719136", "wikidata": "https://www.wikidata.org/wiki/Q3972943",
+        "display_name": "Publishing", "level": 2, "score": 0.5388332009315491}, {"id":
+        "https://openalex.org/C186370098", "wikidata": "https://www.wikidata.org/wiki/Q442787",
+        "display_name": "Energy (signal processing)", "level": 2, "score": 0.4110676944255829},
+        {"id": "https://openalex.org/C39549134", "wikidata": "https://www.wikidata.org/wiki/Q133080",
+        "display_name": "Public relations", "level": 1, "score": 0.3883504867553711},
+        {"id": "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.3859637379646301},
+        {"id": "https://openalex.org/C29595303", "wikidata": "https://www.wikidata.org/wiki/Q165650",
+        "display_name": "Media studies", "level": 1, "score": 0.33873581886291504},
+        {"id": "https://openalex.org/C136764020", "wikidata": "https://www.wikidata.org/wiki/Q466",
+        "display_name": "World Wide Web", "level": 1, "score": 0.3360958695411682},
+        {"id": "https://openalex.org/C108827166", "wikidata": "https://www.wikidata.org/wiki/Q175975",
+        "display_name": "Internet privacy", "level": 1, "score": 0.3360186219215393},
+        {"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.32427531480789185},
+        {"id": "https://openalex.org/C121332964", "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics", "level": 0, "score": 0.3123350143432617}, {"id":
+        "https://openalex.org/C144024400", "wikidata": "https://www.wikidata.org/wiki/Q21201",
+        "display_name": "Sociology", "level": 0, "score": 0.2753112316131592}, {"id":
+        "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.14938795566558838}, {"id": "https://openalex.org/C62520636",
+        "wikidata": "https://www.wikidata.org/wiki/Q944", "display_name": "Quantum
+        mechanics", "level": 1, "score": 0.09547397494316101}], "mesh": [], "locations_count":
+        3, "locations": [{"id": "pmh:oai:cds.cern.ch:1034368", "is_oa": true, "landing_page_url":
+        "http://cds.cern.ch/record/1034368", "pdf_url": "http://cds.cern.ch/record/1034368",
+        "source": {"id": "https://openalex.org/S4306402195", "display_name": "CERN
+        Document Server (European Organization for Nuclear Research)", "issn_l": null,
+        "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I67311998", "host_organization_name": "European Organization
+        for Nuclear Research", "host_organization_lineage": ["https://openalex.org/I67311998"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": "submittedVersion", "is_accepted": false, "is_published":
+        false, "raw_source_name": "", "raw_type": ""}, {"id": "pmh:oai:HAL:in2p3-00194133v1",
+        "is_oa": true, "landing_page_url": "https://in2p3.hal.science/in2p3-00194133",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306402512", "display_name":
+        "HAL (Le Centre pour la Communication Scientifique Directe)", "issn_l": null,
+        "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I1294671590", "host_organization_name": "Centre National
+        de la Recherche Scientifique", "host_organization_lineage": ["https://openalex.org/I1294671590"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "[Research
+        Report] IN2P3. 2007, pp.1-35", "raw_type": "Reports"}, {"id": "mag:64795899",
+        "is_oa": false, "landing_page_url": "https://cds.cern.ch/record/1034368/files/open-2007-015.pdf",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": null}], "best_oa_location": {"id": "pmh:oai:cds.cern.ch:1034368",
+        "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1034368", "pdf_url":
+        "http://cds.cern.ch/record/1034368", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}, "sustainable_development_goals": [], "awards": [], "funders": [], "has_content":
+        {"pdf": true, "grobid_xml": false}, "content_urls": {"pdf": "https://content.openalex.org/works/W64795899.pdf"},
+        "referenced_works_count": 0, "referenced_works": [], "related_works": ["https://openalex.org/W1597907427",
+        "https://openalex.org/W792964641", "https://openalex.org/W3095231905", "https://openalex.org/W2475471027",
+        "https://openalex.org/W2472214703", "https://openalex.org/W3042803847", "https://openalex.org/W1772561211",
+        "https://openalex.org/W3016291674", "https://openalex.org/W2554412392", "https://openalex.org/W1974042995",
+        "https://openalex.org/W2020595944", "https://openalex.org/W181281023", "https://openalex.org/W2434981174",
+        "https://openalex.org/W233440036", "https://openalex.org/W3012924346", "https://openalex.org/W2301769117",
+        "https://openalex.org/W2559806695", "https://openalex.org/W2563812128", "https://openalex.org/W2996976816",
+        "https://openalex.org/W2946928241"], "abstract_inverted_index": {"This": [0],
+        "Report": [1], "concerns": [2], "the": [3, 14, 36, 49, 55], "implementation":
+        [4], "of": [5, 25, 39, 48, 52, 57], "a": [6], "process": [7], "today": [8],
+        "supported": [9], "by": [10, 23], "leading": [11], "actors": [12], "from":
+        [13], "particle": [15, 44], "physics": [16], "community,": [17], "and": [18],
+        "worked": [19], "through": [20], "in": [21, 43], "detail": [22], "members":
+        [24], "an": [26, 33], "international": [27], "Working": [28], "Party.": [29],
+        "The": [30], "initiative": [31], "offers": [32], "opportunity": [34], "for":
+        [35], "cost-effective": [37], "dissemination": [38], "high-quality": [40],
+        "research": [41], "articles": [42], "physics,": [45], "enabling": [46], "use":
+        [47], "new": [50], "technologies": [51], "e-Science": [53], "across": [54],
+        "literature": [56], "High": [58], "Energy": [59], "physics.": [60]}, "counts_by_year":
+        [{"year": 2019, "cited_by_count": 1}, {"year": 2018, "cited_by_count": 2},
+        {"year": 2012, "cited_by_count": 1}], "updated_date": "2026-06-11T09:08:48.828518",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2539996007",
+        "doi": null, "title": "1. What Is Open Access", "display_name": "1. What Is
+        Open Access", "publication_year": 2012, "publication_date": "2012-01-01",
+        "ids": {"openalex": "https://openalex.org/W2539996007", "mag": "2539996007"},
+        "language": "en", "primary_location": {"id": "mag:2539996007", "is_oa": false,
+        "landing_page_url": "http://newmedia.umaine.edu/stillwater/maineintellectualcommons/coic/presentations/suber.pdf",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": false, "raw_source_name": null,
+        "raw_type": null}, "type": "article", "indexed_in": [], "open_access": {"is_oa":
+        false, "oa_status": "closed", "oa_url": null, "any_repository_has_fulltext":
+        false}, "authorships": [{"author_position": "first", "author": {"id": "https://openalex.org/A5076169859",
+        "display_name": "Peter Suber", "orcid": "https://orcid.org/0000-0002-3577-2890"},
+        "institutions": [{"id": "https://openalex.org/I130712669", "display_name":
+        "Earlham College", "ror": "https://ror.org/0566sj483", "country_code": "US",
+        "type": "education", "lineage": ["https://openalex.org/I130712669"]}], "countries":
+        ["US"], "is_corresponding": true, "raw_author_name": "Peter Suber", "raw_affiliation_strings":
+        ["Earlham College"], "raw_orcid": "https://orcid.org/0000-0002-3577-2890",
+        "affiliations": [{"raw_affiliation_string": "Earlham College", "institution_ids":
+        ["https://openalex.org/I130712669"]}]}], "institutions": [], "countries_distinct_count":
+        1, "institutions_distinct_count": 1, "corresponding_author_ids": ["https://openalex.org/A5076169859"],
+        "corresponding_institution_ids": ["https://openalex.org/I130712669"], "apc_list":
+        null, "apc_paid": null, "fwci": 1.0001, "has_fulltext": false, "cited_by_count":
+        4, "citation_normalized_percentile": {"value": 0.86069151, "is_in_top_1_percent":
+        false, "is_in_top_10_percent": false}, "cited_by_percentile_year": {"min":
+        90, "max": 96}, "biblio": {"volume": null, "issue": null, "first_page": "1",
+        "last_page": "27"}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T12171", "display_name":
+        "Open Education and E-Learning", "score": 0.5102999806404114, "subfield":
+        {"id": "https://openalex.org/subfields/1706", "display_name": "Computer Science
+        Applications"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T12171", "display_name":
+        "Open Education and E-Learning", "score": 0.5102999806404114, "subfield":
+        {"id": "https://openalex.org/subfields/1706", "display_name": "Computer Science
+        Applications"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, {"id": "https://openalex.org/T14330", "display_name":
+        "Library Science and Information Systems", "score": 0.445499986410141, "subfield":
+        {"id": "https://openalex.org/subfields/1710", "display_name": "Information
+        Systems"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.47258150577545166}], "concepts":
+        [{"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.47258150577545166}],
+        "mesh": [], "locations_count": 2, "locations": [{"id": "mag:2539996007", "is_oa":
+        false, "landing_page_url": "http://newmedia.umaine.edu/stillwater/maineintellectualcommons/coic/presentations/suber.pdf",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": null}, {"id": "mag:2982216766", "is_oa": false, "landing_page_url":
+        "https://openaccesseks.mitpress.mit.edu/pub/6y6fc8k5/release/2", "pdf_url":
+        null, "source": null, "license": null, "license_id": null, "version": null,
+        "is_accepted": false, "is_published": null, "raw_source_name": null, "raw_type":
+        null}], "best_oa_location": null, "sustainable_development_goals": [], "awards":
+        [], "funders": [], "has_content": {"pdf": false, "grobid_xml": false}, "content_urls":
+        null, "referenced_works_count": 0, "referenced_works": [], "related_works":
+        ["https://openalex.org/W2063167678", "https://openalex.org/W845125705", "https://openalex.org/W2525477114",
+        "https://openalex.org/W1196530107", "https://openalex.org/W3132068427", "https://openalex.org/W2567028260",
+        "https://openalex.org/W1018353451", "https://openalex.org/W3027589381", "https://openalex.org/W2950719670",
+        "https://openalex.org/W3022131345", "https://openalex.org/W2776484063", "https://openalex.org/W2117149923",
+        "https://openalex.org/W2338152189", "https://openalex.org/W2287889460", "https://openalex.org/W2298138493",
+        "https://openalex.org/W2527220195", "https://openalex.org/W3013541460", "https://openalex.org/W2622347224",
+        "https://openalex.org/W3167834272", "https://openalex.org/W2238543066"], "abstract_inverted_index":
+        null, "counts_by_year": [{"year": 2018, "cited_by_count": 1}, {"year": 2016,
+        "cited_by_count": 1}, {"year": 2013, "cited_by_count": 2}], "updated_date":
+        "2025-11-06T04:12:42.849631", "created_date": "2025-10-10T00:00:00"}, {"id":
+        "https://openalex.org/W4390463023", "doi": "https://doi.org/10.21428/93b40405.a0e5410c",
+        "title": "Open Access", "display_name": "Open Access", "publication_year":
+        2023, "publication_date": "2023-12-31", "ids": {"openalex": "https://openalex.org/W4390463023",
+        "doi": "https://doi.org/10.21428/93b40405.a0e5410c"}, "language": "en", "primary_location":
+        {"id": "doi:10.21428/93b40405.a0e5410c", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.21428/93b40405.a0e5410c", "pdf_url": "https://oar.pubpub.org/pub/inef6bdl/download/pdf",
+        "source": null, "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Open Access Reader", "raw_type": "book-chapter"}, "type":
+        "book-chapter", "indexed_in": ["crossref"], "open_access": {"is_oa": true,
+        "oa_status": "gold", "oa_url": "https://oar.pubpub.org/pub/inef6bdl/download/pdf",
+        "any_repository_has_fulltext": null}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5093625239", "display_name":
+        "Peter Suber", "orcid": null}, "institutions": [], "countries": [], "is_corresponding":
+        true, "raw_author_name": "Peter Suber", "raw_affiliation_strings": [], "affiliations":
+        []}], "institutions": [], "countries_distinct_count": 0, "institutions_distinct_count":
+        1, "corresponding_author_ids": ["https://openalex.org/A5093625239"], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": 0.0, "has_fulltext": true,
+        "cited_by_count": 1, "citation_normalized_percentile": {"value": 0.4354421,
+        "is_in_top_1_percent": false, "is_in_top_10_percent": false}, "cited_by_percentile_year":
+        {"min": 90, "max": 94}, "biblio": {"volume": null, "issue": null, "first_page":
+        null, "last_page": null}, "is_retracted": false, "is_paratext": false, "is_xpac":
+        false, "primary_topic": {"id": "https://openalex.org/T12171", "display_name":
+        "Open Education and E-Learning", "score": 0.2897999882698059, "subfield":
+        {"id": "https://openalex.org/subfields/1706", "display_name": "Computer Science
+        Applications"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T12171", "display_name":
+        "Open Education and E-Learning", "score": 0.2897999882698059, "subfield":
+        {"id": "https://openalex.org/subfields/1706", "display_name": "Computer Science
+        Applications"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, {"id": "https://openalex.org/T14330", "display_name":
+        "Library Science and Information Systems", "score": 0.26249998807907104, "subfield":
+        {"id": "https://openalex.org/subfields/1710", "display_name": "Information
+        Systems"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/computer-science",
+        "display_name": "Computer science", "score": 0.4510171711444855}], "concepts":
+        [{"id": "https://openalex.org/C41008148", "wikidata": "https://www.wikidata.org/wiki/Q21198",
+        "display_name": "Computer science", "level": 0, "score": 0.4510171711444855}],
+        "mesh": [], "locations_count": 1, "locations": [{"id": "doi:10.21428/93b40405.a0e5410c",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.21428/93b40405.a0e5410c",
+        "pdf_url": "https://oar.pubpub.org/pub/inef6bdl/download/pdf", "source": null,
+        "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by", "version":
+        "publishedVersion", "is_accepted": true, "is_published": true, "raw_source_name":
+        "Open Access Reader", "raw_type": "book-chapter"}], "best_oa_location": {"id":
+        "doi:10.21428/93b40405.a0e5410c", "is_oa": true, "landing_page_url": "https://doi.org/10.21428/93b40405.a0e5410c",
+        "pdf_url": "https://oar.pubpub.org/pub/inef6bdl/download/pdf", "source": null,
+        "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by", "version":
+        "publishedVersion", "is_accepted": true, "is_published": true, "raw_source_name":
+        "Open Access Reader", "raw_type": "book-chapter"}, "sustainable_development_goals":
+        [], "awards": [], "funders": [], "has_content": {"pdf": true, "grobid_xml":
+        false}, "content_urls": {"pdf": "https://content.openalex.org/works/W4390463023.pdf"},
+        "referenced_works_count": 0, "referenced_works": [], "related_works": ["https://openalex.org/W2748952813",
+        "https://openalex.org/W2390279801", "https://openalex.org/W2358668433", "https://openalex.org/W2376932109",
+        "https://openalex.org/W2001405890", "https://openalex.org/W2382290278", "https://openalex.org/W2350741829",
+        "https://openalex.org/W2530322880", "https://openalex.org/W1596801655", "https://openalex.org/W2359140296"],
+        "abstract_inverted_index": {"Digital": [0], "technologies": [1], "have": [2],
+        "created": [3], "more": [4, 15, 25], "than": [5, 47, 190], "one": [6, 10,
+        68], "revolution.Let''s": [7], "call": [8], "this": [9, 36, 165, 287], "the":
+        [11, 20, 62, 84, 201, 239, 258, 295, 312, 315], "access": [12, 21, 259, 265,
+        310, 319, 336], "revolution.Why": [13], "don''t": [14, 111, 119], "authors":
+        [16, 43, 70, 92, 117, 126, 152, 247, 276, 291], "take": [17, 255], "advantage":
+        [18, 256], "of": [19, 87, 91, 105, 115, 125, 203, 257, 262, 314, 318, 326,
+        343, 347], "revolution": [22], "to": [23, 52, 67, 73, 169, 179, 207, 278,
+        284, 331, 333], "reach": [24], "readers?The": [26], "answer": [27], "is":
+        [28, 311, 339], "pretty": [29], "clear.Authors": [30], "who": [31, 71, 93,
+        100, 118, 150], "share": [32], "their": [33, 75, 129, 139, 172, 182, 211,
+        216, 220, 223, 227, 334], "works": [34, 296], "in": [35, 307], "way": [37],
+        "aren''t": [38], "selling": [39, 210], "them,": [40, 271], "and": [41, 96,
+        99, 134, 192, 225, 236, 281, 294, 300, 345], "even": [42, 78, 272], "with":
+        [44], "purposes": [45], "higher": [46], "money": [48], "depend": [49], "on":
+        [50, 242], "sales": [51], "make": [53, 200], "a": [54, 89, 102, 113, 123,
+        268, 324], "living.Or": [55], "at": [56, 251], "least": [57, 252], "they":
+        [58, 156, 159, 163, 185, 194, 199, 205, 244, 253, 297], "appreciate": [59],
+        "sales.Let''s": [60], "sharpen": [61], "question,": [63], "then,": [64], "by":
+        [65, 128, 138, 218, 230, 323], "putting": [66, 82], "side": [69], "want":
+        [72], "sell": [74], "work.We": [76], "can": [77, 266], "acknowledge": [79],
+        "that": [80, 171, 184, 193, 209, 249], "we''re": [81], "aside": [83], "vast":
+        [85], "majority": [86], "authors.Imagine": [88], "tribe": [90], "write": [94,
+        186, 299], "serious": [95], "useful": [97], "work,": [98, 183], "follow":
+        [101, 164], "centuries-old": [103], "custom": [104], "giving": [106], "it":
+        [107, 147], "away": [108, 181, 237], "without": [109, 302], "charge.I": [110],
+        "mean": [112, 122], "group": [114, 124], "rich": [116], "need": [120], "money.I":
+        [121], "defined": [127], "topics,": [130], "genres,": [131], "purposes,":
+        [132], "incentives,": [133], "institutional": [135], "circumstances,": [136],
+        "not": [137], "wealth.In": [140], "fact,": [141], "very": [142], "few": [143],
+        "are": [144, 245, 292, 304, 329], "wealthy.For": [145], "now,": [146], "doesn''t":
+        [148], "matter": [149], "these": [151, 320], "are,": [153, 157], "how": [154],
+        "rare": [155], "what": [158], "write,": [160], "or": [161], "why": [162],
+        "peculiar": [166], "custom.It''s": [167], "enough": [168], "know": [170],
+        "employers": [173], "pay": [174], "them": [175, 178, 232], "salaries,": [176],
+        "freeing": [177], "give": [180], "for": [187, 270], "impact": [188, 204],
+        "rather": [189], "money,": [191], "score": [195], "career": [196], "points":
+        [197], "when": [198], "kind": [202, 317], "hoped": [206], "make.Suppose":
+        [208], "work": [212], "would": [213], "actually": [214], "harm": [215], "interests":
+        [217], "shrinking": [219], "audience,": [221], "reducing": [222], "impact,":
+        [224], "distorting": [226], "professional": [228], "goals": [229], "steering":
+        [231], "toward": [233], "popular": [234], "topics": [235], "from": [238],
+        "specialized": [240], "questions": [241], "which": [243], "experts.If": [246],
+        "like": [248], "exist,": [250], "should": [254], "revolution.The": [260],
+        "dream": [261], "global": [263], "free": [264, 330, 342, 346], "be": [267],
+        "reality": [269], "if": [273], "most": [274, 348], "other": [275], "hope":
+        [277], "earn": [279], "royalties": [280], "feel": [282], "obliged": [283],
+        "sit": [285], "out": [286], "particular": [288], "revolution.These": [289],
+        "lucky": [290], "scholars,": [293], "customarily": [298], "publish": [301],
+        "payment": [303], "peerreviewed": [305], "articles": [306], "scholarly": [308],
+        "journals.Open": [309], "name": [313], "revolutionary": [316], "authors,":
+        [321], "unencumbered": [322], "motive": [325], "financial": [327], "gain,":
+        [328], "provide": [332], "readers.Open": [335], "(OA)": [337], "literature":
+        [338], "digital,": [340], "online,": [341], "charge,": [344]}, "counts_by_year":
+        [{"year": 2018, "cited_by_count": 1}], "updated_date": "2025-12-21T01:58:51.020947",
+        "created_date": "2023-12-31T00:00:00"}, {"id": "https://openalex.org/W3106193278",
+        "doi": null, "title": "Innovation in Scholarly Communication: Vision and Projects
+        from High-Energy Physics", "display_name": "Innovation in Scholarly Communication:
+        Vision and Projects from High-Energy Physics", "publication_year": 2008, "publication_date":
+        "2008-01-22", "ids": {"openalex": "https://openalex.org/W3106193278", "mag":
+        "3106193278"}, "language": "en", "primary_location": {"id": "pmh:oai:bib-pubdb1.desy.de:86123",
+        "is_oa": true, "landing_page_url": "https://bib-pubdb1.desy.de/record/86123",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S4306400383", "display_name":
+        "DESY Publication Database (PUBDB) (Deutsches Elektronen-Synchrotron)", "issn_l":
+        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
+        "host_organization": "https://openalex.org/I2801876189", "host_organization_name":
+        "Deutsches Elektronen-Synchrotron DESY", "host_organization_lineage": ["https://openalex.org/I2801876189"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "Information
+        services and use 28, 83-96 (2008). doi:10.3233/ISU-2008-0570", "raw_type":
+        "info:eu-repo/semantics/publishedVersion"}, "type": "article", "indexed_in":
+        [], "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "https://bib-pubdb1.desy.de/record/86123",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5064748189", "display_name":
+        "Rolf-Dieter Heuer", "orcid": null}, "institutions": [{"id": "https://openalex.org/I2801876189",
+        "display_name": "Deutsches Elektronen-Synchrotron DESY", "ror": "https://ror.org/01js2sh04",
+        "country_code": "DE", "type": "facility", "lineage": ["https://openalex.org/I1305996414",
+        "https://openalex.org/I2801876189"]}], "countries": ["DE"], "is_corresponding":
+        true, "raw_author_name": "Heuer, Rolf-Dieter", "raw_affiliation_strings":
+        ["Deutsches Elektronen-Synchrotron DESY, Notkestra\u00dfe 85, D-22607 Hamburg,
+        Germany"], "raw_orcid": null, "affiliations": [{"raw_affiliation_string":
+        "Deutsches Elektronen-Synchrotron DESY, Notkestra\u00dfe 85, D-22607 Hamburg,
+        Germany", "institution_ids": ["https://openalex.org/I2801876189"]}]}], "institutions":
+        [], "countries_distinct_count": 1, "institutions_distinct_count": 1, "corresponding_author_ids":
+        ["https://openalex.org/A5064748189"], "corresponding_institution_ids": ["https://openalex.org/I2801876189"],
+        "apc_list": null, "apc_paid": null, "fwci": null, "has_fulltext": false, "cited_by_count":
+        22, "citation_normalized_percentile": null, "cited_by_percentile_year": null,
+        "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T11937", "display_name": "Research Data Management
+        Practices", "score": 0.9965000152587891, "subfield": {"id": "https://openalex.org/subfields/1710",
+        "display_name": "Information Systems"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, "topics": [{"id": "https://openalex.org/T11937",
+        "display_name": "Research Data Management Practices", "score": 0.9965000152587891,
+        "subfield": {"id": "https://openalex.org/subfields/1710", "display_name":
+        "Information Systems"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}, {"id": "https://openalex.org/T11986",
+        "display_name": "Scientific Computing and Data Management", "score": 0.9908000230789185,
+        "subfield": {"id": "https://openalex.org/subfields/1802", "display_name":
+        "Information Systems and Management"}, "field": {"id": "https://openalex.org/fields/18",
+        "display_name": "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T10715",
+        "display_name": "Distributed and Parallel Computing Systems", "score": 0.9751999974250793,
+        "subfield": {"id": "https://openalex.org/subfields/1705", "display_name":
+        "Computer Networks and Communications"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/scholarly-communication",
+        "display_name": "Scholarly communication", "score": 0.7424594759941101}, {"id":
+        "https://openalex.org/keywords/software-deployment", "display_name": "Software
+        deployment", "score": 0.6568337082862854}, {"id": "https://openalex.org/keywords/open-science",
+        "display_name": "Open science", "score": 0.5487424731254578}, {"id": "https://openalex.org/keywords/business-model",
+        "display_name": "Business model", "score": 0.45472609996795654}, {"id": "https://openalex.org/keywords/scientific-communication",
+        "display_name": "Scientific communication", "score": 0.45123347640037537},
+        {"id": "https://openalex.org/keywords/energy", "display_name": "Energy (signal
+        processing)", "score": 0.43308165669441223}, {"id": "https://openalex.org/keywords/high-energy",
+        "display_name": "High energy", "score": 0.41053056716918945}, {"id": "https://openalex.org/keywords/knowledge-management",
+        "display_name": "Knowledge management", "score": 0.40256550908088684}, {"id":
+        "https://openalex.org/keywords/computer-science", "display_name": "Computer
+        science", "score": 0.38329026103019714}, {"id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web", "score": 0.36209380626678467}, {"id": "https://openalex.org/keywords/data-science",
+        "display_name": "Data science", "score": 0.3235871195793152}, {"id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics", "score": 0.31295615434646606}, {"id": "https://openalex.org/keywords/business",
+        "display_name": "Business", "score": 0.2663131356239319}, {"id": "https://openalex.org/keywords/engineering-physics",
+        "display_name": "Engineering physics", "score": 0.23029541969299316}, {"id":
+        "https://openalex.org/keywords/library-science", "display_name": "Library
+        science", "score": 0.23023203015327454}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.2211323082447052}, {"id":
+        "https://openalex.org/keywords/marketing", "display_name": "Marketing", "score":
+        0.14607903361320496}], "concepts": [{"id": "https://openalex.org/C2777462167",
+        "wikidata": "https://www.wikidata.org/wiki/Q7432048", "display_name": "Scholarly
+        communication", "level": 3, "score": 0.7424594759941101}, {"id": "https://openalex.org/C105339364",
+        "wikidata": "https://www.wikidata.org/wiki/Q2297740", "display_name": "Software
+        deployment", "level": 2, "score": 0.6568337082862854}, {"id": "https://openalex.org/C2778149293",
+        "wikidata": "https://www.wikidata.org/wiki/Q309823", "display_name": "Open
+        science", "level": 2, "score": 0.5487424731254578}, {"id": "https://openalex.org/C4216890",
+        "wikidata": "https://www.wikidata.org/wiki/Q815823", "display_name": "Business
+        model", "level": 2, "score": 0.45472609996795654}, {"id": "https://openalex.org/C2775989791",
+        "wikidata": "https://www.wikidata.org/wiki/Q18244815", "display_name": "Scientific
+        communication", "level": 2, "score": 0.45123347640037537}, {"id": "https://openalex.org/C186370098",
+        "wikidata": "https://www.wikidata.org/wiki/Q442787", "display_name": "Energy
+        (signal processing)", "level": 2, "score": 0.43308165669441223}, {"id": "https://openalex.org/C2985973956",
+        "wikidata": "https://www.wikidata.org/wiki/Q1617745", "display_name": "High
+        energy", "level": 2, "score": 0.41053056716918945}, {"id": "https://openalex.org/C56739046",
+        "wikidata": "https://www.wikidata.org/wiki/Q192060", "display_name": "Knowledge
+        management", "level": 1, "score": 0.40256550908088684}, {"id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198", "display_name": "Computer
+        science", "level": 0, "score": 0.38329026103019714}, {"id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466", "display_name": "World Wide
+        Web", "level": 1, "score": 0.36209380626678467}, {"id": "https://openalex.org/C2522767166",
+        "wikidata": "https://www.wikidata.org/wiki/Q2374463", "display_name": "Data
+        science", "level": 1, "score": 0.3235871195793152}, {"id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413", "display_name": "Physics",
+        "level": 0, "score": 0.31295615434646606}, {"id": "https://openalex.org/C144133560",
+        "wikidata": "https://www.wikidata.org/wiki/Q4830453", "display_name": "Business",
+        "level": 0, "score": 0.2663131356239319}, {"id": "https://openalex.org/C61696701",
+        "wikidata": "https://www.wikidata.org/wiki/Q770766", "display_name": "Engineering
+        physics", "level": 1, "score": 0.23029541969299316}, {"id": "https://openalex.org/C161191863",
+        "wikidata": "https://www.wikidata.org/wiki/Q199655", "display_name": "Library
+        science", "level": 1, "score": 0.23023203015327454}, {"id": "https://openalex.org/C17744445",
+        "wikidata": "https://www.wikidata.org/wiki/Q36442", "display_name": "Political
+        science", "level": 0, "score": 0.2211323082447052}, {"id": "https://openalex.org/C162853370",
+        "wikidata": "https://www.wikidata.org/wiki/Q39809", "display_name": "Marketing",
+        "level": 1, "score": 0.14607903361320496}, {"id": "https://openalex.org/C151719136",
+        "wikidata": "https://www.wikidata.org/wiki/Q3972943", "display_name": "Publishing",
+        "level": 2, "score": 0.0}, {"id": "https://openalex.org/C62520636", "wikidata":
+        "https://www.wikidata.org/wiki/Q944", "display_name": "Quantum mechanics",
+        "level": 1, "score": 0.0}, {"id": "https://openalex.org/C1276947", "wikidata":
+        "https://www.wikidata.org/wiki/Q333", "display_name": "Astronomy", "level":
+        1, "score": 0.0}, {"id": "https://openalex.org/C199539241", "wikidata": "https://www.wikidata.org/wiki/Q7748",
+        "display_name": "Law", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C111919701",
+        "wikidata": "https://www.wikidata.org/wiki/Q9135", "display_name": "Operating
+        system", "level": 1, "score": 0.0}], "mesh": [], "locations_count": 2, "locations":
+        [{"id": "pmh:oai:bib-pubdb1.desy.de:86123", "is_oa": true, "landing_page_url":
+        "https://bib-pubdb1.desy.de/record/86123", "pdf_url": null, "source": {"id":
+        "https://openalex.org/S4306400383", "display_name": "DESY Publication Database
+        (PUBDB) (Deutsches Elektronen-Synchrotron)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I2801876189", "host_organization_name": "Deutsches Elektronen-Synchrotron
+        DESY", "host_organization_lineage": ["https://openalex.org/I2801876189"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "Information
+        services and use 28, 83-96 (2008). doi:10.3233/ISU-2008-0570", "raw_type":
+        "info:eu-repo/semantics/publishedVersion"}, {"id": "pmh:oai:cds.cern.ch:1082803",
+        "is_oa": false, "landing_page_url": "http://cds.cern.ch/record/1082803", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4306402194", "display_name":
+        "CERN Document Server (European Organization for Nuclear Research)", "issn_l":
+        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
+        "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": null, "license_id": null, "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "", "raw_type":
+        ""}], "best_oa_location": {"id": "pmh:oai:bib-pubdb1.desy.de:86123", "is_oa":
+        true, "landing_page_url": "https://bib-pubdb1.desy.de/record/86123", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4306400383", "display_name":
+        "DESY Publication Database (PUBDB) (Deutsches Elektronen-Synchrotron)", "issn_l":
+        null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core": false,
+        "host_organization": "https://openalex.org/I2801876189", "host_organization_name":
+        "Deutsches Elektronen-Synchrotron DESY", "host_organization_lineage": ["https://openalex.org/I2801876189"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": "other-oa",
+        "license_id": "https://openalex.org/licenses/other-oa", "version": "submittedVersion",
+        "is_accepted": false, "is_published": false, "raw_source_name": "Information
+        services and use 28, 83-96 (2008). doi:10.3233/ISU-2008-0570", "raw_type":
+        "info:eu-repo/semantics/publishedVersion"}, "sustainable_development_goals":
+        [], "awards": [], "funders": [], "has_content": {"pdf": false, "grobid_xml":
+        false}, "content_urls": null, "referenced_works_count": 3, "referenced_works":
+        ["https://openalex.org/W1590603655", "https://openalex.org/W2001450038", "https://openalex.org/W2107291774"],
+        "related_works": ["https://openalex.org/W2294604317", "https://openalex.org/W4385416063",
+        "https://openalex.org/W2086473138", "https://openalex.org/W1520779605", "https://openalex.org/W2470540887",
+        "https://openalex.org/W2573448113", "https://openalex.org/W2092907983", "https://openalex.org/W1987480379",
+        "https://openalex.org/W2341060485", "https://openalex.org/W1581366346"], "abstract_inverted_index":
+        {"Having": [0], "always": [1], "been": [2], "at": [3], "the": [4], "forefront":
+        [5], "of": [6], "information": [7, 28], "management": [8], "and": [9, 29],
+        "open": [10], "access,": [11], "High-Energy": [12], "Physics": [13], "(HEP)":
+        [14], "proves": [15], "to": [16], "be": [17], "an": [18], "ideal": [19], "test-bed":
+        [20], "for": [21], "innovations": [22], "in": [23], "scholarly": [24], "communication":
+        [25, 30], "including": [26], "new": [27], "technologies.": [31], "Three":
+        [32], "selecte": [33]}, "counts_by_year": [{"year": 2019, "cited_by_count":
+        1}, {"year": 2018, "cited_by_count": 1}, {"year": 2017, "cited_by_count":
+        1}, {"year": 2015, "cited_by_count": 2}, {"year": 2013, "cited_by_count":
+        1}, {"year": 2012, "cited_by_count": 3}], "updated_date": "2026-05-06T06:10:43.113611",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W351146182",
+        "doi": "https://doi.org/10.2314/cern/c26p.w9dt", "title": "The SCOAP3 initiative
+        and the Open Access Article-Processing-Charge market: global partnership and
+        competition improve value in the dissemination of science", "display_name":
+        "The SCOAP3 initiative and the Open Access Article-Processing-Charge market:
+        global partnership and competition improve value in the dissemination of science",
+        "publication_year": 2014, "publication_date": "2014-01-01", "ids": {"openalex":
+        "https://openalex.org/W351146182", "doi": "https://doi.org/10.2314/cern/c26p.w9dt",
+        "mag": "351146182"}, "language": "en", "primary_location": {"id": "pmh:oai:cds.cern.ch:1735210",
+        "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1735210", "pdf_url":
+        "http://cds.cern.ch/record/1735210", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "acceptedVersion", "is_accepted": true, "is_published": false,
+        "raw_source_name": "", "raw_type": ""}, "type": "article", "indexed_in": ["datacite"],
+        "open_access": {"is_oa": true, "oa_status": "green", "oa_url": "http://cds.cern.ch/record/1735210",
+        "any_repository_has_fulltext": true}, "authorships": [{"author_position":
+        "first", "author": {"id": "https://openalex.org/A5072763674", "display_name":
+        "Cl\u00e9ment Romeu", "orcid": null}, "institutions": [], "countries": [],
+        "is_corresponding": false, "raw_author_name": "Romeu, Cl\u00e9ment", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5029832677", "display_name": "Anne
+        Gentil\u2010Beccot", "orcid": "https://orcid.org/0000-0001-9199-655X"}, "institutions":
+        [], "countries": [], "is_corresponding": false, "raw_author_name": "Gentil-Beccot,
+        Anne", "raw_affiliation_strings": [], "raw_orcid": null, "affiliations": []},
+        {"author_position": "middle", "author": {"id": "https://openalex.org/A5064246696",
+        "display_name": "Anne Mansuy", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "Mansuy, Anne", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "middle",
+        "author": {"id": "https://openalex.org/A5051435114", "display_name": "S. Mele",
+        "orcid": "https://orcid.org/0000-0003-0762-2235"}, "institutions": [], "countries":
+        [], "is_corresponding": false, "raw_author_name": "Mele, Salvatore", "raw_affiliation_strings":
+        [], "raw_orcid": null, "affiliations": []}, {"author_position": "last", "author":
+        {"id": "https://openalex.org/A5021681052", "display_name": "Martin Vesper",
+        "orcid": null}, "institutions": [], "countries": [], "is_corresponding": false,
+        "raw_author_name": "Vesper, Martin", "raw_affiliation_strings": [], "raw_orcid":
+        null, "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 5, "corresponding_author_ids": [], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": null, "has_fulltext": true,
+        "cited_by_count": 22, "citation_normalized_percentile": null, "cited_by_percentile_year":
+        null, "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T10102", "display_name": "scientometrics and
+        bibliometrics research", "score": 0.9908999800682068, "subfield": {"id": "https://openalex.org/subfields/1804",
+        "display_name": "Statistics, Probability and Uncertainty"}, "field": {"id":
+        "https://openalex.org/fields/18", "display_name": "Decision Sciences"}, "domain":
+        {"id": "https://openalex.org/domains/2", "display_name": "Social Sciences"}},
+        "topics": [{"id": "https://openalex.org/T10102", "display_name": "scientometrics
+        and bibliometrics research", "score": 0.9908999800682068, "subfield": {"id":
+        "https://openalex.org/subfields/1804", "display_name": "Statistics, Probability
+        and Uncertainty"}, "field": {"id": "https://openalex.org/fields/18", "display_name":
+        "Decision Sciences"}, "domain": {"id": "https://openalex.org/domains/2", "display_name":
+        "Social Sciences"}}, {"id": "https://openalex.org/T11937", "display_name":
+        "Research Data Management Practices", "score": 0.9689000248908997, "subfield":
+        {"id": "https://openalex.org/subfields/1710", "display_name": "Information
+        Systems"}, "field": {"id": "https://openalex.org/fields/17", "display_name":
+        "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3", "display_name":
+        "Physical Sciences"}}, {"id": "https://openalex.org/T12722", "display_name":
+        "Innovation Policy and R&D", "score": 0.945900022983551, "subfield": {"id":
+        "https://openalex.org/subfields/2002", "display_name": "Economics and Econometrics"},
+        "field": {"id": "https://openalex.org/fields/20", "display_name": "Economics,
+        Econometrics and Finance"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/general-partnership",
+        "display_name": "General partnership", "score": 0.6059885025024414}, {"id":
+        "https://openalex.org/keywords/procurement", "display_name": "Procurement",
+        "score": 0.5669164657592773}, {"id": "https://openalex.org/keywords/open-science",
+        "display_name": "Open science", "score": 0.5089077949523926}, {"id": "https://openalex.org/keywords/competition",
+        "display_name": "Competition (biology)", "score": 0.455064982175827}, {"id":
+        "https://openalex.org/keywords/business", "display_name": "Business", "score":
+        0.4499366283416748}, {"id": "https://openalex.org/keywords/revenue", "display_name":
+        "Revenue", "score": 0.4374474883079529}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.36906254291534424}, {"id":
+        "https://openalex.org/keywords/public-relations", "display_name": "Public
+        relations", "score": 0.3505970537662506}, {"id": "https://openalex.org/keywords/marketing",
+        "display_name": "Marketing", "score": 0.22283801436424255}, {"id": "https://openalex.org/keywords/finance",
+        "display_name": "Finance", "score": 0.21171492338180542}, {"id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics", "score": 0.134659081697464}], "concepts": [{"id":
+        "https://openalex.org/C71750763", "wikidata": "https://www.wikidata.org/wiki/Q646164",
+        "display_name": "General partnership", "level": 2, "score": 0.6059885025024414},
+        {"id": "https://openalex.org/C201650216", "wikidata": "https://www.wikidata.org/wiki/Q829492",
+        "display_name": "Procurement", "level": 2, "score": 0.5669164657592773}, {"id":
+        "https://openalex.org/C2778149293", "wikidata": "https://www.wikidata.org/wiki/Q309823",
+        "display_name": "Open science", "level": 2, "score": 0.5089077949523926},
+        {"id": "https://openalex.org/C91306197", "wikidata": "https://www.wikidata.org/wiki/Q45767",
+        "display_name": "Competition (biology)", "level": 2, "score": 0.455064982175827},
+        {"id": "https://openalex.org/C144133560", "wikidata": "https://www.wikidata.org/wiki/Q4830453",
+        "display_name": "Business", "level": 0, "score": 0.4499366283416748}, {"id":
+        "https://openalex.org/C195487862", "wikidata": "https://www.wikidata.org/wiki/Q850210",
+        "display_name": "Revenue", "level": 2, "score": 0.4374474883079529}, {"id":
+        "https://openalex.org/C17744445", "wikidata": "https://www.wikidata.org/wiki/Q36442",
+        "display_name": "Political science", "level": 0, "score": 0.36906254291534424},
+        {"id": "https://openalex.org/C39549134", "wikidata": "https://www.wikidata.org/wiki/Q133080",
+        "display_name": "Public relations", "level": 1, "score": 0.3505970537662506},
+        {"id": "https://openalex.org/C162853370", "wikidata": "https://www.wikidata.org/wiki/Q39809",
+        "display_name": "Marketing", "level": 1, "score": 0.22283801436424255}, {"id":
+        "https://openalex.org/C10138342", "wikidata": "https://www.wikidata.org/wiki/Q43015",
+        "display_name": "Finance", "level": 1, "score": 0.21171492338180542}, {"id":
+        "https://openalex.org/C121332964", "wikidata": "https://www.wikidata.org/wiki/Q413",
+        "display_name": "Physics", "level": 0, "score": 0.134659081697464}, {"id":
+        "https://openalex.org/C18903297", "wikidata": "https://www.wikidata.org/wiki/Q7150",
+        "display_name": "Ecology", "level": 1, "score": 0.0}, {"id": "https://openalex.org/C86803240",
+        "wikidata": "https://www.wikidata.org/wiki/Q420", "display_name": "Biology",
+        "level": 0, "score": 0.0}, {"id": "https://openalex.org/C1276947", "wikidata":
+        "https://www.wikidata.org/wiki/Q333", "display_name": "Astronomy", "level":
+        1, "score": 0.0}], "mesh": [], "locations_count": 3, "locations": [{"id":
+        "pmh:oai:cds.cern.ch:1735210", "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1735210",
+        "pdf_url": "http://cds.cern.ch/record/1735210", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "acceptedVersion", "is_accepted": true, "is_published": false,
+        "raw_source_name": "", "raw_type": ""}, {"id": "doi:10.2314/cern/c26p.w9dt",
+        "is_oa": true, "landing_page_url": "https://doi.org/10.2314/cern/c26p.w9dt",
+        "pdf_url": null, "source": {"id": "https://openalex.org/S7407050897", "display_name":
+        "inspirehep.net", "issn_l": null, "issn": [], "is_oa": false, "is_in_doaj":
+        false, "is_core": false, "host_organization": null, "host_organization_name":
+        null, "host_organization_lineage": [], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": "article"}, {"id": "mag:351146182", "is_oa": false, "landing_page_url":
+        "https://cds.cern.ch/record/1735210/files/SCOAP3-APC%20v.def%20-%20Jan%202016%20changes.pdf",
+        "pdf_url": null, "source": null, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": null}], "best_oa_location": {"id": "pmh:oai:cds.cern.ch:1735210",
+        "is_oa": true, "landing_page_url": "http://cds.cern.ch/record/1735210", "pdf_url":
+        "http://cds.cern.ch/record/1735210", "source": {"id": "https://openalex.org/S4306402195",
+        "display_name": "CERN Document Server (European Organization for Nuclear Research)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I67311998", "host_organization_name":
+        "European Organization for Nuclear Research", "host_organization_lineage":
+        ["https://openalex.org/I67311998"], "host_organization_lineage_names": [],
+        "type": "repository"}, "license": "cc-by", "license_id": "https://openalex.org/licenses/cc-by",
+        "version": "acceptedVersion", "is_accepted": true, "is_published": false,
+        "raw_source_name": "", "raw_type": ""}, "sustainable_development_goals": [{"id":
+        "https://metadata.un.org/sdg/17", "score": 0.5199999809265137, "display_name":
+        "Partnerships for the goals"}], "awards": [], "funders": [{"id": "https://openalex.org/F4320321382",
+        "display_name": "Sponsoring Consortium for Open Access Publishing in Particle
+        Physics", "ror": null}], "has_content": {"pdf": true, "grobid_xml": true},
+        "content_urls": {"pdf": "https://content.openalex.org/works/W351146182.pdf",
+        "grobid_xml": "https://content.openalex.org/works/W351146182.grobid-xml"},
+        "referenced_works_count": 1, "referenced_works": ["https://openalex.org/W1575605140"],
+        "related_works": ["https://openalex.org/W3122828826", "https://openalex.org/W2417002820",
+        "https://openalex.org/W2560885243", "https://openalex.org/W2232625510", "https://openalex.org/W2597900157",
+        "https://openalex.org/W2767479335", "https://openalex.org/W3008583671", "https://openalex.org/W2293856741",
+        "https://openalex.org/W3206230784", "https://openalex.org/W3174991528", "https://openalex.org/W3149102756",
+        "https://openalex.org/W1575300446", "https://openalex.org/W2967036110", "https://openalex.org/W2028872233",
+        "https://openalex.org/W1535538127", "https://openalex.org/W1798332816", "https://openalex.org/W2160723346",
+        "https://openalex.org/W2047366397", "https://openalex.org/W2139623685", "https://openalex.org/W2063432947"],
+        "abstract_inverted_index": {"The": [0, 142, 212, 241], "SCOAP3": [1, 66, 103,
+        125, 147, 196, 213, 242, 273], "(Sponsoring": [2], "Consortium": [3], "for":
+        [4, 52, 114, 189, 234], "Open": [5, 19, 71, 94, 100, 122, 158, 171, 209],
+        "Access": [6, 20, 72, 95, 101, 123, 159, 172, 210], "Publishing": [7], "in":
+        [8, 24, 34, 91, 155, 176, 231, 239, 251, 263], "Particle": [9], "Physics)":
+        [10], "initiative": [11], "is": [12, 85, 184, 279], "an": [13], "international":
+        [14], "partnership": [15], "to": [16, 18, 70, 82, 166, 170, 224, 247], "convert":
+        [17], "the": [21, 25, 49, 115, 146, 163, 167, 180, 191, 195, 206, 218, 235,
+        258, 267], "published": [22, 262], "literature": [23], "field": [26, 236],
+        "of": [27, 89, 112, 173, 205, 221, 237, 260], "High-Energy": [28], "Physics":
+        [29, 238], "(HEP).": [30], "It": [31, 84], "has": [32, 67], "been": [33],
+        "operation": [35], "since": [36], "January": [37], "2014,": [38], "and": [39,
+        55, 62, 134, 160, 233], "covers": [40], "more": [41], "than": [42], "4\u2019000":
+        [43], "articles/year.": [44], "Originally": [45], "initiated": [46], "by":
+        [47, 145, 272], "CERN,": [48], "European": [50], "Organization": [51], "Nuclear":
+        [53], "Research,": [54], "now": [56], "counting": [57], "partners": [58],
+        "representing": [59], "41": [60], "countries": [61], "3": [63], "intergovernmental":
+        [64], "organizations,": [65], "successfully": [68], "converted": [69], "all,":
+        [73], "or": [74, 200], "part": [75], "of,": [76], "6": [77], "HEP": [78],
+        "journals": [79], "previously": [80], "restricted": [81], "subscribers.":
+        [83], "also": [86], "supporting": [87], "publication": [88, 116, 229], "articles":
+        [90, 175, 261], "4": [92], "existing": [93], "journals.": [96, 178, 211],
+        "As": [97], "a": [98, 129, 187, 226], "\u201cGold\u201d": [99], "initiative,":
+        [102], "pays": [104], "Article": [105], "Processing": [106], "Charges": [107],
+        "(APCs),": [108], "as": [109, 186], "publishers\u2019": [110], "source": [111],
+        "revenue": [113], "service.": [117], "Differentiating": [118], "itself": [119],
+        "from": [120], "other": [121], "initiatives,": [124], "set": [126], "APCs":
+        [127, 143, 197, 214], "through": [128, 274], "tendering": [130, 148, 243],
+        "process,": [131], "correlating": [132], "quality": [133], "price,": [135],
+        "at": [136], "consistent": [137], "conditions": [138], "across": [139], "participating":
+        [140], "publishers.": [141], "determined": [144], "process": [149, 244], "are":
+        [150], "compared": [151], "with": [152], "those": [153, 204], "charged": [154],
+        "both": [156], "Gold": [157, 208], "hybrid": [161, 228], "markets,": [162],
+        "latter": [164], "referring": [165], "piecemeal": [168], "conversion": [169],
+        "individual": [174], "subscription": [177], "If": [179], "journals\u2019":
+        [181], "\u201cImpact": [182], "Factor\u201d": [183], "used": [185], "proxy":
+        [188], "quality,": [190], "results": [192], "indicate": [193], "that": [194],
+        "align": [198], "with,": [199], "slightly": [201], "improve": [202, 216],
+        "upon,": [203], "service-based": [207], "vastly": [215], "upon": [217], "price":
+        [219], "levels": [220], "what": [222], "appears": [223], "be": [225], "less-functional":
+        [227], "market,": [230], "general": [232], "particular.": [240], "included":
+        [245], "mechanisms": [246], "cap": [248], "yearly": [249], "expenditures":
+        [250], "any": [252], "single": [253], "publishing": [254], "outlet.": [255],
+        "By": [256], "analysing": [257], "number": [259], "2014-2015": [264], "(8,725":
+        [265], "articles),": [266], "average": [268], "APC": [269], "effectively":
+        [270], "paid": [271], "its": [275], "first": [276], "two": [277], "years":
+        [278], "\u20ac1,100.": [280]}, "counts_by_year": [{"year": 2022, "cited_by_count":
+        1}, {"year": 2021, "cited_by_count": 1}, {"year": 2020, "cited_by_count":
+        1}, {"year": 2019, "cited_by_count": 4}, {"year": 2018, "cited_by_count":
+        5}, {"year": 2017, "cited_by_count": 6}, {"year": 2016, "cited_by_count":
+        2}, {"year": 2015, "cited_by_count": 2}], "updated_date": "2026-06-11T09:08:48.828518",
+        "created_date": "2025-10-10T00:00:00"}, {"id": "https://openalex.org/W2474679122",
+        "doi": "https://doi.org/10.4119/unibi/ub.2014.18", "title": "Datasets on fee-based
+        Open Access publishing across German Institutions", "display_name": "Datasets
+        on fee-based Open Access publishing across German Institutions", "publication_year":
+        2014, "publication_date": "2014-08-26", "ids": {"openalex": "https://openalex.org/W2474679122",
+        "doi": "https://doi.org/10.4119/unibi/ub.2014.18", "mag": "2474679122"}, "language":
+        "en", "primary_location": {"id": "doi:10.4119/unibi/ub.2014.18", "is_oa":
+        true, "landing_page_url": "https://doi.org/10.4119/unibi/ub.2014.18", "pdf_url":
+        null, "source": {"id": "https://openalex.org/S4306401670", "display_name":
+        "PUB \u2013 Publications at Bielefeld University (Bielefeld University)",
+        "issn_l": null, "issn": null, "is_oa": false, "is_in_doaj": false, "is_core":
+        false, "host_organization": "https://openalex.org/I20121455", "host_organization_name":
+        "Bielefeld University", "host_organization_lineage": ["https://openalex.org/I20121455"],
+        "host_organization_lineage_names": [], "type": "repository"}, "license": null,
+        "license_id": null, "version": null, "is_accepted": false, "is_published":
+        false, "raw_source_name": null, "raw_type": "article"}, "type": "article",
+        "indexed_in": ["datacite"], "open_access": {"is_oa": true, "oa_status": "green",
+        "oa_url": "https://doi.org/10.4119/unibi/ub.2014.18", "any_repository_has_fulltext":
+        true}, "authorships": [{"author_position": "first", "author": {"id": null,
+        "display_name": "Jahn, Najko", "orcid": null}, "institutions": [], "countries":
+        [], "is_corresponding": true, "raw_author_name": "Jahn, Najko", "raw_affiliation_strings":
+        [], "affiliations": []}], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 1, "corresponding_author_ids": [], "corresponding_institution_ids":
+        [], "apc_list": null, "apc_paid": null, "fwci": null, "has_fulltext": false,
+        "cited_by_count": 21, "citation_normalized_percentile": null, "cited_by_percentile_year":
+        null, "biblio": {"volume": null, "issue": null, "first_page": null, "last_page":
+        null}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        {"id": "https://openalex.org/T14380", "display_name": "Libraries and Information
+        Services", "score": 0.8402000069618225, "subfield": {"id": "https://openalex.org/subfields/1209",
+        "display_name": "Museology"}, "field": {"id": "https://openalex.org/fields/12",
+        "display_name": "Arts and Humanities"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, "topics": [{"id": "https://openalex.org/T14380",
+        "display_name": "Libraries and Information Services", "score": 0.8402000069618225,
+        "subfield": {"id": "https://openalex.org/subfields/1209", "display_name":
+        "Museology"}, "field": {"id": "https://openalex.org/fields/12", "display_name":
+        "Arts and Humanities"}, "domain": {"id": "https://openalex.org/domains/2",
+        "display_name": "Social Sciences"}}, {"id": "https://openalex.org/T11937",
+        "display_name": "Research Data Management Practices", "score": 0.7968000173568726,
+        "subfield": {"id": "https://openalex.org/subfields/1710", "display_name":
+        "Information Systems"}, "field": {"id": "https://openalex.org/fields/17",
+        "display_name": "Computer Science"}, "domain": {"id": "https://openalex.org/domains/3",
+        "display_name": "Physical Sciences"}}], "keywords": [{"id": "https://openalex.org/keywords/german",
+        "display_name": "German", "score": 0.7046557664871216}, {"id": "https://openalex.org/keywords/publishing",
+        "display_name": "Publishing", "score": 0.5453561544418335}, {"id": "https://openalex.org/keywords/business",
+        "display_name": "Business", "score": 0.5260814428329468}, {"id": "https://openalex.org/keywords/world-wide-web",
+        "display_name": "World Wide Web", "score": 0.434857577085495}, {"id": "https://openalex.org/keywords/internet-privacy",
+        "display_name": "Internet privacy", "score": 0.43111729621887207}, {"id":
+        "https://openalex.org/keywords/computer-science", "display_name": "Computer
+        science", "score": 0.3998265266418457}, {"id": "https://openalex.org/keywords/political-science",
+        "display_name": "Political science", "score": 0.24370872974395752}, {"id":
+        "https://openalex.org/keywords/geography", "display_name": "Geography", "score":
+        0.22632277011871338}, {"id": "https://openalex.org/keywords/law", "display_name":
+        "Law", "score": 0.12011167407035828}], "concepts": [{"id": "https://openalex.org/C154775046",
+        "wikidata": "https://www.wikidata.org/wiki/Q188", "display_name": "German",
+        "level": 2, "score": 0.7046557664871216}, {"id": "https://openalex.org/C151719136",
+        "wikidata": "https://www.wikidata.org/wiki/Q3972943", "display_name": "Publishing",
+        "level": 2, "score": 0.5453561544418335}, {"id": "https://openalex.org/C144133560",
+        "wikidata": "https://www.wikidata.org/wiki/Q4830453", "display_name": "Business",
+        "level": 0, "score": 0.5260814428329468}, {"id": "https://openalex.org/C136764020",
+        "wikidata": "https://www.wikidata.org/wiki/Q466", "display_name": "World Wide
+        Web", "level": 1, "score": 0.434857577085495}, {"id": "https://openalex.org/C108827166",
+        "wikidata": "https://www.wikidata.org/wiki/Q175975", "display_name": "Internet
+        privacy", "level": 1, "score": 0.43111729621887207}, {"id": "https://openalex.org/C41008148",
+        "wikidata": "https://www.wikidata.org/wiki/Q21198", "display_name": "Computer
+        science", "level": 0, "score": 0.3998265266418457}, {"id": "https://openalex.org/C17744445",
+        "wikidata": "https://www.wikidata.org/wiki/Q36442", "display_name": "Political
+        science", "level": 0, "score": 0.24370872974395752}, {"id": "https://openalex.org/C205649164",
+        "wikidata": "https://www.wikidata.org/wiki/Q1071", "display_name": "Geography",
+        "level": 0, "score": 0.22632277011871338}, {"id": "https://openalex.org/C199539241",
+        "wikidata": "https://www.wikidata.org/wiki/Q7748", "display_name": "Law",
+        "level": 1, "score": 0.12011167407035828}, {"id": "https://openalex.org/C166957645",
+        "wikidata": "https://www.wikidata.org/wiki/Q23498", "display_name": "Archaeology",
+        "level": 1, "score": 0.0}], "mesh": [], "locations_count": 2, "locations":
+        [{"id": "doi:10.4119/unibi/ub.2014.18", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.4119/unibi/ub.2014.18", "pdf_url": null, "source": {"id":
+        "https://openalex.org/S4306401670", "display_name": "PUB \u2013 Publications
+        at Bielefeld University (Bielefeld University)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I20121455", "host_organization_name": "Bielefeld University",
+        "host_organization_lineage": ["https://openalex.org/I20121455"], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": null, "raw_source_name": null,
+        "raw_type": "article"}, {"id": "mag:2474679122", "is_oa": false, "landing_page_url":
+        "https://juser.fz-juelich.de/record/187893", "pdf_url": null, "source": null,
+        "license": null, "license_id": null, "version": null, "is_accepted": false,
+        "is_published": null, "raw_source_name": null, "raw_type": null}], "best_oa_location":
+        {"id": "doi:10.4119/unibi/ub.2014.18", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.4119/unibi/ub.2014.18", "pdf_url": null, "source": {"id":
+        "https://openalex.org/S4306401670", "display_name": "PUB \u2013 Publications
+        at Bielefeld University (Bielefeld University)", "issn_l": null, "issn": null,
+        "is_oa": false, "is_in_doaj": false, "is_core": false, "host_organization":
+        "https://openalex.org/I20121455", "host_organization_name": "Bielefeld University",
+        "host_organization_lineage": ["https://openalex.org/I20121455"], "host_organization_lineage_names":
+        [], "type": "repository"}, "license": null, "license_id": null, "version":
+        null, "is_accepted": false, "is_published": false, "raw_source_name": null,
+        "raw_type": "article"}, "sustainable_development_goals": [{"id": "https://metadata.un.org/sdg/17",
+        "score": 0.4099999964237213, "display_name": "Partnerships for the goals"}],
+        "awards": [], "funders": [], "has_content": {"pdf": false, "grobid_xml": false},
+        "content_urls": null, "referenced_works_count": 0, "referenced_works": [],
+        "related_works": ["https://openalex.org/W3136771594", "https://openalex.org/W3104586548",
+        "https://openalex.org/W3047860707", "https://openalex.org/W2078012470", "https://openalex.org/W2975846703",
+        "https://openalex.org/W2292485061", "https://openalex.org/W2575771737", "https://openalex.org/W2565758866",
+        "https://openalex.org/W2774372890", "https://openalex.org/W1558269142", "https://openalex.org/W2760019851",
+        "https://openalex.org/W2297583037", "https://openalex.org/W2533519264", "https://openalex.org/W2910685043",
+        "https://openalex.org/W2242830947", "https://openalex.org/W2367044640", "https://openalex.org/W2260367182",
+        "https://openalex.org/W2758446146", "https://openalex.org/W2294335739", "https://openalex.org/W2601720626"],
+        "abstract_inverted_index": {"The": [0], "aim": [1], "of": [2, 11, 14], "this":
+        [3], "repository": [4], "is:": [5], "\u2013": [6, 27, 44], "to": [7, 28, 45],
+        "share": [8], "a": [9, 30], "copy": [10], "the": [12], "Directory": [13],
+        "Open": [15, 39, 51], "Access": [16, 52], "Journals": [17], "(DOAJ)": [18],
+        "journal": [19], "master": [20], "list": [21], "(downloaded": [22], "January":
+        [23], "2014)": [24], "-&gt;": [25, 42], "data/doajJournalList.csv": [26],
+        "release": [29], "Bielefeld": [31], "University": [32], "Paid": [33], "APCs":
+        [34], "2012/13": [35], "Dataset": [36], "under": [37], "an": [38], "Database":
+        [40], "License": [41], "data/unibi/unibi12-13.csv": [43], "demonstrate": [46],
+        "how": [47], "reporting": [48], "on": [49], "fee-based": [50], "publishing":
+        [53], "can": [54], "be": [55], "made": [56], "more": [57], "transparent":
+        [58], "and": [59], "reproducible": [60]}, "counts_by_year": [{"year": 2024,
+        "cited_by_count": 2}, {"year": 2022, "cited_by_count": 2}, {"year": 2020,
+        "cited_by_count": 2}, {"year": 2019, "cited_by_count": 2}, {"year": 2018,
+        "cited_by_count": 2}, {"year": 2017, "cited_by_count": 1}, {"year": 2016,
+        "cited_by_count": 9}, {"year": 2015, "cited_by_count": 1}], "updated_date":
+        "2026-03-25T23:56:10.502304", "created_date": "2025-10-10T00:00:00"}, {"id":
+        "https://openalex.org/W4251478550", "doi": "https://doi.org/10.1038/nphys3862",
+        "title": "Keep posting", "display_name": "Keep posting", "publication_year":
+        2016, "publication_date": "2016-08-01", "ids": {"openalex": "https://openalex.org/W4251478550",
+        "doi": "https://doi.org/10.1038/nphys3862"}, "language": "en", "primary_location":
+        {"id": "doi:10.1038/nphys3862", "is_oa": true, "landing_page_url": "https://doi.org/10.1038/nphys3862",
+        "pdf_url": "https://www.nature.com/articles/nphys3862.pdf", "source": {"id":
+        "https://openalex.org/S156274416", "display_name": "Nature Physics", "issn_l":
+        "1745-2473", "issn": ["1745-2473", "1745-2481"], "is_oa": false, "is_in_doaj":
+        false, "is_core": true, "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio", "host_organization_lineage":
+        ["https://openalex.org/P4310319908", "https://openalex.org/P4310319965"],
+        "host_organization_lineage_names": ["Nature Portfolio", "Springer Nature"],
+        "type": "journal"}, "license": "other-oa", "license_id": "https://openalex.org/licenses/other-oa",
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Nature Physics", "raw_type": "journal-article"}, "type":
+        "article", "indexed_in": ["crossref"], "open_access": {"is_oa": true, "oa_status":
+        "hybrid", "oa_url": "https://www.nature.com/articles/nphys3862.pdf", "any_repository_has_fulltext":
+        false}, "authorships": [], "institutions": [], "countries_distinct_count":
+        0, "institutions_distinct_count": 0, "corresponding_author_ids": [], "corresponding_institution_ids":
+        [], "apc_list": {"value": 9750, "currency": "EUR", "value_usd": 11690}, "apc_paid":
+        {"value": 9750, "currency": "EUR", "value_usd": 11690}, "fwci": null, "has_fulltext":
+        false, "cited_by_count": 4, "citation_normalized_percentile": null, "cited_by_percentile_year":
+        null, "biblio": {"volume": "12", "issue": "8", "first_page": "719", "last_page":
+        "719"}, "is_retracted": false, "is_paratext": false, "is_xpac": false, "primary_topic":
+        null, "topics": [], "keywords": [{"id": "https://openalex.org/keywords/physics",
+        "display_name": "Physics", "score": 0.8369921445846558}, {"id": "https://openalex.org/keywords/statistical-physics",
+        "display_name": "Statistical physics", "score": 0.3364028036594391}, {"id":
+        "https://openalex.org/keywords/theoretical-physics", "display_name": "Theoretical
+        physics", "score": 0.3318270742893219}], "concepts": [{"id": "https://openalex.org/C121332964",
+        "wikidata": "https://www.wikidata.org/wiki/Q413", "display_name": "Physics",
+        "level": 0, "score": 0.8369921445846558}, {"id": "https://openalex.org/C121864883",
+        "wikidata": "https://www.wikidata.org/wiki/Q677916", "display_name": "Statistical
+        physics", "level": 1, "score": 0.3364028036594391}, {"id": "https://openalex.org/C33332235",
+        "wikidata": "https://www.wikidata.org/wiki/Q18362", "display_name": "Theoretical
+        physics", "level": 1, "score": 0.3318270742893219}], "mesh": [], "locations_count":
+        1, "locations": [{"id": "doi:10.1038/nphys3862", "is_oa": true, "landing_page_url":
+        "https://doi.org/10.1038/nphys3862", "pdf_url": "https://www.nature.com/articles/nphys3862.pdf",
+        "source": {"id": "https://openalex.org/S156274416", "display_name": "Nature
+        Physics", "issn_l": "1745-2473", "issn": ["1745-2473", "1745-2481"], "is_oa":
+        false, "is_in_doaj": false, "is_core": true, "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio", "host_organization_lineage":
+        ["https://openalex.org/P4310319908", "https://openalex.org/P4310319965"],
+        "host_organization_lineage_names": ["Nature Portfolio", "Springer Nature"],
+        "type": "journal"}, "license": "other-oa", "license_id": "https://openalex.org/licenses/other-oa",
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Nature Physics", "raw_type": "journal-article"}], "best_oa_location":
+        {"id": "doi:10.1038/nphys3862", "is_oa": true, "landing_page_url": "https://doi.org/10.1038/nphys3862",
+        "pdf_url": "https://www.nature.com/articles/nphys3862.pdf", "source": {"id":
+        "https://openalex.org/S156274416", "display_name": "Nature Physics", "issn_l":
+        "1745-2473", "issn": ["1745-2473", "1745-2481"], "is_oa": false, "is_in_doaj":
+        false, "is_core": true, "host_organization": "https://openalex.org/P4310319908",
+        "host_organization_name": "Nature Portfolio", "host_organization_lineage":
+        ["https://openalex.org/P4310319908", "https://openalex.org/P4310319965"],
+        "host_organization_lineage_names": ["Nature Portfolio", "Springer Nature"],
+        "type": "journal"}, "license": "other-oa", "license_id": "https://openalex.org/licenses/other-oa",
+        "version": "publishedVersion", "is_accepted": true, "is_published": true,
+        "raw_source_name": "Nature Physics", "raw_type": "journal-article"}, "sustainable_development_goals":
+        [], "awards": [], "funders": [], "has_content": {"pdf": true, "grobid_xml":
+        true}, "content_urls": {"pdf": "https://content.openalex.org/works/W4251478550.pdf",
+        "grobid_xml": "https://content.openalex.org/works/W4251478550.grobid-xml"},
+        "referenced_works_count": 1, "referenced_works": ["https://openalex.org/W4243343826"],
+        "related_works": ["https://openalex.org/W2935759653", "https://openalex.org/W3105167352",
+        "https://openalex.org/W54078636", "https://openalex.org/W2954470139", "https://openalex.org/W1501425562",
+        "https://openalex.org/W2902782467", "https://openalex.org/W3084825885", "https://openalex.org/W2298861036",
+        "https://openalex.org/W3148032049", "https://openalex.org/W2271181815"], "abstract_inverted_index":
+        null, "counts_by_year": [{"year": 2019, "cited_by_count": 1}, {"year": 2018,
+        "cited_by_count": 3}], "updated_date": "2025-11-06T03:46:38.306776", "created_date":
+        "2022-05-12T00:00:00"}], "group_by": []}'
     headers:
       Access-Control-Allow-Headers:
       - Accept, Accept-Language, Accept-Encoding, Authorization, Content-Type, X-OpenAlex-UI
@@ -506,7 +1673,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - a0fd785f59e9323f-AMS
+      - a136e9bd0997f5ef-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -514,13 +1681,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jun 2026 18:55:57 GMT
+      - Mon, 29 Jun 2026 18:14:49 GMT
       Nel:
       - '{"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}'
       Report-To:
-      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=2u6eVM1r5lOWqIRqaMW55AXtnyKqg4jvWgFj6mxh35c%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782154557"}],"max_age":3600}'
+      - '{"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=mkccDtQUTj%2FF94fa5d40hgZ0IeD0y9lfYG5wJy%2FXOcE%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1782756889"}],"max_age":3600}'
       Reporting-Endpoints:
-      - heroku-nel="https://nel.heroku.com/reports?s=2u6eVM1r5lOWqIRqaMW55AXtnyKqg4jvWgFj6mxh35c%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782154557"
+      - heroku-nel="https://nel.heroku.com/reports?s=mkccDtQUTj%2FF94fa5d40hgZ0IeD0y9lfYG5wJy%2FXOcE%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1782756889"
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -540,11 +1707,11 @@ interactions:
       X-RateLimit-Prepaid-Remaining-USD:
       - '0'
       X-RateLimit-Remaining:
-      - '939'
+      - '916'
       X-RateLimit-Remaining-USD:
-      - '0.0939'
+      - '0.0916'
       X-RateLimit-Reset:
-      - '18243'
+      - '20711'
       access-control-expose-headers:
       - Cache-Control, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Onetime-Remaining,
         X-RateLimit-Credits-Used, X-RateLimit-Credits-Required, X-RateLimit-Reset,

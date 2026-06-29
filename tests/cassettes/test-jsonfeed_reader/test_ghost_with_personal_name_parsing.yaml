@@ -5,100 +5,148 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/0vknr-rwv45
   response:
     body:
-      string: !!binary |
-        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
-        D0oHF8LZ2JMFtjXWi3ny6//77wEAILNUFnwuAAA=
+      string: '{"authors":[{"contributor_roles":[],"family":"Sathe","given":"Tejas
+        S.","url":"https://orcid.org/0000-0003-0449-4469"}],"blog":{"authors":null,"community_id":"273a710a-4227-49d9-a205-eea72d314ef4","created":1672790400,"current_feed_url":null,"description":"Innovation
+        and Design Experiments in Academic Surgery (I.D.E.A.S.)","favicon":"https://rogue-scholar.org/api/communities/273a710a-4227-49d9-a205-eea72d314ef4/logo","feed_format":"application/rss+xml","feed_url":"https://www.ideasurg.pub/rss/","filter":null,"generator":"Ghost","home_page_url":"https://www.ideasurg.pub/","issn":"2993-1150","language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"ideas","status":"active","subfield":"2746","title":"I.D.E.A.S.","updated":1780988942,"use_api":null},"blog_name":"I.D.E.A.S.","blog_slug":"ideas","content_html":"<p>As
+        residents within the healthcare profession, our first duty is to care for
+        our patients. While working upwards of 80 hours per week pursuing that mission,
+        it is hard to think of ourselves as anything beyond our job title. But we
+        are also citizens. And while patient care remains a worthy North Star, decisions
+        made by faraway policymakers can impact our patients as much as the assessments
+        and plans we ourselves craft. In some cases, they can impact our training
+        as well. Fortunately, as citizens, we can choose our policymakers so long
+        as we exercise our right to vote. In this perspective, we present the results
+        of an institutional quality improvement study of surgery resident voting and
+        propose program initiatives to facilitate resident participation in this core
+        duty of citizenship.</p><p>Voting is the most direct manner by which citizens
+        can participate in a democracy. A recent study found that physicians historically
+        voted at lower rates than the general population but matched and exceeded
+        national turnout in 2018 and 2020, respectively. The increase in physician
+        participation was hypothesized to stem from the greater prominence of health-related
+        issues in the public discourse. Barriers to voting included not being registered,
+        being too busy, or having a conflicting work schedule.<sup>1</sup> Currently,
+        voting participation among General Surgery residents - for whom these barriers
+        are especially magnified - is unknown.</p><p>Following the 2022 United States
+        (U.S.) midterm election, we surveyed categorical General Surgery residents
+        at our institution. We asked respondents to identify their post graduate year
+        (PGY) level and state of registration. We then asked if they voted in the
+        2022 U.S. midterm election. Respondents who did not vote were asked to select
+        one or more reasons for not voting, including scheduling conflicts, registration
+        issues, difficulty obtaining mail-in ballots, unfamiliarity with candidates
+        or issues, apathy about the outcome, or not wanting to vote.</p><p>Overall,
+        32/46 (70%) residents responded to the survey, and 28/32 (88%) were eligible
+        to vote in U.S. elections. Among those eligible to vote, 13 (46%) voted in
+        the 2022 U.S. midterm election. Turnout rate was 3/7 (43%) among PGY1s, 1/4
+        (25%) among PGY2s, 3/5 (60%) among PGY3s, 1/4 (25%) among PGY4s, 0/3 (0%)
+        among PGY5s, and 5/5 (100%) among research residents. Fourteen (50%) residents
+        were registered in New York, the state of our institution, while five (18%)
+        were registered in New Jersey, two (7%) in Pennsylvania, and one each (4%)
+        in Alabama, California, Florida, Ohio, and Virginia. Two residents (7%) were
+        unsure about their current registration status.</p><p>Among the 15 eligible
+        residents who did not vote, nine (60%) said they wanted to vote but were too
+        busy. Seven (47%) said there was no way to leave work long enough to vote,
+        seven (47%) expressed issues with mail-in ballots or associated deadlines,
+        three (20%) did not know about candidates or issues in their area, and two
+        (13%) had issues with registration or associated deadlines. One (7%) said
+        they didn''t care about the outcome of the election or hold strong political
+        beliefs. No residents said they did not want to vote (Figure 1).</p>\n<p>Our
+        study is too small in size and limited in geography to predict surgery resident
+        turnout in a generalizable manner. However, our results reveal patterns that
+        may be relevant to residents across the United States. We found that the overall
+        voter turnout rate among surgical residents at our institution (46%) matched
+        the national voter turnout rate in the 2022 U.S. midterm election. However,
+        this rate was significantly buoyed by unanimous participation amongst research
+        residents, possibly because research residents have greater schedule flexibility
+        and more bandwidth to engage with the electoral process. It is also possible
+        that respondents were more likely to vote than non-respondents, and thus the
+        true voter turnout rate may be lower. For reference, a similar study by Lalani
+        and colleagues<sup>2</sup> found that residents from multiple specialties
+        at a single institution in Texas voted at a rate of 69% in the prior (2018)
+        midterm election, exceeding the national turnout rate of 51%. Of note, a majority
+        (87%) of respondents were from non-surgical specialties. They similarly found
+        that lack of time was the most common barrier to voting, though in contrast
+        to our data, they reported a higher percentage of residents (23%) facing psychological
+        barriers such as the belief their vote wouldn''t count.<sup>2</sup></p><p>There
+        may be several reasons that eligible individuals do not vote or even register.
+        In addition to the process being difficult, potential voters may not like
+        any of the candidates or feel that their vote will make a difference.<sup>3</sup>
+        Nevertheless, many of the logistical barriers to voting that residents in
+        our sample reported can be addressed by program-wide efforts. First, programs
+        can highlight important dates such as registration and mail-in ballot deadlines
+        during department-wide conferences. Second, program leaders can facilitate
+        voter registration for residents, by making the necessary paperwork easily
+        available and providing the administrative support to submit it on time. This
+        would be especially helpful for interns who are moving to a new state for
+        the first time. Third, residents can devise a system to cover pager duties
+        to allow each other time to vote in person, addressing the time constraints
+        cited in our study. However, this itself may be largely unnecessary. With
+        mail-in voting supported in most states, residents may not need to leave the
+        hospital during election day at all. This would be particularly relevant for
+        residents who vote in a different state than the one in which their program
+        is located. In select states, programs can collect mail-in ballots from residents
+        and drop them off all at once - removing one more additional burden from residents''
+        schedules.<sup>4</sup> Ideally, ballot drop-off boxes could be placed within
+        the hospital itself, significantly facilitating voting access for residents,
+        other providers, and patients alike.</p><p>Some may question whether citizenship
+        is essential to surgical training, or merely a distraction from the core mission.
+        To the contrary, the Accreditation Council for Graduate Medical Education
+        (ACGME) lists \"systems-based practice\" as a core competency.<sup>5</sup>
+        Whether in improving the conditions of our patients or our training environment,
+        it is important to recognize that the \"system\" extends beyond the four walls
+        of the hospital. Thus, training programs have a responsibility to make us
+        not just excellent surgeons, but also effective citizens. Yes, residents may
+        have an obligation to vote because issues that affect our patients and our
+        work are on the ballot. But there may be issues entirely outside of healthcare
+        that are meaningful to residents also. Exercising the right to vote fulfills
+        a basic human need for self-determination. A powerful reminder that residents
+        are whole human beings who can participate in our democracy may help preserve
+        their agency and multi-dimensionality.</p><p>In the future, we hope to partner
+        with national surgical societies to study resident voting across programs
+        and geographies. Using this data, we can identify barriers to voting and build
+        state-specific guidelines to minimize the friction in the voting process for
+        residents. As future leaders of surgical care in the United States, residents
+        should have the ability to perform this core civic duty. Our data suggest
+        that residents would vote if the process was not prohibitively difficult or
+        time consuming. We can make it so.</p><h3>\u00a0References</h3><p>1.\u00a0\u00a0\u00a0\u00a0
+        Ahmed A, Chouairi F, Li X. Analysis of Reported Voting Behaviors of US Physicians,
+        2000-2020. <em>JAMA Netw Open</em>. 2022;5(1):e2142527. <a href=\"https://doi.org/10.1001/jamanetworkopen.2021.42527?ref=ideasurg.pub\"
+        rel=\"noreferrer\">doi:10.1001/jamanetworkopen.2021.42527</a></p><p>2.\u00a0\u00a0\u00a0\u00a0
+        Lalani HS, Hong AS, Siddiqui R. Barriers to Voting in 2020 Among Resident
+        Physicians. <em>J Gen Intern Med</em>. 2021;36(1):254\u2013255. <a href=\"https://doi.org/10.1007/s11606-020-06308-w?ref=ideasurg.pub\"
+        rel=\"noreferrer\">doi:10.1007/s11606-020-06308-w</a></p><p>3.\u00a0\u00a0\u00a0\u00a0
+        Thomson-DeVeaux A, Mithani J, Bronner L. Why millions of Americans don''t
+        vote. FiveThirtyEight. Published 26. Oktober 2020. Zugegriffen M\u00e4rz 29,
+        2024. <a href=\"https://projects.fivethirtyeight.com/non-voters-poll-2020-election/?ref=ideasurg.pub\"
+        rel=\"noreferrer\">https://projects.fivethirtyeight.com/non-voters-poll-2020-election/</a></p><p>4.\u00a0\u00a0\u00a0\u00a0
+        Table 10: Ballot Collection Laws. Zugegriffen M\u00e4rz 12, 2024. <a href=\"https://www.ncsl.org/elections-and-campaigns/table-10-ballot-collection-laws?ref=ideasurg.pub\"
+        rel=\"noreferrer\">https://www.ncsl.org/elections-and-campaigns/table-10-ballot-collection-laws</a></p><p>5.\u00a0\u00a0\u00a0\u00a0
+        ACGME competencies. Zugegriffen M\u00e4rz 29, 2024. <a href=\"https://www.umms.org/ummc/pros/gme/acgme-competencies?ref=ideasurg.pub\"
+        rel=\"noreferrer\">https://www.umms.org/ummc/pros/gme/acgme-competencies</a></p>","doi":"https://doi.org/10.59350/0vknr-rwv45","guid":"66399ca46f25d60001df1427","image":"https://www.ideasurg.pub/content/images/2024/05/Overall-turnout.svg","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1715126400,"reference":[{"id":"https://doi.org/10.1001/jamanetworkopen.2021.42527","unstructured":"Ahmed,
+        A., Chouairi, F., &amp; Li, X. (2022). Analysis of Reported Voting Behaviors
+        of US Physicians, 2000-2020. <i>JAMA Network Open</i>, <i>5</i>(1), e2142527."},{"id":"https://doi.org/10.1007/s11606-020-06308-w","unstructured":"Lalani,
+        H. S., Hong, A. S., &amp; Siddiqui, R. (2020). Barriers to Voting in 2020
+        Among Resident Physicians. <i>Journal of General Internal Medicine</i>, <i>36</i>(1),
+        254\u2013255."},{"id":"https://projects.fivethirtyeight.com/non-voters-poll-2020-election/","unstructured":"Unknown
+        title"},{"id":"https://www.ncsl.org/elections-and-campaigns/table-10-ballot-collection-laws","unstructured":"Unknown
+        title"},{"id":"https://www.umms.org/ummc/pros/gme/acgme-competencies","unstructured":"Unknown
+        title"}],"rid":"ptcky-1bk71","summary":"As residents within the healthcare
+        profession, our first duty is to care for our patients. While working upwards
+        of 80 hours per week pursuing that mission, it is hard to think of ourselves
+        as anything beyond our job title. But we are also citizens. And while patient
+        care remains a worthy North Star, decisions made by faraway policymakers can
+        impact our patients as much as the assessments and plans we ourselves craft.","tags":["Preprint"],"title":"Voter
+        Turnout Among General Surgery Residents in the 2022 U.S. Midterm Election","updated_at":1754166750,"url":"https://www.ideasurg.pub/surg-resident-voter-turnout/"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -109,7 +157,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:20:43 GMT
+      - Mon, 29 Jun 2026 18:14:10 GMT
       Server:
       - gunicorn
       Transfer-Encoding:

@@ -5,11 +5,15 @@
   "description": "JSON representation of the Commonmeta schema.",
   "commonmeta": {
     "anyOf": [
-      { "$ref": "#/definitions/commonmeta" },
+      {
+        "$ref": "#/definitions/commonmeta"
+      },
       {
         "type": "array",
         "description": "An array of commonmeta objects.",
-        "items": { "$ref": "#/definitions/commonmeta" }
+        "items": {
+          "$ref": "#/definitions/commonmeta"
+        }
       }
     ]
   },
@@ -19,8 +23,12 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "id": { "$ref": "#/definitions/id" },
-        "type": { "$ref": "#/definitions/type" },
+        "id": {
+          "$ref": "#/definitions/id"
+        },
+        "type": {
+          "$ref": "#/definitions/type"
+        },
         "additional_descriptions": {
           "description": "The additional descriptions of the resource.",
           "type": "array",
@@ -42,9 +50,13 @@
                   "Other"
                 ]
               },
-              "language": { "$ref": "#/definitions/language" }
+              "language": {
+                "$ref": "#/definitions/language"
+              }
             },
-            "required": ["description"]
+            "required": [
+              "description"
+            ]
           }
         },
         "additional_titles": {
@@ -60,11 +72,19 @@
               "type": {
                 "description": "The type of the title.",
                 "type": "string",
-                "enum": ["AlternativeTitle", "Subtitle", "TranslatedTitle"]
+                "enum": [
+                  "AlternativeTitle",
+                  "Subtitle",
+                  "TranslatedTitle"
+                ]
               },
-              "language": { "$ref": "#/definitions/language" }
+              "language": {
+                "$ref": "#/definitions/language"
+              }
             },
-            "required": ["title"]
+            "required": [
+              "title"
+            ]
           }
         },
         "additional_type": {
@@ -92,10 +112,19 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": { "$ref": "#/definitions/id" },
-              "type": { "$ref": "#/definitions/type" },
-              "key": { "type": "string" },
-              "title": { "description": "The citation formatted as string.", "type": "string" }
+              "key": {
+                "type": "string"
+              },
+              "id": {
+                "$ref": "#/definitions/id"
+              },
+              "type": {
+                "$ref": "#/definitions/type"
+              },
+              "citation": {
+                "description": "The citation formatted as string.",
+                "type": "string"
+              }
             }
           }
         },
@@ -107,7 +136,18 @@
               "description": "The identifier for the container.",
               "type": "string"
             },
-            "identifier_type": { "$ref": "#/definitions/identifier_type" },
+            "identifier_type": {
+              "type": "string",
+              "enum": [
+                "ARK", "arXiv", "article_id", "Bibcode", "DOI", "Handle", "ISBN", "ISSN",
+                "OpenAlex", "PMID", "PMCID", "PURL", "RAiD", "SWHID",
+                "URL", "URN", "UUID", "GUID", "Other"
+              ]
+            },
+            "scheme": {
+              "description": "The scheme for identifiers with identifier_type 'Other', e.g. 'LISSN' or 'IGSN'.",
+              "type": "string"
+            },
             "type": {
               "description": "The type of the container.",
               "type": "string",
@@ -133,8 +173,12 @@
               "description": "The description of the container.",
               "type": "string"
             },
-            "language": { "$ref": "#/definitions/language" },
-            "license": { "$ref": "#/definitions/license" },
+            "language": {
+              "$ref": "#/definitions/language"
+            },
+            "license": {
+              "$ref": "#/definitions/license"
+            },
             "platform": {
               "description": "The platform of the container.",
               "type": "string"
@@ -169,21 +213,39 @@
         "contributors": {
           "description": "The contributors to the resource.",
           "type": "array",
-          "items": { "$ref": "#/definitions/contributor" },
+          "items": {
+            "$ref": "#/definitions/contributor"
+          },
           "minItems": 1
         },
-        "date_published": { "$ref": "#/definitions/date" },
-        "date_updated": { "$ref": "#/definitions/date" },
+        "date_published": {
+          "$ref": "#/definitions/date"
+        },
+        "date_updated": {
+          "$ref": "#/definitions/date"
+        },
         "dates": {
           "description": "Other dates for the resource.",
           "type": "object",
           "properties": {
-            "created": { "$ref": "#/definitions/date" },
-            "submitted": { "$ref": "#/definitions/date" },
-            "accepted": { "$ref": "#/definitions/date" },
-            "accessed": { "$ref": "#/definitions/date" },
-            "available": { "$ref": "#/definitions/date" },
-            "withdrawn": { "$ref": "#/definitions/date" }
+            "created": {
+              "$ref": "#/definitions/date"
+            },
+            "submitted": {
+              "$ref": "#/definitions/date"
+            },
+            "accepted": {
+              "$ref": "#/definitions/date"
+            },
+            "accessed": {
+              "$ref": "#/definitions/date"
+            },
+            "available": {
+              "$ref": "#/definitions/date"
+            },
+            "withdrawn": {
+              "$ref": "#/definitions/date"
+            }
           }
         },
         "description": {
@@ -196,14 +258,29 @@
           "items": {
             "type": "object",
             "properties": {
-              "bucket": { "type": "string" },
-              "key": { "type": "string" },
-              "checksum": { "type": "string" },
-              "url": { "type": "string", "format": "uri" },
-              "size": { "type": "integer" },
-              "mime_type": { "type": "string" }
+              "bucket": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "checksum": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "size": {
+                "type": "integer"
+              },
+              "mime_type": {
+                "type": "string"
+              }
             },
-            "required": ["url"]
+            "required": [
+              "url"
+            ]
           },
           "minItems": 1
         },
@@ -213,13 +290,47 @@
           "items": {
             "type": "object",
             "properties": {
-              "funder_id": { "$ref": "#/definitions/ror_id" },
-              "funder_name": { "type": "string" },
-              "award_id": { "$ref": "#/definitions/id" },
-              "award_title": { "type": "string" },
-              "award_number": { "type": "string" }
+              "funder_id": {
+                "$ref": "#/definitions/id"
+              },
+              "funder_name": {
+                "type": "string"
+              },
+              "award_id": {
+                "$ref": "#/definitions/id"
+              },
+              "award_title": {
+                "type": "string"
+              },
+              "award_number": {
+                "type": "string"
+              },
+              "asserted_by": {
+                "$ref": "#/definitions/provider"
+              }
             },
-            "required": ["funder_name"]
+            "anyOf": [
+              {
+                "required": [
+                  "funder_name"
+                ]
+              },
+              {
+                "required": [
+                  "funder_id"
+                ]
+              },
+              {
+                "required": [
+                  "award_number"
+                ]
+              },
+              {
+                "required": [
+                  "award_title"
+                ]
+              }
+            ]
           }
         },
         "geo_locations": {
@@ -227,13 +338,27 @@
           "items": {
             "type": "object",
             "properties": {
-              "geo_location_place": { "type": "string" },
-              "geo_location_point_longitude": { "$ref": "#/definitions/longitude" },
-              "geo_location_point_latitude": { "$ref": "#/definitions/latitude" },
-              "geo_location_box_west_longitude": { "$ref": "#/definitions/longitude" },
-              "geo_location_box_east_longitude": { "$ref": "#/definitions/longitude" },
-              "geo_location_box_south_latitude": { "$ref": "#/definitions/latitude" },
-              "geo_location_box_north_latitude": { "$ref": "#/definitions/latitude" },
+              "geo_location_place": {
+                "type": "string"
+              },
+              "geo_location_point_longitude": {
+                "$ref": "#/definitions/longitude"
+              },
+              "geo_location_point_latitude": {
+                "$ref": "#/definitions/latitude"
+              },
+              "geo_location_box_west_longitude": {
+                "$ref": "#/definitions/longitude"
+              },
+              "geo_location_box_east_longitude": {
+                "$ref": "#/definitions/longitude"
+              },
+              "geo_location_box_south_latitude": {
+                "$ref": "#/definitions/latitude"
+              },
+              "geo_location_box_north_latitude": {
+                "$ref": "#/definitions/latitude"
+              },
               "geo_location_polygon": {
                 "description": "The polygon geometry, formatted as Well-Known Text (WKT).",
                 "type": "string"
@@ -246,12 +371,7 @@
           "description": "Identifiers for the resource, including the id.",
           "type": "array",
           "items": {
-            "type": "object",
-            "properties": {
-              "identifier": { "type": "string" },
-              "identifier_type": { "$ref": "#/definitions/identifier_type" }
-            },
-            "required": ["identifier", "identifier_type"]
+            "$ref": "#/definitions/identifier"
           }
         },
         "image": {
@@ -259,33 +379,43 @@
           "type": "string",
           "format": "uri"
         },
-        "language": { "$ref": "#/definitions/language" },
-        "license": { "$ref": "#/definitions/license" },
-        "provider": {
-          "description": "The provider of the resource. This can be a DOI registration agency or a repository.",
-          "type": "string",
-          "enum": [
-            "Crossref",
-            "DataCite",
-            "GitHub",
-            "JaLC",
-            "KISTI",
-            "mEDRA",
-            "OP",
-            "OpenAlex",
-            "Other"
-          ]
+        "language": {
+          "$ref": "#/definitions/language"
         },
-        "publisher": { "$ref": "#/definitions/organization" },
+        "license": {
+          "$ref": "#/definitions/license"
+        },
+        "provider": {
+          "$ref": "#/definitions/provider"
+        },
+        "publisher": {
+          "$ref": "#/definitions/organization"
+        },
         "references": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
-              "id": { "$ref": "#/definitions/id" },
-              "type": { "$ref": "#/definitions/type" },
-              "key": { "type": "string" },
-              "title": { "description": "The reference formatted as string.", "type": "string" }
+              "key": {
+                "type": "string"
+              },
+              "id": {
+                "$ref": "#/definitions/id"
+              },
+              "type": {
+                "$ref": "#/definitions/type"
+              },
+              "reference": {
+                "description": "The reference formatted as string.",
+                "type": "string"
+              },
+              "title": {
+                "description": "The title of the referenced article.",
+                "type": "string"
+              },
+              "asserted_by": {
+                "$ref": "#/definitions/provider"
+              }
             }
           }
         },
@@ -295,7 +425,9 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": { "$ref": "#/definitions/id" },
+              "id": {
+                "$ref": "#/definitions/id"
+              },
               "type": {
                 "type": "string",
                 "enum": [
@@ -320,9 +452,15 @@
                   "IsSupplementedBy",
                   "Other"
                 ]
+              },
+              "asserted_by": {
+                "$ref": "#/definitions/provider"
               }
             },
-            "required": ["id", "type"]
+            "required": [
+              "id",
+              "type"
+            ]
           },
           "minItems": 1
         },
@@ -336,11 +474,19 @@
           "items": {
             "type": "object",
             "properties": {
-              "id": { "$ref": "#/definitions/id" },
-              "subject": { "type": "string" },
-              "language": { "$ref": "#/definitions/language" }
+              "id": {
+                "$ref": "#/definitions/id"
+              },
+              "subject": {
+                "type": "string"
+              },
+              "language": {
+                "$ref": "#/definitions/language"
+              }
             },
-            "required": ["subject"]
+            "required": [
+              "subject"
+            ]
           }
         },
         "title": {
@@ -357,29 +503,54 @@
           "type": "string"
         }
       },
-      "required": ["id", "type"]
+      "required": [
+        "id",
+        "type"
+      ]
     },
     "contributor": {
       "type": "object",
       "properties": {
-        "type": { "type": "string", "enum": ["Person", "Organization"] },
-        "person": { "$ref": "#/definitions/person" },
-        "organization": { "$ref": "#/definitions/organization" },
+        "type": {
+          "type": "string",
+          "enum": [
+            "Person",
+            "Organization"
+          ]
+        },
+        "person": {
+          "$ref": "#/definitions/person"
+        },
+        "organization": {
+          "$ref": "#/definitions/organization"
+        },
         "roles": {
           "description": "List of roles assumed by the contributor when working on the resource.",
           "type": "array",
-          "items": { "$ref": "#/definitions/contributor_role" }
+          "items": {
+            "$ref": "#/definitions/contributor_role"
+          }
         }
       },
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "if": {
-        "properties": { "type": { "const": "Person" } }
+        "properties": {
+          "type": {
+            "const": "Person"
+          }
+        }
       },
       "then": {
-        "required": ["person"]
+        "required": [
+          "person"
+        ]
       },
       "else": {
-        "required": ["organization"]
+        "required": [
+          "organization"
+        ]
       }
     },
     "contributor_role": {
@@ -441,28 +612,48 @@
       "type": "string",
       "format": "uri"
     },
-    "identifier_type": {
-      "description": "The type of the identifier.",
-      "type": "string",
-      "enum": [
-        "ARK",
-        "arXiv",
-        "Bibcode",
-        "DOI",
-        "Handle",
-        "ISBN",
-        "ISSN",
-        "OpenAlex",
-        "PMID",
-        "PMCID",
-        "PURL",
-        "RAiD",
-        "SWHID",
-        "URL",
-        "URN",
-        "UUID",
-        "GUID",
-        "Other"
+    "identifier": {
+      "description": "An identifier for the resource.",
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string"
+        },
+        "identifier_type": {
+          "type": "string",
+          "enum": [
+            "ARK",
+            "arXiv",
+            "article_id",
+            "Bibcode",
+            "DOI",
+            "Handle",
+            "ISBN",
+            "ISSN",
+            "OpenAlex",
+            "PMID",
+            "PMCID",
+            "PURL",
+            "RAiD",
+            "SWHID",
+            "URL",
+            "URN",
+            "UUID",
+            "GUID",
+            "Other"
+          ]
+        },
+        "scheme": {
+          "description": "The scheme for identifiers with identifier_type 'Other', e.g. 'IGSN' or 'MGDS'.",
+          "type": "string"
+        },
+        "asserted_by": {
+          "$ref": "#/definitions/provider"
+        }
+      },
+      "required": [
+        "identifier",
+        "identifier_type"
       ]
     },
     "language": {
@@ -478,9 +669,19 @@
       "description": "The license for the resource. Use one of the SPDX license identifiers.",
       "type": "object",
       "properties": {
-        "id": { "type": "string" },
-        "title": { "type": "string" },
-        "url": { "type": "string", "format": "uri" }
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "asserted_by": {
+          "$ref": "#/definitions/provider"
+        }
       }
     },
     "longitude": {
@@ -491,22 +692,44 @@
     "organization": {
       "type": "object",
       "properties": {
-        "id": { "$ref": "#/definitions/ror_id" },
+        "id": {
+          "description": "ROR identifier URL.",
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
+        },
         "name": {
           "description": "The name of the organization.",
           "type": "string"
+        },
+        "asserted_by": {
+          "$ref": "#/definitions/provider"
         }
       },
-      "required": ["name"]
+      "anyOf": [
+        {
+          "required": [
+            "name"
+          ]
+        },
+        {
+          "required": [
+            "id"
+          ]
+        }
+      ]
     },
     "person": {
       "type": "object",
       "properties": {
-        "id": { 
+        "id": {
           "description": "ORCID identifier URL.",
-          "type": "string", 
-          "format": "uri" , 
-          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$"
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://orcid\\.org/\\d{4}-\\d{4}-\\d{4}-\\d{3}[0-9X]$",
+          "asserted_by": {
+            "$ref": "#/definitions/provider"
+          }
         },
         "given_name": {
           "description": "The given name of the person.",
@@ -519,19 +742,47 @@
         "affiliations": {
           "description": "The affiliations of the person.",
           "type": "array",
-          "items": { "$ref": "#/definitions/organization" }
+          "items": {
+            "$ref": "#/definitions/organization"
+          }
         }
       },
       "anyOf": [
-        { "required": ["given_name"] },
-        { "required": ["family_name"] }
+        {
+          "required": [
+            "given_name"
+          ]
+        },
+        {
+          "required": [
+            "family_name"
+          ]
+        }
       ]
     },
-    "ror_id": {
-      "description": "ROR identifier URL.",
+    "provider": {
+      "description": "The provider of the resource or the assertion. This can be a DOI registration agency, a repository, or any other entity asserting the information.",
       "type": "string",
-      "format": "uri",
-      "pattern": "^https://ror\\.org/[0-9a-z]{9}$"
+      "enum": [
+        "Crossref",
+        "DataCite",
+        "Airiti",
+        "CNKI",
+        "JaLC",
+        "KISTI",
+        "mEDRA",
+        "OP",
+        "Author",
+        "Commonmeta",
+        "GitHub",
+        "OpenAIRE",
+        "OpenAlex",
+        "ORCID",
+        "Publisher",
+        "PubMed",
+        "ROR",
+        "Other"
+      ]
     },
     "type": {
       "type": "string",
@@ -541,42 +792,57 @@
         "Blog",
         "BlogPost",
         "BlogVolume",
+        "Book",
         "BookChapter",
         "BookPart",
         "BookSection",
         "BookSeries",
         "BookSet",
-        "Book",
         "Collection",
         "Component",
+        "ComputationalNotebook",
         "Database",
         "Dataset",
         "Dissertation",
         "Document",
         "Entry",
         "Event",
+        "Figure",
         "Grant",
         "Image",
         "Instrument",
         "InteractiveResource",
+        "Journal",
         "JournalArticle",
         "JournalIssue",
         "JournalVolume",
-        "Journal",
+        "LegalDocument",
+        "Manuscript",
+        "Map",
+        "Model",
+        "OutputManagementPlan",
+        "Patent",
         "PeerReview",
+        "Performance",
+        "PersonalCommunication",
         "PhysicalObject",
+        "Post",
         "Poster",
         "Presentation",
+        "Proceedings",
         "ProceedingsArticle",
         "ProceedingsSeries",
-        "Proceedings",
+        "Report",
         "ReportComponent",
         "ReportSeries",
-        "Report",
+        "Review",
+        "Service",
         "Software",
+        "Sound",
         "Standard",
         "StudyRegistration",
         "WebPage",
+        "Workflow",
         "Other"
       ]
     }

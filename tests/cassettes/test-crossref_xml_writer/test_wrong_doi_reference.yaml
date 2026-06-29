@@ -5,82 +5,110 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/posts/10.59350/sjrdz-3cm71
   response:
     body:
-      string: !!binary |
-        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
-        ZT//y/8OAHxmx/voLgAA
+      string: '{"authors":[{"affiliation":[{"id":"https://ror.org/041kmwe10","name":"Imperial
+        College London"}],"contributor_roles":[],"family":"Rzepa","given":"Henry","url":"https://orcid.org/0000-0002-8635-8390"}],"blog":{"authors":[{"name":"Henry
+        Rzepa","url":"https://orcid.org/0000-0002-8635-8390"}],"community_id":"8fb94c86-e95f-41cf-aac2-a2877ffc1b5f","created":1693094400,"current_feed_url":null,"description":"Chemistry
+        with a twist","favicon":"https://rogue-scholar.org/api/communities/8fb94c86-e95f-41cf-aac2-a2877ffc1b5f/logo","feed_format":"application/atom+xml","feed_url":"https://www.ch.ic.ac.uk/rzepa/blog/?feed=atom","filter":null,"generator":"WordPress","home_page_url":"https://www.ch.ic.ac.uk/rzepa/blog","issn":null,"language":"eng","license":"https://creativecommons.org/licenses/by/4.0/legalcode","prefix":"10.59350","relative_url":null,"secure":true,"slug":"rzepa","status":"active","subfield":"1606","title":"Henry
+        Rzepa''s Blog","updated":1781945556,"use_api":true},"blog_name":"Henry Rzepa''s
+        Blog","blog_slug":"rzepa","content_html":"<div class=\"kcite-section\" kcite-section-id=\"27944\">\n<p>In
+        exploring one-electron carbon-carbon bonds, I had noted previously<span id=\"cite_ITEM-27944-0\"
+        name=\"citation\"><a href=\"#ITEM-27944-0\">[1]</a></span> that both hexafluoroethane
+        and ethane itself could each lose an electron to produce such species. A discussion
+        developed in which a molecule isoelectronic with ethane radical cation, namely
+        the methyl-\u03bb1-borane radical (H<sub>3</sub>B-CH<sub>3</sub>) was <a href=\"https://www.ch.ic.ac.uk/rzepa/blog/?p=27870&amp;cpage=1#comment-813906\"
+        target=\"_blank\" rel=\"noopener\">proposed by Jacob</a>. The optimised structure
+        at the \u03c9B97XD/6-31G(d) level exhibited a B-C bond length of 1.57\u00c5,
+        with two of the B-H hydrogens forming a a 3c-3e bond with boron and so a one-electron
+        B-C bond was discounted. Here I take a closer look at this system.</p>\n<p><!--more--></p>\n<p>At
+        the \u03c9B97XD/Def2-TZVPP level, I located an alternative structure with
+        a longer B-C bond of 1.737\u00c5<span id=\"cite_ITEM-27944-1\" name=\"citation\"><a
+        href=\"#ITEM-27944-1\">[2]</a></span> and an &#8220;agostic&#8221; like interaction
+        between C and one B-H bond.</p>\n<p><img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27947\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BCH3.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>The electron density difference maps between
+        methyl-\u03bb1-borane and its mono cation is shown below and following it
+        the density difference map between the corresponding anion and methyl-\u03bb1-borane
+        radical. These are very similar to the maps obtained previously for hexafluoroethand
+        and ethane \u00a0and support the hypothesis that the differences between the
+        two-electron/zero-electron species and the one-electron radical originates
+        at least in part in the B-C bond.</p>\n<p><img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27948\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_sub.cub_.jpg\"
+        alt=\"\" width=\"500\" /><br />\n<img decoding=\"async\" class=\"aligncenter
+        size-full wp-image-27949\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_anion-sub.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>A contour map of the negative region of
+        the electron density Laplacian (-0.04 au) again shows that it lies along the
+        B-C bond, suggesting covalency. Note the -ve Laplacian in the region of the
+        agostic interaction! The NCI (non-covalent-interaction) plot is featureless.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27950\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_lap.png\"
+        alt=\"\" width=\"500\" /></p>\n<p>The computed methyl-\u03bb1-borane radical
+        has a B-C stretching vibration corresponding to 494 cm<sup>-1</sup>, a Wiberg
+        bond order of 0.660 and Wiberg bond index totals of 3.51 for carbon and 3.28
+        for boron. These can all be reasonably interpreted as a one-electron &#8220;half&#8221;
+        bond between C and B. With a computed bond length of 1.737\u00c5, it represents
+        the shortest &#8220;one electron&#8221; bond thus far identified, and hence
+        extends the length range of such bonds to around 1.16\u00c5.</p>\n<hr />\n<p><b>Postscript
+        1</b><br />\nI also looked at the radical anion of H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        which is isoelectronic to methyl-\u03bb1-borane, revealing r<sub>B-B</sub>
+        2.124\u00c5 and has a classic &#8220;ethane&#8221; D<sub>3d</sub> like structure.
+        The electron density difference map between H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        and the neutral H<sub>3</sub>B-BH<sub>3</sub> is shown below, revealing in
+        a considerable reorganisation of the electron density, only one aspect being
+        the B-B region and different from the reorganisation of the radical cation
+        of ethane itself. This reveals that simply talking about a two-atom region
+        for this sort of system is very simplistic and misleading. The Wiberg B-B
+        bond index is 0.383 and the B-B stretching vibration is 384 cm<sup>-1</sup>.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27975\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3-neutral.png\"
+        alt=\"\" width=\"500\" /></p>\n<p>The electron density Laplacian of H<sub>3</sub>B-BH<sub>3</sub><sup>&#8211;</sup>
+        contoured for a -ve value of -0.04 au, again implying a covalent B-B bond.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27973\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3_lap.png\"
+        alt=\"\" width=\"500\" /></p>\n<p><b>Postscript 2</b></p>\n<p>Here I add hexamethylethane
+        radical cation to the list. Firstly the density difference map. Note the longer
+        C-C bond (2.31\u00c5) than for ethane radical cation (1.933\u00c5). In this
+        sense, the hexamethyl radical cation has a weaker C-C bond than does the unsubstituted
+        version (191 cm<sup>-1</sup>) vs 477 cm<sup>-1</sup>)</p>\n<p><img decoding=\"async\"
+        class=\"aligncenter size-full wp-image-27993\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den_sub.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>The Laplacian shows no -ve value in the
+        C-C region (isosurface value -0.01), again placing it in the weak bond category.</p>\n<p><img
+        decoding=\"async\" class=\"aligncenter size-full wp-image-27994\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_lap_0.01.png\"
+        alt=\"\" width=\"500\" /></p>\n<p>Finally some NCI plots. Here the density
+        cut-off threshold is crucial. Typically a second period element covalent density
+        is taken as 0.05 au, and this is removed from the NCI analysis. The feature
+        seen along the C-C bond at this level is typical of weak covalent interactions
+        however.</p>\n<p><img decoding=\"async\" class=\"aligncenter size-full wp-image-27996\"
+        src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.05.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>Reducing the density to 0.023 (typical of
+        density in which one atom is of the third period, ie Si) removes the central
+        C-C feature, leaving only NCI effects between the hydrogen atoms of the methyl
+        groups. These in fact form a continuous weakly stabilizing surface between
+        the two halves.</p>\n<p><img decoding=\"async\" class=\"aligncenter size-full
+        wp-image-28019\" src=\"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.023.jpg\"
+        alt=\"\" width=\"500\" /></p>\n<p>So with hexamethylethane radical cation,
+        we get messages that the interaction between the two carbons is both weak,
+        but also not a non-covalent interaction. So this is a very weak covalent bond
+        perhaps, but in this strange region, it is difficult to ascribe a single description
+        to it.</p>\n<h2>References</h2>\n    <ol class=\"kcite-bibliography csl-bib-body\"><li
+        id=\"ITEM-27944-0\"><a href=\"https://doi.org/\">https://doi.org/</a>\n\n</li>\n<li
+        id=\"ITEM-27944-1\">H. Rzepa, \"A one-electron bond in methyl-\u03bb1-borane.\",
+        2024. <a href=\"https://doi.org/10.14469/hpc/14662\">https://doi.org/10.14469/hpc/14662</a>\n\n</li>\n</ol>\n\n</div>
+        <!-- kcite-section 27944 -->","doi":"https://doi.org/10.59350/sjrdz-3cm71","guid":"https://www.ch.ic.ac.uk/rzepa/blog/?p=27944","images":[{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BCH3.jpg","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_sub.cub_.jpg","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_anion-sub.jpg","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3CBH3_lap.png","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3-neutral.png","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/H3BBH3_lap.png","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den_sub.jpg","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_lap_0.01.png","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.05.jpg","width":"500"},{"src":"https://www.ch.ic.ac.uk/rzepa/blog/wp-content/uploads/2024/10/HME_den.cub-0.023.jpg","width":"500"}],"language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","published_at":1728432000,"reference":[{"unstructured":"H.
+        Rzepa, \"A one-electron bond in methyl-\u03bb1-borane.\", 2024."}],"rid":"nz4pe-q7x23","summary":"In
+        exploring one-electron carbon-carbon bonds, I had noted previously that both
+        hexafluoroethane and ethane itself could each lose an electron to produce
+        such species. A discussion developed in which a molecule isoelectronic with
+        ethane radical cation, namely the methyl-\u03bb1-borane radical (H3B-CH3)
+        was proposed by Jacob.","tags":["Interesting Chemistry"],"title":"A one-electron
+        bond in methyl-\u03bb1-borane.","updated_at":1773704229,"url":"https://www.ch.ic.ac.uk/rzepa/blog/?p=27944","version":"v1"}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -91,74 +119,13 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:49 GMT
+      - Mon, 29 Jun 2026 18:13:10 GMT
       Server:
       - gunicorn
-      Vary:
-      - Accept-Encoding
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540121'
-      CF-RAY:
-      - a09fbbca7dcb3a11-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:54:17 GMT
-      Server:
-      - cloudflare
       Transfer-Encoding:
       - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=tepFcPt09SydGry3f52lqdiRTJTft112vgdAyhncVSA-1781171657.3602934-1.0.1.1-qskN.sq2FlmueNXIaztkdBQap.wnXZ7EafcJxZOzkA_R4HIyNDQqzB2BF5xplfE87mKBInzDJQsiyJhA3qvpf88VPDOLaHTF.RGsAtSsFliOKKImAs6THKwya3hmzw53;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:24:17 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
+      Vary:
       - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

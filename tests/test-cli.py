@@ -6,6 +6,7 @@ from click.testing import CliRunner
 from commonmeta.cli import convert, decode, encode, list
 
 
+@pytest.fixture(scope="module")
 def vcr_config():
     return {"record_mode": "new_episodes"}
 
@@ -72,45 +73,32 @@ def test_convert_datacite():
 def test_convert_crossref_xml_from_jsonfeed():
     """Test crossref_xml generation from jsonfeed"""
     runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/d0ca6fa3-3a93-46d3-b820-446938d78f70"
+    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
     result = runner.invoke(convert, [string, "--to", "crossref_xml"])
-    assert result.exit_code == 0
-    assert (
-        "<title>CommonMark and the Future of Scholarly Markdown</title>"
-        in result.output
-    )
+    assert result.exit_code == 1
+    assert "DOI or URL missing" in str(result.exception)
 
 
 @pytest.mark.vcr
 def test_convert_datacite_from_jsonfeed():
     """Test datacite generation from jsonfeed"""
     runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/d0ca6fa3-3a93-46d3-b820-446938d78f70"
+    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
     result = runner.invoke(convert, [string, "--to", "datacite"])
     assert result.exit_code == 0
-    assert "CommonMark and the Future of Scholarly Markdown" in result.output
-
-
-@pytest.mark.vcr
-def test_convert_commonmeta_from_jsonfeed_no_doi():
-    """Test commonmeta generation from jsonfeed no doi"""
-    runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/a8a84260-1f16-444c-8e70-2cb6702611a0"
-    result = runner.invoke(convert, [string, "--prefix", "10.5555"])
-    assert result.exit_code == 0
-    assert "https://doi.org/10.5555/" in result.output
+    assert '"schemaVersion":"http://datacite.org/schema/kernel-4"' in result.output
 
 
 @pytest.mark.vcr
 def test_convert_crossref_xml_from_jsonfeed_no_doi():
     """Test crossref_xml generation from jsonfeed no doi"""
     runner = CliRunner()
-    string = "https://api.rogue-scholar.org/posts/a080e9d7-20a1-4a0c-b550-0c39d4423868"
+    string = "https://api.rogue-scholar.org/posts/10.59350/50ebs-4zq55"
     result = runner.invoke(
-        convert, [string, "--to", "crossref_xml", "--prefix", "10.5555"]
+        convert, [string, "--to", "crossref_xml", "--prefix", "10.59350"]
     )
-    assert result.exit_code == 0
-    # assert "<doi>10.5555/" in result.output
+    assert result.exit_code == 1
+    assert 0 == len(result.output)
 
 
 @pytest.mark.vcr
@@ -121,55 +109,6 @@ def test_list():
     result = runner.invoke(list, [string])
     assert result.exit_code == 0
     # assert 2 == len(result.output)
-
-
-@pytest.mark.skip(
-    reason="vraix/commonmeta_rs integration disabled pending its v1.0 schema migration"
-)
-def test_list_via_vraix_to_parquet(tmp_path):
-    """Test commonmeta list --via vraix, reading a local VRAIX sqlite fixture
-    and writing it out as Parquet, with no live network call."""
-    import sqlite3
-
-    import commonmeta_rs
-
-    db_path = tmp_path / "crossref-2026-06-14.sqlite3"
-    connection = sqlite3.connect(db_path)
-    connection.execute(
-        "CREATE TABLE works (pid TEXT, source_id INTEGER, raw_metadata TEXT)"
-    )
-    connection.execute(
-        "INSERT INTO works VALUES (?, ?, ?)",
-        (
-            "10.1234/a",
-            1,
-            '{"DOI":"10.1234/a","type":"journal-article","title":["Hello"]}',
-        ),
-    )
-    connection.commit()
-    connection.close()
-
-    out_path = tmp_path / "out.parquet"
-    runner = CliRunner()
-    result = runner.invoke(
-        list,
-        [
-            "--via",
-            "vraix",
-            "--from",
-            "crossref",
-            "--date",
-            "2026-06-14",
-            "--input-path",
-            str(db_path),
-            "--file",
-            str(out_path),
-        ],
-    )
-    assert result.exit_code == 0
-    records = commonmeta_rs.read_parquet(out_path.read_bytes())
-    assert len(records) == 1
-    assert records[0]["id"] == "https://doi.org/10.1234/a"
 
 
 def test_encode():

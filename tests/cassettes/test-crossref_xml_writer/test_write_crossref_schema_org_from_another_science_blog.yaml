@@ -5,108 +5,197 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://donnywinston.com/posts/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services/
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA1xQTU8cMQz9K2mubBhxQ6vJCipA2htqK3HoyZt4J6kSOySeBQT9781MV0LiEsXv
-        w372+M2zk7eCKkhOu3F5VQKaLJKZWwcQ/G7MKKBcgNpQ7CxHc33Ggkgx+DzHk301MxjHuYDEQ0Ll
-        mARJrN7fW/QTblyonNFe6bOXoFeniC+Fq3zKX6KXYD2eokOzFptIUSIk0xykrw2OXDOI8SjoJDJ9
-        NhJMWAITWuJukSgJd/tcEubOR5qUBFQPt/sf6rFGcrEzTf3qKecprLi5JzikRXlbJR7BSVNAXv3E
-        uqRr6kPdMdGbeorUhGkc/g8Zm6uxiFoOa6GUFB0s2YbkL/40pt27vlljvore9v+JHRz0Vi/XbNth
-        aC5ghkuu06A32jvBmtuZ73SZa1pJ74aVGvTfjb5ZpnXR98TTI7dlwW6GWQJXvf39fhb8AwAA///s
-        XOty20aW/u+nQHFrU0mtAfb94rWUcRQn8tiOndjjqd0klQIBUIRFEjQA6lbrqn2IfcJ9kv1OAyRB
-        RY6VzKQqqZVkS+BB9+lz/c5pNOwHo5dFDRlwj+yHz3sqgFwu0pMiyNVPeEKEF5O3MDBuY/GBqOfn
-        58lJnZ6lbVon8P64uxzbae4zroTmjnllRKGnPisKZlk2dY7nnzcHQrNP6oOLT/KDxQp8g6tHD0C9
-        P5oV5cmsDR/eX18xJ3HPO2lpRZI4J4dOy6IejKvqrMyDmRi+YvwVsVNCxcwwhUkNtH8Eq36/ndGe
-        ly3sGdQYroLBQ3UREKdFXobFx+Vyb+h49OP7H++PVmuETTMjeXZmfFGfpMvyKkTCzvovq/nlEhEZ
-        PXt2dKN1V/2A5OLyCgPg3eq2zhlOHZeIuCb8jL258CZZhQDpzW4GVjfs/Xv6lOZQtVvjn5g016T8
-        YfzDz1z6AyRv2uaHcTlYOMbC8TQt63i1XRi0sHBHL/qF43SzcIyF46Zf+IeQTGlbvOy9k0MIwYSI
-        OYsFj7h8INQDZaKYKca6n/2M51VO4XW7CafF5XlV5xRaCIW/lPle8JYhJDlLtGXejzmf6ctWOu53
-        IfHPNneRrzv8SefPirOCbP9FcVIul4hP6Fd0aEVR+WB0XJ1HeYU10ui7oinSOptFr6ppe57WRfR4
-        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
+      string: "<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible
+        content=\"IE=edge,chrome=1\"><meta name=viewport content=\"width=device-width,initial-scale=1\"><meta
+        name=format-detection content=\"telephone=no\"><title>Implementing the FAIR
+        Principles Through FAIR-Enabling Artifacts and Services | Donny Winston</title><script
+        type=application/ld+json>{\"@context\":{\"@vocab\":\"https://schema.org/\",\"dcterms\":\"http://purl.org/dc/terms/\"},\"@type\":\"BlogPosting\",\"author\":[{\"@type\":\"Person\",\"name\":\"Donny
+        Winston\",\"image\":{\"@type\":\"ImageObject\",\"url\":\"https://www.gravatar.com/avatar/7fd9c14251809462e5f9cee070cf881d?s=250&r=x&d=mp\",\"width\":250,\"height\":250},\"url\":\"https://donnywinston.com\",\"identifier\":\"https://orcid.org/0000-0002-8424-0604\",\"sameAs\":[\"https://twitter.com/donnywinston\",\"https://www.linkedin.com/in/donnywinston/\"]}],\"publisher\":{\"@type\":\"Organization\",\"name\":\"Polyneme
+        LLC\",\"url\":\"https://www.polyneme.xyz\",\"logo\":{\"@type\":\"ImageObject\",\"url\":\"https://polyneme.xyz/icons/icon-96x96.png\",\"width\":60,\"height\":60}},\"headline\":\"Implementing
+        the FAIR Principles Through FAIR-Enabling Artifacts and Services\",\"url\":\"https:\\/\\/donnywinston.com\\/posts\\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services\\/\",\"datePublished\":\"2022-10-21
+        13:24:46 -0400 -0400\",\"dateModified\":\"2022-10-21 13:24:46 -0400 -0400\",\"keywords\":[],\"@id\":\"https://doi.org/10.57099/11h5yt3819\",\"name\":\"Implementing
+        the FAIR Principles Through FAIR-Enabling Artifacts and Services\",\"educationalLevel\":\"Beginner\",\"description\":\"How
+        does a Research Software Engineer (RSE) \u2014 often responsible for developing
+        infrastructure to manage and share digital research objects (data, models,
+        code, notebooks, workflows, etc.\",\"competencyRequired\":[],\"teaches\":[],\"abstract\":\"How
+        does a Research Software Engineer (RSE) \u2014 often responsible for developing
+        infrastructure to manage and share digital research objects (data, models,
+        code, notebooks, workflows, etc.\",\"about\":[{\"@type\":\"DefinedTerm\",\"@id\":\"http://edamontology.org/data_3669\",\"inDefinedTermSet\":\"http://edamontology.org\",\"termCode\":\"data_3670\",\"name\":\"Training
+        material\",\"url\":\"http://edamontology.org/data_3669\"},{\"@type\":\"DefinedTerm\",\"@id\":\"http://edamontology.org/topic_0605\",\"inDefinedTermSet\":\"http://edamontology.org\",\"termCode\":\"topic_0605\",\"name\":\"Informatics\",\"alternate_name\":[\"Information
+        science\",\"Knowledge management\",\"Information management\"],\"description\":\"The
+        study and practice of information processing and use of computer information
+        systems.\",\"url\":\"http://edamontology.org/data_3669\"}],\"audience\":{\"@type\":\"Audience\",\"audienceType\":\"People
+        interested in publishing their research output\"},\"identifier\":\"https://n2t.net/ark:57802/dw0/blog/\\/posts\\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services\\/\",\"inLanguage\":[\"en-US\"],\"learningResourceType\":[\"blogpost\"],\"license\":[\"https://creativecommons.org/licenses/by/4.0/\"],\"timeRequired\":\"PT10M\",\"creativeWorkStatus\":\"Active\",\"dateCreated\":\"2022-10-21
+        13:24:46 -0400 -0400\",\"version\":\"1\"}</script><link rel=apple-touch-icon
+        sizes=180x180 href=https://files.polyneme.xyz/polyneme-logo-sq-AdH548JPkxW0qf3M5NVTVLt5qdVKFN28AKKvS35A2ndmDMQ0baH90H5APJvIITO2UkFht8rLzZGQTxob8DCqG3KqnsEOczShPKoT.png><link
+        rel=icon type=image/png sizes=32x32 href=https://files.polyneme.xyz/polyneme-logo-sq-AdH548JPkxW0qf3M5NVTVLt5qdVKFN28AKKvS35A2ndmDMQ0baH90H5APJvIITO2UkFht8rLzZGQTxob8DCqG3KqnsEOczShPKoT.png><link
+        rel=icon type=image/png sizes=16x16 href=https://files.polyneme.xyz/polyneme-logo-sq-AdH548JPkxW0qf3M5NVTVLt5qdVKFN28AKKvS35A2ndmDMQ0baH90H5APJvIITO2UkFht8rLzZGQTxob8DCqG3KqnsEOczShPKoT.png><link
+        rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg
+        color=#ff3db4><meta name=theme-color content=\"#ffffff\"><link rel=me href=https://fairpoints.social/@donny><link
+        rel=stylesheet href=https://donnywinston.com/css/main.min.b9c692d7b890e6a24e0280548d2a8519d6f71fa047a6c9fac701d2de45896323.css><link
+        rel=stylesheet href=https://donnywinston.com/css/custom.min.817b30e0146652a7e9e48e1ca44f82117b0e69dca0b10ac258150d1c6f325fcd.css></head><body><nav><header><div
+        class=site-title><a href=/>Donny Winston</a></div></header><div class=nav-menu><a
+        class=\"color-link nav-link\" href=/about/>About</a>\n<a class=\"color-link
+        nav-link\" href=/consulting/>Consulting</a>\n<a class=\"color-link nav-link\"
+        href=/archives/>Archives</a>\n<a class=\"color-link nav-link\" href=/feed.xml>Feed</a></div><footer
+        class=footer><div class=social-icons><a class=social-icon href=https://orcid.org/0000-0002-8424-0604
+        target=_blank rel=noopener title=Orcid><svg width=\"28\" height=\"28\" viewBox=\"0
+        0 28 28\" fill=\"#ababab\" xmlns=\"https://www.w3.org/2000/svg\" xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path
+        d=\"M27 14c0 7.1804687-5.8195313 13-13 13C6.81953125 27 1 21.1804687 1 14
+        1 6.81953125 6.81953125 1 14 1c7.1804687.0 13 5.81953125 13 13zM9.76484375
+        19.9109375V13.9492188 9.03359375H8.20078125V19.9109375h1.5640625zM12.0601563
+        9.03359375V19.9210938h4.2453125c3.5851562.0 5.76875-2.6507813 5.76875-5.4437501.0-2.5695312-1.7671875-5.44374995-5.7890625-5.44374995h-4.225zM13.6242188
+        18.509375V10.4453125H16.03125c3.046875.0 4.4382813 1.8484375 4.4382813 4.0320312.0
+        1.3406251-.8125 4.0320313-4.3570313 4.0320313H13.6242188zM10.0085938 6.76875c0-.55859375-.457031300000001-1.02578125-1.0257813-1.02578125S7.95703125
+        6.2 7.95703125 6.76875c0 .55859375.45703125 1.02578125 1.02578125 1.02578125S10.0085938
+        7.32734375 10.0085938 6.76875z\"/></svg></a><a class=social-icon href=https://fairpoints.social/@donny
+        target=_blank rel=\"noopener rel\" title=Mastodon><svg xmlns=\"http://www.w3.org/2000/svg\"
+        width=\"28\" height=\"28\" viewBox=\"0 0 418 512\" fill=\"currentcolor\" stroke=\"currentcolor\"
+        stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path
+        d=\"M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48.0.0.0-63.72
+        28.5-63.72 125.7.0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33
+        11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54
+        102.54.0 01-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9
+        9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9
+        18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8
+        103.83-6.1 23.71 27.3 18.4 53 18.4 175z\"/></svg></a><a class=social-icon
+        href=https://www.linkedin.com/in/donnywinston/ target=_blank rel=noopener
+        title=LinkedIn><svg width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"#ababab\"
+        xmlns=\"https://www.w3.org/2000/svg\" xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path
+        d=\"M2 3.654102c0-.95502059.79442509-1.73012354 1.77383592-1.73012354H24.2261641C25.2058917
+        1.92397846 26 2.69908141 26 3.654102V24.3462148C26 25.3015521 25.2058917 26.0760215
+        24.2261641 26.0760215H3.77383592C2.79442509 26.0760215 2 25.3015521 2 24.3465315V3.65378524
+        3.654102zM9.27526132 22.1415901V11.2356668H5.65030092V22.1415901H9.27557808
+        9.27526132zM7.46341463 9.74691162c1.2638581.0 2.05068103-.83750395 2.05068103-1.88406715C9.49033893
+        6.79252455 8.72727273 5.97846056 7.48748812 5.97846056c-1.24073487.0-2.05099778.81406399-2.05099778
+        1.88438391.0 1.0465632.78650618 1.88406715 2.00316756 1.88406715h.02343998H7.46341463zM11.2815965
+        22.1415901h3.6246436v-6.089642C14.9062401 15.7263225 14.9299968 15.4000634
+        15.0256573 15.1675641c.261957499999999-.6515679.8584099-1.3259423 1.8599936-1.3259423
+        1.3113716.0 1.836237 1 1.836237 2.4662654v5.8337029h3.6246436V15.8885017c0-3.349699-1.7880899-4.9084574-4.172949-4.9084574-1.9553373.0-2.814064
+        1.0928097-3.2910991 1.8371872H14.9065569v-1.581248H11.2819132C11.3291099 12.2591067
+        11.2815965 22.1419069 11.2815965 22.1419069V22.1415901z\"/></svg></a><a class=social-icon
+        href=https://github.com/dwinston/ target=_blank rel=noopener title=GitHub><svg
+        width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"#ababab\" xmlns=\"https://www.w3.org/2000/svg\"
+        xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path d=\"M13.9988029 1.32087331C6.82105037
+        1.32087331 1 7.14112562 1 14.3212723c0 5.7436386 3.72454649 10.6157955 8.89038951
+        12.3348169C10.5408085 26.7757983 10.7778323 26.374374 10.7778323 26.0296121
+        10.7778323 25.7215609 10.7666595 24.9035493 10.760275 23.8189856 7.14426471
+        24.6042767 6.38131925 22.0760223 6.38131925 22.0760223c-.59136253-1.5019491-1.44369072-1.9017772-1.44369072-1.9017772C3.75729765
+        19.3682044 5.02701126 19.3841656 5.02701126 19.3841656 6.33183953 19.4759425
+        7.01817121 20.7241085 7.01817121 20.7241085c1.15958133 1.9863716 3.04300319
+        1.4125664 3.78360289 1.0797753.1181129-.8395592.4540962-1.4125663.8251942-1.7373768C8.74038491
+        19.7385043 5.70536235 18.6228163 5.70536235 13.6413251c0-1.4189508.50676816-2.5801283
+        1.33834679-3.4883207C6.90963504 9.82420367 6.46351945 8.50181809 7.17139875
+        6.71256734c0 0 1.09094816-.34955032 3.57451115 1.33276037C11.78259 7.75642995
+        12.8950858 7.61277914 14.000399 7.60719272 15.1049142 7.61277914 16.2166119
+        7.75642995 17.2548881 8.04532771c2.4819669-1.68231069 3.571319-1.33276037
+        3.571319-1.33276037C21.5356825 8.50181809 21.0895669 9.82420367 20.9562909
+        10.1530044 21.7894656 11.0611968 22.2922435 12.2223743 22.2922435 13.6413251c0
+        4.9942601-3.039811 6.0931889-5.935173 6.4148071.4660671.401424200000001.8818564
+        1.194696.8818564 2.4077473C17.2389269 24.2012564 17.2229657 25.603448 17.2229657
+        26.0296121 17.2229657 26.3775663 17.4575954 26.7821827 18.116793 26.6552912
+        23.2786458 24.9322794 27 20.0633148 27 14.3212723 27 7.14112562 21.1789496
+        1.32087331 13.9988029 1.32087331\"/></svg></a></div><div class=hugo-attrib><p><a
+        href=https://github.com/kimcc/hugo-theme-noteworthy target=_blank rel=noopener>Noteworthy
+        theme</a></p><p><a href=https://gohugo.io target=_blank rel=noopener>Built
+        with Hugo</a></p></div><script src=https://donnywinston.com/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js
+        integrity=\"sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=\" crossorigin=anonymous></script></footer></nav><div
+        id=content class=content-container><h1 class=post-title>Implementing the FAIR
+        Principles Through FAIR-Enabling Artifacts and Services</h1><time>October
+        21, 2022</time><div><p><p>How does a <a href=https://researchsoftware.org/>Research
+        Software Engineer (RSE)</a> \u2014 often\nresponsible for developing infrastructure
+        to manage and share digital research objects (data,\nmodels, code, notebooks,
+        workflows, etc.) \u2014 get from &ldquo;Yes, FAIR sounds great, but how?&rdquo;
+        to &ldquo;I better\nunderstand what the FAIR principles really mean and how
+        I can put them into practice.&rdquo;? I hope the\ndiagram below can help.</p><figure><a
+        href=/fair-enabling-resources-services-principles-diagram.pdf><img src=/img/fair-enabling-resources-services-principles-diagram-nocaption.svg
+        width=100%></a><figcaption>Relating\n<a href=https://w3id.org/fair/fip/terms/FAIR-Enabling-Resource>FAIR-Enabling
+        Resource</a>\n<strong>artifacts</strong>, from the\n<a href=https://w3id.org/fair/fip/terms/FIP-Ontology>FAIR
+        Implementation Profile (FIP) ontology</a>,\nto <strong>services</strong>.\nThese
+        services are what you deploy to implement each of the 15\n<a href=https://w3id.org/fair/principles/terms/FAIR>FAIR
+        Principles</a>\n(from Box 2 of the <a href=https://doi.org/10.1038/sdata.2016.18>seminal
+        publication</a>)\nfor any actual given digital research object.</figcaption></figure></p></div><div
+        class=page-footer></div><link rel=stylesheet type=text/css href=/css/katex.min.css
+        crossorigin=anonymous><script type=text/javascript src=/js/katex.min.js crossorigin=anonymous></script>\n<script
+        type=text/javascript src=/js/auto-render.min.js onload=renderMathInElement(document.body)
+        crossorigin=anonymous></script></div><footer class=footer-mobile><div class=social-icons><a
+        class=social-icon href=https://orcid.org/0000-0002-8424-0604 target=_blank
+        rel=noopener title=Orcid><svg width=\"28\" height=\"28\" viewBox=\"0 0 28
+        28\" fill=\"#ababab\" xmlns=\"https://www.w3.org/2000/svg\" xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path
+        d=\"M27 14c0 7.1804687-5.8195313 13-13 13C6.81953125 27 1 21.1804687 1 14
+        1 6.81953125 6.81953125 1 14 1c7.1804687.0 13 5.81953125 13 13zM9.76484375
+        19.9109375V13.9492188 9.03359375H8.20078125V19.9109375h1.5640625zM12.0601563
+        9.03359375V19.9210938h4.2453125c3.5851562.0 5.76875-2.6507813 5.76875-5.4437501.0-2.5695312-1.7671875-5.44374995-5.7890625-5.44374995h-4.225zM13.6242188
+        18.509375V10.4453125H16.03125c3.046875.0 4.4382813 1.8484375 4.4382813 4.0320312.0
+        1.3406251-.8125 4.0320313-4.3570313 4.0320313H13.6242188zM10.0085938 6.76875c0-.55859375-.457031300000001-1.02578125-1.0257813-1.02578125S7.95703125
+        6.2 7.95703125 6.76875c0 .55859375.45703125 1.02578125 1.02578125 1.02578125S10.0085938
+        7.32734375 10.0085938 6.76875z\"/></svg></a><a class=social-icon href=https://fairpoints.social/@donny
+        target=_blank rel=\"noopener rel\" title=Mastodon><svg xmlns=\"http://www.w3.org/2000/svg\"
+        width=\"28\" height=\"28\" viewBox=\"0 0 418 512\" fill=\"currentcolor\" stroke=\"currentcolor\"
+        stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path
+        d=\"M433 179.11c0-97.2-63.71-125.7-63.71-125.7-62.52-28.7-228.56-28.4-290.48.0.0.0-63.72
+        28.5-63.72 125.7.0 115.7-6.6 259.4 105.63 289.1 40.51 10.7 75.32 13 103.33
+        11.4 50.81-2.8 79.32-18.1 79.32-18.1l-1.7-36.9s-36.31 11.4-77.12 10.1c-40.41-1.4-83-4.4-89.63-54a102.54
+        102.54.0 01-.9-13.9c85.63 20.9 158.65 9.1 178.75 6.7 56.12-6.7 105-41.3 111.23-72.9
+        9.8-49.8 9-121.5 9-121.5zm-75.12 125.2h-46.63v-114.2c0-49.7-64-51.6-64 6.9v62.5h-46.33V197c0-58.5-64-56.6-64-6.9v114.2H90.19c0-122.1-5.2-147.9
+        18.41-175 25.9-28.9 79.82-30.8 103.83 6.1l11.6 19.5 11.6-19.5c24.11-37.1 78.12-34.8
+        103.83-6.1 23.71 27.3 18.4 53 18.4 175z\"/></svg></a><a class=social-icon
+        href=https://www.linkedin.com/in/donnywinston/ target=_blank rel=noopener
+        title=LinkedIn><svg width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"#ababab\"
+        xmlns=\"https://www.w3.org/2000/svg\" xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path
+        d=\"M2 3.654102c0-.95502059.79442509-1.73012354 1.77383592-1.73012354H24.2261641C25.2058917
+        1.92397846 26 2.69908141 26 3.654102V24.3462148C26 25.3015521 25.2058917 26.0760215
+        24.2261641 26.0760215H3.77383592C2.79442509 26.0760215 2 25.3015521 2 24.3465315V3.65378524
+        3.654102zM9.27526132 22.1415901V11.2356668H5.65030092V22.1415901H9.27557808
+        9.27526132zM7.46341463 9.74691162c1.2638581.0 2.05068103-.83750395 2.05068103-1.88406715C9.49033893
+        6.79252455 8.72727273 5.97846056 7.48748812 5.97846056c-1.24073487.0-2.05099778.81406399-2.05099778
+        1.88438391.0 1.0465632.78650618 1.88406715 2.00316756 1.88406715h.02343998H7.46341463zM11.2815965
+        22.1415901h3.6246436v-6.089642C14.9062401 15.7263225 14.9299968 15.4000634
+        15.0256573 15.1675641c.261957499999999-.6515679.8584099-1.3259423 1.8599936-1.3259423
+        1.3113716.0 1.836237 1 1.836237 2.4662654v5.8337029h3.6246436V15.8885017c0-3.349699-1.7880899-4.9084574-4.172949-4.9084574-1.9553373.0-2.814064
+        1.0928097-3.2910991 1.8371872H14.9065569v-1.581248H11.2819132C11.3291099 12.2591067
+        11.2815965 22.1419069 11.2815965 22.1419069V22.1415901z\"/></svg></a><a class=social-icon
+        href=https://github.com/dwinston/ target=_blank rel=noopener title=GitHub><svg
+        width=\"28\" height=\"28\" viewBox=\"0 0 28 28\" fill=\"#ababab\" xmlns=\"https://www.w3.org/2000/svg\"
+        xmlns:xlink=\"https://www.w3.org/1999/xlink\"><path d=\"M13.9988029 1.32087331C6.82105037
+        1.32087331 1 7.14112562 1 14.3212723c0 5.7436386 3.72454649 10.6157955 8.89038951
+        12.3348169C10.5408085 26.7757983 10.7778323 26.374374 10.7778323 26.0296121
+        10.7778323 25.7215609 10.7666595 24.9035493 10.760275 23.8189856 7.14426471
+        24.6042767 6.38131925 22.0760223 6.38131925 22.0760223c-.59136253-1.5019491-1.44369072-1.9017772-1.44369072-1.9017772C3.75729765
+        19.3682044 5.02701126 19.3841656 5.02701126 19.3841656 6.33183953 19.4759425
+        7.01817121 20.7241085 7.01817121 20.7241085c1.15958133 1.9863716 3.04300319
+        1.4125664 3.78360289 1.0797753.1181129-.8395592.4540962-1.4125663.8251942-1.7373768C8.74038491
+        19.7385043 5.70536235 18.6228163 5.70536235 13.6413251c0-1.4189508.50676816-2.5801283
+        1.33834679-3.4883207C6.90963504 9.82420367 6.46351945 8.50181809 7.17139875
+        6.71256734c0 0 1.09094816-.34955032 3.57451115 1.33276037C11.78259 7.75642995
+        12.8950858 7.61277914 14.000399 7.60719272 15.1049142 7.61277914 16.2166119
+        7.75642995 17.2548881 8.04532771c2.4819669-1.68231069 3.571319-1.33276037
+        3.571319-1.33276037C21.5356825 8.50181809 21.0895669 9.82420367 20.9562909
+        10.1530044 21.7894656 11.0611968 22.2922435 12.2223743 22.2922435 13.6413251c0
+        4.9942601-3.039811 6.0931889-5.935173 6.4148071.4660671.401424200000001.8818564
+        1.194696.8818564 2.4077473C17.2389269 24.2012564 17.2229657 25.603448 17.2229657
+        26.0296121 17.2229657 26.3775663 17.4575954 26.7821827 18.116793 26.6552912
+        23.2786458 24.9322794 27 20.0633148 27 14.3212723 27 7.14112562 21.1789496
+        1.32087331 13.9988029 1.32087331\"/></svg></a></div><div class=footer-mobile-links><div
+        class=hugo-attrib><p><a href=https://github.com/kimcc/hugo-theme-noteworthy
+        target=_blank rel=noopener>Noteworthy theme</a></p><span class=divider-bar>|</span><p><a
+        href=https://gohugo.io target=_blank rel=noopener>Built with Hugo</a></p></div></div><script
+        src=https://donnywinston.com/js/main.min.a7205ef73b078c8daed6fe1b0826e8ba229ffabbb69d299d9446cf41f2c7d8aa.js
+        integrity=\"sha256-pyBe9zsHjI2u1v4bCCbouiKf+ru2nSmdlEbPQfLH2Ko=\" crossorigin=anonymous></script></footer></body></html>"
     headers:
       Accept-Ranges:
       - bytes
       Age:
-      - '1'
+      - '0'
       Cache-Control:
       - public,max-age=0,must-revalidate
       Cache-Status:
@@ -116,17 +205,19 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:22:28 GMT
+      - Mon, 29 Jun 2026 18:12:49 GMT
       Etag:
       - '"cd53986a50d6f0ce9a9981b872b83e99-ssl-df"'
       Server:
       - Netlify
       Strict-Transport-Security:
       - max-age=31536000
+      Transfer-Encoding:
+      - chunked
       Vary:
       - Accept-Encoding
       X-Nf-Request-Id:
-      - 01KT1NK6FF4WWTC5M7HEQKMQ77
+      - 01KWA9AZCKJSFRDR44JPPCTGZA
     status:
       code: 200
       message: OK
@@ -136,21 +227,19 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://doi.org/ra/10.57099
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAAA4vmUlCoBmIFBSUXf08lKwUlQwM9U3MDS0slHYhwkCNI1Lkov7i4KDVNCShYyxUL
-        AItENls3AAAA
+      string: "[\n  {\n    \"DOI\": \"10.57099\",\n    \"RA\": \"Crossref\"\n  }\n]"
     headers:
       CF-RAY:
-      - a04e86ffbe39e568-AMS
+      - a136e6d2bc9f6643-AMS
       Connection:
       - keep-alive
       Content-Encoding:
@@ -158,15 +247,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Mon, 01 Jun 2026 13:22:28 GMT
+      - Mon, 29 Jun 2026 18:12:49 GMT
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=0SEWe5i7rzoRT232j3IjdnDzDEwsjuDw5JRat0co2kZOoumpTmIl%2FAFGVjA5cWiv7Wwnta%2FwRbT3U%2BtgbpfQl67YGHapJAObQA%2Fp4NfgnXcWqXPOdRwa3aC1h1r1vtXr8iceJPo%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=yOEDy44XQtMRCZ8Hnr9prFW5l7uWB%2BChnt9%2FpznpNOnyoraVz0RVhVEBuO47P5itUxcJvgfH9xS7vYb6zqPbj1AK9Fs30ECl4YWn4%2B0smTgQUZIzxuXfeao4WxcLBOnz7YKdB5E%3D"}]}'
       Server:
       - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
+      Transfer-Encoding:
+      - chunked
       alt-svc:
       - h3=":443"; ma=86400
       cf-cache-status:
@@ -185,34 +276,22 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.io)
+      - commonmeta-py (https://commonmeta.org/; mailto:info@front-matter.de)
     method: GET
     uri: https://api.crossref.org/works/10.57099/11h5yt3819
   response:
     body:
-      string: !!binary |
-        H4sIAAAAAAAA/8VV72/bNhD9Vwh+6gDRFmXJboyiQZGkWIAMLZwMAxb7AyWdLC4SqZGUHcPw/76j
-        JDdeU3cYhqFBAijHH/fu3nvHPbVOuNbSOdVPNKA1WCvWwNyuAYxttTmNbsBYqRUu8FE4Cl9W6HxP
-        pbJOutZ1Gx73VInaX/FZVzsFNZC7uyt6WAW4L4dnyP2RXDhgjTAO8z8+RmGUBEnA4xXu6pac7K7w
-        CyxMGI8f+GSehPMw+h1z+1VEXzd0zmfxLJqE0zDiEx7QF5yTURyOEnoIaKOtO5M1CngYRHy1wm0G
-        CjCgMmCZbpWj8xCPtmklbQkGL/xotHLkF+Ec/hvQSmagLHQFIxbjvp/gVV0R4yGL+EOIRfnfr+ua
-        TqcTHsah/0F0GSYH5U6I2GgPI4dK7JhULBc722H+dXGHq6VzjZ0vx8txZkA4uYFM17VWdqTNejke
-        0NvlON0tx/EoxBCsRZXpHLBnP6gkl9f/V0mrl3y5roVUXW3D16NfNdraWpgnZhCwkVkv50JUFhCs
-        LbVxzF+BJ8Bg1a6C/qRIcb/IsFv0XfP+Z70luQZLBFmABWGyktzrwm2FAXKj1ngaDHmzuL/5iVxe
-        XhJcAkUwZ4OVyLQCUmhDcthApRup1kSqwgjM0GauxSucJrVQ6DwiVE5s6a/N5Vo6Uflb+oQ6/QMy
-        Z8kbZEgEpMYWVDYgvhUBUdpBqvUTBrzLi0pv8RNcNnq3HDfvkYHrT7fe6eifWXhxsRxzXiY7N3nL
-        Lzyj/YDoXcWGplLfQCTlvM94MPm2ZDgLJw9RNI/4PE5eS2aW8JiHSS8Zq1uT+aNXni10LG6Xln2x
-        bs7S3Yl9jyTR27qpcBIp5xvqSiAfP9wuyGcjVSZxxZKH0uh2XXZxdqME2h53fjBOFsI30vf6HswG
-        NWYpltFgSvl80iQEIlqHIukGwqfF1e313ySrTSbzXqhe/gz/IvY2jmKGsyseTnuAmW8i67YP6gvo
-        GrXu/XGtldrh3kLUstph4Dc/elGm2Bn4s/UdwGAhjfWEiKKQlRTDWEbQRlf9vOo/joBxaupMpG0l
-        jL8zO7b2sPKuqaFOu/k34bOLhPY2euUBbVCCSlSnMWzhU5fua/vmvoxtD32EHkbVoZjQuPKEJobt
-        YIWQhjVfaMJYR1Mfh4EmJo40MaSJ2SNNL44fJOvg2S3Hpasren6gSh/OkQLRNJVnYxhNeJbVUmG+
-        bpjkgJjlf9X79Jzep4PeM23wJPev01H7exSfrDuuflhrDx5bm56Q3c/Hk4C0tv03r6498e3rqmRv
-        nTMjyeCL0fO074H56dfDOL7g/4zE19PrRDv/4h8OfwEmADzVIwkAAA==
+      string: '{"status":"ok","message-type":"work","message-version":"1.0.0","message":{"institution":[{"name":"Polyneme
+        LLC"}],"indexed":{"date-parts":[[2025,5,14]],"date-time":"2025-05-14T13:50:02Z","timestamp":1747230602131,"version":"3.40.5"},"posted":{"date-parts":[[2022,10,21]]},"reference-count":0,"publisher":"Front
+        Matter","license":[{"start":{"date-parts":[[2022,10,21]],"date-time":"2022-10-21T00:00:00Z","timestamp":1666310400000},"content-version":"vor","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"},{"start":{"date-parts":[[2022,10,21]],"date-time":"2022-10-21T00:00:00Z","timestamp":1666310400000},"content-version":"tdm","delay-in-days":0,"URL":"https:\/\/creativecommons.org\/licenses\/by\/4.0\/legalcode"}],"content-domain":{"domain":[],"crossmark-restriction":false},"short-container-title":[],"abstract":"<p>How
+        does a Research Software Engineer (RSE) ??? often responsible for developing
+        infrastructure to manage and share digital research objects (data, models,
+        code, notebooks, workflows, etc.<\/p>","DOI":"10.57099\/11h5yt3819","type":"posted-content","created":{"date-parts":[[2022,11,3]],"date-time":"2022-11-03T22:21:45Z","timestamp":1667514105000},"source":"Crossref","is-referenced-by-count":0,"title":["Implementing
+        the FAIR Principles Through FAIR-Enabling Artifacts and Services"],"prefix":"10.57099","author":[{"ORCID":"https:\/\/orcid.org\/0000-0002-8424-0604","authenticated-orcid":false,"given":"Donny","family":"Winston","sequence":"first","affiliation":[],"role":[{"role":"author","vocabulary":"crossref"}]}],"member":"31795","container-title":[],"original-title":[],"link":[{"URL":"https:\/\/donnywinston.com\/posts\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services","content-type":"text\/html","content-version":"vor","intended-application":"text-mining"}],"deposited":{"date-parts":[[2022,11,3]],"date-time":"2022-11-03T22:21:46Z","timestamp":1667514106000},"score":1,"resource":{"primary":{"URL":"https:\/\/donnywinston.com\/posts\/implementing-the-fair-principles-through-fair-enabling-artifacts-and-services"}},"subtitle":[],"short-title":[],"issued":{"date-parts":[[2022,10,21]]},"references-count":0,"URL":"https:\/\/doi.org\/10.57099\/11h5yt3819","relation":{},"subject":[],"published":{"date-parts":[[2022,10,21]]},"subtype":"other"}}'
     headers:
       Connection:
       - keep-alive
@@ -221,7 +300,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 01 Jun 2026 13:22:28 GMT
+      - Mon, 29 Jun 2026 18:12:50 GMT
       access-control-allow-headers:
       - X-Requested-With, Accept, Accept-Encoding, Accept-Charset, Accept-Language,
         Accept-Ranges, Cache-Control
@@ -245,69 +324,6 @@ interactions:
       - 1s
       x-rate-limit-limit:
       - '10'
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Connection:
-      - close
-      Host:
-      - www.w3.org
-      User-Agent:
-      - Python-urllib/3.10
-    method: GET
-    uri: http://www.w3.org/Math/XMLSchema/mathml3/mathml3.xsd
-  response:
-    body:
-      string: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<xs:schema xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"\n
-        \          xmlns:m=\"http://www.w3.org/1998/Math/MathML\"\n           elementFormDefault=\"qualified\"\n
-        \          targetNamespace=\"http://www.w3.org/1998/Math/MathML\">\n   <xs:include
-        schemaLocation=\"mathml3-content.xsd\"/>\n   <xs:include schemaLocation=\"mathml3-presentation.xsd\"/>\n
-        \  <xs:include schemaLocation=\"mathml3-common.xsd\"/>\n</xs:schema>"
-    headers:
-      Age:
-      - '2540102'
-      CF-RAY:
-      - a09fbb51bb21a0b9-DUS
-      Connection:
-      - close
-      Content-Type:
-      - application/xml
-      Date:
-      - Thu, 11 Jun 2026 09:53:58 GMT
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      X-Content-Type-Options:
-      - nosniff
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - max-age=7776000, s-maxage=2592001
-      cf-cache-status:
-      - HIT
-      content-security-policy:
-      - frame-ancestors 'self' https://cms.w3.org/ https://cms-dev.w3.org/; upgrade-insecure-requests
-      etag:
-      - W/"1b3-477e54b286fc0-gzip"
-      expires:
-      - Tue, 11 Aug 2026 00:18:55 GMT
-      last-modified:
-      - Mon, 09 Nov 2009 00:29:59 GMT
-      set-cookie:
-      - __cf_bm=wBuHPFp33.oM2BUbanUYPP3ZTqQfLqJ87sxnFT0q1Ds-1781171638.0395694-1.0.1.1-qiGQdDIL9OFBuuJU11HWdzo9sAjA.B4sQz8AbF7D3w2XR166PFOlN1Qm41GC02S_Q6Ozje95o702yMR5gXjlV431h_O.AslVDV8Y7efuRA1OEuRhcvUCKbP71iewNha.;
-        HttpOnly; Path=/; Domain=w3.org; Expires=Thu, 11 Jun 2026 10:23:58 GMT
-      strict-transport-security:
-      - max-age=15552000; includeSubdomains; preload
-      vary:
-      - Accept-Encoding
-      x-backend:
-      - www-mirrors
-      x-request-id:
-      - 9fad7d18fae20853
     status:
       code: 200
       message: OK

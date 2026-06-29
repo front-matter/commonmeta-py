@@ -5,153 +5,273 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.5
+      - python-requests/2.34.2
     method: GET
     uri: https://api.rogue-scholar.org/blogs/front_matter
   response:
     body:
-      string: !!binary |
-        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
-        AA==
+      string: '{"authors":[{"name":"Martin Fenner","url":"https://orcid.org/0000-0003-1419-2405"}],"community_id":"15a362ea-8138-42b8-917f-1840a92addf8","created_at":1672531200,"current_feed_url":null,"description":"The
+        Front Matter Blog covers the intersection of science and technology since
+        2007.","favicon":"https://rogue-scholar.org/api/communities/15a362ea-8138-42b8-917f-1840a92addf8/logo","feed_format":"application/atom+xml","feed_url":"https://blog.front-matter.de/atom","filter":null,"generator":"Ghost","home_page_url":"https://blog.front-matter.de/","issn":"2749-9952","language":"en","license":"https://creativecommons.org/licenses/by/4.0/legalcode","posts":[{"doi":"https://doi.org/10.53731/204cn-q6m42","guid":"https://doi.org/10.53731/204cn-q6m42","published_at":1781481600,"summary":"The
+        science blogging archive Rogue Scholar launched a new feature this week: author
+        profile pages. This feature is similar to functionality common to blogging
+        platforms, but integrates all blog posts by a given author that were archived
+        in Rogue Scholar.","title":"Rogue Scholar launched author profiles this week","updated_at":1781522785,"url":"https://blog.front-matter.de/posts/rogue-scholar-launched-author-profiles-this-week/"},{"doi":"https://doi.org/10.53731/sp36e-a2s46","guid":"https://doi.org/10.53731/sp36e-a2s46","published_at":1780531200,"summary":"This
+        is the May 2026 issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Five blogs were added in May.","title":"Rogue Scholar Newsletter May 2026","updated_at":1780857073,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-may-2026/"},{"doi":"https://doi.org/10.53731/vbfpd-vg206","guid":"https://doi.org/10.53731/vbfpd-vg206","published_at":1780358400,"summary":"The
+        science blog archive Rogue Scholar last week achieved an important milestone:
+        archiving 50,000 science blog posts, will searchable full-text, rich metadata,
+        and DOIs.","title":"Rogue Scholar has now archived 50,000 science blog posts","updated_at":1780857075,"url":"https://blog.front-matter.de/posts/rogue-scholar-50-000/"},{"doi":"https://doi.org/10.53731/fk0rs-6z338","guid":"https://doi.org/10.53731/fk0rs-6z338","published_at":1779321600,"summary":"Submitting
+        a blog to the Rogue Scholar science blog archive requires filling out a simple
+        form, and sometimes answering a few additional questions via email. In recent
+        months I haven''t caught up with the submissions and decided to implement
+        a few changes. Participating in Rogue Scholar doesn''t cost anything to authors
+        or readers.","title":"Changes in the Rogue Scholar blog submission workflow","updated_at":1780857076,"url":"https://blog.front-matter.de/posts/changes-in-the-rogue-scholar-blog-submission-workflow/"},{"doi":"https://doi.org/10.53731/fzyp4-7sj47","guid":"https://doi.org/10.53731/fzyp4-7sj47","published_at":1779062400,"summary":"Today
+        the Rogue Scholar science blog archive is launching an OPML file export of
+        all active blogs. OPML is the standard export format for blog feeds and includes
+        the blog category and feed URL \u2013 Rogue Scholar uses the OpenAlex subject
+        area subfield as category.","title":"Launching the Rogue Scholar Feed OPML
+        file and Feed Reader","updated_at":1780857078,"url":"https://blog.front-matter.de/posts/launching-the-rogue-scholar-feed-opml-file-and-feed-reader/"},{"doi":"https://doi.org/10.53731/p5aym-fhj14","guid":"https://doi.org/10.53731/p5aym-fhj14","published_at":1778630400,"summary":"Blogs
+        added to Rogue Scholar One blog was added in April.","title":"Rogue Scholar
+        Newsletter April 2026","updated_at":1780857079,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-april-2026/"},{"doi":"https://doi.org/10.53731/ys8cq-f7659","guid":"https://doi.org/10.53731/ys8cq-f7659","published_at":1776297600,"summary":"All
+        science blogs participating in the Rogue Scholar science blog archive provide
+        a feed (in RSS, Atom or JSON Feed format) that includes not only metadata
+        and full-text content for all archived blog posts, but also metadata about
+        the blog itself.","title":"Rogue Scholar starts to register blog DOIs","updated_at":1780857080,"url":"https://blog.front-matter.de/posts/rogue-scholar-starts-to-register-blog-dois/"},{"doi":"https://doi.org/10.53731/yaq8z-te090","guid":"https://doi.org/10.53731/yaq8z-te090","published_at":1775520000,"summary":"Rogue
+        Scholar archives science blog posts written in a variety of languages, but
+        85% of the content is in English. Weekly newsletters of German, Spanish or
+        French blog posts where launched a few months ago, but for English-language
+        posts that is not practical with currently about 150 new blog posts per month.","title":"Rogue
+        Scholar launches a Featured Posts Newsletter","updated_at":1780857082,"url":"https://blog.front-matter.de/posts/rogue-scholar-launches-a-featured-posts-newsletter/"},{"doi":"https://doi.org/10.53731/wfp26-6ej12","guid":"https://doi.org/10.53731/wfp26-6ej12","published_at":1775088000,"summary":"Blogs
+        added to Rogue Scholar One blog was added in March.","title":"Rogue Scholar
+        Newsletter March 2026","updated_at":1780857083,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-march-2026/"},{"doi":"https://doi.org/10.53731/dp6ra-trw41","guid":"https://doi.org/10.53731/dp6ra-trw41","published_at":1775001600,"summary":"Rogue
+        Scholar uses the community functionality of the InvenioRDM repository platform
+        to manage science blogs and their associated blog posts. In the community
+        settings one can configure basic metadata such as blog name, description,
+        logo and URL.","title":"Rogue Scholar improves blog self-management","updated_at":1780857085,"url":"https://blog.front-matter.de/posts/rogue-scholar-improves-blog-self-management/"},{"doi":"https://doi.org/10.53731/809xc-y7r79","guid":"https://doi.org/10.53731/809xc-y7r79","published_at":1774483200,"summary":"About
+        12 months ago Rogue Scholar introduced dashboards with summary statistics
+        of the science blogging archive. At the end of 2025 these dashboards migrated
+        to the Rogue Scholar landing page. Today Rogue Scholar is launching community
+        dashboards \u2013 showing the same summary statistics by community.","title":"Introducing
+        Rogue Scholar community dashboards","updated_at":1780857086,"url":"https://blog.front-matter.de/posts/introducing-rogue-scholar-community-dashboards/"},{"doi":"https://doi.org/10.53731/3w24g-cdz85","guid":"https://doi.org/10.53731/3w24g-cdz85","published_at":1773619200,"summary":"Running
+        scholarly infrastructure such as Rogue Scholar beyond the initial launch phase
+        \u2013 what is typically called Day 2 operations\u00a0\u2013 requires the
+        following activities:monitoringincident managementmaintenance and updatesscaling
+        As Rogue Scholar is self-hosted infrastructure the natural fit for these activities
+        is self-hosted observability frameworks.","title":"Increasing operational
+        transparency in Rogue Scholar","updated_at":1780857088,"url":"https://blog.front-matter.de/posts/increasing-operational-transparency/"},{"doi":"https://doi.org/10.53731/9swze-jr923","guid":"https://doi.org/10.53731/9swze-jr923","published_at":1772668800,"summary":"This
+        is the February 2026 issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users.","title":"Rogue Scholar Newsletter
+        February 2026","updated_at":1780857089,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-february-2026/"},{"doi":"https://doi.org/10.53731/fpgmp-q8r11","guid":"https://doi.org/10.53731/fpgmp-q8r11","published_at":1771804800,"summary":"This
+        week the InvenioRDM community meets in Graz for five days to discuss the open
+        source repository platform. Front Matter has been part of the InvenioRDM community
+        since August 2021, and Rogue Scholar relaunched on the InvenioRDM platform
+        in October 2024.","title":"Rogue Scholar meets the InvenioRDM community (again)","updated_at":1780857091,"url":"https://blog.front-matter.de/posts/rogue-scholar-meets-the-inveniordm-community-again/"},{"doi":"https://doi.org/10.53731/1cy73-6m923","guid":"https://doi.org/10.53731/1cy73-6m923","published_at":1771200000,"summary":"About
+        85% of the almost 50,000 Rogue Scholar blog posts are written in English,
+        while German, Spanish and French are the most popular languages other than
+        English \u2013 for example more than 5,000 German-language blog posts have
+        been archived.","title":"Rogue Scholar speaks more languages","updated_at":1780857092,"url":"https://blog.front-matter.de/posts/rogue-scholar-speaks-more-languages/"},{"doi":"https://doi.org/10.53731/j79xq-nqz17","guid":"https://doi.org/10.53731/j79xq-nqz17","published_at":1770768000,"summary":"This
+        is the January 2026 issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users.","title":"Rogue Scholar Newsletter
+        January 2026","updated_at":1780857093,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-january-2026/"},{"doi":"https://doi.org/10.53731/76vm1-yme44","guid":"https://doi.org/10.53731/76vm1-yme44","published_at":1769644800,"summary":"The\u00a0Rogue
+        Scholar\u00a0science blog archive has improved the subject classification
+        of blog posts, using an\u00a0open approach to subject classification\u00a0developed
+        by CWTS and OpenAlex, and combining this with the widely used OECD Fields
+        of Science.","title":"Rogue Scholar is improving subject classification (Version
+        3)","updated_at":1780857095,"url":"https://blog.front-matter.de/posts/rogue-scholar-is-improving-subject-classification-version-3/"},{"doi":"https://doi.org/10.53731/dzznx-zkn71","guid":"https://doi.org/10.53731/dzznx-zkn71","published_at":1769040000,"summary":"Like
+        most digital infrastructure nowadays, Rogue Scholar and the underlying digital
+        repository platform InvenioRDM are built and deployed using Docker containers.
+        There are many ways to orchestrate (manage) Docker containers; two common
+        options are Docker Compose for local development and Kubernetes for production
+        infrastructure.","title":"Rogue Scholar migrated to Coolify Cloud","updated_at":1780857096,"url":"https://blog.front-matter.de/posts/rogue-scholar-migrated-coolify-cloud/"},{"doi":"https://doi.org/10.53731/tb8z7-7ft90","guid":"https://doi.org/10.53731/tb8z7-7ft90","published_at":1768435200,"summary":"The
+        Rogue Scholar science blog archive consolidated authentication into a single
+        Identity and Access Management (IAM) service, powered by a self-hosted\u00a0Keycloak\u00a0instance,
+        by the end of last year. This week, this service started supporting passwordless
+        authentication via magic links.","title":"Rogue Scholar now supports passwordless
+        authentication with magic links","updated_at":1780857098,"url":"https://blog.front-matter.de/posts/rogue-scholar-now-supports-passwordless-authentication-with-magic-links/"},{"doi":"https://doi.org/10.53731/s7y9a-es04","guid":"https://doi.org/10.53731/s7y9a-es04","published_at":1767830400,"summary":"This
+        is the December 2025 issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users.","title":"Rogue Scholar Newsletter
+        December 2025","updated_at":1780857099,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-december-2025/"},{"doi":"https://doi.org/10.53731/gvb08-7kc16","guid":"https://doi.org/","published_at":1767398400,"summary":"We
+        refactored the R-universe CI workflows to make it possible to run the exact
+        same workflow from your own GitHub repository. This allows you to test or
+        debug the build and check process on your R package, exactly as it will happen
+        on R-universe, but without actually deploying to https://r-universe.dev.","title":"Testing
+        the R-universe build workflow from your own GitHub repository","updated_at":1780984847,"url":"https://ropensci.org/blog/2026/01/03/r-universe-workflows/"},{"doi":"https://doi.org/10.53731/5q274-3e235","guid":"https://doi.org/10.53731/5q274-3e235","published_at":1767052800,"summary":"Starting
+        this week, the Rogue Scholar science blog archive has consolidated authentication
+        into a single Identity and Access Management (IAM) service, powered by a self-hosted
+        Keycloak instance at https://auth.front-matter.de.","title":"Consolidating
+        Rogue Scholar Authentication","updated_at":1780857100,"url":"https://blog.front-matter.de/posts/consolidating-rogue-scholar-authentication/"},{"doi":"https://doi.org/10.53731/n65p5-58463","guid":"https://doi.org/10.53731/n65p5-58463","published_at":1765152000,"summary":"The
+        science blog archive Rogue Scholar is becoming a German non-profit membership
+        organization in 2026. This will help with the governance and sustainability
+        of Rogue Scholar. But what can be the incentives to become a Rogue Scholar
+        member, and under what conditions?","title":"Incentives for Rogue Scholar
+        membership","updated_at":1780857102,"url":"https://blog.front-matter.de/posts/incentives-for-rogue-scholar-membership/"},{"doi":"https://doi.org/10.53731/aa1rk-1xf54","guid":"https://doi.org/10.53731/aa1rk-1xf54","published_at":1764892800,"summary":"This
+        is the November issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Two blogs were added in November. Welcome!","title":"Rogue Scholar Newsletter
+        November 2025","updated_at":1780857103,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-november-2025/"},{"doi":"https://doi.org/10.53731/4pr0j-7pq24","guid":"https://doi.org/10.53731/4pr0j-7pq24","published_at":1764720000,"summary":"The\u00a0Rogue
+        Scholar\u00a0science blog archive started work on improving the subject classification
+        of blog posts, using an\u00a0open approach to subject classification\u00a0developed
+        by CWTS and OpenAlex.","title":"Rogue Scholar is improving subject classification
+        (Version 2)","updated_at":1780857105,"url":"https://blog.front-matter.de/posts/rogue-scholar-is-improving-subject-classification-version-2/"},{"doi":"https://doi.org/10.53731/8gwcz-gv749","guid":"https://doi.org/10.53731/8gwcz-gv749","published_at":1764115200,"summary":"The
+        Rogue Scholar science blog archive started work on improving the subject classification
+        of blog posts, using an open approach to subject classification developed
+        by CWTS and OpenAlex.","title":"Rogue Scholar is improving subject classification","updated_at":1780857106,"url":"https://blog.front-matter.de/posts/rogue-scholar-improving-subject-classificatiion/"},{"doi":"https://doi.org/10.53731/xm5m2-3j810","guid":"https://doi.org/10.53731/xm5m2-3j810","published_at":1763510400,"summary":"Yesterday
+        I renamed the Front Matter blog to blog.front-matter.de, i.e. changing the
+        top-level domain from .io to .de. I did this for two reasons: * The internet
+        country code top-level domain .io has a complicated history, and I wanted
+        to migrate away from it for some time.","title":"Renaming the Front Matter
+        Blog","updated_at":1780857108,"url":"https://blog.front-matter.de/posts/renaming-the-front-matter-blog/"},{"doi":"https://doi.org/10.53731/rftfk-qv692","guid":"https://doi.org/10.53731/rftfk-qv692","published_at":1762128000,"summary":"The
+        science blog archive Rogue Scholar started the process of becoming a German
+        non-profit organization in 2026. This blog post summarizes the reasoning and
+        the main steps needed to achieve this. Two weeks ago, I published a self-assessment
+        of how Rogue Scholar adheres to the Principles of Open Scholarly Infrastructure
+        (POSI). Major gaps were identified in the areas of governance and sustainability.","title":"Rogue
+        Scholar is becoming a German Non-Profit Organization","updated_at":1780857109,"url":"https://blog.front-matter.de/posts/rogue-scholar-german-non-profit-organization/"},{"doi":"https://doi.org/10.53731/d0wwa-gwz14","guid":"https://doi.org/10.53731/d0wwa-gwz14","published_at":1761868800,"summary":"This
+        is the October issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Ten blogs were added in September. Welcome! More blogs are on the waitlist
+        and will be added soon.","title":"Rogue Scholar Newsletter October 2025","updated_at":1780857110,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-october-2025/"},{"doi":"https://doi.org/10.53731/9t6xx-kht30","guid":"https://doi.org/10.53731/9t6xx-kht30","published_at":1761523200,"summary":"This
+        week the Rogue Scholar science blog archive has launched a new feature: contributor
+        roles. Blog posts can now have contributor roles attached to each author,
+        and this information is shown in the Rogue Scholar and Crossref metadata.
+        We have discussed contributor roles for blog posts for several months, in
+        particular with the rOpenSci team.","title":"Supporting blog contributions
+        beyond authorship","updated_at":1780857112,"url":"https://blog.front-matter.de/posts/supporting-blog-contributions-beyond-authorship/"},{"doi":"https://doi.org/10.53731/m65a8-6sm21","guid":"https://doi.org/10.53731/m65a8-6sm21","published_at":1760918400,"summary":"With
+        this blog post, the science blog archive Rogue Scholar starts the formal process
+        to adhere to the Principles of Open Scholarly Infrastructure (POSI). To do
+        so, an organization has to perform a self-audit of its compliance with the
+        principles, with a focus on principles and not hard rules. POSI was updated
+        to version 2.0 this October, with the changes marked up in a separate document.","title":"Rogue
+        Scholar follows the Principles of Open Scholarly Infrastructure (POSI)","updated_at":1780857113,"url":"https://blog.front-matter.de/posts/rogue-scholar-follows-posi/"},{"doi":"https://doi.org/10.53731/kzg6q-mes47","guid":"https://doi.org/10.53731/kzg6q-mes47","published_at":1759363200,"summary":"This
+        is the September issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        One blog was added in September. Welcome!","title":"Rogue Scholar Newsletter
+        September 2025","updated_at":1780857115,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-september-2025/"},{"doi":"https://doi.org/10.53731/nxp08-a9947","guid":"https://doi.org/10.53731/nxp08-a9947","published_at":1759104000,"summary":"The
+        science blog archive Rogue Scholar this week started supporting versioning
+        of blog posts. This is a core feature of the InvenioRDM repository platform
+        used by Rogue Scholar, but Rogue Scholar uses DOIs from Crossref rather than
+        DataCite, the default DOI registration agency for InvenioRDM. Crossref versioning
+        was made possible with the Crossref schema 5.4.0 released in March.","title":"Rogue
+        Scholar starts supporting versioning","updated_at":1780857116,"url":"https://blog.front-matter.de/posts/rogue-scholar-starts-supporting-versioning/"},{"doi":"https://doi.org/10.53731/taha2-fvd76","guid":"https://doi.org/10.53731/taha2-fvd76","published_at":1758672000,"summary":"On
+        April 16, 2025, the Rogue Scholar Advisory Board met for the third time since
+        it started in January 2024. Since the last Advisory Board Meeting on October
+        24, Rogue Scholar has achieved several important milestones.","title":"Report
+        Rogue Scholar Advisory Board Meeting April 16, 2025","updated_at":1780857118,"url":"https://blog.front-matter.de/posts/report-rogue-scholar-advisory-board-meeting-ap-16-2024/"},{"doi":"https://doi.org/10.53731/pk03d-24338","guid":"https://doi.org/10.53731/pk03d-24338","published_at":1757548800,"summary":"This
+        week, the Rogue Scholar science blog archive started registering DOIs and
+        metadata with Crossref using the InvenioRDM repository platform rather than
+        relying on external tooling. InvenioRDM has of course supported DOI registration
+        with DataCite for a long time, so this adds another option for repositories
+        hosting reports, preprints, dissertations, or other textual documents.","title":"Rogue
+        Scholar now registers DOIs with InvenioRDM","updated_at":1780857119,"url":"https://blog.front-matter.de/posts/rogue-scholar-registers-dois-with-inveniordm/"},{"doi":"https://doi.org/10.53731/1xbh4-mnt50","guid":"https://doi.org/10.53731/1xbh4-mnt50","published_at":1756684800,"summary":"This
+        is the August issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Three blogs were added in August, with a few more in progress, requiring additional
+        work. Welcome everybody!","title":"Rogue Scholar Newsletter August 2025","updated_at":1780857121,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-august-2025/"},{"doi":"https://doi.org/10.53731/326tr-95k32","guid":"https://doi.org/10.53731/326tr-95k32","published_at":1756080000,"summary":"References
+        are an important element of scholarly metadata, and that is also true for
+        science blog posts. Currently 5.06% of all Rogue Scholar posts include at
+        least one reference, which are then registered with Crossref metadata. Citations
+        are the counterpart of references. When other scholarly works are cited in
+        the references of a scholarly work, this citation information can be communicated
+        to the cited work.","title":"Adding references to Wordpress posts: updated
+        kcite plugin","updated_at":1780857123,"url":"https://blog.front-matter.de/posts/adding-references-to-wordpress-posts-updated-kcite-plugin/"},{"doi":"https://doi.org/10.53731/yjq4w-5yr32","guid":"https://doi.org/10.53731/yjq4w-5yr32","published_at":1755475200,"summary":"The
+        Rogue Scholar science blog archive has supported ORCID and DOI identifiers
+        for linking to authors and blog posts since its launch. Starting this week,
+        these two identifiers can also be used to navigate within the Rogue Scholar
+        archive.","title":"Rogue Scholar links records via ORCID and DOI","updated_at":1780857124,"url":"https://blog.front-matter.de/posts/rogue-scholar-links-records-via-orcid-and-doi/"},{"doi":"https://doi.org/10.53731/qkhhf-jnr10","guid":"https://doi.org/10.53731/qkhhf-jnr10","published_at":1754956800,"summary":"The
+        Rogue Scholar science blog archive has introduced authentication with passkeys
+        and will disable local accounts on September 15. Reading Rogue Scholar content
+        has always been free and never required user accounts or cookie permissions.
+        This is true both for web and API usage.","title":"Rogue Scholar moves beyond
+        passwords","updated_at":1780857126,"url":"https://blog.front-matter.de/posts/rogue-scholar-moves-beyond-passwords/"},{"doi":"https://doi.org/10.53731/zyg15-qv911","guid":"https://doi.org/10.53731/zyg15-qv911","published_at":1754265600,"summary":"The
+        Rogue Scholar science blog archive uses DOIs to uniquely identify blog posts
+        with meaningful metadata. This enables tracking citations of scholar blog
+        posts in the scholarly literature using traditional citation tracking methods
+        rather than altmetrics. Initially launched as a Rogue Scholar service six
+        months ago, citation tracking has launched to production this week.","title":"Rogue
+        Scholar citation tracking launches to production","updated_at":1780857127,"url":"https://blog.front-matter.de/posts/citation-tracking-launches-to-production/"},{"doi":"https://doi.org/10.53731/eh0m8-aca27","guid":"https://doi.org/10.53731/eh0m8-aca27","published_at":1753920000,"summary":"This
+        is the July issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Thirteen blogs have been added in July, making it one of the busiest months
+        yet for Rogue Scholar. Welcome everybody!","title":"Rogue Scholar Newsletter
+        July 2025","updated_at":1780857129,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-july-2025/"},{"doi":"https://doi.org/10.53731/jeatk-t8t07","guid":"https://doi.org/10.53731/jeatk-t8t07","published_at":1753833600,"summary":"This
+        week the Rogue Scholar science blog archive has received two important updates:
+        full-text search becomes the default search configuration, and blog authors
+        can now self-manage basic settings of their Rogue Scholar blog community.
+        Full-text search as default Rogue Scholar has long supported full-text search
+        of all its content.","title":"Rogue Scholar Updates: full-text search as default
+        and basic blog self-management","updated_at":1780857130,"url":"https://blog.front-matter.de/posts/rogue-scholar-updates-full-text-search-blog-self-management/"},{"doi":"https://doi.org/10.53731/8dg89-gnc10","guid":"https://doi.org/10.53731/8dg89-gnc10","published_at":1753228800,"summary":"The
+        science blog archive Rogue Scholar relaunched today with a number of exciting
+        new features, including major new software version, new hardware, new look
+        and feed, and new authentication. Major new software version Version v13.0
+        of the InvenioRDM open source repository platform was released today.","title":"Rogue
+        Scholar relaunches today","updated_at":1780857131,"url":"https://blog.front-matter.de/posts/rogue-scholar-relaunches-today/"},{"doi":"https://doi.org/10.53731/dd5h7-z5y55","guid":"https://doi.org/10.53731/dd5h7-z5y55","published_at":1751846400,"summary":"Ten
+        days ago, I reported on a new deployment strategy for the InvenioRDM repository
+        software. Using the Kamal deployment tool, I deployed both a staging instance
+        of the Rogue Scholar service and a demo instance of the InvenioRDM Starter
+        package. Over the last few days I have updated both instances to the latest
+        release candidate (v13.0.0rc3) of the next major InvenioRDM software version.
+        The upgrade was fairly painless.","title":"Upgrading to InvenioRDM v13","updated_at":1780857133,"url":"https://blog.front-matter.de/posts/upgrading-to-inveniordm-v13/"},{"doi":"https://doi.org/10.53731/zh0af-01d30","guid":"https://doi.org/10.53731/zh0af-01d30","published_at":1751414400,"summary":"This
+        is the June issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users. Blogs added to Rogue Scholar
+        Two blogs were added in June. Welcome everybody!","title":"Rogue Scholar Newsletter
+        June 2025","updated_at":1780857136,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-june-2026/"},{"doi":"https://doi.org/10.53731/m7gng-jmm19","guid":"https://doi.org/10.53731/m7gng-jmm19","published_at":1750982400,"summary":"InvenioRDM
+        is the open source turn-key research data management platform, with detailed
+        documentation available here. InvenioRDM Starter facilitates deployment and
+        configuration of InvenioRDM, allowing you to run InvenioRDM on your local
+        computer within 15 min. This is achieved by providing a) a prebuilt Invenio-App-RDM
+        Docker image, and b) a Docker Compose configuration file with sensible defaults.","title":"Kamal
+        deploys InvenioRDM Starter to production","updated_at":1780857139,"url":"https://blog.front-matter.de/posts/kamal-deploys-inveniordm-starter-to-production/"},{"doi":"https://doi.org/10.53731/9nam9-w9k29","guid":"https://doi.org/10.53731/9nam9-w9k29","published_at":1749168000,"summary":"This
+        week the Rogue Scholar science blog archive experienced major upgrade pains,
+        and Rogue Scholar search became unavailable from Tuesday until Thursday. I
+        tried to upgrade to a pre-release version (13.0.0b4.dev0) of the InvenioRDM
+        repository software, and ran into multiple issues. Going back to the previously
+        installed v12.1.0 took longer than anticipated, mainly because of issues with
+        the Opensearch index.","title":"Rogue Scholar upgrade pains","updated_at":1780857141,"url":"https://blog.front-matter.de/posts/rogue-scholar-upgrade-pains/"},{"doi":"https://doi.org/10.53731/xxm2e-9f976","guid":"https://doi.org/10.53731/xxm2e-9f976","published_at":1748822400,"summary":"This
+        is the May issue of the monthly newsletter from the Rogue Scholar\u00a0science
+        blog archive. The newsletter reports on new blogs that have joined the platform,
+        important technical updates in Rogue Scholar infrastructure, community updates,
+        and other news relevant to Rogue Scholar users.","title":"Rogue Scholar Newsletter
+        May 2025","updated_at":1780857142,"url":"https://blog.front-matter.de/posts/rogue-scholar-newsletter-may-2025/"},{"doi":"https://doi.org/10.53731/69k7z-w7030","guid":"https://doi.org/10.53731/69k7z-w7030","published_at":1748304000,"summary":"Today
+        I released a new version of the commonmeta-py Python library with major improvements
+        in Crossref DOI registration, including refactoring to use the Python marshmallow
+        library, XML schema validation, and API calls to Crossref and InvenioRDM instances
+        via the commonmeta-py command-line interface. Using the marshmallow library
+        Marshmallow is a popular Python library for converting complex objects to
+        and from simple Python datatypes.","title":"Major update on Commonmeta Crossref
+        DOI registration","updated_at":1780857144,"url":"https://blog.front-matter.de/posts/major-update-on-commonmeta-crossref-doi-registration/"},{"doi":"https://doi.org/10.53731/sq5vs-mvv29","guid":"https://doi.org/10.53731/sq5vs-mvv29","published_at":1747612800,"summary":"Last
+        week I released updated Python, and Go versions of the commonmeta library
+        that can now read metadata from OpenAlex. OpenAlex is an open index of over
+        250 million scholarly works from 250k sources.","title":"Commonmeta understands
+        OpenAlex","updated_at":1780857145,"url":"https://blog.front-matter.de/posts/commonmeta-understands-openalex/"}],"prefix":"10.53731","relative_url":null,"secure":true,"slug":"front_matter","status":"active","subfield":"1710","title":"Front
+        Matter","updated_at":1781522561,"use_api":true}
+
+        '
     headers:
       Access-Control-Allow-Origin:
       - '*'
@@ -162,7 +282,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 08 Jun 2026 16:00:03 GMT
+      - Mon, 29 Jun 2026 18:14:14 GMT
       Server:
       - gunicorn
       Transfer-Encoding:
